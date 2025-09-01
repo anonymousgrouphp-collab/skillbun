@@ -811,3 +811,4 @@
 [2025-09-01T22:54:23] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-01T14:03:17] test(matching): add test suite for recommendation score
 [2025-09-01T09:55:04] docs(telemetry): record platform assessment metrics
+[2025-09-01T14:30:13] style(ui): adjust career dashboard card elevation
