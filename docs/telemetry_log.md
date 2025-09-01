@@ -817,3 +817,4 @@
 [2025-09-01T15:44:38] docs(telemetry): record platform assessment metrics
 [2025-09-01T20:58:15] feat(roadmap): add milestone progress tracking
 [2025-09-01T18:49:18] test(matching): add test suite for recommendation score
+[2025-09-01T22:34:41] style(ui): adjust career dashboard card elevation
