@@ -799,3 +799,4 @@
 [2026-06-26T15:26:19] refactor(counseling): streamline multi-step guidance flow
 [2026-06-26T09:35:37] perf(cache): optimize career trajectory data loader
 [2026-06-26T21:35:31] feat(career): enhance career pathway matching algorithm
+[2025-09-01T19:41:42] test(matching): add test suite for recommendation score
