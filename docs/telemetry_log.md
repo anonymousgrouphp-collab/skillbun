@@ -822,3 +822,4 @@
 [2025-09-01T23:29:06] chore(deps): update analytics telemetry adapter
 [2025-09-01T18:58:13] style(ui): adjust career dashboard card elevation
 [2025-09-01T18:26:02] fix(analytics): correct career aptitude score calculation
+[2025-09-01T15:47:09] feat(career): enhance career pathway matching algorithm
