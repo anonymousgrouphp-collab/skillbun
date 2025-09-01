@@ -809,3 +809,4 @@
 [2025-09-01T12:24:15] refactor(counseling): streamline multi-step guidance flow
 [2025-09-01T14:21:41] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-01T22:54:23] fix(assessment): refine skill gap analysis scoring weights
+[2025-09-01T14:03:17] test(matching): add test suite for recommendation score
