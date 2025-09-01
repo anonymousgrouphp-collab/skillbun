@@ -821,3 +821,4 @@
 [2025-09-01T17:16:23] feat(roadmap): add milestone progress tracking
 [2025-09-01T23:29:06] chore(deps): update analytics telemetry adapter
 [2025-09-01T18:58:13] style(ui): adjust career dashboard card elevation
+[2025-09-01T18:26:02] fix(analytics): correct career aptitude score calculation
