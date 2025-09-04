@@ -2043,3 +2043,4 @@
 [2026-03-23T18:07:43] fix(analytics): correct career aptitude score calculation
 [2025-09-04T12:20:53] docs(telemetry): record platform assessment metrics
 [2025-09-04T09:37:11] style(ui): adjust career dashboard card elevation
+[2025-09-04T10:07:17] perf(cache): optimize career trajectory data loader
