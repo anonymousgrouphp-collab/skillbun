@@ -1115,3 +1115,4 @@
 [2025-09-05T19:36:36] perf(cache): optimize career trajectory data loader
 [2025-09-05T14:53:51] chore(deps): update analytics telemetry adapter
 [2025-09-05T17:11:31] feat(career): enhance career pathway matching algorithm
+[2025-09-05T10:03:14] fix(analytics): correct career aptitude score calculation
