@@ -1100,3 +1100,4 @@
 [2026-04-20T15:40:51] feat(roadmap): add milestone progress tracking
 [2026-04-20T08:24:50] style(ui): adjust career dashboard card elevation
 [2026-04-20T23:34:50] chore(deps): update analytics telemetry adapter
+[2025-09-05T19:58:36] feat(roadmap): add milestone progress tracking
