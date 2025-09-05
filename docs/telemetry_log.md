@@ -1113,3 +1113,4 @@
 [2025-09-05T13:15:37] style(ui): adjust career dashboard card elevation
 [2025-09-05T19:58:37] feat(career): enhance career pathway matching algorithm
 [2025-09-05T19:36:36] perf(cache): optimize career trajectory data loader
+[2025-09-05T14:53:51] chore(deps): update analytics telemetry adapter
