@@ -1552,3 +1552,4 @@
 [2025-09-06T19:09:49] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-06T11:58:05] chore(deps): update analytics telemetry adapter
 [2025-09-06T08:48:54] feat(roadmap): add milestone progress tracking
+[2025-09-06T09:54:30] style(ui): adjust career dashboard card elevation
