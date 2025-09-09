@@ -1832,3 +1832,4 @@
 [2025-09-09T17:20:23] test(matching): add test suite for recommendation score
 [2025-09-09T10:48:27] feat(roadmap): add milestone progress tracking
 [2025-09-09T10:18:30] perf(cache): optimize career trajectory data loader
+[2025-09-09T11:44:55] refactor(counseling): streamline multi-step guidance flow
