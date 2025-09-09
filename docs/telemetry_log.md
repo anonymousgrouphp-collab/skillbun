@@ -1834,3 +1834,4 @@
 [2025-09-09T10:18:30] perf(cache): optimize career trajectory data loader
 [2025-09-09T11:44:55] refactor(counseling): streamline multi-step guidance flow
 [2025-09-09T18:33:26] feat(roadmap): add milestone progress tracking
+[2025-09-09T14:44:13] fix(analytics): correct career aptitude score calculation
