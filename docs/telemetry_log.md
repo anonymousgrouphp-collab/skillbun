@@ -1829,3 +1829,4 @@
 [2025-09-09T13:43:18] fix(analytics): correct career aptitude score calculation
 [2025-09-09T13:29:47] fix(analytics): correct career aptitude score calculation
 [2025-09-09T19:59:02] fix(assessment): refine skill gap analysis scoring weights
+[2025-09-09T17:20:23] test(matching): add test suite for recommendation score
