@@ -7,3 +7,4 @@
 [2025-09-16T22:11:58] style(ui): adjust career dashboard card elevation
 [2025-09-16T09:48:53] style(ui): adjust career dashboard card elevation
 [2025-09-16T15:34:32] feat(roadmap): add milestone progress tracking
+[2025-09-16T11:16:49] test(matching): add test suite for recommendation score
