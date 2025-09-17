@@ -1997,3 +1997,4 @@
 [2025-09-17T22:59:17] test(matching): add test suite for recommendation score
 [2025-09-17T18:16:10] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-17T16:49:03] test(matching): add test suite for recommendation score
+[2025-09-17T20:21:03] refactor(counseling): streamline multi-step guidance flow
