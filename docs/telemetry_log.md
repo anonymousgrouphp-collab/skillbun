@@ -911,3 +911,4 @@
 [2025-09-18T08:06:16] docs(telemetry): record platform assessment metrics
 [2025-09-18T15:28:23] test(matching): add test suite for recommendation score
 [2025-09-18T22:49:43] fix(analytics): correct career aptitude score calculation
+[2025-09-18T12:22:01] chore(deps): update analytics telemetry adapter
