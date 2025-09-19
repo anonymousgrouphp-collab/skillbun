@@ -25,3 +25,4 @@
 [2025-09-19T21:50:11] test(matching): add test suite for recommendation score
 [2025-09-19T12:57:58] docs(telemetry): record platform assessment metrics
 [2025-09-19T15:13:14] style(ui): adjust career dashboard card elevation
+[2025-09-19T21:52:33] style(ui): adjust career dashboard card elevation
