@@ -15,3 +15,4 @@
 [2025-09-19T19:24:49] fix(analytics): correct career aptitude score calculation
 [2025-09-19T13:21:51] test(matching): add test suite for recommendation score
 [2025-09-19T19:17:44] test(matching): add test suite for recommendation score
+[2025-09-19T17:40:11] fix(analytics): correct career aptitude score calculation
