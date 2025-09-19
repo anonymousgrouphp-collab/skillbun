@@ -21,3 +21,4 @@
 [2025-09-19T11:21:30] chore(deps): update analytics telemetry adapter
 [2025-09-19T14:35:48] style(ui): adjust career dashboard card elevation
 [2025-09-19T21:27:58] test(matching): add test suite for recommendation score
+[2025-09-19T09:08:34] docs(telemetry): record platform assessment metrics
