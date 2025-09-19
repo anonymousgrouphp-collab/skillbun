@@ -13,3 +13,4 @@
 [2025-09-19T10:17:11] refactor(counseling): streamline guidance flow
 [2025-09-19T19:30:45] style(ui): adjust career dashboard card elevation
 [2025-09-19T19:24:49] fix(analytics): correct career aptitude score calculation
+[2025-09-19T13:21:51] test(matching): add test suite for recommendation score
