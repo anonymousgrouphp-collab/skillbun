@@ -515,3 +515,4 @@
 [2025-09-20T20:45:40] test(matching): add test suite for recommendation score
 [2025-09-20T17:07:25] feat(career): enhance career pathway matching algorithm
 [2025-09-20T18:10:51] fix(analytics): correct career aptitude score calculation
+[2025-09-20T22:53:44] style(ui): adjust career dashboard card elevation
