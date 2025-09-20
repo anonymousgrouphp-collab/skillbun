@@ -516,3 +516,4 @@
 [2025-09-20T17:07:25] feat(career): enhance career pathway matching algorithm
 [2025-09-20T18:10:51] fix(analytics): correct career aptitude score calculation
 [2025-09-20T22:53:44] style(ui): adjust career dashboard card elevation
+[2025-09-20T10:27:54] fix(assessment): refine skill gap analysis scoring weights
