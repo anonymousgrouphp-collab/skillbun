@@ -523,3 +523,4 @@
 [2025-09-20T10:32:40] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-20T14:57:49] style(ui): adjust career dashboard card elevation
 [2025-09-20T19:46:52] perf(cache): optimize career trajectory data loader
+[2025-09-20T15:06:09] refactor(counseling): streamline multi-step guidance flow
