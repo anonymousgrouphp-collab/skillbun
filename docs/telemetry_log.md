@@ -527,3 +527,4 @@
 [2025-09-20T14:11:38] perf(cache): optimize career trajectory data loader
 [2025-09-20T10:11:49] chore(deps): update analytics telemetry adapter
 [2025-09-20T22:48:36] fix(analytics): correct career aptitude score calculation
+[2025-09-20T22:43:59] fix(analytics): correct career aptitude score calculation
