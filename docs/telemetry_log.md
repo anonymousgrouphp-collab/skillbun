@@ -2025,3 +2025,4 @@
 [2025-09-22T08:46:37] docs(telemetry): record platform assessment metrics
 [2025-09-21T23:24:04] feat(roadmap): add milestone progress tracking
 [2025-09-21T17:31:34] chore(deps): update analytics telemetry adapter
+[2025-09-21T08:02:21] feat(career): enhance career pathway matching algorithm
