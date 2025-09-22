@@ -2013,3 +2013,4 @@
 [2025-09-22T23:27:25] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-22T15:00:24] chore(deps): update analytics telemetry adapter
 [2025-09-22T11:36:34] style(ui): adjust career dashboard card elevation
+[2025-09-22T18:43:19] test(matching): add test suite for recommendation score
