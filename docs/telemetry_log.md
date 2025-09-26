@@ -1595,3 +1595,4 @@
 [2025-09-26T18:20:41] refactor(counseling): streamline multi-step guidance flow
 [2025-09-26T16:38:41] test(matching): add test suite for recommendation score
 [2025-09-26T16:56:28] style(ui): adjust career dashboard card elevation
+[2025-09-26T22:26:10] perf(cache): optimize career trajectory data loader
