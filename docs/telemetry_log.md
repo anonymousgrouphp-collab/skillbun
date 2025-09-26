@@ -1601,3 +1601,4 @@
 [2025-09-26T14:10:25] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-26T11:04:59] chore(deps): update analytics telemetry adapter
 [2025-09-26T09:01:49] test(matching): add test suite for recommendation score
+[2025-09-26T10:06:16] fix(analytics): correct career aptitude score calculation
