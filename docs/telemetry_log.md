@@ -1062,3 +1062,4 @@
 [2025-09-28T12:45:17] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-28T09:58:14] feat(roadmap): add milestone progress tracking
 [2025-09-28T21:44:57] style(ui): adjust career dashboard card elevation
+[2025-09-28T22:47:05] fix(analytics): correct career aptitude score calculation
