@@ -1055,3 +1055,4 @@
 [2025-12-24T22:23:37] chore(deps): update analytics telemetry adapter
 [2025-12-24T14:46:57] feat(roadmap): add milestone progress tracking
 [2025-09-28T15:09:00] test(matching): add test suite for recommendation score
+[2025-09-28T08:14:34] style(ui): adjust career dashboard card elevation
