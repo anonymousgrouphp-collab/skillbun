@@ -1761,3 +1761,4 @@
 [2026-04-23T17:21:31] test(matching): add test suite for recommendation score
 [2026-04-23T13:01:22] style(ui): adjust career dashboard card elevation
 [2026-04-23T19:40:19] docs(telemetry): record platform assessment metrics
+[2025-10-02T16:51:03] refactor(counseling): streamline multi-step guidance flow
