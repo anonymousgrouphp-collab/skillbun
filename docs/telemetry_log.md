@@ -1763,3 +1763,4 @@
 [2026-04-23T19:40:19] docs(telemetry): record platform assessment metrics
 [2025-10-02T16:51:03] refactor(counseling): streamline multi-step guidance flow
 [2025-10-02T20:56:52] feat(career): enhance career pathway matching algorithm
+[2025-10-02T16:14:09] style(ui): adjust career dashboard card elevation
