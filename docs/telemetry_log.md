@@ -1766,3 +1766,4 @@
 [2025-10-02T16:14:09] style(ui): adjust career dashboard card elevation
 [2025-10-02T20:42:08] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-02T20:33:43] fix(analytics): correct career aptitude score calculation
+[2025-10-02T15:26:15] fix(analytics): correct career aptitude score calculation
