@@ -1887,3 +1887,4 @@
 [2025-10-03T08:39:35] feat(roadmap): add milestone progress tracking
 [2025-10-03T11:13:34] style(ui): adjust career dashboard card elevation
 [2025-10-03T18:17:09] refactor(counseling): streamline multi-step guidance flow
+[2025-10-03T15:10:04] refactor(counseling): streamline multi-step guidance flow
