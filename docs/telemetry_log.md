@@ -1885,3 +1885,4 @@
 [2025-10-03T22:42:07] refactor(counseling): streamline multi-step guidance flow
 [2025-10-03T12:10:17] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-03T08:39:35] feat(roadmap): add milestone progress tracking
+[2025-10-03T11:13:34] style(ui): adjust career dashboard card elevation
