@@ -34,3 +34,4 @@
 [2025-10-03T16:06:07] chore(deps): update analytics telemetry adapter
 [2025-10-03T10:51:56] refactor(counseling): streamline guidance flow
 [2025-10-03T19:45:36] docs(telemetry): record platform assessment metrics
+[2025-10-03T14:01:15] fix(analytics): correct career aptitude score calculation
