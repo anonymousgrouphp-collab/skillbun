@@ -441,3 +441,4 @@
 [2025-10-06T12:24:29] style(ui): adjust career dashboard card elevation
 [2025-10-06T21:37:47] perf(cache): optimize career trajectory data loader
 [2025-10-06T21:41:06] chore(deps): update analytics telemetry adapter
+[2025-10-06T21:17:02] style(ui): adjust career dashboard card elevation
