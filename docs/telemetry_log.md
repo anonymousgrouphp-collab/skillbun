@@ -451,3 +451,4 @@
 [2025-10-06T15:08:50] fix(analytics): correct career aptitude score calculation
 [2025-10-06T14:04:53] feat(roadmap): add milestone progress tracking
 [2025-10-06T14:37:13] docs(telemetry): record platform assessment metrics
+[2025-10-06T18:49:09] fix(analytics): correct career aptitude score calculation
