@@ -446,3 +446,4 @@
 [2025-10-06T19:06:43] style(ui): adjust career dashboard card elevation
 [2025-10-06T19:03:25] refactor(counseling): streamline multi-step guidance flow
 [2025-10-06T14:07:54] chore(deps): update analytics telemetry adapter
+[2025-10-06T10:42:13] fix(analytics): correct career aptitude score calculation
