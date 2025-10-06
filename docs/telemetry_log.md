@@ -452,3 +452,4 @@
 [2025-10-06T14:04:53] feat(roadmap): add milestone progress tracking
 [2025-10-06T14:37:13] docs(telemetry): record platform assessment metrics
 [2025-10-06T18:49:09] fix(analytics): correct career aptitude score calculation
+[2025-10-06T08:17:54] perf(cache): optimize career trajectory data loader
