@@ -468,3 +468,4 @@
 [2025-10-06T22:04:57] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-06T18:38:09] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-06T12:17:39] fix(analytics): correct career aptitude score calculation
+[2025-10-06T18:24:38] feat(roadmap): add milestone progress tracking
