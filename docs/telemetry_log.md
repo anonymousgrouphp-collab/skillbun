@@ -449,3 +449,4 @@
 [2025-10-06T10:42:13] fix(analytics): correct career aptitude score calculation
 [2025-10-06T08:03:50] style(ui): adjust career dashboard card elevation
 [2025-10-06T15:08:50] fix(analytics): correct career aptitude score calculation
+[2025-10-06T14:04:53] feat(roadmap): add milestone progress tracking
