@@ -433,3 +433,4 @@
 [2026-03-12T20:52:40] style(ui): adjust career dashboard card elevation
 [2025-10-06T11:43:14] chore(deps): update analytics telemetry adapter
 [2025-10-06T08:39:56] feat(roadmap): add milestone progress tracking
+[2025-10-06T18:58:39] docs(telemetry): record platform assessment metrics
