@@ -455,3 +455,4 @@
 [2025-10-06T08:17:54] perf(cache): optimize career trajectory data loader
 [2025-10-06T12:34:16] perf(cache): optimize career trajectory data loader
 [2025-10-06T11:42:55] feat(career): enhance career pathway matching algorithm
+[2025-10-06T12:00:22] docs(telemetry): record platform assessment metrics
