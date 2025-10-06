@@ -444,3 +444,4 @@
 [2025-10-06T21:17:02] style(ui): adjust career dashboard card elevation
 [2025-10-06T14:28:28] docs(telemetry): record platform assessment metrics
 [2025-10-06T19:06:43] style(ui): adjust career dashboard card elevation
+[2025-10-06T19:03:25] refactor(counseling): streamline multi-step guidance flow
