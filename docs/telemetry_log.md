@@ -462,3 +462,4 @@
 [2025-10-06T22:49:23] feat(roadmap): add milestone progress tracking
 [2025-10-06T11:28:32] docs(telemetry): record platform assessment metrics
 [2025-10-06T09:46:50] feat(roadmap): add milestone progress tracking
+[2025-10-06T17:29:41] feat(career): enhance career pathway matching algorithm
