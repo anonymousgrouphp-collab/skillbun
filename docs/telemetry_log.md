@@ -1168,3 +1168,4 @@
 [2025-10-07T09:09:48] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-07T10:42:22] feat(roadmap): add milestone progress tracking
 [2025-10-07T21:48:37] docs(telemetry): record platform assessment metrics
+[2025-10-07T09:53:24] feat(roadmap): add milestone progress tracking
