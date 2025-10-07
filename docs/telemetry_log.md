@@ -1151,3 +1151,4 @@
 [2025-10-07T08:27:41] perf(cache): optimize career trajectory data loader
 [2025-10-07T21:10:03] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-07T18:13:12] test(matching): add test suite for recommendation score
+[2025-10-07T16:42:18] refactor(counseling): streamline multi-step guidance flow
