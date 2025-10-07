@@ -1164,3 +1164,4 @@
 [2025-10-07T13:23:56] test(matching): add test suite for recommendation score
 [2025-10-07T19:11:28] feat(career): enhance career pathway matching algorithm
 [2025-10-07T16:28:29] refactor(counseling): streamline multi-step guidance flow
+[2025-10-07T15:53:17] fix(analytics): correct career aptitude score calculation
