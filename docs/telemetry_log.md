@@ -744,3 +744,4 @@
 [2025-10-10T23:56:08] feat(roadmap): add milestone progress tracking
 [2025-10-10T22:17:12] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-10T18:10:46] chore(deps): update analytics telemetry adapter
+[2025-10-10T16:45:11] feat(career): enhance career pathway matching algorithm
