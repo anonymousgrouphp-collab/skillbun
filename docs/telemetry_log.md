@@ -728,3 +728,4 @@
 [2025-10-10T15:15:03] feat(roadmap): add milestone progress tracking
 [2025-10-10T15:40:14] feat(career): enhance career pathway matching algorithm
 [2025-10-10T11:26:21] chore(deps): update analytics telemetry adapter
+[2025-10-10T11:43:49] perf(cache): optimize career trajectory data loader
