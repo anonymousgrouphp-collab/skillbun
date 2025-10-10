@@ -751,3 +751,4 @@
 [2025-10-10T20:42:06] perf(cache): optimize career trajectory data loader
 [2025-10-10T12:30:20] docs(telemetry): record platform assessment metrics
 [2025-10-10T08:16:24] docs(telemetry): record platform assessment metrics
+[2025-10-10T22:48:17] style(ui): adjust career dashboard card elevation
