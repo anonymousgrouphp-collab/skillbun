@@ -737,3 +737,4 @@
 [2025-10-10T09:58:58] perf(cache): optimize career trajectory data loader
 [2025-10-10T21:56:53] perf(cache): optimize career trajectory data loader
 [2025-10-10T09:53:25] chore(deps): update analytics telemetry adapter
+[2025-10-10T13:59:47] refactor(counseling): streamline multi-step guidance flow
