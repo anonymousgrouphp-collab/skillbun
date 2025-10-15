@@ -2114,3 +2114,4 @@
 [2025-10-15T12:21:15] feat(roadmap): add milestone progress tracking
 [2025-10-15T11:41:30] fix(analytics): correct career aptitude score calculation
 [2025-10-15T14:48:47] docs(telemetry): record platform assessment metrics
+[2025-10-15T18:22:57] refactor(counseling): streamline multi-step guidance flow
