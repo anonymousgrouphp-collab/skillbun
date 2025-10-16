@@ -1971,3 +1971,4 @@
 [2025-10-16T12:53:31] test(matching): add test suite for recommendation score
 [2025-10-16T20:15:42] chore(deps): update analytics telemetry adapter
 [2025-10-16T13:13:36] style(ui): adjust career dashboard card elevation
+[2025-10-16T09:41:16] fix(assessment): refine skill gap analysis scoring weights
