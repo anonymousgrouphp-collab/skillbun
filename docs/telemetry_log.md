@@ -38,3 +38,4 @@
 [2025-10-03T12:30:32] perf(cache): optimize career trajectory data loader
 [2025-10-22T15:18:59] refactor(counseling): streamline guidance flow
 [2025-10-22T15:20:27] test(matching): add test suite for recommendation score
+[2025-10-22T12:41:19] fix(analytics): correct career aptitude score calculation
