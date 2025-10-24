@@ -47,3 +47,4 @@
 [2025-10-24T13:20:41] docs(telemetry): record platform assessment metrics
 [2025-10-24T22:30:10] test(matching): add test suite for recommendation score
 [2025-10-24T10:22:07] fix(assessment): refine skill gap analysis scoring weights
+[2025-10-24T09:55:05] refactor(counseling): streamline guidance flow
