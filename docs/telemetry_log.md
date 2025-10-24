@@ -50,3 +50,4 @@
 [2025-10-24T09:55:05] refactor(counseling): streamline guidance flow
 [2025-10-24T20:16:22] fix(assessment): refine skill gap analysis scoring weights
 [2025-10-24T18:15:15] feat(roadmap): add milestone progress tracking
+[2025-10-24T21:22:09] fix(analytics): correct career aptitude score calculation
