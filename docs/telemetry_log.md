@@ -2143,3 +2143,4 @@
 [2026-04-15T16:23:11] docs(telemetry): record platform assessment metrics
 [2026-04-15T09:42:20] style(ui): adjust career dashboard card elevation
 [2025-10-25T12:23:28] feat(roadmap): add milestone progress tracking
+[2025-10-25T13:34:19] fix(assessment): refine skill gap analysis scoring weights
