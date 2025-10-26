@@ -60,3 +60,4 @@
 [2025-10-26T12:43:53] test(matching): add test suite for recommendation score
 [2025-10-26T13:09:02] chore(deps): update analytics telemetry adapter
 [2025-10-26T21:28:54] refactor(counseling): streamline guidance flow
+[2025-10-26T09:45:43] feat(career): enhance career pathway matching algorithm
