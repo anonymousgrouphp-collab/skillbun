@@ -1569,3 +1569,4 @@
 [2025-11-03T21:13:26] style(ui): adjust career dashboard card elevation
 [2025-11-03T19:54:25] refactor(counseling): streamline multi-step guidance flow
 [2025-11-03T22:11:36] perf(cache): optimize career trajectory data loader
+[2025-11-03T15:52:06] refactor(counseling): streamline multi-step guidance flow
