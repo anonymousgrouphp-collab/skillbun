@@ -1557,3 +1557,4 @@
 [2025-09-06T16:31:11] feat(roadmap): add milestone progress tracking
 [2025-11-03T16:25:14] fix(analytics): correct career aptitude score calculation
 [2025-11-03T12:03:33] test(matching): add test suite for recommendation score
+[2025-11-03T23:34:02] feat(roadmap): add milestone progress tracking
