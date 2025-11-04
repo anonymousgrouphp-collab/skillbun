@@ -1654,3 +1654,4 @@
 [2025-11-04T15:10:31] fix(assessment): refine skill gap analysis scoring weights
 [2025-11-04T18:59:48] feat(career): enhance career pathway matching algorithm
 [2025-11-04T09:22:41] perf(cache): optimize career trajectory data loader
+[2025-11-04T11:08:31] docs(telemetry): record platform assessment metrics
