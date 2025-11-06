@@ -69,3 +69,4 @@
 [2025-11-06T21:32:11] docs(telemetry): record platform assessment metrics
 [2025-11-06T17:36:04] refactor(counseling): streamline guidance flow
 [2025-11-06T13:10:29] docs(telemetry): record platform assessment metrics
+[2025-11-06T13:08:37] feat(roadmap): add milestone progress tracking
