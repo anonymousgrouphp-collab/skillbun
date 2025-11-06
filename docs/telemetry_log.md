@@ -71,3 +71,4 @@
 [2025-11-06T13:10:29] docs(telemetry): record platform assessment metrics
 [2025-11-06T13:08:37] feat(roadmap): add milestone progress tracking
 [2025-11-06T19:50:10] refactor(counseling): streamline guidance flow
+[2025-11-06T17:28:17] style(ui): adjust career dashboard card elevation
