@@ -67,3 +67,4 @@
 [2025-11-06T21:07:45] fix(analytics): correct career aptitude score calculation
 [2025-11-06T16:51:41] test(matching): add test suite for recommendation score
 [2025-11-06T21:32:11] docs(telemetry): record platform assessment metrics
+[2025-11-06T17:36:04] refactor(counseling): streamline guidance flow
