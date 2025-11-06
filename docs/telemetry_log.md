@@ -80,3 +80,4 @@
 [2025-11-06T14:32:30] test(matching): add test suite for recommendation score
 [2025-11-06T16:38:12] feat(roadmap): add milestone progress tracking
 [2025-11-06T11:47:14] fix(analytics): correct career aptitude score calculation
+[2025-11-06T13:12:51] docs(telemetry): record platform assessment metrics
