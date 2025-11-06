@@ -75,3 +75,4 @@
 [2025-11-06T13:25:47] feat(roadmap): add milestone progress tracking
 [2025-11-06T13:29:41] feat(roadmap): add milestone progress tracking
 [2025-11-06T17:23:45] feat(roadmap): add milestone progress tracking
+[2025-11-06T15:14:43] chore(deps): update analytics telemetry adapter
