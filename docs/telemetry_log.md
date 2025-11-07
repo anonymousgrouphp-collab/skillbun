@@ -1728,3 +1728,4 @@
 [2025-11-07T21:49:44] perf(cache): optimize career trajectory data loader
 [2025-11-07T12:30:35] docs(telemetry): record platform assessment metrics
 [2025-11-07T23:25:41] fix(analytics): correct career aptitude score calculation
+[2025-11-07T14:35:39] feat(roadmap): add milestone progress tracking
