@@ -1729,3 +1729,4 @@
 [2025-11-07T12:30:35] docs(telemetry): record platform assessment metrics
 [2025-11-07T23:25:41] fix(analytics): correct career aptitude score calculation
 [2025-11-07T14:35:39] feat(roadmap): add milestone progress tracking
+[2025-11-07T15:15:04] refactor(counseling): streamline multi-step guidance flow
