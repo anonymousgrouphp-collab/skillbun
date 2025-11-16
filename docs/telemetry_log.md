@@ -93,3 +93,4 @@
 [2025-11-11T13:53:33] feat(career): enhance career pathway matching algorithm
 [2025-11-11T16:42:24] fix(assessment): refine skill gap analysis scoring weights
 [2025-11-11T10:02:49] feat(career): enhance career pathway matching algorithm
+[2025-11-16T12:26:58] feat(roadmap): add milestone progress tracking
