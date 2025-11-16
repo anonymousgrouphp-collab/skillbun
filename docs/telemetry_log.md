@@ -104,3 +104,4 @@
 [2025-11-16T17:26:43] test(matching): add test suite for recommendation score
 [2025-11-16T15:46:48] test(matching): add test suite for recommendation score
 [2025-11-16T13:26:27] refactor(counseling): streamline guidance flow
+[2025-11-16T11:10:57] fix(analytics): correct career aptitude score calculation
