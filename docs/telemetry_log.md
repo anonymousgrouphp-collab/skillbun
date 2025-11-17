@@ -771,3 +771,4 @@
 [2025-11-17T23:05:57] feat(roadmap): add milestone progress tracking
 [2025-11-17T22:51:03] chore(deps): update analytics telemetry adapter
 [2025-11-17T12:32:26] chore(deps): update analytics telemetry adapter
+[2025-11-17T09:35:29] refactor(counseling): streamline multi-step guidance flow
