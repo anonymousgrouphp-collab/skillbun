@@ -759,3 +759,4 @@
 [2025-11-17T17:44:07] refactor(counseling): streamline multi-step guidance flow
 [2025-11-17T19:39:14] docs(telemetry): record platform assessment metrics
 [2025-11-17T12:30:09] chore(deps): update analytics telemetry adapter
+[2025-11-17T19:26:44] feat(roadmap): add milestone progress tracking
