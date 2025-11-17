@@ -753,3 +753,4 @@
 [2025-10-10T08:16:24] docs(telemetry): record platform assessment metrics
 [2025-10-10T22:48:17] style(ui): adjust career dashboard card elevation
 [2025-11-17T17:37:46] fix(analytics): correct career aptitude score calculation
+[2025-11-17T08:16:41] style(ui): adjust career dashboard card elevation
