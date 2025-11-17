@@ -758,3 +758,4 @@
 [2025-11-17T22:19:10] test(matching): add test suite for recommendation score
 [2025-11-17T17:44:07] refactor(counseling): streamline multi-step guidance flow
 [2025-11-17T19:39:14] docs(telemetry): record platform assessment metrics
+[2025-11-17T12:30:09] chore(deps): update analytics telemetry adapter
