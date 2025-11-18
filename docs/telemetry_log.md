@@ -1684,3 +1684,4 @@
 [2025-11-18T19:35:47] test(matching): add test suite for recommendation score
 [2025-11-18T19:50:45] feat(career): enhance career pathway matching algorithm
 [2025-11-18T16:33:02] fix(assessment): refine skill gap analysis scoring weights
+[2025-11-18T17:04:13] feat(roadmap): add milestone progress tracking
