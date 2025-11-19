@@ -1442,3 +1442,4 @@
 [2025-11-19T10:53:17] perf(cache): optimize career trajectory data loader
 [2025-11-19T14:16:46] fix(assessment): refine skill gap analysis scoring weights
 [2025-11-19T10:57:01] feat(roadmap): add milestone progress tracking
+[2025-11-19T08:52:37] fix(analytics): correct career aptitude score calculation
