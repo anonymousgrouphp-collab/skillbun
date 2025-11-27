@@ -2070,3 +2070,4 @@
 [2026-06-17T15:46:28] fix(analytics): correct career aptitude score calculation
 [2026-06-17T18:26:12] style(ui): adjust career dashboard card elevation
 [2026-06-17T15:49:07] style(ui): adjust career dashboard card elevation
+[2025-11-27T15:06:15] test(matching): add test suite for recommendation score
