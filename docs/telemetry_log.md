@@ -1737,3 +1737,4 @@
 [2025-11-30T17:10:22] fix(analytics): correct career aptitude score calculation
 [2025-11-30T22:39:09] chore(deps): update analytics telemetry adapter
 [2025-11-30T09:59:52] docs(telemetry): record platform assessment metrics
+[2025-11-30T14:43:23] perf(cache): optimize career trajectory data loader
