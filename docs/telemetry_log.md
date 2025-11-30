@@ -1735,3 +1735,4 @@
 [2025-11-07T21:23:22] docs(telemetry): record platform assessment metrics
 [2025-11-07T18:22:38] feat(career): enhance career pathway matching algorithm
 [2025-11-30T17:10:22] fix(analytics): correct career aptitude score calculation
+[2025-11-30T22:39:09] chore(deps): update analytics telemetry adapter
