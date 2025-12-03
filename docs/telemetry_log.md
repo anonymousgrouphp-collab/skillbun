@@ -1537,3 +1537,4 @@
 [2025-12-03T16:44:28] test(matching): add test suite for recommendation score
 [2025-12-03T23:49:15] style(ui): adjust career dashboard card elevation
 [2025-12-03T22:43:29] fix(analytics): correct career aptitude score calculation
+[2025-12-03T08:30:07] refactor(counseling): streamline multi-step guidance flow
