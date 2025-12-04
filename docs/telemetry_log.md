@@ -1580,3 +1580,4 @@
 [2025-12-04T09:13:52] refactor(counseling): streamline multi-step guidance flow
 [2025-12-04T23:53:40] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-04T22:47:21] refactor(counseling): streamline multi-step guidance flow
+[2025-12-04T19:23:35] feat(roadmap): add milestone progress tracking
