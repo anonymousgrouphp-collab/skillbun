@@ -1821,3 +1821,4 @@
 [2025-12-06T23:29:26] chore(deps): update analytics telemetry adapter
 [2025-12-06T10:38:38] feat(career): enhance career pathway matching algorithm
 [2025-12-06T15:56:35] refactor(counseling): streamline multi-step guidance flow
+[2025-12-06T14:03:11] perf(cache): optimize career trajectory data loader
