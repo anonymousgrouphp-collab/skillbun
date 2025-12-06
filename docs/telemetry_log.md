@@ -121,3 +121,4 @@
 [2025-12-06T09:45:33] perf(cache): optimize career trajectory data loader
 [2025-12-06T16:55:41] refactor(counseling): streamline guidance flow
 [2025-12-06T09:31:33] refactor(counseling): streamline guidance flow
+[2025-12-06T10:58:20] refactor(counseling): streamline guidance flow
