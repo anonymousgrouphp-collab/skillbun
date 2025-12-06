@@ -116,3 +116,4 @@
 [2025-11-28T20:54:50] feat(roadmap): add milestone progress tracking
 [2025-11-28T12:48:02] refactor(counseling): streamline guidance flow
 [2025-11-28T21:56:51] chore(deps): update analytics telemetry adapter
+[2025-12-06T17:33:47] feat(career): enhance career pathway matching algorithm
