@@ -119,3 +119,4 @@
 [2025-12-06T17:33:47] feat(career): enhance career pathway matching algorithm
 [2025-12-06T22:49:03] docs(telemetry): record platform assessment metrics
 [2025-12-06T09:45:33] perf(cache): optimize career trajectory data loader
+[2025-12-06T16:55:41] refactor(counseling): streamline guidance flow
