@@ -1618,3 +1618,4 @@
 [2025-12-10T08:44:59] chore(deps): update analytics telemetry adapter
 [2025-12-10T23:19:00] test(matching): add test suite for recommendation score
 [2025-12-10T17:38:14] feat(career): enhance career pathway matching algorithm
+[2025-12-10T19:12:26] feat(roadmap): add milestone progress tracking
