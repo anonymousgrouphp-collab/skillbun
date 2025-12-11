@@ -2116,3 +2116,4 @@
 [2025-10-15T14:48:47] docs(telemetry): record platform assessment metrics
 [2025-10-15T18:22:57] refactor(counseling): streamline multi-step guidance flow
 [2025-12-11T21:17:03] fix(assessment): refine skill gap analysis scoring weights
+[2025-12-11T19:22:28] chore(deps): update analytics telemetry adapter
