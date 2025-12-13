@@ -1662,3 +1662,4 @@
 [2025-12-13T22:35:18] feat(roadmap): add milestone progress tracking
 [2025-12-13T23:12:36] perf(cache): optimize career trajectory data loader
 [2025-12-13T19:20:46] chore(deps): update analytics telemetry adapter
+[2025-12-13T16:55:53] fix(analytics): correct career aptitude score calculation
