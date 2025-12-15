@@ -137,3 +137,4 @@
 [2025-12-15T15:48:14] refactor(counseling): streamline guidance flow
 [2025-12-15T09:57:36] feat(career): enhance career pathway matching algorithm
 [2025-12-15T14:44:29] feat(career): enhance career pathway matching algorithm
+[2025-12-15T10:59:21] perf(cache): optimize career trajectory data loader
