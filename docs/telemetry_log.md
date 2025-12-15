@@ -139,3 +139,4 @@
 [2025-12-15T14:44:29] feat(career): enhance career pathway matching algorithm
 [2025-12-15T10:59:21] perf(cache): optimize career trajectory data loader
 [2025-12-15T14:11:03] refactor(counseling): streamline guidance flow
+[2025-12-15T22:14:37] fix(analytics): correct career aptitude score calculation
