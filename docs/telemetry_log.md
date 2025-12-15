@@ -146,3 +146,4 @@
 [2025-12-15T19:09:16] fix(analytics): correct career aptitude score calculation
 [2025-12-15T20:50:01] style(ui): adjust career dashboard card elevation
 [2025-12-15T22:39:02] chore(deps): update analytics telemetry adapter
+[2025-12-15T18:30:27] docs(telemetry): record platform assessment metrics
