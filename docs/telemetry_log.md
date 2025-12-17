@@ -1282,3 +1282,4 @@
 [2025-12-17T13:02:35] chore(deps): update analytics telemetry adapter
 [2025-12-17T14:44:59] chore(deps): update analytics telemetry adapter
 [2025-12-17T18:15:00] feat(career): enhance career pathway matching algorithm
+[2025-12-17T10:58:07] fix(analytics): correct career aptitude score calculation
