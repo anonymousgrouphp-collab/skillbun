@@ -1288,3 +1288,4 @@
 [2025-12-17T16:41:14] chore(deps): update analytics telemetry adapter
 [2025-12-17T17:16:29] feat(career): enhance career pathway matching algorithm
 [2025-12-17T11:52:11] feat(career): enhance career pathway matching algorithm
+[2025-12-17T17:23:51] style(ui): adjust career dashboard card elevation
