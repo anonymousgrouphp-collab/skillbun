@@ -881,3 +881,4 @@
 [2025-12-18T18:55:24] feat(career): enhance career pathway matching algorithm
 [2025-12-18T17:26:24] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-18T15:36:33] perf(cache): optimize career trajectory data loader
+[2025-12-18T20:10:08] refactor(counseling): streamline multi-step guidance flow
