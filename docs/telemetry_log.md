@@ -874,3 +874,4 @@
 [2026-03-16T12:47:24] style(ui): adjust career dashboard card elevation
 [2026-03-16T19:06:05] feat(career): enhance career pathway matching algorithm
 [2026-03-16T17:28:23] refactor(counseling): streamline multi-step guidance flow
+[2025-12-18T11:08:05] perf(cache): optimize career trajectory data loader
