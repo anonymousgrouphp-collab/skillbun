@@ -889,3 +889,4 @@
 [2025-12-18T14:29:06] perf(cache): optimize career trajectory data loader
 [2025-12-18T17:00:25] style(ui): adjust career dashboard card elevation
 [2025-12-18T20:51:55] style(ui): adjust career dashboard card elevation
+[2025-12-18T22:21:27] fix(analytics): correct career aptitude score calculation
