@@ -170,3 +170,4 @@
 [2025-12-19T22:35:12] fix(analytics): correct career aptitude score calculation
 [2025-12-19T10:27:35] refactor(counseling): streamline guidance flow
 [2025-12-19T20:29:39] feat(career): enhance career pathway matching algorithm
+[2025-12-19T20:32:01] docs(telemetry): record platform assessment metrics
