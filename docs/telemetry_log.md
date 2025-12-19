@@ -150,3 +150,4 @@
 [2025-12-15T14:48:53] test(matching): add test suite for recommendation score
 [2025-12-15T12:01:15] perf(cache): optimize career trajectory data loader
 [2025-12-15T22:48:33] test(matching): add test suite for recommendation score
+[2025-12-19T16:04:18] fix(assessment): refine skill gap analysis scoring weights
