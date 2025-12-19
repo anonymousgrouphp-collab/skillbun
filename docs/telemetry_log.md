@@ -154,3 +154,4 @@
 [2025-12-19T22:43:07] feat(roadmap): add milestone progress tracking
 [2025-12-19T17:40:09] perf(cache): optimize career trajectory data loader
 [2025-12-19T09:38:50] feat(career): enhance career pathway matching algorithm
+[2025-12-19T13:39:09] docs(telemetry): record platform assessment metrics
