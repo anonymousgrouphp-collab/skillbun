@@ -152,3 +152,4 @@
 [2025-12-15T22:48:33] test(matching): add test suite for recommendation score
 [2025-12-19T16:04:18] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-19T22:43:07] feat(roadmap): add milestone progress tracking
+[2025-12-19T17:40:09] perf(cache): optimize career trajectory data loader
