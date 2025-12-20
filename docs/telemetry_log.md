@@ -176,3 +176,4 @@
 [2025-12-20T20:27:28] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-20T13:22:36] perf(cache): optimize career trajectory data loader
 [2025-12-20T10:58:53] fix(assessment): refine skill gap analysis scoring weights
+[2025-12-20T17:28:55] test(matching): add test suite for recommendation score
