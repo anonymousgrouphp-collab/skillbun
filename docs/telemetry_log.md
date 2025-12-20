@@ -190,3 +190,4 @@
 [2025-12-20T17:42:22] feat(roadmap): add milestone progress tracking
 [2025-12-20T15:12:42] fix(analytics): correct career aptitude score calculation
 [2025-12-20T11:58:08] chore(deps): update analytics telemetry adapter
+[2025-12-20T14:06:30] docs(telemetry): record platform assessment metrics
