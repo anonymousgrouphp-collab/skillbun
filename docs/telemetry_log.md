@@ -187,3 +187,4 @@
 [2025-12-20T21:48:54] perf(cache): optimize career trajectory data loader
 [2025-12-20T22:39:12] refactor(counseling): streamline guidance flow
 [2025-12-20T10:53:39] fix(assessment): refine skill gap analysis scoring weights
+[2025-12-20T17:42:22] feat(roadmap): add milestone progress tracking
