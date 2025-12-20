@@ -194,3 +194,4 @@
 [2025-12-20T19:55:35] fix(analytics): correct career aptitude score calculation
 [2025-12-20T19:28:50] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-20T19:54:18] refactor(counseling): streamline guidance flow
+[2025-12-20T12:03:30] refactor(counseling): streamline guidance flow
