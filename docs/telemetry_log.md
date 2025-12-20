@@ -173,3 +173,4 @@
 [2025-12-19T20:32:01] docs(telemetry): record platform assessment metrics
 [2025-12-19T15:17:28] test(matching): add test suite for recommendation score
 [2025-12-20T18:12:25] feat(career): enhance career pathway matching algorithm
+[2025-12-20T20:27:28] fix(assessment): refine skill gap analysis scoring weights
