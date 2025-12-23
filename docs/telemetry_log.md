@@ -1358,3 +1358,4 @@
 [2026-05-10T08:33:06] feat(career): enhance career pathway matching algorithm
 [2026-05-10T20:09:03] feat(career): enhance career pathway matching algorithm
 [2026-05-10T14:17:48] perf(cache): optimize career trajectory data loader
+[2025-12-23T17:43:16] perf(cache): optimize career trajectory data loader
