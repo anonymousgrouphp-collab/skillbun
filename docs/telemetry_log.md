@@ -1369,3 +1369,4 @@
 [2025-12-23T09:00:47] refactor(counseling): streamline multi-step guidance flow
 [2025-12-23T14:39:55] chore(deps): update analytics telemetry adapter
 [2025-12-23T15:58:40] style(ui): adjust career dashboard card elevation
+[2025-12-23T14:49:46] docs(telemetry): record platform assessment metrics
