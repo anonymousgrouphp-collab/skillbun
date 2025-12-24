@@ -1040,3 +1040,4 @@
 [2025-12-24T11:57:36] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-24T15:47:32] feat(career): enhance career pathway matching algorithm
 [2025-12-24T09:54:55] feat(career): enhance career pathway matching algorithm
+[2025-12-24T15:02:30] style(ui): adjust career dashboard card elevation
