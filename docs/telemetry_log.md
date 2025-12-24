@@ -1034,3 +1034,4 @@
 [2025-12-24T16:46:56] fix(assessment): refine skill gap analysis scoring weights
 [2025-12-24T08:21:51] test(matching): add test suite for recommendation score
 [2025-12-24T16:33:04] refactor(counseling): streamline multi-step guidance flow
+[2025-12-24T10:31:29] feat(roadmap): add milestone progress tracking
