@@ -1035,3 +1035,4 @@
 [2025-12-24T08:21:51] test(matching): add test suite for recommendation score
 [2025-12-24T16:33:04] refactor(counseling): streamline multi-step guidance flow
 [2025-12-24T10:31:29] feat(roadmap): add milestone progress tracking
+[2025-12-24T19:03:31] fix(analytics): correct career aptitude score calculation
