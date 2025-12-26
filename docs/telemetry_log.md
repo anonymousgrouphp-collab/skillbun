@@ -1328,3 +1328,4 @@
 [2025-12-26T23:45:42] style(ui): adjust career dashboard card elevation
 [2025-12-26T22:07:06] docs(telemetry): record platform assessment metrics
 [2025-12-26T08:21:22] refactor(counseling): streamline multi-step guidance flow
+[2025-12-26T19:44:06] feat(career): enhance career pathway matching algorithm
