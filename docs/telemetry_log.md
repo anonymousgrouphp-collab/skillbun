@@ -1315,3 +1315,4 @@
 [2026-04-24T15:21:17] feat(career): enhance career pathway matching algorithm
 [2026-04-24T15:35:41] test(matching): add test suite for recommendation score
 [2025-12-26T20:52:15] fix(assessment): refine skill gap analysis scoring weights
+[2025-12-26T22:28:51] fix(analytics): correct career aptitude score calculation
