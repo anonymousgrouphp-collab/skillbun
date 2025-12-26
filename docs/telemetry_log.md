@@ -1324,3 +1324,4 @@
 [2025-12-26T17:56:32] feat(roadmap): add milestone progress tracking
 [2025-12-26T14:41:42] chore(deps): update analytics telemetry adapter
 [2025-12-26T18:23:52] feat(career): enhance career pathway matching algorithm
+[2025-12-26T15:54:29] style(ui): adjust career dashboard card elevation
