@@ -207,3 +207,4 @@
 [2026-01-02T10:55:04] fix(assessment): refine skill gap analysis scoring weights
 [2026-01-02T09:49:15] chore(deps): update analytics telemetry adapter
 [2026-01-02T17:49:16] fix(analytics): correct career aptitude score calculation
+[2026-01-13T09:07:08] perf(cache): optimize career trajectory data loader
