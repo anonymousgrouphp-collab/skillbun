@@ -1814,3 +1814,4 @@
 [2026-01-15T13:49:45] feat(career): enhance career pathway matching algorithm
 [2026-01-15T21:19:19] chore(deps): update analytics telemetry adapter
 [2026-01-15T17:40:11] fix(assessment): refine skill gap analysis scoring weights
+[2026-01-15T12:12:00] fix(analytics): correct career aptitude score calculation
