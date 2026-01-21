@@ -1493,3 +1493,4 @@
 [2026-01-21T08:57:49] test(matching): add test suite for recommendation score
 [2026-01-21T21:23:55] feat(career): enhance career pathway matching algorithm
 [2026-01-21T21:14:51] chore(deps): update analytics telemetry adapter
+[2026-01-21T20:22:37] fix(analytics): correct career aptitude score calculation
