@@ -1809,3 +1809,4 @@
 [2026-01-22T11:05:07] chore(deps): update analytics telemetry adapter
 [2026-01-22T19:05:33] test(matching): add test suite for recommendation score
 [2026-01-22T13:24:35] test(matching): add test suite for recommendation score
+[2026-01-22T09:49:10] style(ui): adjust career dashboard card elevation
