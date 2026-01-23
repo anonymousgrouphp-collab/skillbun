@@ -221,3 +221,4 @@
 [2026-01-23T15:50:05] style(ui): adjust career dashboard card elevation
 [2026-01-23T22:43:20] perf(cache): optimize career trajectory data loader
 [2026-01-23T17:17:31] feat(roadmap): add milestone progress tracking
+[2026-01-23T21:58:44] chore(deps): update analytics telemetry adapter
