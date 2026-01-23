@@ -222,3 +222,4 @@
 [2026-01-23T22:43:20] perf(cache): optimize career trajectory data loader
 [2026-01-23T17:17:31] feat(roadmap): add milestone progress tracking
 [2026-01-23T21:58:44] chore(deps): update analytics telemetry adapter
+[2026-01-23T18:02:15] fix(assessment): refine skill gap analysis scoring weights
