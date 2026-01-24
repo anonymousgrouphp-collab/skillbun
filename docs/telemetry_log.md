@@ -2004,3 +2004,4 @@
 [2026-01-24T11:09:34] test(matching): add test suite for recommendation score
 [2026-01-24T14:39:41] fix(assessment): refine skill gap analysis scoring weights
 [2026-01-24T22:45:16] fix(assessment): refine skill gap analysis scoring weights
+[2026-01-24T09:04:04] fix(analytics): correct career aptitude score calculation
