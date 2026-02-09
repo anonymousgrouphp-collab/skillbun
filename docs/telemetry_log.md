@@ -2099,3 +2099,4 @@
 [2026-02-09T14:08:22] refactor(counseling): streamline multi-step guidance flow
 [2026-02-09T15:41:05] feat(career): enhance career pathway matching algorithm
 [2026-02-09T23:42:19] perf(cache): optimize career trajectory data loader
+[2026-02-09T22:54:36] fix(analytics): correct career aptitude score calculation
