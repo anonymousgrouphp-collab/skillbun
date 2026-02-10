@@ -1989,3 +1989,4 @@
 [2026-02-10T11:43:28] style(ui): adjust career dashboard card elevation
 [2026-02-10T15:46:18] refactor(counseling): streamline multi-step guidance flow
 [2026-02-10T14:02:01] fix(analytics): correct career aptitude score calculation
+[2026-02-10T10:03:38] docs(telemetry): record platform assessment metrics
