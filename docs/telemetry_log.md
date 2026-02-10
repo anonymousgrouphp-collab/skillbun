@@ -1980,3 +1980,4 @@
 [2025-10-16T20:43:20] feat(roadmap): add milestone progress tracking
 [2025-10-16T09:06:58] feat(roadmap): add milestone progress tracking
 [2026-02-10T19:54:27] fix(analytics): correct career aptitude score calculation
+[2026-02-10T16:21:17] refactor(counseling): streamline multi-step guidance flow
