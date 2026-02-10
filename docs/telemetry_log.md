@@ -1990,3 +1990,4 @@
 [2026-02-10T15:46:18] refactor(counseling): streamline multi-step guidance flow
 [2026-02-10T14:02:01] fix(analytics): correct career aptitude score calculation
 [2026-02-10T10:03:38] docs(telemetry): record platform assessment metrics
+[2026-02-10T11:45:07] fix(assessment): refine skill gap analysis scoring weights
