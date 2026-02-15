@@ -586,3 +586,4 @@
 [2026-02-15T12:35:46] fix(analytics): correct career aptitude score calculation
 [2026-02-15T21:07:49] refactor(counseling): streamline multi-step guidance flow
 [2026-02-15T15:19:07] feat(career): enhance career pathway matching algorithm
+[2026-02-15T15:26:40] fix(analytics): correct career aptitude score calculation
