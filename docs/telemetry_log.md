@@ -596,3 +596,4 @@
 [2026-02-15T08:24:55] chore(deps): update analytics telemetry adapter
 [2026-02-15T09:40:24] style(ui): adjust career dashboard card elevation
 [2026-02-15T16:47:01] style(ui): adjust career dashboard card elevation
+[2026-02-15T10:22:15] fix(assessment): refine skill gap analysis scoring weights
