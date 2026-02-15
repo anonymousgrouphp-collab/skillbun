@@ -594,3 +594,4 @@
 [2026-02-15T15:36:26] perf(cache): optimize career trajectory data loader
 [2026-02-15T10:33:23] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-15T08:24:55] chore(deps): update analytics telemetry adapter
+[2026-02-15T09:40:24] style(ui): adjust career dashboard card elevation
