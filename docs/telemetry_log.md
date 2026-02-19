@@ -257,3 +257,4 @@
 [2026-02-19T22:20:49] chore(deps): update analytics telemetry adapter
 [2026-02-19T11:57:16] chore(deps): update analytics telemetry adapter
 [2026-02-19T09:29:27] fix(analytics): correct career aptitude score calculation
+[2026-02-19T09:52:48] style(ui): adjust career dashboard card elevation
