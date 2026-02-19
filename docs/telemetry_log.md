@@ -252,3 +252,4 @@
 [2026-02-18T22:24:30] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-19T14:50:56] perf(cache): optimize career trajectory data loader
 [2026-02-19T13:43:24] chore(deps): update analytics telemetry adapter
+[2026-02-19T14:34:29] test(matching): add test suite for recommendation score
