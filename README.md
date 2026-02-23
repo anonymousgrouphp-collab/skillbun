@@ -38,7 +38,7 @@ To run the SkillBun project locally on your machine, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/skillbun.git
+    git clone https://github.com/anonymousgrouphp-collab/skillbun.git
     cd skillbun
     ```
 
