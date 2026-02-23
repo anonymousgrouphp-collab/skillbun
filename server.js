@@ -13,7 +13,8 @@ try {
         contentSecurityPolicy: {
             useDefaults: true,
             directives: {
-                "script-src": ["'self'"],
+                "script-src": ["'self'", "'unsafe-inline'", "'unsafe-hashes'"],
+                "script-src-attr": ["'self'", "'unsafe-inline'", "'unsafe-hashes'"],
                 "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
                 "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
                 "img-src": ["'self'", "data:", "https:"]
