@@ -72,7 +72,8 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the public folder (prevents exposing backend JS)
-app.use(express.static('public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ===== Gemini API proxy endpoint =====
 app.post('/api/gemini', async (req, res) => {
