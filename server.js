@@ -129,8 +129,13 @@ app.post('/api/gemini', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`\n🐰 SkillBun server running at http://localhost:${PORT}`);
-    console.log(`📝 Quiz page: http://localhost:${PORT}/quiz.html`);
-    console.log(`🏠 Homepage:  http://localhost:${PORT}/index.html\n`);
-});
+// Let Vercel handle the port binding, but keep it for local dev
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`\n🐰 SkillBun server running at http://localhost:${PORT}`);
+        console.log(`📝 Quiz page: http://localhost:${PORT}/quiz.html`);
+        console.log(`🏠 Homepage:  http://localhost:${PORT}/index.html\n`);
+    });
+}
+
+module.exports = app;
