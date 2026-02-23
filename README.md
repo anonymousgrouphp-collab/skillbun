@@ -52,6 +52,17 @@ To run the SkillBun project locally on your machine, follow these steps:
     ```env
     GEMINI_API_KEY=your_actual_api_key_here
     PORT=3000
+    # Optional (recommended in production if frontend is hosted on another domain)
+    ALLOWED_ORIGINS=https://your-frontend-domain.com
+    # Optional upstream timeout (milliseconds)
+    GEMINI_TIMEOUT_MS=20000
+    # Bot protection (Cloudflare Turnstile)
+    TURNSTILE_SITE_KEY=your_turnstile_site_key
+    TURNSTILE_SECRET_KEY=your_turnstile_secret_key
+    # Optional secret for signed human-proof tokens
+    HUMAN_PROOF_SECRET=generate_a_long_random_secret
+    # Optional token lifetime in milliseconds
+    HUMAN_PROOF_TTL_MS=1800000
     ```
 
 4.  **Start the server:**

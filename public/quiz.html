@@ -8,6 +8,8 @@
         content="Take SkillBun's AI-powered career quiz and discover your perfect tech career path — tailored for BCA, BSc, and B.Tech students.">
     <title>Career Quiz – SkillBun</title>
     <link rel="icon" href="logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -58,6 +60,10 @@
                 based on
                 your answers.</p>
             <div class="welcome-profile" id="welcomeProfile"></div>
+            <div id="captchaWrap" class="quiz-captcha-wrap" style="display:none;">
+                <div id="captchaWidget" class="quiz-captcha-widget"></div>
+                <p id="captchaStatus" class="quiz-captcha-status"></p>
+            </div>
             <button type="button" class="btn-primary quiz-start-btn" id="startQuizBtn">🐾 Let's Begin!</button>
         </div>
 
@@ -122,7 +128,7 @@
                 <div class="footer-socials">
                     <!-- Instagram -->
                     <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
-                        target="_blank" aria-label="Instagram">
+                        target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -132,7 +138,7 @@
                     </a>
                     <!-- X / Twitter -->
                     <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
-                        target="_blank" aria-label="Twitter">
+                        target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                             fill="currentColor">
                             <path
@@ -141,7 +147,7 @@
                     </a>
                     <!-- YouTube -->
                     <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
-                        target="_blank" aria-label="YouTube">
+                        target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -152,7 +158,7 @@
                     </a>
                     <!-- LinkedIn -->
                     <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
-                        target="_blank" aria-label="LinkedIn">
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />

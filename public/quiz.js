@@ -6,15 +6,165 @@ let questionCount = 0;
 let totalQuestions = 15; // Initial estimate, AI may finish early or take longer
 let lastSelectedOption = null; // stores last answer for retry
 let userProfile = {};
+let quizResults = null;
 
 // --- Configuration ---
 const SUPPORT_EMAIL = 'anonymousgrouphp@gmail.com';
+const HUMAN_PROOF_HEADER = 'x-skillbun-human';
+
+let securityConfig = {
+    captchaEnabled: false,
+    captchaSiteKey: ''
+};
+let humanProofToken = '';
+let humanProofExpiresAt = 0;
+let captchaWidgetId = null;
+let captchaToken = '';
 
 // --- SECURITY: Sanitize HTML to prevent XSS ---
 function sanitize(str) {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+}
+
+function setCaptchaStatus(message, tone) {
+    const statusEl = document.getElementById('captchaStatus');
+    if (!statusEl) return;
+
+    statusEl.textContent = message;
+    statusEl.classList.remove('ok', 'error');
+    if (tone === 'ok') statusEl.classList.add('ok');
+    if (tone === 'error') statusEl.classList.add('error');
+}
+
+async function fetchSecurityConfig() {
+    try {
+        const response = await fetch('/api/config');
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const captcha = data?.captcha || {};
+
+        securityConfig.captchaEnabled = captcha.enabled === true && typeof captcha.siteKey === 'string' && captcha.siteKey.length > 0;
+        securityConfig.captchaSiteKey = securityConfig.captchaEnabled ? captcha.siteKey : '';
+    } catch (err) {
+        securityConfig.captchaEnabled = false;
+        securityConfig.captchaSiteKey = '';
+    }
+}
+
+function loadTurnstileScript() {
+    return new Promise((resolve, reject) => {
+        if (window.turnstile) {
+            resolve();
+            return;
+        }
+
+        const existing = document.querySelector('script[data-turnstile="true"]');
+        if (existing) {
+            existing.addEventListener('load', () => resolve(), { once: true });
+            existing.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')), { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.dataset.turnstile = 'true';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Turnstile script'));
+        document.head.appendChild(script);
+    });
+}
+
+async function initCaptcha() {
+    if (!securityConfig.captchaEnabled) return;
+
+    const wrap = document.getElementById('captchaWrap');
+    const widget = document.getElementById('captchaWidget');
+
+    if (!wrap || !widget) return;
+
+    wrap.style.display = 'block';
+    setCaptchaStatus('Complete the verification below to start the quiz.');
+
+    try {
+        await loadTurnstileScript();
+    } catch (err) {
+        setCaptchaStatus('Captcha failed to load. Please refresh and try again.', 'error');
+        return;
+    }
+
+    if (!window.turnstile) {
+        setCaptchaStatus('Captcha unavailable. Please refresh and try again.', 'error');
+        return;
+    }
+
+    captchaWidgetId = window.turnstile.render('#captchaWidget', {
+        sitekey: securityConfig.captchaSiteKey,
+        theme: 'dark',
+        callback: (token) => {
+            captchaToken = token;
+            setCaptchaStatus('Verification complete. You can start now.', 'ok');
+        },
+        'expired-callback': () => {
+            captchaToken = '';
+            setCaptchaStatus('Verification expired. Please verify again.', 'error');
+        },
+        'error-callback': () => {
+            captchaToken = '';
+            setCaptchaStatus('Verification failed. Please retry.', 'error');
+        }
+    });
+}
+
+async function verifyHumanProof() {
+    const now = Date.now();
+    if (humanProofToken && humanProofExpiresAt > now + 10_000) {
+        return true;
+    }
+
+    if (securityConfig.captchaEnabled && !captchaToken) {
+        setCaptchaStatus('Please complete verification before starting.', 'error');
+        return false;
+    }
+
+    const body = securityConfig.captchaEnabled ? { token: captchaToken } : {};
+
+    try {
+        const response = await fetch('/api/human/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+
+        if (!response.ok) {
+            setCaptchaStatus('Verification failed. Please retry.', 'error');
+            return false;
+        }
+
+        const data = await response.json();
+        humanProofToken = data.humanToken || '';
+        const parsedExpiresAt = Number.parseInt(data.expiresAt, 10);
+        humanProofExpiresAt = Number.isFinite(parsedExpiresAt) ? parsedExpiresAt : 0;
+
+        if (!humanProofToken) {
+            setCaptchaStatus('Verification failed. Please retry.', 'error');
+            return false;
+        }
+
+        if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
+            window.turnstile.reset(captchaWidgetId);
+            captchaToken = '';
+        }
+
+        return true;
+    } catch (err) {
+        setCaptchaStatus('Verification failed. Please check your internet and retry.', 'error');
+        return false;
+    }
 }
 
 // --- Load User Profile ---
@@ -141,6 +291,11 @@ Start with the first question now.`;
 
 // --- Gemini API Call ---
 async function callGemini(userMessage) {
+    const verified = await verifyHumanProof();
+    if (!verified) {
+        throw new Error('Human verification required');
+    }
+
     // Build messages
     if (conversationHistory.length === 0) {
         conversationHistory.push({
@@ -165,9 +320,12 @@ async function callGemini(userMessage) {
     };
 
     try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
+
         const res = await fetch('/api/gemini', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: JSON.stringify(payload)
         });
 
@@ -250,8 +408,8 @@ async function loadMoreCareers() {
 
         if (response.type === 'result' && response.careers) {
             const container = document.getElementById('resultCards');
+            const existingCount = container.children.length;
             response.careers.forEach((career, i) => {
-                const existingCount = container.children.length;
                 container.insertAdjacentHTML('beforeend', renderCareerCard(career, existingCount + i + 1));
             });
 
@@ -305,6 +463,7 @@ function renderCareerCard(career, index) {
             // SAFETY: Validate URL to prevent XSS and crashes from hallucinated AI output
             const rawUrl = typeof career.roadmapUrl === 'string' ? career.roadmapUrl.trim() : '';
             let finalUrl = rawUrl || 'coming-soon.html';
+            let isExternal = false;
 
             // Comprehensive list of actual roadmap.sh slugs to prevent 404s
             const VALID_ROADMAPS = [
@@ -315,27 +474,31 @@ function renderCareerCard(career, index) {
                 'graphql', 'design-system', 'react-native', 'system-design', 'computer-science'
             ];
 
-            // Only allow http/https or the specific internal fallback
-            if (!finalUrl.startsWith('http') && finalUrl !== 'coming-soon.html') {
-                finalUrl = 'coming-soon.html';
-            } else if (finalUrl.includes('roadmap.sh/')) {
-                // If it's a roadmap link, verify it actually exists on their site
+            if (finalUrl !== 'coming-soon.html') {
                 try {
                     const urlObj = new URL(finalUrl);
-                    // Extract the first path segment (e.g. 'frontend' from '/frontend')
-                    const slug = urlObj.pathname.split('/')[1]?.toLowerCase();
-                    if (!slug || !VALID_ROADMAPS.includes(slug)) {
-                        finalUrl = 'coming-soon.html'; // Override hallucinated/missing endpoints
+                    const isHttp = urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+                    const host = urlObj.hostname.toLowerCase();
+                    const isRoadmapHost = host === 'roadmap.sh' || host === 'www.roadmap.sh';
+
+                    // Allow only roadmap.sh external links from AI output.
+                    if (!isHttp || !isRoadmapHost) {
+                        finalUrl = 'coming-soon.html';
+                    } else {
+                        const slug = urlObj.pathname.split('/')[1]?.toLowerCase();
+                        if (!slug || !VALID_ROADMAPS.includes(slug)) {
+                            finalUrl = 'coming-soon.html';
+                        } else {
+                            isExternal = true;
+                        }
                     }
                 } catch (e) {
                     finalUrl = 'coming-soon.html';
                 }
             }
 
-            const isExternal = finalUrl.startsWith('http');
-
             return `
-            <a href="${sanitize(finalUrl)}" ${isExternal ? 'target="_blank"' : ''} class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
+            <a href="${sanitize(finalUrl)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
                 🗺️ Dive Deeper Roadmap
             </a>
           `;
@@ -520,7 +683,23 @@ async function startNextQuestion() {
 }
 
 // --- Event Listeners ---
-document.getElementById('startQuizBtn').addEventListener('click', () => {
+document.getElementById('startQuizBtn').addEventListener('click', async () => {
+    const startBtn = document.getElementById('startQuizBtn');
+    const defaultLabel = startBtn.dataset.defaultLabel || startBtn.textContent;
+    startBtn.dataset.defaultLabel = defaultLabel;
+    startBtn.disabled = true;
+    startBtn.textContent = 'Verifying...';
+
+    const verified = await verifyHumanProof();
+    if (!verified) {
+        startBtn.disabled = false;
+        startBtn.textContent = defaultLabel;
+        return;
+    }
+
+    startBtn.disabled = false;
+    startBtn.textContent = defaultLabel;
+
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('quizScreen').style.display = 'block';
     startNextQuestion();
@@ -536,13 +715,19 @@ document.getElementById('retakeBtn').addEventListener('click', () => {
 
 document.getElementById('loadMoreBtn').addEventListener('click', loadMoreCareers);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    const startBtn = document.getElementById('startQuizBtn');
+    if (startBtn) startBtn.disabled = true;
+
+    loadProfile();
+    await fetchSecurityConfig();
+    await initCaptcha();
+
     const userBadge = document.getElementById('userBadge');
     if (userBadge) userBadge.addEventListener('click', toggleDropdown);
 
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
-});
 
-// --- Init ---
-loadProfile();
+    if (startBtn) startBtn.disabled = false;
+});
