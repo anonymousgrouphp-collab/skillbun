@@ -273,3 +273,4 @@
 [2026-02-23T16:25:38] feat(roadmap): add milestone progress tracking
 [2026-02-23T09:47:46] refactor(counseling): streamline guidance flow
 [2026-02-23T20:23:38] style(ui): adjust career dashboard card elevation
+[2026-02-23T13:23:21] test(matching): add test suite for recommendation score
