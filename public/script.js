@@ -79,14 +79,22 @@ function shuffleText(el, delay) {
 }
 
 // ===== AUTH MODAL =====
+const authModal = document.getElementById('signupModal');
+
 function openModal() {
-    document.getElementById('authModal').classList.add('open');
-    document.getElementById('signupForm').style.display = 'block';
-    document.getElementById('modalDesc').textContent = 'Create your free account and take the career quiz.';
+    if (!authModal) return;
+    authModal.classList.add('open');
+
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) signupForm.style.display = 'block';
+
+    const modalDesc = document.getElementById('modalDesc');
+    if (modalDesc) modalDesc.textContent = 'Create your free account and take the career quiz.';
 }
 
 function closeModal() {
-    document.getElementById('authModal').classList.remove('open');
+    if (!authModal) return;
+    authModal.classList.remove('open');
 }
 
 // ===== SIGNUP → QUIZ REDIRECT =====
@@ -117,10 +125,26 @@ function submitSignup() {
     window.location.href = 'quiz.html';
 }
 
-// Close modal when clicking outside
-document.getElementById('authModal').addEventListener('click', function (e) {
-    if (e.target === this) closeModal();
+// Wire up modal buttons
+document.querySelectorAll('.btn-signup, #heroStartQuizBtn, #ctaStartQuizBtn, #footerStartQuizBtn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+    });
 });
+
+const closeModalBtn = document.getElementById('closeModalBtn');
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+const submitSignupBtn = document.getElementById('submitSignupBtn');
+if (submitSignupBtn) submitSignupBtn.addEventListener('click', submitSignup);
+
+// Close modal when clicking outside
+if (authModal) {
+    authModal.addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
+    });
+}
 
 // ===== COUNT-UP ANIMATION (Stats Section) =====
 function animateCount(el) {
