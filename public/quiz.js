@@ -395,6 +395,132 @@ function parseGeminiJSON(text) {
     throw new Error('Could not parse Gemini response as JSON');
 }
 
+const ROADMAP_FALLBACK_URL = 'coming-soon.html';
+const ROADMAP_HOSTS = new Set(['roadmap.sh', 'www.roadmap.sh']);
+const KNOWN_ROADMAP_SLUGS = new Set([
+    'frontend', 'backend', 'full-stack', 'devops', 'cyber-security',
+    'ai-data-scientist', 'data-analyst', 'bi-analyst', 'data-engineer', 'machine-learning',
+    'software-architect', 'software-design', 'system-design', 'computer-science', 'qa',
+    'product-manager', 'ux-design', 'design-system', 'api-design',
+    'android', 'ios', 'flutter', 'react-native', 'game-developer', 'blockchain',
+    'javascript', 'typescript', 'node-js', 'react', 'vue', 'angular', 'nextjs',
+    'python', 'java', 'go', 'rust', 'cpp', 'csharp', 'php', 'kotlin', 'swift-ui',
+    'sql', 'postgresql', 'mongodb', 'graphql', 'linux', 'kubernetes', 'docker', 'terraform',
+    'aws', 'gcp', 'spring-boot', 'django', 'laravel', 'wordpress', 'shell-bash',
+    'mlops', 'devsecops', 'elasticsearch', 'ai-agents', 'ai-red-teaming'
+]);
+
+const ROADMAP_SLUG_ALIASES = {
+    fullstack: 'full-stack',
+    'full-stack-developer': 'full-stack',
+    nodejs: 'node-js',
+    node: 'node-js',
+    'node.js': 'node-js',
+    golang: 'go',
+    cplusplus: 'cpp',
+    'c++': 'cpp',
+    'c-plus-plus': 'cpp',
+    cybersecurity: 'cyber-security',
+    'cyber-security-specialist': 'cyber-security',
+    'data-science': 'ai-data-scientist',
+    'ml-engineer': 'machine-learning',
+    'machine-learning-engineer': 'machine-learning',
+    'ui-ux-design': 'ux-design',
+    'uiux-design': 'ux-design',
+    'business-intelligence': 'bi-analyst'
+};
+
+const ROADMAP_KEYWORD_RULES = [
+    { slug: 'full-stack', keywords: ['full stack', 'full-stack', 'fullstack'] },
+    { slug: 'frontend', keywords: ['frontend', 'front end', 'front-end', 'web ui', 'react', 'vue', 'angular'] },
+    { slug: 'backend', keywords: ['backend', 'back end', 'back-end', 'server side', 'api developer', 'microservice'] },
+    { slug: 'ai-data-scientist', keywords: ['ai engineer', 'artificial intelligence', 'data scientist', 'llm', 'genai', 'nlp', 'computer vision'] },
+    { slug: 'machine-learning', keywords: ['machine learning', 'ml engineer', 'deep learning'] },
+    { slug: 'data-analyst', keywords: ['data analyst', 'analytics', 'data analysis'] },
+    { slug: 'bi-analyst', keywords: ['business intelligence', 'bi analyst', 'power bi', 'tableau'] },
+    { slug: 'data-engineer', keywords: ['data engineer', 'etl', 'data pipeline'] },
+    { slug: 'cyber-security', keywords: ['cyber security', 'cybersecurity', 'ethical hacking', 'penetration tester', 'soc analyst', 'infosec'] },
+    { slug: 'devops', keywords: ['devops', 'site reliability', 'sre', 'cloud engineer', 'kubernetes', 'docker', 'ci/cd'] },
+    { slug: 'software-architect', keywords: ['software architect', 'solution architect'] },
+    { slug: 'product-manager', keywords: ['product manager', 'product management', 'product owner'] },
+    { slug: 'ux-design', keywords: ['ux design', 'ui ux', 'ui/ux', 'product design', 'interaction design'] },
+    { slug: 'qa', keywords: ['qa engineer', 'quality assurance', 'software testing', 'automation testing', 'test engineer'] },
+    { slug: 'android', keywords: ['android'] },
+    { slug: 'ios', keywords: ['ios', 'swift'] },
+    { slug: 'flutter', keywords: ['flutter'] },
+    { slug: 'react-native', keywords: ['react native'] },
+    { slug: 'game-developer', keywords: ['game developer', 'game development', 'unity', 'unreal'] },
+    { slug: 'blockchain', keywords: ['blockchain', 'web3', 'smart contract'] },
+    { slug: 'computer-science', keywords: ['software engineer', 'computer science engineer'] }
+];
+
+function normalizeRoadmapSlug(value) {
+    if (!value) return '';
+
+    let slug = String(value).trim().toLowerCase();
+    slug = slug.split('?')[0].split('#')[0];
+    slug = slug.replace(/^\/+|\/+$/g, '');
+    slug = slug.replace(/_/g, '-').replace(/\s+/g, '-');
+
+    const segments = slug.split('/').filter(Boolean);
+    if (segments.length > 0) {
+        if ((segments[0] === 'roadmaps' || segments[0] === 'roadmap') && segments[1]) {
+            slug = segments[1];
+        } else {
+            slug = segments[0];
+        }
+    }
+
+    return ROADMAP_SLUG_ALIASES[slug] || slug;
+}
+
+function extractRoadmapSlug(rawUrl) {
+    if (typeof rawUrl !== 'string') return '';
+    const input = rawUrl.trim();
+    if (!input || input === ROADMAP_FALLBACK_URL) return '';
+
+    if (/^https?:\/\//i.test(input)) {
+        try {
+            const parsed = new URL(input);
+            if (!ROADMAP_HOSTS.has(parsed.hostname.toLowerCase())) return '';
+            return normalizeRoadmapSlug(parsed.pathname);
+        } catch (err) {
+            return '';
+        }
+    }
+
+    return normalizeRoadmapSlug(input);
+}
+
+function inferRoadmapSlugFromCareer(career) {
+    const parts = [career?.title, career?.description, ...(Array.isArray(career?.skills) ? career.skills : [])]
+        .filter(part => typeof part === 'string' && part.trim().length > 0);
+    const text = parts.join(' ').toLowerCase();
+    if (!text) return '';
+
+    for (const rule of ROADMAP_KEYWORD_RULES) {
+        if (rule.keywords.some(keyword => text.includes(keyword))) {
+            return rule.slug;
+        }
+    }
+
+    return '';
+}
+
+function resolveRoadmapUrl(career) {
+    const fromAiUrl = extractRoadmapSlug(career?.roadmapUrl);
+    if (fromAiUrl && KNOWN_ROADMAP_SLUGS.has(fromAiUrl)) {
+        return `https://roadmap.sh/${fromAiUrl}`;
+    }
+
+    const fromKeywords = inferRoadmapSlugFromCareer(career);
+    if (fromKeywords && KNOWN_ROADMAP_SLUGS.has(fromKeywords)) {
+        return `https://roadmap.sh/${fromKeywords}`;
+    }
+
+    return ROADMAP_FALLBACK_URL;
+}
+
 // --- Load More Careers ---
 async function loadMoreCareers() {
     const loadBtn = document.getElementById('loadMoreBtn');
@@ -460,42 +586,8 @@ function renderCareerCard(career, index) {
 
       <div class="result-action-link" style="margin-top: 1rem; text-align: right;">
         ${(() => {
-            // SAFETY: Validate URL to prevent XSS and crashes from hallucinated AI output
-            const rawUrl = typeof career.roadmapUrl === 'string' ? career.roadmapUrl.trim() : '';
-            let finalUrl = rawUrl || 'coming-soon.html';
-            let isExternal = false;
-
-            // Comprehensive list of actual roadmap.sh slugs to prevent 404s
-            const VALID_ROADMAPS = [
-                'frontend', 'backend', 'devops', 'full-stack', 'android', 'ios',
-                'postgresql', 'ai-data-scientist', 'data-analyst', 'qa', 'software-architect',
-                'cyber-security', 'game-developer', 'blockchain', 'react-native', 'flutter',
-                'python', 'java', 'go', 'rust', 'cplusplus', 'javascript', 'typescript', 'react', 'vue', 'angular', 'node-js',
-                'graphql', 'design-system', 'react-native', 'system-design', 'computer-science'
-            ];
-
-            if (finalUrl !== 'coming-soon.html') {
-                try {
-                    const urlObj = new URL(finalUrl);
-                    const isHttp = urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
-                    const host = urlObj.hostname.toLowerCase();
-                    const isRoadmapHost = host === 'roadmap.sh' || host === 'www.roadmap.sh';
-
-                    // Allow only roadmap.sh external links from AI output.
-                    if (!isHttp || !isRoadmapHost) {
-                        finalUrl = 'coming-soon.html';
-                    } else {
-                        const slug = urlObj.pathname.split('/')[1]?.toLowerCase();
-                        if (!slug || !VALID_ROADMAPS.includes(slug)) {
-                            finalUrl = 'coming-soon.html';
-                        } else {
-                            isExternal = true;
-                        }
-                    }
-                } catch (e) {
-                    finalUrl = 'coming-soon.html';
-                }
-            }
+            const finalUrl = resolveRoadmapUrl(career);
+            const isExternal = finalUrl.startsWith('https://roadmap.sh/');
 
             return `
             <a href="${sanitize(finalUrl)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
