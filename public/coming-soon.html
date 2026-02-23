@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon – SkillBun</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .coming-soon-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 100px);
+            text-align: center;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .construction-bunny {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .coming-soon-wrapper h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-wrapper h1 span {
+            color: var(--green);
+        }
+
+        .coming-soon-wrapper p {
+            color: var(--muted);
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-logo">
+            <a href="index.html" class="nav-logo-link">
+                <img src="logo.png" alt="SkillBun Logo">
+                <span class="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="coming-soon-wrapper">
+        <div class="construction-bunny">🚧🐰</div>
+        <h1>We're <span class="highlight">Hopping</span> On It!</h1>
+        <p>This feature is currently under construction. Team SkillBun is working hard behind the scenes to bring you
+            even more career tools soon.</p>
+        <a href="index.html" class="btn-primary" style="text-decoration:none;">🏠 Back to Home</a>
+    </div>
+
+</body>
+
+</html>

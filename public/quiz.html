@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Take SkillBun's AI-powered career quiz and discover your perfect tech career path — tailored for BCA, BSc, and B.Tech students.">
+    <title>Career Quiz – SkillBun</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (same as homepage) -->
+    <nav>
+        <div class="nav-logo">
+            <a href="index.html" class="nav-logo-link">
+                <img src="logo.png" alt="SkillBun Logo">
+                <span class="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#how">How it Works</a></li>
+            <li><a href="index.html#careers">Career Paths</a></li>
+            <li><a href="index.html#contact">Connect with us</a></li>
+        </ul>
+        <div class="nav-cta">
+            <div class="user-menu-container">
+                <button type="button" class="quiz-user-badge" id="userBadge" onclick="toggleDropdown(event)">👤
+                    Student</button>
+                <div class="user-menu-dropdown" id="userDropdown">
+                    <div class="dropdown-header">
+                        <strong id="dropdownName">Loading...</strong>
+                        <span class="dropdown-degree" id="dropdownDegree">Loading...</span>
+                        <span class="dropdown-year" id="dropdownYear">Loading...</span>
+                    </div>
+                    <button type="button" class="btn-logout" onclick="logoutUser()">
+                        <span style="font-size:1.1rem;">🚪</span> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- QUIZ CONTAINER -->
+    <div class="quiz-wrapper">
+
+        <!-- WELCOME SCREEN -->
+        <div id="welcomeScreen" class="quiz-welcome">
+            <div class="welcome-bunny">🐰</div>
+            <h1>Hey <span id="userName">there</span>!</h1>
+            <p>Let's find your perfect tech career path. I'll ask you <strong>10 to 18 questions</strong> that adapt
+                based on
+                your answers.</p>
+            <div class="welcome-profile" id="welcomeProfile"></div>
+            <button type="button" class="btn-primary quiz-start-btn" id="startQuizBtn">🐾 Let's Begin!</button>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quizScreen" class="quiz-screen" style="display:none;">
+            <!-- Progress -->
+            <div class="quiz-progress-wrap">
+                <div class="quiz-phase" id="quizPhase">Phase 1: Discovery</div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="progressFill" style="width:0%"></div>
+                </div>
+                <div class="quiz-progress-text">Question <span id="qNum">1</span> of <span id="qTotal">15</span></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="quiz-question-card" id="questionCard">
+                <div class="quiz-q-text" id="questionText">Loading your first question...</div>
+            </div>
+
+            <!-- Options -->
+            <div class="quiz-options" id="optionsContainer">
+                <!-- Options will be injected by JS -->
+            </div>
+
+            <!-- Loading -->
+            <div class="quiz-loading" id="quizLoading" style="display:none;">
+                <div class="quiz-loading-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <p>SkillBun is thinking...</p>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="resultScreen" class="quiz-results" style="display:none;">
+            <div class="result-header">
+                <div style="font-size:3rem;">🎯</div>
+                <h1>Your Career Matches</h1>
+                <p>Based on your profile and answers, here are your top career paths:</p>
+            </div>
+
+            <div class="result-cards" id="resultCards">
+                <!-- Career cards injected by JS -->
+            </div>
+
+            <div class="result-actions">
+                <button type="button" class="btn-primary" id="loadMoreBtn">🔍 Load More Career Paths</button>
+                <button type="button" class="btn-secondary" id="retakeBtn">🔄 Retake Quiz</button>
+                <a href="index.html" class="btn-secondary">🏠 Back to Home</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER (same as homepage) -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+                <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through
+                    AI-powered guidance and real peer connections.</p>
+                <div class="footer-socials">
+                    <!-- Instagram -->
+                    <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
+                        target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <circle cx="12" cy="12" r="5" />
+                            <circle cx="17.5" cy="6.5" r="1.2" />
+                        </svg>
+                    </a>
+                    <!-- X / Twitter -->
+                    <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
+                        target="_blank" aria-label="Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </a>
+                    <!-- YouTube -->
+                    <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
+                        target="_blank" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"
+                                stroke="none" />
+                        </svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh"
+                        target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect x="2" y="9" width="4" height="12" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="quiz.html">Career Quiz</a></li>
+                    <li><a href="index.html#careers">Career Paths</a></li>
+                    <li><a href="coming-soon.html">College Finder</a></li>
+                    <li><a href="coming-soon.html">Exam Guide</a></li>
+                    <li><a href="coming-soon.html">Courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><a href="mailto:anonymousgrouphp@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>. Made with 🐾 for India's tech students.</p>
+            <div class="badge-bar">
+                <span class="badge">BCA Friendly</span>
+                <span class="badge">BS/BS-MS (AICS/CSDA)</span>
+                <span class="badge">B.Tech(CS/IT)</span>
+                <span class="badge">AI Powered</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

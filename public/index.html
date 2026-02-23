@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="SkillBun helps BCA, BSc, and B.Tech students find their perfect tech career path through AI-powered guidance and real peer connections.">
+  <title>SkillBun – Hop into the Right Career</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== SPLASH SCREEN ===== -->
+  <div id="splash">
+    <div class="code-rain" id="codeRain"></div>
+
+    <!-- Bunny SVG -->
+    <div class="bunny-wrap">
+      <svg class="bunny-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left Ear -->
+        <ellipse cx="68" cy="68" rx="16" ry="44" fill="#f0f0f0" transform="rotate(-10 68 68)" />
+        <ellipse cx="68" cy="68" rx="8" ry="34" fill="#f9a8d4" transform="rotate(-10 68 68)" />
+        <!-- Right Ear -->
+        <g class="ear-right">
+          <ellipse cx="132" cy="68" rx="16" ry="44" fill="#f0f0f0" transform="rotate(10 132 68)" />
+          <ellipse cx="132" cy="68" rx="8" ry="34" fill="#f9a8d4" transform="rotate(10 132 68)" />
+        </g>
+        <!-- Body -->
+        <ellipse cx="100" cy="170" rx="55" ry="45" fill="#f0f0f0" />
+        <!-- Head -->
+        <circle cx="100" cy="118" r="46" fill="#f0f0f0" />
+        <!-- Eyes -->
+        <g class="eye">
+          <circle cx="85" cy="113" r="8" fill="#1a1a2e" />
+          <circle cx="88" cy="110" r="2.5" fill="white" />
+        </g>
+        <g class="eye">
+          <circle cx="115" cy="113" r="8" fill="#1a1a2e" />
+          <circle cx="118" cy="110" r="2.5" fill="white" />
+        </g>
+        <!-- Nose -->
+        <ellipse cx="100" cy="126" rx="5" ry="3.5" fill="#f9a8d4" />
+        <!-- Mouth -->
+        <path d="M93 130 Q100 136 107 130" stroke="#ccc" stroke-width="1.5" fill="none" stroke-linecap="round" />
+        <!-- Cheeks -->
+        <circle cx="77" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
+        <circle cx="123" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
+        <!-- Code badge on tummy -->
+        <rect x="72" y="152" width="56" height="30" rx="8" fill="#0D1117" stroke="#2ECC71" stroke-width="1.5" />
+        <text x="100" y="163" text-anchor="middle" fill="#2ECC71" font-family="monospace"
+          font-size="7">&lt;code&gt;</text>
+        <text x="100" y="174" text-anchor="middle" fill="#A8FF3E" font-family="monospace"
+          font-size="7">career/&gt;</text>
+        <!-- Paws -->
+        <ellipse cx="60" cy="195" rx="15" ry="10" fill="#f0f0f0" />
+        <ellipse cx="140" cy="195" rx="15" ry="10" fill="#f0f0f0" />
+      </svg>
+    </div>
+
+    <div class="splash-title">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+    <img src="logo.png" alt="SkillBun Logo">
+    <div class="splash-subtitle">Hop into the <span>right career</span></div>
+
+    <div class="splash-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <!-- ===== MAIN PAGE ===== -->
+  <div id="main-page">
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-logo">
+        <img src="logo.png" alt="SkillBun Logo">
+        <span class="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How it Works</a></li>
+        <li><a href="#careers">Career Paths</a></li>
+        <li><a href="#contact">Connect with us</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button type="button" class="btn-signup" onclick="openModal()">Get Started 🚀</button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="floaters" id="floaters"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="hero-tag"> For BCA · BSc · B.Tech Students</div>
+        <h1>Your Tech <span class="shuffle-text" data-final="Career">######</span>,<br><span
+            class="highlight">Engineered For <span class="shuffle-text" data-final="Success">#######</span>.</span></h1>
+
+        <p>Not sure which path to take in tech? SkillBun analyzes your interests, guides you through career options,
+          entrance exams, top colleges, languages to learn, and connects you to real industry peers.</p>
+        <div class="hero-btns">
+          <button type="button" class="btn-primary" onclick="openModal()">🐾 Take the Career Quiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num" data-target="50" data-suffix="K+">0</span>
+        <span class="stat-label">Students Guided</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="200" data-suffix="+">0</span>
+        <span class="stat-label">Career Paths Mapped</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="98" data-suffix="%">0</span>
+        <span class="stat-label">Satisfaction Rate</span>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="section-label">🐾 The Journey</div>
+      <h2 class="section-title">How SkillBun Works</h2>
+      <p class="section-sub">Four simple hops from confusion to a clear, personalized tech career roadmap.</p>
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-icon">📋</span>
+          <div class="step-num">01</div>
+          <h3>Interest Quiz</h3>
+          <p>Answer curated questions about your interests, strengths, and goals. Our AI analyzes your personality and
+            learning style.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🗺️</span>
+          <div class="step-num">02</div>
+          <h3>Career Mapping</h3>
+          <p>Get a personalized career roadmap with top fields like AI/ML, Web Dev, Cybersecurity, Data Science, and
+            more.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🎓</span>
+          <div class="step-num">03</div>
+          <h3>College & Exams</h3>
+          <p>Discover matching colleges, entrance exams (GATE, JEE, CUET, and more.), and a guided roadmap.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🤝</span>
+          <div class="step-num">04</div>
+          <h3>Dream Tech Jobs</h3>
+          <p>explore packages and get AI chatbot support for any doubts along the way.</p>
+        </div>
+        <!-- <div class="step-card">
+          <span class="step-icon">🤝</span>
+          <div class="step-num">05</div>
+          <h3>Bought to you by Team SkillBun</h3>
+          <p>(harsh).</p>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" style="padding-top:0;">
+      <div class="section-label">✨ Everything You Need</div>
+      <h2 class="section-title">Built for Aspiring Techies</h2>
+      <p class="section-sub">From choosing a programming language to landing your first job – SkillBun has you covered
+        at every hop.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🤖</div>
+          <div>
+            <h3>AI Career Counsellor</h3>
+            <p>Ask anything – pros/cons of a course, salary expectations, day-in-the-life of a role. Bun-Bot is always
+              available.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">💻</div>
+          <div>
+            <h3>Language Recommender</h3>
+            <p>Should you learn Python, Java, or Go? Get tailored recommendations based on your target field and
+              interests.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🏢</div>
+          <div>
+            <h3>Company Explorer</h3>
+            <p>Browse curated companies hiring freshers, check packages, job roles and required skills.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">📚</div>
+          <div>
+            <h3>Courses & Certifications</h3>
+            <p>Find extra courses, bootcamps, and certifications that give you an edge – filtered by field and your
+              budget.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">👥</div>
+          <div>
+            <h3>Peer Connect</h3>
+            <p>Talk to professionals and alumni from companies you're targeting. Get real insights, not just job
+              descriptions.</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">📊</div>
+          <div>
+            <h3>Progress Tracker</h3>
+            <p>Track your learning milestones, quiz scores, and application progress in a visual, gamified dashboard.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER FIELDS -->
+    <section id="careers" style="padding-top:0;">
+      <div class="section-label">🚀 Explore Fields</div>
+      <h2 class="section-title">Which Path Will You Hop?</h2>
+      <p class="section-sub">SkillBun covers all major and emerging tech career paths for BCA, BSc, and B.Tech students.
+      </p>
+      <div class="fields-wrap">
+        <div class="field-pill">🧠 AI & Machine Learning</div>
+        <div class="field-pill">🌐 Full Stack Web Dev</div>
+        <div class="field-pill">📱 Mobile Development</div>
+        <div class="field-pill">🔐 Cybersecurity</div>
+        <div class="field-pill">📊 Data Science & Analytics</div>
+        <div class="field-pill">☁️ Cloud & DevOps</div>
+        <div class="field-pill">🎮 Game Development</div>
+        <div class="field-pill">🔗 Blockchain</div>
+        <div class="field-pill">🤖 Robotics & Embedded</div>
+        <div class="field-pill">🖥️ Systems Programming</div>
+        <div class="field-pill">📡 Networking</div>
+        <div class="field-pill">🧬 Bioinformatics</div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-card">
+        <div class="welcome-bunny" style="font-size:3.5rem;margin-bottom:1rem;">🐰</div>
+        <h2>Ready to Hop In?</h2>
+        <p>Join thousands of students who found their perfect tech career path with SkillBun. It's free to start.</p>
+        <button type="button" class="btn-primary" style="margin:0 auto;" onclick="openModal()">🐾 Start Your Quiz — It's
+          Free</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+          <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through
+            AI-powered guidance and real peer connections.</p>
+          <div class="footer-socials">
+            <!-- Instagram -->
+            <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh" target="_blank"
+              aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="17.5" cy="6.5" r="1.2" />
+              </svg>
+            </a>
+            <!-- X / Twitter -->
+            <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh" target="_blank"
+              aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh" target="_blank"
+              aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh" target="_blank"
+              aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#" onclick="openModal(); return false;">Career Quiz</a></li>
+            <li><a href="#careers">Career Paths</a></li>
+            <li><a href="coming-soon.html">College Finder</a></li>
+            <li><a href="coming-soon.html">Exam Guide</a></li>
+            <li><a href="coming-soon.html">Courses</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="mailto:anonymousgrouphp@gmail.com">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>. Made with 🐾 for India's tech students.</p>
+        <div class="badge-bar">
+          <span class="badge">BCA Friendly</span>
+          <span class="badge">BS/BS-MS (AICS/CSDA)</span>
+          <span class="badge">B.Tech(CS/IT)</span>
+          <span class="badge">AI Powered</span>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- end main page -->
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <button type="button" class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+      <div class="modal-desc" id="modalDesc">Hop into your perfect tech career</div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" style="display:none;">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Degree / Program</label>
+          <select id="signupDegree">
+            <option value="">Select your degree</option>
+            <option>BCA – Bachelor of Computer Applications</option>
+            <option>B.Tech – Computer Science</option>
+            <option>B.Tech – Information Technology</option>
+            <option>BS – Artificial intelligence and cyber security</option>
+            <option>BS-MS – Artificial intelligence and cyber security</option>
+            <option>BS – Computer Science and Data Analytics</option>
+            <option>BS-MS – Computer Science and Data Analytics</option>
+            <option>Other Engineering</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Current Year</label>
+          <select id="signupYear">
+            <option value="">Select year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>Graduated / Working</option>
+          </select>
+        </div>
+        <button type="button" class="btn-form" onclick="submitSignup()">Start Assessment 🚀</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Link external JS at the bottom -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>
