@@ -2,7 +2,12 @@
 
 SkillBun is an AI-powered career counseling platform specifically engineered for BCA, BSc, and B.Tech tech students in India. It aims to cut through the noise of the vast tech landscape by providing personalized, actionable career roadmaps through an adaptive, gamified quiz interface.
 
-This project was built as a capstone by Team SkillBun—a passionate team of five IITians: **Harsh, Rainee, Ravi, Harshit, and Aiman**.
+This project was built as a capstone by Team SkillBun—a passionate team of five IITians:
+**Harsh**
+**Rainee** 
+**Ravi**
+**Harshit**
+**Aiman**
 
 ---
 
