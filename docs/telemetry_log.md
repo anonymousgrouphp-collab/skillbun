@@ -270,3 +270,4 @@
 [2026-02-23T19:52:07] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-23T14:41:24] chore(deps): update analytics telemetry adapter
 [2026-02-23T21:43:57] refactor(counseling): streamline guidance flow
+[2026-02-23T16:25:38] feat(roadmap): add milestone progress tracking
