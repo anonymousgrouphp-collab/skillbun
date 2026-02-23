@@ -275,3 +275,4 @@
 [2026-02-23T20:23:38] style(ui): adjust career dashboard card elevation
 [2026-02-23T13:23:21] test(matching): add test suite for recommendation score
 [2026-02-23T09:33:20] fix(assessment): refine skill gap analysis scoring weights
+[2026-02-23T12:54:31] fix(assessment): refine skill gap analysis scoring weights
