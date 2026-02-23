@@ -87,7 +87,7 @@
         <li><a href="#contact">Connect with us</a></li>
       </ul>
       <div class="nav-cta">
-        <button type="button" class="btn-signup" onclick="openModal()">Get Started 🚀</button>
+        <button type="button" class="btn-signup">Get Started 🚀</button>
       </div>
     </nav>
 
@@ -103,7 +103,7 @@
         <p>Not sure which path to take in tech? SkillBun analyzes your interests, guides you through career options,
           entrance exams, top colleges, languages to learn, and connects you to real industry peers.</p>
         <div class="hero-btns">
-          <button type="button" class="btn-primary" onclick="openModal()">🐾 Take the Career Quiz</button>
+          <button type="button" class="btn-primary" id="heroStartQuizBtn">🐾 Take the Career Quiz</button>
         </div>
       </div>
     </div>
@@ -250,7 +250,7 @@
         <div class="welcome-bunny" style="font-size:3.5rem;margin-bottom:1rem;">🐰</div>
         <h2>Ready to Hop In?</h2>
         <p>Join thousands of students who found their perfect tech career path with SkillBun. It's free to start.</p>
-        <button type="button" class="btn-primary" style="margin:0 auto;" onclick="openModal()">🐾 Start Your Quiz — It's
+        <button type="button" class="btn-primary" style="margin:0 auto;" id="ctaStartQuizBtn">🐾 Start Your Quiz — It's
           Free</button>
       </div>
     </div>
@@ -307,7 +307,7 @@
         <div class="footer-col">
           <h4>Platform</h4>
           <ul>
-            <li><a href="#" onclick="openModal(); return false;">Career Quiz</a></li>
+            <li><a href="#" id="footerStartQuizBtn">Career Quiz</a></li>
             <li><a href="#careers">Career Paths</a></li>
             <li><a href="coming-soon.html">College Finder</a></li>
             <li><a href="coming-soon.html">Exam Guide</a></li>
@@ -340,9 +340,9 @@
   </div><!-- end main page -->
 
   <!-- ===== AUTH MODAL ===== -->
-  <div class="modal-overlay" id="authModal">
+  <div class="modal-overlay" id="signupModal">
     <div class="modal">
-      <button type="button" class="modal-close" onclick="closeModal()">✕</button>
+      <button class="close-modal" id="closeModalBtn">&times;</button>
       <div class="modal-logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
       <div class="modal-desc" id="modalDesc">Hop into your perfect tech career</div>
 
@@ -377,7 +377,7 @@
             <option>Graduated / Working</option>
           </select>
         </div>
-        <button type="button" class="btn-form" onclick="submitSignup()">Start Assessment 🚀</button>
+        <button type="button" class="btn-form" id="submitSignupBtn">Start Assessment 🚀</button>
       </div>
 
     </div>

@@ -488,11 +488,13 @@ function showErrorUI() {
       <span class="option-label">📧</span>
       <span class="option-text">Report to Team</span>
     </a>
-    <button class="quiz-option" onclick="retryLastQuestion()">
+    <button class="quiz-option" id="retryLastQuestionBtn">
       <span class="option-label">🔄</span>
       <span class="option-text">Try Again</span>
     </button>
   `;
+    const retryBtn = document.getElementById('retryLastQuestionBtn');
+    if (retryBtn) retryBtn.addEventListener('click', retryLastQuestion);
 }
 
 // --- Start Quiz ---
@@ -533,6 +535,14 @@ document.getElementById('retakeBtn').addEventListener('click', () => {
 });
 
 document.getElementById('loadMoreBtn').addEventListener('click', loadMoreCareers);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userBadge = document.getElementById('userBadge');
+    if (userBadge) userBadge.addEventListener('click', toggleDropdown);
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
+});
 
 // --- Init ---
 loadProfile();
