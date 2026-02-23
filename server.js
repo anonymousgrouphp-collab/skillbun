@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust the Vercel reverse proxy for correct IP identification by express-rate-limit
+app.set('trust proxy', 1);
+
 // ===== SECURITY: Helmet for HTTP security headers =====
 try {
     const helmet = require('helmet');
