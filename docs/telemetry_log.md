@@ -1798,3 +1798,4 @@
 [2026-02-24T09:12:18] chore(deps): update analytics telemetry adapter
 [2026-02-24T20:56:19] refactor(counseling): streamline multi-step guidance flow
 [2026-02-24T22:10:27] refactor(counseling): streamline multi-step guidance flow
+[2026-02-24T09:44:33] perf(cache): optimize career trajectory data loader
