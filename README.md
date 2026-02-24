@@ -1,4 +1,4 @@
-﻿# SkillBun - Hop into the Right Career
+# 🐰 SkillBun – Hop into the Right Career
 
 SkillBun is an AI-powered career counseling platform specifically engineered for BCA, BSc, and B.Tech tech students in India. It aims to cut through the noise of the vast tech landscape by providing personalized, actionable career roadmaps through an adaptive, gamified quiz interface.
 
@@ -12,7 +12,7 @@ This project was built as a capstone by Team SkillBun, a passionate team of five
 
 ---
 
-## Key Features
+## ✨ Key Features
 
 * **Master AI Counselor (Powered by Gemini):** Instead of a generic buzzfeed quiz, SkillBun utilizes a highly advanced system prompt that acts as an expert diagnostician. It actively probes the "6 Pillars of Tech" (Logic, Math, Empathy, Business, Infrastructure, Protection) to ensure a perfectly tailored match.
 * **Dynamic Adaptive Quizzing:** The AI dynamically asks between 10 and 18 questions based on the student's previous answers, only concluding the quiz when it reaches 95%+ confidence in its career recommendations.
@@ -22,7 +22,7 @@ This project was built as a capstone by Team SkillBun, a passionate team of five
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 * **Frontend:** HTML5, Vanilla JavaScript, Custom CSS (Dark Theme, Glassmorphism)
 * **Backend:** Node.js, Express.js
@@ -32,8 +32,7 @@ This project was built as a capstone by Team SkillBun, a passionate team of five
 
 ---
 
-## Getting Started (Local Development)
-
+## 🚀 Getting Started (Local Development)
 To run the SkillBun project locally on your machine, follow these steps:
 
 ### Prerequisites
@@ -82,7 +81,7 @@ To run the SkillBun project locally on your machine, follow these steps:
 
 ---
 
-## Security and Performance Notes
+## 🛡️ Security & Performance Notes
 
 The application includes pre-configured rate limiters to prevent API exhaustion:
 * **Global Traffic Limit:** 60 requests per minute per IP.
