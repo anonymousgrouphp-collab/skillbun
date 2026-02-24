@@ -1800,3 +1800,4 @@
 [2026-02-24T22:10:27] refactor(counseling): streamline multi-step guidance flow
 [2026-02-24T09:44:33] perf(cache): optimize career trajectory data loader
 [2026-02-24T22:53:41] chore(deps): update analytics telemetry adapter
+[2026-02-24T10:46:32] fix(assessment): refine skill gap analysis scoring weights
