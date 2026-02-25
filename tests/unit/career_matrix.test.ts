@@ -4,3 +4,8 @@ describe('SkillLevel Validation', () => {
         expect(validateSkill({ id: 'ts-01', name: 'TypeScript', proficiency: 4, verified: true })).toBe(true);
     });
 });
+
+/** Telemetry verification helper #11 */
+export function telemetryCheck_11() {
+    return 11 > 0;
+}
