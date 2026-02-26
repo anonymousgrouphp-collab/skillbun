@@ -9,7 +9,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const TURNSTILE_SITE_KEY = (process.env.TURNSTILE_SITE_KEY || '').trim();
 const TURNSTILE_SECRET_KEY = (process.env.TURNSTILE_SECRET_KEY || '').trim();
 const CAPTCHA_ENABLED = Boolean(TURNSTILE_SITE_KEY && TURNSTILE_SECRET_KEY);
-const HUMAN_PROOF_SECRET = process.env.HUMAN_PROOF_SECRET || process.env.GEMINI_API_KEY || 'development-human-proof-secret';
+const HUMAN_PROOF_SECRET = process.env.HUMAN_PROOF_SECRET || 'skillbun-dev-proof-secret-change-in-prod';
 const HUMAN_PROOF_TTL_MS = Number.parseInt(process.env.HUMAN_PROOF_TTL_MS || '1800000', 10); // 30 min
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
@@ -58,7 +58,11 @@ function verifyHumanProofToken(token, ip) {
     const sigBuf = Buffer.from(signature);
     const expectedBuf = Buffer.from(expectedSignature);
 
-    if (sigBuf.length !== expectedBuf.length || !crypto.timingSafeEqual(sigBuf, expectedBuf)) {
+    if (sigBuf.length !== expectedBuf.length) {
+        return false;
+    }
+
+    if (!crypto.timingSafeEqual(sigBuf, expectedBuf)) {
         return false;
     }
 
@@ -409,11 +413,10 @@ app.post('/api/gemini', async (req, res) => {
         return res.status(500).json({ error: 'API key not configured. Please contact the team.' });
     }
 
-    if (CAPTCHA_ENABLED) {
-        const humanToken = req.get(HUMAN_PROOF_HEADER);
-        if (!verifyHumanProofToken(humanToken, ip)) {
-            return res.status(403).json({ error: 'Human verification required. Please verify and try again.' });
-        }
+    // Always verify human-proof token, regardless of CAPTCHA setting
+    const humanToken = req.get(HUMAN_PROOF_HEADER);
+    if (!verifyHumanProofToken(humanToken, ip)) {
+        return res.status(403).json({ error: 'Human verification required. Please verify and try again.' });
     }
 
     const body = req.body;

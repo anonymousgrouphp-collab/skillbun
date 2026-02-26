@@ -228,6 +228,11 @@ async function submitSignup() {
         return;
     }
 
+    if (name.length > 80) {
+        alert('Name is too long. Please enter a shorter name (max 80 characters).');
+        return;
+    }
+
     if (!email || !EMAIL_REGEX.test(email)) {
         alert('Please enter a valid email address');
         return;

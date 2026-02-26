@@ -346,8 +346,8 @@ async function callGemini(userMessage) {
         });
 
         if (!res.ok) {
-            const errData = await res.json();
-            throw new Error(errData.error || 'API request failed');
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData.error || `API request failed (${res.status})`);
         }
 
         const data = await res.json();
