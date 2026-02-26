@@ -581,6 +581,7 @@ function extractCareers(response) {
 // --- Load More Careers ---
 async function loadMoreCareers() {
     const loadBtn = document.getElementById('loadMoreBtn');
+    if (!loadBtn) return;
     loadBtn.textContent = '⏳ Finding more paths...';
     loadBtn.disabled = true;
 
@@ -609,9 +610,9 @@ async function loadMoreCareers() {
         const uniqueCareers = careers.filter(career => !existingTitles.has(career.title.toLowerCase()));
 
         if (uniqueCareers.length === 0) {
-            loadBtn.textContent = 'âœ… No More Unique Paths';
+            loadBtn.textContent = '✅ No More Unique Paths';
             loadBtn.disabled = false;
-            setTimeout(() => { loadBtn.textContent = 'ðŸ” Load More Career Paths'; }, 2000);
+            setTimeout(() => { loadBtn.textContent = '🔍 Load More Career Paths'; }, 2000);
             return;
         }
 
@@ -866,37 +867,53 @@ async function startNextQuestion() {
 }
 
 // --- Event Listeners ---
-document.getElementById('startQuizBtn').addEventListener('click', async () => {
-    const startBtn = document.getElementById('startQuizBtn');
-    const defaultLabel = startBtn.dataset.defaultLabel || startBtn.textContent;
-    startBtn.dataset.defaultLabel = defaultLabel;
-    startBtn.disabled = true;
-    startBtn.textContent = 'Verifying...';
+const startQuizBtnEl = document.getElementById('startQuizBtn');
+if (startQuizBtnEl) {
+    startQuizBtnEl.addEventListener('click', async () => {
+        const startBtn = document.getElementById('startQuizBtn');
+        if (!startBtn) return;
 
-    const verified = await verifyHumanProof();
-    if (!verified) {
+        const defaultLabel = startBtn.dataset.defaultLabel || startBtn.textContent;
+        startBtn.dataset.defaultLabel = defaultLabel;
+        startBtn.disabled = true;
+        startBtn.textContent = 'Verifying...';
+
+        const verified = await verifyHumanProof();
+        if (!verified) {
+            startBtn.disabled = false;
+            startBtn.textContent = defaultLabel;
+            return;
+        }
+
         startBtn.disabled = false;
         startBtn.textContent = defaultLabel;
-        return;
-    }
 
-    startBtn.disabled = false;
-    startBtn.textContent = defaultLabel;
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const quizScreen = document.getElementById('quizScreen');
+        if (welcomeScreen) welcomeScreen.style.display = 'none';
+        if (quizScreen) quizScreen.style.display = 'block';
+        startNextQuestion();
+    });
+}
 
-    document.getElementById('welcomeScreen').style.display = 'none';
-    document.getElementById('quizScreen').style.display = 'block';
-    startNextQuestion();
-});
+const retakeBtnEl = document.getElementById('retakeBtn');
+if (retakeBtnEl) {
+    retakeBtnEl.addEventListener('click', () => {
+        conversationHistory = [];
+        questionCount = 0;
+        quizResults = null;
 
-document.getElementById('retakeBtn').addEventListener('click', () => {
-    conversationHistory = [];
-    questionCount = 0;
-    quizResults = null;
-    document.getElementById('resultScreen').style.display = 'none';
-    document.getElementById('welcomeScreen').style.display = 'block';
-});
+        const resultScreen = document.getElementById('resultScreen');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        if (resultScreen) resultScreen.style.display = 'none';
+        if (welcomeScreen) welcomeScreen.style.display = 'block';
+    });
+}
 
-document.getElementById('loadMoreBtn').addEventListener('click', loadMoreCareers);
+const loadMoreBtnEl = document.getElementById('loadMoreBtn');
+if (loadMoreBtnEl) {
+    loadMoreBtnEl.addEventListener('click', loadMoreCareers);
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     const startBtn = document.getElementById('startQuizBtn');

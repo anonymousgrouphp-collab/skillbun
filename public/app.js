@@ -2,24 +2,35 @@
 
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
+    if (!navLinks) return;
     navLinks.classList.toggle('active');
 }
 
 function openModal() {
-    document.getElementById('authModal').classList.add('active');
+    const authModal = document.getElementById('authModal');
+    if (!authModal) return;
+    authModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal(e) {
     if (e) e.stopPropagation();
-    document.getElementById('authModal').classList.remove('active');
+    const authModal = document.getElementById('authModal');
+    if (!authModal) return;
+    authModal.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
 function submitSignup() {
-    const name = document.getElementById('nameInput').value.trim();
-    const degree = document.getElementById('degreeInput').value.trim();
-    const year = document.getElementById('yearInput').value;
+    const nameInput = document.getElementById('nameInput');
+    const degreeInput = document.getElementById('degreeInput');
+    const yearInput = document.getElementById('yearInput');
+
+    if (!nameInput || !degreeInput || !yearInput) return;
+
+    const name = nameInput.value.trim();
+    const degree = degreeInput.value.trim();
+    const year = yearInput.value;
 
     if (!name || !degree || !year) {
         alert('Please fill in all fields to start the quiz!');
@@ -41,27 +52,29 @@ const themeToggle = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 const currentTheme = localStorage.getItem("theme");
-if (currentTheme == "light") {
-    document.body.classList.toggle("light-theme");
-    themeToggle.textContent = '☀️';
-} else if (currentTheme == "dark") {
-    themeToggle.textContent = '🌙';
-} else if (!prefersDarkScheme.matches) {
-    document.body.classList.toggle("light-theme");
-    themeToggle.textContent = '☀️';
-}
-
-themeToggle.addEventListener("click", function () {
-    document.body.classList.toggle("light-theme");
-    let theme = "dark";
-    if (document.body.classList.contains("light-theme")) {
-        theme = "light";
-        themeToggle.textContent = '☀️';
-    } else {
-        themeToggle.textContent = '🌙';
+if (themeToggle) {
+    if (currentTheme === "light") {
+        document.body.classList.toggle("light-theme");
+        themeToggle.textContent = "Light";
+    } else if (currentTheme === "dark") {
+        themeToggle.textContent = "Dark";
+    } else if (!prefersDarkScheme.matches) {
+        document.body.classList.toggle("light-theme");
+        themeToggle.textContent = "Light";
     }
-    localStorage.setItem("theme", theme);
-});
+
+    themeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("light-theme");
+        let theme = "dark";
+        if (document.body.classList.contains("light-theme")) {
+            theme = "light";
+            themeToggle.textContent = "Light";
+        } else {
+            themeToggle.textContent = "Dark";
+        }
+        localStorage.setItem("theme", theme);
+    });
+}
 
 // Event Bindings setup for Content Security Policy (No inline onclicks allowed)
 document.addEventListener("DOMContentLoaded", () => {
