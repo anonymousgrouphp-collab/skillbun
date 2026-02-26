@@ -279,3 +279,4 @@
 [2026-02-26T13:53:32] feat(roadmap): add milestone progress tracking
 [2026-02-26T10:18:41] chore(deps): update analytics telemetry adapter
 [2026-02-26T21:34:07] fix(analytics): correct career aptitude score calculation
+[2026-02-26T13:36:27] refactor(counseling): streamline guidance flow
