@@ -15,13 +15,14 @@ This project was built as a capstone by Team SkillBun, a passionate team of five
 ## ✨ Key Features
 
 * **Master AI Counselor (Powered by Gemini):** Instead of a generic buzzfeed quiz, SkillBun utilizes a highly advanced system prompt that acts as an expert diagnostician. It actively probes the "6 Pillars of Tech" (Logic, Math, Empathy, Business, Infrastructure, Protection) to ensure a perfectly tailored match.
+* **Open-Ended AI Chatbot (Bun-Bot):** A dedicated AI career counsellor available to answer student queries about course pros/cons, salary expectations, day-in-the-life scenarios, and more.
+* **Comprehensive Career Exploration:** Explore top companies, required skills, learning resources, and connect with industry peers to gain real-world insights.
 * **Dynamic Adaptive Quizzing:** The AI dynamically asks between 10 and 18 questions based on the student's previous answers, only concluding the quiz when it reaches 95%+ confidence in its career recommendations.
 * **Actionable Roadmaps (via Roadmap.sh):** Every AI-recommended career generates a "Dive Deeper" link that directly routes the student to the corresponding, verified curriculum on [roadmap.sh](https://roadmap.sh), turning counseling immediately into actionable learning.
 * **Extremely Fast Vanilla Frontend:** Built with blazing-fast Vanilla JavaScript and a beautiful, bespoke dark-theme CSS design system without heavy framework bloat.
 * **Secure Backend:** The Node/Express backend utilizes `helmet` for HTTP headers and strict `express-rate-limit` configurations to protect the Gemini API key from abuse.
 
 ---
-
 ## 🛠️ Tech Stack
 
 * **Frontend:** HTML5, Vanilla JavaScript, Custom CSS (Dark Theme, Glassmorphism)
