@@ -283,3 +283,4 @@
 [2026-02-26T20:15:30] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-26T20:32:38] chore(deps): update analytics telemetry adapter
 [2026-02-26T18:53:04] docs(telemetry): record platform assessment metrics
+[2026-02-26T09:45:24] fix(assessment): refine skill gap analysis scoring weights
