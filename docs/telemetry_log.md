@@ -276,3 +276,4 @@
 [2026-02-23T13:23:21] test(matching): add test suite for recommendation score
 [2026-02-23T09:33:20] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-23T12:54:31] fix(assessment): refine skill gap analysis scoring weights
+[2026-02-26T13:53:32] feat(roadmap): add milestone progress tracking
