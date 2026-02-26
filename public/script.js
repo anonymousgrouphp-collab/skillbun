@@ -57,7 +57,11 @@ if (floatersEl) {
         const floater = document.createElement('div');
         floater.className = 'floater';
         floater.textContent = floaterTexts[i];
-        floater.style.left = `${5 + Math.random() * 85}%`;
+
+        // Spread floaters evenly across the entire width of the page
+        // Math.random() * 95 ensures they don't overflow past 100vw on the right side
+        floater.style.left = `${Math.random() * 92}%`;
+
         floater.style.animationDuration = `${10 + Math.random() * 12}s`;
         floater.style.animationDelay = `${Math.random() * 8}s`;
         floatersEl.appendChild(floater);
