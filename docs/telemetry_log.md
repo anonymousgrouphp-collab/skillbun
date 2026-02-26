@@ -287,3 +287,4 @@
 [2026-02-26T09:31:38] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-26T13:51:20] fix(assessment): refine skill gap analysis scoring weights
 [2026-02-26T15:13:07] feat(roadmap): add milestone progress tracking
+[2026-02-26T21:08:36] feat(roadmap): add milestone progress tracking
