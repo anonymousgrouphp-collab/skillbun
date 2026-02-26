@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Chat with Bun-Bot, your AI Career Counsellor. Ask anything about tech careers, salaries, and roles.">
+  <title>SkillBun - AI Career Counsellor</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    #chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1rem;
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-top: 5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--glass-border);
+    }
+    
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    
+    .chat-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .chat-bot-icon {
+      font-size: 2rem;
+      background: var(--gradient-primary);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-right: 0.5rem;
+    }
+    
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
+    
+    .message {
+      max-width: 85%;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .message.bot {
+      align-self: flex-start;
+      background: var(--surface-light);
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    
+    .message.user {
+      align-self: flex-end;
+      background: var(--gradient-primary);
+      color: white;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    }
+    
+    .message p {
+      margin: 0 0 0.75rem 0;
+    }
+    .message p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .message ul, .message ol {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    .message.bot strong {
+      color: var(--primary);
+    }
+    
+    .message.user strong {
+      color: white;
+    }
+    
+    .chat-input-area {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      resize: none;
+      height: 52px;
+      line-height: 1.2;
+      transition: all 0.2s ease;
+    }
+    
+    .chat-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+    
+    .chat-send-btn {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 52px;
+      height: 52px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .chat-send-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+    
+    .chat-send-btn:active {
+      transform: translateY(0);
+    }
+    
+    .chat-send-btn:disabled {
+      background: var(--border);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .typing-indicator {
+      display: none;
+      align-self: flex-start;
+      background: var(--surface-light);
+      padding: 0.75rem 1rem;
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+    
+    .typing-indicator span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      margin: 0 2px;
+      animation: typing 1.4s infinite ease-in-out both;
+    }
+    
+    .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes typing {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    
+    /* Security Verification Banner - minimal */
+    #securityBanner {
+      display: none;
+      background: var(--surface-light);
+      border: 1px solid var(--primary);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      #chat-container {
+        margin-top: 4.5rem;
+        margin-bottom: 1rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+      .message { max-width: 95%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-logo">
+      <a href="index.html" class="nav-logo-link">
+        <img src="logo.png" alt="SkillBun Logo">
+        <span class="mini-bunny"></span> SKILLBUN
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#how">How it Works</a></li>
+      <li><a href="index.html#careers">Career Paths</a></li>
+      <li><a href="counsellor.html" class="active" style="color:var(--primary);">AI Counsellor</a></li>
+    </ul>
+    
+    <div class="user-menu-container">
+      <button type="button" class="quiz-user-badge" id="userBadge">User Guest</button>
+      <div class="user-menu-dropdown" id="userDropdown">
+        <div class="dropdown-header">
+          <strong id="dropdownName">Guest</strong>
+          <span id="dropdownDegree" class="dropdown-degree">Not specified</span>
+          <span id="dropdownYear" class="dropdown-year">Not specified</span>
+        </div>
+        <a href="quiz.html" class="btn-secondary" style="text-decoration:none;text-align:center;">Retake Career Quiz</a>
+        <button type="button" class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CHAT INTERFACE -->
+  <div id="chat-container">
+    <div class="chat-header">
+      <div class="chat-bot-icon">🤖</div>
+      <div>
+        <h2>Bun-Bot Counsellor</h2>
+        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">Ask me anything about tech careers!</p>
+      </div>
+    </div>
+    
+    <div id="securityBanner">
+      <p id="captchaStatus" style="margin:0 0 0.5rem 0;">Checking security...</p>
+      <div id="captchaWidget" style="display:inline-block;"></div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <p>Hi there! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor. 🐰</p>
+        <p>I can help you with anything related to tech careers in India. Feel free to ask me:</p>
+        <ul>
+          <li>Pros and cons of learning different courses/languages.</li>
+          <li>Salary expectations for various roles (e.g., Data Scientist vs. Backend Dev).</li>
+          <li>What a "day in the life" looks like for a specific tech job.</li>
+          <li>Which entrance exams or certifications might be right for you.</li>
+        </ul>
+        <p>What's on your mind?</p>
+      </div>
+    </div>
+    
+    <div class="typing-indicator" id="typingIndicator">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="chat-input-area">
+      <textarea id="chatInput" class="chat-input" placeholder="Ask Bun-Bot a question..." rows="1"></textarea>
+      <button class="chat-send-btn" id="sendBtn" title="Send message">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="vendor/marked.umd.js"></script>
+  <script src="counsellor.js"></script>
+
+</body>
+</html>
