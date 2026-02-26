@@ -20,7 +20,7 @@
       height: 100vh;
       overflow: hidden;
     }
-    
+
     #chat-container {
       flex: 1;
       display: flex;
@@ -36,7 +36,7 @@
       margin-bottom: 2rem;
       border: 1px solid var(--glass-border);
     }
-    
+
     .chat-header {
       display: flex;
       align-items: center;
@@ -45,12 +45,12 @@
       border-bottom: 1px solid var(--border);
       margin-bottom: 1rem;
     }
-    
+
     .chat-header h2 {
       margin: 0;
       font-size: 1.5rem;
     }
-    
+
     .chat-bot-icon {
       font-size: 2rem;
       background: var(--gradient-primary);
@@ -61,7 +61,7 @@
       justify-content: center;
       border-radius: 50%;
     }
-    
+
     .chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -70,15 +70,16 @@
       gap: 1rem;
       padding-right: 0.5rem;
     }
-    
+
     .chat-messages::-webkit-scrollbar {
       width: 6px;
     }
+
     .chat-messages::-webkit-scrollbar-thumb {
       background: var(--border);
       border-radius: 10px;
     }
-    
+
     .message {
       max-width: 85%;
       padding: 1rem 1.25rem;
@@ -86,19 +87,26 @@
       line-height: 1.5;
       animation: fadeIn 0.3s ease;
     }
-    
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     .message.bot {
       align-self: flex-start;
       background: var(--surface-light);
       border-bottom-left-radius: 4px;
       border: 1px solid var(--border);
     }
-    
+
     .message.user {
       align-self: flex-end;
       background: var(--gradient-primary);
@@ -106,28 +114,30 @@
       border-bottom-right-radius: 4px;
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
     }
-    
+
     .message p {
       margin: 0 0 0.75rem 0;
     }
+
     .message p:last-child {
       margin-bottom: 0;
     }
-    
-    .message ul, .message ol {
+
+    .message ul,
+    .message ol {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
       padding-left: 1.5rem;
     }
-    
+
     .message.bot strong {
       color: var(--primary);
     }
-    
+
     .message.user strong {
       color: white;
     }
-    
+
     .chat-input-area {
       display: flex;
       gap: 0.75rem;
@@ -135,7 +145,7 @@
       padding-top: 1rem;
       border-top: 1px solid var(--border);
     }
-    
+
     .chat-input {
       flex: 1;
       background: var(--bg);
@@ -150,13 +160,13 @@
       line-height: 1.2;
       transition: all 0.2s ease;
     }
-    
+
     .chat-input:focus {
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
     }
-    
+
     .chat-send-btn {
       background: var(--gradient-primary);
       color: white;
@@ -170,23 +180,23 @@
       justify-content: center;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    
+
     .chat-send-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     }
-    
+
     .chat-send-btn:active {
       transform: translateY(0);
     }
-    
+
     .chat-send-btn:disabled {
       background: var(--border);
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
     }
-    
+
     .typing-indicator {
       display: none;
       align-self: flex-start;
@@ -197,7 +207,7 @@
       border: 1px solid var(--border);
       margin-top: 0.5rem;
     }
-    
+
     .typing-indicator span {
       display: inline-block;
       width: 6px;
@@ -207,15 +217,28 @@
       margin: 0 2px;
       animation: typing 1.4s infinite ease-in-out both;
     }
-    
-    .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-    .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-    
-    @keyframes typing {
-      0%, 80%, 100% { transform: scale(0); }
-      40% { transform: scale(1); }
+
+    .typing-indicator span:nth-child(1) {
+      animation-delay: -0.32s;
     }
-    
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
+    @keyframes typing {
+
+      0%,
+      80%,
+      100% {
+        transform: scale(0);
+      }
+
+      40% {
+        transform: scale(1);
+      }
+    }
+
     /* Security Verification Banner - minimal */
     #securityBanner {
       display: none;
@@ -226,7 +249,7 @@
       text-align: center;
       margin-bottom: 1rem;
     }
-    
+
     @media (max-width: 768px) {
       #chat-container {
         margin-top: 4.5rem;
@@ -235,85 +258,215 @@
         border-left: none;
         border-right: none;
       }
-      .message { max-width: 95%; }
+
+      .message {
+        max-width: 95%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="nav-logo">
-      <a href="index.html" class="nav-logo-link">
+  <!-- ===== MAIN PAGE ===== -->
+  <div id="main-page">
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-logo">
         <img src="logo.png" alt="SkillBun Logo">
-        <span class="mini-bunny"></span> SKILLBUN
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="index.html#features">Features</a></li>
-      <li><a href="index.html#how">How it Works</a></li>
-      <li><a href="index.html#careers">Career Paths</a></li>
-      <li><a href="counsellor.html" class="active" style="color:var(--primary);">AI Counsellor</a></li>
-    </ul>
-    
-    <div class="user-menu-container">
-      <button type="button" class="quiz-user-badge" id="userBadge">User Guest</button>
-      <div class="user-menu-dropdown" id="userDropdown">
-        <div class="dropdown-header">
-          <strong id="dropdownName">Guest</strong>
-          <span id="dropdownDegree" class="dropdown-degree">Not specified</span>
-          <span id="dropdownYear" class="dropdown-year">Not specified</span>
+        <span class="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how">How it Works</a></li>
+        <li><a href="index.html#careers">Career Paths</a></li>
+        <li><a href="counsellor.html" data-auth-destination="counsellor.html" style="color:var(--primary);">AI
+            Counsellor</a></li>
+        <li><a href="index.html#contact">Connect with us</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button type="button" class="btn-signup" data-auth-destination="quiz.html">Get Started 🚀</button>
+      </div>
+    </nav>
+
+    <!-- CHAT INTERFACE -->
+    <div id="chat-container">
+      <div class="chat-header">
+        <div class="chat-bot-icon">🤖</div>
+        <div>
+          <h2>Bun-Bot Counsellor</h2>
+          <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">Ask me anything about tech careers!</p>
         </div>
-        <a href="quiz.html" class="btn-secondary" style="text-decoration:none;text-align:center;">Retake Career Quiz</a>
-        <button type="button" class="btn-logout" id="logoutBtn">Logout</button>
+      </div>
+
+      <div id="securityBanner">
+        <p id="captchaStatus" style="margin:0 0 0.5rem 0;">Checking security...</p>
+        <div id="captchaWidget" style="display:inline-block;"></div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <p>Hi there! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor. 🐰</p>
+          <p>I can help you with anything related to tech careers in India. Feel free to ask me:</p>
+          <ul>
+            <li>Pros and cons of learning different courses/languages.</li>
+            <li>Salary expectations for various roles (e.g., Data Scientist vs. Backend Dev).</li>
+            <li>What a "day in the life" looks like for a specific tech job.</li>
+            <li>Which entrance exams or certifications might be right for you.</li>
+          </ul>
+          <p>What's on your mind?</p>
+        </div>
+      </div>
+
+      <div class="typing-indicator" id="typingIndicator">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="chat-input-area">
+        <textarea id="chatInput" class="chat-input" placeholder="Ask Bun-Bot a question..." rows="1"></textarea>
+        <button class="chat-send-btn" id="sendBtn" title="Send message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
       </div>
     </div>
-  </nav>
 
-  <!-- CHAT INTERFACE -->
-  <div id="chat-container">
-    <div class="chat-header">
-      <div class="chat-bot-icon">🤖</div>
-      <div>
-        <h2>Bun-Bot Counsellor</h2>
-        <p style="margin:0; font-size:0.9rem; color:var(--text-muted);">Ask me anything about tech careers!</p>
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+          <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through
+            AI-powered guidance and real peer connections.</p>
+          <div class="footer-socials">
+            <!-- Instagram -->
+            <a class="social-btn" href="https://www.instagram.com/rainee.says.yoo?igsh=OXNmamg1NzBpZzNh" target="_blank"
+              rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="17.5" cy="6.5" r="1.2" />
+              </svg>
+            </a>
+            <!-- X / Twitter -->
+            <a class="social-btn" href="coming-soon.html" aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a class="social-btn" href="coming-soon.html" aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a class="social-btn" href="coming-soon.html" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#" id="footerStartQuizBtn" data-auth-destination="quiz.html">Career Quiz</a></li>
+            <li><a href="index.html#careers">Career Paths</a></li>
+            <li><a href="coming-soon.html">College Finder</a></li>
+            <li><a href="coming-soon.html">Exam Guide</a></li>
+            <li><a href="coming-soon.html">Courses</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="mailto:anonymousgrouphp@gmail.com">Contact</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-    
-    <div id="securityBanner">
-      <p id="captchaStatus" style="margin:0 0 0.5rem 0;">Checking security...</p>
-      <div id="captchaWidget" style="display:inline-block;"></div>
-    </div>
 
-    <div class="chat-messages" id="chatMessages">
-      <div class="message bot">
-        <p>Hi there! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor. 🐰</p>
-        <p>I can help you with anything related to tech careers in India. Feel free to ask me:</p>
-        <ul>
-          <li>Pros and cons of learning different courses/languages.</li>
-          <li>Salary expectations for various roles (e.g., Data Scientist vs. Backend Dev).</li>
-          <li>What a "day in the life" looks like for a specific tech job.</li>
-          <li>Which entrance exams or certifications might be right for you.</li>
-        </ul>
-        <p>What's on your mind?</p>
+      <div class="footer-bottom">
+        <p>© 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>. Made with 🐾 for India's tech students.</p>
+        <div class="badge-bar">
+          <span class="badge">BCA Friendly</span>
+          <span class="badge">BS/BS-MS (AICS/CSDA)</span>
+          <span class="badge">B.Tech(CS/IT)</span>
+          <span class="badge">AI Powered</span>
+        </div>
       </div>
-    </div>
-    
-    <div class="typing-indicator" id="typingIndicator">
-      <span></span><span></span><span></span>
-    </div>
+    </footer>
 
-    <div class="chat-input-area">
-      <textarea id="chatInput" class="chat-input" placeholder="Ask Bun-Bot a question..." rows="1"></textarea>
-      <button class="chat-send-btn" id="sendBtn" title="Send message">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-      </button>
+  </div><!-- end main page -->
+
+  <!-- ===== AUTH MODAL ===== -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal">
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+      <div class="modal-logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+      <div class="modal-desc" id="modalDesc">Hop into your perfect tech career</div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" style="display:none;">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="signupName" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Degree / Program</label>
+          <select id="signupDegree">
+            <option value="">Select your degree</option>
+            <option>BCA – Bachelor of Computer Applications</option>
+            <option>B.Tech – Computer Science</option>
+            <option>B.Tech – Information Technology</option>
+            <option>BS – Artificial intelligence and cyber security</option>
+            <option>BS-MS – Artificial intelligence and cyber security</option>
+            <option>BS – Computer Science and Data Analytics</option>
+            <option>BS-MS – Computer Science and Data Analytics</option>
+            <option>Other Engineering</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Current Year</label>
+          <select id="signupYear">
+            <option value="">Select year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>Graduated / Working</option>
+          </select>
+        </div>
+        <button type="button" class="btn-form" id="submitSignupBtn">Start Assessment 🚀</button>
+      </div>
+
     </div>
   </div>
 
   <script src="vendor/marked.umd.js"></script>
+  <script src="script.js"></script>
   <script src="counsellor.js"></script>
 
 </body>
+
 </html>
