@@ -12,6 +12,12 @@ const CAPTCHA_ENABLED = Boolean(TURNSTILE_SITE_KEY && TURNSTILE_SECRET_KEY);
 const HUMAN_PROOF_SECRET = process.env.HUMAN_PROOF_SECRET || process.env.GEMINI_API_KEY || 'development-human-proof-secret';
 const HUMAN_PROOF_TTL_MS = Number.parseInt(process.env.HUMAN_PROOF_TTL_MS || '1800000', 10); // 30 min
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
+const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
+const SUPABASE_SERVICE_ROLE_KEY = (process.env.SUPABASE_SERVICE_ROLE_KEY || '').trim();
+const SUPABASE_PROFILE_TABLE = (process.env.SUPABASE_PROFILE_TABLE || 'user_profiles').trim();
+const SUPABASE_PROFILE_UPSERT = String(process.env.SUPABASE_PROFILE_UPSERT || 'true').toLowerCase() === 'true';
+const PROFILE_STORAGE_TIMEOUT_MS = Number.parseInt(process.env.PROFILE_STORAGE_TIMEOUT_MS || '20000', 10);
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 if (IS_PRODUCTION && (TURNSTILE_SITE_KEY || TURNSTILE_SECRET_KEY) && !CAPTCHA_ENABLED) {
     console.warn('Turnstile is partially configured. Set both TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY.');
@@ -118,6 +124,25 @@ async function verifyTurnstileToken(token, remoteIp) {
     } finally {
         clearTimeout(timeout);
     }
+}
+
+function isValidEmail(email) {
+    return typeof email === 'string' && EMAIL_REGEX.test(email.trim());
+}
+
+function normalizeProfilePayload(body) {
+    const name = typeof body?.name === 'string' ? body.name.trim() : '';
+    const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const degree = typeof body?.degree === 'string' ? body.degree.trim() : '';
+    const year = typeof body?.year === 'string' ? body.year.trim() : '';
+    const destination = typeof body?.destination === 'string' ? body.destination.trim().toLowerCase() : 'quiz.html';
+
+    const entrypoint = destination.includes('counsellor') ? 'counsellor' : 'quiz';
+    return { name, email, degree, year, entrypoint };
+}
+
+function isSupabaseProfileStorageConfigured() {
+    return Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY && SUPABASE_PROFILE_TABLE);
 }
 
 // Trust reverse proxy only in production deployments.
@@ -281,6 +306,98 @@ app.post('/api/human/verify', async (req, res) => {
         humanToken: issued.token,
         expiresAt: issued.expiresAt
     });
+});
+
+app.post('/api/profile', async (req, res) => {
+    const ip = getClientIp(req);
+    const { name, email, degree, year, entrypoint } = normalizeProfilePayload(req.body);
+
+    if (!name || name.length < 2 || name.length > 80) {
+        return res.status(400).json({ error: 'Please enter a valid full name.' });
+    }
+
+    if (!isValidEmail(email) || email.length > 120) {
+        return res.status(400).json({ error: 'Please enter a valid email address.' });
+    }
+
+    if (!degree || degree.length > 140) {
+        return res.status(400).json({ error: 'Please select a valid degree/program.' });
+    }
+
+    if (!year || year.length > 60) {
+        return res.status(400).json({ error: 'Please select a valid current year.' });
+    }
+
+    if (!isSupabaseProfileStorageConfigured()) {
+        return res.status(202).json({
+            stored: false,
+            reason: 'Supabase profile storage is not configured on the server.'
+        });
+    }
+
+    const userAgent = String(req.get('user-agent') || '').slice(0, 300);
+    const profileRecord = {
+        name,
+        email,
+        degree,
+        year,
+        entrypoint,
+        ip_hash: hashIp(ip),
+        user_agent: userAgent
+    };
+
+    const url = new URL(`${SUPABASE_URL}/rest/v1/${encodeURIComponent(SUPABASE_PROFILE_TABLE)}`);
+    if (SUPABASE_PROFILE_UPSERT) {
+        url.searchParams.set('on_conflict', 'email');
+    }
+
+    const controller = new AbortController();
+    const timeoutMs = Number.isFinite(PROFILE_STORAGE_TIMEOUT_MS)
+        ? Math.max(PROFILE_STORAGE_TIMEOUT_MS, 5000)
+        : 20000;
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+        const prefer = SUPABASE_PROFILE_UPSERT
+            ? 'resolution=merge-duplicates,return=minimal'
+            : 'return=minimal';
+
+        const response = await fetch(url.toString(), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                apikey: SUPABASE_SERVICE_ROLE_KEY,
+                Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+                Prefer: prefer
+            },
+            body: JSON.stringify([profileRecord]),
+            signal: controller.signal
+        });
+
+        if (!response.ok) {
+            const errorText = (await response.text()).slice(0, 500);
+            console.error(`Supabase profile insert failed: ${response.status} -- ${errorText}`);
+
+            if (SUPABASE_PROFILE_UPSERT && /on conflict|no unique|constraint/i.test(errorText)) {
+                return res.status(500).json({
+                    error: 'Supabase table must have UNIQUE(email) for upsert. Please add the constraint and retry.'
+                });
+            }
+
+            return res.status(502).json({ error: 'Could not save profile right now. Please try again.' });
+        }
+
+        return res.status(201).json({ stored: true });
+    } catch (err) {
+        if (err.name === 'AbortError') {
+            return res.status(504).json({ error: 'Profile storage timed out. Please try again.' });
+        }
+
+        console.error('Supabase profile insert failed:', err.message);
+        return res.status(500).json({ error: 'Could not store profile right now. Please try again.' });
+    } finally {
+        clearTimeout(timeout);
+    }
 });
 
 // ===== Gemini API proxy endpoint =====

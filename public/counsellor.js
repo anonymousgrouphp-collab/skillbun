@@ -38,9 +38,22 @@ function toggleSecurityBanner(show) {
     banner.style.display = show ? 'block' : 'none';
 }
 
+function getStoredProfile() {
+    const name = localStorage.getItem('sb_name') || '';
+    const email = localStorage.getItem('sb_email') || '';
+    const degree = localStorage.getItem('sb_degree') || '';
+    const year = localStorage.getItem('sb_year') || '';
+    return { name, email, degree, year };
+}
+
+function redirectToProfileSetup(destination) {
+    window.location.href = `index.html?next=${encodeURIComponent(destination)}`;
+}
+
 // --- Initialize ---
 document.addEventListener('DOMContentLoaded', async () => {
-    loadProfile();
+    const hasProfile = loadProfile();
+    if (!hasProfile) return;
 
     const textarea = getEl('chatInput');
     const sendBtn = getEl('sendBtn');
@@ -210,11 +223,13 @@ async function verifyHumanProof() {
 
 // --- User Profile Handling ---
 function loadProfile() {
-    const name = localStorage.getItem('sb_name') || 'Guest';
-    const degree = localStorage.getItem('sb_degree') || 'Not specified';
-    const year = localStorage.getItem('sb_year') || 'Not specified';
+    const { name, email, degree, year } = getStoredProfile();
+    if (!name || !email || !degree || !year) {
+        redirectToProfileSetup('counsellor.html');
+        return false;
+    }
 
-    userProfile = { name, degree, year };
+    userProfile = { name, email, degree, year };
 
     const badge = getEl('userBadge');
     const dropdownName = getEl('dropdownName');
@@ -225,6 +240,7 @@ function loadProfile() {
     if (dropdownName) dropdownName.textContent = name;
     if (dropdownDegree) dropdownDegree.textContent = degree;
     if (dropdownYear) dropdownYear.textContent = year;
+    return true;
 }
 
 function toggleDropdown(event) {
@@ -248,6 +264,7 @@ document.addEventListener('click', (event) => {
 function logoutUser(event) {
     if (event) event.preventDefault();
     localStorage.removeItem('sb_name');
+    localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
     window.location.href = 'index.html';

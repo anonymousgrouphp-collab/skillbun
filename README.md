@@ -68,6 +68,43 @@ To run the SkillBun project locally on your machine, follow these steps:
    HUMAN_PROOF_SECRET=generate_a_long_random_secret
    # Optional token lifetime in milliseconds
    HUMAN_PROOF_TTL_MS=1800000
+   # Supabase profile storage (for signup form persistence)
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   # Optional table name (default: user_profiles)
+   SUPABASE_PROFILE_TABLE=user_profiles
+   # Keep true to prevent duplicate emails (updates same email row)
+   SUPABASE_PROFILE_UPSERT=true
+   # Optional profile storage timeout in ms
+   PROFILE_STORAGE_TIMEOUT_MS=20000
+   ```
+
+   Supabase connection checklist:
+   1. Create a project in Supabase.
+   2. Go to `Project Settings -> API`.
+   3. Copy:
+      - `Project URL` -> `SUPABASE_URL`
+      - `service_role` key -> `SUPABASE_SERVICE_ROLE_KEY` (server-side only, never expose in frontend)
+   4. In SQL Editor, create the profile table with unique email:
+
+   ```sql
+   create table if not exists public.user_profiles (
+     id bigserial primary key,
+     name text not null,
+     email text not null unique,
+     degree text not null,
+     year text not null,
+     entrypoint text not null,
+     ip_hash text,
+     user_agent text,
+     created_at timestamptz default now()
+   );
+   ```
+
+   If table already exists without unique email:
+   ```sql
+   alter table public.user_profiles
+   add constraint user_profiles_email_key unique (email);
    ```
 
 4. **Start the server:**
