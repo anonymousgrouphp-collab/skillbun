@@ -85,6 +85,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     sendBtn.addEventListener('click', sendMessage);
 
+    // Suggestion chips
+    document.querySelectorAll('.suggestion-chip').forEach((chip) => {
+        chip.addEventListener('click', () => {
+            const suggestionsEl = getEl('chatSuggestions');
+            if (suggestionsEl) suggestionsEl.style.display = 'none';
+            const inputEl = getEl('chatInput');
+            if (inputEl) {
+                inputEl.value = chip.textContent.replace(/^[^\w]+/, '').trim();
+                inputEl.dispatchEvent(new Event('input'));
+            }
+            sendMessage();
+        });
+    });
+
+    // Clear chat button
+    const clearBtn = getEl('clearChatBtn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            const container = getEl('chatMessages');
+            if (!container) return;
+            container.innerHTML = '';
+            conversationHistory = [];
+            const suggestionsEl = getEl('chatSuggestions');
+            if (suggestionsEl) suggestionsEl.style.display = 'flex';
+        });
+    }
+
     try {
         await fetchSecurityConfig();
         if (securityConfig.captchaEnabled) {
@@ -382,6 +409,13 @@ function appendMessage(role, text) {
     const container = getEl('chatMessages');
     if (!container) return;
 
+    const row = document.createElement('div');
+    row.className = `message-row ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = `msg-avatar ${role}`;
+    avatar.textContent = role === 'bot' ? '🤖' : (userProfile.name ? userProfile.name.charAt(0).toUpperCase() : 'U');
+
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${role}`;
 
@@ -389,14 +423,15 @@ function appendMessage(role, text) {
         msgDiv.innerHTML = `<p>${escapeHTML(text)}</p>`;
     } else {
         msgDiv.innerHTML = renderBotHTML(text);
-
         msgDiv.querySelectorAll('a').forEach((anchor) => {
             anchor.target = '_blank';
             anchor.rel = 'noopener noreferrer';
         });
     }
 
-    container.appendChild(msgDiv);
+    row.appendChild(avatar);
+    row.appendChild(msgDiv);
+    container.appendChild(row);
     container.scrollTop = container.scrollHeight;
 }
 
