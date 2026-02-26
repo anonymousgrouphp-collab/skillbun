@@ -11,6 +11,55 @@ const MAX_HISTORY_ITEMS = 48;
 const MAX_HISTORY_TEXT = 22000;
 const HAS_MARKDOWN = typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
 
+// --- Rate Limiting ---
+const RATE_LIMIT_MAX = 15;           // max messages per window
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const RATE_LIMIT_KEY = 'sb_counsel_rl';
+
+function getRateLimitData() {
+    try {
+        const raw = localStorage.getItem(RATE_LIMIT_KEY);
+        if (!raw) return { count: 0, windowStart: Date.now() };
+        return JSON.parse(raw);
+    } catch {
+        return { count: 0, windowStart: Date.now() };
+    }
+}
+
+function checkRateLimit() {
+    const now = Date.now();
+    let data = getRateLimitData();
+
+    // Reset window if expired
+    if (now - data.windowStart > RATE_LIMIT_WINDOW_MS) {
+        data = { count: 0, windowStart: now };
+        localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(data));
+    }
+
+    if (data.count >= RATE_LIMIT_MAX) {
+        const msLeft = RATE_LIMIT_WINDOW_MS - (now - data.windowStart);
+        const minsLeft = Math.ceil(msLeft / 60000);
+        return {
+            allowed: false,
+            message: `⏳ You've reached the limit of ${RATE_LIMIT_MAX} messages per hour. Please wait ~${minsLeft} minute${minsLeft !== 1 ? 's' : ''} before sending again.`
+        };
+    }
+
+    return { allowed: true };
+}
+
+function incrementRateLimit() {
+    const now = Date.now();
+    let data = getRateLimitData();
+
+    if (now - data.windowStart > RATE_LIMIT_WINDOW_MS) {
+        data = { count: 0, windowStart: now };
+    }
+
+    data.count += 1;
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(data));
+}
+
 let securityConfig = {
     captchaEnabled: false,
     captchaSiteKey: ''
@@ -294,6 +343,7 @@ function logoutUser(event) {
     localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
+    localStorage.removeItem(RATE_LIMIT_KEY); // Fix #4: clear rate-limit on logout
     window.location.href = 'index.html';
 }
 
@@ -446,6 +496,13 @@ async function sendMessage() {
     const text = inputEl.value.trim();
     if (!text) return;
 
+    // --- Rate limit check ---
+    const rl = checkRateLimit();
+    if (!rl.allowed) {
+        appendMessage('bot', rl.message);
+        return;
+    }
+
     isSending = true;
 
     try {
@@ -527,6 +584,7 @@ async function sendMessage() {
         });
         trimConversationHistory();
 
+        incrementRateLimit(); // count only successful exchanges
         appendMessage('bot', responseText);
     } catch (err) {
         console.error(err);

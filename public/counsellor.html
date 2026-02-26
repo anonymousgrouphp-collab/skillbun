@@ -17,8 +17,8 @@
     body {
       display: flex;
       flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-y: auto;
       background: var(--dark);
     }
 
@@ -26,27 +26,31 @@
     #main-page {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
       opacity: 1 !important;
     }
 
     /* ===== CHAT CONTAINER ===== */
     #chat-container {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      max-width: 860px;
+      max-width: 1000px;
       width: 100%;
-      margin: 0 auto;
-      padding: 1.25rem;
+      min-height: calc(100vh - 72px);
+      margin: 72px auto 0;
+      padding: 1.5rem 2rem;
       background: rgba(22, 27, 34, 0.92);
-      border-radius: 20px;
-      border: 1px solid rgba(46, 204, 113, 0.15);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(46, 204, 113, 0.05);
-      margin-top: 5rem;
-      margin-bottom: 2rem;
-      overflow: hidden;
+      border-left: 1px solid rgba(46, 204, 113, 0.15);
+      border-right: 1px solid rgba(46, 204, 113, 0.15);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(12px);
+    }
+
+    /* Chat messages fill remaining space */
+    .chat-messages {
+      flex: 1;
+      min-height: 200px;
+      max-height: calc(100vh - 300px);
     }
 
     /* ===== CHAT HEADER ===== */
@@ -423,10 +427,15 @@
 
     @media (max-width: 768px) {
       #chat-container {
-        margin-top: 4.5rem;
-        margin-bottom: 0.5rem;
-        border-radius: 12px;
-        padding: 0.9rem;
+        padding: 0.9rem 1rem;
+        margin-top: 60px;
+        min-height: calc(100vh - 60px);
+        border-left: none;
+        border-right: none;
+      }
+
+      .chat-messages {
+        max-height: calc(100vh - 280px);
       }
 
       .message {
@@ -434,6 +443,13 @@
       }
 
       .chat-suggestions {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.25rem;
+      }
+
+      .chat-suggestions::-webkit-scrollbar {
         display: none;
       }
     }
