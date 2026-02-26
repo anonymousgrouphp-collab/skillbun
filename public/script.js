@@ -350,3 +350,22 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 const statsRow = document.querySelector('.stats-row');
 if (statsRow) statsObserver.observe(statsRow);
+
+// ===== HAMBURGER MENU =====
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}

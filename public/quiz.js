@@ -203,6 +203,44 @@ function loadProfile() {
     return true;
 }
 
+document.getElementById('retakeBtn').addEventListener('click', () => {
+    Object.assign(document.getElementById('resultScreen').style, { display: 'none' });
+    Object.assign(document.getElementById('quizScreen').style, { display: 'block' });
+
+    conversationHistory = [];
+    questionCount = 0;
+    totalQuestions = 15;
+    lastSelectedOption = null;
+
+    document.getElementById('progressFill').style.width = '0%';
+    document.getElementById('quizPhase').textContent = 'Phase 1: Discovery';
+    document.getElementById('qNum').textContent = '1';
+    document.getElementById('qTotal').textContent = '15';
+
+    startQuiz();
+});
+
+// ===== HAMBURGER MENU =====
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+});
+
 // --- Menu Interactions ---
 function toggleDropdown(event) {
     event.stopPropagation();
