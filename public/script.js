@@ -269,10 +269,13 @@ async function submitSignup() {
 }
 
 function bindProfileTriggers() {
-    const selector = '[data-auth-destination], .btn-signup, #heroStartQuizBtn, #ctaStartQuizBtn, #footerStartQuizBtn';
+    const selector = '[data-auth-destination]';
     document.querySelectorAll(selector).forEach((el) => {
         el.addEventListener('click', (event) => {
-            const destination = getSafeDestination(el.getAttribute('data-auth-destination') || 'quiz.html');
+            const rawDestination = el.getAttribute('data-auth-destination');
+            if (!rawDestination) return;
+
+            const destination = getSafeDestination(rawDestination);
 
             if (hasCompleteProfile()) {
                 event.preventDefault();

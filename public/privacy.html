@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy – SkillBun</title>
+    <title>Privacy Policy - SkillBun</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
         rel="stylesheet">
@@ -13,7 +13,6 @@
 
 <body>
 
-    <!-- NAVBAR -->
     <nav>
         <div class="nav-logo">
             <a href="index.html" class="nav-logo-link">
@@ -40,42 +39,74 @@
         </div>
     </nav>
 
-    <!-- CONTENT -->
     <div
         style="max-width: 800px; margin: 4rem auto; padding: 2rem; background: var(--card-bg); border: 1px solid #30363d; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
         <h1 style="font-family: 'Fredoka One', cursive; font-size: 2.5rem; margin-bottom: 2rem;"><span
                 style="color: var(--green);">Privacy</span> Policy</h1>
 
         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
-            Last updated: February 2025
+            Last updated: February 26, 2026
         </p>
 
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">1. Information We Collect</h3>
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">1. Information You Provide</h3>
         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
-            When you use the SkillBun Career Quiz, we ask for your Name, Degree/Program, and Current Year.
-            <strong>This information is stored locally on your device</strong> using browser <code>localStorage</code>
-            to personalize your quiz experience. We do not transmit or save this data to an external database.
+            During onboarding, SkillBun may collect your name, email, degree/program, and current year. This profile is
+            used to personalize quiz and counsellor interactions.
         </p>
 
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">2. External APIs (Gemini AI)</h3>
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">2. Local Storage on Your Device</h3>
         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
-            To power our Career Quiz and the <strong>AI Career Counsellor (Bun-Bot)</strong>, your quiz responses and
-            chat queries are securely transmitted to the Google Gemini AI Engine. We only send generalized inputs and
-            session prompts; no personally identifiable session data (like your name) is permanently stored by the AI
-            provider outside of the context window or used for their model training.
+            We store profile fields in your browser localStorage (`sb_name`, `sb_email`, `sb_degree`, `sb_year`) so you
+            can continue using the app without re-entering details every time. For Bun-Bot chat, a local rate-limit
+            counter (`sb_counsel_rl`) is also stored on your device.
         </p>
 
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">3. Cookies & Tracking</h3>
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">3. Server-Side Profile Storage (Optional)</h3>
         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
-            SkillBun currently does not deploy intrusive third-party tracking cookies or analytical trackers. Your
-            session is managed entirely on the client-side for privacy and speed.
+            If server storage is configured, your profile may be synced to a Supabase table. Stored fields can include
+            name, email, degree, year, entrypoint, a hashed IP value, and a truncated user-agent string. If Supabase is
+            not configured, profile sync is skipped.
         </p>
 
-        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">4. Deleting Your Data</h3>
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">4. AI Processing</h3>
         <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
-            Because your session data and chat history are stored completely on your local device, you can delete all
-            your personal data instantly by clearing your browser's local storage or clicking the "Logout" button inside
-            the platform. AI chat histories can also be cleared using the provided chat interface options.
+            Quiz responses and counsellor chat prompts are sent to the SkillBun backend, which forwards requests to the
+            Google Gemini API to generate responses. Please avoid submitting sensitive personal data in free-text prompts.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">5. Bot and Abuse Protection</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            We use human-verification controls, including Cloudflare Turnstile when enabled, and signed short-lived
+            human-proof tokens to protect APIs from abuse.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">6. Cookies and Tracking</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            SkillBun does not currently run ad tracking pixels or analytics trackers in this app version. Core
+            functionality relies mainly on browser localStorage and essential network logs.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">7. Data Retention and Deletion</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            Local profile data can be removed by logging out or clearing browser storage. If your profile has been synced
+            to server storage, contact us to request deletion or correction.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">8. Security</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            We apply technical safeguards including request size limits, input validation, rate limiting, and security
+            headers. No online system can be guaranteed fully secure, but we continuously improve controls.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">9. Changes to This Policy</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+            This policy may be updated as features evolve. We will publish the latest version on this page with a revised
+            date.
+        </p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">10. Contact</h3>
+        <p style="color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">
+            Privacy questions or deletion requests: <a href="mailto:anonymousgrouphp@gmail.com">anonymousgrouphp@gmail.com</a>
         </p>
     </div>
 
