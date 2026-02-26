@@ -1,126 +1,155 @@
-# 🐰 SkillBun – Hop into the Right Career
+# 🐰 SkillBun - Hop into the Right Career
 
-SkillBun is an AI-powered career counseling platform specifically engineered for BCA, BSc, and B.Tech tech students in India. It aims to cut through the noise of the vast tech landscape by providing personalized, actionable career roadmaps through an adaptive, gamified quiz interface.
+SkillBun is an AI-powered career guidance platform for Indian tech students (BCA, BSc, BS/BS-MS AICS/CSDA, and B.Tech).
+It helps students discover suitable career tracks using an adaptive quiz and an AI counsellor chat.
 
-This project was built as a capstone by Team SkillBun, a passionate team of five IITians:
+Built by Team SkillBun:
+- Harsh Patel
+- Rainee Patel
+- Aiman Patil
+- Harshit Patidar
+- Ravi Patel
 
-* [Harsh Patel](https://www.linkedin.com/in/harsh-patel-604007378/)
-* [Rainee Patel](https://www.linkedin.com/in/rainee-patel-624123377/)
-* [Aiman Patil](https://www.linkedin.com/in/aiman-patil-55181938a/)
-* Harshit Patidar
-* Ravi Patel
+## ✨ What's New
 
----
+- Profile onboarding flow (name, email, degree, year) before quiz/counsellor usage.
+- Optional server-side profile sync to Supabase via `/api/profile`.
+- Human verification flow with optional Cloudflare Turnstile.
+- Signed short-lived `x-skillbun-human` token required for Gemini API proxy calls.
+- Hardened Gemini proxy validation (conversation structure, text size, payload limits, timeout handling).
+- Enhanced quiz result handling with roadmap URL normalization and safe fallback links.
+- Bun-Bot chat improvements: markdown rendering, history trimming, local per-hour send limit, clear chat action.
+- Security hardening with Helmet CSP, strict rate limits, body size limits, and dotfile blocking.
 
-## ✨ Key Features
+## 🎯 Core Features
 
-* **Master AI Counselor (Powered by Gemini):** Instead of a generic buzzfeed quiz, SkillBun utilizes a highly advanced system prompt that acts as an expert diagnostician. It actively probes the "6 Pillars of Tech" (Logic, Math, Empathy, Business, Infrastructure, Protection) to ensure a perfectly tailored match.
-* **Open-Ended AI Chatbot (Bun-Bot):** A dedicated AI career counsellor available to answer student queries about course pros/cons, salary expectations, day-in-the-life scenarios, and more.
-* **Comprehensive Career Exploration:** Explore top companies, required skills, learning resources, and connect with industry peers to gain real-world insights.
-* **Dynamic Adaptive Quizzing:** The AI dynamically asks between 10 and 18 questions based on the student's previous answers, only concluding the quiz when it reaches 95%+ confidence in its career recommendations.
-* **Actionable Roadmaps (via Roadmap.sh):** Every AI-recommended career generates a "Dive Deeper" link that directly routes the student to the corresponding, verified curriculum on [roadmap.sh](https://roadmap.sh), turning counseling immediately into actionable learning.
-* **Extremely Fast Vanilla Frontend:** Built with blazing-fast Vanilla JavaScript and a beautiful, bespoke dark-theme CSS design system without heavy framework bloat.
-* **Secure Backend:** The Node/Express backend utilizes `helmet` for HTTP headers and strict `express-rate-limit` configurations to protect the Gemini API key from abuse.
+- Adaptive AI Career Quiz (typically 10 to 18 questions).
+- AI Career Counsellor (Bun-Bot) for role, salary, and roadmap guidance.
+- Career recommendation cards with skills, demand, salary range, next steps, and roadmap links.
+- Profile-aware responses based on student degree and year.
+- Optional CAPTCHA and bot-protection gate before AI usage.
 
----
 ## 🛠️ Tech Stack
 
-* **Frontend:** HTML5, Vanilla JavaScript, Custom CSS (Dark Theme, Glassmorphism)
-* **Backend:** Node.js, Express.js
-* **Artificial Intelligence:** Google Gemini Pro API
-* **Security:** Helmet, Express Rate Limit, CORS
-* **External Integration:** Roadmap.sh
+- Frontend: HTML, CSS, Vanilla JavaScript
+- Backend: Node.js + Express
+- AI: Google Gemini (`gemini-2.5-flash` via proxy)
+- Security: Helmet, express-rate-limit, CORS, request validation
+- Optional Data Store: Supabase REST API
+- Optional Bot Protection: Cloudflare Turnstile
 
----
+## 📋 Requirements
 
-## 🚀 Getting Started (Local Development)
-To run the SkillBun project locally on your machine, follow these steps:
+- Node.js 18+ (required for built-in `fetch`)
+- npm
+- Google Gemini API key
 
-### Prerequisites
-* [Node.js](https://nodejs.org/) installed on your machine.
-* A valid [Google Gemini API Key](https://aistudio.google.com/app/apikey).
+## 🚀 Setup
 
-### Installation and Setup
+1. Clone and install:
+```bash
+git clone https://github.com/anonymousgrouphp-collab/skillbun.git
+cd skillbun
+npm install
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/anonymousgrouphp-collab/skillbun.git
-   cd skillbun
-   ```
+2. Create `.env` in project root:
+```env
+GEMINI_API_KEY=your_gemini_api_key
+PORT=3000
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Optional: production CORS allowlist (comma-separated)
+ALLOWED_ORIGINS=https://your-frontend-domain.com
 
-3. **Configure Environment Variables:**
-   Create a `.env` file in the root directory and add your settings:
-   ```env
-   GEMINI_API_KEY=your_actual_api_key_here
-   PORT=3000
-   # Optional (recommended in production if frontend is hosted on another domain)
-   ALLOWED_ORIGINS=https://your-frontend-domain.com
-   # Optional upstream timeout (milliseconds)
-   GEMINI_TIMEOUT_MS=20000
-   # Bot protection (Cloudflare Turnstile)
-   TURNSTILE_SITE_KEY=your_turnstile_site_key
-   TURNSTILE_SECRET_KEY=your_turnstile_secret_key
-   # Optional secret for signed human-proof tokens
-   HUMAN_PROOF_SECRET=generate_a_long_random_secret
-   # Optional token lifetime in milliseconds
-   HUMAN_PROOF_TTL_MS=1800000
-   # Supabase profile storage (for signup form persistence)
-   SUPABASE_URL=https://your-project-id.supabase.co
-   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-   # Optional table name (default: user_profiles)
-   SUPABASE_PROFILE_TABLE=user_profiles
-   # Keep true to prevent duplicate emails (updates same email row)
-   SUPABASE_PROFILE_UPSERT=true
-   # Optional profile storage timeout in ms
-   PROFILE_STORAGE_TIMEOUT_MS=20000
-   ```
+# Optional: Gemini upstream timeout (ms)
+GEMINI_TIMEOUT_MS=20000
 
-   Supabase connection checklist:
-   1. Create a project in Supabase.
-   2. Go to `Project Settings -> API`.
-   3. Copy:
-      - `Project URL` -> `SUPABASE_URL`
-      - `service_role` key -> `SUPABASE_SERVICE_ROLE_KEY` (server-side only, never expose in frontend)
-   4. In SQL Editor, create the profile table with unique email:
+# Optional: Turnstile CAPTCHA (set both to enable)
+TURNSTILE_SITE_KEY=your_turnstile_site_key
+TURNSTILE_SECRET_KEY=your_turnstile_secret_key
 
-   ```sql
-   create table if not exists public.user_profiles (
-     id bigserial primary key,
-     name text not null,
-     email text not null unique,
-     degree text not null,
-     year text not null,
-     entrypoint text not null,
-     ip_hash text,
-     user_agent text,
-     created_at timestamptz default now()
-   );
-   ```
+# Optional: secret used to sign human-proof tokens
+HUMAN_PROOF_SECRET=generate_a_long_random_secret
+HUMAN_PROOF_TTL_MS=1800000
 
-   If table already exists without unique email:
-   ```sql
-   alter table public.user_profiles
-   add constraint user_profiles_email_key unique (email);
-   ```
+# Optional: Supabase profile storage
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+SUPABASE_PROFILE_TABLE=user_profiles
+SUPABASE_PROFILE_UPSERT=true
+PROFILE_STORAGE_TIMEOUT_MS=20000
+```
 
-4. **Start the server:**
-   ```bash
-   npm start
-   ```
-   Optional: if you have `nodemon` installed globally, you can run `npm run dev` for auto-reloading.
+3. Start server:
+```bash
+npm start
+```
 
-5. **View the app:**
-   Open your browser and navigate to `http://localhost:3000`.
+4. Open app:
+- `http://localhost:3000/index.html`
 
----
+## 🗄️ Supabase Table (Optional)
 
-## 🛡️ Security & Performance Notes
+Use this table for profile sync:
 
-The application includes pre-configured rate limiters to prevent API exhaustion:
-* **Global Traffic Limit:** 60 requests per minute per IP.
-* **Gemini API Limit (`/api/gemini`):** 25 requests per minute per IP (calibrated to allow a fast user to complete the 18-question quiz without being artificially blocked, while deterring bots).
+```sql
+create table if not exists public.user_profiles (
+  id bigserial primary key,
+  name text not null,
+  email text not null unique,
+  degree text not null,
+  year text not null,
+  entrypoint text not null,
+  ip_hash text,
+  user_agent text,
+  created_at timestamptz default now()
+);
+```
+
+If table exists without unique email:
+
+```sql
+alter table public.user_profiles
+add constraint user_profiles_email_key unique (email);
+```
+
+## 🔌 API Endpoints
+
+- `GET /api/config`
+  - Returns captcha config for frontend.
+
+- `POST /api/human/verify`
+  - Verifies Turnstile token when enabled.
+  - Issues signed short-lived human-proof token.
+
+- `POST /api/profile`
+  - Validates and stores profile data.
+  - Returns `stored: false` when Supabase is not configured.
+
+- `POST /api/gemini`
+  - Requires `x-skillbun-human` header.
+  - Validates conversation payload and proxies request to Gemini.
+
+## 🛡️ Security Notes
+
+- General rate limit: 60 requests/min/IP.
+- Gemini endpoint limit: 25 requests/min/IP.
+- JSON body limit: 100kb.
+- Dotfile and `.env` access blocked from static routes.
+- CSP configured for self-hosted assets + Turnstile scripts.
+- HTML assets are no-cache in production; static assets are cacheable.
+
+## 🧪 Useful Scripts
+
+```bash
+npm start   # run server
+npm run dev # run with nodemon
+```
+
+## 📄 Legal Pages
+
+- `public/about.html`
+- `public/terms.html`
+- `public/privacy.html`
+
+These pages were updated to match the current product behavior, data flow, and security model.
