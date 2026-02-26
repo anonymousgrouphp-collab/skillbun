@@ -86,11 +86,11 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#how">How it Works</a></li>
         <li><a href="#careers">Career Paths</a></li>
-        <li><a href="counsellor.html">AI Counsellor</a></li>
+        <li><a href="counsellor.html" data-auth-destination="counsellor.html">AI Counsellor</a></li>
         <li><a href="#contact">Connect with us</a></li>
       </ul>
       <div class="nav-cta">
-        <button type="button" class="btn-signup">Get Started 🚀</button>
+        <button type="button" class="btn-signup" data-auth-destination="quiz.html">Get Started 🚀</button>
       </div>
     </nav>
 
@@ -106,7 +106,7 @@
         <p>Not sure which path to take in tech? SkillBun analyzes your interests, guides you through career options,
           entrance exams, top colleges, languages to learn, and connects you to real industry peers.</p>
         <div class="hero-btns">
-          <button type="button" class="btn-primary" id="heroStartQuizBtn">🐾 Take the Career Quiz</button>
+          <button type="button" class="btn-primary" id="heroStartQuizBtn" data-auth-destination="quiz.html">🐾 Take the Career Quiz</button>
         </div>
       </div>
     </div>
@@ -175,14 +175,14 @@
       <p class="section-sub">From choosing a programming language to landing your first job – SkillBun has you covered
         at every hop.</p>
       <div class="features-grid">
-        <div class="feature-card">
+        <a href="counsellor.html" class="feature-card feature-card-link" aria-label="Open AI Career Counsellor" data-auth-destination="counsellor.html">
           <div class="feature-icon-wrap">🤖</div>
           <div>
             <h3>AI Career Counsellor</h3>
             <p>Ask anything – pros/cons of a course, salary expectations, day-in-the-life of a role. Bun-Bot is always
               available.</p>
           </div>
-        </div>
+        </a>
         <div class="feature-card">
           <div class="feature-icon-wrap">💻</div>
           <div>
@@ -253,7 +253,7 @@
         <div class="welcome-bunny" style="font-size:3.5rem;margin-bottom:1rem;">💻</div>
         <h2>Ready to Hop In?</h2>
         <p>Join thousands of students who found their perfect tech career path with SkillBun. It's free to start.</p>
-        <button type="button" class="btn-primary" style="margin:0 auto;" id="ctaStartQuizBtn">🐾 Start Your Quiz — It's
+        <button type="button" class="btn-primary" style="margin:0 auto;" id="ctaStartQuizBtn" data-auth-destination="quiz.html">🐾 Start Your Quiz — It's
           Free</button>
       </div>
     </div>
@@ -310,7 +310,7 @@
         <div class="footer-col">
           <h4>Platform</h4>
           <ul>
-            <li><a href="#" id="footerStartQuizBtn">Career Quiz</a></li>
+            <li><a href="#" id="footerStartQuizBtn" data-auth-destination="quiz.html">Career Quiz</a></li>
             <li><a href="#careers">Career Paths</a></li>
             <li><a href="coming-soon.html">College Finder</a></li>
             <li><a href="coming-soon.html">Exam Guide</a></li>
@@ -354,6 +354,10 @@
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" id="signupName" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signupEmail" placeholder="you@example.com" autocomplete="email">
         </div>
         <div class="form-group">
           <label>Degree / Program</label>

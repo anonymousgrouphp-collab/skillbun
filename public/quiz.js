@@ -167,25 +167,40 @@ async function verifyHumanProof() {
     }
 }
 
+function getStoredProfile() {
+    const name = localStorage.getItem('sb_name') || '';
+    const email = localStorage.getItem('sb_email') || '';
+    const degree = localStorage.getItem('sb_degree') || '';
+    const year = localStorage.getItem('sb_year') || '';
+    return { name, email, degree, year };
+}
+
+function redirectToProfileSetup(destination) {
+    window.location.href = `index.html?next=${encodeURIComponent(destination)}`;
+}
+
 // --- Load User Profile ---
 function loadProfile() {
-    const name = localStorage.getItem('sb_name') || 'Student';
-    const degree = localStorage.getItem('sb_degree') || 'Not specified';
-    const year = localStorage.getItem('sb_year') || 'Not specified';
+    const { name, email, degree, year } = getStoredProfile();
+    if (!name || !email || !degree || !year) {
+        redirectToProfileSetup('quiz.html');
+        return false;
+    }
 
-    userProfile = { name, degree, year };
+    userProfile = { name, email, degree, year };
 
     document.getElementById('userName').textContent = name;
-    document.getElementById('userBadge').textContent = `👤 ${name}`;
+    document.getElementById('userBadge').textContent = `User: ${name}`;
     document.getElementById('welcomeProfile').innerHTML = `
-    <div class="profile-tag">📚 ${sanitize(degree)}</div>
-    <div class="profile-tag">📅 ${sanitize(year)}</div>
+    <div class="profile-tag">Degree: ${sanitize(degree)}</div>
+    <div class="profile-tag">Year: ${sanitize(year)}</div>
   `;
 
     // Populate Dropdown Profile specific elements
     document.getElementById('dropdownName').textContent = name;
     document.getElementById('dropdownDegree').textContent = degree;
     document.getElementById('dropdownYear').textContent = year;
+    return true;
 }
 
 // --- Menu Interactions ---
@@ -210,6 +225,7 @@ document.addEventListener('click', (event) => {
 function logoutUser() {
     // Clear the active session details from local storage
     localStorage.removeItem('sb_name');
+    localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
 
@@ -919,7 +935,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const startBtn = document.getElementById('startQuizBtn');
     if (startBtn) startBtn.disabled = true;
 
-    loadProfile();
+    const hasProfile = loadProfile();
+    if (!hasProfile) return;
     await fetchSecurityConfig();
     await initCaptcha();
 
