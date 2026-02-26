@@ -31,6 +31,22 @@ if (rainEl) {
     }
 }
 
+// ===== HERO FLOATERS (Floating Bubbles) =====
+const floatersEl = document.getElementById('floaters');
+if (floatersEl) {
+    const floaterChars = ['< / >', '{ }', '[ ]', 'npm run', 'git push', '() =>', 'div', 'class="bunny"', '404', 'if (tech)'];
+
+    for (let i = 0; i < 15; i++) {
+        const floater = document.createElement('div');
+        floater.className = 'floater';
+        floater.style.left = `${10 + Math.random() * 80}%`;
+        floater.style.animationDuration = `${8 + Math.random() * 7}s`;
+        floater.style.animationDelay = `${Math.random() * 5}s`;
+        floater.textContent = floaterChars[Math.floor(Math.random() * floaterChars.length)];
+        floatersEl.appendChild(floater);
+    }
+}
+
 // ===== SPLASH -> MAIN PAGE TRANSITION =====
 setTimeout(() => {
     const splash = document.getElementById('splash');
