@@ -521,6 +521,63 @@ function resolveRoadmapUrl(career) {
     return ROADMAP_FALLBACK_URL;
 }
 
+function normalizeSkills(skills) {
+    if (Array.isArray(skills)) {
+        return skills
+            .map(skill => String(skill || '').trim())
+            .filter(Boolean)
+            .slice(0, 8);
+    }
+
+    if (typeof skills === 'string' && skills.trim()) {
+        return skills
+            .split(/[,|/]/g)
+            .map(skill => skill.trim())
+            .filter(Boolean)
+            .slice(0, 8);
+    }
+
+    return [];
+}
+
+function normalizeCareerEntry(career, index) {
+    if (!career || typeof career !== 'object') return null;
+
+    const title = String(career.title || '').trim();
+    if (!title) return null;
+
+    const matchRaw = Number.parseInt(career.matchPercent, 10);
+    const matchPercent = Number.isFinite(matchRaw) ? Math.max(0, Math.min(matchRaw, 100)) : Math.max(60, 95 - index * 5);
+
+    return {
+        title,
+        description: String(career.description || 'Recommended based on your quiz answers.').trim(),
+        skills: normalizeSkills(career.skills),
+        salaryRange: String(career.salaryRange || 'Varies by role and experience').trim(),
+        demand: String(career.demand || 'Growing').trim(),
+        nextSteps: String(career.nextSteps || 'Start with the roadmap and build small projects.').trim(),
+        matchPercent,
+        roadmapUrl: String(career.roadmapUrl || '').trim()
+    };
+}
+
+function extractCareers(response) {
+    if (!response) return [];
+
+    let rawCareers = [];
+    if (Array.isArray(response.careers)) {
+        rawCareers = response.careers;
+    } else if (response.careers && typeof response.careers === 'object') {
+        rawCareers = Object.values(response.careers);
+    } else if (Array.isArray(response.results)) {
+        rawCareers = response.results;
+    }
+
+    return rawCareers
+        .map((career, index) => normalizeCareerEntry(career, index))
+        .filter(Boolean);
+}
+
 // --- Load More Careers ---
 async function loadMoreCareers() {
     const loadBtn = document.getElementById('loadMoreBtn');
@@ -532,19 +589,42 @@ async function loadMoreCareers() {
             'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Use the same JSON result format with "type": "result". Make sure to include the "roadmapUrl" field for each career. Default to "coming-soon.html" if no exact roadmap.sh URL matches.'
         );
 
-        if (response.type === 'result' && response.careers) {
-            const container = document.getElementById('resultCards');
-            const existingCount = container.children.length;
-            response.careers.forEach((career, i) => {
-                container.insertAdjacentHTML('beforeend', renderCareerCard(career, existingCount + i + 1));
-            });
+        const container = document.getElementById('resultCards');
+        let careers = extractCareers(response);
 
-            // Animate new cards in
-            const newCards = container.querySelectorAll('.result-card.new');
-            newCards.forEach((card, i) => {
-                setTimeout(() => card.classList.add('visible'), i * 200);
-            });
+        if (careers.length === 0) {
+            const strictResponse = await callGemini(
+                'Return only JSON with {"type":"result","careers":[...]} and exactly 3 unique careers. Keep fields: title, matchPercent, description, skills, salaryRange, demand, nextSteps, roadmapUrl.'
+            );
+            careers = extractCareers(strictResponse);
         }
+
+        if (careers.length === 0) {
+            throw new Error('No career paths returned');
+        }
+
+        const existingTitles = new Set(
+            Array.from(container.querySelectorAll('.result-card h3')).map(el => el.textContent.trim().toLowerCase())
+        );
+        const uniqueCareers = careers.filter(career => !existingTitles.has(career.title.toLowerCase()));
+
+        if (uniqueCareers.length === 0) {
+            loadBtn.textContent = 'âœ… No More Unique Paths';
+            loadBtn.disabled = false;
+            setTimeout(() => { loadBtn.textContent = 'ðŸ” Load More Career Paths'; }, 2000);
+            return;
+        }
+
+        const existingCount = container.children.length;
+        uniqueCareers.forEach((career, i) => {
+            container.insertAdjacentHTML('beforeend', renderCareerCard(career, existingCount + i + 1));
+        });
+
+        // Animate new cards in
+        const newCards = container.querySelectorAll('.result-card.new:not(.visible)');
+        newCards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('visible'), i * 200);
+        });
 
         loadBtn.textContent = '🔍 Load More Career Paths';
         loadBtn.disabled = false;
@@ -701,7 +781,18 @@ function showResults(data) {
     const container = document.getElementById('resultCards');
     container.innerHTML = '';
 
-    data.careers.forEach((career, i) => {
+    const careers = extractCareers(data);
+    if (careers.length === 0) {
+        container.innerHTML = `
+      <div class="result-card visible">
+        <h3>Unable to Load Career Paths</h3>
+        <p class="result-desc">We could not parse the AI response. Please tap Retake Quiz and try again.</p>
+      </div>
+    `;
+        return;
+    }
+
+    careers.forEach((career, i) => {
         container.insertAdjacentHTML('beforeend', renderCareerCard(career, i + 1));
     });
 
