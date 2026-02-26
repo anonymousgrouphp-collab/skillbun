@@ -42,10 +42,18 @@ if (floatersEl) {
         'def find_path():',
         'SELECT * FROM jobs',
         '404: fear not found',
-        'while(learning) grow()'
+        'while(learning) grow()',
+        'sudo make me a developer',
+        '<BunBot />',
+        '{ const path = "tech"; }',
+        'git checkout new-life',
+        'try { succeed() } catch (e) { learn() }',
+        'public static void main()',
+        'SELECT dream FROM opportunities',
+        'floaters.push("success")'
     ];
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 15; i++) {
         const floater = document.createElement('div');
         floater.className = 'floater';
         floater.textContent = floaterTexts[i];
