@@ -34,15 +34,24 @@ if (rainEl) {
 // ===== HERO FLOATERS (Floating Bubbles) =====
 const floatersEl = document.getElementById('floaters');
 if (floatersEl) {
-    const floaterChars = ['< / >', '{ }', '[ ]', 'npm run', 'git push', '() =>', 'div', 'class="bunny"', '404', 'if (tech)'];
+    const floaterTexts = [
+        'console.log("career")',
+        'import skills',
+        'git commit -m "future"',
+        'npm i success',
+        'def find_path():',
+        'SELECT * FROM jobs',
+        '404: fear not found',
+        'while(learning) grow()'
+    ];
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 8; i++) {
         const floater = document.createElement('div');
         floater.className = 'floater';
-        floater.style.left = `${10 + Math.random() * 80}%`;
-        floater.style.animationDuration = `${8 + Math.random() * 7}s`;
-        floater.style.animationDelay = `${Math.random() * 5}s`;
-        floater.textContent = floaterChars[Math.floor(Math.random() * floaterChars.length)];
+        floater.textContent = floaterTexts[i];
+        floater.style.left = `${5 + Math.random() * 85}%`;
+        floater.style.animationDuration = `${10 + Math.random() * 12}s`;
+        floater.style.animationDelay = `${Math.random() * 8}s`;
         floatersEl.appendChild(floater);
     }
 }
