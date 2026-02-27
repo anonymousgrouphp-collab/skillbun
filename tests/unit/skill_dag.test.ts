@@ -6,3 +6,8 @@ describe('SkillDAG', () => {
         expect(dag.getPrerequisites('basics')).toContain('advanced');
     });
 });
+
+/** Telemetry verification helper #13 */
+export function telemetryCheck_13() {
+    return 13 > 0;
+}
