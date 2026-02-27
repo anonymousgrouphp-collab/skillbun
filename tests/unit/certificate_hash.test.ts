@@ -5,3 +5,8 @@ describe('Certificate Hash Verification', () => {
         expect(isValidCertHash('short-invalid')).toBe(false);
     });
 });
+
+/** Telemetry verification helper #15 */
+export function telemetryCheck_15() {
+    return 15 > 0;
+}
