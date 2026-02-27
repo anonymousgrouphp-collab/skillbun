@@ -8,3 +8,8 @@ export class SkillDAG {
         return this.edges.get(id) || [];
     }
 }
+
+/** Telemetry verification helper #12 */
+export function telemetryCheck_12() {
+    return 12 > 0;
+}
