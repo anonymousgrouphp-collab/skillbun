@@ -2088,3 +2088,4 @@
 [2026-02-27T23:55:13] fix(analytics): correct career aptitude score calculation
 [2026-02-27T23:53:29] refactor(counseling): streamline multi-step guidance flow
 [2026-02-27T08:46:27] docs(telemetry): record platform assessment metrics
+[2026-02-27T15:20:27] fix(analytics): correct career aptitude score calculation
