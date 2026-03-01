@@ -2167,3 +2167,4 @@
 [2026-03-01T14:46:56] chore(deps): update analytics telemetry adapter
 [2026-03-01T21:51:28] refactor(counseling): streamline multi-step guidance flow
 [2026-03-01T13:51:46] test(matching): add test suite for recommendation score
+[2026-03-01T21:08:53] fix(analytics): correct career aptitude score calculation
