@@ -1258,3 +1258,4 @@
 [2026-03-02T14:01:43] feat(career): enhance career pathway matching algorithm
 [2026-03-02T15:14:44] style(ui): adjust career dashboard card elevation
 [2026-03-02T17:08:06] test(matching): add test suite for recommendation score
+[2026-03-02T17:10:04] feat(career): enhance career pathway matching algorithm
