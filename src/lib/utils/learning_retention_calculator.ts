@@ -6,3 +6,8 @@ export function calculateRetention(daysSinceReview: number, stabilityFactor: num
 export function telemetryCheck_16() {
     return 16 > 0;
 }
+
+/** Telemetry verification helper #26 */
+export function telemetryCheck_26() {
+    return 26 > 0;
+}
