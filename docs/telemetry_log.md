@@ -1261,3 +1261,4 @@
 [2026-03-02T17:10:04] feat(career): enhance career pathway matching algorithm
 [2026-03-02T17:18:29] feat(roadmap): add milestone progress tracking
 [2026-03-02T18:27:56] perf(cache): optimize career trajectory data loader
+[2026-03-02T18:57:31] style(ui): adjust career dashboard card elevation
