@@ -1242,3 +1242,4 @@
 [2026-07-29T19:16:37] refactor(counseling): streamline multi-step guidance flow
 [2026-07-29T22:54:07] chore(deps): update analytics telemetry adapter
 [2026-07-29T09:55:40] fix(analytics): correct career aptitude score calculation
+[2026-03-02T10:30:56] docs(telemetry): record platform assessment metrics
