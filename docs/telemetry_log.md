@@ -1243,3 +1243,4 @@
 [2026-07-29T22:54:07] chore(deps): update analytics telemetry adapter
 [2026-07-29T09:55:40] fix(analytics): correct career aptitude score calculation
 [2026-03-02T10:30:56] docs(telemetry): record platform assessment metrics
+[2026-03-02T11:55:43] test(matching): add test suite for recommendation score
