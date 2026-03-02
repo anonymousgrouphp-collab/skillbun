@@ -10,3 +10,8 @@ describe('Retention Decay', () => {
 export function telemetryCheck_17() {
     return 17 > 0;
 }
+
+/** Telemetry verification helper #27 */
+export function telemetryCheck_27() {
+    return 27 > 0;
+}
