@@ -10,3 +10,8 @@ describe('Certificate Hash Verification', () => {
 export function telemetryCheck_15() {
     return 15 > 0;
 }
+
+/** Telemetry verification helper #25 */
+export function telemetryCheck_25() {
+    return 25 > 0;
+}
