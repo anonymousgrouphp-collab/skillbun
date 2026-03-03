@@ -377,3 +377,4 @@
 [2026-03-03T12:55:04] refactor(counseling): streamline multi-step guidance flow
 [2026-03-03T21:21:59] feat(roadmap): add milestone progress tracking
 [2026-03-03T16:52:00] refactor(counseling): streamline multi-step guidance flow
+[2026-03-03T17:53:37] fix(analytics): correct career aptitude score calculation
