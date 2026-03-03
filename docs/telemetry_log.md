@@ -389,3 +389,4 @@
 [2026-03-03T18:55:06] chore(deps): update analytics telemetry adapter
 [2026-03-03T11:33:58] chore(deps): update analytics telemetry adapter
 [2026-03-03T08:46:09] test(matching): add test suite for recommendation score
+[2026-03-03T12:04:30] refactor(counseling): streamline multi-step guidance flow
