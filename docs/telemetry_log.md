@@ -393,3 +393,4 @@
 [2026-03-03T18:39:44] test(matching): add test suite for recommendation score
 [2026-03-03T10:54:21] feat(roadmap): add milestone progress tracking
 [2026-03-03T20:20:40] chore(deps): update analytics telemetry adapter
+[2026-03-03T09:39:04] docs(telemetry): record platform assessment metrics
