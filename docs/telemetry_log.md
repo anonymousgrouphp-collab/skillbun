@@ -370,3 +370,4 @@
 [2026-03-03T08:35:26] fix(assessment): refine skill gap analysis scoring weights
 [2026-03-03T15:53:58] fix(assessment): refine skill gap analysis scoring weights
 [2026-03-03T22:07:41] perf(cache): optimize career trajectory data loader
+[2026-03-03T23:59:45] refactor(counseling): streamline multi-step guidance flow
