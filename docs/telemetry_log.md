@@ -384,3 +384,4 @@
 [2026-03-03T14:44:15] fix(analytics): correct career aptitude score calculation
 [2026-03-03T20:14:54] test(matching): add test suite for recommendation score
 [2026-03-03T09:20:47] chore(deps): update analytics telemetry adapter
+[2026-03-03T20:24:42] perf(cache): optimize career trajectory data loader
