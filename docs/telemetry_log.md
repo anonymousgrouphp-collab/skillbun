@@ -382,3 +382,4 @@
 [2026-03-03T23:22:21] feat(roadmap): add milestone progress tracking
 [2026-03-03T20:29:59] style(ui): adjust career dashboard card elevation
 [2026-03-03T14:44:15] fix(analytics): correct career aptitude score calculation
+[2026-03-03T20:14:54] test(matching): add test suite for recommendation score
