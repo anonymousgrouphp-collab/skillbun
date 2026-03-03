@@ -385,3 +385,4 @@
 [2026-03-03T20:14:54] test(matching): add test suite for recommendation score
 [2026-03-03T09:20:47] chore(deps): update analytics telemetry adapter
 [2026-03-03T20:24:42] perf(cache): optimize career trajectory data loader
+[2026-03-03T23:02:08] feat(roadmap): add milestone progress tracking
