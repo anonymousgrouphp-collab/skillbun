@@ -373,3 +373,4 @@
 [2026-03-03T23:59:45] refactor(counseling): streamline multi-step guidance flow
 [2026-03-03T16:26:53] chore(deps): update analytics telemetry adapter
 [2026-03-03T23:15:29] feat(roadmap): add milestone progress tracking
+[2026-03-03T12:24:12] fix(analytics): correct career aptitude score calculation
