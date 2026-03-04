@@ -1188,3 +1188,4 @@
 [2026-03-04T20:41:31] fix(analytics): correct career aptitude score calculation
 [2026-03-04T23:02:11] refactor(counseling): streamline multi-step guidance flow
 [2026-03-04T20:09:39] fix(analytics): correct career aptitude score calculation
+[2026-03-04T20:02:25] style(ui): adjust career dashboard card elevation
