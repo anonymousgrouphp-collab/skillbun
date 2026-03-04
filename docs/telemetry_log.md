@@ -1175,3 +1175,4 @@
 [2026-03-04T12:07:48] chore(deps): update analytics telemetry adapter
 [2026-03-04T13:10:13] docs(telemetry): record platform assessment metrics
 [2026-03-04T12:02:27] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-04T21:12:52] perf(cache): optimize career trajectory data loader
