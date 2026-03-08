@@ -1845,3 +1845,4 @@
 [2026-03-08T15:45:18] docs(telemetry): record platform assessment metrics
 [2026-03-08T08:07:01] chore(deps): update analytics telemetry adapter
 [2026-03-08T11:47:54] docs(telemetry): record platform assessment metrics
+[2026-03-08T21:26:02] style(ui): adjust career dashboard card elevation
