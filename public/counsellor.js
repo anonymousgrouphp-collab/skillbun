@@ -7,6 +7,7 @@ let isSending = false;
 
 // --- Configuration ---
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
+const HUMAN_PROOF_STORAGE_KEY = 'sb_human_proof';
 const MAX_HISTORY_ITEMS = 48;
 const MAX_HISTORY_TEXT = 22000;
 const HAS_MARKDOWN = typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
@@ -68,6 +69,90 @@ let humanProofToken = '';
 let humanProofExpiresAt = 0;
 let captchaWidgetId = null;
 let captchaToken = '';
+let captchaInitPromise = null;
+
+function hasFreshHumanProof() {
+    return Boolean(humanProofToken) && humanProofExpiresAt > Date.now() + 10_000;
+}
+
+function persistHumanProof(token, expiresAt) {
+    humanProofToken = token;
+    humanProofExpiresAt = expiresAt;
+
+    try {
+        localStorage.setItem(HUMAN_PROOF_STORAGE_KEY, JSON.stringify({ token, expiresAt }));
+    } catch (err) {
+        console.warn('Could not persist human proof token:', err.message);
+    }
+}
+
+function clearHumanProof() {
+    humanProofToken = '';
+    humanProofExpiresAt = 0;
+
+    try {
+        localStorage.removeItem(HUMAN_PROOF_STORAGE_KEY);
+    } catch (err) {
+        console.warn('Could not clear human proof token:', err.message);
+    }
+}
+
+function restoreHumanProof() {
+    try {
+        const raw = localStorage.getItem(HUMAN_PROOF_STORAGE_KEY);
+        if (!raw) return false;
+
+        const parsed = JSON.parse(raw);
+        const token = typeof parsed?.token === 'string' ? parsed.token : '';
+        const expiresAt = Number.parseInt(parsed?.expiresAt, 10);
+
+        if (!token || !Number.isFinite(expiresAt) || expiresAt <= Date.now() + 10_000) {
+            clearHumanProof();
+            return false;
+        }
+
+        humanProofToken = token;
+        humanProofExpiresAt = expiresAt;
+        return true;
+    } catch (err) {
+        clearHumanProof();
+        return false;
+    }
+}
+
+async function refreshHumanProofSession() {
+    if (!restoreHumanProof()) return false;
+
+    try {
+        const response = await fetch('/api/human/verify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [HUMAN_PROOF_HEADER]: humanProofToken
+            },
+            body: JSON.stringify({})
+        });
+
+        if (!response.ok) {
+            clearHumanProof();
+            return false;
+        }
+
+        const data = await response.json();
+        const token = typeof data?.humanToken === 'string' ? data.humanToken : '';
+        const expiresAt = Number.parseInt(data?.expiresAt, 10);
+
+        if (!token || !Number.isFinite(expiresAt)) {
+            clearHumanProof();
+            return false;
+        }
+
+        persistHumanProof(token, expiresAt);
+        return true;
+    } catch (err) {
+        return hasFreshHumanProof();
+    }
+}
 
 if (HAS_MARKDOWN) {
     window.marked.setOptions({
@@ -163,10 +248,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         await fetchSecurityConfig();
-        if (securityConfig.captchaEnabled) {
+        const hasReusableProof = await refreshHumanProofSession();
+
+        if (hasReusableProof) {
+            toggleSecurityBanner(false);
+            setCaptchaStatus('Security already verified for this session.', 'ok');
+        } else if (securityConfig.captchaEnabled) {
             toggleSecurityBanner(true);
             await initCaptcha();
-            await verifyHumanProof();
         } else {
             await verifyHumanProof();
         }
@@ -223,47 +312,70 @@ function loadTurnstileScript() {
 }
 
 async function initCaptcha() {
-    if (!securityConfig.captchaEnabled) return;
+    if (!securityConfig.captchaEnabled || hasFreshHumanProof()) return;
 
-    setCaptchaStatus('Completing security check...');
+    if (captchaWidgetId !== null && window.turnstile) {
+        toggleSecurityBanner(true);
+        setCaptchaStatus('Complete the security check below.', 'error');
+        return;
+    }
+
+    if (captchaInitPromise) {
+        await captchaInitPromise;
+        return;
+    }
+
+    captchaInitPromise = (async () => {
+        toggleSecurityBanner(true);
+        setCaptchaStatus('Completing security check...');
+
+        try {
+            await loadTurnstileScript();
+            if (!window.turnstile) throw new Error('Turnstile failed');
+
+            captchaWidgetId = window.turnstile.render('#captchaWidget', {
+                sitekey: securityConfig.captchaSiteKey,
+                theme: 'dark',
+                callback: (token) => {
+                    captchaToken = token;
+                    setCaptchaStatus('Security check passed.', 'ok');
+                    setTimeout(() => toggleSecurityBanner(false), 2000);
+                },
+                'expired-callback': () => {
+                    captchaToken = '';
+                    setCaptchaStatus('Security check expired. Please verify again.', 'error');
+                    toggleSecurityBanner(true);
+                },
+                'error-callback': () => {
+                    captchaToken = '';
+                    setCaptchaStatus('Security check failed. Please refresh.', 'error');
+                }
+            });
+        } catch (err) {
+            setCaptchaStatus('Security widget failed to load.', 'error');
+        }
+    })();
 
     try {
-        await loadTurnstileScript();
-        if (!window.turnstile) throw new Error('Turnstile failed');
-
-        captchaWidgetId = window.turnstile.render('#captchaWidget', {
-            sitekey: securityConfig.captchaSiteKey,
-            theme: 'dark',
-            callback: (token) => {
-                captchaToken = token;
-                setCaptchaStatus('Security check passed.', 'ok');
-                setTimeout(() => toggleSecurityBanner(false), 2000);
-            },
-            'expired-callback': () => {
-                captchaToken = '';
-                setCaptchaStatus('Security check expired. Please verify again.', 'error');
-                toggleSecurityBanner(true);
-            },
-            'error-callback': () => {
-                captchaToken = '';
-                setCaptchaStatus('Security check failed. Please refresh.', 'error');
-            }
-        });
-    } catch (err) {
-        setCaptchaStatus('Security widget failed to load.', 'error');
+        await captchaInitPromise;
+    } finally {
+        captchaInitPromise = null;
     }
 }
 
 async function verifyHumanProof() {
-    const now = Date.now();
-    if (humanProofToken && humanProofExpiresAt > now + 10_000) {
+    restoreHumanProof();
+    if (hasFreshHumanProof()) {
         return true;
     }
 
     if (securityConfig.captchaEnabled && !captchaToken) {
-        toggleSecurityBanner(true);
-        setCaptchaStatus('Please complete verification below.', 'error');
-        return false;
+        await initCaptcha();
+        if (!captchaToken) {
+            toggleSecurityBanner(true);
+            setCaptchaStatus('Please complete verification below.', 'error');
+            return false;
+        }
     }
 
     const body = securityConfig.captchaEnabled ? { token: captchaToken } : {};
@@ -276,23 +388,32 @@ async function verifyHumanProof() {
         });
 
         if (!response.ok) {
+            clearHumanProof();
             setCaptchaStatus('Verification failed. Please try again.', 'error');
             return false;
         }
 
         const data = await response.json();
-        humanProofToken = data.humanToken || '';
-        humanProofExpiresAt = Number.parseInt(data.expiresAt, 10);
+        const token = typeof data?.humanToken === 'string' ? data.humanToken : '';
+        const expiresAt = Number.parseInt(data?.expiresAt, 10);
 
-        if (!humanProofToken || Number.isNaN(humanProofExpiresAt)) return false;
+        if (!token || !Number.isFinite(expiresAt)) {
+            clearHumanProof();
+            return false;
+        }
+
+        persistHumanProof(token, expiresAt);
 
         if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
             window.turnstile.reset(captchaWidgetId);
             captchaToken = '';
         }
 
+        toggleSecurityBanner(false);
         return true;
     } catch (err) {
+        toggleSecurityBanner(true);
+        setCaptchaStatus('Verification failed. Please try again.', 'error');
         return false;
     }
 }
@@ -344,6 +465,7 @@ function logoutUser(event) {
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
     localStorage.removeItem(RATE_LIMIT_KEY); // Fix #4: clear rate-limit on logout
+    clearHumanProof();
     window.location.href = 'index.html';
 }
 
@@ -558,7 +680,7 @@ async function sendMessage() {
             }
 
             if (response.status === 403) {
-                humanProofToken = '';
+                clearHumanProof();
                 throw new Error('Security session expired. Please send again to re-verify.');
             }
 

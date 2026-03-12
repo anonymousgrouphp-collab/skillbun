@@ -11,6 +11,7 @@ let quizResults = null;
 // --- Configuration ---
 const SUPPORT_EMAIL = 'anonymousgrouphp@gmail.com';
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
+const HUMAN_PROOF_STORAGE_KEY = 'sb_human_proof';
 
 let securityConfig = {
     captchaEnabled: false,
@@ -20,6 +21,90 @@ let humanProofToken = '';
 let humanProofExpiresAt = 0;
 let captchaWidgetId = null;
 let captchaToken = '';
+let captchaInitPromise = null;
+
+function hasFreshHumanProof() {
+    return Boolean(humanProofToken) && humanProofExpiresAt > Date.now() + 10_000;
+}
+
+function persistHumanProof(token, expiresAt) {
+    humanProofToken = token;
+    humanProofExpiresAt = expiresAt;
+
+    try {
+        localStorage.setItem(HUMAN_PROOF_STORAGE_KEY, JSON.stringify({ token, expiresAt }));
+    } catch (err) {
+        console.warn('Could not persist human proof token:', err.message);
+    }
+}
+
+function clearHumanProof() {
+    humanProofToken = '';
+    humanProofExpiresAt = 0;
+
+    try {
+        localStorage.removeItem(HUMAN_PROOF_STORAGE_KEY);
+    } catch (err) {
+        console.warn('Could not clear human proof token:', err.message);
+    }
+}
+
+function restoreHumanProof() {
+    try {
+        const raw = localStorage.getItem(HUMAN_PROOF_STORAGE_KEY);
+        if (!raw) return false;
+
+        const parsed = JSON.parse(raw);
+        const token = typeof parsed?.token === 'string' ? parsed.token : '';
+        const expiresAt = Number.parseInt(parsed?.expiresAt, 10);
+
+        if (!token || !Number.isFinite(expiresAt) || expiresAt <= Date.now() + 10_000) {
+            clearHumanProof();
+            return false;
+        }
+
+        humanProofToken = token;
+        humanProofExpiresAt = expiresAt;
+        return true;
+    } catch (err) {
+        clearHumanProof();
+        return false;
+    }
+}
+
+async function refreshHumanProofSession() {
+    if (!restoreHumanProof()) return false;
+
+    try {
+        const response = await fetch('/api/human/verify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                [HUMAN_PROOF_HEADER]: humanProofToken
+            },
+            body: JSON.stringify({})
+        });
+
+        if (!response.ok) {
+            clearHumanProof();
+            return false;
+        }
+
+        const data = await response.json();
+        const token = typeof data?.humanToken === 'string' ? data.humanToken : '';
+        const expiresAt = Number.parseInt(data?.expiresAt, 10);
+
+        if (!token || !Number.isFinite(expiresAt)) {
+            clearHumanProof();
+            return false;
+        }
+
+        persistHumanProof(token, expiresAt);
+        return true;
+    } catch (err) {
+        return hasFreshHumanProof();
+    }
+}
 
 // --- SECURITY: Sanitize HTML to prevent XSS ---
 function sanitize(str) {
@@ -80,7 +165,7 @@ function loadTurnstileScript() {
 }
 
 async function initCaptcha() {
-    if (!securityConfig.captchaEnabled) return;
+    if (!securityConfig.captchaEnabled || hasFreshHumanProof()) return;
 
     const wrap = document.getElementById('captchaWrap');
     const widget = document.getElementById('captchaWidget');
@@ -88,47 +173,68 @@ async function initCaptcha() {
     if (!wrap || !widget) return;
 
     wrap.style.display = 'block';
-    setCaptchaStatus('Complete the verification below to start the quiz.');
+    if (captchaWidgetId !== null && window.turnstile) {
+        setCaptchaStatus('Complete the verification below to start the quiz.');
+        return;
+    }
+
+    if (captchaInitPromise) {
+        await captchaInitPromise;
+        return;
+    }
+
+    captchaInitPromise = (async () => {
+        setCaptchaStatus('Complete the verification below to start the quiz.');
+
+        try {
+            await loadTurnstileScript();
+        } catch (err) {
+            setCaptchaStatus('Captcha failed to load. Please refresh and try again.', 'error');
+            return;
+        }
+
+        if (!window.turnstile) {
+            setCaptchaStatus('Captcha unavailable. Please refresh and try again.', 'error');
+            return;
+        }
+
+        captchaWidgetId = window.turnstile.render('#captchaWidget', {
+            sitekey: securityConfig.captchaSiteKey,
+            theme: 'dark',
+            callback: (token) => {
+                captchaToken = token;
+                setCaptchaStatus('Verification complete. You can start now.', 'ok');
+            },
+            'expired-callback': () => {
+                captchaToken = '';
+                setCaptchaStatus('Verification expired. Please verify again.', 'error');
+            },
+            'error-callback': () => {
+                captchaToken = '';
+                setCaptchaStatus('Verification failed. Please retry.', 'error');
+            }
+        });
+    })();
 
     try {
-        await loadTurnstileScript();
-    } catch (err) {
-        setCaptchaStatus('Captcha failed to load. Please refresh and try again.', 'error');
-        return;
+        await captchaInitPromise;
+    } finally {
+        captchaInitPromise = null;
     }
-
-    if (!window.turnstile) {
-        setCaptchaStatus('Captcha unavailable. Please refresh and try again.', 'error');
-        return;
-    }
-
-    captchaWidgetId = window.turnstile.render('#captchaWidget', {
-        sitekey: securityConfig.captchaSiteKey,
-        theme: 'dark',
-        callback: (token) => {
-            captchaToken = token;
-            setCaptchaStatus('Verification complete. You can start now.', 'ok');
-        },
-        'expired-callback': () => {
-            captchaToken = '';
-            setCaptchaStatus('Verification expired. Please verify again.', 'error');
-        },
-        'error-callback': () => {
-            captchaToken = '';
-            setCaptchaStatus('Verification failed. Please retry.', 'error');
-        }
-    });
 }
 
 async function verifyHumanProof() {
-    const now = Date.now();
-    if (humanProofToken && humanProofExpiresAt > now + 10_000) {
+    restoreHumanProof();
+    if (hasFreshHumanProof()) {
         return true;
     }
 
     if (securityConfig.captchaEnabled && !captchaToken) {
-        setCaptchaStatus('Please complete verification before starting.', 'error');
-        return false;
+        await initCaptcha();
+        if (!captchaToken) {
+            setCaptchaStatus('Please complete verification before starting.', 'error');
+            return false;
+        }
     }
 
     const body = securityConfig.captchaEnabled ? { token: captchaToken } : {};
@@ -141,19 +247,22 @@ async function verifyHumanProof() {
         });
 
         if (!response.ok) {
+            clearHumanProof();
             setCaptchaStatus('Verification failed. Please retry.', 'error');
             return false;
         }
 
         const data = await response.json();
-        humanProofToken = data.humanToken || '';
-        const parsedExpiresAt = Number.parseInt(data.expiresAt, 10);
-        humanProofExpiresAt = Number.isFinite(parsedExpiresAt) ? parsedExpiresAt : 0;
+        const token = typeof data?.humanToken === 'string' ? data.humanToken : '';
+        const parsedExpiresAt = Number.parseInt(data?.expiresAt, 10);
 
-        if (!humanProofToken) {
+        if (!token || !Number.isFinite(parsedExpiresAt)) {
+            clearHumanProof();
             setCaptchaStatus('Verification failed. Please retry.', 'error');
             return false;
         }
+
+        persistHumanProof(token, parsedExpiresAt);
 
         if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
             window.turnstile.reset(captchaWidgetId);
@@ -203,22 +312,60 @@ function loadProfile() {
     return true;
 }
 
-document.getElementById('retakeBtn').addEventListener('click', () => {
-    Object.assign(document.getElementById('resultScreen').style, { display: 'none' });
-    Object.assign(document.getElementById('quizScreen').style, { display: 'block' });
-
+function resetQuizState() {
     conversationHistory = [];
     questionCount = 0;
     totalQuestions = 15;
     lastSelectedOption = null;
+    quizResults = null;
+
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const quizScreen = document.getElementById('quizScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const resultCards = document.getElementById('resultCards');
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const quizLoading = document.getElementById('quizLoading');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const captchaWrap = document.getElementById('captchaWrap');
+
+    if (welcomeScreen) welcomeScreen.style.display = 'block';
+    if (quizScreen) quizScreen.style.display = 'none';
+    if (resultScreen) resultScreen.style.display = 'none';
+    if (resultCards) resultCards.innerHTML = '';
+    if (questionText) questionText.textContent = 'Loading your first question...';
+    if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        optionsContainer.style.display = 'grid';
+        optionsContainer.style.opacity = '1';
+    }
+    if (quizLoading) quizLoading.style.display = 'none';
 
     document.getElementById('progressFill').style.width = '0%';
     document.getElementById('quizPhase').textContent = 'Phase 1: Discovery';
     document.getElementById('qNum').textContent = '1';
     document.getElementById('qTotal').textContent = '15';
 
-    startQuiz();
-});
+    restoreHumanProof();
+    if (captchaWrap) {
+        if (hasFreshHumanProof()) {
+            captchaWrap.style.display = 'none';
+            setCaptchaStatus('Security already verified for this session.', 'ok');
+        } else if (securityConfig.captchaEnabled) {
+            captchaWrap.style.display = 'block';
+            setCaptchaStatus('Complete the verification below to start the quiz.');
+        } else {
+            captchaWrap.style.display = 'none';
+        }
+    }
+
+    if (loadMoreBtn) {
+        const defaultLabel = loadMoreBtn.dataset.defaultLabel || loadMoreBtn.textContent;
+        loadMoreBtn.dataset.defaultLabel = defaultLabel;
+        loadMoreBtn.textContent = defaultLabel;
+        loadMoreBtn.disabled = false;
+    }
+}
 
 // ===== HAMBURGER MENU =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -266,6 +413,7 @@ function logoutUser() {
     localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
+    clearHumanProof();
 
     // Redirect back to homepage
     window.location.href = 'index.html';
@@ -385,6 +533,9 @@ async function callGemini(userMessage) {
 
         if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
+            if (res.status === 403) {
+                clearHumanProof();
+            }
             throw new Error(errData.error || `API request failed (${res.status})`);
         }
 
@@ -636,6 +787,8 @@ function extractCareers(response) {
 async function loadMoreCareers() {
     const loadBtn = document.getElementById('loadMoreBtn');
     if (!loadBtn) return;
+    const defaultLabel = loadBtn.dataset.defaultLabel || loadBtn.textContent;
+    loadBtn.dataset.defaultLabel = defaultLabel;
     loadBtn.textContent = '⏳ Finding more paths...';
     loadBtn.disabled = true;
 
@@ -820,7 +973,7 @@ async function selectOption(option, element) {
         } catch (err) {
             document.getElementById('quizLoading').style.display = 'none';
             document.getElementById('optionsContainer').style.display = 'grid';
-            showErrorUI();
+            showErrorUI(err.message);
         }
     }, 500);
 }
@@ -874,14 +1027,18 @@ function retryLastQuestion() {
 }
 
 // --- Error UI ---
-function showErrorUI() {
-    document.getElementById('questionText').innerHTML = `
-    <div style="text-align:center;">
-      <div style="font-size:2.5rem;margin-bottom:0.8rem;">🐰💔</div>
-      <div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Oops! Something went wrong on our side.</div>
-      <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">Our AI bunny tripped! Don't worry — our team is on it.</div>
-    </div>
-  `;
+function showErrorUI(message) {
+    const detail = typeof message === 'string' && message.trim()
+        ? sanitize(message.trim())
+        : "Our AI bunny tripped! Don't worry - our team is on it.";
+
+    document.getElementById('questionText').innerHTML = [
+        '<div style="text-align:center;">',
+        '  <div style="font-size:2.5rem;margin-bottom:0.8rem;">🐰💔</div>',
+        '  <div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Oops! Something went wrong on our side.</div>',
+        `  <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">${detail}</div>`,
+        '</div>'
+    ].join('');
     const subject = encodeURIComponent('SkillBun Quiz Error');
     const body = encodeURIComponent(`Hi Team, I encountered an error during the career quiz at Question ${questionCount}. Please look into it. Thanks!`);
     document.getElementById('optionsContainer').innerHTML = `
@@ -916,7 +1073,7 @@ async function startNextQuestion() {
     } catch (err) {
         document.getElementById('quizLoading').style.display = 'none';
         document.getElementById('optionsContainer').style.display = 'grid';
-        showErrorUI();
+        showErrorUI(err.message);
     }
 }
 
@@ -953,19 +1110,13 @@ if (startQuizBtnEl) {
 const retakeBtnEl = document.getElementById('retakeBtn');
 if (retakeBtnEl) {
     retakeBtnEl.addEventListener('click', () => {
-        conversationHistory = [];
-        questionCount = 0;
-        quizResults = null;
-
-        const resultScreen = document.getElementById('resultScreen');
-        const welcomeScreen = document.getElementById('welcomeScreen');
-        if (resultScreen) resultScreen.style.display = 'none';
-        if (welcomeScreen) welcomeScreen.style.display = 'block';
+        resetQuizState();
     });
 }
 
 const loadMoreBtnEl = document.getElementById('loadMoreBtn');
 if (loadMoreBtnEl) {
+    loadMoreBtnEl.dataset.defaultLabel = loadMoreBtnEl.textContent;
     loadMoreBtnEl.addEventListener('click', loadMoreCareers);
 }
 
@@ -975,8 +1126,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const hasProfile = loadProfile();
     if (!hasProfile) return;
+
     await fetchSecurityConfig();
-    await initCaptcha();
+    const hasReusableProof = await refreshHumanProofSession();
+
+    if (hasReusableProof) {
+        const wrap = document.getElementById('captchaWrap');
+        if (wrap) wrap.style.display = 'none';
+        setCaptchaStatus('Security already verified for this session.', 'ok');
+    } else if (securityConfig.captchaEnabled) {
+        await initCaptcha();
+    } else {
+        await verifyHumanProof();
+    }
 
     const userBadge = document.getElementById('userBadge');
     if (userBadge) userBadge.addEventListener('click', toggleDropdown);
