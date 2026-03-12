@@ -429,3 +429,4 @@
 [2026-03-12T15:55:43] test(matching): add test suite for recommendation score
 [2026-03-12T19:05:50] test(matching): add test suite for recommendation score
 [2026-03-12T08:16:34] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-12T22:23:43] refactor(counseling): streamline multi-step guidance flow
