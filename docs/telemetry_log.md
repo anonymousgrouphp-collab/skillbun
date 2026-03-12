@@ -396,3 +396,4 @@
 [2026-03-03T09:39:04] docs(telemetry): record platform assessment metrics
 [2026-03-12T17:14:47] fix(assessment): refine skill gap analysis scoring weights
 [2026-03-12T21:06:48] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-12T22:10:44] refactor(counseling): streamline multi-step guidance flow
