@@ -407,3 +407,4 @@
 [2026-03-12T22:16:42] feat(career): enhance career pathway matching algorithm
 [2026-03-12T22:57:18] feat(roadmap): add milestone progress tracking
 [2026-03-12T13:04:28] style(ui): adjust career dashboard card elevation
+[2026-03-12T17:40:27] refactor(counseling): streamline multi-step guidance flow
