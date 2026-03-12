@@ -394,3 +394,4 @@
 [2026-03-03T10:54:21] feat(roadmap): add milestone progress tracking
 [2026-03-03T20:20:40] chore(deps): update analytics telemetry adapter
 [2026-03-03T09:39:04] docs(telemetry): record platform assessment metrics
+[2026-03-12T17:14:47] fix(assessment): refine skill gap analysis scoring weights
