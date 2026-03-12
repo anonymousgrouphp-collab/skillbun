@@ -402,3 +402,4 @@
 [2026-03-12T12:15:33] test(matching): add test suite for recommendation score
 [2026-03-12T13:10:11] fix(assessment): refine skill gap analysis scoring weights
 [2026-03-12T20:39:43] docs(telemetry): record platform assessment metrics
+[2026-03-12T23:58:37] perf(cache): optimize career trajectory data loader
