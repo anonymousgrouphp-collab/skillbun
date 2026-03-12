@@ -3,10 +3,10 @@
 SkillBun is an AI-powered career guidance platform for Indian tech students (BCA, BSc, BS/BS-MS AICS/CSDA, and B.Tech).
 It helps students discover suitable career tracks using an adaptive quiz and an AI counsellor chat.
 
-Built by Team SkillBun:
-- Harsh Patel
-- Rainee Patel
-- Aiman Patil
+Developed by Team SkillBun (5 IITians) as a capstone project:
+- [Harsh Patel](https://www.linkedin.com/in/harsh-patel-604007378/)
+- [Rainee Patel](https://www.linkedin.com/in/rainee-patel-624123377/)
+- [Aiman Patil](https://www.linkedin.com/in/aiman-patil-55181938a/)
 - Harshit Patidar
 - Ravi Patel
 
