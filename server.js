@@ -287,6 +287,17 @@ app.get('/api/config', (req, res) => {
 
 app.post('/api/human/verify', async (req, res) => {
     const ip = getClientIp(req);
+    const existingHumanToken = req.get(HUMAN_PROOF_HEADER);
+
+    if (verifyHumanProofToken(existingHumanToken, ip)) {
+        const issued = issueHumanProofToken(ip);
+        return res.json({
+            captchaEnabled: CAPTCHA_ENABLED,
+            humanToken: issued.token,
+            expiresAt: issued.expiresAt,
+            reused: true
+        });
+    }
 
     if (!CAPTCHA_ENABLED) {
         const issued = issueHumanProofToken(ip);
