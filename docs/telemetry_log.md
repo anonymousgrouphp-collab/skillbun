@@ -410,3 +410,4 @@
 [2026-03-12T17:40:27] refactor(counseling): streamline multi-step guidance flow
 [2026-03-12T22:54:19] docs(telemetry): record platform assessment metrics
 [2026-03-12T20:54:30] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-12T15:24:36] style(ui): adjust career dashboard card elevation
