@@ -1965,3 +1965,4 @@
 [2026-03-17T16:54:16] feat(career): enhance career pathway matching algorithm
 [2026-03-17T11:38:11] fix(analytics): correct career aptitude score calculation
 [2026-03-17T12:42:28] style(ui): adjust career dashboard card elevation
+[2026-03-17T13:16:50] docs(telemetry): record platform assessment metrics
