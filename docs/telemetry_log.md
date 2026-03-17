@@ -1954,3 +1954,4 @@
 [2026-05-31T17:39:03] style(ui): adjust career dashboard card elevation
 [2026-05-31T08:30:29] feat(roadmap): add milestone progress tracking
 [2026-03-17T23:36:46] style(ui): adjust career dashboard card elevation
+[2026-03-17T21:22:51] refactor(counseling): streamline multi-step guidance flow
