@@ -625,3 +625,4 @@
 [2026-03-19T15:49:41] style(ui): adjust career dashboard card elevation
 [2026-03-19T19:24:36] feat(career): enhance career pathway matching algorithm
 [2026-03-19T12:43:28] style(ui): adjust career dashboard card elevation
+[2026-03-19T19:28:48] fix(assessment): refine skill gap analysis scoring weights
