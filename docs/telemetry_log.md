@@ -631,3 +631,4 @@
 [2026-03-19T11:01:47] perf(cache): optimize career trajectory data loader
 [2026-03-19T23:33:24] feat(roadmap): add milestone progress tracking
 [2026-03-19T11:16:49] refactor(counseling): streamline multi-step guidance flow
+[2026-03-19T22:13:39] refactor(counseling): streamline multi-step guidance flow
