@@ -617,3 +617,4 @@
 [2026-03-19T22:38:45] test(matching): add test suite for recommendation score
 [2026-03-19T13:44:28] style(ui): adjust career dashboard card elevation
 [2026-03-19T22:02:46] style(ui): adjust career dashboard card elevation
+[2026-03-19T21:17:40] feat(career): enhance career pathway matching algorithm
