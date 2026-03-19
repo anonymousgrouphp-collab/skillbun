@@ -634,3 +634,4 @@
 [2026-03-19T22:13:39] refactor(counseling): streamline multi-step guidance flow
 [2026-03-19T23:12:07] perf(cache): optimize career trajectory data loader
 [2026-03-19T10:28:11] chore(deps): update analytics telemetry adapter
+[2026-03-19T10:51:43] style(ui): adjust career dashboard card elevation
