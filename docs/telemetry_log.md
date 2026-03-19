@@ -615,3 +615,4 @@
 [2026-03-19T17:20:06] fix(assessment): refine skill gap analysis scoring weights
 [2026-03-19T18:42:18] refactor(counseling): streamline multi-step guidance flow
 [2026-03-19T22:38:45] test(matching): add test suite for recommendation score
+[2026-03-19T13:44:28] style(ui): adjust career dashboard card elevation
