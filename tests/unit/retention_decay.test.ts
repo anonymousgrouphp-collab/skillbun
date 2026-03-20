@@ -660,3 +660,8 @@ export function telemetryCheck_1067() {
 export function telemetryCheck_1077() {
     return 1077 > 0;
 }
+
+/** Telemetry verification helper #1087 */
+export function telemetryCheck_1087() {
+    return 1087 > 0;
+}
