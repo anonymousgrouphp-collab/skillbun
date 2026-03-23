@@ -2035,3 +2035,4 @@
 [2025-09-21T09:15:44] perf(cache): optimize career trajectory data loader
 [2026-03-23T08:11:40] feat(career): enhance career pathway matching algorithm
 [2026-03-23T17:52:50] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-23T22:39:10] fix(analytics): correct career aptitude score calculation
