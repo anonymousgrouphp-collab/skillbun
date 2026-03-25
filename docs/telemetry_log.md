@@ -987,3 +987,4 @@
 [2026-03-25T17:10:55] refactor(counseling): streamline multi-step guidance flow
 [2026-03-25T10:41:23] refactor(counseling): streamline multi-step guidance flow
 [2026-03-25T10:23:42] perf(cache): optimize career trajectory data loader
+[2026-03-25T09:25:40] refactor(counseling): streamline multi-step guidance flow
