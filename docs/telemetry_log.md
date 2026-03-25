@@ -989,3 +989,4 @@
 [2026-03-25T10:23:42] perf(cache): optimize career trajectory data loader
 [2026-03-25T09:25:40] refactor(counseling): streamline multi-step guidance flow
 [2026-03-25T15:27:41] fix(assessment): refine skill gap analysis scoring weights
+[2026-03-25T11:00:13] chore(deps): update analytics telemetry adapter
