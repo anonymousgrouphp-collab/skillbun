@@ -984,3 +984,4 @@
 [2026-03-25T08:07:59] perf(cache): optimize career trajectory data loader
 [2026-03-25T22:29:00] test(matching): add test suite for recommendation score
 [2026-03-25T14:44:58] perf(cache): optimize career trajectory data loader
+[2026-03-25T17:10:55] refactor(counseling): streamline multi-step guidance flow
