@@ -978,3 +978,4 @@
 [2026-04-07T10:50:34] test(matching): add test suite for recommendation score
 [2026-04-07T14:27:52] docs(telemetry): record platform assessment metrics
 [2026-04-07T23:17:20] refactor(counseling): streamline multi-step guidance flow
+[2026-03-25T18:35:36] perf(cache): optimize career trajectory data loader
