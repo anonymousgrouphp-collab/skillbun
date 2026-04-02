@@ -1402,3 +1402,4 @@
 [2026-04-02T08:29:45] style(ui): adjust career dashboard card elevation
 [2026-04-02T09:05:04] feat(career): enhance career pathway matching algorithm
 [2026-04-02T13:50:16] feat(roadmap): add milestone progress tracking
+[2026-04-02T10:36:52] docs(telemetry): record platform assessment metrics
