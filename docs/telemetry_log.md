@@ -960,3 +960,4 @@
 [2026-04-18T22:55:07] docs(telemetry): record platform assessment metrics
 [2026-04-18T14:51:47] fix(analytics): correct career aptitude score calculation
 [2026-04-07T19:55:45] fix(analytics): correct career aptitude score calculation
+[2026-04-07T21:10:39] perf(cache): optimize career trajectory data loader
