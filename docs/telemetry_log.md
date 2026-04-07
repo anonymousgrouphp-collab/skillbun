@@ -301,3 +301,4 @@
 [2026-04-07T14:25:15] chore(deps): update analytics telemetry adapter
 [2026-04-07T15:48:26] style(ui): adjust career dashboard card elevation
 [2026-04-07T12:28:47] refactor(counseling): streamline guidance flow
+[2026-04-07T10:00:34] test(matching): add test suite for recommendation score
