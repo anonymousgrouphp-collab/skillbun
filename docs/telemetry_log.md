@@ -974,3 +974,4 @@
 [2026-04-07T10:25:32] refactor(counseling): streamline multi-step guidance flow
 [2026-04-07T19:29:31] style(ui): adjust career dashboard card elevation
 [2026-04-07T08:55:49] fix(assessment): refine skill gap analysis scoring weights
+[2026-04-07T22:40:42] style(ui): adjust career dashboard card elevation
