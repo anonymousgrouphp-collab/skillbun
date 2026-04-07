@@ -303,3 +303,4 @@
 [2026-04-07T12:28:47] refactor(counseling): streamline guidance flow
 [2026-04-07T10:00:34] test(matching): add test suite for recommendation score
 [2026-04-07T16:04:44] test(matching): add test suite for recommendation score
+[2026-04-07T09:58:47] fix(analytics): correct career aptitude score calculation
