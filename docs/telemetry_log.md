@@ -313,3 +313,4 @@
 [2026-04-14T09:01:15] perf(cache): optimize career trajectory data loader
 [2026-04-14T21:26:15] refactor(counseling): streamline guidance flow
 [2026-04-14T14:45:19] docs(telemetry): record platform assessment metrics
+[2026-04-14T18:33:03] style(ui): adjust career dashboard card elevation
