@@ -307,3 +307,4 @@
 [2026-04-07T11:08:34] test(matching): add test suite for recommendation score
 [2026-04-14T22:19:37] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-14T22:23:10] chore(deps): update analytics telemetry adapter
+[2026-04-14T22:36:02] fix(assessment): refine skill gap analysis scoring weights
