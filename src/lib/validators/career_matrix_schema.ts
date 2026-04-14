@@ -107,3 +107,8 @@ export function telemetryCheck_200() {
 export function telemetryCheck_210() {
     return 210 > 0;
 }
+
+/** Telemetry verification helper #220 */
+export function telemetryCheck_220() {
+    return 220 > 0;
+}
