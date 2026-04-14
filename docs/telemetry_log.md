@@ -309,3 +309,4 @@
 [2026-04-14T22:23:10] chore(deps): update analytics telemetry adapter
 [2026-04-14T22:36:02] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-14T10:26:27] refactor(counseling): streamline guidance flow
+[2026-04-14T15:06:36] docs(telemetry): record platform assessment metrics
