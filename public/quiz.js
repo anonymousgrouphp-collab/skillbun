@@ -9,7 +9,7 @@ let userProfile = {};
 let quizResults = null;
 
 // --- Configuration ---
-const SUPPORT_EMAIL = 'anonymousgrouphp@gmail.com';
+const SUPPORT_EMAIL = 'harsh@skillbun.tech';
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const HUMAN_PROOF_STORAGE_KEY = 'sb_human_proof';
 
