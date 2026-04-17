@@ -274,6 +274,32 @@ function setCaptchaStatus(message, tone) {
     statusEl.style.color = tone === 'error' ? 'var(--danger)' : tone === 'ok' ? 'var(--success)' : 'var(--text)';
 }
 
+function getCaptchaErrorMessage(errorCode) {
+    const code = String(errorCode || '').trim();
+
+    if (code === '110200') {
+        return `Turnstile domain is not authorized for this site key (${code}). Add this hostname in Cloudflare Turnstile Hostname Management.`;
+    }
+
+    if (code === '110100' || code === '110110' || code === '400020') {
+        return `Turnstile site key is invalid or not found (${code}). Check the deployed TURNSTILE_SITE_KEY.`;
+    }
+
+    if (code === '400070') {
+        return `Turnstile site key is disabled (${code}). Enable it in Cloudflare.`;
+    }
+
+    if (code === '200500') {
+        return `Turnstile iframe could not load (${code}). Check browser extensions, network, or challenges.cloudflare.com blocking.`;
+    }
+
+    if (code === '110600' || code === '110620') {
+        return `Security check timed out (${code}). Please retry.`;
+    }
+
+    return code ? `Security check failed (${code}). Please refresh.` : 'Security check failed. Please refresh.';
+}
+
 async function fetchSecurityConfig() {
     try {
         const response = await fetch('/api/config');
@@ -347,9 +373,9 @@ async function initCaptcha() {
                     setCaptchaStatus('Security check expired. Please verify again.', 'error');
                     toggleSecurityBanner(true);
                 },
-                'error-callback': () => {
+                'error-callback': (errorCode) => {
                     captchaToken = '';
-                    setCaptchaStatus('Security check failed. Please refresh.', 'error');
+                    setCaptchaStatus(getCaptchaErrorMessage(errorCode), 'error');
                 }
             });
         } catch (err) {
