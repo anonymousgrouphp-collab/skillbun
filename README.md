@@ -19,15 +19,21 @@ Developed by Team SkillBun (5 IITians) as a capstone project:
 - Hardened Gemini proxy validation (conversation structure, text size, payload limits, timeout handling).
 - Enhanced quiz result handling with roadmap URL normalization and safe fallback links.
 - Bun-Bot chat improvements: markdown rendering, history trimming, local per-hour send limit, clear chat action.
+- Bun-Bot now includes SkillBun platform context and can share the official contact email.
 - Security hardening with Helmet CSP, strict rate limits, body size limits, and dotfile blocking.
 
 ## 🎯 Core Features
 
 - Adaptive AI Career Quiz (typically 10 to 18 questions).
 - AI Career Counsellor (Bun-Bot) for role, salary, and roadmap guidance.
+- SkillBun-aware counsellor responses for platform questions such as how to contact the team.
 - Career recommendation cards with skills, demand, salary range, next steps, and roadmap links.
 - Profile-aware responses based on student degree and year.
 - Optional CAPTCHA and bot-protection gate before AI usage.
+
+## Contact
+
+For SkillBun support, privacy requests, terms questions, or product feedback, email [harsh@skillbun.tech](mailto:harsh@skillbun.tech).
 
 ## 🛠️ Tech Stack
 
