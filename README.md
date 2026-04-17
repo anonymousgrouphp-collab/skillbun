@@ -74,6 +74,11 @@ GEMINI_TIMEOUT_MS=20000
 TURNSTILE_SITE_KEY=your_turnstile_site_key
 TURNSTILE_SECRET_KEY=your_turnstile_secret_key
 
+# Optional: set true only when testing real Turnstile keys locally.
+# By default, non-production runs use Cloudflare's official always-pass test keys
+# to avoid hostname authorization failures on localhost.
+TURNSTILE_FORCE_REAL_KEYS=false
+
 # Optional: secret used to sign human-proof tokens
 HUMAN_PROOF_SECRET=generate_a_long_random_secret
 HUMAN_PROOF_TTL_MS=1800000
@@ -93,6 +98,13 @@ npm start
 
 4. Open app:
 - `http://localhost:3000/index.html`
+
+### Turnstile hostname errors
+
+If the widget shows Cloudflare error `110200`, the current hostname is not authorized for the Turnstile site key.
+For production, open Cloudflare Dashboard > Turnstile > your widget > Settings > Hostname Management and add each hostname separately, for example `skillbun.tech`, `www.skillbun.tech`, or your exact Vercel preview hostname. Do not include `https://`, ports, or paths.
+
+Local development automatically uses Cloudflare's official always-pass test keys when `NODE_ENV` is not `production`. Set `TURNSTILE_FORCE_REAL_KEYS=true` only if you have added your local hostname in Cloudflare and want to test the real widget.
 
 ## 🗄️ Supabase Table (Optional)
 

@@ -9,6 +9,10 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const TURNSTILE_SITE_KEY = (process.env.TURNSTILE_SITE_KEY || '').trim();
 const TURNSTILE_SECRET_KEY = (process.env.TURNSTILE_SECRET_KEY || '').trim();
 const CAPTCHA_ENABLED = Boolean(TURNSTILE_SITE_KEY && TURNSTILE_SECRET_KEY);
+const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA';
+const TURNSTILE_TEST_SECRET_KEY = '1x0000000000000000000000000000000AA';
+const TURNSTILE_FORCE_REAL_KEYS = String(process.env.TURNSTILE_FORCE_REAL_KEYS || '').toLowerCase() === 'true';
+const USE_TURNSTILE_TEST_KEYS = CAPTCHA_ENABLED && !IS_PRODUCTION && !TURNSTILE_FORCE_REAL_KEYS;
 const HUMAN_PROOF_SECRET = process.env.HUMAN_PROOF_SECRET || 'skillbun-dev-proof-secret-change-in-prod';
 const HUMAN_PROOF_TTL_MS = Number.parseInt(process.env.HUMAN_PROOF_TTL_MS || '1800000', 10); // 30 min
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
@@ -21,6 +25,10 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
 if (IS_PRODUCTION && (TURNSTILE_SITE_KEY || TURNSTILE_SECRET_KEY) && !CAPTCHA_ENABLED) {
     console.warn('Turnstile is partially configured. Set both TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY.');
+}
+
+if (USE_TURNSTILE_TEST_KEYS) {
+    console.warn('Using Cloudflare Turnstile test keys in development. Set TURNSTILE_FORCE_REAL_KEYS=true to test real keys locally.');
 }
 
 function getClientIp(req) {
@@ -98,7 +106,7 @@ async function verifyTurnstileToken(token, remoteIp) {
 
     try {
         const formBody = new URLSearchParams({
-            secret: TURNSTILE_SECRET_KEY,
+            secret: USE_TURNSTILE_TEST_KEYS ? TURNSTILE_TEST_SECRET_KEY : TURNSTILE_SECRET_KEY,
             response: token
         });
 
@@ -280,7 +288,8 @@ app.get('/api/config', (req, res) => {
         captcha: {
             provider: 'turnstile',
             enabled: CAPTCHA_ENABLED,
-            siteKey: CAPTCHA_ENABLED ? TURNSTILE_SITE_KEY : ''
+            siteKey: CAPTCHA_ENABLED ? (USE_TURNSTILE_TEST_KEYS ? TURNSTILE_TEST_SITE_KEY : TURNSTILE_SITE_KEY) : '',
+            mode: CAPTCHA_ENABLED ? (USE_TURNSTILE_TEST_KEYS ? 'test' : 'live') : 'disabled'
         }
     });
 });
