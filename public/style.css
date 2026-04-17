@@ -999,6 +999,8 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* --- Tablet & below (nav collapses) --- */
 @media (max-width: 1400px) {
   nav {
     padding: 1rem 1.2rem;
@@ -1022,14 +1024,15 @@ footer {
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(13, 17, 23, 0.98);
+    background: rgba(13, 17, 23, 1);
     backdrop-filter: blur(16px);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    gap: 1.2rem;
     align-items: center;
     border-bottom: 1px solid #21262d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(46, 204, 113, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -1042,24 +1045,257 @@ footer {
     transform: translateY(0);
   }
 
+  .nav-links a {
+    font-size: 1rem;
+    padding: 0.35rem 0;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
 }
 
+/* --- Mobile: core layout cleanup (≤768px) --- */
+@media (max-width: 768px) {
+
+  /* Kill floating code bubbles — they overlap text on mobile */
+  .floaters {
+    display: none !important;
+  }
+
+  /* Hero: reduce bloated height and spacing */
+  .hero {
+    min-height: auto;
+    padding: 3rem 1.2rem 2rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    margin: 0 auto 1.8rem;
+    line-height: 1.6;
+  }
+
+  .hero-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-bg-glow {
+    width: 350px;
+    height: 350px;
+  }
+
+  /* Stats: balance the 3-column wrap */
+  .stats-row {
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .stat-num {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+  }
+
+  /* Sections: breathe */
+  section {
+    padding: 3rem 1.2rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-size: 0.9rem;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Step cards: tighter */
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .step-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .step-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .step-card p {
+    font-size: 0.82rem;
+  }
+
+  /* Feature cards: compact */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.3rem;
+    gap: 1rem;
+  }
+
+  .feature-icon-wrap {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+
+  .feature-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .feature-card p {
+    font-size: 0.82rem;
+  }
+
+  /* Career field pills: less gap, smaller */
+  .fields-wrap {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .field-pill {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+  }
+
+  /* CTA: reduce padding */
+  .cta-section {
+    padding: 3rem 1.2rem;
+  }
+
+  .cta-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .cta-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Footer: stack earlier, center align */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  footer {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .footer-col ul {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding-top: 1.2rem;
+  }
+
+  .badge-bar {
+    justify-content: center;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+  }
+
+  /* Modal: compact */
+  .modal {
+    padding: 1.5rem 1.2rem;
+    border-radius: 20px;
+    margin: 0.5rem;
+  }
+
+  .modal-logo {
+    font-size: 1.3rem;
+  }
+
+  .modal-desc {
+    font-size: 0.8rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .form-group label {
+    font-size: 0.75rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  .btn-form {
+    padding: 0.75rem;
+    font-size: 0.92rem;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 0.75rem 1.6rem;
+    font-size: 0.92rem;
+  }
+}
+
+/* --- Small phones (≤600px) --- */
 @media (max-width: 600px) {
   .nav-logo {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .nav-logo .mini-bunny {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   nav .nav-logo img {
-    height: 40px;
-    /* Assuming the logo shrinks slightly */
+    height: 36px;
   }
 
   .btn-signup {
@@ -1070,6 +1306,38 @@ footer {
   .quiz-user-badge {
     padding: 0.35rem 0.8rem;
     font-size: 0.75rem;
+  }
+
+  /* Hero: even tighter */
+  .hero {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+  }
+
+  .hero p {
+    font-size: 0.88rem;
+  }
+
+  /* Stats: ensure 3-across on small phones */
+  .stats-row {
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-num {
+    font-size: 1.7rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  /* Sections even tighter */
+  section {
+    padding: 2.5rem 1rem;
   }
 
   /* Quiz responsive */
@@ -1085,21 +1353,79 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .quiz-welcome {
+    padding: 2.5rem 0.5rem;
+    min-height: auto;
+  }
+
   .quiz-welcome h1 {
     font-size: 1.8rem;
+  }
+
+  .quiz-welcome p {
+    font-size: 0.9rem;
+  }
+
+  .quiz-start-btn {
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
   }
 
   .result-card {
     padding: 1.3rem;
   }
+
+  .result-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .result-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .result-desc {
+    font-size: 0.82rem;
+  }
+
+  /* Quiz question card */
+  .quiz-question-card {
+    padding: 1.4rem;
+    border-radius: 16px;
+  }
+
+  .quiz-q-text {
+    font-size: 1rem;
+  }
+
+  .quiz-option {
+    padding: 1rem 0.85rem;
+  }
+
+  .option-text {
+    font-size: 0.83rem;
+  }
 }
 
+/* --- Very small phones (≤480px) --- */
 @media (max-width: 480px) {
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .cta-card h2 {
+    font-size: 1.7rem;
+  }
+
+  .cta-card {
+    padding: 2rem 1.2rem;
+  }
 }
 
+/* --- Tiny phones (≤400px) --- */
 @media (max-width: 400px) {
   nav {
     padding: 0.8rem 1rem;
@@ -1115,13 +1441,20 @@ footer {
   }
 
   nav .nav-logo img {
-    height: 40px;
+    height: 36px;
   }
 
   .btn-signup,
   .quiz-user-badge {
     padding: 0.4rem 0.8rem;
     font-size: 0.75rem;
+  }
+
+  .stats-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
   }
 }
 

@@ -428,19 +428,64 @@
 
     @media (max-width: 768px) {
       #chat-container {
-        padding: 0.9rem 1rem;
-        margin-top: 60px;
-        min-height: calc(100vh - 60px);
+        padding: 0.75rem 0.8rem;
+        margin-top: 56px;
+        min-height: calc(100vh - 56px);
         border-left: none;
         border-right: none;
       }
 
+      .chat-header {
+        padding-bottom: 0.75rem;
+        margin-bottom: 0.75rem;
+        gap: 0.75rem;
+      }
+
+      .chat-bot-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+        border-radius: 10px;
+      }
+
+      .chat-header-info h2 {
+        font-size: 1.05rem;
+      }
+
+      .chat-header-info p {
+        font-size: 0.72rem;
+      }
+
+      .chat-clear-btn {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.7rem;
+      }
+
       .chat-messages {
-        max-height: calc(100vh - 280px);
+        max-height: calc(100vh - 260px);
       }
 
       .message {
-        max-width: 92%;
+        max-width: 88%;
+        padding: 0.7rem 1rem;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .message.bot ul,
+      .message.bot ol {
+        padding-left: 1.2rem;
+      }
+
+      .message.bot li {
+        font-size: 0.85rem;
+      }
+
+      .msg-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+        border-radius: 8px;
       }
 
       .chat-suggestions {
@@ -448,10 +493,41 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 0.25rem;
+        gap: 0.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .suggestion-chip {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.75rem;
       }
 
       .chat-suggestions::-webkit-scrollbar {
         display: none;
+      }
+
+      .chat-input-area {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        gap: 0.5rem;
+      }
+
+      .chat-input {
+        height: 46px;
+        font-size: 0.88rem;
+        padding: 0.7rem 1rem;
+        border-radius: 12px;
+      }
+
+      .chat-send-btn {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+      }
+
+      .chat-send-btn svg {
+        width: 18px;
+        height: 18px;
       }
     }
   </style>
