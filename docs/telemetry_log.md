@@ -956,3 +956,4 @@
 [2026-04-18T22:34:13] test(matching): add test suite for recommendation score
 [2026-04-18T11:47:53] docs(telemetry): record platform assessment metrics
 [2026-04-18T17:55:02] chore(deps): update analytics telemetry adapter
+[2026-04-18T16:22:55] fix(assessment): refine skill gap analysis scoring weights
