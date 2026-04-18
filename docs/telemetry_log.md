@@ -958,3 +958,4 @@
 [2026-04-18T17:55:02] chore(deps): update analytics telemetry adapter
 [2026-04-18T16:22:55] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-18T22:55:07] docs(telemetry): record platform assessment metrics
+[2026-04-18T14:51:47] fix(analytics): correct career aptitude score calculation
