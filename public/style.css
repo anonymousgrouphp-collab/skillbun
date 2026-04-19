@@ -1311,6 +1311,20 @@ footer {
     padding: 0.75rem 1.6rem;
     font-size: 0.92rem;
   }
+
+  /* Fix for Quiz Options UI on Mobile/Tablet */
+  .quiz-options {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .quiz-option {
+    align-items: center;
+    padding: 1.2rem 1rem !important; /* give it some space to breathe on mobile */
+  }
+  
+  .option-text {
+    font-size: 0.95rem; /* slightly larger text on mobile so it's readable */
+  }
 }
 
 /* --- Small phones (≤600px) --- */
@@ -1378,10 +1392,6 @@ footer {
     padding: 1.5rem 1rem 3rem;
   }
 
-  .quiz-options {
-    grid-template-columns: 1fr;
-  }
-
   .quiz-welcome {
     padding: 2.5rem 0.5rem;
     min-height: auto;
@@ -1426,13 +1436,6 @@ footer {
     font-size: 1rem;
   }
 
-  .quiz-option {
-    padding: 1rem 0.85rem;
-  }
-
-  .option-text {
-    font-size: 0.83rem;
-  }
 }
 
 /* --- Very small phones (≤480px) --- */
