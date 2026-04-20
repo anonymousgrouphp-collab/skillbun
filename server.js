@@ -241,47 +241,6 @@ try {
     console.warn('cors not installed - run: npm install cors');
 }
 
-// ===== SECURITY: Strict Anti-Direct Access Middleware for API =====
-app.use('/api', (req, res, next) => {
-    if (!IS_PRODUCTION) return next();
-
-    // Block script execution from other sites natively via modern headers
-    const secFetchSite = req.get('Sec-Fetch-Site');
-    if (secFetchSite && secFetchSite !== 'same-origin') {
-        return res.status(403).json({ error: 'Direct API access forbidden.' });
-    }
-
-    const requestOrigin = req.get('Origin');
-    const requestHost = req.get('Host');
-
-    if (requestOrigin) {
-        try {
-            const originHost = new URL(requestOrigin).host;
-            if (originHost !== requestHost) {
-                return res.status(403).json({ error: 'Cross-origin API access forbidden.' });
-            }
-        } catch (e) {
-            return res.status(400).json({ error: 'Invalid Origin.' });
-        }
-    } else {
-        // Blocks direct hits from Postman/cURL where Origin is typically missing
-        const referer = req.get('Referer');
-        if (!referer) {
-            return res.status(403).json({ error: 'Direct API access forbidden. User Interface routing required.' });
-        }
-        try {
-            const refererHost = new URL(referer).host;
-            if (refererHost !== requestHost) {
-                return res.status(403).json({ error: 'Cross-origin API access forbidden.' });
-            }
-        } catch(e) {
-            return res.status(400).json({ error: 'Invalid Referer.' });
-        }
-    }
-
-    next();
-});
-
 // ===== SECURITY: Block .env and dotfiles from static serving =====
 app.use((req, res, next) => {
     const blocked = ['.env', '.gitignore', '.git'];
