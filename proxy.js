@@ -40,8 +40,10 @@ export async function proxy(request) {
 
       if (isProtected && !user) {
         const url = request.nextUrl.clone()
+        const dest = url.pathname
         url.pathname = '/'
         url.searchParams.set('authRequired', 'true')
+        url.searchParams.set('dest', dest)
         return NextResponse.redirect(url)
       }
   }
