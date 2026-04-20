@@ -33,14 +33,6 @@ export default function RootLayout({ children }) {
           </ul>
           <div className="nav-cta">
             <UserMenu />
-            <div className="mobile-dropdown-group">
-              <a href="/quiz" className="btn-signup">Get Started 🚀</a>
-              <button className="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-            </div>
           </div>
         </nav>
         {children}
