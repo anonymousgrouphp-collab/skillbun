@@ -9,7 +9,7 @@ export const metadata = {
 }
 
 export default async function QuizPage() {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co'
   const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder'
 
