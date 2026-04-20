@@ -311,14 +311,14 @@ function getStoredProfile() {
 }
 
 function redirectToProfileSetup(destination) {
-    window.location.href = `index.html?next=${encodeURIComponent(destination)}`;
+    window.location.href = `/onboarding?next=${encodeURIComponent('/' + destination.replace('.html', ''))}`;
 }
 
 // --- Load User Profile ---
 function loadProfile() {
     const { name, email, degree, year } = getStoredProfile();
     if (!name || !email || !degree || !year) {
-        redirectToProfileSetup('quiz.html');
+        redirectToProfileSetup('quiz');
         return false;
     }
 
@@ -513,7 +513,7 @@ RESPONSE FORMAT (for final recommendation):
 }
 
 Provide exactly 3 careers in the final recommendation. Be specific to the Indian tech market.
-For every career, provide the closest matching exact URL from roadmap.sh (e.g., https://roadmap.sh/frontend, https://roadmap.sh/backend, https://roadmap.sh/devops, https://roadmap.sh/ai-data-scientist, etc.) in the 'roadmapUrl' field. If no exact match exists, or if you are unsure, default to 'coming-soon.html'.
+For every career, provide the closest matching exact internal ID in the 'roadmapUrl' field from this exact list: ['frontend', 'backend', 'android', 'data_science', 'fullstack']. If no exact match exists, default to 'general'. Do NOT provide full URLs, just the ID string.
 Start with the first question now.`;
 }
 
@@ -626,100 +626,30 @@ function parseGeminiJSON(text) {
     throw new Error('Could not parse Gemini response as JSON');
 }
 
-const ROADMAP_FALLBACK_URL = 'coming-soon.html';
-const ROADMAP_HOSTS = new Set(['roadmap.sh', 'www.roadmap.sh']);
+const ROADMAP_FALLBACK_URL = '/roadmap/general';
+
 const KNOWN_ROADMAP_SLUGS = new Set([
-    'frontend', 'backend', 'full-stack', 'devops', 'cyber-security',
-    'ai-data-scientist', 'data-analyst', 'bi-analyst', 'data-engineer', 'machine-learning',
-    'software-architect', 'software-design', 'system-design', 'computer-science', 'qa',
-    'product-manager', 'ux-design', 'design-system', 'api-design',
-    'android', 'ios', 'flutter', 'react-native', 'game-developer', 'blockchain',
-    'javascript', 'typescript', 'node-js', 'react', 'vue', 'angular', 'nextjs',
-    'python', 'java', 'go', 'rust', 'cpp', 'csharp', 'php', 'kotlin', 'swift-ui',
-    'sql', 'postgresql', 'mongodb', 'graphql', 'linux', 'kubernetes', 'docker', 'terraform',
-    'aws', 'gcp', 'spring-boot', 'django', 'laravel', 'wordpress', 'shell-bash',
-    'mlops', 'devsecops', 'elasticsearch', 'ai-agents', 'ai-red-teaming'
+    'frontend', 'backend', 'android', 'data_science', 'fullstack', 'cybersecurity', 'general'
 ]);
 
-const ROADMAP_SLUG_ALIASES = {
-    fullstack: 'full-stack',
-    'full-stack-developer': 'full-stack',
-    nodejs: 'node-js',
-    node: 'node-js',
-    'node.js': 'node-js',
-    golang: 'go',
-    cplusplus: 'cpp',
-    'c++': 'cpp',
-    'c-plus-plus': 'cpp',
-    cybersecurity: 'cyber-security',
-    'cyber-security-specialist': 'cyber-security',
-    'data-science': 'ai-data-scientist',
-    'ml-engineer': 'machine-learning',
-    'machine-learning-engineer': 'machine-learning',
-    'ui-ux-design': 'ux-design',
-    'uiux-design': 'ux-design',
-    'business-intelligence': 'bi-analyst'
-};
-
 const ROADMAP_KEYWORD_RULES = [
-    { slug: 'full-stack', keywords: ['full stack', 'full-stack', 'fullstack'] },
+    { slug: 'fullstack', keywords: ['full stack', 'full-stack', 'fullstack'] },
     { slug: 'frontend', keywords: ['frontend', 'front end', 'front-end', 'web ui', 'react', 'vue', 'angular'] },
     { slug: 'backend', keywords: ['backend', 'back end', 'back-end', 'server side', 'api developer', 'microservice'] },
-    { slug: 'ai-data-scientist', keywords: ['ai engineer', 'artificial intelligence', 'data scientist', 'llm', 'genai', 'nlp', 'computer vision'] },
-    { slug: 'machine-learning', keywords: ['machine learning', 'ml engineer', 'deep learning'] },
-    { slug: 'data-analyst', keywords: ['data analyst', 'analytics', 'data analysis'] },
-    { slug: 'bi-analyst', keywords: ['business intelligence', 'bi analyst', 'power bi', 'tableau'] },
-    { slug: 'data-engineer', keywords: ['data engineer', 'etl', 'data pipeline'] },
-    { slug: 'cyber-security', keywords: ['cyber security', 'cybersecurity', 'ethical hacking', 'penetration tester', 'soc analyst', 'infosec'] },
-    { slug: 'devops', keywords: ['devops', 'site reliability', 'sre', 'cloud engineer', 'kubernetes', 'docker', 'ci/cd'] },
-    { slug: 'software-architect', keywords: ['software architect', 'solution architect'] },
-    { slug: 'product-manager', keywords: ['product manager', 'product management', 'product owner'] },
-    { slug: 'ux-design', keywords: ['ux design', 'ui ux', 'ui/ux', 'product design', 'interaction design'] },
-    { slug: 'qa', keywords: ['qa engineer', 'quality assurance', 'software testing', 'automation testing', 'test engineer'] },
-    { slug: 'android', keywords: ['android'] },
-    { slug: 'ios', keywords: ['ios', 'swift'] },
-    { slug: 'flutter', keywords: ['flutter'] },
-    { slug: 'react-native', keywords: ['react native'] },
-    { slug: 'game-developer', keywords: ['game developer', 'game development', 'unity', 'unreal'] },
-    { slug: 'blockchain', keywords: ['blockchain', 'web3', 'smart contract'] },
-    { slug: 'computer-science', keywords: ['software engineer', 'computer science engineer'] }
+    { slug: 'data_science', keywords: ['ai engineer', 'artificial intelligence', 'data scientist', 'llm', 'genai', 'nlp', 'computer vision', 'data analyst', 'machine learning', 'ml engineer', 'deep learning'] },
+    { slug: 'android', keywords: ['android', 'mobile', 'kotlin', 'app developer'] }
 ];
 
 function normalizeRoadmapSlug(value) {
     if (!value) return '';
-
-    let slug = String(value).trim().toLowerCase();
-    slug = slug.split('?')[0].split('#')[0];
-    slug = slug.replace(/^\/+|\/+$/g, '');
-    slug = slug.replace(/_/g, '-').replace(/\s+/g, '-');
-
-    const segments = slug.split('/').filter(Boolean);
-    if (segments.length > 0) {
-        if ((segments[0] === 'roadmaps' || segments[0] === 'roadmap') && segments[1]) {
-            slug = segments[1];
-        } else {
-            slug = segments[0];
-        }
-    }
-
-    return ROADMAP_SLUG_ALIASES[slug] || slug;
+    let slug = String(value).trim().toLowerCase().replace(/[^a-z_]/g, '');
+    return slug;
 }
 
 function extractRoadmapSlug(rawUrl) {
     if (typeof rawUrl !== 'string') return '';
     const input = rawUrl.trim();
-    if (!input || input === ROADMAP_FALLBACK_URL) return '';
-
-    if (/^https?:\/\//i.test(input)) {
-        try {
-            const parsed = new URL(input);
-            if (!ROADMAP_HOSTS.has(parsed.hostname.toLowerCase())) return '';
-            return normalizeRoadmapSlug(parsed.pathname);
-        } catch (err) {
-            return '';
-        }
-    }
-
+    if (!input || input.includes('coming-soon')) return '';
     return normalizeRoadmapSlug(input);
 }
 
@@ -734,19 +664,18 @@ function inferRoadmapSlugFromCareer(career) {
             return rule.slug;
         }
     }
-
     return '';
 }
 
 function resolveRoadmapUrl(career) {
     const fromAiUrl = extractRoadmapSlug(career?.roadmapUrl);
     if (fromAiUrl && KNOWN_ROADMAP_SLUGS.has(fromAiUrl)) {
-        return `https://roadmap.sh/${fromAiUrl}`;
+        return `/roadmap/${fromAiUrl}`;
     }
 
     const fromKeywords = inferRoadmapSlugFromCareer(career);
     if (fromKeywords && KNOWN_ROADMAP_SLUGS.has(fromKeywords)) {
-        return `https://roadmap.sh/${fromKeywords}`;
+        return `/roadmap/${fromKeywords}`;
     }
 
     return ROADMAP_FALLBACK_URL;

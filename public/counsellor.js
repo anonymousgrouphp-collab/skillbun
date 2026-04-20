@@ -1,4 +1,4 @@
-﻿// ===== AI COUNSELLOR CHAT - Gemini API Integration =====
+// ===== AI COUNSELLOR CHAT - Gemini API Integration =====
 
 // --- State ---
 let conversationHistory = [];
@@ -262,6 +262,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     } catch (err) {
         console.error('Security init error:', err);
+    }
+    
+    // Auto-send query if present in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q');
+    if (initialQuery && hasFreshHumanProof()) {
+        const inputEl = getEl('chatInput');
+        if (inputEl) {
+            inputEl.value = initialQuery;
+            sendMessage();
+            window.history.replaceState({}, '', window.location.pathname);
+        }
     }
 });
 
@@ -582,9 +594,21 @@ function trimConversationHistory() {
 
 // --- Gemini Prompt Logic ---
 function getSystemPrompt() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const contextParam = urlParams.get('context');
+    let dynamicContext = "";
+    
+    if (contextParam) {
+        dynamicContext = `
+IMMEDIATE SITUATIONAL CONTEXT:
+The user clicked the 'Ask Bun-Bot' button directly from the "${contextParam}" page on SkillBun. 
+Your primary goal right now is to act as an expert tutor for that specific track. Keep explanations simple, encouraging, and highly tied to the concepts of ${contextParam}.`;
+    }
+
     return `You are Bun-Bot, SkillBun's incredibly helpful, friendly, and expert AI Career Counsellor.
 You specialize in the Indian tech industry for BCA, BSc, and B.Tech students.
 You also know the core SkillBun platform context so students can ask you about SkillBun itself.
+${dynamicContext}
 
 STUDENT PROFILE:
 - Name: ${userProfile.name}
@@ -600,7 +624,7 @@ SKILLBUN CONTEXT:
 YOUR ROLE:
 - Answer questions politely, directly, and specifically.
 - If a student asks how to contact SkillBun, share ${SKILLBUN_CONTACT_EMAIL} clearly.
-- When relevant, connect advice back to SkillBun's quiz, roadmap guidance, and career-track discovery experience.
+- When relevant, connect advice back to SkillBun's quiz and native roadmaps (e.g. [Frontend Roadmap](/roadmap/frontend)). Available roadmaps: frontend, backend, android, data_science, fullstack, general.
 - Provide Indian context (e.g., salaries in LPA, exams like GATE, Nimcet, CDAC, placements context).
 - Compare pros/cons honestly without bias.
 - Explain "Day in the life" realistically.
