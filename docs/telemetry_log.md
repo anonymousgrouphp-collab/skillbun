@@ -1098,3 +1098,4 @@
 [2026-04-20T09:05:17] test(matching): add test suite for recommendation score
 [2026-04-20T12:26:12] feat(roadmap): add milestone progress tracking
 [2026-04-20T15:40:51] feat(roadmap): add milestone progress tracking
+[2026-04-20T08:24:50] style(ui): adjust career dashboard card elevation
