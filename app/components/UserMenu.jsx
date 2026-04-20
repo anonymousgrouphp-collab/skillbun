@@ -31,6 +31,7 @@ export default function UserMenu() {
     localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
+    localStorage.removeItem('sb_human_proof');
     router.push('/');
     router.refresh();
   };
@@ -58,7 +59,7 @@ export default function UserMenu() {
     </button>
   );
 
-  // Loading state — just show mobile menu button
+  // Loading state
   if (loading) {
     return mobileMenuButton;
   }
@@ -73,20 +74,27 @@ export default function UserMenu() {
     );
   }
 
-  // Logged in — show avatar + dropdown + mobile menu
+  // Logged in — show profile pill with name + avatar + dropdown
   const name = user.user_metadata?.full_name || 'User';
+  const firstName = name.split(' ')[0];
   const avatar = user.user_metadata?.avatar_url;
   const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
 
   return (
     <div className="mobile-dropdown-group">
-      <div className="user-menu-wrapper" style={{ position: 'relative' }}>
-        <button className="user-avatar-btn" onClick={() => setOpen(!open)} title={name}>
-          {avatar ? (
-            <img src={avatar} alt={name} className="user-avatar-img" referrerPolicy="no-referrer" />
-          ) : (
-            <span className="user-avatar-initials">{initials}</span>
-          )}
+      <div className="user-menu-wrapper">
+        <button className="user-profile-pill" onClick={() => setOpen(!open)} title={`Logged in as ${name}`}>
+          <span className="user-pill-avatar">
+            {avatar ? (
+              <img src={avatar} alt={name} referrerPolicy="no-referrer" />
+            ) : (
+              <span className="user-pill-initials">{initials}</span>
+            )}
+          </span>
+          <span className="user-pill-name">{firstName}</span>
+          <svg className={`user-pill-chevron ${open ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </button>
 
         {open && (
