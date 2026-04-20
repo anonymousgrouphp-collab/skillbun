@@ -79,7 +79,7 @@ export default function UserMenu() {
   const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
 
   return (
-    <>
+    <div className="mobile-dropdown-group">
       <div className="user-menu-wrapper" style={{ position: 'relative' }}>
         <button className="user-avatar-btn" onClick={() => setOpen(!open)} title={name}>
           {avatar ? (
@@ -107,6 +107,6 @@ export default function UserMenu() {
         )}
       </div>
       {mobileMenuButton}
-    </>
+    </div>
   );
 }
