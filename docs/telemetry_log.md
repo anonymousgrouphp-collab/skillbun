@@ -1082,3 +1082,4 @@
 [2026-04-20T08:25:54] chore(deps): update analytics telemetry adapter
 [2026-04-20T15:06:29] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-20T12:07:00] feat(career): enhance career pathway matching algorithm
+[2026-04-20T15:08:12] test(matching): add test suite for recommendation score
