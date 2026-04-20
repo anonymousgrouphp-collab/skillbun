@@ -1087,3 +1087,4 @@
 [2026-04-20T16:58:52] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-20T08:04:12] chore(deps): update analytics telemetry adapter
 [2026-04-20T12:05:57] style(ui): adjust career dashboard card elevation
+[2026-04-20T11:02:29] feat(career): enhance career pathway matching algorithm
