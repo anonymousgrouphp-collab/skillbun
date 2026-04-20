@@ -22,8 +22,17 @@ export default function Home() {
   const supabase = createClient();
 
   useEffect(() => {
-    // Splash timer
-    const timer = setTimeout(() => setShowSplash(false), 3000);
+    let timer;
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('authRequired') === 'true') {
+      setShowSplash(false);
+      localStorage.setItem('sb_dest', urlParams.get('dest') || '/quiz');
+      setShowModal(true);
+      window.history.replaceState({}, '', '/');
+    } else {
+      // Splash timer
+      timer = setTimeout(() => setShowSplash(false), 3000);
+    }
 
     // Shuffle text animation (delayed until after splash)
     const shuffleTexts = document.querySelectorAll('.shuffle-text');
