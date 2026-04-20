@@ -324,17 +324,27 @@ function loadProfile() {
 
     userProfile = { name, email, degree, year };
 
-    document.getElementById('userName').textContent = name;
-    document.getElementById('userBadge').textContent = `User: ${name}`;
-    document.getElementById('welcomeProfile').innerHTML = `
-    <div class="profile-tag">Degree: ${sanitize(degree)}</div>
-    <div class="profile-tag">Year: ${sanitize(year)}</div>
-  `;
+    const userNameEl = document.getElementById('userName');
+    if (userNameEl) userNameEl.textContent = name;
 
-    // Populate Dropdown Profile specific elements
-    document.getElementById('dropdownName').textContent = name;
-    document.getElementById('dropdownDegree').textContent = degree;
-    document.getElementById('dropdownYear').textContent = year;
+    const userBadgeEl = document.getElementById('userBadge');
+    if (userBadgeEl) userBadgeEl.textContent = `User: ${name}`;
+
+    const welcomeProfileEl = document.getElementById('welcomeProfile');
+    if (welcomeProfileEl) {
+        welcomeProfileEl.innerHTML = `
+        <div class="profile-tag">Degree: ${sanitize(degree)}</div>
+        <div class="profile-tag">Year: ${sanitize(year)}</div>
+        `;
+    }
+
+    // Populate Dropdown Profile specific elements (may not exist in Next.js layout)
+    const dropdownNameEl = document.getElementById('dropdownName');
+    if (dropdownNameEl) dropdownNameEl.textContent = name;
+    const dropdownDegreeEl = document.getElementById('dropdownDegree');
+    if (dropdownDegreeEl) dropdownDegreeEl.textContent = degree;
+    const dropdownYearEl = document.getElementById('dropdownYear');
+    if (dropdownYearEl) dropdownYearEl.textContent = year;
     return true;
 }
 
@@ -442,7 +452,7 @@ function logoutUser() {
     clearHumanProof();
 
     // Redirect back to homepage
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 
 // --- System Prompt ---
@@ -1075,7 +1085,7 @@ if (loadMoreBtnEl) {
     loadMoreBtnEl.addEventListener('click', loadMoreCareers);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initQuizPage() {
     const startBtn = document.getElementById('startQuizBtn');
     if (startBtn) startBtn.disabled = true;
 
@@ -1102,4 +1112,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
 
     if (startBtn) startBtn.disabled = false;
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initQuizPage);
+} else {
+    initQuizPage();
+}

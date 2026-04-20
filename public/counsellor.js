@@ -182,11 +182,11 @@ function getStoredProfile() {
 }
 
 function redirectToProfileSetup(destination) {
-    window.location.href = `index.html?next=${encodeURIComponent(destination)}`;
+    window.location.href = `/onboarding?next=${encodeURIComponent('/' + destination.replace('.html', ''))}`;
 }
 
 // --- Initialize ---
-document.addEventListener('DOMContentLoaded', async () => {
+async function initCounsellorPage() {
     const hasProfile = loadProfile();
     if (!hasProfile) return;
 
@@ -275,7 +275,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.history.replaceState({}, '', window.location.pathname);
         }
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounsellorPage);
+} else {
+    initCounsellorPage();
+}
 
 // --- Security / Captcha ---
 function setCaptchaStatus(message, tone) {
@@ -505,7 +511,7 @@ function logoutUser(event) {
     localStorage.removeItem('sb_year');
     localStorage.removeItem(RATE_LIMIT_KEY); // Fix #4: clear rate-limit on logout
     clearHumanProof();
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 
 function escapeHTML(str) {
