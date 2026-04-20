@@ -155,7 +155,7 @@ function saveProfileLocally(profile) {
 
 async function syncProfileToBackend(profile, destination) {
     try {
-        const response = await fetch('/api/profile', {
+        const response = await fetch('/api/v1/profile', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

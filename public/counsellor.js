@@ -1,4 +1,4 @@
-﻿// ===== AI COUNSELLOR CHAT - Gemini API Integration =====
+// ===== AI COUNSELLOR CHAT - Gemini API Integration =====
 
 // --- State ---
 let conversationHistory = [];
@@ -125,7 +125,7 @@ async function refreshHumanProofSession() {
     if (!restoreHumanProof()) return false;
 
     try {
-        const response = await fetch('/api/human/verify', {
+        const response = await fetch('/api/v1/human/verify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -302,7 +302,7 @@ function getCaptchaErrorMessage(errorCode) {
 
 async function fetchSecurityConfig() {
     try {
-        const response = await fetch('/api/config');
+        const response = await fetch('/api/v1/config');
         if (!response.ok) return;
 
         const data = await response.json();
@@ -408,7 +408,7 @@ async function verifyHumanProof() {
     const body = securityConfig.captchaEnabled ? { token: captchaToken } : {};
 
     try {
-        const response = await fetch('/api/human/verify', {
+        const response = await fetch('/api/v1/human/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -700,7 +700,7 @@ async function sendMessage() {
         const headers = { 'Content-Type': 'application/json' };
         if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
 
-        const response = await fetch('/api/gemini', {
+        const response = await fetch('/api/v1/gemini', {
             method: 'POST',
             headers,
             body: JSON.stringify(payload)

@@ -209,7 +209,7 @@ try {
     });
 
     app.use(generalLimiter);
-    app.use('/api/gemini', apiLimiter);
+    app.use('/api/v1/gemini', apiLimiter);
 } catch (e) {
     console.warn('express-rate-limit not installed - run: npm install express-rate-limit');
 }
@@ -283,7 +283,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
     }
 }));
 
-app.get('/api/config', (req, res) => {
+app.get('/api/v1/config', (req, res) => {
     return res.json({
         captcha: {
             provider: 'turnstile',
@@ -294,7 +294,7 @@ app.get('/api/config', (req, res) => {
     });
 });
 
-app.post('/api/human/verify', async (req, res) => {
+app.post('/api/v1/human/verify', async (req, res) => {
     const ip = getClientIp(req);
     const existingHumanToken = req.get(HUMAN_PROOF_HEADER);
 
@@ -332,7 +332,7 @@ app.post('/api/human/verify', async (req, res) => {
     });
 });
 
-app.post('/api/profile', async (req, res) => {
+app.post('/api/v1/profile', async (req, res) => {
     const ip = getClientIp(req);
     const { name, email, degree, year, entrypoint } = normalizeProfilePayload(req.body);
 
@@ -425,7 +425,7 @@ app.post('/api/profile', async (req, res) => {
 });
 
 // ===== Gemini API proxy endpoint =====
-app.post('/api/gemini', async (req, res) => {
+app.post('/api/v1/gemini', async (req, res) => {
     const apiKey = process.env.GEMINI_API_KEY;
     const ip = getClientIp(req);
 

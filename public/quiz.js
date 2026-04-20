@@ -76,7 +76,7 @@ async function refreshHumanProofSession() {
     if (!restoreHumanProof()) return false;
 
     try {
-        const response = await fetch('/api/human/verify', {
+        const response = await fetch('/api/v1/human/verify', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ function getCaptchaErrorMessage(errorCode) {
 
 async function fetchSecurityConfig() {
     try {
-        const response = await fetch('/api/config');
+        const response = await fetch('/api/v1/config');
         if (!response.ok) return;
 
         const data = await response.json();
@@ -266,7 +266,7 @@ async function verifyHumanProof() {
     const body = securityConfig.captchaEnabled ? { token: captchaToken } : {};
 
     try {
-        const response = await fetch('/api/human/verify', {
+        const response = await fetch('/api/v1/human/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -513,7 +513,7 @@ RESPONSE FORMAT (for final recommendation):
 }
 
 Provide exactly 3 careers in the final recommendation. Be specific to the Indian tech market.
-For every career, provide the closest matching exact URL from roadmap.sh (e.g., https://roadmap.sh/frontend, https://roadmap.sh/backend, https://roadmap.sh/devops, https://roadmap.sh/ai-data-scientist, etc.) in the 'roadmapUrl' field. If no exact match exists, or if you are unsure, default to 'coming-soon.html'.
+For every career, provide the closest matching exact URL from roadmap.sh (e.g., https://roadmap.sh/frontend, https://roadmap.sh/backend, https://roadmap.sh/devops, https://roadmap.sh/ai-data-scientist, etc.) in the 'roadmapUrl' field. If no exact match exists, or if you are unsure, default to 'counsellor.html'.
 Start with the first question now.`;
 }
 
@@ -551,7 +551,7 @@ async function callGemini(userMessage) {
         const headers = { 'Content-Type': 'application/json' };
         if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
 
-        const res = await fetch('/api/gemini', {
+        const res = await fetch('/api/v1/gemini', {
             method: 'POST',
             headers,
             body: JSON.stringify(payload)
@@ -626,7 +626,7 @@ function parseGeminiJSON(text) {
     throw new Error('Could not parse Gemini response as JSON');
 }
 
-const ROADMAP_FALLBACK_URL = 'coming-soon.html';
+const ROADMAP_FALLBACK_URL = 'counsellor.html';
 const ROADMAP_HOSTS = new Set(['roadmap.sh', 'www.roadmap.sh']);
 const KNOWN_ROADMAP_SLUGS = new Set([
     'frontend', 'backend', 'full-stack', 'devops', 'cyber-security',
@@ -820,7 +820,7 @@ async function loadMoreCareers() {
 
     try {
         const response = await callGemini(
-            'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Use the same JSON result format with "type": "result". Make sure to include the "roadmapUrl" field for each career. Default to "coming-soon.html" if no exact roadmap.sh URL matches.'
+            'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Use the same JSON result format with "type": "result". Make sure to include the "roadmapUrl" field for each career. Default to "counsellor.html" if no exact roadmap.sh URL matches.'
         );
 
         const container = document.getElementById('resultCards');
@@ -902,10 +902,11 @@ function renderCareerCard(career, index) {
         ${(() => {
             const finalUrl = resolveRoadmapUrl(career);
             const isExternal = finalUrl.startsWith('https://roadmap.sh/');
+            const buttonText = finalUrl === 'counsellor.html' ? "🗺️ Ask Counsellor for Roadmap" : "🗺️ Dive Deeper Roadmap";
 
             return `
             <a href="${sanitize(finalUrl)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
-                🗺️ Dive Deeper Roadmap
+                ${buttonText}
             </a>
           `;
         })()}
