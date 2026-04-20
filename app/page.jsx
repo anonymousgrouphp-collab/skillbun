@@ -118,23 +118,6 @@ export default function Home() {
 
     if (statsRef.current) observer.observe(statsRef.current);
 
-    // Hamburger menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-    if (mobileMenuBtn && navLinks) {
-      const toggle = () => {
-        mobileMenuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-      };
-      mobileMenuBtn.addEventListener('click', toggle);
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenuBtn.classList.remove('active');
-          navLinks.classList.remove('active');
-        });
-      });
-    }
-
     return () => {
       clearTimeout(timer);
       if (statsRef.current) observer.unobserve(statsRef.current);
