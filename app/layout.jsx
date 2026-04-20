@@ -1,4 +1,5 @@
 import './globals.css';
+import Script from 'next/script';
 import UserMenu from './components/UserMenu';
 
 export const metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
         {children}
+        <Script src="https://accounts.google.com/gsi/client" strategy="afterInteractive" />
       </body>
     </html>
   );
