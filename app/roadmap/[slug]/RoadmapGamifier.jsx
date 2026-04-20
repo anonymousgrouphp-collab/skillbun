@@ -76,11 +76,11 @@ export default function RoadmapGamifier({ slug, children }) {
       <div className="progress-container">
         <div className="progress-label" id="progress-text">Progress: {progress}%</div>
         <div className="progress-track">
-            <div className="progress-fill" id="progress-fill" style={{ width: \`\${progress}%\` }}></div>
+            <div className="progress-fill" id="progress-fill" style={{ width: `${progress}%` }}></div>
         </div>
         <div className="roadmap-controls">
             <button 
-              className={\`btn-toggle-advanced \${hideAdvanced ? 'active' : ''}\`} 
+              className={`btn-toggle-advanced ${hideAdvanced ? 'active' : ''}`} 
               onClick={() => setHideAdvanced(!hideAdvanced)}
             >
               {hideAdvanced ? "Show Advanced" : "Hide Advanced"}

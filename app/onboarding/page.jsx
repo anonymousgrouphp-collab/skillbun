@@ -1,9 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function OnboardingPage() {
+function OnboardingForm() {
   const supabase = createClient();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -184,5 +184,18 @@ export default function OnboardingPage() {
         </p>
       </form>
     </div>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', flexDirection: 'column', gap: '1rem' }}>
+        <div className="welcome-bunny" style={{ fontSize: '3rem' }}>🐰</div>
+        <p style={{ color: 'var(--muted)', fontWeight: 700 }}>Setting things up...</p>
+      </div>
+    }>
+      <OnboardingForm />
+    </Suspense>
   );
 }
