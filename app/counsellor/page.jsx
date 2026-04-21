@@ -3,6 +3,8 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import Script from 'next/script'
 
+import { getSupabaseAnonKey, getSupabaseUrl } from '@/utils/server/env'
+
 export const metadata = {
   title: 'SkillBun - AI Career Counsellor',
   description: 'Chat with Bun-Bot, your AI Career Counsellor. Ask anything about tech careers, salaries, and roles.',
@@ -10,8 +12,8 @@ export const metadata = {
 
 export default async function CounsellorPage() {
   const cookieStore = await cookies()
-  const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co'
-  const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder'
+  const supabaseUrl = getSupabaseUrl()
+  const supabaseKey = getSupabaseAnonKey()
 
   const supabase = createServerClient(supabaseUrl, supabaseKey, {
     cookies: {

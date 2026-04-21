@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
+import { getSupabaseAnonKey, getSupabaseUrl } from '@/utils/server/env'
+
 export async function GET(request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
@@ -9,8 +11,8 @@ export async function GET(request) {
   const next = searchParams.get('next') ?? '/quiz'
 
   if (code) {
-    const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co'
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder'
+    const supabaseUrl = getSupabaseUrl()
+    const supabaseKey = getSupabaseAnonKey()
     
     // Default redirect (will be overridden below)
     let redirectTo = `${origin}${next}`

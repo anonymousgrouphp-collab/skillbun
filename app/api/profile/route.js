@@ -2,11 +2,13 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
+import { getSupabaseAnonKey, getSupabaseUrl } from '@/utils/server/env'
+
 export async function POST(request) {
   try {
     const cookieStore = await cookies()
-    const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co'
-    const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder'
+    const supabaseUrl = getSupabaseUrl()
+    const supabaseKey = getSupabaseAnonKey()
 
     const supabase = createServerClient(supabaseUrl, supabaseKey, {
       cookies: {

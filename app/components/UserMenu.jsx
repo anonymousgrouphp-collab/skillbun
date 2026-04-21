@@ -1,11 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import { useRouter } from 'next/navigation';
 
 export default function UserMenu() {
   const supabase = createClient();
-  const router = useRouter();
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -25,15 +23,33 @@ export default function UserMenu() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!open) return;
+    const handleClick = (e) => {
+      if (!e.target.closest('.user-menu-wrapper')) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [open]);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await supabase.auth.signOut();
+    } catch (err) {
+      console.error('Signout error:', err);
+    }
     localStorage.removeItem('sb_name');
     localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
     localStorage.removeItem('sb_human_proof');
-    router.push('/');
-    router.refresh();
+    // Hard reload to clear all server-side cookies/state
+    window.location.href = '/';
   };
 
   const toggleMobileMenu = () => {
@@ -74,7 +90,7 @@ export default function UserMenu() {
     );
   }
 
-  // Logged in — show profile pill with name + avatar + dropdown
+  // Logged in — show profile pill with dropdown
   const name = user.user_metadata?.full_name || 'User';
   const firstName = name.split(' ')[0];
   const avatar = user.user_metadata?.avatar_url;
@@ -83,7 +99,11 @@ export default function UserMenu() {
   return (
     <div className="mobile-dropdown-group">
       <div className="user-menu-wrapper">
-        <button className="user-profile-pill" onClick={() => setOpen(!open)} title={`Logged in as ${name}`}>
+        <button
+          className="user-profile-pill"
+          onClick={(e) => { e.stopPropagation(); setOpen(!open); }}
+          title={`Logged in as ${name}`}
+        >
           <span className="user-pill-avatar">
             {avatar ? (
               <img src={avatar} alt={name} referrerPolicy="no-referrer" />
@@ -98,20 +118,19 @@ export default function UserMenu() {
         </button>
 
         {open && (
-          <>
-            <div className="user-menu-backdrop" onClick={() => setOpen(false)} />
-            <div className="user-menu-dropdown">
-              <div className="user-menu-info">
-                <strong>{name}</strong>
-                <span>{user.email}</span>
-              </div>
-              <div className="user-menu-divider" />
-              <a href="/quiz" className="user-menu-item" onClick={() => setOpen(false)}>🎯 Career Quiz</a>
-              <a href="/counsellor" className="user-menu-item" onClick={() => setOpen(false)}>🤖 AI Counsellor</a>
-              <div className="user-menu-divider" />
-              <button className="user-menu-item user-menu-logout" onClick={handleLogout}>🚪 Logout</button>
+          <div className="user-menu-dropdown" onClick={(e) => e.stopPropagation()}>
+            <div className="user-menu-info">
+              <strong>{name}</strong>
+              <span>{user.email}</span>
             </div>
-          </>
+            <div className="user-menu-divider" />
+            <a href="/quiz" className="user-menu-item" onClick={() => setOpen(false)}>🎯 Career Quiz</a>
+            <a href="/counsellor" className="user-menu-item" onClick={() => setOpen(false)}>🤖 AI Counsellor</a>
+            <div className="user-menu-divider" />
+            <button className="user-menu-item user-menu-logout" onClick={handleLogout}>
+              🚪 Logout
+            </button>
+          </div>
         )}
       </div>
       {mobileMenuButton}
