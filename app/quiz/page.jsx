@@ -1,4 +1,5 @@
 import { createServerClient } from '@supabase/ssr'
+import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import Script from 'next/script'
@@ -103,7 +104,7 @@ export default async function QuizPage() {
             <div className="result-actions">
                 <button type="button" className="btn-primary" id="loadMoreBtn">🔍 Load More Career Paths</button>
                 <button type="button" className="btn-secondary" id="retakeBtn">🔄 Retake Quiz</button>
-                <a href="/" className="btn-secondary">🏠 Back to Home</a>
+                <Link href="/" className="btn-secondary">🏠 Back to Home</Link>
             </div>
         </div>
       </div>

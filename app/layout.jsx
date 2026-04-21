@@ -1,4 +1,5 @@
 import './globals.css';
+import Link from 'next/link';
 import Script from 'next/script';
 import UserMenu from './components/UserMenu';
 
@@ -19,17 +20,17 @@ export default function RootLayout({ children }) {
       <body>
         <nav>
           <div className="nav-logo">
-            <a href="/" className="nav-logo-link">
+            <Link href="/" className="nav-logo-link">
               <img src="/logo.png" alt="SkillBun Logo" />
               <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-            </a>
+            </Link>
           </div>
           <ul className="nav-links">
-            <li><a href="/#features">Features</a></li>
-            <li><a href="/#how">How it Works</a></li>
-            <li><a href="/#careers">Career Paths</a></li>
-            <li><a href="/counsellor">AI Counsellor</a></li>
-            <li><a href="/#contact">Connect with us</a></li>
+            <li><Link href="/#features">Features</Link></li>
+            <li><Link href="/#how">How it Works</Link></li>
+            <li><Link href="/#careers">Career Paths</Link></li>
+            <li><Link href="/counsellor">AI Counsellor</Link></li>
+            <li><Link href="/#contact">Connect with us</Link></li>
           </ul>
           <div className="nav-cta">
             <UserMenu />

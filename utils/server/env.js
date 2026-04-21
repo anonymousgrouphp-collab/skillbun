@@ -70,12 +70,18 @@ export function getHumanProofSecret() {
     return configuredSecret
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    const devSeed =
-      getFirstNonEmpty(process.env.GEMINI_API_KEY, process.env.SUPABASE_ANON_KEY, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
-      'skillbun-local-dev'
+  const fallbackSeed = getFirstNonEmpty(
+    process.env.GEMINI_API_KEY,
+    process.env.SUPABASE_ANON_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  )
 
-    return `skillbun-dev-human-proof:${devSeed}`
+  if (fallbackSeed) {
+    return `skillbun-human-proof:${fallbackSeed}`
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    return 'skillbun-human-proof:skillbun-local-dev'
   }
 
   return ''

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -41,7 +41,7 @@ function OnboardingForm() {
       setLoading(false);
     }
     checkUser();
-  }, []);
+  }, [next, router, supabase]);
 
   function syncToLocalStorage(user, profile) {
     localStorage.setItem('sb_name', user.user_metadata?.full_name || '');
