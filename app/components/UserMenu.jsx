@@ -1,16 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+
 import { createClient } from '@/utils/supabase/client';
-
-const COMPACT_BREAKPOINT = '(max-width: 1400px)';
-
-const NAV_ITEMS = [
-  { href: '/#features', label: 'Features' },
-  { href: '/#how', label: 'How it Works' },
-  { href: '/#careers', label: 'Career Paths' },
-  { href: '/#contact', label: 'Connect with us' },
-];
 
 const ACCOUNT_ITEMS = [
   { href: '/quiz', label: 'Career Quiz' },
@@ -18,57 +10,58 @@ const ACCOUNT_ITEMS = [
 ];
 
 export default function UserMenu() {
-  const supabase = createClient();
+  const menuRef = useRef(null);
+  const [supabase] = useState(() => createClient());
   const [user, setUser] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
-    async function getUser() {
+    let isMounted = true;
+
+    async function syncUser() {
       const { data: { user } } = await supabase.auth.getUser();
+
+      if (!isMounted) {
+        return;
+      }
+
       setUser(user);
       setLoading(false);
     }
 
-    getUser();
+    syncUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!isMounted) {
+        return;
+      }
+
       setUser(session?.user || null);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, [supabase]);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const media = window.matchMedia(COMPACT_BREAKPOINT);
-    const update = () => setIsCompact(media.matches);
-    update();
-
-    if (typeof media.addEventListener === 'function') {
-      media.addEventListener('change', update);
-      return () => media.removeEventListener('change', update);
+    if (!accountOpen) {
+      return;
     }
 
-    media.addListener(update);
-    return () => media.removeListener(update);
-  }, []);
-
-  useEffect(() => {
-    if (!open) return;
-
-    const handleClick = (e) => {
-      if (!e.target.closest('.user-menu-wrapper')) {
-        setOpen(false);
+    const handleClick = (event) => {
+      if (!menuRef.current?.contains(event.target)) {
+        setAccountOpen(false);
       }
     };
 
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') {
-        setOpen(false);
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setAccountOpen(false);
       }
     };
 
@@ -79,16 +72,49 @@ export default function UserMenu() {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [open]);
+  }, [accountOpen]);
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const closeNavMenu = () => {
+    const button = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    button?.classList.remove('active');
+    navLinks?.classList.remove('active');
+    setNavOpen(false);
+  };
+
+  const toggleNavMenu = () => {
+    const button = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (!button || !navLinks) {
+      return;
+    }
+
+    const nextOpen = !navLinks.classList.contains('active');
+    button.classList.toggle('active', nextOpen);
+    navLinks.classList.toggle('active', nextOpen);
+    setNavOpen(nextOpen);
+    setAccountOpen(false);
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.onclick = () => {
+        closeNavMenu();
+      };
+    });
+  };
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setAccountOpen(false);
+    closeNavMenu();
 
     try {
       await supabase.auth.signOut();
-    } catch (err) {
-      console.error('Signout error:', err);
+    } catch (error) {
+      console.error('Signout error:', error);
     }
 
     localStorage.removeItem('sb_name');
@@ -97,51 +123,41 @@ export default function UserMenu() {
     localStorage.removeItem('sb_year');
     localStorage.removeItem('sb_counsel_rl');
     localStorage.removeItem('sb_human_proof');
-    window.location.href = '/';
+    localStorage.removeItem('sb_dest');
+    window.location.assign('/');
   };
 
-  const toggleMobileMenu = () => {
-    const btn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (btn) btn.classList.toggle('active');
-    if (navLinks) {
-      navLinks.classList.toggle('active');
-      navLinks.querySelectorAll('a').forEach((link) => {
-        link.onclick = () => {
-          btn?.classList.remove('active');
-          navLinks.classList.remove('active');
-        };
-      });
-    }
+  const toggleAccountMenu = (event) => {
+    event.stopPropagation();
+    setAccountOpen((current) => !current);
+    closeNavMenu();
   };
 
-  const toggleUserMenu = (e) => {
-    e.stopPropagation();
-    setOpen((current) => !current);
-  };
-
-  const mobileMenuButton = (
-    <button className="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onClick={toggleMobileMenu}>
+  const siteMenuButton = (
+    <button
+      className={`mobile-menu-btn user-site-menu-btn ${navOpen ? 'active' : ''}`}
+      id="mobileMenuBtn"
+      aria-label="Toggle navigation menu"
+      aria-expanded={navOpen}
+      onClick={toggleNavMenu}
+    >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
+        <line x1="4" y1="7" x2="20" y2="7"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="17" x2="20" y2="17"></line>
       </svg>
     </button>
   );
 
   if (loading) {
-    return isCompact ? mobileMenuButton : null;
+    return siteMenuButton;
   }
 
   if (!user) {
-    if (!isCompact) {
-      return <Link href="/quiz" className="btn-signup">Get Started 🚀</Link>;
-    }
-
     return (
-      <div className="mobile-dropdown-group">
-        <Link href="/quiz" className="btn-signup">Get Started 🚀</Link>
-        {mobileMenuButton}
+      <div className="mobile-dropdown-group user-menu-shell">
+        <Link href="/quiz" className="btn-signup">Get Started</Link>
+        {siteMenuButton}
       </div>
     );
   }
@@ -157,38 +173,13 @@ export default function UserMenu() {
     .slice(0, 2);
 
   return (
-    <div className={`user-menu-wrapper${isCompact ? ' user-menu-wrapper-compact' : ''}`}>
-      {isCompact ? (
-        <>
-          <button
-            className="user-profile-pill user-profile-pill-split"
-            onClick={toggleUserMenu}
-            title={`Logged in as ${name}`}
-          >
-            <span className="user-pill-avatar">
-              {avatar ? (
-                <img src={avatar} alt={name} referrerPolicy="no-referrer" />
-              ) : (
-                <span className="user-pill-initials">{initials}</span>
-              )}
-            </span>
-            <span className="user-pill-name">{firstName}</span>
-          </button>
-
-          <button
-            className={`mobile-menu-btn user-menu-trigger ${open ? 'active' : ''}`}
-            aria-label="Toggle account menu"
-            onClick={toggleUserMenu}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-        </>
-      ) : (
+    <div className="mobile-dropdown-group user-menu-shell user-menu-shell-authenticated">
+      <div className="user-menu-wrapper" ref={menuRef}>
         <button
-          className="user-profile-pill"
-          onClick={toggleUserMenu}
+          className="user-profile-pill user-profile-pill-split"
+          onClick={toggleAccountMenu}
+          aria-expanded={accountOpen}
+          aria-haspopup="menu"
           title={`Logged in as ${name}`}
         >
           <span className="user-pill-avatar">
@@ -199,42 +190,33 @@ export default function UserMenu() {
             )}
           </span>
           <span className="user-pill-name">{firstName}</span>
-          <svg className={`user-pill-chevron ${open ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
-      )}
 
-      {open && (
-        <div className={`user-menu-dropdown${isCompact ? ' user-menu-dropdown-compact' : ''}`} onClick={(e) => e.stopPropagation()}>
-          <div className="user-menu-info">
-            <strong>{name}</strong>
-            <span>{user.email}</span>
-          </div>
-
-          {isCompact && (
-            <div className="user-menu-nav-group">
-              <div className="user-menu-divider" />
-              {NAV_ITEMS.map((item) => (
-                <Link key={item.href} href={item.href} className="user-menu-item" onClick={() => setOpen(false)}>
-                  {item.label}
-                </Link>
-              ))}
+        {accountOpen && (
+          <div className="user-menu-dropdown" onClick={(event) => event.stopPropagation()}>
+            <div className="user-menu-info">
+              <strong>{name}</strong>
+              <span>{user.email}</span>
             </div>
-          )}
 
-          <div className="user-menu-divider" />
-          {ACCOUNT_ITEMS.map((item) => (
-            <Link key={item.href} href={item.href} className="user-menu-item" onClick={() => setOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
-          <div className="user-menu-divider" />
-          <button className="user-menu-item user-menu-logout" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      )}
+            <div className="user-menu-divider" />
+            {ACCOUNT_ITEMS.map((item) => (
+              <Link key={item.href} href={item.href} className="user-menu-item" onClick={() => setAccountOpen(false)}>
+                {item.label}
+              </Link>
+            ))}
+            <div className="user-menu-divider" />
+            <button className="user-menu-item user-menu-logout" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+
+      {siteMenuButton}
     </div>
   );
 }
