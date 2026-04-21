@@ -1042,11 +1042,6 @@ footer {
     padding-right: 0.8rem;
   }
 
-  .mobile-dropdown-group .user-profile-pill {
-    border-radius: 50px 0 0 50px !important;
-    padding-right: 0.85rem;
-  }
-
   .nav-links {
     position: absolute;
     top: 100%;
@@ -2750,9 +2745,6 @@ body.hide-advanced .topic-advanced {
   .user-profile-pill {
     padding: 0.3rem 0.45rem 0.3rem 0.3rem;
   }
-  .user-pill-chevron {
-    display: none;
-  }
 }
 
 .user-menu-backdrop {
@@ -2793,6 +2785,10 @@ body.hide-advanced .topic-advanced {
   font-weight: 600;
 }
 
+.user-menu-nav-group {
+  display: none;
+}
+
 .user-menu-divider {
   height: 1px;
   background: #21262d;
@@ -2826,6 +2822,16 @@ body.hide-advanced .topic-advanced {
 
 .user-menu-logout:hover {
   background: rgba(248, 81, 73, 0.08);
+}
+
+@media (max-width: 1400px) {
+  .user-menu-dropdown {
+    min-width: 250px;
+  }
+
+  .user-menu-nav-group {
+    display: block;
+  }
 }
 
 /* ===== STATIC PAGES (About, Privacy, Terms) ===== */
