@@ -1,14 +1,15 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
+import { getSupabaseAnonKey, getSupabaseUrl, isSupabaseConfigured } from '@/utils/server/env'
+
 export async function proxy(request) {
   let supabaseResponse = NextResponse.next({
     request,
   })
 
-  // To secure against failing when env vars are missing during local build/test
-  const supabaseUrl = process.env.SUPABASE_URL || 'https://placeholder.supabase.co'
-  const supabaseKey = process.env.SUPABASE_ANON_KEY || 'placeholder'
+  const supabaseUrl = getSupabaseUrl()
+  const supabaseKey = getSupabaseAnonKey()
 
   const supabase = createServerClient(
     supabaseUrl,
@@ -32,7 +33,7 @@ export async function proxy(request) {
   )
 
   // Skip auth check if environment variables aren't strictly connected yet
-  if (process.env.SUPABASE_URL) {
+  if (isSupabaseConfigured()) {
       const { data: { user } } = await supabase.auth.getUser();
 
       const protectedRoutes = ['/quiz', '/counsellor', '/roadmap', '/onboarding']

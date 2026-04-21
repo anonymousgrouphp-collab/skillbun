@@ -1,42 +1,83 @@
 import { NextResponse } from 'next/server'
 
+import { getTurnstileSecretKey, isCaptchaEnabled } from '@/utils/server/env'
+import { issueHumanProofToken, verifyHumanProofToken } from '@/utils/server/humanProof'
+
 export async function POST(request) {
-  const CAPTCHA_ENABLED = Boolean(process.env.TURNSTILE_SITE_KEY && process.env.TURNSTILE_SECRET_KEY);
-  
-  if (!CAPTCHA_ENABLED) {
+  const captchaEnabled = isCaptchaEnabled()
+  const existingToken = request.headers.get('x-skillbun-human') || ''
+  const existingVerification = verifyHumanProofToken(existingToken)
+
+  if (existingVerification.valid) {
+    const refreshed = issueHumanProofToken({ v: 1 })
+
+    if (!refreshed) {
+      return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
+    }
+
     return NextResponse.json({
-        captchaEnabled: false,
-        humanToken: 'skip',
-        expiresAt: Date.now() + 1800000
-    });
+      captchaEnabled: captchaEnabled,
+      humanToken: refreshed.token,
+      expiresAt: refreshed.expiresAt,
+    })
+  }
+
+  if (!captchaEnabled) {
+    const issued = issueHumanProofToken({ v: 1 })
+
+    if (!issued) {
+      return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
+    }
+
+    return NextResponse.json({
+      captchaEnabled: false,
+      humanToken: issued.token,
+      expiresAt: issued.expiresAt,
+    })
   }
 
   try {
-    const body = await request.json();
-    const token = body?.token;
+    const body = await request.json().catch(() => ({}))
+    const token = typeof body?.token === 'string' ? body.token : ''
 
-    const formBody = new URLSearchParams({
-        secret: process.env.TURNSTILE_SECRET_KEY,
-        response: token
-    });
-
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody.toString()
-    });
-
-    const data = await response.json();
-    if (data.success) {
-      return NextResponse.json({
-          captchaEnabled: true,
-          humanToken: 'verified',
-          expiresAt: Date.now() + 1800000
-      });
+    if (!token) {
+      return NextResponse.json({ error: 'Captcha token is required.' }, { status: 400 })
     }
 
-    return NextResponse.json({ error: 'Captcha verification failed.' }, { status: 403 });
-  } catch (err) {
-    return NextResponse.json({ error: 'Captcha error.' }, { status: 500 });
+    const formBody = new URLSearchParams({
+      secret: getTurnstileSecretKey(),
+      response: token
+    })
+
+    const forwardedFor = request.headers.get('x-forwarded-for') || ''
+    const remoteIp = forwardedFor.split(',')[0]?.trim()
+    if (remoteIp) {
+      formBody.set('remoteip', remoteIp)
+    }
+
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody.toString()
+    })
+
+    const data = await response.json()
+    if (data.success) {
+      const issued = issueHumanProofToken({ v: 1 })
+
+      if (!issued) {
+        return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
+      }
+
+      return NextResponse.json({
+        captchaEnabled: true,
+        humanToken: issued.token,
+        expiresAt: issued.expiresAt
+      })
+    }
+
+    return NextResponse.json({ error: 'Captcha verification failed.' }, { status: 403 })
+  } catch {
+    return NextResponse.json({ error: 'Captcha error.' }, { status: 500 })
   }
 }
