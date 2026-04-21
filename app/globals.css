@@ -1042,8 +1042,9 @@ footer {
     padding-right: 0.8rem;
   }
 
-  .mobile-dropdown-group.dark-group .quiz-user-badge {
+  .mobile-dropdown-group .user-profile-pill {
     border-radius: 50px 0 0 50px !important;
+    padding-right: 0.85rem;
   }
 
   .nav-links {
@@ -2680,18 +2681,21 @@ body.hide-advanced .topic-advanced {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  padding: 0.35rem 1rem 0.35rem 0.45rem;
   border-radius: 999px;
-  border: 2px solid #30363d;
-  background: var(--card-bg);
+  border: none;
+  background: linear-gradient(135deg, #2ecc71, #1a9e55);
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
   font-family: 'Nunito', sans-serif;
+  color: #0d1117;
+  box-shadow: 0 10px 26px rgba(46, 204, 113, 0.18);
 }
 
 .user-profile-pill:hover {
-  border-color: var(--green);
-  box-shadow: 0 0 12px rgba(46, 204, 113, 0.15);
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 14px 32px rgba(46, 204, 113, 0.24);
 }
 
 .user-pill-avatar {
@@ -2702,7 +2706,7 @@ body.hide-advanced .topic-advanced {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(46, 204, 113, 0.12);
+  background: rgba(13, 17, 23, 0.14);
   flex-shrink: 0;
 }
 
@@ -2722,7 +2726,7 @@ body.hide-advanced .topic-advanced {
 .user-pill-name {
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--text);
+  color: #0d1117;
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2731,7 +2735,7 @@ body.hide-advanced .topic-advanced {
 
 .user-pill-chevron {
   transition: transform 0.2s;
-  color: var(--muted);
+  color: rgba(13, 17, 23, 0.7);
   flex-shrink: 0;
 }
 
@@ -2744,7 +2748,7 @@ body.hide-advanced .topic-advanced {
     display: none;
   }
   .user-profile-pill {
-    padding: 0.3rem;
+    padding: 0.3rem 0.45rem 0.3rem 0.3rem;
   }
   .user-pill-chevron {
     display: none;

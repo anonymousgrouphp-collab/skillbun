@@ -13,6 +13,8 @@ const FLOATER_TEXTS = [
 ];
 
 const CODE_CHARS = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
+const FLOATER_LEFT_LANES = [10, 18, 27, 35];
+const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -88,11 +90,19 @@ export default function Home() {
     const floatersEl = document.getElementById('floaters');
     if (floatersEl) {
       floatersEl.innerHTML = '';
-      for (let i = 0; i < 15; i++) {
+      let leftLaneIndex = 0;
+      let rightLaneIndex = 0;
+
+      for (let i = 0; i < FLOATER_TEXTS.length; i++) {
         const floater = document.createElement('div');
         floater.className = 'floater';
         floater.textContent = FLOATER_TEXTS[i];
-        floater.style.left = `${Math.random() * 92}%`;
+        const placeOnLeft = i % 2 === 0;
+        const laneGroup = placeOnLeft ? FLOATER_LEFT_LANES : FLOATER_RIGHT_LANES;
+        const laneIndex = placeOnLeft ? leftLaneIndex++ : rightLaneIndex++;
+        const baseLeft = laneGroup[laneIndex % laneGroup.length];
+        const jitter = (Math.random() - 0.5) * 4;
+        floater.style.left = `${baseLeft + jitter}%`;
         floater.style.animationDuration = `${10 + Math.random() * 12}s`;
         floater.style.animationDelay = `${Math.random() * 8}s`;
         floatersEl.appendChild(floater);
