@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
 const FLOATER_TEXTS = [
@@ -23,7 +22,6 @@ export default function Home() {
   const statsRef = useRef(null);
   const statsAnimated = useRef(false);
   const supabase = createClient();
-  const router = useRouter();
   const googleBtnRef = useRef(null);
 
   useEffect(() => {
@@ -159,6 +157,7 @@ export default function Home() {
 
   const handleGoogleCredential = useEffectEvent(async (response) => {
     setIsLoggingIn(true);
+
     try {
       const { data, error } = await supabase.auth.signInWithIdToken({
         provider: 'google',
@@ -171,26 +170,36 @@ export default function Home() {
         return;
       }
 
+      if (!data.user) {
+        throw new Error('Google sign-in did not return a user session.');
+      }
+
       const dest = localStorage.getItem('sb_dest') || '/quiz';
 
-      // Check if user has completed onboarding
-      const { data: profile } = await supabase
+      const { data: profile, error: profileError } = await supabase
         .from('user_profiles')
         .select('degree, current_year')
         .eq('user_id', data.user.id)
-        .single();
+        .maybeSingle();
+
+      if (profileError) {
+        console.error('Profile lookup error:', profileError.message);
+      }
+
+      let nextPath = dest;
 
       if (!profile || !profile.degree || !profile.current_year) {
-        router.push(`/onboarding?next=${encodeURIComponent(dest)}`);
+        nextPath = `/onboarding?next=${encodeURIComponent(dest)}`;
       } else {
         localStorage.setItem('sb_name', data.user.user_metadata?.full_name || '');
         localStorage.setItem('sb_email', data.user.email || '');
         localStorage.setItem('sb_degree', profile.degree || '');
         localStorage.setItem('sb_year', profile.current_year || '');
-        router.push(dest);
       }
 
+      localStorage.removeItem('sb_dest');
       setShowModal(false);
+      window.location.assign(nextPath);
     } catch (err) {
       console.error('Login failed:', err);
       setIsLoggingIn(false);
