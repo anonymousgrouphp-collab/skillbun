@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useEffectEvent, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
@@ -26,12 +26,17 @@ export default function Home() {
 
   useEffect(() => {
     let timer;
+    let authFrame;
+    const shuffleTimeouts = [];
+    const shuffleIntervals = [];
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('authRequired') === 'true') {
-      setShowSplash(false);
       localStorage.setItem('sb_dest', urlParams.get('dest') || '/quiz');
-      setShowModal(true);
       window.history.replaceState({}, '', '/');
+      authFrame = window.requestAnimationFrame(() => {
+        setShowSplash(false);
+        setShowModal(true);
+      });
     } else {
       // Splash timer
       timer = setTimeout(() => setShowSplash(false), 3000);
@@ -43,7 +48,7 @@ export default function Home() {
       const finalWord = el.getAttribute('data-final') || '';
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
       let iteration = 0;
-      setTimeout(() => {
+      const timeoutId = window.setTimeout(() => {
         const iv = setInterval(() => {
           el.innerText = finalWord.split('').map((letter, i) => {
             if (i < iteration) return finalWord[i];
@@ -55,12 +60,15 @@ export default function Home() {
             clearInterval(iv);
           }
         }, 50);
+        shuffleIntervals.push(iv);
       }, 3500 + idx * 400);
+      shuffleTimeouts.push(timeoutId);
     });
 
     // Code Rain on splash
     const rainEl = document.getElementById('codeRain');
     if (rainEl) {
+      rainEl.innerHTML = '';
       for (let i = 0; i < 20; i++) {
         const col = document.createElement('div');
         col.className = 'code-col';
@@ -79,6 +87,7 @@ export default function Home() {
     // Floating code snippets in hero
     const floatersEl = document.getElementById('floaters');
     if (floatersEl) {
+      floatersEl.innerHTML = '';
       for (let i = 0; i < 15; i++) {
         const floater = document.createElement('div');
         floater.className = 'floater';
@@ -116,11 +125,20 @@ export default function Home() {
       });
     }, { threshold: 0.5 });
 
-    if (statsRef.current) observer.observe(statsRef.current);
+    const statsNode = statsRef.current;
+    if (statsNode) observer.observe(statsNode);
 
     return () => {
+      if (authFrame) {
+        window.cancelAnimationFrame(authFrame);
+      }
       clearTimeout(timer);
-      if (statsRef.current) observer.unobserve(statsRef.current);
+      shuffleTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
+      shuffleIntervals.forEach((intervalId) => window.clearInterval(intervalId));
+      observer.disconnect();
+      if (statsNode) observer.unobserve(statsNode);
+      if (rainEl) rainEl.innerHTML = '';
+      if (floatersEl) floatersEl.innerHTML = '';
     };
   }, []);
 
@@ -129,7 +147,7 @@ export default function Home() {
     setShowModal(true);
   };
 
-  const handleGoogleCredential = async (response) => {
+  const handleGoogleCredential = useEffectEvent(async (response) => {
     setIsLoggingIn(true);
     try {
       const { data, error } = await supabase.auth.signInWithIdToken({
@@ -167,16 +185,20 @@ export default function Home() {
       console.error('Login failed:', err);
       setIsLoggingIn(false);
     }
-  };
+  });
 
   // Render Google Sign-In button when modal opens
   useEffect(() => {
     if (!showModal) return;
 
+    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    if (!clientId) return;
+
     const renderBtn = () => {
       if (googleBtnRef.current && window.google) {
+        googleBtnRef.current.innerHTML = '';
         window.google.accounts.id.initialize({
-          client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          client_id: clientId,
           callback: handleGoogleCredential,
         });
         window.google.accounts.id.renderButton(googleBtnRef.current, {

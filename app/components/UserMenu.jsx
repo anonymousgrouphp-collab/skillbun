@@ -21,7 +21,7 @@ export default function UserMenu() {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [supabase]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -47,6 +47,7 @@ export default function UserMenu() {
     localStorage.removeItem('sb_email');
     localStorage.removeItem('sb_degree');
     localStorage.removeItem('sb_year');
+    localStorage.removeItem('sb_counsel_rl');
     localStorage.removeItem('sb_human_proof');
     // Hard reload to clear all server-side cookies/state
     window.location.href = '/';
