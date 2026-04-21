@@ -2672,6 +2672,7 @@ body.hide-advanced .topic-advanced {
   position: relative;
   display: flex;
   align-items: stretch;
+  justify-content: flex-end;
 }
 
 .user-profile-pill {
@@ -2710,6 +2711,10 @@ body.hide-advanced .topic-advanced {
 .user-menu-trigger:hover {
   filter: brightness(1.03);
   box-shadow: 0 14px 32px rgba(46, 204, 113, 0.24);
+}
+
+.user-menu-wrapper-compact .user-menu-dropdown {
+  right: 0;
 }
 
 .user-pill-avatar {
@@ -2789,6 +2794,10 @@ body.hide-advanced .topic-advanced {
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
 
+.user-menu-dropdown-compact {
+  width: min(280px, calc(100vw - 24px));
+}
+
 .user-menu-info {
   padding: 0.75rem;
   display: flex;
@@ -2808,7 +2817,7 @@ body.hide-advanced .topic-advanced {
 }
 
 .user-menu-nav-group {
-  display: none;
+  display: block;
 }
 
 .user-menu-divider {
@@ -2846,13 +2855,15 @@ body.hide-advanced .topic-advanced {
   background: rgba(248, 81, 73, 0.08);
 }
 
+@media (min-width: 1401px) {
+  .user-menu-nav-group {
+    display: none;
+  }
+}
+
 @media (max-width: 1400px) {
   .user-menu-dropdown {
     min-width: 250px;
-  }
-
-  .user-menu-nav-group {
-    display: block;
   }
 }
 
