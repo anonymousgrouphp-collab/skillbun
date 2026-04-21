@@ -97,15 +97,16 @@ export default function UserMenu() {
   const firstName = name.split(' ')[0];
   const avatar = user.user_metadata?.avatar_url;
   const initials = name.split(' ').map((part) => part[0]).join('').toUpperCase().slice(0, 2);
+  const toggleUserMenu = (e) => {
+    e.stopPropagation();
+    setOpen(!open);
+  };
 
   return (
-    <div className="user-menu-wrapper">
+    <div className="mobile-dropdown-group user-menu-wrapper">
       <button
-        className="user-profile-pill"
-        onClick={(e) => {
-          e.stopPropagation();
-          setOpen(!open);
-        }}
+        className="user-profile-pill user-profile-pill-split"
+        onClick={toggleUserMenu}
         title={`Logged in as ${name}`}
       >
         <span className="user-pill-avatar">
@@ -116,7 +117,14 @@ export default function UserMenu() {
           )}
         </span>
         <span className="user-pill-name">{firstName}</span>
-        <svg className={`user-pill-chevron ${open ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      </button>
+
+      <button
+        className={`mobile-menu-btn user-menu-trigger ${open ? 'active' : ''}`}
+        aria-label="Toggle user menu"
+        onClick={toggleUserMenu}
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </button>
