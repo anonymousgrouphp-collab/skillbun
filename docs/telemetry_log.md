@@ -1757,3 +1757,4 @@
 [2026-04-23T18:31:55] fix(analytics): correct career aptitude score calculation
 [2026-04-23T10:11:12] feat(roadmap): add milestone progress tracking
 [2026-04-23T22:35:59] feat(career): enhance career pathway matching algorithm
+[2026-04-23T09:15:59] feat(roadmap): add milestone progress tracking
