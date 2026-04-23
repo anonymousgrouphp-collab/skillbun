@@ -1748,3 +1748,4 @@
 [2025-11-30T12:44:44] feat(career): enhance career pathway matching algorithm
 [2026-04-23T20:37:57] feat(roadmap): add milestone progress tracking
 [2026-04-23T09:16:10] feat(career): enhance career pathway matching algorithm
+[2026-04-23T17:12:50] fix(analytics): correct career aptitude score calculation
