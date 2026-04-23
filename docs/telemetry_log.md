@@ -1752,3 +1752,4 @@
 [2026-04-23T16:03:29] feat(career): enhance career pathway matching algorithm
 [2026-04-23T10:24:42] refactor(counseling): streamline multi-step guidance flow
 [2026-04-23T19:55:06] feat(career): enhance career pathway matching algorithm
+[2026-04-23T17:55:56] test(matching): add test suite for recommendation score
