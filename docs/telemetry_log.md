@@ -1307,3 +1307,4 @@
 [2026-04-24T16:41:20] feat(career): enhance career pathway matching algorithm
 [2026-04-24T15:42:55] style(ui): adjust career dashboard card elevation
 [2026-04-24T11:27:42] docs(telemetry): record platform assessment metrics
+[2026-04-24T23:22:42] test(matching): add test suite for recommendation score
