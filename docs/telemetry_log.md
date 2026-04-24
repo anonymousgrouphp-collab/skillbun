@@ -1306,3 +1306,4 @@
 [2026-04-24T21:28:02] fix(assessment): refine skill gap analysis scoring weights
 [2026-04-24T16:41:20] feat(career): enhance career pathway matching algorithm
 [2026-04-24T15:42:55] style(ui): adjust career dashboard card elevation
+[2026-04-24T11:27:42] docs(telemetry): record platform assessment metrics
