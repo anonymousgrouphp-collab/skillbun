@@ -49,6 +49,14 @@ function clearHumanProof() {
     }
 }
 
+function resetCaptchaWidget() {
+    captchaToken = '';
+
+    if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
+        window.turnstile.reset(captchaWidgetId);
+    }
+}
+
 function restoreHumanProof() {
     try {
         const raw = localStorage.getItem(HUMAN_PROOF_STORAGE_KEY);
@@ -274,7 +282,9 @@ async function verifyHumanProof() {
 
         if (!response.ok) {
             clearHumanProof();
-            setCaptchaStatus('Verification failed. Please retry.', 'error');
+            resetCaptchaWidget();
+            const data = await response.json().catch(() => ({}));
+            setCaptchaStatus(data.error || 'Verification failed. Please retry.', 'error');
             return false;
         }
 
@@ -284,6 +294,7 @@ async function verifyHumanProof() {
 
         if (!token || !Number.isFinite(parsedExpiresAt)) {
             clearHumanProof();
+            resetCaptchaWidget();
             setCaptchaStatus('Verification failed. Please retry.', 'error');
             return false;
         }
@@ -291,12 +302,12 @@ async function verifyHumanProof() {
         persistHumanProof(token, parsedExpiresAt);
 
         if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
-            window.turnstile.reset(captchaWidgetId);
-            captchaToken = '';
+            resetCaptchaWidget();
         }
 
         return true;
     } catch (err) {
+        resetCaptchaWidget();
         setCaptchaStatus('Verification failed. Please check your internet and retry.', 'error');
         return false;
     }

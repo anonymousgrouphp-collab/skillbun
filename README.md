@@ -79,6 +79,10 @@ TURNSTILE_SECRET_KEY=your_turnstile_secret_key
 # to avoid hostname authorization failures on localhost.
 TURNSTILE_FORCE_REAL_KEYS=false
 
+# Optional: forward client IP to Turnstile siteverify.
+# Keep false unless your deployment passes a clean visitor IP to Express.
+TURNSTILE_FORWARD_REMOTE_IP=false
+
 # Optional: secret used to sign human-proof tokens
 HUMAN_PROOF_SECRET=generate_a_long_random_secret
 HUMAN_PROOF_TTL_MS=1800000

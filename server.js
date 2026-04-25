@@ -6,14 +6,27 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const TURNSTILE_SITE_KEY = (process.env.TURNSTILE_SITE_KEY || '').trim();
-const TURNSTILE_SECRET_KEY = (process.env.TURNSTILE_SECRET_KEY || '').trim();
+function cleanEnvValue(value) {
+    const trimmed = String(value || '').trim();
+    const first = trimmed[0];
+    const last = trimmed[trimmed.length - 1];
+
+    if ((first === '"' && last === '"') || (first === "'" && last === "'")) {
+        return trimmed.slice(1, -1).trim();
+    }
+
+    return trimmed;
+}
+
+const TURNSTILE_SITE_KEY = cleanEnvValue(process.env.TURNSTILE_SITE_KEY);
+const TURNSTILE_SECRET_KEY = cleanEnvValue(process.env.TURNSTILE_SECRET_KEY);
 const CAPTCHA_ENABLED = Boolean(TURNSTILE_SITE_KEY && TURNSTILE_SECRET_KEY);
 const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA';
 const TURNSTILE_TEST_SECRET_KEY = '1x0000000000000000000000000000000AA';
 const TURNSTILE_FORCE_REAL_KEYS = String(process.env.TURNSTILE_FORCE_REAL_KEYS || '').toLowerCase() === 'true';
 const USE_TURNSTILE_TEST_KEYS = CAPTCHA_ENABLED && !IS_PRODUCTION && !TURNSTILE_FORCE_REAL_KEYS;
-const configuredHumanProofSecret = (process.env.HUMAN_PROOF_SECRET || '').trim();
+const TURNSTILE_FORWARD_REMOTE_IP = String(process.env.TURNSTILE_FORWARD_REMOTE_IP || '').toLowerCase() === 'true';
+const configuredHumanProofSecret = cleanEnvValue(process.env.HUMAN_PROOF_SECRET);
 const HUMAN_PROOF_SECRET = configuredHumanProofSecret
     || (IS_PRODUCTION ? crypto.randomBytes(32).toString('hex') : 'skillbun-dev-proof-secret-change-in-prod');
 const HUMAN_PROOF_TTL_MS = Number.parseInt(process.env.HUMAN_PROOF_TTL_MS || '1800000', 10); // 30 min
@@ -109,7 +122,7 @@ async function verifyTurnstileToken(token, remoteIp) {
     }
 
     if (typeof token !== 'string' || token.length < 10 || token.length > 2048) {
-        return { success: false };
+        return { success: false, errorCodes: ['missing-input-response'] };
     }
 
     const controller = new AbortController();
@@ -121,7 +134,7 @@ async function verifyTurnstileToken(token, remoteIp) {
             response: token
         });
 
-        if (remoteIp) {
+        if (TURNSTILE_FORWARD_REMOTE_IP && remoteIp && remoteIp !== 'unknown') {
             formBody.set('remoteip', remoteIp);
         }
 
@@ -132,21 +145,45 @@ async function verifyTurnstileToken(token, remoteIp) {
             signal: controller.signal
         });
 
+        const data = await response.json().catch(() => ({}));
+        const errorCodes = Array.isArray(data?.['error-codes']) ? data['error-codes'] : [];
+
         if (!response.ok) {
-            return { success: false };
+            return { success: false, errorCodes: errorCodes.length ? errorCodes : ['siteverify-http-error'] };
         }
 
-        const data = await response.json();
-        return { success: data?.success === true };
+        return {
+            success: data?.success === true,
+            errorCodes,
+            hostname: data?.hostname
+        };
     } catch (err) {
         if (err.name === 'AbortError') {
-            return { success: false };
+            return { success: false, errorCodes: ['siteverify-timeout'] };
         }
 
-        return { success: false };
+        return { success: false, errorCodes: ['siteverify-network-error'] };
     } finally {
         clearTimeout(timeout);
     }
+}
+
+function getTurnstileFailureMessage(errorCodes) {
+    const codes = Array.isArray(errorCodes) ? errorCodes : [];
+
+    if (codes.some(code => /missing-input-secret|invalid-input-secret/i.test(code))) {
+        return 'Captcha is misconfigured on the server. Please contact the SkillBun team.';
+    }
+
+    if (codes.some(code => /timeout-or-duplicate/i.test(code))) {
+        return 'Verification expired. Please complete the captcha again.';
+    }
+
+    if (codes.some(code => /missing-input-response|invalid-input-response/i.test(code))) {
+        return 'Verification token was rejected. Please complete the captcha again.';
+    }
+
+    return 'Captcha verification failed. Please complete the captcha again.';
 }
 
 function isValidEmail(email) {
@@ -379,7 +416,8 @@ app.post('/api/v1/human/verify', async (req, res) => {
     const result = await verifyTurnstileToken(token, ip);
 
     if (!result.success) {
-        return res.status(403).json({ error: 'Captcha verification failed. Please try again.' });
+        console.warn('Turnstile verification failed:', result.errorCodes || []);
+        return res.status(403).json({ error: getTurnstileFailureMessage(result.errorCodes) });
     }
 
     const issued = issueHumanProofToken(ip);

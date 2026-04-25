@@ -98,6 +98,14 @@ function clearHumanProof() {
     }
 }
 
+function resetCaptchaWidget() {
+    captchaToken = '';
+
+    if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
+        window.turnstile.reset(captchaWidgetId);
+    }
+}
+
 function restoreHumanProof() {
     try {
         const raw = localStorage.getItem(HUMAN_PROOF_STORAGE_KEY);
@@ -416,7 +424,9 @@ async function verifyHumanProof() {
 
         if (!response.ok) {
             clearHumanProof();
-            setCaptchaStatus('Verification failed. Please try again.', 'error');
+            resetCaptchaWidget();
+            const data = await response.json().catch(() => ({}));
+            setCaptchaStatus(data.error || 'Verification failed. Please try again.', 'error');
             return false;
         }
 
@@ -426,19 +436,20 @@ async function verifyHumanProof() {
 
         if (!token || !Number.isFinite(expiresAt)) {
             clearHumanProof();
+            resetCaptchaWidget();
             return false;
         }
 
         persistHumanProof(token, expiresAt);
 
         if (securityConfig.captchaEnabled && window.turnstile && captchaWidgetId !== null) {
-            window.turnstile.reset(captchaWidgetId);
-            captchaToken = '';
+            resetCaptchaWidget();
         }
 
         toggleSecurityBanner(false);
         return true;
     } catch (err) {
+        resetCaptchaWidget();
         toggleSecurityBanner(true);
         setCaptchaStatus('Verification failed. Please try again.', 'error');
         return false;
