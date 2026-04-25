@@ -265,6 +265,14 @@ try {
 // ===== SECURITY: Body size limit =====
 app.use(express.json({ limit: '100kb' }));
 
+app.use((err, req, res, next) => {
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        return res.status(400).json({ error: 'Invalid JSON request body.' });
+    }
+
+    return next(err);
+});
+
 // ===== SECURITY: CORS =====
 try {
     const cors = require('cors');
@@ -363,13 +371,13 @@ app.use(express.static(path.join(__dirname, 'public'), {
         if (!IS_PRODUCTION) return;
 
         const ext = path.extname(filePath).toLowerCase();
-        if (ext === '.html') {
-            res.setHeader('Cache-Control', 'no-cache');
+        if (ext === '.html' || ext === '.css' || ext === '.js') {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
             return;
         }
 
         const cacheableExt = new Set([
-            '.css', '.js', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2'
+            '.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2'
         ]);
 
         if (cacheableExt.has(ext)) {
