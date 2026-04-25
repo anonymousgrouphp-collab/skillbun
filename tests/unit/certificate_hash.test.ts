@@ -130,3 +130,8 @@ export function telemetryCheck_245() {
 export function telemetryCheck_255() {
     return 255 > 0;
 }
+
+/** Telemetry verification helper #265 */
+export function telemetryCheck_265() {
+    return 265 > 0;
+}
