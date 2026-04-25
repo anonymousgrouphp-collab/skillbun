@@ -4,9 +4,11 @@ import Link from 'next/link';
 
 import { createClient } from '@/utils/supabase/client';
 
-const ACCOUNT_ITEMS = [
-  { href: '/quiz', label: 'Career Quiz' },
-  { href: '/counsellor', label: 'AI Counsellor' },
+const MENU_ITEMS = [
+  { href: '/profile', label: 'Profile' },
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/roadmaps', label: 'Saved Roadmaps' },
+  { href: '/support', label: 'Help & Support' },
 ];
 
 export default function UserMenu() {
@@ -16,6 +18,7 @@ export default function UserMenu() {
   const [accountOpen, setAccountOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -108,6 +111,7 @@ export default function UserMenu() {
     event.preventDefault();
     event.stopPropagation();
 
+    setSigningOut(true);
     setAccountOpen(false);
     closeNavMenu();
 
@@ -165,12 +169,21 @@ export default function UserMenu() {
   const name = user.user_metadata?.full_name || 'User';
   const firstName = name.split(' ')[0];
   const avatar = user.user_metadata?.avatar_url;
+  const email = user.email;
   const initials = name
     .split(' ')
     .map((part) => part[0])
     .join('')
     .toUpperCase()
     .slice(0, 2);
+
+  const MOBILE_ONLY_ITEMS = [
+    { href: '/#features', label: 'Features' },
+    { href: '/#how', label: 'How it Works' },
+    { href: '/#careers', label: 'Career Paths' },
+    { href: '/counsellor', label: 'AI Counsellor' },
+    { href: '/#contact', label: 'Connect with us' },
+  ];
 
   return (
     <div className="mobile-dropdown-group user-menu-shell user-menu-shell-authenticated">
@@ -196,27 +209,44 @@ export default function UserMenu() {
         </button>
 
         {accountOpen && (
-          <div className="user-menu-dropdown" onClick={(event) => event.stopPropagation()}>
-            <div className="user-menu-info">
-              <strong>{name}</strong>
-              <span>{user.email}</span>
-            </div>
-
-            <div className="user-menu-divider" />
-            {ACCOUNT_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} className="user-menu-item" onClick={() => setAccountOpen(false)}>
+          <div className="user-menu-dropdown" role="menu" onClick={(event) => event.stopPropagation()}>
+            {MOBILE_ONLY_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="user-menu-item mobile-nav-item"
+                role="menuitem"
+                onClick={() => setAccountOpen(false)}
+              >
                 {item.label}
               </Link>
             ))}
-            <div className="user-menu-divider" />
-            <button className="user-menu-item user-menu-logout" onClick={handleLogout}>
-              Logout
+            
+            {MOBILE_ONLY_ITEMS.length > 0 && <div className="user-menu-divider mobile-nav-item" />}
+
+            {MENU_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="user-menu-item"
+                role="menuitem"
+                onClick={() => setAccountOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            
+            <button
+              className="user-menu-item user-menu-signout"
+              onClick={handleLogout}
+              disabled={signingOut}
+              role="menuitem"
+            >
+              {signingOut ? 'Signing out…' : 'Sign Out'}
             </button>
           </div>
         )}
       </div>
-
-      {siteMenuButton}
     </div>
   );
 }
