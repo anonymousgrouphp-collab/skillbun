@@ -13,7 +13,7 @@ Developed by Team SkillBun (5 IITians) as a capstone project:
 ## ✨ What's New
 
 - Profile onboarding flow (name, email, degree, year) before quiz/counsellor usage.
-- Optional server-side profile sync to Supabase via `/api/profile`.
+- Optional server-side profile sync to Supabase via `/api/v1/profile`.
 - Human verification flow with optional Cloudflare Turnstile.
 - Signed short-lived `x-skillbun-human` token required for Gemini API proxy calls.
 - Hardened Gemini proxy validation (conversation structure, text size, payload limits, timeout handling).
@@ -133,18 +133,18 @@ add constraint user_profiles_email_key unique (email);
 
 ## 🔌 API Endpoints
 
-- `GET /api/config`
+- `GET /api/v1/config`
   - Returns captcha config for frontend.
 
-- `POST /api/human/verify`
+- `POST /api/v1/human/verify`
   - Verifies Turnstile token when enabled.
   - Issues signed short-lived human-proof token.
 
-- `POST /api/profile`
+- `POST /api/v1/profile`
   - Validates and stores profile data.
   - Returns `stored: false` when Supabase is not configured.
 
-- `POST /api/gemini`
+- `POST /api/v1/gemini`
   - Requires `x-skillbun-human` header.
   - Validates conversation payload and proxies request to Gemini.
 

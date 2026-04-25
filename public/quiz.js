@@ -1042,7 +1042,7 @@ function showResults(data) {
 // --- Retry ---
 function retryLastQuestion() {
     // Remove the failed user message from history so it can be re-sent cleanly
-    if (conversationHistory.length > 1) {
+    if (conversationHistory.length > 1 && conversationHistory[conversationHistory.length - 1]?.role === 'user') {
         conversationHistory.pop();
     }
     if (lastSelectedOption) {

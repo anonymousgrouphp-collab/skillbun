@@ -13,7 +13,9 @@ const TURNSTILE_TEST_SITE_KEY = '1x00000000000000000000AA';
 const TURNSTILE_TEST_SECRET_KEY = '1x0000000000000000000000000000000AA';
 const TURNSTILE_FORCE_REAL_KEYS = String(process.env.TURNSTILE_FORCE_REAL_KEYS || '').toLowerCase() === 'true';
 const USE_TURNSTILE_TEST_KEYS = CAPTCHA_ENABLED && !IS_PRODUCTION && !TURNSTILE_FORCE_REAL_KEYS;
-const HUMAN_PROOF_SECRET = process.env.HUMAN_PROOF_SECRET || 'skillbun-dev-proof-secret-change-in-prod';
+const configuredHumanProofSecret = (process.env.HUMAN_PROOF_SECRET || '').trim();
+const HUMAN_PROOF_SECRET = configuredHumanProofSecret
+    || (IS_PRODUCTION ? crypto.randomBytes(32).toString('hex') : 'skillbun-dev-proof-secret-change-in-prod');
 const HUMAN_PROOF_TTL_MS = Number.parseInt(process.env.HUMAN_PROOF_TTL_MS || '1800000', 10); // 30 min
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const SUPABASE_URL = (process.env.SUPABASE_URL || '').trim().replace(/\/+$/, '');
@@ -29,6 +31,10 @@ if (IS_PRODUCTION && (TURNSTILE_SITE_KEY || TURNSTILE_SECRET_KEY) && !CAPTCHA_EN
 
 if (USE_TURNSTILE_TEST_KEYS) {
     console.warn('Using Cloudflare Turnstile test keys in development. Set TURNSTILE_FORCE_REAL_KEYS=true to test real keys locally.');
+}
+
+if (IS_PRODUCTION && !configuredHumanProofSecret) {
+    console.warn('HUMAN_PROOF_SECRET is not set. Using an ephemeral secret; set a stable long secret in production.');
 }
 
 function getClientIp(req) {
@@ -57,7 +63,12 @@ function verifyHumanProofToken(token, ip) {
         return false;
     }
 
-    const [payloadB64, signature] = token.split('.');
+    const tokenParts = token.split('.');
+    if (tokenParts.length !== 2) {
+        return false;
+    }
+
+    const [payloadB64, signature] = tokenParts;
     if (!payloadB64 || !signature) {
         return false;
     }
@@ -241,6 +252,53 @@ try {
     console.warn('cors not installed - run: npm install cors');
 }
 
+// ===== SECURITY: Strict Anti-Direct Access Middleware for API =====
+app.use('/api', (req, res, next) => {
+    if (!IS_PRODUCTION) return next();
+
+    // Modern browsers send this forbidden header on fetch/navigation requests.
+    // A same-origin signal is enough to allow the UI's own API calls even when
+    // the browser omits Origin/Referer on simple GET requests.
+    const secFetchSite = String(req.get('Sec-Fetch-Site') || '').toLowerCase();
+    if (secFetchSite === 'same-origin') {
+        return next();
+    }
+
+    if (secFetchSite) {
+        return res.status(403).json({ error: 'Direct API access forbidden.' });
+    }
+
+    const requestOrigin = req.get('Origin');
+    const requestHost = req.get('Host');
+
+    if (requestOrigin) {
+        try {
+            const originHost = new URL(requestOrigin).host;
+            if (originHost !== requestHost) {
+                return res.status(403).json({ error: 'Cross-origin API access forbidden.' });
+            }
+        } catch (e) {
+            return res.status(400).json({ error: 'Invalid Origin.' });
+        }
+    } else {
+        // Blocks direct hits from Postman/cURL where Origin is typically missing
+        const referer = req.get('Referer');
+        if (!referer) {
+            return res.status(403).json({ error: 'Direct API access forbidden. User Interface routing required.' });
+        }
+        try {
+            const refererHost = new URL(referer).host;
+            if (refererHost !== requestHost) {
+                return res.status(403).json({ error: 'Cross-origin API access forbidden.' });
+            }
+        } catch(e) {
+            return res.status(400).json({ error: 'Invalid Referer.' });
+        }
+    }
+
+    next();
+});
+
 // ===== SECURITY: Block .env and dotfiles from static serving =====
 app.use((req, res, next) => {
     const blocked = ['.env', '.gitignore', '.git'];
@@ -381,12 +439,12 @@ app.post('/api/v1/profile', async (req, res) => {
         : 20000;
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
-    try {
-        const prefer = SUPABASE_PROFILE_UPSERT
-            ? 'resolution=merge-duplicates,return=minimal'
-            : 'return=minimal';
+    const prefer = SUPABASE_PROFILE_UPSERT
+        ? 'resolution=merge-duplicates,return=minimal'
+        : 'return=minimal';
 
-        const response = await fetch(url.toString(), {
+    async function storeProfileRecord(record) {
+        return fetch(url.toString(), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -394,12 +452,29 @@ app.post('/api/v1/profile', async (req, res) => {
                 Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
                 Prefer: prefer
             },
-            body: JSON.stringify([profileRecord]),
+            body: JSON.stringify([record]),
             signal: controller.signal
         });
+    }
+
+    try {
+        let response = await storeProfileRecord(profileRecord);
 
         if (!response.ok) {
-            const errorText = (await response.text()).slice(0, 500);
+            let errorText = (await response.text()).slice(0, 500);
+
+            if (/Could not find the 'entrypoint' column/i.test(errorText)) {
+                const legacyProfileRecord = { name, email, degree, year };
+                response = await storeProfileRecord(legacyProfileRecord);
+
+                if (response.ok) {
+                    console.warn('Supabase profile table is missing entrypoint; stored core profile fields only.');
+                    return res.status(201).json({ stored: true, compatibilityMode: true });
+                }
+
+                errorText = (await response.text()).slice(0, 500);
+            }
+
             console.error(`Supabase profile insert failed: ${response.status} -- ${errorText}`);
 
             if (SUPABASE_PROFILE_UPSERT && /on conflict|no unique|constraint/i.test(errorText)) {
