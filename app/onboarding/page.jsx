@@ -2,12 +2,13 @@
 import { Suspense, useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { normalizeInternalPath } from '@/utils/shared/routes';
 
 function OnboardingForm() {
   const supabase = createClient();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get('next') || '/quiz';
+  const next = normalizeInternalPath(searchParams.get('next'), '/quiz');
 
   const [user, setUser] = useState(null);
   const [degree, setDegree] = useState('');
@@ -30,7 +31,7 @@ function OnboardingForm() {
         .from('user_profiles')
         .select('*')
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
 
       if (profile && profile.degree && profile.current_year) {
         // Profile already complete, sync to localStorage and redirect
@@ -81,11 +82,9 @@ function OnboardingForm() {
     const referral = document.referrer || 'direct';
 
     const profileData = {
-      user_id: user.id,
-      full_name: user.user_metadata?.full_name || '',
-      email: user.email || '',
+      name: user.user_metadata?.full_name || '',
       degree: degree,
-      current_year: year,
+      year: year,
       interest_area: interest || null,
       browser,
       os,
@@ -94,19 +93,35 @@ function OnboardingForm() {
       referral_source: referral,
     };
 
-    const { error } = await supabase
-      .from('user_profiles')
-      .upsert(profileData, { onConflict: 'user_id' });
+    let savedProfile;
+    let saveError = '';
 
-    if (error) {
-      console.error('Profile save error:', error);
-      alert('Could not save profile. Please try again.');
+    try {
+      const response = await fetch('/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileData),
+      });
+
+      const data = await response.json().catch(() => ({}));
+      savedProfile = data?.profile;
+
+      if (!response.ok) {
+        saveError = typeof data?.error === 'string' ? data.error : 'Could not save profile.';
+      }
+    } catch {
+      saveError = 'Could not reach the profile service.';
+    }
+
+    if (saveError) {
+      console.error('Profile save error:', saveError);
+      alert(`${saveError} Please try again.`);
       setSaving(false);
       return;
     }
 
     // Sync to localStorage for quiz.js/counsellor.js backward compatibility
-    syncToLocalStorage(user, profileData);
+    syncToLocalStorage(user, savedProfile || { degree, current_year: year });
 
     router.replace(next);
   }

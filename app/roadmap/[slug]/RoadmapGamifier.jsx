@@ -10,8 +10,11 @@ export default function RoadmapGamifier({ slug, children }) {
     let savedProgress = [];
     try {
       const raw = localStorage.getItem(storageKey);
-      if (raw) savedProgress = JSON.parse(raw);
-    } catch(e) {}
+      const parsed = raw ? JSON.parse(raw) : [];
+      savedProgress = Array.isArray(parsed) ? parsed : [];
+    } catch {
+      savedProgress = [];
+    }
 
     const checkboxes = document.querySelectorAll('.topic-checkbox');
 
@@ -35,9 +38,13 @@ export default function RoadmapGamifier({ slug, children }) {
     const handleChange = (e) => {
       const id = e.target.dataset.id;
       const card = e.target.closest('.topic-card');
+
+      if (!id || !card) {
+        return;
+      }
       
       if (e.target.checked) {
-        if(!savedProgress.includes(id)) savedProgress.push(id);
+        if (!savedProgress.includes(id)) savedProgress.push(id);
         card.classList.add('completed');
       } else {
         savedProgress = savedProgress.filter(item => item !== id);
@@ -64,11 +71,11 @@ export default function RoadmapGamifier({ slug, children }) {
   }, [slug, hideAdvanced]);
 
   useEffect(() => {
-    if (hideAdvanced) {
-      document.body.classList.add('hide-advanced');
-    } else {
+    document.body.classList.toggle('hide-advanced', hideAdvanced);
+
+    return () => {
       document.body.classList.remove('hide-advanced');
-    }
+    };
   }, [hideAdvanced]);
 
   return (

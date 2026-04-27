@@ -1,15 +1,16 @@
 import { NextResponse } from 'next/server'
 
+import { getTurnstileSiteKey, isCaptchaEnabled } from '@/utils/server/env'
+
 export async function GET() {
-  const siteKey = process.env.TURNSTILE_SITE_KEY || ''
-  const secretKey = process.env.TURNSTILE_SECRET_KEY || ''
-  const CAPTCHA_ENABLED = Boolean(siteKey && secretKey);
+  const captchaEnabled = isCaptchaEnabled()
+
   return NextResponse.json({
-      captcha: {
-          provider: 'turnstile',
-          enabled: CAPTCHA_ENABLED,
-          siteKey: CAPTCHA_ENABLED ? siteKey : '',
-          mode: CAPTCHA_ENABLED ? 'live' : 'disabled'
-      }
-  });
+    captcha: {
+      provider: 'turnstile',
+      enabled: captchaEnabled,
+      siteKey: captchaEnabled ? getTurnstileSiteKey() : '',
+      mode: captchaEnabled ? 'live' : 'disabled',
+    },
+  })
 }
