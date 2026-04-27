@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import { normalizeInternalPath } from '@/utils/shared/routes';
 
 const FLOATER_TEXTS = [
   'console.log("career")', 'import skills', 'git commit -m "future"',
@@ -14,6 +15,7 @@ const FLOATER_TEXTS = [
 const CODE_CHARS = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
 const FLOATER_LEFT_LANES = [10, 18, 27, 35];
 const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -31,7 +33,7 @@ export default function Home() {
     const shuffleIntervals = [];
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('authRequired') === 'true') {
-      localStorage.setItem('sb_dest', urlParams.get('dest') || '/quiz');
+      localStorage.setItem('sb_dest', normalizeInternalPath(urlParams.get('dest'), '/quiz'));
       window.history.replaceState({}, '', '/');
       authFrame = window.requestAnimationFrame(() => {
         setShowSplash(false);
@@ -151,7 +153,7 @@ export default function Home() {
   }, []);
 
   const openAuthModal = (destination) => {
-    localStorage.setItem('sb_dest', destination || '/quiz');
+    localStorage.setItem('sb_dest', normalizeInternalPath(destination, '/quiz'));
     setShowModal(true);
   };
 
@@ -174,7 +176,7 @@ export default function Home() {
         throw new Error('Google sign-in did not return a user session.');
       }
 
-      const dest = localStorage.getItem('sb_dest') || '/quiz';
+      const dest = normalizeInternalPath(localStorage.getItem('sb_dest'), '/quiz');
 
       const { data: profile, error: profileError } = await supabase
         .from('user_profiles')
@@ -210,14 +212,13 @@ export default function Home() {
   useEffect(() => {
     if (!showModal) return;
 
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    if (!clientId) return;
+    if (!GOOGLE_CLIENT_ID) return;
 
     const renderBtn = () => {
       if (googleBtnRef.current && window.google) {
         googleBtnRef.current.innerHTML = '';
         window.google.accounts.id.initialize({
-          client_id: clientId,
+          client_id: GOOGLE_CLIENT_ID,
           callback: handleGoogleCredential,
         });
         window.google.accounts.id.renderButton(googleBtnRef.current, {
@@ -494,6 +495,11 @@ export default function Home() {
             
             <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
               <div ref={googleBtnRef}></div>
+              {!GOOGLE_CLIENT_ID && (
+                <p style={{ color: '#f85149', fontWeight: 700, fontSize: '0.9rem', textAlign: 'center', lineHeight: 1.5 }}>
+                  Google sign-in is not configured yet. Add NEXT_PUBLIC_GOOGLE_CLIENT_ID and restart the app.
+                </p>
+              )}
               {isLoggingIn && (
                 <p style={{ color: 'var(--green)', fontWeight: 700, fontSize: '0.9rem' }}>
                   🐰 Setting up your account...

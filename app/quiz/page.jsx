@@ -28,7 +28,7 @@ export default async function QuizPage() {
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
-    redirect('/')
+    redirect('/?authRequired=true&dest=/quiz')
   }
 
   // Fetch profile from DB
@@ -36,7 +36,7 @@ export default async function QuizPage() {
     .from('user_profiles')
     .select('*')
     .eq('user_id', user.id)
-    .single()
+    .maybeSingle()
 
   // If no profile, send to onboarding
   if (!profile || !profile.degree || !profile.current_year) {

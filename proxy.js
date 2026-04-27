@@ -2,11 +2,23 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
 import { getSupabaseAnonKey, getSupabaseUrl, isSupabaseConfigured } from '@/utils/server/env'
+import { normalizeInternalPath } from '@/utils/shared/routes'
 
 export async function proxy(request) {
   let supabaseResponse = NextResponse.next({
     request,
   })
+
+  if (!isSupabaseConfigured()) {
+    return supabaseResponse
+  }
+
+  const protectedRoutes = ['/quiz', '/counsellor', '/roadmap', '/onboarding']
+  const isProtected = protectedRoutes.some((path) => request.nextUrl.pathname.startsWith(path))
+
+  if (!isProtected) {
+    return supabaseResponse
+  }
 
   const supabaseUrl = getSupabaseUrl()
   const supabaseKey = getSupabaseAnonKey()
@@ -32,21 +44,16 @@ export async function proxy(request) {
     }
   )
 
-  // Skip auth check if environment variables aren't strictly connected yet
-  if (isSupabaseConfigured()) {
-      const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser()
 
-      const protectedRoutes = ['/quiz', '/counsellor', '/roadmap', '/onboarding']
-      const isProtected = protectedRoutes.some(path => request.nextUrl.pathname.startsWith(path))
-
-      if (isProtected && !user) {
-        const url = request.nextUrl.clone()
-        const dest = url.pathname
-        url.pathname = '/'
-        url.searchParams.set('authRequired', 'true')
-        url.searchParams.set('dest', dest)
-        return NextResponse.redirect(url)
-      }
+  if (!user) {
+    const url = request.nextUrl.clone()
+    const destination = normalizeInternalPath(`${url.pathname}${url.search}`, '/quiz')
+    url.pathname = '/'
+    url.search = ''
+    url.searchParams.set('authRequired', 'true')
+    url.searchParams.set('dest', destination)
+    return NextResponse.redirect(url)
   }
 
   return supabaseResponse

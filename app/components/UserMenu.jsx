@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
 
 const MENU_ITEMS = [
-  { href: '/profile', label: 'Profile' },
-  { href: '/dashboard', label: 'Dashboard' },
-  { href: '/roadmaps', label: 'Saved Roadmaps' },
-  { href: '/support', label: 'Help & Support' },
+  { href: '/quiz', label: 'Career Quiz' },
+  { href: '/counsellor', label: 'AI Counsellor' },
+  { href: '/roadmap/general', label: 'General Roadmap' },
+  { href: '/about', label: 'About SkillBun' },
+  { href: 'mailto:harsh@skillbun.tech', label: 'Help & Support', external: true },
 ];
 
 export default function UserMenu() {
@@ -169,7 +170,6 @@ export default function UserMenu() {
   const name = user.user_metadata?.full_name || 'User';
   const firstName = name.split(' ')[0];
   const avatar = user.user_metadata?.avatar_url;
-  const email = user.email;
   const initials = name
     .split(' ')
     .map((part) => part[0])
@@ -225,15 +225,27 @@ export default function UserMenu() {
             {MOBILE_ONLY_ITEMS.length > 0 && <div className="user-menu-divider mobile-nav-item" />}
 
             {MENU_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="user-menu-item"
-                role="menuitem"
-                onClick={() => setAccountOpen(false)}
-              >
-                {item.label}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="user-menu-item"
+                  role="menuitem"
+                  onClick={() => setAccountOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="user-menu-item"
+                  role="menuitem"
+                  onClick={() => setAccountOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
             
             <button

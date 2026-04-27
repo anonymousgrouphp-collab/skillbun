@@ -1,173 +1,144 @@
-# 🐰 SkillBun - Hop into the Right Career
+# SkillBun
 
-SkillBun is an AI-powered career guidance platform for Indian tech students (BCA, BSc, BS/BS-MS AICS/CSDA, and B.Tech).
-It helps students discover suitable career tracks using an adaptive quiz and an AI counsellor chat.
+SkillBun is a Next.js career-guidance app for Indian tech students. It combines Google/Supabase auth, profile onboarding, an adaptive Gemini-powered career quiz, Bun-Bot counsellor chat, and interactive learning roadmaps.
 
-Developed by Team SkillBun (5 IITians) as a capstone project:
-- [Harsh Patel](https://www.linkedin.com/in/harshpatel-io/)
-- [Rainee Patel](https://www.linkedin.com/in/rainee-patel-624123377/)
-- [Aiman Patil](https://www.linkedin.com/in/aiman-patil-55181938a/)
-- Harshit Patidar
-- Ravi Patel
+## What It Does
 
-## ✨ What's New
+- Authenticates students with Google through Supabase.
+- Collects degree, current year, and optional interest area during onboarding.
+- Runs an adaptive AI career quiz and maps results to native roadmap pages.
+- Provides an AI counsellor chat with SkillBun context and markdown answers.
+- Uses optional Cloudflare Turnstile plus short-lived signed human-proof tokens before Gemini API calls.
+- Stores roadmap progress locally per roadmap.
 
-- Profile onboarding flow (name, email, degree, year) before quiz/counsellor usage.
-- Optional server-side profile sync to Supabase via `/api/profile`.
-- Human verification flow with optional Cloudflare Turnstile.
-- Signed short-lived `x-skillbun-human` token required for Gemini API proxy calls.
-- Hardened Gemini proxy validation (conversation structure, text size, payload limits, timeout handling).
-- Enhanced quiz result handling with roadmap URL normalization and safe fallback links.
-- Bun-Bot chat improvements: markdown rendering, history trimming, local per-hour send limit, clear chat action.
-- Bun-Bot now includes SkillBun platform context and can share the official contact email.
-- Security hardening with Helmet CSP, strict rate limits, body size limits, and dotfile blocking.
+## Tech Stack
 
-## 🎯 Core Features
+- App: Next.js App Router, React, CSS
+- Auth and database: Supabase
+- AI proxy: Google Gemini API
+- Bot protection: Cloudflare Turnstile, optional
 
-- Adaptive AI Career Quiz (typically 10 to 18 questions).
-- AI Career Counsellor (Bun-Bot) for role, salary, and roadmap guidance.
-- SkillBun-aware counsellor responses for platform questions such as how to contact the team.
-- Career recommendation cards with skills, demand, salary range, next steps, and roadmap links.
-- Profile-aware responses based on student degree and year.
-- Optional CAPTCHA and bot-protection gate before AI usage.
+## Requirements
 
-## Contact
-
-For SkillBun support, privacy requests, terms questions, or product feedback, email [harsh@skillbun.tech](mailto:harsh@skillbun.tech).
-
-## 🛠️ Tech Stack
-
-- Frontend: HTML, CSS, Vanilla JavaScript
-- Backend: Node.js + Express
-- AI: Google Gemini (`gemini-2.5-flash` via proxy)
-- Security: Helmet, express-rate-limit, CORS, request validation
-- Optional Data Store: Supabase REST API
-- Optional Bot Protection: Cloudflare Turnstile
-
-## 📋 Requirements
-
-- Node.js 18+ (required for built-in `fetch`)
+- Node.js `>=20.9.0`
 - npm
-- Google Gemini API key
+- Supabase project with Google auth enabled
+- Google OAuth client ID
+- Gemini API key
 
-## 🚀 Setup
+## Local Setup
 
-1. Clone and install:
+1. Install dependencies:
+
 ```bash
-git clone https://github.com/anonymousgrouphp-collab/skillbun.git
-cd skillbun
 npm install
 ```
 
-2. Create `.env` in project root:
+2. Create `.env` in the repo root:
+
 ```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Optional server-side overrides. If omitted, the NEXT_PUBLIC values are used.
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key
+
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_oauth_client_id.apps.googleusercontent.com
+
 GEMINI_API_KEY=your_gemini_api_key
-PORT=3000
-
-# Optional: production CORS allowlist (comma-separated)
-ALLOWED_ORIGINS=https://your-frontend-domain.com
-
-# Optional: Gemini upstream timeout (ms)
 GEMINI_TIMEOUT_MS=20000
 
-# Optional: Turnstile CAPTCHA (set both to enable)
+# Optional: set both to enable Turnstile.
 TURNSTILE_SITE_KEY=your_turnstile_site_key
 TURNSTILE_SECRET_KEY=your_turnstile_secret_key
 
-# Optional: set true only when testing real Turnstile keys locally.
-# By default, non-production runs use Cloudflare's official always-pass test keys
-# to avoid hostname authorization failures on localhost.
-TURNSTILE_FORCE_REAL_KEYS=false
-
-# Optional: secret used to sign human-proof tokens
+# Recommended in production.
 HUMAN_PROOF_SECRET=generate_a_long_random_secret
 HUMAN_PROOF_TTL_MS=1800000
-
-# Optional: Supabase profile storage
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-SUPABASE_PROFILE_TABLE=user_profiles
-SUPABASE_PROFILE_UPSERT=true
-PROFILE_STORAGE_TIMEOUT_MS=20000
 ```
 
-3. Start server:
+3. Start the app:
+
 ```bash
-npm start
+npm run dev
 ```
 
-4. Open app:
-- `http://localhost:3000/index.html`
+4. Open:
 
-### Turnstile hostname errors
+```text
+http://localhost:3000
+```
 
-If the widget shows Cloudflare error `110200`, the current hostname is not authorized for the Turnstile site key.
-For production, open Cloudflare Dashboard > Turnstile > your widget > Settings > Hostname Management and add each hostname separately, for example `skillbun.tech`, `www.skillbun.tech`, or your exact Vercel preview hostname. Do not include `https://`, ports, or paths.
+## Supabase Table
 
-Local development automatically uses Cloudflare's official always-pass test keys when `NODE_ENV` is not `production`. Set `TURNSTILE_FORCE_REAL_KEYS=true` only if you have added your local hostname in Cloudflare and want to test the real widget.
-
-## 🗄️ Supabase Table (Optional)
-
-Use this table for profile sync:
+Create the profile table and enable Row-Level Security:
 
 ```sql
 create table if not exists public.user_profiles (
   id bigserial primary key,
-  name text not null,
-  email text not null unique,
+  user_id uuid not null unique references auth.users(id) on delete cascade,
+  full_name text not null default '',
+  email text not null,
   degree text not null,
-  year text not null,
-  entrypoint text not null,
-  ip_hash text,
-  user_agent text,
-  created_at timestamptz default now()
+  current_year text not null,
+  interest_area text,
+  browser text,
+  os text,
+  device_type text,
+  screen_resolution text,
+  referral_source text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
 );
+
+alter table public.user_profiles enable row level security;
+
+create policy "Users can read their own profile"
+on public.user_profiles
+for select
+using (auth.uid() = user_id);
+
+create policy "Users can insert their own profile"
+on public.user_profiles
+for insert
+with check (auth.uid() = user_id);
+
+create policy "Users can update their own profile"
+on public.user_profiles
+for update
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
 ```
 
-If table exists without unique email:
+If your existing table is older, make sure `user_id` is `unique`; the app uses `upsert(..., { onConflict: 'user_id' })`.
 
-```sql
-alter table public.user_profiles
-add constraint user_profiles_email_key unique (email);
-```
+## API Routes
 
-## 🔌 API Endpoints
+- `GET /api/config`: returns Turnstile configuration for the browser.
+- `POST /api/human/verify`: verifies Turnstile when enabled and issues a signed human-proof token.
+- `POST /api/profile`: validates and stores the authenticated user's profile.
+- `POST /api/gemini`: validates conversation payloads and proxies requests to Gemini.
 
-- `GET /api/config`
-  - Returns captcha config for frontend.
-
-- `POST /api/human/verify`
-  - Verifies Turnstile token when enabled.
-  - Issues signed short-lived human-proof token.
-
-- `POST /api/profile`
-  - Validates and stores profile data.
-  - Returns `stored: false` when Supabase is not configured.
-
-- `POST /api/gemini`
-  - Requires `x-skillbun-human` header.
-  - Validates conversation payload and proxies request to Gemini.
-
-## 🛡️ Security Notes
-
-- General rate limit: 60 requests/min/IP.
-- Gemini endpoint limit: 25 requests/min/IP.
-- JSON body limit: 100kb.
-- Dotfile and `.env` access blocked from static routes.
-- CSP configured for self-hosted assets + Turnstile scripts.
-- HTML assets are no-cache in production; static assets are cacheable.
-
-## 🧪 Useful Scripts
+## Useful Commands
 
 ```bash
-npm start   # run server
-npm run dev # run with nodemon
+npm run lint
+npm run build
+npm run dev
 ```
 
-## 📄 Legal Pages
+On Windows PowerShell, if script execution blocks `npm`, use:
 
-- `public/about.html`
-- `public/terms.html`
-- `public/privacy.html`
+```powershell
+npm.cmd run lint
+npm.cmd run build
+npm.cmd run dev
+```
 
-These pages were updated to match the current product behavior, data flow, and security model.
+## Deployment Notes
+
+- Add your production domain to the Google OAuth client authorized JavaScript origins.
+- Enable Google as a provider in Supabase Auth.
+- Add production and preview hostnames to Cloudflare Turnstile if Turnstile is enabled.
+- Set `HUMAN_PROOF_SECRET` in production so human-proof tokens do not depend on another API key.
