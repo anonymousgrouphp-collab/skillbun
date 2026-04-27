@@ -1693,3 +1693,4 @@
 [2026-04-27T11:10:50] perf(cache): optimize career trajectory data loader
 [2026-04-27T20:32:21] perf(cache): optimize career trajectory data loader
 [2026-04-27T22:59:22] style(ui): adjust career dashboard card elevation
+[2026-04-27T18:54:23] test(matching): add test suite for recommendation score
