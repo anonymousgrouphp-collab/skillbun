@@ -1,51 +1,29 @@
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import Script from 'next/script'
+'use client';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Script from 'next/script';
 
-import { getSupabaseAnonKey, getSupabaseUrl } from '@/utils/server/env'
+export default function CounsellorPage() {
+  const router = useRouter();
+  const [profile, setProfile] = useState({ name: 'Student', degree: '', year: '' });
+  const [loading, setLoading] = useState(true);
 
-export const metadata = {
-  title: 'SkillBun - AI Career Counsellor',
-  description: 'Chat with Bun-Bot, your AI Career Counsellor. Ask anything about tech careers, salaries, and roles.',
-}
+  useEffect(() => {
+    const degree = localStorage.getItem('sb_degree') || '';
+    const year = localStorage.getItem('sb_year') || '';
+    const name = localStorage.getItem('sb_name') || 'Student';
 
-export default async function CounsellorPage() {
-  const cookieStore = await cookies()
-  const supabaseUrl = getSupabaseUrl()
-  const supabaseKey = getSupabaseAnonKey()
+    if (!degree || !year) {
+      router.replace('/onboarding?next=/counsellor');
+    } else {
+      setProfile({ name, degree, year });
+      setLoading(false);
+    }
+  }, [router]);
 
-  const supabase = createServerClient(supabaseUrl, supabaseKey, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll()
-      },
-    },
-  })
+  if (loading) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>Loading...</div>;
 
-  // Get user from Google Auth
-  const { data: { user } } = await supabase.auth.getUser()
-  
-  if (!user) {
-    redirect('/?authRequired=true&dest=/counsellor')
-  }
-
-  // Fetch profile from DB
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('user_id', user.id)
-    .maybeSingle()
-
-  // If no profile, send to onboarding
-  if (!profile || !profile.degree || !profile.current_year) {
-    redirect('/onboarding?next=/counsellor')
-  }
-
-  const name = profile.full_name || user.user_metadata?.full_name || 'Student'
-  const email = profile.email || user.email || ''
-  const degree = profile.degree || ''
-  const year = profile.current_year || ''
+  const { name } = profile;
 
   return (
     <>
@@ -106,17 +84,7 @@ export default async function CounsellorPage() {
         </div>
       </div>
 
-      {/* Sync verified DB profile data into localStorage for counsellor.js backward compatibility */}
-      <Script id="sync-auth-counsellor" strategy="beforeInteractive">
-        {`
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('sb_name', ${JSON.stringify(name)});
-            localStorage.setItem('sb_email', ${JSON.stringify(email)});
-            localStorage.setItem('sb_degree', ${JSON.stringify(degree)});
-            localStorage.setItem('sb_year', ${JSON.stringify(year)});
-          }
-        `}
-      </Script>
+      {/* localStorage already holds our data, but counsellor.js uses these keys */}
 
       <Script src="/vendor/marked.umd.js" strategy="lazyOnload" />
       <Script src="/counsellor.js" strategy="lazyOnload" />

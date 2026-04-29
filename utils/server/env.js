@@ -18,26 +18,6 @@ function parseIntWithinRange(value, fallback, minimum, maximum) {
   return Math.min(Math.max(parsed, minimum), maximum)
 }
 
-export function getSupabaseUrl() {
-  return (
-    getFirstNonEmpty(process.env.SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_URL) ||
-    'https://placeholder.supabase.co'
-  )
-}
-
-export function getSupabaseAnonKey() {
-  return (
-    getFirstNonEmpty(process.env.SUPABASE_ANON_KEY, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
-    'placeholder'
-  )
-}
-
-export function isSupabaseConfigured() {
-  return Boolean(
-    getFirstNonEmpty(process.env.SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-      getFirstNonEmpty(process.env.SUPABASE_ANON_KEY, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-  )
-}
 
 export function getTurnstileSiteKey() {
   return getFirstNonEmpty(process.env.TURNSTILE_SITE_KEY)
@@ -71,9 +51,7 @@ export function getHumanProofSecret() {
   }
 
   const fallbackSeed = getFirstNonEmpty(
-    process.env.GEMINI_API_KEY,
-    process.env.SUPABASE_ANON_KEY,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    process.env.GEMINI_API_KEY
   )
 
   if (fallbackSeed) {
