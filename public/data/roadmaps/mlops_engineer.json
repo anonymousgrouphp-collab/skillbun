@@ -1,0 +1,227 @@
+{
+  "id": "mlops_engineer",
+  "title": "MLOps Engineer",
+  "description": "A production-focused roadmap for MLOps: ML foundations, experiment tracking, data/model versioning, CI/CD, serving, monitoring, and cloud deployment.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "mlops_foundations",
+      "name": "ML, Python, Linux, and Git Foundations",
+      "tag": "essential",
+      "description": "Start with enough machine learning and systems knowledge to package models, test code, and reason about production failures.",
+      "resources": [
+        {
+          "title": "MLOps GitHub Actions CI/CD Tutorial (Krish Naik)",
+          "url": "https://www.youtube.com/watch?v=ciqWMIf7Pz0",
+          "type": "video"
+        },
+        {
+          "title": "Coursera MLOps Learning Roadmap",
+          "url": "https://www.coursera.org/resources/mlops-learning-roadmap",
+          "type": "article"
+        },
+        {
+          "title": "Google Machine Learning Crash Course",
+          "url": "https://developers.google.com/machine-learning/crash-course",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "mlops_ml_basics",
+          "name": "ML Lifecycle Basics",
+          "tag": "essential",
+          "description": "Understand training data, validation, leakage, metrics, reproducibility, model artifacts, model cards, and release criteria.",
+          "resources": [
+            {
+              "title": "Scikit-learn User Guide",
+              "url": "https://scikit-learn.org/stable/user_guide.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_python_packaging",
+          "name": "Python Packaging and Testing",
+          "tag": "essential",
+          "description": "Create clean project layouts, virtual environments, requirements, unit tests, lint checks, CLI scripts, and reproducible configs.",
+          "resources": [
+            {
+              "title": "Python Packaging User Guide",
+              "url": "https://packaging.python.org/en/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "mlops_tracking_versioning",
+      "name": "Experiment Tracking and Versioning",
+      "tag": "essential",
+      "description": "Track experiments, datasets, model artifacts, parameters, metrics, lineage, and registry promotion decisions.",
+      "resources": [
+        {
+          "title": "Complete End-to-End Deep Learning Project with MLflow, DVC, and Deployment (Krish Naik)",
+          "url": "https://www.youtube.com/watch?v=86BKEv0X2xU",
+          "type": "video"
+        },
+        {
+          "title": "MLflow Tracking Quickstart",
+          "url": "https://mlflow.org/docs/latest/ml/getting-started/quickstart/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "mlops_mlflow",
+          "name": "MLflow Tracking and Registry",
+          "tag": "essential",
+          "description": "Log metrics, params, artifacts, models, environments, and promotion stages so every experiment is auditable.",
+          "resources": [
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_dvc",
+          "name": "DVC Data and Model Versioning",
+          "tag": "essential",
+          "description": "Version datasets and model files outside Git, configure remotes, reproduce pipelines, and recover previous experiment states.",
+          "resources": [
+            {
+              "title": "Get Started with DVC",
+              "url": "https://doc.dvc.org/start",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_engineer_practice_lab",
+          "name": "Practice: Reproducible Training Run",
+          "tag": "advanced",
+          "description": "Train a small model, log metrics to MLflow, version data with DVC, rerun from a clean clone, and compare two model versions.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "mlops_cicd_serving",
+      "name": "CI/CD, Containers, and Model Serving",
+      "tag": "advanced",
+      "description": "Automate testing, image builds, model validation, deployment, rollback, and API serving for machine learning systems.",
+      "resources": [
+        {
+          "title": "MLOps Dockerized Flask CI/CD with GitHub Actions (Krish Naik)",
+          "url": "https://www.youtube.com/watch?v=9oALxmc5yEw",
+          "type": "video"
+        },
+        {
+          "title": "GitHub Actions Documentation",
+          "url": "https://docs.github.com/en/actions",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "mlops_docker_fastapi",
+          "name": "Docker and FastAPI Serving",
+          "tag": "essential",
+          "description": "Package inference code, expose prediction APIs, add health checks, write request schemas, and load model artifacts safely.",
+          "resources": [
+            {
+              "title": "FastAPI Tutorial",
+              "url": "https://fastapi.tiangolo.com/tutorial/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_ci_validation",
+          "name": "CI/CD for ML Validation",
+          "tag": "advanced",
+          "description": "Automate unit tests, data checks, model smoke tests, container scans, registry publishing, staging deploys, and approval gates.",
+          "resources": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "mlops_cloud_monitoring",
+      "name": "Cloud Deployment and Monitoring",
+      "tag": "advanced",
+      "description": "Operate ML services with cloud infrastructure, observability, drift checks, scheduled retraining, cost controls, and incident playbooks.",
+      "resources": [
+        {
+          "title": "MLOps Course Resources",
+          "url": "https://www.mlopscourses.com/",
+          "type": "article"
+        },
+        {
+          "title": "Evidently AI Documentation",
+          "url": "https://docs.evidentlyai.com/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "mlops_kubernetes_cloud",
+          "name": "Kubernetes and Managed ML Platforms",
+          "tag": "advanced",
+          "description": "Learn when to use Kubernetes, managed endpoints, batch jobs, queues, autoscaling, secrets, and infrastructure-as-code.",
+          "resources": [
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/home/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_monitoring_drift",
+          "name": "Monitoring, Drift, and Reliability",
+          "tag": "advanced",
+          "description": "Track service health, latency, prediction distributions, data drift, model quality, error budgets, and rollback triggers.",
+          "resources": [
+            {
+              "title": "Prometheus Documentation",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "mlops_project_production_pipeline",
+          "name": "Project: Production ML Pipeline",
+          "tag": "advanced",
+          "description": "Build a model service with DVC data versioning, MLflow tracking, GitHub Actions tests, Docker image build, API deploy, and monitoring notes.",
+          "resources": [
+            {
+              "title": "Made With ML MLOps",
+              "url": "https://madewithml.com/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

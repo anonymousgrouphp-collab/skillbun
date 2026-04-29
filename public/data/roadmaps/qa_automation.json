@@ -1,0 +1,227 @@
+{
+  "id": "qa_automation",
+  "title": "QA Automation Engineer",
+  "description": "Move from testing fundamentals to API, UI, accessibility, performance, and CI-ready automation.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "qa_foundations",
+      "name": "Testing Foundations",
+      "tag": "essential",
+      "description": "Learn test design, bug reporting, risk-based testing, SDLC, and quality mindset.",
+      "resources": [
+        {
+          "title": "Software Testing Course - Playwright, E2E, and AI Agents (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=jydYq7oAtD8",
+          "type": "video"
+        },
+        {
+          "title": "Playwright MiniProject: End-to-End Automation (Automation Step by Step)",
+          "url": "https://www.youtube.com/watch?v=5wSztvWhx14",
+          "type": "video"
+        },
+        {
+          "title": "ISTQB Foundation Syllabus",
+          "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "qa_test_cases",
+          "name": "Test Cases and Bug Reports",
+          "tag": "essential",
+          "description": "Write clear scenarios, expected results, reproduction steps, severity, and priority.",
+          "resources": [
+            {
+              "title": "Atlassian Testing Guide",
+              "url": "https://www.atlassian.com/continuous-delivery/software-testing",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_programming",
+          "name": "Programming for Testers",
+          "tag": "essential",
+          "description": "Use JavaScript or Java for assertions, data setup, page objects, helpers, and CI scripts.",
+          "resources": [
+            {
+              "title": "JavaScript Guide - MDN",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "qa_api",
+      "name": "API Testing",
+      "tag": "essential",
+      "description": "Validate HTTP APIs, contracts, auth flows, status codes, payloads, and error behavior.",
+      "resources": [
+        {
+          "title": "Postman Learning Center",
+          "url": "https://learning.postman.com/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "qa_http",
+          "name": "HTTP and REST",
+          "tag": "essential",
+          "description": "Understand verbs, headers, cookies, sessions, JSON schemas, idempotency, and pagination.",
+          "resources": [
+            {
+              "title": "MDN HTTP Overview",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_contracts",
+          "name": "Contract and Schema Testing",
+          "tag": "advanced",
+          "description": "Use schemas and contract tests so clients and services do not silently drift apart.",
+          "resources": [
+            {
+              "title": "OpenAPI Specification",
+              "url": "https://spec.openapis.org/oas/latest.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_automation_practice_lab",
+          "name": "Practice: Bug Reproduction Lab",
+          "tag": "advanced",
+          "description": "Turn vague bug reports into reproducible cases, automated checks, screenshots, and clear defect notes.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "qa_ui_automation",
+      "name": "UI Automation",
+      "tag": "essential",
+      "description": "Automate realistic browser journeys with reliable selectors, fixtures, screenshots, and traces.",
+      "resources": [
+        {
+          "title": "Playwright Automation Tutorial for Beginners (Mukesh otwani)",
+          "url": "https://www.youtube.com/watch?v=pq20Gd4LXeI",
+          "type": "video"
+        },
+        {
+          "title": "Playwright Writing Tests",
+          "url": "https://playwright.dev/docs/writing-tests",
+          "type": "article"
+        },
+        {
+          "title": "Selenium Documentation",
+          "url": "https://www.selenium.dev/documentation/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "qa_playwright",
+          "name": "Playwright Test",
+          "tag": "essential",
+          "description": "Use locators, fixtures, assertions, projects, traces, and parallel test execution.",
+          "resources": [
+            {
+              "title": "Playwright Running Tests",
+              "url": "https://playwright.dev/docs/running-tests",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_accessibility",
+          "name": "Accessibility Checks",
+          "tag": "advanced",
+          "description": "Add automated accessibility checks while still understanding what must be manually reviewed.",
+          "resources": [
+            {
+              "title": "Playwright Accessibility Testing",
+              "url": "https://playwright.dev/docs/accessibility-testing",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "qa_performance_ci",
+      "name": "Performance and CI",
+      "tag": "advanced",
+      "description": "Run automation in pipelines, track flaky tests, and test performance under realistic load.",
+      "resources": [
+        {
+          "title": "k6 Documentation",
+          "url": "https://grafana.com/docs/k6/latest/",
+          "type": "article"
+        },
+        {
+          "title": "GitHub Actions Documentation",
+          "url": "https://docs.github.com/en/actions",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "qa_load_testing",
+          "name": "Load Testing",
+          "tag": "advanced",
+          "description": "Model users, thresholds, response times, throughput, and failure modes before launches.",
+          "resources": [
+            {
+              "title": "k6 Get Started",
+              "url": "https://grafana.com/docs/k6/latest/get-started/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_flaky_tests",
+          "name": "Flaky Test Management",
+          "tag": "advanced",
+          "description": "Debug unstable tests, improve selectors, isolate test data, quarantine failures, and track reliability metrics.",
+          "resources": [
+            {
+              "title": "Playwright Test Retries",
+              "url": "https://playwright.dev/docs/test-retries",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "qa_capstone",
+          "name": "Project: Test Suite for a Web App",
+          "tag": "advanced",
+          "description": "Create API, UI, accessibility, and load tests, then run them in CI with reports.",
+          "resources": [
+            {
+              "title": "Playwright Test Reporters",
+              "url": "https://playwright.dev/docs/test-reporters",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

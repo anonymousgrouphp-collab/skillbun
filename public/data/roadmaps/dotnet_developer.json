@@ -1,0 +1,203 @@
+{
+  "id": "dotnet_developer",
+  "title": ".NET Developer",
+  "description": "A roadmap for building modern .NET applications with C#, ASP.NET Core, Entity Framework, testing, cloud deployment, and maintainable APIs.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "dotnet_foundations",
+      "name": "C# and .NET Foundations",
+      "tag": "essential",
+      "description": "Learn C#, the .NET runtime, OOP, collections, LINQ, async programming, project files, and dependency management.",
+      "resources": [
+        {
+          "title": "Learn C# Programming (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=YrtFtdTTfv0",
+          "type": "video"
+        },
+        {
+          "title": "Advanced C# Programming Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=YT8s-90oDC0",
+          "type": "video"
+        },
+        {
+          "title": "C# Tutorial Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+          "type": "video"
+        },
+        {
+          "title": "Microsoft C# Documentation",
+          "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dotnet_csharp_core",
+          "name": "C# Language Core",
+          "tag": "essential",
+          "description": "Use classes, records, interfaces, generics, LINQ, nullable references, exceptions, pattern matching, and async/await.",
+          "resources": [
+            {
+              "title": "C# Fundamentals",
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dotnet_tooling",
+          "name": ".NET CLI and Tooling",
+          "tag": "essential",
+          "description": "Manage projects, packages, solution structure, configuration, logging, debugging, and local development workflow.",
+          "resources": [
+            {
+              "title": ".NET CLI Overview",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dotnet_web_api",
+      "name": "ASP.NET Core APIs",
+      "tag": "essential",
+      "description": "Build web APIs with controllers or minimal APIs, middleware, DI, validation, auth, OpenAPI, and HTTP fundamentals.",
+      "resources": [
+        {
+          "title": "ASP.NET Core Documentation",
+          "url": "https://learn.microsoft.com/en-us/aspnet/core/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dotnet_minimal_api",
+          "name": "Minimal APIs and Controllers",
+          "tag": "essential",
+          "description": "Create endpoints, bind requests, return typed results, handle errors, version APIs, and generate OpenAPI docs.",
+          "resources": [
+            {
+              "title": "Minimal APIs Overview",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dotnet_ef_auth",
+          "name": "Entity Framework and Auth",
+          "tag": "essential",
+          "description": "Use EF Core, migrations, relationships, transactions, Identity, JWT, roles, and secure configuration.",
+          "resources": [
+            {
+              "title": "EF Core Documentation",
+              "url": "https://learn.microsoft.com/en-us/ef/core/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dotnet_developer_practice_lab",
+          "name": "Practice: Clean API Slice",
+          "tag": "advanced",
+          "description": "Implement one vertical API slice with endpoint, validation, EF Core model, tests, auth rule, and logs.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dotnet_quality_architecture",
+      "name": "Testing and Architecture",
+      "tag": "advanced",
+      "description": "Write maintainable .NET services with tests, architecture boundaries, background jobs, observability, and resilience.",
+      "resources": [
+        {
+          "title": ".NET Testing",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dotnet_testing",
+          "name": "Unit and Integration Testing",
+          "tag": "advanced",
+          "description": "Use xUnit, mocks, WebApplicationFactory, Testcontainers, coverage, and CI test reports.",
+          "resources": [
+            {
+              "title": "Integration Tests in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dotnet_background_resilience",
+          "name": "Background Jobs and Resilience",
+          "tag": "advanced",
+          "description": "Run hosted services, queues, retries, health checks, structured logs, metrics, and resilient HTTP clients.",
+          "resources": [
+            {
+              "title": "Worker Services",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dotnet_deploy_project",
+      "name": "Deployment and Portfolio",
+      "tag": "advanced",
+      "description": "Ship .NET APIs with containers, cloud hosting, database migrations, monitoring, and production documentation.",
+      "resources": [
+        {
+          "title": ".NET Docker Images",
+          "url": "https://learn.microsoft.com/en-us/dotnet/core/docker/introduction",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dotnet_cloud_deploy",
+          "name": "Cloud Deployment",
+          "tag": "advanced",
+          "description": "Deploy to Azure App Service, containers, or VMs with environment config, secrets, health checks, and logs.",
+          "resources": [
+            {
+              "title": "Deploy ASP.NET Core to Azure",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/azure-apps/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dotnet_project_inventory_api",
+          "name": "Project: Inventory Management API",
+          "tag": "advanced",
+          "description": "Build an ASP.NET Core API with EF Core, auth, role permissions, tests, Docker, CI, OpenAPI, and deployment notes.",
+          "resources": [
+            {
+              "title": "ASP.NET Core Tutorials",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/tutorials/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

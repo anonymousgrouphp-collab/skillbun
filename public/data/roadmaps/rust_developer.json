@@ -1,0 +1,203 @@
+{
+  "id": "rust_developer",
+  "title": "Rust Developer",
+  "description": "A roadmap for Rust development covering ownership, systems programming, CLIs, web services, async, testing, performance, and safe deployment.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "rust_foundations",
+      "name": "Rust Foundations",
+      "tag": "essential",
+      "description": "Learn ownership, borrowing, lifetimes, traits, enums, pattern matching, cargo, and compiler-guided development.",
+      "resources": [
+        {
+          "title": "Learn Rust Programming (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=BpPEoZW5IiY",
+          "type": "video"
+        },
+        {
+          "title": "Rust Programming Full Course (BekBrace)",
+          "url": "https://www.youtube.com/watch?v=rQ_J9WH6CGk",
+          "type": "video"
+        },
+        {
+          "title": "Rust Programming Course for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=MsocPEZBd-M",
+          "type": "video"
+        },
+        {
+          "title": "The Rust Programming Language Book",
+          "url": "https://doc.rust-lang.org/book/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "rust_ownership_traits",
+          "name": "Ownership, Traits, and Error Handling",
+          "tag": "essential",
+          "description": "Use ownership rules, references, Result/Option, traits, generics, modules, crates, and idiomatic errors.",
+          "resources": [
+            {
+              "title": "Rust by Example",
+              "url": "https://doc.rust-lang.org/rust-by-example/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rust_collections_iterators",
+          "name": "Collections and Iterators",
+          "tag": "essential",
+          "description": "Use vectors, hash maps, strings, slices, iterators, closures, pattern matching, and data modeling.",
+          "resources": [
+            {
+              "title": "Rust Standard Library",
+              "url": "https://doc.rust-lang.org/std/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "rust_apps",
+      "name": "CLIs and Web Services",
+      "tag": "essential",
+      "description": "Build useful command-line tools and web APIs with configuration, parsing, async runtimes, databases, and JSON.",
+      "resources": [
+        {
+          "title": "Command Line Applications in Rust",
+          "url": "https://rust-cli.github.io/book/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "rust_cli",
+          "name": "CLI Tools",
+          "tag": "essential",
+          "description": "Parse arguments, read files, handle errors, format output, write tests, and publish installable binaries.",
+          "resources": [
+            {
+              "title": "clap Documentation",
+              "url": "https://docs.rs/clap/latest/clap/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rust_web",
+          "name": "Web APIs",
+          "tag": "advanced",
+          "description": "Use Axum or Actix, async Rust, middleware, extractors, validation, PostgreSQL, and structured errors.",
+          "resources": [
+            {
+              "title": "Axum Documentation",
+              "url": "https://docs.rs/axum/latest/axum/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rust_developer_practice_lab",
+          "name": "Practice: Ownership Refactor",
+          "tag": "advanced",
+          "description": "Refactor a small parser to remove clones, model errors cleanly, and add benchmarks.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "rust_quality_systems",
+      "name": "Quality, Performance, and Systems",
+      "tag": "advanced",
+      "description": "Use Rust for reliable software through tests, benchmarks, profiling, unsafe boundaries, and interoperability.",
+      "resources": [
+        {
+          "title": "Rust Performance Book",
+          "url": "https://nnethercote.github.io/perf-book/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "rust_testing_benchmarks",
+          "name": "Testing and Benchmarks",
+          "tag": "advanced",
+          "description": "Write unit, integration, property, and snapshot tests; add benchmarks and fuzzing for critical code.",
+          "resources": [
+            {
+              "title": "Rust Testing Chapter",
+              "url": "https://doc.rust-lang.org/book/ch11-00-testing.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rust_unsafe_ffi",
+          "name": "Unsafe Rust and FFI Basics",
+          "tag": "advanced",
+          "description": "Understand unsafe blocks, memory layout, FFI, C interop, and how to keep unsafe code isolated.",
+          "resources": [
+            {
+              "title": "Rustonomicon",
+              "url": "https://doc.rust-lang.org/nomicon/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "rust_deploy_project",
+      "name": "Deployment and Portfolio",
+      "tag": "advanced",
+      "description": "Package Rust binaries, build containers, document tradeoffs, and show why Rust was the right tool.",
+      "resources": [
+        {
+          "title": "Cargo Book",
+          "url": "https://doc.rust-lang.org/cargo/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "rust_release",
+          "name": "Release Engineering",
+          "tag": "advanced",
+          "description": "Manage features, workspaces, cross-compilation, CI, binary releases, Docker images, and semantic versioning.",
+          "resources": [
+            {
+              "title": "Rust GitHub Actions",
+              "url": "https://github.com/actions-rs",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "rust_project_log_analyzer",
+          "name": "Project: Fast Log Analyzer",
+          "tag": "advanced",
+          "description": "Build a Rust CLI/API that parses logs, summarizes errors, benchmarks performance, includes tests, and publishes binaries.",
+          "resources": [
+            {
+              "title": "Criterion Benchmarking",
+              "url": "https://bheisler.github.io/criterion.rs/book/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

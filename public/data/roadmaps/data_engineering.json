@@ -1,0 +1,232 @@
+{
+  "id": "data_engineering",
+  "title": "Data Engineer",
+  "description": "A job-focused roadmap for building reliable batch and streaming data pipelines, warehouses, orchestration, and analytics-ready datasets.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "de_foundations",
+      "name": "SQL, Python, and Data Modeling",
+      "tag": "essential",
+      "description": "Learn the languages and modeling habits used to transform raw data into trusted tables.",
+      "resources": [
+        {
+          "title": "Data Engineering Course for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=PHsC_t0j1dU",
+          "type": "video"
+        },
+        {
+          "title": "Complete Roadmap to Learn Data Engineering (Anshul Gupta)",
+          "url": "https://www.youtube.com/watch?v=aPzPqxdNuoI",
+          "type": "video"
+        },
+        {
+          "title": "PostgreSQL Tutorial",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html",
+          "type": "article"
+        },
+        {
+          "title": "Python for Everybody",
+          "url": "https://www.py4e.com/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_sql",
+          "name": "Advanced SQL",
+          "tag": "essential",
+          "description": "Master joins, windows, CTEs, indexes, query plans, transactions, and data quality checks.",
+          "resources": [
+            {
+              "title": "Mode SQL Tutorial",
+              "url": "https://mode.com/sql-tutorial/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "de_modeling",
+          "name": "Dimensional Modeling",
+          "tag": "essential",
+          "description": "Design facts, dimensions, slowly changing dimensions, and analytics-friendly warehouse models.",
+          "resources": [
+            {
+              "title": "dbt Analytics Engineering Guide",
+              "url": "https://docs.getdbt.com/docs/introduction",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "de_batch_processing",
+      "name": "Batch Processing",
+      "tag": "essential",
+      "description": "Move and transform files, tables, and large datasets with reproducible jobs.",
+      "resources": [
+        {
+          "title": "Data Engineering with Python and AI/LLMs (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=T23Bs75F7ZQ",
+          "type": "video"
+        },
+        {
+          "title": "PySpark Overview",
+          "url": "https://spark.apache.org/docs/latest/api/python/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_spark",
+          "name": "Apache Spark",
+          "tag": "essential",
+          "description": "Use DataFrames, Spark SQL, partitioning, and cluster-aware transformations.",
+          "resources": [
+            {
+              "title": "PySpark Getting Started",
+              "url": "https://spark.apache.org/docs/latest/api/python/getting_started/index.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "de_dbt",
+          "name": "dbt Transformations",
+          "tag": "essential",
+          "description": "Build tested SQL models, sources, docs, snapshots, and repeatable data transformations.",
+          "resources": [
+            {
+              "title": "dbt Guides",
+              "url": "https://docs.getdbt.com/guides",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "data_engineering_practice_lab",
+          "name": "Practice: Dirty Data Cleaning Lab",
+          "tag": "advanced",
+          "description": "Clean messy CSV/API data, document assumptions, add quality checks, and publish trusted transformed tables.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "de_streaming_orchestration",
+      "name": "Streaming and Orchestration",
+      "tag": "advanced",
+      "description": "Coordinate pipelines and process events for near-real-time systems.",
+      "resources": [
+        {
+          "title": "Apache Kafka Quickstart",
+          "url": "https://kafka.apache.org/quickstart/",
+          "type": "article"
+        },
+        {
+          "title": "Apache Airflow Tutorials",
+          "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_kafka",
+          "name": "Event Streaming",
+          "tag": "advanced",
+          "description": "Understand topics, partitions, consumers, producers, schemas, and delivery tradeoffs.",
+          "resources": [
+            {
+              "title": "Kafka Documentation",
+              "url": "https://kafka.apache.org/documentation/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "de_airflow",
+          "name": "Workflow Orchestration",
+          "tag": "advanced",
+          "description": "Author DAGs, schedule jobs, handle retries, parameterize tasks, and monitor failures.",
+          "resources": [
+            {
+              "title": "Airflow Documentation",
+              "url": "https://airflow.apache.org/docs/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "de_cloud_quality",
+      "name": "Cloud Warehouses and Data Quality",
+      "tag": "advanced",
+      "description": "Operate data platforms with storage, permissions, testing, lineage, cost controls, and reliable delivery.",
+      "resources": [
+        {
+          "title": "BigQuery Documentation",
+          "url": "https://cloud.google.com/bigquery/docs",
+          "type": "article"
+        },
+        {
+          "title": "AWS Data Engineering",
+          "url": "https://aws.amazon.com/big-data/datalakes-and-analytics/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_quality",
+          "name": "Data Quality and Lineage",
+          "tag": "advanced",
+          "description": "Add tests, freshness checks, contracts, observability, and lineage to reduce broken dashboards.",
+          "resources": [
+            {
+              "title": "Great Expectations Documentation",
+              "url": "https://docs.greatexpectations.io/docs/home/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "de_cost_governance",
+          "name": "Cost, Governance, and Privacy",
+          "tag": "advanced",
+          "description": "Control warehouse costs, protect PII, document ownership, and apply retention and access policies.",
+          "resources": [
+            {
+              "title": "BigQuery Best Practices",
+              "url": "https://cloud.google.com/bigquery/docs/best-practices-performance-overview",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "de_capstone",
+          "name": "Project: Analytics Pipeline",
+          "tag": "advanced",
+          "description": "Ingest public data, transform it, test it, schedule it, and publish a dashboard-ready warehouse model.",
+          "resources": [
+            {
+              "title": "Kaggle Datasets",
+              "url": "https://www.kaggle.com/datasets",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

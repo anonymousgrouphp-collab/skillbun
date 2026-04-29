@@ -1,0 +1,198 @@
+{
+  "id": "penetration_tester",
+  "title": "Penetration Tester",
+  "description": "A roadmap for ethical hacking and penetration testing with networking, Linux, web security, recon, exploitation, reporting, and legal boundaries.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "pentest_foundations",
+      "name": "Ethical Hacking Foundations",
+      "tag": "essential",
+      "description": "Learn networking, Linux, scripting, web basics, vulnerability classes, legal scope, and responsible disclosure.",
+      "resources": [
+        {
+          "title": "Web App Penetration Testing Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=2_lswM1S264",
+          "type": "video"
+        },
+        {
+          "title": "Hands-On Cybersecurity and Ethical Hacking (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=ug8W0sFiVJo",
+          "type": "video"
+        },
+        {
+          "title": "OWASP Web Security Testing Guide",
+          "url": "https://owasp.org/www-project-web-security-testing-guide/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "pentest_network_linux",
+          "name": "Networking, Linux, and Scripting",
+          "tag": "essential",
+          "description": "Use TCP/IP, DNS, HTTP, Bash, Python, Kali tools, permissions, services, and safe lab environments.",
+          "resources": [
+            {
+              "title": "Kali Linux Documentation",
+              "url": "https://www.kali.org/docs/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pentest_scope_ethics",
+          "name": "Scope, Ethics, and Methodology",
+          "tag": "essential",
+          "description": "Define rules of engagement, test windows, prohibited actions, evidence handling, and reporting expectations.",
+          "resources": [
+            {
+              "title": "PTES Technical Guidelines",
+              "url": "http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "pentest_web_app",
+      "name": "Web Application Testing",
+      "tag": "essential",
+      "description": "Test web apps for auth, access control, injection, XSS, SSRF, file upload, business logic, and API flaws.",
+      "resources": [
+        {
+          "title": "PortSwigger Web Security Academy",
+          "url": "https://portswigger.net/web-security",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "pentest_burp_owasp",
+          "name": "Burp Suite and OWASP Top 10",
+          "tag": "essential",
+          "description": "Use proxying, repeater, intruder basics, request manipulation, auth testing, and vulnerability verification.",
+          "resources": [
+            {
+              "title": "Burp Suite Documentation",
+              "url": "https://portswigger.net/burp/documentation",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pentest_api_testing",
+          "name": "API Penetration Testing",
+          "tag": "advanced",
+          "description": "Test REST/GraphQL APIs for broken auth, object-level access control, mass assignment, rate limits, and injection.",
+          "resources": [
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/API-Security/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "penetration_tester_practice_lab",
+          "name": "Practice: Web Finding Writeup",
+          "tag": "advanced",
+          "description": "Exploit a legal lab bug, capture evidence, rate risk, and write remediation steps.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "pentest_infra",
+      "name": "Network and Infrastructure Testing",
+      "tag": "advanced",
+      "description": "Perform recon, scanning, enumeration, password testing, exploit validation, privilege escalation, and pivoting in labs.",
+      "resources": [
+        {
+          "title": "Network Penetration Testing Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "pentest_recon_enum",
+          "name": "Recon and Enumeration",
+          "tag": "advanced",
+          "description": "Use Nmap, DNS tools, service banners, directories, SMB/SSH/HTTP enumeration, and attack surface notes.",
+          "resources": [
+            {
+              "title": "Nmap Reference Guide",
+              "url": "https://nmap.org/book/man.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pentest_privilege",
+          "name": "Exploitation and Privilege Escalation",
+          "tag": "advanced",
+          "description": "Validate vulnerabilities safely, document proof, escalate privileges in labs, and avoid destructive actions.",
+          "resources": [
+            {
+              "title": "HackTricks",
+              "url": "https://book.hacktricks.xyz/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "pentest_reporting_project",
+      "name": "Reporting and Portfolio",
+      "tag": "advanced",
+      "description": "Write professional findings with impact, evidence, risk, reproduction steps, remediation, and executive summaries.",
+      "resources": [
+        {
+          "title": "OWASP Vulnerability Report Template",
+          "url": "https://owasp.org/www-project-web-security-testing-guide/latest/6-Appendix/A-Testing_Tools_Resource",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "pentest_reporting",
+          "name": "Professional Reports",
+          "tag": "advanced",
+          "description": "Create concise reports, screenshots, CVSS context, business impact, remediation guidance, and retest notes.",
+          "resources": [
+            {
+              "title": "CVSS Calculator",
+              "url": "https://www.first.org/cvss/calculator/3.1",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "pentest_project_lab_report",
+          "name": "Project: Vulnerable Lab Assessment",
+          "tag": "advanced",
+          "description": "Test a legal lab app/network, find vulnerabilities, exploit safely, document evidence, and publish a polished report.",
+          "resources": [
+            {
+              "title": "OWASP Juice Shop",
+              "url": "https://owasp.org/www-project-juice-shop/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

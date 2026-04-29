@@ -1,0 +1,203 @@
+{
+  "id": "linux_system_admin",
+  "title": "Linux System Administrator",
+  "description": "A roadmap for Linux operations: command line, users, services, networking, storage, automation, monitoring, and hardening.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "linux_foundations",
+      "name": "Linux Foundations",
+      "tag": "essential",
+      "description": "Learn the shell, filesystem, permissions, processes, packages, editors, and everyday command-line workflows.",
+      "resources": [
+        {
+          "title": "Introduction to Linux - Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=sWbUDq4S6Y8",
+          "type": "video"
+        },
+        {
+          "title": "Linux Crash Course for Beginners with Labs (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=6WatcfENsOU",
+          "type": "video"
+        },
+        {
+          "title": "Linux Journey",
+          "url": "https://linuxjourney.com/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_shell",
+          "name": "Shell and Filesystem",
+          "tag": "essential",
+          "description": "Use pipes, redirects, find, grep, permissions, archives, text processing, and terminal editors.",
+          "resources": [
+            {
+              "title": "The Linux Command Line",
+              "url": "https://linuxcommand.org/tlcl.php",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "linux_users_packages",
+          "name": "Users, Groups, and Packages",
+          "tag": "essential",
+          "description": "Manage accounts, sudo, groups, package managers, repositories, updates, and software inventory.",
+          "resources": [
+            {
+              "title": "Ubuntu Server Documentation",
+              "url": "https://ubuntu.com/server/docs",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "linux_services_network",
+      "name": "Services, Networking, and Storage",
+      "tag": "essential",
+      "description": "Operate servers with systemd, logs, SSH, firewalls, disks, filesystems, backups, and scheduled jobs.",
+      "resources": [
+        {
+          "title": "Linux Server Course - System Configuration and Operation (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=WMy3OzvBWc0",
+          "type": "video"
+        },
+        {
+          "title": "Red Hat Enterprise Linux Documentation",
+          "url": "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_systemd",
+          "name": "systemd and Logs",
+          "tag": "essential",
+          "description": "Manage services, timers, journal logs, boot targets, health checks, and troubleshooting.",
+          "resources": [
+            {
+              "title": "systemd Manual",
+              "url": "https://www.freedesktop.org/software/systemd/man/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "linux_storage",
+          "name": "Storage and Backups",
+          "tag": "advanced",
+          "description": "Work with partitions, LVM, mounts, quotas, rsync, snapshots, backup schedules, and restore tests.",
+          "resources": [
+            {
+              "title": "Arch Wiki - File Systems",
+              "url": "https://wiki.archlinux.org/title/File_systems",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "linux_system_admin_practice_lab",
+          "name": "Practice: Broken Server Recovery",
+          "tag": "advanced",
+          "description": "Recover a Linux service from disk, permission, config, firewall, or process failures and write the fix log.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "linux_automation_security",
+      "name": "Automation and Hardening",
+      "tag": "advanced",
+      "description": "Automate admin work, secure servers, monitor resources, and create production-ready runbooks.",
+      "resources": [
+        {
+          "title": "Ansible Documentation",
+          "url": "https://docs.ansible.com/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_bash_ansible",
+          "name": "Bash and Ansible",
+          "tag": "advanced",
+          "description": "Write scripts, idempotent playbooks, inventory files, variables, roles, and repeatable server setup.",
+          "resources": [
+            {
+              "title": "Bash Guide",
+              "url": "https://mywiki.wooledge.org/BashGuide",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "linux_capstone",
+          "name": "Project: Hardened Web Server",
+          "tag": "advanced",
+          "description": "Provision a Linux server with SSH hardening, firewall, Nginx, TLS, logs, backups, monitoring, and a runbook.",
+          "resources": [
+            {
+              "title": "Mozilla SSL Configuration Generator",
+              "url": "https://ssl-config.mozilla.org/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "linux_monitoring_incidents",
+      "name": "Monitoring and Incident Response",
+      "tag": "advanced",
+      "description": "Watch systems in production, respond to failures, and document repeatable recovery procedures.",
+      "resources": [
+        {
+          "title": "Prometheus Overview",
+          "url": "https://prometheus.io/docs/introduction/overview/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_observability",
+          "name": "Metrics, Logs, and Alerts",
+          "tag": "advanced",
+          "description": "Track CPU, memory, disk, network, service health, logs, alert thresholds, and dashboard hygiene.",
+          "resources": [
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/grafana/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "linux_incident_runbooks",
+          "name": "Incident Runbooks",
+          "tag": "advanced",
+          "description": "Write recovery steps for disk full, high load, failed deploys, expired TLS, SSH lockout, and service outages.",
+          "resources": [
+            {
+              "title": "Google SRE Incident Response",
+              "url": "https://sre.google/sre-book/managing-incidents/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

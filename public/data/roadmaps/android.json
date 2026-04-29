@@ -1,58 +1,207 @@
 {
   "id": "android",
   "title": "Android Developer",
-  "description": "Roadmap to building native Android applications using Kotlin.",
+  "description": "Roadmap to building native Android applications using Kotlin, Jetpack Compose, architecture, APIs, storage, testing, and Play Store release practices.",
   "stages": [
     {
       "step": 1,
-      "title": "Kotlin Basics",
+      "title": "Kotlin and Android Foundations",
       "topics": [
         {
           "id": "an_kotlin",
-          "name": "Syntax and OOP",
+          "name": "Kotlin Syntax and OOP",
           "tag": "essential",
-          "description": "Coroutines, Data Classes, and standard library functions.",
+          "description": "Learn variables, functions, classes, data classes, collections, null safety, exceptions, and idiomatic Kotlin.",
           "resources": [
             {
-              "title": "Kotlin Course (Philipp Lackner)",
-              "url": "https://www.youtube.com/watch?v=F9UC9tj1Urc",
+              "title": "Full 2025 Kotlin Crash Course For Beginners (Philipp Lackner)",
+              "url": "https://www.youtube.com/watch?v=dzUc9vrsldM",
               "type": "video"
             }
           ]
+        },
+        {
+          "id": "an_coroutines",
+          "name": "Coroutines and Async Work",
+          "tag": "essential",
+          "description": "Use suspend functions, coroutine scopes, dispatchers, flows, and structured concurrency for responsive apps.",
+          "resources": [
+            {
+              "title": "Kotlin Coroutines on Android",
+              "url": "https://developer.android.com/kotlin/coroutines",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "an_android_basics",
+          "name": "Android App Basics",
+          "tag": "essential",
+          "description": "Understand activities, lifecycle, intents, permissions, resources, Gradle, manifests, and app structure.",
+          "resources": [
+            {
+              "title": "Android Basics with Compose",
+              "url": "https://developer.android.com/courses/android-basics-compose/course",
+              "type": "course"
+            }
+          ]
         }
-      ]
+      ],
+      "project": {
+        "title": "Unit Converter App",
+        "description": "Build a simple Kotlin app with multiple screens, lifecycle-safe state, input validation, and polished UI.",
+        "url": "https://developer.android.com/courses"
+      }
     },
     {
       "step": 2,
-      "title": "Android UI",
+      "title": "Modern Android UI",
       "topics": [
         {
           "id": "an_xml",
-          "name": "XML & Views",
+          "name": "XML Views and Layouts",
           "tag": "essential",
-          "description": "ConstraintLayout, RecyclerView, and ViewBinding.",
+          "description": "Use ConstraintLayout, RecyclerView, ViewBinding, themes, resources, and responsive layouts.",
           "resources": [
             {
-              "title": "Android UI Masterclass",
+              "title": "Android Developers Courses",
               "url": "https://developer.android.com/courses",
-              "type": "article"
+              "type": "course"
             }
           ]
         },
         {
           "id": "an_compose",
           "name": "Jetpack Compose",
-          "tag": "advanced",
-          "description": "Modern declarative native UI toolkit.",
+          "tag": "essential",
+          "description": "Build declarative UI with composables, modifiers, state hoisting, navigation, forms, lists, and theming.",
           "resources": [
             {
-              "title": "Compose Tutorial (CheezyCode)",
-              "url": "https://www.youtube.com/watch?v=mJj0_u1Npgw",
+              "title": "Android Jetpack Compose Tutorial Introduction (Cheezy Code)",
+              "url": "https://www.youtube.com/watch?v=8q5qI3Ah9Us",
               "type": "video"
             }
           ]
+        },
+        {
+          "id": "android_practice_lab",
+          "name": "Practice: Compose Screen Rebuild",
+          "tag": "advanced",
+          "description": "Rebuild one real app screen in Compose, handle loading/error/empty states, and test it on two screen sizes.",
+          "resources": [
+            {
+              "title": "Jetpack Compose Documentation",
+              "url": "https://developer.android.com/jetpack/compose/documentation",
+              "type": "article"
+            }
+          ]
         }
-      ]
+      ],
+      "project": {
+        "title": "Expense Tracker UI",
+        "description": "Create a Compose UI with transactions, filters, charts, empty states, and local preview data.",
+        "url": "https://developer.android.com/jetpack/compose"
+      }
+    },
+    {
+      "step": 3,
+      "title": "Architecture, APIs, and Data",
+      "topics": [
+        {
+          "id": "an_architecture",
+          "name": "MVVM and App Architecture",
+          "tag": "essential",
+          "description": "Use ViewModel, repository pattern, UI state, dependency injection, navigation, and clean module boundaries.",
+          "resources": [
+            {
+              "title": "Guide to App Architecture",
+              "url": "https://developer.android.com/topic/architecture",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "an_networking",
+          "name": "Networking and APIs",
+          "tag": "essential",
+          "description": "Call REST APIs, parse JSON, model errors, cache data, retry safely, and keep secrets out of the client.",
+          "resources": [
+            {
+              "title": "Retrofit Documentation",
+              "url": "https://square.github.io/retrofit/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "an_storage",
+          "name": "Room, DataStore, and Offline UX",
+          "tag": "advanced",
+          "description": "Store structured data, preferences, cache API responses, handle migrations, and support offline-first flows.",
+          "resources": [
+            {
+              "title": "Room Persistence Library",
+              "url": "https://developer.android.com/training/data-storage/room",
+              "type": "article"
+            }
+          ]
+        }
+      ],
+      "project": {
+        "title": "Offline News Reader",
+        "description": "Build a news app with API fetch, Room cache, Compose UI, saved articles, search, and error recovery.",
+        "url": "https://developer.android.com/topic/architecture"
+      }
+    },
+    {
+      "step": 4,
+      "title": "Testing, Performance, and Release",
+      "topics": [
+        {
+          "id": "an_testing",
+          "name": "Testing Android Apps",
+          "tag": "advanced",
+          "description": "Write unit tests, UI tests, ViewModel tests, fake repositories, and regression checks for core user flows.",
+          "resources": [
+            {
+              "title": "Test Apps on Android",
+              "url": "https://developer.android.com/training/testing",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "an_performance_security",
+          "name": "Performance and Security",
+          "tag": "advanced",
+          "description": "Profile startup, memory, jank, battery, secure storage, permissions, network security config, and release signing.",
+          "resources": [
+            {
+              "title": "Android App Performance",
+              "url": "https://developer.android.com/topic/performance",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "android_project_play_ready_app",
+          "name": "Project: Play-Ready Android App",
+          "tag": "advanced",
+          "description": "Ship a polished app with offline data, tests, release build, privacy notes, screenshots, and a Play Store-style listing.",
+          "resources": [
+            {
+              "title": "Launch Checklist",
+              "url": "https://developer.android.com/distribute/best-practices/launch/launch-checklist",
+              "type": "article"
+            }
+          ]
+        }
+      ],
+      "project": {
+        "title": "Production Habit Tracker",
+        "description": "Build and test a habit tracker with local persistence, notifications, analytics-ready events, release build, and documentation.",
+        "url": "https://developer.android.com/distribute"
+      }
     }
   ]
 }

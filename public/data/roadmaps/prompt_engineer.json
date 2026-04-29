@@ -1,0 +1,203 @@
+{
+  "id": "prompt_engineer",
+  "title": "Prompt Engineer",
+  "description": "A roadmap for designing, testing, and evaluating prompts for LLM applications with structured outputs, tool use, safety, and measurable quality.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "prompt_foundations",
+      "name": "LLM and Prompting Foundations",
+      "tag": "essential",
+      "description": "Understand how LLMs respond to instructions, context, examples, constraints, and ambiguity.",
+      "resources": [
+        {
+          "title": "Prompt Engineering Tutorial (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=_ZvnD73m40o",
+          "type": "video"
+        },
+        {
+          "title": "Prompt Engineering Full Course (The iScale)",
+          "url": "https://www.youtube.com/watch?v=YhRfgYH_AoU",
+          "type": "video"
+        },
+        {
+          "title": "Prompt Engineering in 20 Minutes (Nishant Chahar)",
+          "url": "https://www.youtube.com/watch?v=IbVjxg9bHAw",
+          "type": "video"
+        },
+        {
+          "title": "Prompt Engineering Guide",
+          "url": "https://www.promptingguide.ai/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "prompt_basics",
+          "name": "Instruction, Context, and Examples",
+          "tag": "essential",
+          "description": "Write clear tasks, define audience and tone, provide examples, constrain outputs, and reduce ambiguity.",
+          "resources": [
+            {
+              "title": "OpenAI Prompt Engineering Guide",
+              "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "prompt_llm_limits",
+          "name": "LLM Limits and Failure Modes",
+          "tag": "essential",
+          "description": "Recognize hallucinations, stale knowledge, prompt injection, context limits, hidden assumptions, and overconfident answers.",
+          "resources": [
+            {
+              "title": "OWASP Top 10 for LLM Apps",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "prompt_patterns",
+      "name": "Prompt Patterns and Structured Outputs",
+      "tag": "essential",
+      "description": "Design repeatable prompt patterns for classification, extraction, generation, summarization, reasoning, and JSON outputs.",
+      "resources": [
+        {
+          "title": "Anthropic Prompt Engineering",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "prompt_extraction_classification",
+          "name": "Extraction and Classification",
+          "tag": "essential",
+          "description": "Extract fields, classify tickets, route requests, validate outputs, and handle uncertain or missing information.",
+          "resources": [
+            {
+              "title": "OpenAI Structured Outputs",
+              "url": "https://platform.openai.com/docs/guides/structured-outputs",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "prompt_multistep",
+          "name": "Multi-step Reasoning and Tools",
+          "tag": "advanced",
+          "description": "Break tasks into steps, call tools, use retrieval, ask clarifying questions, and verify intermediate results.",
+          "resources": [
+            {
+              "title": "OpenAI Function Calling",
+              "url": "https://platform.openai.com/docs/guides/function-calling",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "prompt_engineer_practice_lab",
+          "name": "Practice: Prompt Regression Set",
+          "tag": "advanced",
+          "description": "Create test prompts, expected outputs, edge cases, scoring notes, and compare two prompt versions.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "prompt_eval_safety",
+      "name": "Evaluation and Safety",
+      "tag": "advanced",
+      "description": "Measure prompt quality through test sets, rubrics, regression checks, safety cases, and user feedback.",
+      "resources": [
+        {
+          "title": "OpenAI Evals",
+          "url": "https://github.com/openai/evals",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "prompt_eval_sets",
+          "name": "Prompt Evaluation Sets",
+          "tag": "advanced",
+          "description": "Create golden examples, edge cases, adversarial prompts, scoring rubrics, and comparison reports.",
+          "resources": [
+            {
+              "title": "LangSmith Evaluation Concepts",
+              "url": "https://docs.smith.langchain.com/evaluation/concepts",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "prompt_safety",
+          "name": "Safety, Privacy, and Guardrails",
+          "tag": "advanced",
+          "description": "Handle sensitive data, refusals, jailbreaks, prompt injection, output filters, and human review paths.",
+          "resources": [
+            {
+              "title": "NIST AI Risk Management Framework",
+              "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "prompt_project",
+      "name": "Prompt Ops and Portfolio",
+      "tag": "advanced",
+      "description": "Version prompts, document decisions, monitor failures, and build a portfolio that shows measurable improvement.",
+      "resources": [
+        {
+          "title": "Humanloop Prompt Management Guide",
+          "url": "https://humanloop.com/blog/prompt-management",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "prompt_versioning",
+          "name": "Prompt Versioning and Monitoring",
+          "tag": "advanced",
+          "description": "Track prompt versions, model changes, evaluation scores, user feedback, cost, latency, and failure patterns.",
+          "resources": [
+            {
+              "title": "PromptLayer Docs",
+              "url": "https://docs.promptlayer.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "prompt_project_support_bot",
+          "name": "Project: Support Prompt System",
+          "tag": "advanced",
+          "description": "Design prompts for ticket triage, answer drafting, escalation, JSON output, eval sets, safety checks, and a quality report.",
+          "resources": [
+            {
+              "title": "OpenAI Safety Best Practices",
+              "url": "https://platform.openai.com/docs/guides/safety-best-practices",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

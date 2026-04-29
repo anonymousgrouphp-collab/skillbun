@@ -1,0 +1,203 @@
+{
+  "id": "go_developer",
+  "title": "Go Developer",
+  "description": "A roadmap for Go backend development: core language, concurrency, APIs, databases, testing, containers, observability, and cloud-ready services.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "go_foundations",
+      "name": "Go Foundations",
+      "tag": "essential",
+      "description": "Learn Go syntax, modules, structs, interfaces, errors, packages, tooling, and idiomatic code organization.",
+      "resources": [
+        {
+          "title": "Go Programming Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+          "type": "video"
+        },
+        {
+          "title": "Learn GO Fast: Full Tutorial (Alex Mux)",
+          "url": "https://www.youtube.com/watch?v=8uiZC0l4Ajw",
+          "type": "video"
+        },
+        {
+          "title": "Golang Tutorial for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=YS4e4q9oBaU",
+          "type": "video"
+        },
+        {
+          "title": "Go Tour",
+          "url": "https://go.dev/tour/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_core",
+          "name": "Core Language and Tooling",
+          "tag": "essential",
+          "description": "Use slices, maps, structs, methods, interfaces, errors, modules, gofmt, go vet, and project layout.",
+          "resources": [
+            {
+              "title": "Effective Go",
+              "url": "https://go.dev/doc/effective_go",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "go_concurrency",
+          "name": "Concurrency",
+          "tag": "advanced",
+          "description": "Use goroutines, channels, contexts, cancellation, worker pools, mutexes, race detection, and graceful shutdown.",
+          "resources": [
+            {
+              "title": "Go Concurrency Patterns",
+              "url": "https://go.dev/blog/pipelines",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "go_web_services",
+      "name": "Web Services and Databases",
+      "tag": "essential",
+      "description": "Build REST APIs, middleware, auth, validation, database access, migrations, and service boundaries.",
+      "resources": [
+        {
+          "title": "Go Web Examples",
+          "url": "https://gowebexamples.com/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_http_api",
+          "name": "HTTP APIs",
+          "tag": "essential",
+          "description": "Use net/http, routers, middleware, JSON, validation, error responses, pagination, and OpenAPI docs.",
+          "resources": [
+            {
+              "title": "net/http Package",
+              "url": "https://pkg.go.dev/net/http",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "go_sql",
+          "name": "SQL and Persistence",
+          "tag": "essential",
+          "description": "Use database/sql, pgx, migrations, transactions, query performance, and repository patterns.",
+          "resources": [
+            {
+              "title": "Go SQL Database Tutorial",
+              "url": "https://go.dev/doc/database/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "go_developer_practice_lab",
+          "name": "Practice: Concurrent Worker Pool",
+          "tag": "advanced",
+          "description": "Build a worker pool with context cancellation, retries, metrics, tests, and graceful shutdown.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "go_quality_ops",
+      "name": "Testing, Performance, and Operations",
+      "tag": "advanced",
+      "description": "Write robust services with tests, benchmarks, profiling, observability, background workers, and deployment discipline.",
+      "resources": [
+        {
+          "title": "Go Testing Package",
+          "url": "https://pkg.go.dev/testing",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_testing_benchmarks",
+          "name": "Testing and Benchmarks",
+          "tag": "advanced",
+          "description": "Write table-driven tests, mocks, integration tests, benchmarks, fuzz tests, and race-detector checks.",
+          "resources": [
+            {
+              "title": "Go Fuzzing",
+              "url": "https://go.dev/doc/security/fuzz/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "go_observability",
+          "name": "Observability and Profiling",
+          "tag": "advanced",
+          "description": "Add structured logs, metrics, traces, pprof profiling, health checks, and SLO-style dashboards.",
+          "resources": [
+            {
+              "title": "pprof Documentation",
+              "url": "https://pkg.go.dev/net/http/pprof",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "go_deploy_project",
+      "name": "Deployment and Portfolio",
+      "tag": "advanced",
+      "description": "Ship a Go service as a small binary or container with safe config, release automation, and runbooks.",
+      "resources": [
+        {
+          "title": "Docker Go Guide",
+          "url": "https://docs.docker.com/language/golang/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_deployment",
+          "name": "Deployment Patterns",
+          "tag": "advanced",
+          "description": "Build minimal Docker images, manage config/secrets, add graceful shutdown, migrations, and rollout checks.",
+          "resources": [
+            {
+              "title": "Go Modules Reference",
+              "url": "https://go.dev/ref/mod",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "go_project_url_shortener",
+          "name": "Project: URL Shortener Service",
+          "tag": "advanced",
+          "description": "Build a Go API with PostgreSQL, Redis cache, rate limits, tests, metrics, Docker, and deployment notes.",
+          "resources": [
+            {
+              "title": "OpenTelemetry Go",
+              "url": "https://opentelemetry.io/docs/languages/go/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

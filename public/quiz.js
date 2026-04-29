@@ -522,7 +522,7 @@ RESPONSE FORMAT (for final recommendation):
 }
 
 Provide exactly 3 careers in the final recommendation. Be specific to the Indian tech market.
-For every career, provide the closest matching exact internal ID in the 'roadmapUrl' field from this exact list: ['frontend', 'backend', 'android', 'data_science', 'fullstack']. If no exact match exists, default to 'general'. Do NOT provide full URLs, just the ID string.
+For every career, provide the closest matching exact internal ID in the 'roadmapUrl' field from this exact list: ['frontend', 'backend', 'fullstack', 'android', 'ios_developer', 'flutter_developer', 'react_native_developer', 'python_developer', 'java_developer', 'dotnet_developer', 'go_developer', 'rust_developer', 'php_laravel_developer', 'wordpress_developer', 'shopify_developer', 'data_analyst', 'data_science', 'ai_ml_engineer', 'mlops_engineer', 'computer_vision_engineer', 'generative_ai_app_developer', 'prompt_engineer', 'data_engineering', 'cybersecurity', 'cloud_security_engineer', 'soc_analyst', 'penetration_tester', 'devops_cloud', 'site_reliability_engineer', 'cloud_architect', 'network_engineer', 'linux_system_admin', 'database_admin', 'qa_automation', 'ui_ux_design', 'product_manager', 'business_analyst', 'game_development', 'ar_vr_developer', 'embedded_iot', 'robotics_engineer', 'blockchain_web3', 'salesforce_developer', 'technical_writing', 'technical_support_engineer', 'seo_specialist', 'digital_marketing_analyst', 'no_code_low_code_developer', 'rpa_developer', 'general']. If no exact match exists, default to 'general'. Do NOT provide full URLs, just the ID string.
 Start with the first question now.`;
 }
 
@@ -638,14 +638,71 @@ function parseGeminiJSON(text) {
 const ROADMAP_FALLBACK_URL = '/roadmap/general';
 
 const KNOWN_ROADMAP_SLUGS = new Set([
-    'frontend', 'backend', 'android', 'data_science', 'fullstack', 'cybersecurity', 'general'
+    'frontend', 'backend', 'fullstack', 'android', 'ios_developer', 'flutter_developer',
+    'react_native_developer', 'python_developer', 'java_developer', 'dotnet_developer',
+    'go_developer', 'rust_developer', 'php_laravel_developer', 'wordpress_developer',
+    'shopify_developer', 'data_analyst', 'data_science', 'ai_ml_engineer', 'mlops_engineer',
+    'computer_vision_engineer', 'generative_ai_app_developer', 'prompt_engineer',
+    'data_engineering', 'cybersecurity', 'cloud_security_engineer',
+    'soc_analyst', 'penetration_tester', 'devops_cloud', 'site_reliability_engineer',
+    'cloud_architect', 'network_engineer', 'linux_system_admin', 'database_admin',
+    'qa_automation', 'ui_ux_design', 'product_manager', 'business_analyst', 'game_development',
+    'ar_vr_developer', 'embedded_iot', 'robotics_engineer', 'blockchain_web3',
+    'salesforce_developer', 'technical_writing', 'technical_support_engineer',
+    'seo_specialist', 'digital_marketing_analyst', 'no_code_low_code_developer',
+    'rpa_developer',
+    'general'
 ]);
 
 const ROADMAP_KEYWORD_RULES = [
     { slug: 'fullstack', keywords: ['full stack', 'full-stack', 'fullstack'] },
     { slug: 'frontend', keywords: ['frontend', 'front end', 'front-end', 'web ui', 'react', 'vue', 'angular'] },
     { slug: 'backend', keywords: ['backend', 'back end', 'back-end', 'server side', 'api developer', 'microservice'] },
-    { slug: 'data_science', keywords: ['ai engineer', 'artificial intelligence', 'data scientist', 'llm', 'genai', 'nlp', 'computer vision', 'data analyst', 'machine learning', 'ml engineer', 'deep learning'] },
+    { slug: 'flutter_developer', keywords: ['flutter', 'dart', 'cross platform mobile'] },
+    { slug: 'react_native_developer', keywords: ['react native', 'expo', 'mobile react'] },
+    { slug: 'python_developer', keywords: ['python developer', 'python backend', 'fastapi', 'django developer', 'python automation'] },
+    { slug: 'java_developer', keywords: ['java developer', 'spring boot', 'spring developer', 'java backend'] },
+    { slug: 'dotnet_developer', keywords: ['.net', 'dotnet', 'c#', 'asp.net', 'asp net', 'microsoft stack'] },
+    { slug: 'go_developer', keywords: ['go developer', 'golang', 'go backend'] },
+    { slug: 'rust_developer', keywords: ['rust developer', 'rust programming', 'systems programming'] },
+    { slug: 'php_laravel_developer', keywords: ['php', 'laravel', 'php developer', 'laravel developer'] },
+    { slug: 'wordpress_developer', keywords: ['wordpress', 'wordpress developer', 'woocommerce developer'] },
+    { slug: 'shopify_developer', keywords: ['shopify', 'shopify developer', 'liquid theme', 'ecommerce developer'] },
+    { slug: 'computer_vision_engineer', keywords: ['computer vision', 'opencv', 'image processing', 'object detection', 'vision engineer'] },
+    { slug: 'mlops_engineer', keywords: ['mlops', 'ml ops', 'machine learning operations', 'model deployment', 'model monitoring', 'mlflow', 'dvc', 'model registry'] },
+    { slug: 'generative_ai_app_developer', keywords: ['generative ai app', 'genai app', 'ai app developer', 'rag', 'retrieval augmented generation', 'llm app'] },
+    { slug: 'prompt_engineer', keywords: ['prompt engineer', 'prompt engineering', 'prompt designer', 'llm prompt'] },
+    { slug: 'ai_ml_engineer', keywords: ['ai engineer', 'artificial intelligence', 'llm', 'genai', 'nlp', 'machine learning', 'ml engineer', 'deep learning'] },
+    { slug: 'digital_marketing_analyst', keywords: ['digital marketing analyst', 'marketing analyst', 'campaign analyst', 'performance marketing', 'ga4', 'google analytics'] },
+    { slug: 'seo_specialist', keywords: ['seo', 'search engine optimization', 'seo specialist', 'technical seo'] },
+    { slug: 'data_analyst', keywords: ['data analyst', 'business intelligence analyst', 'bi analyst', 'power bi', 'tableau', 'excel analyst', 'dashboard analyst', 'reporting analyst'] },
+    { slug: 'data_science', keywords: ['data scientist', 'analytics', 'statistics', 'predictive modeling'] },
+    { slug: 'data_engineering', keywords: ['data engineer', 'etl', 'elt', 'spark', 'kafka', 'airflow', 'warehouse', 'pipeline'] },
+    { slug: 'site_reliability_engineer', keywords: ['site reliability engineer', 'sre engineer', 'sre', 'slo', 'error budget', 'incident response', 'prometheus'] },
+    { slug: 'devops_cloud', keywords: ['devops', 'ci/cd', 'docker', 'kubernetes', 'terraform'] },
+    { slug: 'cloud_architect', keywords: ['cloud architect', 'solution architect', 'solutions architect', 'aws architect', 'azure architect', 'gcp architect'] },
+    { slug: 'network_engineer', keywords: ['network engineer', 'network administrator', 'ccna', 'routing', 'switching', 'subnetting', 'networking'] },
+    { slug: 'linux_system_admin', keywords: ['linux administrator', 'linux admin', 'system administrator', 'sysadmin', 'server administrator', 'linux server'] },
+    { slug: 'database_admin', keywords: ['database administrator', 'dba', 'postgres admin', 'mysql admin', 'database admin', 'database operations'] },
+    { slug: 'technical_support_engineer', keywords: ['technical support', 'it support', 'helpdesk', 'desktop support', 'support engineer'] },
+    { slug: 'qa_automation', keywords: ['qa', 'quality assurance', 'test automation', 'automation tester', 'sdet', 'playwright', 'selenium'] },
+    { slug: 'ui_ux_design', keywords: ['ui ux', 'ux designer', 'ui designer', 'product designer', 'figma', 'user research'] },
+    { slug: 'product_manager', keywords: ['product manager', 'product management', 'associate product manager', 'apm', 'product owner'] },
+    { slug: 'business_analyst', keywords: ['business analyst', 'business analysis', 'requirements analyst', 'process analyst', 'functional analyst'] },
+    { slug: 'game_development', keywords: ['game developer', 'game development', 'unity', 'godot', 'unreal'] },
+    { slug: 'ar_vr_developer', keywords: ['ar developer', 'vr developer', 'xr developer', 'augmented reality', 'virtual reality', 'mixed reality', 'webxr'] },
+    { slug: 'embedded_iot', keywords: ['embedded', 'iot', 'internet of things', 'firmware', 'microcontroller', 'arduino', 'esp32'] },
+    { slug: 'robotics_engineer', keywords: ['robotics', 'robotics engineer', 'ros', 'ros2', 'autonomous robot', 'slam'] },
+    { slug: 'blockchain_web3', keywords: ['blockchain', 'web3', 'solidity', 'smart contract', 'ethereum', 'dapp'] },
+    { slug: 'cloud_security_engineer', keywords: ['cloud security', 'cloud security engineer', 'aws security', 'azure security', 'gcp security', 'guardduty', 'security hub', 'cloud iam', 'cspm'] },
+    { slug: 'cybersecurity', keywords: ['cybersecurity', 'cyber security', 'information security', 'infosec', 'security engineer'] },
+    { slug: 'soc_analyst', keywords: ['soc analyst', 'security operations', 'siem', 'blue team', 'threat hunting'] },
+    { slug: 'penetration_tester', keywords: ['penetration tester', 'pentester', 'ethical hacker', 'web app pentest', 'bug bounty'] },
+    { slug: 'salesforce_developer', keywords: ['salesforce', 'apex', 'lightning web components', 'lwc', 'crm developer', 'salesforce developer'] },
+    { slug: 'technical_writing', keywords: ['technical writer', 'documentation', 'docs writer', 'api writer', 'developer documentation'] },
+    { slug: 'no_code_low_code_developer', keywords: ['no code', 'low code', 'nocode', 'bubble', 'webflow', 'appsheet', 'power platform'] },
+    { slug: 'rpa_developer', keywords: ['rpa', 'robotic process automation', 'uipath', 'power automate', 'automation developer'] },
+    { slug: 'ios_developer', keywords: ['ios', 'swift', 'swiftui', 'iphone app'] },
     { slug: 'android', keywords: ['android', 'mobile', 'kotlin', 'app developer'] }
 ];
 
