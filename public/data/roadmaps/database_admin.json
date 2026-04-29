@@ -1,0 +1,217 @@
+{
+  "id": "database_admin",
+  "title": "Database Administrator",
+  "description": "A roadmap for operating reliable databases: SQL, backups, performance, security, replication, and production monitoring.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "dba_foundations",
+      "name": "Database Fundamentals",
+      "tag": "essential",
+      "description": "Understand relational models, SQL, transactions, indexing, normalization, and database server responsibilities.",
+      "resources": [
+        {
+          "title": "Databases In-Depth - Complete Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=pPqazMTzNOM",
+          "type": "video"
+        },
+        {
+          "title": "Database Administrator Explained (Neso Academy)",
+          "url": "https://www.youtube.com/watch?v=fO5tDyOY5Fw",
+          "type": "video"
+        },
+        {
+          "title": "PostgreSQL Tutorial",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dba_sql",
+          "name": "SQL and Querying",
+          "tag": "essential",
+          "description": "Write joins, CTEs, window functions, transactions, constraints, views, and stored procedures.",
+          "resources": [
+            {
+              "title": "SQLBolt",
+              "url": "https://sqlbolt.com/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dba_modeling",
+          "name": "Schema Design",
+          "tag": "essential",
+          "description": "Design tables, keys, relationships, indexes, constraints, and migrations for maintainable systems.",
+          "resources": [
+            {
+              "title": "PostgreSQL Data Definition",
+              "url": "https://www.postgresql.org/docs/current/ddl.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dba_operations",
+      "name": "Operations and Reliability",
+      "tag": "essential",
+      "description": "Keep databases available through backups, restores, replication, upgrades, monitoring, and capacity planning.",
+      "resources": [
+        {
+          "title": "How to Become a Database Administrator (Intellipaat)",
+          "url": "https://www.youtube.com/watch?v=e2oj-xgpiH0",
+          "type": "video"
+        },
+        {
+          "title": "PostgreSQL Backup and Restore",
+          "url": "https://www.postgresql.org/docs/current/backup.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dba_backup_restore",
+          "name": "Backup and Restore",
+          "tag": "essential",
+          "description": "Create backup policies, test restores, plan retention, and define RPO/RTO expectations.",
+          "resources": [
+            {
+              "title": "pgBackRest Documentation",
+              "url": "https://pgbackrest.org/user-guide.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dba_replication",
+          "name": "Replication and High Availability",
+          "tag": "advanced",
+          "description": "Understand read replicas, failover, streaming replication, lag, and disaster recovery tradeoffs.",
+          "resources": [
+            {
+              "title": "PostgreSQL High Availability",
+              "url": "https://www.postgresql.org/docs/current/high-availability.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "database_admin_practice_lab",
+          "name": "Practice: Restore and Tune Drill",
+          "tag": "advanced",
+          "description": "Restore a backup, find slow queries, add indexes carefully, and document before/after performance.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dba_performance_security",
+      "name": "Performance and Security",
+      "tag": "advanced",
+      "description": "Tune queries, protect sensitive data, control access, audit changes, and document operational runbooks.",
+      "resources": [
+        {
+          "title": "PostgreSQL Performance Tips",
+          "url": "https://www.postgresql.org/docs/current/performance-tips.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dba_query_tuning",
+          "name": "Query Tuning",
+          "tag": "advanced",
+          "description": "Use EXPLAIN, indexes, statistics, query plans, slow query logs, and workload-aware tuning.",
+          "resources": [
+            {
+              "title": "PostgreSQL EXPLAIN",
+              "url": "https://www.postgresql.org/docs/current/using-explain.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dba_security",
+          "name": "Database Security",
+          "tag": "advanced",
+          "description": "Manage roles, grants, encryption, auditing, secrets, least privilege, and compliance basics.",
+          "resources": [
+            {
+              "title": "PostgreSQL Client Authentication",
+              "url": "https://www.postgresql.org/docs/current/client-authentication.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dba_project_operations_lab",
+          "name": "Project: Database Operations Lab",
+          "tag": "advanced",
+          "description": "Provision PostgreSQL, design a schema, load sample data, configure backups, test restore, tune slow queries, and document a DBA runbook.",
+          "resources": [
+            {
+              "title": "PostgreSQL Sample Databases",
+              "url": "https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "dba_cloud_incidents",
+      "name": "Cloud Databases and Incident Response",
+      "tag": "advanced",
+      "description": "Operate managed databases, automate maintenance, and respond calmly when production data systems misbehave.",
+      "resources": [
+        {
+          "title": "Amazon RDS Documentation",
+          "url": "https://docs.aws.amazon.com/rds/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dba_managed_databases",
+          "name": "Managed Database Services",
+          "tag": "advanced",
+          "description": "Compare RDS, Cloud SQL, Azure SQL, read replicas, parameter groups, maintenance windows, and snapshots.",
+          "resources": [
+            {
+              "title": "Cloud SQL Documentation",
+              "url": "https://cloud.google.com/sql/docs",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "dba_incident_runbooks",
+          "name": "Incident Runbooks",
+          "tag": "advanced",
+          "description": "Write runbooks for slow queries, replication lag, storage exhaustion, failed backups, and emergency restores.",
+          "resources": [
+            {
+              "title": "Google SRE Incident Response",
+              "url": "https://sre.google/sre-book/managing-incidents/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

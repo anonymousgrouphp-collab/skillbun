@@ -1,0 +1,203 @@
+{
+  "id": "site_reliability_engineer",
+  "title": "Site Reliability Engineer",
+  "description": "A roadmap for SRE careers: Linux, distributed systems, observability, SLOs, incident response, automation, capacity, and reliability projects.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "sre_foundations",
+      "name": "Systems and Reliability Foundations",
+      "tag": "essential",
+      "description": "Build a base in Linux, networking, cloud, containers, distributed systems, failure modes, and operational thinking.",
+      "resources": [
+        {
+          "title": "SRE Roadmap (Paras Thakur)",
+          "url": "https://www.youtube.com/watch?v=nPx3Qk-J_FA",
+          "type": "video"
+        },
+        {
+          "title": "Site Reliability Engineer Full Course (MindMajix)",
+          "url": "https://www.youtube.com/watch?v=Kj5ik3UPBbA",
+          "type": "video"
+        },
+        {
+          "title": "What is Site Reliability Engineering? (Hitesh Choudhary)",
+          "url": "https://www.youtube.com/watch?v=RJ4QLjuDRo8",
+          "type": "video"
+        },
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "sre_linux_networking",
+          "name": "Linux, Networking, and Cloud",
+          "tag": "essential",
+          "description": "Use Linux services, DNS, TLS, load balancers, containers, Kubernetes basics, and cloud infrastructure.",
+          "resources": [
+            {
+              "title": "Linux Journey",
+              "url": "https://linuxjourney.com/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "sre_distributed_systems",
+          "name": "Distributed Systems Basics",
+          "tag": "advanced",
+          "description": "Understand latency, retries, timeouts, queues, caches, replication, consistency, backpressure, and partial failure.",
+          "resources": [
+            {
+              "title": "Designing Data-Intensive Applications",
+              "url": "https://dataintensive.net/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "sre_observability_slos",
+      "name": "Observability and SLOs",
+      "tag": "essential",
+      "description": "Measure reliability with metrics, logs, traces, service level indicators, objectives, alerts, and dashboards.",
+      "resources": [
+        {
+          "title": "Prometheus Documentation",
+          "url": "https://prometheus.io/docs/introduction/overview/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "sre_metrics_logs_traces",
+          "name": "Metrics, Logs, and Traces",
+          "tag": "essential",
+          "description": "Instrument services, build dashboards, trace requests, write useful alerts, and avoid alert fatigue.",
+          "resources": [
+            {
+              "title": "OpenTelemetry Documentation",
+              "url": "https://opentelemetry.io/docs/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "sre_slos_error_budgets",
+          "name": "SLIs, SLOs, and Error Budgets",
+          "tag": "advanced",
+          "description": "Define user-centered reliability targets, track error budgets, and connect reliability to product decisions.",
+          "resources": [
+            {
+              "title": "SRE Workbook - SLOs",
+              "url": "https://sre.google/workbook/implementing-slos/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "site_reliability_engineer_practice_lab",
+          "name": "Practice: SLO Alert Review",
+          "tag": "advanced",
+          "description": "Review noisy alerts, define SLIs/SLOs, tune thresholds, and document an incident response path.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "sre_incidents_automation",
+      "name": "Incident Response and Automation",
+      "tag": "advanced",
+      "description": "Reduce toil through automation and respond to incidents with calm, structured, blameless operations.",
+      "resources": [
+        {
+          "title": "Google SRE Incident Response",
+          "url": "https://sre.google/sre-book/managing-incidents/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "sre_incident_management",
+          "name": "Incident Management",
+          "tag": "advanced",
+          "description": "Run incident roles, comms, escalation, mitigation, timelines, status updates, postmortems, and follow-up actions.",
+          "resources": [
+            {
+              "title": "PagerDuty Incident Response",
+              "url": "https://response.pagerduty.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "sre_automation_toil",
+          "name": "Toil Reduction and Automation",
+          "tag": "advanced",
+          "description": "Automate repetitive ops work with scripts, runbooks, CI/CD checks, self-healing tasks, and safe deploy tooling.",
+          "resources": [
+            {
+              "title": "Ansible Documentation",
+              "url": "https://docs.ansible.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "sre_capacity_project",
+      "name": "Capacity, Resilience, and Portfolio",
+      "tag": "advanced",
+      "description": "Practice reliability engineering through load tests, chaos experiments, capacity plans, and clear operational docs.",
+      "resources": [
+        {
+          "title": "k6 Documentation",
+          "url": "https://grafana.com/docs/k6/latest/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "sre_load_chaos",
+          "name": "Load Testing and Resilience",
+          "tag": "advanced",
+          "description": "Run load tests, define thresholds, test failover, practice game days, and plan capacity for peak traffic.",
+          "resources": [
+            {
+              "title": "LitmusChaos Documentation",
+              "url": "https://docs.litmuschaos.io/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "sre_project_observable_service",
+          "name": "Project: Observable Reliable Service",
+          "tag": "advanced",
+          "description": "Deploy a service with SLOs, Prometheus/Grafana dashboards, alerts, load tests, incident runbooks, and postmortem template.",
+          "resources": [
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/grafana/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

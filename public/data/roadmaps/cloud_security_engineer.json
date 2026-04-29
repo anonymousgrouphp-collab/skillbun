@@ -1,0 +1,227 @@
+{
+  "id": "cloud_security_engineer",
+  "title": "Cloud Security Engineer",
+  "description": "A roadmap for securing cloud systems across AWS, Azure, and GCP: identity, network controls, logging, posture management, DevSecOps, and incident response.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "cse_cloud_security_foundations",
+      "name": "Cloud and Security Foundations",
+      "tag": "essential",
+      "description": "Build the base: cloud shared responsibility, Linux, networking, IAM, encryption, logging, threat models, and security operations.",
+      "resources": [
+        {
+          "title": "Cloud Security Full Course (Intellipaat)",
+          "url": "https://www.youtube.com/watch?v=Ijkvx1u0w6o",
+          "type": "video"
+        },
+        {
+          "title": "Cloud Security Career Roadmap 2026",
+          "url": "https://www.networkershome.com/cloud-security-career-roadmap-2026/",
+          "type": "article"
+        },
+        {
+          "title": "CSA Security Guidance",
+          "url": "https://cloudsecurityalliance.org/research/guidance",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_shared_responsibility",
+          "name": "Shared Responsibility and Threat Models",
+          "tag": "essential",
+          "description": "Map which controls belong to the cloud provider, platform team, app team, and security team for every workload.",
+          "resources": [
+            {
+              "title": "AWS Shared Responsibility Model",
+              "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cse_network_security",
+          "name": "Cloud Network Security",
+          "tag": "essential",
+          "description": "Secure VPC/VNet design, subnets, routing, security groups, firewalls, private endpoints, DNS, TLS, and zero-trust access paths.",
+          "resources": [
+            {
+              "title": "AWS Well-Architected Security Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cse_identity_posture",
+      "name": "Identity, Access, and Posture Management",
+      "tag": "essential",
+      "description": "Control blast radius through least privilege, MFA, workload identities, permission reviews, guardrails, and continuous posture checks.",
+      "resources": [
+        {
+          "title": "AWS Tutorial with IAM and Security Section (Simplilearn)",
+          "url": "https://www.youtube.com/watch?v=RLd_XTyt-w8",
+          "type": "video"
+        },
+        {
+          "title": "Azure Identity and Access Security Best Practices",
+          "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/identity-management-best-practices",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_iam_least_privilege",
+          "name": "IAM and Least Privilege",
+          "tag": "essential",
+          "description": "Design users, groups, roles, policies, permission boundaries, federation, service identities, secrets, and temporary credentials.",
+          "resources": [
+            {
+              "title": "AWS IAM Best Practices",
+              "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cse_cspm_config",
+          "name": "CSPM and Configuration Governance",
+          "tag": "advanced",
+          "description": "Use policy-as-code, asset inventory, baseline controls, compliance mappings, exception workflows, and remediation tracking.",
+          "resources": [
+            {
+              "title": "AWS Security Hub Documentation",
+              "url": "https://aws.amazon.com/documentation-overview/security-hub/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_security_engineer_practice_lab",
+          "name": "Practice: IAM Policy Review Lab",
+          "tag": "advanced",
+          "description": "Review overly broad permissions, rewrite policies to least privilege, document risks, and add tests or guardrails to prevent regression.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cse_detection_response",
+      "name": "Detection, Logging, and Incident Response",
+      "tag": "advanced",
+      "description": "Collect cloud logs, detect suspicious activity, investigate findings, preserve evidence, and automate response workflows.",
+      "resources": [
+        {
+          "title": "AWS Security Best Practices (Amazon Web Services)",
+          "url": "https://www.youtube.com/watch?v=6bGHhsqv0Lo",
+          "type": "video"
+        },
+        {
+          "title": "AWS Security Hub Best Practices",
+          "url": "https://aws.amazon.com/blogs/security/nine-aws-security-hub-best-practices/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_logging_detection",
+          "name": "Cloud Logging and Threat Detection",
+          "tag": "advanced",
+          "description": "Enable audit logs, flow logs, object access logs, GuardDuty or Defender alerts, SIEM forwarding, and alert triage playbooks.",
+          "resources": [
+            {
+              "title": "Amazon GuardDuty User Guide",
+              "url": "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cse_incident_response",
+          "name": "Cloud Incident Response",
+          "tag": "advanced",
+          "description": "Practice credential containment, snapshot preservation, key rotation, compromised instance isolation, root-cause timelines, and postmortems.",
+          "resources": [
+            {
+              "title": "AWS Security Incident Response Guide",
+              "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cse_devsecops_portfolio",
+      "name": "DevSecOps, Containers, and Portfolio",
+      "tag": "advanced",
+      "description": "Shift security into delivery pipelines with IaC scanning, container security, secrets checks, supply-chain controls, and practical portfolio proof.",
+      "resources": [
+        {
+          "title": "The Cloud Experience with Ashish Rajan",
+          "url": "https://www.youtube.com/watch?v=IzBhNthDUMk",
+          "type": "video"
+        },
+        {
+          "title": "OWASP Cloud-Native Application Security Top 10",
+          "url": "https://owasp.org/www-project-cloud-native-application-security-top-10/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_iac_container_security",
+          "name": "IaC and Container Security",
+          "tag": "advanced",
+          "description": "Scan Terraform, Kubernetes manifests, images, dependencies, and secrets before deployment; enforce policy gates in CI/CD.",
+          "resources": [
+            {
+              "title": "Trivy Documentation",
+              "url": "https://aquasecurity.github.io/trivy/latest/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cse_compliance_privacy",
+          "name": "Compliance, Privacy, and Risk Reporting",
+          "tag": "advanced",
+          "description": "Connect controls to frameworks, classify data, track exceptions, write risk summaries, and communicate findings to engineering leaders.",
+          "resources": [
+            {
+              "title": "AWS Compliance Programs",
+              "url": "https://aws.amazon.com/compliance/programs/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cse_project_secure_cloud_baseline",
+          "name": "Project: Secure Cloud Baseline",
+          "tag": "advanced",
+          "description": "Create a small cloud account baseline with IAM guardrails, private networking, logging, Security Hub or Defender alerts, IaC scans, and an incident runbook.",
+          "resources": [
+            {
+              "title": "AWS CloudFormation Guard",
+              "url": "https://docs.aws.amazon.com/cfn-guard/latest/ug/what-is-guard.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

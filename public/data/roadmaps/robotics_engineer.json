@@ -1,0 +1,198 @@
+{
+  "id": "robotics_engineer",
+  "title": "Robotics Engineer",
+  "description": "A roadmap for robotics software: mechanics intuition, sensors, ROS 2, simulation, perception, control, and autonomous robot projects.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "robotics_foundations",
+      "name": "Robotics Foundations",
+      "tag": "essential",
+      "description": "Build the math, programming, electronics, and mechanical intuition needed to reason about robots.",
+      "resources": [
+        {
+          "title": "Robotics Software Engineer Roadmap (Kevin Wood)",
+          "url": "https://www.youtube.com/watch?v=fOvvz72rWJo",
+          "type": "video"
+        },
+        {
+          "title": "Modern Robotics Course",
+          "url": "https://modernrobotics.northwestern.edu/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "robotics_python_cpp",
+          "name": "Python/C++ for Robotics",
+          "tag": "essential",
+          "description": "Use Python for scripting and C++ for performance-sensitive nodes, drivers, and control loops.",
+          "resources": [
+            {
+              "title": "Python for Everybody",
+              "url": "https://www.py4e.com/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "robotics_math",
+          "name": "Kinematics and Control Basics",
+          "tag": "essential",
+          "description": "Learn coordinate frames, transforms, velocity, feedback control, PID, and robot motion constraints.",
+          "resources": [
+            {
+              "title": "Modern Robotics Video Lessons",
+              "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "robotics_ros_sim",
+      "name": "ROS 2 and Simulation",
+      "tag": "essential",
+      "description": "Use ROS 2 nodes, topics, services, actions, launch files, parameters, bags, and simulation tools.",
+      "resources": [
+        {
+          "title": "Learn ROS 2: Beginner to Advanced (Kevin Wood)",
+          "url": "https://www.youtube.com/watch?v=HJAE5Pk8Nyw",
+          "type": "video"
+        },
+        {
+          "title": "ROS 2 Documentation",
+          "url": "https://docs.ros.org/en/rolling/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "robotics_ros_nodes",
+          "name": "ROS 2 Nodes and Communication",
+          "tag": "essential",
+          "description": "Build publisher/subscriber nodes, services, actions, parameters, transforms, and launch systems.",
+          "resources": [
+            {
+              "title": "ROS 2 Tutorials",
+              "url": "https://docs.ros.org/en/rolling/Tutorials.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "robotics_gazebo",
+          "name": "Simulation with Gazebo",
+          "tag": "advanced",
+          "description": "Create simulated worlds, sensors, robot models, plugins, and test scenarios before using hardware.",
+          "resources": [
+            {
+              "title": "Gazebo Documentation",
+              "url": "https://gazebosim.org/docs/latest/getstarted/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "robotics_engineer_practice_lab",
+          "name": "Practice: Navigation Failure Replay",
+          "tag": "advanced",
+          "description": "Record a failed robot run, inspect sensor data, adjust parameters, and explain the navigation failure.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "robotics_perception_navigation",
+      "name": "Perception, Navigation, and Portfolio",
+      "tag": "advanced",
+      "description": "Combine sensors, mapping, localization, planning, and control into autonomous robot behavior.",
+      "resources": [
+        {
+          "title": "OpenCV Course - Full Tutorial with Python (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=oXlwWbU8l2o",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "robotics_navigation",
+          "name": "Navigation and SLAM",
+          "tag": "advanced",
+          "description": "Use maps, odometry, localization, path planning, obstacle avoidance, and navigation stacks.",
+          "resources": [
+            {
+              "title": "Nav2 Documentation",
+              "url": "https://docs.nav2.org/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "robotics_capstone",
+          "name": "Project: Simulated Autonomous Robot",
+          "tag": "advanced",
+          "description": "Build a ROS 2 robot in simulation that senses, localizes, navigates, avoids obstacles, and logs runs.",
+          "resources": [
+            {
+              "title": "TurtleBot 4 User Manual",
+              "url": "https://turtlebot.github.io/turtlebot4-user-manual/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "robotics_hardware_testing",
+      "name": "Hardware Integration and Testing",
+      "tag": "advanced",
+      "description": "Bridge simulation and real robots with sensor calibration, safety checks, hardware drivers, and repeatable experiments.",
+      "resources": [
+        {
+          "title": "ROS 2 Control Documentation",
+          "url": "https://control.ros.org/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "robotics_sensors_calibration",
+          "name": "Sensors and Calibration",
+          "tag": "advanced",
+          "description": "Integrate cameras, LiDAR, IMUs, encoders, depth sensors, calibration targets, and synchronized timestamps.",
+          "resources": [
+            {
+              "title": "OpenCV Camera Calibration",
+              "url": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "robotics_experiments",
+          "name": "Experiment Logs and Safety",
+          "tag": "advanced",
+          "description": "Plan tests, record bags, analyze failures, set safety limits, and write reproducible experiment reports.",
+          "resources": [
+            {
+              "title": "ROS 2 Bag Tutorials",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Advanced/Recording-A-Bag-From-Your-Own-Node-Py.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

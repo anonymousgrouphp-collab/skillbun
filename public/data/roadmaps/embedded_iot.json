@@ -1,0 +1,203 @@
+{
+  "id": "embedded_iot",
+  "title": "Embedded & IoT Developer",
+  "description": "A roadmap for building connected devices with electronics basics, microcontrollers, firmware, sensors, protocols, and cloud integration.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "iot_foundations",
+      "name": "Electronics and Programming Foundations",
+      "tag": "essential",
+      "description": "Learn C/C++, circuits, digital logic, sensors, actuators, debugging, and microcontroller basics.",
+      "resources": [
+        {
+          "title": "Arduino Course for Everybody (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=DPqiIzK97K0",
+          "type": "video"
+        },
+        {
+          "title": "Arduino Documentation",
+          "url": "https://docs.arduino.cc/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "iot_c_cpp",
+          "name": "C/C++ for Firmware",
+          "tag": "essential",
+          "description": "Use variables, pointers, structs, memory, interrupts, timing, and hardware-aware code safely.",
+          "resources": [
+            {
+              "title": "C Programming Handbook",
+              "url": "https://www.freecodecamp.org/news/the-c-programming-handbook-for-beginners/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "iot_electronics",
+          "name": "Circuits and Sensors",
+          "tag": "essential",
+          "description": "Understand voltage, current, resistors, breadboards, GPIO, ADC, PWM, I2C, SPI, and UART.",
+          "resources": [
+            {
+              "title": "SparkFun Electronics Tutorials",
+              "url": "https://learn.sparkfun.com/tutorials",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "iot_devices_protocols",
+      "name": "Devices and IoT Protocols",
+      "tag": "essential",
+      "description": "Build firmware on Arduino, ESP32, or Raspberry Pi Pico and send data over Wi-Fi, BLE, MQTT, and HTTP.",
+      "resources": [
+        {
+          "title": "IoT Full Course (Edureka)",
+          "url": "https://www.youtube.com/watch?v=h0gWfVCSGQQ",
+          "type": "video"
+        },
+        {
+          "title": "ESP-IDF Programming Guide",
+          "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "iot_mqtt",
+          "name": "MQTT and Device Messaging",
+          "tag": "essential",
+          "description": "Use topics, retained messages, QoS, certificates, device shadows, and telemetry payloads.",
+          "resources": [
+            {
+              "title": "MQTT Essentials",
+              "url": "https://www.hivemq.com/mqtt-essentials/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "iot_rtos",
+          "name": "RTOS Basics",
+          "tag": "advanced",
+          "description": "Learn tasks, scheduling, queues, semaphores, timers, and real-time constraints.",
+          "resources": [
+            {
+              "title": "FreeRTOS Documentation",
+              "url": "https://www.freertos.org/Documentation/RTOS_book.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "embedded_iot_practice_lab",
+          "name": "Practice: Sensor Calibration Lab",
+          "tag": "advanced",
+          "description": "Calibrate sensor readings, handle noisy data, add watchdog behavior, and document wiring plus test results.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "iot_cloud_capstone",
+      "name": "Cloud, Security, and Projects",
+      "tag": "advanced",
+      "description": "Connect devices to dashboards, secure firmware updates, monitor telemetry, and document hardware projects.",
+      "resources": [
+        {
+          "title": "IoT Home Automation Project (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=eidD14dXW8s",
+          "type": "video"
+        },
+        {
+          "title": "AWS IoT Core Documentation",
+          "url": "https://docs.aws.amazon.com/iot/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "iot_security",
+          "name": "IoT Security",
+          "tag": "advanced",
+          "description": "Secure keys, firmware, OTA updates, device identity, encrypted transport, and physical attack assumptions.",
+          "resources": [
+            {
+              "title": "OWASP IoT Top 10",
+              "url": "https://owasp.org/www-project-internet-of-things/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "iot_capstone",
+          "name": "Project: Connected Sensor System",
+          "tag": "advanced",
+          "description": "Build a sensor device that publishes data, shows a dashboard, handles offline cases, and includes wiring diagrams.",
+          "resources": [
+            {
+              "title": "Raspberry Pi Documentation",
+              "url": "https://www.raspberrypi.com/documentation/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "iot_reliability_manufacturing",
+      "name": "Reliability and Hardware Handoff",
+      "tag": "advanced",
+      "description": "Move beyond prototypes by testing devices, documenting hardware, and preparing systems for field use.",
+      "resources": [
+        {
+          "title": "KiCad Documentation",
+          "url": "https://docs.kicad.org/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "iot_pcb_enclosure",
+          "name": "PCB and Enclosure Basics",
+          "tag": "advanced",
+          "description": "Translate breadboard prototypes into schematics, simple PCBs, connectors, power protection, and enclosure constraints.",
+          "resources": [
+            {
+              "title": "SparkFun PCB Basics",
+              "url": "https://learn.sparkfun.com/tutorials/pcb-basics/all",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "iot_field_diagnostics",
+          "name": "Field Diagnostics",
+          "tag": "advanced",
+          "description": "Add device logs, health checks, watchdogs, OTA rollback plans, telemetry alerts, and hardware test checklists.",
+          "resources": [
+            {
+              "title": "Memfault Embedded Systems Blog",
+              "url": "https://interrupt.memfault.com/blog",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

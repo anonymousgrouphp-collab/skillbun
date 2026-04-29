@@ -1,0 +1,203 @@
+{
+  "id": "soc_analyst",
+  "title": "SOC Analyst",
+  "description": "A roadmap for security operations: networking, logs, SIEM, alert triage, incident response, threat intelligence, detection rules, and SOC portfolio labs.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "soc_foundations",
+      "name": "Security and Networking Foundations",
+      "tag": "essential",
+      "description": "Build the base needed to understand alerts: networking, Windows/Linux basics, identity, malware, web attacks, and security controls.",
+      "resources": [
+        {
+          "title": "Security Operations 101 (The Cyber Mentor)",
+          "url": "https://www.youtube.com/watch?v=56NDgBOSpUg",
+          "type": "video"
+        },
+        {
+          "title": "How to Become a SOC Analyst (WsCube Cyber Security)",
+          "url": "https://www.youtube.com/watch?v=lcNPdxOI7PY",
+          "type": "video"
+        },
+        {
+          "title": "SOC Analyst Complete Roadmap (Hack to root)",
+          "url": "https://www.youtube.com/watch?v=q464wiBTRJE",
+          "type": "video"
+        },
+        {
+          "title": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "soc_network_os",
+          "name": "Networking and OS Logs",
+          "tag": "essential",
+          "description": "Understand TCP/IP, DNS, HTTP, Windows Event Logs, Linux auth logs, process activity, and endpoint telemetry.",
+          "resources": [
+            {
+              "title": "Windows Event Log Documentation",
+              "url": "https://learn.microsoft.com/en-us/windows/win32/eventlog/event-logging",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "soc_attack_basics",
+          "name": "Common Attacks",
+          "tag": "essential",
+          "description": "Recognize phishing, brute force, suspicious PowerShell, malware beacons, web attacks, lateral movement, and data exfiltration.",
+          "resources": [
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "soc_siem_triage",
+      "name": "SIEM and Alert Triage",
+      "tag": "essential",
+      "description": "Use SIEM tools to search logs, validate alerts, enrich events, prioritize incidents, and write useful case notes.",
+      "resources": [
+        {
+          "title": "Splunk Search Tutorial",
+          "url": "https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "soc_log_search",
+          "name": "Log Search and Correlation",
+          "tag": "essential",
+          "description": "Search by host, user, IP, hash, process, URL, time window, event ID, and correlate across data sources.",
+          "resources": [
+            {
+              "title": "Microsoft Sentinel Documentation",
+              "url": "https://learn.microsoft.com/en-us/azure/sentinel/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "soc_case_management",
+          "name": "Case Notes and Escalation",
+          "tag": "essential",
+          "description": "Document evidence, impact, timeline, scope, false-positive reasons, next actions, and escalation paths.",
+          "resources": [
+            {
+              "title": "NIST Incident Handling Guide",
+              "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "soc_analyst_practice_lab",
+          "name": "Practice: Suspicious Login Triage",
+          "tag": "advanced",
+          "description": "Investigate login logs, IP reputation, impossible travel, MFA status, device history, and escalation notes.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "soc_detection_ir",
+      "name": "Detection Engineering and Incident Response",
+      "tag": "advanced",
+      "description": "Move from reacting to alerts toward writing detections, tuning rules, hunting threats, and improving playbooks.",
+      "resources": [
+        {
+          "title": "Sigma Rules",
+          "url": "https://sigmahq.io/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "soc_detection_rules",
+          "name": "Detection Rules",
+          "tag": "advanced",
+          "description": "Write Sigma/YARA-style detections, tune noisy alerts, map to ATT&CK, and test with sample telemetry.",
+          "resources": [
+            {
+              "title": "YARA Documentation",
+              "url": "https://yara.readthedocs.io/en/stable/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "soc_threat_hunting",
+          "name": "Threat Hunting",
+          "tag": "advanced",
+          "description": "Use hypotheses, indicators, baselines, timelines, ATT&CK techniques, and hunting reports.",
+          "resources": [
+            {
+              "title": "Elastic Security Labs",
+              "url": "https://www.elastic.co/security-labs",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "soc_lab_project",
+      "name": "SOC Lab and Career Readiness",
+      "tag": "advanced",
+      "description": "Build evidence of SOC skill with home labs, alert writeups, detection rules, reports, and interview stories.",
+      "resources": [
+        {
+          "title": "Security Onion Documentation",
+          "url": "https://docs.securityonion.net/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "soc_home_lab",
+          "name": "Home Lab",
+          "tag": "advanced",
+          "description": "Run Security Onion, Splunk, Wazuh, sample logs, attack simulations, and incident response notebooks.",
+          "resources": [
+            {
+              "title": "Wazuh Documentation",
+              "url": "https://documentation.wazuh.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "soc_project_alert_triage",
+          "name": "Project: Alert Triage Portfolio",
+          "tag": "advanced",
+          "description": "Analyze sample alerts, write case notes, build a timeline, classify severity, propose detection tuning, and publish a report.",
+          "resources": [
+            {
+              "title": "Blue Team Labs Online",
+              "url": "https://blueteamlabs.online/",
+              "type": "course"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

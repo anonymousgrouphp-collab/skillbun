@@ -1,0 +1,232 @@
+{
+  "id": "devops_cloud",
+  "title": "DevOps & Cloud Engineer",
+  "description": "Learn Linux, networking, CI/CD, containers, Kubernetes, infrastructure as code, and production operations.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "devops_foundations",
+      "name": "Linux, Git, and Networking",
+      "tag": "essential",
+      "description": "Start with the operating system, version control, HTTP, DNS, SSH, and shell scripting.",
+      "resources": [
+        {
+          "title": "Fundamentals of DevOps (Abhishek Veeramalla)",
+          "url": "https://www.youtube.com/watch?v=Ou9j73aWgyE",
+          "type": "video"
+        },
+        {
+          "title": "Linux Journey",
+          "url": "https://linuxjourney.com/",
+          "type": "course"
+        },
+        {
+          "title": "Git Book",
+          "url": "https://git-scm.com/book/en/v2",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "devops_shell",
+          "name": "Shell Scripting",
+          "tag": "essential",
+          "description": "Automate repeatable tasks with Bash, environment variables, pipes, and exit codes.",
+          "resources": [
+            {
+              "title": "Bash Guide",
+              "url": "https://mywiki.wooledge.org/BashGuide",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_networking",
+          "name": "Networking Basics",
+          "tag": "essential",
+          "description": "Understand TCP/IP, ports, DNS, TLS, proxies, firewalls, and request debugging.",
+          "resources": [
+            {
+              "title": "Cloudflare Learning Center",
+              "url": "https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "devops_cicd",
+      "name": "CI/CD and Release Automation",
+      "tag": "essential",
+      "description": "Build pipelines that test, package, scan, and deploy applications consistently.",
+      "resources": [
+        {
+          "title": "GitHub Actions Documentation",
+          "url": "https://docs.github.com/en/actions",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "devops_testing_pipelines",
+          "name": "Automated Tests in Pipelines",
+          "tag": "essential",
+          "description": "Run unit, integration, lint, and security checks before code reaches production.",
+          "resources": [
+            {
+              "title": "GitHub Actions Workflow Syntax",
+              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_artifacts",
+          "name": "Build Artifacts and Environments",
+          "tag": "essential",
+          "description": "Version releases, manage secrets, separate environments, and automate rollback plans.",
+          "resources": [
+            {
+              "title": "Twelve-Factor App",
+              "url": "https://12factor.net/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_cloud_practice_lab",
+          "name": "Practice: CI/CD Failure Drill",
+          "tag": "advanced",
+          "description": "Break and fix pipeline failures, image builds, environment variables, health checks, and rollback steps.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "devops_containers",
+      "name": "Containers and Orchestration",
+      "tag": "essential",
+      "description": "Package apps with Docker, run multi-service systems, and operate workloads on Kubernetes.",
+      "resources": [
+        {
+          "title": "Docker Containers and Kubernetes Fundamentals (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=kTp5xUtcalw",
+          "type": "video"
+        },
+        {
+          "title": "Docker Get Started",
+          "url": "https://docs.docker.com/get-started/",
+          "type": "article"
+        },
+        {
+          "title": "Kubernetes Basics",
+          "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "devops_docker_compose",
+          "name": "Docker Compose",
+          "tag": "essential",
+          "description": "Run local service stacks with networks, volumes, health checks, and environment configuration.",
+          "resources": [
+            {
+              "title": "Docker Compose Quickstart",
+              "url": "https://docs.docker.com/compose/gettingstarted/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_k8s_basics",
+          "name": "Kubernetes Workloads",
+          "tag": "advanced",
+          "description": "Deploy, expose, scale, update, and debug apps through Kubernetes primitives.",
+          "resources": [
+            {
+              "title": "Kubernetes Documentation",
+              "url": "https://kubernetes.io/docs/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "devops_iac_observability",
+      "name": "Infrastructure as Code and Operations",
+      "tag": "advanced",
+      "description": "Provision cloud resources, monitor systems, respond to incidents, and improve reliability.",
+      "resources": [
+        {
+          "title": "Learn Terraform and AWS by Building a Dev Environment (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=iRaai1IBlB0",
+          "type": "video"
+        },
+        {
+          "title": "Terraform Tutorials",
+          "url": "https://developer.hashicorp.com/terraform/tutorials",
+          "type": "course"
+        },
+        {
+          "title": "Google SRE Book",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "devops_monitoring",
+          "name": "Monitoring and Logging",
+          "tag": "advanced",
+          "description": "Collect metrics, logs, traces, alerts, and dashboards that explain production behavior.",
+          "resources": [
+            {
+              "title": "Prometheus Documentation",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_incident_response",
+          "name": "Incident Response and Runbooks",
+          "tag": "advanced",
+          "description": "Prepare on-call playbooks for outages, failed deploys, high latency, rollback, escalation, and postmortems.",
+          "resources": [
+            {
+              "title": "Google SRE Incident Response",
+              "url": "https://sre.google/sre-book/managing-incidents/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "devops_capstone",
+          "name": "Project: Deploy a Real App",
+          "tag": "advanced",
+          "description": "Containerize an app, create CI/CD, deploy to cloud, add monitoring, and document runbooks.",
+          "resources": [
+            {
+              "title": "AWS Getting Started Resource Center",
+              "url": "https://aws.amazon.com/getting-started/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

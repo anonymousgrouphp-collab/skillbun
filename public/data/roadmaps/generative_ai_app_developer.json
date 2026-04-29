@@ -1,0 +1,203 @@
+{
+  "id": "generative_ai_app_developer",
+  "title": "Generative AI App Developer",
+  "description": "A roadmap for building AI-powered applications with LLM APIs, RAG, tool use, evaluation, safety, cost control, and production deployment.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "genai_foundations",
+      "name": "LLM and App Foundations",
+      "tag": "essential",
+      "description": "Understand model capabilities, API calls, prompts, context windows, tokens, latency, cost, and user-facing AI UX.",
+      "resources": [
+        {
+          "title": "GenAI for Developers Roadmap (Piyush Garg)",
+          "url": "https://www.youtube.com/watch?v=v1pj9XrJ_Lw",
+          "type": "video"
+        },
+        {
+          "title": "AI Complete OneShot Course for Beginners (Apna College)",
+          "url": "https://www.youtube.com/watch?v=D1eL1EnxXXQ",
+          "type": "video"
+        },
+        {
+          "title": "Generative AI Roadmap for Beginners (CodeWithHarry)",
+          "url": "https://www.youtube.com/watch?v=lv7ka-8FscI",
+          "type": "video"
+        },
+        {
+          "title": "OpenAI API Documentation",
+          "url": "https://platform.openai.com/docs",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "genai_api_basics",
+          "name": "LLM API Basics",
+          "tag": "essential",
+          "description": "Call chat/completion APIs, stream responses, handle retries, manage keys, estimate cost, and parse structured outputs.",
+          "resources": [
+            {
+              "title": "OpenAI Text Generation Guide",
+              "url": "https://platform.openai.com/docs/guides/text-generation",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "genai_frontend_ux",
+          "name": "AI Product UX",
+          "tag": "essential",
+          "description": "Design loading states, citations, confidence cues, human review, prompt controls, edit flows, and failure recovery.",
+          "resources": [
+            {
+              "title": "People + AI Guidebook",
+              "url": "https://pair.withgoogle.com/guidebook/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "genai_rag_tools",
+      "name": "RAG, Tools, and Agents",
+      "tag": "essential",
+      "description": "Connect models to private data and tools through retrieval, embeddings, vector databases, function calling, and workflows.",
+      "resources": [
+        {
+          "title": "LangChain Tutorials",
+          "url": "https://python.langchain.com/docs/tutorials/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "genai_rag",
+          "name": "Retrieval Augmented Generation",
+          "tag": "essential",
+          "description": "Chunk documents, create embeddings, search vectors, rerank results, cite sources, and debug retrieval quality.",
+          "resources": [
+            {
+              "title": "OpenAI Embeddings Guide",
+              "url": "https://platform.openai.com/docs/guides/embeddings",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "genai_tool_calling",
+          "name": "Tool Calling and Workflows",
+          "tag": "advanced",
+          "description": "Let models call APIs, validate arguments, manage state, recover from tool errors, and keep humans in the loop.",
+          "resources": [
+            {
+              "title": "OpenAI Function Calling",
+              "url": "https://platform.openai.com/docs/guides/function-calling",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "generative_ai_app_developer_practice_lab",
+          "name": "Practice: RAG Retrieval Debug",
+          "tag": "advanced",
+          "description": "Test chunking, embeddings, retrieval misses, citations, hallucinations, and improve answer grounding.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "genai_eval_safety",
+      "name": "Evaluation, Safety, and Cost",
+      "tag": "advanced",
+      "description": "Make AI apps reliable through eval datasets, safety checks, monitoring, privacy controls, and cost budgets.",
+      "resources": [
+        {
+          "title": "OpenAI Evals",
+          "url": "https://github.com/openai/evals",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "genai_evals",
+          "name": "Evaluation and Regression Tests",
+          "tag": "advanced",
+          "description": "Create golden questions, judge outputs, test hallucination cases, track model changes, and compare prompt versions.",
+          "resources": [
+            {
+              "title": "Ragas Documentation",
+              "url": "https://docs.ragas.io/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "genai_safety_cost",
+          "name": "Safety, Privacy, and Cost Control",
+          "tag": "advanced",
+          "description": "Handle PII, prompt injection, refusals, abuse, caching, rate limits, token budgets, and audit logs.",
+          "resources": [
+            {
+              "title": "OWASP LLM Top 10",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "genai_deploy_project",
+      "name": "Deployment and Portfolio",
+      "tag": "advanced",
+      "description": "Deploy AI apps with observability, user feedback, secure secrets, model/version tracking, and documentation.",
+      "resources": [
+        {
+          "title": "FastAPI Tutorial",
+          "url": "https://fastapi.tiangolo.com/tutorial/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "genai_observability",
+          "name": "AI Observability",
+          "tag": "advanced",
+          "description": "Track prompts, outputs, latency, cost, tool errors, retrieval misses, user ratings, and safety incidents.",
+          "resources": [
+            {
+              "title": "LangSmith Observability",
+              "url": "https://docs.smith.langchain.com/observability",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "genai_project_knowledge_assistant",
+          "name": "Project: Knowledge Assistant",
+          "tag": "advanced",
+          "description": "Build a RAG assistant with upload, citations, tool calls, eval set, safety checks, usage dashboard, and deployment notes.",
+          "resources": [
+            {
+              "title": "Chroma Documentation",
+              "url": "https://docs.trychroma.com/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}

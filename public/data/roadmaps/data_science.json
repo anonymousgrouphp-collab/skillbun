@@ -1,17 +1,17 @@
 {
   "id": "data_science",
   "title": "Data Science & AI",
-  "description": "Master Machine Learning, Python, and Data Analysis.",
+  "description": "Master Python, statistics, machine learning, model evaluation, storytelling, and end-to-end data science portfolio projects.",
   "stages": [
     {
       "step": 1,
-      "title": "Python & Math",
+      "title": "Python, Math, and Data Analysis",
       "topics": [
         {
           "id": "ds_python",
-          "name": "Python for DS",
+          "name": "Python for Data Science",
           "tag": "essential",
-          "description": "Pandas, NumPy, Matplotlib.",
+          "description": "Use Python, notebooks, Pandas, NumPy, Matplotlib, Seaborn, environments, and clean project structure.",
           "resources": [
             {
               "title": "CampusX - 100 Days of ML",
@@ -22,18 +22,36 @@
         },
         {
           "id": "ds_math",
-          "name": "Statistics & Probability",
-          "tag": "advanced",
-          "description": "Hypothesis testing, distributions.",
+          "name": "Statistics and Probability",
+          "tag": "essential",
+          "description": "Learn distributions, sampling, hypothesis testing, confidence intervals, correlation, regression, and experiment design.",
           "resources": [
             {
-              "title": "Stats Basics (Krish Naik)",
+              "title": "Complete Statistics for Data Science (Krish Naik)",
               "url": "https://www.youtube.com/watch?v=LZzq1zSL1bs",
               "type": "video"
             }
           ]
+        },
+        {
+          "id": "ds_eda",
+          "name": "Exploratory Data Analysis",
+          "tag": "essential",
+          "description": "Profile datasets, handle missing values, find outliers, visualize trends, and write useful analysis notes.",
+          "resources": [
+            {
+              "title": "Kaggle Learn Data Visualization",
+              "url": "https://www.kaggle.com/learn/data-visualization",
+              "type": "course"
+            }
+          ]
         }
-      ]
+      ],
+      "project": {
+        "title": "EDA Case Study",
+        "description": "Analyze a public dataset, clean it, visualize key patterns, and publish a short notebook with business insights.",
+        "url": "https://www.kaggle.com/datasets"
+      }
     },
     {
       "step": 2,
@@ -43,7 +61,7 @@
           "id": "ds_supervised",
           "name": "Supervised Learning",
           "tag": "essential",
-          "description": "Linear Regression, Decision Trees, Random Forests.",
+          "description": "Train regression and classification models, split data correctly, tune hyperparameters, and compare baselines.",
           "resources": [
             {
               "title": "Scikit-Learn Tutorial",
@@ -51,8 +69,139 @@
               "type": "article"
             }
           ]
+        },
+        {
+          "id": "ds_unsupervised",
+          "name": "Unsupervised Learning",
+          "tag": "advanced",
+          "description": "Use clustering, dimensionality reduction, anomaly detection, embeddings, and similarity search for discovery tasks.",
+          "resources": [
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "data_science_practice_lab",
+          "name": "Practice: Model Evaluation Drill",
+          "tag": "advanced",
+          "description": "Compare three models on the same dataset, inspect errors, check leakage, and explain metric tradeoffs.",
+          "resources": [
+            {
+              "title": "Scikit-Learn Model Evaluation",
+              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+              "type": "article"
+            }
+          ]
         }
-      ]
+      ],
+      "project": {
+        "title": "Prediction Model Notebook",
+        "description": "Build a baseline and improved model, document preprocessing, evaluate fairly, and write recommendations.",
+        "url": "https://scikit-learn.org/stable/auto_examples/index.html"
+      }
+    },
+    {
+      "step": 3,
+      "title": "Feature Engineering, Deep Learning, and AI",
+      "topics": [
+        {
+          "id": "ds_feature_engineering",
+          "name": "Feature Engineering",
+          "tag": "essential",
+          "description": "Create numeric, categorical, text, time, and aggregate features while avoiding leakage and unstable signals.",
+          "resources": [
+            {
+              "title": "Feature Engineering Playlist (Krish Naik)",
+              "url": "https://www.youtube.com/watch?v=6WDFfaYtN6s&list=PLZoTAELRMXVPwYGE2PXD3x0bfKnR0cJjN",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ds_deep_learning",
+          "name": "Deep Learning Basics",
+          "tag": "advanced",
+          "description": "Understand neural networks, tensors, training loops, overfitting, embeddings, transfer learning, and GPU workflows.",
+          "resources": [
+            {
+              "title": "PyTorch Tutorials",
+              "url": "https://pytorch.org/tutorials/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "ds_responsible_ai",
+          "name": "Responsible AI and Explainability",
+          "tag": "advanced",
+          "description": "Check fairness, drift, interpretability, privacy, documentation, and when not to use a model.",
+          "resources": [
+            {
+              "title": "Google Responsible AI Practices",
+              "url": "https://ai.google/responsibility/responsible-ai-practices/",
+              "type": "article"
+            }
+          ]
+        }
+      ],
+      "project": {
+        "title": "Explainable ML Report",
+        "description": "Train a model, explain top drivers, test subgroup performance, and write a non-technical model risk summary.",
+        "url": "https://christophm.github.io/interpretable-ml-book/"
+      }
+    },
+    {
+      "step": 4,
+      "title": "Portfolio and Production Readiness",
+      "topics": [
+        {
+          "id": "ds_mlops_intro",
+          "name": "MLOps Basics",
+          "tag": "advanced",
+          "description": "Track experiments, version data, package models, serve predictions, monitor drift, and document model lifecycle decisions.",
+          "resources": [
+            {
+              "title": "MLflow Tracking Quickstart",
+              "url": "https://mlflow.org/docs/latest/ml/getting-started/quickstart/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ds_storytelling",
+          "name": "Data Storytelling and Stakeholder Communication",
+          "tag": "essential",
+          "description": "Turn analysis into clear recommendations, visuals, assumptions, limitations, and next actions.",
+          "resources": [
+            {
+              "title": "Data Visualization Catalogue",
+              "url": "https://datavizcatalogue.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "data_science_project_end_to_end",
+          "name": "Project: End-to-End Data Science Portfolio",
+          "tag": "advanced",
+          "description": "Publish a complete project with dataset, EDA, model, evaluation, explainability, deployment demo, and README.",
+          "resources": [
+            {
+              "title": "Made With ML",
+              "url": "https://madewithml.com/",
+              "type": "course"
+            }
+          ]
+        }
+      ],
+      "project": {
+        "title": "Deployed ML Demo",
+        "description": "Create a simple model API or Streamlit app with tracked experiments, clean README, and a short project write-up.",
+        "url": "https://streamlit.io/"
+      }
     }
   ]
 }

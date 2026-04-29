@@ -1,0 +1,232 @@
+{
+  "id": "cloud_architect",
+  "title": "Cloud Architect",
+  "description": "Learn cloud fundamentals, architecture patterns, networking, security, reliability, cost, and migration planning.",
+  "format": "tree",
+  "tree": [
+    {
+      "id": "cloud_foundations",
+      "name": "Cloud Fundamentals",
+      "tag": "essential",
+      "description": "Understand compute, storage, networking, identity, regions, availability zones, pricing, and shared responsibility.",
+      "resources": [
+        {
+          "title": "AWS Cloud Complete Bootcamp Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=zA8guDqfv40",
+          "type": "video"
+        },
+        {
+          "title": "AWS Certified Cloud Practitioner Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=NhDYbskXRgc",
+          "type": "video"
+        },
+        {
+          "title": "AWS Cloud Essentials",
+          "url": "https://aws.amazon.com/getting-started/cloud-essentials/",
+          "type": "article"
+        },
+        {
+          "title": "Google Cloud Architecture Framework",
+          "url": "https://cloud.google.com/architecture/framework",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cloud_compute_storage",
+          "name": "Compute and Storage",
+          "tag": "essential",
+          "description": "Compare VMs, containers, serverless, object storage, block storage, managed databases, and backups.",
+          "resources": [
+            {
+              "title": "AWS Compute Services",
+              "url": "https://aws.amazon.com/products/compute/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_identity",
+          "name": "Identity and Access",
+          "tag": "essential",
+          "description": "Design least-privilege roles, policies, service accounts, secrets, and account boundaries.",
+          "resources": [
+            {
+              "title": "AWS IAM User Guide",
+              "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cloud_networking_security",
+      "name": "Networking and Security",
+      "tag": "essential",
+      "description": "Design secure connectivity across VPCs, subnets, load balancers, DNS, firewalls, and private services.",
+      "resources": [
+        {
+          "title": "AWS VPC Documentation",
+          "url": "https://docs.aws.amazon.com/vpc/",
+          "type": "article"
+        },
+        {
+          "title": "Azure Cloud Adoption Framework Security",
+          "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/secure/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cloud_vpc",
+          "name": "VPC Design",
+          "tag": "essential",
+          "description": "Plan CIDR ranges, public/private subnets, gateways, routing, peering, and hybrid connectivity.",
+          "resources": [
+            {
+              "title": "AWS VPC Getting Started",
+              "url": "https://docs.aws.amazon.com/vpc/latest/userguide/getting-started-ipv4.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_security_controls",
+          "name": "Security Controls",
+          "tag": "advanced",
+          "description": "Apply encryption, key management, logging, vulnerability management, and threat detection.",
+          "resources": [
+            {
+              "title": "AWS Security Best Practices",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_architect_practice_lab",
+          "name": "Practice: Architecture Tradeoff Review",
+          "tag": "advanced",
+          "description": "Compare two cloud designs on security, cost, reliability, operations, and migration risk.",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cloud_reliability_cost",
+      "name": "Reliability, Performance, and Cost",
+      "tag": "advanced",
+      "description": "Create resilient architectures with observability, scaling, backups, disaster recovery, and cost discipline.",
+      "resources": [
+        {
+          "title": "AWS Well-Architected Framework",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+          "type": "article"
+        },
+        {
+          "title": "FinOps Foundation",
+          "url": "https://www.finops.org/framework/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cloud_resilience",
+          "name": "High Availability and DR",
+          "tag": "advanced",
+          "description": "Design multi-AZ systems, backups, recovery objectives, failover, queues, and graceful degradation.",
+          "resources": [
+            {
+              "title": "AWS Reliability Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_cost",
+          "name": "Cost Optimization",
+          "tag": "advanced",
+          "description": "Estimate costs, right-size resources, use budgets, detect waste, and explain tradeoffs.",
+          "resources": [
+            {
+              "title": "AWS Cost Optimization Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "cloud_architecture_practice",
+      "name": "Architecture Practice",
+      "tag": "advanced",
+      "description": "Turn requirements into diagrams, decisions, migrations, governance, and stakeholder-ready architecture docs.",
+      "resources": [
+        {
+          "title": "AWS Solutions Architect Associate Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=c3Cn4xYfxJY",
+          "type": "video"
+        },
+        {
+          "title": "Azure Architecture Center",
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "cloud_iac",
+          "name": "Infrastructure as Code",
+          "tag": "advanced",
+          "description": "Model environments with Terraform or native templates, modules, state, reviews, and policy checks.",
+          "resources": [
+            {
+              "title": "Terraform Tutorials",
+              "url": "https://developer.hashicorp.com/terraform/tutorials",
+              "type": "course"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_architecture_reviews",
+          "name": "Architecture Reviews and ADRs",
+          "tag": "advanced",
+          "description": "Run design reviews, document tradeoffs, validate assumptions, and write architecture decision records.",
+          "resources": [
+            {
+              "title": "AWS Well-Architected Reviews",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/userguide/intro.html",
+              "type": "article"
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "cloud_capstone",
+          "name": "Project: Architecture Blueprint",
+          "tag": "advanced",
+          "description": "Design a secure, scalable product architecture with diagrams, IaC skeleton, cost estimate, and DR plan.",
+          "resources": [
+            {
+              "title": "Architecture Decision Records",
+              "url": "https://adr.github.io/",
+              "type": "article"
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}
