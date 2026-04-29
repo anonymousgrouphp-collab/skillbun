@@ -195,7 +195,7 @@ export default function Home() {
             </svg>
           </div>
           <div className="splash-title">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
-          <img src="/logo.png" alt="SkillBun Logo" />
+          <img src="/splash-logo.png" alt="SkillBun loading mark" />
           <div className="splash-subtitle">Hop into the <span>right career</span></div>
           <div className="splash-dots">
             <span></span><span></span><span></span>
