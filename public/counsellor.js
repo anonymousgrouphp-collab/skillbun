@@ -175,10 +175,9 @@ function toggleSecurityBanner(show) {
 
 function getStoredProfile() {
     const name = localStorage.getItem('sb_name') || '';
-    const email = localStorage.getItem('sb_email') || '';
     const degree = localStorage.getItem('sb_degree') || '';
     const year = localStorage.getItem('sb_year') || '';
-    return { name, email, degree, year };
+    return { name, degree, year };
 }
 
 function redirectToProfileSetup(destination) {
@@ -465,13 +464,13 @@ async function verifyHumanProof() {
 
 // --- User Profile Handling ---
 function loadProfile() {
-    const { name, email, degree, year } = getStoredProfile();
-    if (!name || !email || !degree || !year) {
+    const { name, degree, year } = getStoredProfile();
+    if (!degree || !year) {
         redirectToProfileSetup('counsellor.html');
         return false;
     }
 
-    userProfile = { name, email, degree, year };
+    userProfile = { name: name || 'Student', degree, year };
 
     const badge = getEl('userBadge');
     const dropdownName = getEl('dropdownName');
