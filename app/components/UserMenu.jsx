@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useStoredProfile } from '@/utils/shared/profileStore';
 
 
 const MENU_ITEMS = [
@@ -13,21 +14,10 @@ const MENU_ITEMS = [
 
 export default function UserMenu() {
   const menuRef = useRef(null);
-  const [user, setUser] = useState(false);
-  const [name, setName] = useState('User');
+  const profile = useStoredProfile();
   const [accountOpen, setAccountOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [signingOut, setSigningOut] = useState(false);
-
-  useEffect(() => {
-    const existingName = localStorage.getItem('sb_name');
-    if (existingName) {
-      setName(existingName);
-      setUser(true);
-    }
-    setLoading(false);
-  }, []);
 
   useEffect(() => {
     if (!accountOpen) {
@@ -127,11 +117,11 @@ export default function UserMenu() {
     </button>
   );
 
-  if (loading) {
+  if (!profile.hydrated) {
     return siteMenuButton;
   }
 
-  if (!user) {
+  if (!profile.hasName) {
     return (
       <div className="mobile-dropdown-group user-menu-shell">
         <Link href="/quiz" className="btn-signup">Get Started</Link>
@@ -140,8 +130,8 @@ export default function UserMenu() {
     );
   }
 
-  const firstName = name.split(' ')[0];
-  const initials = name
+  const firstName = profile.name.split(' ')[0];
+  const initials = profile.name
     .split(' ')
     .map((part) => part[0])
     .join('')
@@ -164,7 +154,7 @@ export default function UserMenu() {
           onClick={toggleAccountMenu}
           aria-expanded={accountOpen}
           aria-haspopup="menu"
-          title={`Logged in as ${name}`}
+          title={`Logged in as ${profile.name}`}
         >
           <span className="user-pill-avatar">
               <span className="user-pill-initials">{initials}</span>

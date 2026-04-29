@@ -2,54 +2,40 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { normalizeInternalPath } from '@/utils/shared/routes';
+import { saveStoredProfile, useStoredProfile } from '@/utils/shared/profileStore';
 
 function OnboardingForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = normalizeInternalPath(searchParams.get('next'), '/quiz');
+  const profile = useStoredProfile();
 
-  const [name, setName] = useState('');
-  const [degree, setDegree] = useState('');
-  const [year, setYear] = useState('');
-  const [interest, setInterest] = useState('');
   const [saving, setSaving] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const existingName = localStorage.getItem('sb_name');
-    const existingDegree = localStorage.getItem('sb_degree');
-    const existingYear = localStorage.getItem('sb_year');
-    
-    if (existingName) setName(existingName);
-    if (existingDegree) setDegree(existingDegree);
-    if (existingYear) setYear(existingYear);
-
-    if (existingDegree && existingYear) {
+    if (profile.hydrated && profile.degree && profile.year) {
       router.replace(next);
-      return;
     }
-    setLoading(false);
-  }, [next, router]);
-
-  function syncToLocalStorage(nameToSave, degreeToSave, yearToSave) {
-    if (nameToSave) localStorage.setItem('sb_name', nameToSave);
-    localStorage.setItem('sb_degree', degreeToSave);
-    localStorage.setItem('sb_year', yearToSave);
-  }
+  }, [next, profile.degree, profile.hydrated, profile.year, router]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = String(formData.get('name') || '').trim();
+    const degree = String(formData.get('degree') || '').trim();
+    const year = String(formData.get('year') || '').trim();
+
     if (!name || !degree || !year) {
       alert('Please fill in all required fields');
       return;
     }
 
     setSaving(true);
-    syncToLocalStorage(name, degree, year);
+    saveStoredProfile({ name, degree, year });
     router.replace(next);
   }
 
-  if (loading) {
+  if (!profile.hydrated || (profile.degree && profile.year)) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', flexDirection: 'column', gap: '1rem' }}>
         <div className="welcome-bunny" style={{ fontSize: '3rem' }}>🐰</div>
@@ -62,7 +48,7 @@ function OnboardingForm() {
     <div style={{ maxWidth: '520px', margin: '0 auto', padding: '3rem 1.5rem', minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>🐰</div>
-        <h1 style={{ fontFamily: "'Fredoka One', cursive", fontSize: '2rem', color: 'var(--green)', marginBottom: '0.5rem' }}>
+        <h1 style={{ fontFamily: 'var(--font-fredoka), cursive', fontSize: '2rem', color: 'var(--green)', marginBottom: '0.5rem' }}>
           Welcome there!
         </h1>
         <p style={{ color: 'var(--muted)', fontWeight: 600, fontSize: '0.95rem', lineHeight: 1.6 }}>
@@ -73,11 +59,11 @@ function OnboardingForm() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Your Name *</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Enter your first name" className="form-control" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', fontSize: '1rem', marginBottom: '1rem' }} />
+          <input name="name" type="text" defaultValue={profile.hasName ? profile.name : ''} required placeholder="Enter your first name" className="form-control" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', fontSize: '1rem', marginBottom: '1rem' }} />
         </div>
         <div className="form-group">
           <label>Degree / Program *</label>
-          <select value={degree} onChange={(e) => setDegree(e.target.value)} required>
+          <select name="degree" defaultValue={profile.degree} required>
             <option value="">Select your degree</option>
             <option value="BCA – Bachelor of Computer Applications">BCA – Bachelor of Computer Applications</option>
             <option value="B.Tech – Computer Science">B.Tech – Computer Science</option>
@@ -92,7 +78,7 @@ function OnboardingForm() {
 
         <div className="form-group">
           <label>Current Year *</label>
-          <select value={year} onChange={(e) => setYear(e.target.value)} required>
+          <select name="year" defaultValue={profile.year} required>
             <option value="">Select year</option>
             <option value="1st Year">1st Year</option>
             <option value="2nd Year">2nd Year</option>
@@ -104,7 +90,7 @@ function OnboardingForm() {
 
         <div className="form-group">
           <label>Area of Interest (Optional)</label>
-          <select value={interest} onChange={(e) => setInterest(e.target.value)}>
+          <select name="interest" defaultValue="">
             <option value="">Choose an area that excites you</option>
             <option value="Web Development">🌐 Web Development</option>
             <option value="AI / Machine Learning">🤖 AI / Machine Learning</option>

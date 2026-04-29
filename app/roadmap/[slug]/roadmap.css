@@ -41,12 +41,12 @@
 @keyframes skSpin { to { --angle: 360deg; } }
 
 .sk-badge { display: inline-block; font-size: 0.6rem; font-weight: 800; letter-spacing: 2.5px; padding: 0.3rem 1rem; border-radius: 50px; background: rgba(46,204,113,0.1); color: var(--green); border: 1px solid rgba(46,204,113,0.2); margin-bottom: 1rem; }
-.sk-title { font-family: 'Fredoka One', cursive; font-size: clamp(1.8rem,4vw,2.6rem); background: linear-gradient(135deg,#2ECC71 0%,#A8FF3E 50%,#2ECC71 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: skShine 4s linear infinite; margin-bottom: 0.4rem; }
+.sk-title { font-family: var(--font-fredoka), cursive; font-size: clamp(1.8rem,4vw,2.6rem); background: linear-gradient(135deg,#2ECC71 0%,#A8FF3E 50%,#2ECC71 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: skShine 4s linear infinite; margin-bottom: 0.4rem; }
 @keyframes skShine { to { background-position: 200% center; } }
 .sk-desc { color: var(--muted); font-weight: 600; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .sk-stats { display: flex; align-items: center; gap: 1.5rem; }
 .sk-stat { display: flex; flex-direction: column; align-items: center; }
-.sk-stat-v { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: var(--text); }
+.sk-stat-v { font-family: var(--font-fredoka), cursive; font-size: 1.4rem; color: var(--text); }
 .sk-green { color: var(--green) !important; }
 .sk-stat-l { font-size: 0.6rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
 .sk-sep { width: 1px; height: 28px; background: color-mix(in srgb, var(--border) 70%, transparent); }
@@ -56,7 +56,7 @@
 .sk-ring-bg { fill: none; stroke: color-mix(in srgb, var(--border) 80%, transparent); stroke-width: 7; }
 .sk-ring-bar { fill: none; stroke-width: 7; stroke-linecap: round; transition: stroke-dasharray 1.2s cubic-bezier(0.4,0,0.2,1); filter: drop-shadow(0 0 8px rgba(46,204,113,0.5)); }
 .sk-ring-txt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.sk-ring-pct { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--text); }
+.sk-ring-pct { font-family: var(--font-fredoka), cursive; font-size: 1.5rem; color: var(--text); }
 
 /* ═══════ THE TREE ═══════ */
 .sk-tree-scroll {
@@ -183,7 +183,7 @@
 /* Detail panel */
 .sk-detail { padding: 0 1.2rem 1.2rem; border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent); padding-top: 0.8rem; display: flex; flex-direction: column; gap: 0.6rem; animation: skSlide 0.25s ease-out; }
 @keyframes skSlide { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
-.sk-btn-mark { width:100%; padding:0.7rem; border-radius:10px; border:2px dashed color-mix(in srgb, var(--border) 60%, transparent); background:transparent; color:var(--muted); font-weight:800; font-size:0.85rem; cursor:pointer; transition:all 0.3s; font-family:'Nunito',sans-serif; }
+.sk-btn-mark { width:100%; padding:0.7rem; border-radius:10px; border:2px dashed color-mix(in srgb, var(--border) 60%, transparent); background:transparent; color:var(--muted); font-weight:800; font-size:0.85rem; cursor:pointer; transition:all 0.3s; font-family:var(--font-nunito),sans-serif; }
 .sk-btn-mark:hover { border-color:var(--green); color:var(--green); background:rgba(46,204,113,0.04); border-style:solid; }
 .sk-btn-mark.done { background:linear-gradient(135deg,#2ECC71,#1a9e55); border:2px solid var(--lime); color:var(--dark); border-style:solid; }
 .sk-btn-mark:disabled { cursor:not-allowed; opacity:0.7; border-style:solid; }

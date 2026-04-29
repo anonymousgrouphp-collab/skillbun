@@ -1,7 +1,23 @@
 import './globals.css';
+import Image from 'next/image';
 import Link from 'next/link';
+import { Fredoka, Nunito } from 'next/font/google';
 import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
+
+const fredoka = Fredoka({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-fredoka',
+  display: 'swap',
+});
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  variable: '--font-nunito',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'SkillBun – Hop into the Right Career',
@@ -10,14 +26,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#0D1117" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
         {/* Theme initialization — runs before paint to prevent flash */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
@@ -38,7 +51,7 @@ export default function RootLayout({ children }) {
         <nav>
           <div className="nav-logo">
             <Link href="/" className="nav-logo-link">
-              <img src="/logo.png" alt="SkillBun Logo" />
+              <Image src="/logo.png" alt="SkillBun Logo" width={44} height={44} priority />
               <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
             </Link>
           </div>

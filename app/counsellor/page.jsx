@@ -1,27 +1,20 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
+import { useStoredProfile } from '@/utils/shared/profileStore';
 
 export default function CounsellorPage() {
   const router = useRouter();
-  const [profile, setProfile] = useState({ name: 'Student', degree: '', year: '' });
-  const [loading, setLoading] = useState(true);
+  const profile = useStoredProfile();
 
   useEffect(() => {
-    const degree = localStorage.getItem('sb_degree') || '';
-    const year = localStorage.getItem('sb_year') || '';
-    const name = localStorage.getItem('sb_name') || 'Student';
-
-    if (!degree || !year) {
+    if (profile.hydrated && (!profile.degree || !profile.year)) {
       router.replace('/onboarding?next=/counsellor');
-    } else {
-      setProfile({ name, degree, year });
-      setLoading(false);
     }
-  }, [router]);
+  }, [profile.degree, profile.hydrated, profile.year, router]);
 
-  if (loading) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
+  if (!profile.hydrated || !profile.degree || !profile.year) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name } = profile;
 
