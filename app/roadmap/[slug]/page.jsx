@@ -87,5 +87,5 @@ export default async function RoadmapPage({ params }) {
     notFound()
   }
 
-  return <GameMap roadmap={data} slug={slug} />
+  return <GameMap key={slug} roadmap={data} slug={slug} />
 }

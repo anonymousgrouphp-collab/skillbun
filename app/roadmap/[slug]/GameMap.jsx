@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import './roadmap.css';
 
 function isSafeUrl(url) {
@@ -79,6 +79,20 @@ function normalizeRoadmapTree(roadmap) {
 const TREE_CARD_WIDTH = 270;
 const TREE_ROOT_WIDTH = 420;
 const TREE_GAP = 24;
+const SPARK_COLORS = ['#2ECC71', '#A8FF3E', '#FFD700', '#58D68D'];
+const SPARK_DISTANCES = [42, 55, 48, 60, 45, 57, 50, 62, 46, 54];
+
+function readStoredProgress(slug) {
+  if (typeof window === 'undefined') return [];
+
+  try {
+    const raw = window.localStorage.getItem('skillbun_progress_' + slug);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
 
 function getLeafCount(node) {
   if (!node.children?.length) return 1;
@@ -99,23 +113,15 @@ function getTerminalNodes(node) {
 }
 
 export default function GameMap({ roadmap, slug }) {
-  const [progress, setProgress] = useState([]);
+  const [progress, setProgress] = useState(() => readStoredProgress(slug));
   const [expanded, setExpanded] = useState(null);
   const [confetti, setConfetti] = useState(null);
 
-  const roadmapTree = normalizeRoadmapTree(roadmap);
+  const roadmapTree = useMemo(() => normalizeRoadmapTree(roadmap), [roadmap]);
   const allNodes = flattenTree(roadmapTree);
   const total = allNodes.length;
   const doneCount = allNodes.filter(n => progress.includes(n.id)).length;
   const pct = total === 0 ? 0 : Math.round((doneCount / total) * 100);
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem('skillbun_progress_' + slug);
-      const p = raw ? JSON.parse(raw) : [];
-      setProgress(Array.isArray(p) ? p : []);
-    } catch { setProgress([]); }
-  }, [slug]);
 
   const toggle = (id) => {
     const key = 'skillbun_progress_' + slug;
@@ -221,7 +227,7 @@ export default function GameMap({ roadmap, slug }) {
           {isCelebrating && (
             <div className="sk-confetti">
               {Array.from({ length: 10 }).map((_, i) => (
-                <span key={i} className="sk-spark" style={{ '--angle': `${i * 36}deg`, '--dist': `${35 + Math.random() * 25}px`, background: ['#2ECC71','#A8FF3E','#FFD700','#58D68D'][i % 4] }}></span>
+                <span key={i} className="sk-spark" style={{ '--angle': `${i * 36}deg`, '--dist': `${SPARK_DISTANCES[i]}px`, background: SPARK_COLORS[i % SPARK_COLORS.length] }}></span>
               ))}
             </div>
           )}

@@ -1,28 +1,21 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
+import { useStoredProfile } from '@/utils/shared/profileStore';
 
 export default function QuizPage() {
   const router = useRouter();
-  const [profile, setProfile] = useState({ name: 'Student', degree: '', year: '' });
-  const [loading, setLoading] = useState(true);
+  const profile = useStoredProfile();
 
   useEffect(() => {
-    const degree = localStorage.getItem('sb_degree') || '';
-    const year = localStorage.getItem('sb_year') || '';
-    const name = localStorage.getItem('sb_name') || 'Student';
-
-    if (!degree || !year) {
+    if (profile.hydrated && (!profile.degree || !profile.year)) {
       router.replace('/onboarding?next=/quiz');
-    } else {
-      setProfile({ name, degree, year });
-      setLoading(false);
     }
-  }, [router]);
+  }, [profile.degree, profile.hydrated, profile.year, router]);
 
-  if (loading) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
+  if (!profile.hydrated || !profile.degree || !profile.year) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name, degree, year } = profile;
 

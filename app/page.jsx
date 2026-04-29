@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 
@@ -195,7 +196,7 @@ export default function Home() {
             </svg>
           </div>
           <div className="splash-title">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
-          <img src="/splash-logo.png" alt="SkillBun loading mark" />
+          <Image src="/splash-logo.png" alt="SkillBun loading mark" width={100} height={100} priority />
           <div className="splash-subtitle">Hop into the <span>right career</span></div>
           <div className="splash-dots">
             <span></span><span></span><span></span>

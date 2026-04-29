@@ -88,7 +88,7 @@ html {
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
@@ -207,7 +207,7 @@ body {
 }
 
 .splash-title {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 3.5rem;
   color: var(--green);
   letter-spacing: 1px;
@@ -303,7 +303,7 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 2.5rem;
   color: var(--green);
   display: flex;
@@ -376,7 +376,7 @@ nav {
   background: var(--surface-raised);
   color: var(--muted);
   box-shadow: var(--card-shadow);
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background-color 0.2s, color 0.2s;
 }
@@ -465,32 +465,13 @@ nav {
   line-height: 1;
 }
 
-.btn-login {
-  color: var(--green);
-  border: 1.5px solid var(--green);
-  background: transparent;
-  padding: 0.5rem 1.3rem;
-  border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-}
-
-.btn-login:hover {
-  background: var(--green);
-  color: var(--primary-contrast);
-}
-
 .btn-signup {
   background: var(--green);
   color: var(--primary-contrast);
   border: none;
   padding: 0.5rem 1.4rem;
   border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-weight: 800;
   font-size: 0.9rem;
   cursor: pointer;
@@ -541,7 +522,7 @@ nav {
 }
 
 .hero h1 {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: clamp(2.8rem, 6vw, 5rem);
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -574,7 +555,7 @@ nav {
   border: none;
   padding: 0.9rem 2rem;
   border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-weight: 800;
   font-size: 1rem;
   cursor: pointer;
@@ -656,7 +637,7 @@ section {
 
 .section-title {
   text-align: center;
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
 }
@@ -837,76 +818,6 @@ section {
   color: var(--green);
 }
 
-/* ===== AUTH MODAL ===== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--overlay);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.modal-overlay.open {
-  display: flex;
-}
-
-.modal {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 2.5rem;
-  width: 100%;
-  max-width: 420px;
-  position: relative;
-  animation: modalIn 0.3s ease;
-}
-
-@keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 1.4rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.modal-logo {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.6rem;
-  color: var(--green);
-  text-align: center;
-  margin-bottom: 0.2rem;
-}
-
-.modal-desc {
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 1.8rem;
-  font-weight: 600;
-}
-
-
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -929,7 +840,7 @@ section {
   border-radius: 10px;
   padding: 0.75rem 1rem;
   color: var(--text);
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   transition: border-color 0.2s;
@@ -952,7 +863,7 @@ section {
   border: none;
   padding: 0.85rem;
   border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-weight: 800;
   font-size: 1rem;
   cursor: pointer;
@@ -986,7 +897,7 @@ section {
 }
 
 .cta-card h2 {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -1014,7 +925,7 @@ footer {
 }
 
 .footer-brand .logo {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 1.5rem;
   color: var(--green);
   margin-bottom: 0.8rem;
@@ -1162,7 +1073,7 @@ footer {
 }
 
 .stat-num {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 2.5rem;
   color: var(--green);
   display: block;
@@ -1500,22 +1411,6 @@ footer {
     padding: 0.15rem 0.5rem;
   }
 
-  /* Modal: compact */
-  .modal {
-    padding: 1.5rem 1.2rem;
-    border-radius: 20px;
-    margin: 0.5rem;
-  }
-
-  .modal-logo {
-    font-size: 1.3rem;
-  }
-
-  .modal-desc {
-    font-size: 0.8rem;
-    margin-bottom: 1.3rem;
-  }
-
   .form-group label {
     font-size: 0.75rem;
   }
@@ -1801,7 +1696,7 @@ footer {
 }
 
 .quiz-welcome h1 {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 2.5rem;
   margin-bottom: 0.8rem;
 }
@@ -1959,7 +1854,7 @@ footer {
   text-align: left;
   transition: all 0.25s;
   animation: fadeInUp 0.4s ease both;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   color: var(--text);
 }
 
@@ -2086,7 +1981,7 @@ footer {
 }
 
 .result-header h1 {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: 2.2rem;
   margin: 0.5rem 0;
 }
@@ -2231,7 +2126,7 @@ footer {
   border: 1.5px solid var(--border);
   padding: 0.8rem 1.5rem;
   border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-weight: 800;
   font-size: 0.9rem;
   cursor: pointer;
@@ -2514,7 +2409,7 @@ footer {
   border-radius: 14px;
   padding: 0.8rem 1rem;
   color: var(--text);
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   resize: none;
@@ -2548,321 +2443,6 @@ footer {
   transform: scale(1.05);
 }
 
-/* ===== ROADMAP PAGE ===== */
-.roadmap-header {
-  text-align: center;
-  padding: 2.5rem 2rem 1rem;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.roadmap-title {
-  font-family: 'Fredoka One', cursive;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  color: var(--green);
-  margin-bottom: 0.5rem;
-}
-
-.roadmap-desc {
-  color: var(--muted);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.6;
-}
-
-.progress-container {
-  max-width: 700px;
-  margin: 1rem auto 0;
-  padding: 0 2rem;
-}
-
-.progress-label {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--green);
-  margin-bottom: 0.5rem;
-}
-
-.progress-track {
-  width: 100%;
-  height: 10px;
-  background: var(--border);
-  border-radius: 50px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--green), var(--lime));
-  border-radius: 50px;
-  transition: width 0.5s ease;
-}
-
-.roadmap-controls {
-  display: flex;
-  gap: 0.6rem;
-  margin-top: 0.8rem;
-  justify-content: flex-end;
-}
-
-.btn-toggle-advanced {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  padding: 0.35rem 0.9rem;
-  border-radius: 50px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-toggle-advanced:hover,
-.btn-toggle-advanced.active {
-  border-color: var(--green);
-  color: var(--green);
-}
-
-.timeline-container {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 0 2rem 4rem;
-  position: relative;
-}
-
-.timeline-container::before {
-  content: '';
-  position: absolute;
-  left: 44px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--border);
-}
-
-.timeline-stage {
-  position: relative;
-  margin-bottom: 2.5rem;
-}
-
-.stage-marker {
-  width: 36px;
-  height: 36px;
-  background: var(--green);
-  color: var(--primary-contrast);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.9rem;
-  position: relative;
-  z-index: 2;
-  margin-left: 8px;
-}
-
-.stage-title {
-  font-family: 'Fredoka One', cursive;
-  font-size: 1.3rem;
-  margin: 0.8rem 0 1rem;
-  padding-left: 56px;
-}
-
-.topic-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.2rem 1.4rem;
-  margin-bottom: 0.8rem;
-  margin-left: 56px;
-  transition: all 0.3s;
-}
-
-.topic-card:hover {
-  border-color: rgba(46, 204, 113, 0.25);
-}
-
-.topic-card.completed {
-  border-color: rgba(46, 204, 113, 0.4);
-  background: rgba(46, 204, 113, 0.04);
-}
-
-.topic-card.completed .topic-header h3 {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-body.hide-advanced .topic-advanced {
-  display: none;
-}
-
-.topic-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.topic-title-area {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex: 1;
-}
-
-.topic-title-area h3 {
-  font-size: 0.95rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.checkbox-custom {
-  width: 20px;
-  height: 20px;
-  accent-color: var(--green);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.badge {
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 0.2rem 0.5rem;
-  border-radius: 50px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  flex-shrink: 0;
-}
-
-.badge-essential {
-  background: rgba(46, 204, 113, 0.12);
-  color: var(--green);
-}
-
-.badge-advanced {
-  background: rgba(168, 255, 62, 0.12);
-  color: var(--lime);
-}
-
-.topic-card>p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-weight: 600;
-  line-height: 1.6;
-  margin: 0.6rem 0;
-}
-
-.resource-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.7rem;
-}
-
-.resource-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 0.35rem 0.7rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.resource-link:hover {
-  border-color: var(--green);
-  color: var(--green);
-}
-
-.resource-icon {
-  font-size: 0.85rem;
-}
-
-.btn-ask-ai {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: rgba(46, 204, 113, 0.08);
-  border: 1px solid rgba(46, 204, 113, 0.25);
-  padding: 0.35rem 0.7rem;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--green);
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.btn-ask-ai:hover {
-  background: rgba(46, 204, 113, 0.15);
-}
-
-.project-card {
-  background: rgba(46, 204, 113, 0.05);
-  border: 1px dashed rgba(46, 204, 113, 0.3);
-  border-radius: 14px;
-  padding: 1.2rem 1.4rem;
-  margin-left: 56px;
-  margin-top: 0.8rem;
-}
-
-.project-card h3 {
-  font-size: 0.95rem;
-  font-weight: 800;
-  margin-bottom: 0.4rem;
-}
-
-.project-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-weight: 600;
-  line-height: 1.6;
-  margin-bottom: 0.6rem;
-}
-
-/* ===== RESPONSIVE: ROADMAP ===== */
-@media (max-width: 600px) {
-  .timeline-container::before {
-    left: 26px;
-  }
-
-  .stage-marker {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
-  }
-
-  .stage-title {
-    padding-left: 40px;
-    font-size: 1.1rem;
-  }
-
-  .topic-card {
-    margin-left: 40px;
-    padding: 1rem;
-  }
-
-  .project-card {
-    margin-left: 40px;
-  }
-
-  .roadmap-header {
-    padding: 2rem 1rem 0.5rem;
-  }
-
-  .progress-container {
-    padding: 0 1rem;
-  }
-
-  .timeline-container {
-    padding: 0 1rem 3rem;
-  }
-}
-
 /* ===== USER MENU ===== */
 .user-menu-wrapper {
   position: relative;
@@ -2881,7 +2461,7 @@ body.hide-advanced .topic-advanced {
   background: var(--primary-gradient);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   color: var(--primary-contrast);
   box-shadow: var(--accent-shadow);
 }
@@ -2997,7 +2577,7 @@ body.hide-advanced .topic-advanced {
   color: var(--text);
   font-size: 0.95rem;
   font-weight: 800;
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   text-decoration: none;
   cursor: pointer;
   text-align: left;
@@ -3079,7 +2659,7 @@ body.hide-advanced .topic-advanced {
 }
 
 .static-page h1 {
-  font-family: 'Fredoka One', cursive;
+  font-family: var(--font-fredoka), cursive;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   color: var(--green);
   margin-bottom: 1.5rem;
