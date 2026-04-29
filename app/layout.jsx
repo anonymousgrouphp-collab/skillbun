@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           <div className="nav-logo">
             <Link href="/" className="nav-logo-link">
               <img src="/logo.png" alt="SkillBun Logo" />
-              <span className="nav-logo-text">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+              <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
             </Link>
           </div>
           <ul className="nav-links">

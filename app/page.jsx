@@ -328,7 +328,7 @@ export default function Home() {
         <footer id="contact">
           <div className="footer-grid">
             <div className="footer-brand">
-              <div className="logo">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+              <div className="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
               <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through AI-powered guidance and real peer connections.</p>
               <div className="footer-socials">
                 <a className="social-btn" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
