@@ -186,7 +186,7 @@ export default function Home() {
               <circle cx="77" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
               <circle cx="123" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
               {/* Code badge on tummy */}
-              <rect x="72" y="152" width="56" height="30" rx="8" fill="#0D1117" stroke="#2ECC71" strokeWidth="1.5" />
+              <rect x="72" y="152" width="56" height="30" rx="8" fill="var(--bg)" stroke="#2ECC71" strokeWidth="1.5" />
               <text x="100" y="163" textAnchor="middle" fill="#2ECC71" fontFamily="monospace" fontSize="7">&lt;code&gt;</text>
               <text x="100" y="174" textAnchor="middle" fill="#A8FF3E" fontFamily="monospace" fontSize="7">career/&gt;</text>
               {/* Paws */}
@@ -328,7 +328,7 @@ export default function Home() {
         <footer id="contact">
           <div className="footer-grid">
             <div className="footer-brand">
-              <div className="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+              <div className="logo">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
               <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through AI-powered guidance and real peer connections.</p>
               <div className="footer-socials">
                 <a className="social-btn" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">

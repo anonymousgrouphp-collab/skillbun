@@ -21,7 +21,7 @@ export default function CounsellorPage() {
     }
   }, [router]);
 
-  if (loading) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>Loading...</div>;
+  if (loading) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name } = profile;
 

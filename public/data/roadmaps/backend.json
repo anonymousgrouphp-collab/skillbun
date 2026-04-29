@@ -1,100 +1,213 @@
 {
   "id": "backend",
   "title": "Backend Developer",
-  "description": "Complete roadmap to master Backend Development, APIs, and Databases in India.",
-  "stages": [
+  "description": "Master Backend Development — choose your own path through languages, frameworks, databases, and deployment.",
+  "format": "tree",
+  "tree": [
     {
-      "step": 1,
-      "title": "Programming Logic",
-      "topics": [
+      "id": "be_start",
+      "name": "Start: Programming Fundamentals",
+      "icon": "🎯",
+      "description": "Variables, loops, functions, OOP — the foundation of everything.",
+      "tag": "essential",
+      "resources": [{ "title": "CS50 Introduction (Harvard)", "url": "https://www.youtube.com/watch?v=3LPJfIKxwWc", "type": "video" }],
+      "children": [
         {
-          "id": "be_language",
-          "name": "Pick a Language (Node.js/Java)",
+          "id": "be_python",
+          "name": "Python",
+          "icon": "🐍",
+          "description": "Clean syntax, massive ecosystem. Best for beginners.",
           "tag": "essential",
-          "description": "Learn the syntax, loops, functions, and OOP concepts.",
-          "resources": [
+          "resources": [{ "title": "Python Full Course (CodeWithHarry)", "url": "https://www.youtube.com/watch?v=gfDE2a7MKjA", "type": "video" }],
+          "children": [
             {
-              "title": "Node.js Tutorial (CodeWithHarry)",
-              "url": "https://www.youtube.com/watch?v=BLl32FvFRIw",
-              "type": "video"
+              "id": "be_django",
+              "name": "Django",
+              "icon": "🏗️",
+              "description": "Batteries-included web framework. Admin panel, ORM, auth built-in.",
+              "tag": "essential",
+              "resources": [{ "title": "Django Tutorial (Corey Schafer)", "url": "https://www.youtube.com/watch?v=UmljXZIypDc", "type": "video" }],
+              "children": []
+            },
+            {
+              "id": "be_flask",
+              "name": "Flask",
+              "icon": "🧪",
+              "description": "Lightweight micro-framework. Full control, minimal boilerplate.",
+              "tag": "essential",
+              "resources": [{ "title": "Flask Tutorial (Tech with Tim)", "url": "https://www.youtube.com/watch?v=Z1RJmh_OqeA", "type": "video" }],
+              "children": []
+            },
+            {
+              "id": "be_fastapi",
+              "name": "FastAPI",
+              "icon": "⚡",
+              "description": "Modern, fast (async), automatic docs. Rising star in Python.",
+              "tag": "advanced",
+              "resources": [{ "title": "FastAPI Course (freeCodeCamp)", "url": "https://www.youtube.com/watch?v=0sOvCWFehaviour", "type": "video" }],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "be_nodejs",
+          "name": "Node.js",
+          "icon": "🟢",
+          "description": "JavaScript on the server. Same language for frontend & backend.",
+          "tag": "essential",
+          "resources": [{ "title": "Node.js Tutorial (Piyush Garg)", "url": "https://www.youtube.com/watch?v=BLl32FvFRIw", "type": "video" }],
+          "children": [
+            {
+              "id": "be_express",
+              "name": "Express.js",
+              "icon": "🚂",
+              "description": "Minimalist framework. Routing, middleware, REST APIs.",
+              "tag": "essential",
+              "resources": [{ "title": "Express.js Crash Course", "url": "https://www.youtube.com/watch?v=ab1wOAulFGk", "type": "video" }],
+              "children": []
+            },
+            {
+              "id": "be_nestjs",
+              "name": "NestJS",
+              "icon": "🦅",
+              "description": "Enterprise-grade framework. TypeScript, DI, modular architecture.",
+              "tag": "advanced",
+              "resources": [{ "title": "NestJS Crash Course", "url": "https://www.youtube.com/watch?v=wqhNoDE6pb4", "type": "video" }],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "be_java",
+          "name": "Java",
+          "icon": "☕",
+          "description": "Enterprise standard. Strong typing, massive job market in India.",
+          "tag": "essential",
+          "resources": [{ "title": "Java Full Course (Kunal Kushwaha)", "url": "https://www.youtube.com/watch?v=rZ41y93P2Qo", "type": "video" }],
+          "children": [
+            {
+              "id": "be_springboot",
+              "name": "Spring Boot",
+              "icon": "🌱",
+              "description": "Industry-standard Java framework. Auto-config, production-ready.",
+              "tag": "essential",
+              "resources": [{ "title": "Spring Boot Tutorial (Amigoscode)", "url": "https://www.youtube.com/watch?v=9SGDpanrc8U", "type": "video" }],
+              "children": []
             }
           ]
         }
       ]
     },
     {
-      "step": 2,
-      "title": "APIs & Servers",
-      "topics": [
-        {
-          "id": "be_express",
-          "name": "Express.js Framework",
-          "tag": "essential",
-          "description": "Setting up servers, routing, and middleware.",
-          "resources": [
-            {
-              "title": "Express.js Crash Course (Piyush Garg)",
-              "url": "https://www.youtube.com/watch?v=ab1wOAulFGk",
-              "type": "video"
-            }
-          ]
-        },
-        {
-          "id": "be_rest",
-          "name": "RESTful Architecture",
-          "tag": "essential",
-          "description": "Understanding status codes, verbs (GET/POST), and JSON.",
-          "resources": [
-            {
-              "title": "What is REST API (Hussein Nasser)",
-              "url": "https://www.youtube.com/watch?v=lsMQRaeKNDk",
-              "type": "video"
-            }
-          ]
-        }
-      ],
-      "project": {
-        "title": "Build a Task Manager API",
-        "description": "Create a CRUD API using Express. Test it using Postman.",
-        "url": "https://www.postman.com/"
-      }
-    },
-    {
-      "step": 3,
-      "title": "Databases",
-      "topics": [
+      "id": "be_db_root",
+      "name": "Databases",
+      "icon": "💾",
+      "description": "Every backend needs data storage. Learn both SQL and NoSQL.",
+      "tag": "essential",
+      "resources": [],
+      "children": [
         {
           "id": "be_sql",
-          "name": "SQL (PostgreSQL / MySQL)",
+          "name": "SQL (PostgreSQL)",
+          "icon": "🐘",
+          "description": "Relational databases. Joins, indexes, transactions, normalization.",
           "tag": "essential",
-          "description": "Joins, Aggregations, and Indexing.",
-          "resources": [
-            {
-              "title": "SQL Full Course (Anshuman Singh)",
-              "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
-              "type": "video"
-            }
-          ]
+          "resources": [{ "title": "SQL Full Course", "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY", "type": "video" }],
+          "children": []
         },
         {
           "id": "be_nosql",
-          "name": "NoSQL (MongoDB)",
+          "name": "MongoDB",
+          "icon": "🍃",
+          "description": "Document database. Flexible schema, great for rapid prototyping.",
+          "tag": "essential",
+          "resources": [{ "title": "MongoDB in 1 Hour (Thapa Technical)", "url": "https://www.youtube.com/watch?v=_1xIu2yNEXg", "type": "video" }],
+          "children": []
+        },
+        {
+          "id": "be_redis",
+          "name": "Redis",
+          "icon": "🔴",
+          "description": "In-memory cache. Sessions, rate-limiting, real-time leaderboards.",
           "tag": "advanced",
-          "description": "Document architecture and Mongoose ODM.",
-          "resources": [
-            {
-              "title": "MongoDB in 1 Hour (Thapa Technical)",
-              "url": "https://www.youtube.com/watch?v=_1xIu2yNEXg",
-              "type": "video"
-            }
-          ]
+          "resources": [{ "title": "Redis Crash Course", "url": "https://www.youtube.com/watch?v=jgpVdJB2sKQ", "type": "video" }],
+          "children": []
         }
-      ],
-      "project": {
-        "title": "E-commerce Database Schema",
-        "description": "Design a relational schema for Users, Orders, and Products.",
-        "url": "https://drawsql.app/"
-      }
+      ]
+    },
+    {
+      "id": "be_api",
+      "name": "API Design",
+      "icon": "🔌",
+      "description": "REST, GraphQL, authentication — how services talk to each other.",
+      "tag": "essential",
+      "resources": [{ "title": "REST API Design (Hussein Nasser)", "url": "https://www.youtube.com/watch?v=lsMQRaeKNDk", "type": "video" }],
+      "children": [
+        {
+          "id": "be_rest",
+          "name": "RESTful APIs",
+          "icon": "🔗",
+          "description": "HTTP verbs, status codes, JSON, CRUD operations.",
+          "tag": "essential",
+          "resources": [],
+          "children": []
+        },
+        {
+          "id": "be_graphql",
+          "name": "GraphQL",
+          "icon": "◈",
+          "description": "Query exactly what you need. Type-safe, flexible, modern.",
+          "tag": "advanced",
+          "resources": [],
+          "children": []
+        },
+        {
+          "id": "be_auth",
+          "name": "Auth (JWT/OAuth)",
+          "icon": "🔐",
+          "description": "JWT tokens, OAuth2, session management, bcrypt.",
+          "tag": "essential",
+          "resources": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "be_devops",
+      "name": "DevOps & Deployment",
+      "icon": "🚀",
+      "description": "Ship your code to production. CI/CD, containers, cloud.",
+      "tag": "essential",
+      "resources": [],
+      "children": [
+        {
+          "id": "be_docker",
+          "name": "Docker",
+          "icon": "🐳",
+          "description": "Containerize your app. Consistent environments everywhere.",
+          "tag": "essential",
+          "resources": [],
+          "children": []
+        },
+        {
+          "id": "be_cloud",
+          "name": "Cloud (AWS/GCP)",
+          "icon": "☁️",
+          "description": "EC2, S3, Lambda, Cloud Functions. Deploy at scale.",
+          "tag": "advanced",
+          "resources": [],
+          "children": []
+        },
+        {
+          "id": "be_cicd",
+          "name": "CI/CD Pipelines",
+          "icon": "🔄",
+          "description": "GitHub Actions, automated testing, continuous deployment.",
+          "tag": "advanced",
+          "resources": [],
+          "children": []
+        }
+      ]
     }
   ]
 }

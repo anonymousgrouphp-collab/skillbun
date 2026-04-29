@@ -136,6 +136,17 @@ npm.cmd run build
 npm.cmd run dev
 ```
 
+## Roadmap Structure Rule
+
+All roadmap pages must render as the same prerequisite tree:
+
+- A roadmap is made of ordered core roots.
+- Each core root can branch into child skills.
+- Child skills can have their own sub-branches.
+- The next core root unlocks only after progress is made in the previous root's terminal branch.
+- Handcrafted roadmaps should use `format: "tree"` with `tree[].children`.
+- Older roadmap files may keep `stages`; the app normalizes every stage into the same tree structure at render time.
+
 ## Deployment Notes
 
 - Add your production domain to the Google OAuth client authorized JavaScript origins.

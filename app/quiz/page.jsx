@@ -22,7 +22,7 @@ export default function QuizPage() {
     }
   }, [router]);
 
-  if (loading) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: '#fff' }}>Loading...</div>;
+  if (loading) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name, degree, year } = profile;
 
