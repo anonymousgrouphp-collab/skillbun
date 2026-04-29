@@ -73,7 +73,7 @@ function OnboardingForm() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Your Name *</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Enter your first name" className="form-control" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #30363d', background: '#0d1117', color: 'var(--text)', fontSize: '1rem', marginBottom: '1rem' }} />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Enter your first name" className="form-control" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', fontSize: '1rem', marginBottom: '1rem' }} />
         </div>
         <div className="form-group">
           <label>Degree / Program *</label>

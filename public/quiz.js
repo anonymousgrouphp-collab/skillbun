@@ -226,7 +226,7 @@ async function initCaptcha() {
 
         captchaWidgetId = window.turnstile.render('#captchaWidget', {
             sitekey: securityConfig.captchaSiteKey,
-            theme: 'dark',
+            theme: localStorage.getItem('sb_theme') || 'dark',
             callback: (token) => {
                 captchaToken = token;
                 setCaptchaStatus('Verification complete. You can start now.', 'ok');

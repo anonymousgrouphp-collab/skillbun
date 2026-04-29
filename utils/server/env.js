@@ -28,7 +28,7 @@ export function getTurnstileSecretKey() {
 }
 
 export function isCaptchaEnabled() {
-  return Boolean(getTurnstileSiteKey() && getTurnstileSecretKey())
+  return false
 }
 
 export function getGeminiApiKey() {
