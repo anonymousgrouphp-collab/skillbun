@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-import { createClient } from '@/utils/supabase/client';
 
 const MENU_ITEMS = [
   { href: '/quiz', label: 'Career Quiz' },
@@ -14,43 +13,21 @@ const MENU_ITEMS = [
 
 export default function UserMenu() {
   const menuRef = useRef(null);
-  const [supabase] = useState(() => createClient());
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
+  const [name, setName] = useState('User');
   const [accountOpen, setAccountOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
-
-    async function syncUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-
-      if (!isMounted) {
-        return;
-      }
-
-      setUser(user);
-      setLoading(false);
+    const existingName = localStorage.getItem('sb_name');
+    if (existingName) {
+      setName(existingName);
+      setUser(true);
     }
-
-    syncUser();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!isMounted) {
-        return;
-      }
-
-      setUser(session?.user || null);
-      setLoading(false);
-    });
-
-    return () => {
-      isMounted = false;
-      subscription.unsubscribe();
-    };
-  }, [supabase]);
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     if (!accountOpen) {
@@ -116,11 +93,7 @@ export default function UserMenu() {
     setAccountOpen(false);
     closeNavMenu();
 
-    try {
-      await supabase.auth.signOut();
-    } catch (error) {
-      console.error('Signout error:', error);
-    }
+
 
     localStorage.removeItem('sb_name');
     localStorage.removeItem('sb_email');
@@ -167,9 +140,7 @@ export default function UserMenu() {
     );
   }
 
-  const name = user.user_metadata?.full_name || 'User';
   const firstName = name.split(' ')[0];
-  const avatar = user.user_metadata?.avatar_url;
   const initials = name
     .split(' ')
     .map((part) => part[0])
@@ -196,11 +167,7 @@ export default function UserMenu() {
           title={`Logged in as ${name}`}
         >
           <span className="user-pill-avatar">
-            {avatar ? (
-              <img src={avatar} alt={name} referrerPolicy="no-referrer" />
-            ) : (
               <span className="user-pill-initials">{initials}</span>
-            )}
           </span>
           <span className="user-pill-name">{firstName}</span>
           <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

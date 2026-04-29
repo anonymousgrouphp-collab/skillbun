@@ -1,6 +1,5 @@
 'use client';
-import { useEffect, useEffectEvent, useRef, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
+import { useEffect, useRef, useState } from 'react';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 
 const FLOATER_TEXTS = [
@@ -15,16 +14,11 @@ const FLOATER_TEXTS = [
 const CODE_CHARS = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
 const FLOATER_LEFT_LANES = [10, 18, 27, 35];
 const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
-const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const statsRef = useRef(null);
   const statsAnimated = useRef(false);
-  const supabase = createClient();
-  const googleBtnRef = useRef(null);
 
   useEffect(() => {
     let timer;
@@ -33,11 +27,9 @@ export default function Home() {
     const shuffleIntervals = [];
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('authRequired') === 'true') {
-      localStorage.setItem('sb_dest', normalizeInternalPath(urlParams.get('dest'), '/quiz'));
       window.history.replaceState({}, '', '/');
       authFrame = window.requestAnimationFrame(() => {
         setShowSplash(false);
-        setShowModal(true);
       });
     } else {
       // Splash timer
@@ -154,95 +146,8 @@ export default function Home() {
 
   const openAuthModal = (destination) => {
     localStorage.setItem('sb_dest', normalizeInternalPath(destination, '/quiz'));
-    setShowModal(true);
+    window.location.assign(`/onboarding?next=${encodeURIComponent(destination)}`);
   };
-
-  const handleGoogleCredential = useEffectEvent(async (response) => {
-    setIsLoggingIn(true);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithIdToken({
-        provider: 'google',
-        token: response.credential,
-      });
-
-      if (error) {
-        console.error('Login error:', error.message);
-        setIsLoggingIn(false);
-        return;
-      }
-
-      if (!data.user) {
-        throw new Error('Google sign-in did not return a user session.');
-      }
-
-      const dest = normalizeInternalPath(localStorage.getItem('sb_dest'), '/quiz');
-
-      const { data: profile, error: profileError } = await supabase
-        .from('user_profiles')
-        .select('degree, current_year')
-        .eq('user_id', data.user.id)
-        .maybeSingle();
-
-      if (profileError) {
-        console.error('Profile lookup error:', profileError.message);
-      }
-
-      let nextPath = dest;
-
-      if (!profile || !profile.degree || !profile.current_year) {
-        nextPath = `/onboarding?next=${encodeURIComponent(dest)}`;
-      } else {
-        localStorage.setItem('sb_name', data.user.user_metadata?.full_name || '');
-        localStorage.setItem('sb_email', data.user.email || '');
-        localStorage.setItem('sb_degree', profile.degree || '');
-        localStorage.setItem('sb_year', profile.current_year || '');
-      }
-
-      localStorage.removeItem('sb_dest');
-      setShowModal(false);
-      window.location.assign(nextPath);
-    } catch (err) {
-      console.error('Login failed:', err);
-      setIsLoggingIn(false);
-    }
-  });
-
-  // Render Google Sign-In button when modal opens
-  useEffect(() => {
-    if (!showModal) return;
-
-    if (!GOOGLE_CLIENT_ID) return;
-
-    const renderBtn = () => {
-      if (googleBtnRef.current && window.google) {
-        googleBtnRef.current.innerHTML = '';
-        window.google.accounts.id.initialize({
-          client_id: GOOGLE_CLIENT_ID,
-          callback: handleGoogleCredential,
-        });
-        window.google.accounts.id.renderButton(googleBtnRef.current, {
-          theme: 'filled_black',
-          size: 'large',
-          text: 'continue_with',
-          shape: 'pill',
-          width: 350,
-        });
-      }
-    };
-
-    if (window.google) {
-      renderBtn();
-    } else {
-      const interval = setInterval(() => {
-        if (window.google) {
-          renderBtn();
-          clearInterval(interval);
-        }
-      }, 100);
-      return () => clearInterval(interval);
-    }
-  }, [showModal]);
 
   return (
     <>
@@ -485,34 +390,6 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* ===== AUTH MODAL ===== */}
-      {showModal && (
-        <div className="modal-overlay" style={{ display: 'flex' }}>
-          <div className="modal">
-            <button className="modal-close" onClick={() => setShowModal(false)}>&times;</button>
-            <div className="modal-logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
-            <div className="modal-desc">Login to Save your Roadmaps</div>
-            
-            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-              <div ref={googleBtnRef}></div>
-              {!GOOGLE_CLIENT_ID && (
-                <p style={{ color: '#f85149', fontWeight: 700, fontSize: '0.9rem', textAlign: 'center', lineHeight: 1.5 }}>
-                  Google sign-in is not configured yet. Add NEXT_PUBLIC_GOOGLE_CLIENT_ID and restart the app.
-                </p>
-              )}
-              {isLoggingIn && (
-                <p style={{ color: 'var(--green)', fontWeight: 700, fontSize: '0.9rem' }}>
-                  🐰 Setting up your account...
-                </p>
-              )}
-            </div>
-            
-            <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--muted)', textAlign: 'center' }}>
-              By logging in, you agree to our <a href="/terms" style={{ color: 'var(--green)' }}>Terms of Use</a> and <a href="/privacy" style={{ color: 'var(--green)' }}>Privacy Policy</a>.
-            </p>
-          </div>
-        </div>
-      )}
     </>
   );
 }

@@ -1,52 +1,30 @@
-import { createServerClient } from '@supabase/ssr'
-import Link from 'next/link'
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import Script from 'next/script'
+'use client';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Script from 'next/script';
 
-import { getSupabaseAnonKey, getSupabaseUrl } from '@/utils/server/env'
+export default function QuizPage() {
+  const router = useRouter();
+  const [profile, setProfile] = useState({ name: 'Student', degree: '', year: '' });
+  const [loading, setLoading] = useState(true);
 
-export const metadata = {
-  title: 'Career Quiz – SkillBun',
-  description: 'Take SkillBun\'s AI-powered career quiz.',
-}
+  useEffect(() => {
+    const degree = localStorage.getItem('sb_degree') || '';
+    const year = localStorage.getItem('sb_year') || '';
+    const name = localStorage.getItem('sb_name') || 'Student';
 
-export default async function QuizPage() {
-  const cookieStore = await cookies()
-  const supabaseUrl = getSupabaseUrl()
-  const supabaseKey = getSupabaseAnonKey()
+    if (!degree || !year) {
+      router.replace('/onboarding?next=/quiz');
+    } else {
+      setProfile({ name, degree, year });
+      setLoading(false);
+    }
+  }, [router]);
 
-  const supabase = createServerClient(supabaseUrl, supabaseKey, {
-    cookies: {
-      getAll() {
-        return cookieStore.getAll()
-      },
-    },
-  })
+  if (loading) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: '#fff' }}>Loading...</div>;
 
-  // Get user from Google Auth
-  const { data: { user } } = await supabase.auth.getUser()
-  
-  if (!user) {
-    redirect('/?authRequired=true&dest=/quiz')
-  }
-
-  // Fetch profile from DB
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('user_id', user.id)
-    .maybeSingle()
-
-  // If no profile, send to onboarding
-  if (!profile || !profile.degree || !profile.current_year) {
-    redirect('/onboarding?next=/quiz')
-  }
-
-  const name = profile.full_name || user.user_metadata?.full_name || 'Student'
-  const email = profile.email || user.email || ''
-  const degree = profile.degree || ''
-  const year = profile.current_year || ''
+  const { name, degree, year } = profile;
 
   return (
     <>
@@ -109,18 +87,7 @@ export default async function QuizPage() {
         </div>
       </div>
 
-      {/* Sync verified DB profile data into localStorage for quiz.js backward compatibility */}
-      <Script id="sync-auth" strategy="beforeInteractive">
-        {`
-          if (typeof window !== 'undefined') {
-            localStorage.setItem('sb_name', ${JSON.stringify(name)});
-            localStorage.setItem('sb_email', ${JSON.stringify(email)});
-            localStorage.setItem('sb_degree', ${JSON.stringify(degree)});
-            localStorage.setItem('sb_year', ${JSON.stringify(year)});
-          }
-        `}
-      </Script>
-
+      {/* localStorage already holds our data, but quiz.js uses these keys */}
       <Script src="/quiz.js" strategy="lazyOnload" />
     </>
   )
