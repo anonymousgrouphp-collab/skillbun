@@ -11,7 +11,8 @@ const HUMAN_PROOF_STORAGE_KEY = 'sb_human_proof';
 const SKILLBUN_CONTACT_EMAIL = 'harsh@skillbun.tech';
 const MAX_HISTORY_ITEMS = 48;
 const MAX_HISTORY_TEXT = 22000;
-const HAS_MARKDOWN = typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
+const AI_CLIENT_MAX_RETRIES = 1;
+const AI_RETRYABLE_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
 
 // --- Rate Limiting ---
 const RATE_LIMIT_MAX = 15;           // max messages per window
@@ -22,7 +23,16 @@ function getRateLimitData() {
     try {
         const raw = localStorage.getItem(RATE_LIMIT_KEY);
         if (!raw) return { count: 0, windowStart: Date.now() };
-        return JSON.parse(raw);
+
+        const parsed = JSON.parse(raw);
+        const count = Number.parseInt(parsed?.count, 10);
+        const windowStart = Number.parseInt(parsed?.windowStart, 10);
+
+        if (!Number.isFinite(count) || count < 0 || !Number.isFinite(windowStart) || windowStart <= 0) {
+            return { count: 0, windowStart: Date.now() };
+        }
+
+        return { count, windowStart };
     } catch {
         return { count: 0, windowStart: Date.now() };
     }
@@ -60,6 +70,73 @@ function incrementRateLimit() {
 
     data.count += 1;
     localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(data));
+}
+
+function hasMarkdown() {
+    return typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseRetryAfterMs(value) {
+    if (!value) return 0;
+
+    const seconds = Number.parseInt(value, 10);
+    if (Number.isFinite(seconds)) {
+        return Math.max(0, seconds * 1000);
+    }
+
+    const retryDate = Date.parse(value);
+    if (Number.isFinite(retryDate)) {
+        return Math.max(0, retryDate - Date.now());
+    }
+
+    return 0;
+}
+
+function formatWaitTime(ms) {
+    const seconds = Math.max(1, Math.ceil(ms / 1000));
+    if (seconds < 60) return `${seconds} second${seconds === 1 ? '' : 's'}`;
+
+    const minutes = Math.ceil(seconds / 60);
+    return `${minutes} minute${minutes === 1 ? '' : 's'}`;
+}
+
+function getRetryDelayMs(error, attempt) {
+    if (Number.isFinite(error?.retryAfterMs) && error.retryAfterMs > 0) {
+        return Math.min(error.retryAfterMs, 30_000);
+    }
+
+    return Math.min(700 * (2 ** attempt), 4_000);
+}
+
+function getFriendlyAiErrorMessage(error) {
+    const message = String(error?.message || '').trim();
+    const retryAfterMs = Number.parseInt(error?.retryAfterMs, 10);
+
+    if (Number.isFinite(retryAfterMs) && retryAfterMs > 0) {
+        return `AI is cooling down. Please wait ${formatWaitTime(retryAfterMs)} and send again.`;
+    }
+
+    if (/quota|too many|rate|busy|limit/i.test(message)) {
+        return 'AI is receiving too many requests right now. Please wait a moment and send again.';
+    }
+
+    if (/authentication|credential|api key|not configured/i.test(message)) {
+        return 'AI is not configured correctly right now. Please contact the SkillBun team.';
+    }
+
+    if (/empty response|temporarily unavailable|timed out|could not reach|network/i.test(message)) {
+        return 'Bun-Bot could not reach AI reliably. Please send again and I will continue from here.';
+    }
+
+    if (/security|human verification/i.test(message)) {
+        return message;
+    }
+
+    return message || 'Bun-Bot could not answer right now. Please try again.';
 }
 
 let securityConfig = {
@@ -155,7 +232,7 @@ async function refreshHumanProofSession() {
     }
 }
 
-if (HAS_MARKDOWN) {
+if (hasMarkdown()) {
     window.marked.setOptions({
         headerIds: false,
         mangle: false,
@@ -553,7 +630,7 @@ function sanitizeHTML(unsafeHtml) {
 function renderBotHTML(text) {
     const safeText = String(text ?? '');
 
-    if (HAS_MARKDOWN) {
+    if (hasMarkdown()) {
         return sanitizeHTML(window.marked.parse(safeText));
     }
 
@@ -595,6 +672,71 @@ function trimConversationHistory() {
     while (getHistoryTextLength() > MAX_HISTORY_TEXT && conversationHistory.length > 4) {
         conversationHistory.splice(2, 2);
     }
+}
+
+function extractGeminiText(data) {
+    const parts = data?.candidates?.[0]?.content?.parts;
+    if (!Array.isArray(parts)) return '';
+
+    const textPart = parts.find(part => typeof part?.text === 'string' && part.text.trim());
+    return textPart?.text || '';
+}
+
+async function fetchGeminiPayload(payload) {
+    let lastError = null;
+
+    for (let attempt = 0; attempt <= AI_CLIENT_MAX_RETRIES; attempt += 1) {
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
+
+            const response = await fetch('/api/gemini', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                let apiError = '';
+                let retryAfterMs = parseRetryAfterMs(response.headers.get('retry-after'));
+
+                try {
+                    const errorData = await response.json();
+                    apiError = typeof errorData?.error === 'string' ? errorData.error : '';
+                    retryAfterMs = Number.parseInt(errorData?.retryAfterMs, 10) || retryAfterMs;
+                } catch (err) {
+                    apiError = '';
+                }
+
+                if (response.status === 403) {
+                    clearHumanProof();
+                }
+
+                const error = new Error(apiError || 'AI is unavailable right now. Please try again.');
+                error.status = response.status;
+                error.retryAfterMs = retryAfterMs;
+
+                if (AI_RETRYABLE_STATUSES.has(response.status) && attempt < AI_CLIENT_MAX_RETRIES) {
+                    lastError = error;
+                    await sleep(getRetryDelayMs(error, attempt));
+                    continue;
+                }
+
+                throw error;
+            }
+
+            return await response.json();
+        } catch (error) {
+            if (error?.status || attempt >= AI_CLIENT_MAX_RETRIES) {
+                throw error;
+            }
+
+            lastError = error;
+            await sleep(getRetryDelayMs(error, attempt));
+        }
+    }
+
+    throw lastError || new Error('AI request failed');
 }
 
 // --- Gemini Prompt Logic ---
@@ -726,40 +868,8 @@ async function sendMessage() {
             }
         };
 
-        const headers = { 'Content-Type': 'application/json' };
-        if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
-
-        const response = await fetch('/api/gemini', {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            let apiError = '';
-            try {
-                const errorData = await response.json();
-                apiError = typeof errorData?.error === 'string' ? errorData.error : '';
-            } catch (err) {
-                apiError = '';
-            }
-
-            if (response.status === 403) {
-                clearHumanProof();
-                throw new Error('Security session expired. Please send again to re-verify.');
-            }
-
-            if (response.status === 400 && /conversation|payload/i.test(apiError)) {
-                conversationHistory = conversationHistory.slice(0, 2);
-                throw new Error('Chat became too long, so context was reset. Please send your question again.');
-            }
-
-            if (apiError) throw new Error(apiError);
-            throw new Error('AI is unavailable right now. Please try again.');
-        }
-
-        const data = await response.json();
-        const responseText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        const data = await fetchGeminiPayload(payload);
+        const responseText = extractGeminiText(data);
 
         if (!responseText || !responseText.trim()) {
             throw new Error('Got an empty response. Please try again.');
@@ -775,7 +885,15 @@ async function sendMessage() {
         appendMessage('bot', responseText);
     } catch (err) {
         console.error(err);
-        appendMessage('bot', `Error: ${err.message}`);
+
+        if (err?.status === 400 && /conversation|payload/i.test(err.message)) {
+            conversationHistory = conversationHistory.slice(0, 2);
+            appendMessage('bot', 'Chat became too long, so I reset context. Please send your question again.');
+        } else if (err?.status === 403) {
+            appendMessage('bot', 'Security session expired. Please send again to re-verify.');
+        } else {
+            appendMessage('bot', getFriendlyAiErrorMessage(err));
+        }
 
         if (conversationHistory.length > 0 && conversationHistory[conversationHistory.length - 1].role === 'user') {
             conversationHistory.pop();
