@@ -12,6 +12,8 @@ let quizResults = null;
 const SUPPORT_EMAIL = 'harsh@skillbun.tech';
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const HUMAN_PROOF_STORAGE_KEY = 'sb_human_proof';
+const AI_CLIENT_MAX_RETRIES = 1;
+const AI_RETRYABLE_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
 
 let securityConfig = {
     captchaEnabled: false,
@@ -47,6 +49,69 @@ function clearHumanProof() {
     } catch (err) {
         console.warn('Could not clear human proof token:', err.message);
     }
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseRetryAfterMs(value) {
+    if (!value) return 0;
+
+    const seconds = Number.parseInt(value, 10);
+    if (Number.isFinite(seconds)) {
+        return Math.max(0, seconds * 1000);
+    }
+
+    const retryDate = Date.parse(value);
+    if (Number.isFinite(retryDate)) {
+        return Math.max(0, retryDate - Date.now());
+    }
+
+    return 0;
+}
+
+function formatWaitTime(ms) {
+    const seconds = Math.max(1, Math.ceil(ms / 1000));
+    if (seconds < 60) return `${seconds} second${seconds === 1 ? '' : 's'}`;
+
+    const minutes = Math.ceil(seconds / 60);
+    return `${minutes} minute${minutes === 1 ? '' : 's'}`;
+}
+
+function getRetryDelayMs(error, attempt) {
+    if (Number.isFinite(error?.retryAfterMs) && error.retryAfterMs > 0) {
+        return Math.min(error.retryAfterMs, 30_000);
+    }
+
+    return Math.min(700 * (2 ** attempt), 4_000);
+}
+
+function getFriendlyAiErrorMessage(error) {
+    const message = String(error?.message || '').trim();
+    const retryAfterMs = Number.parseInt(error?.retryAfterMs, 10);
+
+    if (Number.isFinite(retryAfterMs) && retryAfterMs > 0) {
+        return `AI is cooling down. Please wait ${formatWaitTime(retryAfterMs)} and tap Try Again.`;
+    }
+
+    if (/quota|too many|rate|busy|limit/i.test(message)) {
+        return 'AI is receiving too many requests right now. Please wait a moment and tap Try Again.';
+    }
+
+    if (/authentication|credential|api key|not configured/i.test(message)) {
+        return 'AI is not configured correctly right now. Please report this to the SkillBun team.';
+    }
+
+    if (/empty response|temporarily unavailable|timed out|could not reach|network/i.test(message)) {
+        return 'AI took too long to answer. Please tap Try Again and we will continue from the same question.';
+    }
+
+    if (/parse|json/i.test(message)) {
+        return 'AI returned an answer in the wrong format. Please tap Try Again and I will request a clean answer.';
+    }
+
+    return message || "Our AI bunny tripped! Don't worry - our team is on it.";
 }
 
 function restoreHumanProof() {
@@ -533,17 +598,22 @@ async function callGemini(userMessage) {
         throw new Error('Human verification required');
     }
 
+    let startedConversation = false;
+    let appendedUserMessage = false;
+
     // Build messages
     if (conversationHistory.length === 0) {
         conversationHistory.push({
             role: 'user',
             parts: [{ text: getSystemPrompt() }]
         });
+        startedConversation = true;
     } else if (userMessage) {
         conversationHistory.push({
             role: 'user',
-            parts: [{ text: userMessage }]
+            parts: [{ text: buildQuizUserMessage(userMessage) }]
         });
+        appendedUserMessage = true;
     }
 
     const payload = {
@@ -557,41 +627,95 @@ async function callGemini(userMessage) {
     };
 
     try {
-        const headers = { 'Content-Type': 'application/json' };
-        if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
-
-        const res = await fetch('/api/gemini', {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) {
-            const errData = await res.json().catch(() => ({}));
-            if (res.status === 403) {
-                clearHumanProof();
-            }
-            throw new Error(errData.error || `API request failed (${res.status})`);
-        }
-
-        const data = await res.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        const data = await fetchGeminiPayload(payload);
+        const text = extractGeminiText(data);
 
         if (!text) throw new Error('Empty response from Gemini');
 
-        // Add assistant response to history
+        const parsed = normalizeQuizResponse(parseGeminiJSON(text));
+
+        // Add assistant response to history only after it is usable.
         conversationHistory.push({
             role: 'model',
             parts: [{ text }]
         });
 
-        // Robust JSON parsing
-        return parseGeminiJSON(text);
+        return parsed;
 
     } catch (err) {
         console.error('Gemini API Error:', err);
-        throw err;
+
+        if (startedConversation) {
+            conversationHistory = [];
+        } else if (appendedUserMessage && conversationHistory[conversationHistory.length - 1]?.role === 'user') {
+            conversationHistory.pop();
+        }
+
+        throw new Error(getFriendlyAiErrorMessage(err));
     }
+}
+
+function buildQuizUserMessage(userMessage) {
+    if (!quizResults && questionCount >= 18) {
+        return `${userMessage}\n\nYou have now asked enough questions. Return the final recommendation JSON now with "type": "result" and exactly 3 careers.`;
+    }
+
+    return userMessage;
+}
+
+function extractGeminiText(data) {
+    const parts = data?.candidates?.[0]?.content?.parts;
+    if (!Array.isArray(parts)) return '';
+
+    const textPart = parts.find(part => typeof part?.text === 'string' && part.text.trim());
+    return textPart?.text || '';
+}
+
+async function fetchGeminiPayload(payload) {
+    let lastError = null;
+
+    for (let attempt = 0; attempt <= AI_CLIENT_MAX_RETRIES; attempt += 1) {
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
+
+            const res = await fetch('/api/gemini', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                if (res.status === 403) {
+                    clearHumanProof();
+                }
+
+                const error = new Error(errData.error || `API request failed (${res.status})`);
+                error.status = res.status;
+                error.retryAfterMs = Number.parseInt(errData.retryAfterMs, 10) || parseRetryAfterMs(res.headers.get('retry-after'));
+
+                if (AI_RETRYABLE_STATUSES.has(res.status) && attempt < AI_CLIENT_MAX_RETRIES) {
+                    lastError = error;
+                    await sleep(getRetryDelayMs(error, attempt));
+                    continue;
+                }
+
+                throw error;
+            }
+
+            return await res.json();
+        } catch (error) {
+            if (error?.status || attempt >= AI_CLIENT_MAX_RETRIES) {
+                throw error;
+            }
+
+            lastError = error;
+            await sleep(getRetryDelayMs(error, attempt));
+        }
+    }
+
+    throw lastError || new Error('AI request failed');
 }
 
 // --- Robust JSON Parser ---
@@ -633,6 +757,61 @@ function parseGeminiJSON(text) {
     }
 
     throw new Error('Could not parse Gemini response as JSON');
+}
+
+function normalizeQuizResponse(response) {
+    if (!response || typeof response !== 'object') {
+        throw new Error('AI response was not a JSON object');
+    }
+
+    if (response.type === 'result' || Array.isArray(response.careers) || (response.careers && typeof response.careers === 'object') || Array.isArray(response.results)) {
+        const careers = extractCareers(response).slice(0, 3);
+        if (careers.length === 0) {
+            throw new Error('AI result did not include usable careers');
+        }
+
+        return {
+            ...response,
+            type: 'result',
+            careers
+        };
+    }
+
+    const options = normalizeQuestionOptions(response.options);
+    if (!String(response.question || '').trim() || options.length !== 4) {
+        throw new Error('AI question did not include one question and four options');
+    }
+
+    const parsedPhase = Number.parseInt(response.phase, 10);
+    const parsedQuestionNumber = Number.parseInt(response.questionNumber, 10);
+
+    return {
+        ...response,
+        type: 'question',
+        phase: Number.isFinite(parsedPhase) ? Math.max(1, Math.min(parsedPhase, 4)) : 1,
+        questionNumber: Number.isFinite(parsedQuestionNumber) ? parsedQuestionNumber : questionCount + 1,
+        question: String(response.question).trim(),
+        options
+    };
+}
+
+function normalizeQuestionOptions(options) {
+    const rawOptions = Array.isArray(options)
+        ? options
+        : options && typeof options === 'object'
+            ? Object.entries(options).map(([label, text]) => ({ label, text }))
+            : [];
+
+    return rawOptions
+        .map((option, index) => {
+            const label = String(option?.label || String.fromCharCode(65 + index)).trim().slice(0, 1).toUpperCase();
+            const text = String(option?.text || option?.value || '').trim();
+
+            if (!text) return null;
+            return { label: ['A', 'B', 'C', 'D'][index] || label || 'A', text };
+        })
+        .filter(Boolean)
+        .slice(0, 4);
 }
 
 const ROADMAP_FALLBACK_URL = '/roadmap/general';
@@ -1171,10 +1350,6 @@ function showResults(data) {
 
 // --- Retry ---
 function retryLastQuestion() {
-    // Remove the failed user message from history so it can be re-sent cleanly
-    if (conversationHistory.length > 1) {
-        conversationHistory.pop();
-    }
     if (lastSelectedOption) {
         // Re-send the last selected answer
         selectOption(lastSelectedOption, document.createElement('button'));

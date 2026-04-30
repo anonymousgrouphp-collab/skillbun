@@ -18,6 +18,23 @@ function parseIntWithinRange(value, fallback, minimum, maximum) {
   return Math.min(Math.max(parsed, minimum), maximum)
 }
 
+function parseBoolean(value, fallback = false) {
+  if (typeof value !== 'string' || !value.trim()) {
+    return fallback
+  }
+
+  const normalized = value.trim().toLowerCase()
+
+  if (['1', 'true', 'yes', 'on', 'enabled'].includes(normalized)) {
+    return true
+  }
+
+  if (['0', 'false', 'no', 'off', 'disabled'].includes(normalized)) {
+    return false
+  }
+
+  return fallback
+}
 
 export function getTurnstileSiteKey() {
   return getFirstNonEmpty(process.env.TURNSTILE_SITE_KEY)
@@ -28,7 +45,8 @@ export function getTurnstileSecretKey() {
 }
 
 export function isCaptchaEnabled() {
-  return false
+  const hasKeys = Boolean(getTurnstileSiteKey() && getTurnstileSecretKey())
+  return hasKeys && parseBoolean(process.env.TURNSTILE_ENABLED, false)
 }
 
 export function getGeminiApiKey() {
@@ -37,6 +55,22 @@ export function getGeminiApiKey() {
 
 export function getGeminiTimeoutMs() {
   return parseIntWithinRange(process.env.GEMINI_TIMEOUT_MS, 20_000, 5_000, 60_000)
+}
+
+export function getGeminiRateLimitPerMinute() {
+  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_MINUTE, 12, 1, 120)
+}
+
+export function getGeminiRateLimitPerHour() {
+  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_HOUR, 80, 5, 2000)
+}
+
+export function getGeminiMaxRetries() {
+  return parseIntWithinRange(process.env.GEMINI_MAX_RETRIES, 2, 0, 4)
+}
+
+export function getGeminiRetryBaseDelayMs() {
+  return parseIntWithinRange(process.env.GEMINI_RETRY_BASE_DELAY_MS, 450, 100, 5_000)
 }
 
 export function getHumanProofTtlMs() {

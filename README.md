@@ -48,10 +48,14 @@ NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_oauth_client_id.apps.googleusercontent.
 
 GEMINI_API_KEY=your_gemini_api_key
 GEMINI_TIMEOUT_MS=20000
+GEMINI_RATE_LIMIT_PER_MINUTE=12
+GEMINI_RATE_LIMIT_PER_HOUR=80
+GEMINI_MAX_RETRIES=2
 
-# Optional: set both to enable Turnstile.
+# Optional: keep disabled during development; set TURNSTILE_ENABLED=true when ready.
 TURNSTILE_SITE_KEY=your_turnstile_site_key
 TURNSTILE_SECRET_KEY=your_turnstile_secret_key
+TURNSTILE_ENABLED=false
 
 # Recommended in production.
 HUMAN_PROOF_SECRET=generate_a_long_random_secret
