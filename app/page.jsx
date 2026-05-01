@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 
 const FLOATER_TEXTS = [
@@ -18,8 +18,6 @@ const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
-  const statsRef = useRef(null);
-  const statsAnimated = useRef(false);
 
   useEffect(() => {
     let timer;
@@ -102,34 +100,22 @@ export default function Home() {
       }
     }
 
-    // Count-up animation for stats
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !statsAnimated.current) {
-          statsAnimated.current = true;
-          document.querySelectorAll('.stat-num').forEach((el) => {
-            const target = Number(el.getAttribute('data-target'));
-            const suffix = el.getAttribute('data-suffix') || '';
-            const duration = 2000;
-            const startTime = performance.now();
-            function update(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 3);
-              const current = Math.floor(eased * target);
-              el.textContent = `${current}${suffix}`;
-              if (progress < 1) requestAnimationFrame(update);
-              else el.textContent = `${target}${suffix}`;
-            }
-            requestAnimationFrame(update);
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+    let revealObserver;
+    const revealNodes = Array.from(document.querySelectorAll('.sb-reveal'));
+    if ('IntersectionObserver' in window) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
 
-    const statsNode = statsRef.current;
-    if (statsNode) observer.observe(statsNode);
+      revealNodes.forEach((node) => revealObserver.observe(node));
+    } else {
+      revealNodes.forEach((node) => node.classList.add('is-visible'));
+    }
 
     return () => {
       if (authFrame) {
@@ -138,8 +124,7 @@ export default function Home() {
       clearTimeout(timer);
       shuffleTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
       shuffleIntervals.forEach((intervalId) => window.clearInterval(intervalId));
-      observer.disconnect();
-      if (statsNode) observer.unobserve(statsNode);
+      revealObserver?.disconnect();
       if (rainEl) rainEl.innerHTML = '';
       if (floatersEl) floatersEl.innerHTML = '';
     };
@@ -210,108 +195,304 @@ export default function Home() {
           <div className="hero-bg-glow"></div>
           <div className="floaters" id="floaters"></div>
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div className="hero-tag"> For BCA · BSc · B.Tech Students</div>
+            <div className="hero-tag">For BCA · BSc · B.Tech Students</div>
             <h1>Your Tech <span className="shuffle-text" data-final="Career">######</span>,<br /><span
               className="highlight">Engineered For <span className="shuffle-text" data-final="Success">#######</span>.</span></h1>
-            <p>Not sure which path to take in tech? SkillBun analyzes your interests, guides you through career options,
-              entrance exams, top colleges, languages to learn, and connects you to real industry peers.</p>
+            <p>SkillBun turns career confusion into a guided system: profile setup, adaptive AI quiz, ranked career matches,
+              interactive roadmaps, and Bun-Bot support for every next step.</p>
             <div className="hero-btns">
               <button onClick={() => openAuthModal('/quiz')} className="btn-primary">🐾 Take the Career Quiz</button>
+              <a href="#features" className="btn-secondary hero-secondary">See the platform</a>
+            </div>
+            <div className="hero-signal-strip" aria-label="SkillBun guidance flow">
+              <span>Profile</span>
+              <span>Adaptive Quiz</span>
+              <span>Career Match</span>
+              <span>Roadmap</span>
             </div>
           </div>
         </div>
 
-        {/* ===== STATS ===== */}
-        <div className="stats-row" ref={statsRef}>
-          <div className="stat">
-            <span className="stat-num" data-target="50" data-suffix="K+">0</span>
-            <span className="stat-label">Students Guided</span>
-          </div>
-          <div className="stat">
-            <span className="stat-num" data-target="200" data-suffix="+">0</span>
-            <span className="stat-label">Career Paths Mapped</span>
-          </div>
-          <div className="stat">
-            <span className="stat-num" data-target="98" data-suffix="%">0</span>
-            <span className="stat-label">Satisfaction Rate</span>
-          </div>
-        </div>
+        {/* ===== STUDENT MOMENTS ===== */}
+        <section className="sb-section sb-moments-section sb-reveal" aria-labelledby="student-moments-title">
+          <div className="sb-moments-shell">
+            <div className="sb-moments-copy">
+              <div className="section-label">Sample student moments</div>
+              <h2 id="student-moments-title" className="section-title">The kind of clarity SkillBun is built to create</h2>
+              <p className="section-sub">Illustrative guidance moments, not testimonials. These show the journey SkillBun is designed to support before, during, and after the quiz.</p>
+              <div className="sb-guidance-rhythm" aria-label="SkillBun guidance rhythm">
+                <span>Profile context</span>
+                <span>Adaptive quiz</span>
+                <span>Roadmap support</span>
+              </div>
+            </div>
 
-        {/* ===== HOW IT WORKS ===== */}
-        <section id="how">
-          <div className="section-label">🐾 The Journey</div>
-          <h2 className="section-title">How SkillBun Works</h2>
-          <p className="section-sub">Four simple hops from confusion to a clear, personalized tech career roadmap.</p>
-          <div className="steps">
-            <div className="step-card">
-              <span className="step-icon">📋</span>
-              <div className="step-num">01</div>
-              <h3>Interest Quiz</h3>
-              <p>Answer curated questions about your interests, strengths, and goals. Our AI analyzes your personality and learning style.</p>
-            </div>
-            <div className="step-card">
-              <span className="step-icon">🗺️</span>
-              <div className="step-num">02</div>
-              <h3>Career Mapping</h3>
-              <p>Get a personalized career roadmap with top fields like AI/ML, Web Dev, Cybersecurity, Data Science, and more.</p>
-            </div>
-            <div className="step-card">
-              <span className="step-icon">🤝</span>
-              <div className="step-num">03</div>
-              <h3>Dream Tech Jobs</h3>
-              <p>Explore packages and get AI chatbot support for any doubts along the way.</p>
+            <div className="sb-guidance-console" aria-label="Illustrative SkillBun guidance moments">
+              <div className="sb-console-topline">
+                <span className="sb-console-dot"></span>
+                <span>skillbun.guidance.flow</span>
+                <code>sample_mode: true</code>
+              </div>
+
+              <div className="sb-moment-rail" aria-hidden="true">
+                <span></span>
+              </div>
+
+              <div className="sb-moment-grid">
+                <article className="sb-moment-card before">
+                  <span className="sb-moment-tag">Before</span>
+                  <p>I like tech, but I don’t know where to start.</p>
+                </article>
+
+                <article className="sb-moment-card profile">
+                  <span className="sb-moment-tag">Profile signal</span>
+                  <h3>Context first</h3>
+                  <p>Degree, year, interests, and learning confidence shape the first guidance layer.</p>
+                  <div className="sb-signal-chips">
+                    <span>BCA</span>
+                    <span>2nd Year</span>
+                    <span>Not sure yet</span>
+                  </div>
+                </article>
+
+                <article className="sb-moment-card quiz">
+                  <span className="sb-moment-tag">Quiz adapts</span>
+                  <h3>Answers shape the next question</h3>
+                  <p>If you lean toward building, data, security, or cloud, the quiz narrows instead of staying generic.</p>
+                </article>
+
+                <article className="sb-moment-card recommendation">
+                  <span className="sb-moment-tag">Recommendation clarity</span>
+                  <h3>Not just a career name</h3>
+                  <p>Fit reason, skills, demand, salary context, and the next step sit together so comparison feels calmer.</p>
+                </article>
+
+                <article className="sb-moment-card roadmap">
+                  <span className="sb-moment-tag">Roadmap + Bun-Bot</span>
+                  <h3>Keep moving after results</h3>
+                  <p>Open a skill tree, build projects, track progress, and ask Bun-Bot when a topic feels foggy.</p>
+                </article>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ===== FEATURES ===== */}
-        <section id="features" style={{ paddingTop: 0 }}>
-          <div className="section-label">✨ Everything You Need</div>
-          <h2 className="section-title">Built for Aspiring Techies</h2>
-          <p className="section-sub">From choosing a programming language to landing your first job – SkillBun has you covered at every hop.</p>
-          <div className="features-grid">
-            <a href="/counsellor" className="feature-card feature-card-link" aria-label="Open AI Career Counsellor">
-              <div className="feature-icon-wrap">🤖</div>
-              <div>
-                <h3>AI Career Counsellor</h3>
-                <p>Ask anything – pros/cons of a course, salary expectations, day-in-the-life of a role. Bun-Bot is always available.</p>
+        {/* ===== WHAT SKILLBUN DOES ===== */}
+        <section id="features" className="sb-section sb-reveal">
+          <div className="section-label">SkillBun OS</div>
+          <h2 className="section-title">A complete guidance system before you pick a tech path</h2>
+          <p className="section-sub">Most students get scattered advice. SkillBun connects profile, quiz, recommendations, roadmaps, and counselling into one clear flow.</p>
+          <div className="sb-capability-grid">
+            <div className="sb-capability">
+              <span className="sb-capability-kicker">01</span>
+              <h3>Understand your starting point</h3>
+              <p>Collect degree, year, interests, and confidence level so guidance starts from your real student context.</p>
+            </div>
+            <div className="sb-capability">
+              <span className="sb-capability-kicker">02</span>
+              <h3>Ask adaptive questions</h3>
+              <p>The quiz changes direction based on your answers instead of forcing every student through the same form.</p>
+            </div>
+            <div className="sb-capability">
+              <span className="sb-capability-kicker">03</span>
+              <h3>Explain career matches</h3>
+              <p>Recommendations include match strength, skills, demand, salary context, and next steps you can compare.</p>
+            </div>
+            <div className="sb-capability">
+              <span className="sb-capability-kicker">04</span>
+              <h3>Turn decisions into action</h3>
+              <p>Native roadmap pages break careers into staged skill trees, projects, resources, and progress checkpoints.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== JOURNEY ===== */}
+        <section id="how" className="sb-section sb-reveal">
+          <div className="section-label">The Journey</div>
+          <h2 className="section-title">From confused student to focused roadmap</h2>
+          <p className="section-sub">The public homepage stays open for every viewer. When you are ready, the same CTA takes you through onboarding, quiz, recommendation, and roadmap.</p>
+          <div className="sb-journey" aria-label="SkillBun user journey">
+            <div className="sb-journey-line"></div>
+            <div className="sb-journey-step">
+              <div className="sb-journey-dot">1</div>
+              <h3>Explore the platform</h3>
+              <p>Understand what SkillBun can do before sharing details or starting the quiz.</p>
+            </div>
+            <div className="sb-journey-step">
+              <div className="sb-journey-dot">2</div>
+              <h3>Enter profile details</h3>
+              <p>Tell SkillBun your name, degree, current year, and optional interest area.</p>
+            </div>
+            <div className="sb-journey-step">
+              <div className="sb-journey-dot">3</div>
+              <h3>Take the adaptive quiz</h3>
+              <p>Answer focused questions about interests, strengths, learning style, and goals.</p>
+            </div>
+            <div className="sb-journey-step">
+              <div className="sb-journey-dot">4</div>
+              <h3>Open your roadmap</h3>
+              <p>Use your recommended skill tree to learn, build projects, and ask Bun-Bot for help.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== AI QUIZ ENGINE ===== */}
+        <section className="sb-section sb-split sb-reveal">
+          <div className="sb-copy-block">
+            <div className="section-label">AI Quiz Engine</div>
+            <h2 className="section-title">A quiz that behaves more like a career interview</h2>
+            <p className="section-sub">SkillBun asks 10 to 18 questions, adapts to your responses, and waits until it has enough signal before recommending careers.</p>
+            <div className="sb-check-list">
+              <span>Interest, strengths, and learning-style discovery</span>
+              <span>Branching questions that narrow the path</span>
+              <span>Human verification and rate limits stay protected</span>
+            </div>
+          </div>
+          <div className="sb-quiz-panel" aria-label="Adaptive quiz preview">
+            <div className="sb-panel-top">
+              <span>Phase 1: Discovery</span>
+              <span>Question 7 / 15</span>
+            </div>
+            <div className="sb-progress-shell"><span></span></div>
+            <h3>Which problem sounds exciting to solve?</h3>
+            <div className="sb-answer active">Making apps that people use daily</div>
+            <div className="sb-answer">Finding hidden patterns in data</div>
+            <div className="sb-answer">Protecting systems from attacks</div>
+            <div className="sb-answer">Automating cloud deployments</div>
+          </div>
+        </section>
+
+        {/* ===== RECOMMENDATION OUTPUT ===== */}
+        <section className="sb-section sb-reveal">
+          <div className="section-label">Career Recommendations</div>
+          <h2 className="section-title">Results that explain why a path fits you</h2>
+          <p className="section-sub">The quiz does not stop at a career name. It gives you context you can actually use while deciding what to learn next.</p>
+          <div className="sb-results-showcase">
+            <div className="sb-result-card sb-result-primary">
+              <div className="sb-result-meta">
+                <span>Top Match</span>
+                <strong>94%</strong>
               </div>
-            </a>
-            <div className="feature-card">
-              <div className="feature-icon-wrap">💻</div>
-              <div>
-                <h3>Language Recommender</h3>
-                <p>Should you learn Python, Java, or Go? Get tailored recommendations based on your target field and interests.</p>
+              <h3>Full Stack Developer</h3>
+              <p>Best fit if you enjoy building visible products, connecting interfaces to data, and learning by shipping projects.</p>
+              <div className="sb-mini-tags">
+                <span>React</span>
+                <span>APIs</span>
+                <span>Databases</span>
               </div>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon-wrap">🏢</div>
-              <div>
-                <h3>Company Explorer</h3>
-                <p>Browse curated companies hiring freshers, check packages, job roles and required skills.</p>
+            <div className="sb-result-card">
+              <div className="sb-result-meta">
+                <span>Strong Fit</span>
+                <strong>88%</strong>
+              </div>
+              <h3>Data Analyst</h3>
+              <p>Great for students who like finding meaning in numbers, dashboards, and business decisions.</p>
+              <div className="sb-mini-tags">
+                <span>SQL</span>
+                <span>Excel</span>
+                <span>BI</span>
               </div>
             </div>
+            <div className="sb-result-card">
+              <div className="sb-result-meta">
+                <span>Explore</span>
+                <strong>82%</strong>
+              </div>
+              <h3>Cybersecurity</h3>
+              <p>A solid path if you enjoy puzzles, systems thinking, and protecting users from real-world threats.</p>
+              <div className="sb-mini-tags">
+                <span>Networks</span>
+                <span>Linux</span>
+                <span>Security</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== ROADMAP PREVIEW ===== */}
+        <section className="sb-section sb-split sb-split-reverse sb-reveal">
+          <div className="sb-roadmap-preview" aria-label="Roadmap preview">
+            <div className="sb-roadmap-node root">
+              <span>&lt;/&gt;</span>
+              <strong>Career Core</strong>
+            </div>
+            <div className="sb-roadmap-branches">
+              <div className="sb-roadmap-node"><span>01</span><strong>Foundations</strong></div>
+              <div className="sb-roadmap-node"><span>02</span><strong>Projects</strong></div>
+              <div className="sb-roadmap-node"><span>03</span><strong>Portfolio</strong></div>
+            </div>
+            <div className="sb-roadmap-pulse"></div>
+          </div>
+          <div className="sb-copy-block">
+            <div className="section-label">Interactive Roadmaps</div>
+            <h2 className="section-title">Every recommendation becomes a skill tree</h2>
+            <p className="section-sub">Roadmaps are not static PDFs. They unlock step-by-step, track local progress, include resources, and let you ask Bun-Bot about any topic.</p>
+            <div className="sb-check-list">
+              <span>Skill nodes with prerequisite flow</span>
+              <span>Portfolio-ready project checkpoints</span>
+              <span>Progress, XP, resources, and Bun-Bot help</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== BUN BOT ===== */}
+        <section className="sb-section sb-split sb-reveal">
+          <div className="sb-copy-block">
+            <div className="section-label">Bun-Bot Counsellor</div>
+            <h2 className="section-title">A career companion after the result screen</h2>
+            <p className="section-sub">Students can ask follow-up questions about salaries, languages, certifications, exams, colleges, and day-in-the-life tradeoffs.</p>
+            <a href="/counsellor" className="btn-secondary sb-inline-link">Open Bun-Bot</a>
+          </div>
+          <div className="sb-bot-window" aria-label="Bun-Bot preview">
+            <div className="sb-bot-header">
+              <span className="status-dot"></span>
+              <strong>Bun-Bot online</strong>
+            </div>
+            <div className="sb-bot-message bot">Ask me why Full Stack, Data, or Cybersecurity fits your profile.</div>
+            <div className="sb-bot-message user">Which path is best if I like building projects?</div>
+            <div className="sb-bot-message bot">Start with Full Stack, compare Backend next, then use the roadmap to build proof.</div>
           </div>
         </section>
 
         {/* ===== CAREER FIELDS ===== */}
-        <section id="careers" style={{ paddingTop: 0 }}>
-          <div className="section-label">🚀 Explore Fields</div>
-          <h2 className="section-title">Which Path Will You Hop?</h2>
-          <p className="section-sub">SkillBun covers all major and emerging tech career paths for BCA, BSc, and B.Tech students.</p>
+        <section id="careers" className="sb-section sb-reveal" style={{ paddingTop: 0 }}>
+          <div className="section-label">Explore Fields</div>
+          <h2 className="section-title">Which path will you hop?</h2>
+          <p className="section-sub">SkillBun covers major and emerging tech roles for BCA, BSc, BS/BS-MS, and B.Tech students.</p>
           <div className="fields-wrap">
-            <div className="field-pill">🧠 AI & Machine Learning</div>
-            <div className="field-pill">🌐 Full Stack Web Dev</div>
-            <div className="field-pill">📱 Mobile Development</div>
-            <div className="field-pill">🔐 Cybersecurity</div>
-            <div className="field-pill">📊 Data Science & Analytics</div>
-            <div className="field-pill">☁️ Cloud & DevOps</div>
-            <div className="field-pill">🎮 Game Development</div>
-            <div className="field-pill">🔗 Blockchain</div>
-            <div className="field-pill">🤖 Robotics & Embedded</div>
-            <div className="field-pill">🖥️ Systems Programming</div>
-            <div className="field-pill">📡 Networking</div>
-            <div className="field-pill">🧬 Bioinformatics</div>
+            <div className="field-pill">AI & Machine Learning</div>
+            <div className="field-pill">Full Stack Web Dev</div>
+            <div className="field-pill">Mobile Development</div>
+            <div className="field-pill">Cybersecurity</div>
+            <div className="field-pill">Data Science & Analytics</div>
+            <div className="field-pill">Cloud & DevOps</div>
+            <div className="field-pill">Game Development</div>
+            <div className="field-pill">Blockchain</div>
+            <div className="field-pill">Robotics & Embedded</div>
+            <div className="field-pill">Systems Programming</div>
+            <div className="field-pill">Networking</div>
+            <div className="field-pill">UI/UX Design</div>
+          </div>
+        </section>
+
+        {/* ===== TRUST ===== */}
+        <section className="sb-section sb-trust-section sb-reveal">
+          <div className="section-label">Why It Feels Different</div>
+          <h2 className="section-title">Detailed enough for decisions, friendly enough to start today</h2>
+          <div className="sb-trust-grid">
+            <div>
+              <strong>Student-first</strong>
+              <p>Built around degree, year, uncertainty, and practical learning constraints.</p>
+            </div>
+            <div>
+              <strong>Action-oriented</strong>
+              <p>Recommendations connect directly to roadmaps, projects, and follow-up help.</p>
+            </div>
+            <div>
+              <strong>Safe by design</strong>
+              <p>Existing validation, rate limits, and human-verification protections remain intact.</p>
+            </div>
           </div>
         </section>
 
