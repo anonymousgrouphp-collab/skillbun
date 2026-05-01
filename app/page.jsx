@@ -196,8 +196,8 @@ export default function Home() {
           <div className="floaters" id="floaters"></div>
           <div style={{ position: 'relative', zIndex: 1 }}>
             <div className="hero-tag">For BCA · BSc · B.Tech Students</div>
-            <h1>Your Tech <span className="shuffle-text" data-final="Career">######</span>,<br /><span
-              className="highlight">Engineered For <span className="shuffle-text" data-final="Success">#######</span>.</span></h1>
+            <h1>Your Tech <span className="shuffle-text" data-final="Career">Career</span>,<br /><span
+              className="highlight">Engineered For <span className="shuffle-text" data-final="Success">Success</span>.</span></h1>
             <p>SkillBun turns career confusion into a guided system: profile setup, adaptive AI quiz, ranked career matches,
               interactive roadmaps, and Bun-Bot support for every next step.</p>
             <div className="hero-btns">
