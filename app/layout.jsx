@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
               document.documentElement.setAttribute('data-theme', t);
               document.documentElement.style.colorScheme = t;
               var themeMeta = document.querySelector('meta[name="theme-color"]');
-              if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#0D1117' : '#F6F8FA');
+              if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#0D1117' : '#F4F7F2');
             } catch(e){}
           })();
         `}} />
