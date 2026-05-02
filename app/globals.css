@@ -2363,35 +2363,60 @@ footer {
   justify-content: flex-end;
 }
 
+.user-control-cluster {
+  display: flex;
+  align-items: center;
+}
+
+.user-control-divider,
+.user-pill-name-mobile,
+.user-pill-initials-mobile {
+  display: none;
+}
+
 .mobile-menu-btn {
   display: none;
   align-items: center;
   justify-content: center;
-  background: var(--primary-gradient);
+  width: 38px;
+  height: 38px;
+  padding: 0;
   border: none;
-  border-left: 1px solid rgba(13, 17, 23, 0.15) !important;
-  border-radius: 0 50px 50px 0;
+  border-radius: 50%;
+  background: var(--primary-gradient);
   color: var(--primary-contrast);
-  padding: 0 1rem 0 0.6rem;
   cursor: pointer;
+  box-shadow: var(--accent-shadow);
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s, background-color 0.2s;
   z-index: 1001;
 }
 
 .mobile-menu-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   transition: transform 0.3s ease;
 }
 
+.mobile-menu-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: var(--accent-shadow-hover);
+}
+
+.mobile-menu-btn:focus-visible {
+  outline: 3px solid var(--green-subtle-strong);
+  outline-offset: 3px;
+}
+
 .mobile-menu-btn.active svg {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
 /* For quiz page specific dark group */
 .mobile-dropdown-group.dark-group .mobile-menu-btn {
   background: rgba(46, 204, 113, 0.1);
-  border-left: 1px solid rgba(46, 204, 113, 0.3) !important;
   color: var(--green);
+  box-shadow: none;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -2400,6 +2425,100 @@ footer {
 @media (max-width: 1400px) {
   nav {
     padding: 1rem 1.2rem;
+  }
+
+  .user-control-cluster {
+    gap: 0;
+    padding: 0.28rem 0.34rem 0.28rem 0.92rem;
+    border: 1px solid color-mix(in srgb, var(--border) 84%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(14px);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background-color 0.2s;
+  }
+
+  .user-control-cluster:hover {
+    border-color: color-mix(in srgb, var(--green) 34%, var(--border));
+    box-shadow: var(--dropdown-shadow);
+  }
+
+  .user-control-cluster.is-account-open,
+  .user-control-cluster.is-nav-open {
+    border-color: color-mix(in srgb, var(--green) 42%, var(--border));
+    box-shadow: var(--card-shadow), 0 0 0 4px var(--green-subtle);
+  }
+
+  .user-control-divider {
+    display: block;
+    width: 1px;
+    height: 24px;
+    margin: 0 0.5rem 0 0.72rem;
+    background: color-mix(in srgb, var(--text) 12%, transparent);
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .user-control-cluster .user-profile-pill {
+    min-height: 38px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--text);
+    filter: none;
+    gap: 0.62rem;
+  }
+
+  .user-control-cluster .user-profile-pill:hover,
+  .user-control-cluster .user-profile-pill.is-open {
+    transform: none;
+    box-shadow: none;
+    filter: none;
+  }
+
+  .user-control-cluster .user-profile-pill:focus-visible {
+    outline-offset: 4px;
+  }
+
+  .user-control-cluster .user-pill-avatar {
+    width: 30px;
+    height: 30px;
+    background: var(--primary-gradient);
+    box-shadow: var(--accent-shadow);
+  }
+
+  .user-control-cluster .user-pill-initials,
+  .user-control-cluster .user-pill-name {
+    display: inline;
+    color: inherit;
+  }
+
+  .user-control-cluster .user-pill-initials-mobile {
+    display: none;
+  }
+
+  .user-control-cluster .user-pill-chevron {
+    display: none;
+  }
+
+  .user-control-cluster-guest {
+    padding-left: 0.95rem;
+  }
+
+  .user-control-cluster-guest .user-profile-pill {
+    gap: 0;
+  }
+
+  .user-control-cluster-guest .user-pill-avatar,
+  .user-control-cluster-guest .user-pill-name-desktop {
+    display: none;
+  }
+
+  .user-control-cluster-guest .user-pill-name-mobile {
+    display: inline;
+    max-width: none;
+    color: var(--green);
   }
 
   .mobile-menu-btn {
@@ -2997,8 +3116,16 @@ footer {
 
 /* --- Small phones (â‰¤600px) --- */
 @media (max-width: 600px) {
+  nav {
+    padding: 0.85rem 0.9rem;
+  }
+
   .nav-logo {
-    font-size: 1.6rem;
+    font-size: 1.42rem;
+  }
+
+  .nav-logo-link {
+    gap: 0;
   }
 
   .nav-logo .mini-bunny {
@@ -3006,7 +3133,61 @@ footer {
   }
 
   nav .nav-logo img {
-    height: 36px;
+    display: none;
+  }
+
+  .nav-cta {
+    gap: 0.42rem;
+  }
+
+  .user-control-cluster {
+    padding: 0.2rem 0.24rem 0.2rem 0.62rem;
+  }
+
+  .user-control-cluster .user-profile-pill {
+    min-height: 34px;
+    gap: 0.48rem;
+  }
+
+  .user-control-cluster .user-pill-avatar {
+    width: 26px;
+    height: 26px;
+  }
+
+  .user-control-cluster .user-pill-initials {
+    font-size: 0.64rem;
+  }
+
+  .user-control-cluster-auth .user-pill-initials-full {
+    display: none;
+  }
+
+  .user-control-cluster-auth .user-pill-initials-mobile {
+    display: inline;
+  }
+
+  .user-control-divider {
+    height: 20px;
+    margin: 0 0.36rem 0 0.5rem;
+  }
+
+  .mobile-menu-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mobile-menu-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .user-control-cluster-guest {
+    padding-left: 0.72rem;
+  }
+
+  .user-control-cluster-guest .user-pill-name-mobile,
+  .user-control-cluster .user-pill-name {
+    font-size: 0.78rem;
   }
 
   .btn-signup {
@@ -4368,9 +4549,8 @@ footer {
     min-width: 260px;
   }
 
-  .user-menu-shell-authenticated .user-profile-pill-split {
-    border-radius: 50px 0 0 50px;
-    padding-right: 0.9rem;
+  .user-menu-shell-authenticated .user-control-cluster .user-profile-pill-split {
+    padding-right: 0;
   }
 }
 
@@ -4409,6 +4589,31 @@ footer {
     background: var(--border);
     border-radius: 999px;
     margin: 0.4rem auto 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .user-menu-dropdown {
+    position: fixed;
+    top: 4.35rem;
+    right: max(0.9rem, env(safe-area-inset-right));
+    bottom: auto;
+    left: max(0.9rem, env(safe-area-inset-left));
+    width: auto;
+    min-width: 0;
+    max-height: calc(100svh - 5.4rem);
+    overflow-y: auto;
+    border-radius: 14px;
+    padding: 0.6rem;
+    animation: none;
+  }
+
+  .user-menu-dropdown::after {
+    right: 2.2rem;
+  }
+
+  .user-menu-dropdown::before {
+    display: none;
   }
 }
 

@@ -205,6 +205,7 @@ export default function UserMenu() {
 
   const siteMenuButton = (
     <button
+      type="button"
       className={`mobile-menu-btn user-site-menu-btn ${navOpen ? 'active' : ''}`}
       id="mobileMenuBtn"
       aria-label="Toggle navigation menu"
@@ -227,21 +228,27 @@ export default function UserMenu() {
     return (
       <div className="mobile-dropdown-group user-menu-shell">
         <div className="user-menu-wrapper" ref={menuRef}>
-          <button
-            className={`user-profile-pill user-profile-pill-guest ${accountOpen ? 'is-open' : ''}`}
-            onClick={toggleAccountMenu}
-            aria-expanded={accountOpen}
-            aria-haspopup="menu"
-            title="Open account menu"
-          >
-            <span className="user-pill-avatar">
-              <span className="user-pill-initials">SB</span>
-            </span>
-            <span className="user-pill-name">Account</span>
-            <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
+          <div className={`user-control-cluster user-control-cluster-guest ${accountOpen ? 'is-account-open' : ''} ${navOpen ? 'is-nav-open' : ''}`}>
+            <button
+              type="button"
+              className={`user-profile-pill user-profile-pill-guest ${accountOpen ? 'is-open' : ''}`}
+              onClick={toggleAccountMenu}
+              aria-expanded={accountOpen}
+              aria-haspopup="menu"
+              title="Open account menu"
+            >
+              <span className="user-pill-avatar">
+                <span className="user-pill-initials">SB</span>
+              </span>
+              <span className="user-pill-name user-pill-name-desktop">Account</span>
+              <span className="user-pill-name user-pill-name-mobile">Get Started</span>
+              <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <span className="user-control-divider" aria-hidden="true" />
+            {siteMenuButton}
+          </div>
 
           {accountOpen && (
             <div className="user-menu-dropdown user-menu-dropdown-guest" role="menu" onClick={(event) => event.stopPropagation()}>
@@ -257,7 +264,6 @@ export default function UserMenu() {
             </div>
           )}
         </div>
-        {siteMenuButton}
       </div>
     );
   }
@@ -269,27 +275,34 @@ export default function UserMenu() {
     .join('')
     .toUpperCase()
     .slice(0, 2);
+  const mobileInitial = initials[0] || 'S';
   const isProfileComplete = Boolean(profile.degree && profile.year);
   const accountItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
 
   return (
     <div className="mobile-dropdown-group user-menu-shell user-menu-shell-authenticated">
       <div className="user-menu-wrapper" ref={menuRef}>
-        <button
-          className={`user-profile-pill user-profile-pill-split ${accountOpen ? 'is-open' : ''}`}
-          onClick={toggleAccountMenu}
-          aria-expanded={accountOpen}
-          aria-haspopup="menu"
-          title={`Logged in as ${profile.name}`}
-        >
-          <span className="user-pill-avatar">
-            <span className="user-pill-initials">{initials}</span>
-          </span>
-          <span className="user-pill-name">{firstName}</span>
-          <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
+        <div className={`user-control-cluster user-control-cluster-auth ${accountOpen ? 'is-account-open' : ''} ${navOpen ? 'is-nav-open' : ''}`}>
+          <button
+            type="button"
+            className={`user-profile-pill user-profile-pill-split ${accountOpen ? 'is-open' : ''}`}
+            onClick={toggleAccountMenu}
+            aria-expanded={accountOpen}
+            aria-haspopup="menu"
+            title={`Logged in as ${profile.name}`}
+          >
+            <span className="user-pill-avatar">
+              <span className="user-pill-initials user-pill-initials-full">{initials}</span>
+              <span className="user-pill-initials user-pill-initials-mobile">{mobileInitial}</span>
+            </span>
+            <span className="user-pill-name">{firstName}</span>
+            <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <span className="user-control-divider" aria-hidden="true" />
+          {siteMenuButton}
+        </div>
 
         {accountOpen && (
           <div className="user-menu-dropdown" role="menu" onClick={(event) => event.stopPropagation()}>
@@ -323,7 +336,6 @@ export default function UserMenu() {
           </div>
         )}
       </div>
-      {siteMenuButton}
     </div>
   );
 }
