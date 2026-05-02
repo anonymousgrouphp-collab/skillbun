@@ -298,7 +298,7 @@ export default function Home() {
 
         {/* ===== WHAT SKILLBUN DOES ===== */}
         <section id="features" className="sb-section sb-reveal">
-          <div className="section-label">SkillBun OS</div>
+          <div className="section-label">SkillBun</div>
           <h2 className="section-title">A complete guidance system before you pick a tech path</h2>
           <p className="section-sub">Most students get scattered advice. SkillBun connects profile, quiz, recommendations, roadmaps, and counselling into one clear flow.</p>
           <div className="sb-capability-grid">
