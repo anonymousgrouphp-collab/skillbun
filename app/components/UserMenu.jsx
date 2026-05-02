@@ -323,6 +323,7 @@ export default function UserMenu() {
           </div>
         )}
       </div>
+      {siteMenuButton}
     </div>
   );
 }
