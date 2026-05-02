@@ -4276,18 +4276,36 @@ footer {
 }
 
 .user-profile-pill-guest {
-  background: var(--surface-raised);
-  color: var(--text);
-  border-color: var(--border);
-  box-shadow: var(--card-shadow);
+  background: var(--primary-gradient);
+  color: var(--surface);
+  border-color: color-mix(in srgb, var(--lime) 34%, transparent);
+  box-shadow: var(--accent-shadow);
+}
+
+[data-theme="dark"] .user-profile-pill-guest {
+  color: var(--primary-contrast);
 }
 
 .user-profile-pill-guest .user-pill-name {
-  color: var(--text);
+  color: currentColor;
+}
+
+.user-profile-pill-guest .user-pill-avatar-guest {
+  background: color-mix(in srgb, var(--surface-raised) 84%, transparent);
+  color: var(--green);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--surface) 68%, transparent);
+}
+
+.user-profile-pill-guest .user-menu-icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  color: currentColor;
 }
 
 .user-profile-pill-guest .user-pill-chevron {
-  color: var(--muted);
+  color: currentColor;
+  opacity: 0.82;
 }
 
 .user-site-menu-btn {

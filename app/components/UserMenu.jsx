@@ -7,7 +7,6 @@ import { useStoredProfile } from '@/utils/shared/profileStore';
 const GUEST_ITEMS = [
   { href: '/onboarding?next=/dashboard', label: 'Log In', icon: 'login' },
   { href: '/onboarding?next=/dashboard', label: 'Sign Up', icon: 'signup' },
-  { href: '/onboarding?next=/quiz', label: 'Get Started', icon: 'spark' },
 ];
 
 const INCOMPLETE_PROFILE_ITEMS = [
@@ -235,12 +234,12 @@ export default function UserMenu() {
               onClick={toggleAccountMenu}
               aria-expanded={accountOpen}
               aria-haspopup="menu"
-              title="Open account menu"
+              title="Open get started menu"
             >
-              <span className="user-pill-avatar">
-                <span className="user-pill-initials">SB</span>
+              <span className="user-pill-avatar user-pill-avatar-guest" aria-hidden="true">
+                <MenuIcon name="spark" />
               </span>
-              <span className="user-pill-name user-pill-name-desktop">Account</span>
+              <span className="user-pill-name user-pill-name-desktop">Get Started</span>
               <span className="user-pill-name user-pill-name-mobile">Get Started</span>
               <svg className={`user-pill-chevron ${accountOpen ? 'open' : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
