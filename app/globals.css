@@ -853,12 +853,18 @@ section {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  text-decoration: none;
 }
 
 .field-pill:hover {
   background: var(--green-subtle);
   border-color: var(--green);
   color: var(--green);
+}
+
+.field-pill:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
 }
 
 #main-page .fields-wrap {
@@ -1490,11 +1496,21 @@ section {
   transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
 }
 
+.sb-answer + .sb-answer::before {
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  left: 0;
+  right: 0;
+  height: 0.7rem;
+}
+
 .sb-answer.active {
   border-color: var(--green);
   background: var(--green-subtle);
   box-shadow: var(--accent-shadow);
   z-index: 1;
+  transition-delay: 0.16s;
 }
 
 .sb-results-showcase {
@@ -2275,6 +2291,12 @@ footer {
 [data-theme="light"] .form-group input,
 [data-theme="light"] .form-group select {
   background: color-mix(in srgb, var(--surface) 90%, var(--bg));
+}
+
+[data-theme="light"] .sb-answer.active {
+  border-color: var(--green);
+  background: var(--green-subtle);
+  box-shadow: var(--accent-shadow);
 }
 
 [data-theme="light"] .cta-card {
@@ -3434,6 +3456,7 @@ footer {
     box-shadow: 0 12px 24px color-mix(in srgb, var(--green) 12%, transparent);
     filter: brightness(1.015);
     z-index: 3;
+    transition-delay: 0s;
   }
 
   .sb-answer.active:hover,
@@ -3448,6 +3471,7 @@ footer {
     background: var(--surface) !important;
     box-shadow: none !important;
     z-index: 0;
+    transition-delay: 0s;
   }
 
   .quiz-options:hover .quiz-option.selected:not(:hover):not(:disabled) {
@@ -3455,6 +3479,7 @@ footer {
     background: var(--card-bg) !important;
     box-shadow: none !important;
     z-index: 0;
+    transition-delay: 0s;
   }
 }
 

@@ -15,6 +15,25 @@ const FLOATER_TEXTS = [
 const CODE_CHARS = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
 const FLOATER_LEFT_LANES = [10, 18, 27, 35];
 const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
+const CAREER_FIELD_LINKS = [
+  { label: 'AI/ML Engineer', href: '/roadmap/ai_ml_engineer' },
+  { label: 'Full Stack Developer', href: '/roadmap/fullstack' },
+  { label: 'Android Developer', href: '/roadmap/android' },
+  { label: 'iOS Developer', href: '/roadmap/ios_developer' },
+  { label: 'Flutter Developer', href: '/roadmap/flutter_developer' },
+  { label: 'React Native Developer', href: '/roadmap/react_native_developer' },
+  { label: 'Cybersecurity Specialist', href: '/roadmap/cybersecurity' },
+  { label: 'Data Science & AI', href: '/roadmap/data_science' },
+  { label: 'Analytics Engineer', href: '/roadmap/analytics_engineer' },
+  { label: 'DevOps & Cloud Engineer', href: '/roadmap/devops_cloud' },
+  { label: 'Game Developer', href: '/roadmap/game_development' },
+  { label: 'Blockchain/Web3 Developer', href: '/roadmap/blockchain_web3' },
+  { label: 'Robotics Engineer', href: '/roadmap/robotics_engineer' },
+  { label: 'Embedded & IoT Developer', href: '/roadmap/embedded_iot' },
+  { label: 'C/C++ Systems Developer', href: '/roadmap/c_cpp_systems_developer' },
+  { label: 'Network Engineer', href: '/roadmap/network_engineer' },
+  { label: 'UI/UX Designer', href: '/roadmap/ui_ux_design' },
+];
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
@@ -463,18 +482,9 @@ export default function Home() {
           <h2 className="section-title">Which path will you hop?</h2>
           <p className="section-sub">SkillBun covers major and emerging tech roles for BCA, BSc, BS/BS-MS, and B.Tech students.</p>
           <div className="fields-wrap">
-            <div className="field-pill">AI & Machine Learning</div>
-            <div className="field-pill">Full Stack Web Dev</div>
-            <div className="field-pill">Mobile Development</div>
-            <div className="field-pill">Cybersecurity</div>
-            <div className="field-pill">Data Science & Analytics</div>
-            <div className="field-pill">Cloud & DevOps</div>
-            <div className="field-pill">Game Development</div>
-            <div className="field-pill">Blockchain</div>
-            <div className="field-pill">Robotics & Embedded</div>
-            <div className="field-pill">Systems Programming</div>
-            <div className="field-pill">Networking</div>
-            <div className="field-pill">UI/UX Design</div>
+            {CAREER_FIELD_LINKS.map((field) => (
+              <a className="field-pill" href={field.href} key={field.href}>{field.label}</a>
+            ))}
           </div>
         </section>
 
