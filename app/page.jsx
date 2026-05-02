@@ -532,7 +532,7 @@ export default function Home() {
                     <circle cx="17.5" cy="6.5" r="1.2" />
                   </svg>
                 </a>
-                <a className="social-btn" href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <a className="social-btn" href="/coming-soon" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                   <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
@@ -557,9 +557,9 @@ export default function Home() {
               <ul>
                 <li><a href="/quiz">Career Quiz</a></li>
                 <li><a href="#careers">Career Paths</a></li>
-                <li><a href="/counsellor">College Finder</a></li>
-                <li><a href="/counsellor">Exam Guide</a></li>
-                <li><a href="/counsellor">Courses</a></li>
+                <li><a href="/college-finder">College Finder</a></li>
+                <li><a href="/exam-guide">Exam Guide</a></li>
+                <li><a href="/courses">Courses</a></li>
               </ul>
             </div>
             <div className="footer-col">
@@ -568,7 +568,7 @@ export default function Home() {
                 <li><a href="/about">About Us</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/terms">Terms of Use</a></li>
-                <li><a href="mailto:harsh@skillbun.tech">Contact</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </div>
           </div>

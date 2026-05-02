@@ -13,7 +13,7 @@ const GUEST_ITEMS = [
 const INCOMPLETE_PROFILE_ITEMS = [
   { href: '/onboarding?next=/dashboard', label: 'Complete Profile', icon: 'profile' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { href: 'mailto:harsh@skillbun.tech', label: 'Support Center', icon: 'support', external: true },
+  { href: '/contact', label: 'Support Center', icon: 'support', external: false },
 ];
 
 const COMPLETE_PROFILE_ITEMS = [
@@ -21,7 +21,7 @@ const COMPLETE_PROFILE_ITEMS = [
   { href: '/onboarding?next=/dashboard', label: 'Profile Settings', icon: 'profile' },
   { href: '/dashboard', label: 'Learning Progress', icon: 'progress' },
   { href: '/dashboard', label: 'Saved Paths', icon: 'saved' },
-  { href: 'mailto:harsh@skillbun.tech', label: 'Support Center', icon: 'support', external: true },
+  { href: '/contact', label: 'Support Center', icon: 'support', external: false },
 ];
 
 function MenuIcon({ name }) {
