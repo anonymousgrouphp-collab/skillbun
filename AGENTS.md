@@ -185,6 +185,8 @@ Before finishing:
 
 - Verify only the intended behavior changed.
 - Run the smallest relevant verification available, such as lint, build, or a focused manual check.
+- Make a local preview available after every task. If a dev server is already running, use and report its localhost URL. If not, start the dev server on an available localhost port and report the URL.
+- Do not leave duplicate dev servers running just to satisfy the preview requirement; prefer the existing repo server when one is reachable.
 - Call out any risky assumptions clearly.
 - If you had to touch a sensitive or identity-critical area, explain why it was necessary.
 
@@ -202,6 +204,7 @@ The agent must confirm, in its final response, all of the following:
 - Theme check: dark and light theme support still exists for all touched UI.
 - Sensitive-area check: auth, API, roadmap, env, and abuse-prevention logic were either untouched or intentionally handled.
 - Verification check: the agent states what it verified and what it could not verify.
+- Preview check: the agent states the localhost preview URL, or explains why a preview server could not be started or reached.
 
 If any item above fails, the task is not complete. The agent must either fix the issue or explicitly tell the user what failed.
 
