@@ -1099,7 +1099,7 @@ section {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .sb-moment-card:hover {
+  .sb-moment-card:not(.recommendation):hover {
     --sb-moment-scale: 1.026;
     --sb-moment-hover-lift: -4px;
     z-index: 2;
@@ -2251,9 +2251,8 @@ footer {
 [data-theme="light"] .sb-moment-card.recommendation {
   border-color: var(--green);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--green) 22%, transparent),
-    0 22px 48px rgba(17, 134, 79, 0.2),
-    inset 4px 0 0 var(--green);
+    0 0 0 1px color-mix(in srgb, var(--green) 18%, transparent),
+    0 18px 38px rgba(17, 134, 79, 0.16);
 }
 
 [data-theme="light"] .sb-capability,
@@ -3445,16 +3444,16 @@ footer {
   }
 
   .sb-answer-stack:hover .sb-answer.active:not(:hover) {
-    border-color: var(--border);
-    background: var(--surface);
-    box-shadow: none;
+    border-color: var(--border) !important;
+    background: var(--surface) !important;
+    box-shadow: none !important;
     z-index: 0;
   }
 
   .quiz-options:hover .quiz-option.selected:not(:hover):not(:disabled) {
-    border-color: var(--border);
-    background: var(--card-bg);
-    box-shadow: none;
+    border-color: var(--border) !important;
+    background: var(--card-bg) !important;
+    box-shadow: none !important;
     z-index: 0;
   }
 }
