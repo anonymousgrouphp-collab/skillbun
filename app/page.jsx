@@ -355,10 +355,12 @@ export default function Home() {
             </div>
             <div className="sb-progress-shell"><span></span></div>
             <h3>Which problem sounds exciting to solve?</h3>
-            <div className="sb-answer active">Making apps that people use daily</div>
-            <div className="sb-answer">Finding hidden patterns in data</div>
-            <div className="sb-answer">Protecting systems from attacks</div>
-            <div className="sb-answer">Automating cloud deployments</div>
+            <div className="sb-answer-stack">
+              <div className="sb-answer active">Making apps that people use daily</div>
+              <div className="sb-answer">Finding hidden patterns in data</div>
+              <div className="sb-answer">Protecting systems from attacks</div>
+              <div className="sb-answer">Automating cloud deployments</div>
+            </div>
           </div>
         </section>
 
