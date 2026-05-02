@@ -8,7 +8,7 @@ const THEMES = new Set(['light', 'dark']);
 
 function getPreferredTheme() {
   if (typeof window === 'undefined') {
-    return 'dark';
+    return 'light';
   }
 
   try {
@@ -17,11 +17,10 @@ function getPreferredTheme() {
       return stored;
     }
   } catch {
-    // Fall through to the system preference if storage is unavailable.
+    // Fall through to the site default if storage is unavailable.
   }
 
-  const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)')?.matches;
-  return prefersLight ? 'light' : 'dark';
+  return 'light';
 }
 
 function applyTheme(theme) {
@@ -34,7 +33,7 @@ function applyTheme(theme) {
 
 function getThemeSnapshot() {
   if (typeof document === 'undefined') {
-    return 'dark';
+    return 'light';
   }
 
   const activeTheme = document.documentElement.getAttribute('data-theme');
@@ -56,28 +55,12 @@ function subscribeToTheme(onStoreChange) {
     onStoreChange();
   };
 
-  const mediaQuery = window.matchMedia?.('(prefers-color-scheme: light)');
-  const handleSystemThemeChange = () => {
-    try {
-      if (THEMES.has(window.localStorage.getItem(STORAGE_KEY))) {
-        return;
-      }
-    } catch {
-      // If storage is unavailable, keep following the system preference.
-    }
-
-    applyTheme(getPreferredTheme());
-    onStoreChange();
-  };
-
   window.addEventListener('storage', handleStorage);
   window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
-  mediaQuery?.addEventListener('change', handleSystemThemeChange);
 
   return () => {
     window.removeEventListener('storage', handleStorage);
     window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
-    mediaQuery?.removeEventListener('change', handleSystemThemeChange);
   };
 }
 
@@ -94,7 +77,7 @@ function saveThemePreference(theme) {
 }
 
 export default function ThemeToggle() {
-  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => 'dark');
+  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => 'light');
   const toggle = () => saveThemePreference(theme === 'dark' ? 'light' : 'dark');
 
   const nextTheme = theme === 'dark' ? 'light' : 'dark';
