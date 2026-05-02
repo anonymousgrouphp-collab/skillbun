@@ -7,39 +7,47 @@ export default function AboutPage() {
   return (
     <div className="static-page">
       <h1>About SkillBun</h1>
-      <p><em>Last updated: February 26, 2026</em></p>
+      <p><em>Last updated: May 3, 2026</em></p>
 
       <p>
-        SkillBun helps BCA, BSc, BS/BS-MS (AICS/CSDA), and B.Tech students discover practical tech career paths.
-        We built it to reduce career confusion and convert guidance into concrete next steps.
+        SkillBun is an AI-powered career discovery platform exclusively designed for Indian tech students pursuing BCA, BSc, BS/BS-MS (AICS/CSDA), and B.Tech degrees.
+        We built this platform to bridge the gap between academic curricula and industry demands, reducing career confusion and converting abstract guidance into concrete, executable next steps.
+      </p>
+
+      <h2>The Problem We're Solving</h2>
+      <p>
+        The technology landscape evolves faster than university syllabi. Students often find themselves overwhelmed by the sheer volume of choices—from Data Science and Full-Stack Development to Cloud Architecture and Cybersecurity.
+        Without personalized mentorship, it is easy to invest time in outdated tech stacks or misaligned career paths. SkillBun provides that missing personalized, data-driven mentorship layer at scale.
       </p>
 
       <h2>What We Built</h2>
       <p>
-        The platform includes profile onboarding, an adaptive AI quiz, an AI counsellor chat (Bun-Bot), and
-        career recommendations with interactive roadmaps. Students can explore possible roles, compare paths, and continue
-        learning through suggested next actions.
+        Our ecosystem revolves around four core capabilities designed to provide a continuous, adaptive learning journey:
       </p>
+      <ul>
+        <li><strong>Holistic Profile Onboarding:</strong> We capture your academic background, current year, and foundational interests to baseline your guidance.</li>
+        <li><strong>Adaptive AI Quiz Engine:</strong> A dynamic assessment that adjusts to your responses in real-time, pinpointing your theoretical strengths, practical gaps, and latent affinities.</li>
+        <li><strong>Interactive Roadmaps:</strong> High-fidelity, granular career trees (e.g., AI/ML Engineer, DevOps, Frontend) that visually demonstrate exactly what skills to learn, and in what order.</li>
+        <li><strong>Bun-Bot (AI Counsellor):</strong> An integrated, context-aware AI chatbot that remembers your profile and quiz results to answer specific career queries and unstuck you during your roadmap journey.</li>
+      </ul>
 
-      <h2>How We Operate</h2>
+      <h2>Our Technology & Ethics</h2>
       <p>
-        We use AI to generate personalized guidance while applying technical safeguards such as request validation,
-        rate limiting, and human-verification controls. Profile data is securely stored in a Supabase-backed database
-        with row-level security to ensure privacy.
+        We believe in transparent, secure infrastructure. SkillBun leverages advanced LLMs (Google Gemini) strictly for personalized guidance, orchestrated through robust validation pipelines.
+        We enforce rigorous technical safeguards including rate limiting, human-verification controls (Cloudflare Turnstile), and secure data isolation. Profile data is encrypted and housed in a Supabase-backed PostgreSQL database, utilizing Row-Level Security (RLS) to ensure your data is accessible strictly by you.
       </p>
 
       <h2>Our Mission</h2>
       <p>
-        Our mission is simple: make career direction clearer, faster, and more actionable for Indian tech students —
-        without paywalls or unnecessary complexity.
+        Our core mission is straightforward: to make career direction clearer, faster, and more actionable for the next generation of Indian technologists—without hiding essential guidance behind paywalls, intrusive advertisements, or unnecessary complexity.
       </p>
 
       <h2>Team</h2>
       <p>
-        Developed by Team SkillBun (5 IITians) as a capstone project: <strong>Harsh, Rainee, Ravi, Harshit, and Aiman</strong>.
+        Built and maintained by Team SkillBun (5 IITians): <strong>Harsh, Rainee, Ravi, Harshit, and Aiman</strong>.
       </p>
       <p>
-        Contact us at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
+        Have feedback or want to partner with us? Contact us at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
       </p>
     </div>
   );
