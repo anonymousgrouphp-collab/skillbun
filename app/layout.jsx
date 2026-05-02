@@ -30,15 +30,14 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
         <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#0D1117" />
+        <meta name="theme-color" content="#F4F7F2" />
         {/* Theme initialization — runs before paint to prevent flash */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
             try {
               var saved = localStorage.getItem('sb_theme');
               var valid = saved === 'light' || saved === 'dark';
-              var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-              var t = valid ? saved : (prefersLight ? 'light' : 'dark');
+              var t = valid ? saved : 'light';
               document.documentElement.setAttribute('data-theme', t);
               document.documentElement.style.colorScheme = t;
               var themeMeta = document.querySelector('meta[name="theme-color"]');
