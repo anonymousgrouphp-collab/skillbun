@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useStoredProfile } from '@/utils/shared/profileStore';
+import ThemeToggle from './ThemeToggle';
 
 const GUEST_ITEMS = [
   { href: '/onboarding?next=/dashboard', label: 'Log In', icon: 'login' },
@@ -115,6 +116,18 @@ function MenuLink({ item, onSelect }) {
   );
 }
 
+function ThemeMenuRow() {
+  return (
+    <div className="user-menu-theme-row">
+      <span className="user-menu-theme-copy">
+        <span className="user-menu-theme-title">Theme</span>
+        <span className="user-menu-theme-meta">Light or dark mode</span>
+      </span>
+      <ThemeToggle />
+    </div>
+  );
+}
+
 export default function UserMenu() {
   const menuRef = useRef(null);
   const profile = useStoredProfile();
@@ -123,19 +136,21 @@ export default function UserMenu() {
   const [signingOut, setSigningOut] = useState(false);
 
   useEffect(() => {
-    if (!accountOpen) {
+    if (!accountOpen && !navOpen) {
       return;
     }
 
     const handleClick = (event) => {
       if (!menuRef.current?.contains(event.target)) {
         setAccountOpen(false);
+        setNavOpen(false);
       }
     };
 
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         setAccountOpen(false);
+        setNavOpen(false);
       }
     };
 
@@ -146,36 +161,16 @@ export default function UserMenu() {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [accountOpen]);
+  }, [accountOpen, navOpen]);
 
   const closeNavMenu = () => {
-    const button = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-
-    button?.classList.remove('active');
-    navLinks?.classList.remove('active');
     setNavOpen(false);
   };
 
-  const toggleNavMenu = () => {
-    const button = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (!button || !navLinks) {
-      return;
-    }
-
-    const nextOpen = !navLinks.classList.contains('active');
-    button.classList.toggle('active', nextOpen);
-    navLinks.classList.toggle('active', nextOpen);
-    setNavOpen(nextOpen);
+  const toggleNavMenu = (event) => {
+    event.stopPropagation();
+    setNavOpen((current) => !current);
     setAccountOpen(false);
-
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.onclick = () => {
-        closeNavMenu();
-      };
-    });
   };
 
   const handleLogout = async (event) => {
@@ -207,8 +202,10 @@ export default function UserMenu() {
       type="button"
       className={`mobile-menu-btn user-site-menu-btn ${navOpen ? 'active' : ''}`}
       id="mobileMenuBtn"
-      aria-label="Toggle navigation menu"
+      aria-label="Toggle account and theme menu"
       aria-expanded={navOpen}
+      aria-haspopup="menu"
+      aria-controls="userMobileMenuPanel"
       onClick={toggleNavMenu}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -220,7 +217,27 @@ export default function UserMenu() {
   );
 
   if (!profile.hydrated) {
-    return siteMenuButton;
+    return (
+      <div className="mobile-dropdown-group user-menu-shell">
+        <div className="user-menu-wrapper" ref={menuRef}>
+          {siteMenuButton}
+          {navOpen && (
+            <div
+              id="userMobileMenuPanel"
+              className="user-menu-dropdown user-mobile-nav-panel"
+              role="menu"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="user-menu-heading">
+                <span className="user-menu-heading-title">SkillBun menu</span>
+                <span className="user-menu-heading-meta">Loading your account options...</span>
+              </div>
+              <ThemeMenuRow />
+            </div>
+          )}
+        </div>
+      </div>
+    );
   }
 
   if (!profile.hasName) {
@@ -260,6 +277,27 @@ export default function UserMenu() {
                   <MenuLink key={item.label} item={item} onSelect={() => setAccountOpen(false)} />
                 ))}
               </div>
+            </div>
+          )}
+
+          {navOpen && (
+            <div
+              id="userMobileMenuPanel"
+              className="user-menu-dropdown user-menu-dropdown-guest user-mobile-nav-panel"
+              role="menu"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="user-menu-heading">
+                <span className="user-menu-heading-title">Welcome to SkillBun</span>
+                <span className="user-menu-heading-meta">Start your career guidance profile.</span>
+              </div>
+              <div className="user-menu-list">
+                {GUEST_ITEMS.map((item) => (
+                  <MenuLink key={item.label} item={item} onSelect={closeNavMenu} />
+                ))}
+              </div>
+              <div className="user-menu-divider" />
+              <ThemeMenuRow />
             </div>
           )}
         </div>
@@ -321,6 +359,45 @@ export default function UserMenu() {
               ))}
             </div>
 
+            <div className="user-menu-divider" />
+
+            <button
+              className="user-menu-item user-menu-signout"
+              onClick={handleLogout}
+              disabled={signingOut}
+              role="menuitem"
+            >
+              <MenuIcon name="logout" />
+              <span>{signingOut ? 'Signing out...' : 'Log Out'}</span>
+            </button>
+          </div>
+        )}
+
+        {navOpen && (
+          <div
+            id="userMobileMenuPanel"
+            className="user-menu-dropdown user-mobile-nav-panel"
+            role="menu"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="user-menu-heading user-menu-heading-auth">
+              <span className="user-menu-heading-avatar">{initials}</span>
+              <span className="user-menu-heading-copy">
+                <span className="user-menu-heading-title">{profile.name}</span>
+                <span className="user-menu-heading-meta">
+                  {isProfileComplete ? 'Student Account' : 'Profile setup needed'}
+                </span>
+              </span>
+            </div>
+
+            <div className="user-menu-list">
+              {accountItems.map((item) => (
+                <MenuLink key={item.label} item={item} onSelect={closeNavMenu} />
+              ))}
+            </div>
+
+            <div className="user-menu-divider" />
+            <ThemeMenuRow />
             <div className="user-menu-divider" />
 
             <button

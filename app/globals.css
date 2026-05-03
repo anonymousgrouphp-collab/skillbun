@@ -4540,6 +4540,51 @@ footer {
   margin: 0.1rem 0;
 }
 
+.user-mobile-nav-panel {
+  gap: 0.72rem;
+}
+
+.user-menu-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 54px;
+  padding: 0.62rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.user-menu-theme-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.user-menu-theme-title {
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.user-menu-theme-meta {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.user-menu-theme-row .theme-toggle {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.user-menu-theme-row .theme-toggle-label {
+  display: none;
+}
+
 .user-menu-item {
   display: flex;
   align-items: center;
@@ -5216,5 +5261,95 @@ footer {
 @media (min-width: 601px) and (max-width: 768px) {
   .search-panel {
     top: 88px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    justify-content: flex-start;
+    gap: 0.38rem;
+    padding: 0.72rem max(0.75rem, env(safe-area-inset-right)) 0.72rem max(0.75rem, env(safe-area-inset-left));
+  }
+
+  .nav-logo {
+    flex: 1 1 auto;
+    margin-right: auto;
+    max-width: calc(100% - 6rem);
+  }
+
+  .nav-logo-link {
+    overflow: hidden;
+  }
+
+  .nav-cta {
+    gap: 0;
+  }
+
+  .nav-cta > .theme-toggle {
+    display: none;
+  }
+
+  .search-container {
+    flex: 0 0 40px;
+    width: 40px;
+    max-width: 40px;
+    margin: 0 0.34rem 0 0;
+  }
+
+  .search-mobile-trigger,
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-mobile-trigger svg,
+  .mobile-menu-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .search-panel,
+  .user-menu-dropdown {
+    top: 4.35rem;
+    left: max(0.75rem, env(safe-area-inset-left));
+    right: max(0.75rem, env(safe-area-inset-right));
+  }
+
+  .user-menu-wrapper {
+    align-items: center;
+  }
+
+  .user-control-cluster,
+  .user-control-cluster-guest {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .user-control-cluster:hover,
+  .user-control-cluster.is-account-open,
+  .user-control-cluster.is-nav-open {
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .user-control-cluster .user-profile-pill,
+  .user-control-divider {
+    display: none;
+  }
+
+  .user-site-menu-btn {
+    border: 1px solid color-mix(in srgb, var(--green) 30%, var(--border));
+    box-shadow: var(--card-shadow);
+  }
+
+  .user-site-menu-btn.active {
+    box-shadow: var(--accent-shadow);
+  }
+
+  .user-site-menu-btn.active svg {
+    transform: none;
   }
 }
