@@ -1,4 +1,10 @@
+import { marked } from 'marked';
+
+export function mountCounsellorRuntime() {
 // ===== AI COUNSELLOR CHAT - Gemini API Integration =====
+
+const eventController = new AbortController();
+const { signal } = eventController;
 
 // --- State ---
 let conversationHistory = [];
@@ -73,7 +79,7 @@ function incrementRateLimit() {
 }
 
 function hasMarkdown() {
-    return typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
+    return typeof marked?.parse === 'function';
 }
 
 function sleep(ms) {
@@ -233,7 +239,7 @@ async function refreshHumanProofSession() {
 }
 
 if (hasMarkdown()) {
-    window.marked.setOptions({
+    marked.setOptions({
         headerIds: false,
         mangle: false,
         breaks: true
@@ -271,8 +277,8 @@ async function initCounsellorPage() {
     const userBadge = getEl('userBadge');
     const logoutBtn = getEl('logoutBtn');
 
-    if (userBadge) userBadge.addEventListener('click', toggleDropdown);
-    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
+    if (userBadge) userBadge.addEventListener('click', toggleDropdown, { signal });
+    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser, { signal });
 
     if (!textarea || !sendBtn) {
         console.error('Counsellor UI is missing required elements.');
@@ -284,7 +290,7 @@ async function initCounsellorPage() {
         this.style.height = '52px';
         this.style.height = `${this.scrollHeight}px`;
         this.style.overflowY = this.scrollHeight > 150 ? 'auto' : 'hidden';
-    });
+    }, { signal });
 
     // Enter key to send (Shift+Enter for newline)
     textarea.addEventListener('keydown', function (event) {
@@ -292,9 +298,9 @@ async function initCounsellorPage() {
             event.preventDefault();
             sendMessage();
         }
-    });
+    }, { signal });
 
-    sendBtn.addEventListener('click', sendMessage);
+    sendBtn.addEventListener('click', sendMessage, { signal });
 
     // Suggestion chips
     document.querySelectorAll('.suggestion-chip').forEach((chip) => {
@@ -307,7 +313,7 @@ async function initCounsellorPage() {
                 inputEl.dispatchEvent(new Event('input'));
             }
             sendMessage();
-        });
+        }, { signal });
     });
 
     // Clear chat button
@@ -320,7 +326,7 @@ async function initCounsellorPage() {
             conversationHistory = [];
             const suggestionsEl = getEl('chatSuggestions');
             if (suggestionsEl) suggestionsEl.style.display = 'flex';
-        });
+        }, { signal });
     }
 
     try {
@@ -351,12 +357,6 @@ async function initCounsellorPage() {
             window.history.replaceState({}, '', window.location.pathname);
         }
     }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCounsellorPage);
-} else {
-    initCounsellorPage();
 }
 
 // --- Security / Captcha ---
@@ -416,8 +416,8 @@ function loadTurnstileScript() {
 
         const existing = document.querySelector('script[data-turnstile="true"]');
         if (existing) {
-            existing.addEventListener('load', () => resolve(), { once: true });
-            existing.addEventListener('error', () => reject(new Error('Turnstile script failed to load')), { once: true });
+            existing.addEventListener('load', () => resolve(), { once: true, signal });
+            existing.addEventListener('error', () => reject(new Error('Turnstile script failed to load')), { once: true, signal });
             return;
         }
 
@@ -577,7 +577,7 @@ document.addEventListener('click', (event) => {
     if (!dropdown.contains(event.target) && !clickedBadge) {
         dropdown.classList.remove('show');
     }
-});
+}, { signal });
 
 function logoutUser(event) {
     if (event) event.preventDefault();
@@ -631,7 +631,7 @@ function renderBotHTML(text) {
     const safeText = String(text ?? '');
 
     if (hasMarkdown()) {
-        return sanitizeHTML(window.marked.parse(safeText));
+        return sanitizeHTML(marked.parse(safeText));
     }
 
     const escaped = escapeHTML(safeText)
@@ -905,4 +905,11 @@ async function sendMessage() {
         inputEl.focus();
         isSending = false;
     }
+}
+
+    void initCounsellorPage();
+
+    return () => {
+        eventController.abort();
+    };
 }

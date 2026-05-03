@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Script from 'next/script';
 import { useStoredProfile } from '@/utils/shared/profileStore';
 
 export default function CounsellorPage() {
@@ -13,6 +12,32 @@ export default function CounsellorPage() {
       router.replace('/onboarding?next=/counsellor');
     }
   }, [profile.degree, profile.hydrated, profile.year, router]);
+
+  useEffect(() => {
+    if (!profile.hydrated || !profile.degree || !profile.year) {
+      return undefined;
+    }
+
+    let cancelled = false;
+    let cleanup = () => {};
+
+    import('@/utils/client/counsellorRuntime')
+      .then(({ mountCounsellorRuntime }) => {
+        if (cancelled) {
+          return;
+        }
+
+        cleanup = mountCounsellorRuntime();
+      })
+      .catch((error) => {
+        console.error('Failed to load counsellor runtime:', error);
+      });
+
+    return () => {
+      cancelled = true;
+      cleanup();
+    };
+  }, [profile.degree, profile.hydrated, profile.year]);
 
   if (!profile.hydrated || !profile.degree || !profile.year) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
 
@@ -76,11 +101,6 @@ export default function CounsellorPage() {
           </div>
         </div>
       </div>
-
-      {/* localStorage already holds our data, but counsellor.js uses these keys */}
-
-      <Script src="/vendor/marked.umd.js" strategy="lazyOnload" />
-      <Script src="/counsellor.js" strategy="lazyOnload" />
     </>
   )
 }

@@ -1,10 +1,16 @@
+export function mountQuizRuntime() {
 // ===== QUIZ PAGE - Gemini API Integration =====
+
+const eventController = new AbortController();
+const { signal } = eventController;
 
 // --- State ---
 let conversationHistory = [];
 let questionCount = 0;
 let totalQuestions = 15; // Initial estimate, AI may finish early or take longer
 let lastSelectedOption = null; // stores last answer for retry
+let retryCount = 0;
+const MAX_RETRIES_PER_QUESTION = 3;
 let userProfile = {};
 let quizResults = null;
 
@@ -239,8 +245,8 @@ function loadTurnstileScript() {
 
         const existing = document.querySelector('script[data-turnstile="true"]');
         if (existing) {
-            existing.addEventListener('load', () => resolve(), { once: true });
-            existing.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')), { once: true });
+            existing.addEventListener('load', () => resolve(), { once: true, signal });
+            existing.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')), { once: true, signal });
             return;
         }
 
@@ -417,6 +423,7 @@ function resetQuizState() {
     questionCount = 0;
     totalQuestions = 15;
     lastSelectedOption = null;
+    retryCount = 0;
     quizResults = null;
 
     const welcomeScreen = document.getElementById('welcomeScreen');
@@ -440,6 +447,9 @@ function resetQuizState() {
         optionsContainer.style.opacity = '1';
     }
     if (quizLoading) quizLoading.style.display = 'none';
+
+    const aiInsight = document.getElementById('aiInsight');
+    if (aiInsight) aiInsight.style.display = 'none';
 
     document.getElementById('progressFill').style.width = '0%';
     document.getElementById('quizPhase').textContent = 'Phase 1: Discovery';
@@ -468,7 +478,7 @@ function resetQuizState() {
 }
 
 // ===== HAMBURGER MENU =====
-document.addEventListener('DOMContentLoaded', () => {
+{
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.querySelector('.nav-links');
 
@@ -476,17 +486,17 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenuBtn.classList.toggle('active');
             navLinks.classList.toggle('active');
-        });
+        }, { signal });
 
         // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenuBtn.classList.remove('active');
                 navLinks.classList.remove('active');
-            });
+            }, { signal });
         });
     }
-});
+}
 
 // --- Menu Interactions ---
 function toggleDropdown(event) {
@@ -504,7 +514,7 @@ document.addEventListener('click', (event) => {
     if (dropdown && dropdown.classList.contains('show') && !dropdown.contains(event.target) && event.target !== badge) {
         dropdown.classList.remove('show');
     }
-});
+}, { signal });
 
 // --- Logout functionality ---
 function logoutUser() {
@@ -539,19 +549,39 @@ THE 6 PILLARS OF TECH (Do not assume they want to code!):
 5. Cloud & Infrastructure (Systems, architecture, reliability)
 6. Cybersecurity (Protection, rules, hacking/defense)
 
-PHASE 1 (Discovery):
-Ask orthogonal (completely different) questions testing which of the 6 pillars they naturally belong to. Option A might be Data, Option B UX, Option C Code, Option D Management.
+ASSESSMENT STRUCTURE (10-18 Questions, 3 Phases):
 
-PHASE 2 (Narrowing):
-Once a pillar is identified, abandon the others. Violently pivot into deep niche questions for that pillar (e.g., if Design -> UX vs UI vs Interaction Design).
+PHASE 1 — Core Tech DNA (Questions 1-5):
+Ask orthogonal situational questions to identify which pillar the student belongs to.
+Present realistic mini-scenarios where each option maps to a different pillar.
+Example: "Your college fest needs a tech project in 48 hours. You volunteer to..."
+A) Build the event website (Code) B) Design the poster and UX flow (Design) C) Set up the server and deploy (Infra) D) Manage the team and timeline (Product)
+
+PHASE 2 — Technical Scenarios & Niche Discovery (Questions 6-12):
+Once a pillar is identified, ABANDON the others completely.
+Ask deep, realistic problem-solving scenarios within that pillar.
+Each option should map to a different sub-specialization.
+Example (if Data pillar): "A startup gives you messy sales data. What excites you most?"
+A) Building a dashboard to visualize trends (BI/Analytics) B) Writing an ML model to predict churn (Data Science) C) Designing the ETL pipeline to clean and store it (Data Engineering) D) Auditing the data for compliance issues (Data Governance)
+
+PHASE 3 — Execution & Culture Fit (Questions 13-18):
+Determine the student's work style, environment, and growth preferences:
+- Solo deep-work vs collaborative team environments
+- Startup chaos vs enterprise structure
+- Building from scratch vs optimizing existing systems
+- Breadth (generalist) vs depth (specialist)
+- Fast shipping vs careful architecture
+These answers fine-tune the EXACT career within the niche.
 
 RULES:
 1. Ask exactly ONE question per response.
-2. Provide exactly 4 options (A, B, C, D) representing distinct paths.
-3. Every question MUST adapt dynamically based on previous answers.
-4. Keep questions engaging, conversational, and tailored to the Indian tech market context.
-5. NEVER assume 'Tech' means 'Software Developer'. Actively explore non-coding roles.
-6. DYNAMIC LENGTH: Ask between 10 and 18 questions. Only output the final recommendation ("type": "result") when you have reached 95%+ confidence in the optimal career array. Do not stop at question 10 just to stop.
+2. Provide exactly 4 options (A, B, C, D) — each must represent a meaningfully different path or approach.
+3. Every question MUST adapt dynamically based on ALL previous answers. Ask "What would you do?" scenario-based questions, NOT "Which do you prefer?".
+4. Keep questions engaging, conversational, and grounded in real Indian tech industry situations (startups, MNCs, freelancing, open-source, competitive programming, etc.).
+5. NEVER assume 'Tech' means 'Software Developer'. Actively explore non-coding roles like Product Management, UX Research, Technical Writing, DevOps, Security, etc.
+6. After question 1, ALWAYS provide a brief 1-sentence "insight" field reflecting on what their previous answer reveals about them. Make it feel like a real counselor observing patterns.
+7. DYNAMIC LENGTH: Ask between 10 and 18 questions. Only output the final recommendation ("type": "result") when you have reached 95%+ confidence. If by question 10 you are very confident, you may finish. Do NOT always stop at exactly 10.
+8. When generating the final result, you MUST use the exact roadmap ID from the provided list for EVERY career. This is critical. Cross-reference the career title with the slug list carefully. If unsure, use the closest reasonable match, not 'general'.
 
 RESPONSE FORMAT (for questions):
 You MUST respond in this exact JSON format, with no markdown, no code fences, just raw JSON:
@@ -559,7 +589,8 @@ You MUST respond in this exact JSON format, with no markdown, no code fences, ju
   "type": "question",
   "phase": 1,
   "questionNumber": 1,
-  "question": "Your question text here?",
+  "insight": "",
+  "question": "Your situational question text here?",
   "options": [
     {"label": "A", "text": "Option A text"},
     {"label": "B", "text": "Option B text"},
@@ -569,6 +600,7 @@ You MUST respond in this exact JSON format, with no markdown, no code fences, ju
 }
 
 RESPONSE FORMAT (for final recommendation):
+When you are ready to give the final result, return EXACTLY this structure:
 {
   "type": "result",
   "careers": [
@@ -576,18 +608,45 @@ RESPONSE FORMAT (for final recommendation):
       "rank": 1,
       "title": "Career Title",
       "matchPercent": 92,
-      "description": "Why this is a great fit for them",
-      "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4"],
-      "salaryRange": "₹X - ₹Y LPA",
+      "description": "2-3 sentences explaining WHY this is a great fit based on their specific answers",
+      "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"],
+      "salaryRange": "₹X - ₹Y LPA (entry level in India)",
       "demand": "High/Medium/Growing",
-      "nextSteps": "What they should do next",
-      "roadmapUrl": "https://roadmap.sh/..."
+      "nextSteps": "Specific, actionable advice for an Indian student to start this career path",
+      "roadmapUrl": "exact_slug_from_list"
     }
   ]
 }
 
-Provide exactly 3 careers in the final recommendation. Be specific to the Indian tech market.
-For every career, provide the closest matching exact internal ID in the 'roadmapUrl' field from this exact list: ['ai_ml_engineer', 'ai_research_engineer', 'analytics_engineer', 'android', 'angular_developer', 'api_platform_engineer', 'application_security_engineer', 'ar_vr_developer', 'aws_cloud_engineer', 'azure_cloud_engineer', 'backend', 'bi_developer', 'blockchain_web3', 'business_analyst', 'c_cpp_systems_developer', 'cloud_architect', 'cloud_security_engineer', 'computer_vision_engineer', 'content_designer', 'cybersecurity', 'data_analyst', 'data_engineering', 'data_governance_specialist', 'data_science', 'data_visualization_specialist', 'database_admin', 'design_systems_engineer', 'desktop_app_developer', 'devops_cloud', 'dfir_analyst', 'digital_marketing_analyst', 'dotnet_developer', 'elixir_phoenix_developer', 'embedded_iot', 'finops_engineer', 'flutter_developer', 'frontend', 'fullstack', 'game_development', 'gcp_cloud_engineer', 'generative_ai_app_developer', 'geospatial_data_scientist', 'go_developer', 'graphql_api_developer', 'grc_analyst', 'iam_engineer', 'ios_developer', 'java_developer', 'kubernetes_engineer', 'linux_system_admin', 'llmops_engineer', 'macos_developer', 'malware_analyst', 'mlops_engineer', 'network_engineer', 'nextjs_developer', 'nlp_engineer', 'no_code_low_code_developer', 'observability_engineer', 'penetration_tester', 'php_laravel_developer', 'platform_engineer', 'product_designer', 'product_manager', 'prompt_engineer', 'python_developer', 'qa_automation', 'react_native_developer', 'recommendation_systems_engineer', 'red_team_operator', 'reinforcement_learning_engineer', 'release_engineer', 'robotics_engineer', 'rpa_developer', 'ruby_on_rails_developer', 'rust_developer', 'salesforce_developer', 'scala_developer', 'scrum_master_agile_coach', 'seo_specialist', 'serverless_developer', 'service_designer', 'shopify_developer', 'site_reliability_engineer', 'soc_analyst', 'speech_ai_engineer', 'svelte_developer', 'technical_artist', 'technical_support_engineer', 'technical_writing', 'terraform_iac_engineer', 'threat_intelligence_analyst', 'ui_ux_design', 'unity_developer', 'unreal_engine_developer', 'ux_researcher', 'vue_developer', 'windows_app_developer', 'wordpress_developer', 'general']. If no exact match exists, default to 'general'. Do NOT provide full URLs, just the ID string.
+Provide EXACTLY 3 careers in the final recommendation, ranked by match quality. Be specific to the Indian tech market (mention Indian companies, Indian salary ranges in LPA, relevant Indian certifications).
+
+CRITICAL — ROADMAP SLUG MAPPING:
+For the "roadmapUrl" field, you MUST use ONLY an exact slug from this list. Do NOT invent slugs. Do NOT use full URLs. Just the bare ID string:
+['ai_ml_engineer', 'ai_research_engineer', 'analytics_engineer', 'android', 'angular_developer', 'api_platform_engineer', 'application_security_engineer', 'ar_vr_developer', 'aws_cloud_engineer', 'azure_cloud_engineer', 'backend', 'bi_developer', 'blockchain_web3', 'business_analyst', 'c_cpp_systems_developer', 'cloud_architect', 'cloud_security_engineer', 'computer_vision_engineer', 'content_designer', 'cybersecurity', 'data_analyst', 'data_engineering', 'data_governance_specialist', 'data_science', 'data_visualization_specialist', 'database_admin', 'design_systems_engineer', 'desktop_app_developer', 'devops_cloud', 'dfir_analyst', 'digital_marketing_analyst', 'dotnet_developer', 'elixir_phoenix_developer', 'embedded_iot', 'finops_engineer', 'flutter_developer', 'frontend', 'fullstack', 'game_development', 'gcp_cloud_engineer', 'generative_ai_app_developer', 'geospatial_data_scientist', 'go_developer', 'graphql_api_developer', 'grc_analyst', 'iam_engineer', 'ios_developer', 'java_developer', 'kubernetes_engineer', 'linux_system_admin', 'llmops_engineer', 'macos_developer', 'malware_analyst', 'mlops_engineer', 'network_engineer', 'nextjs_developer', 'nlp_engineer', 'no_code_low_code_developer', 'observability_engineer', 'penetration_tester', 'php_laravel_developer', 'platform_engineer', 'product_designer', 'product_manager', 'prompt_engineer', 'python_developer', 'qa_automation', 'react_native_developer', 'recommendation_systems_engineer', 'red_team_operator', 'reinforcement_learning_engineer', 'release_engineer', 'robotics_engineer', 'rpa_developer', 'ruby_on_rails_developer', 'rust_developer', 'salesforce_developer', 'scala_developer', 'scrum_master_agile_coach', 'seo_specialist', 'serverless_developer', 'service_designer', 'shopify_developer', 'site_reliability_engineer', 'soc_analyst', 'speech_ai_engineer', 'svelte_developer', 'technical_artist', 'technical_support_engineer', 'technical_writing', 'terraform_iac_engineer', 'threat_intelligence_analyst', 'ui_ux_design', 'unity_developer', 'unreal_engine_developer', 'ux_researcher', 'vue_developer', 'windows_app_developer', 'wordpress_developer', 'general'].
+
+Common mapping hints:
+- "Full Stack Developer" → 'fullstack'
+- "Frontend Developer" → 'frontend'  
+- "Backend Developer" → 'backend'
+- "Data Scientist" → 'data_science'
+- "ML Engineer" / "AI Engineer" → 'ai_ml_engineer'
+- "DevOps Engineer" → 'devops_cloud'
+- "UX/UI Designer" → 'ui_ux_design'
+- "Product Manager" → 'product_manager'
+- "Cybersecurity Analyst" → 'cybersecurity'
+- "Cloud Architect" → 'cloud_architect'
+- "Mobile Developer (Android)" → 'android'
+- "Mobile Developer (iOS)" → 'ios_developer'
+- "Mobile Developer (Flutter)" → 'flutter_developer'
+- "Game Developer" → 'game_development'
+- "Blockchain Developer" → 'blockchain_web3'
+- "QA Engineer" → 'qa_automation'
+- "Technical Writer" → 'technical_writing'
+- "Ethical Hacker / Pentester" → 'penetration_tester'
+- "SRE" → 'site_reliability_engineer'
+- "Business Analyst" → 'business_analyst'
+- Only use 'general' as an absolute last resort when nothing else fits.
+
 Start with the first question now.`;
 }
 
@@ -657,14 +716,31 @@ async function callGemini(userMessage) {
 
 function buildQuizUserMessage(userMessage) {
     if (!quizResults && questionCount >= 18) {
-        return `${userMessage}\n\nYou have now asked enough questions. Return the final recommendation JSON now with "type": "result" and exactly 3 careers.`;
+        return userMessage + '\n\nIMPORTANT: You have now asked 18 questions. You MUST return the final recommendation JSON now with "type": "result" and exactly 3 careers. Each career MUST have a valid roadmapUrl slug from the provided list.';
+    }
+
+    if (!quizResults && questionCount >= 14) {
+        return userMessage + '\n\nNote: You have asked ' + questionCount + ' questions. If you have 95%+ confidence, return the final recommendation now. Otherwise, you may ask up to ' + (18 - questionCount) + ' more questions.';
     }
 
     return userMessage;
 }
 
 function extractGeminiText(data) {
-    const parts = data?.candidates?.[0]?.content?.parts;
+    // Check for blocked content
+    if (data?.promptFeedback?.blockReason) {
+        throw new Error('AI blocked the request: ' + data.promptFeedback.blockReason);
+    }
+
+    const candidate = data?.candidates?.[0];
+    if (!candidate) return '';
+
+    // Check for safety filter finish reason
+    if (candidate.finishReason && candidate.finishReason !== 'STOP' && candidate.finishReason !== 'MAX_TOKENS') {
+        console.warn('Gemini finish reason:', candidate.finishReason);
+    }
+
+    const parts = candidate?.content?.parts;
     if (!Array.isArray(parts)) return '';
 
     const textPart = parts.find(part => typeof part?.text === 'string' && part.text.trim());
@@ -778,8 +854,16 @@ function normalizeQuizResponse(response) {
     }
 
     const options = normalizeQuestionOptions(response.options);
-    if (!String(response.question || '').trim() || options.length !== 4) {
-        throw new Error('AI question did not include one question and four options');
+    if (!String(response.question || '').trim() || options.length === 0) {
+        throw new Error('AI question did not include a question with options');
+    }
+
+    // Pad options to 4 if AI returned fewer (graceful recovery)
+    while (options.length < 4) {
+        options.push({ label: String.fromCharCode(65 + options.length), text: 'Other / None of the above' });
+    }
+
+    if (false) { // removed strict check — padding handles it
     }
 
     const parsedPhase = Number.parseInt(response.phase, 10);
@@ -790,6 +874,7 @@ function normalizeQuizResponse(response) {
         type: 'question',
         phase: Number.isFinite(parsedPhase) ? Math.max(1, Math.min(parsedPhase, 4)) : 1,
         questionNumber: Number.isFinite(parsedQuestionNumber) ? parsedQuestionNumber : questionCount + 1,
+        insight: String(response.insight || '').trim(),
         question: String(response.question).trim(),
         options
     };
@@ -1049,17 +1134,82 @@ function inferRoadmapSlugFromCareer(career) {
 }
 
 function resolveRoadmapUrl(career) {
+    // Step 1: Try the AI-provided slug directly
     const fromAiUrl = extractRoadmapSlug(career?.roadmapUrl);
     if (fromAiUrl && KNOWN_ROADMAP_SLUGS.has(fromAiUrl)) {
         return `/roadmap/${fromAiUrl}`;
     }
 
+    // Step 2: Try keyword inference from career title + description + skills
     const fromKeywords = inferRoadmapSlugFromCareer(career);
     if (fromKeywords && KNOWN_ROADMAP_SLUGS.has(fromKeywords)) {
         return `/roadmap/${fromKeywords}`;
     }
 
+    // Step 3: Fuzzy match — find the closest slug by Levenshtein-like substring matching
+    if (fromAiUrl) {
+        const fuzzyMatch = fuzzyMatchRoadmapSlug(fromAiUrl);
+        if (fuzzyMatch) {
+            return `/roadmap/${fuzzyMatch}`;
+        }
+    }
+
+    // Step 4: Try to derive a slug from the career title itself
+    if (career?.title) {
+        const titleSlug = String(career.title).trim().toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '')
+            .replace(/\s+/g, '_');
+        if (KNOWN_ROADMAP_SLUGS.has(titleSlug)) {
+            return `/roadmap/${titleSlug}`;
+        }
+        // Try partial title match
+        const titleFuzzy = fuzzyMatchRoadmapSlug(titleSlug);
+        if (titleFuzzy) {
+            return `/roadmap/${titleFuzzy}`;
+        }
+    }
+
     return ROADMAP_FALLBACK_URL;
+}
+
+
+function fuzzyMatchRoadmapSlug(input) {
+    if (!input) return '';
+    const normalizedInput = input.toLowerCase().replace(/[^a-z]/g, '');
+    if (!normalizedInput) return '';
+
+    let bestMatch = '';
+    let bestScore = 0;
+
+    for (const slug of KNOWN_ROADMAP_SLUGS) {
+        if (slug === 'general') continue;
+        const normalizedSlug = slug.replace(/_/g, '');
+
+        // Exact substring match (either direction)
+        if (normalizedSlug.includes(normalizedInput) || normalizedInput.includes(normalizedSlug)) {
+            const score = Math.min(normalizedInput.length, normalizedSlug.length) / Math.max(normalizedInput.length, normalizedSlug.length);
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = slug;
+            }
+        }
+
+        // Shared prefix matching
+        let prefixLen = 0;
+        const minLen = Math.min(normalizedInput.length, normalizedSlug.length);
+        for (let i = 0; i < minLen; i++) {
+            if (normalizedInput[i] === normalizedSlug[i]) prefixLen++;
+            else break;
+        }
+        const prefixScore = prefixLen / Math.max(normalizedInput.length, normalizedSlug.length);
+        if (prefixScore > 0.6 && prefixScore > bestScore) {
+            bestScore = prefixScore;
+            bestMatch = slug;
+        }
+    }
+
+    // Only return if we have a reasonably confident match (>50% overlap)
+    return bestScore > 0.5 ? bestMatch : '';
 }
 
 function normalizeSkills(skills) {
@@ -1248,8 +1398,22 @@ function updateProgress(qNum, phase) {
 
 // --- Show Question ---
 function showQuestion(data) {
+    retryCount = 0; // Reset retry counter on successful question
     questionCount = data.questionNumber || questionCount + 1;
     updateProgress(questionCount, data.phase || 1);
+
+    const insightEl = document.getElementById('aiInsight');
+    if (insightEl) {
+        if (data.insight && questionCount > 1) {
+            insightEl.textContent = '💡 ' + data.insight;
+            insightEl.style.display = 'block';
+            insightEl.style.animation = 'none';
+            insightEl.offsetHeight; // trigger reflow
+            insightEl.style.animation = 'fadeInUp 0.4s ease forwards';
+        } else {
+            insightEl.style.display = 'none';
+        }
+    }
 
     // Animate question text
     const qText = document.getElementById('questionText');
@@ -1273,7 +1437,7 @@ function showQuestion(data) {
         <span class="option-label">${sanitize(opt.label)}</span>
         <span class="option-text">${sanitize(opt.text)}</span>
       `;
-            optEl.addEventListener('click', () => selectOption(opt, optEl));
+            optEl.addEventListener('click', () => selectOption(opt, optEl), { signal });
             container.appendChild(optEl);
         });
         container.style.opacity = '1';
@@ -1316,6 +1480,7 @@ async function selectOption(option, element) {
 
 // --- Show Results ---
 function showResults(data) {
+    retryCount = 0;
     quizResults = data;
 
     document.getElementById('quizScreen').style.display = 'none';
@@ -1360,31 +1525,39 @@ function retryLastQuestion() {
 
 // --- Error UI ---
 function showErrorUI(message) {
+    retryCount++;
+
     const detail = typeof message === 'string' && message.trim()
         ? sanitize(message.trim())
         : "Our AI bunny tripped! Don't worry - our team is on it.";
+
+    const isMaxRetries = retryCount >= MAX_RETRIES_PER_QUESTION;
+    const retryNote = isMaxRetries
+        ? '<div style="color:var(--danger);font-size:0.8rem;margin-top:0.6rem;font-weight:700;">Multiple attempts failed. Please try again later or report this issue.</div>'
+        : '<div style="color:var(--muted);font-size:0.8rem;margin-top:0.6rem;">Attempt ' + retryCount + ' of ' + MAX_RETRIES_PER_QUESTION + '</div>';
 
     document.getElementById('questionText').innerHTML = [
         '<div style="text-align:center;">',
         '  <div style="font-size:2.5rem;margin-bottom:0.8rem;">🐰💔</div>',
         '  <div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Oops! Something went wrong on our side.</div>',
-        `  <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">${detail}</div>`,
+        '  <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">' + detail + '</div>',
+        retryNote,
         '</div>'
     ].join('');
     const subject = encodeURIComponent('SkillBun Quiz Error');
-    const body = encodeURIComponent(`Hi Team, I encountered an error during the career quiz at Question ${questionCount}. Please look into it. Thanks!`);
-    document.getElementById('optionsContainer').innerHTML = `
-    <a class="quiz-option" href="mailto:${encodeURIComponent(SUPPORT_EMAIL)}?subject=${subject}&body=${body}" style="text-decoration:none;">
-      <span class="option-label">📧</span>
-      <span class="option-text">Report to Team</span>
-    </a>
-    <button class="quiz-option" id="retryLastQuestionBtn">
-      <span class="option-label">🔄</span>
-      <span class="option-text">Try Again</span>
-    </button>
-  `;
+    const body = encodeURIComponent('Hi Team, I encountered an error during the career quiz at Question ' + questionCount + ' (attempt ' + retryCount + '). Error: ' + String(message || '').slice(0, 200) + '. Please look into it. Thanks!');
+    const retryBtnHtml = !isMaxRetries
+        ? '<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🔄</span><span class="option-text">Try Again (' + (MAX_RETRIES_PER_QUESTION - retryCount) + ' left)</span></button>'
+        : '<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🏠</span><span class="option-text">Back to Home</span></button>';
+    document.getElementById('optionsContainer').innerHTML = '<a class="quiz-option" href="mailto:' + encodeURIComponent(SUPPORT_EMAIL) + '?subject=' + subject + '&body=' + body + '" style="text-decoration:none;"><span class="option-label">📧</span><span class="option-text">Report to Team</span></a>' + retryBtnHtml;
     const retryBtn = document.getElementById('retryLastQuestionBtn');
-    if (retryBtn) retryBtn.addEventListener('click', retryLastQuestion);
+    if (retryBtn) {
+        if (isMaxRetries) {
+            retryBtn.addEventListener('click', () => { window.location.href = '/'; }, { signal });
+        } else {
+            retryBtn.addEventListener('click', retryLastQuestion, { signal });
+        }
+    }
 }
 
 // --- Start Quiz ---
@@ -1436,20 +1609,20 @@ if (startQuizBtnEl) {
         if (welcomeScreen) welcomeScreen.style.display = 'none';
         if (quizScreen) quizScreen.style.display = 'block';
         startNextQuestion();
-    });
+    }, { signal });
 }
 
 const retakeBtnEl = document.getElementById('retakeBtn');
 if (retakeBtnEl) {
     retakeBtnEl.addEventListener('click', () => {
         resetQuizState();
-    });
+    }, { signal });
 }
 
 const loadMoreBtnEl = document.getElementById('loadMoreBtn');
 if (loadMoreBtnEl) {
     loadMoreBtnEl.dataset.defaultLabel = loadMoreBtnEl.textContent;
-    loadMoreBtnEl.addEventListener('click', loadMoreCareers);
+    loadMoreBtnEl.addEventListener('click', loadMoreCareers, { signal });
 }
 
 async function initQuizPage() {
@@ -1473,16 +1646,17 @@ async function initQuizPage() {
     }
 
     const userBadge = document.getElementById('userBadge');
-    if (userBadge) userBadge.addEventListener('click', toggleDropdown);
+    if (userBadge) userBadge.addEventListener('click', toggleDropdown, { signal });
 
     const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser);
+    if (logoutBtn) logoutBtn.addEventListener('click', logoutUser, { signal });
 
     if (startBtn) startBtn.disabled = false;
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initQuizPage);
-} else {
-    initQuizPage();
+    void initQuizPage();
+
+    return () => {
+        eventController.abort();
+    };
 }

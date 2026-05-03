@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Script from 'next/script';
 import { useStoredProfile } from '@/utils/shared/profileStore';
 
 export default function QuizPage() {
@@ -14,6 +13,32 @@ export default function QuizPage() {
       router.replace('/onboarding?next=/quiz');
     }
   }, [profile.degree, profile.hydrated, profile.year, router]);
+
+  useEffect(() => {
+    if (!profile.hydrated || !profile.degree || !profile.year) {
+      return undefined;
+    }
+
+    let cancelled = false;
+    let cleanup = () => {};
+
+    import('@/utils/client/quizRuntime')
+      .then(({ mountQuizRuntime }) => {
+        if (cancelled) {
+          return;
+        }
+
+        cleanup = mountQuizRuntime();
+      })
+      .catch((error) => {
+        console.error('Failed to load quiz runtime:', error);
+      });
+
+    return () => {
+      cancelled = true;
+      cleanup();
+    };
+  }, [profile.degree, profile.hydrated, profile.year]);
 
   if (!profile.hydrated || !profile.degree || !profile.year) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
 
@@ -48,6 +73,7 @@ export default function QuizPage() {
             </div>
 
             <div className="quiz-question-card" id="questionCard">
+                <div id="aiInsight" className="quiz-insight" style={{ display: 'none' }}></div>
                 <div className="quiz-q-text" id="questionText">Loading your first question...</div>
             </div>
 
@@ -79,9 +105,6 @@ export default function QuizPage() {
             </div>
         </div>
       </div>
-
-      {/* localStorage already holds our data, but quiz.js uses these keys */}
-      <Script src="/quiz.js" strategy="lazyOnload" />
     </>
   )
 }
