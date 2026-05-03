@@ -113,7 +113,8 @@ function verifyHumanProofToken(token, ip) {
         return false;
     }
 
-    return payload.ip === hashIp(ip);
+    // Ignore IP checks to prevent disconnects on mobile networks where IP changes frequently
+    return true;
 }
 
 async function verifyTurnstileToken(token, remoteIp) {
