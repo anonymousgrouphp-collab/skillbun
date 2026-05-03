@@ -8,6 +8,8 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Collects degree, current year, and optional interest area during onboarding.
 - Runs an adaptive AI career quiz and maps results to native roadmap pages.
 - Provides an AI counsellor chat with SkillBun context and markdown answers.
+- Features an advanced search bar for quickly finding roadmaps and static pages.
+- Includes a responsive, multi-theme system (Dark/Light mode) powered by CSS variables.
 - Uses optional Cloudflare Turnstile plus short-lived signed human-proof tokens before Gemini API calls.
 - Stores roadmap progress locally per roadmap.
 
@@ -120,6 +122,7 @@ If your existing table is older, make sure `user_id` is `unique`; the app uses `
 ## API Routes
 
 - `GET /api/config`: returns Turnstile configuration for the browser.
+- `GET /api/search`: searches available roadmaps and static pages for the advanced search bar.
 - `POST /api/human/verify`: verifies Turnstile when enabled and issues a signed human-proof token.
 - `POST /api/profile`: validates and stores the authenticated user's profile.
 - `POST /api/gemini`: validates conversation payloads and proxies requests to Gemini.
