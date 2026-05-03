@@ -556,10 +556,9 @@ export default function Home() {
               <h4>Platform</h4>
               <ul>
                 <li><a href="/quiz">Career Quiz</a></li>
-                <li><a href="#careers">Career Paths</a></li>
-                <li><a href="/college-finder">College Finder</a></li>
-                <li><a href="/exam-guide">Exam Guide</a></li>
-                <li><a href="/courses">Courses</a></li>
+                <li><a href="#careers">Career Roadmaps</a></li>
+                <li><a href="/counsellor">AI Counsellor</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
               </ul>
             </div>
             <div className="footer-col">
@@ -568,7 +567,7 @@ export default function Home() {
                 <li><a href="/about">About Us</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/terms">Terms of Use</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/contact">Contact Us</a></li>
               </ul>
             </div>
           </div>
