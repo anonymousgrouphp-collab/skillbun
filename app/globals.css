@@ -1106,19 +1106,13 @@ section {
 }
 
 .sb-moment-card.recommendation {
-  --sb-moment-float-distance: -3px;
   border-color: var(--green);
   box-shadow: var(--accent-shadow);
-  animation-name: sbMomentFloat, sbRecommendationPop;
-  animation-duration: 7.2s, 3.8s;
-  animation-timing-function: ease-in-out, cubic-bezier(0.2, 0.8, 0.24, 1);
-  animation-iteration-count: infinite, infinite;
-  animation-delay: var(--sb-moment-delay), -0.45s;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .sb-guidance-console:hover .sb-moment-card:not(.recommendation),
-  .sb-guidance-console:hover .sb-moment-card:not(.recommendation)::before {
+  .sb-guidance-console:hover .sb-moment-card,
+  .sb-guidance-console:hover .sb-moment-card::before {
     animation-play-state: paused;
   }
 
@@ -1220,24 +1214,6 @@ section {
 
   50% {
     transform: translate3d(0, calc(var(--sb-moment-float-distance) + var(--sb-moment-hover-lift)), 0) scale(var(--sb-moment-scale));
-  }
-}
-
-@keyframes sbRecommendationPop {
-  0%, 62%, 100% {
-    --sb-moment-scale: 1;
-  }
-
-  70% {
-    --sb-moment-scale: 1.018;
-  }
-
-  82% {
-    --sb-moment-scale: 0.998;
-  }
-
-  90% {
-    --sb-moment-scale: 1.008;
   }
 }
 
