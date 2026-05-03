@@ -1048,6 +1048,8 @@ section {
 .sb-moment-card {
   --sb-moment-scale: 1;
   --sb-moment-hover-lift: 0px;
+  --sb-moment-float-distance: -2px;
+  --sb-moment-delay: 0s;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1055,8 +1057,10 @@ section {
   padding: 1rem;
   background: var(--surface-raised);
   box-shadow: var(--card-shadow);
-  animation: sbMomentFloat 5.5s ease-in-out infinite;
+  animation: sbMomentFloat 7.2s ease-in-out infinite;
+  animation-delay: var(--sb-moment-delay);
   transform-origin: center;
+  backface-visibility: hidden;
   will-change: transform;
   transition:
     --sb-moment-scale 0.22s ease,
@@ -1073,24 +1077,26 @@ section {
   inset: 0;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.08), transparent);
   transform: translateX(-120%);
-  animation: sbMomentShimmer 5.5s ease-in-out infinite;
+  animation: sbMomentShimmer 7.2s ease-in-out infinite;
+  animation-delay: var(--sb-moment-delay);
+  opacity: 0.75;
   pointer-events: none;
 }
 
 .sb-moment-card:nth-child(2) {
-  animation-delay: 0.4s;
+  --sb-moment-delay: -1.1s;
 }
 
 .sb-moment-card:nth-child(3) {
-  animation-delay: 0.8s;
+  --sb-moment-delay: -2.2s;
 }
 
 .sb-moment-card:nth-child(4) {
-  animation-delay: 1.2s;
+  --sb-moment-delay: -3.3s;
 }
 
 .sb-moment-card:nth-child(5) {
-  animation-delay: 1.6s;
+  --sb-moment-delay: -4.4s;
 }
 
 .sb-moment-card.before {
@@ -1105,9 +1111,14 @@ section {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .sb-guidance-console:hover .sb-moment-card,
+  .sb-guidance-console:hover .sb-moment-card::before {
+    animation-play-state: paused;
+  }
+
   .sb-moment-card:not(.recommendation):hover {
-    --sb-moment-scale: 1.026;
-    --sb-moment-hover-lift: -4px;
+    --sb-moment-scale: 1.014;
+    --sb-moment-hover-lift: -3px;
     z-index: 2;
   }
 
@@ -1198,11 +1209,11 @@ section {
 
 @keyframes sbMomentFloat {
   0%, 100% {
-    transform: translateY(var(--sb-moment-hover-lift)) scale(var(--sb-moment-scale));
+    transform: translate3d(0, var(--sb-moment-hover-lift), 0) scale(var(--sb-moment-scale));
   }
 
   50% {
-    transform: translateY(calc(-5px + var(--sb-moment-hover-lift))) scale(var(--sb-moment-scale));
+    transform: translate3d(0, calc(var(--sb-moment-float-distance) + var(--sb-moment-hover-lift)), 0) scale(var(--sb-moment-scale));
   }
 }
 
