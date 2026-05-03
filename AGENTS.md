@@ -34,7 +34,7 @@ The following are protected surfaces. Agents must not remove, redesign, replace,
 - Splash/loading experience on first load
 - Homepage hero structure and floating code elements
 - Footer structure, footer brand area, and footer badges/links
-- Shared nav, shared theme shell, and theme toggle behavior
+- Shared nav (now using a central Advanced Search Bar instead of standard text links), shared theme shell, and theme toggle behavior
 - Dark/light theme support and token-driven styling
 
 ## Brand identity that must be preserved
@@ -142,6 +142,7 @@ Treat these areas as sensitive. Do not modify them unless the task clearly requi
 - Human verification / Turnstile / signed human-proof token flow
 - Roadmap rendering rules and tree normalization behavior
 - Existing API response shapes that the frontend may rely on
+- The central Advanced Search Bar in the navigation (`SearchBar.jsx`) and its backend search route (`/api/search/route.js`)
 
 ## Before editing
 

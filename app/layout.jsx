@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Fredoka, Nunito } from 'next/font/google';
 import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
+import SearchBar from './components/SearchBar';
 
 const fredoka = Fredoka({
   subsets: ['latin'],
@@ -54,13 +55,13 @@ export default function RootLayout({ children }) {
               <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
             </Link>
           </div>
-          <ul className="nav-links">
-            <li><Link href="/#features">Features</Link></li>
-            <li><Link href="/#how">How it Works</Link></li>
-            <li><Link href="/#careers">Career Paths</Link></li>
-            <li><Link href="/counsellor">AI Counsellor</Link></li>
-            <li><Link href="/#contact">Connect with us</Link></li>
-          </ul>
+          <SearchBar />
+
+
+
+
+
+
           <div className="nav-cta">
             <ThemeToggle />
             <UserMenu />
