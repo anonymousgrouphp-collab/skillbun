@@ -9,7 +9,7 @@ export default function ComingSoon({ title = 'Coming Soon 🚀', description = '
         <span className="nf-floater" style={{ top: '25%', right: '10%', animationDelay: '1.2s' }}>npm install patience</span>
         <span className="nf-floater" style={{ top: '60%', left: '5%', animationDelay: '2.4s' }}>await build()</span>
         <span className="nf-floater" style={{ top: '75%', right: '7%', animationDelay: '0.6s' }}>import {'{'} future {'}'} from 'skillbun'</span>
-        <span className="nf-floater" style={{ top: '40%', left: '12%', animationDelay: '1.8s' }}>// TODO: ship it</span>
+        <span className="nf-floater" style={{ top: '40%', left: '12%', animationDelay: '1.8s' }}>{'// TODO: ship it'}</span>
         <span className="nf-floater" style={{ top: '50%', right: '15%', animationDelay: '3s' }}>return &lt;Awesome /&gt;</span>
       </div>
 
