@@ -101,23 +101,96 @@ function getFriendlyAiErrorMessage(error) {
         return `AI is cooling down. Please wait ${formatWaitTime(retryAfterMs)} and tap Try Again.`;
     }
 
-    if (/quota|too many|rate|busy|limit/i.test(message)) {
+    if (/quota|too many|rate|busy|limit|429/i.test(message)) {
         return 'AI is receiving too many requests right now. Please wait a moment and tap Try Again.';
     }
 
-    if (/authentication|credential|api key|not configured/i.test(message)) {
+    if (/authentication|credential|api key|not configured|401|403/i.test(message)) {
         return 'AI is not configured correctly right now. Please report this to the SkillBun team.';
     }
 
-    if (/empty response|temporarily unavailable|timed out|could not reach|network/i.test(message)) {
-        return 'AI took too long to answer. Please tap Try Again and we will continue from the same question.';
+    if (/empty response|temporarily unavailable|timed out|could not reach|network|failed to fetch|fetch failed|500|502|503|504/i.test(message)) {
+        return 'AI took too long to answer or network dropped. Please tap Try Again and we will continue from the same question.';
     }
 
-    if (/parse|json/i.test(message)) {
-        return 'AI returned an answer in the wrong format. Please tap Try Again and I will request a clean answer.';
+    if (/parse|json|token|format/i.test(message)) {
+        return 'AI returned an answer in the wrong format or generated invalid JSON. Please tap Try Again and I will request a clean answer.';
+    }
+
+    if (/blocked|safety/i.test(message)) {
+        return 'AI blocked the request due to safety filters. Please tap Try Again and we will try to resolve it.';
     }
 
     return message || "Our AI bunny tripped! Don't worry - our team is on it.";
+}
+
+function createFriendlyAiError(error) {
+    const friendly = new Error(getFriendlyAiErrorMessage(error));
+    friendly.status = Number.isFinite(error?.status) ? error.status : 0;
+    friendly.retryAfterMs = Number.parseInt(error?.retryAfterMs, 10) || 0;
+    friendly.code = error?.code || (friendly.status ? `AI_${friendly.status}` : 'AI_UNKNOWN');
+    friendly.retryable = friendly.status === 0 || AI_RETRYABLE_STATUSES.has(friendly.status) || /parse|json|format|network|fetch|timed out/i.test(String(error?.message || ''));
+    friendly.originalMessage = String(error?.message || '').trim();
+    return friendly;
+}
+
+function getAiErrorCause({ code, message, originalMessage, status }) {
+    const text = `${code || ''} ${message || ''} ${originalMessage || ''}`.toLowerCase();
+
+    if (status === 429 || /quota|too many|rate|busy|limit/.test(text)) {
+        return 'AI rate limit or quota pressure';
+    }
+
+    if (status === 403 || /human verification|captcha|turnstile/.test(text)) {
+        return 'Human verification session was missing or expired';
+    }
+
+    if (status === 401 || /authentication|credential|api key|not configured/.test(text)) {
+        return 'AI service authentication or configuration issue';
+    }
+
+    if (/json|parse|format|response_shape|result_shape|question_shape/.test(text)) {
+        return 'AI returned a response that did not match the quiz JSON format';
+    }
+
+    if (/blocked|safety/.test(text)) {
+        return 'AI safety filter blocked the request';
+    }
+
+    if (status === 504 || /timeout|timed out/.test(text)) {
+        return 'AI request timed out';
+    }
+
+    if (status >= 500 || /network|fetch|could not reach|temporarily unavailable/.test(text)) {
+        return 'Network or AI service availability issue';
+    }
+
+    return 'Unexpected quiz runtime error';
+}
+
+function buildErrorReportBody({ code, message, originalMessage, retryAfterMs, status }) {
+    const cause = getAiErrorCause({ code, message, originalMessage, status });
+    const reference = code || (status ? `AI_${status}` : 'AI_CLIENT');
+    const statusText = status ? String(status) : 'N/A';
+    const waitText = retryAfterMs > 0 ? formatWaitTime(retryAfterMs) : 'N/A';
+    const technicalMessage = String(originalMessage || message || 'N/A').slice(0, 300);
+
+    return [
+        'Hi Team,',
+        '',
+        'I encountered an error during the SkillBun career quiz.',
+        '',
+        `Short brief: ${message || 'Quiz could not continue.'}`,
+        `Error code: ${reference}`,
+        `HTTP status: ${statusText}`,
+        `Likely cause: ${cause}`,
+        `Suggested wait: ${waitText}`,
+        `Question number: ${questionCount || 'N/A'}`,
+        `Attempt: ${retryCount} of ${MAX_RETRIES_PER_QUESTION}`,
+        `Technical message: ${technicalMessage}`,
+        '',
+        'Please look into it. Thanks!'
+    ].join('\n');
 }
 
 function restoreHumanProof() {
@@ -511,6 +584,8 @@ document.addEventListener('click', (event) => {
     const badge = document.getElementById('userBadge');
 
     // Only close if clicking outside the dropdown and outside the button
+
+    // Only close if clicking outside the dropdown and outside the button
     if (dropdown && dropdown.classList.contains('show') && !dropdown.contains(event.target) && event.target !== badge) {
         dropdown.classList.remove('show');
     }
@@ -531,7 +606,7 @@ function logoutUser() {
 
 // --- System Prompt ---
 function getSystemPrompt() {
-    return `You are SkillBun's Master AI Career Counselor — an elite, highly empathetic, and analytical career advisor specializing in the Indian tech industry.
+    return `You are SkillBun's Elite Tech Mentor — an experienced, radically honest, and analytical career advisor deeply embedded in the Indian tech industry. You have mentored engineers at top Indian product startups (Zomato, Cred, Razorpay) and massive Service/Enterprise MNCs (TCS, Infosys, IBM).
 
 STUDENT PROFILE:
 - Name: ${userProfile.name}
@@ -539,49 +614,54 @@ STUDENT PROFILE:
 - Current Year: ${userProfile.year}
 
 YOUR GOAL:
-Uncover the absolute perfect tech career for this specific student by acting as an expert diagnostician. Do not let them settle for generic answers.
+Act as a ruthless but fair diagnostician to uncover the absolute best career fit for this specific student. Avoid generic, fluffy answers. Dive deep into their psychology, risk tolerance, and problem-solving style. 
 
 THE 6 PILLARS OF TECH (Do not assume they want to code!):
-1. Software Engineering (Logic, coding, building)
-2. Data & AI (Math, patterns, analysis)
-3. Design & UX (Empathy, visuals, psychology)
-4. Product & Management (Business, leadership, communication)
-5. Cloud & Infrastructure (Systems, architecture, reliability)
-6. Cybersecurity (Protection, rules, hacking/defense)
+1. Software Engineering & Systems (Logic, algorithms, distributed systems, legacy code)
+2. Data & AI (Math, statistical modeling, data pipelines, LLM fine-tuning)
+3. Design & Product (User empathy, business metrics, scope negotiation, Figma)
+4. Cloud & Infrastructure (Reliability, cost-optimization, Kubernetes, incident response)
+5. Cybersecurity & Risk (Offensive/Defensive security, compliance, zero-trust)
+6. Operations & Specialized (Technical writing, QA automation, RPA, Game Dev)
 
-ASSESSMENT STRUCTURE (10-18 Questions, 3 Phases):
+DIAGNOSTIC DEPTH RULES:
+- Track evidence across these axes: domain pull, problem-solving style, math/data comfort, user empathy, systems/reliability mindset, security/risk mindset, communication/ownership, ambiguity tolerance, and preferred work environment.
+- Do not lock onto the first attractive answer. Keep at least two plausible career hypotheses alive until the student has answered enough niche-discovery questions.
+- Every option should test a tradeoff, not a vibe: speed vs correctness, breadth vs specialization, user impact vs technical depth, autonomy vs structured delivery, risk-taking vs reliability.
+- By questions 6-10, narrow to a pillar but compare sub-specializations inside that pillar using realistic work samples.
+- In final recommendations, explain the evidence from the student's answers and avoid generic "you like coding" reasoning.
 
-PHASE 1 — Core Tech DNA (Questions 1-5):
-Ask orthogonal situational questions to identify which pillar the student belongs to.
-Present realistic mini-scenarios where each option maps to a different pillar.
-Example: "Your college fest needs a tech project in 48 hours. You volunteer to..."
-A) Build the event website (Code) B) Design the poster and UX flow (Design) C) Set up the server and deploy (Infra) D) Manage the team and timeline (Product)
+ASSESSMENT STRUCTURE (10-18 Questions, 4 Phases):
 
-PHASE 2 — Technical Scenarios & Niche Discovery (Questions 6-12):
+PHASE 1 — Core Tech DNA & Grit (Questions 1-5):
+Ask orthogonal situational questions to identify their core pillar and work ethic. 
+Present harsh, realistic mini-scenarios.
+Example: "Your company's production server just crashed during a massive Diwali sale. You are expected to..."
+A) Dig into the logs to find the root cause (Infra/Backend) B) Coordinate with the business team to handle customer complaints (Product/Support) C) Patch the security vulnerability that caused it (Security) D) Analyze the data loss and write a recovery script (Data)
+
+PHASE 2 — Indian Market Realities & Niche Discovery (Questions 6-10):
 Once a pillar is identified, ABANDON the others completely.
-Ask deep, realistic problem-solving scenarios within that pillar.
-Each option should map to a different sub-specialization.
-Example (if Data pillar): "A startup gives you messy sales data. What excites you most?"
-A) Building a dashboard to visualize trends (BI/Analytics) B) Writing an ML model to predict churn (Data Science) C) Designing the ETL pipeline to clean and store it (Data Engineering) D) Auditing the data for compliance issues (Data Governance)
+Present scenarios specific to Indian work culture: tight deadlines, changing client requirements, service-based vs product-based dynamics, and legacy systems.
+Example: "Your manager in an MNC asks you to use an outdated tech stack for a new client project because 'it is what the client asked for'. What do you do?"
 
-PHASE 3 — Execution & Culture Fit (Questions 13-18):
-Determine the student's work style, environment, and growth preferences:
-- Solo deep-work vs collaborative team environments
-- Startup chaos vs enterprise structure
-- Building from scratch vs optimizing existing systems
-- Breadth (generalist) vs depth (specialist)
-- Fast shipping vs careful architecture
-These answers fine-tune the EXACT career within the niche.
+PHASE 3 — Execution & Complexity Handling (Questions 11-14):
+Determine their technical depth and working style. How do they handle extreme complexity? 
+Do they prefer hacking together a quick MVP (Startups) or writing highly scalable, robust enterprise code (Big Tech/GICs)?
+
+PHASE 4 — The Curveball / Final Polish (Questions 15-18):
+Throw a challenging scenario that forces them to choose between two good (or two bad) options to test their conviction. 
+Only proceed to this phase if you are not yet 95% confident.
 
 RULES:
 1. Ask exactly ONE question per response.
 2. Provide exactly 4 options (A, B, C, D) — each must represent a meaningfully different path or approach.
 3. Every question MUST adapt dynamically based on ALL previous answers. Ask "What would you do?" scenario-based questions, NOT "Which do you prefer?".
-4. Keep questions engaging, conversational, and grounded in real Indian tech industry situations (startups, MNCs, freelancing, open-source, competitive programming, etc.).
+4. Keep questions engaging, conversational, and grounded in real Indian tech industry situations (startups, MNCs, freelancing, open-source, competitive programming, toxic managers, legacy codebases).
 5. NEVER assume 'Tech' means 'Software Developer'. Actively explore non-coding roles like Product Management, UX Research, Technical Writing, DevOps, Security, etc.
-6. After question 1, ALWAYS provide a brief 1-sentence "insight" field reflecting on what their previous answer reveals about them. Make it feel like a real counselor observing patterns.
+6. After question 1, ALWAYS provide a highly analytical 2-sentence "insight" field reflecting on the psychological traits and professional leanings revealed by their previous answer. Make it sound like a seasoned mentor's observation (e.g., "You showed a preference for systemic stability over rapid prototyping. This suggests you'd thrive in Enterprise environments over chaotic startups.")
 7. DYNAMIC LENGTH: Ask between 10 and 18 questions. Only output the final recommendation ("type": "result") when you have reached 95%+ confidence. If by question 10 you are very confident, you may finish. Do NOT always stop at exactly 10.
 8. When generating the final result, you MUST use the exact roadmap ID from the provided list for EVERY career. This is critical. Cross-reference the career title with the slug list carefully. If unsure, use the closest reasonable match, not 'general'.
+9. Because SkillBun has many niche roadmaps, prefer the most specific matching roadmap. For example, choose 'react_native_developer' over 'frontend' for React Native, 'llmops_engineer' over 'ai_ml_engineer' for LLM production operations, and 'application_security_engineer' over 'cybersecurity' for secure code review.
 
 RESPONSE FORMAT (for questions):
 You MUST respond in this exact JSON format, with no markdown, no code fences, just raw JSON:
@@ -618,7 +698,7 @@ When you are ready to give the final result, return EXACTLY this structure:
   ]
 }
 
-Provide EXACTLY 3 careers in the final recommendation, ranked by match quality. Be specific to the Indian tech market (mention Indian companies, Indian salary ranges in LPA, relevant Indian certifications).
+Provide EXACTLY 3 careers in the final recommendation, ranked by match quality. Be highly specific to the Indian tech market (mention Indian companies, exact salary ranges in LPA, relevant certifications like AWS/GCP, or platforms like NPTEL/CDAC if relevant).
 
 CRITICAL — ROADMAP SLUG MAPPING:
 For the "roadmapUrl" field, you MUST use ONLY an exact slug from this list. Do NOT invent slugs. Do NOT use full URLs. Just the bare ID string:
@@ -710,17 +790,33 @@ async function callGemini(userMessage) {
             conversationHistory.pop();
         }
 
-        throw new Error(getFriendlyAiErrorMessage(err));
+        throw createFriendlyAiError(err);
     }
 }
 
 function buildQuizUserMessage(userMessage) {
     if (!quizResults && questionCount >= 18) {
-        return userMessage + '\n\nIMPORTANT: You have now asked 18 questions. You MUST return the final recommendation JSON now with "type": "result" and exactly 3 careers. Each career MUST have a valid roadmapUrl slug from the provided list.';
+        return userMessage + '\n\nIMPORTANT: You have now asked 18 questions. You MUST return the final recommendation JSON now with "type": "result" and exactly 3 careers. Each career MUST have a valid roadmapUrl slug from the provided list. Use the most specific local roadmap slug that fits the answer evidence.';
     }
 
     if (!quizResults && questionCount >= 14) {
-        return userMessage + '\n\nNote: You have asked ' + questionCount + ' questions. If you have 95%+ confidence, return the final recommendation now. Otherwise, you may ask up to ' + (18 - questionCount) + ' more questions.';
+        return userMessage + '\n\nNote: You have asked ' + questionCount + ' questions. If you have 95%+ confidence, return the final recommendation now. Otherwise, you may ask up to ' + (18 - questionCount) + ' more questions. Make sure your scenarios are increasingly complex and specific to Indian tech realities. Push for edge cases (Phase 4). Before finalizing, compare the top 2-3 niche roadmap options and choose specific slugs rather than generic umbrellas.';
+    }
+
+    if (!quizResults && questionCount === 3) {
+        return userMessage + '\n\nNote: If two or more pillars are still plausible, ask a scenario that separates them sharply. Do not ask preference-only questions.';
+    }
+
+    if (!quizResults && questionCount === 5) {
+        return userMessage + '\n\nNote: You should now transition to PHASE 2 (Indian Market Realities & Niche Discovery). Abandon the pillars the user rejected. Present complex scenarios specific to Indian work culture (e.g., service vs product company dynamics, legacy code, client pressure).';
+    }
+
+    if (!quizResults && questionCount === 8) {
+        return userMessage + '\n\nNote: You should now test niche fit inside the strongest pillar. Use a work-sample scenario that can distinguish between nearby roadmap paths such as generic software, framework-specific, cloud-specific, security-specific, data-specific, or product/design-specific roles.';
+    }
+
+    if (!quizResults && questionCount === 10) {
+        return userMessage + '\n\nNote: You should now transition to PHASE 3 (Execution & Complexity Handling). Ask about their working style under extreme complexity. Start wrapping up if your confidence is high.';
     }
 
     return userMessage;
@@ -783,6 +879,9 @@ async function fetchGeminiPayload(payload) {
             return await res.json();
         } catch (error) {
             if (error?.status || attempt >= AI_CLIENT_MAX_RETRIES) {
+                if (!error?.status && !error?.code) {
+                    error.code = 'NETWORK_OR_CLIENT_ERROR';
+                }
                 throw error;
             }
 
@@ -832,18 +931,26 @@ function parseGeminiJSON(text) {
         }
     }
 
-    throw new Error('Could not parse Gemini response as JSON');
+    const parseError = new Error('Could not parse Gemini response as JSON');
+    parseError.code = 'AI_JSON_PARSE';
+    throw parseError;
+}
+
+function createQuizFormatError(message, code) {
+    const error = new Error(message);
+    error.code = code;
+    return error;
 }
 
 function normalizeQuizResponse(response) {
     if (!response || typeof response !== 'object') {
-        throw new Error('AI response was not a JSON object');
+        throw createQuizFormatError('AI response was not a JSON object', 'AI_RESPONSE_SHAPE');
     }
 
     if (response.type === 'result' || Array.isArray(response.careers) || (response.careers && typeof response.careers === 'object') || Array.isArray(response.results)) {
         const careers = extractCareers(response).slice(0, 3);
         if (careers.length === 0) {
-            throw new Error('AI result did not include usable careers');
+            throw createQuizFormatError('AI result did not include usable careers', 'AI_RESULT_SHAPE');
         }
 
         return {
@@ -853,9 +960,9 @@ function normalizeQuizResponse(response) {
         };
     }
 
-    const options = normalizeQuestionOptions(response.options);
+    let options = normalizeQuestionOptions(response.options);
     if (!String(response.question || '').trim() || options.length === 0) {
-        throw new Error('AI question did not include a question with options');
+        throw createQuizFormatError('AI question did not include a question with options', 'AI_QUESTION_SHAPE');
     }
 
     // Pad options to 4 if AI returned fewer (graceful recovery)
@@ -863,8 +970,10 @@ function normalizeQuizResponse(response) {
         options.push({ label: String.fromCharCode(65 + options.length), text: 'Other / None of the above' });
     }
 
-    if (false) { // removed strict check — padding handles it
-    }
+    options = options.slice(0, 4).map((option, index) => ({
+        ...option,
+        label: ['A', 'B', 'C', 'D'][index]
+    }));
 
     const parsedPhase = Number.parseInt(response.phase, 10);
     const parsedQuestionNumber = Number.parseInt(response.questionNumber, 10);
@@ -886,13 +995,17 @@ function normalizeQuestionOptions(options) {
         : options && typeof options === 'object'
             ? Object.entries(options).map(([label, text]) => ({ label, text }))
             : [];
+    const seenTexts = new Set();
 
     return rawOptions
         .map((option, index) => {
             const label = String(option?.label || String.fromCharCode(65 + index)).trim().slice(0, 1).toUpperCase();
-            const text = String(option?.text || option?.value || '').trim();
+            const rawText = typeof option === 'string' ? option : option?.text || option?.value || option?.description || '';
+            const text = String(rawText).trim();
+            const dedupeKey = normalizeMatchText(text);
 
-            if (!text) return null;
+            if (!text || seenTexts.has(dedupeKey)) return null;
+            seenTexts.add(dedupeKey);
             return { label: ['A', 'B', 'C', 'D'][index] || label || 'A', text };
         })
         .filter(Boolean)
@@ -1106,76 +1219,265 @@ const ROADMAP_KEYWORD_RULES = [
     { slug: 'android', keywords: ['android', 'mobile', 'kotlin', 'app developer'] }
 ];
 
+const ROADMAP_STOP_WORDS = new Set([
+    'a',
+    'an',
+    'and',
+    'app',
+    'apps',
+    'career',
+    'cloud',
+    'code',
+    'developer',
+    'development',
+    'engineer',
+    'engineering',
+    'for',
+    'in',
+    'of',
+    'platform',
+    'specialist',
+    'systems',
+    'the',
+    'with'
+]);
+
+const ROADMAP_LOW_SIGNAL_TOKENS = new Set([
+    'app',
+    'cloud',
+    'code',
+    'data',
+    'developer',
+    'engineer',
+    'management',
+    'mobile',
+    'product',
+    'security',
+    'software',
+    'support',
+    'system',
+    'systems',
+    'tech',
+    'web'
+]);
+
+const BROAD_ROADMAP_SLUGS = new Set([
+    'ai_ml_engineer',
+    'backend',
+    'cloud_architect',
+    'cybersecurity',
+    'data_analyst',
+    'data_science',
+    'devops_cloud',
+    'frontend',
+    'fullstack',
+    'game_development',
+    'general',
+    'product_manager',
+    'ui_ux_design'
+]);
+
+function normalizeMatchText(value) {
+    return String(value || '')
+        .toLowerCase()
+        .replace(/c\+\+/g, 'cplusplus')
+        .replace(/c#/g, 'csharp')
+        .replace(/\.net/g, 'dotnet')
+        .replace(/ci\/cd/g, 'cicd')
+        .replace(/ui\/ux/g, 'ui ux')
+        .replace(/ar\/vr/g, 'ar vr')
+        .replace(/no-code/g, 'no code')
+        .replace(/low-code/g, 'low code')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 function normalizeRoadmapSlug(value) {
     if (!value) return '';
-    let slug = String(value).trim().toLowerCase().replace(/[^a-z_]/g, '');
-    return slug;
+    return String(value)
+        .trim()
+        .toLowerCase()
+        .replace(/\.(json|html)$/i, '')
+        .replace(/roadmap\.sh/gi, '')
+        .replace(/roadmaps?/gi, ' ')
+        .replace(/&/g, ' and ')
+        .replace(/[\s-]+/g, '_')
+        .replace(/[^a-z0-9_]/g, '')
+        .replace(/_+/g, '_')
+        .replace(/^_+|_+$/g, '');
+}
+
+function getRoadmapSlugCandidates(rawUrl) {
+    if (typeof rawUrl !== 'string') return [];
+    const input = rawUrl.trim();
+    if (!input || /coming-soon/i.test(input)) return [];
+
+    const candidates = [];
+    const pushCandidate = (value) => {
+        const normalized = normalizeRoadmapSlug(value);
+        if (normalized && !candidates.includes(normalized)) {
+            candidates.push(normalized);
+        }
+    };
+
+    pushCandidate(input);
+
+    try {
+        const parsed = new URL(input, window.location.origin);
+        parsed.pathname
+            .split('/')
+            .filter(Boolean)
+            .forEach(pushCandidate);
+    } catch (err) {
+        input.split(/[/?#=&]+/g).forEach(pushCandidate);
+    }
+
+    return candidates;
 }
 
 function extractRoadmapSlug(rawUrl) {
-    if (typeof rawUrl !== 'string') return '';
-    const input = rawUrl.trim();
-    if (!input || input.includes('coming-soon')) return '';
-    return normalizeRoadmapSlug(input);
+    const candidates = getRoadmapSlugCandidates(rawUrl);
+    return candidates.find(slug => KNOWN_ROADMAP_SLUGS.has(slug)) || candidates[0] || '';
+}
+
+function getCareerTextParts(career) {
+    const skills = Array.isArray(career?.skills) ? career.skills : [career?.skills];
+    return [
+        career?.title,
+        career?.roadmapUrl,
+        career?.description,
+        career?.nextSteps,
+        ...skills
+    ].filter(part => typeof part === 'string' && part.trim().length > 0);
+}
+
+function containsNormalizedPhrase(text, phrase) {
+    if (!text || !phrase) return false;
+    return ` ${text} `.includes(` ${phrase} `);
+}
+
+function getRoadmapTokens(value) {
+    return normalizeMatchText(value)
+        .split(' ')
+        .filter(token => token.length > 1 && !ROADMAP_STOP_WORDS.has(token));
+}
+
+function countSharedTokens(leftTokens, rightTokens) {
+    const left = new Set(leftTokens);
+    return rightTokens.reduce((count, token) => count + (left.has(token) ? 1 : 0), 0);
+}
+
+function getKeywordScore(text, titleText, keyword) {
+    const normalizedKeyword = normalizeMatchText(keyword);
+    if (!containsNormalizedPhrase(text, normalizedKeyword)) return 0;
+
+    const keywordTokens = normalizedKeyword.split(' ').filter(Boolean);
+    const titleHit = containsNormalizedPhrase(titleText, normalizedKeyword);
+    const lowSignalOnly = keywordTokens.length === 1 && ROADMAP_LOW_SIGNAL_TOKENS.has(keywordTokens[0]);
+    let score = 6 + Math.min(14, normalizedKeyword.length / 2) + Math.max(0, keywordTokens.length - 1) * 3;
+
+    if (titleHit) score += 12;
+    if (lowSignalOnly) score *= 0.35;
+
+    return score;
+}
+
+function scoreRoadmapRule(career, rule) {
+    const titleText = normalizeMatchText(career?.title);
+    const text = normalizeMatchText(getCareerTextParts(career).join(' '));
+    const slugTokens = getRoadmapTokens(rule.slug.replace(/_/g, ' '));
+    const titleTokens = getRoadmapTokens(career?.title);
+    const allTokens = getRoadmapTokens(text);
+    let score = 0;
+
+    if (!text && !titleText) return 0;
+
+    if (normalizeRoadmapSlug(career?.title) === rule.slug) {
+        score += 45;
+    }
+
+    for (const keyword of rule.keywords) {
+        score += getKeywordScore(text, titleText, keyword);
+    }
+
+    const titleOverlap = countSharedTokens(titleTokens, slugTokens);
+    if (titleOverlap > 0) {
+        score += titleOverlap * 5;
+        if (titleOverlap === slugTokens.length) score += 10;
+    }
+
+    const overallOverlap = countSharedTokens(allTokens, slugTokens);
+    if (overallOverlap > 0) {
+        score += overallOverlap * 1.2;
+    }
+
+    return score;
 }
 
 function inferRoadmapSlugFromCareer(career) {
-    const parts = [career?.title, career?.description, ...(Array.isArray(career?.skills) ? career.skills : [])]
-        .filter(part => typeof part === 'string' && part.trim().length > 0);
-    const text = parts.join(' ').toLowerCase();
-    if (!text) return '';
+    const ranked = ROADMAP_KEYWORD_RULES
+        .map(rule => ({ slug: rule.slug, score: scoreRoadmapRule(career, rule) }))
+        .filter(match => match.score > 0)
+        .sort((left, right) => right.score - left.score);
 
-    for (const rule of ROADMAP_KEYWORD_RULES) {
-        if (rule.keywords.some(keyword => text.includes(keyword))) {
-            return rule.slug;
-        }
-    }
-    return '';
+    const best = ranked[0];
+    const second = ranked[1];
+    if (!best || best.score < 9) return '';
+    if (second && best.score - second.score < 2 && best.score < 24) return '';
+
+    return best.slug;
 }
 
-function resolveRoadmapUrl(career) {
-    // Step 1: Try the AI-provided slug directly
+function resolveRoadmapSlug(career) {
     const fromAiUrl = extractRoadmapSlug(career?.roadmapUrl);
-    if (fromAiUrl && KNOWN_ROADMAP_SLUGS.has(fromAiUrl)) {
-        return `/roadmap/${fromAiUrl}`;
-    }
-
-    // Step 2: Try keyword inference from career title + description + skills
     const fromKeywords = inferRoadmapSlugFromCareer(career);
+
     if (fromKeywords && KNOWN_ROADMAP_SLUGS.has(fromKeywords)) {
-        return `/roadmap/${fromKeywords}`;
+        if (!fromAiUrl || fromAiUrl === fromKeywords || BROAD_ROADMAP_SLUGS.has(fromAiUrl)) {
+            return fromKeywords;
+        }
     }
 
-    // Step 3: Fuzzy match — find the closest slug by Levenshtein-like substring matching
+    if (fromAiUrl && KNOWN_ROADMAP_SLUGS.has(fromAiUrl)) {
+        return fromAiUrl;
+    }
+
+    if (fromKeywords && KNOWN_ROADMAP_SLUGS.has(fromKeywords)) {
+        return fromKeywords;
+    }
+
     if (fromAiUrl) {
         const fuzzyMatch = fuzzyMatchRoadmapSlug(fromAiUrl);
         if (fuzzyMatch) {
-            return `/roadmap/${fuzzyMatch}`;
+            return fuzzyMatch;
         }
     }
 
-    // Step 4: Try to derive a slug from the career title itself
     if (career?.title) {
-        const titleSlug = String(career.title).trim().toLowerCase()
-            .replace(/[^a-z0-9\s]/g, '')
-            .replace(/\s+/g, '_');
+        const titleSlug = normalizeRoadmapSlug(career.title);
         if (KNOWN_ROADMAP_SLUGS.has(titleSlug)) {
-            return `/roadmap/${titleSlug}`;
+            return titleSlug;
         }
-        // Try partial title match
+
         const titleFuzzy = fuzzyMatchRoadmapSlug(titleSlug);
         if (titleFuzzy) {
-            return `/roadmap/${titleFuzzy}`;
+            return titleFuzzy;
         }
     }
 
-    return ROADMAP_FALLBACK_URL;
+    return 'general';
+}
+
+function resolveRoadmapUrl(career) {
+    const slug = resolveRoadmapSlug(career);
+    return KNOWN_ROADMAP_SLUGS.has(slug) ? `/roadmap/${slug}` : ROADMAP_FALLBACK_URL;
 }
 
 
 function fuzzyMatchRoadmapSlug(input) {
     if (!input) return '';
-    const normalizedInput = input.toLowerCase().replace(/[^a-z]/g, '');
+    const normalizedInput = normalizeMatchText(input).replace(/\s/g, '');
     if (!normalizedInput) return '';
 
     let bestMatch = '';
@@ -1183,33 +1485,50 @@ function fuzzyMatchRoadmapSlug(input) {
 
     for (const slug of KNOWN_ROADMAP_SLUGS) {
         if (slug === 'general') continue;
-        const normalizedSlug = slug.replace(/_/g, '');
+        const normalizedSlug = normalizeMatchText(slug.replace(/_/g, ' ')).replace(/\s/g, '');
+        let score = getStringSimilarityScore(normalizedInput, normalizedSlug);
 
-        // Exact substring match (either direction)
         if (normalizedSlug.includes(normalizedInput) || normalizedInput.includes(normalizedSlug)) {
-            const score = Math.min(normalizedInput.length, normalizedSlug.length) / Math.max(normalizedInput.length, normalizedSlug.length);
-            if (score > bestScore) {
-                bestScore = score;
-                bestMatch = slug;
-            }
+            score += 0.15;
         }
 
-        // Shared prefix matching
-        let prefixLen = 0;
-        const minLen = Math.min(normalizedInput.length, normalizedSlug.length);
-        for (let i = 0; i < minLen; i++) {
-            if (normalizedInput[i] === normalizedSlug[i]) prefixLen++;
-            else break;
-        }
-        const prefixScore = prefixLen / Math.max(normalizedInput.length, normalizedSlug.length);
-        if (prefixScore > 0.6 && prefixScore > bestScore) {
-            bestScore = prefixScore;
+        if (score > bestScore) {
+            bestScore = score;
             bestMatch = slug;
         }
     }
 
-    // Only return if we have a reasonably confident match (>50% overlap)
-    return bestScore > 0.5 ? bestMatch : '';
+    return bestScore >= 0.72 ? bestMatch : '';
+}
+
+function getStringSimilarityScore(left, right) {
+    if (!left || !right) return 0;
+    if (left === right) return 1;
+
+    const distance = getLevenshteinDistance(left, right);
+    return 1 - (distance / Math.max(left.length, right.length));
+}
+
+function getLevenshteinDistance(left, right) {
+    const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
+
+    for (let i = 1; i <= left.length; i += 1) {
+        let diagonal = previous[0];
+        previous[0] = i;
+
+        for (let j = 1; j <= right.length; j += 1) {
+            const temp = previous[j];
+            const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+            previous[j] = Math.min(
+                previous[j] + 1,
+                previous[j - 1] + 1,
+                diagonal + cost
+            );
+            diagonal = temp;
+        }
+    }
+
+    return previous[right.length];
 }
 
 function normalizeSkills(skills) {
@@ -1239,8 +1558,7 @@ function normalizeCareerEntry(career, index) {
 
     const matchRaw = Number.parseInt(career.matchPercent, 10);
     const matchPercent = Number.isFinite(matchRaw) ? Math.max(0, Math.min(matchRaw, 100)) : Math.max(60, 95 - index * 5);
-
-    return {
+    const normalizedCareer = {
         title,
         description: String(career.description || 'Recommended based on your quiz answers.').trim(),
         skills: normalizeSkills(career.skills),
@@ -1250,6 +1568,27 @@ function normalizeCareerEntry(career, index) {
         matchPercent,
         roadmapUrl: String(career.roadmapUrl || '').trim()
     };
+
+    return {
+        ...normalizedCareer,
+        roadmapUrl: resolveRoadmapSlug(normalizedCareer)
+    };
+}
+
+function getCareerDedupeKey(career) {
+    const slug = resolveRoadmapSlug(career);
+    if (slug && slug !== 'general') return `slug:${slug}`;
+    return `title:${normalizeMatchText(career?.title)}`;
+}
+
+function dedupeCareers(careers) {
+    const seen = new Set();
+    return careers.filter((career) => {
+        const key = getCareerDedupeKey(career);
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
 }
 
 function extractCareers(response) {
@@ -1264,9 +1603,9 @@ function extractCareers(response) {
         rawCareers = response.results;
     }
 
-    return rawCareers
+    return dedupeCareers(rawCareers
         .map((career, index) => normalizeCareerEntry(career, index))
-        .filter(Boolean);
+        .filter(Boolean));
 }
 
 // --- Load More Careers ---
@@ -1279,16 +1618,29 @@ async function loadMoreCareers() {
     loadBtn.disabled = true;
 
     try {
+        const container = document.getElementById('resultCards');
+        if (!container) throw new Error('Results container not found');
+
+        const existingTitles = new Set(
+            Array.from(container.querySelectorAll('.result-card h3')).map(el => normalizeMatchText(el.textContent))
+        );
+        const existingSlugs = new Set(
+            Array.from(container.querySelectorAll('.result-card'))
+                .map(el => el.dataset.roadmapSlug)
+                .filter(Boolean)
+        );
+        const excludedTitles = Array.from(existingTitles).filter(Boolean).slice(0, 8).join(', ') || 'none';
+        const excludedSlugs = Array.from(existingSlugs).filter(Boolean).slice(0, 8).join(', ') || 'none';
+
         const response = await callGemini(
-            'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Use the same JSON result format with "type": "result". Make sure to include the "roadmapUrl" field for each career. Default to "coming-soon.html" if no exact roadmap.sh URL matches.'
+            'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Avoid these normalized titles: ' + excludedTitles + '. Avoid these roadmap slugs: ' + excludedSlugs + '. Use the same JSON result format with "type": "result". The "roadmapUrl" field MUST be one exact bare local roadmap slug from the provided list; do not use full URLs or coming-soon.'
         );
 
-        const container = document.getElementById('resultCards');
         let careers = extractCareers(response);
 
         if (careers.length === 0) {
             const strictResponse = await callGemini(
-                'Return only JSON with {"type":"result","careers":[...]} and exactly 3 unique careers. Keep fields: title, matchPercent, description, skills, salaryRange, demand, nextSteps, roadmapUrl.'
+                'Return only JSON with {"type":"result","careers":[...]} and exactly 3 unique careers. Avoid titles: ' + excludedTitles + '. Avoid roadmap slugs: ' + excludedSlugs + '. Keep fields: title, matchPercent, description, skills, salaryRange, demand, nextSteps, roadmapUrl. roadmapUrl must be an exact bare local roadmap slug.'
             );
             careers = extractCareers(strictResponse);
         }
@@ -1297,10 +1649,11 @@ async function loadMoreCareers() {
             throw new Error('No career paths returned');
         }
 
-        const existingTitles = new Set(
-            Array.from(container.querySelectorAll('.result-card h3')).map(el => el.textContent.trim().toLowerCase())
-        );
-        const uniqueCareers = careers.filter(career => !existingTitles.has(career.title.toLowerCase()));
+        const uniqueCareers = careers.filter((career) => {
+            const titleKey = normalizeMatchText(career.title);
+            const slug = resolveRoadmapSlug(career);
+            return !existingTitles.has(titleKey) && (!slug || slug === 'general' || !existingSlugs.has(slug));
+        });
 
         if (uniqueCareers.length === 0) {
             loadBtn.textContent = '✅ No More Unique Paths';
@@ -1334,9 +1687,10 @@ async function loadMoreCareers() {
 function renderCareerCard(career, index) {
     const medalEmojis = ['🥇', '🥈', '🥉', '🏅', '⭐', '✨', '💎', '🎯', '🚀'];
     const medal = medalEmojis[index - 1] || '⭐';
+    const roadmapSlug = resolveRoadmapSlug(career);
 
     return `
-    <div class="result-card new" style="animation-delay:${(index - 1) * 0.15}s">
+    <div class="result-card new" data-roadmap-slug="${sanitize(roadmapSlug)}" style="animation-delay:${(index - 1) * 0.15}s">
       <div class="result-card-header">
         <span class="result-medal">${medal}</span>
         <span class="result-match">${sanitize(String(career.matchPercent))}% Match</span>
@@ -1360,7 +1714,7 @@ function renderCareerCard(career, index) {
 
       <div class="result-action-link" style="margin-top: 1rem; text-align: right;">
         ${(() => {
-            const finalUrl = resolveRoadmapUrl(career);
+            const finalUrl = resolveRoadmapUrl({ ...career, roadmapUrl: roadmapSlug });
             const isExternal = finalUrl.startsWith('https://roadmap.sh/');
 
             return `
@@ -1473,7 +1827,7 @@ async function selectOption(option, element) {
         } catch (err) {
             document.getElementById('quizLoading').style.display = 'none';
             document.getElementById('optionsContainer').style.display = 'grid';
-            showErrorUI(err.message);
+            showErrorUI(err);
         }
     }, 500);
 }
@@ -1524,12 +1878,24 @@ function retryLastQuestion() {
 }
 
 // --- Error UI ---
-function showErrorUI(message) {
+function showErrorUI(errorOrMessage) {
     retryCount++;
 
-    const detail = typeof message === 'string' && message.trim()
-        ? sanitize(message.trim())
+    const message = typeof errorOrMessage === 'string'
+        ? errorOrMessage
+        : String(errorOrMessage?.message || '').trim();
+    const status = Number.isFinite(errorOrMessage?.status) && errorOrMessage.status > 0 ? errorOrMessage.status : 0;
+    const retryAfterMs = Number.parseInt(errorOrMessage?.retryAfterMs, 10) || 0;
+    const code = String(errorOrMessage?.code || (status ? `AI_${status}` : 'AI_CLIENT')).trim();
+    const detail = message
+        ? sanitize(message)
         : "Our AI bunny tripped! Don't worry - our team is on it.";
+    const waitNote = retryAfterMs > 0
+        ? '<div style="color:var(--muted);font-size:0.8rem;margin-top:0.55rem;">Suggested wait: ' + sanitize(formatWaitTime(retryAfterMs)) + '</div>'
+        : '';
+    const codeNote = code
+        ? '<div style="color:var(--muted);font-size:0.75rem;margin-top:0.4rem;">Reference: ' + sanitize(code) + (status ? ' / HTTP ' + sanitize(String(status)) : '') + '</div>'
+        : '';
 
     const isMaxRetries = retryCount >= MAX_RETRIES_PER_QUESTION;
     const retryNote = isMaxRetries
@@ -1541,11 +1907,19 @@ function showErrorUI(message) {
         '  <div style="font-size:2.5rem;margin-bottom:0.8rem;">🐰💔</div>',
         '  <div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Oops! Something went wrong on our side.</div>',
         '  <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">' + detail + '</div>',
+        waitNote,
         retryNote,
+        codeNote,
         '</div>'
     ].join('');
     const subject = encodeURIComponent('SkillBun Quiz Error');
-    const body = encodeURIComponent('Hi Team, I encountered an error during the career quiz at Question ' + questionCount + ' (attempt ' + retryCount + '). Error: ' + String(message || '').slice(0, 200) + '. Please look into it. Thanks!');
+    const body = encodeURIComponent(buildErrorReportBody({
+        code,
+        message,
+        originalMessage: errorOrMessage?.originalMessage,
+        retryAfterMs,
+        status
+    }));
     const retryBtnHtml = !isMaxRetries
         ? '<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🔄</span><span class="option-text">Try Again (' + (MAX_RETRIES_PER_QUESTION - retryCount) + ' left)</span></button>'
         : '<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🏠</span><span class="option-text">Back to Home</span></button>';
@@ -1578,7 +1952,7 @@ async function startNextQuestion() {
     } catch (err) {
         document.getElementById('quizLoading').style.display = 'none';
         document.getElementById('optionsContainer').style.display = 'grid';
-        showErrorUI(err.message);
+        showErrorUI(err);
     }
 }
 
