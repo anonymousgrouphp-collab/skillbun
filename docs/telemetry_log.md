@@ -573,3 +573,4 @@
 [2026-05-04T11:45:54] feat(roadmap): add milestone progress tracking
 [2026-05-04T11:18:05] perf(cache): optimize career trajectory data loader
 [2026-05-04T16:28:57] feat(roadmap): add milestone progress tracking
+[2026-05-04T12:53:27] fix(assessment): refine skill gap analysis scoring weights
