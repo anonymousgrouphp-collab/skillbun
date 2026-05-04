@@ -537,3 +537,4 @@
 [2025-09-20T10:41:55] fix(assessment): refine skill gap analysis scoring weights
 [2025-09-20T20:29:37] feat(roadmap): add milestone progress tracking
 [2025-09-20T09:28:58] fix(analytics): correct career aptitude score calculation
+[2026-05-04T14:20:38] chore(deps): update analytics telemetry adapter
