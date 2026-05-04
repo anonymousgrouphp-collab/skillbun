@@ -555,3 +555,4 @@
 [2026-05-04T10:41:42] test(matching): add test suite for recommendation score
 [2026-05-04T19:01:23] refactor(counseling): streamline multi-step guidance flow
 [2026-05-04T13:13:21] chore(deps): update analytics telemetry adapter
+[2026-05-04T14:14:08] perf(cache): optimize career trajectory data loader
