@@ -571,3 +571,4 @@
 [2026-05-04T12:55:16] feat(career): enhance career pathway matching algorithm
 [2026-05-04T23:55:23] feat(roadmap): add milestone progress tracking
 [2026-05-04T11:45:54] feat(roadmap): add milestone progress tracking
+[2026-05-04T11:18:05] perf(cache): optimize career trajectory data loader
