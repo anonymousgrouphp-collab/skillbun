@@ -26,7 +26,7 @@ Existing working behavior is presumed intentional unless the task, a failing tes
 - Preserve backwards compatibility unless the user explicitly approves a breaking change.
 - If a requested change can be done without touching a protected area, do it that way.
 
-## Protected surfaces
+### Protected surfaces
 
 The following are protected surfaces. Agents must not remove, redesign, replace, bypass, or materially alter them unless the user explicitly asks for that exact surface to change:
 
