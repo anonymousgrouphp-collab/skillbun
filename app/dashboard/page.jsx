@@ -1,15 +1,10 @@
-import ComingSoon from '@/app/components/ComingSoon';
+import DashboardClient from './DashboardClient';
 
 export const metadata = {
   title: 'Dashboard – SkillBun',
-  description: 'Your personalized SkillBun dashboard is coming soon.',
+  description: 'Your personalized SkillBun Apex Growth dashboard — track XP, roadmap progress, and career readiness.',
 };
 
 export default function DashboardPage() {
-  return (
-    <ComingSoon 
-      title="Dashboard is coming soon 🚀" 
-      description="We're building a personalized dashboard to track your learning progress, saved paths, and career roadmap."
-    />
-  );
+  return <DashboardClient />;
 }
