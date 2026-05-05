@@ -44,7 +44,7 @@ export default function AboutPage() {
 
       <h2>Team</h2>
       <p>
-        Built and maintained by Team SkillBun (5 IITians): <strong>Harsh, Rainee, Ravi, Harshit, and Aiman</strong>.
+        Team Cosmic manages this project with the active guidance and contribution of multiple IITians.
       </p>
       <p>
         Have feedback or want to partner with us? Contact us at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
