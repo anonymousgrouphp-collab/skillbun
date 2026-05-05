@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const metadata = {
   title: 'About Us – SkillBun',
   description: 'Learn about SkillBun, our mission, and the team behind the platform.',
@@ -46,9 +48,11 @@ export default function AboutPage() {
       <p>
         Team Cosmic manages this project with the active guidance and contribution of multiple IITians.
       </p>
-      <p>
-        Have feedback or want to partner with us? Contact us at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
-      </p>
+      <div style={{ marginTop: '2rem' }}>
+        <Link href="/contact" className="cta-button" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', backgroundColor: 'var(--brand-color, #22c55e)', color: '#fff', textDecoration: 'none', borderRadius: '4px', fontWeight: 'bold' }}>
+          Contact Us
+        </Link>
+      </div>
     </div>
   );
 }
