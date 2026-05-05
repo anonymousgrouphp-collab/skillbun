@@ -374,7 +374,6 @@ function resetQuizState() {
     if (optionsContainer) {
         optionsContainer.innerHTML = '';
         optionsContainer.style.display = 'grid';
-        optionsContainer.style.opacity = '1';
     }
     if (quizLoading) quizLoading.style.display = 'none';
 
@@ -865,12 +864,6 @@ async function loadMoreCareers() {
             container.insertAdjacentHTML('beforeend', renderCareerCard(career, existingCount + i + 1));
         });
 
-        // Animate new cards in
-        const newCards = container.querySelectorAll('.result-card.new:not(.visible)');
-        newCards.forEach((card, i) => {
-            setTimeout(() => card.classList.add('visible'), i * 200);
-        });
-
         loadBtn.textContent = '🔍 Load More Career Paths';
         loadBtn.disabled = false;
 
@@ -887,7 +880,7 @@ function renderCareerCard(career, index) {
     const medal = medalEmojis[index - 1] || '⭐';
 
     return `
-    <div class="result-card new" style="animation-delay:${(index - 1) * 0.15}s">
+    <div class="result-card new">
       <div class="result-card-header">
         <span class="result-medal">${medal}</span>
         <span class="result-match">${sanitize(String(career.matchPercent))}% Match</span>
@@ -953,33 +946,23 @@ function showQuestion(data) {
     questionCount = data.questionNumber || questionCount + 1;
     updateProgress(questionCount, data.phase || 1);
 
-    // Animate question text
     const qText = document.getElementById('questionText');
-    qText.style.opacity = '0';
-    setTimeout(() => {
-        qText.textContent = data.question;
-        qText.style.opacity = '1';
-    }, 200);
+    qText.textContent = data.question;
 
     // Render options
     const container = document.getElementById('optionsContainer');
     container.innerHTML = '';
-    container.style.opacity = '0';
 
-    setTimeout(() => {
-        data.options.forEach((opt, i) => {
-            const optEl = document.createElement('button');
-            optEl.className = 'quiz-option';
-            optEl.style.animationDelay = `${i * 0.1}s`;
-            optEl.innerHTML = `
+    data.options.forEach((opt) => {
+        const optEl = document.createElement('button');
+        optEl.className = 'quiz-option';
+        optEl.innerHTML = `
         <span class="option-label">${sanitize(opt.label)}</span>
         <span class="option-text">${sanitize(opt.text)}</span>
       `;
-            optEl.addEventListener('click', () => selectOption(opt, optEl));
-            container.appendChild(optEl);
-        });
-        container.style.opacity = '1';
-    }, 300);
+        optEl.addEventListener('click', () => selectOption(opt, optEl));
+        container.appendChild(optEl);
+    });
 }
 
 // --- Select Option ---
@@ -992,28 +975,25 @@ async function selectOption(option, element) {
     });
     element.classList.add('selected');
 
-    // Show loading
-    setTimeout(async () => {
-        document.getElementById('optionsContainer').style.display = 'none';
-        document.getElementById('quizLoading').style.display = 'flex';
+    document.getElementById('optionsContainer').style.display = 'none';
+    document.getElementById('quizLoading').style.display = 'flex';
 
-        try {
-            const response = await callGemini(`My answer: ${option.label}. ${option.text}`);
+    try {
+        const response = await callGemini(`My answer: ${option.label}. ${option.text}`);
 
-            document.getElementById('quizLoading').style.display = 'none';
-            document.getElementById('optionsContainer').style.display = 'grid';
+        document.getElementById('quizLoading').style.display = 'none';
+        document.getElementById('optionsContainer').style.display = 'grid';
 
-            if (response.type === 'result') {
-                showResults(response);
-            } else {
-                showQuestion(response);
-            }
-        } catch (err) {
-            document.getElementById('quizLoading').style.display = 'none';
-            document.getElementById('optionsContainer').style.display = 'grid';
-            showErrorUI(err.message);
+        if (response.type === 'result') {
+            showResults(response);
+        } else {
+            showQuestion(response);
         }
-    }, 500);
+    } catch (err) {
+        document.getElementById('quizLoading').style.display = 'none';
+        document.getElementById('optionsContainer').style.display = 'grid';
+        showErrorUI(err.message);
+    }
 }
 
 // --- Show Results ---
@@ -1030,7 +1010,7 @@ function showResults(data) {
     const careers = extractCareers(data);
     if (careers.length === 0) {
         container.innerHTML = `
-      <div class="result-card visible">
+      <div class="result-card">
         <h3>Unable to Load Career Paths</h3>
         <p class="result-desc">We could not parse the AI response. Please tap Retake Quiz and try again.</p>
       </div>
@@ -1042,12 +1022,6 @@ function showResults(data) {
         container.insertAdjacentHTML('beforeend', renderCareerCard(career, i + 1));
     });
 
-    // Animate cards in
-    setTimeout(() => {
-        document.querySelectorAll('.result-card').forEach((card, i) => {
-            setTimeout(() => card.classList.add('visible'), i * 250);
-        });
-    }, 200);
 }
 
 // --- Retry ---

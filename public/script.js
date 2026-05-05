@@ -1,119 +1,14 @@
-// ===== INITIAL SHUFFLE STATE =====
+// ===== STATIC HEADLINE TEXT =====
 document.querySelectorAll('.shuffle-text').forEach((el) => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
     const finalValue = el.getAttribute('data-final') || '';
-    let value = '';
-    for (let i = 0; i < finalValue.length; i++) {
-        value += chars[Math.floor(Math.random() * chars.length)];
-    }
-    el.textContent = value;
+    el.textContent = finalValue;
 });
 
-// ===== CODE RAIN (Splash Screen) =====
-const rainEl = document.getElementById('codeRain');
-if (rainEl) {
-    const codeChars = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
-
-    for (let i = 0; i < 20; i++) {
-        const col = document.createElement('div');
-        col.className = 'code-col';
-        col.style.left = `${Math.random() * 100}%`;
-        col.style.animationDuration = `${6 + Math.random() * 8}s`;
-        col.style.animationDelay = `${Math.random() * 5}s`;
-
-        let content = '';
-        for (let j = 0; j < 15; j++) {
-            content += `${codeChars[Math.floor(Math.random() * codeChars.length)]}<br>`;
-        }
-
-        col.innerHTML = content;
-        rainEl.appendChild(col);
-    }
-}
-
-// ===== HERO FLOATERS (Floating Bubbles) =====
-const floatersEl = document.getElementById('floaters');
-if (floatersEl) {
-    const floaterTexts = [
-        'console.log("career")',
-        'import skills',
-        'git commit -m "future"',
-        'npm i success',
-        'def find_path():',
-        'SELECT * FROM jobs',
-        '404: fear not found',
-        'while(learning) grow()',
-        'sudo make me a developer',
-        '<BunBot />',
-        '{ const path = "tech"; }',
-        'git checkout new-life',
-        'try { succeed() } catch (e) { learn() }',
-        'public static void main()',
-        'SELECT dream FROM opportunities',
-        'floaters.push("success")'
-    ];
-
-    for (let i = 0; i < 15; i++) {
-        const floater = document.createElement('div');
-        floater.className = 'floater';
-        floater.textContent = floaterTexts[i];
-
-        // Spread floaters evenly across the entire width of the page
-        // Math.random() * 95 ensures they don't overflow past 100vw on the right side
-        floater.style.left = `${Math.random() * 92}%`;
-
-        floater.style.animationDuration = `${10 + Math.random() * 12}s`;
-        floater.style.animationDelay = `${Math.random() * 8}s`;
-        floatersEl.appendChild(floater);
-    }
-}
-
-// ===== SPLASH -> MAIN PAGE TRANSITION =====
-setTimeout(() => {
-    const splash = document.getElementById('splash');
-    const mainPage = document.getElementById('main-page');
-
-    if (splash) splash.classList.add('hide');
-    if (mainPage) mainPage.classList.add('show');
-
-    setTimeout(() => {
-        document.querySelectorAll('.shuffle-text').forEach((el, i) => {
-            shuffleText(el, i * 400);
-        });
-    }, 500);
-}, 3000);
-
-// ===== LETTER SHUFFLE ANIMATION =====
-function shuffleText(el, delay) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
-    const finalText = el.getAttribute('data-final') || '';
-    const duration = 1200;
-    const iterations = 12;
-    let currentIteration = 0;
-
-    setTimeout(() => {
-        const interval = setInterval(() => {
-            currentIteration += 1;
-            const progress = currentIteration / iterations;
-
-            let display = '';
-            for (let i = 0; i < finalText.length; i++) {
-                if (i / finalText.length < progress) {
-                    display += finalText[i];
-                } else {
-                    display += chars[Math.floor(Math.random() * chars.length)];
-                }
-            }
-
-            el.textContent = display;
-
-            if (currentIteration >= iterations) {
-                clearInterval(interval);
-                el.textContent = finalText;
-            }
-        }, duration / iterations);
-    }, delay);
-}
+// ===== SHOW MAIN PAGE IMMEDIATELY =====
+const splash = document.getElementById('splash');
+const mainPage = document.getElementById('main-page');
+if (splash) splash.classList.add('hide');
+if (mainPage) mainPage.classList.add('show');
 
 // ===== AUTH MODAL + PROFILE FLOW =====
 const authModal = document.getElementById('signupModal');
@@ -316,43 +211,14 @@ if (pageName === 'index.html') {
     }
 }
 
-// ===== COUNT-UP ANIMATION (Stats Section) =====
-function animateCount(el) {
+// ===== STATIC STATS SECTION =====
+function setFinalStatValue(el) {
     const target = Number(el.getAttribute('data-target'));
     const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 2000;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(eased * target);
-
-        el.textContent = `${current}${suffix}`;
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        } else {
-            el.textContent = `${target}${suffix}`;
-        }
-    }
-
-    requestAnimationFrame(update);
+    el.textContent = `${target}${suffix}`;
 }
 
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            document.querySelectorAll('.stat-num').forEach((el) => animateCount(el));
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsRow = document.querySelector('.stats-row');
-if (statsRow) statsObserver.observe(statsRow);
+document.querySelectorAll('.stat-num').forEach((el) => setFinalStatValue(el));
 
 // ===== HAMBURGER MENU =====
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
