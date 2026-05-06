@@ -141,195 +141,347 @@ export default function DashboardClient() {
   } = data;
 
   return (
-    <div className="dash">
+
+    <div className="dash-layout">
       {/* Celebration overlay */}
       {showCeleb && (
         <CelebrationOverlay xpGained={xpGained} onDismiss={() => setShowCeleb(false)} />
       )}
 
-      {/* Hero header */}
-      <div className="dash-hero">
-        <div className="dash-hero-left">
-          <h1>Welcome back, <span>{firstName}</span> 👋</h1>
-          <p className="dash-hero-sub">Your Apex Growth dashboard — track, level up, and own your career journey.</p>
+      {/* Sidebar */}
+      <div className="dash-sidebar">
+        <div className="dash-sidebar-logo">
+          🐇 <span>SkillBun</span>
         </div>
-        <div className="dash-hero-badges">
-          <span className="dash-badge dash-badge-xp">⚡ {totalXP.toLocaleString()} XP</span>
-          <span className="dash-badge dash-badge-streak">🗺️ {roadmaps.length} Active {roadmaps.length === 1 ? 'Path' : 'Paths'}</span>
+        
+        <div className="dash-sidebar-menu">
+          <div className="dash-sidebar-label">Menu</div>
+          <Link href="/dashboard" className="dash-nav-item active">
+            <span className="dash-nav-icon">📊</span> Dashboard
+          </Link>
+          <Link href="/quiz" className="dash-nav-item">
+            <span className="dash-nav-icon">🎯</span> Career Quiz
+          </Link>
+          <Link href="/roadmap" className="dash-nav-item">
+            <span className="dash-nav-icon">🗺️</span> Roadmaps
+          </Link>
+          <Link href="/profile" className="dash-nav-item">
+            <span className="dash-nav-icon">👤</span> Profile
+          </Link>
+
+          <div className="dash-sidebar-label">General</div>
+          <Link href="/settings" className="dash-nav-item">
+            <span className="dash-nav-icon">⚙️</span> Settings
+          </Link>
+          <Link href="/help" className="dash-nav-item">
+            <span className="dash-nav-icon">❓</span> Help
+          </Link>
+        </div>
+
+        <div className="dash-sidebar-app-card">
+          <h4>Download our Mobile App</h4>
+          <p>Get SkillBun on the go.</p>
+          <button className="dash-sidebar-app-btn">Download</button>
         </div>
       </div>
 
-      {/* Main grid */}
-      <div className="dash-grid">
-
-        {/* 1. Core Progress Engine — Donut */}
-        <div className="dash-card dash-card-full">
-          <div className="dash-card-title">🎯 Core Progress Engine</div>
-          <div className="dash-card-sub">Your overall journey across all active roadmaps</div>
-          <div className="dash-donut-wrap">
-            <div className="dash-donut">
-              <svg viewBox="0 0 200 200">
-                <defs>
-                  <linearGradient id="dashDonutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2ECC71" />
-                    <stop offset="100%" stopColor="#A8FF3E" />
-                  </linearGradient>
-                </defs>
-                <circle cx="100" cy="100" r={DONUT_RADIUS} className="dash-donut-bg" />
-                <circle
-                  cx="100" cy="100" r={DONUT_RADIUS}
-                  className="dash-donut-bar"
-                  stroke="url(#dashDonutGrad)"
-                  strokeDasharray={`${(overallPct / 100) * DONUT_CIRCUMFERENCE} ${DONUT_CIRCUMFERENCE}`}
-                />
-              </svg>
-              <div className="dash-donut-center">
-                <span className="dash-donut-xp">{totalXP.toLocaleString()}</span>
-                <span className="dash-donut-xp-label">Total XP</span>
-                <span className="dash-donut-pct">{overallPct}% Complete</span>
-              </div>
-            </div>
-
-            <div className="dash-donut-metrics">
-              <div className="dash-metric">
-                <span className="dash-metric-icon">📊</span>
-                <div className="dash-metric-info">
-                  <span className="dash-metric-value">{efficiency}%</span>
-                  <span className="dash-metric-label">Efficiency Score</span>
-                </div>
-              </div>
-              <div className="dash-metric">
-                <span className="dash-metric-icon">✅</span>
-                <div className="dash-metric-info">
-                  <span className="dash-metric-value">{totalDone} / {totalNodes}</span>
-                  <span className="dash-metric-label">Skills Completed</span>
-                </div>
-              </div>
-            </div>
+      {/* Main Content */}
+      <div className="dash-main">
+        
+        {/* Top Header Row */}
+        <div className="dash-header">
+          <div className="dash-header-title">
+            <h1>Dashboard</h1>
+            <p>Plan, prioritize, and accomplish your career goals</p>
           </div>
         </div>
 
-        {/* 2. Active Roadmaps */}
-        <div className="dash-card dash-card-full">
-          <div className="dash-card-title">🗺️ Active Roadmaps</div>
-          <div className="dash-card-sub">Click any roadmap to continue your journey</div>
-          <div className="dash-roadmaps-scroll">
-            {roadmaps.map(rm => (
-              <Link
-                key={rm.slug}
-                href={`/roadmap/${rm.slug}`}
-                className="dash-roadmap-card"
-              >
-                <div className="dash-roadmap-mini-donut">
-                  <svg viewBox="0 0 44 44">
-                    <circle cx="22" cy="22" r={MINI_DONUT_RADIUS} className="dash-roadmap-mini-bg" />
-                    <circle
-                      cx="22" cy="22" r={MINI_DONUT_RADIUS}
-                      className="dash-roadmap-mini-bar"
-                      stroke="url(#dashDonutGrad)"
-                      strokeDasharray={`${(rm.pct / 100) * MINI_DONUT_CIRCUMFERENCE} ${MINI_DONUT_CIRCUMFERENCE}`}
-                      style={{ transform: 'rotate(-90deg)', transformOrigin: 'center' }}
+        {/* 4 Metric Cards */}
+        <div className="dash-metrics-grid">
+          <div className="dash-metric-card dash-metric-green dark-glow-card">
+            <div className="dash-mc-top">
+              <div className="dash-mc-title dark-green-title">Total XP</div>
+              <span className="dash-mc-icon-border">↗</span>
+            </div>
+            <div className="dash-mc-val text-white">{totalXP.toLocaleString()}</div>
+            <div className="dash-mc-sub">⚡ Leveling up this month</div>
+          </div>
+
+          <div className="dash-metric-card dark-card">
+            <div className="dash-mc-top">
+              <div className="dash-mc-title dark-yellow">Active Paths</div>
+            </div>
+            <div className="dash-mc-val text-white">{roadmaps.length}</div>
+            <div className="dash-mc-sub">✅ Increased from last month</div>
+          </div>
+
+          <div className="dash-metric-card dark-card">
+            <div className="dash-mc-top">
+              <div className="dash-mc-title dark-yellow">Skills Mastered</div>
+            </div>
+            <div className="dash-mc-val text-white">{totalDone}</div>
+            <div className="dash-mc-sub">✅ Validated nodes</div>
+          </div>
+
+          <div className="dash-metric-card dark-card">
+            <div className="dash-mc-top">
+              <div className="dash-mc-title dark-yellow">Remaining</div>
+            </div>
+            <div className="dash-mc-val text-white">{totalNodes - totalDone}</div>
+            <div className="dash-mc-sub">🔥 On Discuss</div>
+          </div>
+        </div>
+
+        {/* Middle Row */}
+        <div className="dash-content-grid">
+          
+          {/* Performance & Goals */}
+          <div className="dash-card dash-span-2 dark-card">
+            <div className="dash-card-header" style={{ marginBottom: 0 }}>
+              <div className="dash-card-title dark-yellow">Performance & Goals</div>
+            </div>
+            <div className="dash-card-sub" style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 600 }}>Your estimated standing and career-readiness tracker</div>
+            
+            <div className="dash-perf-grid">
+              {/* Horizontal Bar chart */}
+              <div className="dash-rank-chart">
+                <div className="dash-rank-label">Estimated Global Standing</div>
+                <div className="dash-rank-bars-horizontal">
+                  <div className="dash-rank-bar-col">
+                    <div className="dash-rank-val dark-green">{Math.round(globalPercentile * 0.6)}%</div>
+                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: `${Math.max(8, globalPercentile * 0.6)}%` }}></div></div>
+                    <div className="dash-rank-lbl">Avg<br/>User</div>
+                  </div>
+                  <div className="dash-rank-bar-col">
+                    <div className="dash-rank-val dark-green">{globalPercentile}%</div>
+                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: `${Math.max(8, globalPercentile)}%` }}></div></div>
+                    <div className="dash-rank-lbl">You</div>
+                  </div>
+                  <div className="dash-rank-bar-col">
+                    <div className="dash-rank-val dark-green">99%</div>
+                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: '99%' }}></div></div>
+                    <div className="dash-rank-lbl">Top 1%</div>
+                  </div>
+                </div>
+                <div className="dash-percentile-badge dark-badge">
+                  <span style={{ color: 'var(--green)' }}>🔥 Top {Math.max(1, 100 - globalPercentile)}% of learners</span>
+                </div>
+              </div>
+
+              {/* Burn-down chart */}
+              <div className="dash-burndown">
+                <div className="dash-burndown-label">Career-Ready Progress</div>
+                <div className="dash-burndown-visual">
+                  <div className="dash-burndown-track dark-track">
+                    <div
+                      className="dash-burndown-fill dark-fill"
+                      style={{ width: `${overallPct}%` }}
                     />
-                  </svg>
-                  <span className="dash-roadmap-mini-pct">{rm.pct}%</span>
-                </div>
-                <div className="dash-roadmap-info">
-                  <span className="dash-roadmap-title">{rm.title}</span>
-                  <span className="dash-roadmap-stat">{rm.done}/{rm.total} skills · {rm.xp} XP</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* 3. Industry Intel */}
-        <div className="dash-card">
-          <div className="dash-card-title">📡 Industry Intel</div>
-          <div className="dash-card-sub">Daily insights for your career field</div>
-          <div className="dash-intel-list">
-            {dailyIntel.map((item, i) => (
-              <div key={i} className="dash-intel-item">
-                <span className="dash-intel-icon">{item.icon}</span>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 4. Vibe Check */}
-        <div className="dash-card dash-card-vibe">
-          <div className="dash-card-title">💬 Vibe Check</div>
-          <div className="dash-card-sub">Your daily dose of tech motivation</div>
-          <div className="dash-vibe">
-            <div className="dash-vibe-emoji">{vibeQuote.emoji}</div>
-            <p className="dash-vibe-text">&ldquo;{vibeQuote.text}&rdquo;</p>
-            <div className="dash-vibe-footer">
-              <span className="dash-vibe-dot" />
-              Refreshes daily
-            </div>
-          </div>
-        </div>
-
-        {/* 5. Comparative Performance */}
-        <div className="dash-card dash-card-full">
-          <div className="dash-card-title">📈 Performance & Goals</div>
-          <div className="dash-card-sub">Your estimated standing and career-readiness tracker</div>
-          <div className="dash-perf-grid">
-            {/* Bar chart */}
-            <div className="dash-rank-chart">
-              <div className="dash-rank-label">Estimated Global Standing</div>
-              <div className="dash-rank-bars">
-                <div className="dash-rank-bar-group">
-                  <div className="dash-rank-bar-value">{Math.round(globalPercentile * 0.6)}%</div>
-                  <div
-                    className="dash-rank-bar dash-rank-bar-avg"
-                    style={{ height: `${Math.max(8, globalPercentile * 0.6)}%` }}
-                  />
-                  <span className="dash-rank-bar-label">Avg User</span>
-                </div>
-                <div className="dash-rank-bar-group">
-                  <div className="dash-rank-bar-value">{globalPercentile}%</div>
-                  <div
-                    className="dash-rank-bar dash-rank-bar-you"
-                    style={{ height: `${Math.max(8, globalPercentile)}%` }}
-                  />
-                  <span className="dash-rank-bar-label">You</span>
-                </div>
-                <div className="dash-rank-bar-group">
-                  <div className="dash-rank-bar-value">99%</div>
-                  <div
-                    className="dash-rank-bar dash-rank-bar-top"
-                    style={{ height: '99%' }}
-                  />
-                  <span className="dash-rank-bar-label">Top 1%</span>
-                </div>
-              </div>
-              <div className="dash-percentile-badge">
-                🏅 Top {Math.max(1, 100 - globalPercentile)}% of learners
-              </div>
-            </div>
-
-            {/* Burn-down chart */}
-            <div className="dash-burndown">
-              <div className="dash-burndown-label">Career-Ready Progress</div>
-              <div className="dash-burndown-visual">
-                <div className="dash-burndown-track">
-                  <div
-                    className="dash-burndown-fill"
-                    style={{ width: `${overallPct}%` }}
-                  />
-                </div>
-                <div className="dash-burndown-stats">
-                  <span>{totalDone} done</span>
-                  <span className="dash-green">{overallPct}%</span>
-                  <span>{totalNodes - totalDone} remaining</span>
+                  </div>
+                  <div className="dash-burndown-stats">
+                    <span>{totalDone} done</span>
+                    <span className="dash-green">{overallPct}%</span>
+                    <span>{totalNodes - totalDone} remaining</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Reminders */}
+          <div className="dash-card dash-card-vibe dark-card" style={{ justifyContent: 'space-between' }}>
+            <div className="dash-card-header">
+              <div className="dash-card-title dark-yellow">🔔 Reminders</div>
+            </div>
+            {roadmaps.length > 0 ? (
+              <div className="dark-inner-box">
+                <div className="dash-vibe" style={{padding: '0.5rem 0.5rem', textAlign: 'left', alignItems: 'flex-start'}}>
+                  <h3 style={{fontFamily: 'var(--font-nunito), sans-serif', margin: 0, fontSize: '1.05rem', color: '#fff'}}>You left off at <br/>{roadmaps[0].title}</h3>
+                  <p className="dash-vibe-text" style={{fontSize: '0.8rem', color: 'var(--muted)', marginTop: '0.8rem', fontStyle: 'normal', textAlign: 'left', fontWeight: 'bold'}}>
+                    <span className="dark-yellow">What\'s next:</span><br/>
+                    Complete the next<br/>skill node to reach<br/>{roadmaps[0].done + 1}/{roadmaps[0].total}!
+                  </p>
+                </div>
+                <Link href={`/roadmap/${roadmaps[0].slug}`} className="dash-btn-primary dark-glow-btn" style={{width: '100%', marginTop: '0.5rem', display: 'block', textAlign: 'center'}}>
+                  ▶ Continue Journey
+                </Link>
+              </div>
+            ) : (
+              <div className="dark-inner-box">
+                <div className="dash-vibe" style={{padding: '0.5rem 0.5rem', textAlign: 'left', alignItems: 'flex-start'}}>
+                  <h3 style={{fontFamily: 'var(--font-nunito), sans-serif', margin: 0, fontSize: '1.05rem', color: '#fff'}}>No Active Paths</h3>
+                  <p className="dash-vibe-text" style={{fontSize: '0.8rem', color: 'var(--muted)', marginTop: '0.8rem', fontStyle: 'normal', textAlign: 'left', fontWeight: 'bold'}}>
+                    Take the career quiz to get your personalized roadmap and start tracking progress!
+                  </p>
+                </div>
+                <Link href="/quiz" className="dash-btn-primary dark-glow-btn" style={{width: '100%', marginTop: '0.5rem', display: 'block', textAlign: 'center'}}>
+                  ▶ Take Quiz
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Roadmaps List (Project equivalent) */}
+          <div className="dash-card dark-card">
+            <div className="dash-card-header">
+              <div className="dash-card-title dark-yellow">Project</div>
+              <Link href="/quiz" className="dash-card-action" style={{ color: '#fff', border: 'none', background: 'transparent' }}>+ New</Link>
+            </div>
+            <div className="dash-roadmaps-list">
+              {roadmaps.map(rm => {
+                const rmPct = rm.total > 0 ? Math.round((rm.done / rm.total) * 100) : 0;
+                return (
+                  <Link key={rm.slug} href={`/roadmap/${rm.slug}`} className="dash-rm-item dark-rm-item">
+                    <div className="dash-rm-icon" style={{ background: 'transparent', fontSize: '1.2rem' }}>📗</div>
+                    <div className="dash-rm-info" style={{ flex: 1 }}>
+                      <div className="dash-rm-title dark-yellow" style={{ fontSize: '0.9rem' }}>{rm.title}</div>
+                      <div className="dash-rm-stat" style={{ color: 'var(--muted)', fontSize: '0.75rem', marginBottom: '0.4rem' }}>{rm.done}/{rm.total} done</div>
+                      <div className="dark-rm-progress">
+                        <div className="dark-rm-track">
+                          <div className="dark-rm-fill" style={{width: `${rmPct}%`}}></div>
+                        </div>
+                        <span className="dark-rm-pct">{rmPct}%</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
+        {/* Bottom Row */}
+        <div className="dash-content-grid bottom-grid">
+          
+          {/* Industry Intel */}
+          <div className="dash-card dash-span-2 dark-card">
+            <div className="dash-card-header" style={{ justifyContent: 'flex-start', gap: '0.5rem' }}>
+              <div className="dash-card-title dark-yellow">Industry Intel</div>
+              <div className="dash-card-sub" style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 600, margin: 0 }}>Daily insights for your career field</div>
+            </div>
+            <div className="dash-intel-list dark-intel-list">
+              {dailyIntel.map((item, i) => {
+                let mockIcon = '🛠️';
+                if (i === 1) mockIcon = '💡';
+                if (i === 2) mockIcon = '🌐';
+                if (i === 3) mockIcon = '⚡';
+                
+                let text = item.text;
+                text = text.replace(/(\d+%|\d+x)/g, '<span class="dark-yellow">$1</span>');
+
+                return (
+                  <div key={i} className="dash-intel-item dark-intel-item">
+                    <span className="dash-intel-icon" style={{ fontSize: '1rem', flexShrink: 0 }}>{mockIcon}</span>
+                    <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#ccc', lineHeight: 1.4 }} dangerouslySetInnerHTML={{ __html: text }}></span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Project Progress */}
+          <div className="dash-card dark-card">
+            <div className="dash-card-header">
+              <div className="dash-card-title dark-yellow">Project Progress</div>
+            </div>
+            <div className="dash-donut-wrap dark-donut-wrap">
+              <div className="dash-donut dark-donut">
+                <svg viewBox="0 0 200 200">
+                  <circle cx="100" cy="100" r="82" className="dash-donut-bg dark-donut-bg" />
+                  <circle
+                    cx="100" cy="100" r="82"
+                    className="dash-donut-bar dark-donut-bar"
+                    stroke="#00FF00"
+                    strokeDasharray={`${(overallPct / 100) * (2 * Math.PI * 82)} ${(2 * Math.PI * 82)}`}
+                  />
+                </svg>
+                <div className="dash-donut-center">
+                  <span className="dash-donut-xp" style={{fontSize: '1.8rem', color: '#fff'}}>{overallPct}%</span>
+                  <span className="dash-donut-xp-label" style={{color: 'var(--muted)', fontWeight: '700', textTransform: 'none', letterSpacing: '0', fontSize: '0.6rem'}}>Project Ended</span>
+                </div>
+              </div>
+              <div className="dash-progress-legend" style={{display: 'flex', gap: '1rem', marginTop: '1rem', fontSize: '0.75rem', fontWeight: '700', color: 'var(--muted)'}}>
+                <span style={{display: 'flex', alignItems: 'center', gap: '0.3rem'}}><div style={{width: '6px', height: '6px', borderRadius: '50%', background: '#00FF00'}}></div> Completed</span>
+                <span style={{display: 'flex', alignItems: 'center', gap: '0.3rem'}}><div style={{width: '6px', height: '6px', borderRadius: '50%', background: '#F2C94C'}}></div> In Progress</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bun-Bot Quick Ask */}
+          <div className="dash-card dash-bunbot-card dark-glow-card" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'visible' }}>
+            
+            {/* Pixar Style CSS Bunny */}
+            <div className="pixar-bunny-container" style={{ transform: 'scale(0.85)', transformOrigin: 'center left' }}>
+              <div className="pixar-bunny">
+                {/* Ears */}
+                <div className="pb-ear pb-fur pb-ear-left"></div>
+                <div className="pb-ear pb-fur pb-ear-right"></div>
+                
+                {/* Body Elements */}
+                <div className="pb-body pb-fur">
+                  <div className="pb-arm pb-fur pb-arm-left"></div>
+                  <div className="pb-leg pb-fur pb-leg-left"></div>
+                  <div className="pb-leg pb-fur pb-leg-right"></div>
+                </div>
+
+                {/* Right Waving Arm */}
+                <div className="pb-arm pb-fur pb-arm-right"></div>
+
+                {/* Head */}
+                <div className="pb-head pb-fur">
+                  <div className="pb-cheek pb-fur pb-cheek-left"></div>
+                  <div className="pb-cheek pb-fur pb-cheek-right"></div>
+                  
+                  <div className="pb-eye pb-eye-left">
+                    <div className="pb-iris">
+                      <div className="pb-pupil">
+                        <div className="pb-catchlight-1"></div>
+                        <div className="pb-catchlight-2"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pb-eye pb-eye-right">
+                    <div className="pb-iris">
+                      <div className="pb-pupil">
+                        <div className="pb-catchlight-1"></div>
+                        <div className="pb-catchlight-2"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="pb-snout">
+                    <div className="pb-nose"></div>
+                    <div className="pb-mouth">
+                      <div className="pb-tongue"></div>
+                      <div className="pb-teeth"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Small Boxed Layout Content */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', zIndex: 1, marginLeft: '-10px' }}>
+              <p style={{ fontSize: '0.85rem', fontWeight: 700, margin: 0, lineHeight: 1.3 }}>
+                <span className="dark-yellow">Brain fogged?</span><br/>
+                <span className="dark-yellow">Talk to Bun-Bot!</span>
+              </p>
+              <form action="/counsellor" method="GET" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <input 
+                  type="text" 
+                  name="q" 
+                  placeholder="Ask me anything..." 
+                  style={{ width: '100%', padding: '0', border: 'none', background: 'transparent', color: '#fff', fontSize: '0.75rem', outline: 'none' }}
+                  required
+                />
+                <button type="submit" className="dark-glow-btn" style={{ padding: '0.3rem 0', fontSize: '0.75rem', width: '80px', alignSelf: 'center', marginTop: '0.2rem' }}>Ask</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
+
   );
 }
