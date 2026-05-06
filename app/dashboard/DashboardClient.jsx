@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { useStoredProfile } from '@/utils/shared/profileStore';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../components/AuthProvider';
 import { useDashboardData } from './dashboardUtils';
 import './dashboard.css';
 
@@ -73,8 +74,9 @@ function CelebrationOverlay({ xpGained, onDismiss }) {
 
 /* ─── Main Dashboard ─────────────────────────────────────────── */
 export default function DashboardClient() {
-  const profile = useStoredProfile();
-  const { data, loading } = useDashboardData();
+  const router = useRouter();
+  const { user, profile, authLoading, profileLoading, isProfileComplete, progressVersion } = useAuth();
+  const { data, loading } = useDashboardData(progressVersion);
   const [showCeleb, setShowCeleb] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -90,8 +92,19 @@ export default function DashboardClient() {
     }
   }, [data?.showCelebration]);
 
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.replace('/auth?next=/dashboard');
+      return;
+    }
+
+    if (!authLoading && !profileLoading && user && !isProfileComplete) {
+      router.replace('/onboarding?next=/dashboard');
+    }
+  }, [authLoading, isProfileComplete, profileLoading, router, user]);
+
   /* Loading state */
-  if (loading || !mounted) {
+  if (authLoading || profileLoading || !user || !isProfileComplete || loading || !mounted) {
     return (
       <div className="dash">
         <div className="dash-loading">

@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useStoredProfile } from '@/utils/shared/profileStore';
+import { useAuth } from './AuthProvider';
 import ThemeToggle from './ThemeToggle';
 
 const GUEST_ITEMS = [
-  { href: '/onboarding?next=/dashboard', label: 'Log In', icon: 'login' },
-  { href: '/onboarding?next=/dashboard', label: 'Sign Up', icon: 'signup' },
+  { href: '/auth?next=/dashboard&mode=login', label: 'Log In', icon: 'login' },
+  { href: '/auth?next=/dashboard&mode=signup', label: 'Sign Up', icon: 'signup' },
 ];
 
 const INCOMPLETE_PROFILE_ITEMS = [
@@ -18,7 +18,7 @@ const INCOMPLETE_PROFILE_ITEMS = [
 
 const COMPLETE_PROFILE_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { href: '/onboarding?next=/dashboard', label: 'Profile Settings', icon: 'profile' },
+  { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
   { href: '/dashboard', label: 'Learning Progress', icon: 'progress' },
   { href: '/dashboard', label: 'Saved Paths', icon: 'saved' },
   { href: '/contact', label: 'Support Center', icon: 'support', external: false },
@@ -88,6 +88,15 @@ function MenuIcon({ name }) {
         <path d="M21 12H9" />
       </>
     ),
+    trash: (
+      <>
+        <path d="M3 6h18" />
+        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+      </>
+    ),
   };
 
   return <svg className="user-menu-icon" {...commonProps}>{icons[name]}</svg>;
@@ -130,10 +139,12 @@ function ThemeMenuRow() {
 
 export default function UserMenu() {
   const menuRef = useRef(null);
-  const profile = useStoredProfile();
+  const { user, profile, authLoading, profileLoading, isProfileComplete, signOutUser, deleteAccount } = useAuth();
   const [accountOpen, setAccountOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
+  const [accountError, setAccountError] = useState('');
 
   useEffect(() => {
     if (!accountOpen && !navOpen) {
@@ -178,17 +189,47 @@ export default function UserMenu() {
     event.stopPropagation();
 
     setSigningOut(true);
+    setAccountError('');
     setAccountOpen(false);
     closeNavMenu();
 
-    localStorage.removeItem('sb_name');
-    localStorage.removeItem('sb_email');
-    localStorage.removeItem('sb_degree');
-    localStorage.removeItem('sb_year');
-    localStorage.removeItem('sb_counsel_rl');
-    localStorage.removeItem('sb_human_proof');
-    localStorage.removeItem('sb_dest');
-    window.location.assign('/');
+    try {
+      await signOutUser();
+      window.location.assign('/');
+    } catch (error) {
+      console.error('Failed to sign out:', error);
+      setSigningOut(false);
+    }
+  };
+
+  const handleDeleteAccount = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const confirmed = window.confirm(
+      'Delete your SkillBun account? This removes your Firebase account, profile, and saved roadmap progress. This cannot be undone.'
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setDeletingAccount(true);
+    setAccountError('');
+
+    try {
+      await deleteAccount();
+      setAccountOpen(false);
+      closeNavMenu();
+      window.location.assign('/');
+    } catch (error) {
+      console.error('Failed to delete account:', error);
+      const message = error?.code === 'auth/requires-recent-login'
+        ? 'For safety, log out and log back in before deleting your account.'
+        : 'Could not delete your account. Please try again.';
+      setAccountError(message);
+      setDeletingAccount(false);
+    }
   };
 
   const toggleAccountMenu = (event) => {
@@ -216,7 +257,7 @@ export default function UserMenu() {
     </button>
   );
 
-  if (!profile.hydrated) {
+  if (authLoading || (user && profileLoading) || !profile.hydrated) {
     return (
       <div className="mobile-dropdown-group user-menu-shell">
         <div className="user-menu-wrapper" ref={menuRef}>
@@ -240,7 +281,7 @@ export default function UserMenu() {
     );
   }
 
-  if (!profile.hasName) {
+  if (!user) {
     return (
       <div className="mobile-dropdown-group user-menu-shell">
         <div className="user-menu-wrapper" ref={menuRef}>
@@ -305,15 +346,15 @@ export default function UserMenu() {
     );
   }
 
-  const firstName = profile.name.split(' ')[0];
-  const initials = profile.name
+  const displayName = profile.hasName ? profile.name : user.email?.split('@')[0] || 'Student';
+  const firstName = displayName.split(' ')[0];
+  const initials = displayName
     .split(' ')
     .map((part) => part[0])
     .join('')
     .toUpperCase()
     .slice(0, 2);
   const mobileInitial = initials[0] || 'S';
-  const isProfileComplete = Boolean(profile.degree && profile.year);
   const accountItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
 
   return (
@@ -326,7 +367,7 @@ export default function UserMenu() {
             onClick={toggleAccountMenu}
             aria-expanded={accountOpen}
             aria-haspopup="menu"
-            title={`Logged in as ${profile.name}`}
+            title={`Logged in as ${displayName}`}
           >
             <span className="user-pill-avatar">
               <span className="user-pill-initials user-pill-initials-full">{initials}</span>
@@ -346,7 +387,7 @@ export default function UserMenu() {
             <div className="user-menu-heading user-menu-heading-auth">
               <span className="user-menu-heading-avatar">{initials}</span>
               <span className="user-menu-heading-copy">
-                <span className="user-menu-heading-title">{profile.name}</span>
+                <span className="user-menu-heading-title">{displayName}</span>
                 <span className="user-menu-heading-meta">
                   {isProfileComplete ? 'Student Account' : 'Profile setup needed'}
                 </span>
@@ -364,12 +405,24 @@ export default function UserMenu() {
             <button
               className="user-menu-item user-menu-signout"
               onClick={handleLogout}
-              disabled={signingOut}
+              disabled={signingOut || deletingAccount}
               role="menuitem"
             >
               <MenuIcon name="logout" />
               <span>{signingOut ? 'Signing out...' : 'Log Out'}</span>
             </button>
+
+            <button
+              className="user-menu-item user-menu-delete"
+              onClick={handleDeleteAccount}
+              disabled={signingOut || deletingAccount}
+              role="menuitem"
+            >
+              <MenuIcon name="trash" />
+              <span>{deletingAccount ? 'Deleting account...' : 'Delete Account'}</span>
+            </button>
+
+            {accountError && <p className="user-menu-error" role="status">{accountError}</p>}
           </div>
         )}
 
@@ -383,7 +436,7 @@ export default function UserMenu() {
             <div className="user-menu-heading user-menu-heading-auth">
               <span className="user-menu-heading-avatar">{initials}</span>
               <span className="user-menu-heading-copy">
-                <span className="user-menu-heading-title">{profile.name}</span>
+                <span className="user-menu-heading-title">{displayName}</span>
                 <span className="user-menu-heading-meta">
                   {isProfileComplete ? 'Student Account' : 'Profile setup needed'}
                 </span>
@@ -403,12 +456,24 @@ export default function UserMenu() {
             <button
               className="user-menu-item user-menu-signout"
               onClick={handleLogout}
-              disabled={signingOut}
+              disabled={signingOut || deletingAccount}
               role="menuitem"
             >
               <MenuIcon name="logout" />
               <span>{signingOut ? 'Signing out...' : 'Log Out'}</span>
             </button>
+
+            <button
+              className="user-menu-item user-menu-delete"
+              onClick={handleDeleteAccount}
+              disabled={signingOut || deletingAccount}
+              role="menuitem"
+            >
+              <MenuIcon name="trash" />
+              <span>{deletingAccount ? 'Deleting account...' : 'Delete Account'}</span>
+            </button>
+
+            {accountError && <p className="user-menu-error" role="status">{accountError}</p>}
           </div>
         )}
       </div>

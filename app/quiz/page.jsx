@@ -2,20 +2,25 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useStoredProfile } from '@/utils/shared/profileStore';
+import { useAuth } from '../components/AuthProvider';
 
 export default function QuizPage() {
   const router = useRouter();
-  const profile = useStoredProfile();
+  const { user, profile, authLoading, profileLoading, isProfileComplete } = useAuth();
 
   useEffect(() => {
-    if (profile.hydrated && (!profile.degree || !profile.year)) {
+    if (!authLoading && !user) {
+      router.replace('/auth?next=/quiz');
+      return;
+    }
+
+    if (!authLoading && !profileLoading && user && !isProfileComplete) {
       router.replace('/onboarding?next=/quiz');
     }
-  }, [profile.degree, profile.hydrated, profile.year, router]);
+  }, [authLoading, isProfileComplete, profileLoading, router, user]);
 
   useEffect(() => {
-    if (!profile.hydrated || !profile.degree || !profile.year) {
+    if (authLoading || profileLoading || !user || !isProfileComplete) {
       return undefined;
     }
 
@@ -38,9 +43,9 @@ export default function QuizPage() {
       cancelled = true;
       cleanup();
     };
-  }, [profile.degree, profile.hydrated, profile.year]);
+  }, [authLoading, isProfileComplete, profileLoading, user]);
 
-  if (!profile.hydrated || !profile.degree || !profile.year) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
+  if (authLoading || profileLoading || !profile.hydrated || !user || !isProfileComplete) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name, degree, year } = profile;
 

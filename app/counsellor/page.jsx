@@ -1,20 +1,25 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useStoredProfile } from '@/utils/shared/profileStore';
+import { useAuth } from '../components/AuthProvider';
 
 export default function CounsellorPage() {
   const router = useRouter();
-  const profile = useStoredProfile();
+  const { user, profile, authLoading, profileLoading, isProfileComplete } = useAuth();
 
   useEffect(() => {
-    if (profile.hydrated && (!profile.degree || !profile.year)) {
+    if (!authLoading && !user) {
+      router.replace('/auth?next=/counsellor');
+      return;
+    }
+
+    if (!authLoading && !profileLoading && user && !isProfileComplete) {
       router.replace('/onboarding?next=/counsellor');
     }
-  }, [profile.degree, profile.hydrated, profile.year, router]);
+  }, [authLoading, isProfileComplete, profileLoading, router, user]);
 
   useEffect(() => {
-    if (!profile.hydrated || !profile.degree || !profile.year) {
+    if (authLoading || profileLoading || !user || !isProfileComplete) {
       return undefined;
     }
 
@@ -37,9 +42,9 @@ export default function CounsellorPage() {
       cancelled = true;
       cleanup();
     };
-  }, [profile.degree, profile.hydrated, profile.year]);
+  }, [authLoading, isProfileComplete, profileLoading, user]);
 
-  if (!profile.hydrated || !profile.degree || !profile.year) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
+  if (authLoading || profileLoading || !profile.hydrated || !user || !isProfileComplete) return <div id="main-page" style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name } = profile;
 

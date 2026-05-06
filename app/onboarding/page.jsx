@@ -2,21 +2,28 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { normalizeInternalPath } from '@/utils/shared/routes';
-import { saveStoredProfile, useStoredProfile } from '@/utils/shared/profileStore';
+import { useAuth } from '../components/AuthProvider';
 
 function OnboardingForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = normalizeInternalPath(searchParams.get('next'), '/quiz');
-  const profile = useStoredProfile();
+  const editMode = searchParams.get('edit') === '1';
+  const { user, profile, authLoading, profileLoading, isProfileComplete, saveProfile } = useAuth();
 
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (profile.hydrated && profile.degree && profile.year) {
+    if (!authLoading && !user) {
+      router.replace(`/auth?next=${encodeURIComponent(next)}`);
+      return;
+    }
+
+    if (!authLoading && !profileLoading && isProfileComplete && !editMode) {
       router.replace(next);
     }
-  }, [next, profile.degree, profile.hydrated, profile.year, router]);
+  }, [authLoading, editMode, isProfileComplete, next, profileLoading, router, user]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,6 +31,7 @@ function OnboardingForm() {
     const name = String(formData.get('name') || '').trim();
     const degree = String(formData.get('degree') || '').trim();
     const year = String(formData.get('year') || '').trim();
+    const interest = String(formData.get('interest') || '').trim();
 
     if (!name || !degree || !year) {
       alert('Please fill in all required fields');
@@ -31,11 +39,19 @@ function OnboardingForm() {
     }
 
     setSaving(true);
-    saveStoredProfile({ name, degree, year });
-    router.replace(next);
+    setError('');
+
+    try {
+      await saveProfile({ name, degree, year, interest });
+      router.replace(next);
+    } catch (saveError) {
+      console.error('Failed to save Firebase profile:', saveError);
+      setError('Could not save your profile. Please check Firebase setup and try again.');
+      setSaving(false);
+    }
   }
 
-  if (!profile.hydrated || (profile.degree && profile.year)) {
+  if (authLoading || profileLoading || !profile.hydrated || !user || (isProfileComplete && !editMode)) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', flexDirection: 'column', gap: '1rem' }}>
         <div className="welcome-bunny" style={{ fontSize: '3rem' }}>🐰</div>
@@ -90,7 +106,7 @@ function OnboardingForm() {
 
         <div className="form-group">
           <label>Area of Interest (Optional)</label>
-          <select name="interest" defaultValue="">
+          <select name="interest" defaultValue={profile.interest || ''}>
             <option value="">Choose an area that excites you</option>
             <option value="Web Development">🌐 Web Development</option>
             <option value="AI / Machine Learning">🤖 AI / Machine Learning</option>
@@ -106,6 +122,10 @@ function OnboardingForm() {
         <button type="submit" className="btn-form" disabled={saving} style={{ marginTop: '1rem', fontSize: '1.05rem', padding: '1rem' }}>
           {saving ? '💾 Saving...' : '🚀 Let\'s Get Started!'}
         </button>
+
+        {error && (
+          <p className="auth-message error" style={{ marginTop: '1rem' }}>{error}</p>
+        )}
 
         <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.78rem', color: 'var(--muted)' }}>
           This helps our AI quiz and counsellor give you personalized advice. You can update this anytime.

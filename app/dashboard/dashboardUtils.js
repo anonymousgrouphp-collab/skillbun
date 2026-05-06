@@ -152,7 +152,7 @@ function classifyField(slug) {
 
 /* ─── main hook ──────────────────────────────────────────────── */
 
-export function useDashboardData() {
+export function useDashboardData(refreshKey = 0) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -161,6 +161,7 @@ export function useDashboardData() {
 
     async function load() {
       try {
+        setLoading(true);
         /* 1. Find all roadmap progress keys in localStorage */
         const progressKeys = [];
         for (let i = 0; i < localStorage.length; i++) {
@@ -299,7 +300,7 @@ export function useDashboardData() {
     load();
 
     return () => { cancelled = true; };
-  }, []);
+  }, [refreshKey]);
 
   return { data, loading };
 }

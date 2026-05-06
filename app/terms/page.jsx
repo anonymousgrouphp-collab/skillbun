@@ -11,7 +11,7 @@ export default function TermsPage() {
 
       <h2>1. Acceptance of Terms</h2>
       <p>
-        By accessing or registering on SkillBun, you agree to comply with and be bound by these Terms of Use. If you do not agree to the complete extent of this agreement, please refrain from using or accessing our platform. You accept responsibility for safeguarding your Google OAuth sign-in credentials.
+        By accessing or registering on SkillBun, you agree to comply with and be bound by these Terms of Use. If you do not agree to the complete extent of this agreement, please refrain from using or accessing our platform. You accept responsibility for safeguarding your Google or email sign-in credentials.
       </p>
 
       <h2>2. Service Description</h2>
@@ -42,7 +42,7 @@ export default function TermsPage() {
 
       <h2>6. Third-Party Infrastructures</h2>
       <p>
-        SkillBun operates using established third-party services: Google Gemini (for processing AI models), Google OAuth (for single sign-on authentication), Cloudflare Turnstile (for bot mitigation), and Supabase (for database and storage). Interaction with these providers is also governed by their respective Terms of Service. Their availability, latencies, and underlying policies remain outside SkillBun's direct control.
+        SkillBun operates using established third-party services: Google Gemini (for processing AI models), Firebase Authentication (for Google and email sign-in), Cloudflare Turnstile (for bot mitigation), and Cloud Firestore (for profile and roadmap-progress storage). Interaction with these providers is also governed by their respective Terms of Service. Their availability, latencies, and underlying policies remain outside SkillBun's direct control.
       </p>
 
       <h2>7. Intellectual Property</h2>
