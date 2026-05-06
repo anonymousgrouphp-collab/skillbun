@@ -6,6 +6,18 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 
+const PASSWORD_RESET_COOLDOWN_MS = 60 * 1000;
+const PASSWORD_RESET_COOLDOWN_KEY = 'sb_password_reset_available_at';
+
+function readPasswordResetAvailableAt() {
+  if (typeof window === 'undefined') {
+    return 0;
+  }
+
+  const availableAt = Number(window.localStorage.getItem(PASSWORD_RESET_COOLDOWN_KEY) || 0);
+  return Number.isFinite(availableAt) ? availableAt : 0;
+}
+
 function friendlyAuthError(error) {
   const code = error?.code || '';
 
@@ -27,6 +39,10 @@ function friendlyAuthError(error) {
 
   if (code.includes('auth/unauthorized-domain')) {
     return 'This domain is not authorized in Firebase Authentication settings.';
+  }
+
+  if (code.includes('auth/too-many-requests')) {
+    return 'Too many attempts. Wait a bit before trying again.';
   }
 
   return error?.message || 'Something went wrong. Please try again.';
@@ -60,6 +76,7 @@ function AuthForm() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+  const [resetCooldownSeconds, setResetCooldownSeconds] = useState(0);
 
   const title = mode === 'signup' ? 'Create your SkillBun account' : 'Welcome back to SkillBun';
   const actionLabel = mode === 'signup' ? 'Create account' : 'Log in';
@@ -73,6 +90,24 @@ function AuthForm() {
 
     router.replace(isProfileComplete ? next : buildOnboardingPath(next));
   }, [authLoading, isProfileComplete, next, profileLoading, router, user]);
+
+  useEffect(() => {
+    const updateResetCooldown = () => {
+      const availableAt = readPasswordResetAvailableAt();
+      const nextCooldownSeconds = Math.max(0, Math.ceil((availableAt - Date.now()) / 1000));
+
+      setResetCooldownSeconds(nextCooldownSeconds);
+
+      if (nextCooldownSeconds === 0 && availableAt > 0) {
+        window.localStorage.removeItem(PASSWORD_RESET_COOLDOWN_KEY);
+      }
+    };
+
+    updateResetCooldown();
+    const intervalId = window.setInterval(updateResetCooldown, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   const helperText = useMemo(() => {
     if (!configured) {
@@ -141,11 +176,19 @@ function AuthForm() {
       return;
     }
 
+    if (resetCooldownSeconds > 0) {
+      setError(`Please wait ${resetCooldownSeconds} seconds before requesting another reset email.`);
+      return;
+    }
+
     setSubmitting(true);
 
     try {
       await resetPassword(email.trim());
-      setStatus('Password reset email sent.');
+      const availableAt = Date.now() + PASSWORD_RESET_COOLDOWN_MS;
+      window.localStorage.setItem(PASSWORD_RESET_COOLDOWN_KEY, String(availableAt));
+      setResetCooldownSeconds(Math.ceil(PASSWORD_RESET_COOLDOWN_MS / 1000));
+      setStatus('Password reset email sent. You can request another in 60 seconds.');
     } catch (resetError) {
       setError(friendlyAuthError(resetError));
     } finally {
@@ -244,8 +287,13 @@ function AuthForm() {
           </form>
 
           {mode === 'login' && (
-            <button type="button" className="auth-link-button" onClick={handlePasswordReset} disabled={!configured || submitting}>
-              Send password reset email
+            <button
+              type="button"
+              className="auth-link-button"
+              onClick={handlePasswordReset}
+              disabled={!configured || submitting || resetCooldownSeconds > 0}
+            >
+              {resetCooldownSeconds > 0 ? `Send again in ${resetCooldownSeconds}s` : 'Send password reset email'}
             </button>
           )}
 
