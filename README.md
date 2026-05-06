@@ -128,7 +128,7 @@ All roadmap pages must render as the same prerequisite tree:
 - Handcrafted roadmaps should use `format: "tree"` with `tree[].children`.
 - Older roadmap files may keep `stages`; the app normalizes every stage into the same tree structure at render time.
 
-## Deployment Notes
+### Deployment Notes
 
 - Add your production and preview domains to Firebase Authentication authorized domains.
 - Enable Google and Email/Password providers in Firebase Authentication.
