@@ -16,12 +16,12 @@ export default function PrivacyPage() {
 
       <h2>2. Infrastructure & Authentication</h2>
       <p>
-        SkillBun leverages Google OAuth integrated via Supabase for entirely seamless and robust authentication. At no point do we intercept, store, or process your Google password. Your authentication state is handled entirely via secure, HTTP-only tokens.
+        SkillBun leverages Firebase Authentication for Google sign-in and email/password accounts. At no point do we intercept, store, or process your Google password, and email/password credentials are handled by Firebase Authentication rather than by SkillBun application code.
       </p>
 
-      <h2>3. Server-Side Persistence and RLS</h2>
+      <h2>3. Profile and Progress Persistence</h2>
       <p>
-        All user profile information is stored on a designated PostgreSQL database managed by Supabase. We utilize strict Row-Level Security (RLS) meaning that database read/write policies strictly restrict access such that solely your authenticated user entity can read or modify your profile row. In addition to primary profile data, we log browser metadata and device type purely for operational analytics and platform stability.
+        User profile information and roadmap progress are stored in Cloud Firestore. Firestore security rules restrict each profile and progress document so only the signed-in Firebase user can read or modify their own data. Local browser storage is used only as a compatibility cache for the quiz, counsellor, and roadmap interfaces.
       </p>
 
       <h2>4. Third-Party AI Data Processing</h2>
@@ -36,12 +36,12 @@ export default function PrivacyPage() {
 
       <h2>6. Ad-Free Tracking Protocol</h2>
       <p>
-        SkillBun utilizes strictly necessary cookies utilized exclusively to anchor session management securely (facilitated by Supabase authentication frameworks). SkillBun completely rejects integrating ad tracking pixels, cross-site marketing cookies, and unconsented data telemetry trackers. Your data is not sold to advertising platforms or external brokers.
+        SkillBun utilizes strictly necessary browser storage for session continuity and product functionality, including Firebase Authentication state, theme preference, profile cache, and roadmap progress cache. SkillBun completely rejects integrating ad tracking pixels, cross-site marketing cookies, and unconsented data telemetry trackers. Your data is not sold to advertising platforms or external brokers.
       </p>
 
       <h2>7. Data Retention and Account Deletion</h2>
       <p>
-        We retain your data conditionally based on your continued platform usage. Should you decide to cease utilization of SkillBun's services, you may simply log out. To invoke full cessation of your data—requesting the hard deletion of your Supabase profile row and associated records from our architecture—please initiate an email to the address supplied below. We pledge to honor deletion requests promptly without unnecessary hindrance.
+        We retain your data conditionally based on your continued platform usage. Should you decide to cease utilization of SkillBun's services, you may log out or use the Delete Account action in your account menu. Deleting your account removes your Firebase account data, Firestore profile document, and associated roadmap progress records. You may also request deletion by emailing the address supplied below.
       </p>
 
       <h2>8. Technical Security</h2>

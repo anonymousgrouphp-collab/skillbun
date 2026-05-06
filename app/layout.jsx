@@ -5,6 +5,7 @@ import { Fredoka, Nunito } from 'next/font/google';
 import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
+import { AuthProvider } from './components/AuthProvider';
 
 const fredoka = Fredoka({
   subsets: ['latin'],
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
         `}} />
       </head>
       <body>
+        <AuthProvider>
         <nav>
           <div className="nav-logo">
             <Link href="/" className="nav-logo-link">
@@ -68,6 +70,7 @@ export default function RootLayout({ children }) {
           </div>
         </nav>
         {children}
+        </AuthProvider>
       </body>
     </html>
   );

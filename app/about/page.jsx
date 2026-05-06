@@ -36,7 +36,7 @@ export default function AboutPage() {
       <h2>Our Technology & Ethics</h2>
       <p>
         We believe in transparent, secure infrastructure. SkillBun leverages advanced LLMs (Google Gemini) strictly for personalized guidance, orchestrated through robust validation pipelines.
-        We enforce rigorous technical safeguards including rate limiting, human-verification controls (Cloudflare Turnstile), and secure data isolation. Profile data is encrypted and housed in a Supabase-backed PostgreSQL database, utilizing Row-Level Security (RLS) to ensure your data is accessible strictly by you.
+        We enforce rigorous technical safeguards including rate limiting, human-verification controls (Cloudflare Turnstile), and secure data isolation. Profile and roadmap-progress data are stored in Cloud Firestore with Firebase security rules that restrict each user to their own documents.
       </p>
 
       <h2>Our Mission</h2>

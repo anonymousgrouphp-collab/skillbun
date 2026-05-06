@@ -1797,6 +1797,288 @@ section {
   transform: translateY(-1px);
 }
 
+.btn-form:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+  transform: none;
+}
+
+/* ===== AUTH PAGE ===== */
+.auth-page {
+  min-height: calc(100vh - 70px);
+  padding: 3rem 1.5rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.auth-shell {
+  width: min(1040px, 100%);
+  max-width: 1040px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 2rem;
+  align-items: center;
+}
+
+.auth-copy {
+  min-width: 0;
+}
+
+.auth-bunny {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.auth-copy .section-label {
+  text-align: left;
+  margin-bottom: 0.7rem;
+}
+
+.auth-copy h1 {
+  font-family: var(--font-fredoka), cursive;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.auth-copy p {
+  max-width: 580px;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.auth-flow-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.auth-flow-tags span {
+  padding: 0.48rem 0.78rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.auth-panel {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  padding: 1.25rem;
+}
+
+.auth-mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  padding: 0.28rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 1rem;
+}
+
+.auth-mode-toggle button,
+.auth-google-btn,
+.auth-link-button,
+.auth-switch button {
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.auth-mode-toggle button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 900;
+  padding: 0.65rem;
+  cursor: pointer;
+}
+
+.auth-mode-toggle button.active {
+  background: var(--primary-gradient);
+  color: var(--primary-contrast);
+  box-shadow: var(--accent-shadow);
+}
+
+.auth-google-btn {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-google-btn span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #1a73e8;
+  font-weight: 900;
+}
+
+.auth-google-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--green);
+  box-shadow: var(--card-shadow);
+}
+
+.auth-google-btn:disabled,
+.auth-link-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.auth-divider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+.auth-divider span {
+  position: relative;
+  padding: 0 0.7rem;
+  background: var(--card-bg);
+}
+
+.auth-link-button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font-weight: 900;
+  padding: 0.75rem 0.5rem 0;
+  cursor: pointer;
+}
+
+.auth-message {
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.auth-message.ok {
+  margin-top: 1rem;
+  color: var(--green);
+  background: var(--green-subtle);
+  border: 1px solid var(--green-subtle-strong);
+}
+
+.auth-message.error {
+  margin-top: 1rem;
+  color: var(--danger, #ef4444);
+  background: color-mix(in srgb, var(--danger, #ef4444) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger, #ef4444) 32%, transparent);
+}
+
+.auth-switch {
+  margin: 1rem 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.auth-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.auth-home-link {
+  display: block;
+  margin-top: 0.75rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.auth-home-link:hover {
+  color: var(--green);
+}
+
+.auth-loading {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.sk-sync-note {
+  margin-top: 0.9rem;
+  color: var(--green);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+@media (max-width: 860px) {
+  .auth-page {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .auth-shell {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .auth-copy .section-label,
+  .auth-copy h1,
+  .auth-copy p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .auth-bunny,
+  .auth-flow-tags {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 
 
 /* ===== CTA ===== */
@@ -4641,18 +4923,36 @@ footer {
   outline-offset: 2px;
 }
 
-.user-menu-signout {
+.user-menu-signout,
+.user-menu-delete {
   color: var(--danger);
 }
 
-.user-menu-signout .user-menu-icon {
+.user-menu-signout .user-menu-icon,
+.user-menu-delete .user-menu-icon {
   color: currentColor;
 }
 
-.user-menu-signout:disabled {
+.user-menu-signout:disabled,
+.user-menu-delete:disabled {
   cursor: wait;
   opacity: 0.65;
   transform: none;
+}
+
+.user-menu-delete:hover {
+  background: var(--danger-soft);
+}
+
+.user-menu-error {
+  margin: 0.5rem 0 0;
+  padding: 0.65rem 0.7rem;
+  border-radius: 8px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.45;
 }
 
 .mobile-nav-item {

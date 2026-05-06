@@ -24,7 +24,12 @@ export function normalizeInternalPath(value, fallback = DEFAULT_INTERNAL_PATH) {
     }
 
     const normalized = `${parsed.pathname}${parsed.search}${parsed.hash}`
-    return normalized === '/onboarding' || normalized.startsWith('/onboarding?') ? safeFallback : normalized
+    return normalized === '/onboarding' ||
+      normalized.startsWith('/onboarding?') ||
+      normalized === '/auth' ||
+      normalized.startsWith('/auth?')
+      ? safeFallback
+      : normalized
   } catch {
     return safeFallback
   }

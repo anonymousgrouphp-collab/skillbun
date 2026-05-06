@@ -150,7 +150,7 @@ export default function Home() {
 
   const openAuthModal = (destination) => {
     localStorage.setItem('sb_dest', normalizeInternalPath(destination, '/quiz'));
-    window.location.assign(`/onboarding?next=${encodeURIComponent(destination)}`);
+    window.location.assign(`/auth?next=${encodeURIComponent(destination)}`);
   };
 
   return (

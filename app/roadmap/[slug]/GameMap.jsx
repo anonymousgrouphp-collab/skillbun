@@ -1,5 +1,8 @@
 'use client';
 import { useMemo, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../components/AuthProvider';
+import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import './roadmap.css';
 
 function isSafeUrl(url) {
@@ -83,15 +86,7 @@ const SPARK_COLORS = ['#2ECC71', '#A8FF3E', '#FFD700', '#58D68D'];
 const SPARK_DISTANCES = [42, 55, 48, 60, 45, 57, 50, 62, 46, 54];
 
 function readStoredProgress(slug) {
-  if (typeof window === 'undefined') return [];
-
-  try {
-    const raw = window.localStorage.getItem('skillbun_progress_' + slug);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  return readStoredRoadmapProgress(slug);
 }
 
 function getLeafCount(node) {
@@ -113,9 +108,12 @@ function getTerminalNodes(node) {
 }
 
 export default function GameMap({ roadmap, slug }) {
+  const router = useRouter();
+  const { user, authLoading, saveRoadmapProgress, progressVersion } = useAuth();
   const [progress, setProgress] = useState(() => readStoredProgress(slug));
   const [expanded, setExpanded] = useState(null);
   const [confetti, setConfetti] = useState(null);
+  const [progressNotice, setProgressNotice] = useState('');
 
   const roadmapTree = useMemo(() => normalizeRoadmapTree(roadmap), [roadmap]);
   const allNodes = flattenTree(roadmapTree);
@@ -123,13 +121,31 @@ export default function GameMap({ roadmap, slug }) {
   const doneCount = allNodes.filter(n => progress.includes(n.id)).length;
   const pct = total === 0 ? 0 : Math.round((doneCount / total) * 100);
 
-  const toggle = (id) => {
-    const key = 'skillbun_progress_' + slug;
+  const toggle = async (id) => {
+    if (authLoading) {
+      return;
+    }
+
+    if (!user) {
+      setProgressNotice('Log in to save this roadmap to your SkillBun account.');
+      router.push(`/auth?next=${encodeURIComponent(`/roadmap/${slug}`)}`);
+      return;
+    }
+
     const wasDone = progress.includes(id);
     const next = wasDone ? progress.filter(x => x !== id) : [...progress, id];
+    const previous = progress;
     if (!wasDone) { setConfetti(id); setTimeout(() => setConfetti(null), 1200); }
     setProgress(next);
-    localStorage.setItem(key, JSON.stringify(next));
+    setProgressNotice('');
+
+    try {
+      await saveRoadmapProgress(slug, next);
+    } catch (error) {
+      console.error('Failed to save roadmap progress:', error);
+      setProgress(previous);
+      setProgressNotice('Could not save progress to Firebase. Please try again.');
+    }
   };
 
   const done = (id) => progress.includes(id);
@@ -143,6 +159,10 @@ export default function GameMap({ roadmap, slug }) {
     window.addEventListener('keydown', h);
     return () => window.removeEventListener('keydown', h);
   }, []);
+
+  useEffect(() => {
+    setProgress(readStoredProgress(slug));
+  }, [progressVersion, slug]);
 
   /* Render a tree node + its children recursively */
   function TreeNode({ node, depth = 0, parentUnlocked = true, parentDone = true }) {
@@ -185,9 +205,9 @@ export default function GameMap({ roadmap, slug }) {
               <div className="sk-node-actions">
                 <button
                   className={`sk-check ${isDone ? 'done' : ''}`}
-                  disabled={!isUnlocked}
+                  disabled={!isUnlocked || authLoading}
                   onClick={(e) => { e.stopPropagation(); if (isUnlocked) toggle(node.id); }}
-                  title={isUnlocked ? (isDone ? 'Undo' : 'Complete') : 'Complete prerequisite first'}
+                  title={isUnlocked ? (user ? (isDone ? 'Undo' : 'Complete') : 'Log in to save progress') : 'Complete prerequisite first'}
                 >
                   {isDone ? '✓' : ''}
                 </button>
@@ -202,7 +222,7 @@ export default function GameMap({ roadmap, slug }) {
               <div className="sk-detail">
                 <button
                   className={`sk-btn-mark ${isDone ? 'done' : ''}`}
-                  disabled={!isUnlocked}
+                  disabled={!isUnlocked || authLoading}
                   onClick={(e) => { e.stopPropagation(); if (isUnlocked) toggle(node.id); }}
                 >
                   {isUnlocked ? (isDone ? '✅ Completed — Undo?' : '🎯 Mark Complete (+100 XP)') : 'Complete prerequisite first'}
@@ -289,6 +309,7 @@ export default function GameMap({ roadmap, slug }) {
               <div className="sk-sep"></div>
               <div className="sk-stat"><span className="sk-stat-v sk-green">{doneCount * 100}</span><span className="sk-stat-l">XP</span></div>
             </div>
+            {progressNotice && <p className="sk-sync-note">{progressNotice}</p>}
           </div>
           <div className="sk-hero-right">
             <div className="sk-ring">
