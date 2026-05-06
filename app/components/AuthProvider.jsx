@@ -6,7 +6,6 @@ import {
   deleteUser,
   onAuthStateChanged,
   sendEmailVerification,
-  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -295,12 +294,22 @@ export function AuthProvider({ children }) {
   }, [services]);
 
   const resetPassword = useCallback(async (email) => {
-    if (!services.configured) {
-      throw new Error('Firebase is not configured yet.');
+    const response = await fetch('/api/auth/password-reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const error = new Error(data?.error || 'Could not send password reset email.');
+      error.code = response.status === 429 ? 'auth/too-many-requests' : 'auth/password-reset-failed';
+      error.retryAfterMs = data?.retryAfterMs || 0;
+      throw error;
     }
 
-    return sendPasswordResetEmail(services.auth, email);
-  }, [services]);
+    return data;
+  }, []);
 
   const resendVerification = useCallback(async () => {
     if (!services.configured || !services.auth.currentUser) {
