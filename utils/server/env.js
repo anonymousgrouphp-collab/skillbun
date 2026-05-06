@@ -98,3 +98,35 @@ export function getHumanProofSecret() {
 
   return ''
 }
+
+export function getFirebaseAdminProjectId() {
+  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_PROJECT_ID)
+}
+
+export function getFirebaseAdminClientEmail() {
+  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_CLIENT_EMAIL)
+}
+
+export function getFirebaseAdminPrivateKey() {
+  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_PRIVATE_KEY).replace(/\\n/g, '\n')
+}
+
+export function getZohoSmtpHost() {
+  return getFirstNonEmpty(process.env.ZOHO_SMTP_HOST)
+}
+
+export function getZohoSmtpPort() {
+  return parseIntWithinRange(process.env.ZOHO_SMTP_PORT, 465, 1, 65535)
+}
+
+export function getZohoSmtpUser() {
+  return getFirstNonEmpty(process.env.ZOHO_SMTP_USER)
+}
+
+export function getZohoSmtpPass() {
+  return getFirstNonEmpty(process.env.ZOHO_SMTP_PASS)
+}
+
+export function getPasswordResetFrom() {
+  return getFirstNonEmpty(process.env.PASSWORD_RESET_FROM, process.env.ZOHO_SMTP_USER)
+}
