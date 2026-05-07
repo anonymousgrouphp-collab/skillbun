@@ -4173,3 +4173,405 @@
     text-align: center !important;
   }
 }
+
+/* ===== Dashboard Product/Layout Pass ===== */
+.dash-layout {
+  display: grid !important;
+  grid-template-columns: minmax(190px, 220px) minmax(0, 1120px) !important;
+  justify-content: center !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: calc(100vh - 80px) !important;
+  padding: 1.25rem clamp(1rem, 3vw, 2.75rem) 2rem !important;
+  gap: 1.5rem !important;
+}
+
+[data-theme="light"] .dash-layout {
+  background: color-mix(in srgb, var(--bg) 92%, var(--card-bg)) !important;
+}
+
+[data-theme="dark"] .dash-layout {
+  background: var(--bg) !important;
+}
+
+.dash-main {
+  width: 100% !important;
+  max-width: 1120px !important;
+  padding: 1.15rem 0 !important;
+  gap: 1rem !important;
+}
+
+.dash-sidebar {
+  width: 100% !important;
+  min-height: calc(100vh - 104px) !important;
+  height: auto !important;
+  padding: 1.25rem 0.9rem !important;
+  top: 92px !important;
+}
+
+.dash-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dash-sidebar-app-card {
+  border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
+  box-shadow: 0 16px 32px rgba(17, 134, 79, 0.16);
+}
+
+.dash-header {
+  align-items: flex-end !important;
+}
+
+.dash-header h1 {
+  line-height: 1.05 !important;
+}
+
+.dash-header p {
+  max-width: 440px;
+  line-height: 1.4;
+}
+
+.dash-metrics-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.9rem !important;
+}
+
+.dash-metric-card {
+  min-height: 116px !important;
+  justify-content: space-between !important;
+  padding: 1rem 1.1rem !important;
+}
+
+.dash-mc-title,
+.dash-card-title {
+  line-height: 1.15 !important;
+}
+
+.dash-mc-sub {
+  min-height: 2.1em;
+  align-items: flex-start !important;
+  line-height: 1.35 !important;
+}
+
+.dash-content-grid,
+.dash-content-grid.bottom-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: 0.9rem !important;
+}
+
+.dash-span-2 {
+  grid-column: span 2 !important;
+}
+
+.dash-card {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  min-height: 262px !important;
+  padding: 1.15rem !important;
+}
+
+.dash-card-header {
+  align-items: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem 0.75rem !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.dash-card-sub {
+  max-width: 48ch;
+  line-height: 1.45 !important;
+}
+
+.dash-card-action {
+  background: var(--green-subtle) !important;
+  border: 1px solid var(--green-subtle-strong) !important;
+  color: var(--green) !important;
+  font-weight: 800 !important;
+}
+
+.dash-progress-summary {
+  flex: 1;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr) !important;
+}
+
+.dash-progress-panel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+[data-theme="dark"] .dash-progress-panel {
+  background: #121820;
+  border-color: #1A202C;
+}
+
+.dash-progress-panel-main {
+  justify-content: space-between;
+}
+
+.dash-progress-kicker {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.dash-progress-score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dash-progress-score span {
+  color: var(--green);
+  font-family: var(--font-fredoka), cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+}
+
+.dash-progress-score small {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.dash-progress-panel h3 {
+  color: var(--text);
+  font-family: var(--font-nunito), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.dash-progress-panel p {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.dash-progress-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
+.dash-progress-mini-grid div {
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .dash-progress-mini-grid div {
+  background: #0B0E14;
+  border-color: #1A202C;
+}
+
+.dash-progress-mini-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.dash-progress-mini-grid strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-fredoka), cursive;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  margin-top: 0.15rem;
+}
+
+.dark-inner-box {
+  flex: 1;
+  justify-content: space-between;
+  padding: 0.95rem !important;
+}
+
+.dash-card-vibe .dash-vibe {
+  gap: 0.85rem !important;
+  padding: 0 !important;
+}
+
+.dash-card-vibe .dash-vibe h3 {
+  line-height: 1.25 !important;
+}
+
+.dash-card-vibe .dash-vibe-text {
+  line-height: 1.55 !important;
+}
+
+.dash-roadmaps-list {
+  flex: 1;
+  overflow: auto;
+  padding-right: 0.15rem;
+}
+
+.dash-rm-item {
+  align-items: flex-start !important;
+  padding: 0.75rem 0 !important;
+}
+
+.dash-rm-icon {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+  margin-top: 0.15rem;
+  border-radius: 4px !important;
+  background: linear-gradient(180deg, var(--lime), var(--green)) !important;
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+.dash-rm-title {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.25 !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.dash-rm-stat {
+  line-height: 1.25 !important;
+}
+
+.dark-rm-progress {
+  min-width: 0;
+}
+
+.dash-intel-list {
+  margin-top: 0.15rem;
+}
+
+.dash-intel-item {
+  line-height: 1.45 !important;
+}
+
+.dash-donut-wrap {
+  flex: 1 !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  margin-top: 0 !important;
+}
+
+.dash-donut {
+  width: 144px !important;
+  height: 144px !important;
+}
+
+.dash-progress-legend {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dash-bunbot-card {
+  min-height: 262px !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  padding: 1rem !important;
+}
+
+.dash-bunbot-card .pixar-bunny-container {
+  flex: 0 0 86px;
+}
+
+.dash-bunbot-card input {
+  line-height: 1.4;
+}
+
+.dash-bunbot-card button {
+  min-height: 30px;
+}
+
+@media (max-width: 1250px) {
+  .dash-layout {
+    grid-template-columns: minmax(180px, 210px) minmax(0, 1fr) !important;
+  }
+
+  .dash-content-grid,
+  .dash-content-grid.bottom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .dash-span-2 {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 950px) {
+  .dash-layout {
+    grid-template-columns: 1fr !important;
+    padding: 1rem !important;
+  }
+
+  .dash-sidebar {
+    position: static !important;
+    min-height: 0 !important;
+  }
+
+  .dash-sidebar-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+
+  .dash-sidebar-app-card {
+    display: none;
+  }
+
+  .dash-metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .dash-main {
+    padding: 0.5rem 0 1rem !important;
+  }
+
+  .dash-header {
+    align-items: flex-start !important;
+  }
+
+  .dash-metrics-grid,
+  .dash-content-grid,
+  .dash-content-grid.bottom-grid,
+  .dash-progress-summary {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dash-span-2 {
+    grid-column: span 1 !important;
+  }
+
+  .dash-sidebar-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .dash-card,
+  .dash-bunbot-card {
+    min-height: auto !important;
+  }
+
+  .dash-progress-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}

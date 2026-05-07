@@ -136,9 +136,14 @@ export default function DashboardClient() {
   const firstName = profile.hasName ? profile.name.split(' ')[0] : 'Student';
   const {
     roadmaps, totalXP, totalDone, totalNodes, overallPct,
-    efficiency, globalPercentile, vibeQuote, dailyIntel,
+    dailyIntel,
     xpGained,
   } = data;
+  const remainingNodes = Math.max(0, totalNodes - totalDone);
+  const primaryRoadmap = roadmaps[0];
+  const nextNodeNumber = primaryRoadmap
+    ? Math.min(primaryRoadmap.done + 1, primaryRoadmap.total)
+    : 0;
 
   return (
 
@@ -204,7 +209,7 @@ export default function DashboardClient() {
               <span className="dash-mc-icon-border">↗</span>
             </div>
             <div className="dash-mc-val text-white">{totalXP.toLocaleString()}</div>
-            <div className="dash-mc-sub">⚡ Leveling up this month</div>
+            <div className="dash-mc-sub">XP from completed skill nodes</div>
           </div>
 
           <div className="dash-metric-card dark-card">
@@ -212,7 +217,7 @@ export default function DashboardClient() {
               <div className="dash-mc-title dark-yellow">Active Paths</div>
             </div>
             <div className="dash-mc-val text-white">{roadmaps.length}</div>
-            <div className="dash-mc-sub">✅ Increased from last month</div>
+            <div className="dash-mc-sub">Roadmaps currently in progress</div>
           </div>
 
           <div className="dash-metric-card dark-card">
@@ -220,15 +225,15 @@ export default function DashboardClient() {
               <div className="dash-mc-title dark-yellow">Skills Mastered</div>
             </div>
             <div className="dash-mc-val text-white">{totalDone}</div>
-            <div className="dash-mc-sub">✅ Validated nodes</div>
+            <div className="dash-mc-sub">Completed roadmap nodes</div>
           </div>
 
           <div className="dash-metric-card dark-card">
             <div className="dash-mc-top">
               <div className="dash-mc-title dark-yellow">Remaining</div>
             </div>
-            <div className="dash-mc-val text-white">{totalNodes - totalDone}</div>
-            <div className="dash-mc-sub">🔥 On Discuss</div>
+            <div className="dash-mc-val text-white">{remainingNodes}</div>
+            <div className="dash-mc-sub">Skill nodes left to complete</div>
           </div>
         </div>
 
@@ -237,51 +242,45 @@ export default function DashboardClient() {
           
           {/* Performance & Goals */}
           <div className="dash-card dash-span-2 dark-card">
-            <div className="dash-card-header" style={{ marginBottom: 0 }}>
+            <div className="dash-card-header">
               <div className="dash-card-title dark-yellow">Performance & Goals</div>
             </div>
-            <div className="dash-card-sub" style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 600 }}>Your estimated standing and career-readiness tracker</div>
+            <div className="dash-card-sub">Your roadmap completion and next milestone</div>
             
-            <div className="dash-perf-grid">
-              {/* Horizontal Bar chart */}
-              <div className="dash-rank-chart">
-                <div className="dash-rank-label">Estimated Global Standing</div>
-                <div className="dash-rank-bars-horizontal">
-                  <div className="dash-rank-bar-col">
-                    <div className="dash-rank-val dark-green">{Math.round(globalPercentile * 0.6)}%</div>
-                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: `${Math.max(8, globalPercentile * 0.6)}%` }}></div></div>
-                    <div className="dash-rank-lbl">Avg<br/>User</div>
-                  </div>
-                  <div className="dash-rank-bar-col">
-                    <div className="dash-rank-val dark-green">{globalPercentile}%</div>
-                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: `${Math.max(8, globalPercentile)}%` }}></div></div>
-                    <div className="dash-rank-lbl">You</div>
-                  </div>
-                  <div className="dash-rank-bar-col">
-                    <div className="dash-rank-val dark-green">99%</div>
-                    <div className="dash-rank-pill"><div className="dash-rank-fill" style={{ width: '99%' }}></div></div>
-                    <div className="dash-rank-lbl">Top 1%</div>
-                  </div>
+            <div className="dash-perf-grid dash-progress-summary">
+              <div className="dash-progress-panel dash-progress-panel-main">
+                <div className="dash-progress-kicker">Overall readiness</div>
+                <div className="dash-progress-score">
+                  <span>{overallPct}%</span>
+                  <small>completed</small>
                 </div>
-                <div className="dash-percentile-badge dark-badge">
-                  <span style={{ color: 'var(--green)' }}>🔥 Top {Math.max(1, 100 - globalPercentile)}% of learners</span>
+                <div className="dash-burndown-track dark-track">
+                  <div
+                    className="dash-burndown-fill dark-fill"
+                    style={{ width: `${overallPct}%` }}
+                  />
+                </div>
+                <div className="dash-burndown-stats">
+                  <span>{totalDone} done</span>
+                  <span className="dash-green">{overallPct}%</span>
+                  <span>{remainingNodes} remaining</span>
                 </div>
               </div>
 
-              {/* Burn-down chart */}
-              <div className="dash-burndown">
-                <div className="dash-burndown-label">Career-Ready Progress</div>
-                <div className="dash-burndown-visual">
-                  <div className="dash-burndown-track dark-track">
-                    <div
-                      className="dash-burndown-fill dark-fill"
-                      style={{ width: `${overallPct}%` }}
-                    />
+              <div className="dash-progress-panel">
+                <div className="dash-progress-kicker">Current focus</div>
+                <h3>{primaryRoadmap.title}</h3>
+                <p>
+                  Next node {nextNodeNumber}/{primaryRoadmap.total}. Continue the path with the highest progress first.
+                </p>
+                <div className="dash-progress-mini-grid">
+                  <div>
+                    <span>Active</span>
+                    <strong>{roadmaps.length}</strong>
                   </div>
-                  <div className="dash-burndown-stats">
-                    <span>{totalDone} done</span>
-                    <span className="dash-green">{overallPct}%</span>
-                    <span>{totalNodes - totalDone} remaining</span>
+                  <div>
+                    <span>Completed</span>
+                    <strong>{totalDone}</strong>
                   </div>
                 </div>
               </div>
@@ -299,7 +298,7 @@ export default function DashboardClient() {
                   <h3 style={{fontFamily: 'var(--font-nunito), sans-serif', margin: 0, fontSize: '1.05rem', color: '#fff'}}>You left off at <br/>{roadmaps[0].title}</h3>
                   <p className="dash-vibe-text" style={{fontSize: '0.8rem', color: 'var(--muted)', marginTop: '0.8rem', fontStyle: 'normal', textAlign: 'left', fontWeight: 'bold'}}>
                     <span className="dark-yellow">What\'s next:</span><br/>
-                    Complete the next<br/>skill node to reach<br/>{roadmaps[0].done + 1}/{roadmaps[0].total}!
+                    Complete the next<br/>skill node to reach<br/>{nextNodeNumber}/{roadmaps[0].total}!
                   </p>
                 </div>
                 <Link href={`/roadmap/${roadmaps[0].slug}`} className="dash-btn-primary dark-glow-btn" style={{width: '100%', marginTop: '0.5rem', display: 'block', textAlign: 'center'}}>
@@ -324,8 +323,8 @@ export default function DashboardClient() {
           {/* Roadmaps List (Project equivalent) */}
           <div className="dash-card dark-card">
             <div className="dash-card-header">
-              <div className="dash-card-title dark-yellow">Project</div>
-              <Link href="/quiz" className="dash-card-action" style={{ color: '#fff', border: 'none', background: 'transparent' }}>+ New</Link>
+              <div className="dash-card-title dark-yellow">Active Roadmaps</div>
+              <Link href="/quiz" className="dash-card-action">+ New</Link>
             </div>
             <div className="dash-roadmaps-list">
               {roadmaps.map(rm => {
@@ -397,7 +396,7 @@ export default function DashboardClient() {
                 </svg>
                 <div className="dash-donut-center">
                   <span className="dash-donut-xp" style={{fontSize: '1.8rem', color: '#fff'}}>{overallPct}%</span>
-                  <span className="dash-donut-xp-label" style={{color: 'var(--muted)', fontWeight: '700', textTransform: 'none', letterSpacing: '0', fontSize: '0.6rem'}}>Project Ended</span>
+                  <span className="dash-donut-xp-label" style={{color: 'var(--muted)', fontWeight: '700', textTransform: 'none', letterSpacing: '0', fontSize: '0.6rem'}}>Overall completed</span>
                 </div>
               </div>
               <div className="dash-progress-legend" style={{display: 'flex', gap: '1rem', marginTop: '1rem', fontSize: '0.75rem', fontWeight: '700', color: 'var(--muted)'}}>
@@ -408,7 +407,7 @@ export default function DashboardClient() {
           </div>
 
           {/* Bun-Bot Quick Ask */}
-          <div className="dash-card dash-bunbot-card dark-glow-card" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'visible' }}>
+          <div className="dash-card dash-bunbot-card dark-bunbot-card dark-glow-card" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'visible' }}>
             
             {/* Pixar Style CSS Bunny */}
             <div className="pixar-bunny-container" style={{ transform: 'scale(0.85)', transformOrigin: 'center left' }}>
