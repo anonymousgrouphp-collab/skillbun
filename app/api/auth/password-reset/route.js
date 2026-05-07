@@ -1,22 +1,18 @@
-import crypto from 'node:crypto'
-
 import { NextResponse } from 'next/server'
 
+import { getAllowedAppOrigins, getAppOrigin } from '@/utils/server/env'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
+import { checkServerRateLimit, hashRateLimitSubject } from '@/utils/server/rateLimitStore'
 import { sendSkillBunPasswordResetEmail } from '@/utils/server/zohoMailer'
 
 export const runtime = 'nodejs'
 
 const MAX_EMAIL_LENGTH = 254
 const RATE_LIMITS = [
-  { name: 'emailMinute', windowMs: 60 * 1000, maxRequests: 1, key: ({ email }) => `email:${email}` },
-  { name: 'emailHour', windowMs: 60 * 60 * 1000, maxRequests: 3, key: ({ email }) => `email:${email}` },
-  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 10, key: ({ address }) => `ip:${address}` },
+  { name: 'emailMinute', windowMs: 60 * 1000, maxRequests: 1, getSubject: ({ email }) => `email:${email}` },
+  { name: 'emailHour', windowMs: 60 * 60 * 1000, maxRequests: 3, getSubject: ({ email }) => `email:${email}` },
+  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 10, getSubject: ({ address }) => `ip:${address}` },
 ]
-
-const resetRateBuckets = globalThis.__skillbunPasswordResetRateBuckets ?? new Map()
-globalThis.__skillbunPasswordResetRateBuckets = resetRateBuckets
-let lastRateLimitCleanup = 0
 
 function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase()
@@ -36,52 +32,12 @@ function getClientAddress(request) {
   )
 }
 
-function hashRateKey(value) {
-  return crypto.createHash('sha256').update(value).digest('hex').slice(0, 32)
-}
-
-function cleanupRateLimitBuckets(now) {
-  if (now - lastRateLimitCleanup < 60_000) return
-  lastRateLimitCleanup = now
-
-  for (const [key, bucket] of resetRateBuckets.entries()) {
-    if (!bucket || bucket.resetAt <= now) {
-      resetRateBuckets.delete(key)
-    }
-  }
-}
-
-function checkRateLimit({ address, email }, now = Date.now()) {
-  cleanupRateLimitBuckets(now)
-
-  const pendingBuckets = []
-  let retryAfterMs = 0
-
-  for (const limit of RATE_LIMITS) {
-    const bucketKey = `${limit.name}:${hashRateKey(limit.key({ address, email }))}`
-    let bucket = resetRateBuckets.get(bucketKey)
-
-    if (!bucket || bucket.resetAt <= now) {
-      bucket = { count: 0, resetAt: now + limit.windowMs }
-    }
-
-    if (bucket.count >= limit.maxRequests) {
-      retryAfterMs = Math.max(retryAfterMs, bucket.resetAt - now)
-    }
-
-    pendingBuckets.push({ bucketKey, bucket })
-  }
-
-  if (retryAfterMs > 0) {
-    return { allowed: false, retryAfterMs }
-  }
-
-  for (const { bucketKey, bucket } of pendingBuckets) {
-    bucket.count += 1
-    resetRateBuckets.set(bucketKey, bucket)
-  }
-
-  return { allowed: true }
+async function checkRateLimit({ address, email }) {
+  return checkServerRateLimit({
+    namespace: 'passwordReset',
+    subject: { address, email },
+    limits: RATE_LIMITS,
+  })
 }
 
 function retryAfterSeconds(ms) {
@@ -92,14 +48,38 @@ function okResponse() {
   return NextResponse.json({ ok: true })
 }
 
-function buildActionCodeSettings(request) {
-  const origin = request.headers.get('origin')
-  const requestOrigin = new URL(request.url).origin
-  const baseUrl = (origin || requestOrigin).replace('://127.0.0.1:', '://localhost:')
-
-  if (!baseUrl) {
-    return undefined
+function normalizeOrigin(value) {
+  try {
+    return new URL(value).origin.replace('://127.0.0.1:', '://localhost:')
+  } catch {
+    return ''
   }
+}
+
+function isLocalOrigin(origin) {
+  try {
+    const parsed = new URL(origin)
+    return parsed.protocol === 'http:' && parsed.hostname === 'localhost'
+  } catch {
+    return false
+  }
+}
+
+function getPasswordResetBaseUrl(request) {
+  const configuredOrigin = normalizeOrigin(getAppOrigin())
+  if (configuredOrigin) return configuredOrigin
+
+  const requestOrigin = normalizeOrigin(request.headers.get('origin') || new URL(request.url).origin)
+  const allowedOrigins = new Set(getAllowedAppOrigins().map(normalizeOrigin).filter(Boolean))
+
+  if (allowedOrigins.has(requestOrigin)) return requestOrigin
+  if (process.env.NODE_ENV !== 'production' && isLocalOrigin(requestOrigin)) return requestOrigin
+
+  throw new Error('APP_ORIGIN is not configured.')
+}
+
+function buildActionCodeSettings(request) {
+  const baseUrl = getPasswordResetBaseUrl(request)
 
   return {
     url: `${baseUrl}/auth?mode=login`,
@@ -119,7 +99,7 @@ export async function POST(request) {
     }
 
     const address = getClientAddress(request)
-    const rateLimit = checkRateLimit({ address, email })
+    const rateLimit = await checkRateLimit({ address, email })
     if (!rateLimit.allowed) {
       return NextResponse.json(
         { error: 'Please wait before requesting another reset email.', retryAfterMs: rateLimit.retryAfterMs },
@@ -149,7 +129,7 @@ export async function POST(request) {
     console.error('Password reset request failed:', {
       code: error?.code || '',
       message: error?.message || 'Unknown error',
-      emailHash: email ? hashRateKey(email) : '',
+      emailHash: email ? hashRateLimitSubject(email).slice(0, 32) : '',
     })
 
     return NextResponse.json({ error: 'Could not send password reset email. Please try again later.' }, { status: 500 })

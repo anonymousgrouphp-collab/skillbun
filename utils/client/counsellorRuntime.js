@@ -1,3 +1,5 @@
+import { getFirebaseServices } from './firebaseClient';
+import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 
 export function mountCounsellorRuntime() {
@@ -84,6 +86,19 @@ function hasMarkdown() {
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function getFirebaseIdToken() {
+    const services = getFirebaseServices();
+    const currentUser = services.auth?.currentUser;
+
+    if (!currentUser) {
+        const error = new Error('Login required');
+        error.status = 401;
+        throw error;
+    }
+
+    return currentUser.getIdToken();
 }
 
 function parseRetryAfterMs(value) {
@@ -597,34 +612,12 @@ function escapeHTML(str) {
 }
 
 function sanitizeHTML(unsafeHtml) {
-    const template = document.createElement('template');
-    template.innerHTML = unsafeHtml;
-
-    template.content.querySelectorAll('script, style, iframe, object, embed, link, meta, base, form, input, textarea, select, option').forEach((el) => {
-        el.remove();
+    return DOMPurify.sanitize(String(unsafeHtml ?? ''), {
+        USE_PROFILES: { html: true },
+        FORBID_TAGS: ['style', 'iframe', 'object', 'embed', 'link', 'meta', 'base', 'form', 'input', 'textarea', 'select', 'option', 'img', 'video', 'audio', 'source', 'picture'],
+        FORBID_ATTR: ['style'],
+        ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|\/(?!\/)|#)/i
     });
-
-    const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
-    while (walker.nextNode()) {
-        const el = walker.currentNode;
-        Array.from(el.attributes).forEach((attr) => {
-            const name = attr.name.toLowerCase();
-            const value = attr.value;
-
-            if (name.startsWith('on') || name === 'style') {
-                el.removeAttribute(attr.name);
-                return;
-            }
-
-            if (name === 'href' || name === 'src' || name === 'xlink:href') {
-                if (/^\s*javascript:/i.test(value) || /^\s*data:/i.test(value)) {
-                    el.removeAttribute(attr.name);
-                }
-            }
-        });
-    }
-
-    return template.innerHTML;
 }
 
 function renderBotHTML(text) {
@@ -687,7 +680,11 @@ async function fetchGeminiPayload(payload) {
 
     for (let attempt = 0; attempt <= AI_CLIENT_MAX_RETRIES; attempt += 1) {
         try {
-            const headers = { 'Content-Type': 'application/json' };
+            const idToken = await getFirebaseIdToken();
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${idToken}`
+            };
             if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
 
             const response = await fetch('/api/gemini', {

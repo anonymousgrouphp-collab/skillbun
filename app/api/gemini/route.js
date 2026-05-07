@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
 
-import crypto from 'node:crypto'
-
 import {
   getGeminiApiKey,
   getGeminiMaxRetries,
@@ -10,7 +8,9 @@ import {
   getGeminiRetryBaseDelayMs,
   getGeminiTimeoutMs,
 } from '@/utils/server/env'
+import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { verifyHumanProofToken } from '@/utils/server/humanProof'
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
@@ -22,10 +22,6 @@ const RATE_LIMIT_BUCKETS = [
   { name: 'minute', windowMs: 60 * 1000, getLimit: getGeminiRateLimitPerMinute },
   { name: 'hour', windowMs: 60 * 60 * 1000, getLimit: getGeminiRateLimitPerHour },
 ]
-
-const geminiRateBuckets = globalThis.__skillbunGeminiRateBuckets ?? new Map()
-globalThis.__skillbunGeminiRateBuckets = geminiRateBuckets
-let lastRateLimitCleanup = 0
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -41,60 +37,29 @@ function getClientAddress(request) {
   )
 }
 
-function hashRateKey(value) {
-  return crypto.createHash('sha256').update(value).digest('hex').slice(0, 32)
+function getBearerToken(request) {
+  const authorization = request.headers.get('authorization') || ''
+  const match = authorization.match(/^Bearer\s+(.+)$/i)
+  return match?.[1]?.trim() || ''
 }
 
-function getRateLimitKey(request, token) {
-  return hashRateKey(`${getClientAddress(request)}:${token}`)
-}
+async function verifyAuthenticatedUser(request) {
+  const idToken = getBearerToken(request)
 
-function cleanupRateLimitBuckets(now) {
-  if (now - lastRateLimitCleanup < 60_000) return
-  lastRateLimitCleanup = now
+  if (!idToken) {
+    return { error: NextResponse.json({ error: 'Login required.' }, { status: 401 }) }
+  }
 
-  for (const [key, bucket] of geminiRateBuckets.entries()) {
-    if (!bucket || bucket.resetAt <= now) {
-      geminiRateBuckets.delete(key)
-    }
+  try {
+    const user = await getFirebaseAdminAuth().verifyIdToken(idToken)
+    return { user }
+  } catch {
+    return { error: NextResponse.json({ error: 'Login required.' }, { status: 401 }) }
   }
 }
 
-function checkGeminiRateLimit(key, now = Date.now()) {
-  cleanupRateLimitBuckets(now)
-
-  const pendingBuckets = []
-  let blockedBucket = null
-
-  for (const limit of RATE_LIMIT_BUCKETS) {
-    const bucketKey = `${key}:${limit.name}`
-    const maxRequests = limit.getLimit()
-    let bucket = geminiRateBuckets.get(bucketKey)
-
-    if (!bucket || bucket.resetAt <= now) {
-      bucket = { count: 0, resetAt: now + limit.windowMs }
-    }
-
-    if (bucket.count >= maxRequests) {
-      const retryAfterMs = Math.max(1000, bucket.resetAt - now)
-      if (!blockedBucket || retryAfterMs < blockedBucket.retryAfterMs) {
-        blockedBucket = { retryAfterMs, limitName: limit.name, maxRequests }
-      }
-    }
-
-    pendingBuckets.push({ bucketKey, bucket })
-  }
-
-  if (blockedBucket) {
-    return { allowed: false, ...blockedBucket }
-  }
-
-  for (const { bucketKey, bucket } of pendingBuckets) {
-    bucket.count += 1
-    geminiRateBuckets.set(bucketKey, bucket)
-  }
-
-  return { allowed: true }
+function getRateLimitSubject(request, uid) {
+  return `uid:${uid}:ip:${getClientAddress(request)}`
 }
 
 function retryAfterSeconds(ms) {
@@ -241,6 +206,11 @@ export async function POST(request) {
       return NextResponse.json({ error: 'API key not configured.' }, { status: 500 })
     }
 
+    const authResult = await verifyAuthenticatedUser(request)
+    if (authResult.error) {
+      return authResult.error
+    }
+
     const token = request.headers.get('x-skillbun-human') || ''
     const verification = verifyHumanProofToken(token)
 
@@ -265,7 +235,18 @@ export async function POST(request) {
       return NextResponse.json({ error: validationError }, { status: 400 })
     }
 
-    const rateLimit = checkGeminiRateLimit(getRateLimitKey(request, token))
+    let rateLimit
+    try {
+      rateLimit = await checkServerRateLimit({
+        namespace: 'gemini',
+        subject: getRateLimitSubject(request, authResult.user.uid),
+        limits: RATE_LIMIT_BUCKETS,
+      })
+    } catch (error) {
+      console.error('Gemini rate limit check failed:', error?.message || error)
+      return NextResponse.json({ error: 'AI protection check is temporarily unavailable. Please try again.' }, { status: 503 })
+    }
+
     if (!rateLimit.allowed) {
       const message = rateLimit.limitName === 'minute'
         ? 'Too many AI requests at once. Please wait a moment and try again.'
