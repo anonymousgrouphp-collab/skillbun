@@ -460,7 +460,7 @@ export default function DashboardClient() {
             </div>
 
             {/* Small Boxed Layout Content */}
-            <div className="dash-bunbot-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', zIndex: 1, marginLeft: '-10px' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem', zIndex: 1, marginLeft: '-10px' }}>
               <p style={{ fontSize: '0.85rem', fontWeight: 700, margin: 0, lineHeight: 1.3 }}>
                 <span className="dark-yellow">Brain fogged?</span><br/>
                 <span className="dark-yellow">Talk to Bun-Bot!</span>
