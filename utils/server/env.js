@@ -99,6 +99,17 @@ export function getHumanProofSecret() {
   return ''
 }
 
+export function getAppOrigin() {
+  return getFirstNonEmpty(process.env.APP_ORIGIN).replace(/\/+$/, '')
+}
+
+export function getAllowedAppOrigins() {
+  return getFirstNonEmpty(process.env.APP_ALLOWED_ORIGINS)
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/+$/, ''))
+    .filter(Boolean)
+}
+
 export function getFirebaseAdminProjectId() {
   return getFirstNonEmpty(process.env.FIREBASE_ADMIN_PROJECT_ID)
 }

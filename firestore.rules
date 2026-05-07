@@ -6,11 +6,75 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == uid;
     }
 
+    function optionalString(field, maxLength) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string && request.resource.data[field].size() <= maxLength);
+    }
+
+    function optionalBool(field) {
+      return !(field in request.resource.data) || request.resource.data[field] is bool;
+    }
+
+    function optionalTimestamp(field) {
+      return !(field in request.resource.data) || request.resource.data[field] is timestamp;
+    }
+
+    function validProviderList() {
+      return !('providers' in request.resource.data) ||
+        (request.resource.data.providers is list && request.resource.data.providers.size() <= 20);
+    }
+
+    function validUserProfile(uid) {
+      return request.resource.data.keys().hasOnly([
+          'uid',
+          'email',
+          'displayName',
+          'photoURL',
+          'name',
+          'fullName',
+          'degree',
+          'year',
+          'current_year',
+          'interest',
+          'interest_area',
+          'emailVerified',
+          'providers',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        request.resource.data.uid == uid &&
+        optionalString('email', 254) &&
+        optionalString('displayName', 120) &&
+        optionalString('photoURL', 2048) &&
+        optionalString('name', 80) &&
+        optionalString('fullName', 80) &&
+        optionalString('degree', 120) &&
+        optionalString('year', 80) &&
+        optionalString('current_year', 80) &&
+        optionalString('interest', 120) &&
+        optionalString('interest_area', 120) &&
+        optionalBool('emailVerified') &&
+        validProviderList() &&
+        optionalTimestamp('createdAt') &&
+        optionalTimestamp('updatedAt');
+    }
+
+    function validProgress(slug) {
+      return slug.matches('^[a-z0-9_]{1,80}$') &&
+        request.resource.data.keys().hasOnly(['slug', 'completedNodeIds', 'updatedAt']) &&
+        request.resource.data.slug == slug &&
+        request.resource.data.completedNodeIds is list &&
+        request.resource.data.completedNodeIds.size() <= 800 &&
+        optionalTimestamp('updatedAt');
+    }
+
     match /users/{uid} {
-      allow read, create, update, delete: if signedInAs(uid);
+      allow read, delete: if signedInAs(uid);
+      allow create, update: if signedInAs(uid) && validUserProfile(uid);
 
       match /roadmapProgress/{slug} {
-        allow read, create, update, delete: if signedInAs(uid);
+        allow read, delete: if signedInAs(uid);
+        allow create, update: if signedInAs(uid) && validProgress(slug);
       }
     }
   }

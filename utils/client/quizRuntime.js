@@ -1,3 +1,5 @@
+import { getFirebaseServices } from './firebaseClient';
+
 export function mountQuizRuntime() {
 // ===== QUIZ PAGE - Gemini API Integration =====
 
@@ -59,6 +61,19 @@ function clearHumanProof() {
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function getFirebaseIdToken() {
+    const services = getFirebaseServices();
+    const currentUser = services.auth?.currentUser;
+
+    if (!currentUser) {
+        const error = new Error('Login required');
+        error.status = 401;
+        throw error;
+    }
+
+    return currentUser.getIdToken();
 }
 
 function parseRetryAfterMs(value) {
@@ -848,7 +863,11 @@ async function fetchGeminiPayload(payload) {
 
     for (let attempt = 0; attempt <= AI_CLIENT_MAX_RETRIES; attempt += 1) {
         try {
-            const headers = { 'Content-Type': 'application/json' };
+            const idToken = await getFirebaseIdToken();
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${idToken}`
+            };
             if (humanProofToken) headers[HUMAN_PROOF_HEADER] = humanProofToken;
 
             const res = await fetch('/api/gemini', {
