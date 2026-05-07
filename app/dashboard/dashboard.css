@@ -4575,3 +4575,56 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Preserve the compact Bun-Bot prompt layout from the original dashboard card. */
+.dash-bunbot-card {
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: left !important;
+  gap: 0.35rem !important;
+  min-height: 262px !important;
+}
+
+.dash-bunbot-card .pixar-bunny-container {
+  flex: 0 0 86px !important;
+  width: 70px !important;
+  height: 95px !important;
+  margin-top: 0 !important;
+  margin-left: -6px !important;
+  transform: scale(0.85) !important;
+  transform-origin: center left !important;
+}
+
+.dash-bunbot-content {
+  flex: 0 1 132px !important;
+  min-width: 0 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 600px) {
+  .dash-bunbot-card {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: left !important;
+    gap: 0.35rem !important;
+    min-height: 262px !important;
+  }
+
+  .dash-bunbot-card .pixar-bunny-container {
+    flex: 0 0 86px !important;
+    width: 70px !important;
+    height: 95px !important;
+    margin-top: 0 !important;
+    margin-left: -6px !important;
+    transform: scale(0.85) !important;
+    transform-origin: center left !important;
+  }
+
+  .dash-bunbot-content {
+    flex: 0 1 132px !important;
+    min-width: 0 !important;
+    text-align: left !important;
+  }
+}
