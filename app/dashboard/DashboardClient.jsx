@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
 import { useDashboardData } from './dashboardUtils';
 import './dashboard.css';
@@ -11,6 +11,38 @@ const DONUT_RADIUS = 82;
 const DONUT_CIRCUMFERENCE = 2 * Math.PI * DONUT_RADIUS;
 const MINI_DONUT_RADIUS = 17;
 const MINI_DONUT_CIRCUMFERENCE = 2 * Math.PI * MINI_DONUT_RADIUS;
+const LOCAL_PREVIEW_HOSTS = new Set(['localhost', '127.0.0.1', '::1']);
+const DASHBOARD_PREVIEW_PROFILE = {
+  hydrated: true,
+  name: 'Aarav Sharma',
+  hasName: true,
+  degree: 'B.Tech',
+  year: '3rd Year',
+  interest: 'Frontend Engineering',
+};
+const DASHBOARD_PREVIEW_DATA = {
+  roadmaps: [
+    { slug: 'frontend', title: 'Frontend Developer', description: '', total: 42, done: 30, pct: 71, xp: 3000, field: 'web' },
+    { slug: 'fullstack', title: 'Full Stack Developer', description: '', total: 38, done: 20, pct: 53, xp: 2000, field: 'web' },
+    { slug: 'ai_ml_engineer', title: 'AI/ML Engineer', description: '', total: 27, done: 12, pct: 44, xp: 1200, field: 'ai' },
+  ],
+  totalXP: 6200,
+  totalNodes: 107,
+  totalDone: 62,
+  overallPct: 58,
+  efficiency: 89,
+  globalPercentile: 84,
+  vibeQuote: { text: 'Preview mode is showing a realistic dashboard snapshot for UI review.', emoji: '🧪' },
+  dailyIntel: [
+    { icon: '🚀', text: 'Frontend engineers who ship polished interfaces consistently stand out in fresher hiring rounds.' },
+    { icon: '📊', text: 'Teams increasingly evaluate portfolio depth, not just DSA scores, for product-facing roles.' },
+    { icon: '🌐', text: 'Next.js and TypeScript remain common expectations for modern web internship pipelines.' },
+    { icon: '⚡', text: 'Cross-functional builders with UI judgement and roadmap ownership are gaining an edge in campus hiring.' },
+  ],
+  primaryField: 'web',
+  showCelebration: false,
+  xpGained: 0,
+};
 
 /* ─── Confetti particles ─────────────────────────────────────── */
 const CONFETTI_COLORS = ['#2ECC71', '#A8FF3E', '#FFD700', '#58D68D', '#FF6B6B', '#4ECDC4', '#FF9F43', '#A29BFE'];
@@ -75,10 +107,19 @@ function CelebrationOverlay({ xpGained, onDismiss }) {
 /* ─── Main Dashboard ─────────────────────────────────────────── */
 export default function DashboardClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, profile, authLoading, profileLoading, isProfileComplete, progressVersion } = useAuth();
   const { data, loading } = useDashboardData(progressVersion);
   const [showCeleb, setShowCeleb] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const previewParam = searchParams.get('preview');
+  const isDashboardPreview = previewParam === 'dashboard'
+    && typeof window !== 'undefined'
+    && LOCAL_PREVIEW_HOSTS.has(window.location.hostname);
+  const activeProfile = isDashboardPreview ? DASHBOARD_PREVIEW_PROFILE : profile;
+  const activeData = isDashboardPreview ? DASHBOARD_PREVIEW_DATA : data;
+  const hasDashboardAccess = isDashboardPreview || Boolean(user && isProfileComplete);
+  const isDashboardLoading = !mounted || (!isDashboardPreview && (authLoading || profileLoading || !user || !isProfileComplete || loading));
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -86,13 +127,20 @@ export default function DashboardClient() {
   }, []);
 
   useEffect(() => {
-    if (data?.showCelebration) {
+    if (activeData?.showCelebration) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowCeleb(true);
+      return;
     }
-  }, [data?.showCelebration]);
+
+    setShowCeleb(false);
+  }, [activeData?.showCelebration]);
 
   useEffect(() => {
+    if (isDashboardPreview) {
+      return;
+    }
+
     if (!authLoading && !user) {
       router.replace('/auth?next=/dashboard');
       return;
@@ -101,10 +149,10 @@ export default function DashboardClient() {
     if (!authLoading && !profileLoading && user && !isProfileComplete) {
       router.replace('/onboarding?next=/dashboard');
     }
-  }, [authLoading, isProfileComplete, profileLoading, router, user]);
+  }, [authLoading, isDashboardPreview, isProfileComplete, profileLoading, router, user]);
 
   /* Loading state */
-  if (authLoading || profileLoading || !user || !isProfileComplete || loading || !mounted) {
+  if (isDashboardLoading) {
     return (
       <div className="dash">
         <div className="dash-loading">
@@ -116,7 +164,7 @@ export default function DashboardClient() {
   }
 
   /* Empty state — no active roadmaps */
-  if (!data || data.roadmaps.length === 0) {
+  if (!hasDashboardAccess || !activeData || activeData.roadmaps.length === 0) {
     return (
       <div className="dash">
         <div className="dash-empty">
@@ -133,12 +181,12 @@ export default function DashboardClient() {
     );
   }
 
-  const firstName = profile.hasName ? profile.name.split(' ')[0] : 'Student';
+  const firstName = activeProfile.hasName ? activeProfile.name.split(' ')[0] : 'Student';
   const {
     roadmaps, totalXP, totalDone, totalNodes, overallPct,
     efficiency, globalPercentile, vibeQuote, dailyIntel,
     xpGained,
-  } = data;
+  } = activeData;
 
   return (
 
@@ -150,10 +198,6 @@ export default function DashboardClient() {
 
       {/* Sidebar */}
       <div className="dash-sidebar">
-        <div className="dash-sidebar-logo">
-          🐇 <span>SkillBun</span>
-        </div>
-        
         <div className="dash-sidebar-menu">
           <div className="dash-sidebar-label">Menu</div>
           <Link href="/dashboard" className="dash-nav-item active">
@@ -176,12 +220,6 @@ export default function DashboardClient() {
           <Link href="/help" className="dash-nav-item">
             <span className="dash-nav-icon">❓</span> Help
           </Link>
-        </div>
-
-        <div className="dash-sidebar-app-card">
-          <h4>Download our Mobile App</h4>
-          <p>Get SkillBun on the go.</p>
-          <button className="dash-sidebar-app-btn">Download</button>
         </div>
       </div>
 
