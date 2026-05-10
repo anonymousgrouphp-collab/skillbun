@@ -1339,3 +1339,4 @@
 [2026-05-10T22:42:37] feat(roadmap): add milestone progress tracking
 [2026-05-10T12:31:00] feat(roadmap): add milestone progress tracking
 [2026-05-10T09:35:59] test(matching): add test suite for recommendation score
+[2026-05-10T23:59:32] perf(cache): optimize career trajectory data loader
