@@ -1348,3 +1348,4 @@
 [2026-05-10T22:51:08] perf(cache): optimize career trajectory data loader
 [2026-05-10T21:38:44] feat(roadmap): add milestone progress tracking
 [2026-05-10T17:53:44] feat(roadmap): add milestone progress tracking
+[2026-05-10T18:45:47] feat(roadmap): add milestone progress tracking
