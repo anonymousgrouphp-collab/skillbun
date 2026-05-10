@@ -1351,3 +1351,4 @@
 [2026-05-10T18:45:47] feat(roadmap): add milestone progress tracking
 [2026-05-10T14:12:13] fix(analytics): correct career aptitude score calculation
 [2026-05-10T17:43:22] perf(cache): optimize career trajectory data loader
+[2026-05-10T13:32:34] style(ui): adjust career dashboard card elevation
