@@ -35,7 +35,7 @@ The following are protected surfaces. Agents must not remove, redesign, replace,
 - Homepage hero structure and floating code elements
 - Footer structure, footer brand area, and footer badges/links
 - Shared nav (now using a central Advanced Search Bar instead of standard text links), shared theme shell, and theme toggle behavior
-- Dark/light theme support and token-driven styling
+- Dark/light theme support, token-driven styling, SkillBun default colors, and the light-mode patterned background treatment
 
 ## Brand identity that must be preserved
 
@@ -124,6 +124,9 @@ All pages, including future pages created by agents, must support the existing d
 
 - Respect the current `data-theme` mechanism and `sb_theme` localStorage preference.
 - Use the shared CSS variables in `app/globals.css` instead of hard-coded page-only colors whenever possible.
+- Any new page must use SkillBun's existing default color system. Do not introduce a disconnected page-specific color palette unless the user explicitly asks for that exact visual change.
+- In light mode, new pages must preserve the existing designer-pattern-style background feel. If a page needs its own background treatment, keep it as a subtle, token-driven variation of the current SkillBun light-mode pattern rather than replacing it with a plain or unrelated background.
+- Do not cover or bypass the shared light-mode patterned background with opaque custom wrappers unless the task truly requires it.
 - Do not create light-only or dark-only pages unless the user explicitly asks for that.
 - New UI must remain readable, polished, and consistent in both themes.
 - Do not break the global `ThemeToggle` behavior or the theme initialization in `app/layout.jsx`.
