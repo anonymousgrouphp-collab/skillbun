@@ -1343,3 +1343,4 @@
 [2026-05-10T13:46:52] perf(cache): optimize career trajectory data loader
 [2026-05-10T11:24:42] fix(analytics): correct career aptitude score calculation
 [2026-05-10T18:32:56] test(matching): add test suite for recommendation score
+[2026-05-10T21:38:58] docs(telemetry): record platform assessment metrics
