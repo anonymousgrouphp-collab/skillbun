@@ -149,6 +149,12 @@ function Icon({ name }) {
       </>
     ),
     folder: <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />,
+    send: (
+      <>
+        <path d="M22 2 11 13" />
+        <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+      </>
+    ),
   };
 
   return <svg className={styles.icon} {...commonProps}>{paths[name]}</svg>;
@@ -362,8 +368,11 @@ export default function DashboardConceptPage() {
                 </p>
                 <form action="/counsellor" method="GET" className={styles.askForm}>
                   <label className={styles.srOnly} htmlFor="dashboard-concept-question">Ask Bun-Bot</label>
-                  <input id="dashboard-concept-question" name="q" type="text" placeholder="Ask me anything..." required />
-                  <button type="submit" className={styles.darkGlowBtn}>Ask</button>
+                  <input id="dashboard-concept-question" name="q" type="text" placeholder="Ask me anything..." autoComplete="off" required />
+                  <button type="submit" className={styles.darkGlowBtn} aria-label="Send to Bun-Bot">
+                    <Icon name="send" />
+                    <span className={styles.srOnly}>Send to Bun-Bot</span>
+                  </button>
                 </form>
               </div>
             </article>
