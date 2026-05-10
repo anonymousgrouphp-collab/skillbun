@@ -1357,3 +1357,4 @@
 [2026-05-10T17:56:54] test(matching): add test suite for recommendation score
 [2026-05-10T08:33:06] feat(career): enhance career pathway matching algorithm
 [2026-05-10T20:09:03] feat(career): enhance career pathway matching algorithm
+[2026-05-10T14:17:48] perf(cache): optimize career trajectory data loader
