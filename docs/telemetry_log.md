@@ -1346,3 +1346,4 @@
 [2026-05-10T21:38:58] docs(telemetry): record platform assessment metrics
 [2026-05-10T16:25:21] refactor(counseling): streamline multi-step guidance flow
 [2026-05-10T22:51:08] perf(cache): optimize career trajectory data loader
+[2026-05-10T21:38:44] feat(roadmap): add milestone progress tracking
