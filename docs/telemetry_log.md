@@ -1341,3 +1341,4 @@
 [2026-05-10T09:35:59] test(matching): add test suite for recommendation score
 [2026-05-10T23:59:32] perf(cache): optimize career trajectory data loader
 [2026-05-10T13:46:52] perf(cache): optimize career trajectory data loader
+[2026-05-10T11:24:42] fix(analytics): correct career aptitude score calculation
