@@ -1,19 +1,11 @@
 import Link from 'next/link';
+import WorkspaceSidebar from '../components/WorkspaceSidebar';
 import styles from './dashboard.module.css';
 
 export const metadata = {
   title: 'Dashboard - SkillBun',
   description: 'SkillBun student progress dashboard for reviewing XP, projects, reminders, and career readiness.',
 };
-
-const navItems = [
-  { label: 'Dashboard', href: '/dashboard', icon: 'dashboard', active: true },
-  { label: 'Career Quiz', href: '/quiz', icon: 'quiz' },
-  { label: 'Roadmaps', href: '/roadmap/soc_analyst', icon: 'map' },
-  { label: 'Profile', href: '/coming-soon', icon: 'user' },
-  { label: 'Settings', href: '/coming-soon', icon: 'settings' },
-  { label: 'Help', href: '/contact', icon: 'help' },
-];
 
 const roadmapHrefByProject = {
   'SOC Analyst': '/roadmap/soc_analyst',
@@ -173,24 +165,7 @@ export default function DashboardPage() {
 
       <div className={styles.container}>
         <section className={styles.board} aria-label="Dashboard workspace">
-          <aside className={`${styles.sidebar} ${styles.glassPanel}`} aria-label="Dashboard navigation">
-            <span className={styles.glowBadge}>DASHBOARD.ONLINE</span>
-            <p className={styles.sidebarKicker}>SkillBun Workspace</p>
-            <h1 className={styles.sidebarTitle}>Student Progress</h1>
-            <div className={styles.sideNav} role="navigation" aria-label="Dashboard links">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={`${styles.navItem} ${item.active ? styles.navItemActive : ''}`}
-                  aria-current={item.active ? 'page' : undefined}
-                >
-                  <Icon name={item.icon} />
-                  <span>{item.label}</span>
-                </Link>
-              ))}
-            </div>
-          </aside>
+          <WorkspaceSidebar active="dashboard" />
 
           <div className={styles.mainColumn}>
             <div className={styles.metricsGrid} aria-label="Dashboard summary">

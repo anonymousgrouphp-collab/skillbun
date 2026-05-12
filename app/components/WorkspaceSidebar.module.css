@@ -1,0 +1,237 @@
+.glassPanel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+:global([data-theme='dark']) .glassPanel {
+  background: color-mix(in srgb, var(--surface) 76%, transparent);
+}
+
+.glassPanel::before {
+  content: '';
+  position: absolute;
+  inset: -35%;
+  background: radial-gradient(circle, var(--green-subtle-strong) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.glassPanel:hover::before {
+  opacity: 1;
+}
+
+.glassPanel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  display: flex;
+  min-width: 0;
+  min-height: auto;
+  height: 100%;
+  flex-direction: column;
+  padding: clamp(1.15rem, 1.6vw, 1.45rem);
+  border-radius: 22px;
+}
+
+.glowBadge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--green-subtle);
+  color: var(--green);
+  box-shadow: 0 0 16px var(--green-subtle);
+  font-family: monospace;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 0 7px var(--green-subtle);
+  }
+
+  to {
+    box-shadow: 0 0 20px var(--green-subtle);
+  }
+}
+
+.sidebarKicker {
+  margin: 1.1rem 0 0;
+  color: var(--green);
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebarTitle {
+  max-width: min(100%, 10ch);
+  margin: 0.65rem 0 1.1rem;
+  color: var(--text);
+  font-family: var(--font-fredoka), var(--font-nunito), sans-serif;
+  font-size: clamp(2.05rem, 2.45vw, 2.85rem);
+  font-weight: 700;
+  line-height: 0.93;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.sideNav {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  padding-top: 0;
+}
+
+.navItem {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.72rem 0.82rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-raised) 84%, transparent);
+  color: var(--text);
+  font-size: 0.93rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.navItem:hover,
+.navItemActive {
+  border-color: var(--green);
+  background: var(--green-subtle);
+  color: var(--green);
+  transform: translateY(-2px);
+}
+
+.navItem:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 3px;
+}
+
+.navItem .icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 1180px) {
+  .sidebar {
+    grid-column: 1 / -1;
+    min-height: auto;
+  }
+
+  .sideNav {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 0;
+    padding: 0.2rem 0.08rem 0.45rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 0.08rem;
+    scroll-snap-type: inline proximity;
+    scrollbar-color: var(--green-subtle-strong) transparent;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sideNav::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .sideNav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sideNav::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--green-subtle-strong);
+  }
+
+  .navItem {
+    flex: 0 0 clamp(150px, 24vw, 190px);
+    scroll-snap-align: start;
+  }
+
+  .sidebarTitle {
+    max-width: none;
+    margin-bottom: 0.85rem;
+    font-size: clamp(2.1rem, 4.8vw, 3rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .sidebar {
+    padding: 0.95rem;
+    border-radius: 18px;
+  }
+
+  .glowBadge {
+    padding: 0.34rem 0.72rem;
+    font-size: 0.68rem;
+  }
+
+  .sidebarKicker {
+    margin-top: 0.75rem;
+    font-size: 0.68rem;
+  }
+
+  .sidebarTitle {
+    margin: 0.4rem 0 0.65rem;
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+    line-height: 1;
+  }
+
+  .sideNav {
+    margin-inline: -0.2rem;
+    padding: 0.1rem 0.2rem 0.45rem;
+  }
+
+  .navItem {
+    flex-basis: clamp(145px, 40vw, 160px);
+    min-height: 42px;
+    padding: 0.68rem 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glowBadge {
+    animation: none;
+  }
+
+  .glassPanel::before,
+  .navItem {
+    transition: none;
+  }
+
+  .navItem:hover {
+    transform: none;
+  }
+}
