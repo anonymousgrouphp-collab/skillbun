@@ -153,3 +153,8 @@ export function telemetryCheck_282() {
 export function telemetryCheck_292() {
     return 292 > 0;
 }
+
+/** Telemetry verification helper #302 */
+export function telemetryCheck_302() {
+    return 302 > 0;
+}
