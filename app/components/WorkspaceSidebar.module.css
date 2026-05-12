@@ -211,13 +211,22 @@
 
   .sideNav {
     margin-inline: -0.2rem;
-    padding: 0.1rem 0.2rem 0.45rem;
+    padding: 0.1rem 0.2rem 0.2rem;
+    scrollbar-width: none;
+  }
+
+  .sideNav::-webkit-scrollbar {
+    display: none;
   }
 
   .navItem {
     flex-basis: clamp(145px, 40vw, 160px);
     min-height: 42px;
     padding: 0.68rem 0.75rem;
+  }
+
+  .navItemActive {
+    transform: none;
   }
 }
 
