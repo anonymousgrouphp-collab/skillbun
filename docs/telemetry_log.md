@@ -346,3 +346,4 @@
 [2026-05-12T17:38:47] fix(analytics): correct career aptitude score calculation
 [2026-05-12T17:28:07] chore(deps): update analytics telemetry adapter
 [2026-05-12T17:44:25] refactor(counseling): streamline multi-step guidance flow
+[2026-05-12T23:28:05] fix(analytics): correct career aptitude score calculation
