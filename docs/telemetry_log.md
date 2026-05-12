@@ -353,3 +353,4 @@
 [2026-05-12T09:48:48] perf(cache): optimize career trajectory data loader
 [2026-05-12T23:33:41] chore(deps): update analytics telemetry adapter
 [2026-05-12T16:11:37] test(matching): add test suite for recommendation score
+[2026-05-12T23:05:30] style(ui): adjust career dashboard card elevation
