@@ -348,3 +348,4 @@
 [2026-05-12T17:44:25] refactor(counseling): streamline multi-step guidance flow
 [2026-05-12T23:28:05] fix(analytics): correct career aptitude score calculation
 [2026-05-12T09:56:27] style(ui): adjust career dashboard card elevation
+[2026-05-12T16:01:05] docs(telemetry): record platform assessment metrics
