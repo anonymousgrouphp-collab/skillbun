@@ -328,3 +328,4 @@
 [2026-05-12T20:31:04] fix(analytics): correct career aptitude score calculation
 [2026-05-12T09:09:09] fix(analytics): correct career aptitude score calculation
 [2026-05-12T17:05:15] fix(assessment): refine skill gap analysis scoring weights
+[2026-05-12T21:38:38] fix(analytics): correct career aptitude score calculation
