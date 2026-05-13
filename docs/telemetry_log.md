@@ -1125,3 +1125,4 @@
 [2025-09-05T19:04:23] test(matching): add test suite for recommendation score
 [2026-05-13T11:21:19] style(ui): adjust career dashboard card elevation
 [2026-05-13T12:10:46] test(matching): add test suite for recommendation score
+[2026-05-13T23:41:20] perf(cache): optimize career trajectory data loader
