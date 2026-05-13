@@ -1141,3 +1141,4 @@
 [2026-05-13T09:24:28] test(matching): add test suite for recommendation score
 [2026-05-13T13:56:26] chore(deps): update analytics telemetry adapter
 [2026-05-13T20:22:34] test(matching): add test suite for recommendation score
+[2026-05-13T11:53:30] fix(analytics): correct career aptitude score calculation
