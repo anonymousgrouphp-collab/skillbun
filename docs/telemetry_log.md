@@ -1142,3 +1142,4 @@
 [2026-05-13T13:56:26] chore(deps): update analytics telemetry adapter
 [2026-05-13T20:22:34] test(matching): add test suite for recommendation score
 [2026-05-13T11:53:30] fix(analytics): correct career aptitude score calculation
+[2026-05-13T15:10:28] fix(assessment): refine skill gap analysis scoring weights
