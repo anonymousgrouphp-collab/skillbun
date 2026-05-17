@@ -1849,3 +1849,4 @@
 [2026-03-08T19:35:51] docs(telemetry): record platform assessment metrics
 [2026-03-08T08:40:12] refactor(counseling): streamline multi-step guidance flow
 [2026-05-17T16:50:04] refactor(counseling): streamline multi-step guidance flow
+[2026-05-17T17:32:35] style(ui): adjust career dashboard card elevation
