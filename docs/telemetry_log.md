@@ -1852,3 +1852,4 @@
 [2026-05-17T17:32:35] style(ui): adjust career dashboard card elevation
 [2026-05-17T08:07:43] style(ui): adjust career dashboard card elevation
 [2026-05-17T18:25:46] fix(analytics): correct career aptitude score calculation
+[2026-05-17T08:53:11] docs(telemetry): record platform assessment metrics
