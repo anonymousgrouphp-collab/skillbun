@@ -482,3 +482,4 @@
 [2026-05-25T18:42:07] test(matching): add test suite for recommendation score
 [2026-05-25T19:55:42] test(matching): add test suite for recommendation score
 [2026-05-25T09:18:38] refactor(counseling): streamline multi-step guidance flow
+[2026-05-25T19:06:36] feat(roadmap): add milestone progress tracking
