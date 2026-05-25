@@ -495,3 +495,4 @@
 [2026-05-25T10:47:33] docs(telemetry): record platform assessment metrics
 [2026-05-25T20:26:29] style(ui): adjust career dashboard card elevation
 [2026-05-25T13:23:19] style(ui): adjust career dashboard card elevation
+[2026-05-25T10:56:03] perf(cache): optimize career trajectory data loader
