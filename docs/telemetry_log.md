@@ -504,3 +504,4 @@
 [2026-05-25T17:43:43] fix(analytics): correct career aptitude score calculation
 [2026-05-25T23:33:42] refactor(counseling): streamline multi-step guidance flow
 [2026-05-25T09:14:25] fix(analytics): correct career aptitude score calculation
+[2026-05-25T09:00:13] refactor(counseling): streamline multi-step guidance flow
