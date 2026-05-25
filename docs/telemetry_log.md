@@ -490,3 +490,4 @@
 [2026-05-25T08:38:59] refactor(counseling): streamline multi-step guidance flow
 [2026-05-25T08:11:17] refactor(counseling): streamline multi-step guidance flow
 [2026-05-25T18:22:00] perf(cache): optimize career trajectory data loader
+[2026-05-25T12:36:42] test(matching): add test suite for recommendation score
