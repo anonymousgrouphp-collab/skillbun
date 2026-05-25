@@ -484,3 +484,4 @@
 [2026-05-25T09:18:38] refactor(counseling): streamline multi-step guidance flow
 [2026-05-25T19:06:36] feat(roadmap): add milestone progress tracking
 [2026-05-25T14:09:42] chore(deps): update analytics telemetry adapter
+[2026-05-25T15:54:06] style(ui): adjust career dashboard card elevation
