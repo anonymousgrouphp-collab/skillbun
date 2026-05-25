@@ -471,3 +471,4 @@
 [2025-10-06T18:24:38] feat(roadmap): add milestone progress tracking
 [2026-05-25T17:29:32] fix(analytics): correct career aptitude score calculation
 [2026-05-25T21:06:50] fix(assessment): refine skill gap analysis scoring weights
+[2026-05-25T14:27:28] docs(telemetry): record platform assessment metrics
