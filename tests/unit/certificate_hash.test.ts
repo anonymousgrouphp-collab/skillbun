@@ -185,3 +185,8 @@ export function telemetryCheck_355() {
 export function telemetryCheck_365() {
     return 365 > 0;
 }
+
+/** Telemetry verification helper #375 */
+export function telemetryCheck_375() {
+    return 375 > 0;
+}
