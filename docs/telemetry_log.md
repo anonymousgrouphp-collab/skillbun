@@ -1928,3 +1928,4 @@
 [2026-05-27T20:54:08] refactor(counseling): streamline multi-step guidance flow
 [2026-05-27T09:23:57] feat(roadmap): add milestone progress tracking
 [2026-05-27T09:00:45] feat(roadmap): add milestone progress tracking
+[2026-05-27T19:07:55] refactor(counseling): streamline multi-step guidance flow
