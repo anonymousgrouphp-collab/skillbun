@@ -1920,3 +1920,4 @@
 [2026-05-27T20:20:31] feat(career): enhance career pathway matching algorithm
 [2026-05-27T10:13:52] perf(cache): optimize career trajectory data loader
 [2026-05-27T08:48:09] perf(cache): optimize career trajectory data loader
+[2026-05-27T22:34:18] test(matching): add test suite for recommendation score
