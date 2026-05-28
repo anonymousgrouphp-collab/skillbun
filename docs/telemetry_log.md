@@ -842,3 +842,4 @@
 [2026-05-28T08:01:33] refactor(counseling): streamline multi-step guidance flow
 [2026-05-28T17:01:32] test(matching): add test suite for recommendation score
 [2026-05-28T13:06:58] fix(assessment): refine skill gap analysis scoring weights
+[2026-05-28T12:15:12] fix(analytics): correct career aptitude score calculation
