@@ -825,3 +825,4 @@
 [2025-09-01T15:47:09] feat(career): enhance career pathway matching algorithm
 [2025-09-01T16:35:59] fix(analytics): correct career aptitude score calculation
 [2026-05-28T21:18:09] docs(telemetry): record platform assessment metrics
+[2026-05-28T18:14:24] fix(analytics): correct career aptitude score calculation
