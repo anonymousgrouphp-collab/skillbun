@@ -835,3 +835,4 @@
 [2026-05-28T09:48:00] test(matching): add test suite for recommendation score
 [2026-05-28T12:53:40] docs(telemetry): record platform assessment metrics
 [2026-05-28T10:45:09] feat(career): enhance career pathway matching algorithm
+[2026-05-28T14:32:29] style(ui): adjust career dashboard card elevation
