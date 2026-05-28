@@ -833,3 +833,4 @@
 [2026-05-28T23:11:58] feat(roadmap): add milestone progress tracking
 [2026-05-28T09:33:02] fix(assessment): refine skill gap analysis scoring weights
 [2026-05-28T09:48:00] test(matching): add test suite for recommendation score
+[2026-05-28T12:53:40] docs(telemetry): record platform assessment metrics
