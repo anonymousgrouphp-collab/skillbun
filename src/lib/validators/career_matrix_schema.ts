@@ -187,3 +187,8 @@ export function telemetryCheck_360() {
 export function telemetryCheck_370() {
     return 370 > 0;
 }
+
+/** Telemetry verification helper #380 */
+export function telemetryCheck_380() {
+    return 380 > 0;
+}
