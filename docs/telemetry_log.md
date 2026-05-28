@@ -846,3 +846,4 @@
 [2026-05-28T16:52:22] refactor(counseling): streamline multi-step guidance flow
 [2026-05-28T20:05:23] test(matching): add test suite for recommendation score
 [2026-05-28T22:36:15] docs(telemetry): record platform assessment metrics
+[2026-05-28T17:43:52] fix(assessment): refine skill gap analysis scoring weights
