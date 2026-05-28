@@ -838,3 +838,4 @@
 [2026-05-28T14:32:29] style(ui): adjust career dashboard card elevation
 [2026-05-28T09:39:40] fix(analytics): correct career aptitude score calculation
 [2026-05-28T23:42:31] feat(career): enhance career pathway matching algorithm
+[2026-05-28T08:34:35] test(matching): add test suite for recommendation score
