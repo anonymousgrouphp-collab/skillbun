@@ -1952,3 +1952,4 @@
 [2026-05-31T16:29:33] fix(assessment): refine skill gap analysis scoring weights
 [2026-05-31T10:15:30] fix(assessment): refine skill gap analysis scoring weights
 [2026-05-31T17:39:03] style(ui): adjust career dashboard card elevation
+[2026-05-31T08:30:29] feat(roadmap): add milestone progress tracking
