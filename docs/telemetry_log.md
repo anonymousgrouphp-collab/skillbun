@@ -1950,3 +1950,4 @@
 [2026-05-31T23:45:23] fix(assessment): refine skill gap analysis scoring weights
 [2026-05-31T23:44:05] perf(cache): optimize career trajectory data loader
 [2026-05-31T16:29:33] fix(assessment): refine skill gap analysis scoring weights
+[2026-05-31T10:15:30] fix(assessment): refine skill gap analysis scoring weights
