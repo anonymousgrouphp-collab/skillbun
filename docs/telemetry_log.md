@@ -1948,3 +1948,4 @@
 [2026-05-31T16:26:59] feat(roadmap): add milestone progress tracking
 [2026-05-31T19:02:02] fix(analytics): correct career aptitude score calculation
 [2026-05-31T23:45:23] fix(assessment): refine skill gap analysis scoring weights
+[2026-05-31T23:44:05] perf(cache): optimize career trajectory data loader
