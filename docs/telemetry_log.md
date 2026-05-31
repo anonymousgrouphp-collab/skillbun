@@ -1942,3 +1942,4 @@
 [2026-07-25T21:55:29] fix(analytics): correct career aptitude score calculation
 [2026-05-31T21:39:11] chore(deps): update analytics telemetry adapter
 [2026-05-31T21:35:52] chore(deps): update analytics telemetry adapter
+[2026-05-31T20:22:14] perf(cache): optimize career trajectory data loader
