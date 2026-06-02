@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
@@ -215,7 +216,9 @@ function AuthForm() {
     <main className="auth-page">
       <section className="auth-shell" aria-labelledby="auth-title">
         <div className="auth-copy">
-          <div className="auth-bunny" aria-hidden="true">ðŸ°</div>
+          <div className="auth-bunny" aria-hidden="true">
+            <Image src="/logo.png" alt="" width={58} height={58} priority />
+          </div>
           <p className="section-label">SkillBun Account</p>
           <h1 id="auth-title">{title}</h1>
           <p>{helperText}</p>
@@ -225,9 +228,30 @@ function AuthForm() {
             <span>Quiz</span>
             <span>Roadmaps</span>
           </div>
+          <div className="auth-path-panel" aria-label="What SkillBun restores after login">
+            <div className="auth-path-step">
+              <span>01</span>
+              <strong>Profile context</strong>
+              <p>Keep your interests, strengths, and study preferences ready.</p>
+            </div>
+            <div className="auth-path-step">
+              <span>02</span>
+              <strong>Adaptive quiz</strong>
+              <p>Continue from the same career signals across devices.</p>
+            </div>
+            <div className="auth-path-step">
+              <span>03</span>
+              <strong>Roadmap progress</strong>
+              <p>Return to saved skills, milestones, and Bun-Bot guidance.</p>
+            </div>
+          </div>
         </div>
 
         <div className="auth-panel">
+          <div className="auth-panel-header">
+            <span>Account checkpoint</span>
+            <strong>{mode === 'signup' ? 'Start your SkillBun flow' : 'Resume your SkillBun flow'}</strong>
+          </div>
           <div className="auth-mode-toggle" role="tablist" aria-label="Choose login or signup">
             <button
               type="button"
@@ -317,6 +341,11 @@ function AuthForm() {
           </p>
 
           <Link href="/" className="auth-home-link">Back to homepage</Link>
+        </div>
+
+        <div className="auth-mini-console" aria-hidden="true">
+          <span>next</span>
+          <strong>{next}</strong>
         </div>
       </section>
     </main>
