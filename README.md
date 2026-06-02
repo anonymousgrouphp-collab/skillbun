@@ -135,3 +135,6 @@ All roadmap pages must render as the same prerequisite tree:
 - Publish the Firestore rules in `firestore.rules`.
 - Add production and preview hostnames to Cloudflare Turnstile if Turnstile is enabled.
 - Set `HUMAN_PROOF_SECRET` in production so human-proof tokens do not depend on another API key.
+
+---
+🌐 Built and maintained by **Team Cosmic** (Govt. of India MSME Registered Startup).
