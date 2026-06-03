@@ -1526,3 +1526,4 @@
 [2026-06-03T19:15:41] feat(career): enhance career pathway matching algorithm
 [2026-06-03T13:05:17] test(matching): add test suite for recommendation score
 [2026-06-03T19:42:25] test(matching): add test suite for recommendation score
+[2026-06-03T14:33:00] fix(assessment): refine skill gap analysis scoring weights
