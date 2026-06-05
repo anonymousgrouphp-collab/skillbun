@@ -80,7 +80,7 @@ export function renderBotHTML(text) {
   const escaped = escapeHTML(safeText)
     .replace(/\n\n+/g, '</p><p>')
     .replace(/\n/g, '<br>');
-  return `<p>${escaped}</p>`;
+  return '<p>' + escaped + '</p>';
 }
 
 export function appendMessage(state, role, text) {
@@ -98,9 +98,18 @@ export function appendMessage(state, role, text) {
   msgDiv.className = `message ${role}`;
 
   if (role === 'user') {
-    msgDiv.innerHTML = `<p>${escapeHTML(text)}</p>`;
+    msgDiv.innerHTML = '';
+    const p = document.createElement('p');
+    p.textContent = text;
+    msgDiv.appendChild(p);
   } else {
-    msgDiv.innerHTML = renderBotHTML(text);
+    msgDiv.innerHTML = '';
+    const cleanHtml = sanitizeHTML(renderBotHTML(text));
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(cleanHtml, 'text/html');
+    while (doc.body.firstChild) {
+      msgDiv.appendChild(doc.body.firstChild);
+    }
   }
 
   row.appendChild(avatar);

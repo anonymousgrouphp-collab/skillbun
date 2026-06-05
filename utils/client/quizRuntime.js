@@ -257,7 +257,7 @@ Start with the first question now.`;
 
       if (startedConversation) {
         state.conversationHistory = [];
-      } else if (appendedUserMessage && state.conversationHistory[state.conversationHistory.length - 1]?.role === 'user') {
+      } else if (appendedUserMessage && state.conversationHistory.at(-1)?.role === 'user') {
         state.conversationHistory.pop();
       }
 
@@ -419,26 +419,67 @@ Start with the first question now.`;
     const status = err?.status || 0;
     const retryAfterMs = err?.retryAfterMs || 0;
     const code = String(err?.code || (status ? `AI_${status}` : 'AI_CLIENT')).trim();
-    const detail = message ? sanitize(message) : "Our AI bunny tripped! Don't worry - our team is on it.";
-    
-    const waitNote = retryAfterMs > 0 ? `<div style="color:var(--muted);font-size:0.8rem;margin-top:0.55rem;">Suggested wait: ${sanitize(formatWaitTime(retryAfterMs))}</div>` : '';
-    const codeNote = code ? `<div style="color:var(--muted);font-size:0.75rem;margin-top:0.4rem;">Reference: ${sanitize(code)}${status ? ' / HTTP ' + sanitize(String(status)) : ''}</div>` : '';
-    
     const isMaxRetries = state.retryCount >= MAX_RETRIES_PER_QUESTION;
-    const retryNote = isMaxRetries
-      ? '<div style="color:var(--danger);font-size:0.8rem;margin-top:0.6rem;font-weight:700;">Multiple attempts failed. Please try again later or report this issue.</div>'
-      : `<div style="color:var(--muted);font-size:0.8rem;margin-top:0.6rem;">Attempt ${state.retryCount} of ${MAX_RETRIES_PER_QUESTION}</div>`;
 
-    document.getElementById('questionText').innerHTML = `
-      <div style="text-align:center;">
-        <div style="font-size:2.5rem;margin-bottom:0.8rem;">🐰💔</div>
-        <div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Oops! Something went wrong on our side.</div>
-        <div style="color:var(--muted);font-size:0.9rem;line-height:1.6;">${detail}</div>
-        ${waitNote}
-        ${retryNote}
-        ${codeNote}
-      </div>
-    `;
+    const containerDiv = document.createElement('div');
+    containerDiv.style.textAlign = 'center';
+
+    const bunnyDiv = document.createElement('div');
+    bunnyDiv.style.fontSize = '2.5rem';
+    bunnyDiv.style.marginBottom = '0.8rem';
+    bunnyDiv.textContent = '🐰💔';
+    containerDiv.appendChild(bunnyDiv);
+
+    const oopsDiv = document.createElement('div');
+    oopsDiv.style.fontWeight = '800';
+    oopsDiv.style.fontSize = '1.1rem';
+    oopsDiv.style.marginBottom = '0.5rem';
+    oopsDiv.textContent = 'Oops! Something went wrong on our side.';
+    containerDiv.appendChild(oopsDiv);
+
+    const detailDiv = document.createElement('div');
+    detailDiv.style.color = 'var(--muted)';
+    detailDiv.style.fontSize = '0.9rem';
+    detailDiv.style.lineHeight = '1.6';
+    detailDiv.textContent = message || "Our AI bunny tripped! Don't worry - our team is on it.";
+    containerDiv.appendChild(detailDiv);
+
+    if (retryAfterMs > 0) {
+      const waitDiv = document.createElement('div');
+      waitDiv.style.color = 'var(--muted)';
+      waitDiv.style.fontSize = '0.8rem';
+      waitDiv.style.marginTop = '0.55rem';
+      waitDiv.textContent = 'Suggested wait: ' + formatWaitTime(retryAfterMs);
+      containerDiv.appendChild(waitDiv);
+    }
+
+    const retryDiv = document.createElement('div');
+    if (isMaxRetries) {
+      retryDiv.style.color = 'var(--danger)';
+      retryDiv.style.fontSize = '0.8rem';
+      retryDiv.style.marginTop = '0.6rem';
+      retryDiv.style.fontWeight = '700';
+      retryDiv.textContent = 'Multiple attempts failed. Please try again later or report this issue.';
+    } else {
+      retryDiv.style.color = 'var(--muted)';
+      retryDiv.style.fontSize = '0.8rem';
+      retryDiv.style.marginTop = '0.6rem';
+      retryDiv.textContent = 'Attempt ' + state.retryCount + ' of ' + MAX_RETRIES_PER_QUESTION;
+    }
+    containerDiv.appendChild(retryDiv);
+
+    if (code) {
+      const codeDiv = document.createElement('div');
+      codeDiv.style.color = 'var(--muted)';
+      codeDiv.style.fontSize = '0.75rem';
+      codeDiv.style.marginTop = '0.4rem';
+      codeDiv.textContent = 'Reference: ' + code + (status ? ' / HTTP ' + status : '');
+      containerDiv.appendChild(codeDiv);
+    }
+
+    const qText = document.getElementById('questionText');
+    qText.innerHTML = '';
+    qText.appendChild(containerDiv);
 
     const subject = encodeURIComponent('SkillBun Quiz Error');
     const body = encodeURIComponent(buildErrorReportBody(state, {
@@ -449,16 +490,42 @@ Start with the first question now.`;
       status
     }));
 
-    const retryBtnHtml = !isMaxRetries
-      ? `<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🔄</span><span class="option-text">Try Again (${MAX_RETRIES_PER_QUESTION - state.retryCount} left)</span></button>`
-      : '<button class="quiz-option" id="retryLastQuestionBtn"><span class="option-label">🏠</span><span class="option-text">Back to Home</span></button>';
+    const optionsContainer = document.getElementById('optionsContainer');
+    optionsContainer.innerHTML = '';
 
-    document.getElementById('optionsContainer').innerHTML = `
-      <a class="quiz-option" href="mailto:${encodeURIComponent(SUPPORT_EMAIL)}?subject=${subject}&body=${body}" style="text-decoration:none;">
-        <span class="option-label">📧</span><span class="option-text">Report to Team</span>
-      </a>
-      ${retryBtnHtml}
-    `;
+    const reportLink = document.createElement('a');
+    reportLink.className = 'quiz-option';
+    reportLink.href = 'mailto:' + encodeURIComponent(SUPPORT_EMAIL) + '?subject=' + subject + '&body=' + body;
+    reportLink.style.textDecoration = 'none';
+
+    const reportLabel = document.createElement('span');
+    reportLabel.className = 'option-label';
+    reportLabel.textContent = '📧';
+    const reportText = document.createElement('span');
+    reportText.className = 'option-text';
+    reportText.textContent = 'Report to Team';
+
+    reportLink.appendChild(reportLabel);
+    reportLink.appendChild(reportText);
+    optionsContainer.appendChild(reportLink);
+
+    const actionBtn = document.createElement('button');
+    actionBtn.className = 'quiz-option';
+    actionBtn.id = 'retryLastQuestionBtn';
+
+    const actionLabel = document.createElement('span');
+    actionLabel.className = 'option-label';
+    actionLabel.textContent = !isMaxRetries ? '🔄' : '🏠';
+
+    const actionText = document.createElement('span');
+    actionText.className = 'option-text';
+    actionText.textContent = !isMaxRetries
+      ? 'Try Again (' + (MAX_RETRIES_PER_QUESTION - state.retryCount) + ' left)'
+      : 'Back to Home';
+
+    actionBtn.appendChild(actionLabel);
+    actionBtn.appendChild(actionText);
+    optionsContainer.appendChild(actionBtn);
 
     const retryBtn = document.getElementById('retryLastQuestionBtn');
     if (retryBtn) {
@@ -504,11 +571,18 @@ Start with the first question now.`;
       data.options.forEach((opt, i) => {
         const optEl = document.createElement('button');
         optEl.className = 'quiz-option';
-        optEl.style.animationDelay = `${i * 0.1}s`;
-        optEl.innerHTML = `
-          <span class="option-label">${sanitize(opt.label)}</span>
-          <span class="option-text">${sanitize(opt.text)}</span>
-        `;
+        optEl.style.animationDelay = (i * 0.1) + 's';
+
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'option-label';
+        labelSpan.textContent = opt.label;
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'option-text';
+        textSpan.textContent = opt.text;
+
+        optEl.appendChild(labelSpan);
+        optEl.appendChild(textSpan);
         optEl.addEventListener('click', () => selectOptionCallback(opt, optEl), { signal: state.signal });
         container.appendChild(optEl);
       });

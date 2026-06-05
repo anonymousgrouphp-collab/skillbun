@@ -224,7 +224,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     } catch (err) {
       if (thinkingRow) thinkingRow.remove();
 
-      if (state.conversationHistory[state.conversationHistory.length - 1]?.role === 'user') {
+      if (state.conversationHistory.at(-1)?.role === 'user') {
         state.conversationHistory.pop();
       }
 

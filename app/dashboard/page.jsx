@@ -78,13 +78,21 @@ function readRoadmapsMap() {
   const roadmaps = {};
 
   try {
-    const files = fs.readdirSync(roadmapsDir).filter((fileName) => fileName.endsWith('.json'));
+    const files = fs.readdirSync(roadmapsDir).filter((fileName) => {
+      const safeName = path.basename(fileName);
+      return safeName === fileName && /^[a-zA-Z0-9_-]+\.json$/.test(fileName);
+    });
 
     for (const fileName of files) {
       const slug = fileName.replace(/\.json$/, '');
 
       try {
-        const content = fs.readFileSync(path.join(roadmapsDir, fileName), 'utf8');
+        const safePath = path.normalize(path.join(roadmapsDir, fileName));
+        const baseDir = roadmapsDir.endsWith(path.sep) ? roadmapsDir : roadmapsDir + path.sep;
+        if (!safePath.startsWith(baseDir)) {
+          continue;
+        }
+        const content = fs.readFileSync(safePath, 'utf8');
         const roadmap = JSON.parse(content);
         const title = roadmap.title || slug.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         const tree = normalizeRoadmapTree(roadmap);
