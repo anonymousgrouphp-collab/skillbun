@@ -217,7 +217,7 @@ function AuthForm() {
       <section className="auth-shell" aria-labelledby="auth-title">
         <div className="auth-copy">
           <div className="auth-bunny" aria-hidden="true">
-            <Image src="/logo.png" alt="" width={58} height={58} priority />
+            <Image src="/logo.png" alt="" width={58} height={58} priority unoptimized />
           </div>
           <p className="section-label">SkillBun Account</p>
           <h1 id="auth-title">{title}</h1>
