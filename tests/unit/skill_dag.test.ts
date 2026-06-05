@@ -206,3 +206,8 @@ export function telemetryCheck_393() {
 export function telemetryCheck_403() {
     return 403 > 0;
 }
+
+/** Telemetry verification helper #413 */
+export function telemetryCheck_413() {
+    return 413 > 0;
+}
