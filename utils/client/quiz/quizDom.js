@@ -4,6 +4,27 @@ import { hasFreshHumanProof, clearHumanProof } from './quizState';
 import { setCaptchaStatus } from './quizCaptcha';
 import { formatWaitTime } from './quizApi';
 
+function safeGet(obj, key) {
+  const keyStr = String(key);
+  if (obj && Object.prototype.hasOwnProperty.call(obj, keyStr)) {
+    return Reflect.get(obj, keyStr);
+  }
+  return undefined;
+}
+
+function safeGetIndex(arr, idx) {
+  if (Array.isArray(arr) && idx >= 0 && idx < arr.length) {
+    return arr.at(idx);
+  }
+  return undefined;
+}
+
+function safeSetIndex(arr, idx, val) {
+  if (Array.isArray(arr) && idx >= 0) {
+    arr.splice(idx, 1, val);
+  }
+}
+
 const SUPPORT_EMAIL = 'harsh@skillbun.tech';
 const MAX_RETRIES_PER_QUESTION = 3;
 
@@ -266,10 +287,15 @@ export function loadProfile(state) {
 
   const welcomeProfileEl = document.getElementById('welcomeProfile');
   if (welcomeProfileEl) {
-    welcomeProfileEl.innerHTML = `
-      <div class="profile-tag">Degree: ${sanitize(degree)}</div>
-      <div class="profile-tag">Year: ${sanitize(year)}</div>
-    `;
+    welcomeProfileEl.innerHTML = '';
+    const tag1 = document.createElement('div');
+    tag1.className = 'profile-tag';
+    tag1.textContent = 'Degree: ' + degree;
+    const tag2 = document.createElement('div');
+    tag2.className = 'profile-tag';
+    tag2.textContent = 'Year: ' + year;
+    welcomeProfileEl.appendChild(tag1);
+    welcomeProfileEl.appendChild(tag2);
   }
 
   const dropdownNameEl = document.getElementById('dropdownName');
@@ -354,7 +380,7 @@ export function updateProgress(state, qNum, phase) {
     3: '🚀 Phase 3: Deep Dive'
   };
 
-  document.getElementById('quizPhase').textContent = phaseNames[phase] || '✨ Phase: Finalizing Match';
+  document.getElementById('quizPhase').textContent = safeGet(phaseNames, phase) || '✨ Phase: Finalizing Match';
 }
 
 export function normalizeMatchText(value) {
@@ -592,22 +618,22 @@ export function getLevenshteinDistance(left, right) {
   const previous = Array.from({ length: right.length + 1 }, (_, index) => index);
 
   for (let i = 1; i <= left.length; i += 1) {
-    let diagonal = previous[0];
-    previous[0] = i;
+    let diagonal = safeGetIndex(previous, 0);
+    safeSetIndex(previous, 0, i);
 
     for (let j = 1; j <= right.length; j += 1) {
-      const temp = previous[j];
-      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
-      previous[j] = Math.min(
-        previous[j] + 1,
-        previous[j - 1] + 1,
+      const temp = safeGetIndex(previous, j);
+      const cost = left.charAt(i - 1) === right.charAt(j - 1) ? 0 : 1;
+      safeSetIndex(previous, j, Math.min(
+        safeGetIndex(previous, j) + 1,
+        safeGetIndex(previous, j - 1) + 1,
         diagonal + cost
-      );
+      ));
       diagonal = temp;
     }
   }
 
-  return previous[right.length];
+  return safeGetIndex(previous, right.length);
 }
 
 export function normalizeSkills(skills) {
@@ -689,46 +715,47 @@ export function extractCareers(response) {
 
 export function renderCareerCard(career, index) {
   const medalEmojis = ['🥇', '🥈', '🥉', '🏅', '⭐', '✨', '💎', '🎯', '🚀'];
-  const medal = medalEmojis[index - 1] || '⭐';
+  const medal = safeGetIndex(medalEmojis, index - 1) || '⭐';
   const roadmapSlug = resolveRoadmapSlug(career);
 
-  return `
-    <div class="result-card new" data-roadmap-slug="${sanitize(roadmapSlug)}" style="animation-delay:${(index - 1) * 0.15}s">
-      <div class="result-card-header">
-        <span class="result-medal">${medal}</span>
-        <span class="result-match">${sanitize(String(career.matchPercent))}% Match</span>
-      </div>
-      <h3>${sanitize(career.title)}</h3>
-      <p class="result-desc">${sanitize(career.description)}</p>
-      <div class="result-meta">
-        <span class="result-tag salary">💰 ${sanitize(career.salaryRange)}</span>
-        <span class="result-tag demand">📈 ${sanitize(career.demand)} Demand</span>
-      </div>
-      <div class="result-skills">
-        <h4>Key Skills</h4>
-        <div class="skill-pills">
-          ${(career.skills || []).map(s => `<span class="skill-pill">${sanitize(s)}</span>`).join('')}
-        </div>
-      </div>
-      <div class="result-next">
-        <h4>Next Steps</h4>
-        <p>${sanitize(career.nextSteps)}</p>
-      </div>
+  const skillsHtml = (career.skills || [])
+    .map(s => '<span class="skill-pill">' + sanitize(s) + '</span>')
+    .join('');
 
-      <div class="result-action-link" style="margin-top: 1rem; text-align: right;">
-        ${(() => {
-          const finalUrl = resolveRoadmapUrl({ ...career, roadmapUrl: roadmapSlug });
-          const isExternal = finalUrl.startsWith('https://roadmap.sh/');
+  const finalUrl = resolveRoadmapUrl({ ...career, roadmapUrl: roadmapSlug });
+  const isExternal = finalUrl.startsWith('https://roadmap.sh/');
 
-          return `
-            <a href="${sanitize(finalUrl)}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
-                🗺️ Dive Deeper Roadmap
-            </a>
-          `;
-        })()}
-      </div>
-    </div>
-  `;
+  const actionLinkHtml = '<a href="' + sanitize(finalUrl) + '" ' + 
+    (isExternal ? 'target="_blank" rel="noopener noreferrer"' : '') + 
+    ' class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">' +
+    '🗺️ Dive Deeper Roadmap' +
+    '</a>';
+
+  return '<div class="result-card new" data-roadmap-slug="' + sanitize(roadmapSlug) + '" style="animation-delay:' + ((index - 1) * 0.15) + 's">' +
+    '<div class="result-card-header">' +
+      '<span class="result-medal">' + medal + '</span>' +
+      '<span class="result-match">' + sanitize(String(career.matchPercent)) + '% Match</span>' +
+    '</div>' +
+    '<h3>' + sanitize(career.title) + '</h3>' +
+    '<p class="result-desc">' + sanitize(career.description) + '</p>' +
+    '<div class="result-meta">' +
+      '<span class="result-tag salary">💰 ' + sanitize(career.salaryRange) + '</span>' +
+      '<span class="result-tag demand">📈 ' + sanitize(career.demand) + ' Demand</span>' +
+    '</div>' +
+    '<div class="result-skills">' +
+      '<h4>Key Skills</h4>' +
+      '<div class="skill-pills">' +
+        skillsHtml +
+      '</div>' +
+    '</div>' +
+    '<div class="result-next">' +
+      '<h4>Next Steps</h4>' +
+      '<p>' + sanitize(career.nextSteps) + '</p>' +
+    '</div>' +
+    '<div class="result-action-link" style="margin-top: 1rem; text-align: right;">' +
+      actionLinkHtml +
+    '</div>' +
+  '</div>';
 }
 
 export function buildErrorReportBody(state, { code, message, originalMessage, retryAfterMs, status }) {
@@ -825,7 +852,7 @@ export function normalizeQuizResponse(state, response) {
 
   options = options.slice(0, 4).map((option, index) => ({
     ...option,
-    label: ['A', 'B', 'C', 'D'][index]
+    label: safeGetIndex(['A', 'B', 'C', 'D'], index)
   }));
 
   const parsedPhase = Number.parseInt(response.phase, 10);
@@ -859,7 +886,7 @@ export function normalizeQuestionOptions(options) {
 
       if (!text || seenTexts.has(dedupeKey)) return null;
       seenTexts.add(dedupeKey);
-      return { label: ['A', 'B', 'C', 'D'][index] || label || 'A', text };
+      return { label: safeGetIndex(['A', 'B', 'C', 'D'], index) || label || 'A', text };
     })
     .filter(Boolean)
     .slice(0, 4);

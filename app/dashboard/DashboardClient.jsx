@@ -7,6 +7,14 @@ import WorkspaceSidebar from '../components/WorkspaceSidebar';
 import { readAllStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import styles from './dashboard.module.css';
 
+function safeGet(obj, key) {
+  const keyStr = String(key);
+  if (obj && Object.prototype.hasOwnProperty.call(obj, keyStr)) {
+    return Reflect.get(obj, keyStr);
+  }
+  return undefined;
+}
+
 const DEFAULT_FEATURED_SLUGS = ['soc_analyst', 'frontend', 'flutter_developer', 'game_development'];
 
 const roadmapHrefByProject = {
@@ -44,16 +52,6 @@ const interestIntelMap = {
 };
 
 function Icon({ name }) {
-  const commonProps = {
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: '2',
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round',
-    'aria-hidden': 'true',
-  };
-
   const paths = {
     dashboard: (
       <>
@@ -149,7 +147,22 @@ function Icon({ name }) {
     ),
   };
 
-  return <svg className={styles.icon} {...commonProps}>{paths[name]}</svg>;
+  const pathContent = safeGet(paths, name);
+
+  return (
+    <svg
+      className={styles.icon}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {pathContent}
+    </svg>
+  );
 }
 
 export default function DashboardClient({ roadmapsInfo }) {
@@ -169,7 +182,7 @@ export default function DashboardClient({ roadmapsInfo }) {
     // 1. Gather all paths that have some progress in localStorage
     localProgress.forEach(({ slug, completedNodeIds }) => {
       if (!slug || completedNodeIds.length === 0) return;
-      const info = roadmapsInfo[slug];
+      const info = safeGet(roadmapsInfo, slug);
       if (!info) return;
 
       processedSlugs.add(slug);
@@ -184,7 +197,7 @@ export default function DashboardClient({ roadmapsInfo }) {
     // 2. Fill with default featured paths if active paths are less than 4
     DEFAULT_FEATURED_SLUGS.forEach(slug => {
       if (processedSlugs.size >= 4 || processedSlugs.has(slug)) return;
-      const info = roadmapsInfo[slug] || { title: slug.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), totalNodes: 13 };
+      const info = safeGet(roadmapsInfo, slug) || { title: slug.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), totalNodes: 13 };
 
       processedSlugs.add(slug);
       list.push({
@@ -251,7 +264,7 @@ export default function DashboardClient({ roadmapsInfo }) {
       return {
         title: `You left off at ${activePath.label}`,
         copy: `What's next: Complete the next skill node to reach ${activePath.done + 1}/${activePath.total}.`,
-        href: roadmapHrefByProject[activePath.slug] || `/roadmap/${activePath.slug}`,
+        href: safeGet(roadmapHrefByProject, activePath.slug) || `/roadmap/${activePath.slug}`,
         btnLabel: 'Continue Journey',
       };
     }
@@ -268,7 +281,7 @@ export default function DashboardClient({ roadmapsInfo }) {
   // Industry Intel specific to interest
   const intelList = useMemo(() => {
     const interest = profile?.interest || 'default';
-    return interestIntelMap[interest] || interestIntelMap['default'];
+    return safeGet(interestIntelMap, interest) || interestIntelMap['default'];
   }, [profile?.interest]);
 
   return (
@@ -298,7 +311,7 @@ export default function DashboardClient({ roadmapsInfo }) {
                     </div>
                     <p className={styles.metricNote}>{metric.note}</p>
                   </div>
-                  <span className={`${styles.metricIcon} ${styles[metric.tone]}`}>
+                  <span className={`${styles.metricIcon} ${safeGet(styles, metric.tone) || ''}`}>
                     <Icon name={metric.icon} />
                   </span>
                 </article>
@@ -320,7 +333,7 @@ export default function DashboardClient({ roadmapsInfo }) {
                       <span>{bar.label} ({bar.value}%)</span>
                       <div className={styles.track}>
                         <span
-                          className={`${styles.fill} ${styles[bar.tone]}`}
+                          className={`${styles.fill} ${safeGet(styles, bar.tone) || ''}`}
                           style={{ '--bar-width': `${bar.value}%` }}
                         />
                       </div>
@@ -394,7 +407,7 @@ export default function DashboardClient({ roadmapsInfo }) {
               <div className={styles.projectList}>
                 {activeProjects.map((project) => {
                   const percent = Math.round((project.done / project.total) * 100);
-                  const pathHref = roadmapHrefByProject[project.slug] || `/roadmap/${project.slug}`;
+                  const pathHref = safeGet(roadmapHrefByProject, project.slug) || `/roadmap/${project.slug}`;
                   return (
                     <Link
                       key={project.label}
