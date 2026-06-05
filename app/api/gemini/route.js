@@ -300,7 +300,21 @@ export async function POST(request) {
       return NextResponse.json({ error: `AI returned an empty response${suffix}. Please try again.` }, { status: 502 })
     }
 
-    return NextResponse.json(data)
+    const filteredData = {
+      candidates: data.candidates ? data.candidates.map(candidate => ({
+        content: candidate.content ? {
+          parts: candidate.content.parts ? candidate.content.parts.map(part => ({
+            text: part.text
+          })) : []
+        } : null,
+        finishReason: candidate.finishReason
+      })) : [],
+      promptFeedback: data.promptFeedback ? {
+        blockReason: data.promptFeedback.blockReason
+      } : null
+    }
+
+    return NextResponse.json(filteredData)
   } catch (err) {
     if (err?.name === 'AbortError') {
       return NextResponse.json({ error: 'AI request timed out. Please try again.' }, { status: 504 })
