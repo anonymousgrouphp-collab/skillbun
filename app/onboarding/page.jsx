@@ -3,6 +3,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 import { useAuth } from '../components/AuthProvider';
+import styles from './onboarding.module.css';
 
 function OnboardingForm() {
   const router = useRouter();
@@ -53,21 +54,21 @@ function OnboardingForm() {
 
   if (authLoading || profileLoading || !profile.hydrated || !user || (isProfileComplete && !editMode)) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', flexDirection: 'column', gap: '1rem' }}>
-        <div className="welcome-bunny" style={{ fontSize: '3rem' }}>🐰</div>
-        <p style={{ color: 'var(--muted)', fontWeight: 700 }}>Setting things up...</p>
+      <div className={styles.loadingContainer}>
+        <div className={`welcome-bunny ${styles.welcomeBunny}`}>🐰</div>
+        <p className={styles.loadingText}>Setting things up...</p>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: '520px', margin: '0 auto', padding: '3rem 1.5rem', minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>🐰</div>
-        <h1 style={{ fontFamily: 'var(--font-fredoka), cursive', fontSize: '2rem', color: 'var(--green)', marginBottom: '0.5rem' }}>
+    <div className={styles.formContainer}>
+      <div className={styles.header}>
+        <div className={styles.bunnyLarge}>🐰</div>
+        <h1 className={styles.title}>
           Welcome there!
         </h1>
-        <p style={{ color: 'var(--muted)', fontWeight: 600, fontSize: '0.95rem', lineHeight: 1.6 }}>
+        <p className={styles.subtitle}>
           Tell us a little about yourself so SkillBun can personalize your career guidance.
         </p>
       </div>
@@ -75,7 +76,7 @@ function OnboardingForm() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Your Name *</label>
-          <input name="name" type="text" defaultValue={profile.hasName ? profile.name : ''} required placeholder="Enter your first name" className="form-control" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', fontSize: '1rem', marginBottom: '1rem' }} />
+          <input name="name" type="text" defaultValue={profile.hasName ? profile.name : ''} required placeholder="Enter your first name" className={`form-control ${styles.inputControl}`} />
         </div>
         <div className="form-group">
           <label>Degree / Program *</label>
@@ -119,15 +120,15 @@ function OnboardingForm() {
           </select>
         </div>
 
-        <button type="submit" className="btn-form" disabled={saving} style={{ marginTop: '1rem', fontSize: '1.05rem', padding: '1rem' }}>
+        <button type="submit" className={`btn-form ${styles.btnSubmit}`} disabled={saving}>
           {saving ? '💾 Saving...' : '🚀 Let\'s Get Started!'}
         </button>
 
         {error && (
-          <p className="auth-message error" style={{ marginTop: '1rem' }}>{error}</p>
+          <p className={`auth-message error ${styles.errorMsg}`}>{error}</p>
         )}
 
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.78rem', color: 'var(--muted)' }}>
+        <p className={styles.footerNote}>
           This helps our AI quiz and counsellor give you personalized advice. You can update this anytime.
         </p>
       </form>
@@ -138,9 +139,9 @@ function OnboardingForm() {
 export default function OnboardingPage() {
   return (
     <Suspense fallback={
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', flexDirection: 'column', gap: '1rem' }}>
-        <div className="welcome-bunny" style={{ fontSize: '3rem' }}>🐰</div>
-        <p style={{ color: 'var(--muted)', fontWeight: 700 }}>Setting things up...</p>
+      <div className={styles.loadingContainer}>
+        <div className={`welcome-bunny ${styles.welcomeBunny}`}>🐰</div>
+        <p className={styles.loadingText}>Setting things up...</p>
       </div>
     }>
       <OnboardingForm />
