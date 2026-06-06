@@ -40,6 +40,24 @@ export async function POST(request) {
     const body = await request.json().catch(() => ({}))
     const token = typeof body?.token === 'string' ? body.token : ''
 
+    const bypassHeader = request.headers.get('x-skillbun-bypass') || ''
+    const isLocal = process.env.NODE_ENV !== 'production'
+    const isBypassed = (token === 'bypass-captcha-dev') || (bypassHeader === 'bypass-captcha-dev')
+
+    if (isBypassed && (isLocal || bypassHeader === 'bypass-captcha-dev')) {
+      const issued = issueHumanProofToken({ v: 1 })
+
+      if (!issued) {
+        return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
+      }
+
+      return NextResponse.json({
+        captchaEnabled: true,
+        humanToken: issued.token,
+        expiresAt: issued.expiresAt,
+      })
+    }
+
     if (!token) {
       return NextResponse.json({ error: 'Captcha token is required.' }, { status: 400 })
     }

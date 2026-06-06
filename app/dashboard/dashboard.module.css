@@ -581,28 +581,30 @@
 
 .donut {
   position: relative;
-  width: 114px;
-  height: 114px;
-  display: grid;
-  place-items: center;
+  width: 128px;
+  height: 128px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background:
-    radial-gradient(circle, var(--surface-raised) 0 48%, transparent 49%),
-    conic-gradient(var(--green) 0deg var(--progress), color-mix(in srgb, var(--green) 30%, var(--surface)) var(--progress) 360deg);
+    radial-gradient(circle, var(--surface-raised) 0 52%, transparent 53%),
+    conic-gradient(var(--green) 0deg var(--progress), color-mix(in srgb, var(--green) 16%, var(--surface)) var(--progress) 360deg);
   box-shadow: inset 0 0 0 1px var(--border);
 }
 
 :global([data-theme='dark']) .donut {
   background:
-    radial-gradient(circle, var(--surface) 0 48%, transparent 49%),
-    conic-gradient(var(--green) 0deg var(--progress), color-mix(in srgb, var(--green) 26%, var(--surface)) var(--progress) 360deg);
+    radial-gradient(circle, var(--surface) 0 52%, transparent 53%),
+    conic-gradient(var(--green) 0deg var(--progress), color-mix(in srgb, var(--green) 12%, var(--surface)) var(--progress) 360deg);
 }
 
 .donut::after {
   content: '';
   position: absolute;
-  inset: 13px;
-  border: 6px solid color-mix(in srgb, var(--green) 12%, transparent);
+  inset: 8px;
+  border: 4px solid color-mix(in srgb, var(--green) 8%, transparent);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -617,16 +619,19 @@
 
 .donut span {
   color: var(--text);
-  font-size: 1.55rem;
-  font-weight: 900;
-  line-height: 1;
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .donut small {
-  margin-top: 0.3rem;
-  color: var(--text);
-  font-size: 0.74rem;
-  font-weight: 800;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .legend {

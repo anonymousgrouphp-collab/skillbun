@@ -379,7 +379,7 @@ export default function DashboardClient({ roadmapsInfo }) {
                     aria-label={`${overallProgress}% completed`}
                   >
                     <span>{overallProgress}%</span>
-                    <small>Completed</small>
+                    <small>overall</small>
                   </div>
                   <div className={styles.legend}>
                     <span><i className={styles.completedDot} />Completed</span>
