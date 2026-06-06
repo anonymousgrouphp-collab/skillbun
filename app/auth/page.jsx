@@ -49,6 +49,32 @@ function friendlyAuthError(error) {
   return error?.message || 'Something went wrong. Please try again.';
 }
 
+function friendlyTurnstileError(errorCode) {
+  const code = String(errorCode || '').trim();
+
+  if (code === '110200') {
+    return 'Domain is not authorized for this site key. Add this hostname in Cloudflare Turnstile Settings.';
+  }
+
+  if (code === '110100' || code === '110110' || code === '400020') {
+    return 'Invalid site key. Please check your Cloudflare Turnstile configuration.';
+  }
+
+  if (code === '400070') {
+    return 'Turnstile site key is disabled in Cloudflare Settings.';
+  }
+
+  if (code === '200500') {
+    return 'Verification blocked. Check browser extensions (AdBlockers) or network connection.';
+  }
+
+  if (code === '110600' || code === '110620') {
+    return 'Verification timed out. Please refresh and retry.';
+  }
+
+  return code ? `Verification failed (Error ${code}). Please retry.` : 'Verification failed. Please retry.';
+}
+
 function buildOnboardingPath(next) {
   return `/onboarding?next=${encodeURIComponent(next)}`;
 }
@@ -189,9 +215,9 @@ function AuthForm() {
             'expired-callback': () => {
               setCaptchaToken('');
             },
-            'error-callback': () => {
+            'error-callback': (errorCode) => {
               setCaptchaToken('');
-              setCaptchaError('Verification failed to load. Please retry.');
+              setCaptchaError(friendlyTurnstileError(errorCode));
             }
           });
           setCaptchaWidgetId(widgetId);
