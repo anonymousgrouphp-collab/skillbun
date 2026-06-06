@@ -140,12 +140,26 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
       return;
     }
 
+    // Verify Human Proof validation BEFORE clearing inputs or showing bubbles
+    const sendBtn = getEl('sendBtn');
+    if (sendBtn) sendBtn.disabled = true;
+
+    const verified = await verifyHumanProof(state, async () => {
+      toggleSecurityBanner(true);
+      await initCaptcha();
+    });
+
+    if (!verified) {
+      // Keep user's text in textarea and enable send button so they don't lose typed text
+      if (sendBtn) sendBtn.disabled = false;
+      return;
+    }
+
     state.isSending = true;
     textarea.value = '';
     textarea.style.height = '52px';
     textarea.dispatchEvent(new Event('input'));
 
-    const sendBtn = getEl('sendBtn');
     if (sendBtn) sendBtn.disabled = true;
 
     // Append user message bubble
@@ -154,19 +168,6 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     // Dynamic suggestions visibility
     const suggestionsEl = getEl('chatSuggestions');
     if (suggestionsEl) suggestionsEl.style.display = 'none';
-
-    // Verify Human Proof validation
-    const verified = await verifyHumanProof(state, async () => {
-      toggleSecurityBanner(true);
-      await initCaptcha();
-    });
-
-    if (!verified) {
-      appendMessage(state, 'bot', '⚠️ Security verification required. Please pass the captcha before continuing.');
-      if (sendBtn) sendBtn.disabled = false;
-      state.isSending = false;
-      return;
-    }
 
     // Append thinking dot loader bubble
     const container = getEl('chatMessages');
@@ -288,6 +289,13 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
             state.captchaToken = token;
             setCaptchaStatus('Security check passed.', 'ok');
             setTimeout(() => toggleSecurityBanner(false), 2000);
+
+            if (state.pendingAutoSubmit) {
+              state.pendingAutoSubmit = false;
+              setTimeout(() => {
+                sendMessage();
+              }, 100);
+            }
           },
           'expired-callback': () => {
             state.captchaToken = '';
@@ -409,12 +417,22 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     
     const urlParams = new URLSearchParams(window.location.search);
     const initialQuery = urlParams.get('q');
-    if (initialQuery && hasFreshHumanProof(state)) {
+    if (initialQuery) {
       const inputEl = getEl('chatInput');
       if (inputEl) {
         inputEl.value = initialQuery;
-        sendMessage();
+        inputEl.dispatchEvent(new Event('input'));
         window.history.replaceState({}, '', window.location.pathname);
+
+        if (hasFreshHumanProof(state)) {
+          sendMessage();
+        } else {
+          state.pendingAutoSubmit = true;
+          if (state.securityConfig.captchaEnabled) {
+            toggleSecurityBanner(true);
+            await initCaptcha();
+          }
+        }
       }
     }
   }
