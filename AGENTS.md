@@ -232,5 +232,6 @@ If any item above fails, the task is not complete. The agent must either fix the
 
 To facilitate local testing and automated browser checks when `TURNSTILE_ENABLED=true` is set:
 1. **Localhost Auto-Bypass**: When running the app on `localhost` or `127.0.0.1`, the client automatically sends a bypass token `bypass-captcha-dev` instead of generating a Turnstile token.
-2. **Backend Validation**: The endpoint `/api/human/verify` will automatically bypass Cloudflare verification and issue a valid `humanToken` if it receives the `bypass-captcha-dev` token (in request body or header `x-skillbun-bypass`) when running in development mode.
-3. **External Tests**: In non-development environments, automated tests can pass the `x-skillbun-bypass` header set to `bypass-captcha-dev` to bypass the verification check.
+2. **Client Bypass Key**: Setting the `localStorage` key `sb_bypass_captcha` to `"bypass-captcha-dev"` will also skip rendering Turnstile on the client side and use the dev token.
+3. **Backend Validation**: The endpoint `/api/human/verify` will automatically bypass Cloudflare verification and issue a valid `humanToken` if it receives the `bypass-captcha-dev` token (in request body or header `x-skillbun-bypass`) when running in development mode.
+4. **External Tests (including Production/Staging)**: In non-development environments, automated tests can pass the `x-skillbun-bypass` header set to `bypass-captcha-dev` (or set `localStorage.setItem('sb_bypass_captcha', 'bypass-captcha-dev')` to make the client automatically include the header) to bypass the verification check.

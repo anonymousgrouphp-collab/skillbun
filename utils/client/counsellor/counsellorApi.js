@@ -169,8 +169,9 @@ export async function verifyHumanProof(state, renderCaptchaCallback) {
   if (state.securityConfig.captchaEnabled && !state.captchaToken) {
     const isLocalhost = typeof window !== 'undefined' &&
       (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
 
-    if (isLocalhost) {
+    if (isLocalhost || bypassKey === 'bypass-captcha-dev') {
       state.captchaToken = 'bypass-captcha-dev';
     } else if (renderCaptchaCallback) {
       await renderCaptchaCallback();
@@ -182,11 +183,16 @@ export async function verifyHumanProof(state, renderCaptchaCallback) {
   }
 
   const body = state.securityConfig.captchaEnabled ? { token: state.captchaToken } : {};
+  const headers = { 'Content-Type': 'application/json' };
+  const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
+  if (state.captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
+    headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
+  }
 
   try {
     const response = await fetch('/api/human/verify', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(body)
     });
 
