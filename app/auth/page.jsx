@@ -158,6 +158,19 @@ function AuthForm() {
       }
     }
     fetchConfig();
+
+    // Parallel preloading of the Turnstile script immediately on mount
+    if (typeof window !== 'undefined') {
+      const existing = document.querySelector('script[data-turnstile="true"]');
+      if (!existing && !window.turnstile) {
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.dataset.turnstile = 'true';
+        document.head.appendChild(script);
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -176,7 +189,7 @@ function AuthForm() {
 
     let active = true;
 
-    function loadScript() {
+    function waitForScript() {
       return new Promise((resolve, reject) => {
         if (window.turnstile) {
           resolve();
@@ -186,6 +199,13 @@ function AuthForm() {
         if (existing) {
           existing.addEventListener('load', () => resolve());
           existing.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')));
+          // Polling fallback just in case script loads but load event is missed
+          const intervalId = setInterval(() => {
+            if (window.turnstile) {
+              clearInterval(intervalId);
+              resolve();
+            }
+          }, 50);
           return;
         }
         const script = document.createElement('script');
@@ -199,28 +219,48 @@ function AuthForm() {
       });
     }
 
+    function doRender() {
+      if (!active || !window.turnstile) return;
+
+      const container = document.getElementById('auth-captcha-widget');
+      if (container) {
+        container.innerHTML = '';
+      }
+
+      try {
+        const widgetId = window.turnstile.render('#auth-captcha-widget', {
+          sitekey: captchaSiteKey,
+          theme: localStorage.getItem('sb_theme') || 'dark',
+          callback: (token) => {
+            setCaptchaToken(token);
+            setCaptchaError('');
+          },
+          'expired-callback': () => {
+            setCaptchaToken('');
+          },
+          'error-callback': (errorCode) => {
+            setCaptchaToken('');
+            setCaptchaError(friendlyTurnstileError(errorCode));
+          }
+        });
+        setCaptchaWidgetId(widgetId);
+      } catch (e) {
+        console.warn('Turnstile render error:', e);
+      }
+    }
+
     async function init() {
       try {
-        await loadScript();
+        await waitForScript();
         if (!active) return;
 
         if (window.turnstile) {
-          const widgetId = window.turnstile.render('#auth-captcha-widget', {
-            sitekey: captchaSiteKey,
-            theme: localStorage.getItem('sb_theme') || 'dark',
-            callback: (token) => {
-              setCaptchaToken(token);
-              setCaptchaError('');
-            },
-            'expired-callback': () => {
-              setCaptchaToken('');
-            },
-            'error-callback': (errorCode) => {
-              setCaptchaToken('');
-              setCaptchaError(friendlyTurnstileError(errorCode));
-            }
-          });
-          setCaptchaWidgetId(widgetId);
+          const container = document.getElementById('auth-captcha-widget');
+          if (!container) {
+            setTimeout(doRender, 0);
+          } else {
+            doRender();
+          }
         }
       } catch (err) {
         setCaptchaError('Failed to load verification script.');
