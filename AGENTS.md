@@ -227,3 +227,10 @@ If any item above fails, the task is not complete. The agent must either fix the
 - Older roadmap data may still exist; keep compatibility with both the declared tree format and any normalization path already in use.
 - The SkillBun identity, floaters, footer, and dark/light support are product requirements, not optional decoration.
 - The loading splash animation is part of the product identity and should be preserved unless explicitly changed by the user.
+
+## CAPTCHA / Turnstile Bypass for Local Dev & Testing
+
+To facilitate local testing and automated browser checks when `TURNSTILE_ENABLED=true` is set:
+1. **Localhost Auto-Bypass**: When running the app on `localhost` or `127.0.0.1`, the client automatically sends a bypass token `bypass-captcha-dev` instead of generating a Turnstile token.
+2. **Backend Validation**: The endpoint `/api/human/verify` will automatically bypass Cloudflare verification and issue a valid `humanToken` if it receives the `bypass-captcha-dev` token (in request body or header `x-skillbun-bypass`) when running in development mode.
+3. **External Tests**: In non-development environments, automated tests can pass the `x-skillbun-bypass` header set to `bypass-captcha-dev` to bypass the verification check.
