@@ -7,6 +7,7 @@ export function createState(eventController) {
     conversationHistory: [],
     userProfile: {},
     isSending: false,
+    pendingAutoSubmit: false,
     securityConfig: {
       captchaEnabled: false,
       captchaSiteKey: ''
