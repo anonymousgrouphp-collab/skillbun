@@ -79,6 +79,12 @@ function AuthForm() {
   const [error, setError] = useState('');
   const [resetCooldownSeconds, setResetCooldownSeconds] = useState(0);
 
+  const [captchaEnabled, setCaptchaEnabled] = useState(false);
+  const [captchaSiteKey, setCaptchaSiteKey] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaWidgetId, setCaptchaWidgetId] = useState(null);
+  const [captchaError, setCaptchaError] = useState('');
+
   const title = mode === 'signup' ? 'Create your SkillBun account' : 'Welcome back to SkillBun';
   const actionLabel = mode === 'signup' ? 'Create account' : 'Log in';
   const switchCopy = mode === 'signup' ? 'Already have an account?' : 'New to SkillBun?';
@@ -110,6 +116,104 @@ function AuthForm() {
     return () => window.clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    async function fetchConfig() {
+      try {
+        const response = await fetch('/api/config');
+        if (!response.ok) return;
+        const data = await response.json();
+        const captcha = data?.captcha || {};
+        if (captcha.enabled && captcha.siteKey) {
+          setCaptchaEnabled(true);
+          setCaptchaSiteKey(captcha.siteKey);
+        }
+      } catch (err) {
+        console.warn('Could not load security config:', err);
+      }
+    }
+    fetchConfig();
+  }, []);
+
+  useEffect(() => {
+    if (!captchaEnabled || mode !== 'signup' || !captchaSiteKey) {
+      return;
+    }
+
+    const isLocalhost = typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
+
+    if (isLocalhost || bypassKey === 'bypass-captcha-dev') {
+      setCaptchaToken('bypass-captcha-dev');
+      return;
+    }
+
+    let active = true;
+
+    function loadScript() {
+      return new Promise((resolve, reject) => {
+        if (window.turnstile) {
+          resolve();
+          return;
+        }
+        const existing = document.querySelector('script[data-turnstile="true"]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve());
+          existing.addEventListener('error', () => reject(new Error('Failed to load Turnstile script')));
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.dataset.turnstile = 'true';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Turnstile script'));
+        document.head.appendChild(script);
+      });
+    }
+
+    async function init() {
+      try {
+        await loadScript();
+        if (!active) return;
+
+        if (window.turnstile) {
+          const widgetId = window.turnstile.render('#auth-captcha-widget', {
+            sitekey: captchaSiteKey,
+            theme: localStorage.getItem('sb_theme') || 'dark',
+            callback: (token) => {
+              setCaptchaToken(token);
+              setCaptchaError('');
+            },
+            'expired-callback': () => {
+              setCaptchaToken('');
+            },
+            'error-callback': () => {
+              setCaptchaToken('');
+              setCaptchaError('Verification failed to load. Please retry.');
+            }
+          });
+          setCaptchaWidgetId(widgetId);
+        }
+      } catch (err) {
+        setCaptchaError('Failed to load verification script.');
+      }
+    }
+
+    init();
+
+    return () => {
+      active = false;
+      if (captchaWidgetId !== null && window.turnstile) {
+        try {
+          window.turnstile.remove(captchaWidgetId);
+        } catch (e) {}
+        setCaptchaWidgetId(null);
+      }
+    };
+  }, [captchaEnabled, mode, captchaSiteKey]);
+
   const helperText = useMemo(() => {
     if (!configured) {
       return 'Firebase is not configured yet. Add the NEXT_PUBLIC_FIREBASE_* values to your environment before using login.';
@@ -140,6 +244,43 @@ function AuthForm() {
 
     try {
       if (mode === 'signup') {
+        if (captchaEnabled) {
+          if (!captchaToken) {
+            setError('Please complete the verification first.');
+            setSubmitting(false);
+            return;
+          }
+
+          const verifyBody = { token: captchaToken };
+          const headers = { 'Content-Type': 'application/json' };
+          const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
+
+          if (captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
+            headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
+          }
+
+          const verifyRes = await fetch('/api/human/verify', {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(verifyBody)
+          });
+
+          if (!verifyRes.ok) {
+            setError('Human verification failed. Please try again.');
+            if (window.turnstile && captchaWidgetId !== null) {
+              window.turnstile.reset(captchaWidgetId);
+            }
+            setCaptchaToken('');
+            setSubmitting(false);
+            return;
+          }
+
+          if (window.turnstile && captchaWidgetId !== null) {
+            window.turnstile.reset(captchaWidgetId);
+            setCaptchaToken('');
+          }
+        }
+
         await signUpWithEmail(formEmail, password);
         setStatus('Verification email sent. Setting up your profile...');
       } else {
@@ -304,6 +445,17 @@ function AuthForm() {
                 placeholder="At least 6 characters"
               />
             </div>
+
+            {mode === 'signup' && captchaEnabled && (
+              <div className="form-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: '15px 0' }}>
+                <div id="auth-captcha-widget"></div>
+                {captchaError && (
+                  <span style={{ color: 'var(--sb-error, #ff4444)', fontSize: '0.85rem', marginTop: '5px' }}>
+                    {captchaError}
+                  </span>
+                )}
+              </div>
+            )}
 
             <button type="submit" className="btn-form" disabled={!configured || submitting}>
               {submitting ? 'Please wait...' : actionLabel}
