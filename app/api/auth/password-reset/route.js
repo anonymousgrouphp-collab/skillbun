@@ -67,10 +67,31 @@ function isLocalOrigin(origin) {
 }
 
 function getPasswordResetBaseUrl(request) {
+  const requestOrigin = normalizeOrigin(request.headers.get('origin') || new URL(request.url).origin)
+  if (requestOrigin) {
+    try {
+      const parsedOrigin = new URL(requestOrigin)
+      const hostname = parsedOrigin.hostname
+      const allowedDomains = [
+        'localhost',
+        '127.0.0.1',
+        'skillbun-v2.vercel.app',
+        'skillbun.tech',
+        'www.skillbun.tech',
+        'skillbun-75d10.firebaseapp.com',
+        'skillbun-75d10.web.app'
+      ]
+      if (allowedDomains.includes(hostname)) {
+        return requestOrigin
+      }
+    } catch (e) {
+      console.error('Failed to parse request origin URL:', e)
+    }
+  }
+
   const configuredOrigin = normalizeOrigin(getAppOrigin())
   if (configuredOrigin) return configuredOrigin
 
-  const requestOrigin = normalizeOrigin(request.headers.get('origin') || new URL(request.url).origin)
   const allowedOrigins = new Set(getAllowedAppOrigins().map(normalizeOrigin).filter(Boolean))
 
   if (allowedOrigins.has(requestOrigin)) return requestOrigin
