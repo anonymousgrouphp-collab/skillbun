@@ -106,7 +106,11 @@ async function ensureUserProfile(db, user) {
       createdAt: serverTimestamp(),
     });
   } else {
-    if (!existing.name && localProfile.name) profilePatch.name = localProfile.name;
+    if (!existing.name) {
+      profilePatch.name = localProfile.name || fallbackNameFromUser(user) || '';
+    } else if (localProfile.name && localProfile.name !== existing.name) {
+      profilePatch.name = localProfile.name;
+    }
     if (!existing.degree && localProfile.degree) profilePatch.degree = localProfile.degree;
     if (!existing.year && localProfile.year) profilePatch.year = localProfile.year;
     if (!existing.interest && localProfile.interest) profilePatch.interest = localProfile.interest;
