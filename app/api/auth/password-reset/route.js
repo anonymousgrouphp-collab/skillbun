@@ -144,6 +144,6 @@ export async function POST(request) {
       emailHash: email ? hashRateLimitSubject(email).slice(0, 32) : '',
     })
 
-    return NextResponse.json({ error: error?.message || 'Could not send password reset email. Please try again later.' }, { status: 500 })
+    return NextResponse.json({ error: 'Could not send password reset email. Please try again later.' }, { status: 500 })
   }
 }
