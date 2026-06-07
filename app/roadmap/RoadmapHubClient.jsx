@@ -133,6 +133,27 @@ export default function RoadmapHubClient({ categories, roadmaps }) {
   const [activeCategory, setActiveCategory] = useState('web_app');
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const view = params.get('view');
+      if (view === 'explore' || view === 'saved') {
+        setTimeout(() => {
+          setActiveView(view);
+        }, 0);
+      }
+    }
+  }, []);
+
+  const handleViewChange = (view) => {
+    setActiveView(view);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('view', view);
+      window.history.replaceState(null, '', url.pathname + url.search);
+    }
+  };
+
+  useEffect(() => {
     const syncProgress = () => setProgressRows(readAllStoredRoadmapProgress());
 
     syncProgress();
@@ -269,7 +290,7 @@ export default function RoadmapHubClient({ categories, roadmaps }) {
                     role="tab"
                     aria-selected={activeView === 'saved'}
                     className={activeView === 'saved' ? styles.viewButtonActive : ''}
-                    onClick={() => setActiveView('saved')}
+                    onClick={() => handleViewChange('saved')}
                   >
                     My Saved Roadmaps
                   </button>
@@ -278,7 +299,7 @@ export default function RoadmapHubClient({ categories, roadmaps }) {
                     role="tab"
                     aria-selected={activeView === 'explore'}
                     className={activeView === 'explore' ? styles.viewButtonActive : ''}
-                    onClick={() => setActiveView('explore')}
+                    onClick={() => handleViewChange('explore')}
                   >
                     Explore Roadmaps
                   </button>
@@ -320,7 +341,7 @@ export default function RoadmapHubClient({ categories, roadmaps }) {
                             <Link href={`/roadmap/${topRoadmap.slug}`} className={styles.primaryButton}>
                               Continue Top Path
                             </Link>
-                            <button type="button" className={styles.ghostButton} onClick={() => setActiveView('explore')}>
+                            <button type="button" className={styles.ghostButton} onClick={() => handleViewChange('explore')}>
                               Find Next Path
                             </button>
                           </div>
@@ -392,14 +413,14 @@ export default function RoadmapHubClient({ categories, roadmaps }) {
                             <h3>Add another roadmap when you are ready</h3>
                             <p>Your current saved path stays in focus above. Explore a second path when you want a backup track.</p>
                           </div>
-                          <button type="button" className={styles.ghostButton} onClick={() => setActiveView('explore')}>
+                          <button type="button" className={styles.ghostButton} onClick={() => handleViewChange('explore')}>
                             Explore More
                           </button>
                         </div>
                       )}
                     </div>
                   ) : (
-                    <SavedEmptyState onExplore={() => setActiveView('explore')} />
+                    <SavedEmptyState onExplore={() => handleViewChange('explore')} />
                   )}
                 </>
               ) : (
