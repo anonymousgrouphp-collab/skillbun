@@ -164,9 +164,21 @@ export default function SettingsPage() {
               <div className={styles.section}>
                 <h3 className={styles.sectionTitle}>Change Password</h3>
                 {isGoogle ? (
-                  <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
-                    Your account is connected via Google. To change your password, please manage it in your Google Account settings.
-                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
+                      Your account is connected via Google. To change your password, please manage it in your Google Account settings.
+                    </p>
+                    <a
+                      href="https://myaccount.google.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.btnSecondary}
+                      style={{ textDecoration: 'none', display: 'inline-flex', width: 'fit-content' }}
+                    >
+                      <span aria-hidden="true" style={{ fontWeight: '800', marginRight: '6px' }}>G</span>
+                      Manage Google Account ↗
+                    </a>
+                  </div>
                 ) : (
                   <>
                     <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
