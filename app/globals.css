@@ -5915,6 +5915,18 @@ footer {
   background: var(--surface);
 }
 
+@media (min-width: 601px) {
+  .user-menu-theme-row {
+    display: none !important;
+  }
+  .user-menu-divider:has(+ .user-menu-theme-row) {
+    display: none !important;
+  }
+  .user-menu-theme-row + .user-menu-divider {
+    display: none !important;
+  }
+}
+
 .user-menu-theme-copy {
   display: flex;
   min-width: 0;
