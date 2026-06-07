@@ -7,7 +7,7 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Authenticates students with Google or email/password through Firebase Authentication.
 - Collects degree, current year, and optional interest area during onboarding.
 - Runs an adaptive AI career quiz and maps results to native roadmap pages.
-- Provides an AI counsellor chat with SkillBun context and markdown answers.
+- Provides an AI counsellor chat with SkillBun context, markdown answers, and a visual usage limit progress bar with a live cooldown timer.
 - Features an advanced search bar for quickly finding roadmaps and static pages.
 - Includes a responsive, multi-theme system (Dark/Light mode) powered by CSS variables.
 - Uses optional Cloudflare Turnstile plus short-lived signed human-proof tokens before Gemini API calls.

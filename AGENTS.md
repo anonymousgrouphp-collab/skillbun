@@ -25,6 +25,7 @@ Existing working behavior is presumed intentional unless the task, a failing tes
 - Do not change copy, styling, layout, or interaction details outside the requested scope.
 - Preserve backwards compatibility unless the user explicitly approves a breaking change.
 - If a requested change can be done without touching a protected area, do it that way.
+- On every push / commit of code changes, increment the project version in `package.json` by `0.0.1` and update `README.md` with details of any newly added features, layouts, or APIs.
 
 ### Protected surfaces
 
