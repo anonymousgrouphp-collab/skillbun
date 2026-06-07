@@ -4,16 +4,11 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useAuth } from '../../../components/AuthProvider';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
+import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import { doc, getDoc, setDoc, collection, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 import styles from './certify.module.css';
 
-function safeGet(obj, key) {
-  const keyStr = String(key);
-  if (obj && Object.prototype.hasOwnProperty.call(obj, keyStr)) {
-    return Reflect.get(obj, keyStr);
-  }
-  return undefined;
-}
+
 
 function shuffleArray(array) {
   const arr = [...array];
@@ -34,6 +29,7 @@ export default function CertifyPage() {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [progressInsufficient, setProgressInsufficient] = useState(false);
 
   // Pre-quiz state
   const [quizState, setQuizState] = useState('instructions'); // instructions | active | results
@@ -189,7 +185,7 @@ export default function CertifyPage() {
 
     const loadQuizData = async () => {
       try {
-        // 1. Fetch roadmap detail to verify title
+        // 1. Fetch roadmap detail to verify title and progress
         const roadmapRes = await fetch(`/data/roadmaps/${slug}.json`);
         if (!roadmapRes.ok) {
           setError('Roadmap not found.');
@@ -198,6 +194,30 @@ export default function CertifyPage() {
         }
         const roadmapData = await roadmapRes.json();
         setRoadmapTitle(roadmapData.title);
+
+        // 1b. Verify 100% progress before allowing quiz access
+        if (process.env.NODE_ENV !== 'development') {
+          const storedProgress = readStoredRoadmapProgress(slug);
+          // Count leaf/trackable nodes from roadmap data
+          function countNodes(nodes) {
+            let count = 0;
+            (nodes || []).forEach(n => {
+              if (n.countInProgress !== false && n.id) count++;
+              if (n.children?.length) count += countNodes(n.children);
+              if (n.topics?.length) {
+                n.topics.forEach(t => { count++; if (t.children?.length) count += countNodes(t.children); });
+              }
+            });
+            return count;
+          }
+          const tree = roadmapData.format === 'tree' && Array.isArray(roadmapData.tree) ? roadmapData.tree : (roadmapData.stages || []);
+          const totalNodes = countNodes(tree);
+          if (totalNodes > 0 && storedProgress.length < totalNodes) {
+            setProgressInsufficient(true);
+            setLoading(false);
+            return;
+          }
+        }
 
         // 2. Fetch pre-generated quiz questions
         const quizRes = await fetch(`/data/quizzes/${slug}.json`);
@@ -387,7 +407,7 @@ export default function CertifyPage() {
       if (remaining <= 0) {
         clearInterval(timerRef.current);
         setQuestionTimer(0);
-        handleNextQuestion(null);
+        handleNextQuestion(-1);
       } else {
         setQuestionTimer(remaining);
       }
@@ -537,6 +557,19 @@ export default function CertifyPage() {
       <div className={styles.errorScreen}>
         <h2>Error</h2>
         <p>{error}</p>
+        <button onClick={() => router.push(`/roadmap/${slug}`)} className={styles.primaryButton}>
+          Back to Roadmap
+        </button>
+      </div>
+    );
+  }
+
+  if (progressInsufficient) {
+    return (
+      <div className={styles.lockedScreen}>
+        <div className={styles.lockBadge}>🔒 Progress Required</div>
+        <h2>Roadmap Not Completed</h2>
+        <p>You need to complete <strong>100%</strong> of the <strong>{roadmapTitle}</strong> roadmap before you can attempt the certification quiz. Head back and finish all remaining skill nodes.</p>
         <button onClick={() => router.push(`/roadmap/${slug}`)} className={styles.primaryButton}>
           Back to Roadmap
         </button>

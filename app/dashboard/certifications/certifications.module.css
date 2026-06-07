@@ -453,3 +453,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+  .fill {
+    animation: none;
+    width: var(--bar-width);
+  }
+  .spinner {
+    animation-duration: 2s;
+  }
+  .panel:hover {
+    transform: none;
+  }
+}

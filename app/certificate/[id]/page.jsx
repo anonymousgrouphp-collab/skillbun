@@ -95,8 +95,6 @@ export default function CertificatePage() {
     if (!cert) return '#';
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://skillbun.tech';
     const certUrl = `${baseUrl}/certificate/${cert.id}`;
-    const title = encodeURIComponent(`I got certified in ${cert.roadmapTitle} on SkillBun!`);
-    const summary = encodeURIComponent(`SkillBun verified certificate for completing the ${cert.roadmapTitle} curriculum.`);
     return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
   };
 

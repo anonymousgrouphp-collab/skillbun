@@ -508,3 +508,16 @@
     align-items: center;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+  .spinner {
+    animation-duration: 2s;
+  }
+  .actionBtn:hover,
+  .shareBtn:hover {
+    transform: none;
+  }
+}
