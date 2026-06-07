@@ -162,25 +162,16 @@ export default function SettingsPage() {
               </div>
 
               <div className={styles.section}>
-                <h3 className={styles.sectionTitle}>Change Password</h3>
                 {isGoogle ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
-                      Your account is connected via Google. To change your password, please manage it in your Google Account settings.
+                  <div className={styles.infoCard} style={{ background: 'var(--green-subtle)', borderColor: 'color-mix(in srgb, var(--green) 20%, transparent)', gap: '0.5rem' }}>
+                    <span className={styles.infoLabel} style={{ color: 'var(--green)' }}>Google Authentication</span>
+                    <p className={styles.dangerText} style={{ color: 'var(--text)', marginTop: '0.25rem' }}>
+                      Your account is linked with Google. Authentication and password security are managed securely by Google.
                     </p>
-                    <a
-                      href="https://myaccount.google.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.btnSecondary}
-                      style={{ textDecoration: 'none', display: 'inline-flex', width: 'fit-content' }}
-                    >
-                      <span aria-hidden="true" style={{ fontWeight: '800', marginRight: '6px' }}>G</span>
-                      Manage Google Account ↗
-                    </a>
                   </div>
                 ) : (
                   <>
+                    <h3 className={styles.sectionTitle}>Change Password</h3>
                     <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
                       Request a secure password reset link sent to your registered email address.
                     </p>
