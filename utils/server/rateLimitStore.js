@@ -29,7 +29,7 @@ function normalizeBucket(snapshot, now, windowMs) {
   return { count, resetAt }
 }
 
-export async function checkServerRateLimit({ namespace, subject, limits, now = Date.now() }) {
+export async function checkServerRateLimit({ namespace, subject, limits, now = Date.now(), increment = true }) {
   if (!namespace || !subject || !Array.isArray(limits) || limits.length === 0) {
     throw new Error('Rate limit configuration is invalid.')
   }
@@ -73,16 +73,18 @@ export async function checkServerRateLimit({ namespace, subject, limits, now = D
       return { allowed: false, ...blockedBucket }
     }
 
-    for (const { ref, limit, bucket, limitSubject } of checks) {
-      transaction.set(ref, {
-        namespace,
-        limitName: limit.name,
-        subjectHash: hashRateLimitSubject(limitSubject),
-        count: bucket.count + 1,
-        resetAt: bucket.resetAt,
-        expiresAt: new Date(bucket.resetAt + 24 * 60 * 60 * 1000),
-        updatedAt: now,
-      }, { merge: true })
+    if (increment) {
+      for (const { ref, limit, bucket, limitSubject } of checks) {
+        transaction.set(ref, {
+          namespace,
+          limitName: limit.name,
+          subjectHash: hashRateLimitSubject(limitSubject),
+          count: bucket.count + 1,
+          resetAt: bucket.resetAt,
+          expiresAt: new Date(bucket.resetAt + 24 * 60 * 60 * 1000),
+          updatedAt: now,
+        }, { merge: true })
+      }
     }
 
     return { allowed: true }
