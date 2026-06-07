@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A developer is starting a new React Native project and wants to quickly set up a development environment with pre-configured tools and minimal native code setup. Which tool or framework is best suited for this purpose?",
+    "options": [
+      "React Navigation",
+      "Expo",
+      "React Native CLI",
+      "Redux"
+    ],
+    "correctIndex": 1,
+    "explanation": "Expo provides a managed workflow that simplifies React Native development by handling native module configuration, builds, and various device APIs, making it ideal for rapid setup and development. React Native CLI is for bare projects, React Navigation is for navigation, and Redux is for state management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to display a simple paragraph of text in your React Native application. Which core component should you use?",
+    "options": [
+      "View",
+      "Text",
+      "Label",
+      "Paragraph"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `Text` component is the fundamental component for displaying text in React Native applications. `View` is for containers, and `Label`/`Paragraph` are not standard React Native core components for text.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In React Native, what is the primary purpose of the `StyleSheet.create()` method when defining styles?",
+    "options": [
+      "To enable inline styling",
+      "To automatically convert CSS to native styles",
+      "To optimize style performance and enable type checking/autocompletion",
+      "To define global styles for the entire app"
+    ],
+    "correctIndex": 2,
+    "explanation": "`StyleSheet.create()` is used to define styles in an optimized way. It serializes styles once, sends them to the native side, and helps with performance. It also allows for better tooling like autocompletion and type checking. Inline styles are not typically created this way, and it doesn't automatically convert arbitrary CSS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A React Native component needs to receive data from its parent component. Which mechanism is used for passing data from parent to child components?",
+    "options": [
+      "State",
+      "Context",
+      "Props",
+      "Ref"
+    ],
+    "correctIndex": 2,
+    "explanation": "`Props` (short for properties) are the standard way to pass data from a parent component to a child component in React and React Native. `State` is for internal component data, `Context` is for global state, and `Ref` is for direct access to DOM elements or component instances.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a sequential flow, such as a multi-step form or a user onboarding process, which React Navigation pattern is most appropriate to manage the screen history?",
+    "options": [
+      "Tab Navigator",
+      "Drawer Navigator",
+      "Stack Navigator",
+      "Modal Navigator"
+    ],
+    "correctIndex": 2,
+    "explanation": "A `Stack Navigator` provides a way for your app to transition between screens where each new screen is placed on top of a stack. This is ideal for sequential flows where users can typically go back to the previous screen. Tab and Drawer navigators are for primary navigation sections, and Modals are for temporary, overlaying content.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are making an asynchronous API call to fetch user data. Which modern JavaScript syntax is commonly used to write cleaner, more readable asynchronous code by avoiding callback hell?",
+    "options": [
+      "Promises",
+      "Callbacks",
+      "async/await",
+      "Generators"
+    ],
+    "correctIndex": 2,
+    "explanation": "`async/await` is a syntax built on top of Promises that makes asynchronous code look and behave more like synchronous code, significantly improving readability and maintainability compared to traditional callbacks or even raw Promises for complex chains.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of using `React.memo` for a functional component in React Native?",
+    "options": [
+      "To enable state management within the component",
+      "To prevent unnecessary re-renders of the component when its props haven't changed",
+      "To create a reference to a DOM element",
+      "To handle side effects in functional components"
+    ],
+    "correctIndex": 1,
+    "explanation": "`React.memo` is a higher-order component that memoizes a functional component, meaning it will only re-render if its props have shallowly changed. This is a performance optimization technique to prevent unnecessary re-renders.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A React Native application needs to display a long list of items (e.g., 1000+ products) efficiently without consuming excessive memory or causing performance issues. Which core component is specifically designed for this purpose?",
+    "options": [
+      "ScrollView",
+      "View",
+      "FlatList",
+      "VirtualizedList"
+    ],
+    "correctIndex": 2,
+    "explanation": "`FlatList` is optimized for rendering long lists of data by rendering items on demand, not all at once, using virtualization. While `VirtualizedList` is the underlying component, `FlatList` provides a more convenient API for common list rendering needs. `ScrollView` renders all its children at once, making it inefficient for long lists.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are developing a form in React Native and need to manage the input state, validate user entries, and handle submission logic efficiently. Which popular library is commonly used to streamline these tasks?",
+    "options": [
+      "React Navigation",
+      "Axios",
+      "Formik",
+      "Redux Toolkit"
+    ],
+    "correctIndex": 2,
+    "explanation": "Formik is a popular library for building forms in React and React Native. It helps manage form state, handles validation, and simplifies submission, reducing boilerplate code. React Navigation is for navigation, Axios for API requests, and Redux Toolkit for global state management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before your React Native app can access the user's current geographical location, what crucial step must be implemented to ensure user privacy and app functionality?",
+    "options": [
+      "Request location data directly from the device's GPS hardware.",
+      "Integrate a third-party mapping library.",
+      "Obtain user permission for location access.",
+      "Ensure the device is connected to Wi-Fi."
+    ],
+    "correctIndex": 2,
+    "explanation": "Accessing sensitive device features like location requires explicit user permission, which must be requested and handled appropriately (e.g., using `PermissionsAndroid` on Android or `request` methods for iOS) to comply with platform guidelines and user privacy expectations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your React Native app displays a list of user profiles, and each profile item includes an avatar and a name. To prevent unnecessary re-renders of list items when the list data changes but individual item data remains the same, which `FlatList` prop should be implemented?",
+    "options": [
+      "`renderItem`",
+      "`keyExtractor`",
+      "`ItemSeparatorComponent`",
+      "`initialNumToRender`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`keyExtractor` is a crucial prop for `FlatList` that provides a unique key for each item. This helps React efficiently track changes to the list, identify which items need to be re-rendered, added, or removed, and is vital for performance optimization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A React Native app needs to integrate with a unique hardware peripheral that only has a native iOS SDK available. How would a developer typically expose the functionalities of this SDK to the JavaScript side of the React Native application?",
+    "options": [
+      "By using a standard npm package for hardware integration.",
+      "By building a custom native module and bridging it to JavaScript.",
+      "By directly embedding Swift code within React Native JSX.",
+      "By utilizing only Expo's managed workflow, as it covers all native functionalities."
+    ],
+    "correctIndex": 1,
+    "explanation": "When unique native functionalities or SDKs are not covered by existing React Native modules or Expo, developers use native modules (bridging) to create a JavaScript interface that communicates with the platform-specific native code (Java/Kotlin for Android, Objective-C/Swift for iOS).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your React Native app uses an authentication token that expires after a short period. How can you ensure the app can continue making authenticated API requests without forcing the user to log in again, assuming a refresh token is available?",
+    "options": [
+      "Store the token in `localStorage` and ignore expiration.",
+      "Prompt the user to re-enter credentials whenever a 401 Unauthorized error occurs.",
+      "Implement an interceptor for API requests that automatically uses the refresh token to obtain a new access token when the current one expires.",
+      "Only allow authenticated requests for a fixed duration after login."
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing an API request interceptor is a common and robust pattern. When an authenticated request fails due to an expired token (e.g., a 401 status code), the interceptor can automatically trigger a token refresh request using the refresh token, update the stored tokens, and then retry the original failed request seamlessly for the user.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to create a responsive layout where a `View` component takes up 30% of the screen width and another `View` takes up the remaining 70%, regardless of the device's orientation or screen size. Which styling properties are most suitable for achieving this?",
+    "options": [
+      "`height` and `width` with fixed pixel values",
+      "`flexDirection` and `justifyContent`",
+      "`flex: 1` on the parent and `width: '30%'` / `width: '70%'` on children",
+      "`flex` property on sibling components within a `View` with `flexDirection: 'row'`"
+    ],
+    "correctIndex": 3,
+    "explanation": "Using the `flex` property on sibling components within a `View` that has `flexDirection: 'row'` is the standard way to distribute space proportionally. For example, a `View` with `flex: 3` and another with `flex: 7` would achieve a 30%/70% distribution of available space.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a React Native app with user authentication, you want to store the user's authentication token securely on the device for subsequent API calls. Which storage solution is generally recommended for sensitive data like tokens?",
+    "options": [
+      "AsyncStorage",
+      "Redux Store",
+      "SecureStore (from Expo) or KeyChain (React Native Community)",
+      "Global JavaScript variable"
+    ],
+    "correctIndex": 2,
+    "explanation": "`SecureStore` (for Expo projects) or `react-native-keychain` (for bare React Native projects) are designed for securely storing sensitive data like authentication tokens, leveraging platform-specific secure storage mechanisms (e.g., iOS Keychain, Android Keystore). `AsyncStorage` is not considered secure for sensitive data, and `Redux Store` data is volatile and not persistent.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are implementing deep linking in your React Native app. What is the primary purpose of deep linking?",
+    "options": [
+      "To improve app performance by caching navigation routes.",
+      "To allow external URLs or notifications to open the app at a specific screen or content.",
+      "To enable offline access to all app screens.",
+      "To manage application-wide state across navigation."
+    ],
+    "correctIndex": 1,
+    "explanation": "Deep linking allows users to navigate directly to specific content within your app from an external source, such as a website link, email, or push notification. It enhances user experience by bypassing the need to manually navigate through the app's initial screens.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your React Native app needs to integrate a camera feature that captures photos and videos. Which set of device APIs would you typically interact with to implement this functionality?",
+    "options": [
+      "Geolocation and Push Notifications APIs",
+      "Camera and Permissions APIs",
+      "File System and Biometrics APIs",
+      "Network and Storage APIs"
+    ],
+    "correctIndex": 1,
+    "explanation": "To use the camera, you would interact with Camera APIs (e.g., `expo-camera` or `react-native-camera`) to control the camera hardware and capture media. Crucially, you would also need to use Permissions APIs to request and manage the user's permission to access the camera.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have built a React Native app and are ready to distribute it to testers for feedback before a public release. Which type of build is typically created for this purpose?",
+    "options": [
+      "Production build",
+      "Development build",
+      "Preview build",
+      "Hot-reload build"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'preview build' (or sometimes 'staging build' or 'beta build') is specifically designed for internal testing and quality assurance before the final production release. It usually includes test-specific configurations and may connect to a staging backend. Development builds are for local coding, and production builds are for app store release.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your app utilizes a third-party native SDK for advanced image processing. This SDK has a very specific setup process involving manual linking of frameworks and Objective-C bridge files for iOS. You're using the bare React Native CLI project. What mechanism allows your JavaScript code to call functions from this native SDK?",
+    "options": [
+      "Directly import Swift/Objective-C files into JavaScript.",
+      "Use `NativeEventEmitter` to call native functions.",
+      "Create a custom Native Module, exposing native methods to JavaScript via a bridge.",
+      "Wrap the SDK calls in a WebAssembly module."
+    ],
+    "correctIndex": 2,
+    "explanation": "For complex native integrations, especially when an SDK requires specific native setup, you create a custom Native Module. This involves writing native code (Swift/Objective-C for iOS, Java/Kotlin for Android) that interfaces with the SDK and then exposing specific methods to JavaScript through the React Native bridge. `NativeEventEmitter` is for sending events from native to JS, not for calling native methods.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A user reports that your React Native app's main feed, which uses a `FlatList`, feels sluggish and occasionally freezes when scrolling rapidly. You suspect unnecessary re-renders or heavy item components. Which performance profiling tool or technique is most effective for identifying the specific component(s) causing these issues?",
+    "options": [
+      "Using `console.log()` to print render counts.",
+      "Disabling animations throughout the app.",
+      "React Native Debugger's 'Profiler' or Flipper's 'Layout & Performance' tools.",
+      "Reducing the number of items fetched from the API."
+    ],
+    "correctIndex": 2,
+    "explanation": "React Native Debugger (which integrates Chrome DevTools and React DevTools) and Flipper offer powerful profiling capabilities. Specifically, their 'Profiler' or 'Layout & Performance' tools can visualize component render times, identify re-renders, and pinpoint performance bottlenecks, which is crucial for optimizing lists like `FlatList`. While `console.log` can give some insight, it's not a comprehensive profiling tool.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team wants to deploy a critical bug fix to the production React Native app as quickly as possible without going through the lengthy app store review process for a full update. What specific React Native feature or service allows for this rapid deployment of JavaScript and asset changes?",
+    "options": [
+      "App Store Connect/Google Play Console manual update.",
+      "Over-the-Air (OTA) updates using services like Expo Updates or CodePush.",
+      "Redeploying the entire native binary via a CI/CD pipeline.",
+      "Using Git patches to modify client-side code."
+    ],
+    "correctIndex": 1,
+    "explanation": "Over-the-Air (OTA) updates (e.g., using Expo Updates for Expo projects or Microsoft CodePush for bare projects) allow developers to push JavaScript, asset, and image changes directly to users' devices without requiring a new binary download or app store review. This is ideal for hotfixes and minor updates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are building a React Native app that processes large image files (e.g., from the camera roll) and needs to save them to the device's persistent storage. Which set of device APIs would be most relevant for managing these files, including potential large file sizes and file system permissions?",
+    "options": [
+      "Geolocation and Sensors API",
+      "Network and Biometrics API",
+      "File System API and Permissions API",
+      "Push Notifications and Background Task API"
+    ],
+    "correctIndex": 2,
+    "explanation": "To save large image files, you primarily need the `File System API` (e.g., `expo-file-system` or `react-native-fs`) to interact with the device's storage. Additionally, depending on where you save and access files (e.g., shared external storage), you will likely need to use the `Permissions API` to request read/write access from the user.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your React Native application needs to display real-time updates from a backend server, such as new chat messages or live scores. Which pattern or technology is most suitable for efficiently handling server-side data synchronization and updates in this scenario?",
+    "options": [
+      "Polling the API every few seconds with `setInterval`.",
+      "Using WebSockets or Server-Sent Events (SSE).",
+      "Storing all data in `AsyncStorage` and listening for changes.",
+      "Manually refreshing the screen by dragging down."
+    ],
+    "correctIndex": 1,
+    "explanation": "WebSockets and Server-Sent Events (SSE) provide persistent, full-duplex (WebSockets) or one-way (SSE) communication channels between the client and server. This allows the server to push updates to the client in real-time, which is far more efficient and responsive than repeated polling for real-time data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing an end-to-end (E2E) test for a critical user flow in a React Native e-commerce app, such as adding an item to the cart, proceeding to checkout, filling out a form, and completing the purchase. Which testing framework is commonly used for these types of complex, multi-screen interactions?",
+    "options": [
+      "Jest",
+      "React Testing Library",
+      "Enzyme",
+      "Detox"
+    ],
+    "correctIndex": 3,
+    "explanation": "Detox is a powerful end-to-end testing and automation framework for React Native. It allows you to simulate user interactions on a real device or simulator, enabling comprehensive testing of complex user flows across multiple screens and interactions, from app launch to final actions. Jest and React Testing Library are typically used for unit/component testing, and Enzyme is an older component testing utility.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your React Native app includes a map feature that displays the user's current location and nearby points of interest. To optimize battery usage and only update the location when the user moves a significant distance, which `watchPositionAsync` or similar API option would you configure?",
+    "options": [
+      "`accuracy: Accuracy.Highest`",
+      "`timeInterval: 1000`",
+      "`distanceInterval: 100`",
+      "`enableHighAccuracy: true`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `distanceInterval` option (e.g., in `expo-location`'s `watchPositionAsync`) specifies the minimum distance in meters that the device needs to move before a new location update is triggered. Setting this to a non-zero value like 100 meters helps conserve battery by reducing the frequency of location updates when the user is stationary or moving slowly. `timeInterval` is for time-based updates, and `accuracy` settings affect precision, not update frequency based on movement.",
+    "difficulty": "hard"
+  }
+]

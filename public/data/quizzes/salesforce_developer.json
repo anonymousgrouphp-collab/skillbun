@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A sales manager needs to ensure that all sales team members can view, but not edit, opportunities owned by other team members, regardless of their position in the role hierarchy. The organization-wide default for Opportunity is currently set to Private. Which sharing setting should a Salesforce Administrator configure to meet this requirement?",
+    "options": [
+      "Role Hierarchy",
+      "Sharing Rules",
+      "Manual Sharing",
+      "Public Groups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sharing Rules extend access beyond the Organization-Wide Defaults (OWD) and role hierarchy for specific groups of users based on criteria or ownership, making it suitable for granting view-only access to a group of users like a sales team.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company wants to display key customer information from an external ERP system directly within a Salesforce Account record page. The integration needs to be real-time and secure, without storing the external data in Salesforce. Which Salesforce API and integration pattern would be most appropriate?",
+    "options": [
+      "Bulk API for data import",
+      "REST API with callouts and Named Credentials",
+      "SOAP API with platform events",
+      "Streaming API for real-time notifications"
+    ],
+    "correctIndex": 1,
+    "explanation": "REST API with callouts allows Salesforce to make outbound requests to external systems. Named Credentials provide a secure way to authenticate to external systems without hardcoding credentials, making it ideal for real-time, secure data retrieval and display.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A developer is creating a Lightning Web Component to display a list of contacts. They need to fetch contact records from Salesforce when the component loads. Which LWC feature should be used to declaratively call an Apex method and retrieve data?",
+    "options": [
+      "The `@track` decorator",
+      "The `connectedCallback()` lifecycle hook",
+      "The `@wire` decorator",
+      "The `imperative Apex call` pattern"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `@wire` decorator is used to call an Apex method or a UI API wire adapter declaratively to retrieve data. It automatically handles data provisioning and reactivity, making it efficient for data retrieval when a component loads.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of a Salesforce 'record'?",
+    "options": [
+      "To define the layout of an object's fields",
+      "To store a single instance of data for a specific object",
+      "To determine user permissions within the organization",
+      "To automate business processes across objects"
+    ],
+    "correctIndex": 1,
+    "explanation": "A record is a single instance of an object. For example, 'John Doe' is a record of the Contact object, storing specific data related to that individual.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Salesforce developer needs to ensure that an Apex trigger, which updates related records, performs efficiently and avoids governor limits when processing a large volume of records (e.g., 10,000 records). What is the most critical principle to apply?",
+    "options": [
+      "Use `System.debug()` extensively to monitor performance",
+      "Perform DML operations and SOQL queries inside a `for` loop",
+      "Execute all business logic in an `@future` method",
+      "Bulkify the trigger by processing collections of records rather than single records"
+    ],
+    "correctIndex": 3,
+    "explanation": "Bulkification is crucial for Apex triggers to handle large volumes of records efficiently and avoid governor limits. This involves moving SOQL queries and DML operations outside of loops and operating on collections of records.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company requires that the 'Annual Revenue' field on the Account object is always greater than $10,000 before an Account record can be saved. Which declarative automation tool should a Salesforce Administrator use to enforce this rule?",
+    "options": [
+      "Workflow Rule",
+      "Flow",
+      "Approval Process",
+      "Validation Rule"
+    ],
+    "correctIndex": 3,
+    "explanation": "A Validation Rule is used to verify that the data a user enters into a record meets specific standards before they can save it. In this case, it can prevent saving an Account if the Annual Revenue is not greater than $10,000.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team of developers is working on a complex project that involves modifying Apex classes and Lightning Web Components. They need a way to manage different versions of their code, collaborate effectively, and deploy changes to various environments. Which practice is essential for this scenario?",
+    "options": [
+      "Manual Change Sets",
+      "Using the Salesforce Setup UI for all deployments",
+      "Establishing a robust DevOps strategy with version control (e.g., Git)",
+      "Sending code files via email for peer review"
+    ],
+    "correctIndex": 2,
+    "explanation": "Establishing a robust DevOps strategy, which includes version control systems like Git, is essential for managing code changes, enabling collaboration, tracking versions, and facilitating automated deployments in a multi-developer environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building an Apex trigger on the Opportunity object, a developer wants to access the new values of the Opportunity records that are being inserted or updated. Which trigger context variable should be used?",
+    "options": [
+      "Trigger.old",
+      "Trigger.oldMap",
+      "Trigger.new",
+      "Trigger.isExecuting"
+    ],
+    "correctIndex": 2,
+    "explanation": "Trigger.new returns a list of the new versions of the sObject records. This list is only available in `insert`, `update`, and `undelete` triggers, and provides access to the records currently being processed with their new field values.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company wants to give a specific group of users (e.g., Marketing Managers) access to create, edit, and delete campaign records, but only view access to other standard objects like Accounts and Contacts. What is the most granular and recommended security feature to grant these specific permissions without affecting their access to other objects?",
+    "options": [
+      "Changing the Organization-Wide Defaults",
+      "Assigning a new Profile with the required permissions",
+      "Creating and assigning a Permission Set",
+      "Modifying the Role Hierarchy"
+    ],
+    "correctIndex": 2,
+    "explanation": "Permission Sets are used to grant additional permissions and access settings to specific users or groups of users, extending their access beyond what their profile allows, without changing their profile or OWD. This provides granular control.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Salesforce Developer needs to build a custom user interface in Salesforce that fetches data from an external system and displays it alongside native Salesforce data. The UI must be highly interactive and built using modern web standards. Which development technology is best suited for this requirement?",
+    "options": [
+      "Visualforce Pages",
+      "Standard Salesforce Page Layouts",
+      "Lightning Web Components (LWC)",
+      "Apex Triggers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Lightning Web Components (LWC) are a modern framework for building highly interactive and performant user interfaces on the Salesforce platform, using standard web technologies like HTML, CSS, and JavaScript, making them ideal for custom UI requirements.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of a 'Page Layout' in Salesforce?",
+    "options": [
+      "To define the data type of a field",
+      "To control who can view specific records",
+      "To organize fields, custom links, and related lists on record detail and edit pages",
+      "To automate actions when a record meets certain criteria"
+    ],
+    "correctIndex": 2,
+    "explanation": "Page Layouts control the layout and organization of fields, custom links, and related lists on record detail and edit pages. They can be assigned to different user profiles to customize the user experience.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Salesforce developer has identified an Apex trigger that is hitting the 'Too many SOQL queries: 101' governor limit when processing a batch of 50 records. The trigger contains a SOQL query inside a `for` loop that iterates over `Trigger.new`. How should the developer refactor the code to address this issue?",
+    "options": [
+      "Increase the governor limit for SOQL queries in the Salesforce settings.",
+      "Move the SOQL query outside the `for` loop and query all necessary data in one go.",
+      "Wrap the DML operation in an `@future` method for each record.",
+      "Reduce the batch size of records being processed to 1."
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'Too many SOQL queries' limit is often hit when SOQL queries are executed inside a loop. The solution is to move the query outside the loop (bulkify it) to retrieve all necessary data in a single query, reducing the total query count.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company wants to implement a custom approval process where Opportunities over $100,000 require approval from the Sales Director. Which declarative automation tool is specifically designed for multi-step approval processes?",
+    "options": [
+      "Flow",
+      "Workflow Rule",
+      "Approval Process",
+      "Validation Rule"
+    ],
+    "correctIndex": 2,
+    "explanation": "An Approval Process automates how records are approved in Salesforce. It specifies the steps necessary for a record to be approved, who must approve it, and what happens at each stage of the approval process.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following describes a 'Lookup' relationship in Salesforce?",
+    "options": [
+      "A strong relationship where the child record cannot exist without the parent and inherits security from the parent.",
+      "A loosely coupled relationship where the child record has a pointer to the parent, and can exist independently.",
+      "A relationship used only for connecting two custom objects.",
+      "A relationship that automatically rolls up child record data to the parent."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Lookup relationship is a loosely coupled relationship where the child record contains a lookup field to the parent. The child record can exist independently, and its security settings are not inherited from the parent.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is writing an Apex trigger on the Account object. To prevent recursive trigger execution (i.e., the trigger calling itself repeatedly), what is the standard and recommended practice?",
+    "options": [
+      "Use `System.assert(false, 'Recursion detected');`",
+      "Check `Trigger.isExecuting` in a `for` loop to break execution.",
+      "Implement a static Boolean variable within a helper class to control execution once per transaction.",
+      "Set the `Maximum Trigger Depth` in Salesforce Setup to 1."
+    ],
+    "correctIndex": 2,
+    "explanation": "The standard practice for preventing recursive trigger execution is to use a static Boolean variable in a helper class. This variable acts as a flag, ensuring that the trigger logic runs only once per transaction, even if DML operations within the trigger cause it to fire again.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Salesforce Administrator needs to ensure that the 'Salary' field on the Employee object is visible only to users with the 'HR Manager' profile, and hidden from all other users. Which security setting should be configured?",
+    "options": [
+      "Organization-Wide Defaults (OWD)",
+      "Role Hierarchy",
+      "Sharing Rules",
+      "Field-Level Security (FLS)"
+    ],
+    "correctIndex": 3,
+    "explanation": "Field-Level Security (FLS) controls the visibility and editability of individual fields for different profiles. It's the most granular way to secure a specific field.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company needs to integrate Salesforce with a legacy on-premise system that only supports traditional XML-based messaging. The integration involves sending complex, structured data. Which Salesforce API would be the most suitable choice?",
+    "options": [
+      "REST API",
+      "Bulk API",
+      "SOAP API",
+      "Streaming API"
+    ],
+    "correctIndex": 2,
+    "explanation": "SOAP API is suitable for integrating with legacy systems that prefer XML-based messaging and require strict contract enforcement (WSDL). REST API is generally preferred for modern integrations due to its flexibility and lightweight nature.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a custom CRM application in Salesforce, a developer needs to decide between a Master-Detail relationship and a Lookup relationship for two custom objects: 'Project' (parent) and 'Task' (child). If a 'Task' cannot exist without its 'Project' and should inherit the Project's security and sharing settings, which relationship type is appropriate?",
+    "options": [
+      "Many-to-Many Relationship",
+      "Lookup Relationship",
+      "Self Relationship",
+      "Master-Detail Relationship"
+    ],
+    "correctIndex": 3,
+    "explanation": "A Master-Detail relationship is appropriate when a child record is tightly bound to its parent. The child (Detail) record inherits the security and sharing settings of its parent (Master), and deleting the Master record automatically deletes all Detail records.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to create a Lightning Web Component that allows users to input information into a custom form. Which LWC decorator is used to expose properties of the component to its parent component or external containers, making them public?",
+    "options": [
+      "`@track`",
+      "`@wire`",
+      "`@api`",
+      "`@AuraEnabled`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `@api` decorator is used to define public properties for a Lightning Web Component. Public properties are reactive and can be set by the component's owner, or by passing values from a parent component.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company's sales team frequently creates opportunities with similar default values. To streamline this process and ensure consistency, they want a quick way to populate several fields automatically when a new Opportunity record is created, without writing any code. Which Salesforce feature can be used?",
+    "options": [
+      "Apex Trigger",
+      "Workflow Rule Field Update",
+      "Flow (Record-Triggered Flow - Before Save)",
+      "Custom Global Action with Predefined Field Values"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Record-Triggered Flow (specifically 'Before Save') can automatically set field values on a new or updated record before it's saved to the database, making it very efficient for defaulting values without user interaction or code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Salesforce developer has built a Lightning Web Component that needs to communicate a change (e.g., a record selection) to another, unrelated LWC on the same page. Which LWC communication pattern is suitable for this scenario?",
+    "options": [
+      "Using `@api` properties for direct parent-child communication",
+      "Invoking an Apex method to update a shared record",
+      "Implementing a Pub/Sub (Publish-Subscribe) model or using Lightning Message Service (LMS)",
+      "Reloading the entire page to refresh all components"
+    ],
+    "correctIndex": 2,
+    "explanation": "For communication between unrelated Lightning Web Components, especially across the component hierarchy or even different apps, the Pub/Sub (Publish-Subscribe) model or Lightning Message Service (LMS) are the recommended approaches. They allow components to publish events and other components to subscribe and react to them.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the core concept of 'CRM' (Customer Relationship Management)?",
+    "options": [
+      "A software system for managing internal employee payrolls",
+      "A strategy for managing and analyzing customer interactions and data throughout the customer lifecycle",
+      "A database solely for storing product inventory information",
+      "A tool exclusively for sending mass marketing emails"
+    ],
+    "correctIndex": 1,
+    "explanation": "CRM is a strategy that businesses use to manage and analyze customer interactions and data throughout the customer lifecycle, with the goal of improving business relationships with customers, assisting in customer retention, and driving sales growth.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Salesforce admin wants to prevent users from creating a Contact record if its 'Email' field is empty, as email is crucial for communication. Which declarative tool should be used?",
+    "options": [
+      "Workflow Rule",
+      "Formula Field",
+      "Validation Rule",
+      "Flow"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Validation Rule is designed to enforce data integrity by preventing users from saving records that do not meet specified criteria. In this case, it can check if the Email field is empty.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company wants to automatically update a custom 'Last Activity Date' field on an Account whenever a related Task or Event is completed. Which Apex feature is most appropriate for reacting to these changes on related objects?",
+    "options": [
+      "Apex Scheduled Job",
+      "Apex Batch Class",
+      "Apex Trigger",
+      "Apex Controller Extension"
+    ],
+    "correctIndex": 2,
+    "explanation": "An Apex Trigger is designed to execute custom Apex code before or after DML operations (insert, update, delete, undelete) on specific Salesforce records. It is ideal for reacting to changes on Task or Event records and then updating the parent Account.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Salesforce, what is the fundamental difference between a 'Standard Field' and a 'Custom Field'?",
+    "options": [
+      "Standard fields can be deleted, while custom fields cannot.",
+      "Standard fields are built-in and provided by Salesforce, while custom fields are created by administrators or developers.",
+      "Custom fields are only available on custom objects, while standard fields are only on standard objects.",
+      "Standard fields support more data types than custom fields."
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard fields are predefined fields that come with Salesforce out-of-the-box for standard objects (e.g., Name, Phone on Account). Custom fields are fields that an administrator or developer creates to store unique information specific to their organization's needs.",
+    "difficulty": "easy"
+  }
+]

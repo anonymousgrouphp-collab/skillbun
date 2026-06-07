@@ -1,0 +1,317 @@
+.page {
+  position: relative;
+  min-height: calc(100svh - 76px);
+  overflow: hidden;
+  color: var(--text);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bgGridOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  opacity: 0.24;
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+  mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+  pointer-events: none;
+}
+
+:global([data-theme='dark']) .bgGridOverlay {
+  opacity: 0.13;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: min(640px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.glassPanel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface-raised) 78%, transparent);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: clamp(1.5rem, 3.2vw, 2.5rem);
+}
+
+:global([data-theme='dark']) .glassPanel {
+  background: color-mix(in srgb, var(--surface) 76%, transparent);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--green);
+  margin-bottom: 0.4rem;
+}
+
+.header h1 {
+  margin: 0 0 0.52rem;
+  font-family: var(--font-nunito), sans-serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+}
+
+.header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.searchForm {
+  background: color-mix(in srgb, var(--border) 16%, var(--surface));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.searchRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 0.76rem 1.05rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-family: var(--font-nunito), sans-serif;
+  transition: border-color 0.2s ease, outline 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.primaryButton {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.68rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  color: var(--primary-contrast);
+  background: var(--green);
+  box-shadow: 0 8px 18px rgba(17, 134, 79, 0.16);
+  font-size: 0.92rem;
+  font-weight: 900;
+  font-family: var(--font-nunito), sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primaryButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: var(--lime);
+  box-shadow: 0 12px 22px rgba(17, 134, 79, 0.22);
+}
+
+.primaryButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.resultSection {
+  margin-top: 1.5rem;
+}
+
+.loadingBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3.5px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingBlock p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.errorCard {
+  border: 1px solid rgba(248, 81, 73, 0.25);
+  border-left: 4px solid #f85149;
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: rgba(248, 81, 73, 0.03);
+}
+
+.errorCard h3 {
+  margin: 0.6rem 0 0.4rem;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.errorCard p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.successCard {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: color-mix(in srgb, var(--border) 8%, var(--surface));
+}
+
+.cardHeader h3 {
+  margin: 0.6rem 0 1.2rem;
+  font-size: 1.25rem;
+  color: var(--text);
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.statusBadgePass,
+.statusBadgeFail {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.statusBadgePass {
+  background: var(--green-subtle);
+  color: var(--green);
+}
+
+.statusBadgeFail {
+  background: rgba(248, 81, 73, 0.08);
+  color: #f85149;
+}
+
+.detailsList {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
+.detailLabel {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.detailValue {
+  color: var(--text);
+  font-weight: 800;
+  text-align: right;
+}
+
+.detailValue code {
+  font-family: monospace;
+  background: color-mix(in srgb, var(--border) 32%, var(--surface));
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+}
+
+.securityNote {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--border) 16%, var(--surface-raised));
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+}
+
+:global([data-theme='dark']) .searchInput,
+:global([data-theme='dark']) .errorCard p,
+:global([data-theme='dark']) .successCard p,
+:global([data-theme='dark']) .detailItem,
+:global([data-theme='dark']) .securityNote {
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .searchRow {
+    flex-direction: column;
+  }
+  .primaryButton {
+    width: 100%;
+  }
+  .detailItem {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+  .detailValue {
+    text-align: left;
+  }
+}

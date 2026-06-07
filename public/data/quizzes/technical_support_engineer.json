@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A user reports that their web browser is displaying \"Page not found\" for all websites. Which of the following is the most appropriate first step in structured troubleshooting?",
+    "options": [
+      "Reinstall the web browser.",
+      "Check the network cable or Wi-Fi connection.",
+      "Restart the user's computer.",
+      "Clear the browser's cache and cookies."
+    ],
+    "correctIndex": 1,
+    "explanation": "\"Page not found\" for all sites strongly suggests a network connectivity issue before a browser-specific problem. Checking the physical connection (cable/Wi-Fi) is a fundamental first step in structured troubleshooting for network issues.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A customer reports their external hard drive is not appearing in \"My Computer\" or \"Disk Utility.\" They've confirmed it's plugged in. What is the most likely initial area to investigate?",
+    "options": [
+      "Malware infection.",
+      "Outdated graphics card driver.",
+      "Power supply unit failure.",
+      "USB port or cable issue."
+    ],
+    "correctIndex": 3,
+    "explanation": "Since the drive is physically plugged in but not recognized, the most common and easiest to check issue is the connection itself—a faulty USB port or cable. Malware or graphics drivers are less likely to cause this specific symptom, and a PSU failure would typically affect the entire system.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You suspect a user's computer is having trouble reaching a specific server on the internet. Which command-line utility would you use first to test basic connectivity to that server by sending small data packets?",
+    "options": [
+      "ipconfig",
+      "ping",
+      "traceroute",
+      "netstat"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `ping` command is used to test the reachability of a host on an Internet Protocol (IP) network and to measure the round-trip time for messages sent from the originating host to a destination computer. `ipconfig` shows local network configuration, `traceroute` shows the path, and `netstat` shows active connections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When starting to troubleshoot a customer's issue, which aspect is most crucial for efficient resolution and good customer experience?",
+    "options": [
+      "Immediately suggesting a complex technical solution.",
+      "Asking clear, open-ended questions to fully understand the problem.",
+      "Telling the customer to restart their computer without further inquiry.",
+      "Quickly escalating the ticket to a higher-tier engineer."
+    ],
+    "correctIndex": 1,
+    "explanation": "Asking clear, open-ended questions helps gather complete information, prevents misinterpretations, and builds rapport, which is fundamental for effective troubleshooting and customer communication.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following details is essential to include in a support ticket's \"Troubleshooting Steps Taken\" section for good ticket quality?",
+    "options": [
+      "A list of all potential solutions, regardless of whether they were tried.",
+      "Only the final successful resolution.",
+      "Each action performed and the observed outcome, even if unsuccessful.",
+      "A general statement like \"Tried basic troubleshooting.\""
+    ],
+    "correctIndex": 2,
+    "explanation": "Documenting each action and its outcome provides a clear history, prevents redundant work by other agents, and aids in escalation. \"General statements\" are unhelpful, and only the final resolution omits crucial context.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A customer calls, audibly frustrated and speaking quickly about a critical system outage. What is the immediate priority for the technical support engineer during this initial interaction?",
+    "options": [
+      "Defend the company's product performance.",
+      "Empathize with their frustration and acknowledge the impact.",
+      "Immediately ask for their account number.",
+      "Explain the technical root cause of the outage."
+    ],
+    "correctIndex": 1,
+    "explanation": "When a customer is frustrated, the immediate priority is to de-escalate the situation by showing empathy and acknowledging their feelings and the impact of the issue. This builds rapport and allows for a more productive troubleshooting conversation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a Knowledge Base (KB) article for a technical support team?",
+    "options": [
+      "To provide a platform for customer complaints.",
+      "To serve as a repository of internal memes and jokes.",
+      "To document common issues, solutions, and procedures for quick reference.",
+      "To track individual agent performance metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Knowledge Base articles are created to centralize and share solutions, procedures, and troubleshooting steps for common issues, enabling faster and more consistent support resolution.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A user is experiencing intermittent application crashes on their Windows PC. After basic restarts, the issue persists. Applying structured troubleshooting, what would be a logical next step to narrow down the cause?",
+    "options": [
+      "Immediately reinstall Windows.",
+      "Check event logs for error messages related to the application or system.",
+      "Replace the computer's hard drive.",
+      "Advise the user to switch to a different application."
+    ],
+    "correctIndex": 1,
+    "explanation": "Checking system event logs (like the Event Viewer in Windows) is a critical step in structured troubleshooting for intermittent issues, as it can provide specific error codes or messages that point to the root cause, such as faulty drivers, software conflicts, or hardware failures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports that after installing a new peripheral (e.g., a webcam), their existing printer stopped working. All other peripherals function normally. What is the most likely cause and first area of investigation?",
+    "options": [
+      "The computer's RAM is insufficient.",
+      "The new webcam's driver is conflicting with the printer's driver.",
+      "The printer has run out of ink.",
+      "The operating system needs a full reinstall."
+    ],
+    "correctIndex": 1,
+    "explanation": "When a new device is introduced and an existing one stops working, a driver conflict is a very common cause. The new webcam's driver might be incompatible or incorrectly installed, interfering with the printer's functionality. Insufficient RAM or ink are less specific to this scenario.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports that they can access websites like Google, but cannot access internal company resources through their browser. They are working remotely. You suspect a VPN issue. Which of the following network utilities would be most useful to confirm if their internal network routes are active?",
+    "options": [
+      "ping to Google's DNS server.",
+      "ipconfig (or ifconfig for Linux/macOS) to check VPN adapter details.",
+      "netstat to view active port connections.",
+      "nslookup for public websites."
+    ],
+    "correctIndex": 1,
+    "explanation": "`ipconfig` (or `ifconfig`) will show the network configuration, including whether a VPN adapter is active, its assigned IP address, and gateway, which is crucial for troubleshooting internal resource access over VPN. Pinging Google confirms general internet, `netstat` shows connections but not routing directly, and `nslookup` is for DNS resolution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A customer submits a ticket reporting a minor cosmetic issue on a non-critical application, describing it as \"urgent.\" In the same queue, there's another ticket from a different customer reporting that a core business application is completely down for their entire department. How should the support engineer prioritize these two tickets based on typical SLA guidelines?",
+    "options": [
+      "Address the cosmetic issue first because the customer labeled it \"urgent.\"",
+      "Address the department-wide outage first due to its higher impact and severity.",
+      "Address them simultaneously to show equal commitment to both customers.",
+      "Escalate both tickets immediately to management without any initial troubleshooting."
+    ],
+    "correctIndex": 1,
+    "explanation": "Prioritization is typically based on impact and severity, not solely on the customer's self-assigned urgency. A department-wide outage on a core business application has a much higher impact and severity than a minor cosmetic issue, regardless of how the customer labels it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When documenting a complex issue for potential escalation, what is the most important component to clearly articulate in the ticket notes beyond the initial problem description?",
+    "options": [
+      "A lengthy personal opinion about the customer's technical skills.",
+      "A detailed summary of all troubleshooting steps attempted and their exact outcomes, including any error messages.",
+      "Only the steps that led to the problem without any solution attempts.",
+      "A simple statement that the issue is \"beyond my scope.\""
+    ],
+    "correctIndex": 1,
+    "explanation": "For escalation, it's crucial to provide a comprehensive record of troubleshooting steps and their outcomes. This prevents redundant effort, gives the escalating engineer a clear starting point, and demonstrates a thorough attempt to resolve the issue.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a call with an agitated customer, you've identified a workaround that will temporarily restore service, but a permanent fix will take several hours. How should you best communicate this to the customer?",
+    "options": [
+      "Tell them only about the permanent fix, without mentioning the workaround.",
+      "Implement the workaround silently and hope they don't notice.",
+      "Clearly explain the workaround, set expectations for the permanent fix's timeline, and offer to provide updates.",
+      "Blame another team for the delay in the permanent fix."
+    ],
+    "correctIndex": 2,
+    "explanation": "Clear communication involves transparency. Explaining the workaround provides immediate relief, and setting expectations for the permanent fix's timeline, along with offering updates, manages their frustration and builds trust.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You encounter a ticket reporting \"Login page is broken.\" The customer provides no other details. What is your immediate next action during triage?",
+    "options": [
+      "Mark the ticket as resolved if you can log in successfully on your test environment.",
+      "Immediately escalate the ticket to the development team.",
+      "Ask clarifying questions to gather more information, such as browser used, error messages, and if it affects other users.",
+      "Delete the ticket due to insufficient information."
+    ],
+    "correctIndex": 2,
+    "explanation": "During ticket triage, if a ticket lacks sufficient detail, the primary responsibility of the support engineer is to gather more information by asking clarifying questions before attempting resolution or escalation. This ensures efficient and targeted troubleshooting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SaaS application user reports that a specific report is failing to generate. The user previously generated this report successfully. What would be the most effective initial troubleshooting step for a technical support engineer?",
+    "options": [
+      "Ask the user to buy a premium subscription.",
+      "Check the application's internal logs for errors related to report generation or data retrieval.",
+      "Advise the user to reinstall their operating system.",
+      "Suggest the user switch to a competitor's product."
+    ],
+    "correctIndex": 1,
+    "explanation": "For SaaS product issues, accessing internal application logs is crucial. Logs often contain specific error messages, timestamps, and contextual information that can pinpoint why a particular function, like report generation, is failing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A customer's third-party integration with your product is failing. They provide you with an API response showing an HTTP status code of 401 Unauthorized. What does this status code most likely indicate?",
+    "options": [
+      "The server is temporarily unavailable.",
+      "The request was successful, but no content was returned.",
+      "The client needs to authenticate to get the requested response.",
+      "The requested resource was not found."
+    ],
+    "correctIndex": 2,
+    "explanation": "An HTTP `401 Unauthorized` status code specifically means that the client request has not been authenticated. It typically indicates issues with API keys, tokens, or credentials provided in the request.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A support engineer needs to quickly verify if a specific customer's record exists in the database without modifying any data. Which SQL statement is appropriate for this task?",
+    "options": [
+      "DELETE FROM customers WHERE id = 123;",
+      "INSERT INTO customers VALUES ('John Doe');",
+      "UPDATE customers SET email = 'new@example.com' WHERE id = 123;",
+      "SELECT * FROM customers WHERE customer_id = 123;"
+    ],
+    "correctIndex": 3,
+    "explanation": "The `SELECT` statement is used to retrieve data from a database. `DELETE`, `INSERT`, and `UPDATE` statements modify data, which should be avoided unless specifically required and authorized.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A support team consistently receives the same complex issue that requires multiple steps to resolve. What type of internal documentation would be most beneficial to improve resolution efficiency for this recurring problem?",
+    "options": [
+      "A marketing brochure for the product.",
+      "A comprehensive runbook or escalation playbook.",
+      "A performance review document.",
+      "An external customer satisfaction survey."
+    ],
+    "correctIndex": 1,
+    "explanation": "A runbook or escalation playbook provides step-by-step instructions for resolving common, complex, or critical issues. This standardizes the resolution process, reduces troubleshooting time, and ensures consistency across the team.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary difference between an internal troubleshooting article and a customer-facing guide in a Knowledge Base?",
+    "options": [
+      "Internal articles are always shorter; customer guides are always longer.",
+      "Internal articles contain highly technical details, potential root causes, and internal tools; customer guides focus on user-friendly steps and known workarounds.",
+      "Internal articles are written in a casual tone; customer guides are formal.",
+      "Internal articles never contain screenshots; customer guides always do."
+    ],
+    "correctIndex": 1,
+    "explanation": "Internal troubleshooting articles often contain technical jargon, details about backend systems, specific log entries, and internal tool usage relevant to support engineers. Customer-facing guides are designed for end-users, focusing on clear, simple instructions, common symptoms, and non-technical workarounds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports that their laser printer is printing blank pages or pages with faded text. What is the most common and likely cause to investigate first?",
+    "options": [
+      "The printer's firmware is outdated.",
+      "The printer's USB cable is loose.",
+      "The toner cartridge is low or empty.",
+      "The network connection to the printer is down."
+    ],
+    "correctIndex": 2,
+    "explanation": "For laser printers, blank or faded pages are almost universally a symptom of a low or empty toner cartridge. While other issues can occur, this is the most direct and common cause for this specific printing problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A remote user connected via VPN reports intermittent connectivity to an internal application. They can access other internal resources consistently. A traceroute to the application server from their machine shows timeouts specifically at a particular hop within the corporate network, but after their VPN connection is established. What does this suggest?",
+    "options": [
+      "The user's home Wi-Fi is unstable.",
+      "There's a routing or firewall issue within the corporate network affecting the application's path.",
+      "The user's local DNS resolver is misconfigured.",
+      "The VPN client software needs to be reinstalled."
+    ],
+    "correctIndex": 1,
+    "explanation": "`Traceroute` showing timeouts *within* the corporate network after the VPN is established, but before reaching the destination, indicates that the issue is likely with network devices (routers, firewalls) or routing rules *inside* the corporate infrastructure, specifically along the path to that application server, rather than the user's local setup or VPN connection itself.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A customer using your cloud-based data analytics platform reports that their complex daily report, which typically takes 10 minutes, has been consistently failing after 5 minutes with a generic \"processing error.\" You check the platform's monitoring dashboards and see a spike in database connection errors correlating with the report's scheduled run time. What is the most probable root cause?",
+    "options": [
+      "The user's local internet connection is slow.",
+      "A database resource contention or connection pool exhaustion issue on the backend.",
+      "The customer's browser cache is full.",
+      "The report's output file format is unsupported."
+    ],
+    "correctIndex": 1,
+    "explanation": "The correlation between the report failure and a spike in database connection errors on the backend strongly suggests that the platform is encountering issues connecting to its database, possibly due to too many simultaneous connections (connection pool exhaustion) or database performance bottlenecks, leading to the report failing.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your product integrates with an external CRM via webhooks. A customer reports that updates from your product are not reflecting in their CRM. Upon inspecting your product's outbound webhook logs, you see a series of entries with an HTTP 429 Too Many Requests status code from the CRM's API. What is the primary issue here?",
+    "options": [
+      "Your product is sending malformed data to the CRM.",
+      "The CRM's API is enforcing a rate limit, and your product is exceeding it.",
+      "The CRM's server is completely offline.",
+      "The customer's CRM account has insufficient permissions for the updates."
+    ],
+    "correctIndex": 1,
+    "explanation": "An HTTP `429 Too Many Requests` status code explicitly indicates that the client (your product) has sent too many requests in a given amount of time (rate limiting). This means the CRM's API is intentionally rejecting further requests to prevent overload, rather than an issue with data format, server availability, or permissions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A support engineer needs to automate a routine check: identify all users who haven't logged in for over 90 days and reside in a specific region, then generate a report. Which combination of skills would be most efficient for this task, assuming access to the user database?",
+    "options": [
+      "Manually checking each user profile in the UI.",
+      "Using a SELECT SQL query to filter users, combined with a scripting language (e.g., Python) to automate execution and report generation.",
+      "Guessing based on general system activity.",
+      "Requesting the development team to build a custom feature for every such ad-hoc report."
+    ],
+    "correctIndex": 1,
+    "explanation": "Combining SQL for efficient data retrieval and filtering from the database with a scripting language like Python allows for automation of the query execution, data processing, and report generation, making it the most efficient and scalable solution for routine data-driven checks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A support team identifies a recurring issue where 15% of all incoming tickets are related to forgotten passwords, significantly impacting initial response times. What strategic improvement would yield the most significant positive impact on support metrics and team efficiency?",
+    "options": [
+      "Hiring more support staff to handle the password reset tickets.",
+      "Creating a detailed escalation playbook for advanced password recovery.",
+      "Developing a customer-facing self-service password reset portal and documenting it in the KB.",
+      "Implementing a complex macro that automatically closes password tickets after 24 hours."
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing a self-service password reset portal (with corresponding KB documentation) empowers users to resolve their own issues, drastically reducing the volume of incoming tickets for this common problem. This improves initial response times for *all* tickets and frees up support agents for more complex issues, leading to significant efficiency gains.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new project requires building a modern desktop application for Windows 10 and 11, leveraging the latest UI frameworks and native platform capabilities. Which technology stack is most appropriate for a Windows App Developer to choose for this requirement?",
+    "options": [
+      "WPF with .NET Framework",
+      "WinForms with .NET",
+      "WinUI 3 with .NET and XAML",
+      "UWP with C++"
+    ],
+    "correctIndex": 2,
+    "explanation": "WinUI 3 with .NET and XAML is the recommended modern technology stack for building new Windows desktop applications, offering the latest UI features, performance, and native integrations across Windows 10 and 11. WPF and WinForms are older frameworks, and while UWP uses XAML, WinUI 3 is the evolution providing broader desktop support.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is building a WinUI application and wants to separate the UI logic from the business logic and data. They have a CustomerView.xaml and want to display data from a CustomerViewModel. Which XAML property is typically used to link the view to its view model in the MVVM pattern?",
+    "options": [
+      "x:Name",
+      "DataContext",
+      "Binding",
+      "RelativeSource"
+    ],
+    "correctIndex": 1,
+    "explanation": "The DataContext property in XAML is fundamental to the MVVM pattern, explicitly linking a View (or part of it) to its ViewModel, allowing data binding expressions to resolve against the ViewModel's properties. x:Name provides a reference to a UI element within the XAML scope. Binding is used to establish data links within the DataContext but doesn't set the DataContext itself. RelativeSource is a binding mode for specific scenarios, not for setting the main DataContext.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to quickly get started with building a new WinUI application. Which Integrated Development Environment (IDE) is the primary and recommended tool for Windows App Development with WinUI, .NET, and XAML?",
+    "options": [
+      "VS Code",
+      "Eclipse",
+      "Visual Studio",
+      "Jupyter Notebook"
+    ],
+    "correctIndex": 2,
+    "explanation": "Visual Studio is the official and most comprehensive IDE for developing Windows applications, providing robust tools for WinUI, .NET, XAML, debugging, and project management. While VS Code can be used for .NET development, it lacks the full-fledged designer and project templates specific to WinUI that Visual Studio offers. Eclipse and Jupyter Notebook are not suitable for this kind of development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A WinUI application needs to save unsaved user data right before it is suspended by the operating system, for example, when the user switches to another app or minimizes the window. Which application lifecycle event should the developer typically handle to perform this action?",
+    "options": [
+      "OnLaunched",
+      "Resuming",
+      "Suspending",
+      "Closed"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Suspending event is raised when the application is about to enter a suspended state. This is the ideal point to save transient application data to ensure a smooth user experience upon resumption. OnLaunched occurs when the app first starts. Resuming occurs when the app returns from a suspended state. Closed indicates the app is being terminated, which might be too late to reliably save data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WinUI app's UI has a custom ListBox that uses a DataTemplate to display complex items. An accessibility audit reveals that screen readers are not correctly announcing the individual items or their interactive states within this ListBox. What is the most effective approach to ensure these custom items are properly exposed to accessibility tools?",
+    "options": [
+      "Manually setting AutomationProperties.Name on the ListBox itself.",
+      "Using AutomationProperties.LabeledBy on the DataTemplate root element.",
+      "Ensuring all interactive elements within the DataTemplate have appropriate AutomationProperties.Name and AutomationProperties.ControlType set, and that the ListBox's ItemTemplate provides distinct accessible names for each item.",
+      "Disabling accessibility features for the custom ListBox and providing a separate text summary."
+    ],
+    "correctIndex": 2,
+    "explanation": "For complex items within templates, each interactive or informative element needs its own accessibility properties. Setting AutomationProperties.Name and AutomationProperties.ControlType on individual elements within the DataTemplate ensures screen readers can identify and announce them correctly. The ListBox itself would also need a general name, but the granular items require individual attention. Option 1 is too broad. Option 2 is incorrect as LabeledBy links to a label, not defines the item's accessibility. Option 4 is counterproductive to accessibility.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Windows App Development, what is the primary purpose of XAML (Extensible Application Markup Language)?",
+    "options": [
+      "To write business logic for the application.",
+      "To define the application's user interface (UI).",
+      "To manage database interactions.",
+      "To handle asynchronous operations."
+    ],
+    "correctIndex": 1,
+    "explanation": "XAML is a declarative markup language used to define the user interface of Windows applications, separating the UI design from the underlying C# or VB.NET code-behind. Business logic is written in C# or VB.NET. Database interactions and asynchronous operations are also handled in code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team of Windows App Developers is collaborating on a project. They want to ensure that code changes are reviewed before being merged into the main development branch and that everyone works on separate features without interfering with each other's work. Which version control practice best supports this workflow?",
+    "options": [
+      "Directly committing to the main branch by all developers.",
+      "Using a feature branching strategy with pull requests.",
+      "Sharing code via a network drive and manually merging.",
+      "Working on local copies and only merging at major milestones."
+    ],
+    "correctIndex": 1,
+    "explanation": "A feature branching strategy, combined with pull requests (or merge requests), is a standard and effective practice for team collaboration in version control. Developers work on dedicated feature branches, and changes are submitted for review via a pull request before being merged into a shared integration branch (like `main` or `develop`). The other options lead to conflicts, lack code review, or hinder collaborative development.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WinUI application uses the MVVM pattern. The MainView displays a list of Items where each Item has a Name and a Description. When a user selects an Item from the list, a DetailsView should display its full Description. How should the MainViewModel expose the selected item to the DetailsView in a clean MVVM approach?",
+    "options": [
+      "Pass the selected Item object directly to the DetailsView's constructor.",
+      "Create a SelectedItemId property in MainViewModel and use a service locator pattern to retrieve the item in DetailsViewModel.",
+      "Expose a SelectedItem property (of type ItemViewModel or Item) in the MainViewModel that the DetailsViewModel can bind to or receive via messaging/dependency injection.",
+      "Store the selected item in a static global variable."
+    ],
+    "correctIndex": 2,
+    "explanation": "Exposing a SelectedItem property in MainViewModel (which can be an Item or an ItemViewModel wrapping the Item's data) is a common and clean MVVM approach. The DetailsViewModel can then either bind to this property directly if the views are nested or receive it via a messaging system (like Messenger from MVVM Toolkit) or dependency injection if the views are independent. Options 1 and 4 break MVVM principles by tightly coupling views or using global state. Option 2 introduces unnecessary complexity with a service locator for a simple selection, though it's a pattern for other scenarios.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Windows App Developer is preparing their WinUI application for submission to the Microsoft Store. The app utilizes a custom native C++ DLL for high-performance calculations and also includes several third-party .NET libraries. What is the most critical aspect to ensure successful packaging and submission, especially concerning dependencies?",
+    "options": [
+      "Ensuring all .NET libraries are strong-named.",
+      "Packaging the application as an .exe installer.",
+      "Confirming that the native C++ DLL is compiled for all target architectures (x86, x64, ARM64) and included in the MSIX package, alongside its runtime dependencies (e.g., C++ redistributables) or ensuring they are declared as package dependencies.",
+      "Removing all debugging symbols from the release build."
+    ],
+    "correctIndex": 2,
+    "explanation": "When using native C++ DLLs, it's crucial to ensure they are compiled for all desired target architectures and correctly bundled within the MSIX package. Furthermore, any runtime dependencies like C++ redistributables must either be included (if allowed and feasible) or, more commonly, declared as package dependencies so the Store can ensure the user's system has them, or specify a framework package reference. Missing architectures or dependencies will lead to installation failures or crashes on target devices. Strong-naming .NET assemblies is good practice but not strictly critical for Store submission unless required by specific dependencies. Packaging as an .exe is not the standard for Store submission; MSIX is. Removing debugging symbols is a release optimization, not a critical submission requirement.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When preparing a portfolio for a Windows App Developer role, which artifact is generally considered most impactful for demonstrating practical skills?",
+    "options": [
+      "A list of all courses completed.",
+      "Links to social media profiles.",
+      "Well-documented, runnable demo projects with source code on GitHub.",
+      "Certificates for basic programming languages."
+    ],
+    "correctIndex": 2,
+    "explanation": "Well-documented, runnable demo projects with source code on GitHub provide tangible proof of a developer's practical skills, coding style, and ability to complete projects, which is highly valued by employers. The other options are less impactful for demonstrating applied development skills.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A WinUI application needs to interact with a specific hardware device connected via a USB port. The device provides a custom API accessible through a native C++ library. How would a WinUI (.NET) application typically integrate with such a native library?",
+    "options": [
+      "Directly call C++ methods from C# using dynamic keyword.",
+      "Rewrite the entire native C++ library in C#.",
+      "Use Platform Invoke (P/Invoke) to call unmanaged functions from the native C++ DLL.",
+      "Embed the C++ code directly into the XAML."
+    ],
+    "correctIndex": 2,
+    "explanation": "Platform Invoke (P/Invoke) is the standard mechanism in .NET for calling unmanaged functions implemented in native DLLs (like C++ libraries). This allows the C# code to interoperate with existing native code. Rewriting the library (Option 2) is often impractical. dynamic keyword is for runtime type resolution within .NET, not for native interop. Embedding C++ in XAML (Option 4) is not possible.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Windows App Developer wants to write unit tests for the business logic in their WinUI application's ViewModel layer. They are using the MVVM pattern. Which framework is commonly used for writing unit tests in a .NET environment?",
+    "options": [
+      "Selenium",
+      "NUnit or xUnit.net",
+      "JMeter",
+      "Postman"
+    ],
+    "correctIndex": 1,
+    "explanation": "NUnit and xUnit.net are popular and widely used unit testing frameworks for .NET applications, enabling developers to write and run tests for individual components like ViewModels. Selenium is for web UI testing, JMeter for performance testing, and Postman for API testing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WinUI application processes sensitive user data, including personal identifiable information (PII). The application communicates with a backend API over HTTPS. What is a critical security consideration for handling PII within the application itself, beyond secure network communication?",
+    "options": [
+      "Storing PII in plain text within local application settings for quick access.",
+      "Encrypting PII before storing it locally (e.g., in a local database or files) and using secure credential management for encryption keys.",
+      "Displaying PII prominently on all UI screens to ensure user awareness.",
+      "Relying solely on OS-level file permissions for protecting local PII storage."
+    ],
+    "correctIndex": 1,
+    "explanation": "Encrypting sensitive data before local storage is a critical security practice. If an attacker gains access to the local storage, encryption provides a layer of defense. Using secure credential management (e.g., Windows Credential Manager or DPAPI) for encryption keys further strengthens this. Storing PII in plain text (Option 1) is a major security vulnerability. Displaying PII prominently (Option 3) increases exposure risk. Relying solely on OS-level permissions (Option 4) is insufficient, as an attacker with elevated privileges or specific attack vectors might bypass them.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When collaborating on a Windows App project using Git, a developer has finished implementing a new feature in their dedicated branch. What is the next standard step to propose their changes for review and integration into the main codebase?",
+    "options": [
+      "Directly push changes to the main branch.",
+      "Delete their local feature branch.",
+      "Create a pull request (or merge request).",
+      "Revert all their changes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a pull request (or merge request in some systems) is the standard practice for proposing changes from a feature branch to be reviewed by team members and subsequently merged into the main or development branch. Directly pushing to main is usually restricted to prevent unreviewed code from entering. Deleting the branch or reverting changes would be counterproductive at this stage.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After deploying a WinUI application to the Microsoft Store, a developer wants to monitor its performance, crashes, and usage patterns in production. Which service is typically integrated with Windows apps to gather such telemetry?",
+    "options": [
+      "Google Analytics",
+      "Azure Application Insights",
+      "New Relic",
+      "Dynatrace"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Application Insights is Microsoft's own Application Performance Management (APM) service and is commonly used for monitoring .NET and Windows applications. It integrates well to collect telemetry such as crash reports, performance metrics, and usage data. While other APM tools exist, Application Insights is the most directly integrated and commonly chosen for the Microsoft ecosystem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is designing a WinUI screen and wants to display a list of items using a ListView. Each item should have a different visual appearance based on an ItemType property in the data object (e.g., 'Warning' items should have a yellow background, 'Error' items a red background). How can this be achieved efficiently in XAML?",
+    "options": [
+      "By setting the Background property in C# code-behind for each item based on its type.",
+      "Using multiple DataTemplate resources with a DataTemplateSelector.",
+      "Creating separate ListView controls for each item type.",
+      "Applying a Style with Trigger directly within the ListView.ItemTemplate."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using multiple DataTemplate resources in conjunction with a DataTemplateSelector is the most flexible and scalable way to provide different visual representations for items in a data-bound list based on their properties. The DataTemplateSelector logic in C# determines which DataTemplate to apply to an item. Option 1 is code-behind driven, less declarative. Option 3 is inefficient. Option 4 (using Trigger in Style) is available in WPF but not directly in WinUI 3 (UWP/WinUI uses VisualStateManager or DataTemplateSelector for conditional templates).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During development, a complex bug related to data synchronization was fixed. To prevent this bug from reappearing in future updates, the team wants to implement a robust measure. What is the most effective regression prevention strategy in this scenario?",
+    "options": [
+      "Documenting the bug fix extensively in the project's README.",
+      "Conducting a thorough manual retest of the affected functionality after every code change.",
+      "Writing a specific automated integration or UI test that isolates and verifies the fixed synchronization behavior, and adding it to the continuous integration pipeline.",
+      "Implementing a feature flag to temporarily disable the problematic feature."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most effective way to prevent regression of a fixed bug, especially a complex one like data synchronization, is to write a targeted automated test (integration or UI test, depending on the bug's scope) that specifically covers the scenario where the bug occurred. Integrating this test into the CI pipeline ensures it runs with every code change, catching any future introduction of the bug early. Documentation (Option 1) is helpful but doesn't prevent regressions. Manual retesting (Option 2) is time-consuming and prone to human error. Feature flags (Option 4) are for controlled rollouts or A/B testing, not directly for preventing regressions of fixed bugs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A WinUI application uses a Logger service and a DataService that both implement interfaces (ILogger, IDataService). Following good MVVM practices, how should these services be made available to ViewModels without creating tight coupling or manually instantiating them in each ViewModel?",
+    "options": [
+      "Access them through static global properties.",
+      "Pass them as parameters in the ViewModel constructors using Dependency Injection.",
+      "Instantiate new instances of Logger and DataService directly in each ViewModel's constructor.",
+      "Use x:Static markup extension in XAML to retrieve service instances."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using Dependency Injection (DI) by passing service interfaces as constructor parameters to ViewModels is a core practice for achieving loose coupling, testability, and maintainability in MVVM applications. A DI container typically manages the lifecycle and instantiation of these services. Static global properties (Option 1) can lead to tight coupling and testability issues. Instantiating directly (Option 3) also creates tight coupling. x:Static is for static members, not dynamic service resolution (Option 4).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the standard packaging format for distributing modern Windows applications, especially for submission to the Microsoft Store?",
+    "options": [
+      "ZIP archive",
+      "MSI installer",
+      "MSIX package",
+      "EXE setup file"
+    ],
+    "correctIndex": 2,
+    "explanation": "MSIX is the modern, secure, and reliable packaging format for Windows applications, designed for the Microsoft Store and enterprise deployment. It combines features from MSI, .appx, App-V, and ClickOnce. ZIP, MSI, and EXE are older or less suitable for modern Windows app distribution through the Store.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A WinUI application frequently retrieves data from a web API. Network connectivity can be intermittent, leading to HttpRequestExceptions. To improve reliability, how should the application handle these potential network failures gracefully without crashing or providing a poor user experience?",
+    "options": [
+      "Ignore the exceptions and let the app crash silently.",
+      "Implement a global try-catch block around the entire application.",
+      "Use try-catch blocks around network calls, implement retry logic with exponential backoff, and provide user feedback (e.g., 'No internet connection').",
+      "Disable network functionality if an error occurs."
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing try-catch blocks specifically around network calls, adding retry logic with exponential backoff, and providing clear user feedback are best practices for handling transient network failures. This makes the application more robust and user-friendly. Ignoring exceptions (Option 1) leads to crashes. A global try-catch (Option 2) can catch errors but often doesn't provide enough context for recovery or specific user feedback. Disabling functionality (Option 4) is a drastic measure and not always the best solution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WinUI application has a TextBlock that needs to display the current value of a Slider. The Slider's value can change frequently. Which Binding Mode should be used to ensure the TextBlock updates automatically whenever the Slider.Value changes, without allowing the TextBlock to modify the Slider?",
+    "options": [
+      "OneWay",
+      "TwoWay",
+      "OneTime",
+      "Default"
+    ],
+    "correctIndex": 0,
+    "explanation": "OneWay binding ensures that changes in the source (the Slider.Value in this case) propagate to the target (the TextBlock.Text), but not vice versa. This is ideal for displaying a value that the user can't edit through the display control. TwoWay allows changes in both directions. OneTime only sets the value once at initialization. Default binding mode depends on the target property and often defaults to OneWay or TwoWay, but OneWay explicitly states the desired behavior here.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WinUI application displays a large, complex list of data (thousands of items), each item requiring significant UI rendering logic within its DataTemplate. Users are reporting slow scrolling and UI freezes. The current implementation loads all items at once. What is the most effective approach to improve performance in this scenario?",
+    "options": [
+      "Increase the application's memory allocation.",
+      "Set ScrollViewer.CanScroll='True' on the list.",
+      "Implement UI virtualization for the ListView or ItemsRepeater to only render visible items, and optimize the DataTemplate for performance.",
+      "Reduce the number of items displayed by filtering them to a smaller subset."
+    ],
+    "correctIndex": 2,
+    "explanation": "UI virtualization (often handled automatically by ListView or ItemsRepeater when items are bound) is the key to handling large datasets efficiently. It ensures that only the UI elements for currently visible items are rendered, recycling containers as the user scrolls. Optimizing the DataTemplate (e.g., reducing complex layouts, using lightweight controls) further reduces rendering overhead. Increasing memory (Option 1) doesn't solve rendering performance. Setting CanScroll (Option 2) is a basic layout property, not a performance optimization. Filtering (Option 4) might be a business decision but doesn't solve the underlying rendering inefficiency for large lists.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary benefit of using a unified UI stack like WinUI 3 for Windows app development across different Windows devices?",
+    "options": [
+      "It allows writing once and deploying to all operating systems, including macOS and Linux.",
+      "It enables developers to build desktop applications with a consistent, modern UI and access to native Windows features.",
+      "It solely focuses on web-based application development.",
+      "It removes the need for any programming language, relying only on drag-and-drop."
+    ],
+    "correctIndex": 1,
+    "explanation": "WinUI 3 provides a consistent, modern UI framework for building Windows desktop applications, offering access to the full range of native Windows features and APIs across different Windows versions and device form factors. It is specific to Windows and does not target other operating systems (Option 1). It is not solely for web apps (Option 3) and requires programming (Option 4).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a Sprint Planning meeting, the team is discussing a new user story: 'As a user, I want to be able to log in to the application so I can access my personalized dashboard.' To ensure everyone understands when this story is complete and meets user expectations, what should the team focus on defining?",
+    "options": [
+      "The technical design of the login screen's database schema.",
+      "The number of hours each developer will spend on the task.",
+      "Clear, testable acceptance criteria describing the expected behavior (e.g., 'Given valid credentials, I am redirected to the dashboard').",
+      "A detailed list of all possible error messages."
+    ],
+    "correctIndex": 2,
+    "explanation": "Clear, testable acceptance criteria define the conditions under which a user story is considered complete and meets the user's expectations. These criteria help guide development, facilitate testing, and ensure alignment between the team and stakeholders. Technical design (Option 1) is important but comes after understanding 'what' needs to be built. Hours (Option 2) are for estimation. A detailed list of error messages (Option 4) is part of, but not the entirety of, acceptance criteria.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Windows App Developer is responsible for an application that has been deployed to production. A critical bug is reported by users. What is an immediate and crucial step in addressing this bug, demonstrating lifecycle ownership?",
+    "options": [
+      "Blaming the QA team for missing the bug.",
+      "Ignoring the bug and focusing on new features.",
+      "Replicating the bug, identifying its root cause, and preparing a hotfix or plan for a patch release.",
+      "Starting a new project to replace the buggy application."
+    ],
+    "correctIndex": 2,
+    "explanation": "Demonstrating lifecycle ownership involves taking responsibility for reported issues. The crucial immediate step is to replicate the bug to understand its behavior, then investigate to identify the root cause, and finally, plan and execute a fix (e.g., a hotfix or a patch release) to resolve the issue for users. Blaming others, ignoring the bug, or abandoning the application are not actions of a responsible developer.",
+    "difficulty": "moderate"
+  }
+]

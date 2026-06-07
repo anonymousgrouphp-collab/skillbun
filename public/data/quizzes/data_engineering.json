@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A data engineer needs to retrieve all customer records from a `customers` table where the `country` is 'USA' and `age` is greater than 30. Which SQL clause is most appropriate for filtering these records?",
+    "options": [
+      "GROUP BY",
+      "ORDER BY",
+      "HAVING",
+      "WHERE"
+    ],
+    "correctIndex": 3,
+    "explanation": "The WHERE clause is used to filter records based on specified conditions, making it the correct choice for selecting customers from 'USA' with an age greater than 30. GROUP BY is for aggregating, ORDER BY for sorting, and HAVING filters grouped results.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You're loading a CSV file containing user activity into a temporary table using Python. Which Python library is commonly used for efficient data manipulation and loading into a DataFrame-like structure before further processing?",
+    "options": [
+      "requests",
+      "matplotlib",
+      "pandas",
+      "flask"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pandas is a foundational library in Python for data manipulation and analysis, providing DataFrame structures that are ideal for processing tabular data like CSV files. Requests is for HTTP, matplotlib for plotting, and Flask for web development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A retail company processes its daily sales data every night to update inventory and generate reports. This process involves collecting all sales transactions from the day and running a single job to transform and load them. What type of data processing is this an example of?",
+    "options": [
+      "Real-time processing",
+      "Event streaming",
+      "Batch processing",
+      "Interactive processing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Batch processing involves processing data in large, discrete chunks or batches, typically on a scheduled basis (e.g., daily). Real-time processing and event streaming handle data continuously as it arrives, while interactive processing allows users to query data on demand.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a data cleaning exercise, you discover that the `customer_id` column in your dataset contains both numeric and alphanumeric values, even though it should strictly be numeric. What is the most immediate data quality issue this indicates?",
+    "options": [
+      "Data freshness",
+      "Data completeness",
+      "Data consistency",
+      "Data uniqueness"
+    ],
+    "correctIndex": 2,
+    "explanation": "Data consistency refers to the uniformity and correctness of data according to defined rules and types. Having mixed data types in a column that should be uniform (numeric) indicates an inconsistency issue. Freshness relates to timeliness, completeness to missing values, and uniqueness to duplicate records.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary distinction between a batch data pipeline and a streaming data pipeline?",
+    "options": [
+      "Batch pipelines process data continuously; streaming pipelines process data periodically.",
+      "Streaming pipelines process data in small, continuous increments; batch pipelines process data in large, discrete chunks.",
+      "Batch pipelines are only used for historical data; streaming pipelines are only used for real-time data.",
+      "Streaming pipelines require manual intervention; batch pipelines are fully automated."
+    ],
+    "correctIndex": 1,
+    "explanation": "Streaming pipelines process data continuously as it arrives in small increments (near real-time), whereas batch pipelines process data periodically in large, predefined collections. Both can handle historical or real-time data depending on the use case, and both can be automated.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data team is using dbt to transform raw data into analytics-ready models. What is the fundamental concept behind how dbt helps ensure these transformations are well-defined and reproducible?",
+    "options": [
+      "It provides a graphical user interface for drag-and-drop transformations.",
+      "It allows defining data transformations as SQL `SELECT` statements that dbt compiles into DDL/DML.",
+      "It is a managed service for cloud data warehousing.",
+      "It primarily focuses on data visualization and reporting."
+    ],
+    "correctIndex": 1,
+    "explanation": "dbt (data build tool) enables data engineers to define data transformations as modular SQL SELECT statements, which it then compiles and executes to create views or tables. This approach makes transformations explicit, version-controlled, and highly reproducible. It is not a GUI tool, a managed service, or a visualization tool.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data engineer is designing a new database for a customer relationship management (CRM) system. Why is it important to define relationships and constraints between tables (e.g., using primary and foreign keys) during the data modeling phase?",
+    "options": [
+      "To improve dashboard loading times.",
+      "To ensure data integrity and consistency across related tables.",
+      "To simplify data archiving processes.",
+      "To automatically generate new data records."
+    ],
+    "correctIndex": 1,
+    "explanation": "Defining primary and foreign key constraints establishes relationships between tables, enforcing referential integrity. This ensures that data across related tables remains consistent and valid (e.g., preventing an order from being associated with a non-existent customer). While it indirectly impacts performance or data management, its primary role is data integrity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data engineer needs to calculate the running total of sales for each customer, ordered by transaction date. Which advanced SQL concept is most suitable for this type of calculation?",
+    "options": [
+      "GROUP BY with SUM()",
+      "JOIN with subquery",
+      "WINDOW FUNCTION with SUM() OVER()",
+      "UNION ALL"
+    ],
+    "correctIndex": 2,
+    "explanation": "Window functions (like SUM() OVER() PARTITION BY customer_id ORDER BY transaction_date) are specifically designed for performing calculations across a set of table rows that are related to the current row, without collapsing the rows as GROUP BY would. GROUP BY aggregates rows, and JOIN/UNION ALL combine sets of rows differently.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a data warehouse dimensional model, what is the primary purpose of a fact table?",
+    "options": [
+      "To store descriptive attributes about business entities.",
+      "To store historical changes of dimension attributes.",
+      "To store measurable business events and foreign keys to dimension tables.",
+      "To manage user access and permissions."
+    ],
+    "correctIndex": 2,
+    "explanation": "Fact tables store quantitative metrics (measures) of business events, such as sales quantity or revenue. They contain foreign keys that link to dimension tables, which provide context and descriptive attributes for these measures. Dimension tables store descriptive attributes, and Slowly Changing Dimensions (SCDs) handle historical changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data engineer is working with a large dataset in Apache Spark and wants to perform transformations using a high-level API that abstracts away much of the underlying RDD complexity and provides optimized execution. Which Spark API should they primarily use?",
+    "options": [
+      "RDD API",
+      "Spark Streaming API",
+      "GraphX API",
+      "DataFrame API"
+    ],
+    "correctIndex": 3,
+    "explanation": "The DataFrame API is Spark's high-level API that provides a distributed collection of data organized into named columns, similar to a table in a relational database. It offers better optimization through Catalyst Optimizer compared to the lower-level RDD API. Spark Streaming is for real-time processing, and GraphX is for graph computations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To ensure that the `order_total` column in a dbt model never contains negative values, a data engineer wants to add an automated check that fails the build if such a condition occurs. Which dbt feature is designed for this purpose?",
+    "options": [
+      "dbt snapshot",
+      "dbt source",
+      "dbt docs",
+      "dbt test"
+    ],
+    "correctIndex": 3,
+    "explanation": "dbt tests are assertions about your data that ensure its quality and integrity. A custom test or a generic test (like 'not_negative') can be applied to the 'order_total' column to validate that values are always non-negative. Snapshots capture historical states, sources define upstream data, and docs generate documentation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A dataset contains a `date_of_birth` column with inconsistent formats (e.g., 'YYYY-MM-DD', 'MM/DD/YYYY', 'DD-MON-YY'). Which data cleaning step would best address this issue to standardize the column?",
+    "options": [
+      "Removing duplicate records",
+      "Filling missing values with a default",
+      "Standardizing data formats",
+      "Validating data ranges"
+    ],
+    "correctIndex": 2,
+    "explanation": "Standardizing data formats involves converting inconsistent data representations into a single, uniform format. This is precisely what's needed for a column with mixed date formats. Removing duplicates, filling missing values, and validating ranges address other specific data quality issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In an Apache Kafka-based event streaming system, what is the role of a 'topic'?",
+    "options": [
+      "It represents a single message within the stream.",
+      "It is a log-like structure where records are stored and categorized.",
+      "It defines the schema for all messages.",
+      "It is a client application that consumes messages."
+    ],
+    "correctIndex": 1,
+    "explanation": "In Kafka, a topic is a category or feed name to which records are published. It acts as a logical channel, a durable log of messages, organized into partitions. A single message is a 'record', schema is defined separately, and consumers are client applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data engineer is designing a daily ETL pipeline using Apache Airflow. The pipeline involves several tasks: data ingestion, data cleaning, and data loading. The data cleaning task must only run after data ingestion is complete. How is this dependency typically represented in Airflow?",
+    "options": [
+      "By using a `Sensor` task type.",
+      "By defining a Directed Acyclic Graph (DAG) with task dependencies.",
+      "By implementing conditional logic within a single PythonOperator.",
+      "By configuring a cron job externally."
+    ],
+    "correctIndex": 1,
+    "explanation": "Airflow uses Directed Acyclic Graphs (DAGs) to define workflows. Task dependencies (e.g., 'task_cleaning >> task_ingestion' or 'task_cleaning.set_upstream(task_ingestion)') explicitly define the order in which tasks must execute. Sensors wait for external conditions, and embedding all logic in one operator or external cron jobs defeats Airflow's orchestration purpose.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When operating a cloud data warehouse like Snowflake or Google BigQuery, what is a crucial aspect to manage to prevent unexpected high costs, especially with large datasets and complex queries?",
+    "options": [
+      "Ensuring all data is stored on SSDs.",
+      "Implementing robust data lineage tracking.",
+      "Controlling query execution costs and optimizing resource usage.",
+      "Maximizing the number of concurrent users."
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud data warehouses often charge based on compute usage (queries processed) and storage. Optimizing query performance, using efficient data structures (e.g., partitioning, clustering), and monitoring resource consumption are critical for controlling costs. While other options are important for other reasons, cost control is directly tied to query optimization in these environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data team is concerned about stale data in their analytics dashboards. They want to set up automated checks to alert them if the underlying data in a critical table hasn't been updated within the last 24 hours. What type of data quality check would achieve this?",
+    "options": [
+      "Uniqueness check",
+      "Referential integrity check",
+      "Freshness check",
+      "Schema validation"
+    ],
+    "correctIndex": 2,
+    "explanation": "A freshness check specifically monitors how recently data has been updated or ingested into a table, ensuring it meets timeliness requirements. Uniqueness checks for duplicate records, referential integrity for foreign key relationships, and schema validation for structural correctness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company handles customer personal identifiable information (PII) in its data warehouse. To comply with privacy regulations (e.g., GDPR, CCPA), what is a fundamental governance practice that must be implemented regarding this data?",
+    "options": [
+      "Store PII in plain text files for easy access.",
+      "Grant all users full access to PII tables for transparency.",
+      "Implement strict access controls and data masking/encryption for PII.",
+      "Delete all PII after 30 days regardless of retention policies."
+    ],
+    "correctIndex": 2,
+    "explanation": "Protecting PII is paramount for privacy compliance. This requires strict access controls (least privilege), encryption at rest and in transit, and data masking/tokenization to render PII unidentifiable where full access is not necessary. Storing PII in plain text, granting broad access, or arbitrary deletion policies violate these principles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After ingesting and transforming public data for an analytics pipeline, the final step is to make it consumable for business users via dashboards. What is the typical output of a successful analytics pipeline that directly supports this goal?",
+    "options": [
+      "Raw unprocessed data files.",
+      "A complex, normalized operational database.",
+      "A dashboard-ready data warehouse model (e.g., star schema).",
+      "A log of all transformation errors."
+    ],
+    "correctIndex": 2,
+    "explanation": "An analytics pipeline aims to deliver curated, easy-to-understand data. A dashboard-ready data warehouse model, often using dimensional modeling (like a star schema), is optimized for query performance and intuitive consumption by BI tools and business users. Raw files are not ready, and operational databases are too complex for direct analytics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data engineer is working with a `sales` table and needs to create a temporary, named result set that can be referenced multiple times within a single query to simplify complex calculations. Which SQL construct is best suited for this requirement?",
+    "options": [
+      "VIEW",
+      "TEMPORARY TABLE",
+      "COMMON TABLE EXPRESSION (CTE)",
+      "SUBQUERY"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Common Table Expression (CTE), defined using `WITH`, creates a temporary, named result set that exists only for the duration of the query. It improves readability and allows for self-referencing or multiple references within the same query. Views are persistent, temporary tables are persistent for a session, and subqueries can be less readable for complex logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data engineer is designing a `customer` dimension table where customer addresses can change over time, but historical reports need to reflect the address at the time of a transaction. Which Slowly Changing Dimension (SCD) type is most appropriate for tracking these historical attribute changes?",
+    "options": [
+      "SCD Type 0",
+      "SCD Type 1",
+      "SCD Type 2",
+      "SCD Type 3"
+    ],
+    "correctIndex": 2,
+    "explanation": "SCD Type 2 (Type II) preserves all historical versions of a dimension member by creating new rows for each change, typically using start/end dates and a current flag. This allows reports to accurately reflect the dimension's state at any point in time. SCD Type 1 overwrites old data, losing history.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Spark job processing a terabyte-scale dataset is experiencing significant performance bottlenecks due to excessive data shuffling and skewed partitions. The data engineer has identified that the `join` operation on a particular key is causing the skew. What is an advanced technique to mitigate this issue and optimize the join in Spark?",
+    "options": [
+      "Increase the driver memory.",
+      "Reduce the number of Spark executors.",
+      "Implement broadcast join for the smaller table or salting for skewed keys.",
+      "Switch from DataFrame API to RDD API."
+    ],
+    "correctIndex": 2,
+    "explanation": "Data skew in joins leads to some tasks processing disproportionately more data, causing bottlenecks. Broadcast joins are effective when one table is small enough to fit into executor memory, avoiding shuffling the smaller table. Salting involves adding a random prefix to skewed keys in both datasets to distribute them across more partitions, then performing a 'salted' join. Increasing driver memory or reducing executors won't address data skew, and switching to RDD API usually reduces optimization capabilities.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a critical data pipeline orchestrated by Airflow, a specific task sporadically fails due to external API rate limits. The downstream tasks depend on its successful completion. What is the most robust orchestration strategy to handle this transient failure without manual intervention and ensure eventual success of the pipeline?",
+    "options": [
+      "Disable the failing task to allow the pipeline to continue.",
+      "Set a high number of retries with an exponential backoff strategy for the failing task.",
+      "Immediately mark the entire DAG as failed upon the first task failure.",
+      "Manually restart the entire pipeline from the beginning each time it fails."
+    ],
+    "correctIndex": 1,
+    "explanation": "For transient failures like API rate limits, implementing retries with an exponential backoff strategy is robust. This allows the task to automatically re-attempt after increasing delays, giving the external system time to recover, and ultimately allowing the pipeline to succeed without manual intervention. Disabling the task or immediately failing the DAG would break the pipeline, and manual restarts are inefficient.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing an event streaming system using Apache Kafka, a data engineer must choose between \"at-least-once\" and \"exactly-once\" delivery semantics for critical financial transactions. What is the primary implication of choosing \"exactly-once\" delivery, and what mechanisms typically support it?",
+    "options": [
+      "It guarantees no data loss but may lead to duplicates; supported by simple consumer offsets.",
+      "It guarantees no duplicates but may lose some data; supported by idempotent producers.",
+      "It guarantees both no data loss and no duplicates; supported by idempotent producers and transactional APIs.",
+      "It is not possible to achieve in Kafka; only at-most-once is feasible."
+    ],
+    "correctIndex": 2,
+    "explanation": "Exactly-once delivery in Kafka guarantees that each message is processed and persisted exactly one time, preventing both data loss and duplicates, which is crucial for financial transactions. This is achieved through a combination of idempotent producers (preventing duplicates on retry) and transactional APIs (ensuring atomic writes across multiple partitions and consumer offsets). At-least-once can lead to duplicates, and at-most-once can lead to data loss.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A data engineer is tasked with implementing a data contract between an upstream source system and a downstream analytics platform. What is the main benefit of a data contract, and what key components would it typically define to prevent \"broken dashboards\"?",
+    "options": [
+      "It is a legal document used for billing purposes; it defines data storage costs.",
+      "It simplifies data visualization tools; it specifies dashboard layouts.",
+      "It formally defines expectations for data schema, types, freshness, and quality; it ensures data reliability and consistency.",
+      "It is a monitoring tool for real-time data streaming; it predicts future data volumes."
+    ],
+    "correctIndex": 2,
+    "explanation": "A data contract is a formal agreement between data producers and consumers that explicitly defines expectations for data structure (schema, types), content (quality rules), and availability (freshness, SLAs). Its main benefit is to prevent data quality issues from propagating downstream and breaking dashboards by establishing clear responsibilities and validations. It is not about billing, visualization tools, or volume prediction.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An analyst complains that a complex SQL query involving multiple large `JOIN` operations and `GROUP BY` clauses on a multi-terabyte table is running very slowly, often timing out. The database administrator suggests examining the query plan. What specific aspect of the query plan would be most critical to investigate for performance optimization in this scenario?",
+    "options": [
+      "The total number of rows returned by the query.",
+      "The `EXPLAIN` output to identify full table scans, expensive joins (e.g., nested loops on large tables), and missing indexes.",
+      "The timestamp of the query execution.",
+      "The client application used to run the query."
+    ],
+    "correctIndex": 1,
+    "explanation": "The query plan (obtained via `EXPLAIN` or similar commands) shows the execution strategy chosen by the database optimizer. For slow queries on large tables with joins and aggregations, critical areas to investigate include full table scans (indicating missing/ineffective indexes), inefficient join algorithms (like nested loops on large datasets), and suboptimal filter pushdowns. The number of rows returned, execution timestamp, or client application are less direct indicators of the internal performance bottlenecks.",
+    "difficulty": "hard"
+  }
+]

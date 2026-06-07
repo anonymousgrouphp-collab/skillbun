@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A C/C++ Systems Developer is often tasked with creating software that interacts directly with hardware or requires extreme performance. Which of the following best describes a typical application domain for C/C++ systems development?",
+    "options": [
+      "Web front-end development using frameworks like React.",
+      "High-performance computing, operating systems, and embedded systems.",
+      "Mobile application development for Android using Java/Kotlin.",
+      "Business intelligence dashboards and data visualization tools."
+    ],
+    "correctIndex": 1,
+    "explanation": "C/C++ is chosen for domains requiring low-level control, deterministic performance, and efficient resource utilization, such as operating systems, embedded systems, game engines, and high-performance computing. Web front-end, mobile app, and BI development typically use other languages and technologies.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In C and C++, what fundamental concept allows direct manipulation of memory addresses, which is crucial for systems programming?",
+    "options": [
+      "Objects",
+      "Classes",
+      "Pointers",
+      "References"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pointers are fundamental in C and C++ for systems programming as they allow direct access and manipulation of memory addresses, enabling low-level operations. Objects and classes are higher-level abstractions, and references provide aliasing rather than direct address manipulation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are setting up a C++ project that uses multiple source files and external libraries. Which build system is most commonly used in C/C++ development for managing project compilation and dependencies across different platforms?",
+    "options": [
+      "npm",
+      "pip",
+      "CMake",
+      "Maven"
+    ],
+    "correctIndex": 2,
+    "explanation": "CMake is a cross-platform build system generator widely used in C/C++ projects to manage the compilation process, dependencies, and generate native build files (like Makefiles or Visual Studio projects). npm, pip, and Maven are package managers/build tools for JavaScript/Node.js, Python, and Java, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider the following C++ code snippet: int* p = new int[10]; // ... use p ... Which statement correctly describes the necessary action after p is no longer needed to prevent a memory leak?",
+    "options": [
+      "delete p;",
+      "free(p);",
+      "delete[] p;",
+      "p = nullptr;"
+    ],
+    "correctIndex": 2,
+    "explanation": "When memory is allocated for an array using new T[size], it must be deallocated using delete[] to ensure all elements' destructors are called (if applicable) and the entire block of memory is freed. delete p would only free the first element's memory. free(p) is for memory allocated with malloc. p = nullptr only clears the pointer, not the memory it points to.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A systems developer is designing a custom resource manager that needs to ensure a resource is always released, even if exceptions occur. Which C++ idiom is best suited for guaranteeing resource cleanup through scope-based management?",
+    "options": [
+      "Singleton Pattern",
+      "Factory Method Pattern",
+      "Observer Pattern",
+      "RAII (Resource Acquisition Is Initialization)"
+    ],
+    "correctIndex": 3,
+    "explanation": "RAII (Resource Acquisition Is Initialization) is a C++ idiom that ties the lifetime of a resource to the lifetime of an object's scope. The resource is acquired in the constructor and released in the destructor. This guarantees that the resource is correctly released when the object goes out of scope, whether normally or due to an exception. The other patterns are for object creation or notification, not resource management.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a code review for a C++ systems application, a developer encounters a function that takes a raw pointer as an argument and is responsible for allocating memory internally. What is a common security or reliability concern associated with raw pointers in this context?",
+    "options": [
+      "Compile-time performance overhead.",
+      "Increased binary size.",
+      "Memory leaks, dangling pointers, and buffer overflows.",
+      "Difficulty in integrating with standard libraries."
+    ],
+    "correctIndex": 2,
+    "explanation": "Raw pointers in C/C++ are a primary source of memory-related errors such as memory leaks (if not deallocated), dangling pointers (accessing freed memory), and buffer overflows (writing beyond allocated bounds). These are significant security and reliability concerns in systems programming. The other options are generally not direct security/reliability concerns of raw pointers themselves.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command-line tool is most commonly used by C/C++ developers to step through code execution, inspect variables, and set breakpoints to diagnose runtime issues?",
+    "options": [
+      "make",
+      "git",
+      "gdb",
+      "gcc"
+    ],
+    "correctIndex": 2,
+    "explanation": "gdb (GNU Debugger) is a powerful command-line debugger widely used for C/C++ programs to inspect program execution, set breakpoints, step through code, and examine memory and variables. make is a build automation tool, git is for version control, and gcc is a compiler.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing an embedded system in C, understanding the exact bit layout of data is crucial. Which keyword allows a developer to directly interact with hardware registers by preventing the compiler from optimizing away memory accesses?",
+    "options": [
+      "static",
+      "const",
+      "volatile",
+      "extern"
+    ],
+    "correctIndex": 2,
+    "explanation": "The volatile keyword in C/C++ tells the compiler that a variable's value can be changed by something outside the normal program flow (e.g., hardware, another thread). This prevents the compiler from performing optimizations that might assume the value remains constant across accesses, ensuring that every read/write operation directly interacts with the memory location, which is critical for hardware interaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A C++ systems application processes network packets and uses a fixed-size buffer. A critical security vulnerability can arise if the input packet size exceeds the buffer capacity, leading to data being written past its allocated boundary. This type of vulnerability is known as a:",
+    "options": [
+      "Race condition",
+      "Memory leak",
+      "Buffer overflow",
+      "Deadlock"
+    ],
+    "correctIndex": 2,
+    "explanation": "A buffer overflow occurs when a program attempts to write data beyond the allocated size of a buffer, potentially overwriting adjacent memory and leading to crashes, corrupted data, or even arbitrary code execution. Race conditions and deadlocks relate to concurrent access, while memory leaks are about unreleased memory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In C, what is the primary purpose of the sizeof operator?",
+    "options": [
+      "To allocate memory dynamically.",
+      "To determine the number of elements in an array.",
+      "To calculate the size, in bytes, of a type or variable.",
+      "To cast a variable to a different data type."
+    ],
+    "correctIndex": 2,
+    "explanation": "The sizeof operator in C/C++ is used to determine the size, in bytes, of a type or a variable. It does not allocate memory, count array elements directly (for dynamically allocated arrays or pointers), or perform type casting.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are designing a C++ library where resources (like file handles or network sockets) are managed by objects. To ensure these resources are automatically closed or freed when the objects are destroyed, even in the presence of exceptions, which C++ Standard Library component often embodies the RAII principle for various resource types?",
+    "options": [
+      "std::vector",
+      "std::string",
+      "std::unique_ptr",
+      "std::map"
+    ],
+    "correctIndex": 2,
+    "explanation": "std::unique_ptr is a smart pointer that exemplifies the RAII principle. It automatically deallocates the memory it manages when it goes out of scope, preventing memory leaks and ensuring resources are freed. std::vector and std::string manage their own memory but are for data collections/strings, not general resource ownership, and std::map is a container.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Two threads concurrently access and modify a shared global variable without any synchronization mechanisms. This can lead to unpredictable results due to the interleaving of operations. What is this common concurrency issue called?",
+    "options": [
+      "Memory leak",
+      "Stack overflow",
+      "Race condition",
+      "Deadlock"
+    ],
+    "correctIndex": 2,
+    "explanation": "A race condition occurs when the behavior of a program depends on the relative timing of events, such as the order in which multiple threads access and modify shared resources. Without proper synchronization, the final outcome can be unpredictable and incorrect. Memory leaks, stack overflows, and deadlocks are different types of issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When managing source code changes in a C/C++ project with a team, which version control system is most widely adopted for its distributed nature and robust branching/merging capabilities?",
+    "options": [
+      "SVN (Subversion)",
+      "CVS (Concurrent Versions System)",
+      "Git",
+      "Mercurial"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is the most widely adopted distributed version control system for its flexibility, performance, and strong support for branching and merging, making it ideal for collaborative software development, including C/C++ projects. SVN, CVS, and Mercurial are also version control systems, but Git has largely surpassed them in popularity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A C++ systems developer needs to implement a high-performance data structure that requires very specific memory alignment for cache efficiency and direct hardware access. Which C++ feature or technique would be most appropriate for controlling the memory layout of custom types?",
+    "options": [
+      "Using std::vector with a custom allocator.",
+      "Employing virtual functions and inheritance.",
+      "Using alignas specifier and placement new.",
+      "Relying on std::map for efficient lookup."
+    ],
+    "correctIndex": 2,
+    "explanation": "The alignas specifier allows explicit control over the memory alignment of types and objects, which is crucial for performance optimization (e.g., cache line alignment) and hardware interaction in systems programming. Placement new allows constructing objects at a specific memory address. Custom allocators for std::vector can manage memory blocks but don't typically offer fine-grained alignment control as easily as alignas on custom types. Virtual functions and std::map are high-level features not directly related to low-level memory layout control.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a team development environment using Git, a developer has finished a feature on a dedicated branch and wants to integrate it into the main development line. What is the standard process for proposing and reviewing these changes before merging?",
+    "options": [
+      "Directly push the branch to main.",
+      "Delete the feature branch and recreate it on main.",
+      "Create a pull request (or merge request).",
+      "Email the code changes to the team lead for review."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a pull request (or merge request, depending on the platform) is the standard and recommended workflow in Git-based team development. It allows team members to review the proposed changes, discuss modifications, and run automated tests before the feature branch is merged into the main branch.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical C/C++ daemon process running on a server occasionally crashes. To effectively diagnose the issue in a production environment, what type of diagnostic output should the application be designed to generate upon an unexpected termination?",
+    "options": [
+      "Only print \"Program crashed!\" to standard output.",
+      "Generate a core dump file that captures the program's memory state.",
+      "Send a single email notification without any attached data.",
+      "Immediately restart without logging any error details."
+    ],
+    "correctIndex": 1,
+    "explanation": "A core dump file captures the complete memory image and execution state of a program at the time of a crash. This file is invaluable for post-mortem debugging using tools like GDB, allowing developers to analyze the crash and pinpoint the cause without live debugging the production system. Simple messages, emails without data, or blind restarts are insufficient for effective diagnosis.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When writing unit tests for a C++ component, what is the primary goal?",
+    "options": [
+      "To verify the entire application's end-to-end functionality.",
+      "To ensure individual functions or classes work as expected in isolation.",
+      "To measure the application's performance under load.",
+      "To document the user interface interactions."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests focus on testing individual units of code (e.g., functions, methods, classes) in isolation to ensure they behave correctly according to their specifications. End-to-end testing, performance testing, and UI documentation are different testing or documentation activities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main difference between malloc and new for memory allocation in C++ systems development?",
+    "options": [
+      "malloc calls constructors and destructors, while new does not.",
+      "new is a C function, while malloc is a C++ operator.",
+      "malloc returns a void* and does not call constructors, while new returns a typed pointer and calls constructors.",
+      "new allocates memory on the stack, while malloc allocates on the heap."
+    ],
+    "correctIndex": 2,
+    "explanation": "malloc is a C library function that allocates raw memory and returns a void* (which must be cast). It does not call object constructors. new is a C++ operator that allocates memory, returns a typed pointer, and importantly, calls the constructor(s) for objects being created. Both allocate memory on the heap.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a multi-threaded C++ application, you need to protect a shared data structure from concurrent access to prevent data corruption. Which synchronization primitive is typically used to ensure that only one thread can access the critical section at a time?",
+    "options": [
+      "Atomic variable",
+      "Condition variable",
+      "Mutex (Mutual Exclusion)",
+      "Semaphore"
+    ],
+    "correctIndex": 2,
+    "explanation": "A mutex (mutual exclusion) is the primary synchronization primitive used to protect critical sections of code from concurrent access by multiple threads. Only one thread can acquire a mutex at a time; other threads attempting to acquire it will block until it's released, ensuring exclusive access to shared resources. Atomic variables provide lock-free operations for single variables. Condition variables are used for thread waiting/signaling. Semaphores are for more general resource counting.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You're using CMake to manage a C++ project. To add a new executable target named my_app from a source file main.cpp and link it against an existing library target my_lib, which CMake command sequence would you typically use in your CMakeLists.txt?",
+    "options": [
+      "add_executable(my_app main.cpp) link_directories(my_lib)",
+      "create_target(my_app main.cpp) add_dependency(my_app my_lib)",
+      "add_executable(my_app main.cpp) target_link_libraries(my_app my_lib)",
+      "build_program(my_app main.cpp) include_library(my_lib)"
+    ],
+    "correctIndex": 2,
+    "explanation": "In CMake, add_executable(my_app main.cpp) defines an executable target. To link this executable against a library (either a target defined in the same project or an imported one), target_link_libraries(my_app my_lib) is the correct command. The other options use incorrect or non-standard CMake commands.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which characteristic is a primary reason C/C++ is preferred for developing operating system kernels and device drivers?",
+    "options": [
+      "High-level abstractions and automatic memory management.",
+      "Extensive built-in GUI toolkit support.",
+      "Close-to-hardware access and manual memory control.",
+      "Rapid development cycles for web applications."
+    ],
+    "correctIndex": 2,
+    "explanation": "C/C++ offers direct memory manipulation, low-level access to hardware through pointers and memory-mapped I/O, and fine-grained control over system resources. These capabilities are essential for operating system kernels and device drivers where performance and direct hardware interaction are paramount. High-level abstractions, GUI toolkits, and rapid web development are not primary reasons.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In C++ systems programming, when should exceptions generally be preferred over error codes for handling failures?",
+    "options": [
+      "For every possible error, regardless of severity.",
+      "For low-level errors that can be handled locally within a single function.",
+      "For unexpected or exceptional conditions that cannot be handled locally and should propagate up the call stack.",
+      "When interfacing with C APIs that return integer error codes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Exceptions in C++ are designed for handling \"exceptional\" conditions – errors that are unexpected and cannot be handled at the point of failure, requiring propagation up the call stack to a suitable handler. For expected errors or failures in C interfaces, error codes are often more appropriate. Overusing exceptions can lead to performance overhead and complex control flow.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A C++ systems developer identifies a performance bottleneck in a critical function using a profiling tool like perf or Valgrind --tool=callgrind. The profiler output indicates excessive cache misses and instruction stalls. What architectural-level technique is most relevant to address such issues?",
+    "options": [
+      "Replacing std::vector with std::list.",
+      "Restructuring data to improve locality and alignment.",
+      "Switching from new/delete to malloc/free.",
+      "Using more goto statements to reduce function call overhead."
+    ],
+    "correctIndex": 1,
+    "explanation": "Excessive cache misses and instruction stalls often point to poor data locality. Restructuring data to be contiguous in memory, aligning data structures, and organizing access patterns to maximize cache hits are critical architectural-level optimizations for performance in C/C++ systems. std::list has worse cache performance than std::vector. new/delete vs malloc/free might have minor differences but rarely address cache misses directly, and goto is generally not a performance optimization strategy for this.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A C++ program needs to store a collection of objects that are polymorphic and whose lifetimes are managed by a single owner. The owner should automatically clean up the objects when it goes out of scope. Which C++ smart pointer is most suitable for managing these objects in a container?",
+    "options": [
+      "std::weak_ptr",
+      "std::shared_ptr",
+      "std::auto_ptr (deprecated)",
+      "std::unique_ptr"
+    ],
+    "correctIndex": 3,
+    "explanation": "std::unique_ptr is ideal for managing objects with single ownership and polymorphic behavior, especially when stored in containers. It guarantees exclusive ownership and automatic resource cleanup when it goes out of scope. std::shared_ptr implies shared ownership (multiple pointers managing the same resource), std::weak_ptr is for observing std::shared_ptr's without owning, and std::auto_ptr is deprecated due to its problematic copy semantics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After compiling a C source file program.c using GCC, what is the default name of the executable file generated if no output name is specified?",
+    "options": [
+      "program.out",
+      "a.out",
+      "exec.bin",
+      "main.exe"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, GCC produces an executable file named a.out when no output filename is specified using the -o flag.",
+    "difficulty": "moderate"
+  }
+]

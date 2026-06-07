@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new developer is joining your team and asks about the primary purpose of Angular. Which of the following best describes what Angular is designed to build?",
+    "options": [
+      "Backend APIs and databases",
+      "Cross-platform desktop applications",
+      "Complex single-page applications (SPAs)",
+      "Server-side rendered static websites"
+    ],
+    "correctIndex": 2,
+    "explanation": "Angular is a powerful framework specifically designed for building complex, data-driven single-page applications (SPAs) that run in a web browser. While other options represent different types of applications, they are not Angular's primary focus.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to create a reusable UI block in your Angular application, such as a custom button or a navigation bar. Which Angular building block would you primarily use for this purpose?",
+    "options": [
+      "Service",
+      "Module",
+      "Component",
+      "Directive"
+    ],
+    "correctIndex": 2,
+    "explanation": "Components are the fundamental building blocks of Angular applications, responsible for controlling a part of the screen via a template and associated logic. Services are for shared logic, modules organize code, and directives modify existing DOM elements.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To quickly generate a new Angular component, service, or module from the command line, which essential Angular tool would a developer typically use?",
+    "options": [
+      "npm (Node Package Manager)",
+      "Webpack",
+      "Angular CLI (Command Line Interface)",
+      "TypeScript Compiler (tsc)"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Angular CLI is the official tool for initializing, developing, scaffolding, and maintaining Angular applications. npm is a package manager, Webpack is a module bundler used by the CLI, and tsc compiles TypeScript.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You have an input field in your Angular template and want to update a component property `userName` automatically whenever the user types into it. Which type of data binding is most suitable for achieving this two-way synchronization?",
+    "options": [
+      "Event Binding `(event)`",
+      "Property Binding `[property]`",
+      "Interpolation `{{ value }}`",
+      "Two-Way Binding `[(ngModel)]`"
+    ],
+    "correctIndex": 3,
+    "explanation": "Two-way binding, typically achieved with `[(ngModel)]`, allows data to flow both from the component to the view and from the view to the component simultaneously, making it ideal for form input elements where changes need to be reflected immediately in the component's model.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your Angular application needs to navigate users between different views (e.g., from /home to /dashboard) without a full page reload. Which core Angular feature enables this client-side navigation?",
+    "options": [
+      "HttpClient",
+      "Angular Forms Module",
+      "Angular Router",
+      "Angular Services"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Angular Router is responsible for handling client-side navigation within an Angular application, allowing different component views to be displayed based on the URL path.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An Angular developer is defining the shape of an object that will be used across multiple components to ensure type safety. Which TypeScript feature is primarily used for this purpose?",
+    "options": [
+      "Class",
+      "Interface",
+      "Enum",
+      "Decorator"
+    ],
+    "correctIndex": 1,
+    "explanation": "Interfaces in TypeScript are used to define contracts for objects, specifying the names and types of properties that an object must have. They are crucial for ensuring type safety and code consistency across an application.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You have an `AuthService` that fetches user authentication status and want to make it available to multiple components without creating a new instance in each component. How would you typically provide this service in Angular to ensure a single, shared instance?",
+    "options": [
+      "Import `AuthService` directly into each component's constructor.",
+      "Declare `AuthService` in the `providers` array of `AppModule` or a specific component.",
+      "Add `AuthService` to the `declarations` array of `AppModule`.",
+      "Define `AuthService` as a global JavaScript variable."
+    ],
+    "correctIndex": 1,
+    "explanation": "Dependency Injection in Angular allows you to provide services as singletons (by default when provided in `AppModule` or with `providedIn: 'root'`) or scoped instances, making them available to components that declare them in their constructors. Declaring it in `providers` ensures Angular's injector handles its lifecycle.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your Angular application needs to fetch data from an API, which is an asynchronous operation. To handle this, you typically use `HttpClient` methods that return an `Observable`. What is the primary benefit of using Observables for HTTP requests in Angular?",
+    "options": [
+      "They block the UI until the data is received.",
+      "They allow for synchronous data processing.",
+      "They provide a declarative way to handle asynchronous data streams, including error handling and retries.",
+      "They are a simpler alternative to Promises with less functionality."
+    ],
+    "correctIndex": 2,
+    "explanation": "Observables from RxJS provide a powerful, declarative paradigm for handling asynchronous operations like HTTP requests. They offer features for composing operations, managing multiple emissions, error handling, and retrying, which are superior to basic Promises for complex data streams.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a complex user registration form in Angular that requires extensive validation, dynamic fields, and testing. Which Angular forms approach is generally recommended for such scenarios due to its explicit and immutable nature?",
+    "options": [
+      "Template-driven forms",
+      "Reactive forms",
+      "HTML5 forms",
+      "jQuery forms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reactive forms provide a more robust and scalable approach for complex forms. They are built programmatically in the component class, offering better testability, explicit control over form state, and easier implementation of dynamic validation and field manipulation compared to template-driven forms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You want to add a special visual effect (e.g., highlighting) to an HTML element only when a certain condition is met in your component. Which type of Angular entity is best suited for directly manipulating the DOM behavior or appearance of an element based on conditions?",
+    "options": [
+      "Component",
+      "Service",
+      "Structural Directive (e.g., `*ngIf`)",
+      "Attribute Directive (e.g., `ngClass`)"
+    ],
+    "correctIndex": 3,
+    "explanation": "Attribute directives (like `ngClass` or `ngStyle`, or custom ones) are used to change the appearance or behavior of an existing DOM element. Structural directives (`*ngIf`, `*ngFor`) add or remove elements, and components manage their own views. Services encapsulate business logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer has written an Angular service that fetches data from an API. Before pushing the code, they want to ensure that the service correctly calls the `HttpClient` and processes the response, independent of the actual backend. What kind of test should they write?",
+    "options": [
+      "End-to-end (E2E) test",
+      "Integration test",
+      "Unit test",
+      "Acceptance test"
+    ],
+    "correctIndex": 2,
+    "explanation": "A unit test focuses on testing a single, isolated unit of code (like a service function) in isolation, often using mocks or spies for its dependencies (like `HttpClient`) to control its behavior and ensure the unit's logic is correct.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to perform an action in your Angular component (e.g., fetching initial data) immediately after Angular has initialized all data-bound properties of a directive or component. Which lifecycle hook is the most appropriate place to put this logic?",
+    "options": [
+      "`ngOnChanges`",
+      "`ngOnInit`",
+      "`ngDoCheck`",
+      "`ngOnDestroy`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ngOnInit` is a lifecycle hook that Angular calls once, after the component's data-bound properties have been initialized. It's the recommended place for initialization logic, such as fetching data from a server or setting up subscriptions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "While developing an Angular application, you encounter an unexpected error in the browser console. To effectively pinpoint the source of the issue in your TypeScript code, which browser development tool feature is most useful?",
+    "options": [
+      "Network tab",
+      "Elements tab",
+      "Sources tab with breakpoints",
+      "Console tab for logs only"
+    ],
+    "correctIndex": 2,
+    "explanation": "The \"Sources\" tab in browser developer tools allows you to view your application's source code (including transpiled TypeScript), set breakpoints to pause execution, step through code, and inspect variables, which is crucial for detailed debugging.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Angular enterprise application has grown very large, and initial load times are becoming slow. Many features are only accessed by a subset of users. What routing optimization technique can significantly improve the initial load performance by loading feature modules only when they are needed?",
+    "options": [
+      "Eager loading",
+      "Preloading all modules",
+      "Server-side rendering",
+      "Lazy loading"
+    ],
+    "correctIndex": 3,
+    "explanation": "Lazy loading allows you to load feature modules only when a user navigates to routes that belong to them. This reduces the initial bundle size, leading to faster application startup times, especially for large applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team uses Git for version control. After working on a new feature, you need to integrate your changes into the main development branch while keeping a clean, linear history. Which Git command sequence would achieve this, assuming your feature branch is up-to-date with `main`?",
+    "options": [
+      "`git merge feature-branch` then `git push`",
+      "`git rebase main` then `git merge feature-branch`",
+      "`git checkout main`, `git pull`, `git rebase feature-branch`, `git push`",
+      "`git checkout feature-branch`, `git rebase main`, `git checkout main`, `git merge feature-branch`, `git push`"
+    ],
+    "correctIndex": 3,
+    "explanation": "To maintain a clean linear history, developers typically rebase their feature branch onto the target branch (`main`) to incorporate recent changes, then merge the rebased feature branch into `main` (often via a fast-forward merge if no new commits were made to `main` since the rebase), and finally push. This ensures the feature branch's commits appear after `main`'s latest history.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying an Angular application to a production server, it's crucial to optimize it for performance and bundle size. Which Angular CLI command is specifically designed to build the application for production, including optimizations like Ahead-of-Time (AOT) compilation and tree-shaking?",
+    "options": [
+      "`ng serve`",
+      "`ng test`",
+      "`ng build --prod` (or `ng build --configuration production` in newer CLI)",
+      "`ng lint`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `ng build --prod` (or `ng build --configuration production`) command builds the application for production, applying various optimizations such as AOT compilation, minification, tree-shaking, and dead code elimination to produce small, highly performant bundles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are fetching data using an `HttpClient.get()` Observable in Angular. If the HTTP request fails, you want to display an error message to the user and prevent the application from crashing. Which RxJS operator is best suited for catching and handling errors within an Observable stream?",
+    "options": [
+      "`map`",
+      "`filter`",
+      "`catchError`",
+      "`tap`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `catchError` RxJS operator is specifically designed to intercept errors in an observable stream. It allows you to provide an error-handling function that can log the error, transform it, or return a new observable to recover from the error gracefully.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a large Angular application, multiple components often need to share and react to the same piece of global application state (e.g., user authentication status or a shopping cart). Which architectural pattern or library is commonly used in Angular to manage this shared state in a predictable way?",
+    "options": [
+      "Local component state with `@Input()` and `@Output()`",
+      "Direct DOM manipulation",
+      "Redux-inspired patterns (e.g., NgRx, Akita)",
+      "Storing data in `localStorage`"
+    ],
+    "correctIndex": 2,
+    "explanation": "For complex applications with shared global state, Redux-inspired patterns and libraries like NgRx or Akita provide a structured, predictable, and scalable way to manage state. They centralize state, making changes traceable and debugging easier. While other options can manage some state, they don't offer the same level of predictability and scalability for global state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a code review, an Angular component is flagged for poor accessibility. Specifically, a custom button component is not keyboard navigable and lacks proper screen reader announcements. Which Web Content Accessibility Guidelines (WCAG) principle is primarily being violated, and what should the developer implement?",
+    "options": [
+      "Perceivable; ensure sufficient color contrast.",
+      "Robust; ensure compatibility with future technologies.",
+      "Operable; ensure keyboard navigation and appropriate ARIA attributes.",
+      "Understandable; ensure consistent navigation."
+    ],
+    "correctIndex": 2,
+    "explanation": "The \"Operable\" WCAG principle requires that user interface components and navigation must be operable. This includes making sure interactive elements are keyboard accessible and that screen readers can properly interact with and announce their purpose and state, often achieved with appropriate ARIA attributes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As part of your team's development process, all new features or bug fixes must go through a peer review before being merged into the main branch. What mechanism in Git-based platforms (like GitHub, GitLab, Bitbucket) facilitates this review process?",
+    "options": [
+      "Direct commit to `main` branch",
+      "Git tagging",
+      "Pull Request (or Merge Request)",
+      "Branching only without review"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Pull Request (or Merge Request in GitLab) is a request to merge changes from one branch into another. It serves as a formal review process, allowing team members to discuss, comment on, and approve code changes before they are integrated into the main codebase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Angular application displays user-generated content, which includes HTML. A security audit reveals a potential Cross-Site Scripting (XSS) vulnerability. Which of the following Angular mechanisms is specifically designed to mitigate XSS risks when rendering untrusted HTML, and how should it be used?",
+    "options": [
+      "Using `innerHTML` directly with `DomSanitizer.bypassSecurityTrustHtml()` for all content.",
+      "Escaping all user input on the backend before sending it to Angular.",
+      "Leveraging Angular's built-in `DomSanitizer` to sanitize values bound to HTML properties like `innerHTML`.",
+      "Using `*ngIf` to conditionally render the content."
+    ],
+    "correctIndex": 2,
+    "explanation": "Angular's `DomSanitizer` automatically sanitizes values when they are inserted into the DOM via interpolation or property binding, protecting against XSS by stripping potentially dangerous code. While escaping on the backend is also good practice, Angular provides client-side protection. `bypassSecurityTrustHtml()` should be used with extreme caution and only for trusted content, not generally for user-generated content, as it explicitly disables sanitization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You have an Angular component that receives a large, immutable data object via an `@Input()`. This component's template renders many sub-components. To optimize performance and minimize unnecessary re-rendering cycles when the input object reference hasn't changed, what change detection strategy should be applied?",
+    "options": [
+      "`Default` change detection",
+      "`OnPush` change detection",
+      "Manually calling `ChangeDetectorRef.detectChanges()` in `ngDoCheck`",
+      "Using `ngZone.runOutsideAngular()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `OnPush` change detection strategy tells Angular to only check the component for changes when its input properties (references) change, when an event originates from the component itself, or when a manual change detection is triggered. This significantly improves performance for components that rely on immutable data or observables, preventing unnecessary checks of its subtree.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You need to test an Angular component that displays data fetched by a service. The test should verify that the component correctly renders the data and that the service is called with the right parameters, but without making actual HTTP requests. How would you set up your `TestBed` for this integration test?",
+    "options": [
+      "Provide the actual service in `TestBed.configureTestingModule` and let it make HTTP calls.",
+      "Only declare the component in `TestBed`, ignoring the service.",
+      "Provide a mock or spy object for the service within `TestBed.configureTestingModule` that simulates the service's behavior.",
+      "Use `ngZone.runOutsideAngular` to skip service calls."
+    ],
+    "correctIndex": 2,
+    "explanation": "For integration testing where a component interacts with a service, you typically provide a mock or spy object for the service in the `TestBed.configureTestingModule`. This allows you to control the service's behavior (e.g., make its methods return specific values or throw errors) without relying on actual external dependencies like HTTP requests, ensuring a focused and reliable test.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An Angular application exhibits poor runtime performance, with frequent UI freezes, especially during complex data manipulations. After profiling, it's identified that many synchronous operations are blocking the main thread. To improve responsiveness without completely refactoring the business logic, what JavaScript Web API or technique could be leveraged to offload heavy computations?",
+    "options": [
+      "Using `setTimeout` with a 0ms delay to defer execution.",
+      "Employing `Web Workers` to run scripts in a background thread.",
+      "Aggressively using Angular's `ngZone` to force change detection.",
+      "Performing all computations directly within `ngDoCheck` lifecycle hook."
+    ],
+    "correctIndex": 1,
+    "explanation": "Web Workers allow you to run scripts in background threads, separate from the main execution thread of the browser. This is ideal for offloading heavy, synchronous computations that would otherwise block the UI and lead to freezes, thereby improving the application's responsiveness.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A critical enterprise Angular application needs to protect certain routes from unauthorized access and also display different UI elements based on the user's roles. What Angular router feature is essential for enforcing authorization before navigating to a route, and what mechanism is commonly used to dynamically control UI element visibility based on roles?",
+    "options": [
+      "Route Guards for authorization; `*ngIf` with a service for UI elements.",
+      "HTTP Interceptors for authorization; `@Input()` properties for UI elements.",
+      "Lazy Loading for authorization; global CSS classes for UI elements.",
+      "Custom Pipes for authorization; `ngAfterViewInit` for UI elements."
+    ],
+    "correctIndex": 0,
+    "explanation": "Route Guards (like `CanActivate`) are the primary Angular mechanism for implementing authorization at the routing level, preventing users from accessing certain routes unless specific conditions (e.g., being logged in, having a specific role) are met. For dynamic UI element visibility based on roles, `*ngIf` combined with a service that provides user role information is a very common and effective approach.",
+    "difficulty": "hard"
+  }
+]

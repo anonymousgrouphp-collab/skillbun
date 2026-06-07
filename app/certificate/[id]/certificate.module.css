@@ -1,0 +1,510 @@
+.page {
+  position: relative;
+  min-height: calc(100svh - 76px);
+  overflow: hidden;
+  color: var(--text);
+  background: transparent;
+}
+
+.bgGridOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  opacity: 0.24;
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+  mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+  pointer-events: none;
+}
+
+:global([data-theme='dark']) .bgGridOverlay {
+  opacity: 0.13;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  width: min(920px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem) 0 4rem;
+}
+
+.loadingScreen,
+.errorScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  text-align: center;
+  padding: 2rem;
+  color: var(--text);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.2rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorIcon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.errorScreen h2 {
+  font-family: var(--font-fredoka), cursive;
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+}
+
+.errorScreen p {
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.6;
+  font-weight: 800;
+  margin: 0 auto 1.8rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1.6rem;
+  border-radius: 999px;
+  color: var(--primary-contrast);
+  background: var(--green);
+  font-size: 0.94rem;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(17, 134, 79, 0.16);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  background: var(--lime);
+  box-shadow: 0 12px 22px rgba(17, 134, 79, 0.22);
+}
+
+/* Actions bar */
+.actionsBar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.actionBtn,
+.actionBtn:hover,
+.actionBtn:focus {
+  background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.52rem;
+  padding: 0.65rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-subtle);
+  transform: translateY(-1px);
+}
+
+.shareBtn {
+  background: #0077b5 !important;
+  border-color: #0077b5 !important;
+  color: #ffffff !important;
+}
+
+.shareBtn:hover {
+  background: #006097 !important;
+  border-color: #006097 !important;
+  transform: translateY(-1px);
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Certificate Layout */
+.certificateFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.414 / 1; /* A4 Landscape Aspect Ratio */
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border-radius: 20px;
+  border: 1px solid rgba(46,204,113,0.14);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.8rem);
+}
+
+[data-theme='light'] .certificateFrame {
+  background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+  border-color: color-mix(in srgb, var(--green) 12%, var(--border));
+  box-shadow: var(--dropdown-shadow);
+}
+
+.certificateBorder {
+  width: 100%;
+  height: 100%;
+  border: 2px solid color-mix(in srgb, var(--green) 40%, transparent);
+  border-radius: 12px;
+  padding: 6px;
+  position: relative;
+}
+
+.certificateCard {
+  width: 100%;
+  height: 100%;
+  border: 1px solid color-mix(in srgb, var(--green) 18%, transparent);
+  border-radius: 8px;
+  padding: clamp(1rem, 2.5vw, 2.5rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Corner decorations */
+.corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--green);
+  pointer-events: none;
+}
+
+.topLeft { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.topRight { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.bottomLeft { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.bottomRight { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+/* Certificate Header */
+.certHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.brandWordmark {
+  font-family: var(--font-fredoka), cursive;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--green), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.certBadge {
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: var(--green-subtle);
+  color: var(--green);
+  border: 1px solid color-mix(in srgb, var(--green) 24%, transparent);
+}
+
+/* Certificate Body */
+.certBody {
+  text-align: center;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.certSub {
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 3.5px;
+  color: var(--green);
+  margin-bottom: 0.65rem;
+}
+
+.certLead {
+  font-size: 0.94rem;
+  font-style: italic;
+  color: var(--muted);
+  margin: 0 0 0.8rem;
+  font-weight: 600;
+}
+
+.recipientName {
+  font-family: var(--font-fredoka), cursive;
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  color: var(--text);
+  margin: 0 0 0.8rem;
+  line-height: 1;
+}
+
+.certDivider {
+  width: clamp(120px, 30%, 300px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--green) 30%, var(--green) 70%, transparent);
+  margin-bottom: 1.15rem;
+}
+
+.certDescription {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.certDescription strong {
+  color: var(--text);
+}
+
+/* Certificate Footer */
+.certFooter {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  align-items: end;
+  margin-top: 0.8rem;
+}
+
+.footerCol {
+  text-align: left;
+}
+
+.footerColRight {
+  text-align: right;
+}
+
+.metaLabel {
+  font-size: 0.58rem;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0 0 0.25rem;
+}
+
+.metaValue code {
+  color: var(--text);
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.76rem;
+  background: color-mix(in srgb, var(--border) 24%, var(--surface));
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.footerColCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sealContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--green);
+}
+
+.sealIcon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.25rem;
+}
+
+.sealText {
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.signatureBlock {
+  display: inline-block;
+}
+
+.sigLine {
+  display: block;
+  font-family: cursive;
+  font-size: 1.1rem;
+  color: var(--text);
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.3rem;
+  min-width: 140px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid color-mix(in srgb, var(--border) 32%, transparent);
+  padding-top: 0.72rem;
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.metaRow strong {
+  color: var(--text);
+}
+
+.verificationNote {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  line-height: 1.45;
+}
+
+.verificationNote code {
+  font-family: monospace;
+  color: var(--green);
+}
+
+/* ═══════════════════════════════════════
+   PRINT MEDIA OVERRIDES — Landscape A4
+   ═══════════════════════════════════════ */
+
+@media print {
+  @page {
+    size: landscape;
+  }
+
+  /* Hide scripts, actions, overlays, etc. */
+  .actionsBar,
+  .bgGridOverlay,
+  .verificationNote {
+    display: none !important;
+  }
+
+  /* Page Wrapper Adjustments */
+  .page {
+    min-height: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Expand Certificate Frame to fill the full A4 print layout */
+  .certificateFrame {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 2.5cm !important; /* Perfect print margin */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .certificateBorder {
+    border-color: #2ECC71 !important;
+  }
+
+  .certificateCard {
+    background: #ffffff !important;
+    border-color: rgba(46,204,113,0.3) !important;
+  }
+
+  /* Enforce black/dark texts on print */
+  .recipientName {
+    color: #000000 !important;
+  }
+
+  .certDescription {
+    color: #333333 !important;
+  }
+
+  .certDescription strong {
+    color: #000000 !important;
+  }
+
+  .metaValue code {
+    background: #f4f6f8 !important;
+    color: #000000 !important;
+  }
+
+  .sigLine {
+    border-bottom-color: #333333 !important;
+    color: #000000 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Scale down frame aspects on smaller screens */
+  .certificateFrame {
+    aspect-ratio: auto;
+    height: auto;
+  }
+  .certFooter {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+  .footerCol,
+  .footerColRight {
+    text-align: center;
+  }
+  .metaRow {
+    flex-direction: column;
+    gap: 0.45rem;
+    align-items: center;
+  }
+}

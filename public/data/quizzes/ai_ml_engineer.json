@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A data scientist needs to load a CSV file into a structured table format for analysis in Python. Which library and data structure are most appropriate for this task?",
+    "options": [
+      "NumPy array",
+      "Python list of dictionaries",
+      "Pandas DataFrame",
+      "SciPy sparse matrix"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pandas DataFrames are specifically designed for tabular data manipulation and provide efficient ways to load and process CSV files, offering robust features for data cleaning, transformation, and analysis. NumPy arrays are for numerical operations, lists are general-purpose, and SciPy sparse matrices are for handling sparse data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When evaluating a classification model, which metric directly measures the proportion of correctly predicted positive cases out of all actual positive cases?",
+    "options": [
+      "Precision",
+      "Accuracy",
+      "Recall",
+      "F1-score"
+    ],
+    "correctIndex": 2,
+    "explanation": "Recall (also known as sensitivity or true positive rate) measures the proportion of actual positive cases that are correctly identified by the model (True Positives / (True Positives + False Negatives)). Precision measures correctly predicted positives out of all predicted positives. Accuracy measures overall correct predictions. F1-score is the harmonic mean of precision and recall.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A machine learning engineer is building a regression model to predict house prices. After training, the model consistently predicts prices much lower than the actual high-end houses and much higher than the actual low-end houses. What term best describes this model behavior?",
+    "options": [
+      "Overfitting",
+      "Underfitting",
+      "High Variance",
+      "Data Leakage"
+    ],
+    "correctIndex": 1,
+    "explanation": "Underfitting occurs when a model is too simple to capture the underlying patterns in the data, leading to high bias. In this scenario, the model is failing to learn the nuances of both high and low-end prices, indicating it's too simplistic. Overfitting (high variance) would mean it performs well on training but poorly on unseen data, often memorizing noise. Data leakage is about using future or target information incorrectly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary advantage of using NumPy arrays over standard Python lists for numerical computations in AI/ML?",
+    "options": [
+      "NumPy arrays are mutable.",
+      "NumPy arrays can store different data types.",
+      "NumPy arrays provide efficient element-wise operations and are more memory-efficient for numerical data.",
+      "NumPy arrays automatically handle missing data."
+    ],
+    "correctIndex": 2,
+    "explanation": "NumPy arrays are optimized for numerical computations, offering significant performance advantages due to their contiguous memory storage and vectorized operations (element-wise operations without explicit loops). They are generally homogeneous in data type and do not automatically handle missing data beyond standard NaN representation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data scientist is preparing a dataset that includes a categorical feature 'City' with 50 unique cities. Which technique is most appropriate to transform this feature for a machine learning model, avoiding the assumption of ordinality?",
+    "options": [
+      "Label Encoding",
+      "Target Encoding",
+      "One-Hot Encoding",
+      "Feature Scaling"
+    ],
+    "correctIndex": 2,
+    "explanation": "One-Hot Encoding converts each category into a new binary feature, effectively preventing the model from assuming an arbitrary ordinal relationship between categories, which is crucial for nominal categorical data. Label encoding assigns an integer to each category, which can introduce false ordinality. Target encoding uses the target variable's mean for each category, which can cause leakage if not done carefully. Feature scaling is for numerical features.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A deep learning engineer is debugging a PyTorch training loop where the model's loss consistently decreases to zero during training, but validation loss remains high and fluctuates wildly. Which component is most likely misconfigured or misused, leading to this behavior?",
+    "options": [
+      "The `torch.optim` optimizer learning rate is too low.",
+      "The `torch.utils.data.DataLoader` is shuffling the training data correctly.",
+      "The model is suffering from severe overfitting, possibly due to a complex architecture or insufficient regularization.",
+      "The `torch.nn.CrossEntropyLoss` function is being used incorrectly for a regression task."
+    ],
+    "correctIndex": 2,
+    "explanation": "A training loss decreasing to zero while validation loss remains high is a classic symptom of severe overfitting. The model has memorized the training data too well and fails to generalize to unseen data. A low learning rate would likely cause slow convergence, not zero loss on training while high validation loss. Correct data shuffling is generally good. Misusing CrossEntropyLoss for regression would typically lead to immediately high and non-decreasing training loss.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following describes a supervised learning task?",
+    "options": [
+      "Clustering customer segments without predefined labels.",
+      "Reducing the dimensionality of data for visualization.",
+      "Predicting whether an email is spam or not based on labeled examples.",
+      "Generating new images similar to a given set."
+    ],
+    "correctIndex": 2,
+    "explanation": "Supervised learning involves training a model on data with known output labels to predict future outcomes. Predicting spam/not spam with labeled data is a classification task, a type of supervised learning. Clustering and dimensionality reduction are unsupervised learning tasks. Generating new images is typically a generative task, often using unsupervised or self-supervised methods.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An AI/ML Engineer has developed a model and wants to ensure consistent deployment across different environments (development, staging, production). Which technology is best suited for packaging the model and its dependencies into a portable, isolated unit?",
+    "options": [
+      "Git",
+      "Jupyter Notebook",
+      "Docker containers",
+      "CSV files"
+    ],
+    "correctIndex": 2,
+    "explanation": "Docker containers allow you to package an application and all its dependencies (code, runtime, system tools, libraries) into a single, isolated unit. This ensures that the application runs consistently regardless of the environment, solving 'it works on my machine' problems. Git is for version control, Jupyter Notebooks for interactive development, and CSVs are for data storage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of machine learning, what is the primary purpose of performing matrix multiplication between an input feature matrix (X) and a weight matrix (W) in a neural network layer?",
+    "options": [
+      "To normalize the input features.",
+      "To apply a non-linear activation function.",
+      "To combine and transform input features into a new feature representation, learning relationships.",
+      "To calculate the element-wise sum of the two matrices."
+    ],
+    "correctIndex": 2,
+    "explanation": "Matrix multiplication (XW) is fundamental in neural networks. It linearly combines the input features with learned weights to produce a new set of features or activations. This process allows the network to learn complex relationships and transformations of the input data. Normalization, activation functions, and element-wise sums are separate operations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A deployed sentiment analysis model starts exhibiting a gradual decline in prediction accuracy over several weeks, even though the input data schema and volume remain constant. What MLOps practice should the team immediately focus on to diagnose this issue?",
+    "options": [
+      "Retraining the model with more data.",
+      "Conducting A/B testing with a new model version.",
+      "Implementing data drift and concept drift monitoring.",
+      "Optimizing the model's inference latency."
+    ],
+    "correctIndex": 2,
+    "explanation": "A gradual decline in accuracy with constant input schema and volume strongly suggests data drift (changes in the distribution of input features over time) or concept drift (changes in the relationship between input features and the target variable). Monitoring for these types of drift is crucial for identifying and addressing model degradation in production. Retraining or A/B testing might be solutions *after* diagnosing the problem, and latency optimization is a different concern.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When fine-tuning a pre-trained Transformer model for a specific NLP task, why is it often recommended to use a smaller learning rate compared to training a model from scratch?",
+    "options": [
+      "To prevent the model from overfitting on the pre-training dataset.",
+      "To avoid catastrophic forgetting of the general knowledge learned during pre-training.",
+      "To ensure faster convergence during fine-tuning.",
+      "To make the model more robust to noisy data."
+    ],
+    "correctIndex": 1,
+    "explanation": "Pre-trained Transformer models have already learned rich linguistic representations from vast amounts of data. Using a smaller learning rate during fine-tuning helps to gently adjust these learned weights to the new task without drastically altering the valuable general knowledge, thereby preventing 'catastrophic forgetting.' A higher learning rate might quickly destroy these pre-learned features.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A machine learning engineer needs to split a dataset to train and evaluate a model. Which common split approach ensures unbiased evaluation of hyperparameter tuning and final model performance?",
+    "options": [
+      "80% train, 20% test",
+      "60% train, 20% validation, 20% test",
+      "50% train, 50% test",
+      "100% train, 0% test"
+    ],
+    "correctIndex": 1,
+    "explanation": "A common and robust practice is to split data into training, validation, and test sets. The training set is for model learning, the validation set is for hyperparameter tuning and early stopping, and the test set is for final, unbiased evaluation of the model's generalization performance. A 60/20/20 split is a frequently used ratio to achieve this. Using only train/test leaves no separate set for unbiased hyperparameter tuning, and 100% train is only for training, no evaluation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In PyTorch, what is the primary role of `torch.autograd`?",
+    "options": [
+      "To automatically convert Python lists to tensors.",
+      "To manage GPU memory allocation for tensors.",
+      "To automatically compute gradients for tensor operations, enabling backpropagation.",
+      "To optimize the neural network architecture automatically."
+    ],
+    "correctIndex": 2,
+    "explanation": "`torch.autograd` is PyTorch's automatic differentiation engine. It records operations performed on tensors and computes their gradients, which are essential for optimizing neural networks through backpropagation. It doesn't convert lists, manage GPU memory allocation (though it works with GPU tensors), or optimize architecture.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an ML system design interview, you are asked to design an experiment tracking system for a large-scale ML project. Which feature is MOST critical for enabling reproducibility and effective collaboration among a team of ML engineers?",
+    "options": [
+      "Automatic hyperparameter tuning.",
+      "Real-time visualization of model predictions.",
+      "Logging of model code versions, data snapshots, metrics, and hyperparameters for each run.",
+      "Seamless integration with a CI/CD pipeline for automatic model deployment."
+    ],
+    "correctIndex": 2,
+    "explanation": "For reproducibility and collaboration, the ability to log and retrieve all aspects of an experiment (code version, data used, hyperparameters, and results) is paramount. This allows any team member to recreate past experiments, understand how specific results were achieved, and build upon previous work. While other options are valuable, they don't directly address the core need for reproducibility and transparent collaboration in experiment tracking.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A machine learning engineer is building a credit card fraud detection model. During feature engineering, they accidentally include a feature that indicates whether the transaction was reported as fraudulent *after* the model would have made its prediction. What type of problem does this introduce?",
+    "options": [
+      "Overfitting",
+      "Underfitting",
+      "Data Leakage",
+      "Class Imbalance"
+    ],
+    "correctIndex": 2,
+    "explanation": "This is a classic example of data leakage. The model is being trained on information that would not be available at the time of prediction (the fraud report occurring post-transaction). This will lead to an artificially inflated performance during training and validation, but the model will perform poorly in real-world scenarios.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data scientist is working with a Pandas DataFrame `df`. To select only the rows where the 'Category' column is equal to 'Electronics', which of the following operations is correct?",
+    "options": [
+      "`df.loc['Category' == 'Electronics']`",
+      "`df[df['Category'] == 'Electronics']`",
+      "`df.filter(items=['Category' == 'Electronics'])`",
+      "`df.query('Category' == 'Electronics')`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Boolean indexing using `df[condition]` is the standard and most direct way to select rows based on a condition in Pandas. `df.loc` is for label-based indexing and requires a different syntax for boolean conditions. `filter` is for selecting columns/rows by labels or regex patterns, and `query` is an alternative string-based method but `df[df['Category'] == 'Electronics']` is the most common and direct for this task.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are tasked with evaluating a classification model where correctly identifying positive cases is much more important than correctly identifying negative cases (e.g., detecting a rare disease). Which evaluation metric should you prioritize?",
+    "options": [
+      "Accuracy",
+      "Precision",
+      "Recall",
+      "F1-Score"
+    ],
+    "correctIndex": 2,
+    "explanation": "In scenarios where minimizing false negatives (missing actual positive cases) is critical, Recall (True Positive Rate) should be prioritized. Accuracy can be misleading with imbalanced classes. Precision focuses on minimizing false positives. F1-Score balances precision and recall, but if one aspect is overwhelmingly more important, it might not be the best single metric.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider a scenario where an LLM fine-tuned on a specific domain (e.g., legal documents) starts generating responses that contain sensitive client information not present in its fine-tuning dataset, but potentially inferred from subtle patterns in the training data it was *pre-trained* on. This phenomenon highlights a critical concern for 'responsible model sharing.' What is the most accurate term for this type of vulnerability?",
+    "options": [
+      "Catastrophic forgetting",
+      "Model collapse",
+      "Privacy leakage through memorization",
+      "Gradient vanishing"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario directly describes privacy leakage, where a model, especially a large pre-trained one, might inadvertently memorize or reconstruct sensitive data from its vast pre-training corpus, even if that data wasn't explicitly part of the fine-tuning. This is a significant concern for responsible AI and model sharing, as deployed models could inadvertently expose private information. Catastrophic forgetting is losing old knowledge when learning new. Model collapse refers to generative models producing increasingly similar and low-quality outputs. Gradient vanishing is an optimization issue.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a scalar in the context of linear algebra and machine learning?",
+    "options": [
+      "A one-dimensional array of numbers.",
+      "A single numerical value.",
+      "A two-dimensional array of numbers.",
+      "A mathematical operation."
+    ],
+    "correctIndex": 1,
+    "explanation": "In linear algebra, a scalar is simply a single numerical value, distinct from vectors (one-dimensional arrays) or matrices (two-dimensional arrays).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data scientist is tuning a Random Forest model and is trying to find the optimal `n_estimators` (number of trees) and `max_depth` hyperparameters. They are using Grid Search with cross-validation. What is the main benefit of using cross-validation in this context?",
+    "options": [
+      "To prevent data leakage by ensuring the test set is never seen.",
+      "To speed up the training process by using smaller subsets of data.",
+      "To obtain a more robust estimate of model performance and generalize better to unseen data.",
+      "To automatically select the best features for the model."
+    ],
+    "correctIndex": 2,
+    "explanation": "Cross-validation helps to obtain a more robust and less biased estimate of a model's performance on unseen data by splitting the training data into multiple folds and training/validating on different combinations. This reduces the variability of the performance estimate compared to a single train/validation split, making hyperparameter tuning more reliable. It doesn't prevent data leakage (which is about information from the future/target being used), speed up training, or select features directly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI/ML Engineer needs to serve a trained image classification model for real-time predictions via an API. Which HTTP method is most appropriate for clients to send an image and receive a classification prediction?",
+    "options": [
+      "GET",
+      "PUT",
+      "POST",
+      "DELETE"
+    ],
+    "correctIndex": 2,
+    "explanation": "The POST method is appropriate for sending data to be processed by a server, which is exactly what happens when a client sends an image to an inference API for prediction. GET is for retrieving data, PUT is for updating or creating a resource with a known URI, and DELETE is for removing a resource.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a model error analysis lab, a team identifies that their object detection model frequently misclassifies small objects in crowded scenes but performs well on large, isolated objects. What is the most effective approach to prioritize for improving this specific issue?",
+    "options": [
+      "Increasing the learning rate to make the model learn faster.",
+      "Using a simpler model architecture to reduce complexity.",
+      "Collecting more training data with diverse backgrounds for large objects.",
+      "Implementing techniques like data augmentation for small objects, exploring anchor box optimization, or using feature-pyramid networks."
+    ],
+    "correctIndex": 3,
+    "explanation": "This is a nuanced problem related to the scale of objects. Increasing the learning rate or simplifying the model might degrade overall performance. Collecting more data for large objects won't address the small object issue. The most effective approach would be targeted techniques like data augmentation (e.g., cropping, scaling to emphasize small objects), optimizing anchor box sizes (in object detection models) to better match small objects, or using architectures like Feature Pyramid Networks (FPNs) which are designed to handle objects at multiple scales.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A PyTorch model is being trained. After each batch, the engineer calls `optimizer.zero_grad()`, then `loss.backward()`, and finally `optimizer.step()`. What is the purpose of `optimizer.zero_grad()`?",
+    "options": [
+      "To initialize the model's weights before training begins.",
+      "To clear the gradients from the previous training step, preventing their accumulation.",
+      "To reset the optimizer's internal state after a certain number of epochs.",
+      "To set the learning rate for the current training step."
+    ],
+    "correctIndex": 1,
+    "explanation": "In PyTorch, by default, gradients accumulate. `optimizer.zero_grad()` is crucial to clear the gradients computed during the *previous* backward pass. If not called, the gradients would accumulate across batches, leading to incorrect weight updates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "For an end-to-end AI application project, what is the primary reason for including a detailed `README` file, especially when sharing with potential employers or collaborators?",
+    "options": [
+      "To define the model's architecture in YAML format.",
+      "To document how to set up the environment, run the code, understand metrics, and limitations.",
+      "To store the raw dataset used for training the model.",
+      "To automatically deploy the application to a cloud provider."
+    ],
+    "correctIndex": 1,
+    "explanation": "A `README` file is essential documentation for any project. For an AI application, it should guide others (and your future self) on how to reproduce your work, set up the environment, run the application, understand its capabilities (metrics), and be aware of its shortcomings (limitations). It serves as the entry point for understanding and interacting with the project.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Python data structure is designed to store an ordered, mutable sequence of items and is commonly used to hold collections of different data types?",
+    "options": [
+      "Tuple",
+      "Set",
+      "Dictionary",
+      "List"
+    ],
+    "correctIndex": 3,
+    "explanation": "A Python list is an ordered and mutable collection that can store items of different data types. Tuples are ordered but immutable. Sets are unordered collections of unique items. Dictionaries store key-value pairs.",
+    "difficulty": "easy"
+  }
+]

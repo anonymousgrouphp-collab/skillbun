@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A user wants to find all files ending with .log in the current directory and its subdirectories. Which command should they use?",
+    "options": [
+      "find . -name \"*.log\"",
+      "grep -r \".log\" .",
+      "ls -R *.log",
+      "locate \"*.log\""
+    ],
+    "correctIndex": 0,
+    "explanation": "`find` is the most appropriate command for searching files based on their name pattern across directories. `grep -r` searches file content, `ls -R` lists recursively but doesn't filter by pattern as flexibly, and `locate` uses a pre-built database which might not be up-to-date.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer has made changes to their local branch and wants to send them to the remote repository. Which sequence of Git operations is typically used?",
+    "options": [
+      "git add . && git commit -m \"updates\" && git push origin <branch>",
+      "git push origin <branch> && git commit -m \"updates\"",
+      "git pull origin <branch> && git push origin <branch>",
+      "git checkout -b <new_branch> && git push origin <new_branch>"
+    ],
+    "correctIndex": 0,
+    "explanation": "To send local changes to a remote repository, you first stage the changes with `git add .`, then commit them with `git commit -m \"message\"`, and finally push them to the remote branch with `git push origin <branch>`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DevOps engineer needs to check if a web server is listening on port 80 on a specific host without sending an HTTP request. Which command-line utility is most appropriate for this task?",
+    "options": [
+      "telnet <host> 80",
+      "ping <host>",
+      "nslookup <host>",
+      "curl <host>:80"
+    ],
+    "correctIndex": 0,
+    "explanation": "`telnet` can be used to establish a raw TCP connection to a specific port on a host, effectively checking if something is listening. `ping` checks ICMP connectivity, `nslookup` resolves DNS, and `curl` performs an HTTP request, which is more than just checking port listening.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are writing a Bash script to process a list of files. You want to iterate through each file and perform an action only if the file exists and is readable. Which conditional statement is best suited for checking both conditions?",
+    "options": [
+      "if [ -f \"$file\" ] && [ -r \"$file\" ]; then ... fi",
+      "if [[ -e \"$file\" || -R \"$file\" ]]; then ... fi",
+      "if test -d \"$file\" -a -w \"$file\"; then ... fi",
+      "if [ -s \"$file\" ] -o [ -x \"$file\" ]; then ... fi"
+    ],
+    "correctIndex": 0,
+    "explanation": "In Bash, `-f \"$file\"` checks if the file exists and is a regular file, and `-r \"$file\"` checks if it's readable. The `&&` operator performs a logical AND. Other options use incorrect flags or logical operators for the specified conditions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary benefit of implementing Continuous Integration (CI) in a software development workflow?",
+    "options": [
+      "Automating infrastructure provisioning with code.",
+      "Automatically deploying applications to production after every change.",
+      "Detecting integration issues early by frequently merging code and running automated tests.",
+      "Ensuring only manual approval gates are used before production releases."
+    ],
+    "correctIndex": 2,
+    "explanation": "CI focuses on frequently merging code to a shared repository, followed by automated builds and tests, specifically to detect and address integration problems early in the development cycle.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DevOps pipeline includes various testing stages. Which type of test is typically run earliest in the pipeline to provide rapid feedback on isolated code components?",
+    "options": [
+      "Integration tests",
+      "End-to-end tests",
+      "Unit tests",
+      "Security scans"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unit tests focus on individual components or functions in isolation, are fast to run, and provide immediate feedback, making them ideal for the early stages of a pipeline. Integration tests combine components, E2E tests simulate user scenarios, and security scans look for vulnerabilities, all typically run later.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a CI/CD pipeline, how should sensitive information like API keys or database credentials be securely managed and accessed during deployment to different environments (e.g., development, staging, production)?",
+    "options": [
+      "Hardcode them directly into the application source code for easy access.",
+      "Store them as environment variables in the build server configuration or a dedicated secret management system.",
+      "Include them in the git repository, but only in a separate 'secrets' branch.",
+      "Send them via email to the deployment script before each run."
+    ],
+    "correctIndex": 1,
+    "explanation": "Sensitive information should never be hardcoded or committed to version control. Using environment variables or a dedicated secret management system (like Vault, AWS Secrets Manager, Kubernetes Secrets) is the standard and secure practice to manage and inject secrets into applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A CI/CD pipeline fails during the deployment stage. The error message indicates that the application cannot connect to the database, but the database logs show it is running and accessible from other services. Which of the following is the most likely cause, given a recent change to the deployment configuration?",
+    "options": [
+      "The application container image is corrupted.",
+      "A network policy or firewall rule is blocking outbound connections from the application container to the database.",
+      "The database schema was not updated correctly.",
+      "The application's health check is incorrectly configured, leading to premature termination."
+    ],
+    "correctIndex": 1,
+    "explanation": "If the database is healthy and other services can connect, but the newly deployed application cannot, and there was a recent deployment configuration change, a network policy or firewall rule is a highly probable cause. These rules control communication between services and are often configured or updated during deployments. Other options are less likely to manifest as a 'cannot connect' issue if the database itself is operational.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the fundamental difference between a Docker image and a Docker container?",
+    "options": [
+      "An image is a running instance of a container, while a container is a static blueprint.",
+      "An image is a lightweight, standalone, executable package of software, and a container is a runtime instance of that image.",
+      "An image includes the operating system, while a container only includes the application.",
+      "A container is shared across multiple users, while an image is specific to one user."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Docker image is a read-only template that contains the application and all its dependencies. A Docker container is a runnable instance of an image, where the application code executes in an isolated environment.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are defining a multi-service application using Docker Compose. You need to ensure that your 'web' service can communicate with your 'database' service using the hostname 'db'. How would you configure this in your docker-compose.yml?",
+    "options": [
+      "Define both services under `services` and Docker Compose automatically creates an internal network allowing them to resolve each other by service name.",
+      "Manually add `extra_hosts: [\"db:127.0.0.1\"]` to the `web` service.",
+      "Use `links:` property to connect the services.",
+      "Expose port mappings for the `database` service to `web` service."
+    ],
+    "correctIndex": 0,
+    "explanation": "Docker Compose automatically sets up a default network for all services defined in the same `docker-compose.yml` file. Services can then communicate with each other using their service names (e.g., `db`) as hostnames. `links` is a legacy feature, `extra_hosts` is for custom host entries, and port mappings expose ports to the host, not for inter-service communication by name.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer has deployed a new application using a Kubernetes Deployment. Users are reporting that they cannot access the application. Upon investigation, you find the Pods are running correctly. What Kubernetes resource is most likely missing or misconfigured to expose the application to external traffic?",
+    "options": [
+      "ConfigMap",
+      "PersistentVolume",
+      "Service",
+      "ReplicaSet"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Kubernetes `Service` is responsible for exposing a set of Pods as a network service, making them accessible either within the cluster or externally (e.g., via NodePort, LoadBalancer, or Ingress). ConfigMaps manage configuration data, PersistentVolumes manage storage, and ReplicaSets ensure a specified number of Pod replicas are running.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a primary advantage of using Infrastructure as Code (IaC) tools like Terraform or CloudFormation?",
+    "options": [
+      "It allows manual provisioning of infrastructure resources, increasing flexibility.",
+      "It enables developers to write application code faster without needing to understand infrastructure.",
+      "It ensures infrastructure provisioning is repeatable, consistent, and version-controlled.",
+      "It eliminates the need for any cloud provider accounts."
+    ],
+    "correctIndex": 2,
+    "explanation": "IaC emphasizes defining infrastructure in code, allowing it to be version-controlled, reviewed, and deployed repeatedly with consistency. This reduces manual errors, prevents configuration drift, and improves reliability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You observe an application experiencing intermittent high latency. To diagnose this, you want to see the sequence of operations and time spent at each step as a request flows through different services. Which monitoring concept is best suited for this investigation?",
+    "options": [
+      "Metrics collection (e.g., CPU, memory usage)",
+      "Log aggregation",
+      "Distributed Tracing",
+      "Alerting rules"
+    ],
+    "correctIndex": 2,
+    "explanation": "Distributed tracing specifically tracks the journey of a single request or transaction as it propagates through multiple services, providing visibility into latency, errors, and performance bottlenecks at each step. Metrics provide aggregate data, logs provide event streams, and alerts notify of issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a production outage, the on-call engineer consults a runbook. What is the primary purpose of a runbook in an incident response scenario?",
+    "options": [
+      "To provide a detailed postmortem analysis after the incident is resolved.",
+      "To serve as a step-by-step guide for diagnosing and resolving common operational issues.",
+      "To automatically resolve incidents without human intervention.",
+      "To document all changes made to the production environment over time."
+    ],
+    "correctIndex": 1,
+    "explanation": "Runbooks are predefined, documented procedures that guide engineers through the steps required to address specific incidents, reducing resolution time and ensuring consistency. They are practical guides for immediate action.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports intermittent connection resets when accessing a backend service behind a reverse proxy. The proxy logs show \"upstream connection reset\" errors, but the backend service logs show no errors and normal processing for other requests. What is the most likely culprit?",
+    "options": [
+      "DNS resolution issues for the backend service.",
+      "The reverse proxy's internal cache is stale.",
+      "A TCP keep-alive timeout mismatch between the reverse proxy and the backend service, leading to premature connection closure by one side.",
+      "The user's local firewall is blocking connections to the proxy."
+    ],
+    "correctIndex": 2,
+    "explanation": "\"Upstream connection reset\" errors, especially if intermittent and the backend is healthy for other requests, often point to a TCP connection management issue between the proxy and the backend. A mismatch in TCP keep-alive timeouts can cause one side to prematurely close a connection while the other expects it to remain open, leading to resets. Other options don't fit the symptoms as well: DNS issues would typically be consistent 'host not found', a stale cache would likely return old data, and a user's firewall wouldn't cause upstream resets.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You need to create a simple Bash script that takes a directory path as an argument and lists its contents. Which variable would you use to access the first argument passed to the script?",
+    "options": [
+      "$0",
+      "$#",
+      "$1",
+      "$@"
+    ],
+    "correctIndex": 2,
+    "explanation": "In Bash, `$1` refers to the first command-line argument passed to the script, `$2` to the second, and so on. `$0` is the script's name, `$#` is the number of arguments, and `$@` refers to all arguments as separate strings.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Kubernetes Deployment is configured with `replicas: 3`. After a new image rollout, one pod continuously restarts with `CrashLoopBackOff` while the other two are healthy. What is the most effective initial troubleshooting step to understand why that specific pod is failing?",
+    "options": [
+      "Increase the number of replicas to 5.",
+      "Delete all pods in the deployment and let Kubernetes recreate them.",
+      "Execute `kubectl logs <failing-pod-name>` and `kubectl describe pod <failing-pod-name>`.",
+      "Check the cluster-wide events with `kubectl get events`."
+    ],
+    "correctIndex": 2,
+    "explanation": "To diagnose a specific failing pod, its logs provide runtime errors, and `kubectl describe pod` provides detailed information about its state, events, resource limits, and conditions. These are crucial for identifying the root cause of the `CrashLoopBackOff` for that particular pod. Increasing replicas or deleting pods might temporarily mask the issue or not provide diagnostic information specific to the failure. `kubectl get events` provides cluster-wide events but targeting the specific pod is more efficient initially.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team needs to ensure that every code change merged into the `main` branch is automatically built, tested, and a new Docker image is pushed to a container registry. Which CI/CD concept directly addresses this requirement?",
+    "options": [
+      "Continuous Delivery",
+      "Continuous Deployment",
+      "Continuous Integration",
+      "Infrastructure as Code"
+    ],
+    "correctIndex": 2,
+    "explanation": "Continuous Integration (CI) involves frequently merging code to a shared repository, running automated builds and tests, and creating artifacts (like Docker images) to detect integration issues early and maintain code quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are developing an application that requires multiple services (e.g., a web server, a database, and a message queue) to run together locally for development. Which tool is specifically designed for defining and running multi-container Docker applications?",
+    "options": [
+      "Kubernetes",
+      "Docker Swarm",
+      "Docker Compose",
+      "containerd"
+    ],
+    "correctIndex": 2,
+    "explanation": "Docker Compose is specifically designed for defining and running multi-container Docker applications, making it ideal for local development and testing environments where you need to orchestrate several services simultaneously. Kubernetes and Docker Swarm are orchestration platforms for production environments, and containerd is a core container runtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical microservice occasionally produces errors that are difficult to reproduce. You suspect a race condition or an unexpected state change. Which of the following logging strategies would be most beneficial for capturing enough context to debug these elusive errors?",
+    "options": [
+      "Increase the overall log retention period to several months.",
+      "Implement structured logging with contextual information (e.g., request ID, user ID, trace ID) at appropriate log levels.",
+      "Only log fatal errors to reduce log volume.",
+      "Switch from text-based logs to binary logs for performance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Structured logging, enriched with contextual information such as request IDs, user IDs, or trace IDs, is essential for debugging intermittent and complex issues in distributed systems. It allows aggregation, filtering, and tracing of events across multiple services, providing a comprehensive view of the request flow and state changes leading up to an error. Simply increasing retention or logging only fatal errors will not provide the necessary context.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following protocols is primarily used for secure remote access to a Linux server over an untrusted network?",
+    "options": [
+      "HTTP",
+      "FTP",
+      "SSH",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "SSH (Secure Shell) provides a secure, encrypted channel for remote access to servers, enabling command-line access, file transfers (SFTP/SCP), and secure tunnel creation over untrusted networks. HTTP is for web traffic, FTP for file transfer (unencrypted by default), and SMTP for email.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before deploying a new version of an application to production, a security team requires that the Docker image containing the application undergoes a vulnerability scan. At which stage should this scan typically be integrated into the CI/CD pipeline?",
+    "options": [
+      "After deployment to production.",
+      "Before the `build` stage, to check source code.",
+      "As part of the `test` or `package` stage, after the image is built and before it's pushed to the registry.",
+      "Only manually, outside of the automated pipeline."
+    ],
+    "correctIndex": 2,
+    "explanation": "Image vulnerability scans should occur after the Docker image is built and typically before it's pushed to a container registry or deployed. This allows potential vulnerabilities to be identified and remediated early in the pipeline, preventing insecure images from reaching production or even being stored in the registry.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You want to ensure that your application pods in Kubernetes are always available, even if a node fails. What Kubernetes object should you use to manage multiple replicas of your application pods and ensure self-healing?",
+    "options": [
+      "Pod",
+      "Service",
+      "Deployment",
+      "Namespace"
+    ],
+    "correctIndex": 2,
+    "explanation": "A `Deployment` in Kubernetes manages a set of identical Pods, providing declarative updates and ensuring a specified number of replicas are running. If a node or pod fails, the Deployment controller automatically replaces them, providing self-healing and high availability for the application. A Pod is a single instance, a Service exposes Pods, and a Namespace provides logical isolation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team uses Terraform to manage cloud infrastructure. A recent `terraform apply` operation failed halfway through due to an intermittent cloud provider API error, leaving some resources provisioned and others not. What is the recommended approach to recover from this state and ensure infrastructure consistency?",
+    "options": [
+      "Manually delete the partially provisioned resources and then re-run `terraform apply`.",
+      "Rollback to the previous Terraform state file and manually apply changes again.",
+      "Run `terraform destroy` to tear down all infrastructure and then re-run `terraform apply`.",
+      "Fix any temporary issues, then simply re-run `terraform apply`, leveraging Terraform's idempotent nature and state file."
+    ],
+    "correctIndex": 3,
+    "explanation": "Terraform is designed to be idempotent. When an `apply` fails, it attempts to record the state of successfully created resources in its state file. Rerunning `terraform apply` after fixing transient issues (like network errors or API rate limits) will cause Terraform to reconcile the current infrastructure state with the desired state defined in the configuration, provisioning missing resources and leaving existing ones as-is, thereby ensuring consistency. Manually deleting or destroying everything can lead to data loss or unnecessary downtime.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After resolving a critical production incident, the DevOps team conducts a postmortem meeting. What is the primary goal of this meeting?",
+    "options": [
+      "To assign blame to the individuals responsible for the outage.",
+      "To ensure the incident is forgotten quickly and move on.",
+      "To identify the root cause, document lessons learned, and define actionable items to prevent recurrence.",
+      "To solely focus on the immediate technical fixes applied during the incident."
+    ],
+    "correctIndex": 2,
+    "explanation": "A postmortem (or blameless post-mortem) aims to understand the full timeline and contributing factors of an incident, identify its root cause, document lessons learned, and establish actionable items to improve systems and processes, thereby preventing similar incidents in the future. It explicitly avoids blaming individuals and focuses on systemic improvements.",
+    "difficulty": "moderate"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A development team is choosing a new framework for building a highly performant web application with minimal bundle size. They are particularly interested in frameworks that shift work from the browser to the compile step. Which of the following problems does Svelte primarily aim to solve in this context?",
+    "options": [
+      "Reducing server-side rendering complexity.",
+      "Eliminating the need for a build step.",
+      "Minimizing runtime overhead in the browser.",
+      "Standardizing database interactions."
+    ],
+    "correctIndex": 2,
+    "explanation": "Svelte compiles components into small, highly optimized JavaScript at build time, eliminating the need for a virtual DOM or complex runtime libraries in the browser, thus minimizing runtime overhead and bundle size.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When defining a new Svelte component, where should the reactive JavaScript logic, such as variable declarations and lifecycle hooks, primarily be placed?",
+    "options": [
+      "Inside the <style> tag.",
+      "Within the <script> tag.",
+      "Directly in the HTML markup.",
+      "In a separate .js file without linking."
+    ],
+    "correctIndex": 1,
+    "explanation": "In a Svelte component (.svelte file), the <script> tag is specifically designated for all JavaScript logic, including reactive declarations, props, state management, and lifecycle functions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After initializing a new SvelteKit project, which command is typically used in the terminal to start the development server and view the application in the browser?",
+    "options": [
+      "svelte run dev",
+      "npm start",
+      "npm run dev",
+      "node index.js"
+    ],
+    "correctIndex": 2,
+    "explanation": "SvelteKit projects, like many modern JavaScript projects, use `npm run dev` (or `pnpm run dev`, `yarn dev`) to execute the script defined in package.json that starts the development server.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Svelte component, a developer has a variable `count` and wants to automatically update a `doubledCount` variable whenever `count` changes, without explicitly calling an update function. How can this be achieved idiomatically in Svelte?",
+    "options": [
+      "Using `const doubledCount = count * 2;`",
+      "Declaring `doubledCount` inside a `set` method.",
+      "Using a reactive declaration: `$: doubledCount = count * 2;`",
+      "Implementing a custom `watch` function."
+    ],
+    "correctIndex": 2,
+    "explanation": "Svelte's reactive declarations (`$:`) allow expressions to re-run automatically whenever any of their dependencies change. In this case, `doubledCount` will reactively update whenever `count` changes. Option 1 would only calculate the value once.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Svelte application needs to manage a global user authentication state that can be read by multiple components but only updated by a specific authentication service. Which type of Svelte store is most appropriate for this scenario?",
+    "options": [
+      "writable store",
+      "readable store",
+      "derived store",
+      "localstorage store"
+    ],
+    "correctIndex": 1,
+    "explanation": "A `readable` store is ideal when you want to provide a value that can be subscribed to (read) but cannot be directly set from outside the store's definition, ensuring that only the store's internal logic (e.g., the authentication service) can modify its value. A `writable` store allows external writes, and a `derived` store depends on other stores.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SvelteKit application requires a page that displays details for a specific product, identified by a unique ID in the URL (e.g., `/products/[id]`). How should the file structure for this dynamic route be organized within the `src/routes` directory?",
+    "options": [
+      "src/routes/products/id.svelte",
+      "src/routes/products/[id].svelte",
+      "src/routes/products/details_id.svelte",
+      "src/routes/products/params/id.svelte"
+    ],
+    "correctIndex": 1,
+    "explanation": "SvelteKit uses square brackets `[]` in file and folder names to denote dynamic route parameters. `[id].svelte` correctly captures the `id` segment from the URL.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SvelteKit application needs to fetch data from an API and render the initial HTML on the server to improve SEO and perceived load times. Which SvelteKit feature is designed for this purpose within a route file?",
+    "options": [
+      "export let data;",
+      "A `load` function in a `+page.js` or `+page.server.js` file.",
+      "An `onMount` lifecycle hook in `+page.svelte`.",
+      "A `createEffect` function."
+    ],
+    "correctIndex": 1,
+    "explanation": "SvelteKit's `load` function (in `+page.js` for universal loading or `+page.server.js` for server-only loading) is responsible for fetching data before the component renders, allowing that data to be available for SSR.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SvelteKit form needs to handle a POST request for user registration. After successful submission, the server should redirect the user to their profile page. Where in a SvelteKit route handler would you typically implement the logic for processing the form data and issuing the redirect?",
+    "options": [
+      "Within the <script> block of `+page.svelte` using a client-side `fetch`.",
+      "In a `POST` function defined in `+page.server.js`.",
+      "Inside a `load` function in `+page.js`.",
+      "Directly in the form's `action` attribute pointing to an external API."
+    ],
+    "correctIndex": 1,
+    "explanation": "For server-side form handling and actions like redirects post-submission in SvelteKit, the `POST` function in a `+page.server.js` file is the correct place. This function runs on the server, can access request details, process form data, interact with databases, and return responses like redirects.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Svelte developer is writing unit tests for a custom button component. What is the primary focus of these unit tests?",
+    "options": [
+      "Verifying the button's appearance across different browsers.",
+      "Ensuring the component renders correctly and emits events as expected when interacted with.",
+      "Checking the database integrity after clicking the button.",
+      "Measuring the performance impact of the button on page load."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests for a component focus on its isolated functionality: verifying that it renders with correct props, displays expected content, and behaves correctly (e.g., emitting events) when simulated user interactions occur.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a Svelte component that includes interactive elements like buttons or links, which fundamental accessibility consideration should always be prioritized to ensure usability for all users?",
+    "options": [
+      "Using only custom CSS animations.",
+      "Ensuring all elements have appropriate ARIA attributes and semantic HTML.",
+      "Limiting the number of interactive elements on the page.",
+      "Making sure the component loads instantly."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using semantic HTML elements (e.g., <button>, <a>) and adding appropriate ARIA attributes when custom interactive elements are used is crucial for screen readers and other assistive technologies to correctly interpret and interact with the component.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A SvelteKit application is designed to be deployed as a fully static website, served by a CDN, without any server-side logic at runtime. Which SvelteKit adapter should be configured in `svelte.config.js` for this deployment strategy?",
+    "options": [
+      "@sveltejs/adapter-node",
+      "@sveltejs/adapter-auto",
+      "@sveltejs/adapter-static",
+      "@sveltejs/adapter-cloudflare"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `@sveltejs/adapter-static` adapter is specifically designed to pre-render the entire SvelteKit application into static HTML, CSS, and JavaScript files, making it suitable for deployment to any static hosting provider or CDN.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a SvelteKit application, the operations team reports intermittent server errors related to data fetching from an external API. As a Svelte developer, what initial step should you take to diagnose these issues, beyond just checking the browser console?",
+    "options": [
+      "Immediately rewrite the data fetching logic using a different library.",
+      "Implement comprehensive client-side performance monitoring.",
+      "Review server-side logs and monitoring dashboards for detailed error messages and request patterns.",
+      "Ask users to provide screenshots of the errors."
+    ],
+    "correctIndex": 2,
+    "explanation": "For server-side errors, client-side tools are insufficient. Reviewing server-side logs (from the Node.js server, Vercel, Netlify functions, etc.) and monitoring dashboards will provide the stack traces, request details, and context needed to diagnose issues originating from the backend or server-side rendering process.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During the team delivery workflow for a Svelte project, before a new feature branch is merged into the main development branch, what is a crucial collaborative step to ensure code quality and knowledge sharing?",
+    "options": [
+      "Directly deploying the feature branch to production.",
+      "Deleting the feature branch without review.",
+      "Submitting a pull request (PR) for code review by peers.",
+      "Rewriting the entire feature in another framework."
+    ],
+    "correctIndex": 2,
+    "explanation": "Submitting a pull request (PR) for code review is a standard and critical practice in team delivery workflows. It allows other developers to review the changes, suggest improvements, catch potential bugs, and share knowledge before the code is integrated.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When preparing a Svelte Developer portfolio, what is the primary benefit of including live demos or deployed versions of your projects, alongside their GitHub repositories?",
+    "options": [
+      "It allows recruiters to directly modify your code.",
+      "It reduces the need for comprehensive documentation.",
+      "It provides immediate, tangible proof of your skills and the project's functionality without requiring setup.",
+      "It demonstrates your ability to troubleshoot local development environments."
+    ],
+    "correctIndex": 2,
+    "explanation": "Live demos and deployed projects offer recruiters and potential employers instant access to the application, allowing them to see its functionality, user experience, and your implementation skills without any local setup or technical barriers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When writing a case study for a Svelte project, which section is most important for demonstrating your problem-solving abilities and decision-making process?",
+    "options": [
+      "A list of all dependencies used.",
+      "The \"Problem, Constraints, and Decisions\" section.",
+      "A screenshot of the `package.json` file.",
+      "A detailed breakdown of your development environment setup."
+    ],
+    "correctIndex": 1,
+    "explanation": "The \"Problem, Constraints, and Decisions\" section of a case study directly addresses the challenges faced, the limitations considered, and the reasoning behind the technical choices made during the project, showcasing critical problem-solving skills.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Svelte component `Card.svelte` is designed to be highly reusable, wrapping content that varies depending on where it's used. Which Svelte feature should be used to allow consumers of `Card.svelte` to inject arbitrary HTML content into its layout?",
+    "options": [
+      "Props",
+      "Context API",
+      "Slots",
+      "Stores"
+    ],
+    "correctIndex": 2,
+    "explanation": "Slots in Svelte (and other component frameworks) provide a way to compose components, allowing a parent component to inject dynamic content into predefined areas within a child component's template.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Svelte component needs to perform an action (e.g., fetch data, set up an event listener) only once, immediately after the component has been added to the DOM. Which Svelte lifecycle function should be used for this purpose?",
+    "options": [
+      "beforeUpdate",
+      "onMount",
+      "onDestroy",
+      "afterUpdate"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `onMount` lifecycle hook runs once, after the component has been rendered to the DOM, making it the ideal place for initialization tasks that depend on the DOM being available or only need to happen once.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is concerned about critical user flows (e.g., user login, product purchase) breaking across different browsers and deployments for their SvelteKit application. Which type of testing is best suited to verify these end-to-end scenarios from a user's perspective?",
+    "options": [
+      "Unit testing with Vitest.",
+      "Component testing with Svelte Testing Library.",
+      "End-to-End (E2E) testing with Playwright or Cypress.",
+      "Manual code review."
+    ],
+    "correctIndex": 2,
+    "explanation": "End-to-End (E2E) testing simulates real user interactions across the entire application stack, from the UI to the backend, in a browser environment. Tools like Playwright and Cypress are designed for this, ensuring critical user flows function correctly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a SvelteKit application with server-side form handling, a developer receives user input that includes potentially malicious HTML or JavaScript. What is the most important security measure to apply to this user input before storing it or displaying it back to other users?",
+    "options": [
+      "Storing the input directly as received.",
+      "Only validating the input's length.",
+      "Sanitizing and validating the input on the server-side to prevent XSS (Cross-Site Scripting) attacks.",
+      "Trusting client-side validation alone."
+    ],
+    "correctIndex": 2,
+    "explanation": "Server-side sanitization and validation of user input are critical to prevent XSS and other injection attacks. Client-side validation is for user experience but can be bypassed. Input should be cleaned and checked against expected formats before processing or storage.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Svelte component needs to handle a custom event dispatched by a child component. The child component dispatches an event named `customEvent` with some data. How would the parent component listen for this event?",
+    "options": [
+      "<ChildComponent on:customEvent={handleCustomEvent} />",
+      "<ChildComponent bind:customEvent={handleCustomEvent} />",
+      "<ChildComponent onMount={handleCustomEvent} />",
+      "<ChildComponent event.customEvent={handleCustomEvent} />"
+    ],
+    "correctIndex": 0,
+    "explanation": "Svelte uses the `on:` directive to listen for both native DOM events and custom events dispatched by child components. The syntax `on:eventName={handler}` correctly sets up the event listener.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Svelte application manages a list of items, and there's a requirement to display a filtered version of this list based on user selections. The original list is a `writable` store. To avoid re-implementing filtering logic every time the user selection changes, and to ensure reactivity, what is the most Svelte-idiomatic approach for the filtered list?",
+    "options": [
+      "Create a new `writable` store and manually update it with filtered data whenever the original list or filters change.",
+      "Use a `derived` store that depends on both the original `writable` list and another store holding the filter criteria.",
+      "Perform the filtering directly in each component's `<script>` block.",
+      "Pass the original `writable` store down through props to every component that needs the filtered data."
+    ],
+    "correctIndex": 1,
+    "explanation": "A `derived` store is specifically designed for scenarios where a store's value is computed from one or more other stores and should reactively update whenever its dependencies change. This provides an efficient and reactive way to manage filtered data without manual updates or prop drilling.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Svelte developer is setting up a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a SvelteKit project. What is a key benefit of including a \"build\" step in the CI pipeline for every pull request?",
+    "options": [
+      "To manually review the compiled JavaScript output for errors.",
+      "To ensure that the project compiles without errors and passes static checks before it can be merged.",
+      "To deploy every pull request to production immediately.",
+      "To automatically generate release notes from commit messages."
+    ],
+    "correctIndex": 1,
+    "explanation": "A \"build\" step in a CI pipeline verifies that the project can be successfully compiled and bundled, catching syntax errors, type errors (if TypeScript is used), and other compilation issues early in the development cycle, before the code is merged into the main branch.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a SvelteKit application, a `+page.server.js` `load` function might throw an error if an external API call fails. How should this error be handled to gracefully present a custom error page to the user within SvelteKit?",
+    "options": [
+      "Catch the error and return `null` from the `load` function.",
+      "Wrap the API call in a `try...catch` block and throw a SvelteKit `error` (from `@sveltejs/kit`) with a status code.",
+      "Ignore the error, letting the browser handle it.",
+      "Display an alert box on the client-side using `window.alert()`."
+    ],
+    "correctIndex": 1,
+    "explanation": "SvelteKit provides a dedicated `error` helper function (imported from `@sveltejs/kit`) which, when thrown in a `load` or `action` function, allows SvelteKit to display a custom error page (e.g., `src/routes/+error.svelte`) with the provided status and message.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Svelte developer is debugging a reactive issue where a variable isn't updating as expected within a component. Besides using browser developer tools, which Svelte-specific debugging technique can be used to inspect the value of a variable directly in the template and reactively observe its changes?",
+    "options": [
+      "Using `console.log()` inside a `<style>` block.",
+      "Embedding `alert()` calls in the HTML.",
+      "Using a reactive declaration `$: console.log('Variable value:', myVariable);`.",
+      "Manually re-rendering the component using a browser extension."
+    ],
+    "correctIndex": 2,
+    "explanation": "A reactive declaration `$: console.log('Variable value:', myVariable);` is a powerful Svelte-idiomatic debugging technique. The `console.log` statement will automatically re-run and log the `myVariable`'s value every time `myVariable` changes, allowing for reactive inspection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Svelte component is rendering a list of items, and a developer wants to add a smooth fade-in and fade-out effect when items are added to or removed from the list. Which Svelte feature is specifically designed for this kind of element animation?",
+    "options": [
+      "CSS `transform` properties directly.",
+      "Svelte's `transition` directive (e.g., `transition:fade`).",
+      "Using `setTimeout` to manually add/remove CSS classes.",
+      "Importing a large animation library."
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte's `transition` directive (e.g., `transition:fade`, `transition:slide`) provides built-in, performant animations for elements entering and exiting the DOM. It automatically handles the timing and CSS changes, making it the idiomatic solution for such effects.",
+    "difficulty": "moderate"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Flutter developer makes a small UI change to a Text widget. To see this change reflected quickly in the running app without losing the current application state, which command should they use?",
+    "options": [
+      "Flutter Run",
+      "Flutter Build",
+      "Hot Restart",
+      "Hot Reload"
+    ],
+    "correctIndex": 3,
+    "explanation": "Hot Reload injects updated source code into the running Dart VM, preserving the app's state. Hot Restart resets the app state, while `flutter run` starts the app from scratch. `flutter build` compiles the app for release.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Dart, what does the `?` symbol signify when used after a type declaration, such as `String? name`?",
+    "options": [
+      "The variable `name` must be initialized immediately.",
+      "The variable `name` can hold a `String` value or be `null`.",
+      "The variable `name` is a compile-time constant.",
+      "The variable `name` can only be assigned once."
+    ],
+    "correctIndex": 1,
+    "explanation": "The `?` symbol denotes nullability in Dart, meaning the variable can explicitly hold `null` in addition to its declared type, enabling null safety.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following Flutter widgets is primarily used to arrange its children in a single horizontal line?",
+    "options": [
+      "Column",
+      "Stack",
+      "Row",
+      "Container"
+    ],
+    "correctIndex": 2,
+    "explanation": "A `Row` widget arranges its children horizontally. A `Column` arranges them vertically, a `Stack` layers them, and a `Container` is a general-purpose box used for styling and layout.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Dart function needs to fetch data from an API, which is an asynchronous operation. To wait for the API response without blocking the UI thread, which keywords should be used?",
+    "options": [
+      "`sync` and `wait`",
+      "`async` and `await`",
+      "`future` and `then`",
+      "`thread` and `pause`"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Dart, `async` marks a function as asynchronous, allowing it to contain `await` expressions. `await` pauses the execution of the async function until the `Future` it's waiting on completes, without blocking the main isolate (UI thread).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is building a medium-sized Flutter application and wants to manage application state using a reactive approach that separates business logic from UI, making it testable. Which state management solution is typically recommended for this approach, particularly for complex flows involving events and states?",
+    "options": [
+      "`setState()`",
+      "Provider",
+      "BLoC/Cubit",
+      "GetX"
+    ],
+    "correctIndex": 2,
+    "explanation": "BLoC (Business Logic Component) or Cubit is a state management pattern that uses streams to separate business logic from UI, making applications reactive, testable, and scalable, especially for complex event-driven state changes. Provider is simpler for dependency injection, `setState()` is for local widget state, and GetX is another option but BLoC is often highlighted for its robust separation for complex flows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After successfully fetching a JSON response from a REST API in a Flutter app, a developer needs to convert the JSON string into Dart objects. Which Dart core library is typically used for this purpose?",
+    "options": [
+      "`dart:io`",
+      "`dart:async`",
+      "`dart:convert`",
+      "`dart:math`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `dart:convert` library provides functionality for encoding and decoding between different data representations, including `jsonDecode()` for converting JSON strings to Dart objects (typically `Map<String, dynamic>`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a standard Flutter project, which file is used to declare project dependencies (like other packages) and define metadata such as the application name and version?",
+    "options": [
+      "`main.dart`",
+      "`pubspec.yaml`",
+      "`AndroidManifest.xml`",
+      "`Info.plist`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `pubspec.yaml` file is central to Flutter projects for managing dependencies (`dependencies` and `dev_dependencies`), assets, and general project metadata.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Flutter application needs to navigate from a login screen to a home screen, and the user should not be able to return to the login screen using the back button after successful login. Which navigation method is most suitable for this scenario?",
+    "options": [
+      "`Navigator.of(context).push(MaterialPageRoute(builder: ...))`",
+      "`Navigator.of(context).pop()`",
+      "`Navigator.of(context).pushReplacement(MaterialPageRoute(builder: ...))`",
+      "`Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: ...), (route) => false)`"
+    ],
+    "correctIndex": 3,
+    "explanation": "`pushAndRemoveUntil` allows pushing a new route and removing all previous routes from the stack if the predicate returns `false`. This effectively replaces the entire navigation stack with the new route, preventing return to the login screen. `pushReplacement` replaces only the *current* route, allowing previous routes to remain.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an offline-first Flutter application, a developer wants to ensure that user actions (e.g., adding an item to a cart) are optimistically applied to the UI immediately, even if the network is unavailable. The app should then attempt to synchronize these changes with the backend when connectivity is restored, handling potential conflicts. Which architectural pattern best supports this requirement?",
+    "options": [
+      "Direct network calls with error dialogs for offline status.",
+      "Simple caching of UI data and only allowing actions when online.",
+      "Command Queue/Outbox Pattern with local persistence and background sync.",
+      "Always-online requirement, with no offline support."
+    ],
+    "correctIndex": 2,
+    "explanation": "The Command Queue/Outbox pattern involves persisting user actions locally (e.g., in a SQLite database) as 'commands' when offline. These commands are then sent to the backend in the background when connectivity is restored. This allows for optimistic UI updates and robust offline functionality, with mechanisms for conflict resolution.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Flutter application needs to store small, simple key-value pairs locally, such as user preferences (e.g., dark mode setting, last selected category). Which package is most commonly used for this purpose?",
+    "options": [
+      "`sqflite`",
+      "`http`",
+      "`shared_preferences`",
+      "`path_provider`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `shared_preferences` package provides a straightforward way to persist simple data as key-value pairs on disk, suitable for user preferences and settings. `sqflite` is for SQLite databases, `http` for network requests, and `path_provider` for accessing common file system locations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To define a consistent set of colors, text styles, and other visual properties across an entire Flutter application, which widget should be wrapped around the root of the widget tree?",
+    "options": [
+      "`Container`",
+      "`Scaffold`",
+      "`MaterialApp` or `CupertinoApp`",
+      "`ThemeData`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`MaterialApp` (for Material Design) or `CupertinoApp` (for iOS-style design) are the root widgets that provide the necessary theming, navigation, and other app-level infrastructure. `ThemeData` is an object that defines the theme, but it's passed to `MaterialApp` or `CupertinoApp`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer has created a custom Flutter widget that displays a user's avatar and name. To ensure this widget renders correctly with various data inputs and responds appropriately to user interaction, which type of test should be primarily used?",
+    "options": [
+      "Unit test",
+      "Integration test",
+      "Widget test",
+      "Performance test"
+    ],
+    "correctIndex": 2,
+    "explanation": "Widget tests (using `tester.pumpWidget()`) are specifically designed for testing individual Flutter widgets in an isolated environment, verifying their UI, interactions, and state changes. Unit tests are for business logic, and integration tests verify entire app flows across multiple widgets and services.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Flutter application needs to access a highly specific hardware feature (e.g., a custom sensor) that is not available through existing Flutter plugins. How can a developer implement a way for Dart code to communicate directly with platform-specific native code (Kotlin/Java on Android, Swift/Objective-C on iOS)?",
+    "options": [
+      "Use `dart:io` to directly call native APIs.",
+      "Implement a `MethodChannel` to send messages between Dart and the platform.",
+      "Embed a web view and use JavaScript to communicate.",
+      "Rewrite the entire feature in native code."
+    ],
+    "correctIndex": 1,
+    "explanation": "Flutter's `MethodChannel` is the standard mechanism for communication between Dart code and platform-specific native code. It allows sending named method calls and receiving results asynchronously.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Dart function receives a `List<String?>` and needs to return a new `List<String>` containing only the non-null strings. Which of the following approaches is the most concise and idiomatic in Dart?",
+    "options": [
+      "`myList.where((item) => item != null).map((item) => item!).toList();`",
+      "`myList.map((item) => item == null ? \"\" : item).toList();`",
+      "`myList.forEach((item) { if (item != null) newList.add(item); });`",
+      "`myList.removeWhere((item) => item == null); return myList.cast<String>();`"
+    ],
+    "correctIndex": 0,
+    "explanation": "This approach uses `where` to filter out nulls and then `map` with the null-assertion operator `!` to safely convert `String?` to `String` for each remaining item. Option D modifies the original list and `cast` is risky if nulls aren't fully removed. Options B and C are less idiomatic or change the type unnecessarily.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To manage complex navigation flows and deeply nested routes in a large Flutter application, a developer wants to use a declarative routing approach that supports deep linking and web integration. Which package or core Flutter routing approach is best suited for this?",
+    "options": [
+      "Simple `Navigator.push` and `pop`",
+      "`Navigator 1.0` (imperative routing)",
+      "`Navigator 2.0` with `Router` widget (declarative routing)",
+      "`AlertDialog`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`Navigator 2.0` (using the `Router` widget, `Page` objects, and `RouterDelegate`/`RouteInformationParser`) provides a declarative approach to routing, which is essential for handling complex navigation states, deep linking, and web integration more robustly than the imperative `Navigator 1.0`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Flutter app experiences noticeable \"jank\" (skipped frames) when a complex list scrolls rapidly. Upon profiling, it's observed that rebuilding large parts of the widget tree during scroll is costly. Which technique is most effective to mitigate this specific performance issue?",
+    "options": [
+      "Increase the refresh rate of the device.",
+      "Use `const` widgets where possible to prevent unnecessary rebuilds.",
+      "Reduce the number of network requests during scrolling.",
+      "Increase the Flutter build version."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using `const` widgets or `const` constructors for widgets that don't change their properties can significantly reduce rebuild costs. When Flutter sees a `const` widget, it knows it doesn't need to rebuild it if its parent changes, thus improving scrolling performance and reducing jank.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Flutter form requires a text input field to validate that the entered email address is in a correct format before submission. Which common approach is used to add validation logic to a `TextFormField`?",
+    "options": [
+      "Set the `onChanged` callback to manually check the regex.",
+      "Use the `validator` property of `TextFormField` to return an error string.",
+      "Wrap the `TextFormField` in an `ErrorWidget`.",
+      "Call `MediaQuery.of(context).size` to check validation."
+    ],
+    "correctIndex": 1,
+    "explanation": "`TextFormField` provides a `validator` property, which takes a function that returns an error string if the input is invalid, or `null` if valid. This is the standard way to integrate validation logic directly with the form field.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Flutter application using the `Provider` package for state management, a developer needs to provide an instance of `UserService` to multiple widgets in the widget tree, and this `UserService` does not change its state frequently. Which `Provider` widget is most appropriate for injecting this service?",
+    "options": [
+      "`ChangeNotifierProvider`",
+      "`StreamProvider`",
+      "`FutureProvider`",
+      "`Provider` (plain, non-listening)"
+    ],
+    "correctIndex": 3,
+    "explanation": "A plain `Provider` is suitable for providing immutable objects or objects that don't need to notify listeners of changes, like a `UserService` that primarily offers methods without observable state. `ChangeNotifierProvider` is for `ChangeNotifier` objects, `StreamProvider` for streams, and `FutureProvider` for futures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before releasing a Flutter app to the public, a developer wants to track user engagement, understand app usage patterns, and receive automated crash reports. Which type of services should they integrate into their application?",
+    "options": [
+      "Local file logging and manual bug reports.",
+      "Cloud storage solutions like AWS S3.",
+      "Analytics and crash reporting tools (e.g., Firebase Analytics, Crashlytics).",
+      "Only rely on platform-specific app store metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Integrating analytics (like Firebase Analytics) helps track user behavior, while crash reporting tools (like Crashlytics) automatically log and report crashes, providing crucial insights for improving app stability and user experience post-release.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company develops a Flutter application that needs to have different configurations (e.g., API endpoints, branding, app name) for its \"development,\" \"staging,\" and \"production\" environments. How can a developer effectively manage these distinct configurations within a single codebase for Android and iOS builds?",
+    "options": [
+      "Manually change configuration files before each build.",
+      "Use environment variables and `if-else` statements in Dart code.",
+      "Implement \"Flavors\" (Android) and \"Schemes/Configurations\" (iOS) combined with `dart-define` or `BuildConfig` equivalent.",
+      "Create separate Flutter projects for each environment."
+    ],
+    "correctIndex": 2,
+    "explanation": "Using \"Flavors\" on Android and \"Schemes\" or build configurations on iOS, combined with tools like `dart-define` for Flutter or platform-specific build configurations, allows for managing different environment-specific settings within a single Flutter project without code duplication.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To add a new external library or package (e.g., `http` for network requests) to a Flutter project, where should the dependency be declared?",
+    "options": [
+      "In `main.dart`",
+      "In the `assets` folder",
+      "In `pubspec.yaml` under `dependencies:`",
+      "In `README.md`"
+    ],
+    "correctIndex": 2,
+    "explanation": "External packages are declared under the `dependencies:` section in the `pubspec.yaml` file, after which `flutter pub get` is run to fetch them.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to create a reusable UI component in Flutter that combines several existing widgets (like an `Image`, `Text`, and `Icon`) into a single, cohesive unit with its own properties. Which type of class should they extend to achieve this?",
+    "options": [
+      "`Function`",
+      "`StatefulWidget` or `StatelessWidget`",
+      "`List`",
+      "`Provider`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Custom UI components in Flutter are built by extending either `StatelessWidget` (for widgets that don't manage internal mutable state) or `StatefulWidget` (for widgets that do).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Flutter application needs to access the user's current location. Before attempting to retrieve the location data, what crucial step must the application perform to adhere to modern mobile operating system guidelines?",
+    "options": [
+      "Request permission from the user at runtime.",
+      "Access the location directly without any prior steps.",
+      "Send an SMS to the user confirming access.",
+      "Reboot the device to enable location services."
+    ],
+    "correctIndex": 0,
+    "explanation": "Accessing sensitive device features like location requires explicit runtime permission from the user on both Android (M+) and iOS. Failing to request permission will result in the app not being able to access the feature.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An e-commerce Flutter app is ready for release, and the development team wants to ensure that critical end-to-end user flows (e.g., 'add to cart' -> 'checkout' -> 'payment') work flawlessly across different device configurations and network conditions. They also need to continuously monitor the app's stability in production. Which combination of practices would best address these concerns?",
+    "options": [
+      "Only unit tests and manual testing.",
+      "Widget tests for all components and local crash logs.",
+      "Integration tests for key user flows and remote crash reporting/monitoring (e.g., Firebase Crashlytics).",
+      "Performance profiling exclusively during development."
+    ],
+    "correctIndex": 2,
+    "explanation": "Integration tests (using `flutter_driver` or `integration_test`) are designed to verify entire user flows across multiple widgets and potentially services, providing confidence in end-to-end functionality. Remote crash reporting and monitoring services are essential for identifying and addressing stability issues in production.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary function of the `build` method in a Flutter `StatelessWidget` or `StatefulWidget`?",
+    "options": [
+      "To fetch data from a database.",
+      "To define the UI of the widget as a tree of other widgets.",
+      "To handle HTTP network requests.",
+      "To manage the widget's internal state."
+    ],
+    "correctIndex": 1,
+    "explanation": "The `build` method is where a widget describes its UI, returning a widget tree that Flutter then renders. It should be a \"pure\" function of its inputs (properties and state), meaning it rebuilds the UI based on the current state and configuration.",
+    "difficulty": "easy"
+  }
+]

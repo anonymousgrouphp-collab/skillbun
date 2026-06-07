@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A cloud security engineer is explaining the Shared Responsibility Model to a new team member. Which of the following is typically the cloud provider's responsibility in an IaaS model?",
+    "options": [
+      "Operating system patch management for EC2 instances.",
+      "Configuration of network access control lists (ACLs) for customer VPCs.",
+      "Physical security of the data centers.",
+      "Data encryption at rest within customer databases."
+    ],
+    "correctIndex": 2,
+    "explanation": "In the shared responsibility model for IaaS, the cloud provider is responsible for the security of the cloud, which includes the physical infrastructure, host hardware, and network virtualization. The customer is responsible for security in the cloud, including OS patching, network configurations (like ACLs), and data encryption.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company is designing its AWS network architecture and wants to ensure that critical backend databases residing in private subnets can initiate outbound connections to trusted external services (e.g., software update repositories) but cannot be directly accessed from the internet. Which AWS networking component should be used to facilitate this outbound-only internet connectivity?",
+    "options": [
+      "Internet Gateway",
+      "VPC Peering",
+      "NAT Gateway",
+      "Direct Connect"
+    ],
+    "correctIndex": 2,
+    "explanation": "A NAT Gateway allows instances in a private subnet to connect to the internet or other AWS services, but prevents the internet from initiating connections to those instances. An Internet Gateway is for public subnets to allow both inbound and outbound internet traffic. VPC Peering connects two VPCs. Direct Connect provides a dedicated network connection from on-premises to AWS.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary security principle that dictates users and services should only be granted the minimum necessary permissions to perform their specific tasks?",
+    "options": [
+      "Defense in Depth",
+      "Least Privilege",
+      "Separation of Duties",
+      "Principle of Confidentiality"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Principle of Least Privilege is a fundamental security concept requiring that users, programs, or processes be granted only the minimum access rights necessary to perform their work. Defense in Depth involves multiple layers of security. Separation of Duties divides critical tasks among multiple individuals. Confidentiality is about protecting data from unauthorized access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A security team wants to monitor all administrative actions and API calls made within their AWS environment to detect potential unauthorized activity. Which AWS service is essential for collecting these operational and security logs?",
+    "options": [
+      "Amazon S3 access logs",
+      "VPC Flow Logs",
+      "AWS CloudTrail",
+      "Amazon CloudWatch Logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "AWS CloudTrail records API calls and related events made by or on behalf of an AWS account, providing an audit trail of actions taken within the environment. S3 access logs track object access. VPC Flow Logs record network traffic information. CloudWatch Logs is a monitoring and logging service that can aggregate logs from various sources, including CloudTrail, but CloudTrail itself is the source for API call logs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A security engineer is reviewing an AWS IAM policy for an application role. The policy contains 'Effect: Allow', 'Action: \"s3:*\"', and 'Resource: \"*\"'. The application only needs to read objects from a specific S3 bucket named 'my-app-data-bucket-123'. What is the most precise way to rewrite this policy to adhere to the principle of least privilege, assuming the application needs to read all objects within that bucket?",
+    "options": [
+      "'Effect: Allow, Action: \"s3:GetObject\", Resource: \"arn:aws:s3:::my-app-data-bucket-123\"'",
+      "'Effect: Allow, Action: \"s3:GetObject\", Resource: \"arn:aws:s3:::my-app-data-bucket-123/*\"'",
+      "'Effect: Allow, Action: [\"s3:GetObject\", \"s3:ListBucket\"], Resource: \"arn:aws:s3:::my-app-data-bucket-123/*\"'",
+      "'Effect: Allow, Action: \"s3:GetObject\", Resource: \"*\"'"
+    ],
+    "correctIndex": 1,
+    "explanation": "To allow reading objects within a specific bucket, the 's3:GetObject' action is needed, and the resource must specify the objects within the bucket, typically with a trailing '/*'. Option 1 would grant permission only to the bucket itself, not its contents. Option 3 adds 's3:ListBucket', which might be needed for listing, but the question specifically asks to read objects. Option 4 grants 'GetObject' on all S3 objects, violating least privilege. The most precise for reading all objects within a specified bucket is 's3:GetObject' on 'arn:aws:s3:::bucket-name/*'.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A security team wants to enforce specific security configurations across their cloud environment, such as ensuring all S3 buckets have encryption enabled and are not publicly accessible. They also want to continuously monitor for deviations from these baselines and automatically flag non-compliant resources. Which type of solution is best suited for this requirement?",
+    "options": [
+      "Vulnerability Scanner",
+      "Security Information and Event Management (SIEM)",
+      "Cloud Security Posture Management (CSPM)",
+      "Data Loss Prevention (DLP)"
+    ],
+    "correctIndex": 2,
+    "explanation": "CSPM solutions are designed to continuously monitor cloud environments for misconfigurations, policy violations, and compliance deviations against defined baselines and security best practices. Vulnerability scanners look for software flaws. SIEM collects and analyzes logs. DLP focuses on preventing sensitive data exfiltration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a DevSecOps pipeline, at which stage is it most effective to integrate security checks like static application security testing (SAST) or infrastructure-as-code (IaC) scanning?",
+    "options": [
+      "Post-deployment monitoring",
+      "During the requirements gathering phase",
+      "As early as possible in the CI/CD pipeline (shift-left)",
+      "Only during a pre-production security audit"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'shift-left' principle in DevSecOps advocates for integrating security testing and practices as early as possible in the development lifecycle, ideally within the CI/CD pipeline, to identify and remediate issues before they reach production, which is more cost-effective.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a cloud incident where a potential compromise of an EC2 instance is suspected, the incident response team needs to preserve forensic evidence. What is the most appropriate initial action to ensure data integrity for later analysis without disrupting the investigation?",
+    "options": [
+      "Terminate the compromised EC2 instance immediately.",
+      "Detach all storage volumes from the instance.",
+      "Create a snapshot of the instance's associated storage volumes.",
+      "Change the instance's security group to allow all inbound traffic for easier access."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a snapshot of the instance's volumes (EBS snapshots in AWS) preserves the disk state at a specific point in time, allowing forensic analysis without modifying the live system. Terminating the instance destroys evidence. Detaching volumes might prevent a snapshot. Allowing all inbound traffic would exacerbate the security incident.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An organization is implementing a zero-trust network model in their cloud environment. For applications running on compute instances, which of the following best represents a zero-trust approach to network access between services?",
+    "options": [
+      "Allowing all internal traffic within the VPC by default, relying on host-based firewalls.",
+      "Segmenting workloads into micro-perimeters and using identity-aware proxies to enforce access based on service identity and context, rather than network location.",
+      "Using broad security group rules that permit traffic between entire subnets.",
+      "Implementing a VPN gateway to connect all internal services to a central on-premises security appliance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Zero-trust fundamentally means 'never trust, always verify.' It moves away from perimeter-based security. Segmenting into micro-perimeters and using identity-aware proxies (which verify the identity of the service/workload and its context before granting access) is a core tenet of zero-trust, as it enforces strict authentication and authorization for every connection, regardless of network location. The other options either imply implicit trust within a network (1, 3) or are a perimeter-focused approach (4).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following best describes the purpose of encryption in transit (TLS/SSL) for cloud communications?",
+    "options": [
+      "To prevent unauthorized access to data stored on disk.",
+      "To verify the identity of the user accessing a resource.",
+      "To protect data as it moves between network endpoints from eavesdropping and tampering.",
+      "To ensure data remains unchanged over time."
+    ],
+    "correctIndex": 2,
+    "explanation": "Encryption in transit (like TLS/SSL) secures data as it travels across networks by encrypting it between the source and destination, preventing eavesdropping and tampering. Encryption at rest protects data on disk. Identity verification is authentication. Data integrity ensures data remains unchanged.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DevSecOps team is implementing security controls for their Kubernetes deployments. They want to ensure that no containers with known critical vulnerabilities are deployed and that all images come from trusted registries. Which practice is most effective for this during the CI/CD pipeline?",
+    "options": [
+      "Conducting manual penetration tests after deployment.",
+      "Implementing image scanning and policy enforcement gates in the CI/CD pipeline.",
+      "Relying solely on runtime container security solutions.",
+      "Only reviewing Dockerfiles manually."
+    ],
+    "correctIndex": 1,
+    "explanation": "Integrating image scanning tools into the CI/CD pipeline allows for automated detection of vulnerabilities and enforcement of policies (e.g., block deployment if critical vulnerabilities are found or if the image source is untrusted) before deployment, aligning with the 'shift-left' principle. Manual review is insufficient at scale. Runtime solutions are reactive. Penetration tests are too late for proactive blocking.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An organization uses an on-premises Active Directory for user management and wants to allow its employees to access AWS resources using their existing corporate credentials without creating duplicate user accounts in AWS IAM. Which AWS IAM feature should they implement?",
+    "options": [
+      "IAM Users and Groups",
+      "IAM Roles with Permission Boundaries",
+      "IAM Identity Federation",
+      "IAM Access Keys"
+    ],
+    "correctIndex": 2,
+    "explanation": "IAM Identity Federation allows users to authenticate with an identity provider (like Active Directory via ADFS or Okta/Azure AD for SAML-based federation) and gain temporary access to AWS resources via IAM roles, without needing to create individual IAM users in AWS. IAM Users and Groups are for native AWS identities. Permission boundaries restrict permissions for IAM entities. Access keys are for programmatic access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an incident, an AWS access key belonging to an IAM user with administrative privileges is suspected to be compromised and actively used by an attacker. The primary goal is immediate containment to stop further damage. Which action, if possible, should be prioritized and executed first?",
+    "options": [
+      "Rotate the compromised access key immediately.",
+      "Isolate all resources accessed by the compromised key into a quarantine VPC.",
+      "Delete the compromised IAM user.",
+      "Revoke all active sessions for the compromised IAM user."
+    ],
+    "correctIndex": 3,
+    "explanation": "Revoking all active sessions (e.g., by changing the user's password which invalidates sessions, or directly invalidating sessions via API calls) immediately terminates any ongoing malicious activity using that key or user, preventing further immediate damage. Rotating the key is good but existing sessions might persist for a short while. Deleting the user is too disruptive and might prevent forensic analysis. Isolating resources is a broader, later step.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company is hosting a web application in a private subnet in AWS and needs to securely connect to an S3 bucket for static content, ensuring all traffic remains within the AWS network and does not traverse the public internet. What is the recommended networking solution for this scenario?",
+    "options": [
+      "Configure an Internet Gateway and route S3 traffic through it.",
+      "Use a NAT Gateway to access S3 public endpoints.",
+      "Deploy a VPC Endpoint for Amazon S3.",
+      "Establish a VPN connection to S3."
+    ],
+    "correctIndex": 2,
+    "explanation": "A VPC Endpoint for S3 (specifically a Gateway Endpoint or Interface Endpoint) allows instances in a VPC to privately access S3 without requiring an Internet Gateway, NAT device, VPN connection, or AWS Direct Connect. It ensures traffic stays within the AWS network. Using an Internet Gateway or NAT Gateway would involve traversing public internet routes to reach S3 public endpoints. VPN is not needed for internal AWS service access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is comprehensive logging a critical component of any cloud security strategy?",
+    "options": [
+      "It directly prevents all forms of cyber attacks.",
+      "It reduces cloud spending by optimizing resource usage.",
+      "It provides visibility into system activities, enabling threat detection, auditing, and incident response.",
+      "It guarantees perfect compliance with all regulatory frameworks."
+    ],
+    "correctIndex": 2,
+    "explanation": "Comprehensive logging (e.g., audit logs, flow logs) provides the necessary data to understand what is happening in the environment, which is crucial for identifying suspicious activities, investigating incidents, demonstrating compliance during audits, and understanding system behavior. It doesn't prevent attacks directly, reduce spending, or guarantee compliance, but it enables these aspects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A security engineer is implementing 'policy-as-code' to manage security guardrails in an Azure environment. They want to define policies that audit non-compliant resources and automatically remediate certain findings, such as enforcing specific tags on resources or preventing the creation of public IP addresses on VMs. Which Azure service is primarily used for this purpose?",
+    "options": [
+      "Azure Security Center (now Defender for Cloud)",
+      "Azure Sentinel",
+      "Azure Policy",
+      "Azure Active Directory Identity Protection"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Policy is the native service for defining, assigning, and managing policies that enforce rules and effects over your resources to stay compliant with corporate standards and service level agreements. It can audit for non-compliance and trigger remediation tasks. Azure Security Center provides posture management and threat protection. Azure Sentinel is a SIEM. Azure AD Identity Protection focuses on user identity risks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A software development team uses several third-party libraries in their containerized application, managed by a package manager. A recent supply chain attack involved malicious code injected into a popular open-source library. Beyond scanning container images for known vulnerabilities, what additional DevSecOps practice can help mitigate the risk of such supply chain attacks from third-party dependencies?",
+    "options": [
+      "Only deploying containers to production after manual approval.",
+      "Implementing software bill of materials (SBOM) generation and integrity verification for dependencies.",
+      "Minimizing the number of application layers in the container image.",
+      "Encrypting all container images before pushing them to the registry."
+    ],
+    "correctIndex": 1,
+    "explanation": "Generating a Software Bill of Materials (SBOM) provides a complete inventory of all components (including third-party libraries and their versions) within an application. This, combined with integrity verification (e.g., checking hashes against trusted sources), allows organizations to track and quickly identify if a malicious version of a dependency has been introduced or if a known vulnerability affects a component. Manual approval is not scalable. Minimizing layers is a good practice but doesn't specifically address third-party compromise. Encryption protects confidentiality but not integrity against malicious code injection.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Following a significant security incident in a cloud environment, the incident response team conducts a postmortem analysis. What is the primary objective of this postmortem?",
+    "options": [
+      "To assign blame to specific individuals for the incident.",
+      "To immediately upgrade all affected systems to the latest software versions.",
+      "To identify the root cause, lessons learned, and actionable improvements to prevent recurrence and improve future response.",
+      "To publicly disclose all details of the breach to maintain transparency."
+    ],
+    "correctIndex": 2,
+    "explanation": "A postmortem (or lessons learned) analysis is a critical step after an incident. Its primary objective is to understand what happened, why it happened, and how to prevent it from happening again, as well as to improve the incident response process itself. It should be a blameless exercise focused on systemic improvements.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which security control is highly recommended for all administrative cloud user accounts to significantly reduce the risk of credential compromise, even if the password is stolen?",
+    "options": [
+      "Strong Passwords Only",
+      "Multi-Factor Authentication (MFA)",
+      "Regular Password Changes",
+      "Security Groups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Multi-Factor Authentication (MFA) adds an extra layer of security by requiring a second form of verification beyond just a password. Even if a password is stolen, the attacker would still need the second factor (e.g., a code from a mobile app or a hardware token) to gain access, making credential compromise much harder. Strong passwords and regular changes are good practices but less effective than MFA. Security groups control network access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When performing a threat model for a SaaS application deployed on a public cloud provider, who is typically responsible for mitigating threats related to application-layer vulnerabilities (e.g., SQL injection, XSS) within the application code itself?",
+    "options": [
+      "The cloud provider.",
+      "The customer (application development team).",
+      "A third-party auditor.",
+      "The internet service provider."
+    ],
+    "correctIndex": 1,
+    "explanation": "Under the shared responsibility model, the customer (specifically the application development team in this case) is responsible for the security in the cloud, which includes their application code, data, operating systems, network configurations, and client-side encryption. The cloud provider secures the underlying infrastructure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Linux, what command would a security engineer typically use to review system logs for security-related events?",
+    "options": [
+      "`ls -l`",
+      "`cat /etc/passwd`",
+      "`journalctl` or `less /var/log/auth.log`",
+      "`ping google.com`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`journalctl` is the modern command to query and display messages from the systemd journal, which aggregates various system logs including security-related events. On systems using traditional syslog, examining files like `/var/log/auth.log` would be common. This requires a practical understanding of Linux logging mechanisms for security analysis beyond basic system commands. `ls -l` lists directory contents. `cat /etc/passwd` displays user accounts. `ping` checks network connectivity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cloud security engineer is tasked with classifying data stored in an AWS S3 bucket. The data contains personally identifiable information (PII) of customers. According to best practices for data classification, what classification level would this data typically fall under, and what are the implications for its handling?",
+    "options": [
+      "Public; requires no special security controls.",
+      "Internal Use; requires basic access controls and encryption.",
+      "Confidential/Restricted; requires strong encryption, strict access controls, and potentially data loss prevention (DLP) measures.",
+      "Sensitive, but only if it's financial data."
+    ],
+    "correctIndex": 2,
+    "explanation": "PII, especially customer PII, is almost universally considered highly sensitive or confidential data. It requires the most stringent security controls, including strong encryption (at rest and in transit), strict access controls (least privilege), monitoring, and often DLP to prevent unauthorized exfiltration. 'Public' or 'Internal Use' would be inappropriate. The sensitivity is not limited to financial data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As part of establishing a secure cloud baseline, a security engineer needs to configure a default network setup that prevents internet access for most resources by default, requiring explicit opt-in for public connectivity. Which network design principle should be prioritized?",
+    "options": [
+      "Configuring all resources in public subnets with restrictive security groups.",
+      "Designing a VPC/VNet with predominantly private subnets, routing public access through controlled NAT gateways or load balancers only when necessary.",
+      "Using a single, large subnet for all resources to simplify routing.",
+      "Implementing a global CDN (Content Delivery Network) for all traffic."
+    ],
+    "correctIndex": 1,
+    "explanation": "Prioritizing private subnets ensures that resources are not directly accessible from the internet by default. Public internet access is then explicitly provisioned through controlled ingress/egress points like NAT gateways (for outbound) or public load balancers (for inbound), maintaining a strong security posture. Using public subnets with restrictive security groups is less secure by default. A single large subnet lacks segmentation. A CDN is for content delivery optimization, not primary network security baseline.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An application running on an EC2 instance needs to access S3, DynamoDB, and an external API key stored in AWS Secrets Manager. To adhere to least privilege and avoid hardcoding credentials, how should the application obtain temporary, rotated credentials for these services?",
+    "options": [
+      "Store the AWS root account credentials directly on the EC2 instance.",
+      "Embed IAM access keys directly into the application's environment variables.",
+      "Assign an IAM Role to the EC2 instance, granting necessary permissions to S3, DynamoDB, and Secrets Manager. The application then uses the EC2 instance's metadata service to obtain temporary credentials.",
+      "Create individual IAM users for each application component and distribute their long-lived access keys."
+    ],
+    "correctIndex": 2,
+    "explanation": "Assigning an IAM Role to an EC2 instance is the recommended secure method. The instance profile associated with the role allows the application to assume the role and obtain temporary credentials via the instance metadata service. These credentials are automatically rotated and do not need to be hardcoded, greatly enhancing security. Storing root credentials, embedding access keys, or using individual IAM users with long-lived keys are all insecure practices that violate best practices and increase the risk of credential compromise.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a common primary goal of a Security Operations Center (SOC) within a cloud environment?",
+    "options": [
+      "To develop new cloud applications.",
+      "To manage cloud billing and cost optimization.",
+      "To continuously monitor, detect, analyze, and respond to cyber security incidents.",
+      "To provision new cloud infrastructure resources."
+    ],
+    "correctIndex": 2,
+    "explanation": "The primary goal of a Security Operations Center (SOC) is to protect an organization's assets by continuously monitoring security events, detecting threats, analyzing incidents, and orchestrating responses to mitigate risks. Developing applications, managing billing, or provisioning infrastructure are not core SOC functions.",
+    "difficulty": "easy"
+  }
+]

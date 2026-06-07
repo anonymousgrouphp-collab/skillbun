@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Scala developer is tasked with handling potentially missing configuration values. Which of the following Scala types is best suited for representing the presence or absence of a value, promoting safer code by avoiding `null`?",
+    "options": [
+      "`Null`",
+      "`Unit`",
+      "`Option`",
+      "`Try`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `Option` type in Scala is specifically designed to represent optional values, where a value can either be present (`Some(value)`) or absent (`None`). This approach helps to eliminate `NullPointerExceptions` which are common in Java and other languages that rely heavily on `null`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following describes the primary purpose of `sbt` in a Scala development workflow?",
+    "options": [
+      "A runtime environment for Scala applications",
+      "A web server for deploying Scala services",
+      "A build tool for compiling, testing, and packaging Scala projects",
+      "A code formatter for Scala source files"
+    ],
+    "correctIndex": 2,
+    "explanation": "`sbt` (Scala Build Tool) is the standard interactive build tool for Scala projects. It manages dependencies, compiles code, runs tests, packages applications, and provides a development shell.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Scala, what is the core principle that states once a variable is assigned a value, that value cannot be changed?",
+    "options": [
+      "Mutability",
+      "Encapsulation",
+      "Inheritance",
+      "Immutability"
+    ],
+    "correctIndex": 3,
+    "explanation": "Immutability is a core principle in Scala, particularly in functional programming. It means that once an object is created, its state cannot be modified. This simplifies reasoning about code and helps prevent concurrency issues.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team of Scala developers is collaborating on a project. Which common version control system is typically used for tracking changes, managing branches, and merging code contributions?",
+    "options": [
+      "SVN",
+      "Perforce",
+      "Git",
+      "CVS"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is the de facto standard for version control in modern software development. It allows multiple developers to work on the same codebase simultaneously, track changes, create branches for new features, and merge their work efficiently.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'pure function' in the context of functional programming in Scala?",
+    "options": [
+      "A function that only performs side effects",
+      "A function that can modify external state",
+      "A function that always returns the same output for the same input and has no side effects",
+      "A function that requires implicit parameters"
+    ],
+    "correctIndex": 2,
+    "explanation": "A pure function is a fundamental concept in functional programming. It must satisfy two conditions: it always produces the same output for the same input (referential transparency), and it causes no observable side effects (e.g., modifying mutable state, I/O operations).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Scala developer needs to build a highly concurrent and fault-tolerant application using an actor model. Which framework is explicitly mentioned in the roadmap description for this purpose?",
+    "options": [
+      "Play Framework",
+      "Spark",
+      "Akka",
+      "Cats"
+    ],
+    "correctIndex": 2,
+    "explanation": "Akka is a toolkit and runtime for building highly concurrent, distributed, and fault-tolerant applications on the JVM using the Actor Model. The roadmap specifically mentions Akka for building backend applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes a common problem a Scala developer might solve in backend and data applications?",
+    "options": [
+      "Designing user interfaces for mobile apps",
+      "Optimizing front-end browser performance",
+      "Processing large datasets and building scalable APIs",
+      "Creating embedded firmware for IoT devices"
+    ],
+    "correctIndex": 2,
+    "explanation": "Scala is widely used for building robust backend services and processing large datasets, making it suitable for scalable APIs and data applications. This aligns directly with the roadmap description.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Scala developer is working on a REST API endpoint that might encounter an external service failure. Which Scala type is commonly used to encapsulate a computation that might either succeed with a value or fail with an error, allowing for explicit error handling?",
+    "options": [
+      "`List`",
+      "`Either`",
+      "`Option`",
+      "`Future`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `Either` type is used to represent a value of one of two possible types. By convention, `Left` is used for failure (often carrying an error message or exception) and `Right` for success (carrying the successful result). This provides a robust way to handle errors explicitly without throwing exceptions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Scala project uses `sbt` and you need to add a new library dependency. Where would you typically declare this dependency?",
+    "options": [
+      "In the `pom.xml` file",
+      "In the `application.conf` file",
+      "In the `build.sbt` file",
+      "In a `dependencies.txt` file"
+    ],
+    "correctIndex": 2,
+    "explanation": "In `sbt` projects, library dependencies are declared in the `build.sbt` file. This file uses Scala syntax to configure various aspects of the build, including dependencies, project settings, and tasks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Akka Actor receives a message. What is the fundamental mechanism by which an Akka Actor processes this message?",
+    "options": [
+      "It directly calls a method on the sender Actor",
+      "It uses a shared memory segment for message exchange",
+      "It stores the message in a mailbox and processes it sequentially",
+      "It broadcasts the message to all other Actors in the system"
+    ],
+    "correctIndex": 2,
+    "explanation": "Akka Actors communicate by sending and receiving immutable messages. Each Actor has a mailbox, and messages sent to an Actor are enqueued in its mailbox and processed one at a time, sequentially. This ensures thread safety within the Actor's processing logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When working with Apache Spark in Scala, what is the key difference between a 'transformation' (e.g., `map`, `filter`) and an 'action' (e.g., `count`, `collect`)?",
+    "options": [
+      "Transformations execute immediately, while actions are lazy.",
+      "Transformations define a new RDD/DataFrame, while actions trigger computation and return a result.",
+      "Transformations require more memory than actions.",
+      "Actions can only be applied to smaller datasets, while transformations handle large datasets."
+    ],
+    "correctIndex": 1,
+    "explanation": "Transformations are lazy operations that define a new RDD or DataFrame from an existing one, but they don't execute immediately. Actions, on the other hand, trigger the actual computation of the data lineage and return a result to the driver program or write to storage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Scala developer is writing unit tests for a utility function. Which common Scala testing framework is often used with `sbt` for defining test suites and assertions?",
+    "options": [
+      "JUnit",
+      "TestNG",
+      "Mockito",
+      "ScalaTest"
+    ],
+    "correctIndex": 3,
+    "explanation": "ScalaTest is a popular and flexible testing framework for Scala that offers various styles for writing tests (e.g., FunSuite, Spec, WordSpec). It integrates seamlessly with `sbt` and is widely used for unit, integration, and acceptance testing in Scala projects.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are refactoring a Scala codebase and encounter a function that takes another function as an argument. What is this concept known as in functional programming?",
+    "options": [
+      "A monad",
+      "A higher-order function",
+      "A case class",
+      "A trait"
+    ],
+    "correctIndex": 1,
+    "explanation": "A higher-order function is a function that either takes one or more functions as arguments or returns a function as its result. This is a fundamental concept in functional programming that enables powerful abstractions and code reuse.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During the development of a Scala application, you encounter an unexpected `MatchError`. What is the most effective initial debugging strategy to pinpoint the cause?",
+    "options": [
+      "Immediately restart the entire application server",
+      "Randomly comment out blocks of code until the error disappears",
+      "Add `println` statements at various points to trace variable values, or use a debugger to step through the code",
+      "Modify all pattern matches to use wildcards"
+    ],
+    "correctIndex": 2,
+    "explanation": "A `MatchError` indicates that a value was matched against a pattern that did not cover all possible cases. The most effective debugging strategies include adding logging (`println` is a simple form) to understand variable states or, more powerfully, using an IDE debugger to step through the code and inspect values at runtime to identify the unmatched case.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is designing a large Scala application. They decide to break down the problem into smaller, self-contained components with clear responsibilities. What is this design approach called?",
+    "options": [
+      "Monolithic architecture",
+      "Tight coupling",
+      "Problem decomposition",
+      "Global state management"
+    ],
+    "correctIndex": 2,
+    "explanation": "Problem decomposition is the process of breaking down a complex problem or system into smaller, more manageable sub-problems or components. This is a crucial practice for building maintainable, scalable, and understandable large-scale applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a production Scala application running on the JVM, what is a crucial aspect to configure and monitor to understand application behavior, identify issues, and aid in debugging?",
+    "options": [
+      "Thread dumps",
+      "Garbage collection logs",
+      "Application logs",
+      "Network traffic statistics"
+    ],
+    "correctIndex": 2,
+    "explanation": "Application logs are crucial for monitoring, debugging, and understanding the runtime behavior of a production application. They record events, errors, warnings, and informational messages, providing insights into the application's state and performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a Scala developer submits a Pull Request (PR) for review, what is the primary goal of the team's review process?",
+    "options": [
+      "To check if the code runs on their local machine",
+      "To identify typos in comments and documentation only",
+      "To ensure code quality, adherence to standards, correctness, and potential issues before merging",
+      "To determine if the feature is already completed by another team member"
+    ],
+    "correctIndex": 2,
+    "explanation": "Code reviews, often facilitated by Pull Requests, are a critical part of the team delivery workflow. Their primary goal is to ensure code quality, correctness, adherence to coding standards, identify potential bugs or performance issues, and share knowledge among team members before integrating changes into the main codebase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a Scala backend application, which practice helps protect sensitive data (e.g., API keys, database credentials) from being exposed in source code or configuration files?",
+    "options": [
+      "Hardcoding credentials directly into the code",
+      "Storing credentials in a publicly accessible Git repository",
+      "Using environment variables or a secure secret management system",
+      "Encrypting the entire application executable"
+    ],
+    "correctIndex": 2,
+    "explanation": "Storing sensitive data directly in source code or public repositories is a major security risk. Using environment variables or dedicated secret management systems (like Vault, AWS Secrets Manager) is a secure practice to inject credentials at runtime without embedding them in the codebase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Scala project grows significantly, requiring separation of concerns into distinct modules. How would you structure this using `sbt`?",
+    "options": [
+      "Create separate `sbt` projects for each module in different directories.",
+      "Define multiple projects within a single `build.sbt` file using subproject declarations.",
+      "Use a single `build.sbt` and manage all dependencies in one large block.",
+      "It's not possible to have multiple modules in `sbt`."
+    ],
+    "correctIndex": 1,
+    "explanation": "`sbt` fully supports multi-module projects. You can define multiple projects (subprojects) within a single `build.sbt` file (or across multiple `.sbt` files in a `project` directory) and manage their inter-dependencies and configurations centrally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Scala application using Akka, you need to execute a series of asynchronous operations, where the result of one operation is needed for the next. Which pattern is commonly used for chaining and composing these asynchronous computations while handling potential failures?",
+    "options": [
+      "Blocking calls with `Thread.sleep`",
+      "`Future` composition using `map` and `flatMap`",
+      "Synchronous `for` loops",
+      "Directly modifying shared mutable state across threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Akka provides `Future` for representing a value that may not yet be available. `Future`s are typically composed using `map` and `flatMap` (often within a `for` comprehension) to chain asynchronous operations, allowing non-blocking execution and proper error handling with `recover` or `recoverWith`.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are tasked with optimizing a Spark application written in Scala that processes a large dataset. The current implementation frequently spills data to disk and runs out of memory. Which strategy would most effectively address this performance bottleneck?",
+    "options": [
+      "Increase the number of partitions to a very small value.",
+      "Reduce the parallelism by setting executor cores to 1.",
+      "Persist intermediate RDDs/DataFrames in memory or off-heap memory (`StorageLevel.MEMORY_AND_DISK_SER`) after expensive transformations, and optimize data serialization.",
+      "Force Spark to use only one executor for the entire job."
+    ],
+    "correctIndex": 2,
+    "explanation": "Frequent data spilling and OOM errors in Spark indicate memory pressure. Persisting intermediate RDDs/DataFrames (especially after shuffle operations) can prevent recomputation and keep data in memory. Optimizing data serialization (e.g., using Kryo) can reduce memory footprint. Properly configuring partitioning and executor resources are also key, but directly addressing memory usage and recomputation is crucial.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a large-scale Scala application, you encounter a requirement to ensure that certain operations are atomic and consistent across multiple distributed nodes. How can Akka's features support building such a fault-tolerant, distributed system?",
+    "options": [
+      "By using Akka HTTP only to expose REST endpoints.",
+      "By relying solely on shared mutable state across all nodes.",
+      "By utilizing Akka Cluster for distributed messaging, sharding, and singletons, combined with persistent actors for state recovery.",
+      "By implementing custom TCP sockets for node-to-node communication."
+    ],
+    "correctIndex": 2,
+    "explanation": "Akka Cluster provides the foundational tools for building fault-tolerant distributed systems. It enables nodes to form a cluster, provides mechanisms for distributed messaging, sharding (distributing actors across nodes), and singletons (ensuring only one instance of an actor type is active across the cluster). Persistent Actors further allow state recovery from failures, ensuring consistency.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Scala developer is asked to refactor a critical backend service to improve its maintainability and testability. The existing code is a large, monolithic object with many interdependencies and side effects. What architectural principle, common in functional programming, should guide this refactoring?",
+    "options": [
+      "Increase global mutable state to simplify access.",
+      "Promote tight coupling between components to ensure data consistency.",
+      "Decompose the service into smaller, independent modules, emphasizing immutability, pure functions, and explicit dependencies.",
+      "Introduce more inheritance hierarchies to abstract common functionalities."
+    ],
+    "correctIndex": 2,
+    "explanation": "To improve maintainability and testability, the service should be decomposed into smaller, independent, and cohesive modules. Functional programming principles like immutability, pure functions (minimizing side effects), and making dependencies explicit help to create predictable and easily testable units of code, reducing the complexity of the monolithic design.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A team is developing a Scala backend application that handles sensitive user data. During a security review, it's identified that direct SQL queries are being constructed by concatenating user input. What is the most significant security risk introduced by this practice, and how should it be mitigated?",
+    "options": [
+      "Performance degradation due to inefficient queries; mitigate by optimizing query execution plans.",
+      "Cross-Site Scripting (XSS) vulnerability; mitigate by encoding output.",
+      "SQL Injection vulnerability; mitigate by using parameterized queries or an ORM.",
+      "Denial of Service (DoS) due to excessive database load; mitigate by adding rate limiting."
+    ],
+    "correctIndex": 2,
+    "explanation": "Concatenating user input directly into SQL queries creates a severe SQL Injection vulnerability. An attacker can inject malicious SQL code, leading to unauthorized data access, modification, or deletion. The primary mitigation is to use parameterized queries (prepared statements) or an Object-Relational Mapper (ORM) which correctly sanitizes or binds parameters, preventing the input from being interpreted as executable SQL.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Scala, what is the advantage of using a `case class` over a regular `class` for defining data structures?",
+    "options": [
+      "`case class` instances are always mutable.",
+      "`case class` automatically provides `equals`, `hashCode`, `toString`, `copy`, and pattern matching support.",
+      "`case class` cannot have parameters.",
+      "`case class` can only extend other `case class`es."
+    ],
+    "correctIndex": 1,
+    "explanation": "`case class`es are special classes in Scala designed for modeling immutable data. The compiler automatically generates useful methods like `equals`, `hashCode`, `toString`, and a `copy` method. Crucially, they also provide built-in support for pattern matching, which is essential for working with algebraic data types in functional programming.",
+    "difficulty": "moderate"
+  }
+]

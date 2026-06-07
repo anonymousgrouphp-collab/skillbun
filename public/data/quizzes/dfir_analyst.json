@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary objective of a DFIR Analyst during an active security incident?",
+    "options": [
+      "Develop new security tools to prevent future attacks",
+      "Proactively hunt for threats not yet detected",
+      "Restore affected systems to normal operation",
+      "Collect evidence, contain the threat, and identify the root cause"
+    ],
+    "correctIndex": 3,
+    "explanation": "The primary objective of a DFIR analyst during an incident is to understand what happened by collecting evidence, contain the threat to prevent further damage, eradicate it, recover, and then learn from it, which fundamentally relies on collecting evidence and identifying the root cause. Restoring systems (recovery) is part of the process, but the analyst's core investigative role encompasses more.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the 'containment' phase in the incident response lifecycle?",
+    "options": [
+      "Removing the threat from the environment",
+      "Restoring systems to a pre-incident state",
+      "Limiting the scope and impact of an incident",
+      "Analyzing collected evidence for root cause"
+    ],
+    "correctIndex": 2,
+    "explanation": "Containment focuses on limiting the damage and preventing the incident from spreading further, typically by isolating affected systems or networks. Removing the threat (eradication), restoring systems (recovery), and analyzing evidence (analysis) are subsequent or parallel phases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When acquiring digital evidence from a live system, which principle is paramount to ensure its admissibility in legal proceedings?",
+    "options": [
+      "Speed of acquisition to minimize downtime",
+      "Cost-effectiveness of the acquisition tools",
+      "Maintaining the chain of custody",
+      "Using only open-source tools for transparency"
+    ],
+    "correctIndex": 2,
+    "explanation": "Maintaining the chain of custody ensures that the evidence has not been tampered with and its integrity is preserved from the moment of collection until its presentation, which is crucial for legal admissibility. Speed and cost are practical considerations but secondary to integrity and authenticity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which type of tool is primarily used by a DFIR analyst to examine the contents of a hard drive image offline without altering the original evidence?",
+    "options": [
+      "Network packet analyzer",
+      "Forensic imager",
+      "Disk forensic suite",
+      "Vulnerability scanner"
+    ],
+    "correctIndex": 2,
+    "explanation": "A disk forensic suite (e.g., FTK Imager, Autopsy, EnCase) allows for the detailed examination and analysis of disk images, preserving the original evidence by working on a copy. A forensic imager creates the image, network packet analyzers inspect network traffic, and vulnerability scanners identify weaknesses, not analyze disk images.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of these activities is least likely to be part of a DFIR Analyst's initial steps after being notified of a potential security breach?",
+    "options": [
+      "Verifying the incident's authenticity and scope",
+      "Eradicating the identified threat",
+      "Notifying relevant internal stakeholders",
+      "Scoping the incident to understand affected systems"
+    ],
+    "correctIndex": 1,
+    "explanation": "Eradication typically comes after verification, scoping, and containment. The initial steps involve confirming the incident, understanding its scope, and communicating internally, before proceeding to remove the threat.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a team incident response, what is the primary purpose of a 'decision record'?",
+    "options": [
+      "To assign blame for the incident's occurrence",
+      "To document every tool used during the investigation",
+      "To formally log significant choices made and their rationale",
+      "To provide a daily status update to stakeholders"
+    ],
+    "correctIndex": 2,
+    "explanation": "Decision records are crucial for transparency, accountability, and future learning. They explain why certain actions were taken, especially in high-pressure situations, which is invaluable for retrospectives and audits, rather than just listing tools or assigning blame.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When writing a case study for a DFIR incident, what should the 'Outcomes' section primarily focus on?",
+    "options": [
+      "A detailed list of all tools used during the investigation",
+      "The total estimated cost of the incident",
+      "The quantifiable results and impact of the incident response",
+      "Personal opinions and feelings of the DFIR team members"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Outcomes section should highlight the measurable effects of the response, such as threat removal, recovery metrics, lessons learned implemented, and overall improvement in security posture, rather than just tools, costs, or subjective opinions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DFIR analyst discovers suspicious outbound connections from an internal server to an unknown external IP address. Which type of log would be most immediately helpful to investigate the source process on the internal server?",
+    "options": [
+      "Web server access logs",
+      "Firewall logs",
+      "System event logs (e.g., process creation/network connections)",
+      "Antivirus logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "System event logs, particularly those related to process creation and network connections (like Windows Event ID 4688 with command line or Linux auditd logs), would directly link the outbound connection to a specific process ID and executable on the internal server. Firewall logs show network traffic but not the internal process, and web server/antivirus logs are less direct for process identification.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An analyst needs to perform memory forensics on a compromised Windows server without rebooting it. Which acquisition method is generally preferred to minimize impact on the volatile memory state?",
+    "options": [
+      "Using a hardware-based memory acquisition tool",
+      "Copying the page file to an external drive",
+      "Using a software-based memory acquisition tool directly on the live system",
+      "Rebooting the system into a forensic boot environment"
+    ],
+    "correctIndex": 0,
+    "explanation": "Hardware-based memory acquisition tools (e.g., through a FireWire port or specialized hardware) are often preferred as they bypass the operating system, minimizing interaction and potential alteration of the memory contents. Software-based tools can be used but introduce more risk of altering memory. Rebooting clears volatile memory. Copying the page file isn't comprehensive memory acquisition.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an incident involving a novel malware variant, the DFIR team needs to quickly share indicators of compromise (IOCs) with other security teams and threat intelligence platforms. What is a common, reusable structure for sharing these IOCs efficiently?",
+    "options": [
+      "An informal chat message to the team",
+      "A spreadsheet with raw data points",
+      "A structured format like STIX/TAXII",
+      "A lengthy written incident report"
+    ],
+    "correctIndex": 2,
+    "explanation": "STIX (Structured Threat Information Expression) and TAXII (Trusted Automated eXchange of Indicator Information) provide standardized, machine-readable formats for exchanging threat intelligence, enabling automated consumption and rapid sharing across different platforms and organizations. Informal messages or raw spreadsheets are less efficient and error-prone for broad sharing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new automated incident response playbook, a DFIR team should implement 'failure handling'. What does this primarily involve?",
+    "options": [
+      "Ensuring the playbook only runs on production systems for real-world testing",
+      "Designing the playbook to automatically revert all actions if any error occurs",
+      "Incorporating mechanisms to detect errors and notify analysts for manual intervention",
+      "Disabling all logging in the playbook to reduce system overhead"
+    ],
+    "correctIndex": 2,
+    "explanation": "Failure handling in automated playbooks means anticipating potential errors (e.g., a command failing, an API endpoint being unreachable) and building in logic to gracefully manage those failures, typically by logging the error, notifying a human analyst, and possibly pausing or attempting a fallback action, rather than blindly reverting or proceeding.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A DFIR team is transitioning from ad-hoc incident response to a more structured operational model. Which aspect is crucial for 'handoff' procedures between shifts or team members?",
+    "options": [
+      "Sharing personal phone numbers for urgent contact",
+      "Detailed, up-to-date incident documentation and status updates",
+      "Memorizing all incident details to avoid writing them down",
+      "Minimizing communication to avoid alert fatigue"
+    ],
+    "correctIndex": 1,
+    "explanation": "Effective handoff requires comprehensive, clear, and current documentation of the incident's status, actions taken, findings, and next steps to ensure continuity and prevent loss of context or duplicated efforts when a new team member takes over.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collecting potentially sensitive user data during an investigation, what is a key consideration related to 'safe defaults'?",
+    "options": [
+      "Automatically encrypting all collected data by default",
+      "Storing data on the least expensive cloud storage available",
+      "Sharing data with all team members for transparency",
+      "Deleting data immediately after initial review"
+    ],
+    "correctIndex": 0,
+    "explanation": "'Safe defaults' means designing systems and processes so that the most secure and protective options are the default choices. For sensitive data, this means encryption at rest and in transit by default, restricted access, and adherence to data retention policies, rather than insecure storage or broad sharing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You're investigating a potential data exfiltration incident. Which type of evidence would be most critical for determining what data was exfiltrated?",
+    "options": [
+      "Network flow logs (NetFlow/IPFIX)",
+      "DNS query logs",
+      "Endpoint DLP (Data Loss Prevention) logs",
+      "VPN connection logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "While network flow logs, DNS, and VPN logs can indicate when and where data might have moved, DLP logs are specifically designed to monitor and log attempts to transfer sensitive data outside an organization's boundaries, often detailing the specific files or data types involved.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An analyst is building a timeline of events from multiple log sources (firewall, system, application). Which challenge is most common when correlating these disparate logs?",
+    "options": [
+      "Insufficient storage space for logs",
+      "Different time zones and clock synchronization issues",
+      "Lack of unique identifiers across all log types",
+      "The sheer volume of log data"
+    ],
+    "correctIndex": 1,
+    "explanation": "While volume and lack of unique identifiers are challenges, inconsistent timestamps due to different time zones or unsynchronized clocks across various systems is a pervasive and fundamental issue that makes accurate timeline reconstruction extremely difficult.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A DFIR analyst is setting up a new workstation for investigations. Which practice is crucial for maintaining the integrity of forensic tools and the analysis environment?",
+    "options": [
+      "Running all forensic tools with administrator privileges by default",
+      "Disabling antivirus software to prevent interference",
+      "Using a dedicated, clean, and isolated analysis environment",
+      "Regularly connecting the workstation to public Wi-Fi networks for updates"
+    ],
+    "correctIndex": 2,
+    "explanation": "A dedicated, clean, and isolated environment ensures that the analysis tools and the evidence are not contaminated or compromised by other software, network activity, or potential malware on the analyst's own system. Running as admin by default or disabling AV are security risks, and public Wi-Fi is also a risk.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When submitting a 'pull request' for a new script developed for incident response, what is the primary purpose of including 'measurable acceptance criteria'?",
+    "options": [
+      "To show how many lines of code were written for the script",
+      "To demonstrate the script's adherence to coding style guidelines",
+      "To define what constitutes successful functionality and performance",
+      "To calculate the total development time for billing purposes"
+    ],
+    "correctIndex": 2,
+    "explanation": "Measurable acceptance criteria provide clear, objective standards against which the script's functionality can be tested and verified, ensuring it meets the intended purpose and performs as expected. This makes the review process more objective and efficient.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After completing a focused skill drill on memory forensics, a DFIR analyst writes a 'short retrospective'. What is the main benefit of this activity?",
+    "options": [
+      "To identify who made the most mistakes during the exercise",
+      "To document assumptions, compare alternatives, and learn from the exercise",
+      "To prove the analyst's proficiency to management",
+      "To discard all findings and start fresh on a new task"
+    ],
+    "correctIndex": 1,
+    "explanation": "A retrospective is a critical learning tool. It allows the analyst to reflect on the process, validate assumptions, consider alternative approaches that might have been more efficient, and extract actionable lessons for future incidents, fostering continuous improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When preparing for a DFIR analyst interview, creating 'interview stories' based on past experiences helps showcase your skills. What makes a good interview story for a DFIR role?",
+    "options": [
+      "A detailed account of every tool you've ever used",
+      "A narrative that highlights a problem, your actions, and the positive outcome",
+      "A comprehensive list of all certifications you possess",
+      "A theoretical discussion about future security trends"
+    ],
+    "correctIndex": 1,
+    "explanation": "Good interview stories, often structured using the STAR method (Situation, Task, Action, Result), demonstrate practical application of skills by presenting a problem, your role in solving it, the specific actions you took, and the positive impact or outcome achieved.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a critical incident, an automated response system mistakenly quarantines legitimate production servers. Which aspect of 'identifying likely failure modes' would have helped prevent this?",
+    "options": [
+      "Conducting regular penetration tests on the system",
+      "Implementing robust input validation and sanity checks on automation triggers",
+      "Increasing the system's memory allocation",
+      "Disabling logging for automated actions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Identifying likely failure modes involves anticipating scenarios where automation might go wrong. In this case, robust input validation and sanity checks on the triggers (e.g., verifying server roles, confirming thresholds) would prevent the system from acting on incorrect or malicious input, thus avoiding false positives like quarantining production servers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An attacker used polymorphic malware to evade detection, which deleted itself after execution. The analyst only has system memory dumps and some network captures. To reconstruct the attack chain and identify the malware's full capabilities, what advanced technique would be most effective?",
+    "options": [
+      "File carving on the disk image for deleted executables",
+      "Analyzing network captures for Command and Control (C2) traffic patterns",
+      "Memory carving for dropped files and process injection artifacts",
+      "Correlating firewall logs with web server access logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Since the malware deleted itself from disk and only memory dumps are available, file carving on the disk image won't help. Memory carving (extracting files, code, or data structures directly from memory dumps) for process injection artifacts, dropped payloads, or loaded modules is critical for understanding polymorphic, fileless, or self-deleting malware. Network captures provide external context but not internal execution details.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A DFIR team is building a framework for incident response playbooks. To ensure these playbooks are adaptable to different incident types (e.g., malware, data breach, insider threat) and reduce redundancy, which 'implementation pattern' should be prioritized?",
+    "options": [
+      "Hardcoding specific tool commands directly into each playbook",
+      "Developing highly specialized playbooks for every possible scenario",
+      "Using modular components and parameterized actions",
+      "Limiting playbooks to only the most common incidents"
+    ],
+    "correctIndex": 2,
+    "explanation": "Using modular components and parameterized actions (e.g., variables for IP addresses, hostnames, or specific commands) allows playbooks to be highly reusable and flexible. Instead of creating a new playbook for every slight variation, a single modular playbook can be adapted by changing parameters, significantly reducing redundancy and improving maintainability.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A DFIR analyst is developing a new YARA rule to detect a sophisticated threat actor's specific TTPs. Which 'review criteria' beyond simple pattern matching is critical to ensure the rule's effectiveness and minimize false positives in a production environment?",
+    "options": [
+      "Ensuring the rule is commented for readability",
+      "Validating the rule against a diverse set of benign and malicious samples",
+      "Checking the rule's file size for optimal performance",
+      "Confirming the rule follows a specific naming convention"
+    ],
+    "correctIndex": 1,
+    "explanation": "While readability, performance, and naming conventions are important, validating the YARA rule against a diverse set of both benign (to minimize false positives) and known malicious samples (to maximize true positives) is paramount for its effectiveness and reliability in a production environment. A rule that triggers too often on legitimate files is as detrimental as one that misses threats.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a highly sensitive investigation, an analyst identifies a critical vulnerability in a production system that needs immediate patching. The 'operational risks' of patching immediately include potential system downtime or unexpected side effects. How should a DFIR analyst navigate this decision, balancing incident containment with production stability?",
+    "options": [
+      "Patch immediately without consultation, as security is paramount",
+      "Fully contain the immediate threat first, then coordinate patching with operations after assessing impact and mitigation strategies",
+      "Defer patching indefinitely to avoid any service interruption",
+      "Only patch during off-peak hours, regardless of the active threat"
+    ],
+    "correctIndex": 1,
+    "explanation": "A critical part of DFIR involves balancing security needs with operational realities. While patching is crucial, immediate, uncoordinated patching can cause more harm. The best approach is to first contain the immediate threat (if possible without patching), then coordinate with operations to assess the impact of the patch, schedule it, and apply it safely, potentially with a temporary compensating control in place.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When presenting a portfolio-grade DFIR project, the 'lessons-learned section' is often overlooked but critical. What should this section primarily convey to a hiring manager?",
+    "options": [
+      "A list of all the technical challenges encountered",
+      "A summary of the project's success and why it was easy",
+      "The insights gained, mistakes made, and how future approaches would differ",
+      "The total monetary value saved by the project"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'lessons-learned' section demonstrates critical thinking, self-reflection, and a growth mindset. It shows that the analyst can identify areas for improvement, acknowledge challenges, and apply those insights to future work, which is highly valued in a professional setting. It's not just about listing challenges, but showing what was learned from them.",
+    "difficulty": "hard"
+  }
+]

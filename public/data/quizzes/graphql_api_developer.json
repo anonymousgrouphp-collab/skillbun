@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A front-end developer is building a new application and needs an API to fetch user data. They've heard about GraphQL's efficiency. What is the primary advantage of GraphQL over a traditional REST API when fetching exactly the data a client needs?",
+    "options": [
+      "It always provides built-in caching mechanisms.",
+      "It allows clients to request only the specific fields they require, reducing over-fetching and under-fetching.",
+      "It automatically compresses all network traffic.",
+      "It only supports real-time data updates."
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL allows clients to specify the exact data structure they need, eliminating over-fetching (receiving more data than necessary) and under-fetching (needing multiple requests to get all required data) common in REST.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are defining the shape of a new GraphQL API. Which specialized language is used to describe the types, fields, and operations available in a GraphQL API?",
+    "options": [
+      "JSON Schema",
+      "YAML",
+      "GraphQL Schema Definition Language (SDL)",
+      "XML"
+    ],
+    "correctIndex": 2,
+    "explanation": "The GraphQL Schema Definition Language (SDL) is specifically designed to define the structure of a GraphQL API, including its types, fields, and operations (queries, mutations, subscriptions).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A client application needs to retrieve a list of products from a GraphQL server. Which fundamental GraphQL operation would the client use for this purpose?",
+    "options": [
+      "Mutation",
+      "Subscription",
+      "Query",
+      "Directive"
+    ],
+    "correctIndex": 2,
+    "explanation": "Queries are the primary operation in GraphQL used for fetching data from the server. Mutations are for modifying data, and Subscriptions are for real-time updates.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a GraphQL server implementation, after defining a schema, you need to tell GraphQL how to actually fetch the data for each field. What is the term for the function responsible for resolving the value of a field in a GraphQL type?",
+    "options": [
+      "Validator",
+      "Serializer",
+      "Resolver",
+      "Transformer"
+    ],
+    "correctIndex": 2,
+    "explanation": "A resolver is a function that's responsible for fetching the data for a specific field on a specific type in your GraphQL schema. When a query comes in, GraphQL invokes the appropriate resolvers to fulfill the request.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "As a GraphQL API developer, you're setting up your local environment. Which type of tool is commonly used to explore a GraphQL API's schema, execute queries, and test mutations directly in a web browser?",
+    "options": [
+      "REST client (e.g., Postman)",
+      "GraphQL IDE (e.g., GraphiQL, Apollo Studio Explorer)",
+      "Database management tool (e.g., DBeaver)",
+      "Version control system (e.g., Git)"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL Integrated Development Environments (IDEs) like GraphiQL or Apollo Studio Explorer are specifically designed to interact with GraphQL APIs, providing schema introspection, query execution, and debugging capabilities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When defining a GraphQL schema using SDL, you might see a type defined like `type User { name: String! }`. What does the `!` (exclamation mark) after `String` signify in this context?",
+    "options": [
+      "The field is deprecated.",
+      "The field is optional and can be null.",
+      "The field is non-nullable; it must always return a value.",
+      "The field is an array of strings."
+    ],
+    "correctIndex": 2,
+    "explanation": "In GraphQL SDL, the `!` symbol denotes that a field is non-nullable. This means that the server must always return a value for that field, and it cannot be `null`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A client application needs to add a new user to the database via your GraphQL API. Which type of GraphQL operation should be used to perform this action that modifies data on the server?",
+    "options": [
+      "Query",
+      "Subscription",
+      "Fragment",
+      "Mutation"
+    ],
+    "correctIndex": 3,
+    "explanation": "Mutations are used in GraphQL to perform write operations, such as creating, updating, or deleting data on the server. Queries are for reading data, and subscriptions are for real-time data streams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A client application requires a list of products, and for each product, it needs to display the first three customer reviews associated with it. How would you design the GraphQL schema and query to efficiently fetch this specific data, assuming a `Product` type and a `Review` type?",
+    "options": [
+      "Define a separate REST endpoint for reviews and fetch them in a second call.",
+      "Add a `reviews(first: Int)` field to the `Product` type and use it in a nested query.",
+      "Create a single flat query for all products and all reviews, then filter on the client.",
+      "Use a GraphQL Subscription to stream all reviews and filter on the client."
+    ],
+    "correctIndex": 1,
+    "explanation": "By adding `reviews(first: Int)` as a field on the `Product` type, the client can specify exactly how many reviews to fetch for each product within a single, nested GraphQL query, leveraging GraphQL's ability to fetch related data efficiently.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your GraphQL API serves a list of `Author` objects, and each `Author` has a list of `Book` objects. Fetching books for each author individually leads to an N+1 problem, where N is the number of authors. What is the most common pattern or library used in GraphQL servers to batch and cache data fetches to solve this performance issue?",
+    "options": [
+      "Redux",
+      "Dataloader",
+      "WebSockets",
+      "Gzip compression"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dataloader is a popular utility that provides a consistent, simple API over various remote data sources (like databases or REST APIs) and coalesces individual requests into a single batch request, effectively solving the N+1 problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider a GraphQL schema with a `User` type that has a field `lastActiveProduct: Product`. When a query requests `User.lastActiveProduct`, what is the typical source from which the resolver for `lastActiveProduct` would retrieve its data?",
+    "options": [
+      "It always fetches data directly from the client's local storage.",
+      "It fetches data from a connected database, another microservice, or an external API.",
+      "It generates a random product object.",
+      "It retrieves data from a global cache that all clients share."
+    ],
+    "correctIndex": 1,
+    "explanation": "Resolvers are responsible for sourcing the data for their respective fields. This data typically comes from various backend sources such as databases, other internal microservices, external third-party APIs, or even in-memory data structures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To protect a GraphQL server from denial-of-service attacks or performance degradation due to overly complex queries, what are two common security measures that can be implemented at the server level?",
+    "options": [
+      "Only allow GET requests and block POST requests.",
+      "Implement query depth limiting and query complexity analysis.",
+      "Disable all GraphQL introspection capabilities.",
+      "Use client-side throttling and block all anonymous users."
+    ],
+    "correctIndex": 1,
+    "explanation": "Query depth limiting restricts how deeply nested a query can be, preventing clients from requesting excessively large data graphs. Query complexity analysis assigns a cost to different parts of a query and rejects queries that exceed a predefined threshold. Both mitigate the risk of resource exhaustion.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You execute a GraphQL query and receive a response, but the data is not what you expected, or an operation failed. Which specific part of the standard GraphQL response object should you first inspect to understand what went wrong on the server side?",
+    "options": [
+      "The `data` field",
+      "The `extensions` field",
+      "The `errors` field",
+      "The HTTP status code alone"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `errors` field in a GraphQL response is an array that contains objects describing any errors that occurred during the execution of the query or mutation. This is the primary place to look for server-side error messages and details.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your company has multiple independent microservices, each managing a specific domain (e.g., Products, Users, Orders). Clients need a single GraphQL endpoint to query data across all these domains. Which architecture pattern is specifically designed to combine multiple independent GraphQL services into a unified API?",
+    "options": [
+      "RESTful API Gateway",
+      "GraphQL Federation or Schema Stitching",
+      "Serverless Functions",
+      "RPC (Remote Procedure Call)"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL Federation (e.g., Apollo Federation) and Schema Stitching are two architectural patterns that allow you to combine multiple independent GraphQL services (subgraphs) into a single, unified GraphQL API that clients can consume as if it were a single service.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a robust GraphQL API, ensuring the correctness of your resolvers and business logic is crucial. Which testing strategy is most effective for verifying that GraphQL queries and mutations correctly interact with the underlying data sources and return the expected results?",
+    "options": [
+      "Unit tests for individual utility functions only.",
+      "Manual testing using a GraphQL IDE for every change.",
+      "Integration tests that send actual GraphQL operations and assert on the full response.",
+      "Static code analysis alone."
+    ],
+    "correctIndex": 2,
+    "explanation": "Integration tests are vital for GraphQL APIs. They involve sending actual GraphQL queries or mutations to the server and asserting that the complete response (data and errors) matches the expected outcome, thereby validating the entire data flow from client request to data source and back.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After successfully deploying your GraphQL API to production, you observe intermittent performance degradation and increased error rates. What is a crucial operational aspect you should focus on to identify the root cause and ensure the API's reliability?",
+    "options": [
+      "Rewriting the entire frontend application.",
+      "Implementing comprehensive monitoring and logging for resolver execution times, error rates, and resource utilization.",
+      "Disabling all security features to improve speed.",
+      "Changing the GraphQL schema every week to introduce new features."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive monitoring and logging provide visibility into the API's runtime behavior, allowing developers to identify performance bottlenecks, track error trends, and pinpoint issues in resolver execution or data source interactions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your client application requires real-time updates for new messages in a chat application. Which type of GraphQL operation is specifically designed to enable the server to push data to clients in response to events?",
+    "options": [
+      "Query",
+      "Mutation",
+      "Subscription",
+      "Fragment"
+    ],
+    "correctIndex": 2,
+    "explanation": "GraphQL Subscriptions allow clients to subscribe to specific events, and the server will then push real-time data to the client whenever those events occur, making them ideal for features like live chat or notifications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before executing a GraphQL query or mutation, your API needs to verify the identity of the user and ensure they have the necessary permissions to access the requested data or perform the requested action. Where is authentication and authorization typically implemented in a GraphQL server?",
+    "options": [
+      "Exclusively on the client-side before sending the request.",
+      "Within a middleware layer or directly in resolvers, often leveraging a `context` object.",
+      "By embedding credentials directly into the GraphQL query string.",
+      "It's handled automatically by the GraphQL specification without developer intervention."
+    ],
+    "correctIndex": 1,
+    "explanation": "Authentication and authorization are typically implemented as middleware that processes the incoming request before it reaches the resolvers, or within the resolvers themselves, by checking user information often passed through a `context` object that is available to all resolvers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is working on a new feature that involves adding a new field to an existing GraphQL type. Following best practices for team delivery, what is the most appropriate workflow step to ensure this schema change is properly reviewed, tested, and documented before being merged?",
+    "options": [
+      "Directly commit the change to the main branch without review.",
+      "Create a pull request (PR) for the schema change, triggering automated tests and peer review.",
+      "Inform the frontend team verbally and ask them to update their queries immediately.",
+      "Deploy the change to production and observe for errors."
+    ],
+    "correctIndex": 1,
+    "explanation": "Creating a pull request (PR) is a standard practice in version control workflows. It allows for automated tests to run against the changes, facilitates peer code review for quality assurance, and ensures documentation updates are considered, leading to a safer and more collaborative integration of schema changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A client wants to fetch a list of `products` and specifically filter them by `category` (e.g., \"electronics\") and a `priceRange` (e.g., \"100-500\"). How would you best expose these filtering capabilities in your GraphQL schema for the `products` field?",
+    "options": [
+      "Create separate queries like `electronicsProducts` and `cheapProducts`.",
+      "Define `category` and `priceRange` as arguments on the `products` field.",
+      "Require the client to send a raw SQL query as part of the GraphQL request.",
+      "Implement server-side filtering after fetching all products and sending them to the client."
+    ],
+    "correctIndex": 1,
+    "explanation": "The most idiomatic GraphQL approach is to use arguments on fields. By adding `category` and `priceRange` as arguments to the `products` field, clients can specify their filtering criteria directly within their query, allowing the server to fetch only the relevant data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a client application needs to display a list of items (e.g., blog posts) and wants to load more items as the user scrolls, fetching all items at once can be inefficient. What common GraphQL pattern addresses this requirement by allowing clients to request items in chunks or pages?",
+    "options": [
+      "Batching",
+      "Pagination (e.g., Relay-style connections or offset/limit)",
+      "Throttling",
+      "Deduplication"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pagination, commonly implemented using patterns like Relay-style connections (with `first`, `after`, `last`, `before` arguments and `pageInfo`) or simple offset/limit arguments, allows clients to request subsets of a list, improving performance and user experience when dealing with large datasets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are tasked with optimizing the performance of a production GraphQL API that experiences high read traffic. What is a comprehensive strategy for implementing caching at various layers to improve response times and reduce database load, while ensuring data consistency for frequently accessed but less frequently updated data?",
+    "options": [
+      "Implement a simple HTTP cache on the server, and disable client-side caching entirely.",
+      "Use a client-side normalized cache (e.g., Apollo Client), implement server-side request batching and per-resolver caching, and leverage CDN for full query caching where appropriate.",
+      "Cache all data indefinitely at the database layer without any invalidation mechanism.",
+      "Only cache authentication tokens, as other data rarely benefits from caching."
+    ],
+    "correctIndex": 1,
+    "explanation": "A robust caching strategy involves multiple layers: client-side normalized caches prevent re-fetching identical data; server-side batching (Dataloader) and per-resolver caching reduce redundant data source calls; and CDN caching can serve full query responses for static content. Data consistency requires careful invalidation strategies at each layer.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a GraphQL API, how would you design a robust and informative error handling strategy that provides actionable feedback to clients without exposing sensitive server implementation details, especially for complex business logic or data validation failures?",
+    "options": [
+      "Always return a generic \"An error occurred\" message for all errors, logging details only server-side.",
+      "Use HTTP status codes (e.g., 500 for all errors) and put raw stack traces in the GraphQL `errors` array.",
+      "Implement custom error types with specific error codes, human-readable messages, and optionally use the `extensions` field to provide structured, non-sensitive context.",
+      "Re-throw all backend database errors directly to the client."
+    ],
+    "correctIndex": 2,
+    "explanation": "A robust strategy involves defining custom error types with clear error codes and messages that clients can understand and act upon. Using the `extensions` field in the GraphQL error object allows for structured metadata (like validation errors, specific IDs) to be passed to the client without exposing internal server details or stack traces. Logging full details server-side remains crucial.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a federated GraphQL architecture using Apollo Federation, your team introduces a new microservice that needs to extend an existing `User` type (owned by another service) by adding a new field `totalOrders`. What are the key architectural considerations and specific directives you'd likely use to correctly integrate this extension into the supergraph?",
+    "options": [
+      "You would simply define `User` in the new service and the gateway would automatically merge them.",
+      "You would use the `@extend` directive on the `User` type and the `@external` directive on existing fields (like `id`) to reference the owning service's key fields.",
+      "You must duplicate the `User` type entirely in the new service, creating a separate `User` entity.",
+      "Federation does not support extending types across services; the `User` type must be managed by a single service."
+    ],
+    "correctIndex": 1,
+    "explanation": "In Apollo Federation, to extend an existing type owned by another subgraph, you use the `@extend` directive on the type definition in your new service. You also use the `@external` directive on any fields (like `id`) that are required to resolve the extended type but are owned by another service, indicating that these fields are sourced externally.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To ensure the long-term stability and backward compatibility of a mission-critical GraphQL API, what advanced quality assurance and testing strategies would you implement to detect breaking changes before deployment and manage schema evolution effectively?",
+    "options": [
+      "Only rely on manual tests by developers.",
+      "Implement schema diffing tools in CI/CD pipelines to compare proposed changes against the current production schema, alongside comprehensive integration tests for deprecated fields.",
+      "Force clients to update their queries whenever the schema changes.",
+      "Allow any schema change, as GraphQL inherently handles backward compatibility."
+    ],
+    "correctIndex": 1,
+    "explanation": "Schema diffing tools are critical in CI/CD to automatically detect breaking changes (e.g., removing fields, changing field types from nullable to non-nullable) before they reach production. Complementary integration tests specifically targeting deprecated fields ensure that older clients continue to function correctly, supporting a graceful deprecation process and controlled schema evolution.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your company operates a public-facing GraphQL API that serves multiple diverse client applications, each with potentially different needs and update cycles. How would you design a robust API evolution and versioning strategy that minimizes disruption to existing clients while allowing for continuous development and introduction of new features?",
+    "options": [
+      "Implement strict URI-based versioning (e.g., `/v1/graphql`, `/v2/graphql`) and maintain multiple parallel API instances.",
+      "Avoid explicit versioning and instead rely on non-breaking schema evolution: adding new fields, deprecating old ones, and ensuring backward compatibility through careful planning and schema diffing.",
+      "Communicate all schema changes to clients and require them to update their applications immediately.",
+      "Automatically transform all incoming queries to match the latest schema version without client intervention."
+    ],
+    "correctIndex": 1,
+    "explanation": "The GraphQL community generally advocates against explicit URI-based versioning because GraphQL's flexible nature inherently supports schema evolution. The recommended approach is to introduce changes in a non-breaking way (adding new fields, new types, making optional fields non-nullable to nullable). Deprecate old fields gradually, giving clients time to migrate, and use tools like schema diffing to monitor for unintentional breaking changes. This ensures a single endpoint remains stable while evolving the API.",
+    "difficulty": "hard"
+  }
+]

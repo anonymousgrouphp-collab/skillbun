@@ -1,0 +1,302 @@
+[
+  {
+    "question": "You are writing a Kotlin function that retrieves a user's name from a database. If the user is not found, the function should return null. Which of the following return types correctly represents this scenario using Kotlin's null safety features?",
+    "options": [
+      "String",
+      "String?",
+      "String!!",
+      "kotlin.String"
+    ],
+    "correctIndex": 1,
+    "explanation": "String? indicates a nullable String type, allowing the variable to hold either a String value or null. String would not allow null, String!! is a non-null asserted type which can crash, and kotlin.String is just the fully qualified name for a non-nullable String.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your Android application navigates from ActivityA to ActivityB. Which lifecycle method of ActivityA is guaranteed to be called after onPause() and before onDestroy() if ActivityA is being completely removed from memory?",
+    "options": [
+      "onStop()",
+      "onRestart()",
+      "onResume()",
+      "onCreate()"
+    ],
+    "correctIndex": 0,
+    "explanation": "When an activity is no longer visible, its onStop() method is called. If it's being destroyed, onDestroy() follows. onRestart() is for when an activity comes back from a stopped state, and onResume() is for when it becomes visible again. onCreate() is called once when the activity is first created.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are building a custom TextField composable in Jetpack Compose. To make this composable reusable and testable, and to prevent it from holding its own state, what technique should you apply for the text value and its change listener?",
+    "options": [
+      "State observation",
+      "State hoisting",
+      "State management",
+      "State preservation"
+    ],
+    "correctIndex": 1,
+    "explanation": "State hoisting in Compose is the pattern of moving state to a composable's caller to make the composable stateless. This means passing the value and an onValueChange lambda down from a parent composable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Android application needs to perform a heavy computation (e.g., image processing) that should not block the main UI thread. Which Coroutine Dispatcher is most appropriate for executing this operation?",
+    "options": [
+      "Dispatchers.Main",
+      "Dispatchers.IO",
+      "Dispatchers.Default",
+      "Dispatchers.Unconfined"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dispatchers.Default is optimized for CPU-bound work, such as heavy computations. Dispatchers.Main is for UI interactions, Dispatchers.IO is for network or disk operations, and Dispatchers.Unconfined runs coroutines directly in the current thread until the first suspension.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In an MVVM architectural pattern for an Android app, what is the primary purpose of a ViewModel?",
+    "options": [
+      "To handle UI rendering logic directly",
+      "To persist UI-related data across configuration changes",
+      "To directly interact with the database and network",
+      "To manage Android lifecycle callbacks like onCreate()"
+    ],
+    "correctIndex": 1,
+    "explanation": "A ViewModel is designed to store and manage UI-related data in a lifecycle-conscious way, surviving configuration changes like screen rotations. It does not directly handle UI rendering, database/network interaction (that's the repository's job), or Android lifecycle callbacks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When defining an entity for a Room database in Kotlin, which annotation is used to mark a data class as a Room entity?",
+    "options": [
+      "@Dao",
+      "@Database",
+      "@Entity",
+      "@ColumnInfo"
+    ],
+    "correctIndex": 2,
+    "explanation": "The @Entity annotation is used on a data class to declare it as a table in the Room database. @Dao is for Data Access Objects, @Database is for the database holder class, and @ColumnInfo is for customizing column properties within an entity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are optimizing a RecyclerView that displays a large list of items. Users report occasional stuttering when scrolling rapidly. Which measure is most effective in improving scrolling performance for RecyclerView?",
+    "options": [
+      "Using android:layout_width=\"match_parent\" for all item views",
+      "Inflating item layouts in onCreateViewHolder using findViewById repeatedly",
+      "Implementing DiffUtil for list updates",
+      "Performing network requests directly in onBindViewHolder"
+    ],
+    "correctIndex": 2,
+    "explanation": "DiffUtil efficiently calculates the difference between two lists and dispatches minimal updates to the RecyclerView.Adapter, preventing unnecessary re-binds and improving performance. Inflating layouts with findViewById repeatedly is inefficient. Network requests in onBindViewHolder would block the UI thread. match_parent is not directly related to performance beyond layout computation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your application needs to provide a UserRepository instance to several ViewModel's. Instead of each ViewModel creating its own UserRepository, you want to inject a single instance. What is the primary benefit of using a Dependency Injection framework or pattern in this scenario?",
+    "options": [
+      "To reduce the number of import statements",
+      "To increase coupling between components",
+      "To improve testability and modularity",
+      "To automatically generate boilerplate code"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dependency Injection promotes loose coupling, making components easier to test in isolation (by providing mock dependencies) and improving the modularity of the codebase. It doesn't primarily reduce import statements or increase coupling. While it can reduce boilerplate, its main benefit is architectural.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You want to add padding and a clickable behavior to a Text composable in Jetpack Compose. What is the most idiomatic way to achieve this using Compose's declarative UI principles?",
+    "options": [
+      "Wrap the Text in a Box and apply padding and clickable to the Box.",
+      "Use Modifier.padding() and Modifier.clickable() directly on the Text composable.",
+      "Create a custom composable that extends Text and overrides its layout properties.",
+      "Apply android:padding and android:clickable XML attributes to the Text composable."
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifiers are the primary way to decorate or augment a composable in Jetpack Compose, including adding padding, click listeners, background, etc. They are chained directly to the composable. Wrapping in a Box is possible but less idiomatic if the modifiers apply directly to the Text. XML attributes are for XML views, not Compose.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your Android app makes a network request to a REST API. The API returns a 401 Unauthorized status code. How should your app typically handle this response in a Repository layer?",
+    "options": [
+      "Retry the request immediately with the same credentials.",
+      "Display a generic 'Error fetching data' message to the user.",
+      "Parse the error, clear user session data, and navigate to a login screen.",
+      "Log the error and ignore it, assuming it's a transient server issue."
+    ],
+    "correctIndex": 2,
+    "explanation": "A 401 Unauthorized status indicates that the authentication credentials are invalid or missing. The correct handling involves recognizing this specific error, invalidating the current user session, and prompting the user to re-authenticate. Retrying immediately is pointless, a generic message isn't helpful, and ignoring it is bad UX.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have a screen in your Android app that launches multiple coroutines to fetch different pieces of data simultaneously. If the user navigates away from this screen, all ongoing data fetches should be cancelled to prevent memory leaks and unnecessary work. Which concept in Kotlin Coroutines directly addresses this requirement?",
+    "options": [
+      "GlobalScope",
+      "SupervisorJob",
+      "Structured Concurrency",
+      "Deferred cancellation"
+    ],
+    "correctIndex": 2,
+    "explanation": "Structured Concurrency ensures that coroutines are part of a parent-child hierarchy. When a parent (e.g., a ViewModel's viewModelScope) is cancelled, all its children coroutines are also cancelled, automatically handling resource cleanup when the scope (e.g., screen) ends. GlobalScope is discouraged for Android, SupervisorJob is for specific error handling patterns, and 'Deferred cancellation' isn't a core concept.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When unit testing a ViewModel that depends on a Repository interface, what is the best practice for providing the Repository dependency to the ViewModel in your test?",
+    "options": [
+      "Instantiate the real Repository with actual network/database calls.",
+      "Use a MockRepository or FakeRepository that implements the Repository interface.",
+      "Pass null for the Repository dependency.",
+      "Access the Repository instance directly from the Android application context."
+    ],
+    "correctIndex": 1,
+    "explanation": "For unit testing, you want to test the ViewModel's logic in isolation. Using a MockRepository or FakeRepository allows you to control the data returned by the repository and verify interactions, without involving real network or database operations, which would turn it into an integration test.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to store small, simple key-value pairs of user preferences in your Android application. Given modern Android development practices, which storage solution is generally preferred over SharedPreferences for this purpose, and why?",
+    "options": [
+      "Room, because it offers better performance for all types of data.",
+      "File storage, for enhanced security and encryption.",
+      "DataStore, because it uses Kotlin Coroutines and Flow for asynchronous data handling.",
+      "SQLite directly, as it gives more control over schemas."
+    ],
+    "correctIndex": 2,
+    "explanation": "DataStore is the modern and preferred solution for storing key-value pairs or typed objects, replacing SharedPreferences. Its primary advantages are its asynchronous API (using Coroutines and Flow), transactional API, and type safety, addressing SharedPreferences's shortcomings like main thread blocking and lack of type safety. Room is for structured relational data, file storage for larger files, and raw SQLite is generally abstracted by Room.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is setting up a new Android project and needs to add a dependency for a Jetpack library, specifically androidx.lifecycle:lifecycle-viewmodel-ktx. In which file should this dependency be declared?",
+    "options": [
+      "AndroidManifest.xml",
+      "settings.gradle",
+      "build.gradle (app-level)",
+      "proguard-rules.pro"
+    ],
+    "correctIndex": 2,
+    "explanation": "Project-specific dependencies for modules (like the app module) are declared in the build.gradle file located in the module's directory (often app/build.gradle). AndroidManifest.xml defines app components, settings.gradle configures multi-project builds, and proguard-rules.pro handles code shrinking.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are creating a User model in Kotlin that simply holds data (e.g., id, name, email). You need automatic generation of equals(), hashCode(), toString(), and copy() methods. Which Kotlin construct should you use?",
+    "options": [
+      "A regular class",
+      "An abstract class",
+      "An interface",
+      "A data class"
+    ],
+    "correctIndex": 3,
+    "explanation": "Kotlin data class is specifically designed for classes that primarily hold data. The compiler automatically generates useful methods like equals(), hashCode(), toString(), and copy(), reducing boilerplate.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Jetpack Compose application, how do you typically navigate between different screens (composables)?",
+    "options": [
+      "Using Intent objects with startActivity()",
+      "By calling setContentView() with a new composable function",
+      "Using the NavController and NavHost from the Navigation Compose library",
+      "Directly invoking the target composable function from another composable"
+    ],
+    "correctIndex": 2,
+    "explanation": "Jetpack Compose uses the Navigation Compose library, which provides NavController and NavHost, to manage navigation between composables, define routes, and handle back stacks. Intent and startActivity() are for activity-based navigation, setContentView() is for XML views, and directly invoking composables doesn't manage a navigation stack.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Android app implements an \"offline-first\" strategy. When the app attempts to fetch data from a remote API and detects that there is no network connectivity, what should be the immediate action taken by the Repository layer?",
+    "options": [
+      "Throw a network exception and display an error message.",
+      "Cache the request and attempt to send it later when the network is available.",
+      "Return cached data from a local database (e.g., Room) if available.",
+      "Block the UI until the network connection is restored."
+    ],
+    "correctIndex": 2,
+    "explanation": "An offline-first strategy prioritizes local data. If the network is unavailable, the repository should immediately try to serve data from its local cache (like Room). Only if local data isn't available, or for operations that strictly require online access, would it typically report an error or queue a request. Blocking the UI is bad UX.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your Android app experiences \"jank\" – noticeable UI stuttering – especially during rapid scrolling. Which of the following is a common cause of jank?",
+    "options": [
+      "Excessive network calls in the background.",
+      "Too many static assets in the APK.",
+      "Performing heavy computations or database operations on the main thread.",
+      "Using ConstraintLayout for complex UIs."
+    ],
+    "correctIndex": 2,
+    "explanation": "Jank occurs when the UI thread is blocked for too long (over 16ms for 60fps), preventing frames from being drawn on time. Heavy work on the main thread, such as complex calculations, large database queries, or I/O operations, is a primary cause. Excessive background network calls or static assets don't directly cause UI jank (though they can affect startup or memory). ConstraintLayout is generally performant.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your app needs to access the user's location, which is a dangerous permission. What is the correct procedure for requesting this permission on Android 6.0 (API 23) and higher?",
+    "options": [
+      "Declare the permission in AndroidManifest.xml only.",
+      "Declare in AndroidManifest.xml and request at runtime using requestPermissions() if not granted.",
+      "Add the permission to build.gradle as a dependency.",
+      "Prompt the user with a dialog without any code changes."
+    ],
+    "correctIndex": 1,
+    "explanation": "For dangerous permissions on API 23+, you must declare them in AndroidManifest.xml AND request them dynamically at runtime using ActivityCompat.requestPermissions() (or similar methods) when the app needs access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are observing a Flow in your ViewModel to react to data changes. You notice that each new observer triggers the upstream data producer to restart its work. What characteristic describes this type of Flow?",
+    "options": [
+      "Hot Flow",
+      "Shared Flow",
+      "State Flow",
+      "Cold Flow"
+    ],
+    "correctIndex": 3,
+    "explanation": "A \"Cold Flow\" starts emitting values only when a collector starts collecting from it, and each collector triggers a new execution of the flow's producer block. \"Hot Flows\" like SharedFlow and StateFlow are always active and emit values to all active collectors from the point of subscription without restarting.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your Android application collects user analytics data and requires specific permissions like location access. Before publishing to Google Play Store, what essential document must be provided?",
+    "options": [
+      "A detailed technical specification document.",
+      "An open-source license for all included libraries.",
+      "A comprehensive privacy policy URL.",
+      "A financial projection report for the app."
+    ],
+    "correctIndex": 2,
+    "explanation": "Google Play requires apps that handle personal or sensitive user data (like location, contacts, analytics) to post a privacy policy explaining how that data is collected, used, and shared. This is a critical legal and user trust requirement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary advantage of using ViewBinding over findViewById() for accessing views in an Android XML layout?",
+    "options": [
+      "ViewBinding generates boilerplate code for view setup.",
+      "ViewBinding provides compile-time safety and prevents NullPointerExceptions for missing views.",
+      "ViewBinding allows for more flexible custom view creation.",
+      "ViewBinding automatically handles background threading for view operations."
+    ],
+    "correctIndex": 1,
+    "explanation": "ViewBinding generates a binding class for each XML layout file, providing direct references to views with IDs. This eliminates NullPointerExceptions caused by incorrect IDs (as compilation would fail) and avoids the runtime overhead and potential errors of findViewById().",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a clean architecture using the Repository pattern, where should the logic for deciding whether to fetch data from a remote API or from a local Room database reside?",
+    "options": [
+      "In the ViewModel directly.",
+      "In the Activity or Fragment.",
+      "Within the Repository implementation.",
+      "In the Dao interface."
+    ],
+    "correctIndex": 2,
+    "explanation": "The Repository is responsible for abstracting data sources. It acts as a single source of truth for data, deciding whether to fetch from network, cache, or local database, and mediating between different data sources. The ViewModel should only interact with the Repository, not directly with data sources.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are writing a UI test for a Jetpack Compose screen that contains a Button and a Text field. After clicking the button, the Text field's content should update. Which ComposeTestRule method is appropriate for interacting with the button and asserting the text change?",
+    "options": [
+      "onNodeWithTag().performClick().assertTextEquals()",
+      "findView().click().checkText()",
+      "onView().perform(click()).check(matches(withText()))",
+      "getComposeRoot().clickButton().assertText()"
+    ],
+    "correctIndex": 0,
+    "explanation": "In Jetpack Compose UI testing, you use ComposeTestRule and its methods like onNodeWithTag(), onNodeWithText(), etc., to locate composables, and then performClick() to simulate clicks, and assertTextEquals() or assertExists()/assertIsDisplayed() for assertions. The other options are either for View-based testing (Espresso) or not valid Compose testing APIs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your Android application needs to communicate with a custom server that uses a self-signed SSL certificate for development. What is the recommended and most secure way to allow your app to trust this certificate only during development, without globally disabling certificate validation or modifying the APK for production?",
+    "options": [
+      "Add android:usesCleartextTraffic=\"true\" to AndroidManifest.xml.",
+      "Implement a custom TrustManager that always trusts all certificates.",
+      "Use a network_security_config.xml file with a debug-overrides section and cleartextTrafficPermitted=\"false\" for release.",
+      "Embed the self-signed certificate directly into the application's assets folder."
+    ],
+    "correctIndex": 2,
+    "explanation": "Network Security Configuration allows for custom trust rules. The debug-overrides section specifically enables changes (like trusting user-added CAs or specific domains) only when the app is running in debug mode, providing a secure way to manage development-specific certificate trust without affecting release builds. usesCleartextTraffic disables HTTPS entirely, a custom TrustManager that always trusts is a severe security vulnerability, and embedding self-signed certs is less flexible and still applies to release builds unless carefully managed.",
+    "difficulty": "hard"
+  }
+]

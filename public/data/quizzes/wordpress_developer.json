@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A client wants to add a new section to their WordPress site that displays static information about their company's history. Which content type is most appropriate for this purpose?",
+    "options": [
+      "Post",
+      "Page",
+      "Category",
+      "Tag"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pages are best suited for static, evergreen content like 'About Us' or 'Contact,' while posts are for blog articles or time-sensitive content. Categories and tags are for organizing posts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A content editor needs to frequently update the main navigation links on a WordPress site without requiring developer assistance. Which WordPress feature should be utilized?",
+    "options": [
+      "Widgets",
+      "Customizer",
+      "Menus",
+      "Quick Edit"
+    ],
+    "correctIndex": 2,
+    "explanation": "The WordPress Menus feature (Appearance > Menus) allows site administrators and editors to create and manage navigation menus easily. Widgets are for sidebar/footer content, Customizer for theme options, and Quick Edit for post/page metadata.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to apply a specific CSS style to a custom element within a WordPress theme. To ensure the style is loaded correctly and efficiently, and potentially respects dependencies, where is the most appropriate place to enqueue the custom stylesheet?",
+    "options": [
+      "Directly in header.php using a <link> tag.",
+      "Using wp_enqueue_style() in functions.php.",
+      "In the post content using inline styles.",
+      "In style.css without enqueuing."
+    ],
+    "correctIndex": 1,
+    "explanation": "wp_enqueue_style() in functions.php is the recommended method for loading stylesheets in WordPress themes. It manages dependencies, versioning, and ensures styles are loaded in the correct order, preventing conflicts and improving performance. Directly linking in header.php bypasses this system. Inline styles are generally poor practice for theme-wide styling, and style.css must still be properly enqueued.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to add a custom script to their WordPress theme that should only load on the front-end of the website. Which WordPress function is the most appropriate and secure way to include this script?",
+    "options": [
+      "wp_enqueue_script()",
+      "<script src='...'></script> directly in header.php",
+      "add_script()",
+      "include_script_file()"
+    ],
+    "correctIndex": 0,
+    "explanation": "wp_enqueue_script() is the correct and recommended way to add JavaScript files to WordPress themes and plugins. It handles dependencies, versioning, and ensures scripts are loaded correctly and efficiently without conflicts. Directly adding <script> tags can lead to conflicts and lack of proper dependency management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To add custom functionality that executes *before* a post is saved in the WordPress database, which type of hook would a plugin developer typically use?",
+    "options": [
+      "Filter hook",
+      "Action hook",
+      "Shortcode hook",
+      "Template hook"
+    ],
+    "correctIndex": 1,
+    "explanation": "Action hooks allow you to 'do something' at specific points in WordPress execution, such as before a post is saved (save_post). Filter hooks allow you to 'change something' by modifying data before it's displayed or used. Shortcodes create content, and template hooks aren't a standard WordPress term.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are developing a custom post type 'Events' for a client. They require a dedicated archive page (archive-events.php) that displays events sorted by date, with past events hidden, and a custom meta field for 'Event Location' displayed prominently. What combination of steps is crucial for achieving this?",
+    "options": [
+      "Register CPT with has_archive true; create archive-events.php; use WP_Query with meta_query and date_query.",
+      "Register CPT; create page-events.php; use get_posts() with post_type and meta_key.",
+      "Register CPT without has_archive; create a regular Page and assign a custom template; loop through get_posts().",
+      "Register CPT with rewrite rule; create taxonomy-events.php; use pre_get_posts to filter."
+    ],
+    "correctIndex": 0,
+    "explanation": "To get a dedicated archive page, has_archive must be true during CPT registration, allowing WordPress to recognize archive-events.php. Within this template, WP_Query is the standard and most flexible way to query posts, allowing for complex parameters like date_query (for filtering by date, e.g., only future events) and meta_query (for retrieving custom fields like 'Event Location'). Option B is incorrect as page-events.php would be for a specific page slug, not an archive, and get_posts is less flexible than WP_Query. Option C avoids the proper archive mechanism. Option D incorrectly suggests a taxonomy template for a CPT archive.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A client's WordPress site is experiencing slow load times, especially for visitors from distant geographic locations. What optimization strategy would likely provide the most significant improvement for this specific issue?",
+    "options": [
+      "Install a caching plugin",
+      "Optimize all images",
+      "Implement a Content Delivery Network (CDN)",
+      "Reduce the number of active plugins"
+    ],
+    "correctIndex": 2,
+    "explanation": "A CDN stores static assets (images, CSS, JS) on servers globally and delivers them from the server closest to the user, significantly reducing latency for geographically dispersed visitors. Caching plugins help reduce server load and page generation time, image optimization reduces file sizes, and reducing plugins helps with overall site weight, but a CDN directly addresses geographical latency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A client wants to offer a downloadable e-book as a product in their WooCommerce store. What product type should be selected when creating this product?",
+    "options": [
+      "Simple Product",
+      "Variable Product",
+      "Grouped Product",
+      "External/Affiliate Product"
+    ],
+    "correctIndex": 0,
+    "explanation": "For a single, downloadable item like an e-book, a 'Simple Product' is the correct choice, along with checking the 'Virtual' and 'Downloadable' options within its settings. Variable products are for items with options (like size or color), Grouped products combine multiple simple products, and External/Affiliate products link to an external store.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before launching a client's WordPress website to a live production environment, what is a critical step to ensure a smooth transition and allow for final client review?",
+    "options": [
+      "Immediately migrate to production",
+      "Skip backups to save time",
+      "Utilize a staging environment",
+      "Delete all test content from the database"
+    ],
+    "correctIndex": 2,
+    "explanation": "A staging environment is a replica of the live site where testing, client reviews, and final adjustments can be made without affecting the live site. This prevents issues from going live and provides a safe space for client feedback.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is working on a WordPress project with a team and needs to track changes to theme files and collaborate efficiently. Which tool is essential for managing code versions and merges?",
+    "options": [
+      "FTP client",
+      "phpMyAdmin",
+      "Git",
+      "Google Drive"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is a distributed version control system specifically designed for tracking changes in source code during software development. It enables multiple developers to work on the same project simultaneously, merge changes, and revert to previous versions if needed. FTP is for file transfer, phpMyAdmin for database management, and Google Drive for general file sharing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A custom plugin registers a REST API endpoint. To ensure that only logged-in users with the 'manage_options' capability can access this endpoint, what security measure should be implemented during endpoint registration?",
+    "options": [
+      "Use current_user_can('manage_options') inside the callback function.",
+      "Add authentication_required => true to the endpoint arguments.",
+      "Specify permission_callback argument as '__return_true'.",
+      "Set permission_callback to a function that returns current_user_can('manage_options')."
+    ],
+    "correctIndex": 3,
+    "explanation": "The permission_callback argument in register_rest_route() is specifically designed to control access to a REST API endpoint. It should be set to a function that returns a boolean indicating whether the current user has permission (e.g., current_user_can('manage_options')). Placing the check inside the main callback (A) means the endpoint is still technically accessible, and the check only happens *after* the route is hit. Option B is not a standard REST API argument. Option C makes the endpoint publicly accessible.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following is responsible for determining the visual design and layout of a WordPress website?",
+    "options": [
+      "Plugins",
+      "Widgets",
+      "Themes",
+      "Categories"
+    ],
+    "correctIndex": 2,
+    "explanation": "Themes control the overall look, feel, and layout of a WordPress site. Plugins add functionality, widgets are for specific content blocks in widget areas, and categories organize posts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A client requires a new user role with specific permissions to only publish their own posts and manage media files, but not to install plugins or manage other users. Which existing WordPress role should be used as a baseline, and what would be the next step?",
+    "options": [
+      "Administrator, then remove capabilities.",
+      "Editor, then add upload_files capability.",
+      "Author, then add publish_posts and upload_files capabilities.",
+      "Contributor, then add edit_published_posts capability."
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'Author' role can publish their own posts by default. To allow them to manage media, the upload_files capability would need to be added to this role, likely using a plugin or custom code. 'Administrator' has too many permissions. 'Editor' can publish *other* users' posts. 'Contributor' can only submit posts for review, not publish.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to display the current year dynamically in the footer of a WordPress theme. Which PHP function is commonly used to achieve this within a theme template file?",
+    "options": [
+      "get_the_date('Y')",
+      "date('Y')",
+      "the_time('Y')",
+      "wp_get_current_year()"
+    ],
+    "correctIndex": 1,
+    "explanation": "date('Y') is a standard PHP function to get the current year. get_the_date() and the_time() are WordPress functions specific to the post date within a loop. wp_get_current_year() is not a standard WordPress function.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a custom WordPress theme, you've created a new custom template file named page-contact-us.php. Under what condition will WordPress automatically use this template for a specific page?",
+    "options": [
+      "When the page slug is exactly 'contact-us'.",
+      "When the page ID is 1.",
+      "When it's assigned to a category named 'Contact Us'.",
+      "When the functions.php file explicitly registers it."
+    ],
+    "correctIndex": 0,
+    "explanation": "WordPress's template hierarchy dictates that page-{slug}.php will be used for a page whose slug matches {slug} (e.g., page-contact-us.php for a page with the slug 'contact-us'). This provides a way to create custom layouts for specific pages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A WordPress site frequently receives a high volume of traffic, and the database server is becoming a bottleneck. Beyond standard caching, what advanced database optimization strategy can significantly reduce the load on the primary database server for read-heavy operations?",
+    "options": [
+      "Using wp_remote_get() for all queries",
+      "Implementing database sharding",
+      "Enabling Gzip compression for all database responses",
+      "Utilizing database replication with read replicas."
+    ],
+    "correctIndex": 3,
+    "explanation": "Database replication with read replicas allows read-heavy queries to be offloaded to secondary, synchronized database servers, significantly reducing the load on the primary (master) database. This is a common strategy for high-traffic sites. Database sharding partitions data, which is more complex and for extremely large datasets. wp_remote_get() is for external HTTP requests. Gzip compression applies to server responses, not directly to database load.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A client running a WooCommerce store wants to automatically send a custom email to customers three days after their order status changes to 'completed.' How would a developer typically implement this without modifying core WooCommerce files?",
+    "options": [
+      "Modify the woocommerce/templates/emails/customer-completed-order.php file.",
+      "Use a WooCommerce action hook like woocommerce_order_status_completed combined with a scheduled event (wp_schedule_single_event).",
+      "Create a new plugin that directly queries the database for completed orders daily.",
+      "Advise the client to manually send the email."
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifying core files (A) is not update-safe. Polling the database daily (C) is inefficient. Manual sending (D) is not automatic. The best approach is to hook into woocommerce_order_status_completed, and then use wp_schedule_single_event to trigger a custom function to send the email after a specific delay.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During the client handoff phase of a WordPress project, which document is most crucial for empowering the client to manage their site independently, covering aspects like updating content, managing users, and basic troubleshooting?",
+    "options": [
+      "Server configuration file",
+      "Full codebase documentation",
+      "A comprehensive client user guide",
+      "Legal terms and conditions"
+    ],
+    "correctIndex": 2,
+    "explanation": "A comprehensive client user guide (often including video tutorials) provides essential information for the client to understand and manage their new WordPress site, covering content updates, media management, user roles, and often FAQs for common issues. Server configs and full codebases are for developers, and legal terms are separate.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user encounters an issue where they cannot log into their WordPress admin panel. Which of the following is *not* a common initial troubleshooting step?",
+    "options": [
+      "Clear browser cache and cookies",
+      "Check if the website's domain is active",
+      "Try resetting the password via email",
+      "Directly edit database user table via phpMyAdmin."
+    ],
+    "correctIndex": 3,
+    "explanation": "Directly editing the database is an advanced step, often reserved for when other methods fail or if email password reset is not working. Clearing cache, checking domain, and resetting password are common first steps.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a custom block for the Gutenberg editor, which technology is primarily used for defining the block's structure, attributes, and editing interface in the browser?",
+    "options": [
+      "PHP",
+      "HTML and CSS",
+      "JavaScript (React/JSX)",
+      "SQL"
+    ],
+    "correctIndex": 2,
+    "explanation": "Gutenberg blocks are primarily built using JavaScript, specifically React and JSX, for their front-end editing interface and dynamic behavior. While PHP handles registration and server-side rendering, the interactive editing experience is powered by JavaScript. HTML/CSS define the output, and SQL is for database interaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A theme developer needs to allow clients to customize the site's primary color and logo through the WordPress Customizer, ensuring these settings are easily accessible and stored correctly. What API should be leveraged for this functionality?",
+    "options": [
+      "Settings API",
+      "Theme Options API",
+      "Customizer API",
+      "Transient API"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Customizer API is specifically designed for adding controls and sections to the WordPress Customizer, allowing users to preview changes in real-time. The Settings API is for creating general settings pages (not necessarily in the Customizer). Theme Options API is a less precise term, often referring to a custom implementation using the Settings API. The Transient API is for caching temporary data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You need to prevent a specific user role, 'Subscriber', from seeing the admin bar on the front-end of the site. Which WordPress action hook would be suitable for adding this conditional logic?",
+    "options": [
+      "wp_footer",
+      "wp_head",
+      "show_admin_bar",
+      "admin_menu"
+    ],
+    "correctIndex": 2,
+    "explanation": "The show_admin_bar filter hook is specifically designed to allow developers to conditionally hide or show the admin bar based on custom logic, such as the current user's role. wp_footer and wp_head are general action hooks for inserting content, and admin_menu relates to modifying the admin menu.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a fundamental best practice for maintaining a secure WordPress website?",
+    "options": [
+      "Use 'admin' as the default username",
+      "Always run outdated software for stability",
+      "Regularly update WordPress core, themes, and plugins",
+      "Disable all security plugins."
+    ],
+    "correctIndex": 2,
+    "explanation": "Regularly updating WordPress core, themes, and plugins is crucial for security as updates often include patches for newly discovered vulnerabilities. Using 'admin' as a username is a security risk, outdated software is a vulnerability, and disabling security plugins is counterproductive.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When managing images in the WordPress Media Library, what information can you primarily add or edit to improve SEO and accessibility for each image?",
+    "options": [
+      "CSS styles",
+      "Alt Text and Title",
+      "PHP functions",
+      "JavaScript events"
+    ],
+    "correctIndex": 1,
+    "explanation": "Alt Text (Alternative Text) and Title attributes are crucial for image SEO and accessibility. Alt text provides a description for screen readers and when images don't load, while the title can offer additional context. CSS, PHP, and JavaScript are not directly edited within the Media Library for individual image metadata.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "For a client's business website, you've developed a custom theme and several custom post types. The client wants to view analytics data within their WordPress dashboard, monitor site performance (Core Web Vitals), and have a clear guide on how to update their new custom content. What is the most integrated and maintainable solution for these combined requirements?",
+    "options": [
+      "Install separate plugins for analytics, performance, and manually create a PDF guide.",
+      "Implement custom dashboard widgets using the Widgets API for analytics and performance, and use a dedicated 'Help' CPT for client guide.",
+      "Integrate a Google Analytics plugin and a Core Web Vitals specific plugin, then build the client guide using a custom post type that's linked in the admin menu.",
+      "Embed iframes for analytics and performance reports directly into a custom dashboard page, and include instructions as comments in theme files."
+    ],
+    "correctIndex": 2,
+    "explanation": "This approach combines standard WordPress practices with custom content for maintainability and client usability. A dedicated Google Analytics plugin provides easy integration. A Core Web Vitals plugin offers performance monitoring. A custom post type for the client guide ensures it's easily editable and viewable within the familiar WordPress admin, and linking it in the admin menu makes it discoverable. Option A lacks integration. Option B's custom widgets for detailed reports might be complex to build and maintain compared to existing plugins. Option D is generally bad practice for security, maintainability, and user experience.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Go developer wants to define a behavior that multiple types can satisfy without caring about their concrete implementation. Which Go feature is best suited for this?",
+    "options": [
+      "Struct embedding",
+      "Type assertion",
+      "Interface",
+      "Generics"
+    ],
+    "correctIndex": 2,
+    "explanation": "Interfaces in Go define a set of methods that a type must implement to satisfy the interface, promoting loose coupling and polymorphic behavior. This allows different types to be treated uniformly if they implement the same interface.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When a Go function encounters an error, what is the idiomatic way to return it?",
+    "options": [
+      "Panic with a custom error message",
+      "Return nil for the error value",
+      "Return the error as the last return value",
+      "Use log.Fatal to terminate the program"
+    ],
+    "correctIndex": 2,
+    "explanation": "Go functions conventionally return an 'error' as their last return value, allowing the caller to handle potential issues explicitly using 'if err != nil' checks. Panicking is generally reserved for unrecoverable errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A new Go project needs to manage its dependencies. Which command is typically used to initialize a new module?",
+    "options": [
+      "go get .",
+      "go mod init",
+      "go build",
+      "go run main.go"
+    ],
+    "correctIndex": 1,
+    "explanation": "`go mod init` initializes a new module in the current directory, creating a `go.mod` file to manage project dependencies. This command marks the current directory as the root of a Go module.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Go web service exposes a `/users/{id}` endpoint. What HTTP method should typically be used to retrieve the details of a specific user?",
+    "options": [
+      "POST",
+      "PUT",
+      "GET",
+      "DELETE"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `GET` method is standard for retrieving resource representations without causing side effects on the server, making it appropriate for fetching user details. `POST`, `PUT`, and `DELETE` are used for creating, updating, and deleting resources, respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer writes a function `Add(a, b int) int`. To verify its correctness, what type of test should be written first?",
+    "options": [
+      "An integration test",
+      "A unit test",
+      "A benchmark test",
+      "A fuzz test"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests focus on testing individual functions or methods in isolation, making them the first and most fundamental type of test for verifying correctness of small, self-contained units of code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To ensure a Go service running in a container orchestrator (like Kubernetes) is alive and ready to receive traffic, what kind of endpoint should it expose?",
+    "options": [
+      "A /debug endpoint for internal diagnostics",
+      "A /metrics endpoint for performance data",
+      "A /healthz or /readyz endpoint returning a 200 OK status",
+      "A /admin endpoint for configuration changes"
+    ],
+    "correctIndex": 2,
+    "explanation": "Health check endpoints (e.g., `/healthz` for liveness, `/readyz` for readiness) are crucial for container orchestrators to determine if a service instance is operational and capable of handling requests, enabling intelligent routing and restarts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a Docker image for a Go application, what is a key best practice to minimize the final image size?",
+    "options": [
+      "Include all source code and build tools in the final image",
+      "Use a multi-stage build with a minimal base image for the final stage",
+      "Use a large base image like ubuntu:latest",
+      "Compile the Go application in debug mode"
+    ],
+    "correctIndex": 1,
+    "explanation": "Multi-stage builds allow you to use a larger image for compiling the Go application and then copy only the resulting static binary into a much smaller, 'scratch' or `alpine`-based image for the final deployment, significantly reducing image size and attack surface.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You have a slice `s := []int{1, 2, 3, 4, 5}`. You want to create a new slice containing `3, 4`. Which operation achieves this efficiently?",
+    "options": [
+      "s[2:4]",
+      "s[3:5]",
+      "append(s[2], s[3])",
+      "s.subslice(2, 2)"
+    ],
+    "correctIndex": 0,
+    "explanation": "Slicing in Go creates a new slice header referring to the same underlying array. `s[2:4]` creates a slice starting at index 2 (inclusive) and ending at index 4 (exclusive), resulting in `[3 4]`. The other options are incorrect syntax or logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A `User` struct has fields `ID`, `Name`, and `Email`. You want to add a method `String()` to return a formatted string representation of a `User` instance. What type of receiver should the `String()` method typically have if it only reads data?",
+    "options": [
+      "Value receiver (`func (u User) String() string`)",
+      "Pointer receiver (`func (u *User) String() string`)",
+      "Both are equally idiomatic",
+      "Neither is appropriate for `String()`"
+    ],
+    "correctIndex": 0,
+    "explanation": "For methods that only read data from the receiver and don't modify it, a value receiver is often preferred as it avoids potential aliasing issues and can sometimes be more efficient for small structs. If modification is needed, a pointer receiver is used.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Go application processes tasks concurrently using goroutines. How can one goroutine safely signal to another goroutine that a specific task is complete and pass a result?",
+    "options": [
+      "By modifying a shared global variable with a mutex",
+      "By using `time.Sleep` and polling a flag",
+      "By sending the result through a channel",
+      "By returning the result directly from the goroutine function"
+    ],
+    "correctIndex": 2,
+    "explanation": "Channels are the idiomatic way in Go for goroutines to communicate and synchronize, safely passing data between them without explicit locks. Modifying shared memory requires careful synchronization (e.g., mutexes) and is more error-prone.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a system to process a large number of independent tasks using a fixed number of worker goroutines. What Go concurrency primitive is most suitable for distributing these tasks to available workers?",
+    "options": [
+      "A buffered channel for tasks and a `sync.WaitGroup` for workers",
+      "Unbuffered channels for each worker",
+      "`sync.Mutex` around a global task queue",
+      "`select` statement for dynamic worker creation"
+    ],
+    "correctIndex": 0,
+    "explanation": "A buffered channel can queue tasks, allowing producers to send tasks without blocking if workers are busy. A `sync.WaitGroup` is essential to wait for all workers to complete their assigned tasks before shutting down the main goroutine, forming the basis of a robust worker pool.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to add authentication and logging functionality to multiple HTTP handlers in your Go web application without duplicating code. What design pattern from the `net/http` ecosystem is best suited for this?",
+    "options": [
+      "Using separate goroutines for each handler",
+      "Implementing global variables for auth/logging",
+      "Creating custom middleware functions",
+      "Using `defer` statements in each handler"
+    ],
+    "correctIndex": 2,
+    "explanation": "Middleware functions wrap HTTP handlers, allowing pre-processing (like authentication or logging) and post-processing of requests, enabling reusable logic across multiple endpoints without code duplication.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Go HTTP handler receives a JSON payload. What is the idiomatic way to parse this JSON into a Go struct?",
+    "options": [
+      "Manually parse the JSON string character by character",
+      "Use `json.Unmarshal` from the `encoding/json` package",
+      "Convert the JSON to XML and then parse",
+      "Use string splitting functions"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `encoding/json` package provides `json.Unmarshal` for decoding JSON data into Go values (structs, maps, slices) and `json.Marshal` for encoding Go values into JSON, making it the standard and efficient way to handle JSON.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When working with the `database/sql` package in Go, what is the best practice for ensuring database connections are not leaked after a query?",
+    "options": [
+      "Rely on the garbage collector to close connections",
+      "Always call `db.Close()` after every query",
+      "Call `rows.Close()` and `stmt.Close()` (if applicable) explicitly",
+      "Use a global `defer db.Close()` at the start of `main`"
+    ],
+    "correctIndex": 2,
+    "explanation": "It's crucial to explicitly close `*sql.Rows` and `*sql.Stmt` objects using `defer rows.Close()` and `defer stmt.Close()` to release database resources (like connection handles) back to the connection pool, preventing resource exhaustion. `db.Close()` closes the entire database connection pool.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new version of a Go service that introduces schema changes to a PostgreSQL database, what process is essential to apply these changes in a controlled and repeatable manner?",
+    "options": [
+      "Manually alter the database schema using a SQL client",
+      "Restart the Go service to trigger automatic schema updates",
+      "Use a database migration tool (e.g., `migrate`, `golang-migrate/migrate`)",
+      "Drop and recreate the database with the new schema"
+    ],
+    "correctIndex": 2,
+    "explanation": "Database migration tools manage schema changes version by version, allowing developers to apply, roll back, and track database schema evolution in a controlled, repeatable, and environment-agnostic way, which is crucial for production deployments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You suspect a specific function in your Go service is a performance bottleneck. Which Go tool would you use to measure the execution time and memory allocations of this function under various loads?",
+    "options": [
+      "go vet",
+      "go fmt",
+      "go test -bench .",
+      "go run"
+    ],
+    "correctIndex": 2,
+    "explanation": "`go test -bench .` runs benchmark tests, which are specifically designed to measure the performance characteristics (execution time, memory allocations) of Go functions and identify potential bottlenecks within your code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Go microservice needs to emit logs that are easily parseable by log aggregation systems (e.g., ELK stack, Splunk) for filtering and analysis. What logging approach is most suitable?",
+    "options": [
+      "Using `fmt.Println` for all log messages",
+      "Writing custom log messages as plain strings",
+      "Using a structured logging library (e.g., `logrus`, `zap`) to output JSON or key-value pairs",
+      "Directly writing binary data to log files"
+    ],
+    "correctIndex": 2,
+    "explanation": "Structured logging libraries allow logs to be emitted in a machine-readable format (like JSON), including fields for severity, timestamps, specific request IDs, and other context, making them much easier to query, filter, and analyze in centralized logging systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Go service needs to access sensitive information like database credentials and API keys in different environments (development, staging, production). What is the recommended way to inject these secrets without hardcoding them?",
+    "options": [
+      "Store them directly in the application's source code",
+      "Embed them as constants within the binary",
+      "Use environment variables or a secret management system (e.g., Vault, Kubernetes Secrets)",
+      "Pass them as command-line arguments"
+    ],
+    "correctIndex": 2,
+    "explanation": "Environment variables are a standard and secure way to inject configuration, especially secrets, into applications, adhering to the 12-factor app principles. For more complex scenarios, dedicated secret management systems provide enhanced security and rotation capabilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Go service interacting with a database, a developer wants to separate data access logic from business logic. Which design pattern is often used for this purpose to abstract the persistence layer?",
+    "options": [
+      "Factory pattern",
+      "Observer pattern",
+      "Repository pattern",
+      "Adapter pattern"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Repository pattern abstracts the data persistence layer, providing a collection-like interface to interact with data sources. This separation makes business logic independent of specific database implementations, improving testability and maintainability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Go function needs to perform an operation that might take a long time and should be cancellable. What standard library package provides the primary mechanism for managing cancellation and deadlines across API boundaries?",
+    "options": [
+      "sync",
+      "runtime",
+      "context",
+      "os"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `context` package provides types and functions for managing deadlines, cancellation signals, and other request-scoped values across API boundaries and between goroutines. It is fundamental for building robust, cancellable concurrent operations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A long-running database query is initiated within a Go web server. The client disconnects before the query completes. How can the server best stop the query execution gracefully to free up resources?",
+    "options": [
+      "Use `recover()` in a deferred function to catch panics from the query",
+      "Rely on the garbage collector to eventually clean up the query",
+      "Pass a `context.Context` to the query function and check `ctx.Done()`",
+      "Implement a timeout using `time.AfterFunc`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`context.Context` is designed for propagating cancellation signals across API boundaries and goroutines. When the client disconnects, the request context can be canceled, and the database query (if it supports context) can detect this cancellation and stop processing, preventing wasted resources.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During development, a Go application occasionally crashes or produces incorrect results under heavy load, but not consistently. Which Go tool is specifically designed to help identify potential causes for such issues related to concurrent access to shared memory?",
+    "options": [
+      "`go test -v`",
+      "`go build -race`",
+      "`go tool pprof`",
+      "`go vet`"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `go build -race` or `go run -race` flags enable the Go race detector, which instruments the binary to detect data races at runtime – situations where multiple goroutines access the same memory location without proper synchronization, and at least one access is a write. This is crucial for debugging intermittent concurrency issues.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Go API receives JSON input for creating a new user. How should you robustly validate this input (e.g., ensuring email format, required fields) before processing it?",
+    "options": [
+      "Perform validation checks directly within the database layer",
+      "Trust the client to send valid data",
+      "Use struct tags with a validation library (e.g., `go-playground/validator`) after unmarshaling",
+      "Manually check each field using `if` statements throughout the handler"
+    ],
+    "correctIndex": 2,
+    "explanation": "Using a dedicated validation library with struct tags provides a declarative, maintainable, and robust way to validate incoming request bodies after they have been unmarshaled into Go structs, separating validation logic from core business logic. Manual checks are error-prone and verbose.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Go service needs to perform multiple related database operations (e.g., deducting from one account and adding to another) that must either all succeed or all fail together. How should this be implemented to maintain data consistency?",
+    "options": [
+      "Execute each operation independently and hope for the best",
+      "Use separate `INSERT` and `UPDATE` statements without specific grouping",
+      "Wrap all operations within a `sql.Tx` (transaction) and commit/rollback accordingly",
+      "Perform checks in application logic after each operation"
+    ],
+    "correctIndex": 2,
+    "explanation": "Database transactions (`sql.Tx`) ensure atomicity for a series of operations. If any operation fails, the entire transaction can be rolled back, guaranteeing that the database remains in a consistent state. If all operations succeed, the transaction is committed.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Go web service needs to handle incoming requests while shutting down. It should stop accepting new requests, allow in-flight requests to complete within a timeout, and then exit. How can this be implemented?",
+    "options": [
+      "Immediately `os.Exit(0)` upon receiving a shutdown signal",
+      "Use `http.Server.Shutdown()` with a `context.Context` to manage the timeout",
+      "Rely on the operating system to forcefully terminate the process",
+      "Set a flag and manually check it in all handlers"
+    ],
+    "correctIndex": 1,
+    "explanation": "`http.Server.Shutdown()` is the idiomatic way to achieve graceful shutdown for `net/http` servers in Go. It stops the listener, waits for active connections to finish (or times out via the provided `context`), and then returns, allowing the application to clean up resources before exiting.",
+    "difficulty": "hard"
+  }
+]

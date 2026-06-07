@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary goal of a Platform Engineer in an organization?",
+    "options": [
+      "To develop customer-facing features directly.",
+      "To manage internal developer platforms that enhance developer productivity and experience.",
+      "To handle all IT support tickets for developers.",
+      "To design and implement marketing websites."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Platform Engineer's main objective is to build and maintain internal platforms that streamline development workflows, providing self-service capabilities and \"golden paths\" for other engineers, thereby improving their productivity and overall developer experience.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A \"golden path\" in the context of an internal developer platform refers to:",
+    "options": [
+      "The most complex and difficult way to achieve a task.",
+      "A recommended, opinionated, and streamlined path for developers to accomplish common tasks efficiently.",
+      "A legacy system that developers are forced to use.",
+      "A specific CI/CD pipeline used only for hotfixes."
+    ],
+    "correctIndex": 1,
+    "explanation": "A golden path is an opinionated, well-supported, and documented path within the platform that simplifies complex processes for developers, enabling them to build, deploy, and operate applications with minimal friction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is an essential tool for version control in a Platform Engineer's daily workflow?",
+    "options": [
+      "Jira",
+      "Slack",
+      "Git",
+      "Confluence"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is a distributed version control system essential for tracking changes in code, infrastructure as code (IaC), and documentation, enabling collaboration and ensuring a reliable change history.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your team is building a new microservice and needs a consistent way to provision its infrastructure in Kubernetes. Which approach aligns best with the Platform Engineering principle of self-service infrastructure and golden paths?",
+    "options": [
+      "Manually creating Kubernetes manifests for each service.",
+      "Providing a command-line tool or web portal that abstracts Kubernetes complexities and provisions resources based on predefined templates.",
+      "Having a dedicated operations team provision everything on request.",
+      "Using a shell script to deploy resources without any templating."
+    ],
+    "correctIndex": 1,
+    "explanation": "Platform Engineering emphasizes providing self-service capabilities through abstractions and automation. A tool or portal leveraging predefined templates allows developers to provision infrastructure consistently and independently, following the established golden path, without needing deep Kubernetes expertise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a new internal platform component, you are considering implementing it as a reusable module that other teams can easily integrate. Which characteristic is most important for promoting its adoption?",
+    "options": [
+      "It must be written in the most obscure programming language.",
+      "It should have extensive, clear documentation and adhere to common configuration patterns.",
+      "It must be highly customizable for every edge case, even if it adds significant complexity.",
+      "It should require manual approval from the platform team for every usage."
+    ],
+    "correctIndex": 1,
+    "explanation": "For reusability and adoption, clear documentation, well-defined interfaces, and consistent configuration patterns are crucial. They lower the barrier to entry and reduce friction for consuming teams. Over-customization often leads to increased complexity and maintenance burden.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Platform Engineer is tasked with ensuring the reliability of a new CI/CD pipeline component. What type of testing would be most effective for verifying its resilience to common network failures or temporary service outages?",
+    "options": [
+      "Unit testing each individual function of the component.",
+      "Integration testing to ensure it connects correctly with other systems.",
+      "Chaos engineering by intentionally injecting failures into the environment.",
+      "Manual user acceptance testing after deployment."
+    ],
+    "correctIndex": 2,
+    "explanation": "While unit and integration testing are important, chaos engineering specifically targets verifying resilience by deliberately introducing failures (like network latency, service restarts) in a controlled manner to observe how the system behaves and recovers. This is crucial for reliability in production.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a new platform service, what is the immediate next step a Platform Engineer should prioritize to ensure its operational health?",
+    "options": [
+      "Start planning the next feature.",
+      "Implement comprehensive monitoring and alerting.",
+      "Remove all documentation.",
+      "Delegate all operational tasks to the development team."
+    ],
+    "correctIndex": 1,
+    "explanation": "Implementing robust monitoring and alerting is critical immediately after deployment to gain visibility into the service's performance, availability, and potential issues, allowing for proactive incident response and ensuring operational health.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your team is building a new secrets management service for the internal platform. To minimize the blast radius in case of a compromise, which design principle should be prioritized?",
+    "options": [
+      "Store all secrets in a single, highly available database.",
+      "Implement strong access controls based on the principle of least privilege and regularly rotate credentials.",
+      "Allow developers full administrative access to retrieve any secret for convenience.",
+      "Encrypt secrets only when they are at rest, not in transit."
+    ],
+    "correctIndex": 1,
+    "explanation": "The principle of least privilege ensures that users and services only have access to the secrets they absolutely need, reducing the impact if an account or service is compromised. Regular credential rotation further mitigates the risk of long-lived, compromised secrets.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When a Platform Engineer is preparing to release a significant update to a core platform service, what artifact is essential for communicating the changes, new features, and potential breaking changes to consuming teams?",
+    "options": [
+      "A single commit message for the entire release.",
+      "Detailed release notes.",
+      "An internal memo with no technical details.",
+      "A personal email to each developer."
+    ],
+    "correctIndex": 1,
+    "explanation": "Detailed release notes are crucial for communicating comprehensive information about a new release, including new features, bug fixes, improvements, and any breaking changes, enabling consuming teams to adapt their applications accordingly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a key component of demonstrating your Platform Engineer skills for career readiness?",
+    "options": [
+      "Listing all the programming languages you've ever heard of.",
+      "Creating case studies that detail problems, solutions, and outcomes of your platform projects.",
+      "Only showcasing theoretical knowledge without practical examples.",
+      "Attending job fairs without a portfolio."
+    ],
+    "correctIndex": 1,
+    "explanation": "Case studies, along with GitHub artifacts and demos, provide concrete proof of your practical skills, problem-solving abilities, and the impact of your work, which is vital for career readiness.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Platform Engineer case study, what section should clearly articulate the challenges faced before your platform solution was implemented?",
+    "options": [
+      "The \"Next Improvements\" section.",
+      "The \"Implementation Details\" section.",
+      "The \"Problem and Constraints\" section.",
+      "The \"Validation and Outcomes\" section."
+    ],
+    "correctIndex": 2,
+    "explanation": "The \"Problem and Constraints\" section of a case study is where you define the initial challenges, pain points, and limitations that your platform engineering solution aimed to address, setting the context for your work.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "For a portfolio-grade Platform Engineer project focused on building a self-service CI/CD pipeline, which element would best demonstrate the platform's reusability and extensibility to potential employers?",
+    "options": [
+      "A simple screenshot of the pipeline running once.",
+      "A comprehensive README detailing the problem, solution, architecture, and deployment instructions, along with examples of how new services can integrate.",
+      "A list of all tools used without context.",
+      "An explanation of only one specific service using the pipeline, without generalization."
+    ],
+    "correctIndex": 1,
+    "explanation": "A comprehensive README with architectural details, deployment instructions, and concrete examples of how various services can integrate demonstrates the thought process behind designing a reusable and extensible platform, highlighting its value proposition.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An organization is experiencing slow and inconsistent software delivery. Developers frequently wait for manual infrastructure provisioning. Which Platform Engineering problem does this scenario best represent, and how does a platform typically address it?",
+    "options": [
+      "Lack of feature velocity; by implementing more agile methodologies.",
+      "Poor developer experience and inefficient workflows; by providing self-service infrastructure and automated golden paths.",
+      "High cloud costs; by migrating to on-premises servers.",
+      "Insufficient technical documentation; by hiring more technical writers."
+    ],
+    "correctIndex": 1,
+    "explanation": "This scenario directly points to poor developer experience due to manual bottlenecks. Platform Engineering tackles this by abstracting complexities and offering automated, self-service infrastructure through predefined \"golden paths,\" allowing developers to provision resources quickly and consistently.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a Platform Engineer designs a \"self-service\" capability, what is the primary benefit for developers?",
+    "options": [
+      "It eliminates the need for any kind of review process.",
+      "It allows developers to provision or manage resources without direct intervention from the platform team.",
+      "It restricts developers to only use approved technologies.",
+      "It forces developers to learn the intricate details of infrastructure management."
+    ],
+    "correctIndex": 1,
+    "explanation": "Self-service empowers developers to autonomously provision and manage their infrastructure and services through automated interfaces provided by the platform, reducing dependencies on the platform team and speeding up development cycles.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Platform Engineer is tasked with creating repeatable infrastructure deployments across multiple environments (dev, staging, production). Which tool category is most appropriate for achieving this efficiently and consistently?",
+    "options": [
+      "Monitoring and alerting tools.",
+      "Infrastructure as Code (IaC) tools like Terraform or Pulumi.",
+      "Project management tools.",
+      "Static code analysis tools."
+    ],
+    "correctIndex": 1,
+    "explanation": "Infrastructure as Code (IaC) tools allow defining infrastructure in code, enabling version control, automated provisioning, and consistent deployments across different environments, which is a core skill for Platform Engineers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your platform team is debating between offering a highly opinionated \"golden path\" for deploying microservices versus a more flexible, customizable platform that allows teams to choose their own tooling. What is the primary tradeoff of opting for the highly opinionated golden path?",
+    "options": [
+      "Increased operational overhead for the platform team.",
+      "Potential for decreased developer velocity due to excessive choices.",
+      "Reduced flexibility for teams with unique or advanced requirements.",
+      "Higher initial development cost for the platform itself."
+    ],
+    "correctIndex": 2,
+    "explanation": "While a highly opinionated golden path significantly improves developer velocity and consistency for common use cases, its main tradeoff is reduced flexibility. Teams with highly specialized, unique, or advanced requirements might find the golden path too restrictive and may need to build outside it, potentially creating shadow IT or requiring platform team exceptions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Before a new platform feature is rolled out, the Platform team conducts a review. Beyond functional correctness, what aspect should be rigorously checked to ensure good developer experience?",
+    "options": [
+      "The speed at which the feature was developed.",
+      "The comprehensiveness and clarity of its documentation and usage examples.",
+      "The number of lines of code written for the feature.",
+      "The personal preferences of the lead developer."
+    ],
+    "correctIndex": 1,
+    "explanation": "A key aspect of Platform Engineering is enhancing developer experience. Comprehensive and clear documentation, along with practical usage examples, is critical for developers to effectively adopt and utilize new platform features, reducing friction and support requests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical platform service has just experienced an outage. As a Platform Engineer, after restoring the service, what is the most important next step to prevent future recurrences and improve system reliability?",
+    "options": [
+      "Immediately implement new features to distract from the outage.",
+      "Conduct a blameless post-mortem to analyze the root cause, document findings, and identify actionable improvements.",
+      "Assign blame to the developer who introduced the last change.",
+      "Ignore the incident if the service is now back up."
+    ],
+    "correctIndex": 1,
+    "explanation": "A blameless post-mortem is crucial for learning from incidents. It focuses on systemic issues rather than individual blame, identifies root causes, documents lessons learned, and drives actionable improvements to enhance the system's reliability and resilience.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To enhance the security of containerized applications running on the platform, what practice should a Platform Engineer enforce regarding base images?",
+    "options": [
+      "Use the largest possible base images for maximum compatibility.",
+      "Regularly scan base images for vulnerabilities and use minimal, trusted base images.",
+      "Allow developers to use any base image they prefer without review.",
+      "Rebuild base images only once a year."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using minimal, trusted base images reduces the attack surface, and regularly scanning them for known vulnerabilities (CVEs) is crucial for maintaining security hygiene in a containerized environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a team delivery workflow, what is the primary purpose of a \"Pull Request\" (PR)?",
+    "options": [
+      "To deploy code directly to production without review.",
+      "To propose changes, discuss them, and get them reviewed before merging into the main codebase.",
+      "To report a bug in the production environment.",
+      "To request a new feature from the product owner."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Pull Request (or Merge Request) is a mechanism for proposing changes to a codebase, facilitating code review, discussion, and collaboration among team members before integrating changes into the main branch.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Platform Engineer is tasked with automating the deployment of a stateless microservice to Kubernetes. Which Kubernetes resource is typically used to define and manage a set of identical, replicated pods?",
+    "options": [
+      "Service",
+      "Ingress",
+      "Deployment",
+      "ConfigMap"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Kubernetes Deployment is used to declare the desired state for a set of replicated pods. It handles creating, updating, and scaling pods, and can manage rolling updates and rollbacks, making it ideal for stateless microservices.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a \"developer portal\" for an internal platform, which principle is most crucial for its success and adoption?",
+    "options": [
+      "It should expose raw API endpoints without any explanation.",
+      "It must be a centralized hub offering self-service capabilities, clear documentation, and a consistent user experience.",
+      "It should only be accessible to the platform team.",
+      "It must require extensive manual configuration for each new service."
+    ],
+    "correctIndex": 1,
+    "explanation": "A successful developer portal acts as a single pane of glass, providing easy access to documentation, self-service tools, and consistent interfaces, significantly improving developer experience and platform adoption.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your platform team is introducing a new service that will manage critical metadata for all other internal services. To ensure high availability and data integrity, what operational strategy should be prioritized for this new service?",
+    "options": [
+      "Run it on a single, powerful server to simplify management.",
+      "Implement strong eventual consistency models without robust conflict resolution mechanisms.",
+      "Design for redundancy across multiple availability zones/regions, employ robust backup and restore procedures, and define clear RTO/RPO objectives.",
+      "Rely solely on manual intervention during failures."
+    ],
+    "correctIndex": 2,
+    "explanation": "For critical services requiring high availability and data integrity, designing for redundancy (e.g., across zones/regions), implementing comprehensive backup/restore, and explicitly defining Recovery Time Objective (RTO) and Recovery Point Objective (RPO) are paramount. This minimizes downtime and data loss in failure scenarios.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Platform Engineer is setting up alerting for a new service. Which metric type is most indicative of the actual user experience and application health?",
+    "options": [
+      "CPU utilization of the underlying server.",
+      "Disk space usage.",
+      "Latency of API requests and error rates (e.g., HTTP 5xx errors).",
+      "Number of active network connections."
+    ],
+    "correctIndex": 2,
+    "explanation": "Latency and error rates directly reflect the quality of service experienced by users. While CPU and disk space are important infrastructure metrics, they are often precursors to problems and don't always directly correlate with user-perceived performance or availability as closely as service-level metrics like latency and error rates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As a Platform Engineer, you are debugging a complex issue in a distributed system where multiple microservices interact. Which type of tool would be most effective for tracing requests across service boundaries and identifying bottlenecks or failures?",
+    "options": [
+      "A simple text editor.",
+      "A version control system like Git.",
+      "A distributed tracing tool (e.g., Jaeger, OpenTelemetry).",
+      "A local debugger for a single application."
+    ],
+    "correctIndex": 2,
+    "explanation": "Distributed tracing tools are specifically designed to visualize and track the flow of requests as they traverse multiple services in a distributed system. This helps in understanding service dependencies, identifying performance bottlenecks, and pinpointing the exact location of failures that might not be obvious from individual service logs.",
+    "difficulty": "moderate"
+  }
+]

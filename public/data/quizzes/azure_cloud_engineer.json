@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary purpose of an Azure Cloud Engineer in an organization?",
+    "options": [
+      "Deploying and managing Azure resources",
+      "Developing web applications",
+      "Designing physical network infrastructure",
+      "Performing financial audits"
+    ],
+    "correctIndex": 0,
+    "explanation": "The core role of an Azure Cloud Engineer involves operating, deploying, and managing Azure cloud services and infrastructure, ensuring they meet organizational requirements for performance, security, and cost.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Azure resource is primarily used for storing unstructured data such as images, videos, and documents?",
+    "options": [
+      "Azure SQL Database",
+      "Azure Virtual Machine",
+      "Azure Blob Storage",
+      "Azure Cosmos DB"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Blob Storage is specifically optimized for storing massive amounts of unstructured object data, making it ideal for images, videos, documents, and backup files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What service provides centralized identity and access management for Azure resources and cloud applications?",
+    "options": [
+      "Azure DNS",
+      "Azure Active Directory",
+      "Azure Monitor",
+      "Azure Front Door"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Active Directory (AAD) is Microsoft's cloud-based identity and access management service, providing authentication and authorization for users, groups, and applications to access Azure resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Azure networking, what is a Virtual Network (VNet) primarily used for?",
+    "options": [
+      "Storing application logs",
+      "Isolating resources in a private network",
+      "Hosting web applications",
+      "Managing database connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "An Azure Virtual Network (VNet) is a logical isolation of the Azure cloud dedicated to your subscription, enabling you to launch Azure resources into a private, isolated network.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command-line tool is commonly used by Azure Cloud Engineers to manage Azure resources directly from a terminal?",
+    "options": [
+      "npm",
+      "Docker CLI",
+      "Azure CLI",
+      "Kubernetes kubectl"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Azure CLI (Command-Line Interface) is a cross-platform command-line tool that allows you to execute commands and manage Azure resources directly from your terminal or scripts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Azure compute service allows you to run virtualized operating systems and customize their configuration, similar to on-premises servers?",
+    "options": [
+      "Azure Functions",
+      "Azure Container Instances",
+      "Azure App Service",
+      "Azure Virtual Machines"
+    ],
+    "correctIndex": 3,
+    "explanation": "Azure Virtual Machines (VMs) provide Infrastructure-as-a-Service (IaaS), allowing users to deploy and manage virtualized operating systems with full control over their configuration, just like on-premises servers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Infrastructure as Code (IaC) in the context of Azure deployments?",
+    "options": [
+      "Managing physical server hardware",
+      "Manually configuring Azure resources through the portal",
+      "Provisioning and managing infrastructure using code",
+      "Developing application code for cloud platforms"
+    ],
+    "correctIndex": 2,
+    "explanation": "Infrastructure as Code (IaC) is the practice of provisioning and managing your infrastructure (networks, virtual machines, databases, etc.) using machine-readable definition files, rather than manual configuration or interactive tools.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company needs to store large files that are frequently accessed by virtual machines within the same Azure region. Which Azure storage solution would provide low-latency access and high throughput for this scenario?",
+    "options": [
+      "Azure Archive Storage",
+      "Azure Data Lake Storage Gen2",
+      "Azure Premium SSD Managed Disks",
+      "Azure Blob Storage (Hot Tier)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Premium SSD Managed Disks offer high performance, low latency, and high throughput, making them ideal for I/O-intensive workloads on Azure Virtual Machines that require frequent access to data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a network for an application that requires multiple subnets, some of which should only communicate with specific services and others with the internet. How would you best implement network-level security and traffic filtering between these subnets within an Azure VNet?",
+    "options": [
+      "Use Azure DDoS Protection",
+      "Implement Azure Front Door",
+      "Configure Network Security Groups (NSGs)",
+      "Deploy an Application Gateway"
+    ],
+    "correctIndex": 2,
+    "explanation": "Network Security Groups (NSGs) allow you to filter network traffic to and from Azure resources in an Azure VNet. They provide granular control over inbound and outbound traffic at both the subnet and network interface levels.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Azure Cloud Engineer needs to automate the scaling of a Virtual Machine Scale Set based on custom metrics not directly available via Azure Monitor's standard metrics. Which Azure service can be used to achieve this custom automation?",
+    "options": [
+      "Azure Logic Apps",
+      "Azure Automation Runbooks",
+      "Azure Functions with an HTTP trigger",
+      "Azure Event Grid"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Automation Runbooks (PowerShell or Python) are designed for performing operational tasks, including custom automation. They can interact with Azure Monitor logs or external systems to gather custom metrics and then use Azure CLI/PowerShell cmdlets to adjust scale sets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company policy dictates that all Azure Virtual Machines must be deployed within a specific SKU size range and tagged with \"Environment\" and \"CostCenter\" tags. How can an Azure Cloud Engineer enforce this policy across all subscriptions in a management group?",
+    "options": [
+      "Manually review each VM deployment",
+      "Create a custom Azure Policy definition and assign it",
+      "Implement Azure Cost Management alerts",
+      "Use Azure Advisor recommendations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Azure Policy allows you to define and enforce rules for your Azure resources. By creating a custom policy definition for SKU size and required tags, and then assigning it at the management group scope, you can ensure compliance across all linked subscriptions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an Infrastructure as Code (IaC) solution using ARM templates for a complex application with multiple resource groups and environments (dev, test, prod), what is the recommended pattern for promoting reusability and maintainability?",
+    "options": [
+      "Create a single monolithic ARM template for the entire application",
+      "Duplicate the ARM templates for each environment",
+      "Use linked or nested ARM templates with parameters",
+      "Store all templates directly in Azure Storage Accounts"
+    ],
+    "correctIndex": 2,
+    "explanation": "Using linked or nested ARM templates allows you to modularize your infrastructure code. You can define reusable components in separate templates and combine them, passing environment-specific parameters to customize deployments for dev, test, and prod.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a critical update to a production Azure App Service, a Cloud Engineer wants to ensure that the new code functions correctly and does not introduce regressions. What feature of Azure App Service can facilitate testing the new version without impacting the live site?",
+    "options": [
+      "Azure Backup",
+      "Deployment Slots",
+      "Azure DDoS Protection",
+      "Azure Traffic Manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deployment slots in Azure App Service allow you to deploy different versions of your application to separate endpoints. This enables you to test a new version in a production-like environment (a non-production slot) before swapping it to the main production slot, ensuring no downtime or impact on the live site during testing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team experiences intermittent performance issues with their Azure Web App. As the Cloud Engineer, which Azure service would you primarily use to collect logs, metrics, and application performance data to diagnose and troubleshoot these issues?",
+    "options": [
+      "Azure Security Center",
+      "Azure Service Health",
+      "Azure Monitor",
+      "Azure Data Explorer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Monitor is the comprehensive solution for collecting, analyzing, and acting on telemetry from your Azure and on-premises environments. It provides capabilities for gathering metrics, logs, application performance data, and creating alerts to diagnose issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To enhance the security of Azure Virtual Machines, a Cloud Engineer wants to implement a solution that allows access to the VM's management ports (e.g., RDP, SSH) only when explicitly requested and for a limited time. Which Azure Security feature provides this capability?",
+    "options": [
+      "Azure Firewall",
+      "Just-in-Time (JIT) VM access",
+      "Azure Active Directory Conditional Access",
+      "Network Security Groups (NSGs)"
+    ],
+    "correctIndex": 1,
+    "explanation": "Just-in-Time (JIT) VM access is an Azure Security Center feature that minimizes exposure to network attacks by controlling when users can connect to VMs and only opening required ports for a limited, specified time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a CI/CD pipeline execution in Azure DevOps, an Azure Cloud Engineer needs to ensure that an ARM template deployment only proceeds after a manual approval from a senior engineer. How would this be configured in the pipeline?",
+    "options": [
+      "Add a `sleep` command in the script",
+      "Implement a pre-deployment gate with an approval",
+      "Use an Azure Policy to block deployments",
+      "Configure a schedule trigger for the deployment"
+    ],
+    "correctIndex": 1,
+    "explanation": "In CI/CD pipelines like Azure DevOps, pre-deployment gates with manual approvals are used to pause the pipeline and require explicit sign-off from designated individuals before proceeding with a deployment to a target environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A web application hosted on Azure App Service needs to securely access secrets (like database connection strings and API keys) without embedding them directly in the application code or configuration files. What is the recommended Azure service to store and manage these secrets?",
+    "options": [
+      "Azure Storage Account",
+      "Azure Cosmos DB",
+      "Azure Key Vault",
+      "Azure Event Hubs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Key Vault is specifically designed to securely store and manage cryptographic keys, secrets (like connection strings and API keys), and certificates. Applications can retrieve these secrets at runtime using Managed Identities, without them ever being exposed in code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are tasked with migrating an on-premises file share to Azure. The files need to be accessible via SMB protocol by Azure Virtual Machines and also be synchronized with the on-premises share for a hybrid setup. Which Azure service is best suited for this requirement?",
+    "options": [
+      "Azure Blob Storage",
+      "Azure Table Storage",
+      "Azure File Sync with Azure Files",
+      "Azure NetApp Files"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure File Sync extends Azure Files, which provides fully managed file shares in the cloud (accessible via SMB/NFS), to enable synchronization between on-premises Windows Servers and Azure file shares, creating a hybrid cloud file solution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Azure environment has multiple subscriptions and resource groups. You need to implement a solution to track and categorize costs effectively for different departments and projects. What strategy should you employ?",
+    "options": [
+      "Consolidate all resources into a single resource group",
+      "Use resource tagging and Azure Cost Management",
+      "Implement separate Azure Active Directory tenants",
+      "Manually track costs using spreadsheets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Resource tagging allows you to logically organize your Azure resources by associating custom metadata (tags) with them. Azure Cost Management uses these tags to break down and analyze costs by various criteria like department, project, or environment across subscriptions and resource groups.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To protect an Azure Virtual Network from inbound and outbound threats, including URL filtering and threat intelligence-based filtering, which service would an Azure Cloud Engineer deploy at the network perimeter?",
+    "options": [
+      "Network Security Group (NSG)",
+      "Azure Front Door",
+      "Azure Application Gateway",
+      "Azure Firewall"
+    ],
+    "correctIndex": 3,
+    "explanation": "Azure Firewall is a managed, cloud-based network security service that provides network and application-level protection across your Azure Virtual Network resources. It includes features like URL filtering, threat intelligence-based filtering, and FQDN filtering.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An enterprise application deployed on Azure Kubernetes Service (AKS) processes highly sensitive customer data. The requirement is to ensure that all communication from the AKS cluster to backend Azure PaaS services (like Azure SQL Database, Azure Key Vault) happens over a private network, without traversing the public internet. What is the most robust and secure network design pattern to achieve this?",
+    "options": [
+      "Configure NSGs on the AKS subnets to block public outbound traffic",
+      "Implement a custom proxy server within the VNet",
+      "Deploy Private Endpoints for each PaaS service and integrate with the AKS VNet",
+      "Utilize Service Endpoints for the PaaS services"
+    ],
+    "correctIndex": 2,
+    "explanation": "Deploying Private Endpoints for each PaaS service integrates the service directly into your virtual network using a private IP address. This ensures that all traffic between the AKS cluster and the PaaS services remains entirely within the Azure backbone network, never traversing the public internet, offering the highest level of network isolation and security.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A large organization requires a standardized and repeatable way to deploy entire environments (networking, compute, storage, governance policies) across multiple subscriptions, ensuring compliance with internal standards from day one. Which Azure service or concept is specifically designed to achieve this consistent environment deployment and policy enforcement?",
+    "options": [
+      "Azure Resource Manager (ARM) templates",
+      "Azure PowerShell scripts",
+      "Azure Blueprints",
+      "Azure Policy assignments"
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure Blueprints allow you to define a repeatable set of Azure resources, role assignments, and policies that comply with organizational standards and requirements. It orchestrates the deployment of various artifact types (like ARM templates and policy assignments) to ensure consistent, compliant environments from initial setup.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are managing a critical, globally distributed application on Azure that must achieve a 99.99% availability SLA. The application utilizes Azure Front Door for global routing and caching, Azure App Services in multiple regions, and geo-redundant storage. To proactively identify potential issues and ensure the SLA, what advanced monitoring and alerting strategy would you implement?",
+    "options": [
+      "Basic Azure Monitor alerts on CPU/memory for individual App Services",
+      "Rely solely on Azure Service Health notifications",
+      "Configure application insights for end-to-end transaction tracing, custom metrics, and smart detection",
+      "Implement a nightly health check script that emails the team"
+    ],
+    "correctIndex": 2,
+    "explanation": "For a 99.99% SLA, deep application performance monitoring is crucial. Azure Application Insights provides end-to-end transaction tracing across distributed components, allows for custom metric collection, and leverages AI-driven smart detection to proactively identify performance anomalies and failures, which is essential for maintaining high availability in complex global architectures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company is migrating an on-premises multi-tier application to Azure. The application's database tier requires highly sensitive data encryption both at rest and in transit. Additionally, the customer demands full control over the encryption keys, requiring the ability to revoke access to the keys at any time. Which Azure database and key management solution combination would satisfy these requirements?",
+    "options": [
+      "Azure SQL Database with Service-Managed Keys",
+      "Azure Database for PostgreSQL with CMK (Customer-Managed Key) in Azure Key Vault",
+      "Azure Cosmos DB with Microsoft-Managed Keys",
+      "Azure SQL Database with Always Encrypted and Customer-Managed Keys in Azure Key Vault"
+    ],
+    "correctIndex": 3,
+    "explanation": "Azure SQL Database with Always Encrypted ensures data is encrypted at the column level within the database and remains encrypted in transit and in memory, giving the customer control over the encryption keys. By using Customer-Managed Keys (CMK) stored in Azure Key Vault, the customer maintains full control, including the ability to revoke access to the keys, thus rendering the data unusable even to Azure administrators.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A new feature requires deploying a set of Azure resources (VMs, networking, storage) and then running a custom script on the VMs as a post-deployment step. The entire process needs to be idempotent, trackable, and reversible as part of a continuous deployment pipeline. Which approach provides the most robust and integrated solution for this scenario?",
+    "options": [
+      "Manually deploy resources via the Azure portal and then SSH into VMs to run scripts",
+      "Use an ARM template for resource deployment followed by a custom script extension in the ARM template",
+      "Deploy resources with Azure CLI commands and then use a separate Azure Automation Runbook for post-deployment scripts",
+      "Implement a Terraform configuration for resources and a separate Azure DevOps pipeline step for a custom script"
+    ],
+    "correctIndex": 1,
+    "explanation": "Integrating a Custom Script Extension directly within the ARM template ensures that the script execution is part of the overall infrastructure deployment. This makes the process idempotent (rerunnable), trackable through ARM deployment history, and provides a cohesive unit for both infrastructure and initial configuration within an Azure-native deployment context, supporting reversible deployments through template updates.",
+    "difficulty": "hard"
+  }
+]

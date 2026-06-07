@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new iOS developer wants to declare a constant that stores the name of the app. Which Swift keyword should they use?",
+    "options": [
+      "var",
+      "let",
+      "static",
+      "const"
+    ],
+    "correctIndex": 1,
+    "explanation": "`let` is used to declare constants in Swift, meaning their value cannot be changed after initialization. `var` is for variables, `static` for type properties/methods, and `const` is not a Swift keyword.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "While developing a SwiftUI view, an iOS developer wants to see live updates of their UI without running the app on a simulator or device. Which Xcode feature provides this capability?",
+    "options": [
+      "Breakpoints",
+      "Instruments",
+      "Previews",
+      "Scheme Editor"
+    ],
+    "correctIndex": 2,
+    "explanation": "SwiftUI Previews allow developers to see real-time renderings of their UI code within Xcode, facilitating rapid iteration. Breakpoints are for debugging, Instruments for performance analysis, and Scheme Editor for build/run configurations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To arrange three Text views vertically in a SwiftUI interface, what is the most appropriate layout container to use?",
+    "options": [
+      "HStack",
+      "ZStack",
+      "VStack",
+      "Grid"
+    ],
+    "correctIndex": 2,
+    "explanation": "`VStack` arranges its child views in a vertical line. `HStack` arranges views horizontally, `ZStack` layers views from back to front, and `Grid` is for more complex grid layouts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An iOS developer wants to create a simple toggle switch in SwiftUI where its `isOn` state is managed directly within the view itself. Which property wrapper is suitable for this purpose?",
+    "options": [
+      "@Binding",
+      "@EnvironmentObject",
+      "@Published",
+      "@State"
+    ],
+    "correctIndex": 3,
+    "explanation": "`@State` is used for managing simple, local value types within a SwiftUI view, making it the ideal choice for a view's own internal state like a toggle's `isOn` property. `@Binding` is for passing state to child views, `@EnvironmentObject` for shared state across a view hierarchy, and `@Published` is used with `ObservableObject` classes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A function needs to return a `String`, but in some error cases, it might not be able to produce a valid string. How should the return type be declared to indicate that a `String` might be absent?",
+    "options": [
+      "String!",
+      "String?",
+      "String??",
+      "Optional<String>"
+    ],
+    "correctIndex": 1,
+    "explanation": "`String?` (or `Optional<String>`) declares an optional type, indicating that the variable or return value might contain a `String` or `nil`. `String!` is an implicitly unwrapped optional, and `String??` is a double optional which is rarely used in this context.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "For storing a small piece of user preference data, such as whether a user has seen an onboarding tutorial, which built-in iOS persistence mechanism is most suitable?",
+    "options": [
+      "Core Data",
+      "SwiftData",
+      "UserDefaults",
+      "File System"
+    ],
+    "correctIndex": 2,
+    "explanation": "`UserDefaults` is ideal for storing small amounts of user preferences, settings, and other app-specific data. Core Data and SwiftData are for more complex object graphs and larger datasets, while the File System is for arbitrary files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before submitting an app to the App Store for public release, an iOS developer wants to distribute beta versions to a select group of testers to gather feedback. Which Apple service is designed for this purpose?",
+    "options": [
+      "App Store Connect",
+      "Developer Portal",
+      "TestFlight",
+      "Xcode Cloud"
+    ],
+    "correctIndex": 2,
+    "explanation": "TestFlight is Apple's service for beta testing iOS apps before their official release on the App Store. App Store Connect is for managing app submissions, Developer Portal for certificates/identifiers, and Xcode Cloud for CI/CD.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An iOS developer is designing a `Point` data type with `x` and `y` coordinates. Since points are typically small, value-based entities that are copied when assigned and passed, which Swift type is generally preferred?",
+    "options": [
+      "class",
+      "enum",
+      "struct",
+      "protocol"
+    ],
+    "correctIndex": 2,
+    "explanation": "`struct`s are value types in Swift, meaning they are copied when assigned or passed, which is suitable for small, independent data models like `Point`. `class`es are reference types. `enum`s are for distinct cases, and `protocol`s define blueprints of methods/properties.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To allow users to navigate from a list of items to a detail view for a selected item in SwiftUI, which view container and navigation component combination is typically used?",
+    "options": [
+      "VStack with Link",
+      "HStack with Button",
+      "NavigationView (or NavigationStack/NavigationSplitView) with NavigationLink",
+      "ZStack with Toggle"
+    ],
+    "correctIndex": 2,
+    "explanation": "For hierarchical navigation, `NavigationView` (or the newer `NavigationStack`/`NavigationSplitView` in iOS 16+) combined with `NavigationLink` is the standard pattern in SwiftUI to push new views onto a navigation stack. `Link` is for opening URLs, `Button` for actions, and `Toggle` for boolean states.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An iOS developer wants to share a complex data model, `UserProfile`, across multiple views in a SwiftUI application without explicitly passing it down through every initializer. Which SwiftUI property wrapper and object type combination is best suited for this global-like state management?",
+    "options": [
+      "@State with struct",
+      "@Binding with class",
+      "@EnvironmentObject with ObservableObject",
+      "@Published with enum"
+    ],
+    "correctIndex": 2,
+    "explanation": "`@EnvironmentObject` is designed to inject an `ObservableObject` instance into a view hierarchy from an ancestor, making it accessible to any descendant view without manual passing. `@State` is for local value types, `@Binding` for passing state to child views, and `@Published` is a property wrapper *within* an `ObservableObject`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An app needs to fetch JSON data from a remote API and display it. The JSON response directly maps to a Swift `struct`. Which Swift protocol should the `struct` conform to to easily convert the JSON data into a Swift object using `JSONDecoder`?",
+    "options": [
+      "Hashable",
+      "Comparable",
+      "Codable",
+      "Identifiable"
+    ],
+    "correctIndex": 2,
+    "explanation": "`Codable` is a type alias for both `Encodable` and `Decodable` protocols. Conforming to `Codable` allows Swift types to be easily converted to and from external representations like JSON using `JSONEncoder` and `JSONDecoder`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To define a persistent model for an entity named `Task` with properties `title` (String) and `isComplete` (Bool) using SwiftData, which attribute should be applied to the `Task` class?",
+    "options": [
+      "@Model",
+      "@Persistent",
+      "@DataStore",
+      "@CoreData"
+    ],
+    "correctIndex": 0,
+    "explanation": "In SwiftData, the `@Model` macro is used to designate a class as a persistent model, automatically generating the necessary boilerplate for storing and retrieving its instances. The other options are not standard SwiftData attributes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When writing a unit test for a function that fetches data from a network, it's often desirable to isolate the function from actual network calls to ensure test reliability and speed. What technique is commonly used to achieve this isolation?",
+    "options": [
+      "UI testing",
+      "Integration testing",
+      "Mocking",
+      "End-to-end testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Mocking involves creating simulated versions of dependencies (like network services) that return predictable data, allowing the unit under test to be tested in isolation without relying on external systems. UI testing tests the user interface, Integration testing tests interaction between components, and End-to-end testing tests the entire system.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An iOS development team is building a complex feature where view logic is kept separate from data management logic, and a dedicated `ViewModel` acts as an intermediary to provide data to the `View` and handle its actions. Which architectural pattern are they likely implementing?",
+    "options": [
+      "MVC (Model-View-Controller)",
+      "MVVM (Model-View-ViewModel)",
+      "VIPER",
+      "Redux"
+    ],
+    "correctIndex": 1,
+    "explanation": "MVVM is a popular architectural pattern in iOS development, especially with SwiftUI, where the `ViewModel` abstracts the data and business logic from the `View`, making the view more declarative and testable. MVC is the traditional Apple pattern, VIPER is more rigid, and Redux is a state management pattern.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An app features a custom `Button` with only an icon and no visible text. To make this button accessible for users with visual impairments using VoiceOver, what is the most important property to set?",
+    "options": [
+      "tintColor",
+      "alpha",
+      "accessibilityLabel",
+      "isUserInteractionEnabled"
+    ],
+    "correctIndex": 2,
+    "explanation": "`accessibilityLabel` provides a concise, localized description of the UI element's purpose to accessibility technologies like VoiceOver, allowing users to understand the button's action even without visual text. Other properties relate to visual appearance or interaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An iOS app is crashing intermittently, and the developer suspects a memory leak. Which Xcode tool is specifically designed to help identify and analyze memory-related issues and performance bottlenecks?",
+    "options": [
+      "Breakpoints",
+      "LLDB",
+      "Instruments",
+      "Debug View Hierarchy"
+    ],
+    "correctIndex": 2,
+    "explanation": "Instruments is a powerful profiling and analysis tool provided by Xcode that includes templates like Leaks, Allocations, and Time Profiler, which are crucial for identifying memory leaks and performance bottlenecks. Breakpoints and LLDB are for code execution debugging, and Debug View Hierarchy is for UI layout issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Swift function `func loadData() throws -> Data` can throw an error. How would an iOS developer safely call this function and handle potential errors?",
+    "options": [
+      "try loadData()",
+      "loadData()!",
+      "do { try loadData() } catch { ... }",
+      "loadData() ?? fallbackData"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `do-catch` statement is the standard Swift mechanism for handling errors thrown by functions marked with `throws`. `try` is required but must be within a `do-catch` or a throwing function. `!` forcibly unwraps (unsafe), and `??` is for optionals, not thrown errors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building an offline-first feature, an iOS developer needs to ensure that local changes made by the user are synchronized with a remote server when connectivity is restored. Which strategy is generally recommended for handling this synchronization reliably?",
+    "options": [
+      "Always pull data on app launch",
+      "Use a background fetch every 5 minutes",
+      "Implement a local queue for changes and sync it when online",
+      "Only allow online operations"
+    ],
+    "correctIndex": 2,
+    "explanation": "An effective offline-first strategy involves queuing local user changes (e.g., using a Core Data store or custom persistence) and then intelligently synchronizing these changes with the remote server once an internet connection is available, often with conflict resolution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As of recent iOS versions, apps submitted to the App Store must provide transparency about their data collection practices. Where does an iOS developer declare the types of data their app collects and how it's used for the App Store listing?",
+    "options": [
+      "Info.plist",
+      "Project.xcodeproj",
+      "Privacy Nutrition Labels in App Store Connect",
+      "AppDelegate.swift"
+    ],
+    "correctIndex": 2,
+    "explanation": "Developers must complete the \"Privacy Nutrition Labels\" section in App Store Connect, specifying data collection practices, which then appear on the app's product page. While `Info.plist` contains privacy-related usage descriptions, the aggregate data collection details are in App Store Connect.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An iOS developer wants to add a new method `squared()` to all numeric types (e.g., `Int`, `Double`, `Float`) in their project without modifying their original definitions. What Swift language feature can achieve this efficiently?",
+    "options": [
+      "Inheritance",
+      "Generics",
+      "Protocol Extensions",
+      "Type Aliases"
+    ],
+    "correctIndex": 2,
+    "explanation": "Protocol extensions allow you to add new methods and properties to types that conform to a specific protocol. By extending a protocol like `Numeric`, you can add functionality to all types that conform to it (like `Int`, `Double`), without subclassing or modifying original definitions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An iOS developer is building a custom reusable `Toggle` component. This component needs to receive a `Binding<Bool>` from its parent view, but also manage some internal, temporary `Bool` state that should *not* propagate back to the parent. How can this be achieved while keeping the external `Binding` functional?",
+    "options": [
+      "Use @State for both internal and external state",
+      "Pass the Binding as a regular property",
+      "Use @Binding for the external state and @State for the internal temporary state within the component",
+      "Create an ObservableObject for the internal state"
+    ],
+    "correctIndex": 2,
+    "explanation": "The external state that needs to propagate changes to the parent should use `@Binding`. For internal, temporary state that the component manages locally and shouldn't affect the parent directly, `@State` is the correct choice. Combining both allows for robust, reusable components.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When handling network requests, an iOS app needs to perform specific actions based on different HTTP status codes (e.g., refresh an authentication token for a 401 Unauthorized, display a user-friendly message for a 404 Not Found, retry for a 500 Internal Server Error). What is the most robust way to implement this logic after a `URLSession` data task completes?",
+    "options": [
+      "Check response.statusCode in a switch statement after try? data decoding",
+      "Decode a custom error Codable type for every response",
+      "Use a do-catch block and check URLError cases",
+      "Implement a custom HTTPError enum that throws and contains associated values for specific status codes, then handle it in a do-catch"
+    ],
+    "correctIndex": 3,
+    "explanation": "The most robust approach involves creating a custom `Error` enum that captures specific HTTP status codes and other relevant network failures. The networking layer can then `throw` instances of this custom error type, allowing calling code to handle specific error cases in a structured `do-catch` block, enabling precise recovery or user feedback.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An existing SwiftData app needs to add a new non-optional property to an `Item` model (e.g., `priority: Int`) that wasn't present in previous versions. Users already have existing `Item` data stored. How would an iOS developer handle this schema change gracefully without losing user data?",
+    "options": [
+      "Delete and recreate the database on app launch",
+      "Mark the new property as optional",
+      "Implement a SchemaMigrationPlan with MigrationStages",
+      "Add the property and let SwiftData handle it automatically"
+    ],
+    "correctIndex": 2,
+    "explanation": "For non-optional new properties or other significant schema changes, SwiftData requires an explicit `SchemaMigrationPlan`. This plan defines `MigrationStage`s where you can provide custom logic to transform existing data to conform to the new schema, preventing data loss. Simply adding the property would lead to crashes for existing users unless it's optional with a default.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A `UserService` class depends on an `APIManager` protocol to fetch user data. In a unit test for `UserService`, the goal is to verify that `fetchUser(id:)` correctly handles a network error returned by the `APIManager`. How should the `APIManager` dependency be configured for this test?",
+    "options": [
+      "Directly call the real APIManager instance",
+      "Create a mock APIManager that always returns success",
+      "Create a mock APIManager that throws a specific network error",
+      "Use a spy APIManager to record interactions"
+    ],
+    "correctIndex": 2,
+    "explanation": "To specifically test error handling, a mock `APIManager` should be created that is designed to fail predictably by throwing a predefined network error. This allows the test to isolate the `UserService`'s error-handling logic and verify its correctness without relying on actual network conditions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An iOS app displays a list of `Product` objects. Some `Product` data comes from a local cache (SwiftData), and other `Product` data (e.g., real-time stock availability) comes from a network API. The app needs to show a unified, up-to-date list, prioritizing network data when available. What is an effective architectural approach to combine and present this data?",
+    "options": [
+      "Always display only cached data",
+      "Fetch all data from the network and ignore cache",
+      "Implement a repository pattern that abstracts data sources and resolves conflicts/priorities",
+      "Use two separate lists side-by-side"
+    ],
+    "correctIndex": 2,
+    "explanation": "A repository pattern is highly effective for abstracting multiple data sources (e.g., network, local persistence). The repository acts as a single source of truth, managing fetching, caching, and merging data from different origins, and resolving any conflicts or prioritizing network data, providing a unified interface to the rest of the application.",
+    "difficulty": "hard"
+  }
+]

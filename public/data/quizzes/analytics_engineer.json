@@ -1,0 +1,302 @@
+[
+  {
+    "question": "An Analytics Engineer is tasked with creating a reliable and well-documented data layer. Which of the following problems does this role primarily aim to solve for an organization?",
+    "options": [
+      "Optimizing network infrastructure for data transmission efficiency.",
+      "Developing machine learning models for predictive analytics.",
+      "Ensuring data consistency, quality, and accessibility for business intelligence and downstream analytics.",
+      "Designing user interfaces for data visualization applications."
+    ],
+    "correctIndex": 2,
+    "explanation": "The core responsibility of an Analytics Engineer is to build trusted analytics layers, ensuring data consistency, quality, and accessibility. This role focuses on transforming raw data into reliable, usable datasets for various business needs, rather than network optimization, ML model development, or UI design.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of dbt (data build tool), which type of artifact is primarily responsible for defining the transformations and logic applied to raw data to create new, aggregated, or refined datasets?",
+    "options": [
+      "Source files",
+      "Tests",
+      "Models",
+      "Snapshots"
+    ],
+    "correctIndex": 2,
+    "explanation": "dbt models are SQL SELECT statements that define how raw data is transformed into new datasets. Sources refer to raw input data, tests validate data quality, and snapshots capture changes in source data over time.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are starting a new analytics engineering project. What is the main purpose of using Git in your daily workflow?",
+    "options": [
+      "To perform complex data transformations directly on the database.",
+      "To manage and track changes in your code, facilitating collaboration and version control.",
+      "To orchestrate data pipelines for automated execution.",
+      "To connect to various data sources and extract data."
+    ],
+    "correctIndex": 1,
+    "explanation": "Git is a version control system used to track changes in code, allowing multiple team members to collaborate efficiently, revert to previous versions, and manage different branches of development. It's not for data transformation, orchestration, or data extraction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An Analytics Engineer has built a series of dbt models. Why is documenting the data lineage crucial for the team?",
+    "options": [
+      "To encrypt sensitive data for security purposes.",
+      "To understand the origin, transformations, and dependencies of data assets.",
+      "To reduce the storage cost of data in the warehouse.",
+      "To automatically generate data visualizations."
+    ],
+    "correctIndex": 1,
+    "explanation": "Data lineage provides a clear understanding of how data flows through various systems, where it originated, and what transformations it underwent. This is vital for debugging, auditing, impact analysis, and building trust in data, not for encryption, cost reduction, or visualization generation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "As an Analytics Engineer, you're building a new dbt model. What is the primary benefit of creating basic 'not_null' and 'unique' tests for the primary key column of your model?",
+    "options": [
+      "To optimize query performance for downstream consumers.",
+      "To ensure the primary key column always contains a value and each value is distinct, maintaining data integrity.",
+      "To automatically archive old data for compliance reasons.",
+      "To generate automated documentation for the model."
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'not_null' and 'unique' tests are fundamental data quality checks that validate that a primary key column has no missing values and no duplicate values, which are essential for maintaining data integrity and relationships. They don't directly optimize query performance, archive data, or generate documentation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When presenting your Analytics Engineer portfolio project, which section in your README file is most important for showcasing the project's purpose and your problem-solving approach?",
+    "options": [
+      "List of all SQL functions used.",
+      "A detailed diagram of the cloud infrastructure.",
+      "Problem Statement, Constraints, Decisions Made, and Outcomes.",
+      "A comprehensive bibliography of all resources consulted."
+    ],
+    "correctIndex": 2,
+    "explanation": "A strong portfolio README should clearly articulate the problem addressed, the constraints faced, the key decisions made during implementation, and the resulting outcomes. This demonstrates critical thinking and practical application, which are core to the Analytics Engineer role. The other options are less critical for showcasing the problem-solving journey.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An Analytics Engineer's primary goal is to transform raw data into a reliable and accessible format for business users. Which of the following best describes the core problem this role solves?",
+    "options": [
+      "The manual configuration of server hardware.",
+      "The lack of real-time data streaming capabilities.",
+      "The 'data swamp' problem where raw, untransformed data is difficult to use for decision-making.",
+      "The optimization of front-end web application performance."
+    ],
+    "correctIndex": 2,
+    "explanation": "Analytics Engineers tackle the 'data swamp' problem by transforming messy, raw data into structured, clean, and reliable datasets that are readily usable for reporting, analysis, and other downstream applications. This directly addresses the difficulty business users face in extracting insights from raw data, rather than infrastructure, streaming, or front-end performance.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A stakeholder reports that a dashboard metric based on your dbt model is incorrect. You suspect a data issue in one of the upstream models. What is the most effective debugging workflow to identify the root cause?",
+    "options": [
+      "Immediately rebuild all dbt models from scratch and observe if the issue persists.",
+      "Review the dbt logs for recent runs, inspect the affected model's SQL, and use dbt's `debug` or `select` commands with `limit` to examine intermediate results.",
+      "Ask the stakeholder to manually re-enter the data into the source system.",
+      "Change the data warehouse configuration to a smaller instance size to save costs."
+    ],
+    "correctIndex": 1,
+    "explanation": "An effective debugging workflow involves checking dbt run logs, examining the SQL logic of the suspected models, and using dbt's built-in commands like `dbt run --select <model_name>` or `dbt compile --select <model_name>` to review generated SQL, often with `limit` clauses to inspect small subsets of data. Rebuilding everything is inefficient, asking for manual re-entry is not a solution for systemic data issues, and changing warehouse config is irrelevant to debugging data logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a data model for a retail company to analyze sales performance. You need to combine customer information (dimensions) with transaction details (facts). Which data modeling approach is typically preferred for analytical querying and why?",
+    "options": [
+      "Highly normalized OLTP schema for data integrity.",
+      "A NoSQL document store for flexible schema.",
+      "A star schema, which denormalizes dimensions for simplified queries and improved performance.",
+      "A graph database for complex relationship analysis."
+    ],
+    "correctIndex": 2,
+    "explanation": "For analytical querying, a star schema (or snowflake schema) is typically preferred. It denormalizes dimension tables by joining them directly to a central fact table, simplifying queries, improving read performance, and making it easier for business users to understand. Normalized OLTP schemas are optimized for transactional write performance, while NoSQL and graph databases serve different use cases.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are refactoring a complex dbt model. You notice a subquery that is repeated multiple times within the same model. What is the best practice to improve readability, maintainability, and potentially performance within dbt?",
+    "options": [
+      "Convert the repeated subquery into a separate dbt model.",
+      "Use a Common Table Expression (CTE) within the same model to define the logic once.",
+      "Embed the repeated SQL directly into a Jinja macro for reusability.",
+      "Create a view in the data warehouse outside of dbt to encapsulate the logic."
+    ],
+    "correctIndex": 1,
+    "explanation": "For logic repeated *within the same model*, using a CTE (Common Table Expression) is the standard SQL best practice for improving readability and avoiding repetition. Creating a separate dbt model would be appropriate if the logic is reused across multiple dbt models. Jinja macros are for abstracting SQL snippets, and creating a view outside dbt bypasses dbt's dependency management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new data source introduces inconsistent date formats (e.g., 'YYYY-MM-DD' and 'MM/DD/YYYY'). To ensure data quality in your dbt models, you need to enforce a single, consistent date format. What is the most appropriate approach within dbt to handle this without stopping the pipeline?",
+    "options": [
+      "Manually review and correct each inconsistent record in the source database.",
+      "Implement a custom dbt test that fails if inconsistent formats are found, preventing the model from running successfully.",
+      "Modify the SQL transformation in your dbt model to parse and standardize the date column to a single format.",
+      "Set up an external data monitoring tool to alert on date format inconsistencies, then manually intervene."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most appropriate and scalable approach within dbt is to modify the SQL transformation in the relevant model to parse and standardize the date column. This cleans the data as it's processed, ensuring consistency for downstream use. Implementing a custom test would identify the issue but not fix it, and manual review or external monitoring require manual intervention which is not scalable for ongoing data ingestion.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is preparing to deploy a critical dbt project update to production. What is a key step to ensure smooth operation and quick identification of potential issues post-deployment?",
+    "options": [
+      "Delete all previous versions of the models to free up storage.",
+      "Notify stakeholders about the deployment and establish a monitoring strategy for data quality and pipeline health.",
+      "Run the entire data warehouse through a full vacuum operation.",
+      "Grant all users administrative access to the data warehouse for immediate troubleshooting."
+    ],
+    "correctIndex": 1,
+    "explanation": "Before and after production deployment, it's crucial to communicate with stakeholders and establish monitoring for data quality and pipeline health. This ensures that any issues are detected quickly and that business users are aware of potential impacts. Deleting previous versions or granting admin access are not standard best practices for smooth deployment, and vacuum operations are generally part of maintenance, not pre-deployment steps for monitoring.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When conducting a peer review for a dbt Pull Request, which of the following is the most important aspect to evaluate for adherence to best practices and future maintainability?",
+    "options": [
+      "The aesthetic appeal of the SQL formatting.",
+      "Whether the model includes a highly complex, multi-level subquery structure.",
+      "Adherence to naming conventions, presence of documentation (descriptions), and adequate testing.",
+      "The number of lines of code in the SQL file."
+    ],
+    "correctIndex": 2,
+    "explanation": "A thorough peer review should prioritize adherence to established naming conventions, the presence of clear documentation (descriptions for models, columns), and robust testing. These aspects directly impact maintainability, understanding, and reliability of the data layer. While formatting is good, it's less critical than documentation and testing. Complex subqueries can be a sign of poor readability if not managed well, and lines of code alone don't indicate quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new data source contains Personally Identifiable Information (PII). As an Analytics Engineer, what is the most important security consideration when integrating this data into your data warehouse?",
+    "options": [
+      "Ensuring the data is always stored in plain text for easy access.",
+      "Implementing robust access controls, data masking, or tokenization where PII is not needed for analytics.",
+      "Storing PII in a publicly accessible S3 bucket.",
+      "Ignoring PII considerations as long as the data is accurate."
+    ],
+    "correctIndex": 1,
+    "explanation": "When dealing with PII, implementing robust access controls (who can see what), data masking (obscuring sensitive data), or tokenization (replacing PII with non-sensitive substitutes) is crucial. This ensures that only authorized personnel can access sensitive data and reduces the risk of exposure. Storing in plain text or public buckets, or ignoring PII, are severe security risks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your dbt run is taking excessively long due to a particular model. Upon inspection, you find that the model performs a large number of joins on unindexed or poorly distributed columns, and it materializes as a view. What is the most effective initial step to optimize its performance?",
+    "options": [
+      "Switch the materialization of the slow model from 'view' to 'table' or 'incremental'.",
+      "Add more columns to the SELECT statement to increase data density.",
+      "Remove all existing dbt tests from the model.",
+      "Move the entire data warehouse to a different cloud provider."
+    ],
+    "correctIndex": 0,
+    "explanation": "Materializing a large, complex query as a 'view' means the query is re-executed every time it's queried, leading to slow performance. Changing the materialization to 'table' or 'incremental' would pre-compute and store the results, significantly improving subsequent query times. Adding columns increases workload, removing tests reduces quality, and changing cloud providers is a drastic, unrelated measure for a single slow model.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are implementing a dbt model that needs to capture daily snapshots of a slowly changing dimension (SCD Type 2) for historical analysis. Which dbt feature is specifically designed for this purpose?",
+    "options": [
+      "Ephemeral models",
+      "Materialized views",
+      "Sources",
+      "Snapshots"
+    ],
+    "correctIndex": 3,
+    "explanation": "dbt snapshots are specifically designed to capture changes in the state of a table over time, effectively implementing a type 2 slowly changing dimension. They create new records when changes are detected, preserving historical versions. Ephemeral models are CTEs, materialized views are pre-computed results, and sources are declarations of raw data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Analytics Engineer is setting up their local development environment for dbt. Which of the following is a critical component that needs to be configured correctly to connect dbt to the data warehouse?",
+    "options": [
+      "An IDE for front-end web development.",
+      "A JavaScript runtime environment.",
+      "A `profiles.yml` file with database connection details.",
+      "A local web server for API hosting."
+    ],
+    "correctIndex": 2,
+    "explanation": "The `profiles.yml` file is essential for configuring dbt to connect to your data warehouse. It contains connection details like target database, schema, user, and password. The other options are not directly relevant to dbt's connection to a data warehouse.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a fact table for analytical purposes, what principle should guide the selection of its granularity?",
+    "options": [
+      "The granularity should always be at the highest possible aggregation level to minimize row count.",
+      "The granularity should match the level of detail of the most granular dimension table.",
+      "The granularity should be at the lowest atomic level of detail for the event being recorded.",
+      "The granularity should be determined by the amount of available disk space in the data warehouse."
+    ],
+    "correctIndex": 2,
+    "explanation": "Fact tables should generally be designed at the lowest atomic level of detail (high granularity) for the event being recorded. This allows for maximum flexibility in aggregation and analysis, as data can always be aggregated up but cannot be disaggregated beyond its recorded level. High aggregation prematurely limits analytical possibilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a new set of dbt models, you discover a critical bug causing incorrect metrics in a key stakeholder dashboard. What is the most effective communication strategy to manage this incident?",
+    "options": [
+      "Immediately revert the changes without informing anyone, hoping no one notices.",
+      "Send a detailed technical email explaining the SQL code bug to all business stakeholders.",
+      "Issue a clear, concise incident report to affected stakeholders, explain the impact, the immediate steps being taken, and estimated resolution time.",
+      "Blame the upstream data source for providing faulty data."
+    ],
+    "correctIndex": 2,
+    "explanation": "Effective stakeholder communication during an incident requires a clear, concise report that explains the impact on their data, outlines the immediate actions being taken to resolve the issue, and provides an estimated time for resolution. This builds trust and manages expectations. Reverting silently, sending overly technical details, or deflecting blame are not professional or effective communication strategies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team implements a new dbt model, and a week later, an existing dashboard that consumes data from an upstream model starts showing errors. This indicates a regression. Which dbt feature or practice is most effective for preventing such regressions?",
+    "options": [
+      "Only running dbt models manually in production.",
+      "Implementing comprehensive dbt tests (e.g., `unique`, `not_null`, `relationships`, and custom tests) on both new and existing models.",
+      "Increasing the computational resources of your data warehouse.",
+      "Minimizing the number of columns in your dbt models."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive dbt tests are the most effective way to prevent regressions. By defining tests that check for data quality, schema integrity, and relationships, you can ensure that changes in one model don't inadvertently break others or introduce data inconsistencies. Manual runs are error-prone, resource increases don't prevent logical errors, and minimizing columns isn't a regression prevention strategy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is building a complex data product with dbt. They need to handle a scenario where customer attributes change frequently, but historical values are crucial for analytics (e.g., customer's status at the time of purchase). Which advanced data modeling pattern is most suitable for this requirement within dbt, and why?",
+    "options": [
+      "A type 0 Slowly Changing Dimension (SCD) using a simple view, as historical values are not needed.",
+      "A type 1 Slowly Changing Dimension (SCD) using an incremental model, as it overwrites historical data.",
+      "A type 2 Slowly Changing Dimension (SCD) leveraging dbt snapshots, which captures full history with 'valid_from' and 'valid_to' timestamps.",
+      "A type 3 Slowly Changing Dimension (SCD) by adding a 'previous_status' column to the fact table."
+    ],
+    "correctIndex": 2,
+    "explanation": "For capturing the full history of changing attributes where historical values are crucial, a Type 2 Slowly Changing Dimension (SCD) is the appropriate pattern. dbt snapshots are specifically designed to implement SCD Type 2 by creating new records for changes, including `dbt_valid_from` and `dbt_valid_to` timestamps, allowing analysts to query the state of a dimension at any point in time. SCD Type 0 and 1 do not preserve full history, and SCD Type 3 only preserves limited history.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your data warehouse contains a mission-critical table used for financial reporting. You need to design a system that not only flags data quality issues but also ensures that an outage in an upstream source or a dbt model failure does not lead to reporting incorrect data. What comprehensive strategy would you employ?",
+    "options": [
+      "Rely solely on standard dbt tests and email alerts.",
+      "Implement a 'circuit breaker' pattern by monitoring upstream source freshness, adding custom dbt tests for critical business logic, and configuring automated data pipeline health monitoring with alerts and conditional downstream processing.",
+      "Manually review the table daily for discrepancies and pause dbt runs during peak business hours.",
+      "Load all data into a staging area and only promote it to production once a business user manually verifies every record."
+    ],
+    "correctIndex": 1,
+    "explanation": "Ensuring reliability for mission-critical data requires a multi-faceted approach. A 'circuit breaker' pattern, which includes monitoring source freshness, extensive custom dbt tests for business logic, and automated pipeline health monitoring with conditional processing (e.g., preventing downstream models from running if upstream data is stale or corrupted), provides robust failure handling. Relying solely on basic tests, manual reviews, or full manual verification are insufficient or impractical for a robust, automated system.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A complex dbt model aggregates data for a critical dashboard and takes 30 minutes to run, impacting stakeholder data freshness. The model involves multiple large CTEs, complex window functions, and a final join to a large dimension table. What is the most impactful combination of advanced performance tuning techniques you would investigate first?",
+    "options": [
+      "Increase the number of columns in all upstream models to provide more context.",
+      "Ensure proper materialization strategies ('incremental' where applicable), optimize JOIN clauses, add necessary indexes/clustering keys on large tables, and review query execution plans for bottlenecks.",
+      "Remove all documentation from the dbt models to reduce compilation time.",
+      "Split the single dbt model into 10 smaller models without considering dependencies or materialization."
+    ],
+    "correctIndex": 1,
+    "explanation": "Optimizing a slow dbt model involves a combination of techniques: selecting appropriate materialization strategies (e.g., incremental models for large datasets), optimizing JOIN conditions to avoid full table scans, adding indexes or clustering keys on frequently joined or filtered columns in the data warehouse, and analyzing query execution plans to identify specific bottlenecks (e.g., expensive sorts, large hash joins). The other options either hinder performance, reduce maintainability, or are generally ineffective.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a project's development, two key stakeholders present conflicting requirements for a core business metric derived from your dbt models. One wants a daily unique count, while the other needs a weekly distinct count. How should an Analytics Engineer best navigate this situation to ensure a reliable and maintainable solution?",
+    "options": [
+      "Choose one requirement at random and implement it, ignoring the other.",
+      "Implement both metrics in separate, isolated dbt models without communication.",
+      "Facilitate a discussion between the stakeholders to clarify definitions and agree on a single, standardized metric, or propose creating two distinct, well-documented metrics with clear naming conventions.",
+      "Delay the project indefinitely until the stakeholders independently resolve their differences."
+    ],
+    "correctIndex": 2,
+    "explanation": "An Analytics Engineer should facilitate discussion to reconcile conflicting requirements. This might involve standardizing on one definition, or creating two distinct, clearly named and documented metrics, explaining their differences and use cases. Ignoring requirements, isolating implementations, or delaying the project are not productive or collaborative approaches.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team needs to move beyond ad-hoc data requests and establish a robust, maintainable data product. This involves not just building models but also ensuring their long-term reliability, monitoring, and future evolution. What is the most comprehensive strategy to achieve this lifecycle ownership?",
+    "options": [
+      "Focus solely on writing efficient SQL for initial model creation and consider the project done.",
+      "Establish a clear data product definition, implement automated testing and monitoring, define SLAs, develop a versioning strategy, and ensure clear documentation for handoff and ongoing maintenance.",
+      "Outsource all maintenance and monitoring tasks to a third-party vendor immediately after deployment.",
+      "Only address issues reactively as they are reported by stakeholders."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive lifecycle ownership for a data product involves much more than initial development. It requires defining the product, implementing automated testing and monitoring for reliability, setting Service Level Agreements (SLAs), having a versioning strategy for changes, and robust documentation for handoff and future maintenance. Solely efficient SQL, outsourcing everything, or reactive issue management are insufficient for long-term product health.",
+    "difficulty": "hard"
+  }
+]

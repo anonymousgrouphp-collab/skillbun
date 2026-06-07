@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Red Team engagement is primarily focused on:",
+    "options": [
+      "Identifying vulnerabilities through automated scans.",
+      "Emulating a real-world adversary to test an organization's defensive capabilities.",
+      "Implementing security patches and system hardening.",
+      "Conducting routine compliance audits."
+    ],
+    "correctIndex": 1,
+    "explanation": "Red Teaming simulates real threats, unlike vulnerability scanning (often part of Blue Team or Purple Team initial phases), patching (IT/Security Operations), or compliance audits, which have different objectives.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which term describes the process where a Red Team gains an initial foothold within a target network, often through phishing or exploiting an external vulnerability?",
+    "options": [
+      "Privilege Escalation",
+      "Lateral Movement",
+      "Initial Access",
+      "Command and Control"
+    ],
+    "correctIndex": 2,
+    "explanation": "Initial Access refers to the first successful compromise of a system or network, preceding other post-exploitation phases like privilege escalation or lateral movement.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Red Team operator is setting up their local environment for an engagement. Which of the following is crucial for managing and collaborating on custom scripts, payloads, and reports securely?",
+    "options": [
+      "A shared network drive.",
+      "A version control system like Git.",
+      "An unencrypted USB drive.",
+      "Public cloud storage with default settings."
+    ],
+    "correctIndex": 1,
+    "explanation": "A version control system like Git allows for tracking changes, secure storage, and collaborative development of code and sensitive artifacts, which is essential for Red Team operations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a Red Team engagement, an operator successfully compromises a low-privileged workstation. The next logical step to expand control within the network is typically:",
+    "options": [
+      "Deploying all available ransomware immediately.",
+      "Attempting privilege escalation on the compromised machine.",
+      "Shutting down the workstation to erase traces.",
+      "Notifying the Blue Team of the compromise."
+    ],
+    "correctIndex": 1,
+    "explanation": "After initial access to a low-privilege system, gaining higher privileges (privilege escalation) on that system is often necessary before further internal movement or achieving objectives.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing custom C2 (Command and Control) implants, an operator decides to use a common legitimate protocol like DNS for communication. What is the primary reason for this choice?",
+    "options": [
+      "It guarantees faster data transfer speeds.",
+      "It is often less scrutinized by network defense mechanisms.",
+      "It inherently provides strong encryption.",
+      "It simplifies the payload development process."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using common legitimate protocols like DNS or HTTP/S for C2 helps implants blend in with normal network traffic, making detection by defensive tools more challenging.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a custom payload for an initial access vector, a Red Team operator performs thorough testing in a lab environment. Which aspect is most critical to validate to ensure operational success and avoid detection?",
+    "options": [
+      "The payload's ability to trigger an alert on a basic firewall.",
+      "The payload's compatibility with legacy operating systems only.",
+      "The payload's ability to bypass antivirus/EDR and execute as intended without crashing the target system.",
+      "The payload's exact byte size."
+    ],
+    "correctIndex": 2,
+    "explanation": "Comprehensive testing ensures the payload achieves its objective (execution) while evading detection (AV/EDR bypass) and maintaining stealth (not crashing the system).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team is conducting an exercise focused solely on evading host-based EDR solutions. After developing a custom obfuscated payload, what is the most effective way to document assumptions and compare alternatives for detection evasion?",
+    "options": [
+      "Only record the final successful payload in a text file.",
+      "Write a retrospective detailing payload variations, EDR test results, and observations, even for failed attempts.",
+      "Share all raw EDR logs directly with the client without context.",
+      "Focus exclusively on network-based detections, ignoring host-based."
+    ],
+    "correctIndex": 1,
+    "explanation": "A retrospective helps document the learning process, explain decisions, and compare the effectiveness of different approaches, which is crucial for skill drills and improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a Red Team operation concludes, what is a crucial step for ensuring the client can learn from the engagement and improve their defenses?",
+    "options": [
+      "Delete all traces of the Red Team's presence immediately without reporting.",
+      "Provide a comprehensive report detailing attack paths, vulnerabilities exploited, and recommendations.",
+      "Hand over all custom tools and exploits to the client without explanation.",
+      "Only communicate successes and omit any failures during the engagement."
+    ],
+    "correctIndex": 1,
+    "explanation": "A detailed report is essential for stakeholder communication, allowing the client to understand the findings, reproduce issues, and implement effective remediations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During an engagement, a Red Team operator needs to exfiltrate sensitive data from a compromised host. To minimize the risk of detection and data loss, what is a key consideration?",
+    "options": [
+      "Exfiltrate all data at once via unencrypted FTP.",
+      "Use a high-volume, continuous exfiltration method.",
+      "Exfiltrate data in small, encrypted chunks over a legitimate-looking protocol.",
+      "Store the data unencrypted on a public file-sharing service."
+    ],
+    "correctIndex": 2,
+    "explanation": "Small, encrypted chunks over legitimate protocols (e.g., HTTPS) reduce network anomalies and increase stealth, while encryption protects data integrity and confidentiality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team is preparing for a stakeholder demo to present the findings of an engagement. What is a key element that should be prepared to effectively communicate the impact of the simulated attack?",
+    "options": [
+      "A detailed line-by-line code review of all custom tools.",
+      "A presentation with clear, concise diagrams, screenshots, and an executive summary of findings and recommendations.",
+      "An unedited, raw log dump of all network traffic.",
+      "A list of all individual keystrokes performed by the operators."
+    ],
+    "correctIndex": 1,
+    "explanation": "Stakeholder demos require clear, high-level communication of findings, impact, and recommendations, supported by visual aids, rather than technical minutiae.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To demonstrate practical Red Team skills for a job application, which of the following would be the most impactful item to include in a portfolio?",
+    "options": [
+      "A list of all tools an operator has ever heard of.",
+      "A certificate for an online basic networking course.",
+      "A detailed case study of a simulated Red Team operation, including methodologies, tools used, and achieved objectives, possibly with anonymized artifacts.",
+      "A resume listing only soft skills."
+    ],
+    "correctIndex": 2,
+    "explanation": "A case study showcasing a complete, realistic engagement demonstrates applied skills, problem-solving, and a structured approach to Red Teaming, which is highly valued.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When writing a Red Team case study, which section is essential for explaining the \"why\" behind specific technical choices and methodologies used during an engagement?",
+    "options": [
+      "Outcomes and Next Improvements.",
+      "Validation.",
+      "Constraints and Decisions.",
+      "Problem Statement."
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'Constraints and Decisions' section explains the environment, limitations, and the rationale behind the strategic and technical choices made during the operation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "For a Red Team Operator Capstone project, an operator wants to create a compelling README for their GitHub repository. What should be its primary focus?",
+    "options": [
+      "A comprehensive list of every command typed during the project.",
+      "A detailed explanation of every line of code without higher-level context.",
+      "An overview of the project's objective, methodology, achieved results, and how to replicate or demo it.",
+      "Only screenshots of successful tool outputs."
+    ],
+    "correctIndex": 2,
+    "explanation": "A strong README clearly communicates the project's purpose, execution, and impact, making it easy for others to understand and potentially replicate or demo.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team is tasked with testing an organization's detection and response capabilities against an advanced persistent threat (APT) known for using supply chain attacks and novel zero-day exploits. The scope of the engagement is broad, allowing for realistic adversary simulation without specific tool restrictions. What is the most critical strategic consideration for the Red Team in this scenario?",
+    "options": [
+      "Focus exclusively on public-facing web applications to find SQL injection vulnerabilities.",
+      "Prioritize speed of compromise over stealth to maximize the number of systems accessed.",
+      "Develop or acquire sophisticated custom tooling and highly evasive techniques to mimic the APT's observed TTPs, while carefully managing operational security (OpSec).",
+      "Rely entirely on commercial off-the-shelf (COTS) penetration testing tools to simplify the operation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Mimicking an APT requires advanced TTPs, often custom tooling, and meticulous OpSec to evade sophisticated defenses. Relying solely on COTS tools or focusing only on web apps would not adequately simulate an APT. Prioritizing speed over stealth would contradict APT behavior.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a Purple Team exercise, the Red Team executes a sophisticated lateral movement technique involving DCOM to evade standard network segmentation policies. The Blue Team, using their EDR, struggles to detect this specific TTP. What is the most effective Purple Team learning outcome from this scenario?",
+    "options": [
+      "The Red Team should stop using DCOM to simplify the exercise.",
+      "The Blue Team should be immediately blamed for insufficient tool deployment.",
+      "Collaboratively analyze the DCOM TTP, identifying specific telemetry gaps in the Blue Team's EDR/SIEM, and work together to develop new detection rules or enhance existing ones.",
+      "The Red Team should disclose all their custom DCOM exploits to the public."
+    ],
+    "correctIndex": 2,
+    "explanation": "Purple Teaming emphasizes collaboration. The goal is for both teams to learn: Red Team understands what's detected, Blue Team enhances defenses. Identifying telemetry gaps and building new detections is the core value.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Red Team operator has gained Domain Admin privileges in an Active Directory environment. The goal is to establish persistent access that can withstand common incident response (IR) procedures, such as resetting compromised user passwords or decommissioning initial access points. Which persistence mechanism carries the highest risk of detection while offering potentially high resilience if executed poorly, and requires deep understanding of AD internals?",
+    "options": [
+      "Creating a scheduled task that executes a payload hourly.",
+      "Modifying an existing GPO (Group Policy Object) to run a startup script.",
+      "Establishing a basic user account with a strong password.",
+      "Injecting a malicious DLL into a common system process on a single workstation."
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifying GPOs for persistence offers high resilience across the domain but is highly intrusive, can affect many systems, and if not done subtly, can be readily detected by IR teams monitoring GPO changes. It requires a deep understanding of Active Directory and is generally a 'hard' persistence technique to implement stealthily and reliably across a domain. Other options are less impactful globally or more easily detected/removed.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Red Team is simulating a nation-state actor known for highly sophisticated, low-and-slow exfiltration tactics, specifically targeting intellectual property. Which exfiltration strategy would best emulate this threat while minimizing risk of detection by advanced network monitoring systems?",
+    "options": [
+      "Compressing all target data into a single archive and exfiltrating it over a public FTP server during peak business hours.",
+      "Utilizing DNS tunneling to gradually exfiltrate small, encrypted chunks of data disguised as legitimate DNS queries over several weeks.",
+      "Establishing a high-bandwidth encrypted tunnel directly to an external server and transferring data continuously.",
+      "Copying data to unencrypted USB drives and physically removing them from the premises."
+    ],
+    "correctIndex": 1,
+    "explanation": "Nation-state actors often employ covert, low-and-slow methods to avoid detection. DNS tunneling is a classic technique for this, blending in with legitimate traffic and allowing for gradual data exfiltration without raising immediate alarms that large, continuous transfers or obvious protocols would.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a Red Team engagement, the objective is to compromise a specific executive's workstation and retrieve sensitive documents. The initial access was gained through a watering hole attack on a less-monitored department's system. Now the operator needs to move laterally to the executive's machine. Which method, while effective, introduces the highest operational risk if not executed with extreme care and OpSec diligence?",
+    "options": [
+      "Leveraging Kerberoasting to obtain a service account hash, then using it to authenticate to the executive's share.",
+      "Exploiting a known vulnerability in public-facing software on the executive's machine.",
+      "Using a legitimate administrative tool (e.g., PsExec, WinRM) with compromised credentials obtained via LSASS dump on the initial foothold.",
+      "Phishing the executive directly from a compromised internal email account."
+    ],
+    "correctIndex": 3,
+    "explanation": "While effective, phishing the executive directly from a compromised *internal* account creates a direct, attributable link back to the initial compromise point and significantly increases the chances of immediate detection by the executive or security awareness tools, especially given the high target value. Other methods often involve more discreet network-based or system-level actions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary purpose of reconnaissance in a Red Team engagement?",
+    "options": [
+      "To immediately launch Denial-of-Service attacks against target systems.",
+      "To gather information about the target organization, its infrastructure, and employees to plan subsequent attack phases.",
+      "To patch known vulnerabilities on target systems.",
+      "To install backdoors on all publicly accessible servers."
+    ],
+    "correctIndex": 1,
+    "explanation": "Reconnaissance is the initial phase of gathering intelligence to inform and guide the rest of the Red Team operation, helping to identify potential attack vectors and vulnerabilities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of a Red Team operation, what does \"C2\" primarily refer to?",
+    "options": [
+      "Command Line Interface (CLI)",
+      "Critical Component",
+      "Command and Control",
+      "Common Connection"
+    ],
+    "correctIndex": 2,
+    "explanation": "C2 stands for Command and Control, which is the communication channel used by an attacker to remotely manage compromised systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After gaining initial access to a user workstation, a Red Team operator identifies that the user frequently accesses a critical internal web application. To potentially compromise this application or its backend, which technique would be a common next step?",
+    "options": [
+      "Deleting all browser history to cover tracks.",
+      "Performing network reconnaissance from the workstation to identify the web application's internal IP address and associated services.",
+      "Immediately deploying a cryptocurrency miner on the workstation.",
+      "Creating a new, highly privileged local user account on the workstation."
+    ],
+    "correctIndex": 1,
+    "explanation": "Internal network reconnaissance from a compromised host is crucial for discovering other targets and planning lateral movement or further exploitation, such as identifying the critical web application's details.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team is simulating a ransomware attack as part of an exercise. To minimize actual damage while demonstrating impact, which strategy should be adopted?",
+    "options": [
+      "Encrypt all critical production data without a decryption key.",
+      "Use a non-destructive \"mock\" ransomware that only simulates encryption or displays a ransom note without encrypting data.",
+      "Target only non-critical development servers with actual ransomware.",
+      "Inform all users in advance about the ransomware drill."
+    ],
+    "correctIndex": 1,
+    "explanation": "Ethical Red Teaming requires careful handling of potentially destructive actions. A mock ransomware demonstrates the impact without causing actual data loss, adhering to ethical guidelines and engagement rules.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing custom offensive tools, why is it important to implement robust error handling and logging?",
+    "options": [
+      "To ensure the tool always crashes gracefully.",
+      "To simplify the process of debugging issues and understanding tool behavior in target environments.",
+      "To make the tool's code longer and more complex.",
+      "To automatically notify the Blue Team of any failures."
+    ],
+    "correctIndex": 1,
+    "explanation": "Proper error handling and logging are crucial for understanding why a tool failed, debugging issues, and improving its reliability and effectiveness in different operational scenarios.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team is conducting post-engagement reporting. What is the main benefit of including clear \"lessons learned\" or \"next improvements\" in the report?",
+    "options": [
+      "To justify why the engagement took longer than expected.",
+      "To showcase the Red Team's technical prowess.",
+      "To provide actionable insights for both the Red Team's future operations and the client's defensive posture improvements.",
+      "To list all tools used during the engagement."
+    ],
+    "correctIndex": 2,
+    "explanation": "Lessons learned are vital for continuous improvement for both the attacking team and the defending organization, turning findings into actionable intelligence for better security.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Red Team operator needs to establish a persistent backdoor on a Linux server without relying on simple cron jobs that might be easily detected. Which technique is a more advanced option for persistence on Linux?",
+    "options": [
+      "Adding a simple entry to /etc/profile.",
+      "Modifying an existing system service (e.g., via systemd unit files) to execute a payload.",
+      "Creating a new .bashrc entry for a non-existent user.",
+      "Embedding a malicious script directly into the kernel source code."
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifying or creating system services (like systemd unit files) is a common and more stealthy persistence mechanism on Linux compared to simple user-level startup scripts, as they run with higher privileges and are often less scrutinized by basic monitoring. Embedding into kernel source is overly complex and not a practical operational technique.",
+    "difficulty": "moderate"
+  }
+]

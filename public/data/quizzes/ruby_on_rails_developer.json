@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary architectural pattern used by Ruby on Rails to organize application logic?",
+    "options": [
+      "MVC",
+      "MVVM",
+      "MVP",
+      "MVI"
+    ],
+    "correctIndex": 0,
+    "explanation": "Rails strictly follows the Model-View-Controller (MVC) architectural pattern, separating data (Model), presentation (View), and user interaction handling (Controller).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Ruby on Rails application, which component is primarily responsible for interacting with the database, validating data, and encapsulating business logic?",
+    "options": [
+      "View",
+      "Controller",
+      "Helper",
+      "Model"
+    ],
+    "correctIndex": 3,
+    "explanation": "Models (Active Record objects) represent the data layer and contain the logic for interacting with the database, performing validations, and implementing business rules.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To generate a new Rails application with a specific database (e.g., PostgreSQL), which command would you use?",
+    "options": [
+      "rails new myapp --database=postgresql",
+      "rails create myapp --db=pg",
+      "rails init myapp --with-db=postgres",
+      "rails build myapp -d=psql"
+    ],
+    "correctIndex": 0,
+    "explanation": "The `rails new` command is used to create a new Rails application, and the `--database` option specifies the database adapter to use.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing locally, what is the most common command to start the Rails development server?",
+    "options": [
+      "rails start",
+      "rails run",
+      "rails server",
+      "rails serve"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `rails server` command (or its shorter alias `rails s`) starts the Puma web server, allowing you to access your application in a browser.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP verb is conventionally used in a RESTful Rails application to retrieve a collection of resources (e.g., all posts)?",
+    "options": [
+      "POST",
+      "PUT",
+      "DELETE",
+      "GET"
+    ],
+    "correctIndex": 3,
+    "explanation": "According to RESTful conventions, the GET verb is used to retrieve resources, either a single resource or a collection of resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a database migration in Ruby on Rails?",
+    "options": [
+      "To define application routes",
+      "To manage changes to the database schema",
+      "To generate seed data",
+      "To create new controllers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rails migrations provide a structured way to make changes to your database schema, such as creating tables, adding columns, or changing data types, and tracking these changes over time.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Rails controller, which action method is conventionally used to display a form for creating a new resource?",
+    "options": [
+      "show",
+      "edit",
+      "new",
+      "create"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `new` action typically instantiates a new, unsaved object and renders the form for its creation. The `create` action handles the submission of this form.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Rails application needs to automatically populate a `slug` attribute from a `title` attribute *before* a new record is saved to the database. Which Active Record callback is the most appropriate for this requirement?",
+    "options": [
+      "after_save",
+      "before_validation",
+      "before_create",
+      "after_initialize"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `before_create` callback is invoked just before a new record is saved to the database. It's suitable for setting attributes that should be present on creation, like a slug based on a title.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During development, you encounter an unexpected error in your Rails application. Which command-line tool provides an interactive environment to inspect the application's state, variables, and execute code within the context of your application?",
+    "options": [
+      "rails dbconsole",
+      "rails routes",
+      "rails console",
+      "rails generate"
+    ],
+    "correctIndex": 2,
+    "explanation": "`rails console` allows you to interact with your Rails application from the command line, enabling you to inspect models, controllers, and other components, execute code, and debug issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Rails application is experiencing performance issues due to numerous database queries when rendering a list of `Books` and their `Authors`. You notice an \"N+1 query\" problem. Which Active Record method is commonly used to resolve this by eagerly loading associated records?",
+    "options": [
+      "joins",
+      "select",
+      "includes",
+      "preload"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `includes` method is used for eager loading associations, fetching all associated records in one or two queries (depending on the association type) instead of making a separate query for each record, thus solving the N+1 query problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To add secure password hashing and authentication methods to a User model in Rails, which Active Model macro simplifies this process?",
+    "options": [
+      "has_many_passwords",
+      "authenticates_with_password",
+      "has_secure_password",
+      "manage_password"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `has_secure_password` macro (provided by `bcrypt`) automatically handles password hashing, salting, and validation, as well as providing an `authenticate` method, making it easier to implement secure user authentication.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to implement a set of common methods and validations (e.g., `has_status`, `is_active`) that should be shared across several different Active Record models without using inheritance. What is the most idiomatic Ruby on Rails mechanism for achieving this code reuse?",
+    "options": [
+      "Inheritance",
+      "Mixins (Concerns)",
+      "Decorators",
+      "Service Objects"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rails Concerns, implemented as Ruby modules that are mixed into classes, are the idiomatic way to encapsulate and reuse shared behavior (methods, validations, callbacks) across multiple models or controllers without relying on deep inheritance hierarchies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a feature that involves user interaction with multiple pages, like a multi-step form submission, what type of RSpec test is most appropriate for simulating a user's full journey through the application?",
+    "options": [
+      "Unit test",
+      "Controller test",
+      "View test",
+      "System test (or Feature test)"
+    ],
+    "correctIndex": 3,
+    "explanation": "System tests (formerly called Feature tests) use tools like Capybara to simulate actual user interaction with the browser, allowing you to test the complete user flow across different parts of your application, including JavaScript interactions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Rails application needs to perform a time-consuming operation, such as sending a welcome email, immediately after a new user registers, without blocking the user's response or making them wait. Which Rails feature is specifically designed for handling such asynchronous tasks?",
+    "options": [
+      "Action Cable",
+      "Active Storage",
+      "Active Job",
+      "Action Mailer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Active Job provides a standard interface for queuing and running background jobs, allowing you to offload time-consuming tasks from the request-response cycle and improve application responsiveness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Rails controller, what is the primary security concern addressed by using \"strong parameters\" (e.g., `params.require(:post).permit(:title, :body)`) when accepting user input?",
+    "options": [
+      "SQL Injection",
+      "Cross-Site Scripting (XSS)",
+      "Cross-Site Request Forgery (CSRF)",
+      "Mass Assignment"
+    ],
+    "correctIndex": 3,
+    "explanation": "Strong parameters protect against mass assignment vulnerabilities, where malicious users could submit additional, unauthorized parameters to modify unintended attributes on a model. By explicitly permitting parameters, you control which attributes can be updated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a Ruby on Rails application to production, which application server is commonly used to serve the application, often sitting behind a reverse proxy like Nginx or Apache?",
+    "options": [
+      "Apache HTTP Server",
+      "Nginx",
+      "Puma",
+      "Passenger"
+    ],
+    "correctIndex": 2,
+    "explanation": "Puma (or Unicorn/Passenger) is an application server that runs your Rails code. Nginx or Apache typically act as reverse proxies, handling static assets and forwarding dynamic requests to the application server.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a team development environment using Git, after completing a feature in a dedicated branch, what is the standard process for proposing and integrating those changes into the main development branch, allowing for code review and discussion?",
+    "options": [
+      "Direct commit to main",
+      "git push --force",
+      "Create a Pull Request (or Merge Request)",
+      "git rebase main"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Pull Request (or Merge Request in some systems) is the standard workflow for team collaboration. It allows developers to propose changes, facilitates code review by peers, and ensures changes are properly vetted before merging into the main branch.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In `config/routes.rb`, what is the primary benefit of using the `resources :posts` helper over individually defining `get '/posts'`, `post '/posts'`, etc., for a `Post` model?",
+    "options": [
+      "It automatically generates controller actions",
+      "It defines custom HTTP headers",
+      "It generates a full set of RESTful CRUD routes",
+      "It encrypts route parameters"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `resources` helper automatically generates seven standard RESTful routes (index, show, new, create, edit, update, destroy) for a given resource, aligning with Rails' convention-over-configuration philosophy and simplifying routing setup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To ensure that JavaScript-driven interactions and client-side validations in a Rails application are working as expected during testing, which tool is typically integrated with RSpec system tests?",
+    "options": [
+      "Shoulda Matchers",
+      "FactoryBot",
+      "Capybara",
+      "Faker"
+    ],
+    "correctIndex": 2,
+    "explanation": "Capybara is a powerful acceptance test framework that simulates user interaction with a web application, including JavaScript execution, making it ideal for testing UI functionality in system/feature tests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to implement a user profile page where users can update their email and password. Following RESTful principles, which two controller actions would typically handle displaying the edit form and processing the form submission, respectively, for an existing user?",
+    "options": [
+      "show and create",
+      "new and update",
+      "edit and update",
+      "index and destroy"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `edit` action renders the form to modify an existing resource, and the `update` action processes the submitted form data to persist those changes to the database.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Rails application relies heavily on background jobs for critical operations. During peak load, you notice a significant increase in database connection timeouts reported by your background job workers, even though the web servers are healthy. What is a common and effective strategy to address this specific issue in the background job processing infrastructure?",
+    "options": [
+      "Increase the number of web server processes",
+      "Implement client-side caching",
+      "Adjust the background job worker's database connection pool size",
+      "Decrease the number of background job workers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Database connection timeouts from background job workers often indicate that the workers are trying to open more database connections than the database or the worker's own configuration allows for. Adjusting the connection pool size in `database.yml` for the background job environment (or worker process configuration) can resolve this by ensuring workers have enough connections without overwhelming the database.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Rails application uses user-uploaded images. Which security vulnerability should the developer be most concerned about if these images are served directly without proper sanitization or content-type enforcement, potentially allowing malicious scripts to be executed in a user's browser?",
+    "options": [
+      "SQL Injection",
+      "Mass Assignment",
+      "Cross-Site Scripting (XSS)",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correctIndex": 2,
+    "explanation": "If user-uploaded files (especially images masquerading as other types) are served directly and interpreted by the browser, they can be a vector for XSS attacks, injecting malicious scripts. Proper content-type enforcement and content-disposition headers are crucial.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your Rails application is deployed using a blue/green deployment strategy. What is the primary advantage of this approach compared to a rolling deployment, especially when dealing with high-risk updates?",
+    "options": [
+      "It requires less server infrastructure.",
+      "It minimizes downtime for database migrations.",
+      "It provides instant rollback capabilities by switching traffic.",
+      "It allows for A/B testing directly in production."
+    ],
+    "correctIndex": 2,
+    "explanation": "Blue/green deployment involves running two identical production environments (Blue and Green). New releases go to one (e.g., Green) while the other (Blue) serves traffic. Once Green is validated, traffic is switched. If issues arise, traffic can be instantly switched back to Blue, providing a rapid and safe rollback.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are tasked with developing a complex order processing workflow that involves multiple steps: validating user input, integrating with a third-party payment API, updating inventory, and sending confirmation emails. Placing all this logic directly in the controller or model can lead to bloated code. What common Rails pattern is best suited to encapsulate this multi-step business process?",
+    "options": [
+      "Decorator",
+      "Presenter",
+      "Service Object",
+      "Concern"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Service Object is a plain Ruby object designed to encapsulate a single, well-defined business process that might involve multiple steps, interactions with several models, or external services. This keeps controllers lean and models focused on their core responsibilities.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A modern Rails application needs to manage sensitive environment-specific credentials (e.g., API keys, database passwords) that should not be committed directly to version control. Which Rails-native feature, introduced in Rails 5.2, is the recommended way to handle these encrypted secrets in a secure and developer-friendly manner?",
+    "options": [
+      "Storing them in .env files",
+      "Using custom YAML configuration files",
+      "Rails Credentials",
+      "Hardcoding them in initializers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Rails Credentials (`config/credentials.yml.enc`) provide a secure, encrypted way to store sensitive environment variables directly within the application's repository. The decryption key (`config/master.key`) is kept out of version control, making it a robust solution for managing secrets in different environments.",
+    "difficulty": "hard"
+  }
+]

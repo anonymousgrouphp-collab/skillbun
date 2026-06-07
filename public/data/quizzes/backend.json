@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A junior developer is learning about programming constructs. They want to encapsulate a block of code that performs a specific task and can be reused multiple times throughout their program without rewriting it. Which programming fundamental best fits this requirement?",
+    "options": [
+      "Variable",
+      "Loop",
+      "Function",
+      "Conditional statement"
+    ],
+    "correctIndex": 2,
+    "explanation": "Functions allow developers to define a block of code once and call it multiple times, promoting reusability and modularity. Variables store data, loops repeat code, and conditional statements execute code based on conditions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A startup is choosing a database for its new social media application where the data structure is expected to evolve frequently and might not fit a rigid tabular format. Which type of database would generally be more suitable for this flexible schema requirement?",
+    "options": [
+      "SQL database (e.g., PostgreSQL)",
+      "NoSQL database (e.g., MongoDB)",
+      "Graph database",
+      "Time-series database"
+    ],
+    "correctIndex": 1,
+    "explanation": "NoSQL databases, particularly document databases like MongoDB, offer a flexible schema that can easily adapt to changing data structures, unlike the rigid table-based structure of SQL databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A backend developer is designing an API that needs to expose resources using standard HTTP methods like GET, POST, PUT, and DELETE, with predictable URLs. Which architectural style is being described?",
+    "options": [
+      "SOAP",
+      "RPC",
+      "RESTful API",
+      "GraphQL"
+    ],
+    "correctIndex": 2,
+    "explanation": "RESTful APIs leverage standard HTTP methods (GET for retrieve, POST for create, PUT for update, DELETE for remove) to interact with resources, adhering to principles of statelessness and client-server architecture.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Python developer is starting a new project and wants to ensure that its dependencies are isolated from other Python projects on their machine, preventing version conflicts. What is the standard Python tool used for this purpose?",
+    "options": [
+      "pip",
+      "virtualenv (or venv)",
+      "conda",
+      "Jupyter Notebook"
+    ],
+    "correctIndex": 1,
+    "explanation": "virtualenv (or venv in Python 3.3+) creates isolated Python environments, allowing each project to have its own set of dependencies without interfering with others. pip is a package installer, conda is another package and environment manager, and Jupyter Notebook is for interactive computing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is considering using Node.js for a backend application that involves many concurrent network requests (e.g., chat applications, streaming). Which fundamental characteristic of Node.js makes it particularly well-suited for such I/O-bound operations?",
+    "options": [
+      "Its strong typing system",
+      "Its blocking I/O model",
+      "Its single-threaded, non-blocking event loop",
+      "Its compiled nature"
+    ],
+    "correctIndex": 2,
+    "explanation": "Node.js utilizes a single-threaded, non-blocking event loop, which allows it to handle many concurrent I/O operations efficiently without creating a new thread for each request, making it ideal for I/O-bound applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a CI/CD pipeline, what is the primary objective of the Continuous Integration (CI) stage?",
+    "options": [
+      "To automatically deploy code to production.",
+      "To continuously monitor application performance.",
+      "To merge developer code changes into a main branch and run automated tests.",
+      "To perform manual acceptance testing."
+    ],
+    "correctIndex": 2,
+    "explanation": "Continuous Integration (CI) focuses on frequently merging code changes from multiple developers into a central repository, followed by automated builds and tests to detect integration issues early.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A small e-commerce startup is rapidly developing a new product catalog feature where new product attributes are frequently added or modified. They need a database that can easily accommodate these schema changes without requiring complex migration scripts for every alteration. Which database type is typically preferred for this flexibility?",
+    "options": [
+      "Relational database like PostgreSQL",
+      "Document database like MongoDB",
+      "Key-value store like Redis",
+      "Graph database"
+    ],
+    "correctIndex": 1,
+    "explanation": "Document databases like MongoDB offer a flexible, schema-less design where data structures can evolve easily, making them suitable for applications with frequently changing data models, unlike the rigid schema of relational databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to build a minimal REST API in Python to serve a few endpoints without requiring a full-featured framework with an ORM or admin panel. Which Python framework would be the most efficient choice for this requirement?",
+    "options": [
+      "Django",
+      "Flask",
+      "FastAPI",
+      "Pyramid"
+    ],
+    "correctIndex": 1,
+    "explanation": "Flask is a micro-framework, designed to be lightweight and provide the bare essentials for web development, offering maximum control with minimal boilerplate. Django is full-featured, FastAPI is modern and includes automatic docs, and Pyramid is also a full-stack option.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is building a content management system (CMS) with a requirement for a built-in administrative interface, an Object-Relational Mapper (ORM), and a robust authentication system to accelerate development. Which Python web framework provides these features as 'batteries-included'?",
+    "options": [
+      "Flask",
+      "FastAPI",
+      "Django",
+      "Tornado"
+    ],
+    "correctIndex": 2,
+    "explanation": "Django is known as a 'batteries-included' framework, providing a powerful ORM, an automatically generated admin panel, and a comprehensive authentication system out-of-the-box, significantly speeding up development for such applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In an Express.js application, a function is used to modify the request or response objects, execute code, or end the request-response cycle before a route handler is invoked. What is this function commonly referred to as?",
+    "options": [
+      "Controller",
+      "Service",
+      "Middleware",
+      "View"
+    ],
+    "correctIndex": 2,
+    "explanation": "Middleware functions in Express.js have access to the request object, the response object, and the next middleware function in the application's request-response cycle. They can perform tasks like logging, authentication, parsing request bodies, etc.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Java developer is tasked with creating a new microservice that needs to be quickly deployed and integrated with common enterprise functionalities like database access, security, and external configurations without extensive XML setup. Which Java framework is specifically designed to facilitate this rapid, production-ready development?",
+    "options": [
+      "Java EE (Jakarta EE)",
+      "Apache Struts",
+      "Spring Boot",
+      "Hibernate"
+    ],
+    "correctIndex": 2,
+    "explanation": "Spring Boot streamlines the development of production-ready, standalone Spring applications by providing auto-configuration, an opinionated approach, and embedded servers, significantly reducing boilerplate and XML configuration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Given two tables, `customers` (with `customer_id`, `name`) and `orders` (with `order_id`, `customer_id`, `amount`). A developer needs to retrieve a list of all customers, including those who have not placed any orders, along with their order details if available. Which SQL JOIN clause should be used?",
+    "options": [
+      "INNER JOIN",
+      "RIGHT JOIN",
+      "LEFT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    "correctIndex": 2,
+    "explanation": "A LEFT JOIN (or LEFT OUTER JOIN) returns all rows from the left table (`customers`) and the matching rows from the right table (`orders`). If there is no match, NULLs are returned for the right table's columns, thus including customers without orders.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A backend service is experiencing performance bottlenecks due to frequent database lookups for commonly accessed data, such as user profiles or product listings. To alleviate this, the team decides to implement an in-memory data store for caching. Which technology is primarily used for such high-speed caching and temporary data storage?",
+    "options": [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "Apache Cassandra"
+    ],
+    "correctIndex": 2,
+    "explanation": "Redis is an open-source, in-memory data structure store, used as a database, cache, and message broker. Its in-memory nature makes it exceptionally fast for caching frequently accessed data and managing sessions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a client sends a POST request to a RESTful API to create a new resource, and the resource is successfully created on the server, what is the most appropriate HTTP status code the API should return in its response?",
+    "options": [
+      "200 OK",
+      "201 Created",
+      "204 No Content",
+      "400 Bad Request"
+    ],
+    "correctIndex": 1,
+    "explanation": "The HTTP status code 201 Created indicates that the request has been fulfilled and resulted in a new resource being created. 200 OK typically signifies a successful GET or PUT, and 204 No Content is for successful requests with no response body.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company is developing a new backend API and wants to implement a stateless authentication mechanism that allows client applications to receive a token upon login and then include this token with subsequent requests to access protected resources, without needing session storage on the server. Which authentication method is best suited for this requirement?",
+    "options": [
+      "Session-based authentication",
+      "OAuth2",
+      "JWT (JSON Web Tokens)",
+      "Basic Authentication"
+    ],
+    "correctIndex": 2,
+    "explanation": "JWTs are self-contained tokens that can carry user information and signature, allowing stateless authentication. The server doesn't need to store session data, as the token itself contains all necessary information for verification, making it ideal for distributed systems. OAuth2 is an authorization framework, not solely an authentication method.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A development team is struggling with 'it works on my machine' issues, where applications behave differently across various development, testing, and production environments due to inconsistent dependencies or configurations. What technology can help encapsulate an application and its dependencies into a single, consistent unit that runs reliably anywhere?",
+    "options": [
+      "Virtual Machines",
+      "Docker",
+      "Git",
+      "npm"
+    ],
+    "correctIndex": 1,
+    "explanation": "Docker containerizes applications by packaging the application code, runtime, system tools, libraries, and settings into a standardized unit called a container, ensuring consistency across all environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A startup wants to build a highly scalable, event-driven backend for a new feature without managing servers. They expect unpredictable traffic patterns and want to pay only for the compute time consumed. Which AWS service is explicitly designed for running code in response to events without provisioning or managing servers?",
+    "options": [
+      "AWS EC2",
+      "AWS S3",
+      "AWS Lambda",
+      "AWS RDS"
+    ],
+    "correctIndex": 2,
+    "explanation": "AWS Lambda is a serverless compute service that runs code in response to events and automatically manages the underlying compute resources. Developers pay only for the compute time consumed, making it ideal for event-driven, scalable applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of CI/CD pipelines using GitHub Actions, what is the primary role of a 'workflow'?",
+    "options": [
+      "To define the repository's code review guidelines.",
+      "To manage database migrations for the application.",
+      "To automate a series of steps (jobs) that run in response to specific events (e.g., pushes, pull requests).",
+      "To specify environment variables for local development."
+    ],
+    "correctIndex": 2,
+    "explanation": "A GitHub Actions workflow is an automated, configurable process that runs one or more jobs. Workflows are defined by a YAML file and are triggered by events in the repository, such as pushes to a branch or pull requests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is tasked with building a modern Python API that needs to be very fast due to heavy I/O operations and must provide automatic, interactive API documentation (e.g., OpenAPI/Swagger UI) out-of-the-box. Which framework would be the best fit for these requirements?",
+    "options": [
+      "Django REST Framework",
+      "Flask-RESTful",
+      "FastAPI",
+      "Pyramid"
+    ],
+    "correctIndex": 2,
+    "explanation": "FastAPI is known for its high performance (built on Starlette and Pydantic), asynchronous capabilities, and automatic generation of OpenAPI documentation (Swagger UI and ReDoc), making it ideal for modern, fast APIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Java, a new class `Car` extends an existing class `Vehicle`. This allows `Car` to inherit properties like `make` and `model`, and methods like `startEngine()` from `Vehicle`. Which OOP principle does this scenario best illustrate?",
+    "options": [
+      "Encapsulation",
+      "Polymorphism",
+      "Abstraction",
+      "Inheritance"
+    ],
+    "correctIndex": 3,
+    "explanation": "Inheritance is an OOP principle where a new class (subclass/child class) derives properties and behaviors from an existing class (superclass/parent class), promoting code reuse and establishing an 'is-a' relationship.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An architect is designing a large-scale enterprise backend application that requires strong type-safety, a highly modular structure, and robust dependency injection for maintainability and testability. The team primarily works with TypeScript. Which framework offers the most comprehensive solution for these requirements, drawing inspiration from Angular's architecture?",
+    "options": [
+      "Express.js",
+      "Koa.js",
+      "NestJS",
+      "Hapi.js"
+    ],
+    "correctIndex": 2,
+    "explanation": "NestJS is a progressive Node.js framework for building efficient, reliable, and scalable server-side applications. It leverages TypeScript, adopts a modular architecture, and heavily utilizes dependency injection, making it ideal for enterprise-grade applications. Express.js and Koa.js are minimalist, while Hapi.js is a rich framework but less focused on TypeScript and DI in the same structural way as NestJS.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A mobile application frequently needs to fetch user data, their recent orders, and the products within those orders, but only specific fields from each. Currently, the API uses multiple REST endpoints, leading to over-fetching of data (receiving more than needed) and under-fetching (requiring multiple requests). Which API design approach can solve these issues by allowing the client to specify exactly what data it needs in a single request?",
+    "options": [
+      "SOAP API",
+      "RESTful API with extensive query parameters",
+      "GraphQL",
+      "RPC API"
+    ],
+    "correctIndex": 2,
+    "explanation": "GraphQL allows clients to request exactly the data they need in a single query, precisely specifying fields and relationships. This eliminates over-fetching (getting too much data) and under-fetching (making multiple requests for related data), which are common challenges with traditional REST APIs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A backend API is experiencing performance degradation and potential denial-of-service attacks due to a malicious client sending an excessive number of requests. The team needs to implement an effective rate limiting strategy that allows clients a certain number of requests per time unit and introduces a delay or blocks further requests once the limit is exceeded. Which common algorithm is most suitable for implementing such a rate limiter?",
+    "options": [
+      "FIFO Queue",
+      "Binary Search",
+      "Token Bucket or Leaky Bucket",
+      "Merge Sort"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Token Bucket and Leaky Bucket algorithms are common and effective methods for implementing API rate limiting. They control the rate at which requests are processed by either allowing a burst of requests up to a certain capacity (Token Bucket) or smoothing out request rates (Leaky Bucket), preventing sudden spikes from overwhelming the server.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A PostgreSQL database table named `products` has millions of records, and queries involving `WHERE product_name LIKE 'SearchTerm%'` are consistently slow. The `product_name` column is not the primary key. What database optimization strategy would provide the most significant performance improvement for these specific queries?",
+    "options": [
+      "Increase the server's RAM.",
+      "Normalize the `product_name` column into a separate lookup table.",
+      "Create an index on the `product_name` column.",
+      "Change the database system to a NoSQL database."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating an index on the `product_name` column would significantly speed up queries that filter or sort by that column, especially `LIKE 'SearchTerm%'` queries (if the index supports prefix matching, like B-tree for `LIKE 'prefix%'`). Increasing RAM might offer minor improvements but doesn't target specific query inefficiency. Normalization is for data integrity, not direct query speed on existing attributes. Changing the database is a drastic measure and not a direct optimization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When deploying a production backend API that interacts with a relational database, what is the primary benefit of implementing a robust database migration system?",
+    "options": [
+      "It automatically backs up the database.",
+      "It ensures consistency in schema changes across different environments (development, staging, production).",
+      "It prevents SQL injection attacks.",
+      "It optimizes database query performance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Database migration systems (like Alembic for Python, Flyway/Liquibase for Java) provide a version-controlled way to manage and apply changes to the database schema. This ensures that all environments have the correct and consistent database structure, preventing discrepancies and simplifying deployment and rollback processes. It doesn't automatically back up, prevent SQL injection (that's parameterized queries), or optimize query performance (that's indexing/query tuning).",
+    "difficulty": "hard"
+  }
+]

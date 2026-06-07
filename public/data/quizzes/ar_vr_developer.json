@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Unity developer wants to create a reusable game object, such as a consistent enemy character or a power-up item, that can be easily instantiated multiple times throughout a scene and across different scenes. Which Unity feature is specifically designed for this purpose?",
+    "options": [
+      "ScriptableObject",
+      "Material",
+      "Prefab",
+      "Scene Asset"
+    ],
+    "correctIndex": 2,
+    "explanation": "Prefabs are pre-configured GameObjects stored as assets, allowing them to be reused across multiple scenes and instantiated at runtime. ScriptableObjects are data containers, Materials define how surfaces look, and Scene Assets are entire scenes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Unity method is guaranteed to be called exactly once when a script instance is being loaded, before any Update calls and before Start is called?",
+    "options": [
+      "Start()",
+      "Awake()",
+      "Update()",
+      "OnEnable()"
+    ],
+    "correctIndex": 1,
+    "explanation": "Awake() is called when the script instance is being loaded. Start() is called on the first frame update. Update() is called every frame, and OnEnable() is called when the object becomes enabled and active.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing a VR experience, users frequently report feeling disoriented or nauseous. What is a common cause of motion sickness in VR that developers often need to address?",
+    "options": [
+      "High-resolution graphics",
+      "Static environments",
+      "Discrepancy between visual motion and physical motion",
+      "Lack of haptic feedback"
+    ],
+    "correctIndex": 2,
+    "explanation": "Motion sickness in VR is often caused by a sensory mismatch, where the visual system perceives movement (e.g., virtual locomotion) but the vestibular system (inner ear) does not detect corresponding physical movement, leading to conflicting signals.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To enable basic Augmented Reality functionalities like plane detection and camera tracking in a Unity project for mobile devices, which core Unity package or component is essential?",
+    "options": [
+      "Unity UI Toolkit",
+      "AR Foundation",
+      "HDRP (High Definition Render Pipeline)",
+      "Physics Engine"
+    ],
+    "correctIndex": 1,
+    "explanation": "AR Foundation is Unity's cross-platform framework that provides core AR functionalities like plane detection, image tracking, and device tracking, abstracting the underlying platform-specific APIs (ARCore/ARKit).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer wants to place a virtual 3D model precisely on a detected surface in an AR Foundation application, ensuring it stays fixed in that real-world location even if the device moves slightly. What AR Foundation concept is used to achieve this persistent placement?",
+    "options": [
+      "Raycasting",
+      "Image Tracking",
+      "Anchor",
+      "Light Estimation"
+    ],
+    "correctIndex": 2,
+    "explanation": "An Anchor in AR Foundation represents a fixed position and orientation in the real world. Attaching virtual content to an Anchor ensures it remains stable relative to the real world, even if the device's tracking fluctuates slightly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which type of locomotion provided by the XR Interaction Toolkit allows a user to move quickly across a VR scene by pointing a controller at a desired destination and activating an instant jump?",
+    "options": [
+      "Continuous Move",
+      "Snap Turn",
+      "Teleportation",
+      "Joystick Fly"
+    ],
+    "correctIndex": 2,
+    "explanation": "Teleportation allows users to instantly move to a new location, which helps reduce motion sickness compared to continuous movement. Continuous Move and Joystick Fly are forms of smooth locomotion, while Snap Turn rotates the user's view.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary objective when optimizing the frame rate of an immersive (AR/VR) application?",
+    "options": [
+      "To increase file size for better quality",
+      "To ensure smooth and comfortable user experience",
+      "To reduce the number of interactive elements",
+      "To simplify the application's C# scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maintaining a high and stable frame rate (e.g., 60-90 FPS) is crucial for immersive experiences to prevent motion sickness, reduce latency, and provide a comfortable and believable interaction. Low frame rates lead to judder and discomfort.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Unity script needs to execute a sequence of actions over several frames with delays in between, without blocking the main game thread. Which C# feature, commonly used in Unity, is the most appropriate and efficient way to achieve this?",
+    "options": [
+      "Recursive Function Calls",
+      "FixedUpdate Methods",
+      "Coroutines",
+      "Busy-waiting loops"
+    ],
+    "correctIndex": 2,
+    "explanation": "Coroutines in Unity (implemented using IEnumerator and yield return) allow functions to be paused and resumed over multiple frames without blocking the main thread, making them ideal for timed sequences and delays. Recursive calls can lead to stack overflow, FixedUpdate is for physics, and busy-waiting blocks the thread.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To implement a flexible system where multiple different scripts can respond to a specific event (e.g., a 'PlayerDied' event) without needing direct references to each other, what C# pattern is most commonly used and recommended within Unity?",
+    "options": [
+      "Inheritance",
+      "Polymorphism",
+      "Events and Delegates",
+      "Singleton Pattern"
+    ],
+    "correctIndex": 2,
+    "explanation": "Events and Delegates provide a robust publish-subscribe pattern, allowing an event source to notify multiple registered listeners without knowing specific details about them. This promotes loose coupling and modularity in gameplay scripting. Inheritance and polymorphism are for class hierarchies, and Singleton is for global access to a single instance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a spatial UI for VR, a key consideration for ensuring comfortable and ergonomic interaction, especially for elements like buttons or sliders that users need to reach and press, is:",
+    "options": [
+      "Placing all UI elements at infinity",
+      "Ensuring all UI elements are fully opaque",
+      "Adhering to natural interaction distances and reachability zones",
+      "Using only flat, 2D UI canvases"
+    ],
+    "correctIndex": 2,
+    "explanation": "For comfortable VR interaction, UI elements should be placed within the user's natural interaction distance and reachability zones to avoid arm fatigue or awkward movements. Placing UI too far, too close, or in inaccessible locations degrades usability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When setting up a VR project in Unity, which package is fundamental for handling user input from various VR controllers, abstracting the hardware, and providing core functionalities like grabbing, teleporting, and UI interaction?",
+    "options": [
+      "Unity Post Processing Stack",
+      "TextMeshPro",
+      "XR Interaction Toolkit",
+      "Cinemachine"
+    ],
+    "correctIndex": 2,
+    "explanation": "The XR Interaction Toolkit provides a comprehensive framework for building interactive VR experiences, abstracting common interactions like grabbing, teleportation, and UI interaction across different XR devices. The other options are for visual effects, text rendering, and camera control, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AR Foundation application is failing to detect any horizontal or vertical surfaces in the user's environment, even when pointed at clear, textured floors and walls. Which AR Foundation component is most likely missing or incorrectly configured in the scene?",
+    "options": [
+      "AR Camera Manager",
+      "AR Input Manager",
+      "AR Plane Manager",
+      "AR Anchor Manager"
+    ],
+    "correctIndex": 2,
+    "explanation": "The AR Plane Manager is responsible for detecting and tracking flat surfaces in the real world. Without it, or if it's disabled, the application will not be able to identify planes. AR Camera Manager handles camera feeds, AR Input Manager isn't a standard AR Foundation component, and AR Anchor Manager handles persistent placement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to enable users to pick up and manipulate virtual objects using their VR controllers in an XR Interaction Toolkit project. Which primary component from the Toolkit needs to be added to the interactable virtual object to allow it to be grabbed?",
+    "options": [
+      "XR Direct Interactor",
+      "XR Ray Interactor",
+      "XR Grab Interactable",
+      "XR Controller"
+    ],
+    "correctIndex": 2,
+    "explanation": "The XR Grab Interactable component is applied to the GameObject that the user should be able to grab. Interactors (like XR Direct Interactor or XR Ray Interactor) are placed on the controllers and perform the grabbing action.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When optimizing asset performance for an AR/VR application, which of the following is generally the most impactful strategy for 3D models to reduce rendering overhead?",
+    "options": [
+      "Increasing texture resolution to 8K",
+      "Using complex, multi-pass shaders for every object",
+      "Reducing polygon count and optimizing mesh topology",
+      "Disabling static batching for all objects"
+    ],
+    "correctIndex": 2,
+    "explanation": "High polygon counts are a major performance bottleneck in AR/VR, as they require more calculations per frame. Reducing polygon count and optimizing mesh topology directly reduces GPU load. Increasing texture resolution or using complex shaders would typically worsen performance, and disabling batching increases draw calls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary advantage of developing immersive experiences using WebXR compared to building native applications for specific AR/VR devices?",
+    "options": [
+      "Superior graphics fidelity and performance",
+      "Direct low-level hardware access and specialized features",
+      "Broader accessibility through standard web browsers on various devices",
+      "Offline functionality by default without service workers"
+    ],
+    "correctIndex": 2,
+    "explanation": "WebXR enables immersive experiences to be accessed directly through a web browser, making them broadly accessible across different operating systems and devices (including desktops, phones, and headsets) without requiring app store installations. Native apps generally offer better performance and deeper hardware integration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before distributing an AR/VR application to a wider audience, what is a crucial step to identify and mitigate potential user discomfort (like motion sickness or eye strain) and ensure intuitive interaction on the target devices?",
+    "options": [
+      "Conducting extensive marketing research",
+      "Performing immersive usability testing with target users",
+      "Adding more complex visual effects",
+      "Only testing on a high-end development machine"
+    ],
+    "correctIndex": 1,
+    "explanation": "Immersive usability testing on actual target devices with real users is critical for uncovering comfort issues, interaction clarity problems, and performance bottlenecks that might not be apparent during development or on powerful development hardware.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an immersive usability test, users consistently express confusion about how to start the experience or what actions they can perform. What aspect of the application's design should be prioritized for review and improvement?",
+    "options": [
+      "The complexity of the physics engine",
+      "The visual fidelity of distant objects",
+      "The onboarding process and interaction clarity",
+      "The choice of background music"
+    ],
+    "correctIndex": 2,
+    "explanation": "Confusion about starting or interacting points to issues with the onboarding experience (first-time user guidance) and the clarity of available interactions. A well-designed onboarding guides users through the initial steps and explains core mechanics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When preparing an AR application for distribution on mobile app stores (e.g., Google Play, Apple App Store), what is a critical consideration related to device capabilities and user privacy that must be correctly configured?",
+    "options": [
+      "Ensuring the app uses the latest 3D modeling software",
+      "Implementing server-side logging for all user actions",
+      "Configuring required permissions (e.g., camera, location) and providing clear explanations",
+      "Using only royalty-free assets for all content"
+    ],
+    "correctIndex": 2,
+    "explanation": "AR applications heavily rely on device hardware like cameras and sometimes location services. Proper configuration of these permissions is essential for the app to function, and app stores require clear explanations to users about why these permissions are needed, respecting user privacy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When creating an immersive product demo for a portfolio, why is it crucial to include a recorded walkthrough video in addition to providing the deployable demo itself?",
+    "options": [
+      "To increase the overall file size of the portfolio submission",
+      "To provide an alternative for recruiters who may not have the specific hardware or time to try the full demo",
+      "To hide potential performance issues of the live demo",
+      "To replace the need for an actual deployable demo entirely"
+    ],
+    "correctIndex": 1,
+    "explanation": "A recorded walkthrough is vital because recruiters may not have the specific AR/VR hardware, the time to set it up, or the environment to fully test a deployable demo. The video offers a quick, accessible way to showcase the experience, onboarding, and key interactions without requiring them to run the actual build.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is building a complex AI system for an enemy in Unity that has distinct states like \"Patrol,\" \"Chase,\" and \"Attack,\" with unique behaviors and transitions for each. Which architectural pattern, often implemented with ScriptableObjects, offers the most maintainable and scalable solution for managing this AI?",
+    "options": [
+      "Observer Pattern",
+      "Singleton Pattern",
+      "State Machine Pattern",
+      "Factory Pattern"
+    ],
+    "correctIndex": 2,
+    "explanation": "The State Machine pattern is ideal for managing distinct states and transitions in AI. When combined with ScriptableObjects, it allows for highly modular and reusable state definitions, making complex AI systems much more maintainable and extensible. The other patterns serve different architectural purposes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AR application requires highly precise and consistent tracking of a specific real-world poster to overlay detailed product information and interactive elements. If the poster's appearance is known beforehand, what AR Foundation feature, specifically designed for recognizing predefined visual targets, would be most effective for this task?",
+    "options": [
+      "Plane Detection",
+      "Body Tracking",
+      "Image Tracking",
+      "Face Tracking"
+    ],
+    "correctIndex": 2,
+    "explanation": "Image Tracking in AR Foundation allows the application to detect and track specific 2D images (like posters or markers) that are pre-registered. Once an image is detected, virtual content can be precisely anchored to its location and orientation. Plane, Body, and Face Tracking serve different AR purposes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A VR application needs to allow users to interact with UI elements (like buttons and sliders) that are rendered in 3D space, similar to how they would with a physical controller, without relying on traditional mouse input. What specific XR Interaction Toolkit component pairing is essential for achieving this?",
+    "options": [
+      "XR Grab Interactable and XR Direct Interactor",
+      "XR Controller and Input Action Manager",
+      "XR Ray Interactor and XR UI Canvas",
+      "XR Interaction Manager and XR Controller"
+    ],
+    "correctIndex": 2,
+    "explanation": "To interact with 3D UI, an XR Ray Interactor (attached to the controller) casts a ray to point at UI elements, and a GameObject with an 'XR UI Canvas' component (or a standard Canvas configured for world space with an 'XR Graphic Raycaster') allows the ray to register hits on UI elements. XR Grab Interactable is for picking up objects, not UI.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a high-fidelity VR application, despite aggressive mesh and texture optimization, the frame rate occasionally drops significantly, particularly when multiple complex shaders and many translucent objects are active in the user's view. Which advanced Unity rendering feature or technique might be explored to further improve GPU performance by reducing overdraw and optimizing draw calls?",
+    "options": [
+      "Increasing the global illumination bounce limit",
+      "Implementing occlusion culling and LOD (Level of Detail)",
+      "Using more transparent materials on all objects",
+      "Disabling all post-processing effects"
+    ],
+    "correctIndex": 1,
+    "explanation": "Occlusion Culling prevents rendering objects that are hidden by other objects, significantly reducing overdraw. Level of Detail (LOD) swaps out high-poly meshes for lower-poly versions when objects are far away, reducing vertex processing. Both are crucial for performance in complex scenes with many objects. More transparent materials or increased global illumination would likely worsen performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AR application designed for long-session industrial training is undergoing immersive usability testing. Beyond basic interaction and comfort, what specific metric or observation would be most critical to evaluate for a successful long-term user experience in this context, especially concerning mental load and continuous engagement?",
+    "options": [
+      "The number of unique 3D models rendered",
+      "The average session length before user fatigue or errors accumulate significantly",
+      "The complexity of the shader graph for visual effects",
+      "The speed of the initial application loading screen"
+    ],
+    "correctIndex": 1,
+    "explanation": "For long-session training, evaluating the average session length before users report significant fatigue, mental load, or start making errors is critical. This measures the sustained comfort and usability of the application, ensuring it remains effective for its intended duration. Other options are less directly related to long-term user experience and cognitive load.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When building an AR application with Unity, if you need to ensure accurate light adaptation of virtual objects to match the real-world lighting conditions, what AR Foundation feature would you integrate?",
+    "options": [
+      "AR Plane Manager",
+      "AR Occlusion Manager",
+      "AR Light Estimation",
+      "AR Anchor Manager"
+    ],
+    "correctIndex": 2,
+    "explanation": "AR Light Estimation provides information about the real-world lighting, allowing virtual objects to be rendered with lighting that matches their surroundings, improving realism and immersion. Plane Manager is for surface detection, Occlusion Manager for object occlusion, and Anchor Manager for persistent placement.",
+    "difficulty": "moderate"
+  }
+]

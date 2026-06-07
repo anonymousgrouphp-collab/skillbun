@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary problem an API Platform Engineer aims to solve?",
+    "options": [
+      "Frontend UI design challenges",
+      "Database optimization bottlenecks",
+      "Streamlining API development and consumption for developers",
+      "Network hardware configuration issues"
+    ],
+    "correctIndex": 2,
+    "explanation": "API Platform Engineers focus on the entire API lifecycle to make it easier for internal and external developers to create and use APIs effectively, thereby streamlining development and consumption.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the purpose of an OpenAPI Specification (OAS)?",
+    "options": [
+      "To execute API calls in a production environment",
+      "To document and define RESTful APIs in a language-agnostic way",
+      "To store API response data for caching purposes",
+      "To monitor real-time API performance metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "OAS (formerly Swagger) provides a standard, language-agnostic interface description for REST APIs, allowing humans and computers to discover and understand API capabilities without access to source code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When an API Platform Engineer needs to test an API endpoint directly from their local machine without writing code, which tool is most commonly used for sending HTTP requests and inspecting responses?",
+    "options": [
+      "Git",
+      "Jira",
+      "Postman",
+      "Docker"
+    ],
+    "correctIndex": 2,
+    "explanation": "Postman is a widely used tool for sending HTTP requests, inspecting responses, and organizing API test collections, making it invaluable for API development and testing without needing to write client-side code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A development team wants to ensure their API consumers know exactly what fields an API response will contain and their data types. Which aspect of API design is primarily responsible for providing this detailed structure?",
+    "options": [
+      "Authentication headers",
+      "Caching policies",
+      "Schema definition",
+      "Load balancing"
+    ],
+    "correctIndex": 2,
+    "explanation": "A well-defined API schema (often part of an OpenAPI specification) explicitly outlines the structure, data types, and constraints of request and response bodies, ensuring predictability and clarity for consumers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main purpose of a Pull Request (PR) in an API development project using Git?",
+    "options": [
+      "To automatically deploy code to the production environment",
+      "To revert all recent changes to a repository",
+      "To propose and review code changes before merging them into a main branch",
+      "To create a new Git branch for feature development"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pull Requests facilitate code review and collaboration, allowing team members to discuss and approve changes before they are integrated into the main codebase, ensuring quality and adherence to standards.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An API Platform Engineer is setting up an alert for when an API endpoint consistently responds with 5xx HTTP status codes. What kind of metric are they primarily monitoring to detect server-side issues?",
+    "options": [
+      "Latency",
+      "Throughput",
+      "Error rate",
+      "Response size"
+    ],
+    "correctIndex": 2,
+    "explanation": "5xx status codes indicate server-side errors, and a high frequency of these points to an issue with the API's reliability or stability, making error rate a critical metric to monitor for server-side problems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary role of an API Gateway in an API ecosystem?",
+    "options": [
+      "To host the API backend business logic directly",
+      "To store all API data in a centralized database",
+      "To act as a single entry point for client requests, handling routing and cross-cutting concerns",
+      "To automatically generate API documentation from source code"
+    ],
+    "correctIndex": 2,
+    "explanation": "An API Gateway acts as a reverse proxy, routing requests to appropriate backend services, and can also handle cross-cutting concerns like authentication, rate limiting, and caching before requests reach the actual APIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company is designing a new public API and needs to decide on a versioning strategy. Which strategy often allows for non-breaking, additive changes to be introduced without requiring clients to update immediately?",
+    "options": [
+      "Major-only versioning (e.g., v1, v2)",
+      "Minor versioning (e.g., v1.1, v1.2) for additive and backward-compatible changes",
+      "Date-based versioning (e.g., 2023-01-01)",
+      "No versioning at all"
+    ],
+    "correctIndex": 1,
+    "explanation": "Minor versioning is typically used for backward-compatible changes (e.g., adding new fields, new endpoints), allowing existing clients to continue functioning without modification, while major versions are reserved for breaking changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An API Platform Engineer is tasked with ensuring an API operation, such as a payment transaction, can be called multiple times without producing different results beyond the initial successful call. What API design principle is being addressed?",
+    "options": [
+      "Statelessness",
+      "Discoverability",
+      "Authenticity",
+      "Idempotency"
+    ],
+    "correctIndex": 3,
+    "explanation": "Idempotency means that an operation can be applied multiple times without changing the result beyond the initial application. This is crucial for reliable API design, especially for operations like payment processing where network retries are common.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an API that exposes a collection of user resources, what is a common RESTful convention for the endpoint path to retrieve a specific user by their unique identifier?",
+    "options": [
+      "GET /get-user-by-id?id={id}",
+      "GET /users?id={id}",
+      "GET /users/{id}",
+      "GET /user-lookup/{id}"
+    ],
+    "correctIndex": 2,
+    "explanation": "RESTful principles emphasize using hierarchical URLs to identify resources. '/users' represents the collection of users, and '/users/{id}' identifies a specific user resource within that collection, making the path intuitive and resource-oriented.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new API version, an API Platform Engineer runs automated tests to ensure that changes to the API's contract (e.g., expected request/response structures) have not broken existing client integrations. What type of testing is this?",
+    "options": [
+      "Unit testing",
+      "Integration testing",
+      "Performance testing",
+      "Contract testing"
+    ],
+    "correctIndex": 3,
+    "explanation": "Contract testing verifies that two separate systems (like an API and its consumer) adhere to a shared contract regarding data formats and interactions, preventing breaking changes from being deployed and ensuring compatibility.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical API is experiencing an unusually high volume of requests from a single IP address, potentially indicating a denial-of-service (DoS) attack. Which API Gateway feature would be most effective in mitigating this immediate threat?",
+    "options": [
+      "Casting",
+      "Load balancing",
+      "API documentation",
+      "Rate limiting"
+    ],
+    "correctIndex": 3,
+    "explanation": "Rate limiting controls the number of requests a client can make to an API within a given timeframe, preventing abuse and protecting the API from being overwhelmed by malicious or accidental traffic spikes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team wants to empower external developers to discover, understand, and integrate with their APIs quickly and efficiently. Which component of an API platform is most critical for achieving this goal?",
+    "options": [
+      "CI/CD pipeline",
+      "Database schema",
+      "Monitoring dashboard",
+      "Developer portal"
+    ],
+    "correctIndex": 3,
+    "explanation": "A developer portal provides a centralized hub with interactive documentation, SDKs, tutorials, and sandboxes, making it easy for developers to onboard, learn about, and use the APIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When an API design decision impacts multiple teams or has significant architectural implications, what is a recommended practice to ensure the decision is transparent, well-reasoned, and traceable for future reference?",
+    "options": [
+      "Announce it only in a team chat message",
+      "Document it solely in code comments",
+      "Create an Architecture Decision Record (ADR)",
+      "Only discuss it verbally in team meetings"
+    ],
+    "correctIndex": 2,
+    "explanation": "Architecture Decision Records (ADRs) formally document key architectural decisions, including context, options considered, the chosen decision, and its consequences, providing a valuable historical record and ensuring alignment across teams.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An API needs to allow clients to search for resources based on multiple optional criteria, such as filtering products by category and a minimum price, using a URL like '/products?category=electronics&price_min=100'. Which common method is being used for filtering and querying?",
+    "options": [
+      "Path parameters",
+      "Request body parameters",
+      "Query parameters",
+      "Custom HTTP headers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Query parameters are used in the URL after a '?' to provide optional parameters for filtering, sorting, or pagination of resources within a collection, making them ideal for search functionalities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To reduce the load on backend services and improve API response times for frequently accessed, relatively static data, an API Platform Engineer might implement which strategy at the API Gateway level?",
+    "options": [
+      "Database sharding",
+      "Asynchronous processing",
+      "Caching",
+      "Event sourcing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Caching stores copies of frequently requested data at the gateway (or other layers) so that subsequent requests for the same data can be served directly from the cache, reducing calls to the backend and improving performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a common practice to protect sensitive API keys or credentials from being hardcoded directly into client applications or exposed in public repositories?",
+    "options": [
+      "Encrypting them in the client-side JavaScript code",
+      "Using simple, easily guessable keys for security through obscurity",
+      "Storing them in plaintext files that are checked into version control",
+      "Using environment variables or secure secret management services"
+    ],
+    "correctIndex": 3,
+    "explanation": "Environment variables or dedicated secret management tools (like AWS Secrets Manager, HashiCorp Vault) are secure ways to inject sensitive information into applications at runtime without embedding it directly in the codebase, preventing accidental exposure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An API Platform Engineer is investigating why a specific API endpoint is experiencing high latency. Which monitoring aspect would provide the most immediate insight into the time taken for the API to process a request and return a response?",
+    "options": [
+      "Throughput (requests per second)",
+      "Error rate (percentage of failed requests)",
+      "Latency (response time)",
+      "Uptime (system availability)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Latency, or response time, directly measures the duration from when a request is sent to when a response is received, making it the primary metric for identifying performance bottlenecks and slow endpoints.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When performing security testing for an API, what technique involves systematically attempting to inject malicious, malformed, or unexpected data (e.g., SQL injection strings, XSS payloads) into API input fields to uncover vulnerabilities?",
+    "options": [
+      "Performance testing",
+      "Load testing",
+      "Fuzz testing",
+      "Smoke testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Fuzz testing involves providing invalid, unexpected, or random data as inputs to an application (or API) to uncover software defects and security vulnerabilities, particularly injection flaws.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When presenting an API Platform Engineer project in a portfolio, what is the most effective way to demonstrate the practical impact and value of the API solution to potential employers?",
+    "options": [
+      "Only showing screenshots of the code editor",
+      "Providing a comprehensive list of all technologies and libraries used",
+      "Quantifying outcomes with metrics (e.g., improved integration speed, reduced errors, cost savings)",
+      "Focusing solely on the architectural design diagrams without context"
+    ],
+    "correctIndex": 2,
+    "explanation": "Employers are interested in the practical impact and value generated. Quantifying outcomes with metrics demonstrates strong problem-solving skills and the tangible business value of the API platform work.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical payment processing API needs to ensure that even if one of its backend services fails, the overall API remains available to process requests, possibly with degraded functionality. What architectural principle is being applied here?",
+    "options": [
+      "Single point of failure",
+      "Centralized logging",
+      "Resilience/Fault Tolerance",
+      "Monolithic design"
+    ],
+    "correctIndex": 2,
+    "explanation": "Resilience (or fault tolerance) is the ability of a system to recover from failures and continue to function, possibly at a reduced capacity, rather than experiencing a complete outage. This often involves techniques like circuit breakers, retries, and bulkheads.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An API Platform Engineer is designing a public API and is debating between using RESTful principles with HTTP status codes for error handling versus a GraphQL API that always returns 200 OK and includes errors within the response body. What is a key consideration favoring the GraphQL approach for error handling in certain scenarios?",
+    "options": [
+      "It simplifies HTTP caching mechanisms significantly compared to REST",
+      "It strictly adheres to traditional REST principles for resource manipulation",
+      "It allows clients to receive partial data for successful parts of a request even when some parts fail",
+      "It inherently reduces network overhead for simple, single-resource queries"
+    ],
+    "correctIndex": 2,
+    "explanation": "A key advantage of GraphQL's error handling model is that it can return a 200 OK status code even if some fields requested had errors, providing partial data for the successful parts of the query and including error details in a dedicated 'errors' array. This contrasts with REST where a single error typically results in a non-2xx HTTP status code for the entire response.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An organization has a diverse set of APIs developed by different teams using various technologies. To ensure consistency, discoverability, and adherence to security standards across all APIs, what strategic initiative should an API Platform Engineer lead?",
+    "options": [
+      "Mandating a single programming language for all new API development projects",
+      "Centralizing all API development and maintenance to a single core team",
+      "Implementing comprehensive API governance policies, guidelines, and automated tooling",
+      "Replacing all existing APIs with a single, unified mega-API"
+    ],
+    "correctIndex": 2,
+    "explanation": "API governance establishes rules, standards, and processes for designing, developing, deploying, and managing APIs across an organization. It's crucial for managing complexity, ensuring consistency, and maintaining quality and security in a diverse API landscape.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An API Platform Engineer needs to design an API that supports multiple versions simultaneously (e.g., v1, v2) where v1 is deprecated but still in use, and v2 introduces breaking changes. What is the most robust strategy for routing requests to the correct API version and managing their lifecycle efficiently?",
+    "options": [
+      "Using distinct port numbers for each API version on the same server",
+      "Relying solely on client-side logic to pick the appropriate API URL",
+      "Implementing versioning at the API Gateway level (e.g., via URL paths or custom headers) with proper deprecation policies",
+      "Only supporting the latest version and forcing immediate client upgrades for all consumers"
+    ],
+    "correctIndex": 2,
+    "explanation": "An API Gateway is ideal for handling API versioning, routing requests based on version identifiers (like '/v1/resource' or 'Accept-version' header) to the appropriate backend service. This decouples clients from backend implementation details and allows for graceful deprecation and migration paths.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When architecting an API platform for high availability and disaster recovery, a key consideration is ensuring that critical services can fail over to a secondary region without significant data loss. What specific pattern or technology is essential for achieving near-zero Recovery Point Objective (RPO) in such a scenario?",
+    "options": [
+      "Regular weekly backups to an offsite tape drive",
+      "Manual data synchronization processes triggered only during an outage",
+      "Active-active or active-passive database replication across distinct geographic regions",
+      "Single-region load balancing with auto-scaling within the same data center"
+    ],
+    "correctIndex": 2,
+    "explanation": "For near-zero RPO, continuous data replication between primary and secondary regions is critical. Active-active (both regions serving traffic) or active-passive (one region hot standby) database replication ensures that data changes are synchronized in near real-time, minimizing data loss during a regional failover.",
+    "difficulty": "hard"
+  }
+]

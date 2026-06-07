@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary purpose of AWS IAM?",
+    "options": [
+      "To store data objects in the cloud.",
+      "To manage compute instances.",
+      "To securely control access to AWS services and resources.",
+      "To monitor application performance."
+    ],
+    "correctIndex": 2,
+    "explanation": "AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. It allows you to manage users, groups, and permissions. Storing data is S3, managing compute is EC2, and monitoring performance is CloudWatch.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which AWS tool is commonly used for interacting with AWS services from the command line?",
+    "options": [
+      "AWS Management Console",
+      "AWS CLI",
+      "AWS SDK",
+      "Amazon CloudWatch"
+    ],
+    "correctIndex": 1,
+    "explanation": "The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services directly from the command line, enabling automation through scripts. The Management Console is a web UI, SDKs are for programmatic access in various languages, and CloudWatch is for monitoring.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which AWS service provides scalable object storage for data such as backups, archives, and static website content?",
+    "options": [
+      "Amazon EC2",
+      "Amazon RDS",
+      "Amazon S3",
+      "Amazon EBS"
+    ],
+    "correctIndex": 2,
+    "explanation": "Amazon S3 (Simple Storage Service) offers highly scalable, durable, and available object storage for a variety of use cases, including backups, data archiving, and hosting static websites. EC2 is compute, RDS is relational databases, and EBS provides block storage for EC2 instances.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to run a simple, serverless function in response to an S3 event, such as an image upload. Which AWS service should they use?",
+    "options": [
+      "Amazon EC2",
+      "AWS Lambda",
+      "Amazon ECS",
+      "AWS Fargate"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Lambda allows you to run code without provisioning or managing servers. It's ideal for event-driven computing, such as processing S3 events. EC2, ECS, and Fargate are all compute services but require server management (EC2) or container management (ECS/Fargate), which is not \"serverless function\" in the same context as Lambda.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the shared responsibility model primarily concerned with in AWS?",
+    "options": [
+      "Defining the responsibilities for physical security of data centers.",
+      "Distinguishing between AWS's and the customer's security and compliance responsibilities.",
+      "Outlining the customer's duties for application development.",
+      "Specifying the cost allocation for services used."
+    ],
+    "correctIndex": 1,
+    "explanation": "The shared responsibility model clearly defines what AWS is responsible for (security *of* the cloud, e.g., infrastructure, global network) and what the customer is responsible for (security *in* the cloud, e.g., data, operating systems, network configuration).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a typical Git workflow for an AWS Cloud Engineer, what is the main purpose of a Pull Request (PR)?",
+    "options": [
+      "To directly deploy code to production environments.",
+      "To merge changes from a feature branch into a main branch after review.",
+      "To back up repository data to an S3 bucket.",
+      "To create a new Git repository."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Pull Request (or Merge Request) is used to propose changes from one branch (e.g., a feature branch) to another (e.g., `main` or `develop`), allowing for code review, discussion, and automated checks before the changes are merged.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which AWS service would you use to provision isolated network environments in the AWS Cloud, allowing you to launch AWS resources into a virtual network that you've defined?",
+    "options": [
+      "Amazon Route 53",
+      "Amazon EC2",
+      "Amazon VPC",
+      "AWS Direct Connect"
+    ],
+    "correctIndex": 2,
+    "explanation": "Amazon Virtual Private Cloud (VPC) enables you to launch AWS resources into a virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS. Route 53 is DNS, EC2 is compute, and Direct Connect is for dedicated network connection to AWS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company wants to connect their on-premises data center to their AWS VPC securely and privately without traversing the public internet. Which AWS service or solution is most suitable for this purpose?",
+    "options": [
+      "AWS Internet Gateway",
+      "AWS Direct Connect",
+      "VPC Peering",
+      "NAT Gateway"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Direct Connect establishes a dedicated private network connection from your premises to AWS, bypassing the public internet, which offers increased security, reliability, and reduced network costs compared to internet-based VPN connections. An Internet Gateway provides internet access, VPC Peering connects two VPCs, and a NAT Gateway allows private subnets to access the internet.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An application running on an EC2 instance experiences fluctuating traffic, with peak usage during business hours and minimal usage at night. How can an AWS Cloud Engineer ensure the application maintains performance during peaks while optimizing costs during off-peak hours?",
+    "options": [
+      "Manually scale EC2 instances up and down daily.",
+      "Use EC2 On-Demand instances exclusively.",
+      "Implement Amazon EC2 Auto Scaling with a scaling policy based on CPU utilization or request count.",
+      "Pre-provision a fixed number of large EC2 instances to handle peak load."
+    ],
+    "correctIndex": 2,
+    "explanation": "Amazon EC2 Auto Scaling allows you to automatically adjust the number of EC2 instances in your fleet based on demand, ensuring performance during peaks and cost savings during off-peak hours by terminating unused instances. Manual scaling is inefficient, On-Demand instances don't optimize for fluctuating loads by themselves, and pre-provisioning for peak load leads to unnecessary costs during off-peak.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A database administrator needs to ensure high availability for an RDS PostgreSQL instance to minimize downtime during an outage, such as an Availability Zone failure. What feature should be enabled?",
+    "options": [
+      "Read Replicas",
+      "Multi-AZ deployment",
+      "Automated Backups",
+      "Storage Auto Scaling"
+    ],
+    "correctIndex": 1,
+    "explanation": "A Multi-AZ deployment for Amazon RDS automatically provisions and maintains a synchronous standby replica in a different Availability Zone. In case of an AZ outage or primary instance failure, RDS automatically fails over to the standby replica, ensuring high availability. Read Replicas are for scaling read operations, automated backups for point-in-time recovery, and storage auto scaling for disk space management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A web application stores user-uploaded images in an S3 bucket. How can an AWS Cloud Engineer restrict access to these images only to authenticated users of the web application, preventing public access?",
+    "options": [
+      "Set the S3 bucket policy to allow public read access.",
+      "Store the images in an EC2 instance's local storage.",
+      "Keep the S3 bucket private and generate pre-signed URLs for authenticated users.",
+      "Configure an Internet Gateway to block direct access to the S3 bucket."
+    ],
+    "correctIndex": 2,
+    "explanation": "By keeping the S3 bucket private (blocking public access) and using pre-signed URLs, the web application can grant temporary, time-limited access to specific objects only to authenticated users. This is a common and secure pattern for controlled access to private S3 content. Public read access defeats the purpose, local EC2 storage is not scalable/durable for this, and Internet Gateway doesn't control S3 object access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new team member needs access to deploy Lambda functions and read CloudWatch logs, but should not be able to modify IAM policies or create new users. How would you grant the most appropriate permissions following the principle of least privilege?",
+    "options": [
+      "Grant them AdministratorAccess.",
+      "Attach a policy allowing `lambda:*`, `cloudwatch:Describe*`, `cloudwatch:Get*`, `cloudwatch:FilterLogEvents` and deny `iam:*`.",
+      "Create a custom IAM policy specifically allowing `lambda:CreateFunction`, `lambda:UpdateFunctionCode`, `cloudwatch:GetLogEvents`, and similar actions, without any IAM-related permissions.",
+      "Give them root account credentials."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a custom IAM policy with only the specific `lambda` and `cloudwatch` actions required for deploying functions and reading logs adheres to the principle of least privilege. Granting AdministratorAccess or root credentials provides excessive permissions. Denying `iam:*` is a good practice but less granular than simply not granting those permissions in the first place, and might still allow broader access than needed if `lambda:*` is too wide. A specific action list is best.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An application's response time is increasing, and users are reporting slow performance. Which AWS service is best suited for collecting and tracking operational data (metrics and logs) from the application and setting up alarms to notify engineers when thresholds are breached?",
+    "options": [
+      "AWS Config",
+      "Amazon GuardDuty",
+      "Amazon CloudWatch",
+      "AWS CloudTrail"
+    ],
+    "correctIndex": 2,
+    "explanation": "Amazon CloudWatch is the primary monitoring and observability service for AWS, allowing you to collect metrics, logs, and events, and set up alarms to trigger notifications or automated actions when defined thresholds are exceeded. AWS Config tracks resource configuration changes, GuardDuty is for threat detection, and CloudTrail logs API activity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AWS Cloud Engineer needs to automate the deployment of a serverless application (Lambda functions, API Gateway, DynamoDB) across multiple environments (dev, test, prod) with consistent infrastructure. Which AWS service combination is best for building a robust CI/CD pipeline?",
+    "options": [
+      "AWS Management Console and manual deployments.",
+      "AWS CodeCommit, AWS CodeBuild, AWS CodeDeploy, and AWS CodePipeline.",
+      "AWS S3 for storing deployment packages and manually running scripts.",
+      "AWS Glue for ETL operations and AWS Step Functions for workflow orchestration."
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS CodePipeline orchestrates the entire release process, CodeCommit provides source control, CodeBuild compiles and tests code, and CodeDeploy automates deployments. This combination forms a robust CI/CD pipeline suitable for consistent and automated deployments across environments. Manual deployments are error-prone and slow. S3 for packages and manual scripts isn't a pipeline. Glue and Step Functions are for data processing and workflow orchestration, not CI/CD.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an application that processes large numbers of messages asynchronously, an engineer considers using a microservices architecture. What is a common AWS service used to decouple these microservices by acting as a message queue?",
+    "options": [
+      "Amazon EC2",
+      "Amazon SQS",
+      "Amazon RDS",
+      "AWS Lambda"
+    ],
+    "correctIndex": 1,
+    "explanation": "Amazon SQS (Simple Queue Service) is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications. EC2 is compute, RDS is a database, and Lambda is a serverless compute service, though it can process messages from SQS. SQS itself is the queue service.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new CloudFormation template to production, an engineer wants to ensure it adheres to organizational security best practices, uses allowed resource types, and doesn't introduce vulnerabilities. What step should be included in their workflow?",
+    "options": [
+      "Immediately deploy to production and observe CloudWatch logs.",
+      "Manually review the template line by line for compliance.",
+      "Integrate automated static analysis tools (e.g., cfn-lint, Guard) into the CI/CD pipeline.",
+      "Only rely on AWS Well-Architected Framework reviews after deployment."
+    ],
+    "correctIndex": 2,
+    "explanation": "Integrating automated static analysis tools like `cfn-lint` or AWS CloudFormation Guard into the CI/CD pipeline allows for automated checking of templates against predefined rules, security best practices, and organizational policies *before* deployment, catching issues early and consistently. Manual review is error-prone and not scalable. Immediate deployment is risky. Well-Architected reviews are higher-level architectural assessments, not pre-deployment template validation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An EC2 instance running a critical application unexpectedly terminates. What's the first step an AWS Cloud Engineer should take to investigate this issue?",
+    "options": [
+      "Immediately launch a new instance and restore from the latest backup.",
+      "Check Amazon CloudWatch metrics and logs for the terminated instance.",
+      "Review the AWS Billing console for unusual charges.",
+      "Contact AWS Support without any prior investigation."
+    ],
+    "correctIndex": 1,
+    "explanation": "The first step in troubleshooting an unexpected EC2 instance termination is to check CloudWatch logs and metrics associated with the instance. This provides valuable information about the cause, such as system health issues, termination by Auto Scaling, or manual termination by a user. Launching a new instance without understanding the root cause might lead to recurrence, billing is irrelevant to the immediate issue, and contacting support without investigation is premature.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To minimize the blast radius of security incidents and limit the potential damage from compromised credentials, an AWS Cloud Engineer applies the principle of least privilege. Which AWS service is fundamental to implementing this principle?",
+    "options": [
+      "Amazon S3",
+      "AWS KMS",
+      "Amazon VPC",
+      "AWS IAM"
+    ],
+    "correctIndex": 3,
+    "explanation": "AWS Identity and Access Management (IAM) is the fundamental service for implementing the principle of least privilege by allowing you to define granular permissions for users, roles, and services, ensuring they only have access to the resources and actions necessary for their tasks. S3 is storage, KMS is for encryption keys, and VPC is for networking.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company is running non-production EC2 instances overnight and on weekends. What is an effective cost-optimization strategy for these instances?",
+    "options": [
+      "Change them to EC2 Reserved Instances.",
+      "Convert them to Spot Instances.",
+      "Implement a schedule to stop and start the instances outside of business hours.",
+      "Increase the instance size to handle future growth."
+    ],
+    "correctIndex": 2,
+    "explanation": "For non-production instances used only during specific hours, stopping them when not in use is a highly effective cost-optimization strategy. You only pay for the storage (EBS) attached when the instance is stopped, not for the compute. Reserved Instances and Spot Instances are for sustained workloads or fault-tolerant interruptible workloads respectively, not ideal for simple scheduled downtime. Increasing instance size would increase cost.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A web application needs to distribute incoming traffic across multiple EC2 instances in different Availability Zones to improve fault tolerance and scalability. Which AWS service should be used?",
+    "options": [
+      "Amazon Route 53",
+      "AWS Global Accelerator",
+      "Elastic Load Balancing (ELB)",
+      "Amazon CloudFront"
+    ],
+    "correctIndex": 2,
+    "explanation": "Elastic Load Balancing (ELB) automatically distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple Availability Zones. This increases the fault tolerance of your application and improves its ability to scale. Route 53 is DNS, Global Accelerator improves global performance, and CloudFront is a CDN.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical multi-tier application needs to withstand an entire AWS Region failure with minimal recovery time objective (RTO) and recovery point objective (RPO). What architectural pattern involving AWS services would be most appropriate?",
+    "options": [
+      "Backup and Restore to an S3 bucket in a different Region.",
+      "Multi-AZ deployment for all services within a single Region.",
+      "Active-Passive (Pilot Light) or Active-Active (Multi-Region Active) deployment across two separate AWS Regions.",
+      "Using Reserved Instances for all EC2 instances in a single Region."
+    ],
+    "correctIndex": 2,
+    "explanation": "To withstand an entire AWS Region failure with minimal RTO/RPO, a multi-Region disaster recovery strategy like Active-Passive (Pilot Light) or Active-Active (Multi-Region Active) is required. This involves duplicating or constantly synchronizing resources and data across at least two Regions. Backup and Restore has a higher RTO. Multi-AZ protects against AZ failure, not Region failure. Reserved Instances are a cost-saving measure, not a DR strategy.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AWS Cloud Engineer is designing a data lake solution storing sensitive customer data in S3. What comprehensive strategy should be implemented to ensure data security, including encryption at rest and in transit, fine-grained access control, and robust logging?",
+    "options": [
+      "Enable S3 server-side encryption with S3-managed keys (SSE-S3) and block public access.",
+      "Use client-side encryption, configure a bucket policy with conditions for specific IAM roles/users, enforce TLS for all connections, and enable S3 access logging to CloudWatch.",
+      "Rely solely on VPC endpoints to restrict S3 access from within the VPC.",
+      "Encrypt data using a KMS key, grant `s3:GetObject` to all authenticated AWS users, and enable versioning."
+    ],
+    "correctIndex": 1,
+    "explanation": "A comprehensive strategy for sensitive data in S3 involves: Client-side encryption or Server-Side Encryption with KMS (SSE-KMS) for encryption at rest; enforcing TLS (HTTPS) for all connections for encryption in transit; using IAM policies and bucket policies with conditions for fine-grained access control; and enabling S3 access logging to a separate bucket or integrating with CloudWatch Logs for audit trails. Option 2 covers these aspects most comprehensively. Option 4's broad `s3:GetObject` access is a security flaw.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company has a highly variable workload with unpredictable spikes that occur infrequently but require immediate scaling. They want to minimize costs while maintaining high performance. Which combination of EC2 purchasing options and scaling strategies would be most cost-effective for their *stateless* web application front-end?",
+    "options": [
+      "Use primarily On-Demand instances with manual scaling.",
+      "A base of Reserved Instances for predictable minimum load, supplemented by Spot Instances for variable spikes, managed by EC2 Auto Scaling with target tracking policies.",
+      "Utilize only Dedicated Hosts to ensure consistent performance.",
+      "Purchase only Convertible Reserved Instances for maximum flexibility."
+    ],
+    "correctIndex": 1,
+    "explanation": "For highly variable, unpredictable, stateless workloads, a combination of Reserved Instances (or Savings Plans) for the expected minimum load and Spot Instances for the fluctuating spikes, all managed by EC2 Auto Scaling with appropriate scaling policies, offers the best balance of cost-effectiveness and performance. On-Demand is costly for sustained use, Dedicated Hosts are expensive, and Convertible RIs alone don't address dynamic pricing for spikes as effectively as Spot Instances.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A complex Serverless application deployed with AWS SAM is intermittently failing in production, but logs in CloudWatch Logs are fragmented across many Lambda invocations and services (API Gateway, DynamoDB). What advanced monitoring and debugging strategy could provide a clearer end-to-end view of the execution flow?",
+    "options": [
+      "Increase Lambda memory and CPU to prevent timeouts.",
+      "Enable AWS X-Ray tracing for the entire application, instrumenting Lambda functions and integrating with other services.",
+      "Add more `console.log` statements to all Lambda functions.",
+      "Export all CloudWatch Logs to an S3 bucket for manual inspection."
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS X-Ray provides end-to-end tracing for requests as they travel through various services in your application. It helps visualize the entire request flow, identify performance bottlenecks, and pinpoint where errors occur across Lambda, API Gateway, DynamoDB, etc., giving a consolidated view rather than fragmented logs. Increasing memory/CPU might mask symptoms but doesn't debug the root cause. More `console.log` statements add to log fragmentation. Manual inspection of S3 logs is cumbersome and lacks the correlation X-Ray provides.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An organization requires strict network isolation for different environments (development, staging, production) within a single AWS account, ensuring no traffic can accidentally cross between them, even from within the same VPC. How can this be achieved effectively and securely?",
+    "options": [
+      "Place all environments in a single VPC and rely solely on Security Groups for instance isolation.",
+      "Use separate AWS accounts for each environment, linked by AWS Organizations, with VPCs and specific network configurations in each account.",
+      "Create separate subnets for each environment within the same VPC and use Network ACLs to block traffic.",
+      "Implement a single Transit Gateway to route all traffic between different environments within the same VPC."
+    ],
+    "correctIndex": 1,
+    "explanation": "The most effective and secure way to achieve strict network isolation between environments and prevent accidental cross-communication is by using separate AWS accounts for each environment. This provides a hard boundary, simplifying security and access control, and minimizing the blast radius of misconfigurations. While Security Groups and Network ACLs can provide isolation within a VPC, they rely on complex configurations and increase the risk of misconfiguration leading to unintended access. A single Transit Gateway is for routing, not for inherent isolation within a single VPC.",
+    "difficulty": "hard"
+  }
+]

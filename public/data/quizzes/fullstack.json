@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A developer is building a Node.js application that fetches data from an external API, processes it, and then updates a MongoDB database. They are using async/await. Which of the following is the most robust way to handle errors that might occur at any stage of this asynchronous operation?",
+    "options": [
+      "Wrap each await call in a separate try...catch block.",
+      "Use a single try...catch block around the entire async function's body.",
+      "Chain .catch() after each await promise directly.",
+      "Rely on unhandled promise rejections to be caught by a global error handler."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using a single try...catch block around the entire async function's body is generally the most robust and readable way to handle errors in an async/await chain. Any rejected promise within that block will be caught by the single catch block, centralizing error handling. Separate try...catch blocks can lead to redundant code. Chaining .catch() after each await is not how async/await is typically used for error handling; await itself will throw an error if the promise rejects. Relying solely on a global error handler for unhandled rejections might miss specific error handling logic needed for the current context.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A large React application frequently experiences performance issues due to excessive re-renders. A specific component, ProductList, renders a list of ProductCard components, and ProductCard itself has several child components. The ProductList receives a products array and an onProductClick function as props. The onProductClick function is passed down to each ProductCard. What is the most effective combination of React performance optimizations to prevent unnecessary re-renders in this scenario?",
+    "options": [
+      "Memoize the ProductList component using React.memo and wrap onProductClick with useCallback.",
+      "Memoize each ProductCard component using React.memo and wrap onProductClick with useMemo.",
+      "Memoize each ProductCard component using React.memo and wrap onProductClick with useCallback.",
+      "Wrap the entire ProductList component's rendering logic with useMemo."
+    ],
+    "correctIndex": 2,
+    "explanation": "To prevent unnecessary re-renders, especially when props are objects or functions, memoization is key. React.memo will prevent a functional component from re-rendering if its props have not changed (shallow comparison). For functions passed as props, useCallback is essential because function equality changes on every render. If onProductClick is not memoized, ProductCard will always see a 'new' onProductClick prop and re-render, even if products haven't changed. useMemo is for memoizing values, not functions to be passed as props for callback stability. Memoizing ProductList itself might not be enough if its children are still re-rendering.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A developer is designing a database for an e-commerce platform. They need to store user information, product details, orders, and order items. Each order can have multiple items, and each item references a product. They are considering between MongoDB with Mongoose and PostgreSQL. Which scenario would most strongly favor using Mongoose's 'population' feature in MongoDB over a relational JOIN in PostgreSQL, from a data retrieval and application design perspective?",
+    "options": [
+      "When the relationship between orders and products is frequently one-to-many, and products have a highly normalized structure.",
+      "When product details are rarely needed alongside order items, and the application primarily deals with nested document structures.",
+      "When the application frequently needs to fetch an order and all its associated product details in a single query, and the product details are relatively static and simple.",
+      "When the priority is strict ACID compliance across all transactions involving orders and product inventory."
+    ],
+    "correctIndex": 2,
+    "explanation": "Mongoose's populate feature is analogous to a SQL JOIN but works by fetching referenced documents. It's particularly efficient when you frequently need to fetch a 'parent' document and its 'children' (or referenced documents) in a single operation, and the referenced data is often denormalized or embedded for performance, or relatively static and simple. Option A leans towards a relational database. Option B, if product details are rarely needed, population might be overkill. Option D, strict ACID compliance is a strong indicator for relational databases like PostgreSQL, not MongoDB.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A full-stack developer has implemented JWT (JSON Web Token) based authentication for a Node.js/Express backend. Users receive an access token upon successful login. Which of the following is a critical security best practice that, if neglected, could lead to severe vulnerabilities in the authentication system?",
+    "options": [
+      "Storing the JWT in localStorage on the client-side.",
+      "Not using HTTPS for all communication involving the JWT.",
+      "Setting a long expiration time (e.g., 24 hours) for the access token.",
+      "Including sensitive user information (like password hash) directly in the JWT payload."
+    ],
+    "correctIndex": 1,
+    "explanation": "Not using HTTPS means the JWT (and other sensitive data) is transmitted over an unencrypted channel, making it vulnerable to interception by attackers (Man-in-the-Middle attacks). This is a fundamental security requirement for any web application dealing with authentication. Storing JWT in localStorage can expose it to XSS attacks, but it's a client-side storage decision. A long expiration time increases the window for a compromised token to be used. Including sensitive data in the payload is poor practice, but the most critical negligence here is the lack of HTTPS.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A team is building a new marketing website using Next.js. They have several pages with different data fetching requirements: homepage: Content rarely changes, needs to be highly performant and SEO-friendly. blog/[slug]: Blog posts fetched from a headless CMS, updated regularly but not real-time. URLs are known at build time. dashboard: User-specific data, requires authentication, and updates frequently. Which Next.js data fetching strategy is most appropriate for each page type, respectively, to balance performance, SEO, and data freshness?",
+    "options": [
+      "homepage: getStaticProps, blog/[slug]: getServerSideProps, dashboard: Client-Side Fetching.",
+      "homepage: getServerSideProps, blog/[slug]: getStaticProps with revalidate, dashboard: getStaticProps.",
+      "homepage: getStaticProps, blog/[slug]: getStaticPaths with fallback: false and getStaticProps with revalidate, dashboard: Client-Side Fetching with getServerSideProps for initial data.",
+      "homepage: Client-Side Fetching, blog/[slug]: getServerSideProps, dashboard: getStaticProps with revalidate."
+    ],
+    "correctIndex": 2,
+    "explanation": "homepage: getStaticProps is ideal for static, rarely changing content for maximum performance and SEO. blog/[slug]: getStaticPaths (to define paths for all posts at build time) and getStaticProps with revalidate (for Incremental Static Regeneration) is perfect for content that updates regularly. dashboard: User-specific, frequently updated, and authenticated data is best handled with client-side fetching. getServerSideProps could be used for initial authenticated data if SEO is a concern.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A web developer wants to mark the primary independent section of content on a webpage, which could be distributed independently. Which HTML5 semantic element is most appropriate for this purpose?",
+    "options": [
+      "<div>",
+      "<section>",
+      "<article>",
+      "<main>"
+    ],
+    "correctIndex": 2,
+    "explanation": "The <article> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., a blog post, a news story, a comment). <section> is for grouping related content, <div> is generic, and <main> denotes the dominant content of the <body>.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A CSS developer needs to arrange a series of items in a row, allowing them to wrap to the next line if the container is too narrow, and evenly distribute space between them. Which CSS property, part of Flexbox, would be most crucial for this layout?",
+    "options": [
+      "display: grid;",
+      "flex-direction: column;",
+      "flex-wrap: wrap;",
+      "justify-content: space-between;"
+    ],
+    "correctIndex": 2,
+    "explanation": "flex-wrap: wrap; is the property that allows flex items to wrap onto multiple lines within the flex container when there isn't enough space. display: grid; is a different layout system. flex-direction: column; would arrange items vertically. justify-content: space-between; would distribute space along the main axis but doesn't handle wrapping itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In JavaScript, a developer needs to declare a variable whose value should not be reassigned after its initial declaration. Which keyword should they use?",
+    "options": [
+      "var",
+      "let",
+      "const",
+      "static"
+    ],
+    "correctIndex": 2,
+    "explanation": "The const keyword is used to declare a constant variable, meaning its value cannot be reassigned after initialization. let declares a block-scoped variable that can be reassigned. var declares a function-scoped or globally-scoped variable that can be reassigned. static is not a variable declaration keyword in global JavaScript scope.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A React developer wants to display a user's name within a WelcomeMessage component. The WelcomeMessage component needs to receive the name from its parent component. What is the standard mechanism in React for passing this data from parent to child?",
+    "options": [
+      "State",
+      "Context",
+      "Props",
+      "Ref"
+    ],
+    "correctIndex": 2,
+    "explanation": "Props (short for properties) are the primary and most straightforward way to pass data from a parent component to a child component in React. State is for managing internal, mutable data within a component. Context is for sharing data that can be considered 'global' for a tree of React components, and Refs are for accessing DOM elements or component instances directly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A backend developer is setting up a basic Node.js server using the Express framework. To handle incoming HTTP requests at a specific path, such as /api/users, which Express concept is primarily used?",
+    "options": [
+      "Middleware",
+      "Templating",
+      "Routing",
+      "Session Management"
+    ],
+    "correctIndex": 2,
+    "explanation": "Routing in Express defines how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP method (GET, POST, etc.). Middleware functions are functions that have access to the request object, the response object, and the next middleware function, often used for logging, authentication, etc. Templating is for generating dynamic HTML, and session management is for maintaining user sessions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer has made several changes to their local project files. Before committing these changes to the Git repository, they want to prepare them to be included in the next commit. Which Git command should they use?",
+    "options": [
+      "git commit -m \"Message\"",
+      "git push",
+      "git add .",
+      "git status"
+    ],
+    "correctIndex": 2,
+    "explanation": "The git add command is used to stage changes, meaning it adds changes in the working directory to the staging area, preparing them for the next commit. git commit records the staged changes. git push uploads local commits to a remote repository. git status shows the state of the working directory and the staging area.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When deploying a full-stack application, sensitive information like API keys or database credentials should not be hardcoded in the source code, especially when pushed to version control. How are these typically managed securely in a production environment?",
+    "options": [
+      "Store them directly in public config.js files.",
+      "Use client-side JavaScript to fetch them from a secure endpoint.",
+      "Store them as environment variables on the server.",
+      "Encrypt them and commit the encrypted values to the repository."
+    ],
+    "correctIndex": 2,
+    "explanation": "Environment variables are the standard and most secure way to manage sensitive configuration data in production environments. They are injected into the application's runtime process and are not part of the codebase itself, preventing accidental exposure in version control or client-side bundles. Storing in public config files is insecure. Fetching from client-side JavaScript exposes them. Encrypting and committing might still be vulnerable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A frontend developer is implementing a responsive layout for a product grid. They want the grid to display 4 columns on large screens, 2 columns on medium screens, and 1 column on small screens. Which CSS technique is most suitable for achieving this dynamic column adjustment based on screen size?",
+    "options": [
+      "Using float properties with different widths for each screen size.",
+      "Applying display: flex and setting flex-basis with media queries.",
+      "Using display: grid with grid-template-columns and media queries.",
+      "Implementing JavaScript to dynamically adjust width properties."
+    ],
+    "correctIndex": 2,
+    "explanation": "CSS Grid, combined with media queries, is an ideal and powerful way to create responsive grid layouts. grid-template-columns allows explicit definition of column tracks, and media queries enable changing these definitions at different breakpoints. While Flexbox can achieve some grid-like layouts, CSS Grid is specifically designed for two-dimensional layouts and is more direct for complex grids. Floats are an older, less flexible layout method. JavaScript is an unnecessary overhead for this common CSS task.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A JavaScript developer needs to fetch a list of users from /api/users. Upon successful retrieval, they need to log the first user's name to the console. If the fetch operation fails, an error message should be logged. Which code snippet correctly implements this using the fetch API and modern JavaScript error handling?",
+    "options": [
+      "fetch('/api/users').then(response => response.json()).then(data => console.log(data[0].name)).catch(error => console.error('Fetch failed:', error));",
+      "async function getUsers() { const response = await fetch('/api/users'); const data = await response.json(); console.log(data[0].name); } getUsers().catch(error => console.error('Fetch failed:', error));",
+      "fetch('/api/users', { method: 'GET' }).then(response => response.text()).catch(error => console.error('Fetch failed:', error)).then(data => console.log(JSON.parse(data)[0].name));",
+      "fetch('/api/users').then(response => response.json(), error => console.error('Fetch failed:', error)).then(data => console.log(data[0].name));"
+    ],
+    "correctIndex": 0,
+    "explanation": "Option A correctly chains .then() for processing the successful response (converting to JSON, then accessing data) and uses a single .catch() at the end to handle any errors that occur in the fetch itself or any preceding .then() handlers. Option B's catch block should ideally be inside the async function. Option C uses response.text() instead of response.json() and has misplaced catch. Option D uses an older, less robust error handling pattern.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A JavaScript developer is building a web page and wants to dynamically add a new paragraph element with the text \"New content added!\" to an existing div element with the ID container when a button is clicked. Which set of DOM manipulation methods should they use?",
+    "options": [
+      "document.getElementById('container').appendChild(document.createElement('p').innerText = 'New content added!');",
+      "document.querySelector('#container').innerHTML += '<p>New content added!</p>';",
+      "const newP = document.createElement('p'); newP.textContent = 'New content added!'; document.getElementById('container').append(newP);",
+      "document.querySelector('#container').insertAdjacentHTML('afterbegin', '<p>New content added!</p>');"
+    ],
+    "correctIndex": 2,
+    "explanation": "Option C correctly creates a new paragraph element (document.createElement('p')), sets its text content using textContent (safer than innerText and prevents XSS if text contains HTML), and then appends it to the container using append() (or appendChild()). Option A incorrectly assigns to innerText. Option B's innerHTML += is inefficient and can cause issues. Option D adds HTML as a string and positions it at the beginning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A React component needs to fetch data from an API when it mounts and re-fetch if a certain userId prop changes. What is the correct way to implement this using the useEffect Hook?",
+    "options": [
+      "useEffect(() => { fetchData(userId); }, []);",
+      "useEffect(() => { fetchData(userId); });",
+      "useEffect(() => { fetchData(userId); return () => cleanup(); }, [userId]);",
+      "useEffect(async () => { await fetchData(userId); }, [userId]);"
+    ],
+    "correctIndex": 2,
+    "explanation": "Option C correctly specifies userId in the dependency array. This tells React to re-run the effect whenever userId changes. An empty dependency array ([]) would run it only once on mount. No dependency array would run it on every render. useEffect itself should not be async; if the effect performs async operations, the async function should be defined inside the effect callback. The return function is for cleanup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a large React application, multiple deeply nested components need access to the currently logged-in user's authentication status and profile information without manually passing props down through every level. Which React feature is best suited to efficiently share this global-like state?",
+    "options": [
+      "Component state (using useState in a top-level component).",
+      "Context API.",
+      "Redux (external library).",
+      "React Router."
+    ],
+    "correctIndex": 1,
+    "explanation": "The React Context API is specifically designed to share 'global' data (like authentication status, theme, or preferred language) across a component tree without having to manually pass props down through every level (prop drilling). While Redux is an external state management library that can do this, Context API is a built-in React solution. Component state would require prop drilling. React Router is for navigation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user navigates to /products/123 in a React application using react-router-dom. The application needs to display details for the product with ID 123. How would the ProductDetail component typically access this id parameter from the URL?",
+    "options": [
+      "Using useLocation().pathname.",
+      "Using useParams().id.",
+      "Using useHistory().location.id.",
+      "Accessing props.match.params.id in a functional component."
+    ],
+    "correctIndex": 1,
+    "explanation": "For functional components in react-router-dom v5+, the useParams hook is the standard way to access URL parameters (like id in /products/:id). useLocation() gives you the current location object. useHistory() gives you access to the history instance. props.match.params.id was the way to do it in class components or functional components wrapped with withRouter in older versions, but useParams is the modern approach for functional components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Express.js backend needs to verify if a user is authenticated before allowing them to access a protected route (e.g., /api/admin/data). Which Express feature is best suited to implement this check in a modular and reusable way?",
+    "options": [
+      "A custom routing handler inside each protected route definition.",
+      "An Express middleware function.",
+      "Direct conditional logic at the start of each controller function.",
+      "An app.locals variable to store authentication status."
+    ],
+    "correctIndex": 1,
+    "explanation": "Express middleware functions are explicitly designed for tasks like authentication, logging, and data parsing, which need to run before the final route handler. They can be applied globally, to a group of routes, or to a single route, making them highly modular and reusable. Custom routing handlers or direct conditional logic would lead to code duplication. app.locals is for application-level variables accessible in templates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Node.js/Express application serves as a REST API. A developer needs to create two endpoints: one to retrieve a list of all products and another to add a new product. Which HTTP methods and corresponding Express route definitions are typically used for these operations?",
+    "options": [
+      "app.put('/products', ...) for list, app.get('/products', ...) for add.",
+      "app.get('/products', ...) for list, app.post('/products', ...) for add.",
+      "app.post('/products', ...) for list, app.patch('/products', ...) for add.",
+      "app.get('/products', ...) for list, app.put('/products/:id', ...) for add."
+    ],
+    "correctIndex": 1,
+    "explanation": "In RESTful API design: GET is used to retrieve resources (e.g., a list of all products). POST is used to create new resources (e.g., add a new product). PUT is for replacing an existing resource. PATCH is for partially updating an existing resource.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is working with a MongoDB database using Mongoose. They need to update the quantity of a specific product in the products collection. The product can be identified by its _id. Which Mongoose method is most appropriate for atomically updating a single document and returning the updated document?",
+    "options": [
+      "Product.find({ _id: productId }).then(product => { product.quantity = newQuantity; product.save(); });",
+      "Product.findOneAndUpdate({ _id: productId }, { quantity: newQuantity }, { new: true });",
+      "Product.updateOne({ _id: productId }, { $set: { quantity: newQuantity } });",
+      "Product.findByIdAndUpdate(productId, { quantity: newQuantity }, { returnOriginal: false });"
+    ],
+    "correctIndex": 3,
+    "explanation": "Both findOneAndUpdate and findByIdAndUpdate are suitable for atomically updating a single document and returning the updated document (when new: true or returnOriginal: false is used, respectively). findByIdAndUpdate is a convenient shorthand when querying by _id. Option A is not atomic. Option C's updateOne only returns an acknowledgment, not the updated document itself.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company has two SQL database tables: Customers (with CustomerID, Name) and Orders (with OrderID, CustomerID, OrderDate). They want to retrieve a list of all customer names and, for each customer, the OrderDate of any orders they have placed. If a customer has no orders, they should still appear in the list. Which type of SQL JOIN should be used?",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN (or LEFT OUTER JOIN)",
+      "RIGHT JOIN (or RIGHT OUTER JOIN)",
+      "FULL OUTER JOIN"
+    ],
+    "correctIndex": 1,
+    "explanation": "A LEFT JOIN (or LEFT OUTER JOIN) returns all rows from the left table (Customers in this case) and the matching rows from the right table (Orders). If there is no match, it will still return the customer data and NULL values for the order columns, thus ensuring all customers appear in the list. INNER JOIN would only return customers with orders. RIGHT JOIN would return all orders and matching customers. FULL OUTER JOIN would return all records when there is a match in either table, with NULL where there is no match.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is implementing a login system where users authenticate by sending a username and password. Upon successful authentication, the server generates a JWT. Which bcrypt operation is crucial for securely verifying the provided password against the stored hashed password?",
+    "options": [
+      "bcrypt.hash()",
+      "bcrypt.genSalt()",
+      "bcrypt.compare()",
+      "bcrypt.sign()"
+    ],
+    "correctIndex": 2,
+    "explanation": "bcrypt.compare(password, hashedPassword) is used to securely compare a plain-text password provided by the user with a stored bcrypt hash. It handles the re-hashing of the provided password with the extracted salt and compares the resulting hash, making it resistant to timing attacks. bcrypt.hash() is for generating the initial hash. bcrypt.genSalt() is for generating a salt. bcrypt.sign() is not a bcrypt function; it's related to JWT signing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A development team is collaborating on a project using Git. Alice completes a new feature on a dedicated branch called feature/alice-login. She needs to integrate her changes into the main branch, ensuring her work is reviewed by other team members before merging. What is the standard GitHub workflow for this scenario?",
+    "options": [
+      "Alice directly merges feature/alice-login into main and then pushes.",
+      "Alice rebases feature/alice-login onto main and then pushes.",
+      "Alice creates a Pull Request (PR) from feature/alice-login to main on GitHub.",
+      "Alice force pushes feature/alice-login to main."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a Pull Request (PR) on GitHub is the standard workflow for proposing changes, facilitating code review, discussion, and automated checks (like CI/CD) before merging a feature branch into a main branch. Directly merging or rebasing and pushing without a PR bypasses the review process. Force pushing is generally dangerous and should be avoided in collaborative environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is configuring a Docker container for their Node.js application. They need to ensure that the application's dependencies (from package.json) are installed inside the container. Which instruction would they include in their Dockerfile to achieve this after copying package.json and package-lock.json?",
+    "options": [
+      "CMD npm start",
+      "RUN npm install",
+      "EXPOSE 3000",
+      "COPY . ."
+    ],
+    "correctIndex": 1,
+    "explanation": "The RUN npm install instruction executes the npm install command inside the container during the build process, installing all project dependencies. CMD npm start defines the command to run when the container starts. EXPOSE 3000 informs Docker that the container listens on the specified network ports at runtime. COPY . . copies files from the build context to the container, but doesn't install anything.",
+    "difficulty": "moderate"
+  }
+]

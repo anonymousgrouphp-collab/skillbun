@@ -310,6 +310,24 @@ export default function GameMap({ roadmap, slug }) {
               <div className="sk-stat"><span className="sk-stat-v sk-green">{doneCount * 100}</span><span className="sk-stat-l">XP</span></div>
             </div>
             {progressNotice && <p className="sk-sync-note">{progressNotice}</p>}
+            <div className="sk-cert-btn-container">
+              {pct === 100 ? (
+                <button
+                  className="sk-cert-btn unlocked"
+                  onClick={() => router.push(`/roadmap/${slug}/certify`)}
+                >
+                  🏆 Get Certified — Take Quiz!
+                </button>
+              ) : (
+                <button
+                  className="sk-cert-btn locked"
+                  disabled
+                  title="Complete 100% of this roadmap to unlock the certification quiz!"
+                >
+                  🔒 Get Certified ({pct}%)
+                </button>
+              )}
+            </div>
           </div>
           <div className="sk-hero-right">
             <div className="sk-ring">

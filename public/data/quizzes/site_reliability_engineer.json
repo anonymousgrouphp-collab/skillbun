@@ -1,0 +1,302 @@
+[
+  {
+    "question": "Which command is commonly used on Linux to inspect network interface configurations, including IP addresses?",
+    "options": [
+      "top",
+      "df",
+      "ifconfig",
+      "ps"
+    ],
+    "correctIndex": 2,
+    "explanation": "ifconfig is a legacy command commonly used to configure or view network interface parameters on Linux systems. top monitors processes, df checks disk usage, and ps lists running processes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of collecting 'metrics' in a Site Reliability Engineering context?",
+    "options": [
+      "To store system logs for auditing",
+      "To record discrete events for tracing",
+      "To quantify system behavior over time",
+      "To execute automated scripts"
+    ],
+    "correctIndex": 2,
+    "explanation": "Metrics are numerical measurements captured over time, used to quantify system performance and health, whereas logs are discrete event records and traces follow requests across services.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a distributed system, what does 'latency' primarily refer to?",
+    "options": [
+      "The amount of data processed per second",
+      "The delay between a request and its response",
+      "The total number of errors occurring",
+      "The maximum capacity of the system"
+    ],
+    "correctIndex": 1,
+    "explanation": "Latency is the time delay between when a request is sent and when the response is received. The other options describe throughput, error rate, and capacity respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best defines a Service Level Objective (SLO)?",
+    "options": [
+      "A specific metric measuring service performance",
+      "An agreement with the customer about service uptime",
+      "A target value or range for an SLI",
+      "The maximum allowable time a service can be down"
+    ],
+    "correctIndex": 2,
+    "explanation": "An SLO is a target or desired range for a Service Level Indicator (SLI), which is a specific metric. It is not an agreement with customers (which would be an SLA) nor the maximum downtime directly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main goal of a 'blameless postmortem' in incident management?",
+    "options": [
+      "To identify and punish the individuals responsible for an incident",
+      "To document the technical steps taken during an incident",
+      "To learn from incidents and prevent recurrence without assigning personal blame",
+      "To provide a legal record of service outages"
+    ],
+    "correctIndex": 2,
+    "explanation": "A blameless postmortem focuses on systemic failures and learning opportunities rather than assigning fault to individuals, fostering a culture of continuous improvement.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In SRE, what is 'toil'?",
+    "options": [
+      "Creative and innovative work that advances a service",
+      "Work that is manual, repetitive, automatable, tactical, and devoid of enduring value",
+      "Strategic planning for system architecture",
+      "Complex problem-solving during an incident"
+    ],
+    "correctIndex": 1,
+    "explanation": "Toil is defined as manual, repetitive, automatable, tactical, and non-lasting work, which SRE aims to reduce through automation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of these is a container orchestration platform that automates the deployment, scaling, and management of containerized applications?",
+    "options": [
+      "Docker Swarm",
+      "Jenkins",
+      "Ansible",
+      "Kubernetes"
+    ],
+    "correctIndex": 3,
+    "explanation": "Kubernetes is widely recognized as the leading open-source platform for orchestrating containers. Docker Swarm is another container orchestrator but less dominant. Jenkins is a CI/CD tool, and Ansible is an automation engine.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A web application experiences intermittent connection issues. Upon investigation, you discover that DNS resolution is failing for certain external services. Which of the following is the most likely initial step to diagnose this on a Linux server?",
+    "options": [
+      "Restart the web server",
+      "Check /etc/resolv.conf for correct DNS server entries",
+      "Analyze application logs for database errors",
+      "Increase the server's CPU allocation"
+    ],
+    "correctIndex": 1,
+    "explanation": "/etc/resolv.conf specifies the DNS servers a Linux system uses for name resolution. Checking this file is the primary diagnostic step when DNS issues are suspected. Restarting the web server or checking database errors won't resolve DNS, and CPU allocation is unrelated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A microservice application relies on an external payment gateway. To prevent a single slow response from the gateway from causing cascading failures in your service, which design pattern should be implemented?",
+    "options": [
+      "Leader-follower replication",
+      "Eventual consistency",
+      "Circuit breaker",
+      "Database sharding"
+    ],
+    "correctIndex": 2,
+    "explanation": "A circuit breaker pattern prevents a microservice from repeatedly trying to access a failing service, allowing it to recover and preventing cascading failures. Leader-follower replication and database sharding relate to data management, while eventual consistency describes data propagation, none of which directly address preventing cascading failures from a slow external dependency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is setting up monitoring for a critical API. You want to define an SLI for availability. Which of the following would be the most user-centric and actionable SLI?",
+    "options": [
+      "Percentage of CPU utilization below 80%",
+      "Percentage of successful HTTP 2xx responses",
+      "Disk I/O operations per second",
+      "Number of active connections to the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "A user-centric availability SLI directly reflects the user's experience. Successful HTTP 2xx responses directly indicate if the API is serving requests correctly from the user's perspective. The other options are infrastructure metrics that don't directly correlate with user experience for availability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing alerts for a service, which principle helps avoid 'alert fatigue'?",
+    "options": [
+      "Alert on every minor deviation from baseline",
+      "Route all alerts to every team member",
+      "Ensure alerts are actionable and indicate a problem requiring human intervention",
+      "Set extremely low thresholds for all metrics"
+    ],
+    "correctIndex": 2,
+    "explanation": "Alert fatigue occurs when too many non-actionable or low-severity alerts desensitize on-call engineers. Actionable alerts focus on real problems that require human intervention, reducing noise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your service has an SLO of 99.9% availability over a 30-day month. If the service experiences 1 hour of downtime within this period, what is the status of its error budget for the month?",
+    "options": [
+      "The error budget is fully intact",
+      "Less than 50% of the error budget is consumed",
+      "The error budget is exceeded",
+      "Exactly 99.9% of the error budget is consumed"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 30-day month has 30 * 24 = 720 hours. A 99.9% availability SLO allows for 0.1% downtime, which is 0.001 * 720 hours = 0.72 hours (43.2 minutes). 1 hour of downtime (60 minutes) significantly exceeds this allowed budget.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a major incident, which role is primarily responsible for ensuring clear and consistent communication to stakeholders, both internal and external?",
+    "options": [
+      "Incident Commander",
+      "Technical Lead",
+      "Communications Lead",
+      "On-call Engineer"
+    ],
+    "correctIndex": 2,
+    "explanation": "While the Incident Commander oversees the entire incident, the Communications Lead is specifically tasked with managing all internal and external communication to ensure accuracy and consistency, freeing the IC to focus on mitigation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A common source of toil is manually provisioning new environments for development and testing. Which automation practice directly addresses this?",
+    "options": [
+      "Manual runbook execution",
+      "On-call rotation scheduling",
+      "Infrastructure as Code (IaC)",
+      "Performance monitoring setup"
+    ],
+    "correctIndex": 2,
+    "explanation": "Infrastructure as Code (IaC) allows for defining and provisioning infrastructure resources (like environments) through machine-readable definition files, enabling automated and repeatable deployment, significantly reducing manual toil.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your service is experiencing increased load due to a marketing campaign. To understand how your system behaves under anticipated peak traffic and identify potential bottlenecks, which activity should be performed?",
+    "options": [
+      "Disaster recovery drill",
+      "Chaos engineering experiment",
+      "Load testing",
+      "Security audit"
+    ],
+    "correctIndex": 2,
+    "explanation": "Load testing simulates anticipated user loads to measure system performance and identify bottlenecks under stress, directly addressing concerns about peak traffic and capacity. Disaster recovery drills focus on recovering from failures, chaos engineering on resilience to failures, and security audits on vulnerabilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To ensure data consistency across multiple replicas in a distributed database system, which mechanism is often employed?",
+    "options": [
+      "Backpressure",
+      "Idempotent retries",
+      "Consensus algorithms (e.g., Raft, Paxos)",
+      "Circuit breaking"
+    ],
+    "correctIndex": 2,
+    "explanation": "Consensus algorithms like Raft or Paxos are used in distributed systems to ensure that all nodes agree on a single value or state, which is critical for maintaining data consistency across replicas. Backpressure and circuit breaking manage flow, and idempotent retries handle transient errors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After a service incident, a critical follow-up action is to implement changes identified in the postmortem to prevent recurrence. What is the SRE practice that encourages this proactive improvement?",
+    "options": [
+      "Alert suppression",
+      "Incident paging",
+      "Remediation tasks",
+      "Rollback procedure"
+    ],
+    "correctIndex": 2,
+    "explanation": "Postmortem remediation tasks are the actionable items derived from an incident analysis, designed to address root causes and prevent similar incidents from happening again, driving continuous improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is receiving frequent alerts about a service's latency, but users are not reporting any significant issues. What is the most appropriate next step during an SLO alert review?",
+    "options": [
+      "Immediately escalate to senior management",
+      "Ignore the alerts as they are not impacting users",
+      "Tune the alert thresholds or re-evaluate the SLI definition",
+      "Rollback the last deployment"
+    ],
+    "correctIndex": 2,
+    "explanation": "If alerts are firing without user impact, it suggests the alerts are too sensitive or the SLI definition might not accurately reflect user experience. Tuning thresholds or redefining the SLI makes the alerting more effective and reduces alert fatigue.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When configuring a web server, you need to ensure secure communication between clients and the server. Which protocol is primarily used for this purpose?",
+    "options": [
+      "HTTP",
+      "FTP",
+      "TLS",
+      "UDP"
+    ],
+    "correctIndex": 2,
+    "explanation": "TLS (Transport Layer Security) is the cryptographic protocol that provides secure communication over a computer network, commonly used with HTTP to form HTTPS. HTTP is unsecured, FTP is for file transfer, and UDP is a connectionless transport protocol.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A common SRE practice involves automating repetitive operational tasks. Which of the following best describes a 'runbook' in the context of automation?",
+    "options": [
+      "A log of all incidents",
+      "A collection of performance dashboards",
+      "A documented procedure, often a precursor to automation, for routine operational tasks",
+      "A tool for managing on-call rotations"
+    ],
+    "correctIndex": 2,
+    "explanation": "A runbook is a documented, step-by-step procedure for common operational tasks. In SRE, these are often automated (turning the runbook into a script) to reduce toil, but the runbook itself is the documented guide.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A highly available e-commerce service uses a distributed queue for order processing. During a peak traffic surge, you observe increasing queue lengths, rising API latencies, and eventual service timeouts, even though individual worker processes appear healthy. What is the most likely root cause and mitigation strategy?",
+    "options": [
+      "A single point of failure in the queue service; migrate to a redundant queue.",
+      "Insufficient database capacity; scale up the database instance.",
+      "Backpressure build-up due to slower downstream processing than upstream ingestion; implement flow control mechanisms or scale out consumers.",
+      "Network partition between services; reconfigure network routes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Increasing queue lengths combined with healthy individual workers strongly indicates that the rate of messages being put into the queue (upstream ingestion) is faster than the rate at which workers can process them (downstream processing). This creates backpressure. Mitigation involves slowing down producers or, more commonly, scaling out or optimizing consumers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team is responsible for a user-facing search service. You have an SLO of 99.9% for search query success rate and 99.5% for search query latency (p99 under 500ms). After a new feature deployment, the success rate remains within SLO, but latency occasionally spikes above the 500ms threshold, consuming 75% of the latency error budget within a week. How should this scenario primarily influence product decisions based on SRE principles?",
+    "options": [
+      "Rollback the new feature immediately, as any budget consumption is critical.",
+      "Prioritize development of new features, as the success rate SLO is still met.",
+      "Defer new feature development and allocate engineering resources to investigate and address latency issues, as the remaining error budget for latency is low.",
+      "Increase the latency SLO to allow for higher thresholds, as users are not explicitly complaining."
+    ],
+    "correctIndex": 2,
+    "explanation": "While success rate is met, the significant consumption of the latency error budget signals a problem that needs immediate attention. Error budgets are a mechanism to balance reliability work with feature development. A low remaining budget for latency means the team should prioritize stabilizing latency over new features to avoid breaching the SLO and impacting user experience. Increasing the SLO without justification undermines the reliability target.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a critical incident involving a multi-service outage, your initial alerts from Prometheus show high error rates across multiple interdependent services. However, logs aggregated in a central logging system provide conflicting information, and distributed traces are incomplete due to a misconfigured sampling rate. As Incident Commander, what is your immediate priority regarding observability?",
+    "options": [
+      "Focus solely on the Prometheus metrics, as they are real-time.",
+      "Instruct engineers to manually inspect logs on individual servers for more accurate data.",
+      "Prioritize restoring basic service functionality using available information, and then address the observability gaps in the postmortem.",
+      "Immediately pause mitigation efforts to fix tracing configuration and re-collect complete traces."
+    ],
+    "correctIndex": 2,
+    "explanation": "During a critical incident, the top priority is always to restore service functionality to minimize impact. While observability is crucial, spending time fixing broken observability tools during an active outage diverts resources from mitigation. The existing (even if imperfect) data should be used to the best extent possible to drive recovery, and improving observability becomes a high-priority follow-up action in the postmortem.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your SRE team manages a complex microservice architecture. To proactively test the system's resilience against unforeseen failures and validate automated failover mechanisms, which advanced practice would you implement?",
+    "options": [
+      "Regularly review service logs for anomalies.",
+      "Implement static code analysis in CI/CD pipelines.",
+      "Conduct chaos engineering experiments (e.g., using tools like Gremlin or Chaos Mesh) to inject controlled failures.",
+      "Manually test disaster recovery procedures once a year."
+    ],
+    "correctIndex": 2,
+    "explanation": "Chaos engineering involves intentionally injecting controlled failures into a system to uncover weaknesses and validate its resilience and automated recovery mechanisms in a proactive manner. The other options are important practices but do not directly involve proactively testing system resilience against complex, unforeseen failures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team is tasked with deploying a new critical service. To ensure it adheres to SRE principles from day one, which integrated approach would be most effective during the deployment project?",
+    "options": [
+      "Focus exclusively on feature development, adding monitoring and reliability features post-launch.",
+      "Implement basic uptime monitoring and alert the on-call team for any downtime.",
+      "Define user-centric SLOs and SLIs upfront, instrument the service for metrics, logs, and traces, build Prometheus/Grafana dashboards, prepare automated alerts with runbooks, and conduct initial load tests before launch.",
+      "Delegate all reliability concerns to a separate \"reliability team\" after the service is operational."
+    ],
+    "correctIndex": 2,
+    "explanation": "This option encapsulates a holistic, \"shift-left\" SRE approach. Integrating reliability from day one, starting with SLOs and comprehensive observability, proactive alerting, and performance testing, is crucial for building a reliable service efficiently. Delaying reliability work or delegating it entirely undermines core SRE tenets.",
+    "difficulty": "hard"
+  }
+]

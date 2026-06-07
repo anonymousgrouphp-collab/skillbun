@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new macOS developer is trying to understand the fundamental difference between an iOS and a macOS application regarding user interaction paradigms. Which of the following is a primary characteristic of macOS app interaction?",
+    "options": [
+      "Primarily touch-based gestures and single-window navigation.",
+      "Reliance on a menu bar, multiple independent windows, and mouse/trackpad input.",
+      "Exclusive use of SwiftUI for all UI elements.",
+      "Strictly full-screen applications with no dock interaction."
+    ],
+    "correctIndex": 1,
+    "explanation": "macOS applications traditionally feature a global menu bar, support multiple windows that can be resized and moved independently, and are primarily interacted with using a mouse or trackpad. iOS apps are primarily touch-based with single-window navigation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which integrated development environment (IDE) is the standard and recommended tool for developing macOS applications?",
+    "options": [
+      "Visual Studio Code",
+      "Android Studio",
+      "Xcode",
+      "Sublime Text"
+    ],
+    "correctIndex": 2,
+    "explanation": "Xcode is Apple's official IDE for developing applications for macOS, iOS, watchOS, and tvOS. It provides all the necessary tools for coding, debugging, and UI design.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a new macOS application with modern Apple frameworks, which UI framework is generally preferred for new projects due to its declarative syntax and cross-platform potential?",
+    "options": [
+      "UIKit",
+      "AppKit",
+      "Cocoa Touch",
+      "SwiftUI"
+    ],
+    "correctIndex": 3,
+    "explanation": "SwiftUI is Apple's declarative UI framework, introduced as the modern approach for building user interfaces across all Apple platforms, including macOS. While AppKit is still prevalent for existing macOS apps, SwiftUI is the recommended choice for new projects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A macOS application needs to store user preferences that persist across launches, such as window position or theme settings. Which of the following is the most appropriate and standard macOS persistence mechanism for this type of data?",
+    "options": [
+      "Core Data",
+      "FileManager for custom JSON files",
+      "UserDefaults",
+      "SQLite database"
+    ],
+    "correctIndex": 2,
+    "explanation": "UserDefaults is the standard API for storing small amounts of user preferences and configuration data. Core Data and SQLite are suitable for larger, more complex data models, and FileManager is for general file system access, which would be an overcomplication for simple preferences.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collaborating on a macOS project, a developer needs to integrate changes from a shared remote repository into their local branch. Which Git command is most commonly used for this purpose to merge changes from a remote branch?",
+    "options": [
+      "`git commit`",
+      "`git push`",
+      "`git fetch` followed by `git merge` (or `git pull`)",
+      "`git reset`"
+    ],
+    "correctIndex": 2,
+    "explanation": "To integrate changes from a remote repository, you first `fetch` them to your local repository, and then `merge` them into your current branch. The `git pull` command is a shortcut that performs both `fetch` and `merge`. `git commit` stages changes locally, `git push` uploads local changes to a remote, and `git reset` undoes changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A macOS application requires access to the user's Downloads folder to process specific files. When submitting this application to the Mac App Store, what security feature must be properly configured to allow this access while adhering to Apple's security guidelines?",
+    "options": [
+      "Gatekeeper",
+      "Notarization",
+      "Sandboxing with the appropriate entitlements",
+      "Code Signing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Sandboxing is a security technology that restricts an app's access to system resources and user data. To access specific user folders like Downloads, the app must declare the appropriate entitlements in its sandbox configuration. Gatekeeper and Notarization are related to app execution security, and Code Signing ensures app integrity, but Sandboxing directly controls resource access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A macOS developer is tasked with creating a complex custom view in an AppKit application that requires custom drawing using Core Graphics and precise event handling for mouse interactions. Which AppKit class is the most appropriate starting point for implementing this custom view?",
+    "options": [
+      "`NSButton`",
+      "`NSTextField`",
+      "`NSView`",
+      "`NSViewController`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`NSView` is the fundamental class for drawing and handling events in AppKit. Custom drawing is performed by overriding its `draw(_:)` method, and event handling is done by overriding event methods like `mouseDown(with:)`. `NSButton` and `NSTextField` are specific control types, and `NSViewController` manages a view hierarchy, not a view's drawing directly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In macOS development, what does \"Cocoa\" primarily refer to?",
+    "options": [
+      "A programming language like Swift.",
+      "Apple's native object-oriented API for macOS, primarily based on Objective-C and AppKit.",
+      "A specific design pattern for UI layout.",
+      "The graphical user interface of the macOS operating system itself."
+    ],
+    "correctIndex": 1,
+    "explanation": "Cocoa is Apple's native object-oriented API for macOS (and Cocoa Touch for iOS/iPadOS). It largely consists of the Foundation and AppKit frameworks and was historically written in Objective-C, though it's fully interoperable with Swift.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are developing a macOS menu bar application using SwiftUI. What is the primary view lifecycle element used to present and manage the content displayed when the menu bar item is clicked?",
+    "options": [
+      "`NSWindow`",
+      "`NSPopover`",
+      "`NSAlert`",
+      "`NSPanel`"
+    ],
+    "correctIndex": 1,
+    "explanation": "For menu bar applications, a common pattern is to display content within an `NSPopover` that anchors to the `NSStatusItem` (the menu bar item) when clicked. `NSWindow` is for main application windows, `NSAlert` for alerts, and `NSPanel` for utility windows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To ensure the integrity and authenticity of a macOS application before distribution, especially for the Mac App Store, what critical step involves cryptographically signing the application bundle?",
+    "options": [
+      "Archiving",
+      "Debugging",
+      "Code Signing",
+      "Compiling"
+    ],
+    "correctIndex": 2,
+    "explanation": "Code Signing is the process of digitally signing your application bundle with an Apple-issued developer certificate. This verifies the app's origin and ensures it hasn't been tampered with since it was signed, which is mandatory for distribution.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A macOS developer is implementing a new feature and wants to ensure that unexpected input values do not crash the application. Which type of testing would primarily focus on verifying the application's robustness against invalid or unexpected data?",
+    "options": [
+      "Unit Testing",
+      "Performance Testing",
+      "User Acceptance Testing (UAT)",
+      "Fuzz Testing (or Robustness Testing)"
+    ],
+    "correctIndex": 3,
+    "explanation": "Fuzz testing (or robustness testing) involves providing invalid, unexpected, or random data as inputs to a computer program to discover software bugs and security vulnerabilities. While unit tests cover specific code units, fuzz testing specifically targets robustness against bad inputs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A macOS application handles sensitive user data that needs to be securely stored on the user's disk. What is the recommended macOS API for storing small pieces of sensitive data like passwords or API tokens in a secure, encrypted manner?",
+    "options": [
+      "`FileManager` with custom encryption",
+      "`UserDefaults`",
+      "Keychain Services",
+      "Core Data with an encrypted store type"
+    ],
+    "correctIndex": 2,
+    "explanation": "Keychain Services is the macOS API specifically designed for securely storing small chunks of sensitive information, such as passwords, certificates, and encryption keys. It provides system-level encryption and management. Using `FileManager` with custom encryption is complex and prone to errors, `UserDefaults` is not secure, and Core Data is for larger data sets.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a complex SwiftUI view hierarchy for a macOS application, a developer wants to pass data down through several child views without explicitly passing it through each intermediate view's initializer. Which SwiftUI mechanism is best suited for this scenario?",
+    "options": [
+      "`@State`",
+      "`@Binding`",
+      "`@EnvironmentObject` or `@Environment`",
+      "`@ObservedObject`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`@EnvironmentObject` (or `@Environment` for system-defined values) allows data to be injected into the environment of a view hierarchy and then accessed by any descendant view without needing to pass it through initializers. `@State` is for local view state, `@Binding` for two-way communication with a parent, and `@ObservedObject` for external observable objects.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Accessibility is a crucial aspect of macOS application development. What is the primary goal of making an application accessible?",
+    "options": [
+      "To improve the application's launch speed.",
+      "To make the application usable by people with disabilities.",
+      "To reduce the application's memory footprint.",
+      "To optimize the application for specific hardware."
+    ],
+    "correctIndex": 1,
+    "explanation": "Accessibility in software development aims to make applications usable by the widest possible range of users, including those with visual, auditory, motor, or cognitive disabilities, often through technologies like VoiceOver or keyboard navigation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After developing a new feature for a macOS application, a developer needs to hand it off to another team for further integration and testing. What is a key practice to ensure a smooth handoff and maintainability?",
+    "options": [
+      "Only sharing the compiled binary.",
+      "Providing comprehensive documentation, well-structured code, and clear commit messages.",
+      "Deleting all comments from the code to make it cleaner.",
+      "Explaining everything verbally without written records."
+    ],
+    "correctIndex": 1,
+    "explanation": "A smooth handoff requires more than just the binary. Comprehensive documentation (design decisions, API usage), well-structured and readable code with clear commit messages, and potentially unit tests, are crucial for another team to understand, maintain, and extend the feature. Verbal explanations alone are unreliable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a code review for a macOS application's pull request, a senior developer identifies that a new feature introduces a potential performance bottleneck when handling large data sets, although it passes all current unit tests. What is the most effective next step for the team to address this?",
+    "options": [
+      "Merge the pull request immediately, assuming future optimizations can handle it.",
+      "Reject the pull request outright and demand a complete rewrite.",
+      "Request the developer to add specific performance tests and investigate potential algorithmic improvements or architectural changes before merging.",
+      "Ask the developer to manually test with larger data sets and report back."
+    ],
+    "correctIndex": 2,
+    "explanation": "Identifying performance bottlenecks during review, even if tests pass, is critical. The most effective step is to add specific performance tests to quantify the issue and then explore algorithmic or architectural improvements. Merging prematurely could lead to production issues, and a complete rewrite might be overkill without further investigation. Manual testing is insufficient for guarantees.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A macOS application uses Core Data for local persistence. When working with managed objects, which object lifecycle method is called exactly once when a managed object is first inserted into a managed object context?",
+    "options": [
+      "`awakeFromFetch()`",
+      "`awakeFromInsert()`",
+      "`willSave()`",
+      "`didSave()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`awakeFromInsert()` is called exactly once when an NSManagedObject is first inserted into a managed object context, allowing for initial setup or default value assignments. `awakeFromFetch()` is for objects retrieved from the persistent store, and `willSave()`/`didSave()` are called before/after saving changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When starting a new macOS development project in Xcode, which file typically describes the project's dependencies, build settings, and target configurations?",
+    "options": [
+      "`Info.plist`",
+      "`AppDelegate.swift`",
+      "`.xcodeproj` or `.xcworkspace`",
+      "`Package.swift`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `.xcodeproj` (or `.xcworkspace` for projects with multiple projects/packages) file is the Xcode project document that contains all the project's configurations, build settings, targets, and references to files and frameworks. `Info.plist` defines app properties, `AppDelegate.swift` handles app lifecycle events, and `Package.swift` is for Swift Package Manager definitions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A macOS application needs to display a list of items where each item can be edited. To ensure the UI updates automatically when an item's properties change, and to manage the items efficiently within a SwiftUI `List`, what observable pattern should the item model adopt?",
+    "options": [
+      "Implement `Codable`.",
+      "Conform to `Identifiable` and `ObservableObject`.",
+      "Use `@State` for each item.",
+      "Make the item a `struct`."
+    ],
+    "correctIndex": 1,
+    "explanation": "To have a list of items update dynamically in SwiftUI, each item needs to be `Identifiable` (for SwiftUI to uniquely identify them) and, if its properties change, it should be an `ObservableObject` (usually a class) whose changes are published using `@Published` properties. This allows parent views to react to changes within the item.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A macOS application needs to access a specific user-selected folder that is outside its application sandbox container, and it must retain this access across application launches without repeatedly prompting the user. Which secure access mechanism is required for this persistent access?",
+    "options": [
+      "Standard file open/save dialogs with temporary access.",
+      "Requesting full disk access entitlement.",
+      "Bookmark data (Security-Scoped Bookmarks) for persistent access.",
+      "Disabling sandboxing entirely."
+    ],
+    "correctIndex": 2,
+    "explanation": "For persistent access to user-selected folders outside the sandbox, Security-Scoped Bookmarks are the correct mechanism. They allow an app to retain access to specific file system resources chosen by the user, even across launches, without requiring full disk access (which is overly broad and often denied). Disabling sandboxing is not an option for Mac App Store apps and compromises security.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which framework provides fundamental data types, collections, and operating system services for macOS applications, serving as the base layer for most other Apple frameworks?",
+    "options": [
+      "AppKit",
+      "SwiftUI",
+      "Foundation",
+      "WebKit"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Foundation framework provides a base layer of functionality for applications, including basic object classes (like `String`, `Array`, `Date`), utility functions, and access to fundamental operating system services. AppKit and SwiftUI are UI frameworks, and WebKit is for web content.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When preparing a macOS developer portfolio, what type of artifact best demonstrates your ability to solve real-world problems and articulate your development process?",
+    "options": [
+      "A list of all Xcode versions you've used.",
+      "A collection of screenshots without explanations.",
+      "Detailed case studies documenting problems, constraints, decisions, and outcomes.",
+      "Just sharing raw code on GitHub without a README or context."
+    ],
+    "correctIndex": 2,
+    "explanation": "Detailed case studies that outline the problem, constraints, design decisions, implementation choices, and the outcomes or lessons learned are excellent for demonstrating applied knowledge and critical thinking, which are highly valued in a portfolio. Raw code or just screenshots lack context.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is using Git for version control. Before starting work on a new feature, a developer wants to ensure their local branch is synchronized with the remote's main branch and then create a new, clean branch for their feature. What is the recommended sequence of Git commands?",
+    "options": [
+      "`git checkout main`, `git pull origin main`, `git branch feature/new-feature`, `git checkout feature/new-feature`",
+      "`git commit -a -m \"Initial commit\"`, `git push`",
+      "`git reset --hard origin/main`, `git checkout -b feature/new-feature`",
+      "`git merge main`, `git branch feature/new-feature`"
+    ],
+    "correctIndex": 0,
+    "explanation": "The correct sequence is to first switch to the main branch (`git checkout main`), pull the latest changes from the remote (`git pull origin main`), then create a new branch from this updated main branch (`git branch feature/new-feature`), and finally switch to the new feature branch (`git checkout feature/new-feature`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are developing a macOS application with complex data processing logic. To ensure the reliability of this logic and prevent regressions, you decide to implement comprehensive testing. Beyond unit tests for individual functions, what type of test would be most effective for verifying the end-to-end flow of data through multiple components of the processing pipeline?",
+    "options": [
+      "UI Tests",
+      "Integration Tests",
+      "Smoke Tests",
+      "Stress Tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Integration tests are designed to test the interaction between different modules or services of an application, verifying that they work correctly together. While unit tests focus on isolated units, integration tests ensure the \"glue\" between components functions as expected. UI tests interact with the user interface, smoke tests check basic functionality, and stress tests evaluate performance under heavy load.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A macOS application displays a complex custom view that needs to be dynamically resized based on its content, and it should play nicely within an `NSStackView` or SwiftUI's `VStack`. Which property of an `NSView` subclass (or equivalent SwiftUI modifier) is crucial for informing its container about its preferred size?",
+    "options": [
+      "`frame`",
+      "`bounds`",
+      "`translatesAutoresizingMaskIntoConstraints`",
+      "`intrinsicContentSize` (for AppKit) or sizing modifiers (for SwiftUI)"
+    ],
+    "correctIndex": 3,
+    "explanation": "In AppKit, `intrinsicContentSize` is key for custom `NSView` subclasses to tell auto layout their natural size. In SwiftUI, various sizing modifiers (like `fixedSize`, `frame`, `aspectRatio`) serve a similar purpose, enabling views to declare their preferred dimensions to layout containers. `frame` and `bounds` define actual size, `translatesAutoresizingMaskIntoConstraints` relates to constraint generation.",
+    "difficulty": "moderate"
+  }
+]
