@@ -171,7 +171,10 @@ export default function DashboardClient({ roadmapsInfo }) {
 
   // Read progress dynamically on progress version changes or component mount
   useEffect(() => {
-    setLocalProgress(readAllStoredRoadmapProgress());
+    const progress = readAllStoredRoadmapProgress();
+    setTimeout(() => {
+      setLocalProgress(progress);
+    }, 0);
   }, [progressVersion]);
 
   // Determine active project progress list

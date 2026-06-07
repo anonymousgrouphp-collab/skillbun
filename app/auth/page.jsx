@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -108,7 +108,7 @@ function AuthForm() {
   const [captchaEnabled, setCaptchaEnabled] = useState(false);
   const [captchaSiteKey, setCaptchaSiteKey] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
-  const [captchaWidgetId, setCaptchaWidgetId] = useState(null);
+  const captchaWidgetId = useRef(null);
   const [captchaError, setCaptchaError] = useState('');
 
   const title = mode === 'signup' ? 'Create your SkillBun account' : 'Welcome back to SkillBun';
@@ -183,7 +183,9 @@ function AuthForm() {
     const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
 
     if (isLocalhost || bypassKey === 'bypass-captcha-dev') {
-      setCaptchaToken('bypass-captcha-dev');
+      setTimeout(() => {
+        setCaptchaToken('bypass-captcha-dev');
+      }, 0);
       return;
     }
 
@@ -243,7 +245,7 @@ function AuthForm() {
             setCaptchaError(friendlyTurnstileError(errorCode));
           }
         });
-        setCaptchaWidgetId(widgetId);
+        captchaWidgetId.current = widgetId;
       } catch (e) {
         console.warn('Turnstile render error:', e);
       }
@@ -271,11 +273,11 @@ function AuthForm() {
 
     return () => {
       active = false;
-      if (captchaWidgetId !== null && window.turnstile) {
+      if (captchaWidgetId.current !== null && window.turnstile) {
         try {
-          window.turnstile.remove(captchaWidgetId);
+          window.turnstile.remove(captchaWidgetId.current);
         } catch (e) {}
-        setCaptchaWidgetId(null);
+        captchaWidgetId.current = null;
       }
     };
   }, [captchaEnabled, mode, captchaSiteKey]);
@@ -333,16 +335,16 @@ function AuthForm() {
 
           if (!verifyRes.ok) {
             setError('Human verification failed. Please try again.');
-            if (window.turnstile && captchaWidgetId !== null) {
-              window.turnstile.reset(captchaWidgetId);
+            if (window.turnstile && captchaWidgetId.current !== null) {
+              window.turnstile.reset(captchaWidgetId.current);
             }
             setCaptchaToken('');
             setSubmitting(false);
             return;
           }
 
-          if (window.turnstile && captchaWidgetId !== null) {
-            window.turnstile.reset(captchaWidgetId);
+          if (window.turnstile && captchaWidgetId.current !== null) {
+            window.turnstile.reset(captchaWidgetId.current);
             setCaptchaToken('');
           }
         }
