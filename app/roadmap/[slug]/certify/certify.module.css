@@ -824,3 +824,16 @@
 :global([data-theme='dark']) .disqualifiedSub {
   font-weight: 700;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .confettiPiece {
+    animation: none;
+    opacity: 0;
+  }
+  .timerFill {
+    transition: none;
+  }
+  .spinner {
+    animation-duration: 2s;
+  }
+}
