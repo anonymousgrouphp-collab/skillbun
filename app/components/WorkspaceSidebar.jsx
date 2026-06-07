@@ -5,7 +5,7 @@ const navItems = [
   { key: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
   { key: 'quiz', label: 'Career Quiz', href: '/quiz', icon: 'quiz' },
   { key: 'roadmaps', label: 'Roadmaps', href: '/roadmap', icon: 'map' },
-  { key: 'profile', label: 'Profile', href: '/coming-soon', icon: 'user' },
+  { key: 'profile', label: 'Profile', href: '/onboarding?edit=1', icon: 'user' },
   { key: 'settings', label: 'Settings', href: '/coming-soon', icon: 'settings' },
   { key: 'help', label: 'Help', href: '/contact', icon: 'help' },
 ];
