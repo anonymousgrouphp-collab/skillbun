@@ -470,6 +470,81 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ===== VERIFIABLE CERTIFICATIONS ===== */}
+        <section className="sb-section sb-split sb-split-reverse sb-reveal">
+          <div className="sb-cert-showcase" style={{
+            background: 'var(--card-bg)',
+            border: '1px solid var(--border)',
+            borderRadius: '16px',
+            padding: '24px',
+            boxShadow: 'var(--card-shadow)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '16px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div className="sb-cert-mock" style={{
+              border: '2px solid var(--green)',
+              borderRadius: '12px',
+              padding: '20px',
+              background: 'var(--surface-raised)',
+              textAlign: 'center',
+              position: 'relative'
+            }}>
+              <div style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--green-subtle)', border: '1px solid var(--green)', padding: '4px 8px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--green)' }}>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block' }}></span>
+                Verified
+              </div>
+              <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🎓</div>
+              <h4 style={{ fontFamily: "var(--font-fredoka), cursive", color: 'var(--green)', fontSize: '1.25rem', marginBottom: '4px', letterSpacing: '1px' }}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h4>
+              <p style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', margin: '4px 0 12px 0' }}>Certificate of Competency</p>
+              <h5 style={{ fontSize: '1.1rem', margin: '8px 0', color: 'var(--text)' }}>Gomastgamer101</h5>
+              <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '0' }}>has successfully verified proficiency in the</p>
+              <strong style={{ fontSize: '0.95rem', color: 'var(--text)', display: 'block', margin: '4px 0 16px 0' }}>Full Stack Developer Roadmap</strong>
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.7rem', color: 'var(--muted)' }}>
+                <span>ID: cert_sb_fs_90a1</span>
+                <span>Date: June 2026</span>
+              </div>
+            </div>
+            
+            <div style={{
+              background: 'var(--danger-soft)',
+              border: '1px dashed var(--danger)',
+              borderRadius: '8px',
+              padding: '12px',
+              fontSize: '0.8rem',
+              color: 'var(--text)'
+            }}>
+              <strong style={{ color: 'var(--danger)', display: 'block', marginBottom: '4px' }}>🛡️ Anti-Cheating Exam Proctoring</strong>
+              <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--muted)', lineHeight: '1.4' }}>
+                Quizzes enforce text-selection & copy blocking, right-click prevention, background blurring on focus loss, student-identifying watermarks (email, IP, timestamp), and AI-assistant refusal tags.
+              </p>
+            </div>
+          </div>
+
+          <div className="sb-copy-block">
+            <div className="section-label">Certifications</div>
+            <h2 className="section-title">Earn verifiable digital credentials</h2>
+            <p className="section-sub">Validate your progress. Once you complete 100% of any roadmap, take the proctored exam to earn a public certificate that employers can verify.</p>
+            <div className="sb-check-list">
+              <span>Dynamic 10-question quiz (3 Easy, 5 Moderate, 2 Hard)</span>
+              <span>45s question limit & focus loss window masking protection</span>
+              <span>Retry rules: 2 attempts per try, 1-hour study cooldown, max 3 tries per 24 hours</span>
+              <span>Public registry verification search page at `/certificate`</span>
+            </div>
+            <div style={{ marginTop: '20px' }}>
+              <Link href="/certificate" className="btn-secondary sb-inline-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '16px', height: '16px' }}>
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+                Open Verification Registry
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ===== BUN BOT ===== */}
         <section className="sb-section sb-split sb-reveal">
           <div className="sb-copy-block">
