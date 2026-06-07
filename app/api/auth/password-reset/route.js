@@ -149,7 +149,10 @@ export async function POST(request) {
       throw error
     }
 
-    const resetLink = await auth.generatePasswordResetLink(email, buildActionCodeSettings(request))
+    const rawResetLink = await auth.generatePasswordResetLink(email, buildActionCodeSettings(request))
+    const baseUrl = getPasswordResetBaseUrl(request)
+    const resetLink = rawResetLink.replace(/^https:\/\/[^\/]+/, baseUrl)
+
     await sendSkillBunPasswordResetEmail({ email, resetLink })
 
     // 2. Increment rate limit on successful mail delivery
