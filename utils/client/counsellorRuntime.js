@@ -26,7 +26,8 @@ import {
   setCaptchaStatus,
   toggleDropdown,
   logoutUser,
-  sanitizeHTML
+  sanitizeHTML,
+  updateUsageLimitCard
 } from './counsellor/counsellorDom';
 
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
@@ -37,6 +38,10 @@ const MAX_HISTORY_TEXT = 22000;
 export function mountCounsellorRuntime() {
   const eventController = new AbortController();
   const state = createState(eventController);
+
+  const limitInterval = setInterval(() => {
+    updateUsageLimitCard();
+  }, 1000);
 
   function getSystemPrompt() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -221,6 +226,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
 
       appendMessage(state, 'bot', botResponse);
       incrementRateLimit();
+      updateUsageLimitCard();
 
     } catch (err) {
       if (thinkingRow) thinkingRow.remove();
@@ -342,6 +348,8 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     const hasProfile = loadProfile(state);
     if (!hasProfile) return;
 
+    updateUsageLimitCard();
+
     const textarea = getEl('chatInput');
     const sendBtn = getEl('sendBtn');
     const userBadge = getEl('userBadge');
@@ -440,6 +448,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
   void initCounsellorPage();
 
   return () => {
+    clearInterval(limitInterval);
     eventController.abort();
   };
 }

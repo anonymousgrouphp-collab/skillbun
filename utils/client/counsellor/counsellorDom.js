@@ -145,3 +145,63 @@ export function logoutUser(state) {
   clearHumanProof(state);
   window.location.href = '/';
 }
+
+export function updateUsageLimitCard() {
+  const limitCountEl = getEl('limitCount');
+  const limitBarEl = getEl('limitBar');
+  const limitResetEl = getEl('limitReset');
+
+  if (!limitCountEl || !limitBarEl || !limitResetEl) return;
+
+  let count = 0;
+  let windowStart = Date.now();
+
+  try {
+    const raw = localStorage.getItem(RATE_LIMIT_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed) {
+        count = Number.parseInt(parsed.count, 10) || 0;
+        windowStart = Number.parseInt(parsed.windowStart, 10) || Date.now();
+      }
+    }
+  } catch (err) {
+    console.warn('Could not read rate limit for UI:', err);
+  }
+
+  const RATE_LIMIT_MAX = 15;
+  const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+  const now = Date.now();
+
+  if (now - windowStart > RATE_LIMIT_WINDOW_MS) {
+    count = 0;
+  }
+
+  const remaining = Math.max(0, RATE_LIMIT_MAX - count);
+  limitCountEl.textContent = `${remaining} / ${RATE_LIMIT_MAX}`;
+
+  const percent = Math.min(100, Math.max(0, (remaining / RATE_LIMIT_MAX) * 100));
+  limitBarEl.style.width = `${percent}%`;
+
+  limitBarEl.classList.remove('green', 'warning', 'danger');
+  if (remaining >= 10) {
+    limitBarEl.classList.add('green');
+  } else if (remaining >= 5) {
+    limitBarEl.classList.add('warning');
+  } else {
+    limitBarEl.classList.add('danger');
+  }
+
+  if (count === 0) {
+    limitResetEl.textContent = 'Timer starts on first message';
+  } else {
+    const msLeft = (windowStart + RATE_LIMIT_WINDOW_MS) - now;
+    if (msLeft <= 0) {
+      limitResetEl.textContent = 'Resets soon';
+    } else {
+      const minsLeft = Math.floor(msLeft / 60000);
+      const secsLeft = Math.floor((msLeft % 60000) / 1000);
+      limitResetEl.textContent = `Resets in ${minsLeft}m ${secsLeft}s`;
+    }
+  }
+}
