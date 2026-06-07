@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A business analyst needs to quickly understand key performance indicators (KPIs) like sales trends and customer acquisition rates. Which primary problem does a BI Developer typically solve in this scenario?",
+    "options": [
+      "Developing custom software applications for data entry.",
+      "Automating manual data collection processes for operational systems.",
+      "Transforming raw data into insightful, actionable reports and dashboards.",
+      "Managing IT infrastructure and server maintenance for data storage."
+    ],
+    "correctIndex": 2,
+    "explanation": "BI Developers focus on taking raw data and presenting it in a way that allows business users to make informed decisions, primarily through reports and dashboards.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A BI developer is tasked with retrieving all customer names and their corresponding email addresses from a Customers table. Which SQL keyword is most appropriate for selecting specific columns?",
+    "options": [
+      "FROM",
+      "WHERE",
+      "SELECT",
+      "JOIN"
+    ],
+    "correctIndex": 2,
+    "explanation": "The SELECT statement is used to retrieve data from a database. FROM specifies the table, WHERE filters rows, and JOIN combines data from multiple tables.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing a simple dashboard for executive review, what is the primary goal regarding its user experience (UX)?",
+    "options": [
+      "To display as much data as possible on a single screen.",
+      "To enable complex data manipulation directly within the dashboard.",
+      "To present key information clearly and concisely for quick understanding and decision-making.",
+      "To allow users to customize all visual elements and color schemes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Effective dashboard UX prioritizes clarity and conciseness to facilitate quick understanding and informed decision-making for its target audience, often executives.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A BI developer is collaborating on a Power BI project with several team members. Why is using a version control system like Git essential for this project?",
+    "options": [
+      "To automatically deploy reports to the Power BI Service.",
+      "To track changes, merge contributions, and revert to previous versions if needed.",
+      "To encrypt sensitive data within the Power BI report files.",
+      "To compress report files for faster loading times."
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems like Git are crucial for collaboration, allowing multiple developers to work on the same codebase, track changes, resolve conflicts, and maintain a history of revisions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a 'semantic model' (e.g., in Power BI or Tableau) in a BI solution?",
+    "options": [
+      "To serve as a raw data storage layer for the entire organization.",
+      "To define business logic, relationships, and calculations over raw data for consistent reporting.",
+      "To manage user authentication and authorization for accessing data sources.",
+      "To perform real-time streaming data analytics from IoT devices."
+    ],
+    "correctIndex": 1,
+    "explanation": "A semantic model abstracts the complexity of raw data, providing a business-friendly view with defined relationships, measures, and hierarchies to ensure consistent and accurate reporting.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A BI solution relies on daily updates for sales figures. What is the main function of a 'refresh pipeline' in this context?",
+    "options": [
+      "To allow users to manually enter new sales data into the database.",
+      "To visualize the sales data on a dashboard.",
+      "To extract, transform, and load the latest data from source systems into the BI model or reports.",
+      "To send email notifications about new sales leads."
+    ],
+    "correctIndex": 2,
+    "explanation": "A refresh pipeline (often part of an ETL/ELT process) is responsible for automatically updating the BI models and reports with the most recent data from the source systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "As a BI Developer, you've identified an inconsistency in a report due to a data quality issue in the source system. What is the most appropriate first step in communicating this to stakeholders?",
+    "options": [
+      "Immediately fix the data in the source system without informing anyone.",
+      "Stop the report refresh indefinitely until the issue is resolved.",
+      "Document the issue, quantify its impact, and communicate it to the relevant data owners or stakeholders.",
+      "Present the inconsistent data to executives and ask them to guess the problem."
+    ],
+    "correctIndex": 2,
+    "explanation": "Open and transparent communication is key. Documenting the issue, assessing its impact, and informing stakeholders allows for a coordinated effort to resolve the problem and manage expectations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A BI team is considering two primary tools for developing interactive dashboards: Power BI and Tableau. If the organization has a strong preference for integrating with Microsoft Azure services and has a large number of existing Excel users who need to easily transition to creating their own basic reports, which tool would generally be a more practical choice for the BI developer?",
+    "options": [
+      "Tableau, due to its superior data visualization capabilities.",
+      "Power BI, due to its deep integration with Azure and similar interface to Excel.",
+      "Both tools offer identical features, so the choice is arbitrary.",
+      "Neither tool is suitable for these requirements; a custom web application is needed."
+    ],
+    "correctIndex": 1,
+    "explanation": "Power BI offers deep integration with the Microsoft ecosystem, including Azure, and its interface often feels familiar to users accustomed to Microsoft Office products like Excel, making it easier for them to adopt. Tableau has excellent visualization but less native MS integration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A BI developer needs to calculate the \"Year-to-Date Sales\" in a Power BI semantic model. The Sales table has a SalesAmount column and a Date column. Which DAX function combination would be most appropriate for this measure, assuming a standard date table is related?",
+    "options": [
+      "CALCULATE(SUM(Sales[SalesAmount]), ALL(Sales))",
+      "SUM(Sales[SalesAmount])",
+      "CALCULATE(SUM(Sales[SalesAmount]), DATESYTD('Date Table'[Date]))",
+      "AVERAGE(Sales[SalesAmount])"
+    ],
+    "correctIndex": 2,
+    "explanation": "CALCULATE is used to change the filter context. DATESYTD is a time intelligence function that filters the 'Date Table' for dates from the beginning of the year up to the current date in the filter context, allowing SUM(Sales[SalesAmount]) to calculate Year-to-Date sales.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a report that shows orders and the customers who placed them. Not all customers have placed orders, and you want to include all customers in your report, even if they have no associated orders. The Customers table has CustomerID, and the Orders table has OrderID, CustomerID, and OrderDate. Which type of SQL JOIN would you use to achieve this?",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    "correctIndex": 1,
+    "explanation": "A LEFT JOIN returns all rows from the left table (Customers, in this case), and the matching rows from the right table (Orders). If there is no match, NULLs are returned for the right table's columns. This ensures all customers are included.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A BI developer is designing a data warehouse for a retail company. They decide to implement a Star Schema. What is the primary benefit of using a Star Schema in this context?",
+    "options": [
+      "It reduces data redundancy by normalizing all tables to the highest degree.",
+      "It optimizes query performance by minimizing the number of joins required for common analytical queries.",
+      "It enforces strict data validation rules at the database level.",
+      "It supports complex many-to-many relationships between all tables."
+    ],
+    "correctIndex": 1,
+    "explanation": "The Star Schema (composed of fact and dimension tables) is optimized for query performance in analytical workloads. Its denormalized nature minimizes joins and simplifies queries, making it efficient for reporting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your company has strict data governance policies, particularly concerning personally identifiable information (PII). As a BI developer creating a new sales dashboard, what is a crucial step to ensure compliance and maintain data integrity?",
+    "options": [
+      "Export all PII data to an unsecured public cloud storage for easier access.",
+      "Implement robust data masking or anonymization techniques for PII in the BI layer and restrict access based on roles.",
+      "Include all raw PII data directly in the dashboard for transparency.",
+      "Ignore PII policies as BI dashboards are only for internal use."
+    ],
+    "correctIndex": 1,
+    "explanation": "To comply with data governance and protect PII, BI developers must implement techniques like data masking or anonymization and apply role-based access control to ensure only authorized individuals can view sensitive information.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A daily data refresh pipeline for a critical executive dashboard has failed repeatedly over the past week due to an upstream source system issue. As the BI developer, what is the most effective immediate action to take beyond just restarting the pipeline?",
+    "options": [
+      "Inform the executives that the dashboard will be unavailable indefinitely.",
+      "Start manually entering data to populate the dashboard.",
+      "Investigate the root cause, communicate with the source system owner, and provide a clear status update to affected stakeholders, while also considering temporary data solutions if possible.",
+      "Delete the existing pipeline and rebuild it from scratch."
+    ],
+    "correctIndex": 2,
+    "explanation": "Beyond a simple restart, a production issue requires root cause analysis, collaboration with relevant teams (source system owners), proactive communication with stakeholders to manage expectations, and potentially finding interim solutions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to visualize the distribution of customer ages and identify any common age groups. Which type of chart would be most appropriate for this analysis?",
+    "options": [
+      "Line Chart",
+      "Pie Chart",
+      "Scatter Plot",
+      "Histogram"
+    ],
+    "correctIndex": 3,
+    "explanation": "A histogram is ideal for displaying the distribution of a single numerical variable (like age) by grouping data into bins and showing the frequency of observations in each bin, making it easy to spot common age groups.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is working on a complex BI project involving multiple reports and datasets. A new developer joins the team. What is the best practice for onboarding them to the project's version control (e.g., Git) workflow?",
+    "options": [
+      "Give them direct commit access to the main branch immediately.",
+      "Provide them with a detailed guide on branching strategies, commit message conventions, and pull request procedures.",
+      "Tell them to just copy the latest files from a shared drive.",
+      "Instruct them to only work on their local machine without committing changes."
+    ],
+    "correctIndex": 1,
+    "explanation": "Establishing clear version control guidelines (branching, commit messages, PRs) is crucial for team collaboration and code quality, especially when onboarding new members. Direct main branch access is risky.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a new sales dashboard, stakeholders report that the data for the 'Current Month Sales' visual is sometimes incorrect, showing data from the previous month. You've confirmed the DAX measure is correct. What area should you investigate next?",
+    "options": [
+      "The security roles defined in the Power BI Service.",
+      "The dashboard's color scheme and font choices.",
+      "The data refresh pipeline schedule and its successful completion status.",
+      "The user's browser settings."
+    ],
+    "correctIndex": 2,
+    "explanation": "If the DAX is correct and the issue is inconsistent data, the most likely culprit is that the data refresh pipeline is either not running on schedule, failing, or not pulling the most recent data correctly, leading to stale data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A BI developer is working with a dataset containing customer addresses, including street, city, state, and zip code. The privacy policy dictates that only authorized personnel should view full addresses. For a public-facing report, what is the most appropriate security measure to apply to this sensitive data?",
+    "options": [
+      "Store all address components in a single, unencrypted column to simplify querying.",
+      "Implement row-level security (RLS) to restrict specific users from seeing certain rows, but not individual columns.",
+      "Mask or tokenize the sensitive parts of the address (e.g., street number) and ensure role-based access to the unmasked data.",
+      "Remove all address information from the dataset entirely, even if it impacts other analytical needs."
+    ],
+    "correctIndex": 2,
+    "explanation": "Masking or tokenizing sensitive data allows less sensitive parts to be used while protecting the PII. Combining this with role-based access ensures only authorized users can view the full, unmasked data, fulfilling privacy requirements while retaining analytical value.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a BI project, a stakeholder requests a significant change to how 'profit' is calculated, which will impact several existing reports. What is the most effective approach for a BI developer to handle this request within a team delivery workflow?",
+    "options": [
+      "Implement the change immediately and redeploy all affected reports without prior notification.",
+      "Log the request as an issue, discuss the impact with the team and stakeholders, update decision records, and seek measurable acceptance criteria before implementation.",
+      "Decline the request because it will cause too much work.",
+      "Only update the calculation in the newest reports, leaving older reports inconsistent."
+    ],
+    "correctIndex": 1,
+    "explanation": "Following a structured workflow (logging, discussion, impact analysis, decision records, acceptance criteria) ensures changes are managed properly, stakeholders are informed, and the quality of existing reports is maintained.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical BI report frequently encounters 'out of memory' errors during its scheduled refresh. The report includes a large, unaggregated fact table and many complex DAX measures. Which action, focusing on implementation patterns, is most likely to resolve this issue?",
+    "options": [
+      "Increasing the refresh frequency to several times a day.",
+      "Refactoring the DAX measures to be more efficient and implementing aggregations or summarized tables where appropriate.",
+      "Changing the dashboard's visual theme to a simpler one.",
+      "Adding more filters directly within the report visuals."
+    ],
+    "correctIndex": 1,
+    "explanation": "'Out of memory' errors with large datasets and complex DAX often point to inefficient model design or calculations. Optimizing DAX, implementing aggregations (pre-calculating summaries), or using summarized tables can significantly reduce memory consumption and improve performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You've completed a significant BI project and are preparing for a team handoff. What is a critical component to include in your documentation to ensure maintainability and future updates by other developers?",
+    "options": [
+      "A list of all your favorite keyboard shortcuts used during development.",
+      "A detailed log of all your personal work hours spent on the project.",
+      "Comprehensive technical documentation including data source details, data model diagrams, DAX/SQL logic explanations, and refresh pipeline configuration.",
+      "Only the final dashboard files without any supporting context."
+    ],
+    "correctIndex": 2,
+    "explanation": "Comprehensive technical documentation is vital for maintainability and smooth handoffs. It ensures that other developers can understand the solution's architecture, logic, and dependencies without needing to consult the original developer constantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A BI developer is tasked with optimizing a Power BI report that is performing extremely slowly due to a complex DAX measure calculating \"Average Order Value for Customers with More Than 3 Orders in the Last 6 Months.\" The current measure involves multiple nested CALCULATE statements, FILTER functions, and implicit date context transitions. Which approach would offer the most significant performance improvement?",
+    "options": [
+      "Simplify the visual layout of the report by removing unnecessary charts.",
+      "Implement an external tool like DAX Studio to analyze query plans and optimize specific DAX patterns or consider pre-aggregating the required customer data in the data model.",
+      "Increase the Power BI Premium capacity assigned to the workspace.",
+      "Convert the measure into a calculated column, despite the potential increase in model size."
+    ],
+    "correctIndex": 1,
+    "explanation": "While increasing capacity might offer some relief, implementing tools like DAX Studio directly addresses the root cause of complex DAX by allowing detailed query plan analysis and optimization. Pre-aggregating data in the model can further reduce computation at query time, leading to significant performance gains.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are managing a large-scale data warehouse used by multiple BI reports. A critical report relies on a complex SQL query that joins five large tables, uses several subqueries, and performs window functions. The query is now taking an unacceptable amount of time to execute. What is the most effective advanced SQL performance tuning strategy to investigate first?",
+    "options": [
+      "Rewrite the query to use SELECT * instead of specific columns.",
+      "Implement appropriate indexing strategies (e.g., clustered/non-clustered indexes) on join columns and columns used in WHERE/ORDER BY clauses, and analyze the execution plan.",
+      "Store the entire result set of the query as a temporary table and query that.",
+      "Add more ORDER BY clauses to ensure data is sorted correctly."
+    ],
+    "correctIndex": 1,
+    "explanation": "Analyzing the execution plan to understand where the query spends its time, combined with implementing judicious indexing on frequently joined or filtered columns, is the most fundamental and impactful approach to optimize complex SQL queries on large datasets.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A BI developer needs to design a highly reliable data refresh pipeline for a mission-critical financial report. The pipeline involves extracting data from various sources (API, SQL DB, flat files), complex transformations, and loading into a data warehouse, followed by Power BI model refresh. What architecture pattern would provide the most robust solution, including error handling, observability, and recoverability?",
+    "options": [
+      "A simple script that sequentially calls each data source and loads directly into Power BI.",
+      "A monolithic stored procedure that handles all ETL steps within the SQL database.",
+      "An orchestrated pipeline using a tool like Azure Data Factory or AWS Glue, incorporating incremental loads, logging, retry mechanisms, and alerting for failures.",
+      "Manual data export and import every day to ensure human oversight."
+    ],
+    "correctIndex": 2,
+    "explanation": "For mission-critical reports requiring high reliability, an orchestrated pipeline with dedicated ETL/ELT tools (ADF, Glue) is superior. It allows for modularity, parallel processing, built-in error handling (retries), robust logging, monitoring, and alerting, which are essential for observability and recoverability in production environments.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your organization operates in a highly regulated industry and uses Power BI to provide insights to various departments, some of which require access to sensitive, segmented data (e.g., regional sales data for regional managers only). There's also a need for aggregated global data for executives. What is the most secure and scalable approach for implementing data access control across these diverse user groups within a Power BI environment?",
+    "options": [
+      "Create separate Power BI files for each department and executive, each with its own embedded data.",
+      "Implement Row-Level Security (RLS) and Object-Level Security (OLS) within the Power BI semantic model, using dynamic rules tied to user roles and directory groups.",
+      "Allow all users full access to the underlying database and rely on them to only view relevant data.",
+      "Only show aggregated data to everyone and restrict all access to detailed, sensitive information."
+    ],
+    "correctIndex": 1,
+    "explanation": "RLS and OLS are fundamental Power BI features for implementing granular, dynamic data access control. RLS restricts rows, while OLS restricts columns/tables. Tying these to directory groups ensures a scalable and secure solution, fulfilling the requirements for both segmented and aggregated views without duplicating datasets or reports.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A BI developer is presenting a newly designed dashboard to senior management. One executive expresses concern that the dashboard's performance metrics might not accurately reflect the strategic business objective of \"improving customer loyalty\" because it primarily focuses on \"transaction volume.\" What core BI Developer skill is most challenged in this scenario, and how should it be addressed?",
+    "options": [
+      "Tooling expertise; the developer should switch to a different BI tool.",
+      "Data modeling; the developer should add more tables to the existing model.",
+      "Domain understanding and stakeholder communication; the developer needs to bridge the gap between technical data metrics and strategic business objectives, perhaps by identifying proxy metrics or refining existing ones through further discussions.",
+      "SQL query optimization; the developer should try to make the existing queries run faster."
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario highlights a crucial gap between technical output and business understanding. A BI developer needs strong domain knowledge to translate business objectives into measurable metrics and excellent communication skills to align with stakeholders, ensuring the BI solution truly addresses the strategic goals. SQL optimization or tool switching wouldn't solve the fundamental miscalibration of metrics.",
+    "difficulty": "hard"
+  }
+]

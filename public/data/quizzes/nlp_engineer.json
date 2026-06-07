@@ -1,0 +1,302 @@
+[
+  {
+    "question": "An NLP Engineer is tasked with preparing a large dataset of customer reviews for sentiment analysis. The reviews contain various forms of 'not', such as 'not good', 'n't great', and 'never happy'. Which text preprocessing step is most crucial to ensure these negations are handled correctly and don't inadvertently reverse the sentiment, while also standardizing word forms?",
+    "options": [
+      "Stemming to reduce words to their root form.",
+      "Removing all stop words, including 'not', 'n't', 'never'.",
+      "Lemmatization combined with bigram or trigram tokenization to capture negation phrases.",
+      "Converting all text to lowercase and removing punctuation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Lemmatization helps standardize word forms (e.g., 'running' to 'run'). Combining this with bigram or trigram tokenization allows the model to treat phrases like 'not good' as a single semantic unit rather than 'not' and 'good' separately, preserving the negation's impact on sentiment. Stemming might be too aggressive, stop word removal would eliminate crucial negation words, and lowercase/punctuation removal alone wouldn't address negation semantics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A junior NLP Engineer is setting up their local environment for an NLP project. They need to ensure consistent package versions across development and deployment, and facilitate easy collaboration. Which tool is essential for managing dependencies and creating isolated environments?",
+    "options": [
+      "Git for version control of code.",
+      "Jupyter Notebook for interactive development.",
+      "A virtual environment manager like `venv` or `conda`.",
+      "Docker for containerization."
+    ],
+    "correctIndex": 2,
+    "explanation": "A virtual environment manager (like `venv` or `conda`) creates isolated Python environments, ensuring that project-specific dependencies don't conflict with other projects and allowing for consistent package versions. Git is for code version control, Jupyter for interactive development, and Docker is for broader application containerization, which is often used in deployment but not primarily for local dependency isolation during initial setup.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During the evaluation phase of a Named Entity Recognition (NER) model, the team observes that the model frequently mislabels specific entities, such as distinguishing between 'Apple' (the company) and 'Apple' (the fruit). What is the most appropriate next step to diagnose and potentially improve the model's performance for these edge cases?",
+    "options": [
+      "Increase the learning rate during training.",
+      "Retrain the model with a larger, more diverse dataset of general text.",
+      "Perform error analysis on the mislabeled examples and consider adding domain-specific features or more contextual training data.",
+      "Switch to a simpler model architecture, such as a rule-based system."
+    ],
+    "correctIndex": 2,
+    "explanation": "Error analysis involves systematically reviewing the model's mistakes to understand patterns. For specific mislabeling issues like 'Apple' ambiguity, it suggests the model lacks sufficient contextual understanding or specific features to differentiate. Adding domain-specific features (e.g., surrounding words, part-of-speech tags) or augmenting training data with more nuanced examples of these specific entities is a targeted solution. Retraining with a general dataset or increasing learning rate might not specifically address the nuanced errors, and switching to a simpler model might sacrifice overall performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer is developing a chatbot that needs to understand complex user queries and provide relevant answers. The system must process text, identify key entities and intentions, and then generate a coherent response. Which core skill is fundamental for representing words and phrases in a numerical format that captures semantic meaning and relationships?",
+    "options": [
+      "Regex pattern matching for text extraction.",
+      "Sentiment analysis for emotional tone detection.",
+      "Text embeddings (e.g., Word2Vec, BERT) for semantic representation.",
+      "Syntactic parsing for grammatical structure analysis."
+    ],
+    "correctIndex": 2,
+    "explanation": "Text embeddings convert words or phrases into dense vector representations where semantically similar words are located closer in the vector space. This numerical representation is crucial for machine learning models to understand the meaning and context of text, enabling tasks like identifying key entities, understanding intentions, and generating relevant responses. Regex is for pattern matching, sentiment analysis for tone, and syntactic parsing for grammatical structure, all of which are important but do not fulfill the core requirement of semantic numerical representation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team is deploying a new sentiment analysis model to production. To ensure its reliability and identify potential issues post-deployment, what operational aspect is crucial for monitoring the model's real-world performance over time?",
+    "options": [
+      "Regularly updating the model with new data without retraining.",
+      "Implementing version control for the model code and data.",
+      "Setting up model performance monitoring for metrics like accuracy, latency, and data drift detection.",
+      "Conducting A/B testing with a different model architecture."
+    ],
+    "correctIndex": 2,
+    "explanation": "Monitoring model performance in production is critical for reliability. This includes tracking key metrics (accuracy, latency, throughput), and crucially, detecting data drift (when input data characteristics change over time) or concept drift (when the relationship between inputs and outputs changes). This allows the team to identify when the model's effectiveness degrades and decide on retraining or redeployment. Version control is for development, updating without retraining is not feasible for performance maintenance, and A/B testing is for comparing models, not continuous operational monitoring.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A senior NLP Engineer is designing a retrieval-augmented generation (RAG) system for a knowledge base. What is the primary advantage of a RAG architecture over a purely generative large language model (LLM) for this specific application?",
+    "options": [
+      "RAG systems are inherently faster to train from scratch than LLMs.",
+      "RAG reduces the computational resources needed for inference compared to any LLM.",
+      "RAG significantly mitigates hallucinations and allows answers to be grounded in specific, verifiable sources from the knowledge base.",
+      "RAG requires less data preprocessing for the generative component."
+    ],
+    "correctIndex": 2,
+    "explanation": "The primary advantage of RAG in a knowledge base context is its ability to ground generated answers in retrieved, verifiable information. This significantly reduces the likelihood of hallucinations (generating factually incorrect or nonsensical information) often seen in purely generative LLMs, and provides traceability to the source documents. While it adds complexity, it improves factual accuracy and trustworthiness, which is crucial for knowledge bases. It doesn't necessarily make training faster or inference less resource-intensive in all cases, nor does it simplify generative component preprocessing.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company wants to identify customer complaints from a stream of social media posts. The NLP Engineer decides to use a pre-trained transformer model. What is the most effective approach to adapt this model to the specific domain of customer complaint detection?",
+    "options": [
+      "Use the pre-trained model directly without any modifications.",
+      "Retrain the entire pre-trained model from scratch on a new, small dataset of complaints.",
+      "Fine-tune the pre-trained model on a labeled dataset of customer complaints.",
+      "Apply a simple rule-based system on top of the pre-trained model's output."
+    ],
+    "correctIndex": 2,
+    "explanation": "Fine-tuning involves taking a pre-trained model (which has learned general language representations) and further training it on a smaller, domain-specific labeled dataset. This allows the model to adapt its learned representations and classification layers to the specific task (complaint detection) while leveraging the powerful general knowledge it already possesses. Using it directly might not yield optimal results for a specific task, retraining from scratch is computationally expensive and requires a very large dataset, and rule-based systems often struggle with the complexity and variability of natural language.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer is tasked with creating a case study for a project that significantly improved customer support efficiency. Which section should primarily focus on explaining *why* the project was necessary and what challenges existed before its implementation?",
+    "options": [
+      "Implementation Details",
+      "Problem Statement and Constraints",
+      "Validation and Results",
+      "Lessons Learned and Future Improvements"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'Problem Statement and Constraints' section of a case study clearly articulates the business problem, the pain points, the context, and any limitations or requirements that influenced the project. It sets the stage for why the NLP solution was needed. Implementation Details explain how it was built, Validation/Results show outcomes, and Lessons Learned discuss insights gained for future work.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When deploying an NLP model that handles user queries containing Personally Identifiable Information (PII), what is a critical security consideration to protect sensitive data?",
+    "options": [
+      "Storing all PII data in plain text in a public cloud storage for easy access.",
+      "Disabling all network security protocols to ensure maximum model availability.",
+      "Implementing data anonymization or pseudonymization techniques and ensuring secure data handling practices throughout the data lifecycle.",
+      "Ignoring PII concerns as long as the model achieves high accuracy."
+    ],
+    "correctIndex": 2,
+    "explanation": "Protecting PII is paramount. This involves implementing anonymization (removing identifying information) or pseudonymization (replacing identifying information with artificial identifiers) where possible, ensuring data is encrypted at rest and in transit, restricting access, and adhering to data privacy regulations (e.g., GDPR, CCPA). Storing PII in plain text, disabling security, or ignoring concerns are severe security vulnerabilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer needs to collaborate on a project with multiple team members. They frequently commit changes, merge branches, and review each other's code. Which version control habit is most important to ensure a smooth and conflict-free workflow?",
+    "options": [
+      "Avoiding committing changes until the entire feature is complete.",
+      "Committing frequently with clear, descriptive messages and regularly pulling updates from the main branch.",
+      "Working exclusively on the `main` branch to simplify the commit history.",
+      "Deleting local branches immediately after merging them."
+    ],
+    "correctIndex": 1,
+    "explanation": "Committing frequently with descriptive messages helps track changes granularly and makes it easier to revert if needed. Regularly pulling updates from the main/develop branch prevents merge conflicts by keeping the local branch synchronized with the team's progress. Delaying commits can lead to large, difficult-to-resolve conflicts. Working only on `main` is discouraged as it pollutes the history and creates conflicts. Deleting branches after merging is standard, but less critical for conflict-free workflow than frequent commits and pulls.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are evaluating an NLP model designed to classify medical reports into different disease categories. The dataset is highly imbalanced, with some rare diseases having very few examples. Which evaluation metric should you prioritize to get a reliable understanding of the model's performance on these rare classes?",
+    "options": [
+      "Accuracy",
+      "Precision",
+      "Recall (Sensitivity)",
+      "F1-score"
+    ],
+    "correctIndex": 3,
+    "explanation": "For imbalanced datasets, Accuracy can be misleading because a model might achieve high accuracy by simply classifying everything as the majority class. F1-score is the harmonic mean of Precision and Recall, making it a robust metric for imbalanced datasets as it considers both false positives and false negatives, giving a balanced view of performance especially for minority classes. Precision focuses on false positives, and Recall on false negatives; F1 combines them to give a comprehensive measure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A deployed NLP model for customer support often provides irrelevant answers to queries, even when similar questions were handled correctly in testing. The problem seems to be that the input distribution has shifted over time. What is this phenomenon called, and what is the typical mitigation strategy?",
+    "options": [
+      "Overfitting; reduce model complexity.",
+      "Underfitting; add more features.",
+      "Data drift; implement monitoring to detect changes and periodically retrain the model.",
+      "Bias in data; use adversarial training to correct."
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario describes data drift, where the characteristics of the input data in production diverge from the data the model was trained on. This often leads to a degradation in model performance. The typical mitigation strategy is to implement data drift monitoring to detect these changes and then periodically retrain the model on updated, representative data to ensure it remains relevant. Overfitting and underfitting are related to training phase issues, and bias is a different problem requiring different solutions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer is asked to build a system that can understand and respond to natural language queries. Before diving into complex model building, they need to identify the initial steps for setting up a robust, repeatable workflow. Which of the following best represents a foundational 'daily workflow' habit for an NLP Engineer?",
+    "options": [
+      "Immediately jumping to the latest large language model (LLM) for every task.",
+      "Setting up a version control system (like Git) for code and configuration, and defining clear branching strategies.",
+      "Avoiding detailed documentation until the project is fully complete and deployed.",
+      "Manually managing dependencies and installing packages globally."
+    ],
+    "correctIndex": 1,
+    "explanation": "Setting up a version control system (like Git) with clear branching strategies is a foundational 'daily workflow' habit. It enables tracking changes, collaborating with team members, reverting to previous versions, and ensuring the reproducibility of experiments. Relying solely on the latest LLM without understanding the problem, avoiding documentation, and manually managing global dependencies are all anti-patterns for a robust, repeatable workflow.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing an NLP system, the choice between using a rule-based approach and a machine learning (ML) approach often involves trade-offs. For a task like identifying specific, fixed patterns (e.g., precise product codes or date formats) where high precision and explainability are paramount, what is generally the most suitable pattern, and what is its main trade-off?",
+    "options": [
+      "Machine learning model; high scalability but low explainability.",
+      "Rule-based system; high precision and explainability but low robustness to variations and high maintenance.",
+      "Deep learning model; high flexibility but requiring massive datasets.",
+      "Ensemble model; robust but computationally intensive."
+    ],
+    "correctIndex": 1,
+    "explanation": "For tasks requiring high precision, explainability, and dealing with fixed patterns, a rule-based system is often suitable. Rules are explicit and easily auditable. However, their main trade-off is low robustness to variations in input (they break easily if input deviates from defined patterns) and high maintenance cost as rules need to be manually updated for every new variation. ML models offer more flexibility but less direct explainability for simple pattern matching.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer is developing a system for identifying toxic comments online. They are concerned about the model inadvertently propagating or even amplifying existing societal biases present in the training data, leading to unfair treatment of certain demographic groups. What is this risk called, and how can it be primarily addressed?",
+    "options": [
+      "Model overfitting; by increasing the model's complexity.",
+      "Data leakage; by splitting data correctly into training and test sets.",
+      "Algorithmic bias; by using bias detection metrics and fairness-aware training techniques.",
+      "Data sparsity; by collecting more data."
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario describes algorithmic bias, where biases from the training data (e.g., stereotypes, underrepresentation) are learned and potentially amplified by the model. Addressing this requires explicit efforts, including using bias detection metrics (e.g., looking at performance across different demographic groups) and employing fairness-aware training techniques (e.g., re-weighting, adversarial debiasing, post-processing). Overfitting, data leakage, and data sparsity are different issues.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During the 'Core Skills and Implementation' phase, an NLP Engineer is building a text classification model. They have collected and labeled a dataset. What is the essential next step after data collection and preprocessing, before training the model, to ensure robust evaluation?",
+    "options": [
+      "Deploy the model to a production environment immediately.",
+      "Split the dataset into training, validation, and test sets.",
+      "Write a detailed project report without analyzing data.",
+      "Randomly delete 50% of the dataset to speed up training."
+    ],
+    "correctIndex": 1,
+    "explanation": "Splitting the dataset into training, validation, and test sets is crucial. The training set is used to train the model, the validation set to tune hyperparameters and prevent overfitting during development, and the unseen test set for a final, unbiased evaluation of the model's performance on new data. Deploying prematurely, writing a report without analysis, or deleting data are not standard or advisable steps.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An NLP Engineer is tasked with creating an NLP Engineer Portfolio Capstone project. Besides the functional code, which artifact is most critical to effectively communicate the project's purpose, functionality, and how to use or reproduce it?",
+    "options": [
+      "A verbose list of all packages installed during development.",
+      "A comprehensive README.md file including project description, setup instructions, usage examples, and results.",
+      "Only the raw dataset used for training the model.",
+      "A collection of unrelated blog posts about general NLP topics."
+    ],
+    "correctIndex": 1,
+    "explanation": "A comprehensive README.md file is vital for a portfolio project. It serves as the primary documentation, explaining what the project does, how to set it up, how to run it, what results it achieves, and potentially lessons learned. This allows others (e.g., recruiters, collaborators) to quickly understand and interact with the project. The other options are either too specific, incomplete, or irrelevant for broad project communication.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team needs to improve the throughput and latency of a deployed NLP service. The current model is a large Transformer that takes several seconds to process each request. Which approach, focusing on 'Implementation Patterns' for production, offers the most promising avenue for optimization?",
+    "options": [
+      "Increase the number of CPU cores allocated to the service.",
+      "Replace the Transformer with a simple bag-of-words model.",
+      "Implement model quantization, pruning, or knowledge distillation to create a smaller, faster model, and explore hardware acceleration (e.g., GPUs/TPUs).",
+      "Retrain the model with more data."
+    ],
+    "correctIndex": 2,
+    "explanation": "For large models like Transformers, optimizing for production involves techniques to reduce model size and computational demands. Model quantization reduces precision, pruning removes less important connections, and knowledge distillation transfers knowledge to a smaller student model, all leading to faster inference. Utilizing specialized hardware like GPUs or TPUs is also critical for accelerating deep learning inference. Increasing CPU cores might help but is often insufficient for deep models, replacing with a simpler model sacrifices accuracy, and retraining with more data doesn't inherently reduce inference time.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An NLP Engineer is working on a text summarization task using a seq2seq Transformer model. The model is producing grammatically correct but often repetitive summaries. When evaluating the model, which metric would be most sensitive to this issue of repetitiveness and lack of novelty?",
+    "options": [
+      "BLEU score, which focuses on n-gram overlap with reference summaries.",
+      "ROUGE-L, which measures the longest common subsequence.",
+      "Manual human evaluation for coherence and non-redundancy.",
+      "Perplexity, indicating how well the model predicts a sample of text."
+    ],
+    "correctIndex": 2,
+    "explanation": "While BLEU and ROUGE metrics are standard for summarization, they are primarily geared towards measuring content overlap and fluency against reference summaries. They might not fully capture subtle issues like repetitiveness or lack of novelty. Manual human evaluation is the most robust method for assessing subjective quality aspects like coherence, non-redundancy, and creativity, which are critical for detecting repetitive summaries. Perplexity measures language model quality but not specifically summary repetitiveness.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A stakeholder requests a demonstration of a recently developed NLP feature. The feature involves complex text preprocessing and a deep learning model. To effectively present the work and gather feedback, what is a crucial element to include in the demonstration beyond just showing the output?",
+    "options": [
+      "The entire codebase on screen.",
+      "A detailed explanation of the underlying mathematical proofs of the model.",
+      "Clear acceptance criteria, decision records, and a simple, interactive demo with example inputs/outputs.",
+      "A lengthy monologue about potential future research directions."
+    ],
+    "correctIndex": 2,
+    "explanation": "For a stakeholder demo, the focus should be on clearly showing the feature's value and functionality. This means presenting it with clear acceptance criteria (what success looks like), discussing key decisions made, and, most importantly, providing a simple, interactive demonstration with example inputs and outputs. This allows stakeholders to understand the feature's impact and provide meaningful feedback. Showing raw code, complex math, or future research is generally not appropriate for a stakeholder demo.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are debugging an NLP pipeline that involves several steps: text cleaning, tokenization, embedding generation, and a classification model. You suspect an issue in the embedding generation phase. What debugging workflow step would be most effective to isolate and confirm the problem?",
+    "options": [
+      "Re-implementing the entire pipeline from scratch.",
+      "Checking the input and output of each individual component (text cleaning, tokenization) leading up to the embedding generation step, and then inspecting the generated embeddings directly.",
+      "Randomly changing hyperparameters of the classification model.",
+      "Ignoring the intermediate steps and only looking at the final classification accuracy."
+    ],
+    "correctIndex": 1,
+    "explanation": "A systematic debugging workflow involves isolating the problem. By checking the inputs and outputs of each component leading up to the suspected issue (embedding generation), you can verify if the previous steps are producing expected results. Then, directly inspecting the generated embeddings allows you to confirm if they are being created correctly or if there's an issue with their quality or format, thus pinpointing the problem's source. Re-implementing is too drastic, changing model hyperparameters is irrelevant to an embedding issue, and only looking at final accuracy doesn't provide enough detail for component-level debugging.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer is tasked with evaluating a new search engine's ability to retrieve relevant documents based on user queries. What is a key 'Domain Basic' vocabulary term that refers to the collection of documents or texts used for training and testing NLP models or for information retrieval?",
+    "options": [
+      "Algorithm",
+      "Model",
+      "Corpus",
+      "Feature"
+    ],
+    "correctIndex": 2,
+    "explanation": "In NLP, a 'corpus' (plural: corpora) refers to a large and structured set of texts used for linguistic analysis, training NLP models, or for information retrieval systems. Algorithms are step-by-step procedures, models are the trained systems, and features are input variables; none of these describe the collection of texts itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A key challenge for an NLP Engineer in a production environment is ensuring the security of the model and the data it processes. Which of the following best describes a 'security consideration' for an NLP system handling sensitive data?",
+    "options": [
+      "Ensuring the model is always trained on the largest possible dataset.",
+      "Implementing strong authentication and authorization controls for API access, encrypting data at rest and in transit, and regularly auditing access logs.",
+      "Prioritizing model interpretability over data privacy.",
+      "Deploying the model on public, unencrypted cloud storage for easy access."
+    ],
+    "correctIndex": 1,
+    "explanation": "Security considerations for NLP systems handling sensitive data include robust authentication and authorization to control who can access the model and its data, encryption of data (both when stored and when being transmitted) to prevent unauthorized access, and regular auditing of access logs to detect suspicious activity. Training on large datasets is for performance, interpretability is a separate concern, and public unencrypted storage is a major security vulnerability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An NLP Engineer needs to fine-tune a pre-trained language model for a downstream task (e.g., text classification). What is the primary benefit of starting with a pre-trained model rather than training a model from scratch?",
+    "options": [
+      "Pre-trained models are always faster at inference than custom-trained models.",
+      "Pre-trained models already possess a broad understanding of language patterns, grammar, and semantics from vast amounts of text data, requiring less domain-specific data and computation for adaptation.",
+      "Pre-trained models are inherently immune to bias.",
+      "Pre-trained models can only be used for the exact task they were initially trained on."
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary benefit of pre-trained models is that they have learned rich, general language representations from massive datasets. This 'transfer learning' means they already understand grammar, syntax, and some semantics. As a result, they require significantly less domain-specific labeled data and computational resources to achieve high performance on new, related tasks compared to training from scratch. They are not necessarily faster at inference, not immune to bias, and are specifically designed for adaptation to new tasks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "As an NLP Engineer presenting your Portfolio Capstone project, you need to clearly articulate the value and impact of your work. Which element is most crucial for demonstrating 'Career Readiness' and a deep understanding of the project's real-world relevance?",
+    "options": [
+      "A verbose list of all open-source libraries used.",
+      "A detailed README with diagrams, screenshots, deployment notes, and a 'lessons learned' section that reflects on challenges and future improvements.",
+      "Only the raw source code without any comments or documentation.",
+      "A brief summary that only states the project's name."
+    ],
+    "correctIndex": 1,
+    "explanation": "For career readiness, demonstrating a project's real-world relevance and your ability to reflect critically is key. A detailed README with diagrams, screenshots, deployment notes (showing consideration for operationalization), and a 'lessons learned' section (showing self-reflection and growth) effectively showcases your understanding beyond just coding. A list of libraries is insufficient, raw code lacks context, and a brief summary provides no insight into your capabilities.",
+    "difficulty": "easy"
+  }
+]

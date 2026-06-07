@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A programmer needs to store a simple ON/OFF state. Which fundamental concept represents this smallest unit of data in a computer?",
+    "options": [
+      "Byte",
+      "Bit",
+      "Nibble",
+      "Word"
+    ],
+    "correctIndex": 1,
+    "explanation": "A bit is the fundamental unit of information in computing, representing either a 0 (off) or a 1 (on). A byte is typically 8 bits, a nibble is 4 bits, and a word is a larger unit specific to a computer's architecture.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You open multiple applications like a web browser, a word processor, and a music player on your computer simultaneously. Which core component of the operating system is primarily responsible for managing how these different programs share the CPU and memory resources?",
+    "options": [
+      "File System",
+      "Kernel",
+      "Device Driver",
+      "User Interface"
+    ],
+    "correctIndex": 1,
+    "explanation": "The kernel is the core of an operating system, responsible for managing the system's resources, including processes, memory, and CPU scheduling. The file system manages data storage, device drivers allow interaction with hardware, and the user interface provides interaction with the user.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When you save a document, where is the data primarily stored for long-term retention even after the computer is turned off?",
+    "options": [
+      "RAM (Random Access Memory)",
+      "CPU Cache",
+      "Hard Drive (or SSD)",
+      "Processor Registers"
+    ],
+    "correctIndex": 2,
+    "explanation": "A hard drive or SSD provides non-volatile storage, meaning data persists even after power is removed. RAM and CPU cache are volatile memory used for short-term data access while the computer is on, and processor registers are tiny, fast storage within the CPU itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You type \"www.example.com\" into your browser. What service translates this human-readable domain name into an IP address that computers can understand?",
+    "options": [
+      "HTTP",
+      "FTP",
+      "DNS",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "DNS (Domain Name System) is responsible for translating human-readable domain names into numerical IP addresses. HTTP is for transferring web pages, FTP for file transfers, and SMTP for email.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A web developer is building an application where the client-side (browser) needs to request specific data from a server, like a list of products. Which architectural style or concept is most commonly used for this interaction?",
+    "options": [
+      "SMTP",
+      "API (Application Programming Interface)",
+      "SSH",
+      "FTP"
+    ],
+    "correctIndex": 1,
+    "explanation": "An API (Application Programming Interface) defines the set of rules and protocols for how different software components should interact, allowing a client to request and receive data from a server. SMTP, SSH, and FTP are protocols for email, secure shell access, and file transfer, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You visit a secure banking website, and you notice \"https://\" in the URL bar. What does the 'S' in HTTPS primarily indicate about your connection to the server?",
+    "options": [
+      "The connection is faster.",
+      "The website is hosted on a secure cloud server.",
+      "The data exchanged between your browser and the server is encrypted.",
+      "The website uses server-side scripting."
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'S' in HTTPS stands for \"Secure,\" indicating that the communication between your web browser and the website server is encrypted, protecting data from eavesdropping and tampering. It doesn't inherently mean faster speed, cloud hosting, or server-side scripting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to save a snapshot of their current code changes into their local Git repository. What command should they use?",
+    "options": [
+      "git push",
+      "git clone",
+      "git commit",
+      "git pull"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `git commit` command is used to save changes to the local repository, creating a new snapshot of the project. `git push` sends local changes to a remote repository, `git clone` copies a remote repository locally, and `git pull` fetches and merges changes from a remote repository.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are working on a new feature for a project and want to develop it independently without affecting the main codebase. Which Git concept allows you to create a separate line of development?",
+    "options": [
+      "Commit",
+      "Merge",
+      "Branch",
+      "Pull Request"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Git branch allows you to diverge from the main line of development and work on new features or fixes independently. Commits save changes within a branch, merging combines branches, and a pull request is a mechanism to propose merging changes from one branch to another in a collaborative environment like GitHub.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team member has completed a new feature on their branch and wants to propose integrating it into the main `main` branch of the shared GitHub repository. What is the standard process on GitHub for this, often involving code review?",
+    "options": [
+      "`git push main`",
+      "Opening a Pull Request",
+      "`git clone`",
+      "Creating a new repository"
+    ],
+    "correctIndex": 1,
+    "explanation": "Opening a Pull Request (PR) on GitHub is the standard way to propose merging changes from one branch (e.g., a feature branch) into another (e.g., `main`). This allows for code review and discussion before the changes are integrated. `git push main` would directly push to the main branch (if allowed), `git clone` copies a repo, and creating a new repository is for starting a new project.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Python, you write `x = 10` and then `y = \"Hello\"`. What programming concept are `x` and `y` demonstrating?",
+    "options": [
+      "Function definition",
+      "Conditional statements",
+      "Variable assignment",
+      "Loop iteration"
+    ],
+    "correctIndex": 2,
+    "explanation": "This demonstrates variable assignment, where a name (like `x` or `y`) is associated with a value (like `10` or `\"Hello\"`). Function definitions create reusable blocks of code, conditional statements execute code based on conditions, and loops repeat code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A programmer writes a function that takes two numbers and returns their sum. Later, when they run the program, it gives an error message like `TypeError: unsupported operand type(s) for +: 'str' and 'int'`. What is the most likely cause of this error?",
+    "options": [
+      "The function was not called.",
+      "One of the inputs provided to the function was a string instead of a number.",
+      "The function had an infinite loop.",
+      "The function attempted to divide by zero."
+    ],
+    "correctIndex": 1,
+    "explanation": "A `TypeError: unsupported operand type(s) for +: 'str' and 'int'` specifically means that the addition operator (`+`) was used with a string and an integer, which is not allowed. This points to an incorrect input type. The other options describe different types of errors or issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to process a list of customer names one by one to print a personalized greeting for each. Which fundamental programming construct is most suitable for repeatedly executing the same code for each item in a collection?",
+    "options": [
+      "Conditional statement (if/else)",
+      "Function",
+      "Loop (for/while)",
+      "Variable"
+    ],
+    "correctIndex": 2,
+    "explanation": "A loop (like a `for` loop or `while` loop) is designed to execute a block of code repeatedly, making it ideal for processing each item in a list or collection. Conditional statements execute code based on a condition, functions encapsulate reusable code, and variables store data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to store a collection of unique user IDs and quickly check if a given ID already exists in the collection. Which data structure would generally offer the fastest average-case performance for checking membership?",
+    "options": [
+      "Array (List)",
+      "Linked List",
+      "Hash Map (Dictionary/Object)",
+      "Stack"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Hash Map (also known as a dictionary or object in some languages) provides average-case O(1) (constant time) complexity for insertions, deletions, and lookups, making it highly efficient for checking if an item exists. Arrays and linked lists would require O(n) (linear time) in the worst case for searching, and a stack is a LIFO structure not optimized for general membership checking.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider an algorithm designed to find a specific element in a sorted list by repeatedly dividing the search interval in half. What is this algorithm called, and what is its typical time complexity?",
+    "options": [
+      "Linear Search, O(n)",
+      "Binary Search, O(log n)",
+      "Bubble Sort, O(n^2)",
+      "Merge Sort, O(n log n)"
+    ],
+    "correctIndex": 1,
+    "explanation": "This describes Binary Search, which works on sorted lists by eliminating half of the remaining elements in each step, resulting in a logarithmic time complexity of O(log n). Linear search is O(n), and Bubble Sort and Merge Sort are sorting algorithms with different complexities.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are implementing a simple \"undo\" feature in a text editor. Which data structure is most appropriate for storing the sequence of actions that can be reversed, where the last action performed is the first one to be undone?",
+    "options": [
+      "Queue",
+      "Array",
+      "Stack",
+      "Linked List"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Stack operates on a Last-In, First-Out (LIFO) principle, meaning the last item added is the first one to be removed. This perfectly matches the \"undo\" functionality where the most recent action is undone first. A queue is FIFO, an array offers random access, and a linked list is a general-purpose linear structure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To define the structure and content of a webpage, such as headings, paragraphs, and images, which language is primarily used?",
+    "options": [
+      "CSS",
+      "JavaScript",
+      "HTML",
+      "Python"
+    ],
+    "correctIndex": 2,
+    "explanation": "HTML (HyperText Markup Language) is the standard language for creating web pages and defining their structure and content. CSS is for styling, JavaScript for interactivity, and Python is a general-purpose programming language.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A web developer wants to dynamically change the text of an element on a webpage after a user clicks a button, without reloading the entire page. Which technology is best suited for this task?",
+    "options": [
+      "HTML forms",
+      "CSS animations",
+      "JavaScript and the DOM",
+      "Server-side PHP"
+    ],
+    "correctIndex": 2,
+    "explanation": "JavaScript, in conjunction with the DOM (Document Object Model), allows developers to dynamically manipulate the content, structure, and style of a web page after it has loaded, enabling interactive features like changing text on a button click. HTML forms are for submitting data, CSS animations are for visual effects, and server-side PHP runs on the server.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A business analyst needs to organize and perform calculations on large datasets using rows and columns. Which tool is explicitly designed for this purpose and often taught as a foundational data skill?",
+    "options": [
+      "A word processor",
+      "A spreadsheet program (e.g., Excel, Google Sheets)",
+      "A video editor",
+      "An image manipulation software"
+    ],
+    "correctIndex": 1,
+    "explanation": "Spreadsheet programs like Excel or Google Sheets are specifically designed for organizing data in rows and columns, performing calculations, and basic data analysis. Word processors are for text, video editors for video, and image software for images.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are working with a database containing customer information and need to retrieve all customers who live in \"New York\" and have made more than 5 purchases. Which language is standard for querying and managing relational databases?",
+    "options": [
+      "HTML",
+      "SQL",
+      "JavaScript",
+      "Python (without a specific library)"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQL (Structured Query Language) is the standard language used to communicate with and manipulate relational databases, including retrieving, inserting, updating, and deleting data. HTML, JavaScript, and Python are not inherently database query languages (though Python can interact with databases via libraries).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data scientist is using the Pandas library in Python to clean and transform a complex dataset. They encounter a situation where they need to efficiently group data by a specific column and then apply an aggregation function (like sum or average) to another column within each group. Which Pandas method is specifically designed for this common data manipulation task?",
+    "options": [
+      "df.apply()",
+      "df.merge()",
+      "df.groupby()",
+      "df.pivot_table()"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `df.groupby()` method in Pandas is specifically designed for the \"split-apply-combine\" strategy, allowing users to group a DataFrame by one or more columns and then apply various aggregation functions (sum, mean, count, etc.) to other columns within each group. `df.apply()` applies a function along an axis, `df.merge()` combines DataFrames, and `df.pivot_table()` reshapes data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A system administrator needs to connect to a remote Linux server securely from their local machine to execute commands. Which protocol is commonly used for secure shell access?",
+    "options": [
+      "FTP",
+      "HTTP",
+      "SSH",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "SSH (Secure Shell) is a cryptographic network protocol for operating network services securely over an unsecured network. It's widely used for secure remote login and command-line execution on Linux servers. FTP is for file transfer, HTTP for web, and SMTP for email.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A startup is deploying its web application on a cloud provider like AWS or Azure, aiming for high availability and scalability. Instead of managing physical servers, they use virtualized resources that can be provisioned and de-provisioned on demand. What fundamental characteristic of cloud computing are they primarily leveraging?",
+    "options": [
+      "On-premises infrastructure",
+      "Serverless computing",
+      "Elasticity and scalability",
+      "Single point of failure"
+    ],
+    "correctIndex": 2,
+    "explanation": "Elasticity and scalability are core characteristics of cloud computing, allowing resources to be dynamically scaled up or down based on demand, which is crucial for high availability and handling fluctuating loads. On-premises infrastructure is the opposite of cloud, serverless is a specific cloud execution model, and cloud computing aims to reduce single points of failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A security analyst is reviewing server logs after a suspected intrusion attempt. They notice repeated failed login attempts from a specific IP address within a short timeframe. What common type of cyberattack does this pattern most strongly suggest?",
+    "options": [
+      "SQL Injection",
+      "Phishing",
+      "Brute-force attack",
+      "Cross-Site Scripting (XSS)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Repeated failed login attempts from a single source are a strong indicator of a brute-force attack, where an attacker attempts to guess credentials by trying many combinations. SQL Injection targets database vulnerabilities, phishing involves tricking users, and XSS involves injecting malicious scripts into web pages.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After completing the \"Three-Track Sampler\" project, a learner is evaluating their interest in different tech areas. They found themselves most engaged with optimizing database queries, designing efficient data models, and performing statistical analysis. Which specialization area would likely be the best fit for their interests based on this experience?",
+    "options": [
+      "Frontend Web Development",
+      "Cybersecurity Analyst",
+      "Data Engineering / Analysis",
+      "DevOps Engineer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Interests in optimizing database queries, designing data models, and statistical analysis directly align with the responsibilities of a Data Engineer or Data Analyst. Frontend web development focuses on user interfaces, cybersecurity on protection, and DevOps on development and operations integration.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A junior developer is preparing their portfolio after working on several small projects, including a \"Command-Line Toolkit.\" To make their portfolio most effective for potential employers, beyond just showing the code, what crucial elements should they focus on including for each project according to the \"Portfolio Basics\" topic?",
+    "options": [
+      "Only a link to the GitHub repository.",
+      "A list of all programming languages they know.",
+      "Explanations of design decisions, setup steps, screenshots, and lessons learned.",
+      "Detailed financial projections for the project's potential."
+    ],
+    "correctIndex": 2,
+    "explanation": "A strong portfolio goes beyond just code. According to \"Portfolio Basics,\" it should include explanations of design decisions, clear setup steps, screenshots or demos, and reflections on what was learned, demonstrating problem-solving skills and critical thinking. A GitHub link alone isn't enough context, a general language list is separate from project details, and financial projections are irrelevant for personal projects.",
+    "difficulty": "hard"
+  }
+]

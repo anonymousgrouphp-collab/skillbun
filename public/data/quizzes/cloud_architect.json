@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A customer is planning to migrate their on-premises application to the cloud. They are concerned about the security of the underlying infrastructure (hypervisor, physical servers). According to the shared responsibility model, who is primarily responsible for the security *of* the cloud?",
+    "options": [
+      "The customer, as they control the application.",
+      "The cloud provider, as they own and operate the infrastructure.",
+      "A third-party security auditor.",
+      "Both the customer and the cloud provider equally."
+    ],
+    "correctIndex": 1,
+    "explanation": "In the shared responsibility model, the cloud provider is responsible for the security *of* the cloud, which includes the physical infrastructure, hypervisor, and network. The customer is responsible for security *in* the cloud (e.g., configurations, data, access).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company needs to establish secure communication between their on-premises data center and a new VPC in the cloud. They require high bandwidth and low latency, and traditional VPN tunnels are insufficient. Which hybrid connectivity solution would an architect recommend?",
+    "options": [
+      "Internet Gateway with a site-to-site VPN.",
+      "VPC Peering between the on-premises network and the cloud VPC.",
+      "A dedicated direct connect or express route service.",
+      "A transit gateway connecting both the on-premises network and the cloud VPC via public internet."
+    ],
+    "correctIndex": 2,
+    "explanation": "For high bandwidth and low latency hybrid connectivity, a dedicated connection like AWS Direct Connect or Azure ExpressRoute is the most suitable option, providing a private, dedicated network connection. VPC Peering connects two VPCs, not an on-premises network. VPN over Internet Gateway uses public internet and may not meet high bandwidth/low latency requirements. Transit Gateway helps manage routing for multiple VPCs and hybrid setups but still relies on underlying connections for on-premise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A development team needs a highly scalable and fully managed compute service that automatically handles the provisioning, scaling, and patching of servers for their event-driven microservices. Which cloud compute model best fits these requirements?",
+    "options": [
+      "Virtual Machines (VMs)",
+      "Containers on a self-managed orchestrator",
+      "Serverless functions",
+      "Bare Metal Servers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Serverless functions (like AWS Lambda, Azure Functions) are fully managed, scale automatically based on demand, and abstract away server management, making them ideal for event-driven microservices. VMs and bare metal servers require manual management and scaling, while containers on a self-managed orchestrator still involve managing the orchestrator itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An organization wants to grant a newly deployed application running on a VM instance access to a specific object storage bucket, adhering to the principle of least privilege. What is the most secure and recommended way to achieve this in a cloud environment?",
+    "options": [
+      "Embed access keys directly into the application code.",
+      "Assign an IAM role (or service principal) with the necessary permissions directly to the VM instance.",
+      "Create a dedicated user account with programmatic access keys for the application.",
+      "Grant public read/write access to the object storage bucket."
+    ],
+    "correctIndex": 1,
+    "explanation": "Assigning an IAM role (or service principal) to the VM instance is the most secure method. This allows the application to assume the role's permissions without needing to store or manage static credentials (like access keys), adhering to the principle of least privilege. Embedding keys or creating dedicated user accounts with keys poses a security risk if compromised. Public access violates least privilege.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A startup is evaluating two cloud architectures for their new e-commerce platform. Design A utilizes a multi-regional active-active setup with complex data replication and a custom global load balancer. Design B uses a multi-AZ active-passive setup with automated failover and a regional load balancer. The primary business requirement is extremely low RTO (Recovery Time Objective) and RPO (Recovery Point Objective) for critical data, along with a tight initial budget. Which design presents a significant tradeoff for the startup given their constraints?",
+    "options": [
+      "Design A offers better RTO/RPO but will likely have higher initial and operational costs.",
+      "Design B offers lower initial cost but may not meet the extremely low RTO/RPO requirements as effectively as Design A.",
+      "Design A has higher complexity, which could lead to increased operational overhead compared to Design B.",
+      "All of the above are valid tradeoffs to consider for the startup."
+    ],
+    "correctIndex": 3,
+    "explanation": "All options represent valid tradeoffs. Design A (active-active multi-regional) provides superior RTO/RPO but comes with significantly higher complexity and cost for setup and ongoing operations (data replication, global load balancing). Design B (active-passive multi-AZ) is simpler and cheaper initially but might not achieve \"extremely low\" RTO/RPO as effectively as a fully active-active multi-regional setup, especially in a true regional disaster. The complexity of Design A also directly impacts operational overhead.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which networking component acts as a virtual firewall for individual virtual machines, controlling inbound and outbound traffic based on rules like protocol, port, and source/destination IP?",
+    "options": [
+      "Load Balancer",
+      "DNS Resolver",
+      "Security Group (or Network Security Group)",
+      "Virtual Private Gateway"
+    ],
+    "correctIndex": 2,
+    "explanation": "Security Groups (AWS) or Network Security Groups (Azure) act as stateful virtual firewalls that control traffic to and from network interfaces associated with virtual machines. Load balancers distribute traffic, DNS resolves names, and virtual private gateways facilitate VPN connections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A cloud architect is reviewing a company's cloud spend and notices several EC2 instances (or Azure VMs) that are consistently underutilized, running at less than 10% CPU for most of the day. What is the most effective immediate strategy for cost optimization in this scenario?",
+    "options": [
+      "Purchase Reserved Instances for these machines.",
+      "Migrate these workloads to a different cloud provider.",
+      "Right-size the instances to smaller, more appropriate types.",
+      "Implement a more aggressive auto-scaling policy."
+    ],
+    "correctIndex": 2,
+    "explanation": "Right-sizing involves adjusting the instance type (CPU, memory) to match the actual workload requirements. If instances are consistently underutilized, choosing a smaller instance type will immediately reduce costs without impacting performance. Reserved instances are for committed usage, migration is a long-term strategy, and auto-scaling is for variable loads, not persistent underutilization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To achieve high availability for an application, an architect recommends deploying application instances across multiple isolated locations within the same cloud region. What are these isolated locations commonly referred to in cloud terminology?",
+    "options": [
+      "Data Centers",
+      "Edge Locations",
+      "Availability Zones",
+      "Regions"
+    ],
+    "correctIndex": 2,
+    "explanation": "Availability Zones (AZs) are isolated locations within a single cloud region that are designed to be independent failure domains. Deploying across multiple AZs provides high availability against failures of a single data center. Regions are geographically separate, and edge locations are for content delivery.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team is using Terraform to manage their cloud infrastructure. They have developed several reusable infrastructure configurations for common components like VPCs and databases. What Terraform construct is best suited for packaging and reusing these configurations across multiple projects or environments?",
+    "options": [
+      "Providers",
+      "Resources",
+      "Data Sources",
+      "Modules"
+    ],
+    "correctIndex": 3,
+    "explanation": "Terraform modules allow packaging and reusing configurations. They encapsulate a set of resources and provide a defined interface for inputs and outputs, promoting consistency and reducing boilerplate code across projects. Providers manage interaction with cloud APIs, resources define individual cloud components, and data sources fetch information from existing infrastructure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A financial institution needs to encrypt sensitive customer data stored in an object storage service. They require complete control over the encryption keys and the ability to audit key usage. Which key management strategy should the cloud architect recommend?",
+    "options": [
+      "Use server-side encryption with cloud-managed keys (SSE-S3/SSE-KMS defaults or Azure Storage encryption with Microsoft-managed keys).",
+      "Use client-side encryption, where the application encrypts data before sending it to the storage, managing keys in a custom system.",
+      "Use server-side encryption with customer-provided encryption keys (SSE-C in AWS S3 or encryption with customer-managed keys in Azure Storage).",
+      "Use server-side encryption with keys managed in a Hardware Security Module (HSM) controlled by the customer via a cloud Key Management Service (KMS)."
+    ],
+    "correctIndex": 3,
+    "explanation": "Using server-side encryption with keys managed by the customer through a cloud Key Management Service (KMS), especially with Customer Managed Keys (CMKs) that can be imported or generated within the KMS and potentially backed by an HSM, provides the highest level of control over key lifecycle and comprehensive auditing of key usage. This allows the financial institution to satisfy stringent regulatory requirements. Option A offers less control. Option B shifts key management entirely to the client, which can be complex. Option C (SSE-C) provides temporary key control during encryption/decryption but doesn't offer the persistent key management and auditing capabilities of a KMS-backed CMK.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An architect is designing a new application and needs to select a compute service that incurs costs only when the code is actually running, rather than provisioning and paying for idle server time. Which pricing model best describes this requirement?",
+    "options": [
+      "On-demand pricing",
+      "Reserved Instances pricing",
+      "Spot Instances pricing",
+      "Serverless/Consumption-based pricing"
+    ],
+    "correctIndex": 3,
+    "explanation": "Serverless or consumption-based pricing models (like AWS Lambda or Azure Functions) charge users only for the actual compute time and resources consumed when their code is executing, eliminating costs for idle server capacity. On-demand charges for running instances, Reserved Instances for committed usage, and Spot Instances for bidding on unused capacity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company requires a disaster recovery (DR) strategy for their critical application with an RPO (Recovery Point Objective) of minutes and an RTO (Recovery Time Objective) of less than an hour. They operate in a single cloud region. Which DR strategy is most appropriate for these requirements?",
+    "options": [
+      "Backup and Restore to a different region.",
+      "Pilot Light with multi-AZ deployment in the same region.",
+      "Warm Standby with multi-region deployment.",
+      "Cold Standby with manual recovery."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Pilot Light strategy, especially within a multi-AZ deployment in the same region, can meet RPO in minutes and RTO in less than an hour. Critical services are kept running (pilot light), and non-critical services can be quickly spun up during a disaster. Backup and Restore to a different region might have higher RTO/RPO. Warm Standby multi-region would achieve even better RTO/RPO but at a higher cost and is typically for multi-region disaster, not just multi-AZ. Cold Standby has much higher RTO/RPO.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cloud architect is designing a VPC network for a large enterprise. They need to ensure that their production databases are isolated from public internet access while allowing internal applications within the same VPC to connect to them. Which subnet type should the databases reside in?",
+    "options": [
+      "Public subnet",
+      "DMZ subnet",
+      "Private subnet",
+      "Transit subnet"
+    ],
+    "correctIndex": 2,
+    "explanation": "Databases containing sensitive data should always be placed in private subnets. Private subnets are configured without direct routes to an Internet Gateway, thus preventing direct public internet access, while still allowing communication with other resources within the VPC or via NAT Gateways for outbound internet access if needed (not directly for inbound). Public subnets have direct internet access, DMZ is typically for public-facing services with restricted access, and transit subnets are for routing between VPCs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an architecture review for a new microservices platform, a team proposes using a specific open-source messaging queue due to familiarity, despite the cloud provider offering a fully managed, highly scalable equivalent service. The architect's role is to challenge this decision. What would be the most effective action for the architect to take and document?",
+    "options": [
+      "Immediately reject the open-source queue and mandate the managed service for compliance reasons.",
+      "Create an Architecture Decision Record (ADR) that clearly outlines the tradeoffs, including operational overhead, scalability, reliability, and cost implications of both options, then seek team consensus.",
+      "Allow the team to proceed with the open-source queue, but add a risk item for future review.",
+      "Recommend a third-party managed version of the open-source queue to compromise."
+    ],
+    "correctIndex": 1,
+    "explanation": "The most effective action for an architect is to facilitate a data-driven decision. An Architecture Decision Record (ADR) is the appropriate tool to document the decision, rationale, and most importantly, the tradeoffs of each option (managed vs. self-managed open-source). This process ensures that operational overhead, scalability, reliability, patching, security, and cost (total cost of ownership) are fully considered and that the team understands the implications of their choice. Simply rejecting, allowing with a risk, or proposing a different third-party solution without a clear comparison of tradeoffs undermines the architectural review process.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which cloud characteristic describes the ability of a system to increase or decrease resources automatically or manually in response to demand, ensuring performance while optimizing costs?",
+    "options": [
+      "On-demand provisioning",
+      "Elasticity",
+      "Measured Service",
+      "Resource Pooling"
+    ],
+    "correctIndex": 1,
+    "explanation": "Elasticity is the ability to rapidly provision and de-provision computing capabilities to scale resources up or down quickly and automatically to match demand, avoiding over-provisioning or under-provisioning. On-demand provisioning is a payment model, measured service is about monitoring, and resource pooling is about shared resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A security team requires comprehensive logs of all API calls made to their cloud resources for auditing and threat detection purposes. Which cloud service or feature should the architect enable and configure?",
+    "options": [
+      "Cloud Monitoring Service (e.g., CloudWatch, Azure Monitor)",
+      "Network Traffic Logs (e.g., VPC Flow Logs, Azure Network Watcher)",
+      "Cloud Audit Trail Service (e.g., CloudTrail, Azure Activity Log)",
+      "Operating System Logs on VMs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud audit trail services (like AWS CloudTrail or Azure Activity Log) are specifically designed to log all API activity and events occurring within a cloud account, providing a detailed record for security auditing, compliance, and operational troubleshooting. Cloud Monitoring services gather metrics, network traffic logs focus on network connections, and OS logs are specific to individual instances.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An existing application frequently experiences performance degradation during peak load, leading to frustrated users and potential revenue loss. What architectural principle, if implemented, would most directly address this issue?",
+    "options": [
+      "Data encryption at rest",
+      "Infrastructure as Code",
+      "Auto-scaling",
+      "Least privilege access"
+    ],
+    "correctIndex": 2,
+    "explanation": "Auto-scaling (elasticity) directly addresses performance degradation during peak load by automatically increasing resource capacity (e.g., adding more VM instances or serverless functions) when demand rises and scaling them down when demand decreases. Data encryption is for security, IaC for automation, and least privilege for access control.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cloud architect needs to manage the state of their infrastructure resources defined in Terraform, ensuring that the actual infrastructure matches the desired configuration and allowing multiple team members to work concurrently without conflicts. What critical component of Terraform enables this functionality?",
+    "options": [
+      "Terraform CLI",
+      "Terraform Modules",
+      "Terraform State File",
+      "Terraform Providers"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Terraform state file (terraform.tfstate) is crucial for managing infrastructure. It maps real-world resources to your configuration, keeps track of metadata, and ensures that Terraform knows what resources exist and their current status. This is essential for planning changes, applying updates, and for collaborative work when stored remotely (e.g., in an S3 bucket with locking).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To enhance security, a cloud architect ensures that all new user accounts are granted only the minimum necessary permissions to perform their job functions. This practice aligns with which fundamental security principle?",
+    "options": [
+      "Defense in Depth",
+      "Shared Responsibility",
+      "Least Privilege",
+      "Zero Trust"
+    ],
+    "correctIndex": 2,
+    "explanation": "The principle of least privilege dictates that users, programs, or processes should be granted only the absolute minimum permissions required to perform their intended tasks. This limits the potential impact if an account is compromised. Defense in Depth is about layered security, Shared Responsibility defines who does what, and Zero Trust implies strict verification for all.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company has deployed a public-facing web application on EC2 instances behind a load balancer. They want to protect the application from common web exploits like SQL injection and cross-site scripting (XSS). Which managed cloud security service should they implement?",
+    "options": [
+      "DDoS Protection Service",
+      "Web Application Firewall (WAF)",
+      "Network Access Control List (NACL)",
+      "Security Group"
+    ],
+    "correctIndex": 1,
+    "explanation": "A Web Application Firewall (WAF) is specifically designed to protect web applications from common web exploits (like SQL injection, XSS, etc.) that could affect application availability, compromise security, or consume excessive resources. DDoS protection services protect against denial-of-service attacks, NACLs and Security Groups operate at the network layer (IP/Port), not the application layer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An architect is tasked with creating a blueprint for a new SaaS product that requires multi-tenancy, high scalability (thousands of concurrent users), and stringent data isolation for each tenant. The blueprint must include diagrams, an IaC skeleton, cost estimates, and a DR plan. For data isolation, what is the most appropriate database strategy given the multi-tenancy and scalability requirements?",
+    "options": [
+      "A single, large relational database instance with tenant IDs as a column in all tables.",
+      "A separate database schema for each tenant within a single managed database instance.",
+      "Separate managed database instances (or serverless databases) for each major tenant group or even per-tenant.",
+      "Use a NoSQL database with document-level isolation for tenants."
+    ],
+    "correctIndex": 2,
+    "explanation": "For stringent data isolation, especially with high scalability and security requirements for multi-tenancy, using separate managed database instances or serverless databases per tenant (or group of tenants) offers the highest level of isolation and allows for independent scaling, backup, and restore. While a separate schema (B) offers logical isolation, it shares the underlying database instance, meaning noisy neighbors or a database instance compromise affects all tenants. A single database (A) is the least isolated. NoSQL (D) can work but \"document-level isolation\" still often implies a shared underlying system, and relational databases are often preferred for strict transactional integrity unless specific NoSQL benefits are paramount. Option C provides the strongest isolation and scalability characteristics for the described requirements.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To allow instances in a private subnet to access the internet for software updates and patches without allowing inbound internet traffic, which network component is primarily used?",
+    "options": [
+      "Internet Gateway",
+      "VPN Gateway",
+      "NAT Gateway (or NAT Instance)",
+      "Virtual Private Gateway"
+    ],
+    "correctIndex": 2,
+    "explanation": "A NAT Gateway (Network Address Translation Gateway) or NAT instance allows instances in a private subnet to initiate outbound connections to the internet while preventing direct inbound connections from the internet. This is a fundamental concept in VPC design for private subnet connectivity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cloud architect is preparing to present a complex new system design to non-technical business stakeholders and technical operations teams. What type of documentation or artifact would be most effective for conveying the high-level components and their interactions to both audiences, while providing deeper technical details for the operations team?",
+    "options": [
+      "A detailed configuration file (e.g., Terraform plan).",
+      "A comprehensive written report describing every service.",
+      "A layered set of architecture diagrams (e.g., Context, Container, Component, and Deployment views).",
+      "A spreadsheet outlining all service costs."
+    ],
+    "correctIndex": 2,
+    "explanation": "A layered set of architecture diagrams (like C4 model views: Context, Container, Component, and Deployment) is highly effective. It allows for presenting high-level views to non-technical stakeholders (Context, Container) and then drilling down into technical details for operational teams (Component, Deployment), ensuring everyone understands the relevant aspects of the design. A configuration file is too technical, a long report can be overwhelming, and cost spreadsheets are just one aspect.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An architect is designing a real-time analytics platform that processes high volumes of streaming data. The platform needs to handle intermittent spikes in data ingestion, process data asynchronously, and ensure that no data is lost during processing failures or component outages. What combination of architectural patterns should be prioritized?",
+    "options": [
+      "Synchronous processing, tightly coupled microservices, and persistent disk storage.",
+      "Serverless functions, relational database for message queuing, and active-passive redundancy.",
+      "Event-driven architecture with managed message queues, idempotent processing, and multi-AZ deployment.",
+      "Batch processing, direct database writes, and single-region deployment."
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario demands an architecture that is resilient to spikes and failures while ensuring data integrity. An event-driven architecture with managed message queues allows for asynchronous processing, decouples components, and buffers data spikes, preventing data loss. Idempotent processing ensures that reprocessing messages due to failures does not lead to incorrect results. Multi-AZ deployment provides high availability and resilience against Availability Zone failures. The other options either lack resilience, are not suitable for real-time streaming, or do not offer the necessary data integrity guarantees.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A development team is frequently spinning up and tearing down environments for testing new features. These environments often run for a few hours and then are deleted. Which purchasing model would be most cost-effective for the compute resources in these ephemeral environments?",
+    "options": [
+      "Reserved Instances",
+      "On-demand instances",
+      "Spot Instances",
+      "Dedicated Hosts"
+    ],
+    "correctIndex": 2,
+    "explanation": "Spot Instances are ideal for fault-tolerant, flexible workloads that can tolerate interruptions and are not critical. Since testing environments are ephemeral and can be restarted, Spot Instances offer significant cost savings by bidding on unused cloud capacity. Reserved instances are for long-term, predictable workloads. On-demand is more expensive than Spot for such use cases, and Dedicated Hosts are for specific licensing or compliance requirements.",
+    "difficulty": "moderate"
+  }
+]

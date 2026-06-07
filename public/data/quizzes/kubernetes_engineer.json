@@ -1,0 +1,302 @@
+[
+  {
+    "question": "Which of the following best describes the primary problem Kubernetes solves for application deployment?",
+    "options": [
+      "It simplifies database administration for relational databases.",
+      "It provides a framework for automating deployment, scaling, and management of containerized applications.",
+      "It acts as a programming language for developing microservices.",
+      "It optimizes code compilation and build processes."
+    ],
+    "correctIndex": 1,
+    "explanation": "Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It does not simplify database administration, act as a programming language, or optimize code compilation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the smallest deployable unit that can be created and managed in Kubernetes?",
+    "options": [
+      "Container",
+      "Node",
+      "Pod",
+      "Deployment"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Pod is the smallest deployable unit in Kubernetes. It encapsulates one or more containers, storage resources, a unique network IP, and options that govern how the container(s) should run.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Kubernetes object is primarily used to expose a set of Pods as a stable network service with a consistent IP address and DNS name?",
+    "options": [
+      "Deployment",
+      "Ingress",
+      "Service",
+      "ConfigMap"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Service defines a logical set of Pods and a policy by which to access them (sometimes called a micro-service). Services enable loose coupling between dependent Pods.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command-line tool is primarily used by a Kubernetes Engineer to interact with a Kubernetes cluster and manage its resources?",
+    "options": [
+      "docker",
+      "helm",
+      "git",
+      "kubectl"
+    ],
+    "correctIndex": 3,
+    "explanation": "kubectl is the command-line tool for running commands against Kubernetes clusters. It allows you to deploy applications, inspect and manage cluster resources, and view logs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main purpose of a Deployment in Kubernetes?",
+    "options": [
+      "To provide persistent storage for applications.",
+      "To manage a stateless application by ensuring a specified number of Pod replicas are running and handling updates.",
+      "To route external HTTP/HTTPS traffic to services.",
+      "To store sensitive configuration data."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Deployment provides declarative updates for Pods and ReplicaSets. You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Git-based workflow for managing Kubernetes configurations, what is the primary purpose of a Pull Request (or Merge Request)?",
+    "options": [
+      "To directly apply changes to the production Kubernetes cluster.",
+      "To request a new feature from the product owner.",
+      "To propose changes to a codebase, allowing for peer review and automated checks before merging.",
+      "To create a backup of the entire Git repository."
+    ],
+    "correctIndex": 2,
+    "explanation": "A Pull Request (or Merge Request) is a mechanism for submitting contributions to a project, allowing others to review the proposed changes, discuss them, and potentially merge them into the main branch after approval.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the core responsibility of a Kubernetes Engineer?",
+    "options": [
+      "Developing front-end user interfaces for web applications.",
+      "Designing and managing relational databases.",
+      "Deploying, managing, and operating containerized applications on Kubernetes clusters.",
+      "Writing operating system kernels and device drivers."
+    ],
+    "correctIndex": 2,
+    "explanation": "A Kubernetes Engineer primarily focuses on the infrastructure and operations side of containerized applications, specifically deploying, managing, scaling, and troubleshooting workloads on Kubernetes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer wants to expose a web application running on Kubernetes to external traffic using a single entry point that can manage routing for multiple services based on hostnames or URL paths. Which Kubernetes object should they primarily use?",
+    "options": [
+      "NodePort Service",
+      "ClusterIP Service",
+      "Ingress",
+      "LoadBalancer Service"
+    ],
+    "correctIndex": 2,
+    "explanation": "Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Ingress can provide load balancing, SSL termination, and name-based virtual hosting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team needs to package, deploy, and manage a complex application consisting of multiple Kubernetes resources (Deployments, Services, ConfigMaps, etc.) in a repeatable and versioned manner. What tool would be most appropriate for this task?",
+    "options": [
+      "kubectl",
+      "Docker Compose",
+      "Helm",
+      "Terraform"
+    ],
+    "correctIndex": 2,
+    "explanation": "Helm is a package manager for Kubernetes. It allows you to define, install, and upgrade even the most complex Kubernetes applications using 'charts' which are packages of pre-configured Kubernetes resources.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An application Pod is continuously restarting in a Kubernetes cluster. Which `kubectl` command would be most helpful to investigate the logs of the failing container within that Pod?",
+    "options": [
+      "kubectl describe pod <pod-name>",
+      "kubectl get events",
+      "kubectl logs <pod-name>",
+      "kubectl exec -it <pod-name> -- bash"
+    ],
+    "correctIndex": 2,
+    "explanation": "`kubectl logs <pod-name>` allows you to view the logs of a container running in a Pod, which is crucial for diagnosing issues causing crashes or restarts. `describe` gives events and status, `get events` gives cluster events, and `exec` lets you run commands inside the container.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to provide configuration data to your application containers in Kubernetes (e.g., environment variables, configuration files) without baking it directly into the container image. Which Kubernetes object is suitable for this?",
+    "options": [
+      "Secret",
+      "PersistentVolume",
+      "ConfigMap",
+      "ResourceQuota"
+    ],
+    "correctIndex": 2,
+    "explanation": "A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of a NetworkPolicy in Kubernetes?",
+    "options": [
+      "To encrypt all network traffic between Pods.",
+      "To define rules for how Pods are allowed to communicate with each other and other network endpoints.",
+      "To automatically provision IP addresses for new Pods.",
+      "To perform deep packet inspection for security threats."
+    ],
+    "correctIndex": 1,
+    "explanation": "NetworkPolicies are Kubernetes resources that allow you to specify how groups of pods are allowed to communicate with each other and other network endpoints. They are crucial for implementing network segmentation and security.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To monitor the resource utilization (CPU, memory) of individual Pods and Nodes in a Kubernetes cluster, which component or tool is typically integrated and relied upon?",
+    "options": [
+      "etcd",
+      "kube-proxy",
+      "Metrics Server",
+      "CoreDNS"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Kubernetes Metrics Server is a cluster-wide aggregator of resource usage data. It collects CPU and memory usage from all nodes and pods, making it available via the Kubernetes API for tools like `kubectl top` or horizontal pod autoscalers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A `Deployment` is stuck, and its Pods are not scheduling (remaining in `Pending` state). After checking `kubectl describe pod <pod-name>`, you see warnings like `0/3 nodes are available: 3 Insufficient cpu`. What is the most immediate action to take to address this specific issue?",
+    "options": [
+      "Increase the `replicas` count in the Deployment.",
+      "Scale down other less critical applications to free up resources or add more nodes to the cluster.",
+      "Change the Pod's `image` to a smaller one.",
+      "Update the Kubernetes API server version."
+    ],
+    "correctIndex": 1,
+    "explanation": "The error `Insufficient cpu` indicates that there are not enough CPU resources available on any node to schedule the Pod. The most immediate solutions are to free up resources by scaling down other workloads or to add more worker nodes to the cluster.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You want to ensure that your application always has a minimum number of running replicas available during a rolling update to prevent service degradation. Which field in a Deployment manifest helps achieve this?",
+    "options": [
+      "spec.replicas",
+      "spec.strategy.rollingUpdate.maxUnavailable",
+      "spec.selector",
+      "spec.template.spec.containers[0].image"
+    ],
+    "correctIndex": 1,
+    "explanation": "`spec.strategy.rollingUpdate.maxUnavailable` defines the maximum number of Pods that can be unavailable during the update process. Setting this to a low value (e.g., 0 or 1) ensures a minimum number of Pods remain running.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When setting up monitoring for a Kubernetes application, what kind of metrics are typically collected to assess the application's health and performance from within the application itself?",
+    "options": [
+      "Node kernel panic logs",
+      "Container runtime version numbers",
+      "Application-specific metrics (e.g., request latency, error rates, queue depths)",
+      "Kubernetes API server audit logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "To assess application health and performance, application-specific metrics like request latency, error rates, and queue depths provide direct insights into the application's behavior and responsiveness. Other options relate to infrastructure or audit, not direct application performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A backend service needs to communicate with a database service within the same Kubernetes cluster, but the database should not be directly accessible from outside the cluster. Which `Service` type is most appropriate to ensure only internal cluster access?",
+    "options": [
+      "NodePort",
+      "LoadBalancer",
+      "ExternalName",
+      "ClusterIP"
+    ],
+    "correctIndex": 3,
+    "explanation": "A ClusterIP Service exposes the Service on a cluster-internal IP. This type makes the Service only reachable from within the cluster, which is suitable for backend services like databases that should not be exposed externally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new Kubernetes manifest to production, a peer review process should ideally focus on which aspect regarding security best practices?",
+    "options": [
+      "Ensuring the YAML formatting is perfectly aligned.",
+      "Verifying that resource requests and limits are defined for containers to prevent resource exhaustion and ensure QoS.",
+      "Checking that all image tags are set to `latest` for easy updates.",
+      "Confirming that all Pods are configured to run with `hostNetwork: true` for faster performance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Defining resource requests and limits (`spec.containers[].resources.requests` and `limits`) is a crucial security and reliability best practice. It prevents a single Pod from consuming all node resources (noisy neighbor problem) and helps the scheduler place Pods efficiently. Running with `hostNetwork: true` is generally a security risk, and using `latest` image tags is bad practice for stability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How should sensitive information like API keys, database credentials, or private certificates be securely managed and injected into Kubernetes Pods?",
+    "options": [
+      "Hardcode them directly into the container images.",
+      "Store them in a ConfigMap and mount as environment variables.",
+      "Use Kubernetes Secrets and mount them as files or environment variables.",
+      "Pass them as plain text arguments during `kubectl run`."
+    ],
+    "correctIndex": 2,
+    "explanation": "Kubernetes Secrets are designed for storing sensitive information. They can be mounted as volumes or exposed as environment variables to Pods, providing a more secure way to handle credentials than embedding them in images or ConfigMaps (which are not encrypted at rest by default).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When performing an upgrade of a Kubernetes cluster, what is a key consideration to minimize downtime for applications running on the cluster?",
+    "options": [
+      "Stopping all applications before starting the upgrade.",
+      "Performing the upgrade during peak traffic hours to test resilience.",
+      "Utilizing rolling upgrades for nodes and ensuring sufficient spare capacity for Pod rescheduling.",
+      "Directly modifying the `kube-apiserver` configuration files while the cluster is running."
+    ],
+    "correctIndex": 2,
+    "explanation": "To minimize downtime, a common strategy is to perform rolling upgrades, updating nodes one by one while ensuring enough capacity exists to reschedule Pods from the node being drained/updated. Stopping applications or modifying critical components live without proper procedures would cause significant downtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have a microservices application where service A needs to communicate with service B, but service B's IP address changes frequently due to auto-scaling or restarts. What is the most robust and standard Kubernetes mechanism for service A to reliably discover and communicate with service B?",
+    "options": [
+      "Directly hardcoding the Pod IP address of service B into service A's configuration.",
+      "Using the Kubernetes DNS service via the Service object's DNS name.",
+      "Manually updating service A's configuration every time service B's Pod IP changes.",
+      "Running a separate external load balancer for each Pod of service B."
+    ],
+    "correctIndex": 1,
+    "explanation": "Kubernetes automatically creates DNS entries for Services. When service A wants to communicate with service B, it should use service B's ClusterIP Service DNS name (e.g., `service-b.namespace.svc.cluster.local`). The Service object provides a stable endpoint, abstracting away the underlying, ephemeral Pod IPs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A security requirement states that no Pods should run as root or have escalated privileges within the container, and the root filesystem should be read-only. Which part of the Pod specification would you configure to enforce these restrictions?",
+    "options": [
+      "metadata.labels",
+      "spec.containers[].image",
+      "spec.securityContext and spec.containers[].securityContext",
+      "status.phase"
+    ],
+    "correctIndex": 2,
+    "explanation": "`spec.securityContext` (at the Pod level) and `spec.containers[].securityContext` (at the container level) are used to define privilege and access control settings. Specifically, fields like `runAsNonRoot`, `runAsUser`, and `readOnlyRootFilesystem` would be configured here.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are troubleshooting a `Deployment` where Pods are stuck in `Pending` state. You've checked `kubectl describe pod <pod-name>` and see repeated warnings like `0/5 nodes are available: 5 Insufficient memory`. The cluster currently has 5 nodes. What is the most likely root cause and a common immediate mitigation strategy?",
+    "options": [
+      "The Pod's container image is corrupted; rebuild the image.",
+      "The Kubernetes API server is down; restart the control plane.",
+      "The cluster nodes do not have enough available memory to satisfy the Pod's memory requests; either reduce the Pod's memory request or add more nodes/memory to existing nodes.",
+      "The network plugin is misconfigured; reinstall the CNI."
+    ],
+    "correctIndex": 2,
+    "explanation": "The error `Insufficient memory` explicitly states that none of the 5 nodes have enough memory to accommodate the Pod's memory request. The most common mitigation is to either reduce the memory requested by the Pod (if possible) or scale up the cluster by adding more nodes or increasing memory on existing nodes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Kubernetes cluster operator observes high CPU utilization on all worker nodes, but the `kubectl top pod` output shows that individual application Pods are utilizing very little CPU. Which component's metrics should be primarily investigated to understand this discrepancy?",
+    "options": [
+      "The application's internal business metrics.",
+      "The `kube-scheduler` logs.",
+      "Node-level metrics from the Kubelet and container runtime (e.g., Docker, containerd).",
+      "The `etcd` database activity logs."
+    ],
+    "correctIndex": 2,
+    "explanation": "If Pods show low CPU but nodes show high CPU, it suggests that the node's resources are being consumed by something other than the application Pods themselves. This could be system processes, the Kubelet itself, the container runtime, or other agent processes running on the node. Investigating node-level metrics directly from the Kubelet or container runtime will reveal this. Application business metrics wouldn't show this infrastructure issue, scheduler logs relate to placement, and etcd is for cluster state.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Helm chart needs to be deployed across multiple environments (dev, staging, prod), each requiring slightly different configuration values (e.g., database connection strings, replica counts, ingress hostnames). How is this typically managed within the Helm ecosystem without modifying the base chart files?",
+    "options": [
+      "By creating separate Helm charts for each environment.",
+      "By directly editing the `templates` directory for each environment before deployment.",
+      "By using multiple `values.yaml` files (e.g., `values-dev.yaml`, `values-prod.yaml`) and specifying them during `helm install`/`upgrade`.",
+      "By baking environment-specific configurations into the Docker images."
+    ],
+    "correctIndex": 2,
+    "explanation": "Helm allows for environmental customization using multiple values files. You can have a base `values.yaml` and then provide environment-specific overrides (e.g., `helm upgrade -f values.yaml -f values-prod.yaml my-app .`) which will merge the values. Creating separate charts or editing templates manually is inefficient, and baking configs into images makes them less flexible.",
+    "difficulty": "hard"
+  }
+]

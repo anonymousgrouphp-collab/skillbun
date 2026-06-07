@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A database administrator needs to ensure that a critical financial database can recover to a specific point in time with minimal data loss. Which concept is most directly related to defining this recovery objective?",
+    "options": [
+      "Recovery Time Objective (RTO)",
+      "Recovery Point Objective (RPO)",
+      "Mean Time To Repair (MTTR)",
+      "Mean Time Between Failures (MTBF)"
+    ],
+    "correctIndex": 1,
+    "explanation": "Recovery Point Objective (RPO) defines the maximum acceptable amount of data loss measured in time. A low RPO means minimal data loss, which is crucial for critical financial databases. RTO is about how quickly the system can be restored, MTTR and MTBF are reliability metrics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A database query is consistently performing slowly, causing application timeouts. Which tool or technique would a DBA typically use first to analyze its execution plan and identify bottlenecks in a SQL database?",
+    "options": [
+      "Database log review",
+      "Using the EXPLAIN command",
+      "Increasing server RAM",
+      "Adding a full-text index"
+    ],
+    "correctIndex": 1,
+    "explanation": "The EXPLAIN (or EXPLAIN ANALYZE) command is the primary tool for analyzing how a database executes a query, revealing the query plan, costs, and potential bottlenecks. While logs can show slow queries, EXPLAIN provides the deep dive into *why* it's slow. Increasing RAM or adding indexes are potential solutions, not the initial analysis tool.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of database transactions, what does the 'D' in ACID properties primarily stand for?",
+    "options": [
+      "Dependency",
+      "Distribution",
+      "Durability",
+      "Decentralization"
+    ],
+    "correctIndex": 2,
+    "explanation": "In ACID properties (Atomicity, Consistency, Isolation, Durability), 'Durability' ensures that once a transaction has been committed, it will remain committed even in the event of power loss, crashes, or errors. The changes are permanently stored.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing a new database schema, a DBA needs to ensure that each record in a `Customers` table can be uniquely identified. Which type of key is most appropriate for this purpose?",
+    "options": [
+      "Foreign Key",
+      "Candidate Key",
+      "Primary Key",
+      "Unique Index"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Primary Key uniquely identifies each record in a table and cannot contain NULL values. While a Unique Index also enforces uniqueness, a Primary Key is the designated identifier for the table. Foreign Keys establish relationships between tables.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DBA wants to create a reusable block of SQL code that performs a specific set of operations, can accept input parameters, and potentially return a value. What database object would be most suitable for this requirement?",
+    "options": [
+      "A View",
+      "A Trigger",
+      "A Stored Procedure",
+      "A CTE (Common Table Expression)"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Stored Procedure is a prepared SQL code that you can save, so the code can be reused over and over again. It can accept parameters and perform complex logic. Views are virtual tables, Triggers execute in response to DML events, and CTEs are temporary result sets for a single query.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To improve read scalability and provide a failover option for a busy application, a DBA implements read replicas. What is a common challenge that needs careful monitoring and management when using read replicas?",
+    "options": [
+      "Increased write latency on the primary database",
+      "Replication lag causing stale data on replicas",
+      "Automatic failover not being possible",
+      "High CPU utilization on application servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Replication lag is a common challenge where changes from the primary database are not immediately applied to the read replicas, leading to stale data. DBAs must monitor lag and design applications to tolerate or mitigate its effects. Read replicas typically reduce primary load, and automatic failover is often a feature, not a challenge, though it requires configuration. Application server CPU isn't directly related to replication challenges.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A DBA needs to grant a specific application user the ability to only retrieve (SELECT) data from the `Orders` table, but not modify or delete it. Which SQL command family should be used for this task?",
+    "options": [
+      "ALTER",
+      "INSERT",
+      "REVOKE",
+      "GRANT"
+    ],
+    "correctIndex": 3,
+    "explanation": "The GRANT command is used to give specific privileges (like SELECT, INSERT, UPDATE, DELETE) on database objects to users or roles. REVOKE is used to remove privileges. ALTER and INSERT are DDL and DML commands respectively, not for permission management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A database server's disk space is steadily approaching its maximum capacity, posing a risk of service interruption. Which aspect of database operations and reliability would help proactively address this issue?",
+    "options": [
+      "Query tuning",
+      "Database normalization",
+      "Capacity planning",
+      "Disaster recovery planning"
+    ],
+    "correctIndex": 2,
+    "explanation": "Capacity planning involves proactively assessing and planning for future resource needs, such as storage, CPU, and memory, to prevent performance degradation or outages. Query tuning addresses performance, normalization addresses data redundancy, and disaster recovery planning focuses on recovery from major incidents.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary benefit of using Common Table Expressions (CTEs) in SQL queries?",
+    "options": [
+      "They permanently store data for faster retrieval.",
+      "They allow recursive queries and improve readability and modularity of complex queries.",
+      "They automatically create indexes for improved performance.",
+      "They enforce data integrity constraints across tables."
+    ],
+    "correctIndex": 1,
+    "explanation": "CTEs improve the readability and maintainability of complex queries by breaking them into logical, named subqueries. They are also essential for writing recursive queries. CTEs are temporary and not permanently stored, nor do they automatically create indexes or enforce integrity constraints.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a planned major database version upgrade for a production system, what is the single most critical step a DBA should perform to ensure data integrity and system recoverability in case of unforeseen issues?",
+    "options": [
+      "Notify all application users of potential downtime",
+      "Perform a full database backup",
+      "Scale up CPU resources on the server",
+      "Review the database vendor's release notes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Performing a full database backup is the most critical step before any major upgrade. This ensures that if the upgrade fails or introduces corruption, the database can be restored to its pre-upgrade state, minimizing data loss and downtime. Other options are important but secondary to the backup for recoverability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company requires a Recovery Point Objective (RPO) of near-zero for its most critical financial transaction database, coupled with a very low Recovery Time Objective (RTO). Which combination of database strategies would best meet these stringent requirements?",
+    "options": [
+      "Daily full backups with weekly differential backups",
+      "Asynchronous replication to a standby server in another region",
+      "Synchronous replication to a highly available cluster with automatic failover",
+      "Hourly snapshot backups to cloud storage"
+    ],
+    "correctIndex": 2,
+    "explanation": "For near-zero RPO and very low RTO, synchronous replication with automatic failover in a highly available cluster is necessary. Synchronous replication ensures no data loss at the point of failure (near-zero RPO), and automatic failover minimizes downtime (low RTO). Asynchronous replication can lead to data loss (non-zero RPO), and any form of backup/restore, even hourly, will have a higher RPO and RTO than synchronous replication.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During an emergency database restore operation, the DBA discovers that the latest full backup is several hours old, and the subsequent transaction logs needed for point-in-time recovery are corrupted. The business RPO is extremely strict (minimal data loss). What is the most critical implication and subsequent challenge for the recovery team?",
+    "options": [
+      "The database will automatically revert to the most recent good state.",
+      "The recovery will be limited to the point of the last valid full backup, potentially losing several hours of data.",
+      "Only read-only operations will be possible after the restore.",
+      "The database server hardware must be completely replaced before attempting any restore."
+    ],
+    "correctIndex": 1,
+    "explanation": "If transaction logs are corrupted and unavailable, point-in-time recovery cannot proceed beyond the last valid full backup. This means all transactions that occurred between the full backup and the corruption event will be lost, failing to meet a strict RPO. The system won't automatically revert, read-only operations aren't the primary challenge, and hardware replacement isn't necessarily required for a corrupted log scenario.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A DBA is tasked with optimizing a complex query that uses multiple joins and subqueries. After using `EXPLAIN ANALYZE`, they observe a very high cost associated with a `Hash Join` operation on a large intermediate result set, indicating a potential memory or CPU bottleneck. What is the most appropriate *advanced* tuning strategy to investigate first in this specific scenario?",
+    "options": [
+      "Ensuring all tables involved have primary keys.",
+      "Adding a simple B-tree index on all join columns.",
+      "Analyzing and potentially increasing database server memory configuration (work_mem/hash_mem settings) or rewriting the query to use a Nested Loop Join if appropriate.",
+      "Rewriting subqueries into separate CTEs."
+    ],
+    "correctIndex": 2,
+    "explanation": "A high-cost `Hash Join` on a large result set often points to insufficient memory allocated for hashing (e.g., `work_mem` in PostgreSQL). Investigating and potentially increasing this memory setting, or considering if a different join strategy (like a Nested Loop Join with appropriate indexes) would be more efficient given the data distribution and size, are advanced tuning steps for this specific issue. While indexes are generally helpful, a Hash Join specific issue points more to memory or a need for a different join algorithm. CTEs improve readability but don't directly resolve join algorithm performance issues.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a database security model, adhering to the principle of \"least privilege\" is paramount. If an application requires access to three tables (A, B, C) for read/write operations, and a specific reporting tool only needs read access to tables (A, B, D), what is the most secure and granular way to manage these permissions using database roles?",
+    "options": [
+      "Grant all permissions (SELECT, INSERT, UPDATE, DELETE) on tables A, B, C, D to both the application user and the reporting tool user.",
+      "Create two roles: one with SELECT, INSERT, UPDATE, DELETE on A, B, C, and another with SELECT on A, B, D. Assign the application user to the first role and the reporting tool user to the second.",
+      "Grant SELECT on A, B, D directly to the reporting tool user, and all other permissions on A, B, C directly to the application user.",
+      "Create a single role with SELECT on A, B, C, D and INSERT, UPDATE, DELETE on A, B, C, and assign both users to this role."
+    ],
+    "correctIndex": 1,
+    "explanation": "Creating specific roles with only the necessary privileges and assigning users to those roles is the most secure and granular way to implement least privilege. Option 1 grants excessive privileges. Option 3, while granular, lacks the reusability and manageability of roles. Option 4 grants excessive write permissions to the reporting tool.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A new application feature requires a significant schema change: adding a non-nullable column with a default value to a very large production table (millions of rows). The database cannot tolerate any downtime during this operation. What migration strategy best minimizes locking and downtime impact?",
+    "options": [
+      "Perform a direct `ALTER TABLE ADD COLUMN` statement during off-peak hours.",
+      "Export the table, modify the schema, import the data, and then swap tables.",
+      "Use an online schema migration tool or a multi-step process: add a nullable column, backfill data, then make it non-nullable and set the default.",
+      "Temporarily take the application offline, perform the `ALTER TABLE` operation, and then bring the application back online."
+    ],
+    "correctIndex": 2,
+    "explanation": "Direct `ALTER TABLE ADD COLUMN NOT NULL DEFAULT ...` on a large table can cause significant locking and downtime. Taking the application offline guarantees downtime. Export/import is also a downtime operation. The best strategy for zero-downtime is an online schema migration, which often involves a multi-step process like adding a nullable column, backfilling data in batches, then making the column non-nullable (often an instant operation if no nulls exist) or dropping the default. Specialized online schema migration tools automate this process.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary purpose of an index in a database?",
+    "options": [
+      "To restrict data types in a column.",
+      "To enforce data normalization rules.",
+      "To speed up data retrieval operations.",
+      "To prevent unauthorized access to data."
+    ],
+    "correctIndex": 2,
+    "explanation": "Indexes are special lookup tables that the database search engine can use to speed up data retrieval. They are designed to improve the performance of queries by allowing the database to quickly locate data without scanning every row of a table.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which SQL command is used to retrieve data from one or more tables in a relational database?",
+    "options": [
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "SELECT"
+    ],
+    "correctIndex": 3,
+    "explanation": "The SELECT statement is used to query the database and retrieve data that matches criteria that you specify. INSERT, UPDATE, and DELETE are used for modifying data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main goal of database normalization?",
+    "options": [
+      "To make database queries faster.",
+      "To reduce data redundancy and improve data integrity.",
+      "To encrypt sensitive data within the database.",
+      "To create complex relationships between tables."
+    ],
+    "correctIndex": 1,
+    "explanation": "Normalization is a process of organizing the columns and tables of a relational database to minimize data redundancy and improve data integrity. While it can indirectly affect performance, its primary goals are redundancy reduction and integrity improvement.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which database operation is crucial for recovering data after a system failure, hardware malfunction, or accidental data deletion?",
+    "options": [
+      "Indexing",
+      "Normalization",
+      "Backup and Restore",
+      "Query optimization"
+    ],
+    "correctIndex": 2,
+    "explanation": "Backup and Restore operations are fundamental to database reliability and disaster recovery. Backups create copies of data, and restore operations use these copies to revert the database to a previous state following a failure.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of a 'JOIN' clause in SQL?",
+    "options": [
+      "To combine rows from two or more tables based on a related column between them.",
+      "To insert new rows into a table.",
+      "To modify existing data in a table.",
+      "To remove a table from the database."
+    ],
+    "correctIndex": 0,
+    "explanation": "The JOIN clause is used to combine rows from two or more tables, based on a related column between them. This allows querying data that spans multiple related tables.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A DBA needs to track all successful and failed login attempts, as well as significant data modification events, for compliance and security auditing purposes. What database security mechanism would typically be configured to achieve this?",
+    "options": [
+      "Encryption",
+      "Role-Based Access Control (RBAC)",
+      "Database Auditing",
+      "Least Privilege Principle"
+    ],
+    "correctIndex": 2,
+    "explanation": "Database Auditing involves recording specific database events, such as login attempts, data access, and data modification, to a secure log. This is essential for compliance, security analysis, and incident investigation. Encryption protects data at rest or in transit, RBAC manages permissions, and Least Privilege is a principle of granting minimum necessary access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When evaluating a cloud managed database service like AWS RDS, Azure SQL Database, or Google Cloud SQL, what is a key benefit regarding routine maintenance and version upgrades compared to self-managed databases?",
+    "options": [
+      "Complete control over the underlying operating system and hardware.",
+      "Reduced costs for data transfer out of the cloud.",
+      "Automated patching, backups, and simplified scaling.",
+      "Guaranteed zero replication lag for read replicas."
+    ],
+    "correctIndex": 2,
+    "explanation": "Managed database services handle routine tasks like patching, backups, and simplifies scaling automatically, significantly reducing the operational burden on DBAs. They do not offer complete OS/hardware control, egress costs can be high, and replication lag is still a factor depending on workload.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A production database experiences a sudden and severe slowdown, with application users reporting very high latency. The DBA suspects a specific query or set of queries is consuming excessive resources. Which type of incident runbook would be most relevant to consult first?",
+    "options": [
+      "Runbook for Failed Backups",
+      "Runbook for Replication Lag",
+      "Runbook for Slow Queries/Performance Degradation",
+      "Runbook for Storage Exhaustion"
+    ],
+    "correctIndex": 2,
+    "explanation": "Given the symptoms of sudden slowdown and high latency suspected to be caused by queries, the 'Slow Queries/Performance Degradation' incident runbook would be the most relevant. It would guide the DBA through steps like identifying problematic queries, analyzing execution plans, and potential mitigations. Other runbooks address different symptoms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a high-traffic e-commerce database, a DBA observes that a complex report query requiring ranking of products by sales within categories is causing significant contention. What advanced SQL feature could help process rows within a group without aggregation, useful for tasks like ranking, calculating running totals, or finding the Nth highest value?",
+    "options": [
+      "Subqueries in the WHERE clause",
+      "Common Table Expressions (CTEs)",
+      "Window Functions",
+      "Materialized Views"
+    ],
+    "correctIndex": 2,
+    "explanation": "Window functions (e.g., `ROW_NUMBER()`, `RANK()`, `SUM() OVER()`) are specifically designed for performing calculations across a set of table rows that are related to the current row, without aggregating rows. This makes them ideal for ranking, running totals, and other analytical tasks within groups, which is a common use case for complex reports. While CTEs can improve readability and Materialized Views can cache results, Window Functions are the SQL feature directly addressing the requirement for calculating over a 'window' of rows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A DBA needs to design tables for an online bookstore. To link books to their authors, a column named `author_id` in the `Books` table references the `id` column in the `Authors` table. What type of constraint should be applied to `author_id` in the `Books` table to ensure referential integrity?",
+    "options": [
+      "NOT NULL constraint",
+      "UNIQUE constraint",
+      "PRIMARY KEY constraint",
+      "FOREIGN KEY constraint"
+    ],
+    "correctIndex": 3,
+    "explanation": "A FOREIGN KEY constraint is used to establish and enforce a link between two tables, ensuring that values in the referencing column(s) (`author_id`) match existing values in the referenced primary key or unique key column(s) (`id` in Authors table). This maintains referential integrity. NOT NULL ensures the column isn't empty, UNIQUE ensures uniqueness within the column, and PRIMARY KEY uniquely identifies rows in its own table.",
+    "difficulty": "moderate"
+  }
+]

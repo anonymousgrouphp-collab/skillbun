@@ -12,6 +12,9 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Includes a responsive, multi-theme system (Dark/Light mode) powered by CSS variables.
 - Uses optional Cloudflare Turnstile plus short-lived signed human-proof tokens before Gemini API calls.
 - Stores profile and roadmap progress in Cloud Firestore, with localStorage used as a browser cache for runtime compatibility.
+- Allows students to take a 10-question MCQ quiz (3 Easy, 5 Moderate, 2 Hard) upon reaching 100% progress on any career roadmap to earn a verifiable digital certification.
+- Enforces strict anti-cheating measures (no text selection, right-click, or copy/paste, question timer, user info watermark, light/dark-optimized LLM-refusal watermarks, immediate content masking & background blurring on focus loss, and automatic exam disqualification after 5 focus-switch violations).
+- Provides a public certificate registry lookup search page at `/certificate`, a dedicated verified certificate dynamic page at `/certificate/[id]`, and integrated entry points across the homepage and navbar dropdown for easy student access.
 
 ## Tech Stack
 
@@ -86,13 +89,19 @@ SkillBun writes user data to:
 ```text
 users/{uid}
 users/{uid}/roadmapProgress/{slug}
+users/{uid}/quizAttempts/{slug}
+certificates/{certId}
 ```
 
 `users/{uid}` stores Firebase account metadata plus SkillBun onboarding fields: `name`, `degree`, `year`, and `interest`.
 
 `users/{uid}/roadmapProgress/{slug}` stores `completedNodeIds` for each roadmap.
 
-Deploy `firestore.rules` so each signed-in user can read and write only their own profile and roadmap progress.
+`users/{uid}/quizAttempts/{slug}` stores historical timestamps of quiz attempts to enforce cooldowns and daily attempt limits.
+
+`certificates/{certId}` stores public, verifiable digital certifications containing user metadata, score, and completion timestamp.
+
+Deploy `firestore.rules` so each signed-in user can read and write only their own profile and progress, while certificates are publicly readable.
 
 ## API Routes
 

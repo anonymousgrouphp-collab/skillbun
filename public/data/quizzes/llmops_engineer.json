@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary objective of an LLMOps Engineer in an organization?",
+    "options": [
+      "Developing new large language models from scratch.",
+      "Ensuring the efficient and reliable operation of LLM-powered applications in production.",
+      "Focusing solely on prompt engineering for specific use cases.",
+      "Managing the financial aspects of AI research and development."
+    ],
+    "correctIndex": 1,
+    "explanation": "LLMOps focuses on the operational aspects of LLMs, from development to production, including monitoring, scaling, and maintenance. Its core objective is to ensure LLM applications run efficiently and reliably.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of LLM applications, what does 'RAG' primarily refer to?",
+    "options": [
+      "Rapid Application Generation.",
+      "Retrieval-Augmented Generation.",
+      "Random Access Granularity.",
+      "Real-time Analytics Graph."
+    ],
+    "correctIndex": 1,
+    "explanation": "Retrieval-Augmented Generation (RAG) is a common pattern where an LLM retrieves information from an external knowledge base to augment its generation, reducing hallucinations and providing up-to-date information.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is most crucial for tracking changes and reverting to previous versions of prompts and LLM configurations in an LLMOps workflow?",
+    "options": [
+      "A project management tool.",
+      "A spreadsheet for manual logging.",
+      "A version control system (e.g., Git).",
+      "An email communication platform."
+    ],
+    "correctIndex": 2,
+    "explanation": "Version control systems like Git are essential for tracking changes, collaborating, and reverting to previous states for code, prompts, and configurations, critical for reproducibility and debugging in LLMOps.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An LLMOps engineer is tasked with ensuring that different versions of a prompt used in a production application are tracked and easily switchable. Which practice directly addresses this requirement?",
+    "options": [
+      "Storing all prompts as comments in the application code.",
+      "Implementing a dedicated prompt versioning system or mechanism.",
+      "Relying on manual text file backups for each prompt iteration.",
+      "Using a separate LLM for each prompt version."
+    ],
+    "correctIndex": 1,
+    "explanation": "Dedicated prompt versioning systems allow for systematic tracking, A/B testing, and easy rollback of prompts, which is crucial for managing LLM application behavior and ensuring reproducibility.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is production monitoring essential for LLM applications?",
+    "options": [
+      "To confirm initial model deployment was successful.",
+      "To collect customer feedback on UI/UX design.",
+      "To detect performance degradation, drift, and unexpected model behavior over time.",
+      "To solely track GPU utilization in the data center."
+    ],
+    "correctIndex": 2,
+    "explanation": "LLMs can exhibit drift or produce unexpected outputs due to changing data distributions or real-world interactions. Continuous monitoring is vital to catch these issues early and maintain application quality.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When collaborating on an LLM application project, what is the primary purpose of a 'pull request' (or 'merge request')?",
+    "options": [
+      "To officially deploy the application to production.",
+      "To request access to the project's codebase.",
+      "To propose changes to the codebase and allow for review before merging.",
+      "To automatically fix all bugs in the code."
+    ],
+    "correctIndex": 2,
+    "explanation": "Pull requests are standard in team development for code review, ensuring quality, catching errors, and facilitating discussion before integrating changes into the main branch, including prompts and LLM-related code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main benefit of creating a 'README' file for a portfolio LLMOps project on GitHub?",
+    "options": [
+      "It encrypts the project code for security.",
+      "It acts as a primary deployment script for the project.",
+      "It provides a concise overview, setup instructions, and highlights of the project's purpose and functionality.",
+      "It automatically generates unit tests for the LLM."
+    ],
+    "correctIndex": 2,
+    "explanation": "A well-written README helps others quickly understand, set up, and appreciate the value and technical aspects of a project, which is crucial for a portfolio to showcase work effectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An LLMOps engineer is developing a RAG system and needs to evaluate the quality of the retrieved documents before they are passed to the LLM. Which metric would be most relevant for this specific task?",
+    "options": [
+      "Perplexity.",
+      "Recall at K.",
+      "BLEU score.",
+      "ROUGE score."
+    ],
+    "correctIndex": 1,
+    "explanation": "Recall at K measures the proportion of relevant documents that are retrieved among the top K results, directly assessing the effectiveness of the retrieval component in a RAG system. Perplexity, BLEU, and ROUGE are typically used for evaluating the generated text itself.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company wants to prevent its customer-facing LLM application from generating inappropriate or off-topic responses. What LLMOps technique is best suited to enforce these behavioral constraints?",
+    "options": [
+      "Hyperparameter tuning of the base LLM.",
+      "Implementing guardrails (e.g., semantic, fact-checking, safety policies).",
+      "Increasing the LLM's context window.",
+      "Reducing the model's temperature setting."
+    ],
+    "correctIndex": 1,
+    "explanation": "Guardrails are explicit mechanisms (rules, policies, or separate models) designed to steer LLM behavior, ensuring responses are safe, on-topic, and adhere to specific guidelines, preventing undesirable outputs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To optimize costs and performance, an LLMOps engineer decides to route certain LLM queries to a smaller, fine-tuned model for simple tasks, while complex queries go to a larger, more capable (and expensive) foundation model. What is this strategy known as?",
+    "options": [
+      "Prompt chaining.",
+      "Model ensemble.",
+      "Model routing or orchestration.",
+      "Continuous fine-tuning."
+    ],
+    "correctIndex": 2,
+    "explanation": "Model routing involves directing queries to different LLMs based on predefined criteria (e.g., complexity, cost, performance) to achieve optimal resource utilization and response quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying an LLM application to production, an LLMOps engineer needs to ensure that the operations team can effectively respond to incidents. Which of the following is most critical for a smooth handoff and ongoing reliability?",
+    "options": [
+      "Providing the operations team with access to the LLM's training dataset.",
+      "Developing comprehensive runbooks, alert definitions, and debugging guides specific to the LLM application.",
+      "Scheduling weekly meetings with the LLM research team.",
+      "Setting up an automated email notification for every single LLM inference request."
+    ],
+    "correctIndex": 1,
+    "explanation": "Clear documentation, predefined alerts, and troubleshooting steps (runbooks) are essential for operations teams to understand, monitor, and quickly resolve issues in a production LLM system.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLMOps team notices unexpectedly high API costs from their LLM provider. Upon investigation, they find that many identical or very similar prompts are being sent repeatedly. What cost control measure could they implement?",
+    "options": [
+      "Switching to a more expensive, larger LLM.",
+      "Implementing a caching layer for LLM responses to common queries.",
+      "Disabling all production monitoring.",
+      "Increasing the temperature parameter for all LLM calls."
+    ],
+    "correctIndex": 1,
+    "explanation": "Caching common LLM responses can significantly reduce API calls to the LLM provider, thereby cutting down operational costs, especially for frequently asked questions or stable outputs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLM application occasionally produces empty or malformed JSON outputs despite a clear JSON format instruction in the prompt. How should an LLMOps engineer approach handling such failures gracefully in a production environment?",
+    "options": [
+      "Ignore the errors, assuming they are rare.",
+      "Implement retry mechanisms with backoff, fallbacks to simpler prompts, or alternative parsing strategies.",
+      "Immediately shut down the application until the LLM vendor releases a fix.",
+      "Manually correct each malformed output as it occurs."
+    ],
+    "correctIndex": 1,
+    "explanation": "Robust LLM applications need error handling. Strategies like retries, fallbacks (e.g., simpler parse, different model), and post-processing can make the system more resilient to transient LLM output issues without halting the entire application.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When an LLM application suffers from 'hallucinations' (generating factually incorrect but plausible-sounding information), which of the following is often considered a direct and effective mitigation strategy, assuming external knowledge is available?",
+    "options": [
+      "Increasing the LLM's output token limit.",
+      "Implementing a Retrieval-Augmented Generation (RAG) system.",
+      "Setting the LLM's top_p parameter to 0.1.",
+      "Adding more creative prompts to encourage diverse responses."
+    ],
+    "correctIndex": 1,
+    "explanation": "RAG systems provide LLMs with specific, relevant information from an authoritative external source, anchoring their responses in facts and significantly reducing the likelihood of hallucinations compared to relying solely on the LLM's internal knowledge.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLMOps engineer is debugging an LLM chain that involves multiple steps: an embedding model, a vector database lookup, and a final LLM call. Which tooling or approach would be most effective for understanding the flow, inputs, and outputs at each step?",
+    "options": [
+      "Simply reviewing the application logs for LLM API calls.",
+      "Using a distributed tracing tool (e.g., LangChain's Tracing, OpenTelemetry).",
+      "Manually printing variables at random points in the code.",
+      "Running the entire application in a debugger with breakpoints only at the very end."
+    ],
+    "correctIndex": 1,
+    "explanation": "Distributed tracing tools are designed to visualize and inspect complex multi-step processes, showing the inputs, outputs, and latencies of each component in an LLM chain, which is invaluable for debugging and optimization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To prevent regressions in an LLM application's performance after prompt or model updates, what type of testing is most appropriate?",
+    "options": [
+      "Unit testing for database connections.",
+      "Manual ad-hoc testing by a single user.",
+      "Establishing a suite of golden questions with expected LLM outputs for automated evaluation.",
+      "Load testing the inference endpoint."
+    ],
+    "correctIndex": 2,
+    "explanation": "Golden questions (or 'golden set') provide a benchmark for testing. Automating the evaluation against these known-good inputs and outputs helps quickly identify if new changes have negatively impacted the LLM's core functionality or response quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During the development of an LLM application, the team decided to use a specific vector database over another, after extensive research and debate. Why is it important for an LLMOps engineer to document this decision as an 'Architectural Decision Record' (ADR)?",
+    "options": [
+      "To formally assign blame if the decision turns out to be suboptimal later.",
+      "To ensure strict adherence to the decision without any future reconsideration.",
+      "To provide context, rationale, and consequences for future team members or when revisiting the decision.",
+      "To satisfy external regulatory compliance requirements only."
+    ],
+    "correctIndex": 2,
+    "explanation": "ADRs capture the 'why' behind significant technical choices, including the alternatives considered and the trade-offs, which is vital for maintaining context and institutional knowledge as teams and projects evolve.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLM application relies on a third-party API for specific data retrieval. If this API experiences an outage, what is the most robust way for the LLMOps engineer to design the LLM application to mitigate a complete service failure?",
+    "options": [
+      "Immediately switch to a different LLM provider.",
+      "Implement a circuit breaker pattern with a fallback mechanism or cached responses for the API.",
+      "Increase the number of LLM calls to compensate.",
+      "Send an alert to the third-party API provider and wait."
+    ],
+    "correctIndex": 1,
+    "explanation": "A circuit breaker prevents continuous requests to a failing service, protecting both the application and the upstream service. Combined with fallbacks (e.g., using stale data, simpler responses), it ensures partial functionality or graceful degradation during outages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLMOps team is concerned about 'concept drift' in their LLM application, where the distribution of incoming user queries changes over time, potentially degrading the LLM's performance. What type of monitoring is crucial to detect this?",
+    "options": [
+      "API uptime monitoring.",
+      "Model output latency monitoring.",
+      "Input data distribution monitoring (e.g., embedding drift, topic modeling of queries).",
+      "GPU temperature monitoring."
+    ],
+    "correctIndex": 2,
+    "explanation": "Concept drift occurs when the relationship between inputs and outputs or the input distribution itself changes. Monitoring the distribution of incoming queries (e.g., using embeddings or topic models) helps detect this drift, indicating a potential need for model retraining or prompt adjustments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLM application processes user input that might contain Personally Identifiable Information (PII). What is a critical step an LLMOps engineer should take to protect this sensitive data before it reaches the LLM?",
+    "options": [
+      "Rely on the LLM's inherent ability to redact PII.",
+      "Implement a PII detection and redaction (or anonymization) layer pre-LLM inference.",
+      "Store all raw PII in plain text for debugging purposes.",
+      "Increase the logging verbosity of all user inputs."
+    ],
+    "correctIndex": 1,
+    "explanation": "It's unsafe to assume an LLM will handle PII correctly or securely. A dedicated pre-processing step to detect, redact, or anonymize PII before it's sent to the LLM is a fundamental security practice.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLMOps engineer is deploying a RAG-based chatbot for legal advice. Beyond standard metrics, what specific type of evaluation is critical to ensure the system provides accurate, safe, and ethically sound responses, considering the high-stakes domain?",
+    "options": [
+      "A/B testing different button colors in the UI.",
+      "Automated grammatical error checking of LLM output.",
+      "Adversarial testing with prompts designed to induce hallucinations or harmful content, combined with expert human review for factual and ethical compliance.",
+      "Monitoring server uptime metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "In high-stakes domains like legal advice, simple metrics are insufficient. Adversarial testing proactively seeks out failure modes (hallucinations, bias, unsafe content), and expert human review is indispensable for evaluating the factual accuracy, ethical implications, and legal compliance of responses.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A critical LLM-powered service experiences a sudden and severe performance degradation, with a significant increase in response latency and error rates. Initial investigation shows no changes to the LLM model itself or the underlying infrastructure. The LLMOps team suspects a 'prompt injection' attack. What would be a likely indicator and a primary mitigation strategy?",
+    "options": [
+      "Indicator: Reduced CPU usage; Mitigation: Increase server capacity.",
+      "Indicator: Irrelevant or malicious content in LLM outputs; Mitigation: Implement input sanitization and dedicated prompt guardrails.",
+      "Indicator: Decreased network bandwidth; Mitigation: Optimize database queries.",
+      "Indicator: Higher token counts in API requests; Mitigation: Switch to a cheaper LLM."
+    ],
+    "correctIndex": 1,
+    "explanation": "Prompt injection is a common attack where malicious input manipulates the LLM's behavior. Indicators include unexpected or harmful outputs. Mitigation involves robust input validation/sanitization (e.g., removing harmful characters) and implementing guardrails specifically designed to detect and block or reframe malicious instructions within user inputs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An LLMOps engineer is designing a dynamic model routing system for a global application. The goal is to minimize latency for users in different geographical regions while also optimizing API costs, which vary by provider and region. Which architectural pattern should the engineer prioritize?",
+    "options": [
+      "Using a single, centralized LLM endpoint for all requests.",
+      "Implementing a geo-aware load balancer that directs requests to the nearest LLM provider endpoint with real-time cost and performance monitoring.",
+      "Pre-calculating all possible LLM responses and storing them in a global cache.",
+      "Deploying a separate, dedicated LLM instance in each major data center irrespective of traffic."
+    ],
+    "correctIndex": 1,
+    "explanation": "A geo-aware load balancer, coupled with dynamic monitoring, allows for intelligent routing decisions based on both proximity (for latency) and current pricing/performance data from multiple LLM providers, offering the best balance of cost and user experience for a global application.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An LLMOps team has developed two prompt variations for a critical customer support chatbot. They need to determine which prompt leads to higher customer satisfaction and reduces resolution time. What is the most robust and statistically sound method for this evaluation in a production setting?",
+    "options": [
+      "Ask a few internal employees to try both prompts and give their subjective feedback.",
+      "Deploy one prompt for a week, then switch to the other for a week, and compare average metrics.",
+      "Conduct an A/B test by routing a randomized subset of live user interactions to each prompt variation and measuring key performance indicators (KPIs) and user feedback.",
+      "Run both prompts simultaneously on a small, synthetic dataset and pick the one with lower perplexity."
+    ],
+    "correctIndex": 2,
+    "explanation": "A/B testing in a live production environment with randomized user groups allows for direct comparison of the impact of each prompt variation on real user behavior and defined business metrics (customer satisfaction, resolution time), providing statistically significant results.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An LLMOps engineer is responsible for an LLM application that processes highly sensitive customer data under strict regulatory compliance (e.g., GDPR, HIPAA). Beyond PII redaction, what is a fundamental operational risk that must be continuously managed throughout the application's lifecycle, and how is it typically addressed?",
+    "options": [
+      "Risk: LLM model size; Address: Always use the smallest available model.",
+      "Risk: Lack of GPU resources; Address: Pre-order more GPUs.",
+      "Risk: Data leakage or unauthorized access through prompt logging or LLM outputs; Address: Implement strict access controls, data retention policies, end-to-end encryption, and regular security audits.",
+      "Risk: Outdated programming language; Address: Periodically rewrite the entire codebase in a newer language."
+    ],
+    "correctIndex": 2,
+    "explanation": "In regulated environments, data leakage is a paramount concern. Prompt logging, LLM outputs, and intermediate steps can expose sensitive data. Robust controls like access management, data lifecycle policies (retention, deletion), encryption at rest and in transit, and continuous security assessments are essential to mitigate this risk throughout the LLM application's operational lifecycle.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is a primary advantage of developing a desktop application over a web application for certain use cases?",
+    "options": [
+      "Requires constant internet connectivity",
+      "Easier to deploy updates across all platforms simultaneously",
+      "Provides robust offline capability and direct access to native hardware APIs",
+      "Limited by browser security models and sandboxing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Desktop applications often provide superior offline capabilities and can interact directly with system hardware and native APIs, offering a richer and more integrated user experience compared to web applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the purpose of 'local storage' in a desktop application?",
+    "options": [
+      "Storing data on a remote server for cloud synchronization",
+      "Caching web content loaded within an embedded browser view",
+      "Persisting user-specific data and application settings directly on the user's machine",
+      "Sharing data seamlessly between multiple users over a network"
+    ],
+    "correctIndex": 2,
+    "explanation": "Local storage in desktop applications is primarily used to persist data, such as user preferences, application state, or cached information, directly on the user's computer, allowing for offline access and quicker data retrieval.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before starting development on a new desktop application project, what is a fundamental first step related to version control?",
+    "options": [
+      "Deploying the application to a production server",
+      "Setting up a continuous integration/continuous deployment (CI/CD) pipeline",
+      "Initializing a Git repository and committing the initial project structure",
+      "Conducting extensive user acceptance testing (UAT)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Initializing a Git repository is a fundamental first step for any software project to track changes, collaborate with a team, and manage different versions of the codebase effectively from the outset.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing a desktop application, what does a 'cross-platform' approach primarily aim to achieve?",
+    "options": [
+      "To make the application accessible exclusively via web browsers",
+      "To allow the application to run natively on multiple operating systems (e.g., Windows, macOS, Linux) from a single codebase",
+      "To integrate the application seamlessly with various cloud services",
+      "To restrict the application's usage to a single, specific operating system"
+    ],
+    "correctIndex": 1,
+    "explanation": "A cross-platform approach in desktop development aims to minimize code duplication and effort by allowing a single codebase to be used to build applications that can run on different operating systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is ensuring 'accessibility' important for a desktop application?",
+    "options": [
+      "To improve the application's startup performance",
+      "To enable people with disabilities to use the application effectively and inclusively",
+      "To significantly reduce the application's memory footprint and resource usage",
+      "To secure user data from external threats and unauthorized access"
+    ],
+    "correctIndex": 1,
+    "explanation": "Accessibility ensures that desktop applications can be used by everyone, including individuals with disabilities, by providing features like screen reader support, keyboard navigation, and customizable interfaces.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main purpose of a 'Pull Request' (PR) in a team development workflow?",
+    "options": [
+      "To immediately merge changes directly into the main production branch without review",
+      "To request elevated administrative access to a shared code repository",
+      "To propose code changes and request a formal review from teammates before merging into a main branch",
+      "To report a critical bug in the application that requires immediate attention"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Pull Request (or Merge Request) is a standard practice in version control that allows developers to propose changes, discuss them with team members, and get code reviewed before integrating into the main codebase, ensuring quality and collaboration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After deploying a desktop application, why is 'monitoring' essential?",
+    "options": [
+      "To prevent unauthorized access to the application's source code",
+      "To track user activity exclusively for targeted marketing purposes",
+      "To proactively detect and identify issues such as crashes, performance bottlenecks, and errors in real-time",
+      "To automatically apply critical updates without user intervention"
+    ],
+    "correctIndex": 2,
+    "explanation": "Monitoring deployed desktop applications is crucial for identifying and diagnosing issues like crashes, performance problems, or errors as they occur in the user's environment, allowing for timely responses and fixes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A desktop application requires storing sensitive user preferences locally. Which of the following local storage mechanisms would be most appropriate for securely handling this data, considering OS-specific security features?",
+    "options": [
+      "Storing data in a plain text file accessible by any application",
+      "Using an unencrypted SQLite database without any access controls",
+      "Utilizing OS-provided secure credential storage services (e.g., Windows Credential Manager, macOS Keychain)",
+      "Embedding sensitive data directly within the application's binary file"
+    ],
+    "correctIndex": 2,
+    "explanation": "OS-provided secure credential storage services are designed to store sensitive data securely, leveraging platform-specific encryption and access controls, making them the most appropriate choice for sensitive user preferences.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During the debugging workflow for a desktop application, a developer encounters an intermittent crash. What is the most effective initial strategy to identify the root cause?",
+    "options": [
+      "Immediately refactor the entire codebase hoping the issue disappears",
+      "Reinstall the operating system to eliminate environmental factors",
+      "Use a debugger to set breakpoints, step through the code, and inspect variable states at or near the point of failure",
+      "Ask users to provide detailed crash reports without further investigation from the developer"
+    ],
+    "correctIndex": 2,
+    "explanation": "A debugger is an indispensable tool for identifying the root cause of crashes. By stepping through code and inspecting variables, a developer can observe the application's state and execution flow leading up to the failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to integrate a native OS feature (e.g., system notifications) into a cross-platform desktop application. What is a common approach for handling such platform-specific functionalities while maintaining a single codebase structure?",
+    "options": [
+      "Rewriting the entire application logic for each target operating system",
+      "Using conditional compilation, platform-specific modules, or abstraction layers to call native APIs",
+      "Avoiding the use of any native OS features to ensure pure cross-platform compatibility",
+      "Relying solely on web-based notifications embedded within the application"
+    ],
+    "correctIndex": 1,
+    "explanation": "To integrate platform-specific features while maintaining a largely single codebase, developers typically use techniques like conditional compilation or create platform-specific modules that are then integrated via an abstraction layer or FFI (Foreign Function Interface) calls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a large desktop application, a common UI pattern is MVC (Model-View-Controller). What is the primary benefit of separating the 'Model' from the 'View' and 'Controller'?",
+    "options": [
+      "To tightly couple UI elements directly with business logic for faster development",
+      "To make the application load faster by reducing the number of components",
+      "To enable independent development, testing, and evolution of the application's business logic from its user interface",
+      "To simplify database operations by embedding them directly within the UI components"
+    ],
+    "correctIndex": 2,
+    "explanation": "The separation of Model from View and Controller in MVC promotes modularity. The Model encapsulates business logic and data, allowing it to be developed, tested, and maintained independently of how it's presented (View) or how user input is handled (Controller).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A desktop application frequently experiences regressions (new bugs in existing functionality) after new features are added. What type of testing should be prioritized to prevent these regressions?",
+    "options": [
+      "Exploratory testing to discover new, unexpected behaviors",
+      "Automated regression testing, including unit and integration tests, to validate existing functionality after changes",
+      "Usability testing to evaluate the user experience of new features",
+      "Manual smoke testing to quickly verify core functionalities once"
+    ],
+    "correctIndex": 1,
+    "explanation": "Automated regression testing is designed to catch unintended side effects or new bugs introduced into existing functionality when changes are made to the codebase. This is crucial for preventing regressions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is preparing for a new major release of a desktop application. Which aspect of the release workflow is crucial for informing users about new features, bug fixes, and breaking changes?",
+    "options": [
+      "Performing comprehensive code reviews on all new commits",
+      "Executing all necessary database migrations on the development server",
+      "Writing clear, concise, and comprehensive release notes for the target audience",
+      "Updating only the project's internal README file with development details"
+    ],
+    "correctIndex": 2,
+    "explanation": "Comprehensive release notes are vital for communicating changes, new features, bug fixes, and any breaking changes to users, ensuring they are informed and can adapt to the updated version of the application.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A desktop application deals with user financial data. Which principle should guide the design of its local data storage to minimize security risks?",
+    "options": [
+      "Store all data in a single, easily accessible plain-text file for simplicity",
+      "Use weak or easily reversible encryption for faster data access",
+      "Implement the principle of least privilege for data access and encrypt sensitive data at rest using strong algorithms",
+      "Rely solely on the operating system's default file permissions without adding further security measures"
+    ],
+    "correctIndex": 2,
+    "explanation": "For sensitive data like financial information, implementing the principle of least privilege (only necessary access) and encrypting data at rest are critical security measures to protect against unauthorized access or breaches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a stakeholder demo for a new desktop application feature, the team presents a functional prototype. What is the primary goal of this demo?",
+    "options": [
+      "To obtain final, irreversible approval for immediate deployment without any further changes",
+      "To showcase progress, gather early feedback, and validate that the feature meets key acceptance criteria",
+      "To provide comprehensive training to end-users on how to operate the new feature",
+      "To individually assess and rank the performance of each developer on the team"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stakeholder demos are primarily for presenting work-in-progress, gathering feedback, and ensuring that the development aligns with requirements and expectations, validating progress against acceptance criteria.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a desktop application, what is a key consideration for 'packaging' the application for distribution across different operating systems?",
+    "options": [
+      "Ensuring the application exclusively uses web technologies to avoid native dependencies",
+      "Bundling all necessary dependencies and a runtime environment (if applicable) into an installer specific to each target OS",
+      "Relying on users to manually install all prerequisites and runtime environments",
+      "Distributing the raw source code and expecting users to compile it themselves"
+    ],
+    "correctIndex": 1,
+    "explanation": "Effective packaging involves creating OS-specific installers that bundle all required dependencies and, if necessary, a runtime environment, ensuring that the application can be easily installed and run by end-users on their respective operating systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a desktop application that needs to perform a long-running data processing operation without freezing the user interface. Which pattern is most suitable for this scenario?",
+    "options": [
+      "Performing synchronous UI updates on the main thread",
+      "Executing all operations on a single, blocking thread",
+      "Implementing asynchronous programming techniques (e.g., using worker threads, async/await, or background tasks)",
+      "Continuously polling the main thread for task completion, which can still cause freezes"
+    ],
+    "correctIndex": 2,
+    "explanation": "Asynchronous programming patterns are essential for keeping the UI responsive during long-running operations. By offloading tasks to worker threads or using async/await, the main UI thread remains free to handle user interactions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical bug is discovered in a released desktop application. What is the most important step to take *after* fixing the bug to prevent its recurrence and ensure stability?",
+    "options": [
+      "Immediately release the fix to users without any further testing",
+      "Document the bug in a private memo that is not shared with the team",
+      "Add a new automated test case that specifically targets and validates the fix for the bug",
+      "Inform users that they must manually avoid the bug's conditions"
+    ],
+    "correctIndex": 2,
+    "explanation": "Adding an automated test case for a fixed bug is crucial for 'regression prevention'. It ensures that the specific bug does not reappear in future updates and serves as a living specification of the expected behavior.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is responsible for a desktop application that needs to integrate with a third-party REST API. How should API keys and other sensitive credentials be handled in a production environment to ensure security?",
+    "options": [
+      "Hardcode them directly into the application's source code for easy access",
+      "Store them in a publicly accessible configuration file within the application's installation directory",
+      "Embed them directly within the application's binary, hoping they are unrecoverable",
+      "Utilize environment variables, a secure secrets management system, or OS-provided secure storage (e.g., keychain) and retrieve them at runtime"
+    ],
+    "correctIndex": 3,
+    "explanation": "Sensitive credentials should never be hardcoded or stored in publicly accessible files. Using environment variables, secure secrets management, or OS-provided secure storage allows credentials to be managed externally and accessed securely at runtime, reducing the risk of exposure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'failure mode' in the context of desktop application development?",
+    "options": [
+      "A new feature that receives negative feedback from users",
+      "An unexpected way in which the application can fail to perform its intended function or behave incorrectly",
+      "A successful security audit report with no identified vulnerabilities",
+      "A planned maintenance window for the application's backend services"
+    ],
+    "correctIndex": 1,
+    "explanation": "A failure mode refers to a potential way in which a system or component can fail. Identifying these helps in designing robust applications with appropriate error handling and recovery mechanisms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cross-platform desktop application needs to display a complex, custom-drawn 3D scene that requires high performance and direct GPU access. The current framework's UI components are insufficient. What advanced implementation strategy would likely be required?",
+    "options": [
+      "Rely on standard HTML/CSS rendering within an embedded web view component",
+      "Develop custom native UI components or rendering engines and integrate them via FFI (Foreign Function Interface) or platform-specific bindings",
+      "Simplify the 3D scene significantly to use only basic 2D elements available in the framework",
+      "Distribute the rendering workload to a remote server and stream the output as video"
+    ],
+    "correctIndex": 1,
+    "explanation": "For highly performant, custom 3D rendering and direct GPU access beyond what standard cross-platform frameworks offer, developing native components and integrating them through FFI or platform-specific bindings is the most common and effective approach.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Designing an efficient 'update mechanism' for a desktop application is crucial. What is a key challenge when implementing a robust update system for cross-platform applications, especially regarding user experience and reliability?",
+    "options": [
+      "Ensuring updates are only delivered manually by direct user download",
+      "Creating a single universal update package that works identically across all operating systems without any platform-specific considerations",
+      "Managing different packaging formats (e.g., MSI, DMG, DEB), signing requirements, ensuring atomic updates, and providing rollback capabilities across Windows, macOS, and Linux",
+      "Limiting update frequency to an arbitrary schedule, such as once a year, regardless of critical bug fixes"
+    ],
+    "correctIndex": 2,
+    "explanation": "A robust cross-platform update system must handle the complexities of different OS packaging formats, code signing, ensuring updates complete atomically (fully or not at all), and providing rollback options to ensure application stability and a good user experience.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A desktop application handles proprietary business logic and sensitive data. An attacker manages to obtain the application's executable. What is the most critical risk, and how can it be mitigated during development?",
+    "options": [
+      "The application will immediately stop functioning on all user machines. Mitigation: Ensure strong internet connection for license validation.",
+      "The application might reveal minor UI design flaws. Mitigation: Improve UI/UX through user testing.",
+      "Reverse engineering could expose trade secrets, proprietary algorithms, and reveal vulnerabilities. Mitigation: Employ code obfuscation, tamper detection, and robust encryption for sensitive data within the application.",
+      "Users will share the application illegally with others. Mitigation: Implement digital rights management (DRM) and license keys."
+    ],
+    "correctIndex": 2,
+    "explanation": "Obtaining the executable poses a significant risk of reverse engineering, which can expose intellectual property (trade secrets), proprietary algorithms, and potential security vulnerabilities. Mitigations include code obfuscation, anti-tampering techniques, and encrypting sensitive embedded data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A product owner provides a user story for a new desktop application feature: 'As a user, I want to filter my data.' Which of the following defines effective 'measurable acceptance criteria' for this story from a developer's perspective?",
+    "options": [
+      "'The filter should look nice and be fast.'",
+      "'The filter should work correctly most of the time.'",
+      "'Given a list of 1000 items, when I apply filter 'X', then only items matching 'X' should be displayed, and the filtering operation must complete within 500ms.'",
+      "'The developer determines when the filter functionality is complete.'"
+    ],
+    "correctIndex": 2,
+    "explanation": "Effective measurable acceptance criteria are specific, quantifiable, and testable. They define exactly what 'done' means for a feature by specifying conditions, inputs, expected outputs, and often performance benchmarks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When presenting a portfolio-grade desktop application project, why is including a 'lessons learned' section in the README or project documentation particularly impactful for demonstrating career readiness?",
+    "options": [
+      "It primarily shows the developer's ability to write extensive documentation, regardless of content quality",
+      "It exclusively highlights what went wrong during the project without offering any solutions or improvements",
+      "It demonstrates critical self-reflection, problem-solving skills, adaptability, and a commitment to continuous improvement",
+      "It is a mandatory requirement for obtaining open-source licenses for the project"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'lessons learned' section goes beyond simply showcasing technical skills. It highlights a developer's ability to reflect on challenges, understand mistakes, and identify areas for personal and technical growth, which are highly valued professional qualities.",
+    "difficulty": "hard"
+  }
+]

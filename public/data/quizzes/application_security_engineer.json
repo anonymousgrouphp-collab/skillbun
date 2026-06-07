@@ -1,0 +1,302 @@
+[
+  {
+    "question": "Which of the following best describes the primary objective of an Application Security Engineer?",
+    "options": [
+      "To manage network firewalls and intrusion detection systems.",
+      "To ensure software applications are resilient against security threats throughout their lifecycle.",
+      "To develop new software features and optimize database performance.",
+      "To design UI/UX for web applications to improve user experience."
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary objective of an Application Security Engineer is to integrate security into the software development lifecycle, ensuring applications are built securely and remain resilient against threats. Managing network infrastructure or developing features are not their core responsibilities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of application security, what is the main purpose of \"Threat Modeling\"?",
+    "options": [
+      "To create a visual representation of the application's architecture.",
+      "To identify potential security threats and vulnerabilities in an application and determine countermeasures.",
+      "To monitor application performance in a production environment.",
+      "To document user requirements for a new software feature."
+    ],
+    "correctIndex": 1,
+    "explanation": "Threat modeling is a structured approach to identify potential threats, vulnerabilities, and attacks that could compromise an application, and then design appropriate mitigations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does SAST primarily focus on in application security?",
+    "options": [
+      "Analyzing running applications for vulnerabilities during execution.",
+      "Scanning source code, bytecode, or binary code for vulnerabilities without executing the application.",
+      "Monitoring network traffic for malicious activities.",
+      "Performing manual penetration testing on a deployed application."
+    ],
+    "correctIndex": 1,
+    "explanation": "SAST (Static Application Security Testing) analyzes an application's source code, bytecode, or binary code for security vulnerabilities without actually executing the program.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer uses several third-party libraries in their new microservice. What security practice is most relevant to address potential vulnerabilities introduced by these external components?",
+    "options": [
+      "Performing DAST scans on the deployed microservice.",
+      "Implementing strong network access controls.",
+      "Conducting dependency security analysis or Software Composition Analysis (SCA).",
+      "Reviewing the application's UI for usability issues."
+    ],
+    "correctIndex": 2,
+    "explanation": "Dependency security analysis (often via SCA tools) focuses specifically on identifying and managing vulnerabilities within third-party libraries and components used by an application.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a fundamental secure coding practice for preventing injection attacks (e.g., SQL Injection, XSS)?",
+    "options": [
+      "Using complex regular expressions for all user inputs.",
+      "Implementing output encoding and input validation/sanitization.",
+      "Storing all sensitive data in clear text.",
+      "Disabling error logging in production environments."
+    ],
+    "correctIndex": 1,
+    "explanation": "Input validation, sanitization, and output encoding are crucial secure coding practices to prevent injection attacks by ensuring user-supplied data is treated as data, not executable code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is version control (e.g., Git) important for an Application Security Engineer's daily workflow?",
+    "options": [
+      "It helps in designing graphical user interfaces more efficiently.",
+      "It enables tracking code changes, reviewing security fixes, and collaborating on secure coding standards.",
+      "It primarily serves as a project management tool for task assignments.",
+      "It is used exclusively for deploying applications to production servers."
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems like Git are essential for Application Security Engineers to track code changes, manage security patches, perform secure code reviews, and collaborate effectively within development teams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An Application Security Engineer is reviewing a web application and observes that all user input fields accept any character without restriction. This situation most directly relates to which security concept?",
+    "options": [
+      "Network segmentation.",
+      "Input validation.",
+      "Database normalization.",
+      "Load balancing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Allowing unrestricted input in user fields is a direct violation of good input validation practices, which are crucial for preventing various web vulnerabilities like injection attacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a threat modeling exercise for a new user authentication service, an AppSec Engineer identifies a potential threat where an attacker intercepts user credentials during transit. According to the STRIDE model, which threat category does this primarily fall under?",
+    "options": [
+      "Tampering",
+      "Repudiation",
+      "Information Disclosure",
+      "Elevation of Privilege"
+    ],
+    "correctIndex": 2,
+    "explanation": "Intercepting user credentials during transit is a classic example of Information Disclosure, as sensitive data is revealed to an unauthorized entity. Tampering involves modifying data, Repudiation is about denying actions, and Elevation of Privilege is about gaining higher access rights.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A development team frequently releases new features. To integrate security early and often, the AppSec Engineer recommends using a tool that scans code changes within the CI/CD pipeline before deployment. Which type of tool is most appropriate for this specific need to catch issues *before* runtime?",
+    "options": [
+      "Dynamic Application Security Testing (DAST)",
+      "Manual Penetration Testing",
+      "Static Application Security Testing (SAST)",
+      "Web Application Firewall (WAF)"
+    ],
+    "correctIndex": 2,
+    "explanation": "SAST (Static Application Security Testing) is ideal for integration into CI/CD pipelines to scan source code for vulnerabilities pre-deployment, as it operates without executing the application. DAST requires a running application, manual pen testing is often post-deployment, and a WAF is a runtime protection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AppSec Engineer is performing a secure code review for an API endpoint that handles user profile updates. The engineer notices that the API allows a user to modify *any* user's profile by simply changing the `userId` in the request payload, without proper authorization checks. What common API security vulnerability does this describe?",
+    "options": [
+      "Mass Assignment",
+      "Broken Object Level Authorization (BOLA) / Insecure Direct Object Reference (IDOR)",
+      "SQL Injection",
+      "Cross-Site Scripting (XSS)"
+    ],
+    "correctIndex": 1,
+    "explanation": "This scenario perfectly describes Broken Object Level Authorization (BOLA), also known as Insecure Direct Object Reference (IDOR), where an application fails to properly validate whether the requesting user has permission to access or modify the specific object identified in the request (e.g., another user's profile).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company aims to foster a stronger security culture among its developers. The AppSec Engineer proposes a program where designated developers receive extra training and act as a first point of contact for security questions within their teams, helping to review code and promote secure practices. What is this initiative commonly known as?",
+    "options": [
+      "Incident Response Team",
+      "Quality Assurance (QA) Team",
+      "Security Champions Program",
+      "Infrastructure Operations Team"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Security Champions Program empowers developers with additional security knowledge and responsibilities, enabling them to embed security directly within their development teams and act as a liaison with the central AppSec team.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When integrating security checks into a CI/CD pipeline, an AppSec Engineer needs to decide where to place a DAST scan. At which stage would DAST typically be most effective?",
+    "options": [
+      "During the initial code commit to the version control system.",
+      "After the application has been built and deployed to a staging or testing environment.",
+      "Before the application code is compiled.",
+      "Only after the application has been in production for several months."
+    ],
+    "correctIndex": 1,
+    "explanation": "DAST (Dynamic Application Security Testing) requires a running application to test for vulnerabilities. Therefore, it is most effectively placed in the CI/CD pipeline after the application has been built and deployed to a testable environment, such as staging or a dedicated testing environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical vulnerability is discovered in a widely used open-source library that your application depends on. As an AppSec Engineer, what is the immediate priority and a crucial next step beyond simply identifying the vulnerability?",
+    "options": [
+      "Immediately rewrite the entire application to remove the dependency.",
+      "Document the vulnerability and wait for the next major release cycle.",
+      "Assess the impact, identify all affected applications, and plan for remediation (e.g., updating the library or applying a patch).",
+      "Block all network traffic to the application."
+    ],
+    "correctIndex": 2,
+    "explanation": "The immediate priority after discovering a critical dependency vulnerability is to assess its impact on your applications, identify all instances where the vulnerable library is used, and then plan and execute remediation, which typically involves updating to a secure version or applying a patch. Rewriting the entire application is an overreaction, waiting is irresponsible, and blocking all traffic is a last resort unless exploitation is imminent and unmitigable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new feature involves storing sensitive customer data. Before implementation, an AppSec Engineer conducts a review to ensure this data is encrypted both at rest and in transit, and access controls are strictly enforced. Which area of the roadmap does this activity primarily align with?",
+    "options": [
+      "Front-end UI/UX design review.",
+      "Database performance optimization.",
+      "Security, Reliability, and Risk.",
+      "Marketing and product positioning."
+    ],
+    "correctIndex": 2,
+    "explanation": "Protecting sensitive data, defining safe defaults, and managing operational risks are core aspects of the \"Security, Reliability, and Risk\" domain for an AppSec Engineer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AppSec Engineer discovers a critical vulnerability during a code review. To ensure effective remediation and tracking, what is a key element of good documentation for this finding?",
+    "options": [
+      "A screenshot of the vulnerability without any context.",
+      "Only the line number where the vulnerability was found.",
+      "A clear description of the vulnerability, its potential impact, steps to reproduce, and recommended remediation.",
+      "A general statement that the code is insecure without specifics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Effective documentation for security findings includes a clear description of the vulnerability, its potential impact, precise steps for reproduction, and actionable recommendations for remediation to enable developers to understand and fix the issue.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When an AppSec Engineer evaluates different security controls for a specific threat, they must consider factors like implementation cost, operational overhead, developer friction, and overall effectiveness. This process is best described as evaluating:",
+    "options": [
+      "Compliance standards.",
+      "Performance benchmarks.",
+      "Implementation patterns and tradeoffs.",
+      "User experience metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Considering factors like cost, overhead, developer friction, and effectiveness when choosing security controls involves evaluating implementation patterns and making informed tradeoffs between different approaches to achieve the desired security posture.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After a minor security incident where a misconfiguration allowed unauthorized access to a non-critical resource, the AppSec team conducts a \"lessons learned\" session. What is the primary goal of this retrospective?",
+    "options": [
+      "To assign blame to specific individuals.",
+      "To update marketing materials about the incident.",
+      "To identify root causes, improve processes, and prevent recurrence.",
+      "To immediately implement a complete system shutdown."
+    ],
+    "correctIndex": 2,
+    "explanation": "The primary goal of a \"lessons learned\" session or retrospective after an incident is to understand the root causes, identify areas for improvement in processes, tools, or training, and implement measures to prevent similar incidents from happening again.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AppSec Engineer is asked to enable developers to self-serve security checks. They decide to integrate a linter with security rules directly into the developer's IDE and pre-commit hooks. This strategy primarily falls under which aspect of the roadmap?",
+    "options": [
+      "Production monitoring.",
+      "Developer enablement.",
+      "Post-incident forensics.",
+      "External penetration testing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Integrating security tools directly into the developer's workflow (like IDE integrations and pre-commit hooks) is a key strategy for developer enablement, allowing them to catch and fix security issues early and autonomously.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A development team is preparing to deploy a new microservice to production. As part of the security review, the AppSec Engineer needs to ensure that all default configurations are secure (e.g., least privilege access, disabled unnecessary features). This practice directly contributes to:",
+    "options": [
+      "Increasing application performance.",
+      "Minimizing attack surface and defining safe defaults.",
+      "Improving UI responsiveness.",
+      "Reducing database query times."
+    ],
+    "correctIndex": 1,
+    "explanation": "Ensuring secure default configurations (like least privilege, disabled unnecessary features) is a critical practice for minimizing the attack surface and defining safe defaults, which is central to the \"Security, Reliability, and Risk\" topic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When an AppSec Engineer reviews a Pull Request (PR) for a new feature, what specific security-focused checks should they prioritize beyond functional correctness?",
+    "options": [
+      "Checking for compliance with corporate branding guidelines.",
+      "Ensuring all variable names follow a specific style guide.",
+      "Looking for potential vulnerabilities (e.g., input validation, authentication bypasses, proper authorization) and adherence to secure coding standards.",
+      "Verifying that all comments are grammatically correct."
+    ],
+    "correctIndex": 2,
+    "explanation": "During a security-focused PR review, the AppSec Engineer should prioritize identifying vulnerabilities, ensuring proper security controls (like authentication, authorization, input validation), and verifying adherence to secure coding standards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An organization is designing a new cloud-native application composed of several serverless functions, a GraphQL API gateway, and a NoSQL database. During threat modeling, the AppSec Engineer needs to identify advanced threats. Which of the following would be a *harder* challenge to model compared to basic injection attacks?",
+    "options": [
+      "SQL Injection in a REST API.",
+      "Cross-Site Scripting (XSS) in a web front-end.",
+      "Function chaining leading to privilege escalation across multiple serverless components.",
+      "Brute-force attacks against a login endpoint."
+    ],
+    "correctIndex": 2,
+    "explanation": "Function chaining leading to privilege escalation across multiple serverless components is a more complex threat to model. It requires understanding the intricate data flows, permissions, and potential interactions between distributed serverless functions, which goes beyond typical single-component vulnerabilities like injection attacks or brute force.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AppSec Engineer is tasked with creating a comprehensive security testing strategy for a large, complex enterprise application. The strategy must cover the entire SDLC. Which combination of testing types would provide the most robust coverage, and what is a key consideration for their effective integration?",
+    "options": [
+      "Only manual penetration testing; consideration: high cost, slow feedback.",
+      "SAST in CI, DAST in staging, SCA for dependencies, and regular penetration tests; consideration: orchestrating these tools for integrated feedback.",
+      "Exclusively DAST in production; consideration: only finds runtime issues, late in SDLC.",
+      "Just unit tests with security assertions; consideration: limited to developer-defined tests, misses systemic issues."
+    ],
+    "correctIndex": 1,
+    "explanation": "A comprehensive strategy requires a multi-faceted approach: SAST (Static) for early code analysis, DAST (Dynamic) for runtime behavior, SCA (Software Composition Analysis) for third-party risks, and manual penetration tests for sophisticated attacks. The key challenge and consideration for this robust integration is orchestrating these diverse tools to provide actionable, integrated feedback throughout the SDLC.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company wants to shift security left and embed AppSec responsibilities directly into development teams. The AppSec Engineer needs to design an SSDLC (Secure Software Development Lifecycle) implementation plan that goes beyond just adding tools. What would be a crucial, more complex aspect of this implementation focusing on developer buy-in and sustainability?",
+    "options": [
+      "Mandating the use of a single SAST tool for all projects.",
+      "Focusing on developer training, security champions programs, clear security requirements, and automated security gates in CI/CD.",
+      "Outsourcing all security testing to a third-party vendor.",
+      "Only performing security reviews immediately before production deployment."
+    ],
+    "correctIndex": 1,
+    "explanation": "Embedding security into development teams requires more than just tools. It involves a holistic approach including developer training, fostering internal security expertise (champions), defining clear security requirements from the start, and automating security checks within the CI/CD pipeline to ensure consistent enforcement and early feedback. Mandating a single tool is too restrictive, outsourcing misses the \"shift left\" goal, and late reviews contradict the embedded approach.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a risk assessment, an AppSec Engineer identifies a vulnerability that allows an authenticated user to perform actions as an administrator. The exploit path is moderately complex but documented. The business impact is categorized as \"High\" (potential data breach, regulatory fines). Another vulnerability allows an unauthenticated user to view non-sensitive public data through a misconfigured API, with a simple exploit path and \"Low\" business impact. How should the AppSec Engineer prioritize remediation, and why?",
+    "options": [
+      "Prioritize the \"Low\" business impact vulnerability because it's easier to exploit and unauthenticated.",
+      "Prioritize the \"High\" business impact vulnerability (admin privilege escalation) because impact outweighs exploit complexity.",
+      "Treat both vulnerabilities with equal urgency as all vulnerabilities are equally critical.",
+      "Defer both remediations until a new security budget is approved."
+    ],
+    "correctIndex": 1,
+    "explanation": "In risk prioritization, high business impact, especially concerning data breaches and regulatory fines, generally takes precedence over vulnerabilities with lower impact, even if they are easier to exploit. Gaining administrative privileges represents a significantly higher overall risk to the organization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A critical zero-day vulnerability is discovered in a widely used web framework, affecting several applications in your portfolio. The CISO demands an immediate plan for remediation and communication. As the AppSec Engineer, what is the most effective approach for developing and coordinating this plan, especially concerning stakeholder communication and lifecycle ownership?",
+    "options": [
+      "Inform the CISO about the vulnerability and await further instructions, then work in isolation to find a fix.",
+      "Develop a plan to patch all affected systems within 24 hours, but only inform the affected development teams after the patches are deployed.",
+      "Immediately initiate an incident response process: identify affected assets, assess impact, communicate proactively with stakeholders (dev, ops, legal, comms), define a phased remediation strategy, and track progress until closure.",
+      "Focus solely on patching the most critical production application first, then deal with other applications and communication later."
+    ],
+    "correctIndex": 2,
+    "explanation": "In a zero-day scenario, an immediate and coordinated incident response is crucial. This involves not only identifying affected assets and assessing impact but also proactive, transparent communication with all relevant stakeholders (development, operations, legal, public relations) to manage expectations, coordinate efforts, and ensure a phased, tracked remediation strategy is implemented and followed through to closure. Working in isolation, delaying communication, or focusing on only one aspect are ineffective and risky.",
+    "difficulty": "hard"
+  }
+]

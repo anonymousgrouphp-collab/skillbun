@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new Linux user needs to find their current working directory. Which command should they use?",
+    "options": [
+      "ls",
+      "cd",
+      "pwd",
+      "mkdir"
+    ],
+    "correctIndex": 2,
+    "explanation": "`pwd` (print working directory) shows the current location in the filesystem. `ls` lists contents, `cd` changes directory, `mkdir` creates a directory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You want to give a file read and write permissions to its owner, but only read permissions to its group and others. Which octal permission set should you use?",
+    "options": [
+      "755",
+      "644",
+      "777",
+      "600"
+    ],
+    "correctIndex": 1,
+    "explanation": "`6` for owner (read, write), `4` for group (read only), `4` for others (read only).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "On a Debian-based Linux distribution, which command is typically used to install new software packages?",
+    "options": [
+      "yum install",
+      "rpm -i",
+      "apt install",
+      "dnf install"
+    ],
+    "correctIndex": 2,
+    "explanation": "`apt` is the package manager for Debian/Ubuntu systems. `yum` and `dnf` are for Red Hat-based systems, `rpm` is a lower-level package tool.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You want to save the output of a command `ls -l` into a file named `file_list.txt`. Which command achieves this, overwriting the file if it exists?",
+    "options": [
+      "ls -l > file_list.txt",
+      "ls -l >> file_list.txt",
+      "ls -l | file_list.txt",
+      "ls -l < file_list.txt"
+    ],
+    "correctIndex": 0,
+    "explanation": "`>` redirects standard output, overwriting the file. `>>` appends, `|` pipes to another command, `<` redirects input.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To check the current status of the `nginx` web server service on a systemd-based Linux distribution, which command would you use?",
+    "options": [
+      "service nginx status",
+      "systemctl status nginx",
+      "nginx --status",
+      "checkservice nginx"
+    ],
+    "correctIndex": 1,
+    "explanation": "`systemctl` is the primary command for managing systemd services, and `status` shows their current state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After creating a new filesystem on a disk partition, what is the next essential step to make it accessible for storing data in the Linux directory tree?",
+    "options": [
+      "format the partition",
+      "label the partition",
+      "mount the filesystem",
+      "defragment the partition"
+    ],
+    "correctIndex": 2,
+    "explanation": "Formatting creates the filesystem, but mounting connects it to a specific directory (mount point) in the Linux filesystem hierarchy, making it usable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is used to securely connect to a remote Linux server named `server.example.com` as the user `adminuser`?",
+    "options": [
+      "ftp adminuser@server.example.com",
+      "ssh adminuser@server.example.com",
+      "telnet adminuser@server.example.com",
+      "rlogin adminuser@server.example.com"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ssh` (Secure Shell) is the standard protocol for secure remote access and command execution on Linux systems. FTP, Telnet, and rlogin are insecure or outdated.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to find all lines containing the word \"ERROR\" (case-insensitive) in the `/var/log/syslog` file, and display them along with their line numbers. Which command accomplishes this?",
+    "options": [
+      "grep -i ERROR /var/log/syslog | nl",
+      "grep -in ERROR /var/log/syslog",
+      "find /var/log -name syslog -exec grep -i ERROR {} \\;",
+      "cat /var/log/syslog | grep -i ERROR -n"
+    ],
+    "correctIndex": 1,
+    "explanation": "`grep -i` makes the search case-insensitive, and `grep -n` displays line numbers. Piping to `nl` or `cat` then piping to grep with `-n` is less efficient or incorrect.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new user `devuser` needs to be able to run `apt update` and `apt upgrade` without being prompted for a password, but should not have full root access. How would you configure `sudo` for this specific requirement?",
+    "options": [
+      "Add devuser to the 'sudo' group",
+      "Edit /etc/sudoers and add 'devuser ALL=(ALL) NOPASSWD: /usr/bin/apt update, /usr/bin/apt upgrade'",
+      "Run 'usermod -aG root devuser'",
+      "Give devuser the root password"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adding to the `sudo` group grants broader access. Specific commands with `NOPASSWD` provide fine-grained control without password prompts. Granting root password or full root access is insecure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You've deployed a new web server and configured Nginx to listen on port 80 and 443. However, users cannot access the site. After checking Nginx status (it's running), you suspect the firewall. Which command would you typically use with `firewalld` to allow incoming HTTP traffic?",
+    "options": [
+      "iptables -A INPUT -p tcp --dport 80 -j ACCEPT",
+      "ufw allow 80/tcp",
+      "firewall-cmd --add-service=http --permanent && firewall-cmd --reload",
+      "systemctl stop firewalld"
+    ],
+    "correctIndex": 2,
+    "explanation": "This command adds the 'http' service (which includes port 80) to the firewall rules permanently and reloads firewalld. `iptables` and `ufw` are different firewall management tools. Stopping the firewall is insecure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A service you're troubleshooting recently failed. You want to view its specific log entries from the `journald` system log, starting from the last boot. Which `journalctl` option is most appropriate?",
+    "options": [
+      "journalctl -f",
+      "journalctl -u your_service --since \"last boot\"",
+      "journalctl -b",
+      "journalctl -p err"
+    ],
+    "correctIndex": 1,
+    "explanation": "`-u` filters by unit (service), and `--since \"last boot\"` ensures logs are from the current boot cycle. `-f` follows live logs, `-b` shows all logs from current boot, `-p err` shows only error level messages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have an existing LVM Volume Group (VG) and need to expand a Logical Volume (LV) within it. After ensuring there is free space in the VG, what is the typical next step to increase the LV size and then the filesystem size?",
+    "options": [
+      "lvcreate -L +10G /dev/vgname/lvname",
+      "vgextend /dev/vgname /dev/sdb1",
+      "lvextend -L +10G /dev/vgname/lvname && resize2fs /dev/vgname/lvname",
+      "pvresize /dev/sdb1"
+    ],
+    "correctIndex": 2,
+    "explanation": "`lvextend` increases the logical volume size. `resize2fs` (or `xfs_growfs` for XFS) then expands the filesystem to use the new space. `lvcreate` creates a new LV, `vgextend` adds a physical volume to a VG, `pvresize` resizes a physical volume.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As part of hardening an SSH server, you want to disable password-based authentication and only allow key-based authentication for security. Which parameter in `sshd_config` should be changed, and to what value?",
+    "options": [
+      "PermitRootLogin no",
+      "PasswordAuthentication no",
+      "AllowTcpForwarding yes",
+      "UsePAM no"
+    ],
+    "correctIndex": 1,
+    "explanation": "Setting `PasswordAuthentication no` disables password logins, forcing users to authenticate with SSH keys. `PermitRootLogin no` is also a hardening step but doesn't specifically address password authentication for all users.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are writing a Bash script that needs to check if a specific directory `/opt/myapp` exists. If it does not exist, the script should create it. Which Bash construct correctly achieves this?",
+    "options": [
+      "`[ -d /opt/myapp ] && mkdir /opt/myapp`",
+      "`if [ ! -d /opt/myapp ]; then mkdir /opt/myapp; fi`",
+      "`if [ -f /opt/myapp ]; then mkdir /opt/myapp; fi`",
+      "`test -e /opt/myapp || create_dir /opt/myapp`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`[ ! -d /opt/myapp ]` checks if `/opt/myapp` is NOT a directory. The `if` statement then executes `mkdir` if the condition is true. The `&&` construct would create if it *does* exist (opposite). `-f` checks for a file.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A monitoring dashboard shows high CPU utilization (consistently 90%+) on a critical web server. What is the most immediate and appropriate first step to investigate this incident?",
+    "options": [
+      "Reboot the server immediately",
+      "Check running processes with 'top' or 'htop' to identify resource-intensive applications",
+      "Increase the server's CPU allocation",
+      "Notify the development team about a potential code issue"
+    ],
+    "correctIndex": 1,
+    "explanation": "Investigating the root cause with tools like `top` or `htop` is the crucial first step to understand which process is consuming CPU. Rebooting is premature, increasing CPU is a mitigation not a diagnosis, and notifying dev team is too early without more data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You receive an alert that the `/var` partition on a production server is 95% full. Following your runbook, what is the most common immediate action to free up space without affecting running services, before a deeper investigation?",
+    "options": [
+      "Delete core application data files",
+      "Extend the logical volume using LVM",
+      "Clear old log files and package caches",
+      "Unmount and reformat the /var partition"
+    ],
+    "correctIndex": 2,
+    "explanation": "Old logs (e.g., `journalctl --vacuum-time=1w`) and package manager caches (`apt clean`, `yum clean all`) are common culprits for disk space usage in `/var` and can often be safely cleared to gain immediate space. Deleting app data is critical, LVM extension is a longer-term fix, and reformatting is destructive.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to create a compressed archive of the `/home/user/documents` directory, including all its subdirectories and files, and name it `mydocuments.tar.gz`. Which command should you use?",
+    "options": [
+      "zip -r mydocuments.tar.gz /home/user/documents",
+      "tar -cvf mydocuments.tar.gz /home/user/documents",
+      "tar -czvf mydocuments.tar.gz /home/user/documents",
+      "gzip mydocuments.tar /home/user/documents"
+    ],
+    "correctIndex": 2,
+    "explanation": "`tar` is used for archiving. `-c` creates, `-z` compresses with gzip, `-v` verbose, `-f` specifies filename. `zip` uses a different format, `tar -cvf` creates an uncompressed tarball, `gzip` compresses single files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to add an existing user `appuser` to the `webgroup` group, ensuring that `appuser` also retains membership in any other groups it currently belongs to. Which command is appropriate?",
+    "options": [
+      "usermod -G webgroup appuser",
+      "usermod -aG webgroup appuser",
+      "groupadd webgroup appuser",
+      "gpasswd -a appuser webgroup"
+    ],
+    "correctIndex": 1,
+    "explanation": "`usermod -aG` appends the user to the specified group(s) without removing them from their existing groups. `usermod -G` (without `-a`) would overwrite existing group memberships. `groupadd` creates a group, and `gpasswd -a` is an alternative, but `usermod -aG` is very common.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to schedule a script (`/opt/backup.sh`) to run every day at 03:00 AM. Which entry in the crontab for the root user would achieve this?",
+    "options": [
+      "0 3 * * * /opt/backup.sh",
+      "* 3 * * * /opt/backup.sh",
+      "@daily /opt/backup.sh",
+      "3 0 * * * /opt/backup.sh"
+    ],
+    "correctIndex": 0,
+    "explanation": "The cron format is `minute hour day_of_month month day_of_week command`. `0 3` means 0 minutes past the 3rd hour, i.e., 03:00 AM. `@daily` is also valid but `0 3 * * *` is the explicit form.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After making configuration changes, your server is failing to boot into its graphical environment and is stuck at a command prompt. You suspect a recent change to the display manager. To boot into a multi-user command-line environment and troubleshoot, which systemd target should you temporarily set?",
+    "options": [
+      "graphical.target",
+      "reboot.target",
+      "rescue.target",
+      "multi-user.target"
+    ],
+    "correctIndex": 3,
+    "explanation": "`multi-user.target` provides a fully functional command-line environment without a graphical interface, which is ideal for troubleshooting issues preventing graphical boot. `rescue.target` is more minimal, and `graphical.target` is the goal, not the solution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical server unexpectedly rebooted and now a key filesystem (`/data`) is unmountable, reporting errors about a \"bad superblock.\" You've tried `fsck -y /dev/sdb1` but it fails. Based on typical recovery steps, what is the most likely next action to attempt recovery?",
+    "options": [
+      "Reformat the partition and restore from backup",
+      "Attempt to restore the superblock from a backup copy using 'e2fsck -b' with a known superblock offset",
+      "Replace the entire physical disk",
+      "Force mount the filesystem with 'mount -o ro,force /dev/sdb1 /data'"
+    ],
+    "correctIndex": 1,
+    "explanation": "`e2fsck -b` allows specifying an alternate superblock. Filesystems store backup superblocks at known intervals (e.g., 8193 for ext4). This is a common advanced recovery technique before resorting to reformatting. Reformatting loses data, replacing the disk is extreme without more diagnosis, and force mounting a corrupt filesystem can worsen damage.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are writing an Ansible playbook to ensure a user `monitoruser` exists and has an SSH key deployed. Which of the following tasks demonstrates idempotency for ensuring the user's existence and SSH key setup?",
+    "options": [
+      "a) - name: Create monitoruser useradd monitoruser && mkdir /home/monitoruser/.ssh",
+      "b) - name: Ensure monitoruser exists ansible.builtin.user: name=monitoruser state=present - name: Deploy SSH key ansible.builtin.authorized_key: user=monitoruser key=\"{{ lookup('file', '~/.ssh/id_rsa.pub') }}\" state=present",
+      "c) - name: Create monitoruser with key shell: | if ! id monitoruser >/dev/null 2>&1; then useradd monitoruser; mkdir /home/monitoruser/.ssh; chmod 700 /home/monitoruser/.ssh; echo \"{{ lookup('file', '~/.ssh/id_rsa.pub') }}\" > /home/monitoruser/.ssh/authorized_keys; chmod 600 /home/monitoruser/.ssh/authorized_keys; fi",
+      "d) - name: Add monitoruser ansible.builtin.user: name=monitoruser - name: Copy key shell: cp ~/.ssh/id_rsa.pub /home/monitoruser/.ssh/authorized_keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Option (b) uses Ansible's declarative `user` and `authorized_key` modules. These modules are inherently idempotent, meaning they will only make changes if the desired state is not already met. Options (a), (c), and (d) use shell commands directly, which are not inherently idempotent and would require manual conditional logic (like in c) or would re-run commands unnecessarily (a, d), potentially causing errors or being inefficient.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your production web server uses Nginx with TLS certificates managed by Certbot. An alert fires indicating \"Expired TLS certificate\" for your main domain. Your incident runbook instructs you to check Certbot's renewal status. If renewal failed, what is the most robust command to manually attempt renewal and diagnose issues?",
+    "options": [
+      "certbot renew",
+      "certbot renew --force-renewal",
+      "systemctl restart nginx",
+      "certbot certonly --webroot -w /var/www/html -d example.com"
+    ],
+    "correctIndex": 1,
+    "explanation": "`certbot renew` attempts renewal only if certificates are due for renewal. `--force-renewal` overrides this and attempts renewal regardless, which is useful for diagnosing why an automated renewal might have failed or for emergency manual renewal. Restarting Nginx doesn't renew certificates. `certonly` is for obtaining new certificates, not renewing existing ones in this context.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are locked out of a critical production server via SSH after accidentally blocking your IP address with `firewalld`. You have no console access. Which is the most viable and commonly used recovery method, assuming standard cloud environment practices?",
+    "options": [
+      "Wait for the firewall rules to timeout automatically",
+      "Physically access the server to reset network configuration",
+      "Use the cloud provider's console or serial port access to revert firewall rules",
+      "Connect via FTP and edit firewall configuration files"
+    ],
+    "correctIndex": 2,
+    "explanation": "In cloud environments, the \"console\" or \"serial port\" access provided by the cloud provider (e.g., AWS EC2 Serial Console, Azure Serial Console, GCP Serial Console) is designed for situations like SSH lockout. Firewall rules typically don't have automatic timeouts for IP blocks. Physical access is often impossible for cloud servers. FTP cannot modify firewall rules or execute commands.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You have an LVM setup with a logical volume `/dev/vgdata/lvprod` and a recent snapshot `/dev/vgdata/lvprod_snap`. Due to a critical data corruption on `lvprod`, you need to revert `lvprod` to the state of `lvprod_snap`. What is the correct procedure, assuming `lvprod` is currently mounted at `/data`?",
+    "options": [
+      "a) umount /data && lvconvert --merge /dev/vgdata/lvprod_snap",
+      "b) lvconvert --merge /dev/vgdata/lvprod_snap && mount /dev/vgdata/lvprod /data",
+      "c) dd if=/dev/vgdata/lvprod_snap of=/dev/vgdata/lvprod",
+      "d) lvremove /dev/vgdata/lvprod && lvrename /dev/vgdata/lvprod_snap /dev/vgdata/lvprod"
+    ],
+    "correctIndex": 0,
+    "explanation": "To merge a snapshot back into its origin, the origin logical volume (`lvprod`) must be unmounted. `lvconvert --merge` is the command to perform this operation. The snapshot volume itself is merged *into* the origin. Option (b) attempts to merge while mounted which will fail. Option (c) `dd` is risky and not the standard LVM way. Option (d) renames, not merges, and would discard the original LV data.",
+    "difficulty": "hard"
+  }
+]

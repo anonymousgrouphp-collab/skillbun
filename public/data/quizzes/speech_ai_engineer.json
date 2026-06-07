@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Speech AI Engineer is tasked with developing a system that converts spoken language into written text. Which core Speech AI problem is being addressed?",
+    "options": [
+      "Text-to-Speech (TTS)",
+      "Natural Language Processing (NLP)",
+      "Speaker Diarization",
+      "Automatic Speech Recognition (ASR)"
+    ],
+    "correctIndex": 3,
+    "explanation": "Automatic Speech Recognition (ASR) is the process of converting spoken language into written text. Text-to-Speech (TTS) converts text to speech, Natural Language Processing (NLP) deals with understanding human language, and Speaker Diarization identifies who spoke when.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A stakeholder asks a Speech AI Engineer to integrate a component that identifies different speakers in a multi-person conversation. What is this component primarily responsible for?",
+    "options": [
+      "Speaker verification",
+      "Speech synthesis",
+      "Speaker diarization",
+      "Emotion recognition"
+    ],
+    "correctIndex": 2,
+    "explanation": "Speaker diarization is the process of partitioning an input audio stream into homogeneous segments according to the speaker identity. Speaker verification confirms a known speaker, speech synthesis generates speech, and emotion recognition identifies emotions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When evaluating an Automatic Speech Recognition (ASR) system, a common metric used to quantify the accuracy of the transcription is...",
+    "options": [
+      "Mean Opinion Score (MOS)",
+      "Word Error Rate (WER)",
+      "F1-Score",
+      "Latency"
+    ],
+    "correctIndex": 1,
+    "explanation": "Word Error Rate (WER) is the standard metric for evaluating the performance of ASR systems, calculating the number of errors (substitutions, deletions, insertions) relative to the total number of words. MOS is for subjective quality, F1-Score for classification, and Latency for speed.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Speech AI Engineer needs to track changes to model checkpoints, training scripts, and audio datasets for a new project. Which tool is most essential for this task?",
+    "options": [
+      "Docker",
+      "Kubernetes",
+      "Git",
+      "Jupyter Notebooks"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is a distributed version control system used for tracking changes in source code and other files during software development. It is essential for managing code, models, and dataset versions in Speech AI projects. Docker and Kubernetes are for containerization and orchestration, and Jupyter Notebooks for interactive development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before merging a new feature branch for an ASR model update, a Speech AI Engineer needs their code to be reviewed by a colleague. Which standard team delivery workflow component facilitates this?",
+    "options": [
+      "Issue tracker",
+      "Release notes",
+      "Pull request",
+      "Stakeholder demo"
+    ],
+    "correctIndex": 2,
+    "explanation": "A pull request (or merge request) is a mechanism for developers to notify team members that they have completed a feature or fix and want to merge their changes into the main codebase, enabling code review. An issue tracker manages tasks, release notes summarize changes, and a stakeholder demo showcases progress.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When showcasing a Speech AI project in a portfolio, which artifact would be most effective in demonstrating practical implementation skills?",
+    "options": [
+      "A blog post summarizing the project",
+      "A high-level presentation slide deck",
+      "A GitHub repository with code, data samples, and a clear README",
+      "A list of certifications achieved"
+    ],
+    "correctIndex": 2,
+    "explanation": "A GitHub repository containing the actual code, relevant data samples, and a well-documented README provides tangible proof of practical implementation skills, allowing reviewers to inspect the work directly. Other options are supporting materials but not primary proof of coding ability.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When writing a case study for a Speech AI project, what is the primary purpose of detailing the \"constraints\" faced during implementation?",
+    "options": [
+      "To magnify the project's overall success",
+      "To show project limitations and demonstrate problem-solving under realistic conditions",
+      "To avoid accountability for any shortcomings",
+      "To highlight only external factors beyond the engineer's control"
+    ],
+    "correctIndex": 1,
+    "explanation": "Detailing constraints in a case study showcases a Speech AI Engineer's ability to navigate real-world challenges like limited data, computational resources, or strict latency requirements, demonstrating practical problem-solving skills rather than just highlighting successes or avoiding accountability.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Speech AI Engineer is designing a real-time ASR system for an interactive voice agent. Which aspect is a critical constraint that directly impacts user experience and system design decisions?",
+    "options": [
+      "Batch processing throughput",
+      "Model complexity",
+      "Latency",
+      "Data storage requirements"
+    ],
+    "correctIndex": 2,
+    "explanation": "In real-time interactive systems, low latency is paramount for a good user experience, as delays between speech input and system response can make the interaction feel unnatural or frustrating. While model complexity affects latency, latency itself is the direct user-facing constraint.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To improve the robustness of an ASR model in noisy environments, a Speech AI Engineer decides to apply pre-processing techniques to the input audio. Which technique is most commonly used for reducing background noise?",
+    "options": [
+      "Pitch shifting",
+      "Volume normalization",
+      "Noise reduction",
+      "Echo cancellation"
+    ],
+    "correctIndex": 2,
+    "explanation": "Noise reduction techniques are specifically designed to suppress unwanted background noise from an audio signal, thereby improving the clarity of the speech and the ASR model's performance in noisy conditions. Pitch shifting changes frequency, volume normalization adjusts amplitude, and echo cancellation removes echoes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is working on a Text-to-Speech (TTS) system where the primary goal is to minimize the delay between text input and audio output for conversational agents. Which strategy is most effective for achieving low latency in TTS?",
+    "options": [
+      "Using larger, higher-fidelity models",
+      "Pre-caching common phrases",
+      "Increasing inference batch size",
+      "Employing complex vocoders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pre-caching common phrases allows the TTS system to instantly play pre-generated audio for frequently used responses, significantly reducing real-time synthesis latency. Larger models, increased batch sizes, and complex vocoders generally increase computation time and thus latency, though advanced streaming synthesis techniques can mitigate some of these.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When evaluating a Text-to-Speech (TTS) model, subjective listening tests are often performed in addition to objective metrics. What aspect of TTS quality do subjective tests primarily aim to capture?",
+    "options": [
+      "Word Error Rate",
+      "Naturalness and prosody",
+      "Inference speed",
+      "Model size"
+    ],
+    "correctIndex": 1,
+    "explanation": "Subjective listening tests, such as Mean Opinion Score (MOS) evaluations, assess the perceived naturalness, prosody (rhythm and intonation), and overall quality of synthesized speech by human listeners. Objective metrics like WER are for ASR, while speed and size are performance characteristics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is building a pipeline that involves several stages: audio loading, feature extraction, ASR inference, and post-processing. To ensure maintainability and reusability, how should these stages ideally be structured?",
+    "options": [
+      "As a single monolithic script",
+      "As tightly coupled functions in one class",
+      "As independent, modular components with clear interfaces",
+      "As separate, unconnected command-line tools"
+    ],
+    "correctIndex": 2,
+    "explanation": "Structuring stages as independent, modular components with clear interfaces adheres to good software engineering principles, promoting reusability, easier testing, and simplified maintenance. Monolithic scripts or tightly coupled functions make changes difficult, while unconnected tools lack seamless integration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer needs to create comprehensive test cases for a new ASR model. Beyond simple word error rate (WER) checks, which type of test would best evaluate the model's robustness to diverse real-world conditions?",
+    "options": [
+      "Unit tests for individual functions",
+      "Integration tests with mock data",
+      "Adversarial testing with synthesized noise and distortions",
+      "Regression tests on existing datasets"
+    ],
+    "correctIndex": 2,
+    "explanation": "Adversarial testing involves introducing various forms of noise, reverberation, and other distortions to the audio inputs to challenge the ASR model under conditions it might encounter in the real world, thus evaluating its robustness. Regression tests ensure existing functionality, unit and integration tests verify code logic and component interactions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying an ASR service, the Speech AI Engineer observes unexpected drops in transcription accuracy during peak usage hours. Which operational practice is essential for identifying the root cause of such performance degradation?",
+    "options": [
+      "Code refactoring",
+      "Model retraining",
+      "System monitoring and logging",
+      "Manual data labeling"
+    ],
+    "correctIndex": 2,
+    "explanation": "Robust system monitoring and comprehensive logging (e.g., resource utilization, error logs, specific ASR metrics like WER over time) are crucial for detecting anomalies, identifying performance bottlenecks, and pinpointing the root cause of issues in a production environment. Code refactoring and retraining are solutions, not diagnostic tools, and manual labeling is for data improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is presenting a new TTS feature to stakeholders. To ensure clear communication and agreement on what \"done\" means for this feature, what should be clearly defined and discussed?",
+    "options": [
+      "Code complexity metrics",
+      "Acceptance criteria",
+      "Technical debt estimations",
+      "Developer unit test results"
+    ],
+    "correctIndex": 1,
+    "explanation": "Acceptance criteria define the specific conditions that must be met for a feature to be considered complete and ready for release from a stakeholder's perspective. This ensures alignment between the development team and stakeholders on expectations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is preparing a portfolio capstone project. Besides the code and a live demo, what key component in the project's README would best convey the project's overall value and lessons learned?",
+    "options": [
+      "A detailed class diagram",
+      "A list of all libraries used",
+      "A \"lessons-learned\" section",
+      "A copy of the license agreement"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'lessons-learned' section in a README articulates the insights gained, challenges overcome, and future improvements, demonstrating critical thinking and growth, which adds significant value to a portfolio project. While other components are useful, they don't directly convey overall value or learning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is tasked with improving the accessibility of a voice-controlled application for users with diverse speech patterns. Which consideration is most important for enhancing accessibility?",
+    "options": [
+      "Limiting the vocabulary recognized by the ASR",
+      "Training on a diverse dataset including various accents and speech impediments",
+      "Requiring users to speak slower and more clearly",
+      "Using only high-fidelity microphones for input"
+    ],
+    "correctIndex": 1,
+    "explanation": "Training ASR models on datasets that include a wide range of accents, dialects, and speech impediments is crucial for ensuring the system is robust and accessible to a broader user base with diverse speech patterns. Other options either restrict usability or rely on user compliance/specific hardware.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI system handles customer service calls. To prevent regressions after a model update, the team implements a robust testing suite. Which testing approach specifically focuses on ensuring that existing functionalities remain intact?",
+    "options": [
+      "A/B testing",
+      "Unit testing",
+      "Integration testing",
+      "Regression testing"
+    ],
+    "correctIndex": 3,
+    "explanation": "Regression testing is a type of software testing that aims to confirm that a recent program or code change has not adversely affected existing features. It helps ensure that new changes do not introduce new bugs or reintroduce old ones.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI team needs to standardize configuration management for various ASR and TTS models, allowing easy switching between different model versions and hyperparameter sets. What is a recommended practice for managing these configurations efficiently?",
+    "options": [
+      "Hardcoding parameters directly in the model code",
+      "Using separate YAML or JSON configuration files",
+      "Storing all configurations in a relational database",
+      "Manually adjusting parameters during deployment"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using external configuration files (e.g., YAML, JSON) is a standard practice for managing model parameters and hyperparameters. This allows for easy modification, versioning, and switching between configurations without altering the codebase, promoting flexibility and reproducibility. Hardcoding, databases for simple configs, and manual adjustments are less efficient or flexible.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is responsible for the lifecycle ownership of a deployed ASR model. This includes updating the model based on new data and retiring old versions. What is a key consideration for managing the transition between model versions in a production environment?",
+    "options": [
+      "Immediate full rollout of the new model",
+      "Running A/B tests to compare old and new model performance",
+      "Deleting old model versions immediately after deployment",
+      "Relying solely on offline evaluation metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "Running A/B tests in a production environment allows for a safe and controlled comparison of the new model's performance against the existing one with real user traffic. This helps validate improvements and detect potential regressions before a full rollout, minimizing risk. Immediate full rollout is risky, deleting old versions removes rollback capability, and offline metrics don't capture real-world performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Speech AI Engineer is training a new ASR model for a highly specialized domain with limited transcribed data. Traditional end-to-end models struggle due to data scarcity. Which approach might offer better performance by leveraging domain-specific phonetic knowledge and more explicit modeling?",
+    "options": [
+      "Increasing the complexity of the end-to-end neural network",
+      "Utilizing a hybrid HMM-DNN (Hidden Markov Model - Deep Neural Network) approach",
+      "Transfer learning from a very large generic ASR model",
+      "Generating synthetic data using advanced generative adversarial networks"
+    ],
+    "correctIndex": 1,
+    "explanation": "For specialized domains with limited data, hybrid HMM-DNN approaches can be advantageous because they explicitly model acoustic and linguistic components, allowing for easier integration of domain-specific phonetic dictionaries and language models. While transfer learning and synthetic data generation are also viable, HMM-DNNs specifically align with 'explicit modeling' and leveraging 'phonetic knowledge' in a low-resource setting.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Speech AI Engineer is designing a system that processes sensitive personal information through speech. To protect this data during inference, which security measure is most critical when the audio data leaves the user's device?",
+    "options": [
+      "Using open-source ASR models",
+      "Storing all audio files in plain text",
+      "Implementing end-to-end encryption for data in transit",
+      "Disabling all logging during inference"
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing end-to-end encryption ensures that sensitive audio data is protected from unauthorized access as it travels across networks from the user's device to the server and back. Storing in plain text or disabling all logging are insecure or impractical approaches for sensitive data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A deployed Speech AI system experiences intermittent failures in its ASR component, manifesting as unusually high Word Error Rates (WER) only under specific, rare acoustic conditions. What is the most effective strategy for a Speech AI Engineer to robustly handle and prevent such complex failure modes in production?",
+    "options": [
+      "Retraining the model with the existing training data",
+      "Ignoring the rare failures as they are infrequent",
+      "Implementing anomaly detection and adaptive fallback mechanisms",
+      "Reducing the model's complexity to simplify debugging"
+    ],
+    "correctIndex": 2,
+    "explanation": "For intermittent and rare failures, implementing anomaly detection helps identify when the system is underperforming, and adaptive fallback mechanisms (e.g., switching to a simpler, more robust model or human transcription for critical cases) can maintain service quality. Retraining without new, relevant data is ineffective, ignoring failures is unacceptable, and reducing complexity might degrade overall performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An ASR service deployed on edge devices needs to be updated with a new, larger model. The update process must minimize downtime and ensure data integrity despite limited device resources and potentially unstable network connections. What is the most robust deployment strategy to manage this update?",
+    "options": [
+      "Manual update on each device",
+      "Blue/Green deployment with full rollback capabilities",
+      "Over-the-air (OTA) updates with delta patching and verification",
+      "Replacing devices entirely with new hardware"
+    ],
+    "correctIndex": 2,
+    "explanation": "Over-the-air (OTA) updates with delta patching efficiently transmit only the changes, minimizing bandwidth usage and download size, which is critical for edge devices with limited resources and unstable connections. Verification steps ensure data integrity. Blue/Green is more suited for server-side deployments, and manual updates or hardware replacement are impractical at scale.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Speech AI Engineer is developing a diarization system for parliamentary debates, which involve many speakers with overlapping speech and varying acoustic environments. What is the primary technical challenge in accurately segmenting and attributing speech to specific speakers in such a complex scenario?",
+    "options": [
+      "Low audio quality",
+      "Lack of distinct speaker identities",
+      "Speaker overlap and rapid speaker turns",
+      "Insufficient language model for political speech"
+    ],
+    "correctIndex": 2,
+    "explanation": "Speaker overlap (when two or more people speak simultaneously) and rapid speaker turns are the most significant technical challenges for diarization systems in complex, multi-speaker environments like parliamentary debates. These conditions make it difficult to accurately segment speech by speaker and maintain precise attribution. While low audio quality is a general challenge, overlap is specific and harder for diarization.",
+    "difficulty": "hard"
+  }
+]

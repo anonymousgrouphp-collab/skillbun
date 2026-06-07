@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new GCP project has just been created. As a Cloud Engineer, what is the very first foundational step you must take to begin deploying resources and managing access within this project?",
+    "options": [
+      "Create a new billing account and link it to the project.",
+      "Initialize the gcloud CLI on your local machine and set the project.",
+      "Enable all necessary Google Cloud APIs for the services you plan to use.",
+      "Provision a default Virtual Private Cloud (VPC) network."
+    ],
+    "correctIndex": 1,
+    "explanation": "Before deploying resources, you must configure your local environment to interact with the project. Initializing gcloud and setting the project context is crucial for all subsequent CLI commands and deployments. While billing and API enablement are also necessary, gcloud initialization establishes the connection to the project itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your team needs to store large objects, such as videos and backups, that are infrequently accessed but require high durability. Which GCP storage service is most appropriate for this use case?",
+    "options": [
+      "Cloud SQL",
+      "Filestore",
+      "Cloud Storage",
+      "Cloud Memorystore"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Storage is an object storage service designed for storing large, unstructured data objects with high durability and availability, suitable for videos, backups, and archives. Cloud SQL is for relational databases, Filestore is for network-attached file storage, and Cloud Memorystore is an in-memory data store.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Identity and Access Management (IAM) primitive in GCP represents a collection of permissions that can be granted to a principal?",
+    "options": [
+      "Service Account",
+      "Resource Hierarchy",
+      "Role",
+      "Policy"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Role in GCP IAM is a collection of permissions that define what actions a principal (user, service account, group) can perform on specific resources. A Service Account is an identity, Resource Hierarchy defines the structure, and a Policy is the document that binds principals to roles.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to deploy a containerized application that requires automatic scaling and zero operational overhead for managing the underlying infrastructure. Which GCP compute service is the best fit?",
+    "options": [
+      "Compute Engine",
+      "Google Kubernetes Engine (GKE)",
+      "Cloud Run",
+      "App Engine Flex"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Run is a fully managed serverless platform for containerized applications. It automatically scales based on traffic, from zero to many instances, and eliminates infrastructure management overhead, making it ideal for such requirements. Compute Engine requires VM management, GKE requires cluster management, and App Engine Flex still involves some environment configuration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to quickly provision a virtual machine instance in GCP for testing purposes. Which `gcloud compute` command would they most likely use?",
+    "options": [
+      "`gcloud compute ssh`",
+      "`gcloud compute instances delete`",
+      "`gcloud compute instances create`",
+      "`gcloud compute firewall-rules create`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `gcloud compute instances create` command is used to provision new virtual machine instances on Compute Engine. `gcloud compute ssh` is for connecting, `delete` is for removal, and `firewall-rules create` is for network configuration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Your team is setting up observability for a new application. Which GCP service is primarily used for collecting and viewing logs from all your GCP resources and applications?",
+    "options": [
+      "Cloud Monitoring",
+      "Cloud Trace",
+      "Cloud Logging",
+      "Cloud Audit Logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Logging is the primary service for collecting, storing, and analyzing logs from GCP services and custom applications. Cloud Monitoring focuses on metrics, Cloud Trace on request latency, and Cloud Audit Logs on administrative activities and data access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following describes the purpose of a GCP Project in the resource hierarchy?",
+    "options": [
+      "It represents a physical data center location.",
+      "It is the top-level container for all GCP resources and billing.",
+      "It is a logical grouping for all resources and IAM policies, acting as a billing and quota boundary.",
+      "It is used exclusively for managing users and groups."
+    ],
+    "correctIndex": 2,
+    "explanation": "A GCP Project is a fundamental organizational unit. It serves as a container for resources, defines billing accounts, sets IAM policies, and acts as a boundary for quotas and service usage. It is not a physical location, nor is it the absolute top-level container (Organization is), and it's not exclusively for user management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are designing a solution for a web application that needs to handle varying traffic loads by distributing requests across multiple backend instances in different zones. Which GCP networking component is essential for this setup?",
+    "options": [
+      "Cloud Router",
+      "Cloud VPN",
+      "Load Balancer",
+      "Cloud NAT"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Load Balancer is essential for distributing incoming traffic across multiple backend instances, ensuring high availability and scalability by preventing any single instance from becoming a bottleneck and routing traffic efficiently across zones or regions. Cloud Router is for hybrid connectivity, Cloud VPN for secure network connections, and Cloud NAT for outbound traffic from private instances.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company is migrating an on-premises relational database to GCP. The application requires a fully managed MySQL-compatible database service with high availability and automated backups. Which GCP service should be recommended?",
+    "options": [
+      "Firestore",
+      "Cloud Spanner",
+      "Cloud SQL",
+      "BigQuery"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud SQL is a fully managed relational database service supporting MySQL, PostgreSQL, and SQL Server, offering high availability, automated backups, and patching, making it ideal for migrating existing relational databases. Firestore is a NoSQL document database, Cloud Spanner is a globally distributed relational database for petabytes of data, and BigQuery is a data warehouse.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is deploying a microservices application using GKE. You need to ensure that different microservices can communicate securely within the cluster and that traffic routing can be managed at a granular level. What GKE-related technology would you likely implement?",
+    "options": [
+      "Node Pools",
+      "Ingress Controller",
+      "Service Mesh (e.g., Istio)",
+      "Horizontal Pod Autoscaler"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Service Mesh, such as Istio, provides features like traffic management (routing, splitting), security (mutual TLS), and observability for microservices, enabling granular control over inter-service communication within a GKE cluster. Node Pools manage VM instances, Ingress handles external access to services, and HPA manages pod scaling.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are reviewing the IAM policies for a project and discover that a user has been granted the `roles/editor` role. What is a significant security implication of this role, and what would be a common recommendation?",
+    "options": [
+      "The user can only view resources, which is a low-risk role. No recommendation needed.",
+      "The user has broad permissions to create, modify, and delete most resources, which is often too permissive. Recommend using more specific, least-privilege roles.",
+      "The user can manage billing accounts only. Recommend splitting billing management into a separate role.",
+      "The user has no access to resources and needs additional roles. Recommend adding `roles/viewer`."
+    ],
+    "correctIndex": 1,
+    "explanation": "The `roles/editor` role grants broad permissions, allowing the principal to create, modify, and delete most resources within a project. This is often considered overly permissive for many users, violating the principle of least privilege. The common recommendation is to replace it with more specific, custom, or predefined roles that grant only the necessary permissions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your organization wants to enforce consistent network policies, like specific firewall rules and IP range allocations, across multiple projects within a GCP Organization. Which GCP networking feature facilitates this centralized management?",
+    "options": [
+      "VPC Peering",
+      "Cloud VPN",
+      "Shared VPC",
+      "External IP addresses"
+    ],
+    "correctIndex": 2,
+    "explanation": "Shared VPC (also known as XPN) allows an organization to connect resources from multiple projects to a common Virtual Private Cloud (VPC) network in a host project. This enables centralized control over network resources like subnets, IP addresses, and firewall rules from the host project, ensuring consistent network policies across all service projects.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To control costs, your company wants to automatically shut down Compute Engine instances that are underutilized during off-peak hours and restart them during business hours. Which GCP service can help automate this process?",
+    "options": [
+      "Cloud Functions",
+      "Cloud Build",
+      "Cloud Scheduler combined with Cloud Functions",
+      "Cloud Dataflow"
+    ],
+    "correctIndex": 2,
+    "explanation": "Combining Cloud Scheduler with Cloud Functions is an effective way to automate this. Cloud Scheduler can trigger a Cloud Function on a defined schedule (e.g., daily). The Cloud Function can then use the Compute Engine API to start or stop instances based on predefined criteria or schedules. Cloud Functions alone could be triggered, but Cloud Scheduler provides the cron-like scheduling.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Cloud Engineer is tasked with setting up a CI/CD pipeline for an application deployed to GKE. Which GCP service is commonly used for building container images and orchestrating deployments?",
+    "options": [
+      "Cloud Source Repositories",
+      "Artifact Registry",
+      "Cloud Build",
+      "Cloud Composer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Build is a fully managed CI/CD platform that executes your builds on GCP. It can fetch source code, build container images, run tests, and deploy to various GCP services including GKE. Cloud Source Repositories is for hosting code, Artifact Registry for storing container images, and Cloud Composer for workflow orchestration (Apache Airflow).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team is concerned about potential data exfiltration from a GCP project. You need to implement a mechanism that restricts which external IP addresses your Compute Engine instances can send traffic to. How can you achieve this?",
+    "options": [
+      "By configuring VPC Service Controls.",
+      "By using an Ingress firewall rule on the Compute Engine instances.",
+      "By configuring Egress firewall rules in the VPC network.",
+      "By setting up Private Google Access for all subnets."
+    ],
+    "correctIndex": 2,
+    "explanation": "Egress firewall rules control outbound traffic from your Compute Engine instances to specified destinations, including external IP addresses. By creating rules that deny traffic to unwanted external IPs and allow only necessary ones, you can restrict data exfiltration. VPC Service Controls create security perimeters for services, not specific IP egress, and Ingress rules control incoming traffic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You're troubleshooting a sudden increase in latency for a web application deployed on App Engine. Which GCP observability tool would you use to trace individual requests and identify which service or step is causing the delay?",
+    "options": [
+      "Cloud Logging",
+      "Cloud Monitoring",
+      "Cloud Trace",
+      "Cloud Audit Logs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Trace is designed to track requests as they propagate through your application, providing detailed latency information for each step and service. This makes it ideal for pinpointing performance bottlenecks and understanding the flow of a request. Cloud Logging shows logs, Cloud Monitoring shows metrics, and Cloud Audit Logs show administrative events.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When defining IAM policies, why is it considered a best practice to grant roles to Google Groups rather than individual users?",
+    "options": [
+      "Google Groups consume fewer quota resources.",
+      "It simplifies management by centralizing access control. Adding or removing users from a group automatically updates their access without modifying individual policies.",
+      "Google Groups automatically enforce multi-factor authentication.",
+      "Roles can only be granted to Google Groups, not individual users."
+    ],
+    "correctIndex": 1,
+    "explanation": "Granting roles to Google Groups simplifies IAM management significantly. When users join or leave a team, their access is automatically updated by simply adding or removing them from the respective Google Group, without needing to modify numerous individual IAM policies directly. Roles can be granted to individual users, but it's less manageable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team uses Git for version control. After making changes to a feature branch, what is the standard next step in a team delivery workflow before merging into the main branch?",
+    "options": [
+      "Directly merge the feature branch into the main branch.",
+      "Delete the feature branch to clean up.",
+      "Open a Pull Request (or Merge Request) for code review.",
+      "Revert all changes and start over."
+    ],
+    "correctIndex": 2,
+    "explanation": "In a typical team delivery workflow, after committing changes to a feature branch, the next step is to open a Pull Request (or Merge Request). This initiates a code review process where other team members can examine the changes, provide feedback, and approve the merge, ensuring code quality and collaboration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to secure sensitive customer data stored in Cloud Storage buckets. Which encryption option provides customer-managed encryption keys for maximum control over the encryption process?",
+    "options": [
+      "Server-Side Encryption with Google-managed Encryption Keys (SSE-CMEK)",
+      "Client-Side Encryption (CSE)",
+      "Server-Side Encryption with Customer-Supplied Encryption Keys (SSE-CSEC)",
+      "Default Encryption at Rest (Google-managed)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Server-Side Encryption with Customer-Supplied Encryption Keys (SSE-CSEC) allows you to manage and supply your own encryption keys to Cloud Storage. This gives you direct control over the keys used to encrypt and decrypt your data. SSE-CMEK uses keys managed by Cloud KMS, Client-Side Encryption means you encrypt before uploading, and Default Encryption uses keys managed entirely by Google.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Cloud Engineer is tasked with ensuring all resources created in a specific folder within the GCP Organization automatically inherit a `cost_center` tag. How can this be enforced organization-wide?",
+    "options": [
+      "By manually applying the tag to each new resource.",
+      "By using a Cloud Function to add the tag after resource creation.",
+      "By defining an Organization Policy with a custom constraint that requires the tag on resource creation within that folder.",
+      "By configuring IAM conditions for roles associated with the folder."
+    ],
+    "correctIndex": 2,
+    "explanation": "Organization Policies with custom constraints are the most effective way to enforce resource tag requirements at an organizational or folder level. You can define a custom constraint that requires a specific tag (e.g., `cost_center`) to be present on resources created within a given scope, thus ensuring automatic enforcement. Manual application is error-prone, Cloud Functions are reactive, and IAM conditions control access, not resource properties.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are designing a disaster recovery strategy for a critical application deployed on Compute Engine. The application must remain highly available even if an entire GCP region experiences an outage. What architectural pattern should you primarily implement?",
+    "options": [
+      "Using managed instance groups with autoscaling within a single region.",
+      "Deploying the application across multiple zones within a single region.",
+      "Implementing a multi-regional active-active or active-passive deployment with global load balancing.",
+      "Storing backups in a different Cloud Storage bucket in the same region."
+    ],
+    "correctIndex": 2,
+    "explanation": "To ensure high availability against an entire regional outage, an application must be deployed across multiple GCP regions. An active-active or active-passive multi-regional architecture, combined with global load balancing (e.g., Global External HTTP(S) Load Balancing), ensures that traffic can be routed to healthy instances in other regions if one region fails. Managed instance groups and multi-zone deployments protect against zone failures but not region-wide outages. Storing backups in the same region won't help if the region is down.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A GKE cluster hosts several critical microservices. You observe intermittent connectivity issues between pods in different namespaces. After initial debugging, you suspect a network policy misconfiguration. What is the most effective way to diagnose and resolve this issue?",
+    "options": [
+      "Check `kubectl describe pod` for each affected pod to see network status.",
+      "Review the GKE cluster logs for network errors.",
+      "Use `kubectl get networkpolicy -A` to list all network policies and then analyze them using `kubectl describe networkpolicy` to understand their ingress/egress rules and how they interact.",
+      "Recreate all affected pods to reset network connections."
+    ],
+    "correctIndex": 2,
+    "explanation": "Network policies in GKE (Kubernetes) control ingress and egress traffic at the pod level. Intermittent connectivity issues between pods, especially across namespaces, are a strong indicator of a network policy issue. The most effective way to diagnose is to list all network policies (`kubectl get networkpolicy -A`) and then thoroughly review their definitions (`kubectl describe networkpolicy`) to understand which pods they apply to and what traffic they allow or deny. While pod descriptions and cluster logs might offer some clues, a direct review of network policies is crucial for this specific problem.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team uses a Shared VPC host project and several service projects. A new service project needs to deploy a Cloud SQL instance that must connect to VMs in the Shared VPC network. Which IAM role is minimally required for the Cloud SQL service account in the service project to enable this private IP connectivity?",
+    "options": [
+      "Cloud SQL Admin",
+      "Compute Network User",
+      "Service Usage Consumer",
+      "Project Editor"
+    ],
+    "correctIndex": 1,
+    "explanation": "For a Cloud SQL instance in a service project to connect privately to a Shared VPC network, the Cloud SQL service account needs the `roles/compute.networkUser` role on the Shared VPC host project. This role grants permission to use the host project's network resources. Cloud SQL Admin manages the database itself, Service Usage Consumer allows using services, and Project Editor is overly permissive.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a security audit, it was discovered that a production database in Cloud SQL is exposed to the internet. As a Cloud Engineer, what is the most secure and immediate action you should take to mitigate this risk, assuming the application connecting to it is within the same VPC?",
+    "options": [
+      "Change the database root password immediately.",
+      "Configure VPC Service Controls around the Cloud SQL instance.",
+      "Remove all authorized networks that include 0.0.0.0/0 from the Cloud SQL instance's network configuration and ensure private IP is enabled.",
+      "Set up a Cloud SQL Proxy for all connections."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most immediate and secure action to mitigate a publicly exposed Cloud SQL instance is to remove any authorized networks that allow access from `0.0.0.0/0` (the entire internet) and ensure private IP connectivity is enabled. This will restrict access to only internal VPC traffic, or explicitly defined authorized networks. While changing passwords and using Cloud SQL Proxy are good security practices, they don't immediately remove public exposure. VPC Service Controls provide broader perimeter security but are a more complex, longer-term solution than immediate network configuration changes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A startup is using GCP and wants to monitor its spending closely. They need to analyze costs broken down by specific departments and environments (e.g., `dev`, `staging`, `prod`). Which GCP feature is specifically designed to categorize and filter billing data for this purpose?",
+    "options": [
+      "Cloud Logging exports to BigQuery.",
+      "IAM roles and permissions.",
+      "Labels and resource tags.",
+      "Cloud Monitoring dashboards."
+    ],
+    "correctIndex": 2,
+    "explanation": "Labels and resource tags are key-value pairs that you can attach to GCP resources (like Compute Engine instances, Cloud Storage buckets, etc.). They are designed to help categorize and organize resources, and critically, they allow you to filter and group your billing reports by these categories, enabling detailed cost analysis for different departments or environments. Cloud Logging, IAM, and Cloud Monitoring serve different purposes.",
+    "difficulty": "moderate"
+  }
+]

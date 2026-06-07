@@ -1,0 +1,302 @@
+[
+  {
+    "question": "During which phase of the Software Development Life Cycle (SDLC) is a QA Automation Engineer most likely to be involved in defining the test strategy and environment setup?",
+    "options": [
+      "Requirements Gathering",
+      "Design",
+      "Testing",
+      "Deployment"
+    ],
+    "correctIndex": 1,
+    "explanation": "While testing activities are central during the Testing phase, involvement in defining test strategy and environment setup, especially for automation, often begins early in the Design phase to ensure testability and integrate automation considerations from the start. Requirements Gathering focuses on 'what' to build, and Deployment is about releasing the product.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A QA team is working on a banking application where a critical payment processing module has just been updated. Which testing approach should the QA lead prioritize to efficiently identify potential high-impact defects given limited time?",
+    "options": [
+      "Exploratory Testing",
+      "Performance Testing",
+      "Risk-Based Testing",
+      "Regression Testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Given limited time and a critical module, Risk-Based Testing is the most efficient approach. It focuses testing efforts on areas with the highest potential impact and likelihood of failure, ensuring critical functionalities are thoroughly covered. While Regression Testing is also important, Risk-Based Testing guides *which* parts of regression (and other testing) to prioritize.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports a bug: 'The submit button doesn't work sometimes.' As a QA Automation Engineer, which of the following is the most crucial piece of information to add to the bug report for effective reproduction and debugging?",
+    "options": [
+      "The aesthetic design of the button",
+      "A detailed description of the user's mood",
+      "Specific steps to reproduce the issue consistently",
+      "A list of all browser extensions installed"
+    ],
+    "correctIndex": 2,
+    "explanation": "Specific steps to reproduce the issue consistently are paramount for any bug report. Without them, developers struggle to replicate the problem, making it nearly impossible to diagnose and fix. Other options are less directly relevant to reproduction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are writing a test case for an e-commerce checkout process. A crucial step involves adding an item to the cart, then proceeding to the payment page. What is the most effective way to document the 'expected result' for the 'add item to cart' step?",
+    "options": [
+      "The item should be added to the cart.",
+      "The cart icon should show a '1' and the item should appear in the cart summary, confirming its presence and quantity.",
+      "The user should not encounter an error.",
+      "The application should respond quickly."
+    ],
+    "correctIndex": 1,
+    "explanation": "An effective expected result should be clear, concise, and verifiable. 'The cart icon should show a '1' and the item should appear in the cart summary, confirming its presence and quantity' provides specific, measurable criteria for success, unlike vague statements about item addition or lack of errors, or performance metrics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an automated UI test suite, a QA Automation Engineer decides to implement the Page Object Model. What is the primary benefit of this design pattern?",
+    "options": [
+      "It makes test scripts shorter and easier to read.",
+      "It reduces the need for assertions in test cases.",
+      "It separates UI locators and interactions from test logic, making tests more maintainable and robust against UI changes.",
+      "It allows for parallel execution of tests without any additional configuration."
+    ],
+    "correctIndex": 2,
+    "explanation": "The primary benefit of the Page Object Model (POM) is to create an object repository for UI elements, separating the UI selectors and actions (page objects) from the actual test scenarios (test logic). This significantly improves test maintainability, as changes to the UI only require updates in the page object, not across all test scripts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a JavaScript-based UI automation test, after clicking a button, you need to verify that a success message is displayed. Which type of action would you use to confirm the message's presence and content?",
+    "options": [
+      "A locator",
+      "A fixture",
+      "An assertion",
+      "A helper function"
+    ],
+    "correctIndex": 2,
+    "explanation": "Assertions are used to verify that a specific condition is met during a test. In this case, asserting the presence and content of the success message confirms the expected behavior. Locators find elements, fixtures set up test conditions, and helper functions encapsulate common logic but don't directly perform verification.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP method should be used to send data to a server to create a new resource, where the server assigns a unique URI to the new resource?",
+    "options": [
+      "GET",
+      "PUT",
+      "POST",
+      "DELETE"
+    ],
+    "correctIndex": 2,
+    "explanation": "The POST method is used to submit an entity to the specified resource, often causing a change in state or side effects on the server. It's typically used for creating new resources where the server determines the new resource's URI. GET retrieves, PUT updates (or creates with client-specified URI), and DELETE removes resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An API request to fetch a list of products returns a '404 Not Found' status code. What does this code primarily indicate to the client?",
+    "options": [
+      "The request was successful.",
+      "The server is temporarily unavailable.",
+      "The requested resource could not be found on the server.",
+      "The client is not authorized to access the resource."
+    ],
+    "correctIndex": 2,
+    "explanation": "The '404 Not Found' status code indicates that the server cannot find a resource matching the requested URI. It does not imply server unavailability (like 503) or authorization issues (like 401/403).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A QA Automation Engineer is writing tests for an API that requires authentication using JWT (JSON Web Tokens). What is the most appropriate approach to handle authentication in the automated tests?",
+    "options": [
+      "Manually log in before each test run and copy the token.",
+      "Embed a hardcoded, long-lived JWT directly into the test code.",
+      "Implement a setup step in the test suite to programmatically obtain a new JWT via a login endpoint and use it in subsequent API requests.",
+      "Disable authentication for the test environment."
+    ],
+    "correctIndex": 2,
+    "explanation": "Programmatically obtaining a new JWT token before tests run ensures that tests are always using a valid, non-expired token. Hardcoding a token is risky due to expiration and security, manual login is not scalable for automation, and disabling auth defeats the purpose of testing the secured API.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When validating responses from a REST API, why is it important to validate against a JSON schema?",
+    "options": [
+      "To ensure the API response is always empty.",
+      "To verify the performance of the API under load.",
+      "To confirm that the structure, data types, and required fields of the JSON payload conform to the defined contract.",
+      "To check for SQL injection vulnerabilities."
+    ],
+    "correctIndex": 2,
+    "explanation": "Validating against a JSON schema is crucial for ensuring that the API response adheres to its defined contract. It checks the structure, data types of fields, and verifies that all required fields are present, preventing data integrity issues and ensuring clients can correctly process the response. It does not relate to performance, empty responses, or SQL injection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An API endpoint for updating a user's profile information is designed to be idempotent. What does this mean for an API automation test that repeatedly sends the same PUT request to this endpoint?",
+    "options": [
+      "Each subsequent request will create a new, duplicate user profile.",
+      "Only the first request will successfully update the profile; subsequent requests will fail.",
+      "The profile will be updated only once, and subsequent identical requests will have no further effect on the resource state.",
+      "The server will return a different status code for each identical request."
+    ],
+    "correctIndex": 2,
+    "explanation": "An idempotent operation means that making the same request multiple times will have the same effect as making it once. For a PUT request to update a profile, sending it multiple times will ensure the profile is updated to the specified state, but it won't create duplicates or cause failures after the first successful update. The resource state remains the same after the first successful application.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are making an API request that involves sending a complex JSON payload in the request body. Which HTTP header is most critical to include to inform the server about the format of this payload?",
+    "options": [
+      "Authorization",
+      "Accept",
+      "User-Agent",
+      "Content-Type"
+    ],
+    "correctIndex": 3,
+    "explanation": "The 'Content-Type' header specifies the media type of the resource in the request body. For a JSON payload, it should typically be 'application/json' so the server knows how to parse it. 'Authorization' handles credentials, 'Accept' indicates preferred response media types, and 'User-Agent' identifies the client.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team implements contract testing between a microservice and its client. What is the primary benefit of this approach?",
+    "options": [
+      "It verifies the API's performance under heavy load.",
+      "It ensures that UI elements are correctly displayed and interactive.",
+      "It prevents silent breaking changes between a service provider and consumer by verifying their agreement on API interaction.",
+      "It automatically generates API documentation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Contract testing directly verifies the 'contract' (the agreed-upon API interface and behavior) between a service provider and its consumer. This prevents breaking changes from going unnoticed, ensuring that updates to one service don't inadvertently disrupt others relying on it. It's not for performance, UI, or documentation generation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider a scenario where a backend service frequently introduces minor changes to its API response, sometimes adding new optional fields without prior notice to consumers. Which testing strategy is best suited to prevent these changes from causing silent integration issues for clients?",
+    "options": [
+      "End-to-end UI testing, to catch any visual discrepancies.",
+      "Load testing, to ensure the API can handle increased traffic.",
+      "Consumer-driven contract testing, to validate that the service's API continues to meet the expectations of its consumers.",
+      "Unit testing of the backend service, to ensure individual functions work correctly."
+    ],
+    "correctIndex": 2,
+    "explanation": "Consumer-driven contract testing (CDCT) is specifically designed for this scenario. It captures the expectations of the consumers in a contract and verifies that the producer service adheres to this contract. This immediately flags any changes in the producer that might break a consumer's integration, preventing silent drift. UI and Load testing serve different purposes, and unit testing focuses on internal logic, not integration.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You receive a bug report that states: 'The search functionality is broken.' It lacks specific steps or environment details. As a QA Automation Engineer, what is the immediate next step you should take to start addressing this report for potential automation?",
+    "options": [
+      "Immediately write an automated test to cover the general search feature.",
+      "Mark the bug as 'Cannot Reproduce' and close it.",
+      "Engage with the reporter to gather detailed reproduction steps, environment, and expected behavior, then try to reproduce manually.",
+      "Assign the bug directly to a developer without further investigation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Before attempting to automate or assign, a vague bug report requires investigation. The immediate next step is to communicate with the reporter to get more details (reproduction steps, environment, expected results) and then try to manually reproduce the bug. This ensures the bug is understood and reproducible, which is a prerequisite for effective automation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When automating UI tests, why is it crucial to use reliable and stable selectors (e.g., data-testid attributes) instead of fragile ones (e.g., CSS classes that change frequently or nth-child selectors)?",
+    "options": [
+      "Reliable selectors make tests run faster.",
+      "Reliable selectors improve test readability for non-technical stakeholders.",
+      "Reliable selectors make tests less prone to breaking when UI structure or styling changes, improving test maintainability.",
+      "Reliable selectors automatically generate test reports."
+    ],
+    "correctIndex": 2,
+    "explanation": "Reliable selectors are essential for making UI automation tests robust and maintainable. Fragile selectors break easily with minor UI changes (styling, element order), leading to high maintenance costs. Using stable, intention-driven attributes like `data-testid` isolates tests from superficial UI changes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Playwright, what is the primary purpose of its auto-waiting mechanism?",
+    "options": [
+      "To automatically generate test reports after execution.",
+      "To pause test execution for a fixed duration, regardless of element state.",
+      "To wait for elements to be actionable (e.g., visible, enabled, stable) before performing actions, reducing flakiness.",
+      "To continuously retry failed assertions until they pass."
+    ],
+    "correctIndex": 2,
+    "explanation": "Playwright's auto-waiting mechanism is designed to make tests more reliable by automatically waiting for elements to be in an actionable state (e.g., visible, enabled, attached, stable) before interacting with them. This significantly reduces test flakiness caused by timing issues, unlike fixed waits or retrying failed assertions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are automating a UI test where an element's ID changes dynamically on every page load. How should you approach identifying this element reliably with Playwright?",
+    "options": [
+      "Use a fixed `page.waitForTimeout()` to ensure the element loads.",
+      "Rely on dynamic `id` attribute, hoping it occasionally matches.",
+      "Utilize alternative stable locators like `text=`, `getByRole`, or a unique `data-testid` attribute if available.",
+      "Implement a loop that continuously tries to click the element until it appears."
+    ],
+    "correctIndex": 2,
+    "explanation": "When an element's ID is dynamic, relying on it directly will lead to flaky tests. The best approach is to find a stable, alternative locator. Playwright offers robust locators such as `getByText`, `getByRole`, or using custom attributes like `data-testid` specifically added for testing purposes. `waitForTimeout` is an anti-pattern for waiting, and continuous loops are inefficient and unreliable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Playwright, what is a 'fixture' primarily used for?",
+    "options": [
+      "To define UI selectors for elements on a page.",
+      "To store environment variables for CI/CD pipelines.",
+      "To set up and tear down test environments, data, and pages, ensuring each test runs in a known, isolated state.",
+      "To record and replay user interactions for test creation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Playwright fixtures are a powerful mechanism for managing test setup and teardown. They provide a way to create and share test context, such as a browser instance, a page object, or authenticated user sessions, ensuring each test starts from a clean and known state without redundant code. They are not for selectors, environment variables, or recording interactions directly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Playwright UI test is failing intermittently in CI, but it passes locally. You suspect a timing issue or an unexpected UI state. Which Playwright feature would be most helpful in diagnosing this issue?",
+    "options": [
+      "`page.waitForTimeout()` with a long delay.",
+      "Using `console.log` statements extensively.",
+      "Generating a Playwright Trace for the failed run to get a detailed timeline of actions, network requests, and DOM snapshots.",
+      "Disabling all assertions to see if the test completes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Playwright Traces are specifically designed for diagnosing flaky or failing tests. They provide a comprehensive recording of everything that happened during a test run: DOM snapshots, network requests, action logs, and step-by-step execution. This rich data is invaluable for understanding why a test failed, especially in CI environments. Other options are either inefficient, unreliable, or defeat the purpose of testing.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When adding automated accessibility checks to a web application's test suite, what is the primary type of accessibility issue that can be reliably identified by these automated tools?",
+    "options": [
+      "Understanding the complexity of language used on the page for cognitive accessibility.",
+      "Ensuring proper color contrast for text and interactive elements.",
+      "Verifying that the logical tab order for keyboard navigation is intuitive.",
+      "Assessing the overall user experience for individuals with screen readers."
+    ],
+    "correctIndex": 1,
+    "explanation": "Automated accessibility tools are highly effective at identifying 'rules-based' issues that can be programmatically checked. Proper color contrast, missing alt text, invalid ARIA attributes, and structural errors (like missing form labels) fall into this category. Cognitive complexity, intuitive tab order, and screen reader UX often require manual review or human judgment.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team has integrated automated accessibility checks into their CI/CD pipeline. However, they are still advised to perform manual accessibility reviews. Why is manual review still necessary even with robust automation in place?",
+    "options": [
+      "Automated tools are inherently unreliable and produce many false positives.",
+      "Manual review is quicker than setting up automated checks.",
+      "Automated tools cannot effectively assess subjective aspects of accessibility, such as logical flow, intuitive navigation, and overall user experience for complex interactions.",
+      "Manual review is required by all legal compliance standards, regardless of automation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Automated accessibility tools are excellent for catching a significant percentage of WCAG violations (e.g., color contrast, missing alt text). However, they cannot assess subjective aspects like logical reading order, cognitive load, intuitive keyboard navigation, or the overall user experience with assistive technologies. Manual review, especially by users with disabilities, is crucial to cover these qualitative aspects.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A QA Automation Engineer notices that several UI automation tests fail randomly in the CI pipeline, but pass when re-run individually or locally. What is the most significant impact of these 'flaky tests' on the development team?",
+    "options": [
+      "They significantly increase the speed of the CI/CD pipeline.",
+      "They accurately reflect real user issues, leading to quicker bug fixes.",
+      "They erode trust in the test suite, causing developers to ignore legitimate failures and slow down development cycles.",
+      "They improve code coverage metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Flaky tests, which produce inconsistent results without code changes, severely erode trust in the test suite. Developers may start ignoring test failures, dismissing them as 'just another flaky test,' which can lead to legitimate issues going undetected. This slows down development, increases debugging time, and undermines the value of automation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a load test, the 'Average Response Time' for API requests remains acceptable, but the 'Error Rate' sharply increases as the number of virtual users grows. What does this combination of metrics most likely indicate?",
+    "options": [
+      "The application has excellent performance and can handle more users.",
+      "The database is overloaded, causing data retrieval delays but not errors.",
+      "The application server is struggling to process all requests, leading to failures even if some successful requests are still fast.",
+      "The network connection between the load generator and the application is unstable."
+    ],
+    "correctIndex": 2,
+    "explanation": "An increasing error rate with acceptable average response times suggests that while some requests are being handled efficiently, the system is failing to process a growing number of others. This is a common sign that the application server, or a component it relies on, is reaching its capacity limits, causing requests to fail (e.g., timeouts, resource exhaustion) before they can be processed successfully, even if the successful ones are fast.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your CI pipeline is frequently failing due to a specific set of UI automation tests exhibiting flakiness. Which strategy is generally NOT recommended as a long-term solution for managing these flaky tests?",
+    "options": [
+      "Improve test selectors to be more robust and less susceptible to UI changes.",
+      "Isolate test data to prevent interference between parallel test runs.",
+      "Quarantine the flaky tests temporarily from the main build, while actively working to stabilize them.",
+      "Increase `page.waitForTimeout()` durations indefinitely to avoid all timing issues."
+    ],
+    "correctIndex": 3,
+    "explanation": "Increasing `page.waitForTimeout()` durations indefinitely is an anti-pattern and a poor long-term solution. It masks the underlying flakiness, slows down the test suite significantly, and doesn't guarantee stability. Better approaches involve addressing the root cause: improving selectors, isolating data, and actively debugging and stabilizing flaky tests, possibly in a quarantined environment.",
+    "difficulty": "hard"
+  }
+]

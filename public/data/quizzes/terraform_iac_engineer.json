@@ -1,0 +1,302 @@
+[
+  {
+    "question": "An organization is looking to automate its infrastructure provisioning to ensure consistency and reduce manual errors. They want a solution that treats infrastructure as code and allows versioning and collaboration. Which core problem does Infrastructure as Code (IaC) solve in this scenario?",
+    "options": [
+      "Simplifying application development",
+      "Eliminating the need for cloud providers",
+      "Ensuring consistent and repeatable infrastructure deployments",
+      "Automatically scaling application instances based on demand"
+    ],
+    "correctIndex": 2,
+    "explanation": "IaC primarily solves the problem of inconsistent and error-prone manual infrastructure provisioning by codifying the infrastructure, making it consistent, repeatable, and manageable through version control systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A new Terraform project has just been initialized in an empty directory. Which command should an engineer run first to download the necessary provider plugins and module dependencies?",
+    "options": [
+      "terraform apply",
+      "terraform validate",
+      "terraform init",
+      "terraform plan"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'terraform init' command is the first command that should be run after writing new Terraform configuration or cloning an existing project. It initializes the working directory, downloads providers, and sets up backend configuration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During the development of a Terraform configuration, an engineer needs to ensure that the defined resources align with the expected syntax and configurations without actually making any changes to the infrastructure. Which command should they use?",
+    "options": [
+      "terraform apply -auto-approve",
+      "terraform destroy",
+      "terraform refresh",
+      "terraform validate"
+    ],
+    "correctIndex": 3,
+    "explanation": "The 'terraform validate' command checks the configuration files in the current directory for syntax errors and internal consistency, without interacting with any remote services or state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of the Terraform state file (`terraform.tfstate`)?",
+    "options": [
+      "To store sensitive credentials for cloud providers",
+      "To cache downloaded provider binaries",
+      "To map real-world infrastructure to your configuration and track metadata",
+      "To define the desired state of the infrastructure"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Terraform state file stores a mapping between the resources defined in your configuration and the real-world infrastructure objects, tracking their current state and metadata. It's crucial for Terraform to understand what exists and what needs to change.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An organization is starting to use Terraform and wants to reuse common infrastructure patterns, such as a standard VPC setup or a scalable web server group, across multiple projects and teams. Which Terraform feature is best suited for this purpose?",
+    "options": [
+      "Data sources",
+      "Output variables",
+      "Terraform modules",
+      "Local-exec provisioners"
+    ],
+    "correctIndex": 2,
+    "explanation": "Terraform modules allow you to encapsulate and reuse infrastructure configurations, promoting consistency and reducing code duplication across projects and teams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Terraform engineer needs to ensure that all changes to the infrastructure are reviewed and approved before being applied to production. Which stage of the typical Terraform workflow directly facilitates this review process?",
+    "options": [
+      "terraform init",
+      "terraform apply",
+      "terraform plan",
+      "terraform destroy"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'terraform plan' command generates an execution plan, showing exactly what Terraform will do. This plan can then be reviewed by team members and approved before executing 'terraform apply', facilitating a crucial review stage.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When defining resources in Terraform, what is the role of a 'provider'?",
+    "options": [
+      "To define the execution order of resources",
+      "To manage application-level configuration",
+      "To provide an interface for Terraform to interact with an API (e.g., AWS, Azure, Google Cloud)",
+      "To store secrets securely for infrastructure deployments"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Terraform provider is a plugin that Terraform uses to interact with an upstream API (e.g., a cloud provider like AWS, Azure, GCP, or a SaaS provider like GitHub). It defines the resources that Terraform can manage within that service.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team is developing a Terraform configuration for an AWS VPC and needs to retrieve the ID of an existing AMI before creating an EC2 instance. Which Terraform construct should they use to query this existing information?",
+    "options": [
+      "A resource block",
+      "An output variable",
+      "A local variable",
+      "A data source"
+    ],
+    "correctIndex": 3,
+    "explanation": "Data sources allow Terraform to fetch information about existing infrastructure or external services. In this case, an AWS AMI data source would be used to retrieve the ID of a pre-existing AMI.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team manages multiple environments (dev, staging, prod) for the same application using the same Terraform configuration. To maintain separate state files and isolated infrastructure for each environment, what Terraform feature would be most appropriate?",
+    "options": [
+      "Terraform provisioners",
+      "Terraform workspaces",
+      "Terraform data sources",
+      "Terraform output variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Terraform workspaces allow you to manage multiple distinct instances of the same configuration within a single working directory, each with its own state file, which is ideal for separating environments like dev, staging, and production.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Terraform configuration defines an AWS S3 bucket. A developer accidentally deletes the S3 bucket directly through the AWS console, causing a discrepancy between the actual infrastructure and the Terraform state. What is this phenomenon called?",
+    "options": [
+      "Terraform plan failure",
+      "State corruption",
+      "Configuration drift",
+      "Provider inconsistency"
+    ],
+    "correctIndex": 2,
+    "explanation": "Configuration drift occurs when the actual state of your infrastructure differs from what's recorded in your Terraform state file and configuration. Manual changes outside of Terraform are a common cause.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your team needs to store sensitive values, such as API keys or database passwords, that are required by your Terraform configuration without hardcoding them directly into the HCL files. Which is the most secure and recommended approach for managing these sensitive values?",
+    "options": [
+      "Commit them directly to Git in encrypted files",
+      "Use environment variables when running Terraform commands",
+      "Store them in a secrets manager (e.g., AWS Secrets Manager, HashiCorp Vault) and retrieve them via a data source",
+      "Use `terraform.tfvars` files with sensitive information and ensure they are committed to Git"
+    ],
+    "correctIndex": 2,
+    "explanation": "Storing sensitive information in dedicated secrets managers like AWS Secrets Manager or HashiCorp Vault is the most secure and recommended approach. Terraform can then retrieve these values at runtime using data sources, avoiding hardcoding or exposing them in version control.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Terraform module is being developed, and it defines several resources. To allow the consuming root module to access specific attributes of these resources (e.g., an EC2 instance's public IP address), what must be defined within the child module?",
+    "options": [
+      "Input variables",
+      "Local variables",
+      "Data sources",
+      "Output values"
+    ],
+    "correctIndex": 3,
+    "explanation": "Output values in a module serve to export specific data from the module, making it accessible to the calling (root) module or other modules that depend on it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team wants to integrate Terraform into their CI/CD pipeline. After a pull request is opened, they want an automated check that ensures the Terraform configuration is syntactically valid and free of common errors before allowing merging. Which command should be run in the pipeline for this check?",
+    "options": [
+      "terraform apply -auto-approve",
+      "terraform validate",
+      "terraform destroy",
+      "terraform refresh"
+    ],
+    "correctIndex": 1,
+    "explanation": "'terraform validate' is ideal for CI/CD checks as it verifies the syntax and configuration without requiring access to cloud credentials or performing any state operations, making it fast and safe for early feedback.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have a Terraform configuration that provisions a database. You want to ensure that if the database resource is destroyed, its snapshots are retained. Which Terraform block would you use within the resource definition to control this behavior?",
+    "options": [
+      "depends_on",
+      "count",
+      "for_each",
+      "lifecycle"
+    ],
+    "correctIndex": 3,
+    "explanation": "The 'lifecycle' block within a resource allows you to customize its destruction behavior using attributes like 'prevent_destroy' or 'create_before_destroy', which can be used to manage snapshot retention policies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collaborating on a Terraform project, multiple engineers might try to run `terraform apply` simultaneously, potentially leading to state corruption. What mechanism does Terraform use to prevent this concurrent state modification?",
+    "options": [
+      "Provider version pinning",
+      "Configuration validation",
+      "State locking",
+      "Workspace isolation"
+    ],
+    "correctIndex": 2,
+    "explanation": "State locking prevents concurrent operations on the same state file, which is crucial for collaborative environments. When a remote backend supports state locking, Terraform will automatically acquire a lock before an operation that writes state and release it afterwards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is implementing a policy that dictates all S3 buckets must have encryption enabled and public access blocked. They want this policy enforced automatically during Terraform plan/apply operations. Which type of tool or approach should they use?",
+    "options": [
+      "Manual code review",
+      "Terraform local-exec provisioner",
+      "Policy as Code tools (e.g., Sentinel, OPA)",
+      "Terraform destroy command"
+    ],
+    "correctIndex": 2,
+    "explanation": "Policy as Code tools like HashiCorp Sentinel or Open Policy Agent (OPA) allow you to define rules that check your infrastructure configuration against organizational policies before or during deployment, enforcing compliance automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Terraform configuration needs to create multiple similar resources, such as several EC2 instances with slightly different tags or names. Which argument is most efficient for iterating over a collection of values to create these resources dynamically?",
+    "options": [
+      "depends_on",
+      "count",
+      "for_each",
+      "provisioner"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'for_each' argument creates multiple instances of a resource or module based on items in a map or a set of strings, allowing for more flexible and dynamic resource creation than 'count' when resource properties vary significantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a new service with Terraform, the team observes unexpected behavior and identifies that a specific resource was incorrectly configured. They need to quickly revert the configuration of this single resource to a previous state without affecting other deployed resources. What is the most direct Terraform command for this, assuming a desired state is defined?",
+    "options": [
+      "terraform destroy -target=aws_instance.example",
+      "terraform taint aws_instance.example && terraform apply",
+      "terraform refresh aws_instance.example",
+      "terraform import aws_instance.example i-0abcdef1234567890"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'terraform taint' command marks a resource as tainted, forcing Terraform to destroy and recreate it on the next 'terraform apply'. This is a direct way to reset a single resource's configuration when it's in an undesirable state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Terraform configuration is being used to deploy resources in a multi-cloud environment. The team wants to ensure that the code is structured in a way that allows easy onboarding of new cloud providers without major refactoring. Which architectural pattern in Terraform facilitates this?",
+    "options": [
+      "Using a single root module for all clouds",
+      "Hardcoding provider names in resource blocks",
+      "Abstracting provider-specific logic into reusable modules with clear interfaces",
+      "Disabling provider version constraints"
+    ],
+    "correctIndex": 2,
+    "explanation": "Abstracting provider-specific logic into reusable modules with clear interfaces (e.g., a 'compute' module that takes common inputs and provisions resources in the relevant cloud) allows for easier multi-cloud adoption and reduces refactoring when adding new providers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A large organization has a core set of network infrastructure modules (VPC, subnets, routing tables) that are used across all their projects. These modules are developed and maintained by a central platform team. Projects need to consume these modules, but also have flexibility to add project-specific resources. How can this be effectively managed, including version control and updates?",
+    "options": [
+      "Each project copies the module code into its repository and modifies it as needed.",
+      "The core modules are published to a private Terraform Module Registry, and projects reference them with version constraints.",
+      "The core modules are provided as static HCL files that projects manually link.",
+      "Projects use the `terraform import` command to pull the latest module changes."
+    ],
+    "correctIndex": 1,
+    "explanation": "Publishing modules to a private Terraform Module Registry allows for centralized management, versioning, and controlled distribution. Projects can then consume these modules, specifying version constraints to ensure stability while allowing updates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are managing a highly sensitive production environment with Terraform. A new requirement mandates that no `terraform apply` can proceed if it involves destroying critical resources, even if `prevent_destroy` is not explicitly set. How can you implement a robust organizational policy to enforce this across all configurations and deployments, typically within a CI/CD pipeline?",
+    "options": [
+      "Rely on manual code reviews to catch `destroy` operations.",
+      "Use `terraform plan -destroy` to always check for destructions.",
+      "Implement a Policy as Code solution (e.g., Open Policy Agent, HashiCorp Sentinel) that inspects the Terraform plan output for resource destructions and blocks the pipeline.",
+      "Set `prevent_destroy = true` on all critical resources in every configuration."
+    ],
+    "correctIndex": 2,
+    "explanation": "A Policy as Code solution provides automated, programmatic enforcement. It can parse the JSON output of `terraform plan` to identify proposed destruction actions and then, based on predefined rules for critical resources, fail the CI/CD pipeline, preventing dangerous changes from reaching production.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An engineer needs to migrate a Terraform deployment's state from a local backend to an S3 remote backend. This needs to be done without affecting the deployed infrastructure. Which sequence of actions is correct?",
+    "options": [
+      "Modify the backend configuration in `main.tf`, then run `terraform init -migrate-state`.",
+      "Manually upload `terraform.tfstate` to S3, then run `terraform init`.",
+      "Run `terraform state mv` to move the state file directly to S3.",
+      "Destroy all resources, modify backend, then re-apply the configuration."
+    ],
+    "correctIndex": 0,
+    "explanation": "To migrate state to a new backend, you first modify the backend configuration in your HCL files. Then, running `terraform init -migrate-state` will detect the change, prompt you to migrate the existing local state to the newly configured remote backend, and manage the migration process automatically without affecting deployed resources.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Terraform/IaC engineer is tasked with ensuring high availability for a critical application across multiple AWS regions. The solution involves replicating the entire infrastructure (VPC, subnets, EC2 instances, databases) in a second region. How should the Terraform configuration be structured to support this multi-region deployment efficiently, minimizing code duplication while allowing region-specific customizations?",
+    "options": [
+      "Create a single monolithic Terraform configuration and manually copy-paste blocks for each region.",
+      "Use a single module with `count` argument to deploy resources in different regions simultaneously.",
+      "Parameterize a reusable module with region-specific variables and deploy it independently in separate root configurations or workspaces for each region.",
+      "Define all resources in one configuration and use `depends_on` to manage cross-region dependencies."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most efficient approach for multi-region deployment is to create a reusable module that encapsulates the common infrastructure pattern. This module can then be instantiated multiple times, once for each region, with region-specific variables (like region name, AZs) passed as parameters. Each regional deployment would typically have its own state file, possibly managed by separate root configurations or workspaces.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team needs to implement a GitOps workflow for Terraform deployments. Changes to infrastructure are committed to a Git repository, and a CI/CD pipeline automatically applies these changes to production. To ensure security and compliance, what is the most critical aspect to manage in this workflow to prevent unauthorized infrastructure modifications?",
+    "options": [
+      "Ensuring all `terraform init` commands are run manually.",
+      "Implementing strict Git branch protection rules and mandatory pull request reviews before merging to the main branch, which triggers the CI/CD pipeline.",
+      "Running `terraform plan` only on developer workstations.",
+      "Disabling all state locking mechanisms for faster deployments."
+    ],
+    "correctIndex": 1,
+    "explanation": "In a GitOps workflow, Git is the single source of truth. Robust Git branch protection and mandatory pull request reviews ensure that only authorized and peer-reviewed infrastructure changes are merged into the main branch, which then triggers the automated deployment. This is crucial for preventing unauthorized changes and maintaining compliance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your team is adopting a new naming convention for all AWS resources provisioned by Terraform. For example, all S3 buckets must start with `app-prod-s3-`. You want to enforce this at the configuration level to prevent non-compliant deployments. Which Terraform-native construct can you leverage to define this standard and prevent violations during planning or applying?",
+    "options": [
+      "Using `output` values to report non-compliant names.",
+      "Defining a `local` variable for the prefix and ensuring all resources use it.",
+      "Utilizing `precondition` blocks within resource definitions to validate resource names against a regex pattern.",
+      "Implementing a custom provider to override resource naming logic."
+    ],
+    "correctIndex": 2,
+    "explanation": "Terraform's `precondition` block allows you to define assertions that must be true for a resource or module to be created or updated. You can use it within a resource block to validate the computed name against a regex pattern, effectively enforcing naming conventions directly within your Terraform configuration.",
+    "difficulty": "moderate"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A Java application frequently encounters situations where a file might not exist or a network connection fails. Which mechanism is primarily used to handle such exceptional runtime conditions gracefully?",
+    "options": [
+      "Assertions",
+      "Type Casting",
+      "Exception Handling",
+      "Garbage Collection"
+    ],
+    "correctIndex": 2,
+    "explanation": "Exception handling (using try-catch-finally blocks) is Java's structured mechanism to deal with runtime errors and unexpected events, allowing the program to recover or terminate gracefully. Assertions are for debugging, type casting changes object types, and garbage collection reclaims memory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to store a list of unique customer IDs in Java. Which standard Java Collection interface is best suited for ensuring that no duplicate IDs are added?",
+    "options": [
+      "List",
+      "Queue",
+      "Set",
+      "Map"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Set interface guarantees that it contains no duplicate elements, making it ideal for storing unique IDs. List allows duplicates, Queue is for ordering elements for processing, and Map stores key-value pairs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Consider a generic class `Box<T>` designed to hold an object of type `T`. If you want to ensure that `T` can only be a type that implements the `Comparable` interface, how would you declare the class?",
+    "options": [
+      "class Box<T extends Comparable> { ... }",
+      "class Box<T implements Comparable> { ... }",
+      "class Box<T super Comparable> { ... }",
+      "class Box<T & Comparable> { ... }"
+    ],
+    "correctIndex": 0,
+    "explanation": "In Java generics, the 'extends' keyword is used to specify an upper bound, meaning T must be a subtype of Comparable (or implement Comparable for interfaces). 'implements' and 'super' are incorrect syntax for this purpose, and '&' is used for intersection types in casts or type parameters for multiple bounds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following is the most concise way to define a simple anonymous function in Java 8+ for an interface with a single abstract method?",
+    "options": [
+      "Anonymous inner class",
+      "Lambda expression",
+      "Method reference",
+      "Nested class"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lambda expressions provide a concise syntax for implementing functional interfaces (interfaces with a single abstract method), greatly simplifying code compared to anonymous inner classes. Method references are a shorthand for specific lambda expressions, and nested classes are a broader concept.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You have a `List<String>` called `names` and you want to filter out names starting with \"A\", convert the remaining names to uppercase, and collect them into a new `List`. Which sequence of stream operations achieves this?",
+    "options": [
+      "names.stream().map(String::toUpperCase).filter(s -> !s.startsWith(\"A\")).collect(Collectors.toList());",
+      "names.stream().filter(s -> !s.startsWith(\"A\")).map(String::toUpperCase).collect(Collectors.toList());",
+      "names.stream().filter(s -> s.startsWith(\"A\")).map(String::toUpperCase).collect(Collectors.toList());",
+      "names.stream().map(String::toUpperCase).collect(Collectors.toList()).filter(s -> !s.startsWith(\"A\"));"
+    ],
+    "correctIndex": 1,
+    "explanation": "The order of operations matters in streams. First, you filter the names not starting with \"A\". Then, you map the filtered names to uppercase. Option A performs mapping before filtering, which is inefficient. Option C filters for names starting with \"A\". Option D attempts to filter a List directly, not a stream, which is incorrect.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a multi-threaded Java application, two threads concurrently try to increment a shared integer variable without any synchronization mechanism. What kind of issue is most likely to occur?",
+    "options": [
+      "Deadlock",
+      "Memory Leak",
+      "Race Condition",
+      "Stack Overflow"
+    ],
+    "correctIndex": 2,
+    "explanation": "A race condition occurs when multiple threads access and manipulate shared data concurrently, and the outcome depends on the non-deterministic interleaving of their operations. In this case, the final value of the integer might be inconsistent because read-modify-write operations are not atomic. Deadlock is when threads are blocked waiting for each other, memory leak is unreferenced objects not being garbage collected, and stack overflow is excessive recursion.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why is it crucial to override both `equals()` and `hashCode()` methods in a Java class when you override one of them, especially if instances of the class will be stored in hash-based collections like `HashMap` or `HashSet`?",
+    "options": [
+      "To prevent ClassCastExceptions.",
+      "To ensure that System.out.println() outputs correct object representation.",
+      "To maintain the general contract that if two objects are equal according to equals(Object), then calling hashCode() on each of the two objects must produce the same integer result.",
+      "To enable automatic serialization of objects."
+    ],
+    "correctIndex": 2,
+    "explanation": "The equals() and hashCode() contract states that if two objects are equal according to the equals() method, their hashCode() methods must produce the same integer. Failing to override both can lead to broken behavior in hash-based collections, where equal objects might be stored in different buckets or not found correctly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Spring annotation is used to mark a class as a component that should be automatically detected and registered as a Spring bean by the Spring container?",
+    "options": [
+      "@Component",
+      "@Autowired",
+      "@Value",
+      "@Bean"
+    ],
+    "correctIndex": 0,
+    "explanation": "@Component is a generic stereotype annotation that indicates a class is a Spring component. @Autowired is for injecting dependencies, @Value for injecting configuration properties, and @Bean is used on methods to declare a bean.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a REST API with Spring Boot, which annotation is typically placed on a class to combine `@Controller` and `@ResponseBody`, indicating that the class handles incoming web requests and directly returns the data as the response body?",
+    "options": [
+      "@RestController",
+      "@Controller",
+      "@Service",
+      "@Repository"
+    ],
+    "correctIndex": 0,
+    "explanation": "@RestController is a convenience annotation that marks a class as a controller where every method returns a domain object instead of a view, and implicitly adds @ResponseBody to all method return types. @Controller requires @ResponseBody on each method for REST. @Service and @Repository are for service and data access layers, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Spring Data JPA, which interface provides basic CRUD (Create, Read, Update, Delete) operations for a given entity type, allowing developers to avoid writing boilerplate code for common database interactions?",
+    "options": [
+      "DataSource",
+      "EntityManager",
+      "JpaRepository",
+      "JdbcTemplate"
+    ],
+    "correctIndex": 2,
+    "explanation": "JpaRepository (or CrudRepository) in Spring Data JPA provides ready-to-use methods for common database operations on an entity, significantly reducing boilerplate code. DataSource manages connections, EntityManager is JPA's core API, and JdbcTemplate is for direct JDBC access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To ensure that an incoming request body (e.g., a DTO) adheres to specific constraints (like @NotNull, @Size) in a Spring Boot REST controller, which annotation should be used on the method parameter representing the request body?",
+    "options": [
+      "@Validated",
+      "@Valid",
+      "@Constraint",
+      "@Pattern"
+    ],
+    "correctIndex": 1,
+    "explanation": "The @Valid annotation (from javax.validation or jakarta.validation) triggers the validation of the annotated object based on its constraints. @Validated is a Spring-specific annotation for class-level validation or group validation, @Constraint is used to define custom constraints, and @Pattern is a specific validation annotation itself.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Spring Boot REST API uses JWT for authentication. Upon successful login, the server issues a JWT to the client. How should subsequent client requests typically prove their identity and authorization to the server?",
+    "options": [
+      "By including the JWT in a cookie with every request.",
+      "By including the JWT in the Authorization header as a Bearer token.",
+      "By sending username and password in every request's body.",
+      "By re-authenticating with the server for each API call."
+    ],
+    "correctIndex": 1,
+    "explanation": "For JWT-based authentication in REST APIs, the standard practice is for the client to include the token in the Authorization header of each subsequent request, prefixed with \"Bearer \". This allows the server to validate the token and authorize the request without requiring re-login or session management.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You want to define a custom bean in your Spring Boot application that requires specific initialization logic. Where is the most appropriate place to declare this bean?",
+    "options": [
+      "Inside application.properties.",
+      "By annotating a method in a @Configuration class with @Bean.",
+      "Directly instantiating it in your main method.",
+      "Using a static factory method without any Spring annotations."
+    ],
+    "correctIndex": 1,
+    "explanation": "In Spring, beans are typically defined within @Configuration classes using the @Bean annotation on methods. This allows Spring to manage the bean's lifecycle, dependencies, and provide it to other components through dependency injection. application.properties is for simple key-value configuration, not bean definitions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Spring Boot service method, annotated with `@Transactional`, calls another private method within the same class. The private method performs a database update and throws a runtime exception. Will the transaction initiated by the public method be rolled back?",
+    "options": [
+      "Yes, always.",
+      "No, because private methods are not proxied by Spring AOP.",
+      "Only if the exception is caught and rethrown as a checked exception.",
+      "Only if the private method is explicitly annotated with @Transactional(propagation = Propagation.REQUIRES_NEW)."
+    ],
+    "correctIndex": 1,
+    "explanation": "Spring's @Transactional annotation works by creating a proxy around the bean. When a method is called internally (i.e., from another method within the same object), the proxy is bypassed, and thus the transactional advice is not applied. For the transaction to be rolled back, the public @Transactional method itself must throw an exception or call a public method on another proxied bean that then rolls back.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary purpose of writing unit tests in software development?",
+    "options": [
+      "To verify the integration between different modules of an application.",
+      "To test the application's performance under heavy load.",
+      "To validate that individual components or methods of a software are working as intended in isolation.",
+      "To ensure the entire system meets user requirements."
+    ],
+    "correctIndex": 2,
+    "explanation": "Unit tests focus on testing the smallest testable parts of an application (units, e.g., methods or classes) in isolation, ensuring their correctness. Integration tests verify module interactions, performance tests assess load, and system/acceptance tests validate user requirements.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a Java project with Maven, you need to include a third-party library. In which section of the `pom.xml` file would you declare this library?",
+    "options": [
+      "<build>",
+      "<plugins>",
+      "<dependencies>",
+      "<profiles>"
+    ],
+    "correctIndex": 2,
+    "explanation": "The <dependencies> section in a Maven pom.xml is where all required libraries and their versions are declared. <build> configures the build lifecycle, <plugins> defines build plugins, and <profiles> allows for environment-specific configurations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Spring Boot application relies on a PostgreSQL database. For integration tests, you want to ensure a clean database instance for each test run without manually setting up or tearing down a local PostgreSQL server. Which testing library is specifically designed to provide throwaway, containerized database instances for this purpose?",
+    "options": [
+      "JUnit 5",
+      "Mockito",
+      "Testcontainers",
+      "Spring Cloud Contract"
+    ],
+    "correctIndex": 2,
+    "explanation": "Testcontainers is a Java library that provides lightweight, disposable containers (like Docker containers) for databases, message brokers, web browsers, or anything else that can run in a Docker container, making integration testing much easier and more reliable. JUnit is a testing framework, Mockito is for mocking, and Spring Cloud Contract is for consumer-driven contract testing.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following best describes the main benefit of using a message queue (like RabbitMQ or Apache Kafka) in a microservices architecture?",
+    "options": [
+      "To perform direct database queries across services.",
+      "To enable synchronous communication between services.",
+      "To decouple services and facilitate asynchronous communication.",
+      "To manage service discovery and load balancing."
+    ],
+    "correctIndex": 2,
+    "explanation": "Message queues primarily decouple services, allowing them to communicate asynchronously. This means services don't need to be available simultaneously and can process messages at their own pace, improving resilience and scalability. Direct database queries, synchronous communication, and service discovery/load balancing are handled by different mechanisms.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In an enterprise Spring Boot application, what is the primary purpose of implementing structured logging (e.g., using Logback with JSON formatters)?",
+    "options": [
+      "To reduce the number of log messages generated.",
+      "To make log messages human-readable on production servers.",
+      "To facilitate automated parsing, aggregation, and analysis of logs by tools like ELK stack or Splunk.",
+      "To encrypt sensitive information within log entries."
+    ],
+    "correctIndex": 2,
+    "explanation": "Structured logging outputs log data in a consistent, machine-readable format (like JSON), which is crucial for efficient parsing, aggregation, and analysis by log management systems. This greatly aids in debugging, monitoring, and gaining insights into application behavior, especially in distributed systems. While human readability is good, the 'structured' part specifically targets machine processing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a Spring Boot application as a Docker container, you want to externalize sensitive configuration properties (e.g., database credentials) without baking them into the Docker image itself. What is the most secure and recommended way to manage these properties?",
+    "options": [
+      "Hardcode them directly into the application.properties file inside the image.",
+      "Pass them as command-line arguments to the java -jar command within the Dockerfile.",
+      "Use Docker environment variables or Docker Secrets.",
+      "Store them in a public Git repository."
+    ],
+    "correctIndex": 2,
+    "explanation": "Using Docker environment variables (e.g., -e DATABASE_URL=...) or, for more sensitive data, Docker Secrets (managed by Docker Swarm or Kubernetes) is the recommended and most secure approach to externalize configuration. Hardcoding is insecure, command-line arguments can be exposed in process lists, and public Git repositories are highly insecure for credentials.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which Spring Boot Actuator endpoint provides information about the application's health, including database connectivity, disk space, and custom health indicators, useful for monitoring and orchestrating containerized deployments?",
+    "options": [
+      "/actuator/info",
+      "/actuator/metrics",
+      "/actuator/health",
+      "/actuator/env"
+    ],
+    "correctIndex": 2,
+    "explanation": "The /actuator/health endpoint provides a summary of the application's health status, including various components like database, disk space, and custom checks. This is vital for load balancers and orchestrators (like Kubernetes) to determine if an instance is ready to receive traffic. /info gives general application info, /metrics provides operational metrics, and /env shows environment properties.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a system where you have different types of \"Shapes\" (e.g., Circle, Rectangle). You want to ensure that all shapes can calculate their area but leave the specific implementation to each individual shape type. Which OOP concept best fits this requirement?",
+    "options": [
+      "Encapsulation",
+      "Inheritance",
+      "Abstraction (using an interface or abstract class)",
+      "Polymorphism"
+    ],
+    "correctIndex": 2,
+    "explanation": "Abstraction, typically achieved with interfaces or abstract classes, allows you to define a common contract (like a calculateArea() method) that concrete implementations must adhere to, without specifying the details of how it's done. Encapsulation hides internal state, inheritance allows code reuse, and polymorphism allows objects of different types to be treated as objects of a common type.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Banking API, you need to validate that a transaction amount is always positive and does not exceed a certain daily limit before processing. At what layer of your Spring Boot application should this primary validation logic typically reside?",
+    "options": [
+      "Directly in the controller.",
+      "In the database using triggers.",
+      "In the service layer.",
+      "In the DTO using JSR 380 annotations."
+    ],
+    "correctIndex": 2,
+    "explanation": "Business logic validation, like checking if an amount is positive or within a limit, belongs in the service layer. While JSR 380 annotations (DTO validation) are good for basic format/null checks, core business rules that might involve other services or specific domain knowledge should be handled in the service layer for reusability and maintainability. Database triggers are less flexible and harder to test. Controllers should be lean and only handle HTTP concerns.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Spring Boot application consumes messages from a Kafka topic to process financial transactions. Due to network issues or service restarts, it's possible for the same message to be delivered multiple times. To prevent duplicate transaction processing, what property should your message processing logic primarily aim to achieve?",
+    "options": [
+      "Atomicity",
+      "Durability",
+      "Idempotency",
+      "Consistency"
+    ],
+    "correctIndex": 2,
+    "explanation": "Idempotency means that an operation, when executed multiple times with the same input, will produce the same result as if it were executed only once. For message processing, this is crucial to handle duplicate deliveries without causing side effects like double-charging a customer. Atomicity, durability, and consistency are ACID properties, important for databases, but idempotency specifically addresses repeated operations.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During your CI/CD pipeline, you want to build your Spring Boot application with different configurations for `development` and `production` environments (e.g., different database URLs, logging levels). How can Maven be configured to manage these environment-specific settings?",
+    "options": [
+      "By manually editing application.properties before each build.",
+      "Using different pom.xml files for each environment.",
+      "By defining Maven profiles with environment-specific properties and resources.",
+      "By externalizing all configurations into environment variables for the CI server."
+    ],
+    "correctIndex": 2,
+    "explanation": "Maven profiles (<profiles> section in pom.xml) are designed to allow you to customize a build for different environments. You can define properties within profiles that override default settings or include/exclude specific resources, which can then be activated during the build (e.g., mvn clean install -Pproduction). While environment variables are also good for externalization, Maven profiles specifically manage build-time variations.",
+    "difficulty": "moderate"
+  }
+]

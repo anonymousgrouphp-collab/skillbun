@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A robotic arm needs to accurately pick and place objects. Which fundamental skill is most critical for understanding the arm's reach and movement capabilities?",
+    "options": [
+      "Advanced web development",
+      "Mechanical intuition",
+      "Database administration",
+      "Cloud infrastructure management"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mechanical intuition is crucial for understanding how physical components move and interact, directly impacting robot kinematics, dynamics, and overall movement capabilities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When choosing a programming language for a robot's high-level task sequencing and rapid prototyping, which language is generally preferred due to its extensive libraries and ease of use?",
+    "options": [
+      "Java",
+      "C#",
+      "Python",
+      "Assembly"
+    ],
+    "correctIndex": 2,
+    "explanation": "Python is widely used in robotics for scripting, rapid prototyping, and high-level control due to its simplicity, rich ecosystem of libraries, and ease of integration with frameworks like ROS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A robotics engineer is developing a high-performance control loop for a robotic manipulator that requires precise timing and minimal latency. Which programming language is best suited for this specific task?",
+    "options": [
+      "Python",
+      "JavaScript",
+      "C++",
+      "Ruby"
+    ],
+    "correctIndex": 2,
+    "explanation": "C++ is preferred for performance-sensitive applications, low-level drivers, and control loops in robotics due to its efficient memory management and execution speed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a ROS 2 system, you have a sensor driver that needs to publish data at 100 Hz and a high-level navigation planner that processes this data. If you were to choose languages for these components, which pairing would be most appropriate?",
+    "options": [
+      "Sensor Driver: Python, Navigation Planner: Python",
+      "Sensor Driver: Python, Navigation Planner: C++",
+      "Sensor Driver: C++, Navigation Planner: Python",
+      "Sensor Driver: C++, Navigation Planner: C++"
+    ],
+    "correctIndex": 2,
+    "explanation": "C++ is ideal for performance-critical sensor drivers due to its speed and low-latency capabilities, while Python is excellent for complex logic like navigation planners due to its rapid development capabilities and rich libraries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A robot's end-effector needs to move along a specific path in 3D space. Which concept is primarily used to describe the robot's pose (position and orientation) relative to a base frame?",
+    "options": [
+      "Current voltage",
+      "Coordinate frames and transforms",
+      "Data compression",
+      "Network topology"
+    ],
+    "correctIndex": 1,
+    "explanation": "Coordinate frames and transforms (e.g., homogeneous transformations) are fundamental for representing and manipulating the position and orientation of robot links, sensors, and end-effectors in space.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A mobile robot consistently overshoots its target position and oscillates before settling. Which feedback control parameter is most likely too high, contributing to this behavior?",
+    "options": [
+      "Integral gain (Ki)",
+      "Derivative gain (Kd)",
+      "Proportional gain (Kp)",
+      "Feedforward gain (Kf)"
+    ],
+    "correctIndex": 2,
+    "explanation": "A high Proportional gain (Kp) can cause overshooting and oscillations because it generates a large corrective action for any given error, potentially leading to instability if not balanced by other terms.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a PID controller for a robot joint, increasing the Derivative (Kd) term typically has which intended effect?",
+    "options": [
+      "Increases steady-state error",
+      "Increases rise time",
+      "Reduces overshoot and oscillation",
+      "Makes the system respond faster to constant errors"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Derivative term (Kd) responds to the rate of change of the error, providing a damping effect. This helps to reduce overshoot, decrease settling time, and stabilize the system.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In ROS 2, which communication mechanism is best suited for streaming continuous sensor data, such as LiDAR scans or camera images, to multiple subscribers asynchronously?",
+    "options": [
+      "Services",
+      "Actions",
+      "Parameters",
+      "Topics"
+    ],
+    "correctIndex": 3,
+    "explanation": "Topics implement a publish/subscribe pattern, making them ideal for broadcasting continuous, asynchronous data streams to any number of interested nodes without direct one-to-one requests.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to start multiple ROS 2 nodes, set specific parameters for each, and remap topic names consistently every time you test your robot. Which ROS 2 tool is designed for this purpose?",
+    "options": [
+      "ros2 run",
+      "ros2 topic",
+      "ros2 launch",
+      "ros2 bag"
+    ],
+    "correctIndex": 2,
+    "explanation": "ROS 2 launch files provide a declarative way to define and execute complex system configurations, including starting multiple nodes, setting parameters, and managing remappings, all from a single command.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A ROS 2 robot requires a mechanism to request a specific task, such as moving to a waypoint, and receive feedback on its progress, eventually getting a result. Which ROS 2 communication primitive is most appropriate for this pattern?",
+    "options": [
+      "Topics",
+      "Services",
+      "Actions",
+      "Parameters"
+    ],
+    "correctIndex": 2,
+    "explanation": "Actions in ROS 2 are designed for long-running, goal-oriented tasks that require periodic feedback during execution and a final result upon completion, making them suitable for navigation or manipulation goals.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A robotics engineer wants to represent the spatial relationship between a robot's base link, its camera sensor, and a manipulated object in a ROS 2 system. Which concept is specifically used for this purpose to provide a consistent coordinate frame tree?",
+    "options": [
+      "ROS 2 Parameters",
+      "ROS 2 Actions",
+      "ROS 2 Transforms (TF2)",
+      "ROS 2 Services"
+    ],
+    "correctIndex": 2,
+    "explanation": "ROS 2 Transforms (TF2) is a system for keeping track of multiple coordinate frames and transforming points, vectors, and poses between them over time, which is essential for defining spatial relationships between robot components and the environment.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Before deploying a new robot design to hardware, a robotics team wants to test its navigation algorithms in a virtual environment with simulated sensors. Which tool is best suited for creating these simulated worlds and robot models?",
+    "options": [
+      "RViz",
+      "rqt_graph",
+      "Gazebo",
+      "VS Code"
+    ],
+    "correctIndex": 2,
+    "explanation": "Gazebo is a powerful 3D robot simulator that allows for accurate simulation of robots, sensors, and environments, enabling testing of algorithms and designs before hardware deployment.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are simulating a mobile robot in Gazebo and need to add custom behavior for a new sensor that isn't natively supported. How would you integrate this custom sensor's logic into the Gazebo simulation?",
+    "options": [
+      "Modify the Gazebo core source code directly",
+      "Write a custom Gazebo plugin",
+      "Use `ros2 topic pub` for manual data injection",
+      "Run a separate external script that directly manipulates Gazebo's physics engine"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gazebo plugins allow users to extend its functionality by writing custom C++ or Python code to define new sensors, actuators, or robot behaviors that integrate directly with the simulation's physics engine.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A mobile robot failed to navigate a corridor, colliding with a wall. To diagnose this issue, a robotics engineer recorded a ROS 2 bag file during the run. What is the primary benefit of replaying this bag file?",
+    "options": [
+      "To immediately fix the hardware issue on the robot",
+      "To visualize sensor data and robot state offline for detailed analysis",
+      "To automatically generate new navigation parameters using AI",
+      "To remotely control the robot from a different location without network latency"
+    ],
+    "correctIndex": 1,
+    "explanation": "Replaying a ROS 2 bag file allows engineers to reconstruct the robot's state, sensor inputs, and published messages at the time of the failure, enabling detailed offline analysis and visualization to identify the root cause.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After replaying a navigation failure, you observe that the robot's LiDAR readings showed an obstacle, but the planner ignored it, leading to a collision. What is a likely first step to adjust parameters and mitigate this in the future?",
+    "options": [
+      "Increase the maximum speed limit significantly in the global planner",
+      "Decrease the obstacle avoidance distance threshold in the local planner",
+      "Adjust the costmap inflation radius to be larger",
+      "Completely disable the LiDAR sensor for future runs"
+    ],
+    "correctIndex": 2,
+    "explanation": "The costmap inflation radius defines how much space around perceived obstacles is considered occupied or dangerous by the planner. Increasing it would make the robot maintain a greater distance from perceived obstacles, improving avoidance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An autonomous robot needs to understand its surroundings to avoid dynamic obstacles and reach a goal. Which combined set of capabilities is essential for achieving this?",
+    "options": [
+      "File system management, database queries, and web hosting",
+      "Sensor integration, mapping, localization, and path planning",
+      "Natural language processing, sentiment analysis, and machine translation",
+      "User interface design, cloud deployment, and network security"
+    ],
+    "correctIndex": 1,
+    "explanation": "Autonomous robot behavior relies heavily on perception (sensor integration), understanding the environment (mapping), knowing its own position (localization), and finding a collision-free way through it (path planning).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A robot operating in an unknown indoor environment needs to simultaneously build a map and determine its own position within that map. Which technique is specifically designed to address this challenge?",
+    "options": [
+      "Odometry",
+      "Teleoperation",
+      "Simultaneous Localization and Mapping (SLAM)",
+      "Inverse Kinematics"
+    ],
+    "correctIndex": 2,
+    "explanation": "SLAM (Simultaneous Localization and Mapping) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A robot's navigation stack relies on odometry for continuous pose estimation. However, over long distances, the odometry accumulates drift. Which sensor input is most commonly used to correct this drift and improve long-term localization accuracy?",
+    "options": [
+      "Wheel encoders only",
+      "Internal IMU (Inertial Measurement Unit) only",
+      "GPS, LiDAR, or camera features for global localization",
+      "Motor temperature sensors"
+    ],
+    "correctIndex": 2,
+    "explanation": "Odometry drift is a known issue due to cumulative errors. External sensors like GPS (outdoors), LiDAR, or cameras provide environmental features that can be used by localization algorithms to correct this drift and provide accurate global pose estimates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a ROS 2 navigation stack, which component is primarily responsible for calculating a collision-free path for the robot from its current location to a given goal in a known map, considering global obstacles?",
+    "options": [
+      "Costmap",
+      "Localization node",
+      "Global Planner",
+      "Local Planner"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Global Planner calculates the overarching, long-term path from the robot's current position to the goal, taking into account the static map and major obstacles. The Local Planner then handles immediate obstacle avoidance and path following.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are tasked with developing a simulated autonomous robot that can navigate an environment and needs to record all its sensor data and internal state for later analysis and debugging. Which ROS 2 feature would be most crucial for recording this data?",
+    "options": [
+      "ROS 2 Services",
+      "ROS 2 Actions",
+      "ROS 2 Parameters",
+      "ROS 2 Bags (rosbag)"
+    ],
+    "correctIndex": 3,
+    "explanation": "ROS 2 Bags (rosbag) are specifically designed to record and play back ROS 2 topic data, which is essential for logging sensor readings, robot state, and other messages for post-mission analysis and debugging.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When transitioning an autonomous navigation system from simulation to a physical robot, what is a critical first step to ensure accurate real-world performance from camera and LiDAR sensors?",
+    "options": [
+      "Randomly adjust PID gains in the motor controllers",
+      "Perform sensor calibration (e.g., intrinsic, extrinsic)",
+      "Increase the robot's network bandwidth",
+      "Disable all safety checks to speed up testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sensor calibration (e.g., camera intrinsic and extrinsic, LiDAR-IMU calibration) is crucial to ensure that the real-world sensor data accurately reflects the environment and aligns with the robot's coordinate frames, matching expectations from simulation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To accurately combine point cloud data from a LiDAR sensor with image data from a camera, a robotics engineer must first determine the precise 3D transformation between the camera's coordinate frame and the LiDAR's coordinate frame. What is this process called?",
+    "options": [
+      "Intrinsic calibration",
+      "Temporal synchronization",
+      "Extrinsic calibration",
+      "Resolution enhancement"
+    ],
+    "correctIndex": 2,
+    "explanation": "Extrinsic calibration is the process of determining the rigid body transformation (rotation and translation) between two sensors or between a sensor and a robot's base frame. This is essential for accurate sensor fusion, allowing data from different sensors to be combined in a common coordinate system.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A mobile robot is experiencing unreliable localization. Upon inspection, it's found that the timestamps from its IMU and wheel encoders are not perfectly aligned with the LiDAR scans. What is the potential consequence of this timestamp misalignment?",
+    "options": [
+      "Reduced CPU utilization, leading to better efficiency",
+      "Improved battery life due to less processing",
+      "Inaccurate state estimation and degraded sensor fusion performance",
+      "Faster data transfer rates between sensors"
+    ],
+    "correctIndex": 2,
+    "explanation": "Misaligned timestamps lead to inconsistent data where sensor readings corresponding to different moments in time are treated as simultaneous. This significantly degrades the accuracy of state estimation, localization, and sensor fusion algorithms, leading to unreliable robot behavior.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is conducting repeated navigation tests with a new autonomous robot in a simulated environment. To ensure that experiments are comparable, failures can be properly analyzed, and solutions are reproducible, what practice is most crucial?",
+    "options": [
+      "Changing parameters randomly for each test run",
+      "Ensuring repeatable test scenarios and thorough data logging with ROS 2 bags",
+      "Avoiding any safety limits to test the robot's full capabilities",
+      "Only testing in completely novel environments to maximize challenge"
+    ],
+    "correctIndex": 1,
+    "explanation": "Repeatable test scenarios (e.g., fixed starting points, known obstacles) and thorough data logging (e.g., ROS 2 bags, experiment reports) are essential for analyzing failures, comparing different algorithm versions, and reproducing issues for debugging and validation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During hardware testing of a new robotic arm, a safety engineer implements joint position limits and maximum velocity constraints. What is the primary purpose of these safety limits?",
+    "options": [
+      "To improve the robot's aesthetic appearance during operation",
+      "To prevent damage to the robot and injury to personnel working nearby",
+      "To reduce the robot's power consumption for improved efficiency",
+      "To artificially increase the robot's operational speed in complex tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Safety limits on joint positions, velocities, and forces are critical engineering practices to prevent the robot from entering dangerous configurations, damaging itself, its environment, or injuring humans working in its vicinity.",
+    "difficulty": "moderate"
+  }
+]

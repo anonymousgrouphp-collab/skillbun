@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A data scientist completes training a new model and wants to ensure it can be easily deployed and reused. Which of the following is most crucial to create for this purpose, encompassing the trained model, preprocessing logic, and dependencies?",
+    "options": [
+      "Jupyter Notebook",
+      "Git Repository",
+      "Model Artifact",
+      "Data Schema"
+    ],
+    "correctIndex": 2,
+    "explanation": "A model artifact packages the trained model, its preprocessing steps, and all necessary dependencies into a deployable and reproducible unit, making it suitable for serving and sharing. Jupyter notebooks are for experimentation, Git repositories for code versioning, and data schemas describe data structure, not the model itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A team is developing a Python-based ML project. They want to ensure that all developers use the exact same dependencies and versions, and that the project is easily shareable and deployable. Which file is primarily responsible for specifying these exact dependencies for reproducibility?",
+    "options": [
+      "setup.py",
+      "pyproject.toml",
+      "requirements.txt",
+      ".gitignore"
+    ],
+    "correctIndex": 2,
+    "explanation": "`requirements.txt` is the standard file used to specify exact package dependencies and versions for a Python project, ensuring reproducibility across different environments. `setup.py` and `pyproject.toml` are used for project metadata and build configuration, while `.gitignore` specifies files to be ignored by Git.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before starting a new feature branch for an MLOps tool, a developer wants to ensure their local Git repository is completely up-to-date with the remote `main` branch. Which Git command should they use to fetch changes and integrate them into their current branch?",
+    "options": [
+      "git push",
+      "git commit",
+      "git pull",
+      "git add"
+    ],
+    "correctIndex": 2,
+    "explanation": "`git pull` fetches changes from the remote repository and merges them into the current local branch. `git push` sends local commits to the remote, `git commit` records changes to the local repository, and `git add` stages changes for the next commit.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During an ML experiment, a data scientist modifies hyperparameters, retrains a model, and observes different performance metrics. To ensure that this entire process is auditable and reproducible, what aspect of the experiment needs to be meticulously recorded along with the model artifacts?",
+    "options": [
+      "Only the final model accuracy",
+      "Only the training data file name",
+      "The complete lineage including hyperparameters, code version, and dataset version",
+      "The total training time in isolation"
+    ],
+    "correctIndex": 2,
+    "explanation": "For true auditability and reproducibility of ML experiments, it's crucial to record the complete lineage, which includes hyperparameters, the exact code version used, and the specific version of the dataset. This allows others (or oneself in the future) to understand how the model was created and replicate the results. Final accuracy or training time alone are insufficient.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A machine learning engineer uses MLflow to log metrics and parameters during model training. After several runs, they have identified a promising model. What MLflow feature would they use to formally register this model for potential deployment and manage its lifecycle stages (e.g., Staging, Production)?",
+    "options": [
+      "MLflow Projects",
+      "MLflow Tracking",
+      "MLflow Model Registry",
+      "MLflow Models"
+    ],
+    "correctIndex": 2,
+    "explanation": "The MLflow Model Registry is designed for managing the full lifecycle of MLflow Models, including versioning, stage transitions (e.g., Staging, Production), and annotation. MLflow Tracking is for logging experiments, and MLflow Projects define reproducible runs. MLflow Models refer to the format for packaging models, not their lifecycle management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An MLOps team works with large datasets that cannot be stored directly in Git. They need to version these datasets and ensure that anyone cloning the Git repository can easily retrieve the correct version of the data corresponding to a specific commit. Which DVC command is primarily used to retrieve these large data files after cloning a Git repository?",
+    "options": [
+      "dvc add",
+      "dvc push",
+      "dvc pull",
+      "dvc init"
+    ],
+    "correctIndex": 2,
+    "explanation": "`dvc pull` is used to download the data files associated with the DVC-tracked `.dvc` files in the current Git commit. `dvc add` stages data/model files for DVC versioning, `dvc push` uploads them to a DVC remote, and `dvc init` initializes DVC in a repository.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company is implementing a CI/CD pipeline for an ML model. They want to prevent models with significantly degraded performance or data quality issues from reaching staging or production. Which of the following comprehensive validation steps should be automated within the CI/CD pipeline to address these concerns before deployment approval?",
+    "options": [
+      "Only unit tests for the model serving API.",
+      "Only container vulnerability scans.",
+      "Data schema validation, model smoke tests with fresh data, and A/B testing on production traffic.",
+      "Data validation checks, model quality metric evaluations against a baseline, and model inference latency tests."
+    ],
+    "correctIndex": 3,
+    "explanation": "A robust CI/CD pipeline for ML validation requires a combination of checks: Data validation ensures incoming data quality, model quality metric evaluations (e.g., accuracy, precision, recall) against a predefined baseline catch performance degradation, and inference latency tests ensure the model meets service level objectives. Unit tests for API and container scans are important but insufficient for ML-specific validation. A/B testing is typically a post-deployment strategy, not a pre-deployment CI/CD gate.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A developer has built a Python script that uses a trained ML model for predictions. To package this script and its dependencies into a self-contained, portable unit for serving, which technology is most commonly used?",
+    "options": [
+      "pip",
+      "conda",
+      "Docker",
+      "Git"
+    ],
+    "correctIndex": 2,
+    "explanation": "Docker is widely used to package applications and their dependencies into portable containers, making them consistent across different environments for deployment and serving. pip and conda are package managers, and Git is a version control system for code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An MLOps team needs to deploy multiple ML models, each requiring different resources, scaling capabilities, and isolation, as API endpoints. They also need robust self-healing and service discovery. Which orchestration platform is best suited for managing these containerized ML services at scale?",
+    "options": [
+      "Apache Spark",
+      "Hadoop HDFS",
+      "Kubernetes",
+      "AWS S3"
+    ],
+    "correctIndex": 2,
+    "explanation": "Kubernetes is a container orchestration platform that provides robust features for deploying, scaling, and managing containerized applications (like ML model APIs), offering self-healing, service discovery, load balancing, and resource isolation. Spark is for big data processing, HDFS for distributed storage, and S3 for object storage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying an ML model into production, the MLOps team notices that the distribution of incoming feature data has subtly changed over time, potentially impacting model performance. What specific type of monitoring should have flagged this issue?",
+    "options": [
+      "Service health monitoring",
+      "Model quality monitoring",
+      "Data drift monitoring",
+      "Latency monitoring"
+    ],
+    "correctIndex": 2,
+    "explanation": "Data drift monitoring specifically tracks changes in the distribution of input features to a model over time. Service health monitors system uptime, model quality monitors prediction performance, and latency monitors response times. Data drift is the direct cause of this specific problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An MLOps engineer is tasked with building a robust production ML pipeline. They need to ensure data versioning, experiment tracking, automated testing, model serving, and continuous monitoring. Which combination of tools and practices best addresses these requirements comprehensively within a single pipeline architecture?",
+    "options": [
+      "Git for everything, manual model deployment, and periodic data sanity checks.",
+      "DVC for data versioning, MLflow for experiment tracking, GitHub Actions for CI/CD, Docker for serving, and Prometheus for monitoring.",
+      "Only MLflow for tracking, custom scripts for deployment, and basic cloud VM monitoring.",
+      "A Jupyter Notebook-based pipeline, CSV files for data, and direct API calls for model serving."
+    ],
+    "correctIndex": 1,
+    "explanation": "This option integrates dedicated tools for each MLOps component: DVC for data/model versioning, MLflow for experiment tracking, GitHub Actions for CI/CD automation (testing, image builds), Docker for containerizing and serving the model, and Prometheus for monitoring. This provides a comprehensive and robust production ML pipeline. Other options are either incomplete, less robust, or not suitable for production.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A data scientist needs to isolate their Python project's dependencies from other projects on their system. Which Python tool or concept is primarily used to create an isolated environment for installing specific package versions?",
+    "options": [
+      "pip",
+      "Virtual environment (e.g., `venv` or `conda env`)",
+      "Jupyter Notebook",
+      "Git"
+    ],
+    "correctIndex": 1,
+    "explanation": "A virtual environment (like those created by `venv` or `conda env`) provides an isolated space for a Python project to manage its own dependencies without interfering with the system-wide Python installation or other projects. pip is a package installer, Jupyter Notebook is an IDE, and Git is for version control.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A critical aspect of MLOps is ensuring that model training runs are reproducible. What is the primary reason why reproducibility is so important in a production ML environment?",
+    "options": [
+      "To speed up model training time.",
+      "To make it easier to share code with non-technical stakeholders.",
+      "To enable debugging, auditing, and consistent model updates by being able to recreate past results.",
+      "To reduce the storage footprint of model artifacts."
+    ],
+    "correctIndex": 2,
+    "explanation": "Reproducibility is paramount for debugging issues, auditing model decisions, and ensuring consistent behavior when updating models or retraining them in the future. It allows engineers to recreate specific past results, which is essential for diagnosing problems and maintaining reliability. It does not primarily speed up training, simplify sharing with non-technical stakeholders, or reduce storage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a FastAPI-based ML model service using Docker, it's crucial to ensure the service is responsive and healthy. What specific endpoint is commonly implemented in FastAPI services and checked by container orchestrators (like Kubernetes) to determine if the application is ready to serve requests?",
+    "options": [
+      "/predict",
+      "/train",
+      "/health or /ready",
+      "/metrics"
+    ],
+    "correctIndex": 2,
+    "explanation": "Health check endpoints (commonly `/health` or `/ready`) are standard in API services, especially when containerized. Orchestrators use these endpoints to determine if an instance of the application is alive and ready to receive traffic. `/predict` is for inference, `/train` would be for training, and `/metrics` for exposing monitoring data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An MLOps team has deployed a critical real-time ML inference service on a cloud platform. To minimize downtime and ensure business continuity during unexpected issues, they need to establish clear procedures for responding to and resolving incidents. What structured document or process is essential for guiding the team in such situations?",
+    "options": [
+      "A comprehensive feature engineering guide.",
+      "A detailed model card.",
+      "An incident response playbook.",
+      "A data exploration report."
+    ],
+    "correctIndex": 2,
+    "explanation": "An incident response playbook is a structured document that outlines the steps, roles, and responsibilities for responding to and resolving critical incidents in a production system. This is crucial for minimizing downtime and ensuring business continuity for critical services like real-time ML inference. The other options are related to model development or data analysis, not incident management.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An MLOps engineer is using MLflow Model Registry to manage different versions of a model. They have a model version currently in `Staging` and, after successful validation, they want to promote it to `Production`. What action would they take within the MLflow Model Registry to achieve this?",
+    "options": [
+      "Archive the `Staging` model and register a new `Production` model.",
+      "Delete the `Staging` model and retrain a `Production` model.",
+      "Transition the model version's stage from `Staging` to `Production`.",
+      "Export the model as a pickle file and manually deploy it."
+    ],
+    "correctIndex": 2,
+    "explanation": "MLflow Model Registry allows users to transition a model version's stage directly, for example, from `Staging` to `Production`. This is a core feature for managing the model lifecycle within the registry, ensuring that the same model artifact moves through predefined stages. Archiving/deleting and creating new versions, or manual deployment, bypasses the registry's lifecycle management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary goal of monitoring service health for a deployed ML model API?",
+    "options": [
+      "To track the model's accuracy on new data.",
+      "To ensure the API endpoint is accessible and responsive.",
+      "To analyze feature importance.",
+      "To retrain the model on a schedule."
+    ],
+    "correctIndex": 1,
+    "explanation": "Monitoring service health primarily focuses on whether the API endpoint is operational, responsive, and available to serve requests (e.g., checking uptime, latency, error rates). Tracking accuracy is model quality monitoring, analyzing feature importance is model introspection, and retraining is a separate operational task.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a CI/CD pipeline for ML, after new model code is committed, what is a crucial automated step that ensures the model's functionality and performance are still acceptable before considering deployment?",
+    "options": [
+      "Manual review of the commit message.",
+      "Generation of a new Docker image without testing.",
+      "Execution of comprehensive unit tests, data validation, and model smoke tests.",
+      "Immediate deployment to production regardless of test results."
+    ],
+    "correctIndex": 2,
+    "explanation": "A robust CI/CD pipeline for ML includes automated unit tests for code correctness, data validation to check input integrity, and model smoke tests (lightweight inference tests) to ensure basic functionality and identify regressions before further deployment steps. Manual review and immediate deployment without validation are insufficient or risky. Generating an image without testing defeats the purpose of CI.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team uses DVC to manage their datasets and models alongside Git for code. They encounter an issue where a previous model's performance needs to be reproduced exactly, which requires both the specific code version and the exact dataset version used during its training. How can DVC and Git be used together to guarantee this reproducibility?",
+    "options": [
+      "By only checking out the Git commit and assuming the data is globally available.",
+      "By using `git checkout <commit_hash>` and then `dvc pull` to retrieve the corresponding data/model files.",
+      "By storing all data directly in the Git repository for every commit.",
+      "By manually downloading the correct dataset from an external source after checking out the code."
+    ],
+    "correctIndex": 1,
+    "explanation": "DVC files (`.dvc`) are versioned by Git and point to specific data/model versions in a DVC remote. To reproduce a past state, one must first `git checkout` to the desired commit, which retrieves the correct `.dvc` files. Then, `dvc pull` is used to download the data/model content referenced by those `.dvc` files, ensuring complete reproducibility of both code and data. Storing large data in Git is impractical, and manual downloading is error-prone and not reproducible.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Python ML project has several internal modules and CLI scripts. To maintain code quality and catch potential errors early, which type of automated check should be integrated into the development workflow and preferably into CI/CD?",
+    "options": [
+      "Manual code reviews by senior engineers only.",
+      "Unit tests and lint checks.",
+      "Performance benchmarks only.",
+      "Only integration tests with external services."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests verify the correctness of individual components, while lint checks enforce coding style and identify potential issues (like unused variables or syntax errors) without running the code. Both are essential for maintaining code quality and catching errors early, making them suitable for automation in the development workflow and CI/CD. Manual reviews are good but not automated, performance benchmarks are specific tests, and integration tests are higher level.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data science team is preparing a model for production. They are concerned about \"data leakage\" during model training. What is the most common scenario for data leakage in a supervised learning context?",
+    "options": [
+      "Using features that were engineered after the model was deployed.",
+      "Including information in the training data that would not realistically be available at prediction time.",
+      "Splitting the dataset into training and testing sets with a random shuffle.",
+      "Using a large enough dataset for training."
+    ],
+    "correctIndex": 1,
+    "explanation": "Data leakage occurs when information from outside the training dataset, or information that would not be available at inference time, is used to create the model. This leads to overly optimistic performance estimates during development that do not generalize to real-world scenarios. Option A is incorrect as engineered features can be part of training. C and D are generally good practices, not leakage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When working in a Linux environment, a common task for MLOps engineers is to inspect logs or monitor processes. Which command is most frequently used to view the last few lines of a continuously updated log file?",
+    "options": [
+      "ls -l",
+      "grep \"error\" logfile.log",
+      "cat logfile.log",
+      "tail -f logfile.log"
+    ],
+    "correctIndex": 3,
+    "explanation": "`tail -f logfile.log` (or `tail --follow logfile.log`) continuously outputs the last lines of a file as new lines are added, which is essential for monitoring live log files. `ls -l` lists directory contents, `grep` searches for patterns, and `cat` displays the entire file content, which is not suitable for continuous monitoring of large or growing logs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To control costs and efficiently manage resources for ML inference services that experience fluctuating traffic, what cloud deployment strategy is most commonly employed to automatically adjust the number of deployed instances based on demand?",
+    "options": [
+      "Manual scaling",
+      "Infrastructure-as-Code (IaC)",
+      "Autoscaling",
+      "Serverless functions with fixed concurrency"
+    ],
+    "correctIndex": 2,
+    "explanation": "Autoscaling dynamically adjusts the number of deployed instances (e.g., virtual machines, containers) up or down based on predefined metrics like CPU utilization or request queue length. This is crucial for handling fluctuating traffic efficiently and controlling costs for ML inference services. Manual scaling is inefficient, IaC is for provisioning infrastructure, and fixed concurrency serverless functions don't dynamically adjust.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An MLOps team wants to implement a robust CI/CD pipeline for their ML models. They are specifically concerned about preventing \"model degradation\" where a new model version might perform worse than the current production model. What sophisticated validation gate should they integrate into their pipeline before approving a new model for production?",
+    "options": [
+      "Basic linting checks on the Python code.",
+      "A/B testing in a dedicated sandbox environment comparing the new model's performance against the current production model on real-world traffic.",
+      "Only checking if the model artifact size has changed significantly.",
+      "Manually running inference on a small, predefined test set."
+    ],
+    "correctIndex": 1,
+    "explanation": "To directly address model degradation by comparing a new model's performance against the current production model, A/B testing in a controlled environment with real-world traffic is the most robust and sophisticated validation gate. This allows for direct comparison of business metrics and performance before a full rollout. Linting and artifact size checks are insufficient. Manual inference on a small test set is not comprehensive or automated enough for production-grade validation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A data scientist has just completed a series of ML experiments, training several models with different hyperparameters and datasets. To facilitate collaboration and decision-making on which model to promote, what key information should be easily accessible and comparable for each experiment run?",
+    "options": [
+      "The full dataset used for each run.",
+      "Only the final trained model binary.",
+      "Logged metrics, parameters, and references to the specific dataset and code version used.",
+      "A screenshot of the training loss curve."
+    ],
+    "correctIndex": 2,
+    "explanation": "For effective experiment tracking and comparison, it's essential to easily access and compare logged metrics (e.g., accuracy, F1-score), hyperparameters used, and clear references to the specific dataset and code version that produced each model. This comprehensive information allows teams to understand, reproduce, and compare different experiments effectively. The full dataset is too large to display for comparison, the model binary alone lacks context, and a screenshot is not programmatic or auditable.",
+    "difficulty": "moderate"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary characteristic that makes Elixir well-suited for building fault-tolerant real-time applications?",
+    "options": [
+      "Its static typing system",
+      "Its immutability and concurrency model",
+      "Its object-oriented paradigm",
+      "Its reliance on shared memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Elixir's immutability prevents unexpected side effects, and its concurrency model (based on the BEAM and actors) allows for isolated, fault-tolerant processes that communicate via message passing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Mix command is used to create a new Elixir project, including a basic application structure and optionally a supervision tree?",
+    "options": [
+      "mix new",
+      "mix app",
+      "mix project",
+      "mix gen"
+    ],
+    "correctIndex": 0,
+    "explanation": "`mix new` creates a basic Elixir project. For an application with a supervision tree, you would typically use `mix new my_app --sup`. `mix new` is the general command for project creation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Elixir, which operator is commonly used for pattern matching against the head and tail of a list?",
+    "options": [
+      "++",
+      "||",
+      "|",
+      "="
+    ],
+    "correctIndex": 2,
+    "explanation": "The `|` operator is used within list pattern matching to separate the head (first element) from the tail (remaining elements) of a list, for example, `[head | tail] = [1, 2, 3]`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'immutability' primarily mean in the context of Elixir data structures?",
+    "options": [
+      "Variables cannot be reassigned after their initial declaration.",
+      "Data structures, once created, cannot be changed in place; operations return new copies.",
+      "Variables are globally scoped and constant.",
+      "Variables are only accessible within a single process."
+    ],
+    "correctIndex": 1,
+    "explanation": "In Elixir, data structures are immutable. Any 'modification' operation on a data structure, like adding an element to a list or updating a map, returns a new version of the data structure, leaving the original unchanged.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing an Elixir application, which interactive shell is typically used for experimenting with code, inspecting modules, and debugging?",
+    "options": [
+      "iex",
+      "erl",
+      "mix run",
+      "elixir"
+    ],
+    "correctIndex": 0,
+    "explanation": "`iex` (Interactive Elixir) is the primary interactive shell for Elixir development, allowing developers to execute code, test functions, inspect variables, and debug applications directly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes a 'process' in Elixir?",
+    "options": [
+      "A lightweight thread managed by the operating system.",
+      "An isolated execution unit that communicates via message passing.",
+      "A shared memory segment used for concurrent computation.",
+      "A module responsible for handling HTTP requests."
+    ],
+    "correctIndex": 1,
+    "explanation": "Elixir processes are lightweight, isolated execution units that communicate via asynchronous message passing, adhering to the actor model. They are managed by the BEAM, not directly by the OS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "The 'BEAM' is the virtual machine that runs Elixir code. What is one of its core strengths relevant to Elixir's use cases?",
+    "options": [
+      "High-performance single-threaded execution.",
+      "Strong static type checking at compile time.",
+      "Built-in support for concurrency, distribution, and fault tolerance.",
+      "Direct memory access for low-level optimizations."
+    ],
+    "correctIndex": 2,
+    "explanation": "The BEAM (Erlang Virtual Machine) is renowned for its capabilities in concurrency, distribution, and fault tolerance, which Elixir leverages heavily for its target applications like real-time systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are building a stateful component in an Elixir application, such as a counter or a cache. Which OTP behavior is most appropriate for managing its state and handling requests?",
+    "options": [
+      "Task",
+      "Agent",
+      "GenServer",
+      "Supervisor"
+    ],
+    "correctIndex": 2,
+    "explanation": "`GenServer` is the go-to OTP behavior for building robust, stateful server processes that handle synchronous and asynchronous requests reliably. `Agent` is a simpler wrapper for state, `Task` for one-off computations, and `Supervisor` for managing child processes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Phoenix application, what is the primary purpose of an Ecto Changeset?",
+    "options": [
+      "To define the database schema for a table.",
+      "To track changes to a struct and validate them before persistence.",
+      "To build complex database queries.",
+      "To manage database migrations."
+    ],
+    "correctIndex": 1,
+    "explanation": "An Ecto Changeset is used to filter, cast, and validate data changes before they are applied to an Ecto struct and persisted to the database. It provides a robust mechanism for ensuring data integrity and handling errors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When writing tests for a Phoenix LiveView component, which framework and assertion type are commonly used to simulate user interactions and check rendered content?",
+    "options": [
+      "ExUnit with assert_receive.",
+      "ExUnit with render_and_assert_times.",
+      "Wallaby with assert_title.",
+      "Phoenix.LiveViewTest with render_click and assert_has."
+    ],
+    "correctIndex": 3,
+    "explanation": "`Phoenix.LiveViewTest` provides specialized utilities like `render_click`, `assert_has`, `assert_patch`, etc., for effectively testing LiveView components by simulating events and inspecting the rendered HTML diffs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider an Elixir application where you need to ensure that a critical process, such as a database connection pool, is always running. Which OTP construct would you use to automatically restart this process if it crashes?",
+    "options": [
+      "Task",
+      "Agent",
+      "Supervisor",
+      "Registry"
+    ],
+    "correctIndex": 2,
+    "explanation": "A `Supervisor` is designed to monitor child processes and restart them according to a defined strategy (e.g., `one_for_one`, `one_for_all`) if they terminate unexpectedly, thereby ensuring fault tolerance and application resilience.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to send real-time updates to connected clients in a Phoenix application. Which core component would be utilized for this functionality?",
+    "options": [
+      "Phoenix Routes",
+      "Phoenix Controllers",
+      "Phoenix Channels",
+      "Phoenix Views"
+    ],
+    "correctIndex": 2,
+    "explanation": "Phoenix Channels provide the WebSocket-based infrastructure for real-time communication between the server and connected clients, enabling features like chat, notifications, and live dashboards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To inspect the internal state, processes, and supervision trees of a running Elixir application in a graphical interface, which tool from the Erlang OTP ecosystem is most useful?",
+    "options": [
+      "mix deps.get",
+      "IEx.pry",
+      "observer",
+      "Logger"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `observer` tool (part of Erlang/OTP) provides a graphical interface to monitor the BEAM virtual machine, allowing inspection of processes, memory usage, applications, and supervision trees, which is invaluable for debugging and monitoring.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Elixir, what is 'pattern matching' primarily used for?",
+    "options": [
+      "Defining regular expressions for string manipulation.",
+      "Destructuring data structures and controlling function execution flow.",
+      "Creating design patterns for object-oriented programming.",
+      "Matching URLs to controller actions in Phoenix."
+    ],
+    "correctIndex": 1,
+    "explanation": "Pattern matching is a fundamental feature in Elixir (and Erlang) used to destructure data, assign values, and define distinct function clauses based on the shape or value of arguments, thereby controlling execution flow in a declarative way.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an Elixir/Phoenix application, the concept of 'Contexts' is encouraged. What is the main benefit of using contexts?",
+    "options": [
+      "To define global variables accessible throughout the application.",
+      "To group related business logic and data access, creating clear boundaries.",
+      "To isolate UI components from server-side logic.",
+      "To implement dependency injection for easier testing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Contexts in Phoenix are modules that encapsulate a specific domain or bounded context, providing a public API for interacting with that part of the application. This promotes maintainability, clear separation of concerns, and reduces coupling.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have a critical function that transforms data, and you want to ensure its correctness across various inputs, including edge cases. Which testing approach would be most effective for this scenario beyond simple unit tests?",
+    "options": [
+      "Integration testing",
+      "Property-based testing",
+      "End-to-end testing",
+      "Manual testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Property-based testing (using libraries like StreamData or PropCheck) is excellent for generating diverse inputs and testing general properties of a function, thereby uncovering edge cases that might be missed by example-based unit tests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying an Elixir/Phoenix application to production, which of the following is the most recommended way to package your application for a self-contained, easily deployable artifact?",
+    "options": [
+      "Copying the entire mix project folder directly.",
+      "Using mix archive.install hex phx_new.",
+      "Creating a 'release' using mix release.",
+      "Compiling to a single executable escript."
+    ],
+    "correctIndex": 2,
+    "explanation": "`mix release` generates a self-contained, pre-compiled package of your application and its dependencies, including the Erlang runtime, making it ideal for production deployments without requiring Mix or Erlang to be installed on the target system.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical GenServer processes sensitive financial transactions. If an unhandled exception occurs during its handle_call callback, what is the default behavior initiated by its supervisor (assuming a one_for_one strategy)?",
+    "options": [
+      "The GenServer logs the error and continues processing.",
+      "The GenServer enters a paused state, awaiting manual intervention.",
+      "The GenServer crashes, and its supervisor restarts it.",
+      "The entire application halts immediately."
+    ],
+    "correctIndex": 2,
+    "explanation": "When a GenServer process crashes due to an unhandled exception, its supervisor, if configured with a strategy like `one_for_one`, will detect the termination and attempt to restart the crashed child process, fulfilling the 'let it crash' philosophy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a LiveView component that displays a list of items. Users should be able to click an 'Edit' button next to each item, which then replaces that item's display with an edit form. How is this typically handled in LiveView without a full page reload?",
+    "options": [
+      "By navigating to a new Phoenix Controller route for editing.",
+      "By using JavaScript to hide the display and show the form.",
+      "By defining phx-click events that update the LiveView's socket assigns, re-rendering the specific item.",
+      "By embedding a separate Phoenix Controller action for each item."
+    ],
+    "correctIndex": 2,
+    "explanation": "In LiveView, interactive elements use `phx-click` (or similar `phx-` attributes) to send events to the server. The LiveView process receives these, updates its `@assigns` (state), and then LiveView automatically re-renders only the changed parts of the DOM, updating the specific item's display.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is 'hot-code loading' a significant feature of the BEAM for Elixir/Phoenix applications, especially in production environments?",
+    "options": [
+      "It allows developers to deploy code changes without stopping the running application.",
+      "It automatically optimizes code for faster execution during runtime.",
+      "It enables automatic code generation based on database schemas.",
+      "It encrypts code before deployment for security."
+    ],
+    "correctIndex": 0,
+    "explanation": "Hot-code loading allows new versions of modules to be introduced into a running system without interrupting its operation. This is crucial for applications requiring high availability, as it enables zero-downtime deployments and maintenance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Elixir application uses Plug.Session for session management. What is the most crucial security consideration to protect session data, especially if sensitive information is stored there?",
+    "options": [
+      "Using a long, randomly generated `secret_key_base` and ensuring HTTPS is enforced.",
+      "Storing the `secret_key_base` directly in the repository for easy access.",
+      "Disabling session storage entirely.",
+      "Manually rotating the `secret_key_base` every request."
+    ],
+    "correctIndex": 0,
+    "explanation": "A strong, randomly generated `secret_key_base` is essential for signing and encrypting session data. Additionally, enforcing HTTPS ensures that session cookies are transmitted securely over the network, preventing interception and tampering.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An Elixir application is experiencing intermittent performance degradation in production, but logs aren't revealing the root cause. Which advanced observability technique would be most effective for tracing function calls across multiple processes and identifying bottlenecks?",
+    "options": [
+      "Increasing the log level to debug for all modules.",
+      "Implementing distributed tracing with a tool like OpenTelemetry.",
+      "Relying solely on CPU and memory usage graphs.",
+      "Writing more unit tests for performance-critical sections."
+    ],
+    "correctIndex": 1,
+    "explanation": "Distributed tracing (e.g., with OpenTelemetry) allows you to visualize the flow of requests and operations across different services and processes, providing granular insights into latency, errors, and bottlenecks that simple logging or resource monitoring might miss.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are designing a system that requires a single, globally accessible instance of a resource (e.g., a rate limiter or a unique ID generator) across your distributed Elixir cluster. Which OTP pattern, combined with name registration, is the most robust way to achieve this while maintaining fault tolerance?",
+    "options": [
+      "Using a plain GenServer and passing its PID around.",
+      "Using Registry to map names to PIDs, but with a one_for_all supervisor strategy.",
+      "Implementing a GenServer supervised by a Supervisor and registering it globally using {:global, :my_resource}.",
+      "Storing the resource in an ETS table accessible by all nodes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Registering a supervised GenServer globally using `{:global, :name}` ensures that there's one logical instance across the cluster, and if the process crashes, the supervisor will restart it, and global registration will ensure it's re-registered correctly and consistently across all connected nodes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are building a system where a GenServer needs to perform a long-running, CPU-intensive computation. How would you prevent this computation from blocking the GenServer's message loop and affecting its responsiveness to other requests, while still allowing the GenServer to manage the computation's state and outcome?",
+    "options": [
+      "Increase the GenServer's priority.",
+      "Perform the computation directly within handle_call, accepting the blocking behavior.",
+      "Spawn a Task (or another process) to handle the computation and send the result back to the GenServer when done.",
+      "Store the computation state in an Agent and have a separate process poll it."
+    ],
+    "correctIndex": 2,
+    "explanation": "The `GenServer`'s message loop should remain non-blocking. For long-running operations, spawn a separate `Task` (or a dedicated process) to perform the work. The `Task` can then send a message with the result back to the `GenServer` upon completion, allowing the `GenServer` to remain responsive in the interim.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When dealing with potential deadlocks or indefinite waits in a distributed Elixir system, especially involving GenServer calls or synchronous Phoenix.PubSub operations, what is a crucial practice to implement?",
+    "options": [
+      "Increasing the BEAM scheduler count.",
+      "Ensuring all GenServer.call and similar blocking operations specify a timeout option.",
+      "Relying on automatic garbage collection to clear hung processes.",
+      "Using Task.async for all operations."
+    ],
+    "correctIndex": 1,
+    "explanation": "Synchronous calls like `GenServer.call` or `Phoenix.PubSub.broadcast_sync` can block indefinitely if the target process doesn't respond. Specifying a `timeout` (e.g., `GenServer.call(pid, :message, 5000)`) is essential for building resilient systems, allowing the calling process to recover or retry after a specified duration rather than hanging indefinitely.",
+    "difficulty": "hard"
+  }
+]

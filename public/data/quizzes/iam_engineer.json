@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary purpose of an IAM system?",
+    "options": [
+      "To manage network infrastructure devices.",
+      "To secure physical access to data centers.",
+      "To manage and control who has access to what resources.",
+      "To provide email and communication services."
+    ],
+    "correctIndex": 2,
+    "explanation": "The core function of an Identity and Access Management (IAM) system is to manage digital identities and control their access to various resources across an organization.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes Single Sign-On (SSO)?",
+    "options": [
+      "Requiring users to log in multiple times for different applications.",
+      "A system that allows a user to log in once and gain access to all systems without being prompted for additional credentials.",
+      "A method to enforce strict password complexity rules.",
+      "A security measure that encrypts all user data at rest."
+    ],
+    "correctIndex": 1,
+    "explanation": "Single Sign-On (SSO) streamlines the authentication process, allowing users to authenticate once with a central identity provider and then access multiple applications or services without re-entering credentials.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does Multi-Factor Authentication (MFA) primarily aim to enhance?",
+    "options": [
+      "System performance.",
+      "User convenience.",
+      "Security of user authentication.",
+      "Data storage capacity."
+    ],
+    "correctIndex": 2,
+    "explanation": "MFA adds an extra layer of security by requiring users to provide two or more verification factors to gain access to a resource, significantly reducing the risk of unauthorized access even if one factor is compromised.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of IAM, what does RBAC stand for?",
+    "options": [
+      "Real-time Backup and Control.",
+      "Role-Based Access Control.",
+      "Resource-Bound Application Compliance.",
+      "Remote Binary Access Channel."
+    ],
+    "correctIndex": 1,
+    "explanation": "RBAC, or Role-Based Access Control, is an access control model where permissions are associated with roles, and users are assigned to roles, thereby inheriting the permissions of that role.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which IAM component is responsible for granting or denying access based on policies?",
+    "options": [
+      "Identity Provider (IdP).",
+      "Access Management Engine.",
+      "User Directory.",
+      "Password Vault."
+    ],
+    "correctIndex": 1,
+    "explanation": "The Access Management Engine, sometimes part of an Access Gateway or Policy Enforcement Point, evaluates policies and determines whether a user's request to access a resource should be granted or denied. The IdP authenticates the user, and the User Directory stores identities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is version control important for an IAM Engineer's daily workflow?",
+    "options": [
+      "To automatically deploy IAM changes to production.",
+      "To track and manage changes to IAM policies, configurations, and scripts over time.",
+      "To encrypt sensitive IAM data.",
+      "To monitor IAM system performance metrics."
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems like Git are crucial for IAM Engineers to track changes, collaborate, revert to previous versions if issues arise, and maintain an audit trail for all IAM-related code, policies, and configurations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a key benefit of identity lifecycle automation?",
+    "options": [
+      "Increased manual intervention for account management.",
+      "Reduced cost and improved efficiency in managing user accounts from creation to deprovisioning.",
+      "Enhanced physical security of data centers.",
+      "Greater complexity in auditing user access."
+    ],
+    "correctIndex": 1,
+    "explanation": "Identity lifecycle automation streamlines the processes of provisioning, deprovisioning, and updating user accounts across various systems, leading to reduced manual effort, lower costs, and improved security posture.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company needs to manage access for external contractors without creating accounts in their primary directory and while allowing the contractors to use their existing corporate credentials from their own organizations. Which IAM pattern would be most suitable?",
+    "options": [
+      "Role-Based Access Control (RBAC).",
+      "Multi-Factor Authentication (MFA).",
+      "Identity Federation.",
+      "Privileged Access Management (PAM)."
+    ],
+    "correctIndex": 2,
+    "explanation": "Identity Federation allows users from one domain (e.g., the contractor's organization) to securely access resources in another domain (the company) using their existing credentials, without requiring account creation in the target domain. RBAC is for authorization, MFA for stronger authentication, and PAM for privileged accounts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new role-based access control (RBAC) system is being designed. What is a key challenge in implementing an effective RBAC model?",
+    "options": [
+      "Ensuring all users have unique passwords.",
+      "Accurately defining roles and mapping them to appropriate permissions.",
+      "Integrating with a password manager solution.",
+      "Deploying the system on a cloud infrastructure."
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary challenge in RBAC implementation is the complex task of accurately defining roles that reflect organizational functions and then precisely mapping the minimal necessary permissions to each role to avoid over-privileging or under-privileging users.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When implementing MFA, what is a crucial consideration to ensure user adoption and security?",
+    "options": [
+      "Choosing the most complex authentication method available.",
+      "Providing multiple, user-friendly MFA options while maintaining strong security.",
+      "Requiring users to change their MFA method daily.",
+      "Limiting MFA to only highly privileged accounts."
+    ],
+    "correctIndex": 1,
+    "explanation": "To balance security and user experience, it's crucial to offer diverse, user-friendly MFA options (e.g., authenticator apps, FIDO2 keys, push notifications) that cater to different user needs while ensuring the chosen methods provide robust security. Limiting MFA to only privileged accounts is a security risk, and daily changes or overly complex methods hinder adoption.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An organization wants to automatically provision user accounts into various applications upon hiring and deprovision them upon termination. Which IAM capability is central to this requirement?",
+    "options": [
+      "Access Reviews.",
+      "Single Sign-On (SSO).",
+      "Identity Lifecycle Management (ILM).",
+      "Adaptive Authentication."
+    ],
+    "correctIndex": 2,
+    "explanation": "Identity Lifecycle Management (ILM) specifically deals with automating the entire lifecycle of a user identity, including provisioning accounts to target systems when a user joins, updating attributes, and deprovisioning when they leave.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical server requires administrative access to be highly restricted and monitored, with sessions recorded for auditing purposes. Which IAM capability is specifically designed for this?",
+    "options": [
+      "Role-Based Access Control (RBAC).",
+      "Single Sign-On (SSO).",
+      "Identity Federation.",
+      "Privileged Access Management (PAM)."
+    ],
+    "correctIndex": 3,
+    "explanation": "Privileged Access Management (PAM) systems are designed to secure, manage, and monitor privileged accounts and access, often including features like just-in-time access, session recording, and credential vaulting to reduce the risk associated with high-level access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why are regular access reviews essential in maintaining a strong IAM posture?",
+    "options": [
+      "To simplify the user login process.",
+      "To ensure user passwords are changed frequently.",
+      "To verify that users still have appropriate access levels and to remove unnecessary privileges.",
+      "To generate new identity tokens for all users."
+    ],
+    "correctIndex": 2,
+    "explanation": "Regular access reviews (or certification campaigns) are critical for validating that users' current access rights align with their job functions, identifying and remediating excessive or stale permissions, and supporting compliance requirements.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A policy needs to grant access to resources based on attributes like 'department=HR' and 'clearance_level=TopSecret'. Which access control model is best suited for this dynamic requirement?",
+    "options": [
+      "Discretionary Access Control (DAC).",
+      "Mandatory Access Control (MAC).",
+      "Role-Based Access Control (RBAC).",
+      "Attribute-Based Access Control (ABAC)."
+    ],
+    "correctIndex": 3,
+    "explanation": "Attribute-Based Access Control (ABAC) is designed to handle dynamic and fine-grained authorization requirements by evaluating policies based on a combination of attributes of the user, resource, environment, and action. RBAC relies on predefined roles, which can be less flexible for highly dynamic scenarios.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "While debugging an access issue, an IAM Engineer finds that a user is unexpectedly denied access to a resource despite appearing to have the correct role. What is a common first step in diagnosing such a problem?",
+    "options": [
+      "Immediately reset the user's password.",
+      "Re-install the entire IAM system.",
+      "Review the user's effective permissions and the applied access policies in detail.",
+      "Assign the user to an 'admin' role temporarily."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most logical first step is to investigate the actual permissions granted to the user and how the relevant policies are evaluated, as discrepancies between intended and effective permissions are a common cause of unexpected access denials. Resetting passwords or re-installing is premature, and assigning admin roles is a security risk.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new IAM policy, what type of testing should be prioritized to ensure it doesn't inadvertently lock out legitimate users or grant excessive access?",
+    "options": [
+      "Performance testing.",
+      "Stress testing.",
+      "Unit and integration testing, focusing on access validation.",
+      "User interface (UI) testing."
+    ],
+    "correctIndex": 2,
+    "explanation": "Unit and integration testing, specifically focusing on validating access against defined requirements for various user roles and scenarios, is crucial to catch unintended access issues (both over-privileging and under-privileging) before deployment. Performance and stress testing are important but not the primary concern for correctness of access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying an IAM solution, what type of monitoring is crucial for detecting anomalous access patterns or potential security breaches?",
+    "options": [
+      "Server uptime monitoring.",
+      "Disk space utilization monitoring.",
+      "Identity provider audit logs and security event monitoring.",
+      "Network bandwidth monitoring."
+    ],
+    "correctIndex": 2,
+    "explanation": "Monitoring identity provider audit logs, access logs, and security events is paramount for detecting suspicious activities, failed login attempts, unauthorized access attempts, and other anomalous patterns that could indicate a security breach or policy violation within the IAM system.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When handing off an IAM solution to an operations team, what type of documentation is most critical for their ongoing support?",
+    "options": [
+      "Marketing brochures of the IAM product.",
+      "Detailed runbooks for common operational tasks, troubleshooting guides, and system architecture diagrams.",
+      "The full source code repository of the IAM product.",
+      "Historical meeting minutes from the project design phase."
+    ],
+    "correctIndex": 1,
+    "explanation": "For operations teams, practical, actionable documentation like runbooks (step-by-step procedures), troubleshooting guides for common issues, and clear architecture diagrams are essential for efficient day-to-day support, incident response, and system maintenance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company uses a cloud-based identity provider (IdP) for SSO to multiple SaaS applications. What is the standard protocol typically used for this federation?",
+    "options": [
+      "FTP.",
+      "SNMP.",
+      "SAML or OIDC (OpenID Connect).",
+      "SMTP."
+    ],
+    "correctIndex": 2,
+    "explanation": "SAML (Security Assertion Markup Language) and OpenID Connect (OIDC, built on OAuth 2.0) are the dominant industry standards for enabling secure identity federation and Single Sign-On (SSO) between an identity provider and various service providers (SaaS applications).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In an enterprise environment, what is a primary constraint or challenge when integrating a new application with an existing IAM system?",
+    "options": [
+      "The availability of high-speed internet.",
+      "Ensuring the new application supports the existing IAM protocols and schemas, or building connectors for it.",
+      "Deciding on the color scheme of the application's user interface.",
+      "Recruiting enough end-users to test the application."
+    ],
+    "correctIndex": 1,
+    "explanation": "A significant challenge is ensuring compatibility between the new application and the existing IAM system. This often involves checking if the application supports standard IAM protocols (like SAML, OIDC, SCIM) and if its identity schema can be mapped to the enterprise's identity store, or developing custom connectors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A complex ABAC policy is being designed for a multi-tenant application where access to specific data records depends on the user's organizational unit, their project role, and the sensitivity tag of the data itself. What is the primary challenge in ensuring the policy is both effective and maintainable?",
+    "options": [
+      "Ensuring the policy can be written in a human-readable language.",
+      "Managing the combinatorial explosion of attributes and conditions, leading to complex policy logic that is hard to audit, test, and update.",
+      "Limiting the number of attributes used to only two per policy.",
+      "Integrating with a simple LDAP directory."
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary challenge with complex ABAC policies is the combinatorial explosion of attributes and conditions. As the number of attributes and their possible values grow, the policy logic becomes extremely intricate, making it difficult to write, verify for correctness, audit for security gaps, and maintain over time.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When deciding between implementing fine-grained authorization within an application versus leveraging an external authorization service like an Identity Gateway, what is a significant architectural tradeoff to consider?",
+    "options": [
+      "The choice between using HTTP or HTTPS for communication.",
+      "The trade-off between tighter coupling with application logic (internal) versus centralized policy management and scalability (external), potentially introducing network latency.",
+      "The preference for relational databases over NoSQL databases for storing user data.",
+      "The decision to use Docker containers versus virtual machines for deployment."
+    ],
+    "correctIndex": 1,
+    "explanation": "Implementing authorization internally leads to tighter coupling, potential duplication of policy logic across applications, and makes centralized policy changes difficult. An external authorization service (like an Identity Gateway or Policy Decision Point) centralizes policy management, offers better scalability and consistency, but introduces a network hop, potentially adding latency and a single point of failure if not designed resiliently.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An IAM Engineer is tasked with improving the reliability of a critical SSO service. What is a key design principle to implement to mitigate the impact of a single point of failure in the identity provider?",
+    "options": [
+      "Use a single, powerful server for the IdP.",
+      "Implement geo-redundancy and high availability for the IdP infrastructure.",
+      "Reduce the number of applications integrated with SSO.",
+      "Disable logging on the IdP to reduce overhead."
+    ],
+    "correctIndex": 1,
+    "explanation": "To mitigate a single point of failure in a critical service like an IdP, geo-redundancy (deploying across multiple geographically separated data centers) and high availability (clustering, load balancing) are essential design principles. This ensures that if one instance or region fails, others can take over seamlessly, maintaining service continuity.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A large enterprise is migrating from an on-premise Active Directory to a cloud-based identity solution. During the migration, a new identity synchronization tool is introduced. What is the most critical quality assurance measure to prevent regression failures related to identity attributes and access entitlements?",
+    "options": [
+      "Conducting a visual inspection of a few user accounts post-migration.",
+      "Performing comprehensive automated end-to-end tests for critical business applications and identity lifecycle workflows, validating attributes and access.",
+      "Relying solely on the vendor's pre-migration readiness report.",
+      "Simply checking if users can log in to their email after migration."
+    ],
+    "correctIndex": 1,
+    "explanation": "The most critical measure is comprehensive automated end-to-end testing. This involves not just basic login checks, but validating that all critical user attributes are correctly synchronized, and, crucially, that access entitlements across various applications (especially business-critical ones) remain functional and correct for different user types. This prevents subtle but impactful regression failures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are leading the design of an IAM system for a global enterprise. The system must support various authentication methods, comply with different regional data privacy regulations (e.g., GDPR, CCPA), and integrate with dozens of legacy applications. Beyond technical implementation, what is the most significant strategic consideration for long-term lifecycle ownership of such a complex system?",
+    "options": [
+      "Ensuring the system has a visually appealing user interface.",
+      "Establishing a clear governance framework, including roles, responsibilities, policy management processes, and a roadmap for continuous compliance and adaptation.",
+      "Prioritizing the fastest possible deployment of all integrations.",
+      "Limiting the system to only one authentication method for simplicity."
+    ],
+    "correctIndex": 1,
+    "explanation": "For a global enterprise IAM system with complex regulatory and integration requirements, establishing a robust governance framework is paramount for long-term ownership. This includes defining roles, responsibilities, clear policy management processes, regular audits, and a strategic roadmap to address evolving compliance, technology, and business needs. Technical implementation is one aspect, but governance ensures its ongoing effectiveness, compliance, and maintainability.",
+    "difficulty": "hard"
+  }
+]

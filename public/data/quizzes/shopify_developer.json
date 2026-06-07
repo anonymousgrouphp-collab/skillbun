@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A store owner wants to quickly change the arrangement of product images on their product pages across the entire store. Which area of the Shopify admin would they most likely use to achieve this without writing any code?",
+    "options": [
+      "Settings > Files",
+      "Online Store > Themes > Customize",
+      "Products > All Products > Edit Product",
+      "Apps > App settings"
+    ],
+    "correctIndex": 1,
+    "explanation": "The \"Online Store > Themes > Customize\" section allows visual editing of theme sections, including product page layouts, across the entire store without direct code changes. Options A, C, and D are for file management, individual product editing, or app configurations, respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A new Shopify merchant wants to offer free shipping for orders over $50 to customers in the United States. Where would they configure this setting in the Shopify admin?",
+    "options": [
+      "Settings > Shipping and delivery > General shipping rates",
+      "Discounts > Create discount > Free shipping",
+      "Products > Shipping > Edit shipping",
+      "Settings > Markets > United States"
+    ],
+    "correctIndex": 0,
+    "explanation": "Shipping rates, including conditional free shipping based on order value, are configured under \"Settings > Shipping and delivery > General shipping rates.\" Discounts can offer free shipping, but the core shipping zone and rate logic is in Shipping & Delivery. Markets define regions but not the rates themselves.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to display a product's vendor name only if it is different from the shop's name. Which Liquid code snippet correctly implements this logic within a product template?",
+    "options": [
+      "{% if product.vendor != shop.name %}{{ product.vendor }}{% endif %}",
+      "{{ product.vendor | unless shop.name }}",
+      "{% if shop.vendor_name_match == false %}{{ product.vendor }}{% endif %}",
+      "{% unless product.vendor == shop.name %}{{ product.vendor }}{% endunless %}"
+    ],
+    "correctIndex": 3,
+    "explanation": "The `unless` Liquid tag is used to execute a block of code if the given condition is false, which is equivalent to `if not`. So, `{% unless product.vendor == shop.name %}` will display the vendor if it is NOT equal to the shop name. Option A is also functionally correct but D demonstrates a more concise Liquid approach for this specific inverse condition.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A client wants to add a new \"Trust Badges\" section to their product pages that can be managed directly from the theme customizer. This section should allow the merchant to add multiple badge images and descriptive text. What is the most appropriate approach for a developer to implement this?",
+    "options": [
+      "Create a new snippet and hardcode the badges into `product-template.liquid`.",
+      "Use an existing app that offers trust badge functionality.",
+      "Develop a new theme section with schema settings for image pickers and text inputs, then include it in `product.liquid`.",
+      "Add metafields for each trust badge image and text, then render them in `product-template.liquid`."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a new theme section with schema settings allows the merchant to easily manage multiple badges (using blocks within the section) and their content directly from the theme customizer without code, fulfilling the client's requirement for easy management. Snippets would require code edits, apps might be overkill or less customizable, and metafields are suitable for specific data points but less ideal for a fully customizable section with multiple repeating elements like this.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a reusable content block within a Shopify theme section, which Liquid object defines the settings for that specific block instance?",
+    "options": [
+      "`section.settings`",
+      "`block.settings`",
+      "`template.settings`",
+      "`shop.settings`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Within a theme section, individual blocks have their own configurable settings defined by `block.settings` in Liquid. `section.settings` refers to the overall section's settings, while `template.settings` and `shop.settings` are not standard Liquid objects for this context.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A merchant wants to add a unique \"Estimated Delivery Date\" to specific products, which varies based on product type. They also want to display this information prominently on the product page. What is the most efficient way to implement this while allowing the merchant to easily update the dates?",
+    "options": [
+      "Hardcode the delivery dates directly into each product's description in the rich text editor.",
+      "Create a product metafield of type \"date\" or \"single line text\" and display it in the product template.",
+      "Use an app that manages shipping estimates and integrates with the product page.",
+      "Add a separate \"Delivery Information\" section to the theme, manually updated via theme customizer for each product."
+    ],
+    "correctIndex": 1,
+    "explanation": "Product metafields are designed for storing unique, structured data per product. By creating a metafield for \"Estimated Delivery Date,\" the merchant can easily update it per product in the admin, and the theme can dynamically display it. Hardcoding is not scalable, an app might be overkill for just one field, and a theme section isn't inherently tied to individual product data unless it leverages metafields.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Shopify developer is building a custom app that needs to automatically update inventory levels for products in the store whenever an item is sold through an external channel. Which Shopify API and mechanism should the developer primarily use for receiving real-time sales notifications from Shopify and then updating inventory?",
+    "options": [
+      "Storefront API for sales notifications, and AJAX API for inventory updates.",
+      "Admin API webhooks for sales notifications, and Admin API REST/GraphQL for inventory updates.",
+      "GraphQL Storefront API for sales, and REST Storefront API for inventory.",
+      "Shopify Flow for sales, and Script Editor app for inventory."
+    ],
+    "correctIndex": 1,
+    "explanation": "Admin API webhooks (specifically the `orders/create` or `fulfillments/create` webhook) are the correct way to receive real-time notifications about sales events in a Shopify store. To update inventory, the Admin API (either REST or GraphQL) should be used, typically the `ProductVariant` or `InventoryLevel` resources, as inventory management is an administrative task. Storefront API is for customer-facing operations, and AJAX API is for theme-level client-side interactions. Shopify Flow and Script Editor are for automation/custom logic *within* Shopify, not external app integration for inventory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Shopify store is experiencing slow loading times, specifically identified by a low Largest Contentful Paint (LCP) score on product pages. Upon inspection, large, unoptimized product images are found to be the primary culprit. What is the most effective immediate action to improve LCP without a complete theme overhaul?",
+    "options": [
+      "Implement lazy loading for all images on the page.",
+      "Reduce the number of sections on the product page.",
+      "Use Shopify's built-in image CDN with appropriate `img` `sizes` and `srcset` attributes for responsive images.",
+      "Embed product videos instead of static images."
+    ],
+    "correctIndex": 2,
+    "explanation": "Shopify's image CDN automatically optimizes and serves images in appropriate sizes and formats (like WebP). Using `sizes` and `srcset` attributes ensures the browser loads the most suitable image size for the user's viewport, significantly improving LCP for image-heavy pages. Lazy loading helps overall page load but the LCP image needs to load quickly. Reducing sections might help but isn't directly addressing the image problem. Videos are typically heavier than images.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before handing off a completed Shopify store to a client, which of the following is crucial to provide for ongoing client management and support?",
+    "options": [
+      "A list of all CSS classes used in the theme.",
+      "A detailed breakdown of all Liquid objects and filters utilized.",
+      "Handoff documentation including theme customizations, app configurations, and a guide for common admin tasks.",
+      "The complete Git repository for the theme."
+    ],
+    "correctIndex": 2,
+    "explanation": "Handoff documentation is essential for clients to understand how to manage their store, covering customizations, app settings, and instructions for common tasks. While the Git repository and technical details might be useful for another developer, they are not typically what a non-technical client needs for daily operations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During the QA phase for a new Shopify theme, a developer discovers that the \"Add to Cart\" button on product pages sometimes fails to respond on certain mobile devices after a customer changes a product variant. All other elements work correctly. What is the most likely area to investigate first?",
+    "options": [
+      "Shopify's global AJAX API for cart interactions.",
+      "The theme's custom JavaScript handling variant changes and button event listeners.",
+      "The CSS styling for the \"Add to Cart\" button.",
+      "The Liquid code for rendering the product form."
+    ],
+    "correctIndex": 1,
+    "explanation": "If the button fails only after a variant change and only on certain devices, it strongly points to a JavaScript issue. The theme's custom JS is responsible for handling variant selections and updating the cart form, including re-enabling or updating the button's functionality. Liquid renders the initial form but doesn't handle dynamic interactions, CSS is for styling, and Shopify's AJAX API is the endpoint, not the client-side interaction logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Shopify feature allows merchants to group similar products together automatically based on conditions like price, tag, or vendor?",
+    "options": [
+      "Manual collections",
+      "Smart collections",
+      "Product types",
+      "Tags"
+    ],
+    "correctIndex": 1,
+    "explanation": "Smart collections (now often called automated collections) in Shopify automatically group products based on defined conditions. Manual collections require products to be added individually. Product types and tags are attributes used *within* collections but are not collection types themselves.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A merchant wants to create a new navigation menu for their footer that includes links to their \"Refund Policy,\" \"Privacy Policy,\" and \"Terms of Service\" pages. Where in the Shopify admin would they configure this new menu and its links?",
+    "options": [
+      "Online Store > Pages",
+      "Online Store > Navigation",
+      "Settings > Legal",
+      "Online Store > Themes > Customize (for header/footer)"
+    ],
+    "correctIndex": 1,
+    "explanation": "All navigation menus (main menu, footer menus, etc.) are created and managed under \"Online Store > Navigation.\" While legal pages are linked there, the pages themselves are in \"Online Store > Pages\" and the content for legal policies is under \"Settings > Legal.\" The theme customizer is used to *display* these menus, but not to *create* or *edit* their structure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is working on a Shopify theme and needs to ensure that a specific CSS file (`theme-icons.css`) is loaded only on pages where it is actually needed, to improve performance. What is the most appropriate Liquid filter or approach to conditionally include this stylesheet?",
+    "options": [
+      "Use `| asset_url` and link it in `theme.liquid` unconditionally.",
+      "Use `{% if template == 'product' %}{{ 'theme-icons.css' | asset_url | stylesheet_tag }}{% endif %}` within `theme.liquid`.",
+      "Link it directly in the `sections/header.liquid` snippet.",
+      "Embed the CSS directly into the `product.liquid` template using `<style>` tags."
+    ],
+    "correctIndex": 1,
+    "explanation": "Conditionally loading assets based on the current template (`template` object) ensures that resources are only loaded when required, improving performance. Option A loads it everywhere. C might load it on more pages than necessary if the header is universal. D is generally bad practice for maintainability and caching.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A client requests a dynamic product grid section for their homepage that allows them to select a collection, choose how many products to display, and specify a product sort order (e.g., best selling, newest). Which combination of Liquid constructs and schema settings would be necessary to achieve this?",
+    "options": [
+      "A section with a `collection` type setting, a `range` type setting for product limit, and a `radio` type setting for sort order. Loop through `collection.products` within the section.",
+      "A section with multiple `product` type settings for manual selection, and a `text` input for a comma-separated sort order.",
+      "A snippet that takes `collection_handle`, `limit`, and `sort_by` as arguments, rendered using `render` tag.",
+      "A static section with hardcoded `collection` handle, manually filtered and limited products in Liquid."
+    ],
+    "correctIndex": 0,
+    "explanation": "To make a homepage section dynamic and customizable from the theme editor, you need schema settings. A `collection` type setting allows the merchant to pick a collection. A `range` setting is perfect for the product limit. A `radio` or `select` setting can offer sorting options. Inside the section, Liquid would then use `section.settings.collection.products` with `limit` and `sort_by` filters.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Shopify store needs a custom landing page for a seasonal promotion. This page requires a unique layout with specific sections not present on standard pages (e.g., a countdown timer, a testimonial carousel). What is the recommended approach to create this page in Shopify?",
+    "options": [
+      "Use the default `page.liquid` template and simply add content in the rich text editor.",
+      "Create a new page template file (e.g., `page.seasonal-promo.liquid`) and customize its Liquid code to include unique sections.",
+      "Install a third-party page builder app to design the landing page.",
+      "Duplicate an existing theme section and use it as a standalone page."
+    ],
+    "correctIndex": 1,
+    "explanation": "Creating a new page template (e.g., `page.seasonal-promo.liquid`) allows for a completely custom layout and the inclusion of specific sections designed for that template, all manageable within the theme. This offers flexibility and control without relying on external apps for fundamental page structure. The default page template is too generic, and a page builder might be overkill or introduce overhead. Duplicating a section doesn't create a page.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A merchant wants to add a \"Care Instructions\" field to certain clothing products. This field should be easily editable per product and display plain text. Which Shopify feature is best suited for this requirement?",
+    "options": [
+      "Product tags",
+      "Product description",
+      "Custom product metafield",
+      "Blog posts"
+    ],
+    "correctIndex": 2,
+    "explanation": "A custom product metafield is specifically designed to store unique, additional data points for products that aren't covered by standard fields. This allows easy per-product editing and display. Product tags are for categorization, the description is for primary product details, and blog posts are for content marketing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is tasked with optimizing a Shopify product page for conversion. After reviewing the analytics, it's clear that customers are dropping off after viewing the main product image. Further investigation reveals the image loads slowly and lacks detailed views. Which combination of strategies would most effectively address this, assuming current image assets are high-resolution?",
+    "options": [
+      "Add a product review app, implement A/B testing for button colors, and increase font sizes.",
+      "Optimize image file sizes and formats (e.g., WebP), implement `srcset` and `sizes` for responsive loading, and add a zoom feature or multiple image angles.",
+      "Remove all product variations to simplify the page, embed a YouTube video, and disable pop-ups.",
+      "Move the \"Add to Cart\" button higher up the page, change the theme's primary font, and add more trust badges."
+    ],
+    "correctIndex": 1,
+    "explanation": "Slow image loading directly impacts perceived performance (LCP) and user experience. Optimizing file size/format and using `srcset`/`sizes` will significantly improve loading speed. Adding a zoom feature or more angles addresses the lack of detailed views, which can be a conversion blocker. The other options are either less directly related to the *image* problem or focus on other conversion elements without addressing the core image performance and detail issue.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Shopify store owner wants to connect their store's customer data with an external CRM system to automate marketing emails based on customer purchase history. Which Shopify API is most appropriate for securely extracting customer and order data for this integration?",
+    "options": [
+      "Storefront API",
+      "AJAX API",
+      "Admin API (REST or GraphQL)",
+      "Liquid `customer` object"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Admin API (both REST and GraphQL) is designed for managing store resources programmatically, including extracting customer, order, and product data for integrations with external systems like CRMs. The Storefront API is for customer-facing operations, the AJAX API is for client-side theme interactions, and the Liquid `customer` object is for theme rendering, not external data extraction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of a Shopify App Block when developing an app extension?",
+    "options": [
+      "To execute server-side logic for the app.",
+      "To provide a customizable UI component that merchants can add to their theme via the theme editor.",
+      "To manage database interactions for the app.",
+      "To handle API authentication for external services."
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify App Blocks allow app developers to create UI components that merchants can easily drag and drop into their theme using the theme editor, making app functionality seamlessly integrated into the storefront.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Shopify store is undergoing an audit for Core Web Vitals, specifically Cumulative Layout Shift (CLS). The report highlights significant CLS occurring when dynamic content, such as a product review widget or an upsell banner, loads slightly after the initial page render, causing existing content to jump. What is the most effective theme development strategy to mitigate this CLS?",
+    "options": [
+      "Pre-render all dynamic content directly into the HTML before JavaScript execution.",
+      "Reserve space for dynamic content using CSS `min-height` or aspect-ratio boxes, ensuring layout stability during loading.",
+      "Implement aggressive lazy loading for all images and videos to speed up initial render.",
+      "Remove all third-party apps that inject dynamic content."
+    ],
+    "correctIndex": 1,
+    "explanation": "CLS is caused by unexpected layout shifts. Reserving space for dynamic content with CSS (e.g., `min-height`, `min-width`, `aspect-ratio` for images/videos) ensures that even when the content loads later, it doesn't push down or shift existing content. Pre-rendering might not always be possible or practical for truly dynamic content, lazy loading helps LCP but not directly CLS from content shifts, and removing apps is a drastic measure rather than an optimization strategy.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When preparing a Shopify store for client handoff, a developer should set up Google Analytics and other tracking scripts. What is the best practice for deploying these scripts to ensure they are present on all relevant pages and can be easily managed?",
+    "options": [
+      "Hardcode the scripts directly into `theme.liquid` using `<script>` tags.",
+      "Use Shopify's built-in \"Online Store > Preferences > Google Analytics\" and \"Customer events\" settings.",
+      "Create a new snippet and include it in `sections/footer.liquid`.",
+      "Advise the client to use a tag manager app for all scripts."
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify provides dedicated settings under \"Online Store > Preferences\" (for Google Analytics legacy) and \"Customer events\" for directly integrating tracking scripts like Google Analytics and other pixel events. This is the most robust and recommended way for standard tracking as Shopify often handles consent and integration details. While a tag manager app (D) is also a valid advanced approach, Shopify's built-in features are the primary best practice for core analytics. Hardcoding (A, C) can be less flexible and harder to manage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new Shopify store features a custom product filter using AJAX on collection pages. During QA, it's discovered that when a customer applies multiple filters and then refreshes the page, the filters reset to their default state, and the filtered products are lost. What is the most likely cause of this issue?",
+    "options": [
+      "The theme's `collection.liquid` template is missing the correct Liquid filter tags.",
+      "The AJAX request for filtering is not correctly updating the browser's URL with the filter parameters.",
+      "The Shopify API rate limits are being exceeded, causing filter failures on refresh.",
+      "The JavaScript for the filter is not listening for `popstate` events to restore state from URL parameters."
+    ],
+    "correctIndex": 1,
+    "explanation": "When filters are applied via AJAX, the URL needs to be updated with the corresponding query parameters (e.g., `?filter.v.price.gte=10&filter.v.price.lte=50`). If the URL isn't updated, a page refresh will load the original URL without filters, causing the state to reset. Option D is related, as `popstate` would handle browser back/forward, but the core issue for a full refresh is the missing URL state.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A merchant wants to enable customers to upload a custom image (e.g., for personalization) when purchasing a specific product. This image needs to be associated with the order. Which Shopify feature is most appropriate for collecting this customer-uploaded file?",
+    "options": [
+      "A product metafield for the image URL.",
+      "A line item property with a `file` type input in the product form.",
+      "Attaching the file directly to the customer's account page.",
+      "Using the `asset_url` Liquid filter to upload."
+    ],
+    "correctIndex": 1,
+    "explanation": "Line item properties are designed to collect additional custom information or files *specific to a line item in the cart*, which then gets passed with the order. This is the correct way to handle customer-uploaded files for product personalization. Metafields are for product data, not customer input on an order. Customer accounts don't directly handle order-specific file uploads. `asset_url` is for theme assets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer has completed building several custom sections for a client's Shopify store on a development theme. The client wants to review these sections on a staging environment before they go live. What is the most common and secure way to provide the client access to this development theme for review?",
+    "options": [
+      "Duplicate the development theme, publish it as the live theme, and give the client admin access.",
+      "Share the local development environment files directly with the client.",
+      "Keep the development theme unpublished, grant the client collaborator access, and provide them with the \"View theme\" link.",
+      "Export the development theme as a `.zip` file and email it to the client."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most secure and efficient way is to keep the development theme unpublished, grant collaborator access (which limits permissions), and provide the \"View theme\" link. This allows the client to preview the theme as if it were live without affecting the actual live store. Publishing it (A) would make it live prematurely. Sharing local files (B) or emailing zips (D) is not practical or secure for client review.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Shopify store is planning a major flash sale. The product page contains a custom countdown timer section and a \"Quantity Left\" indicator, both fetching data from dynamic sources. During testing, it's found that under high traffic, these dynamic elements sometimes lag or fail to update correctly, leading to a poor user experience. What advanced optimization strategy could address this specific issue for the flash sale?",
+    "options": [
+      "Remove the countdown timer and quantity indicator to simplify the page.",
+      "Implement client-side caching for the countdown and quantity data using `localStorage`.",
+      "Use Shopify Functions to offload the dynamic data fetching to serverless functions.",
+      "Refactor the dynamic elements to fetch data less frequently or from a dedicated, highly optimized server endpoint designed for burst traffic."
+    ],
+    "correctIndex": 3,
+    "explanation": "The issue is likely due to the dynamic data fetching mechanism being overwhelmed under high traffic. Refactoring to fetch data less frequently (e.g., every 5-10 seconds instead of every second) or using a dedicated, scalable endpoint (if the data isn't directly from Shopify's primary API, which has rate limits) can alleviate pressure. Option A is removing functionality. Option B (`localStorage`) helps only on repeat visits for static data, not live updates. Option C (Shopify Functions) is for backend logic, not directly for frontend fetching performance of existing elements. The core problem is the *efficiency and resilience* of the data retrieval for these specific dynamic elements during peak load.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary benefit of using Next.js over a purely client-side React application for SEO?",
+    "options": [
+      "Faster initial load times",
+      "Easier state management",
+      "Built-in CSS-in-JS support",
+      "Automatic code splitting for all routes"
+    ],
+    "correctIndex": 0,
+    "explanation": "Next.js provides server-side rendering (SSR) and static site generation (SSG) capabilities, which generate HTML on the server. This allows search engines to crawl content easily and improves initial page load performance, crucial for SEO.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Next.js App Router, which file convention is used to define a route segment that renders UI?",
+    "options": [
+      "page.tsx",
+      "layout.tsx",
+      "template.tsx",
+      "route.tsx"
+    ],
+    "correctIndex": 0,
+    "explanation": "In the App Router, `page.tsx` is the special file that defines the unique UI for a route segment and makes it publicly accessible. `layout.tsx` is for shared UI, `template.tsx` for re-rendering on navigation, and `route.tsx` for API routes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is typically used to create a new Next.js project with a recommended setup?",
+    "options": [
+      "npx create-next-app@latest",
+      "npm install next-app",
+      "yarn add next-project",
+      "create-react-app next-js"
+    ],
+    "correctIndex": 0,
+    "explanation": "The standard and recommended way to initialize a new Next.js project is by using `npx create-next-app@latest`, which sets up the project structure and dependencies.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a Next.js application, which type of component is designed to run exclusively on the server, allowing direct database access or handling sensitive logic?",
+    "options": [
+      "Client Components",
+      "Server Components",
+      "Shared Components",
+      "Edge Components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Server Components in Next.js App Router are designed to run on the server, enabling direct database queries, fetching data, and keeping sensitive logic away from the client bundle.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Next.js application needs to fetch data that is mostly static and rarely changes, and should be pre-rendered at build time. Which data fetching approach is most suitable?",
+    "options": [
+      "Client-side fetching with useEffect",
+      "Server-side Rendering (SSR)",
+      "Static Site Generation (SSG)",
+      "Incremental Static Regeneration (ISR)"
+    ],
+    "correctIndex": 2,
+    "explanation": "For data that is static and can be pre-rendered at build time, Static Site Generation (SSG) is the most efficient choice, as it generates HTML files that can be served directly by a CDN, leading to fast loading times.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of writing unit tests for individual functions or components in a Next.js project?",
+    "options": [
+      "To verify full end-to-end user flows",
+      "To ensure the component integrates correctly with external APIs",
+      "To check that small, isolated parts of the codebase work as expected",
+      "To measure application performance under load"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unit tests focus on verifying the correctness of the smallest testable parts of an application (functions, components) in isolation, ensuring they behave as intended.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After deploying a Next.js application, what is a common initial step for monitoring its performance and errors?",
+    "options": [
+      "Manually refreshing the page repeatedly",
+      "Setting up a CI/CD pipeline",
+      "Integrating an Application Performance Monitoring (APM) tool",
+      "Rewriting all server components to client components"
+    ],
+    "correctIndex": 2,
+    "explanation": "APM tools help monitor the health, performance, and errors of a deployed application in real-time, providing crucial insights into its operational status.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A client requires a highly dynamic e-commerce site built with Next.js, where product prices and inventory must always be up-to-date for every user request. Which rendering strategy would be most appropriate for the product detail pages?",
+    "options": [
+      "Static Site Generation (SSG)",
+      "Client-side Rendering (CSR) only",
+      "Server-side Rendering (SSR)",
+      "Incremental Static Regeneration (ISR)"
+    ],
+    "correctIndex": 2,
+    "explanation": "SSR ensures that the page is rendered on the server for each request, allowing dynamic data like real-time prices and inventory to be fetched and displayed freshly, unlike SSG or ISR which involve pre-rendering or revalidation. CSR would lead to an empty page for initial load and potential SEO issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a Next.js application with an App Router structure, you need to apply a consistent header and footer across multiple pages within a specific section (e.g., /dashboard/*). Which file convention would you use to achieve this?",
+    "options": [
+      "page.tsx in each subdirectory",
+      "A single layout.tsx at the root of the /dashboard segment",
+      "template.tsx in the /dashboard segment",
+      "loading.tsx in the /dashboard segment"
+    ],
+    "correctIndex": 1,
+    "explanation": "`layout.tsx` files define shared UI that is persistent across multiple routes within a segment. Placing it at the root of `/dashboard` makes it apply to all nested routes without re-rendering on navigation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is experiencing inconsistent build outputs on their local machine versus the CI/CD environment for a Next.js project. What is the most likely root cause and how can it be mitigated?",
+    "options": [
+      "Inconsistent environment variables; use a .env.local file.",
+      "Outdated Node.js versions; standardize Node.js version using .nvmrc or Docker.",
+      "Missing dependencies; run npm install --force.",
+      "Network latency; deploy to a closer region."
+    ],
+    "correctIndex": 1,
+    "explanation": "Inconsistent build outputs are often caused by differences in development environments, especially Node.js versions. Standardizing the version across all environments (local, CI/CD) using tools like NVM or Docker containers ensures reproducible builds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building an authentication flow in Next.js. After a user successfully logs in on the client side, you need to store their session token securely and make it available for subsequent server-side requests (e.g., to an API route or a Server Component). What is the recommended way to handle this?",
+    "options": [
+      "Store the token in localStorage",
+      "Pass the token as a URL query parameter",
+      "Set an HTTP-only cookie from the server",
+      "Embed the token directly into the HTML of every page"
+    ],
+    "correctIndex": 2,
+    "explanation": "HTTP-only cookies are the most secure way to store session tokens for web applications. They are not accessible via client-side JavaScript, mitigating XSS risks, and are automatically sent with subsequent requests to the same domain (both client and server-side requests in Next.js).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Next.js application uses a global context to manage user preferences. You need to ensure this context is initialized only once and accessible by both Server and Client Components where appropriate. How should you structure this?",
+    "options": [
+      "Create a useContext hook within a Server Component",
+      "Define the context provider in a layout.tsx file marked \"use client\"",
+      "Export the context directly from a Server Component",
+      "Pass preferences as props to every component"
+    ],
+    "correctIndex": 1,
+    "explanation": "Context providers must be rendered in Client Components because `useContext` is a React Hook. By marking the `layout.tsx` file with `\"use client\"`, it becomes a Client Component where the context provider can be defined and wrap its children (which can be Server or Client Components).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When implementing accessibility (a11y) checks for a Next.js component, what is a crucial aspect to consider beyond visual design?",
+    "options": [
+      "Ensuring all images have src attributes",
+      "Verifying component responsiveness on mobile devices",
+      "Providing clear keyboard navigation and ARIA attributes for interactive elements",
+      "Minimizing the number of DOM nodes generated"
+    ],
+    "correctIndex": 2,
+    "explanation": "Accessibility involves ensuring users with disabilities can effectively interact with the application. This includes proper keyboard navigation for those who cannot use a mouse and using ARIA attributes to convey semantics to assistive technologies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Next.js application is experiencing high latency for data fetching operations on a specific page in production. What is the most effective initial step to diagnose the issue?",
+    "options": [
+      "Redeploy the application with an older version",
+      "Immediately switch all Server Components to Client Components",
+      "Use profiling tools and logs to identify slow API calls or database queries",
+      "Add more client-side caching mechanisms"
+    ],
+    "correctIndex": 2,
+    "explanation": "High latency often points to slow server-side operations (data fetching, database queries, external API calls). Profiling tools and server logs (e.g., Vercel's built-in logs, custom logging) are essential for pinpointing the exact bottleneck.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a critical security measure to implement for API routes (e.g., route.ts) in a Next.js application that handle sensitive user data?",
+    "options": [
+      "Disabling all HTTP headers",
+      "Exposing all environment variables",
+      "Implementing input validation and sanitization",
+      "Storing API keys directly in client-side code"
+    ],
+    "correctIndex": 2,
+    "explanation": "Input validation and sanitization are crucial to prevent various attacks like SQL injection, XSS, and broken authentication. It ensures that data received by the API is in the expected format and free from malicious content.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a sprint review for a Next.js project, a stakeholder identifies a critical bug on a feature developed in the previous sprint. What is the most appropriate next step within a typical agile team delivery workflow?",
+    "options": [
+      "Immediately revert the entire previous sprint's code",
+      "Open a new bug issue with detailed reproduction steps and prioritize it",
+      "Ask the stakeholder to fix it themselves",
+      "Create a new feature request to redesign the affected part"
+    ],
+    "correctIndex": 1,
+    "explanation": "The standard practice is to create a well-documented bug issue, which allows the team to assess its severity, prioritize it against other work, and assign it for resolution, ensuring a structured approach to defect management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When presenting a Next.js project as a case study, which section would best describe the technical choices made, such as opting for Server Components for data fetching and specific third-party libraries?",
+    "options": [
+      "Problem Statement",
+      "Constraints and Assumptions",
+      "Implementation and Decisions",
+      "Outcomes and Validation"
+    ],
+    "correctIndex": 2,
+    "explanation": "The \"Implementation and Decisions\" section of a case study is where technical details, architectural choices, specific technologies used, and the rationale behind those decisions are explained.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "For a portfolio-grade Next.js capstone project, what is the primary benefit of including a \"lessons-learned\" section in the README?",
+    "options": [
+      "To list all the features that were not implemented",
+      "To demonstrate self-reflection, problem-solving abilities, and continuous improvement",
+      "To apologize for any bugs or incomplete features",
+      "To explain why the project was built using Next.js instead of another framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "A \"lessons-learned\" section showcases a developer's ability to critically evaluate their process, identify challenges, and articulate how they would approach similar situations differently or what new knowledge they gained, which is highly valued by employers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Next.js developer needs to implement data caching for server-rendered pages. The data updates hourly. Which approach effectively revalidates the cache to reflect the latest data without manual redeployment?",
+    "options": [
+      "Using revalidate option with fetch in Server Components",
+      "Disabling caching entirely",
+      "Fetching data only on the client-side with useEffect and an hourly interval",
+      "Storing data in localStorage and clearing it hourly"
+    ],
+    "correctIndex": 0,
+    "explanation": "Next.js extends the native `fetch` API to include caching and revalidation mechanisms. Setting a `revalidate` option in `fetch` allows data to be cached for a specified duration and automatically revalidated after that time, providing efficient, up-to-date data for server-rendered pages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing an API route (route.ts) in Next.js for handling POST requests, how should you safely parse the request body?",
+    "options": [
+      "Access req.body directly which is always pre-parsed JSON",
+      "Use JSON.parse(req) after checking content type",
+      "Utilize await req.json() for JSON bodies or await req.text() for other types",
+      "Call req.rawBody and parse it manually"
+    ],
+    "correctIndex": 2,
+    "explanation": "In Next.js API routes (App Router `route.ts`), the `Request` object provided by Web Standards API is used. To parse JSON bodies, you should use `await request.json()`, and for text, `await request.text()`. Direct access to `req.body` (from the Pages Router) is not the correct approach here.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Next.js application uses an AuthLayout (a Client Component defined in layout.tsx) that conditionally renders its children based on user authentication status. Inside this layout, a Server Component needs to fetch user-specific data from a database. How should the AuthLayout correctly manage passing user authentication context to the Server Component while respecting the App Router's component boundaries?",
+    "options": [
+      "Pass the authentication status as a prop from AuthLayout to the Server Component",
+      "The Server Component should re-fetch authentication status independently from the server",
+      "Use React.context defined within AuthLayout to provide authentication status",
+      "AuthLayout cannot directly influence the data fetched by a Server Component within its subtree"
+    ],
+    "correctIndex": 1,
+    "explanation": "Server Components render *before* Client Components. A Client Component (`AuthLayout`) cannot directly pass props or context that influence the server-side rendering or data fetching of a Server Component nested within it. The Server Component would need to independently fetch any necessary authentication context (e.g., from headers, cookies accessible on the server) to determine what data to retrieve.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are tasked with optimizing a Next.js application that frequently fetches user profile data from an external API within multiple Server Components. To reduce redundant API calls and improve performance, you decide to implement a request memoization strategy. How can this be effectively achieved within the Next.js App Router context without using a global singleton or client-side caching?",
+    "options": [
+      "Use React.memo on the Server Components to prevent re-renders",
+      "Implement getServerSideProps with a custom caching header",
+      "Utilize a cache() utility from react (or next/cache) for data fetching functions",
+      "Store fetched data in localStorage before passing to Server Components"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `cache()` utility from `next/cache` (or `react` in newer versions) provides request memoization. When a function wrapped with `cache()` is called multiple times within a single server-side request lifecycle (e.g., during a single page render), it will only execute once, returning the cached result for subsequent calls, effectively de-duplicating data fetches.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Next.js application handles user uploads to cloud storage. To enhance security and prevent malicious file uploads, which practice is most robust?",
+    "options": [
+      "Relying solely on client-side file type validation",
+      "Restricting file size on the client and server",
+      "Implementing server-side content type validation, malware scanning, and sanitization for all uploads",
+      "Storing all uploads in the database directly"
+    ],
+    "correctIndex": 2,
+    "explanation": "Client-side validation is easily bypassed. Robust security for file uploads requires server-side validation (content type, size, potentially dimensions for images), malware scanning to detect malicious content, and sanitization of file names/metadata to prevent path traversal or other injection attacks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Next.js application, deployed on Vercel, is experiencing inconsistent cold start times for its Serverless Functions (API Routes and Server Components). This is impacting user experience. What advanced strategy could mitigate this, especially for frequently accessed routes?",
+    "options": [
+      "Increase the memory allocated to all serverless functions",
+      "Rewrite all API routes as static files",
+      "Use a custom Express server instead of Next.js API routes",
+      "Configure a \"warmup\" strategy or increase minDuration for specific Serverless Functions"
+    ],
+    "correctIndex": 3,
+    "explanation": "Cold starts occur when a serverless function hasn't been invoked recently and needs to initialize. A \"warmup\" strategy (e.g., pinging functions regularly) keeps instances active. Increasing `minDuration` ensures functions stay alive for a minimum period after execution, reducing the likelihood of immediate cold starts for subsequent requests within that window.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You're setting up end-to-end (E2E) testing for a Next.js application using Playwright. A critical scenario involves a user logging in and then navigating through several pages that rely heavily on Server Components to render dynamic content. How should the E2E test strategy specifically account for the Server Component rendering lifecycle and data fetching?",
+    "options": [
+      "Directly mock all server component data fetches on the client",
+      "Use cy.wait() (Cypress syntax) for arbitrary delays after navigation",
+      "Ensure the test runner waits for network requests to resolve and for dynamic content to appear in the DOM",
+      "Only test the client-side interactions, ignoring server-rendered content"
+    ],
+    "correctIndex": 2,
+    "explanation": "E2E tests should simulate a real user. For Next.js applications, especially with Server Components, this means allowing the server to render the page and fetch data. The test runner (e.g., Playwright, Cypress) should be configured to explicitly wait for elements to become visible or for network requests related to data fetching to complete, rather than relying on arbitrary delays or mocking server-side logic in the E2E layer.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A computer vision engineer needs to convert an image from BGR to grayscale in OpenCV. Which function should be used?",
+    "options": [
+      "cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)",
+      "cv2.toGray(image)",
+      "cv2.convertColor(image, cv2.GRAYSCALE)",
+      "cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)"
+    ],
+    "correctIndex": 0,
+    "explanation": "cv2.cvtColor is the standard OpenCV function for color space conversion, and cv2.COLOR_BGR2GRAY is the correct flag for converting a BGR image to grayscale.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When displaying an image using Matplotlib, why is it often necessary to convert a NumPy array from BGR (OpenCV's default) to RGB?",
+    "options": [
+      "Matplotlib's imshow expects images in RGB format.",
+      "NumPy arrays can only store RGB data.",
+      "BGR format consumes more memory in Matplotlib.",
+      "OpenCV cannot display RGB images directly."
+    ],
+    "correctIndex": 0,
+    "explanation": "Matplotlib's imshow function assumes the input image is in RGB format, while OpenCV reads images as BGR by default. Converting ensures the colors are displayed correctly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A computer vision engineer is building a system to count distinct objects in an image. After applying thresholding, what is the next logical step to identify and count individual objects?",
+    "options": [
+      "Apply a Gaussian blur to smooth the image.",
+      "Perform contour detection to find object boundaries.",
+      "Convert the image to a different color space.",
+      "Increase the image resolution."
+    ],
+    "correctIndex": 1,
+    "explanation": "After thresholding, contour detection is commonly used to find continuous curves (contours) that represent the boundaries of objects in the binary image, which can then be counted or analyzed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A vision system needs to match a small template image (e.g., a logo) within a larger image. Which image processing technique is best suited for this task?",
+    "options": [
+      "Histogram equalization",
+      "Canny edge detection",
+      "Template matching",
+      "Watershed segmentation"
+    ],
+    "correctIndex": 2,
+    "explanation": "Template matching is a technique used to find small patches or templates of an image in a larger image.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following is a primary task often performed by deep learning models in computer vision?",
+    "options": [
+      "Audio signal processing",
+      "Natural Language Generation",
+      "Image Classification",
+      "Database management"
+    ],
+    "correctIndex": 2,
+    "explanation": "Image Classification is a fundamental task in computer vision where deep learning models categorize images into predefined classes. The other options are not primary computer vision tasks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When evaluating an object detection model, which metric is most suitable for assessing both the accuracy of detected bounding boxes and the model's ability to find all relevant objects?",
+    "options": [
+      "Accuracy",
+      "Mean Average Precision (mAP)",
+      "F1-score",
+      "R-squared"
+    ],
+    "correctIndex": 1,
+    "explanation": "mAP (Mean Average Precision) is the standard metric for object detection, as it accounts for both precision and recall across multiple intersection over union (IoU) thresholds and object classes, providing a comprehensive evaluation of bounding box accuracy and detection completeness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the main purpose of creating a validation dataset during the model training process?",
+    "options": [
+      "To train the model on diverse examples.",
+      "To test the model on unseen data and tune hyperparameters.",
+      "To deploy the model to production.",
+      "To permanently store model weights."
+    ],
+    "correctIndex": 1,
+    "explanation": "A validation dataset is used to evaluate the model's performance on data it hasn't seen during training, allowing for hyperparameter tuning and early stopping without overfitting to the test set.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During a dataset quality audit for an object detection task, you observe that many bounding box annotations are slightly offset from the actual object boundaries. What is the most likely consequence of this issue?",
+    "options": [
+      "The model will exhibit higher latency during inference.",
+      "The model's training will converge much faster.",
+      "The model's mAP score will likely be lower due to poor localization.",
+      "The model will become overfit to the training data."
+    ],
+    "correctIndex": 2,
+    "explanation": "Incorrectly localized bounding boxes will negatively impact the Intersection over Union (IoU) metric, leading to lower precision and recall scores, and consequently a lower mAP, which is sensitive to correct localization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A computer vision engineer wants to demonstrate a newly trained object detection model's real-world usefulness. Which of the following is the most effective way to showcase its capabilities for a portfolio?",
+    "options": [
+      "Provide a link to the training code on GitHub.",
+      "Present a spreadsheet of training loss values.",
+      "Build a live demo application or a demo video showcasing its performance on various inputs.",
+      "Submit a research paper explaining the model architecture."
+    ],
+    "correctIndex": 2,
+    "explanation": "A live demo or a demo video directly proves the model's real-world applicability and usefulness, making it highly effective for a portfolio. Code, loss values, or papers are less immediate for demonstrating utility.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a real-time object tracking system, you notice that the bounding boxes are very jittery and unstable between consecutive frames. Which technique would be most appropriate to smooth these detections and produce more stable tracks?",
+    "options": [
+      "Applying a Canny edge detector to each frame.",
+      "Increasing the frame rate of the video stream.",
+      "Implementing a Kalman filter or other tracking algorithms that incorporate motion models.",
+      "Reducing the resolution of the video frames."
+    ],
+    "correctIndex": 2,
+    "explanation": "Kalman filters and similar tracking algorithms are specifically designed to predict object motion and smooth out noisy or intermittent detections, resulting in more stable tracking trajectories over time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are tasked with building a document scanner application. After capturing an image of a document at an angle, which sequence of computer vision operations would be most critical to deskew and flatten the document for readability?",
+    "options": [
+      "Apply bilateral filter, then Canny edge detection, followed by histogram equalization.",
+      "Perform color space conversion, then thresholding, followed by object tracking.",
+      "Detect corners using Harris or Shi-Tomasi, find the bounding quadrilateral, then apply a perspective transformation.",
+      "Segment the document using U-Net, then apply a median blur, and finally perform contour detection."
+    ],
+    "correctIndex": 2,
+    "explanation": "For deskewing and flattening a document, detecting the four corners of the document is crucial. Once these corners (representing the quadrilateral document) are found, a perspective transformation (like cv2.warpPerspective) can map them to a rectangular region, effectively correcting the perspective distortion.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why is model versioning important in MLOps for computer vision projects?",
+    "options": [
+      "To simplify deployment to a single edge device.",
+      "To ensure all models are trained with the same random seed.",
+      "To track changes in model architectures, weights, and configurations over time, enabling reproducibility and rollback.",
+      "To automatically generate dataset annotations."
+    ],
+    "correctIndex": 2,
+    "explanation": "Model versioning is critical for MLOps to manage and track different iterations of a model, their training data, hyperparameters, and performance metrics, allowing for reproducibility, comparison, and the ability to revert to previous versions if needed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A computer vision model needs to be deployed on an edge device with limited computational resources. You decide to quantize the model from floating-point (FP32) to 8-bit integer (INT8). What is the primary benefit and potential drawback of this optimization?",
+    "options": [
+      "Benefit: Increased accuracy; Drawback: Larger model size.",
+      "Benefit: Faster inference and reduced model size; Drawback: Potential loss in accuracy.",
+      "Benefit: Simpler training process; Drawback: Requires more training data.",
+      "Benefit: Improved generalization; Drawback: Slower inference."
+    ],
+    "correctIndex": 1,
+    "explanation": "Quantization (e.g., to INT8) significantly reduces model size and speeds up inference on compatible hardware by using lower-precision arithmetic. However, this process can sometimes lead to a slight degradation in model accuracy.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A facial recognition system deployed in production starts showing a significant increase in false negatives for individuals with darker skin tones, despite performing well during initial testing. What phenomenon is most likely occurring, and what immediate action should be taken?",
+    "options": [
+      "This indicates concept drift; retrain the model with a more diverse dataset that includes underrepresented groups.",
+      "This indicates data leakage; remove the test set from the training process.",
+      "This indicates model overfitting; simplify the model architecture.",
+      "This indicates hardware failure; replace the edge device immediately."
+    ],
+    "correctIndex": 0,
+    "explanation": "An increase in false negatives for a specific demographic indicates a potential bias issue or concept drift where the real-world data distribution differs from the training data, especially for underrepresented groups. Retraining with a more diverse dataset is a crucial step to address this.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To read an image file into a NumPy array using OpenCV in Python, which function is typically used?",
+    "options": [
+      "cv2.loadImage()",
+      "cv2.imread()",
+      "cv2.readImageFile()",
+      "cv2.openImage()"
+    ],
+    "correctIndex": 1,
+    "explanation": "cv2.imread() is the standard OpenCV function in Python for loading an image from a specified file path into a NumPy array.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A computer vision engineer needs to apply a simple blur to an image to reduce noise. Which type of filter is commonly used for this purpose and efficiently implemented in OpenCV?",
+    "options": [
+      "Sharpening filter",
+      "Median filter",
+      "Sobel filter",
+      "Laplacian filter"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Median filter is highly effective at reducing salt-and-pepper noise and other types of noise while preserving edges better than some other blurring filters, making it a common choice in image processing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of applying a thresholding operation to a grayscale image?",
+    "options": [
+      "To increase the image's overall brightness.",
+      "To convert the image into a binary image, separating foreground from background.",
+      "To rotate the image by a specific angle.",
+      "To detect edges and lines within the image."
+    ],
+    "correctIndex": 1,
+    "explanation": "Thresholding converts a grayscale image into a binary image by setting pixel values above a certain threshold to one value (e.g., white) and those below to another (e.g., black), effectively segmenting foreground from background.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Morphological operations like erosion and dilation are often used in conjunction. If you want to remove small white noise pixels and then slightly expand the remaining white regions, what sequence of operations would you apply?",
+    "options": [
+      "Dilation followed by Erosion.",
+      "Erosion followed by Dilation (Opening).",
+      "Dilation only.",
+      "Erosion only."
+    ],
+    "correctIndex": 1,
+    "explanation": "Erosion followed by Dilation is known as \"Opening.\" Erosion removes small white noise and shrinks features, and then dilation expands the remaining features, filling small holes and expanding object boundaries without reconnecting parts that erosion separated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of deep learning for vision, what does \"fine-tuning\" a neural network typically involve?",
+    "options": [
+      "Building a neural network from scratch without any pre-trained weights.",
+      "Training only the initial layers of a pre-trained model on a new, smaller dataset.",
+      "Taking a pre-trained model and continuing its training on a new, related dataset, usually with a lower learning rate for early layers.",
+      "Using the pre-trained model as a feature extractor without any further training."
+    ],
+    "correctIndex": 2,
+    "explanation": "Fine-tuning involves adapting a pre-trained model (often trained on a large dataset like ImageNet) to a new, specific task by continuing its training on a smaller, task-specific dataset, typically with a lower learning rate for the initial, general feature-extracting layers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When training an image classification model, a computer vision engineer applies various transformations like rotation, flipping, and zooming to the training images. What is the primary purpose of this technique?",
+    "options": [
+      "To reduce the model's complexity.",
+      "To decrease the total training time.",
+      "To artificially expand the training dataset and improve model generalization.",
+      "To directly improve the model's precision on the validation set."
+    ],
+    "correctIndex": 2,
+    "explanation": "These transformations are forms of data augmentation, which artificially increases the diversity and size of the training dataset. This helps the model become more robust to variations in input data, improving its generalization capability and reducing overfitting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In object detection, what is the most common output format for annotating the location of an object in an image?",
+    "options": [
+      "A single pixel coordinate.",
+      "A bounding box (e.g., x, y, width, height or x_min, y_min, x_max, y_max).",
+      "A series of audio spectrograms.",
+      "A text description of the object."
+    ],
+    "correctIndex": 1,
+    "explanation": "For object detection, the standard annotation specifies the location of an object using a rectangular bounding box, typically defined by its top-left corner and its width/height, or by the coordinates of its top-left and bottom-right corners.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A real-time video processing application needs to maintain a smooth user experience. Which metric is most critical to monitor to ensure the application isn't lagging excessively?",
+    "options": [
+      "Model size in megabytes.",
+      "Frames Per Second (FPS).",
+      "Number of training epochs.",
+      "Dataset class imbalance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Frames Per Second (FPS) directly indicates the processing speed of a video stream. A low FPS would result in a choppy or lagging user experience, making it a critical metric for real-time applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new deep learning model is deployed to an edge device. It performs well in initial tests, but after a few weeks, its accuracy on live data significantly drops. All input data appears to be within expected parameters. What MLOps concept is most likely relevant to diagnose this issue, and what might be the underlying cause?",
+    "options": [
+      "Data versioning; the model was trained on an old dataset.",
+      "Label noise detection; the ground truth labels are incorrect.",
+      "Model drift; the statistical properties of the input data or target variable have changed over time.",
+      "Hyperparameter tuning; the learning rate was too high during training."
+    ],
+    "correctIndex": 2,
+    "explanation": "A drop in performance on live data without obvious changes in input parameters suggests model drift, where the relationship between input features and target predictions, or the input data distribution itself, has subtly changed since training. Monitoring for drift is crucial in MLOps.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When optimizing a computer vision model for deployment on an embedded GPU (edge device), you're considering using TensorRT. What is the primary advantage TensorRT offers in this context?",
+    "options": [
+      "It enables training models directly on the edge device with higher precision.",
+      "It automatically generates synthetic training data to augment existing datasets.",
+      "It optimizes neural networks for faster inference by performing graph optimizations, kernel fusion, and precision calibration.",
+      "It provides a framework for secure model versioning and rollback."
+    ],
+    "correctIndex": 2,
+    "explanation": "NVIDIA's TensorRT is a platform specifically designed to optimize deep learning models for inference on NVIDIA GPUs. It achieves significant speedups by applying various optimizations like layer fusion, precision reduction (e.g., FP16, INT8), and optimized kernel selection.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which of the following is a key aspect of \"responsible vision\" in computer vision engineering?",
+    "options": [
+      "Minimizing model training time.",
+      "Ensuring models are only trained on publicly available datasets.",
+      "Evaluating and mitigating potential biases, privacy risks, and ethical concerns in data and model behavior.",
+      "Deploying models only on cloud-based servers."
+    ],
+    "correctIndex": 2,
+    "explanation": "Responsible vision encompasses the ethical considerations of computer vision systems, including identifying and addressing biases (e.g., demographic disparities), protecting privacy, and ensuring models are used in a fair and transparent manner.",
+    "difficulty": "moderate"
+  }
+]

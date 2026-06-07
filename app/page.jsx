@@ -220,6 +220,13 @@ export default function Home() {
             <div className="hero-btns">
               <button onClick={() => openAuthModal('/quiz')} className="btn-primary">🐾 Take the Career Quiz</button>
               <a href="#features" className="btn-secondary hero-secondary">See the platform</a>
+              <a href="/certificate" className="btn-secondary hero-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '16px', height: '16px' }}>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 11 2 2 4-4" />
+                </svg>
+                Verify Certificate
+              </a>
             </div>
             <div className="hero-signal-strip" aria-label="SkillBun guidance flow">
               <span>Profile</span>
@@ -557,6 +564,7 @@ export default function Home() {
                 <li><a href="#careers">Career Roadmaps</a></li>
                 <li><a href="/counsellor">AI Counsellor</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/certificate">Verify Certificate</a></li>
               </ul>
             </div>
             <div className="footer-col">

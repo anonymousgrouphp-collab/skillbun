@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A new security appliance is logging network flow data, specifically focusing on TCP connection states. An alert fires for an unusually high number of \"SYN-ACK-FIN\" sequences without an initial \"SYN\" from an internal host, indicating potential network scanning or covert communication. To effectively investigate this alert, which networking concept related to TCP connection management is most important for the SOC analyst to deeply understand?",
+    "options": [
+      "HTTP status codes and headers",
+      "DNS zone transfers",
+      "The three-way handshake and explicit connection termination",
+      "ARP cache poisoning"
+    ],
+    "correctIndex": 2,
+    "explanation": "The scenario describes anomalous TCP connection states. A deep understanding of the TCP three-way handshake (SYN, SYN-ACK, ACK) and explicit connection termination (FIN, FIN-ACK, ACK) is crucial to recognize deviations like \"SYN-ACK-FIN\" without an initial SYN, which can indicate port scanning (e.g., Xmas scans, FIN scans) or other covert network activity. HTTP and DNS are application-layer concepts, and ARP is a link-layer protocol.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Linux server is experiencing unexpected reboots. The SOC analyst needs to quickly identify if any unauthorized login attempts preceded the reboots.",
+    "options": [
+      "/var/log/syslog",
+      "/var/log/auth.log",
+      "/var/log/kern.log",
+      "/var/log/apache2/access.log"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `/var/log/auth.log` file on Linux systems specifically records authentication and authorization events, including login attempts, sudo commands, and other security-related actions, making it the primary source for investigating suspicious login activity. `syslog` is more general, `kern.log` is for kernel messages, and `apache2/access.log` is for web server access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During an investigation, a SOC analyst discovers a PowerShell script running with obfuscated commands that attempts to establish a persistent connection to an external IP address.",
+    "options": [
+      "Brute force login",
+      "Malware beaconing",
+      "Phishing campaign",
+      "Data exfiltration over SMB"
+    ],
+    "correctIndex": 1,
+    "explanation": "Obfuscated PowerShell attempting to establish a persistent external connection is a strong indicator of malware beaconing, where a compromised system periodically communicates with a command-and-control (C2) server. Brute force is about guessing credentials, phishing is social engineering, and data exfiltration is the act of removing data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SIEM generates an alert for \"Multiple Failed Login Attempts\" against a critical server.",
+    "options": [
+      "Block the source IP address immediately.",
+      "Create a detailed incident response plan.",
+      "Validate the alert by examining raw logs and context.",
+      "Notify law enforcement of a potential breach."
+    ],
+    "correctIndex": 2,
+    "explanation": "The immediate first step in alert triage is to validate the alert. This involves examining the raw logs, correlating with other events, and gathering context to determine if the alert is a true positive, a false positive, or requires further investigation. Blocking IPs or escalating prematurely without validation can lead to unnecessary disruptions or wasted resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A SOC analyst is investigating a suspected lateral movement attempt. They have identified a suspicious process on an initial compromised host and need to determine if it propagated to other machines.",
+    "options": [
+      "Search by process name and event ID across all endpoints within a specific time window.",
+      "Search by source IP address and destination port across all network devices.",
+      "Search by HTTP status codes and user-agent strings on web server logs.",
+      "Search by DNS query types and response codes on DNS server logs."
+    ],
+    "correctIndex": 0,
+    "explanation": "To trace lateral movement, correlating by process name and relevant event IDs (e.g., process creation, network connections) across all endpoint logs within a specific time window is most effective. This allows the analyst to see if the same or similar suspicious processes appeared on other machines. Other options focus on network, web, or DNS which are less direct for process-level lateral movement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SOC analyst has identified a clear false positive alert after initial investigation.",
+    "options": [
+      "Only the alert ID and the analyst's name.",
+      "The full transcript of all chat communications during the investigation.",
+      "The reasons why it was classified as a false positive and proposed tuning.",
+      "A list of all known vulnerabilities on the affected system."
+    ],
+    "correctIndex": 2,
+    "explanation": "When classifying an alert as a false positive, it is essential to document the specific reasons why it was determined to be false and, if applicable, propose detection tuning or rule modifications to prevent similar false positives in the future. This contributes to the continuous improvement of the detection system.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A SIEM alert indicates \"Impossible Travel\" for a user account, with logins from New York and then London within 10 minutes. The user typically logs in only from New York.",
+    "options": [
+      "The user's web browsing history from the past week.",
+      "The user's recent MFA (Multi-Factor Authentication) status and methods used.",
+      "The total data volume transferred by the user in the last 24 hours.",
+      "The user's email client configuration settings."
+    ],
+    "correctIndex": 1,
+    "explanation": "Investigating the user's MFA status and the specific methods used for each login can provide crucial context. If both logins utilized valid MFA, it might suggest the user legitimately used two different devices (e.g., corporate VPN in NY, then personal device in London, though still unusual). If one login bypassed MFA or used an unfamiliar method, it strongly supports compromise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "The SOC team is constantly receiving high-volume, low-fidelity alerts related to common system processes, making it difficult to spot true threats.",
+    "options": [
+      "Increasing the number of security analysts.",
+      "Disabling all alerts from common system processes.",
+      "Implementing detection rule tuning and threat hunting.",
+      "Purchasing a more expensive SIEM solution."
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing detection rule tuning to reduce noisy, low-fidelity alerts and actively engaging in threat hunting will significantly improve the SOC team's efficiency. Tuning reduces false positives, allowing analysts to focus on higher-fidelity alerts, while threat hunting proactively identifies threats that might otherwise be missed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SOC analyst needs to write a detection rule for a new variant of malware that consistently creates a specific registry key under `HKLM\\Software\\` and executes a payload from the `C:\\Temp\\` directory. The rule needs to be compatible with a broad range of SIEMs.",
+    "options": [
+      "A YARA rule focusing on file hashes and network signatures.",
+      "A Snort rule with packet inspection signatures for network traffic.",
+      "A Sigma rule detecting registry key creation and process execution events.",
+      "A Splunk SPL search query specifically for the Splunk platform."
+    ],
+    "correctIndex": 2,
+    "explanation": "A Sigma rule would be most appropriate as it is a generic signature format for SIEM systems, allowing for platform-agnostic detection of log events. The rule would specify conditions for the creation of the particular registry key (e.g., `HKLM\\Software\\MalwareKey`) and the execution of a process from the `C:\\Temp\\` directory, leveraging common Windows event IDs (e.g., Event ID 13 for registry events, Event ID 1 for process creation if using Sysmon). YARA is for file analysis, Snort is for network IDS, and Splunk SPL is platform-specific.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A threat hunter hypothesizes that an attacker might be using a specific command-and-control (C2) domain that bypasses current DNS blacklists by frequently changing subdomains (Domain Generation Algorithm - DGA).",
+    "options": [
+      "Reviewing security awareness training logs.",
+      "Analyzing historical outbound DNS queries for anomalous domain patterns.",
+      "Checking firewall rules for any blocked IP addresses.",
+      "Conducting penetration testing against external web applications."
+    ],
+    "correctIndex": 1,
+    "explanation": "To test the hypothesis of DGA-based C2 communication, analyzing historical outbound DNS queries for anomalous domain patterns (e.g., highly random-looking subdomains, high entropy in domain names) would be the most effective threat hunting technique. This allows the hunter to identify domains that might be generated algorithmically rather than being human-readable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A junior SOC analyst wants to demonstrate their practical skills in investigating security incidents to potential employers.",
+    "options": [
+      "A list of all security certifications earned.",
+      "A collection of personal family photos.",
+      "Detailed write-ups of analyzed sample alerts and proposed detection tuning.",
+      "A resume summarizing work experience."
+    ],
+    "correctIndex": 2,
+    "explanation": "Detailed write-ups of analyzed sample alerts, including case notes, timelines, severity classifications, and proposed detection tuning, are excellent ways to demonstrate practical SOC skills in a portfolio. This shows direct application of knowledge. While certifications and resumes are important, they don't showcase applied skill as effectively as practical work.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A SOC analyst wants to set up a home lab to practice log analysis and incident response with various types of security data.",
+    "options": [
+      "Metasploit Framework",
+      "Wireshark",
+      "Security Onion",
+      "Nmap"
+    ],
+    "correctIndex": 2,
+    "explanation": "Security Onion is an excellent open-source platform for a home lab, as it bundles various security tools (like Suricata, Zeek, Wazuh, Elasticsearch, Kibana, TheHive) for network security monitoring, log management, and incident response, allowing for comprehensive analysis of logs from diverse sources. Metasploit is for exploitation, Wireshark for packet analysis, and Nmap for network scanning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As part of building a professional portfolio, a SOC analyst needs to showcase their ability to handle a complex alert scenario. They have analyzed a sample alert, written case notes, and built a timeline.",
+    "options": [
+      "Delete all original log files to preserve privacy.",
+      "Classify the severity, propose detection tuning, and publish a report.",
+      "Only provide a summary of the alert's initial trigger.",
+      "Request additional hardware resources for the lab environment."
+    ],
+    "correctIndex": 1,
+    "explanation": "After analyzing an alert, writing case notes, and building a timeline, the critical next steps for a portfolio project are to classify the alert's severity, propose specific detection tuning or rule improvements to prevent similar incidents or false positives, and then compile all findings into a professional report. This demonstrates a complete incident management lifecycle and a commitment to continuous improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new security control is being implemented that requires deep packet inspection (DPI) for all outbound HTTPS traffic.",
+    "options": [
+      "HTTPS traffic is unencrypted, making DPI straightforward but resource-intensive.",
+      "HTTPS traffic is encrypted, requiring a trusted root certificate on endpoints for decryption and re-encryption.",
+      "HTTPS uses UDP, which prevents traditional TCP-based DPI methods.",
+      "HTTPS only uses port 443, which limits DPI visibility to that specific port."
+    ],
+    "correctIndex": 1,
+    "explanation": "HTTPS traffic is encrypted, making direct deep packet inspection impossible without decryption. In enterprise environments, this is typically addressed through SSL/TLS interception (also known as \"man-in-the-middle\" SSL/TLS proxying). This involves deploying a security appliance that decrypts traffic using its own certificate, inspects it, and then re-encrypts it using another certificate that clients must trust (by installing the appliance's root certificate).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An email arrived in a user's inbox, impersonating their CEO, requesting an urgent wire transfer to an unfamiliar bank account.",
+    "options": [
+      "SQL Injection",
+      "Brute-force attack",
+      "Phishing (specifically, Business Email Compromise - BEC)",
+      "Denial of Service (DoS)"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario describes a phishing attack, specifically Business Email Compromise (BEC), where an attacker impersonates a high-ranking executive (like the CEO) to trick an employee into performing unauthorized actions, such as initiating a wire transfer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SOC analyst receives an alert from the SIEM indicating \"Successful Login from New Geolocation\" for a critical administrative account.",
+    "options": [
+      "Publicly available social media profiles of the user.",
+      "Threat intelligence feeds for the source IP address.",
+      "Historical data of the user's software installations.",
+      "Network topology diagrams of the internal infrastructure."
+    ],
+    "correctIndex": 1,
+    "explanation": "To enrich an alert about a login from a new geolocation, querying threat intelligence feeds for the source IP address is crucial. This will help determine if the IP is known for malicious activity, is a VPN/proxy service, or is otherwise suspicious, which can quickly indicate if the login is legitimate (e.g., user on vacation) or malicious.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Windows server administrator reports that a critical service has stopped unexpectedly. The SOC analyst needs to confirm if any user account performed an action that led to the service stopping.",
+    "options": [
+      "Application Log",
+      "Security Log",
+      "System Log",
+      "Forwarded Events Log"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Windows Security Log records events related to security, including user login/logout, object access, privilege use, and system changes that could be initiated by users, such as starting or stopping services (e.g., Event ID 4688 for process creation, or events related to service control). The System Log would show service crashes but not user actions, and Application Log for application errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An analyst suspects a malware infection is using a specific domain for command and control. They have endpoint logs, firewall logs, and DNS server logs ingested into their SIEM.",
+    "options": [
+      "Search only endpoint logs for the domain name.",
+      "Correlate DNS query logs for the domain, firewall logs for outbound connections to resolved IPs, and endpoint logs for processes initiating these connections.",
+      "Examine only network flow data for high bandwidth usage.",
+      "Review security baseline configurations for the affected host."
+    ],
+    "correctIndex": 1,
+    "explanation": "The most effective approach is to correlate across multiple log sources. By searching DNS query logs for the suspected domain, then checking firewall logs for outbound connections to the IPs resolved by that domain, and finally examining endpoint logs for processes initiating those connections, the analyst can build a strong case for C2 communication.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A threat hunter is investigating a hypothesis that an advanced persistent threat (APT) group is using fileless malware techniques, specifically injecting into legitimate processes like `svchost.exe`. Standard antivirus has not flagged anything.",
+    "options": [
+      "Analyzing network flow data for unusually high DNS queries from `svchost.exe`.",
+      "Monitoring endpoint telemetry for process memory access patterns, unusual thread injections, or parent-child process relationships.",
+      "Reviewing web proxy logs for suspicious URLs accessed by users.",
+      "Examining application crash dumps for specific error codes related to `svchost.exe`."
+    ],
+    "correctIndex": 1,
+    "explanation": "Fileless malware often operates by injecting into legitimate processes and manipulating memory. To detect this, monitoring endpoint telemetry for specific behaviors such as unusual process memory access patterns (e.g., WriteProcessMemory, CreateRemoteThread), unexpected thread injections within legitimate processes (like `svchost.exe`), or deviations in parent-child process relationships (e.g., `svchost.exe` spawning a suspicious child) is crucial. Traditional AV often misses these, requiring advanced EDR/telemetry analysis.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An incident involving a critical data breach has been confirmed. The SOC team needs to escalate the incident to management and legal.",
+    "options": [
+      "The full technical details of the malware reverse engineering.",
+      "The immediate financial cost of the breach.",
+      "The impact, scope, and a clear timeline of events.",
+      "The names of all individuals involved in the incident."
+    ],
+    "correctIndex": 2,
+    "explanation": "When escalating a critical incident to management and legal, it is paramount to clearly articulate the impact (what data was affected, potential consequences), the scope (how many systems/users, what duration), and a concise timeline of events. These elements provide a high-level overview necessary for business decisions, legal obligations, and crisis communication.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SOC team frequently encounters attacks exploiting a specific zero-day vulnerability in a popular web application. There are no readily available signatures for this.",
+    "options": [
+      "Increase the frequency of external vulnerability scans.",
+      "Develop custom behavioral detection rules based on observed exploitation patterns (e.g., suspicious process spawning, unusual web requests after exploit).",
+      "Mandate stronger password policies for all users.",
+      "Completely block all traffic to the web application from outside the internal network."
+    ],
+    "correctIndex": 1,
+    "explanation": "For zero-day vulnerabilities where signatures are not available, developing custom behavioral detection rules is a proactive and effective strategy. This involves identifying unique, observable patterns of exploitation, such as specific web request anomalies, unusual process spawning (e.g., `cmd.exe` from the web server process), or file modifications post-exploitation, and creating detection logic (e.g., Sigma rules) based on these behaviors.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A user reports that their web browser is redirecting them to unexpected, malicious websites even when typing in legitimate URLs.",
+    "options": [
+      "Ransomware",
+      "Adware",
+      "Rootkit",
+      "Worm"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adware is a type of malware that typically causes unwanted advertisements, pop-ups, and redirects to malicious or unwanted websites, often altering browser settings to achieve this. Ransomware encrypts files, rootkits hide their presence, and worms self-propagate across networks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A SOC analyst needs to create a detection rule for a new attack technique that involves an unusual execution of `powershell.exe` with a specific command-line argument containing Base64 encoded data, immediately followed by an outbound network connection.",
+    "options": [
+      "`Image: '*powershell.exe*'` and `ParentImage: '*explorer.exe*'`.",
+      "`CommandLine: '*Base64*'` and `DestinationPort: 80`.",
+      "`Image: '*powershell.exe*'` and `CommandLine: '*<Base64_encoded_string_pattern>*'`.",
+      "`Protocol: 'TCP'` and `SourceIp: '192.168.1.1'`."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most crucial data points are the process image (`powershell.exe`) and a pattern within its command line that indicates Base64 encoded data. This combination specifically targets the described attack technique. While outbound connections are also part of the scenario, the *initial* detection would focus on the process execution and its suspicious arguments to capture the activity early and minimize false positives. `ParentImage` is too restrictive, and `DestinationPort` or `SourceIp` are often too broad or too specific respectively for initial detection logic of the process itself.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A SOC analyst is preparing their Alert Triage Portfolio project. They have a detailed case study of a phishing incident that led to initial access, including evidence, timeline, and mitigation steps.",
+    "options": [
+      "A list of all antivirus software installed in the organization.",
+      "A detailed report recommending specific security awareness training topics based on the phishing vector.",
+      "A formal incident declaration letter to the board of directors.",
+      "A copy of the affected user's HR performance review."
+    ],
+    "correctIndex": 1,
+    "explanation": "To demonstrate advanced SOC skills for a hard rating, the analyst should go beyond just handling the incident and focus on prevention. Recommending specific security awareness training topics based on the *observed phishing vector* shows a proactive mindset, understanding of human factors in security, and a commitment to continuous improvement, which is a key aspect of a mature SOC. It turns a reactive incident into a valuable learning opportunity for the organization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An attacker attempts to guess a user's password repeatedly by trying thousands of common passwords against an online login portal.",
+    "options": [
+      "Distributed Denial of Service (DDoS) attack",
+      "Cross-Site Scripting (XSS) attack",
+      "Brute-force attack",
+      "SQL Injection attack"
+    ],
+    "correctIndex": 2,
+    "explanation": "A brute-force attack involves systematically trying many possible passwords or passphrases in the hope of eventually guessing correctly. DDoS focuses on overwhelming systems, XSS injects scripts into web pages, and SQL Injection targets databases.",
+    "difficulty": "easy"
+  }
+]

@@ -8,11 +8,13 @@ import ThemeToggle from './ThemeToggle';
 const GUEST_ITEMS = [
   { href: '/auth?next=/dashboard&mode=login', label: 'Log In', icon: 'login' },
   { href: '/auth?next=/dashboard&mode=signup', label: 'Sign Up', icon: 'signup' },
+  { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
 ];
 
 const INCOMPLETE_PROFILE_ITEMS = [
   { href: '/onboarding?next=/dashboard', label: 'Complete Profile', icon: 'profile' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+  { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
   { href: '/contact', label: 'Support Center', icon: 'support', external: false },
 ];
 
@@ -21,6 +23,7 @@ const COMPLETE_PROFILE_ITEMS = [
   { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
   { href: '/dashboard', label: 'Learning Progress', icon: 'progress' },
   { href: '/dashboard', label: 'Saved Paths', icon: 'saved' },
+  { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
   { href: '/contact', label: 'Support Center', icon: 'support', external: false },
 ];
 
@@ -81,6 +84,12 @@ function MenuIcon({ name }) {
       </>
     ),
     spark: <path d="M13 2 9 10l-7 3 7 3 4 8 4-8 7-3-7-3-4-8Z" />,
+    verify: (
+      <>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 11 2 2 4-4" />
+      </>
+    ),
     logout: (
       <>
         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />

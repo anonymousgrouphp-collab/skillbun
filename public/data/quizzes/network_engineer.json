@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A user reports that they cannot access www.example.com by name, but can access it directly by its IP address. Which network service is most likely misconfigured or unavailable?",
+    "options": [
+      "DHCP",
+      "DNS",
+      "NAT",
+      "STP"
+    ],
+    "correctIndex": 1,
+    "explanation": "DNS (Domain Name System) is responsible for resolving domain names to IP addresses. If a user can reach a site by IP but not by name, DNS resolution is failing. DHCP assigns IP addresses, NAT translates private to public IPs, and STP prevents loops in switched networks; none directly cause this specific symptom.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following IP addresses belongs to a private IP address range according to RFC 1918?",
+    "options": [
+      "172.17.10.5",
+      "192.169.1.1",
+      "11.0.0.1",
+      "203.0.113.1"
+    ],
+    "correctIndex": 0,
+    "explanation": "The private IP address ranges are 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16. 172.17.10.5 falls within the 172.16.0.0 to 172.31.255.255 range. The other options are public IP addresses or do not fall within the defined private ranges.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A network administrator wants to quickly check if a remote host is reachable and determine the round-trip time. Which command-line utility would be most suitable for this task?",
+    "options": [
+      "traceroute",
+      "nslookup",
+      "ping",
+      "netstat"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'ping' command sends ICMP echo requests to a target host and measures the time it takes for an echo reply, providing reachability and round-trip time. 'traceroute' shows the path, 'nslookup' resolves names, and 'netstat' shows network connections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary function of DHCP in a local area network?",
+    "options": [
+      "To translate domain names to IP addresses.",
+      "To dynamically assign IP addresses and network configuration to devices.",
+      "To route packets between different networks.",
+      "To prevent network loops in a switched environment."
+    ],
+    "correctIndex": 1,
+    "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses, subnet masks, default gateways, and DNS server information to devices on a network, simplifying network management. DNS translates names, routing protocols handle inter-network communication, and STP prevents loops.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A network engineer is segmenting a large flat network into smaller broadcast domains for better performance and security. Which technology is primarily used for this purpose within a single switch or across multiple interconnected switches?",
+    "options": [
+      "NAT",
+      "OSPF",
+      "VLANs",
+      "ARP"
+    ],
+    "correctIndex": 2,
+    "explanation": "VLANs (Virtual Local Area Networks) segment a single physical switch or a group of switches into multiple logical broadcast domains, improving network performance, security, and manageability. NAT is for IP translation, OSPF is a routing protocol, and ARP resolves IP to MAC addresses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following describes the key difference in reliability between TCP and UDP?",
+    "options": [
+      "TCP uses broadcast for data transfer, while UDP uses unicast.",
+      "TCP provides guaranteed delivery with acknowledgments and retransmissions, while UDP does not.",
+      "UDP is connection-oriented, while TCP is connectionless.",
+      "TCP operates at the Network layer, while UDP operates at the Transport layer."
+    ],
+    "correctIndex": 1,
+    "explanation": "TCP (Transmission Control Protocol) is a reliable, connection-oriented protocol that ensures data delivery through acknowledgments, retransmissions, and flow control. UDP (User Datagram Protocol) is a connectionless, unreliable protocol that sends data without guarantees. Both operate at the Transport layer.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A small office network uses private IP addresses. When devices in this office need to access resources on the internet, their private IP addresses must be translated into a public IP address. Which networking technology performs this translation?",
+    "options": [
+      "DNS",
+      "DHCP",
+      "NAT",
+      "VLAN"
+    ],
+    "correctIndex": 2,
+    "explanation": "NAT (Network Address Translation) is used to translate private IP addresses used within a local network into public IP addresses when those devices need to communicate with the internet. DNS resolves names, DHCP assigns IPs, and VLANs segment networks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company is assigned the IP address range 192.168.10.0/24. They need to create subnets for 5 departments, with each department requiring at least 25 usable host IP addresses. Which subnet mask should be used to accommodate these requirements with minimal waste?",
+    "options": [
+      "255.255.255.192",
+      "255.255.255.224",
+      "255.255.255.240",
+      "255.255.255.128"
+    ],
+    "correctIndex": 1,
+    "explanation": "To create at least 5 subnets from a /24, you need to borrow at least 3 bits (2^3 = 8 subnets). This results in a /27 subnet mask (24+3=27). A /27 mask is 255.255.255.224. Each /27 subnet provides 2^(32-27)-2 = 2^5-2 = 30 usable host IP addresses, which satisfies the requirement of at least 25 usable hosts per department.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports intermittent connectivity to an external website. A network engineer runs 'traceroute' to the website and observes an asterisk (*) for three consecutive hops in the middle of the path, followed by successful responses from subsequent routers. What does this output most likely indicate?",
+    "options": [
+      "The destination website is down.",
+      "The intermediate routers are blocking ICMP or have high latency.",
+      "The local default gateway is misconfigured.",
+      "DNS resolution is failing for those hops."
+    ],
+    "correctIndex": 1,
+    "explanation": "Asterisks (*) in 'traceroute' output typically indicate that no response (ICMP Time Exceeded or port unreachable) was received from that hop within the timeout period. This often means the router at that hop is dropping or not responding to the probe packets (due to firewall rules blocking ICMP or high congestion/latency), but the path is still functional as subsequent hops respond. It doesn't mean the destination is down or the local gateway is misconfigured, nor is it a DNS issue for intermediate hops.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following describes a key characteristic of OSPF as a routing protocol?",
+    "options": [
+      "It is a distance-vector protocol that uses hop count as its metric.",
+      "It is an exterior gateway protocol primarily used between different autonomous systems.",
+      "It is a link-state protocol that builds a complete topology map of its area.",
+      "It uses a manual, static configuration for route updates."
+    ],
+    "correctIndex": 2,
+    "explanation": "OSPF (Open Shortest Path First) is a link-state routing protocol. It operates by each router discovering its directly connected links, building a Link State Database (LSDB) which is a complete topological map of the network within its area, and then calculating the shortest path to all destinations using Dijkstra's algorithm. Distance-vector protocols use hop count (like RIP), BGP is an exterior gateway protocol, and static routing is manual.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A network engineer configured a switch port to carry traffic for multiple VLANs between two switches. Which type of port configuration was most likely applied?",
+    "options": [
+      "Access port",
+      "Routed port",
+      "Trunk port",
+      "SPAN port"
+    ],
+    "correctIndex": 2,
+    "explanation": "A trunk port is configured on a switch to carry traffic for multiple VLANs over a single physical link, usually using encapsulation protocols like 802.1Q. An access port is for end devices and belongs to a single VLAN. A routed port functions like a router interface, and a SPAN port is for traffic monitoring.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company wants to secure its internal network by only allowing outbound HTTP/HTTPS traffic to the internet while blocking all other unsolicited inbound connections. Which security device is primarily used to implement these rules?",
+    "options": [
+      "IDS (Intrusion Detection System)",
+      "Load Balancer",
+      "Firewall",
+      "DNS Server"
+    ],
+    "correctIndex": 2,
+    "explanation": "A firewall is a network security device that monitors and filters incoming and outgoing network traffic based on predefined security rules. It is essential for controlling access and implementing policies like allowing specific outbound traffic and blocking unsolicited inbound connections. IDS detects intrusions, a load balancer distributes traffic, and a DNS server resolves names.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A network engineer is troubleshooting slow web application performance using Wireshark. Which display filter could be used to specifically identify all TCP retransmissions in the captured traffic?",
+    "options": [
+      "tcp.port == 80",
+      "ip.addr == 192.168.1.1",
+      "tcp.analysis.retransmission",
+      "dns"
+    ],
+    "correctIndex": 2,
+    "explanation": "Wireshark's display filter 'tcp.analysis.retransmission' is specifically designed to highlight and identify packets that are TCP retransmissions, which are often an indicator of network congestion, packet loss, or other performance issues. The other filters target specific ports, IP addresses, or protocols.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following CIDR blocks represents the aggregation of the following four IP subnets: 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24, and 192.168.4.0/24?",
+    "options": [
+      "192.168.0.0/22",
+      "192.168.1.0/22",
+      "192.168.0.0/21",
+      "192.168.1.0/20"
+    ],
+    "correctIndex": 2,
+    "explanation": "To aggregate these four /24 subnets (192.168.1.0, 192.168.2.0, 192.168.3.0, 192.168.4.0), we need to find the smallest CIDR block that encompasses all of them. In binary, the third octet of these networks ranges from 1 (00000001) to 4 (00000100). The common prefix for these numbers is the first 5 bits '00000'. Since the first two octets (192.168) are 16 bits, adding 5 common bits from the third octet gives us a total of 16 + 5 = 21 common bits. This corresponds to a /21 prefix. The network address for this prefix is found by setting the remaining bits to zero. So, 192.168.0.0/21. This block covers IP addresses from 192.168.0.0 to 192.168.7.255, thus including all four given subnets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user reports being unable to reach a specific hostname, but they can reach other hosts on the same subnet by name. You suspect a DNS issue specific to that hostname. Which command-line tool would you use to query the DNS server directly for the problematic hostname's A record?",
+    "options": [
+      "ping",
+      "traceroute",
+      "dig",
+      "netstat"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'dig' (domain information groper) command is a powerful and flexible tool for querying DNS name servers. It's often preferred over 'nslookup' for detailed DNS troubleshooting as it provides more comprehensive output about DNS records. 'ping' checks reachability, 'traceroute' shows the path, and 'netstat' shows network connections.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Spanning Tree Protocol (STP) port state allows a port to learn MAC addresses but still blocks user traffic to prevent loops?",
+    "options": [
+      "Blocking",
+      "Listening",
+      "Learning",
+      "Forwarding"
+    ],
+    "correctIndex": 2,
+    "explanation": "In STP, the Learning state is where a port processes BPDUs, populates its MAC address table (learns MAC addresses), but does not yet forward user data frames. The Blocking state only receives BPDUs. Listening also receives BPDUs but does not learn MACs. Forwarding allows full data transmission.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A network engineer is configuring OSPF on a router and observes that a neighbor is stuck in the 'EXSTART/EXCHANGE' state. What is a common reason for a router to get stuck in this OSPF state?",
+    "options": [
+      "Mismatched OSPF area IDs.",
+      "Incompatible OSPF network types (e.g., broadcast vs. point-to-point).",
+      "Mismatched router IDs.",
+      "Mismatched MTU settings on the interface."
+    ],
+    "correctIndex": 3,
+    "explanation": "The 'EXSTART/EXCHANGE' state in OSPF is where routers negotiate the master/slave relationship and exchange DBD (Database Description) packets. A common reason for being stuck in this state is mismatched MTU (Maximum Transmission Unit) settings on the interface, as the negotiation process requires identical MTU to avoid fragmentation issues with large DBD packets. Mismatched area IDs would prevent adjacencies in the first place, and network type mismatch would also prevent full adjacency. Router IDs are used for identification, not directly causing issues in this state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company is implementing a VPN solution to allow remote employees secure access to internal company resources over the public internet. Which type of VPN is most commonly used for individual remote users?",
+    "options": [
+      "Site-to-site VPN",
+      "Remote-access VPN",
+      "MPLS VPN",
+      "GRE VPN"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remote-access VPNs (often using protocols like SSL/TLS VPN or IPsec VPN in client mode) are designed to provide individual remote users with secure access to a private network over the internet. Site-to-site VPNs connect entire networks, while MPLS VPNs are service provider solutions, and GRE VPNs are tunneling protocols that often form part of other VPN solutions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A network engineer wants to automate the process of collecting configuration backups from multiple Cisco devices. Which Python library is specifically designed to programmatically connect to network devices and send configuration commands?",
+    "options": [
+      "Requests",
+      "Paramiko",
+      "Netmiko",
+      "Pandas"
+    ],
+    "correctIndex": 2,
+    "explanation": "Netmiko is a multi-vendor Python library built on top of Paramiko, specifically designed to simplify and standardize the process of managing network devices (routers, switches, firewalls) by sending commands over SSH or Telnet and parsing their output. Paramiko is a lower-level SSH library, Requests is for HTTP, and Pandas is for data analysis.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A network has two routers, R1 and R2, both running OSPF. R1 has an interface with IP 10.0.0.1/24 in Area 0 and R2 has an interface with IP 10.0.0.2/24 also in Area 0. Assuming no other issues, what OSPF state should R1 and R2 reach for full adjacency?",
+    "options": [
+      "Init",
+      "Exstart",
+      "Loading",
+      "Full"
+    ],
+    "correctIndex": 3,
+    "explanation": "For two OSPF routers to exchange routing information and build a synchronized link-state database, they must achieve 'Full' adjacency. This state indicates that all steps of the OSPF neighbor discovery process (including Init, 2-Way, Exstart, Exchange, Loading) have been successfully completed, and the routers have identical link-state databases.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A large organization uses the IPv6 prefix 2001:DB8:ACAD::/48 for its entire campus. They need to allocate a /64 subnet for a new data center segment and require at least 16 such /64 subnets within the allocated /48 block for future expansion. Which is the smallest possible /64 subnet that could be assigned to the first data center segment, respecting a hierarchical allocation and providing for future 16 segments?",
+    "options": [
+      "2001:DB8:ACAD:0000::/64",
+      "2001:DB8:ACAD:0010::/64",
+      "2001:DB8:ACAD:0001::/64",
+      "2001:DB8:ACAD:000F::/64"
+    ],
+    "correctIndex": 0,
+    "explanation": "The organization has a /48 prefix (2001:DB8:ACAD::/48). They need /64 subnets. The smallest possible /64 subnet directly under this /48 prefix would be 2001:DB8:ACAD:0000::/64. The requirement for at least 16 such /64 subnets for future expansion is easily met, as a /48 prefix provides 2^(64-48) = 2^16 = 65,536 unique /64 subnets.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A client reports persistent intermittent HTTP 503 Service Unavailable errors when accessing a specific web service. A Wireshark capture on the server shows TCP connections being established, HTTP requests being sent, but no HTTP response from the server application itself, only TCP FIN/RST segments after a timeout. What does this pattern most likely indicate?",
+    "options": [
+      "The client is sending malformed HTTP requests.",
+      "The network path between the client and server is experiencing severe packet loss.",
+      "The web service application on the server is either crashed, overloaded, or incorrectly configured to respond.",
+      "A firewall between the client and server is actively blocking HTTP responses."
+    ],
+    "correctIndex": 2,
+    "explanation": "If TCP connections establish and HTTP requests are sent, but there's no HTTP application-layer response from the server (only TCP FIN/RST segments), it strongly suggests that the web service application itself is failing to process the request or respond. This could be due to a crash, overload, or incorrect application configuration. Other options would typically manifest differently at the packet level.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In an OSPF network, a router is configured as a Designated Router (DR) on a multi-access segment. Which of the following is a primary function of the DR in such an environment?",
+    "options": [
+      "To translate IP addresses between different OSPF areas.",
+      "To advertise external routes into the OSPF domain.",
+      "To prevent routing loops between OSPF areas.",
+      "To reduce the number of adjacencies and flood LSAs on the segment."
+    ],
+    "correctIndex": 3,
+    "explanation": "On multi-access network segments (like Ethernet), OSPF elects a DR and BDR (Backup Designated Router) to optimize the LSA flooding process. The DR acts as a central point for LSA exchange and synchronization for the segment, reducing the number of adjacencies and controlling the flooding of LSAs, thereby improving OSPF scalability and efficiency.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A security team is implementing a Zero-Trust Network Access (ZTNA) model. Which of the following principles is most central to a ZTNA implementation regarding network access?",
+    "options": [
+      "Trust internal network users implicitly while external users require authentication.",
+      "Establish a strong perimeter firewall and allow all internal traffic by default.",
+      "Verify every access request, regardless of its origin (inside or outside the network perimeter).",
+      "Grant users broad access to network resources once they are authenticated and authorized at a central point."
+    ],
+    "correctIndex": 2,
+    "explanation": "Zero Trust operates on the principle of 'never trust, always verify.' This means that every user, device, and application attempting to access network resources, whether originating from inside or outside the traditional network perimeter, must be authenticated, authorized, and continuously validated. It eliminates the concept of implicit trust based on network location.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A network engineer uses Ansible to automate configuration backups. A playbook executes a task that uses the 'ios_command' module to run 'show running-config' and saves the output to a file. However, the task fails intermittently, reporting 'Authentication failed' despite correct credentials. What is a likely cause and an Ansible-specific solution?",
+    "options": [
+      "The device's SSH service is intermittently restarting, and Ansible needs to reconnect more robustly. Implement 'connection: network_cli' with 'persistent_connection_timeout'.",
+      "The device's buffer is overflowing, causing the SSH session to drop. Increase 'ansible_ssh_args' to include 'ClientAliveInterval'.",
+      "The 'ios_command' module is deprecated; use 'raw' module instead.",
+      "The remote user is getting locked out due to too many login attempts. Implement 'retries' and 'delay' in the task, and ensure 'ansible_ssh_common_args' is correctly set."
+    ],
+    "correctIndex": 0,
+    "explanation": "Intermittent 'Authentication failed' errors in network automation often indicate connection stability issues, rather than consistently incorrect credentials. Network devices can sometimes be slow or temporarily unresponsive. Using 'connection: network_cli' (standard for network devices) with 'persistent_connection_timeout' (or 'ansible_network_cli_persistent_connection_timeout') helps Ansible maintain the SSH connection for longer, reducing the need for re-authentication during task execution and improving resilience against brief network glitches.",
+    "difficulty": "hard"
+  }
+]

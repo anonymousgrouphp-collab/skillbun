@@ -1,0 +1,302 @@
+[
+  {
+    "question": "In Rust, what is the core principle that ensures memory safety without a garbage collector?",
+    "options": [
+      "Reference counting",
+      "Ownership",
+      "Borrowing",
+      "Lifetimes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ownership is Rust's most unique feature, which dictates how memory is managed, ensuring safety at compile time by having strict rules around who owns a piece of data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Cargo command is used to create a new Rust project?",
+    "options": [
+      "cargo build",
+      "cargo run",
+      "cargo new",
+      "cargo init"
+    ],
+    "correctIndex": 2,
+    "explanation": "`cargo new` creates a new directory and a new Rust project (binary or library) inside it, complete with a `Cargo.toml` file and a `src` directory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When a function might fail or return no value, which two enums are commonly used in Rust for idiomatic error handling and optional values?",
+    "options": [
+      "Try and Some",
+      "Ok and Err",
+      "Result and Option",
+      "Success and Failure"
+    ],
+    "correctIndex": 2,
+    "explanation": "`Result<T, E>` is used for fallible operations, returning `Ok(T)` on success or `Err(E)` on failure. `Option<T>` is for values that may or may not be present, returning `Some(T)` or `None`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you declare an empty, mutable vector of integers in Rust?",
+    "options": [
+      "let my_vec: Vec<i32> = vec![];",
+      "let my_vec = Vec::new();",
+      "let mut my_vec = Vec::new();",
+      "let mut my_vec: Vec<i32>;"
+    ],
+    "correctIndex": 2,
+    "explanation": "`Vec::new()` creates an empty vector. The `mut` keyword is necessary to allow elements to be added to the vector later. The type `i32` can often be inferred when elements are pushed, but `Vec::new()` is the correct constructor.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which common crate is widely used in Rust for parsing command-line arguments in CLI applications?",
+    "options": [
+      "serde",
+      "reqwest",
+      "clap",
+      "tokio"
+    ],
+    "correctIndex": 2,
+    "explanation": "`clap` (Command Line Argument Parser) is a popular and robust crate for defining and parsing command-line arguments in Rust applications, offering features like subcommands, flags, and options.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary tool used to build a Rust project into an executable binary?",
+    "options": [
+      "rustc",
+      "cargo build",
+      "rustup",
+      "cargo run"
+    ],
+    "correctIndex": 1,
+    "explanation": "`cargo build` compiles your project and produces an executable binary in the `target/debug` (or `target/release` for optimized builds) directory. `rustc` is the underlying compiler that Cargo invokes, while `cargo run` builds and then executes the binary.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Rust feature allows you to define a type that can be one of several possible variants, often used with `match` expressions?",
+    "options": [
+      "Structs",
+      "Tuples",
+      "Enums",
+      "Traits"
+    ],
+    "correctIndex": 2,
+    "explanation": "Enums (enumerations) allow you to define a type by enumerating its possible variants, which can optionally hold data. They are typically handled using `match` expressions for exhaustive checking of all possible states.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Rust program needs to store references to strings from an external source that outlives the current function scope. Which concept must be correctly applied to prevent dangling references?",
+    "options": [
+      "Ownership transfer",
+      "Interior Mutability",
+      "Lifetimes",
+      "Smart Pointers"
+    ],
+    "correctIndex": 2,
+    "explanation": "Lifetimes are a core concept in Rust that ensures references remain valid for as long as they are used, preventing dangling references by associating the lifetime of a reference with the lifetime of the data it points to. The compiler checks these relationships at compile time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a function that needs to operate on any type `T` that can be formatted as a string. Which Rust feature would you use to enforce this requirement on `T`?",
+    "options": [
+      "A macro",
+      "A trait bound (`T: Display`)",
+      "A type alias",
+      "A generic lifetime"
+    ],
+    "correctIndex": 1,
+    "explanation": "Trait bounds are used with generics to specify that a generic type must implement certain traits. `Display` is the trait for types that can be formatted for user-facing output using the `{}` formatter.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Given a `Vec<i32>`, you want to create a new `Vec<i32>` containing only the even numbers, multiplied by 2. Which combination of iterator methods and a closure would be most idiomatic?",
+    "options": [
+      "vec.iter().filter(|x| *x % 2 == 0).map(|x| x * 2).collect()",
+      "vec.for_each(|x| if x % 2 == 0 { x * 2 }).collect()",
+      "vec.into_iter().filter_map(|x| if x % 2 == 0 { Some(x * 2) } else { None }).collect()",
+      "vec.iter().fold(Vec::new(), |mut acc, &x| { if x % 2 == 0 { acc.push(x * 2); } acc })"
+    ],
+    "correctIndex": 0,
+    "explanation": "The `filter` method selects elements based on a predicate (here, checking for even numbers), `map` transforms each selected element (multiplying by 2), and `collect` gathers the results into a new collection. This sequence is the most direct and readable for the described transformation. Option C is also valid but slightly more verbose for this specific problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a high-performance web service or a concurrent CLI tool in Rust, which popular crate provides an asynchronous runtime for executing futures?",
+    "options": [
+      "serde",
+      "rayon",
+      "tokio",
+      "actix-web"
+    ],
+    "correctIndex": 2,
+    "explanation": "`tokio` is the de facto standard asynchronous runtime for Rust, providing an event loop, tasks, and I/O primitives necessary for efficient concurrent programming, especially in network services.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After developing a Rust CLI tool, you want to make it easily installable by other users via `cargo install`. What needs to be configured in your `Cargo.toml` file to enable this?",
+    "options": [
+      "The `[dependencies]` section",
+      "The `[lib]` section",
+      "The `[package]` section with `name` and `version`",
+      "The `[bin]` section (if custom binary name) or simply ensure a `main.rs` exists for a default binary."
+    ],
+    "correctIndex": 3,
+    "explanation": "For `cargo install` to work, Cargo needs to identify an executable. By default, `src/main.rs` defines a binary named after the package. If you have multiple binaries or want a custom name, you can explicitly define them in a `[bin]` section in `Cargo.toml`. The `[package]` section is always required, but the binary definition is key for installability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a REST API in Rust and choose `Axum`. Which concept is central to `Axum` for handling incoming requests and extracting data like path parameters or JSON bodies?",
+    "options": [
+      "Middleware",
+      "Extractors",
+      "Filters",
+      "Channels"
+    ],
+    "correctIndex": 1,
+    "explanation": "Axum heavily uses \"extractors\" (types that implement the `FromRequest` trait) to parse and validate parts of an incoming request, such as path parameters, query strings, JSON bodies, or headers, directly into handler function arguments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a library in Rust, which type of test is best suited for verifying the public API's behavior from the perspective of an external user of the library?",
+    "options": [
+      "Unit tests",
+      "Integration tests",
+      "Property tests",
+      "Benchmark tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Integration tests are placed in the `tests` directory and use the library as if it were an external crate. They are ideal for testing the public API and how different parts of the library interact together, ensuring the overall functionality works as expected for consumers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Rust, what is the primary purpose of an `unsafe` block?",
+    "options": [
+      "To bypass the borrow checker for performance",
+      "To call C functions via FFI",
+      "To perform operations that the compiler cannot guarantee memory safety for",
+      "To declare global mutable static variables"
+    ],
+    "correctIndex": 2,
+    "explanation": "An `unsafe` block signals to the compiler that the programmer is manually upholding memory safety invariants that the borrow checker cannot verify. This includes actions like dereferencing raw pointers, calling `unsafe` functions, and interacting with FFI. It doesn't bypass the borrow checker entirely but allows certain operations that fall outside its strict guarantees.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your Rust application is at version `1.2.3`. If you introduce a new feature that does not break existing public APIs, what should be the next version number according to semantic versioning?",
+    "options": [
+      "1.2.4",
+      "1.3.0",
+      "2.0.0",
+      "1.2.3-alpha"
+    ],
+    "correctIndex": 1,
+    "explanation": "Semantic versioning (MAJOR.MINOR.PATCH) dictates that a new minor version (incrementing the second number) is used for backward-compatible new features. A patch update is for bug fixes, and a major update is for breaking changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have an `Option<i32>` and want to extract the `i32` value if it's `Some`, otherwise return a default value of `0`. Which idiomatic Rust construct would you use?",
+    "options": [
+      "if let Some(x) = my_option { x } else { 0 }",
+      "my_option.unwrap_or(0)",
+      "match my_option { Some(x) => x, None => 0 }",
+      "All of the above are idiomatic and achieve the same."
+    ],
+    "correctIndex": 3,
+    "explanation": "All three options are idiomatic ways to handle an `Option` and provide a default value if `None`. `unwrap_or` is concise for this specific case. `if let` is good for simple matches, and `match` is the most powerful and explicit way to handle all `Option` variants.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to store key-value pairs where keys are strings and values are integers, and you require efficient lookup by key. Which Rust collection is most suitable for this task?",
+    "options": [
+      "Vec<String>",
+      "BTreeMap<String, i32>",
+      "HashMap<String, i32>",
+      "LinkedList<(String, i32)>"
+    ],
+    "correctIndex": 2,
+    "explanation": "`HashMap` provides amortized O(1) average time complexity for insertions, deletions, and lookups, making it ideal for efficient key-value storage. `BTreeMap` offers ordered keys but slower average-case performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You're developing a Rust CLI tool on Windows but need to produce a binary executable for a Linux `x86_64` server. What is the typical process for achieving this in Rust?",
+    "options": [
+      "Compile on a Linux machine directly",
+      "Use `rustup target add x86_64-unknown-linux-gnu` then `cargo build --target x86_64-unknown-linux-gnu`",
+      "Package the Windows binary in a Docker container",
+      "Use `cargo install --target x86_64-unknown-linux-gnu`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rust has excellent cross-compilation support. You first add the desired target triplet using `rustup target add x86_64-unknown-linux-gnu` and then specify that target during compilation with `cargo build --target x86_64-unknown-linux-gnu`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When integrating a PostgreSQL database into a Rust web service (e.g., using `Axum`), which crate is commonly used for asynchronous PostgreSQL client functionality?",
+    "options": [
+      "diesel",
+      "sqlx",
+      "r2d2",
+      "postgres"
+    ],
+    "correctIndex": 1,
+    "explanation": "`sqlx` is a popular asynchronous SQL toolkit for Rust, known for its compile-time query checking and support for various databases including PostgreSQL, making it a strong choice for async web services. `diesel` is an ORM that can work with PostgreSQL but often used synchronously or with different async executors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You've inherited a Rust parser that frequently uses `.clone()` on `String`s and returns `Box<dyn Error>` for errors. To improve performance and idiomatic error handling, you decide to refactor. Which approach would best address these two issues?",
+    "options": [
+      "Pass `&str` references instead of `String` ownership, and define a custom `Error` enum for specific error types.",
+      "Use `Arc<String>` for shared ownership, and use `anyhow` for simplified error handling.",
+      "Convert `String`s to `Vec<u8>` for efficient copying, and use `panic!` for unrecoverable errors.",
+      "Employ interior mutability for `String`s and use `Result<(), String>` for error reporting."
+    ],
+    "correctIndex": 0,
+    "explanation": "Passing `&str` (string slices) allows borrowing instead of cloning, improving performance by avoiding heap allocations. Defining a custom `Error` enum allows for structured, specific error handling, which is more idiomatic and robust than `Box<dyn Error>` or generic crates like `anyhow` for library-internal errors where specificity is important for consumers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When interoperating with C code via FFI, you receive a pointer `*const c_char` from a C function that represents a null-terminated string. To safely use this in Rust, what crucial step involving memory layout and safety must you perform?",
+    "options": [
+      "Directly cast it to `&str` and use it.",
+      "Use `CStr::from_ptr` and ensure the C string's lifetime doesn't outlive the `CStr` reference.",
+      "Convert it to a `Vec<u8>` using `unsafe { std::slice::from_raw_parts }` and then to a `String`.",
+      "Assume it's UTF-8 and use `String::from_raw_parts` to convert it."
+    ],
+    "correctIndex": 1,
+    "explanation": "`CStr::from_ptr` correctly handles null-terminated C strings, creating a `&CStr` reference. It requires an `unsafe` block because the Rust compiler cannot guarantee the pointer is valid or points to a null-terminated string. You must manually ensure the memory pointed to by `*const c_char` remains valid for the lifetime of the `&CStr` reference. Directly casting to `&str` is unsafe as C strings are not guaranteed to be valid UTF-8, which `&str` requires.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are managing a large Rust project with multiple interdependent crates, some providing core logic and others being CLI tools or web services built on that logic. You want to group them, allow optional features for different builds (e.g., `sqlite` or `postgres` support), and ensure consistent compilation. Which Cargo features are most appropriate for this setup?",
+    "options": [
+      "Separate Cargo projects for each crate and use `git submodules`.",
+      "A Cargo workspace combined with conditional compilation using `#[cfg(feature = \"...\")]` and feature flags in `Cargo.toml`.",
+      "A single monolithic crate with extensive `mod` declarations.",
+      "Using `rustup component add` for each dependency."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Cargo workspace is designed to manage multiple related crates in a single repository, allowing them to share dependencies and build together. Conditional compilation (`#[cfg(feature = \"...\")]`) and feature flags in `Cargo.toml` enable optional dependencies or code paths, perfect for tailoring builds (e.g., database backends) without including unnecessary code.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After observing high CPU usage in a Rust application during a load test, you decide to profile its performance. You suspect a specific computation-heavy function is the bottleneck. What is the most effective approach to identify and then measure improvements for this function?",
+    "options": [
+      "Add `println!` statements throughout the function and time execution manually.",
+      "Use a sampling profiler (e.g., `perf`, `Instruments`, `callgrind`) to identify hot spots, then write a `criterion` benchmark for the suspect function and optimize it.",
+      "Rewrite the entire function in `unsafe` Rust for potential speedups.",
+      "Increase the system's available RAM and observe if CPU usage drops."
+    ],
+    "correctIndex": 1,
+    "explanation": "A sampling profiler is essential for identifying actual bottlenecks (\"hot spots\") in a running application, as intuition can often be misleading. Once a bottleneck is identified, using a dedicated benchmarking harness like `criterion` allows for precise and consistent measurement of optimizations applied to that specific function, providing objective data on performance improvements. Relying solely on `println!` is unscientific, `unsafe` Rust is not a guaranteed speedup and adds complexity, and more RAM typically doesn't directly address CPU bottlenecks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a Rust web API, you receive a JSON payload that needs to be validated against certain business rules (e.g., a number must be positive, a string must be a valid email). If validation fails, you need to return a specific HTTP status code (e.g., 400 Bad Request) and a structured JSON error response to the client. Which combination of crates and techniques would be most robust and idiomatic?",
+    "options": [
+      "Manually check each field with `if` statements and return a `String` error.",
+      "Use `serde` for deserialization, a validation crate like `validator` for business rules, and a custom `Error` enum that can be mapped to `axum::response::IntoResponse` (or `actix_web::Error`).",
+      "Implement a custom middleware to intercept all requests and perform validation before reaching handlers.",
+      "Rely solely on database constraints for validation and return generic 500 errors if violated."
+    ],
+    "correctIndex": 1,
+    "explanation": "`serde` handles JSON deserialization reliably. A dedicated validation crate like `validator` provides declarative ways to apply business rules. For structured error responses with specific HTTP codes, defining a custom `Error` enum and implementing `axum::response::IntoResponse` (or similar for `actix_web`) allows you to convert your application-specific errors into appropriate HTTP responses, providing clear, structured feedback to API clients. Manual checks are error-prone and unscalable. Middleware is too broad for specific payload validation. Database constraints are reactive and don't provide good API client feedback.",
+    "difficulty": "hard"
+  }
+]

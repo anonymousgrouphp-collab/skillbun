@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A user reports slow internet access, and you suspect an issue with domain name resolution. Which standard port number would you investigate for DNS traffic?",
+    "options": [
+      "21",
+      "23",
+      "53",
+      "80"
+    ],
+    "correctIndex": 2,
+    "explanation": "DNS (Domain Name System) primarily uses UDP and TCP port 53 for its operations. Port 21 is for FTP, 23 for Telnet, and 80 for HTTP.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which layer of the OSI model is responsible for logical addressing (IP addresses) and routing packets between different networks?",
+    "options": [
+      "Data Link Layer",
+      "Network Layer",
+      "Transport Layer",
+      "Application Layer"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Network Layer (Layer 3) is responsible for logical addressing (IP addresses) and routing, ensuring data can be delivered across various networks. The Data Link Layer handles MAC addresses, the Transport Layer handles port numbers, and the Application Layer interacts with end-user applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To view the contents of a directory in a detailed, long listing format, including file permissions, ownership, and size, which Linux command would you use?",
+    "options": [
+      "cd ~",
+      "ls -l",
+      "pwd",
+      "cat ."
+    ],
+    "correctIndex": 1,
+    "explanation": "The `ls -l` command provides a detailed (long) listing of directory contents, showing permissions, owner, group, size, and modification date. `cd ~` changes to the home directory, `pwd` prints the current working directory, and `cat .` attempts to display the contents of the current directory as if it were a file, which is incorrect.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing a Python script to scan for open ports on a network, which built-in Python module is primarily used for establishing network connections and socket programming?",
+    "options": [
+      "os",
+      "sys",
+      "socket",
+      "math"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `socket` module in Python provides access to the BSD socket interface, which is fundamental for network communication, including building port scanners and other network tools. The `os` module interacts with the operating system, `sys` with the Python interpreter, and `math` for mathematical operations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An attacker exploits a weakness in an application's login form, allowing them to bypass authentication mechanisms by manipulating session tokens. Which OWASP Top 10 vulnerability category does this scenario directly fall under?",
+    "options": [
+      "SQL Injection",
+      "Cross-Site Scripting (XSS)",
+      "Broken Authentication",
+      "Security Misconfiguration"
+    ],
+    "correctIndex": 2,
+    "explanation": "Broken Authentication (now 'Identification and Authentication Failures' in OWASP Top 10 2021) specifically addresses vulnerabilities related to improperly implemented authentication and session management functions, which attackers can exploit to impersonate users or bypass login. SQL Injection targets databases, XSS injects client-side scripts, and Security Misconfiguration relates to improper setup of servers or applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following certifications is widely recognized as an entry-level, vendor-neutral cybersecurity certification that covers foundational security concepts and is often a starting point for professionals in India?",
+    "options": [
+      "OSCP (Offensive Security Certified Professional)",
+      "CISSP (Certified Information Systems Security Professional)",
+      "CompTIA Security+",
+      "CCIE Security"
+    ],
+    "correctIndex": 2,
+    "explanation": "CompTIA Security+ is a foundational, vendor-neutral certification that covers core security concepts, making it an excellent entry-level certification for those starting in cybersecurity. OSCP and CISSP are more advanced certifications, while CCIE Security is a specialized Cisco certification.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Security Operations Center (SOC) analyst is primarily responsible for which of the following tasks within an organization?",
+    "options": [
+      "Developing new software applications and features",
+      "Designing and implementing network infrastructure",
+      "Monitoring security events, analyzing alerts, and responding to incidents",
+      "Managing and optimizing database systems"
+    ],
+    "correctIndex": 2,
+    "explanation": "SOC analysts are at the forefront of an organization's defense, continuously monitoring security systems (like SIEMs) for suspicious activities, analyzing security alerts, investigating potential threats, and initiating incident response procedures to mitigate risks. Other options describe roles typically held by software developers, network engineers, or database administrators.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An organization needs to create at least 8 usable subnets from a Class C network address (e.g., 192.168.1.0/24). What would be the minimum new subnet mask required to accommodate these subnets?",
+    "options": [
+      "255.255.255.192 (/26)",
+      "255.255.255.224 (/27)",
+      "255.255.255.240 (/28)",
+      "255.255.255.248 (/29)"
+    ],
+    "correctIndex": 1,
+    "explanation": "To create 8 subnets, you need to borrow 'n' bits such that 2^n >= 8. Here, n=3 (2^3 = 8). Starting with a /24 (255.255.255.0), borrowing 3 bits means the new prefix length is /27. A /27 subnet mask is 255.255.255.224.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Linux file has the permissions `rwx r-x ---`. If a user is a member of the file's group, what specific permissions do they have on this file?",
+    "options": [
+      "Read, write, and execute",
+      "Read and execute",
+      "Read only",
+      "No permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Linux file permissions are represented in three sets: owner, group, and others. For `rwx r-x ---`: 'rwx' (read, write, execute) is for the owner, 'r-x' (read, execute) is for the group, and '---' (no permissions) is for others. Therefore, a user in the file's group has read and execute permissions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A system administrator needs to ensure that a newly installed web server service on a modern Linux distribution (using systemd) automatically starts every time the system boots up. Which command-line utility is most appropriate for configuring this behavior?",
+    "options": [
+      "cron",
+      "systemctl",
+      "apt-get",
+      "mount"
+    ],
+    "correctIndex": 1,
+    "explanation": "On modern Linux distributions utilizing systemd, `systemctl` is the primary utility for managing system services, including enabling them to start automatically at boot time (e.g., `systemctl enable <service_name>`). `cron` is for scheduling tasks, `apt-get` for package management on Debian-based systems, and `mount` for attaching file systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cybersecurity analyst needs to automate checking the availability and HTTP status codes of several web applications by sending HTTP GET requests in Python. Which popular third-party library is best suited for this task?",
+    "options": [
+      "urllib.parse",
+      "requests",
+      "json",
+      "subprocess"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `requests` library is a widely used and highly recommended library for making HTTP requests in Python due to its simplicity and comprehensive features. While `urllib.parse` is part of Python's standard library, `requests` offers a much more user-friendly API for common web interactions. `json` is for JSON parsing, and `subprocess` for running external commands.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a Python-based port scanner, an efficient method to check if a TCP port is open without raising an exception for every closed port is to use a specific `socket` method. Which method achieves this by returning an error indicator instead?",
+    "options": [
+      "socket.bind()",
+      "socket.listen()",
+      "socket.connect_ex()",
+      "socket.send()"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `socket.connect_ex()` method attempts to connect to a remote socket but returns an error number (0 if successful) instead of raising an exception. This is crucial for port scanners, as it allows the script to efficiently check many ports without cumbersome error handling for each closed port. `bind()` and `listen()` are for creating server sockets, and `send()` is for sending data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During which phase of a penetration test does an ethical hacker actively interact with the target system to discover open ports, identify running services, and fingerprint operating systems?",
+    "options": [
+      "Reconnaissance",
+      "Scanning",
+      "Exploitation",
+      "Reporting"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Scanning phase involves actively probing the target network and systems (e.g., using Nmap) to identify live hosts, open ports, running services, and potential vulnerabilities. Reconnaissance is typically passive information gathering, Exploitation is gaining access, and Reporting is documenting findings.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cybersecurity professional needs to verify the integrity of a critical software update file downloaded from the internet to ensure it hasn't been altered by an attacker. Which cryptographic concept is best suited for this purpose?",
+    "options": [
+      "Symmetric Encryption",
+      "Asymmetric Encryption",
+      "Hashing",
+      "Digital Certificate"
+    ],
+    "correctIndex": 2,
+    "explanation": "Hashing algorithms generate a fixed-size unique output (hash value or digest) for any given input data. Even a minor change in the data will result in a completely different hash, making hashing ideal for verifying data integrity. Symmetric and Asymmetric encryption focus on confidentiality, and digital certificates provide authenticity and non-repudiation, often using hashing within their structure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During the SSL/TLS handshake process, which specific component is primarily used by a client (e.g., a web browser) to verify the identity and authenticity of the web server it is connecting to?",
+    "options": [
+      "Session ID",
+      "Cipher Suite",
+      "Digital Certificate",
+      "Pre-Master Secret"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Digital Certificate, issued by a trusted Certificate Authority (CA), contains the website's public key and identity information. During the SSL/TLS handshake, the client validates this certificate to ensure it is communicating with the legitimate server and not an imposter. Session ID and Pre-Master Secret are used for key exchange and session establishment, while the Cipher Suite defines the algorithms used for encryption.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Security Operations Center (SOC) team needs to centralize security event logs from firewalls, servers, and intrusion detection systems, and then correlate these events in real-time to detect complex attack patterns. Which technology is specifically designed for this aggregation and correlation?",
+    "options": [
+      "VPN (Virtual Private Network)",
+      "DLP (Data Loss Prevention)",
+      "SIEM (Security Information and Event Management)",
+      "IDS (Intrusion Detection System)"
+    ],
+    "correctIndex": 2,
+    "explanation": "SIEM (Security Information and Event Management) systems are designed to collect, aggregate, and analyze security event data from various sources across an organization's IT infrastructure. They provide real-time correlation and alerting capabilities to detect and respond to security incidents. VPNs provide secure communication, DLPs prevent data exfiltration, and IDSs detect intrusions at specific points.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A cybersecurity team has detected an active intrusion. After successfully containing the threat to prevent further damage, their next critical step is to identify the root cause of the attack, remove all malicious components (e.g., malware, backdoors), and patch exploited vulnerabilities. Which phase of incident response does this describe?",
+    "options": [
+      "Preparation",
+      "Containment",
+      "Eradication",
+      "Recovery"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Eradication phase focuses on eliminating the root cause of the incident and completely removing all malicious artifacts from the compromised systems. This often involves detailed forensic analysis to understand how the breach occurred and ensure thorough cleanup. Containment isolates the threat, and Recovery restores systems to normal operation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A security researcher discovers a zero-day vulnerability in a popular web application and responsibly reports it to the vendor through a coordinated disclosure program, receiving a financial reward for their efforts. This activity is best categorized as:",
+    "options": [
+      "Social Engineering",
+      "Phishing",
+      "Penetration Testing (Black Box)",
+      "Bug Bounty Hunting"
+    ],
+    "correctIndex": 3,
+    "explanation": "Bug bounty hunting involves security researchers legally and ethically discovering and reporting vulnerabilities in live applications to organizations in exchange for recognition or monetary rewards, typically through structured programs. Social engineering and phishing are malicious attacks, while penetration testing is a broader, commissioned security assessment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When documenting a vulnerability found during a security audit, which of the following sections is generally NOT considered an essential component of a professional vulnerability report?",
+    "options": [
+      "Impact on the business/system",
+      "Detailed remediation steps",
+      "Evidence or Proof of Concept (PoC)",
+      "Employee performance review of the development team"
+    ],
+    "correctIndex": 3,
+    "explanation": "A professional vulnerability report typically includes the technical details of the vulnerability, its impact (e.g., data breach, service disruption), concrete evidence or a Proof of Concept to demonstrate its existence, and clear, actionable remediation steps. An employee performance review of the development team is unrelated to the technical findings of a security audit.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Linux administrator needs to install a new security monitoring tool package on a server running Ubuntu. Which command-line package management utility is the standard choice for this task on Ubuntu and other Debian-based systems?",
+    "options": [
+      "yum",
+      "pacman",
+      "apt",
+      "dnf"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `apt` (Advanced Package Tool) utility is the standard and most commonly used command-line package manager for installing, updating, and removing software on Debian-based Linux distributions, including Ubuntu. `yum` and `dnf` are primarily used on Red Hat-based systems (like Fedora, CentOS), and `pacman` is for Arch Linux.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An application uses a vulnerable SQL query like `SELECT * FROM users WHERE username = '` + `user_input` + `' AND password = '` + `pass_input` + `';`. An attacker attempts to log in as 'admin' without knowing the password. Which `user_input` value, when combined with any `pass_input`, is most likely to achieve an authentication bypass through SQL injection?",
+    "options": [
+      "`admin'; --`",
+      "`' OR '1'='1`",
+      "`admin' OR 1=1; #`",
+      "`admin' AND 'a'='b`"
+    ],
+    "correctIndex": 2,
+    "explanation": "The input `admin' OR 1=1; #` (or `admin' OR 1=1 --` depending on the SQL comment syntax) modifies the query to `SELECT * FROM users WHERE username = 'admin' OR 1=1; #' AND password = 'pass_input';`. The `OR 1=1` condition is always true, bypassing the password check, and the `#` (or `--`) comments out the rest of the original query, preventing syntax errors. Option A only comments out, option B causes a syntax error if not properly enclosed, option D makes the condition false.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A web application allows users to post comments without proper input sanitization. A malicious user posts a comment containing `<script>alert(document.cookie)</script>`. Later, other users viewing this comment have their browser execute the malicious script. What type of attack is this, and what is its primary consequence?",
+    "options": [
+      "SQL Injection, primarily aimed at stealing database information.",
+      "Cross-Site Request Forgery (CSRF), tricking users into performing unwanted actions.",
+      "Reflected Cross-Site Scripting (XSS), where the script is injected via a URL parameter and executed immediately.",
+      "Stored Cross-Site Scripting (XSS), where the malicious script is persistently saved on the server and executed by other users' browsers."
+    ],
+    "correctIndex": 3,
+    "explanation": "Since the malicious script is 'posted' (implying it's saved in the application's database) and then executed by 'other users viewing this comment', this is a classic example of Stored (or Persistent) Cross-Site Scripting (XSS). The primary consequence is that the attacker's script runs in the victim's browser, potentially stealing session cookies, redirecting users, or defacing the website. Reflected XSS requires the payload to be part of the request URL, and SQL Injection/CSRF are different attack types.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a black-box penetration test, an attacker successfully gains initial access to a Linux server with limited user privileges. What is the most common and logical next step for the attacker to increase their control and impact on the compromised system?",
+    "options": [
+      "Begin writing the final penetration test report.",
+      "Attempt to escalate privileges to root or another administrative user.",
+      "Initiate a distributed denial-of-service (DDoS) attack from the server.",
+      "Perform passive reconnaissance on external networks."
+    ],
+    "correctIndex": 1,
+    "explanation": "After gaining initial access with low privileges, the attacker's primary goal is almost always Privilege Escalation. By escalating privileges (e.g., to root), they gain full control over the system, allowing them to install backdoors, access sensitive data, or pivot to other systems. Reporting is done at the end, DDoS is a destructive act not typically part of standard pentesting goals (unless specified), and external reconnaissance is usually done before initial access or after full system compromise for lateral movement.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A SOC analyst observes an unusual series of failed login attempts on a critical internal application originating from an infrequently used workstation, immediately followed by successful logins to multiple internal SSH servers from the same workstation. This anomaly was not flagged by automated alerts. This scenario most directly represents the application of which SOC analyst skill?",
+    "options": [
+      "Patch Management",
+      "Vulnerability Management",
+      "Threat Hunting",
+      "Compliance Auditing"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario describes Threat Hunting. The analyst is proactively identifying unusual patterns and anomalies (failed logins + successful SSH logins from an unusual source) that automated security tools might miss. Patch management and vulnerability management focus on addressing known weaknesses, while compliance auditing ensures adherence to regulations.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After conducting a security audit of a web application, a penetration tester identifies multiple critical vulnerabilities related to insecure API endpoints that could lead to data exposure. In the 'Remediation Steps' section of the audit report, which recommendation would be most appropriate and comprehensive for addressing this systemic issue?",
+    "options": [
+      "Install antivirus software on all client workstations accessing the API.",
+      "Implement a robust Web Application Firewall (WAF) to protect the API endpoints and conduct regular API security testing.",
+      "Block all incoming HTTP/HTTPS traffic to the application's server from external IP addresses.",
+      "Provide mandatory user awareness training to prevent phishing attacks."
+    ],
+    "correctIndex": 1,
+    "explanation": "To address insecure API endpoints, a multi-faceted technical approach is required. Implementing a robust Web Application Firewall (WAF) can help filter malicious requests targeting APIs, and conducting regular, dedicated API security testing (e.g., using DAST, SAST, or manual penetration testing) ensures continuous protection and identification of new vulnerabilities. Antivirus software is for endpoint protection, blocking all incoming traffic is impractical for a web application, and phishing training doesn't directly solve API security flaws.",
+    "difficulty": "hard"
+  }
+]

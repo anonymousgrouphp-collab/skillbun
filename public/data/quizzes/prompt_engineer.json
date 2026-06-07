@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A prompt engineer wants an LLM to generate a marketing slogan for a new coffee brand. Which element is most crucial for the LLM to understand the desired output style and content?",
+    "options": [
+      "The LLM's internal architecture.",
+      "The prompt's temperature setting.",
+      "Clear instructions and context within the prompt.",
+      "The number of previous API calls."
+    ],
+    "correctIndex": 2,
+    "explanation": "Clear instructions and context are fundamental for guiding an LLM's response, enabling it to understand the desired output style and content. The other options relate to internal mechanics, generation parameters, or usage history, not directly to conveying the desired output.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing a prompt to summarize customer reviews, what is the primary benefit of including a few good examples of desired summary outputs directly in the prompt?",
+    "options": [
+      "It reduces the LLM's processing time.",
+      "It ensures the LLM has access to up-to-date information.",
+      "It helps the LLM understand the desired format, length, and tone of the summary.",
+      "It bypasses the need for the LLM to read the customer reviews."
+    ],
+    "correctIndex": 2,
+    "explanation": "Examples (few-shot prompting) are highly effective in demonstrating the desired output style, format, and content, thereby guiding the LLM more effectively than just instructions alone.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An LLM is asked 'What is the capital of France?' and replies 'Paris.' Which fundamental aspect of LLM behavior does this demonstrate?",
+    "options": [
+      "Its ability to perform complex multi-step reasoning.",
+      "Its reliance on external tool calls for factual information.",
+      "Its ability to respond to direct instructions and access factual knowledge from its training data.",
+      "Its susceptibility to prompt injection attacks."
+    ],
+    "correctIndex": 2,
+    "explanation": "This is a straightforward factual recall, demonstrating the LLM's core function of responding to clear instructions based on the factual knowledge assimilated during its training.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To ensure an LLM generates a response in a formal, professional tone, what should a prompt engineer explicitly include in the prompt?",
+    "options": [
+      "A command to 'be brief.'",
+      "An instruction like 'Adopt a formal and professional tone.'",
+      "Several unrelated historical facts.",
+      "A request for the LLM's internal token count."
+    ],
+    "correctIndex": 1,
+    "explanation": "Explicitly defining the desired tone in the prompt is the most direct and effective way to guide the LLM's output style and ensure it adheres to a formal and professional demeanor.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'ambiguity' in a prompt primarily lead to regarding LLM responses?",
+    "options": [
+      "Faster response times.",
+      "More predictable and consistent outputs.",
+      "Unreliable, inconsistent, or undesired responses.",
+      "Automatic self-correction mechanisms."
+    ],
+    "correctIndex": 2,
+    "explanation": "Ambiguity in a prompt leaves too much room for interpretation, which makes the LLM's response unpredictable, inconsistent, and often results in undesired or incorrect outputs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A prompt engineer wants an LLM to always return information in a specific, machine-readable format. Which output structure is most commonly used for this purpose?",
+    "options": [
+      "Free-form paragraph text.",
+      "A bulleted list.",
+      "JSON.",
+      "A rhyming poem."
+    ],
+    "correctIndex": 2,
+    "explanation": "JSON (JavaScript Object Notation) is a widely adopted, lightweight data-interchange format that is easily parseable by machines, making it ideal for structured outputs from LLMs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main goal of using an LLM for 'extraction' from a text?",
+    "options": [
+      "To summarize the entire document.",
+      "To generate new, creative content based on the text.",
+      "To identify and pull out specific pieces of information, like names, dates, or product codes.",
+      "To translate the text into a different language."
+    ],
+    "correctIndex": 2,
+    "explanation": "Extraction specifically refers to the process of identifying and isolating particular data points, entities, or facts from a larger body of text according to predefined criteria.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A customer support LLM repeatedly generates incorrect product specifications not found in its knowledge base or the provided context. This behavior is best described as:",
+    "options": [
+      "Prompt injection.",
+      "Context window overflow.",
+      "Hallucination.",
+      "Stale knowledge."
+    ],
+    "correctIndex": 2,
+    "explanation": "Hallucination refers to the LLM generating information that is plausible-sounding but factually incorrect or unsupported by its training data or the given context. Stale knowledge refers to outdated but once-correct information, while prompt injection is about manipulating the prompt.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A prompt engineer needs to design a prompt that categorizes incoming support tickets into predefined types like 'Technical Issue,' 'Billing Inquiry,' or 'Feature Request.' Which prompt pattern is most appropriate for this task?",
+    "options": [
+      "Generation.",
+      "Summarization.",
+      "Classification.",
+      "Reasoning."
+    ],
+    "correctIndex": 2,
+    "explanation": "Classification involves assigning an input to one of several predefined categories, which perfectly matches the scenario of categorizing support tickets into specific types.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When extracting information from a user review, a prompt needs to handle cases where a specific field, like 'product_rating,' might be missing. How should the prompt be designed to manage such uncertainty?",
+    "options": [
+      "Instruct the LLM to guess a rating if it's missing.",
+      "Force the LLM to always output a 'product_rating' even if it invents one.",
+      "Instruct the LLM to output a placeholder like 'N/A' or 'unknown' for missing fields.",
+      "Stop the process if any field is missing."
+    ],
+    "correctIndex": 2,
+    "explanation": "Explicitly instructing the LLM to use a predefined placeholder (e.g., 'N/A', 'unknown') for missing information is a robust way to handle uncertainty, ensuring structured output without inventing data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To rigorously evaluate the performance of a new prompt version for a summarization task, a prompt engineer should primarily create:",
+    "options": [
+      "A single, extremely long test document.",
+      "A collection of 'golden examples' with expected outputs, along with edge cases.",
+      "A list of internal model parameters.",
+      "A graph showing API call latency."
+    ],
+    "correctIndex": 1,
+    "explanation": "Golden examples provide a clear benchmark for desired performance, and edge cases test the prompt's robustness under challenging conditions, both crucial for thorough and objective evaluation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After deploying a new prompt to production, what key metric should a prompt engineer monitor to quickly identify a potential degradation in output quality?",
+    "options": [
+      "The average token generation rate.",
+      "User feedback and reported failure patterns.",
+      "The total number of API requests.",
+      "The specific GPU utilization."
+    ],
+    "correctIndex": 1,
+    "explanation": "User feedback and monitoring specific failure patterns (e.g., increased hallucinations, incorrect classifications) are direct and immediate indicators of output quality degradation in a live system, allowing for prompt intervention.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A user includes malicious instructions hidden within legitimate input, causing an LLM to deviate from its intended function (e.g., revealing confidential system prompts). This attack is known as:",
+    "options": [
+      "Context window exhaustion.",
+      "Stale knowledge exploitation.",
+      "Prompt injection.",
+      "Overconfident answer generation."
+    ],
+    "correctIndex": 2,
+    "explanation": "Prompt injection specifically refers to attempts to bypass safety mechanisms or manipulate the LLM's behavior by inserting malicious or unintended instructions within the input prompt.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A prompt engineer wants to create a system that takes a complex user query and breaks it down into actionable steps. Which prompt pattern would be most suitable for this?",
+    "options": [
+      "Simple generation.",
+      "Single-turn classification.",
+      "Multi-step reasoning.",
+      "Direct factual recall."
+    ],
+    "correctIndex": 2,
+    "explanation": "Multi-step reasoning is designed to tackle complex problems by breaking them down into sequential, manageable steps, often involving intermediate thoughts or sub-tasks, making it suitable for deconstructing queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When comparing two different prompt versions (Prompt A and Prompt B) for a specific task, what is the most effective way to determine which one performs better?",
+    "options": [
+      "Ask a single user to test both and pick a favorite.",
+      "Implement both prompts in production simultaneously and wait for feedback.",
+      "Create a regression set with diverse inputs and expected outputs, then score both prompts against it.",
+      "Rely solely on the LLM's internal confidence score for each prompt."
+    ],
+    "correctIndex": 2,
+    "explanation": "A regression set with predefined inputs and expected outputs allows for objective, systematic comparison and scoring of prompt performance across various scenarios, providing a clear measure of which prompt is superior.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What role do 'rubrics' play in prompt evaluation?",
+    "options": [
+      "They define the specific API endpoints for LLM interaction.",
+      "They provide a standardized set of criteria and scoring guidelines for assessing prompt output quality.",
+      "They automatically fix errors in the LLM's responses.",
+      "They measure the latency of the LLM's API calls."
+    ],
+    "correctIndex": 1,
+    "explanation": "Rubrics are essential for consistent and objective evaluation, as they outline a standardized set of criteria and scoring guidelines, defining what constitutes a good or bad response based on predefined quality metrics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To prevent an LLM from generating inappropriate or harmful content, what kind of mechanism should a prompt engineer implement?",
+    "options": [
+      "Increase the prompt's token count limit.",
+      "Output filters and content moderation guardrails.",
+      "Decrease the LLM's temperature setting.",
+      "Provide more examples of creative writing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Output filters and content moderation guardrails are specifically designed mechanisms to detect, block, or modify harmful, unsafe, or inappropriate content generated by an LLM, ensuring safety and compliance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is 'versioning prompts' an important practice in prompt engineering operations?",
+    "options": [
+      "To make prompts longer and more complex.",
+      "To track changes, experiment with different approaches, and revert to previous stable versions if needed.",
+      "To solely reduce the cost of LLM API calls.",
+      "To prevent the LLM from accessing external tools."
+    ],
+    "correctIndex": 1,
+    "explanation": "Prompt versioning allows engineers to manage changes over time, track the impact of modifications, facilitate experimentation with different approaches, and easily revert to stable previous versions if regressions occur.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A prompt engineer is tasked with ensuring an LLM's generated output for a legal document drafting application adheres to strict legal terminology and format. What is the most effective approach to constrain the LLM's output?",
+    "options": [
+      "Provide a very general instruction like 'Write a legal document.'",
+      "Include specific examples of correctly formatted legal documents and explicit instructions on required terminology and structure.",
+      "Allow the LLM to generate creative interpretations.",
+      "Rely on the LLM's inherent knowledge of legal practices without further guidance."
+    ],
+    "correctIndex": 1,
+    "explanation": "For strict adherence to specific formats and terminology, a combination of explicit instructions and few-shot examples (demonstrating the desired output style and content) is highly effective in constraining the LLM's generation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a production environment, a prompt engineer notices an increase in latency for an LLM application. What aspect of prompt monitoring would be most relevant to investigate first?",
+    "options": [
+      "The LLM's training data refresh schedule.",
+      "Changes in prompt length or complexity, or the specific model version being used.",
+      "The geographical location of the LLM's data center.",
+      "The number of unique users interacting with the system."
+    ],
+    "correctIndex": 1,
+    "explanation": "Changes in prompt design, such as increased length or complexity, or a switch to a different LLM model version, can directly impact latency. These are immediate factors under the prompt engineer's control or observation within their domain.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A sophisticated LLM application needs to answer questions that require current, real-time data from a company database. How would a prompt engineer typically design the prompt to achieve this, beyond just providing context?",
+    "options": [
+      "Embed the entire database into the prompt.",
+      "Instruct the LLM to use a predefined tool call to query the database and integrate the results into its response.",
+      "Rely on the LLM's internal knowledge, assuming it's always up-to-date.",
+      "Ask the user to manually provide the database information."
+    ],
+    "correctIndex": 1,
+    "explanation": "For real-time, external data, integrating 'tool use' (or function calling) allows the LLM to interact with external systems like databases, retrieve current information, and then use that information to formulate its accurate response.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A user attempts a 'jailbreak' by providing a prompt designed to bypass an LLM's safety filters and elicit harmful content. Beyond output filters, what advanced guardrail strategy might a prompt engineer employ to detect and mitigate such attempts?",
+    "options": [
+      "Increase the creativity parameter (temperature) of the LLM.",
+      "Implement a 'red teaming' process to proactively identify vulnerabilities and strengthen detection mechanisms.",
+      "Reduce the maximum output token length.",
+      "Train the LLM on more diverse creative writing prompts."
+    ],
+    "correctIndex": 1,
+    "explanation": "Red teaming involves intentionally trying to break the system (e.g., performing jailbreaks) to discover vulnerabilities and improve the robustness of safety mechanisms and guardrails *before* deployment or in an iterative improvement cycle. This is a more advanced, proactive safety strategy.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "For a 'Support Prompt System' aiming for highly accurate ticket triage and resolution, a prompt engineer designs a system where the LLM first classifies the ticket, then drafts an answer, and finally suggests an escalation path if needed. To verify intermediate results before proceeding to the next step, which technique is most effective?",
+    "options": [
+      "Generate all steps simultaneously without checking.",
+      "Use human-in-the-loop review for each intermediate step, or programmatic checks based on defined rules.",
+      "Only check the final output.",
+      "Reduce the LLM's context window."
+    ],
+    "correctIndex": 1,
+    "explanation": "For multi-step reasoning, verifying intermediate results is crucial to prevent cascading errors. This can involve programmatic checks (e.g., validating output format, logical consistency) or a human-in-the-loop for critical steps, ensuring accuracy before moving forward.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When creating an 'adversarial prompt' for an evaluation set, what is the primary objective?",
+    "options": [
+      "To provide the LLM with extremely easy questions.",
+      "To create a prompt that is intentionally ambiguous or challenging to make the LLM fail or expose its limitations.",
+      "To test the LLM's ability to generate creative stories.",
+      "To provide the LLM with perfect examples of desired output."
+    ],
+    "correctIndex": 1,
+    "explanation": "Adversarial prompts are designed to stress-test the LLM, intentionally pushing its boundaries with ambiguous, misleading, or challenging inputs to expose weaknesses in the prompt or model that require further refinement.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An LLM application for financial advice requires users to confirm certain facts by asking clarifying questions before providing recommendations. If the LLM consistently fails to ask these critical clarifying questions, what might be a core issue in the prompt design related to multi-step reasoning?",
+    "options": [
+      "The prompt is too short.",
+      "The prompt does not explicitly instruct the LLM to identify gaps or uncertainties and trigger a clarifying question step.",
+      "The LLM's training data is too recent.",
+      "The output format is JSON instead of plain text."
+    ],
+    "correctIndex": 1,
+    "explanation": "For an LLM to perform multi-step reasoning like asking clarifying questions, the prompt must explicitly define this step and the conditions under which it should be triggered (e.g., when information is missing or uncertain). Without clear instructions, the LLM will likely make assumptions and proceed directly to an answer.",
+    "difficulty": "hard"
+  }
+]

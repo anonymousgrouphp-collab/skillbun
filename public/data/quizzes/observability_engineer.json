@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary purpose of Observability engineering in a modern software development lifecycle?",
+    "options": [
+      "To prevent all software bugs before deployment.",
+      "To ensure applications can scale infinitely without performance degradation.",
+      "To enable understanding of a system's internal state based on external outputs.",
+      "To automate the deployment and management of infrastructure resources."
+    ],
+    "correctIndex": 2,
+    "explanation": "Observability engineering is fundamentally about understanding the internal state of a system (what's happening, why it's happening) by analyzing the data it emits (metrics, logs, traces). It's not about preventing all bugs, infinite scaling, or just infrastructure automation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which type of telemetry data primarily records discrete events that happened at a specific point in time, often with contextual details about the event?",
+    "options": [
+      "Metrics",
+      "Traces",
+      "Logs",
+      "SLOs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Logs are records of discrete events, often timestamped and containing a message and contextual properties. Metrics are aggregations over time, traces show end-to-end request flows, and SLOs are service level objectives.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which open-source tool is widely recognized for time-series monitoring and alerting, using a pull model to collect data?",
+    "options": [
+      "Grafana",
+      "Elasticsearch",
+      "Prometheus",
+      "Kibana"
+    ],
+    "correctIndex": 2,
+    "explanation": "Prometheus is a popular open-source system for time-series monitoring and alerting, known for its pull-based metric collection. Grafana is for visualization, Elasticsearch and Kibana are for log management and visualization respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main goal of OpenTelemetry?",
+    "options": [
+      "To provide a single dashboard for all monitoring tools.",
+      "To standardize the collection and export of telemetry data (metrics, logs, traces).",
+      "To replace all existing monitoring agents with a single, universal agent.",
+      "To automatically fix issues detected in production systems."
+    ],
+    "correctIndex": 1,
+    "explanation": "OpenTelemetry aims to standardize how telemetry data (metrics, logs, and traces) is generated, collected, and exported, making it vendor-neutral and portable. It doesn't provide a dashboard, replace all agents, or automatically fix issues.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which component of an observability stack is primarily responsible for creating rich, interactive dashboards and visualizing telemetry data from various sources?",
+    "options": [
+      "Prometheus",
+      "OpenTelemetry Collector",
+      "Grafana",
+      "Fluentd"
+    ],
+    "correctIndex": 2,
+    "explanation": "Grafana is a leading open-source platform for data visualization and dashboarding, integrating with numerous data sources like Prometheus. Prometheus is a data source, OpenTelemetry Collector collects and processes, and Fluentd is a log collector/processor.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does an SLO (Service Level Objective) primarily define in the context of Observability?",
+    "options": [
+      "The maximum allowed budget for a service.",
+      "The acceptable level of reliability for a service.",
+      "The internal architecture of a service.",
+      "The team responsible for a service."
+    ],
+    "correctIndex": 1,
+    "explanation": "An SLO (Service Level Objective) specifies a target value or range for a service level, defining an acceptable level of reliability and performance that a service should meet, often based on an SLI (Service Level Indicator).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of version control systems like Git in an Observability Engineer's daily workflow?",
+    "options": [
+      "To automatically deploy monitoring dashboards.",
+      "To track changes to configuration files, code, and documentation, and enable collaboration.",
+      "To store raw telemetry data securely.",
+      "To run automated tests on observability pipelines."
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems like Git are essential for tracking changes to configurations (e.g., Prometheus rules, Grafana dashboards as code), application instrumentation, and documentation, facilitating collaboration and rollbacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Scenario: An application experiences intermittent slowdowns, but CPU and memory usage remain within normal bounds. Which type of telemetry data would be most effective for identifying the specific code path causing the latency and understanding the sequence of operations?",
+    "options": [
+      "Metrics",
+      "Logs",
+      "Traces",
+      "Events"
+    ],
+    "correctIndex": 2,
+    "explanation": "Traces (specifically distributed traces) are designed to show the end-to-end flow of a request through multiple services and components, making them ideal for pinpointing latency bottlenecks in complex distributed systems. Metrics show aggregate performance, logs discrete events, and events are often a type of log.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When setting up Prometheus to monitor a new application, what is the primary method used to discover and scrape metrics from application instances?",
+    "options": [
+      "Pushing metrics directly to Prometheus using an API.",
+      "Configuring a Prometheus exporter on each instance.",
+      "Using service discovery mechanisms to find targets and then scrape them.",
+      "Manually entering IP addresses of each instance into Prometheus configuration."
+    ],
+    "correctIndex": 2,
+    "explanation": "Prometheus primarily uses a pull model. Service discovery (e.g., Kubernetes API, EC2 API) is the preferred way to dynamically find targets, which Prometheus then scrapes for metrics. While exporters expose metrics, service discovery automates finding them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is experiencing frequent false positives from their alert rules, leading to 'alert fatigue'. What is a common practice to improve the signal-to-noise ratio of alerts and make them more actionable?",
+    "options": [
+      "Increase the sensitivity of all alert thresholds.",
+      "Switch from threshold-based alerts to anomaly detection for all metrics.",
+      "Alert on symptoms (SLOs/SLIs) rather than causes (low-level resource metrics) when possible.",
+      "Disable all alerts during non-business hours."
+    ],
+    "correctIndex": 2,
+    "explanation": "Alerting on symptoms (like SLOs/SLIs, e.g., error rate, latency) directly indicates user impact, reducing false positives from underlying causes that might not be user-facing. Increasing sensitivity would worsen alert fatigue. Anomaly detection can be good but isn't a universal fix, and disabling alerts can lead to missed incidents.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is it important for an Observability Engineer to understand the 'blast radius' of potential failures within a system?",
+    "options": [
+      "To minimize the number of monitoring dashboards.",
+      "To define strict budget limits for observability tools.",
+      "To assess the potential impact of a failure and design resilient observability solutions.",
+      "To justify the use of open-source observability tools over commercial ones."
+    ],
+    "correctIndex": 2,
+    "explanation": "Understanding the 'blast radius' helps an Observability Engineer identify how far a failure in one component could spread, allowing them to design robust monitoring, alerting, and incident response strategies that contain impact and facilitate quicker recovery.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which OpenTelemetry component is responsible for receiving, processing (e.g., batching, filtering), and exporting telemetry data to various backends?",
+    "options": [
+      "OpenTelemetry SDK",
+      "OpenTelemetry API",
+      "OpenTelemetry Protocol (OTLP)",
+      "OpenTelemetry Collector"
+    ],
+    "correctIndex": 3,
+    "explanation": "The OpenTelemetry Collector is designed to receive, process, and export telemetry data. The SDK provides language-specific implementations, the API defines data types, and OTLP is the wire protocol for sending data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a logging strategy for microservices, what is a key benefit of structured logging over traditional plain text logging?",
+    "options": [
+      "Structured logs require less storage space.",
+      "Structured logs are easier for humans to read and parse.",
+      "Structured logs allow for easier programmatic parsing, filtering, and querying.",
+      "Structured logs automatically redact all sensitive information."
+    ],
+    "correctIndex": 2,
+    "explanation": "Structured logging (e.g., JSON format) provides machine-readable key-value pairs, which significantly enhances the ability to programmatically parse, filter, query, and analyze logs using log management systems. Plain text is often easier for humans, and it doesn't automatically redact sensitive data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new feature is being rolled out. What is a key activity an Observability Engineer performs during the 'Quality, Testing, and Review' phase to ensure the feature's operational readiness?",
+    "options": [
+      "Writing unit tests for the application's business logic.",
+      "Conducting load tests to identify performance bottlenecks and validate SLIs.",
+      "Reviewing the frontend UI for accessibility compliance.",
+      "Developing marketing materials for the new feature."
+    ],
+    "correctIndex": 1,
+    "explanation": "During the quality and testing phase, Observability Engineers focus on operational readiness. Conducting load tests helps validate that the system's performance and stability meet defined SLIs under expected (and stressed) conditions, ensuring observability components function as expected.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are integrating a third-party API into your application. From an observability perspective, what's a crucial aspect to consider for this integration?",
+    "options": [
+      "The specific programming language the third-party API is written in.",
+      "Whether the third-party API provides its own monitoring dashboard.",
+      "The ability to collect metrics, logs, and traces related to calls made to the third-party API.",
+      "The cost of the third-party API's premium support plan."
+    ],
+    "correctIndex": 2,
+    "explanation": "For third-party integrations, it's crucial to have visibility into their performance and behavior from your application's perspective. Collecting metrics (latency, error rates), logs (request/response details), and traces (cross-service correlation) on API calls is essential for troubleshooting and understanding dependencies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following best describes the benefit of defining Service Level Indicators (SLIs) and Service Level Objectives (SLOs) for a service?",
+    "options": [
+      "To automatically remediate all production incidents.",
+      "To establish clear, measurable targets for service reliability and performance, guiding engineering efforts.",
+      "To replace the need for traditional monitoring tools.",
+      "To ensure 100% uptime for all services at all times."
+    ],
+    "correctIndex": 1,
+    "explanation": "SLIs and SLOs provide a shared understanding of what constitutes acceptable service performance and reliability. They guide engineering and product teams on where to focus efforts, allowing for data-driven decisions on features versus reliability work, rather than guaranteeing 100% uptime or replacing monitoring tools.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an incident, what is the primary goal of the Observability Engineer in providing 'incident insights'?",
+    "options": [
+      "To assign blame to the team or individual responsible for the incident.",
+      "To identify the precise root cause immediately after the incident is declared.",
+      "To provide real-time data and context to responders to aid in diagnosis and resolution.",
+      "To document all lessons learned for the post-mortem report before resolution."
+    ],
+    "correctIndex": 2,
+    "explanation": "During an active incident, the primary goal of observability is to rapidly provide responders with relevant, real-time data (metrics, logs, traces) to help them understand the problem, diagnose its cause, and work towards resolution. Root cause analysis and detailed documentation often come after resolution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When documenting an observability system, what kind of information is most valuable for future maintenance, troubleshooting, and onboarding new team members?",
+    "options": [
+      "A complete list of all open bugs in the observability tools.",
+      "Diagrams illustrating data flow, alert routing, and dashboard structures, along with runbooks.",
+      "Marketing brochures of the observability vendors used.",
+      "Personal notes from the initial setup process."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive documentation for an observability system should include data flow diagrams (showing how telemetry is generated, collected, stored, and visualized), alert routing logic, dashboard structures, and runbooks (step-by-step guides for common issues). This is critical for maintainability, troubleshooting, and knowledge transfer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Observability Engineer is asked to make operational risks visible to stakeholders. What is a common and effective approach to achieve this?",
+    "options": [
+      "Daily email reports detailing every minor system anomaly.",
+      "Creating dashboards that visualize service health against SLOs and error budgets, along with trend analysis.",
+      "Scheduling weekly meetings to verbally discuss all potential failure modes.",
+      "Installing more monitoring agents on every single server."
+    ],
+    "correctIndex": 1,
+    "explanation": "Visualizing service health against defined SLOs and error budgets on dashboards provides clear, actionable insights into operational risks. This allows stakeholders to understand the current state, trends, and the remaining 'budget' for failures before SLO breaches, making risks visible in a quantifiable way.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a key benefit of using OpenTelemetry over vendor-specific agents for telemetry collection?",
+    "options": [
+      "OpenTelemetry agents are always more performant than vendor agents.",
+      "OpenTelemetry only supports collecting metrics, not logs or traces.",
+      "OpenTelemetry provides vendor-neutral instrumentation, allowing portability and avoiding vendor lock-in.",
+      "OpenTelemetry automatically integrates with all existing legacy monitoring systems without configuration."
+    ],
+    "correctIndex": 2,
+    "explanation": "The primary benefit of OpenTelemetry is its vendor-neutral approach. It provides standardized APIs, SDKs, and collectors for telemetry data, allowing users to instrument their applications once and then export that data to any compatible backend, avoiding lock-in to specific vendors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Scenario: A critical microservice is experiencing high request latency during peak hours, but CPU and memory utilization appear normal. Standard metrics and logs show nothing immediately obvious. Which advanced observability technique would likely provide the most actionable insights for root cause analysis in this situation?",
+    "options": [
+      "Increasing the sampling rate of existing metrics.",
+      "Collecting continuous profiling data to identify CPU-bound or I/O-bound bottlenecks within the application code.",
+      "Analyzing historical log archives from several months ago for unrelated events.",
+      "Restarting the microservice periodically to reset its state."
+    ],
+    "correctIndex": 1,
+    "explanation": "If CPU and memory are normal but latency is high, the issue might be within the application's runtime, such as inefficient code paths, blocking I/O, or lock contention. Continuous profiling directly identifies these bottlenecks by sampling stack traces and resource usage within the running process, providing deep insights into code execution that metrics and logs alone might miss.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing an alerting system for a complex distributed application, which approach helps minimize alert fatigue while ensuring critical issues are caught promptly?",
+    "options": [
+      "Create an alert for every single metric threshold breach.",
+      "Configure alerts only for metrics directly related to user-facing SLOs and combine related alerts into single notifications.",
+      "Route all alerts to a single, centralized email inbox.",
+      "Use only predictive analytics to anticipate failures and never alert on current state."
+    ],
+    "correctIndex": 1,
+    "explanation": "To minimize alert fatigue, focus on alerting on symptoms that directly impact users or violate SLOs, rather than every individual metric. Combining related alerts (deduplication, aggregation) into a single notification reduces noise. A single email inbox would be overwhelming, and only using predictive analytics could miss current critical failures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A company is dealing with stringent data privacy regulations (e.g., GDPR, CCPA). What paramount consideration must an Observability Engineer prioritize when designing and implementing log and trace collection for production systems?",
+    "options": [
+      "Maximizing the volume of data collected to ensure complete detail.",
+      "Storing all telemetry data indefinitely for historical analysis.",
+      "Implementing robust data anonymization, redaction, and access controls for sensitive information within logs and traces.",
+      "Exclusively using open-source observability tools to avoid vendor compliance issues."
+    ],
+    "correctIndex": 2,
+    "explanation": "Under stringent data privacy regulations, the paramount concern is protecting sensitive data. This requires implementing strong data anonymization and redaction techniques (e.g., for PII) within logs and traces at the point of collection, ensuring data minimization, and establishing strict access controls and retention policies.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Consider a scenario where a newly deployed service has an SLO of 99.9% availability for a 30-day period. If during this 30-day period, the service experiences a total of 50 minutes of downtime, how does this impact its SLO target, and what might be the next step for the Observability Engineer?",
+    "options": [
+      "The SLO is met; the team still has error budget remaining.",
+      "The SLO is breached; the Observability Engineer should immediately halt all development until the SLO is restored.",
+      "The SLO is breached (99.9% allows ~43.2 minutes of downtime over 30 days). The Observability Engineer should initiate an incident review, analyze the root cause, and prioritize reliability work.",
+      "The SLO is not breached as long as uptime is above 99%."
+    ],
+    "correctIndex": 2,
+    "explanation": "A 99.9% availability SLO over 30 days allows for approximately 43.2 minutes of downtime (0.1% of 30 days * 24 hours * 60 minutes). With 50 minutes of downtime, the service has breached its SLO. The Observability Engineer's next step should be to conduct a thorough incident review, understand the root cause, and work with the team to prioritize reliability fixes to prevent future breaches.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a major challenge in implementing end-to-end tracing across heterogeneous systems (e.g., polyglot microservices, legacy systems, and third-party APIs) and how can OpenTelemetry help mitigate it?",
+    "options": [
+      "The primary challenge is the high cost of storing trace data, which OpenTelemetry does not address.",
+      "The challenge lies in managing conflicting data schemas and propagation formats across diverse technologies; OpenTelemetry provides a standardized approach for instrumentation and context propagation.",
+      "The main difficulty is that legacy systems cannot generate trace data, making end-to-end tracing impossible even with OpenTelemetry.",
+      "OpenTelemetry complicates tracing by requiring custom agents for each language, increasing implementation effort."
+    ],
+    "correctIndex": 1,
+    "explanation": "A major challenge in heterogeneous systems is ensuring consistent context propagation (trace IDs, span IDs) and data schemas across different languages, frameworks, and third-party services. OpenTelemetry addresses this by providing vendor-neutral, standardized APIs and SDKs for instrumentation and a common protocol (OTLP) for data exchange, simplifying context propagation and data consistency across diverse environments.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A developer is building a Generative AI application that summarizes long customer support tickets. They observe that the summaries sometimes miss critical details from the end of very long tickets. Which foundational concept is most likely causing this issue?",
+    "options": [
+      "High API latency",
+      "Insufficient token budget",
+      "Exceeding the model's context window",
+      "Lack of structured output parsing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Missing details from the end of long inputs often indicates that the input text exceeded the LLM's context window, causing later parts of the input to be truncated or ignored by the model. High API latency affects response time, token budget relates to cost, and structured output parsing is about output format.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When building a real-time chat application powered by an LLM, users expect to see responses appear character by character rather than waiting for the entire response. Which LLM API technique is crucial for achieving this user experience?",
+    "options": [
+      "Implementing API retries",
+      "Managing API keys securely",
+      "Streaming API responses",
+      "Estimating API call costs"
+    ],
+    "correctIndex": 2,
+    "explanation": "Streaming API responses allows the application to receive and display parts of the LLM's output as they are generated, providing a more responsive and interactive user experience. Retries handle transient errors, key management is for security, and cost estimation is for budgeting.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A user asks an AI assistant about a specific topic, and the assistant provides a detailed answer. To build user trust and allow for verification, what UX element should the AI application ideally include alongside the answer?",
+    "options": [
+      "A button to edit the AI's response",
+      "A 'report bug' feedback form",
+      "Citations linking to the source documents",
+      "A 'restart conversation' option"
+    ],
+    "correctIndex": 2,
+    "explanation": "Citations provide transparency and allow users to verify the information presented by the AI, which is crucial for building trust, especially in RAG applications. The other options are general UX features but don't directly address trust and verification of the AI's output content.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Retrieval Augmented Generation (RAG) system, where are the numerical representations (embeddings) of an organization's private documents typically stored and efficiently searched?",
+    "options": [
+      "A traditional relational database",
+      "A vector database",
+      "An object storage bucket",
+      "The LLM's internal memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vector databases are specifically designed to store and efficiently search high-dimensional vector embeddings, making them ideal for the retrieval step in a RAG system. Relational databases are not optimized for vector search, object storage is for raw files, and the LLM's internal memory is not for external data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer is implementing a RAG system and is experimenting with different chunking strategies for source documents. They notice that very small chunks sometimes lead to a loss of context, while very large chunks often dilute relevant information. What is the primary goal of optimizing chunking strategy in RAG?",
+    "options": [
+      "To minimize the number of API calls to the LLM",
+      "To ensure that retrieved chunks contain sufficient and relevant context for the LLM",
+      "To reduce the storage requirements for the vector database",
+      "To accelerate the embedding generation process"
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary goal of optimizing chunking is to ensure that the retrieved pieces of information (chunks) are small enough to be highly relevant but large enough to retain sufficient context for the LLM to generate a coherent and accurate answer. The other options are secondary or unrelated concerns.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An LLM-powered agent is designed to book flights using an external API. Before making the actual API call, what critical step should the agent take after the LLM suggests arguments for the flight booking tool?",
+    "options": [
+      "Immediately execute the API call with the suggested arguments",
+      "Log the suggested arguments for audit purposes only",
+      "Validate the suggested arguments against the tool's schema or business rules",
+      "Ask the user for confirmation of the flight details"
+    ],
+    "correctIndex": 2,
+    "explanation": "Validating the suggested arguments (e.g., checking if departure date is in the future, if airport codes are valid) is crucial to prevent erroneous or malformed API calls, which could lead to errors, unexpected behavior, or even security vulnerabilities. User confirmation might be a good UX practice, but validation is a technical prerequisite.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team is setting up an evaluation framework for their Generative AI application. They need a reliable way to assess whether new model updates or prompt changes degrade performance on known good behaviors. What type of test dataset is essential for this purpose?",
+    "options": [
+      "Randomly generated questions",
+      "Adversarial prompts for safety testing",
+      "A set of 'golden questions' with predefined correct answers",
+      "User feedback logs from production"
+    ],
+    "correctIndex": 2,
+    "explanation": "Golden questions (or 'golden' test cases) are a set of carefully curated questions with known, high-quality, expected answers. They are essential for regression testing, ensuring that updates don't negatively impact previously working functionalities. Random questions are less targeted, adversarial prompts are for safety, and user feedback is for ongoing monitoring.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Generative AI application processes user queries that might contain sensitive information. To prevent 'prompt injection' attacks where malicious users try to bypass safety guardrails or extract confidential data, what is a key mitigation strategy?",
+    "options": [
+      "Increasing the model's temperature",
+      "Storing user prompts in an unencrypted database",
+      "Implementing input sanitization and specific safety prompts/filters",
+      "Reducing the context window size"
+    ],
+    "correctIndex": 2,
+    "explanation": "Prompt injection attacks aim to manipulate the LLM's behavior. Mitigations include carefully crafting system prompts, input sanitization, implementing specific safety filters, and potentially using a separate 'moderation' LLM or service to detect and block malicious inputs before they reach the main LLM. Increasing temperature makes output more random, storing prompts unencrypted is a security risk, and context window size is unrelated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following metrics is a crucial indicator for monitoring the operational efficiency and user experience of a deployed Generative AI application?",
+    "options": [
+      "Total lines of code in the application",
+      "LLM API latency",
+      "Number of commits to the code repository",
+      "Team meeting attendance"
+    ],
+    "correctIndex": 1,
+    "explanation": "LLM API latency directly impacts the response time users experience. High latency can lead to a poor user experience. The other options are development metrics or irrelevant to application observability.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "During peak usage, an LLM API sporadically returns HTTP 500 errors due to server overload. To ensure the Generative AI application remains resilient and provides a smooth user experience, what best practice should be implemented when making API calls?",
+    "options": [
+      "Increase the number of API keys used",
+      "Implement exponential backoff and retry logic",
+      "Send all API requests simultaneously",
+      "Cache all API responses indefinitely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Implementing exponential backoff and retry logic allows the application to automatically reattempt failed API calls with increasing delays, which helps to gracefully handle transient errors like server overloads without overwhelming the API further. Increasing API keys or sending all requests simultaneously can worsen the problem, and indefinite caching might provide stale data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A RAG application is designed to answer questions from an internal knowledge base. Users report that the system frequently fails to answer questions even when the relevant information clearly exists in the source documents. Upon investigation, you find that the system sometimes retrieves chunks that are tangentially related but miss the core context. What is the most likely area for debugging to improve retrieval quality?",
+    "options": [
+      "Optimizing the LLM's prompt engineering",
+      "Adjusting the reranking algorithm or chunking strategy",
+      "Adding more user feedback mechanisms",
+      "Increasing the overall model context window"
+    ],
+    "correctIndex": 1,
+    "explanation": "If the correct information is present but not retrieved or prioritized, the issue likely lies within the retrieval step of RAG. Debugging chunking strategy (how documents are broken down) and reranking algorithms (how retrieved chunks are prioritized) are crucial for improving the relevance of retrieved content. Prompt engineering is for how the LLM uses the retrieved info, user feedback is for data collection, and context window affects what the LLM can process, not what's retrieved.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Generative AI agent is designed to perform complex multi-step tasks involving external tools. For tasks that involve irreversible actions (e.g., placing a large order, making a payment), what is a critical safety measure to incorporate into the tool calling workflow?",
+    "options": [
+      "Allowing the model to execute the tool call immediately without confirmation",
+      "Implementing human-in-the-loop validation before executing the tool call",
+      "Limiting the number of tool calls the model can make per session",
+      "Removing all error recovery mechanisms for tool calls"
+    ],
+    "correctIndex": 1,
+    "explanation": "For irreversible or high-impact actions, a human-in-the-loop mechanism (e.g., requiring user confirmation) is essential to prevent unintended consequences and ensure user control. Automatically executing irreversible actions is risky, limiting calls doesn't address safety for individual critical actions, and removing error recovery makes the system brittle.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI-powered content generation tool occasionally produces responses that are nonsensical or incomplete due to underlying model errors or API timeouts. From an AI Product UX perspective, what is the best way to handle these 'failure' states gracefully?",
+    "options": [
+      "Displaying a blank screen to the user",
+      "Showing an internal server error message directly to the user",
+      "Providing a clear error message, suggesting retry options, and offering human support or alternative actions",
+      "Silently retrying the generation indefinitely"
+    ],
+    "correctIndex": 2,
+    "explanation": "Designing for failure recovery means communicating clearly with the user about what happened, providing actionable next steps (like retrying), and offering alternatives (like contacting support). A blank screen or raw server error is a poor user experience, and silent indefinite retries could lead to long waits or resource waste.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When evaluating an LLM application, a common challenge is 'hallucination,' where the model generates factually incorrect but confident-sounding information. What is a key approach to systematically test and mitigate hallucination cases?",
+    "options": [
+      "Only using 'easy' questions in the test set",
+      "Creating an evaluation dataset specifically designed to check for factual accuracy and consistency against ground truth",
+      "Maximizing the model's 'temperature' to encourage creativity",
+      "Ignoring any outputs that appear to be hallucinatory"
+    ],
+    "correctIndex": 1,
+    "explanation": "To test for hallucination, one must create an evaluation dataset that specifically probes factual accuracy and compare the LLM's output against a known ground truth or set of facts. This allows for systematic detection and tracking of hallucination rates. Maximizing temperature can increase hallucination, and ignoring issues doesn't solve them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Generative AI application processes user input that might contain Personally Identifiable Information (PII). To comply with privacy regulations and protect user data, what is a crucial measure developers should implement?",
+    "options": [
+      "Store PII in plain text in application logs",
+      "Use only open-source LLMs without any data handling policies",
+      "Implement PII detection and redaction/anonymization techniques before sending data to the LLM or storing it",
+      "Share PII freely with third-party analytics services without user consent"
+    ],
+    "correctIndex": 2,
+    "explanation": "Implementing PII detection and redaction or anonymization is essential to protect user privacy and comply with regulations. This ensures that sensitive data is not unnecessarily exposed to the LLM or stored insecurely. The other options describe practices that violate privacy and security best practices.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI developer is observing inconsistent behavior from their LLM-powered application, where for the same input, the output quality varies significantly depending on the length of previous turns in the conversation. This suggests an issue related to:",
+    "options": [
+      "LLM API key management",
+      "The model's token usage exceeding its context window capacity",
+      "The choice of embedding model for RAG",
+      "Rate limiting by the LLM provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "If output quality degrades with increasing conversation length, it's highly indicative that the total token count (previous turns + current input) is pushing against or exceeding the model's context window. This causes the LLM to 'forget' earlier parts of the conversation, leading to inconsistent or nonsensical responses. API key management, embedding models, and rate limits are generally not related to this specific symptom of inconsistent behavior based on conversation length.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A startup is building a customer support chatbot. They initially tried fine-tuning an LLM on their support documentation but found it expensive, prone to hallucination for out-of-domain queries, and difficult to update with new information. They decided to switch to a RAG (Retrieval Augmented Generation) approach. What is the primary advantage of RAG over fine-tuning for this scenario?",
+    "options": [
+      "RAG eliminates the need for any LLM APIs, reducing costs to zero.",
+      "RAG allows models to access and ground responses in up-to-date external knowledge without retraining the base model.",
+      "RAG completely eliminates all forms of LLM hallucination.",
+      "RAG is exclusively used for image generation tasks."
+    ],
+    "correctIndex": 1,
+    "explanation": "The primary advantage of RAG is its ability to ground LLM responses in external, up-to-date data. This allows for knowledge base updates without costly model retraining, reduces hallucination by providing relevant context, and ensures the LLM has access to the latest information, which is ideal for dynamic knowledge bases like customer support documentation. RAG still uses LLM APIs, doesn't eliminate all hallucination, and is for text-based tasks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AI application deployed in production is experiencing occasional retrieval misses and generating less relevant answers. To gain deeper insights into why certain queries fail and continuously improve the RAG system, what observability practice is most effective?",
+    "options": [
+      "Regularly restarting the application server",
+      "Tracking user ratings on answer quality and logging retrieval details (e.g., query, retrieved chunks, scores)",
+      "Reducing the size of the vector database to improve search speed",
+      "Ignoring all user feedback to prevent bias"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tracking user ratings provides direct feedback on answer quality, and combining this with detailed logs of the retrieval process (the original query, what chunks were retrieved, their relevance scores) allows developers to diagnose issues like retrieval misses and improve the system. Reducing database size might harm recall, and ignoring feedback prevents learning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a Generative AI application, it's crucial to protect sensitive information such as API keys, database credentials, and other configuration variables. What is the most secure and recommended practice for managing these 'secrets'?",
+    "options": [
+      "Hardcoding secrets directly into the application's source code",
+      "Storing secrets in plain text files in the public-facing repository",
+      "Using environment variables, secret management services (e.g., AWS Secrets Manager, Azure Key Vault), or secure configuration management tools",
+      "Emailing secrets to team members as needed"
+    ],
+    "correctIndex": 2,
+    "explanation": "Secure secret management involves never hardcoding secrets, keeping them out of source control, and utilizing dedicated secret management services, environment variables, or secure configuration tools that provide encryption, access control, and auditing. Hardcoding, plain text files, and emailing are highly insecure practices.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a sophisticated RAG system, after initial vector search retrieves a large set of potentially relevant document chunks, what technique is often applied to improve the final quality and relevance of the information presented to the LLM?",
+    "options": [
+      "Increasing the embedding model's dimensionality",
+      "Applying a reranking algorithm to prioritize the most relevant retrieved chunks",
+      "Completely ignoring the retrieved chunks and relying solely on the LLM's internal knowledge",
+      "Using a smaller LLM that processes fewer tokens"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reranking algorithms are applied after initial retrieval to re-score and reorder the retrieved documents or chunks based on their relevance to the query. This helps to filter out less relevant results and present the most pertinent information to the LLM, significantly improving answer quality. Increasing embedding dimensionality is about embedding quality, relying solely on LLM defeats RAG, and smaller LLMs don't directly address retrieval relevance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Generative AI application is experiencing high operational costs due to frequent LLM API calls, even for identical or very similar user queries. What cost control strategy could significantly reduce these repeated expenses without impacting the quality of real-time, dynamic queries?",
+    "options": [
+      "Always using the most expensive, largest LLM available",
+      "Disabling all safety checks to speed up processing",
+      "Implementing a caching mechanism for frequently asked questions or previously generated responses",
+      "Running the application on less powerful, cheaper hardware"
+    ],
+    "correctIndex": 2,
+    "explanation": "Caching frequently asked questions or previously generated responses can drastically reduce repeated API calls for identical queries, thereby lowering operational costs. This preserves API calls for novel or dynamic interactions. Using more expensive LLMs, disabling safety, or using less powerful hardware are either counterproductive or not directly related to reducing redundant API calls.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are leading the development of a Generative AI application that needs to be highly reliable and safe. Which of the following best describes a comprehensive strategy for ensuring the application's robustness before and after deployment?",
+    "options": [
+      "Deploying the application immediately and relying solely on user feedback for issues.",
+      "Developing comprehensive evaluation datasets (golden questions, hallucination tests), integrating safety/privacy checks (PII, prompt injection), and implementing robust AI observability for monitoring in production.",
+      "Focusing only on prompt engineering and ignoring all other development phases.",
+      "Minimizing documentation and only sharing project details verbally."
+    ],
+    "correctIndex": 1,
+    "explanation": "A comprehensive strategy involves a multi-faceted approach: rigorous pre-deployment evaluation with varied test cases (golden questions for performance, hallucination tests for factual accuracy), proactive safety and privacy measures, and robust observability (monitoring prompts, outputs, cost, errors, user ratings) post-deployment for continuous improvement and incident response. Other options describe incomplete or irresponsible practices.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An agentic AI system needs to coordinate multiple tool calls to fulfill a complex user request, such as planning a trip that involves booking flights, hotels, and rental cars. What is a critical challenge in designing such a workflow, especially when tools might have dependencies or require information from previous steps?",
+    "options": [
+      "Ensuring each tool call is independently successful without considering others.",
+      "Maintaining and updating the conversational state and intermediate results across sequential tool calls.",
+      "Hardcoding all possible tool call sequences for every user request.",
+      "Avoiding any form of error handling for tool failures."
+    ],
+    "correctIndex": 1,
+    "explanation": "For complex, multi-step agentic workflows, effectively maintaining and updating the conversational state and intermediate results (e.g., flight booking confirmation before hotel booking) is a critical challenge. The agent needs to 'remember' what has happened and use that information for subsequent tool calls. Hardcoding sequences is inflexible, and ignoring dependencies or errors leads to a brittle system.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A developer needs to ensure that their LLM always returns JSON data in a specific schema for downstream processing. What is the most effective approach to reliably parse structured outputs from an LLM?",
+    "options": [
+      "Instructing the LLM to output in JSON and then using simple string splitting.",
+      "Using a robust JSON parser and implementing retry logic with prompt adjustments if parsing fails.",
+      "Assuming the LLM will always produce perfect JSON and skipping validation.",
+      "Converting the LLM's text output to an image and using OCR to extract JSON."
+    ],
+    "correctIndex": 1,
+    "explanation": "While instructing the LLM to output JSON is the first step, LLMs can sometimes produce malformed JSON. A robust strategy involves using a proper JSON parser, and crucially, implementing retry logic with prompt adjustments (e.g., 'Please ensure the output is valid JSON according to schema X') if parsing initially fails. Skipping validation is risky, and OCR is inappropriate for text-to-text JSON.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI application allows users to refine or 'steer' the LLM's output by providing specific instructions through a 'prompt controls' interface. What is the primary benefit of exposing these prompt controls to the user?",
+    "options": [
+      "It completely eliminates the need for any internal prompt engineering.",
+      "It reduces API costs by shortening all user inputs.",
+      "It empowers users to customize and improve the AI's output to better suit their specific needs or preferences.",
+      "It prevents all forms of prompt injection attacks."
+    ],
+    "correctIndex": 2,
+    "explanation": "User-facing prompt controls empower users to directly influence the AI's generation, allowing them to customize outputs, correct misunderstandings, or guide the AI towards a desired style or format. This enhances user satisfaction and utility. It doesn't eliminate internal prompt engineering, might not shorten inputs, and is not a direct defense against prompt injection.",
+    "difficulty": "moderate"
+  }
+]

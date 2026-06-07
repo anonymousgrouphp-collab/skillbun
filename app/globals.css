@@ -102,6 +102,9 @@ html {
   min-height: 100%;
   background: var(--bg);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -113,6 +116,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -6796,4 +6801,16 @@ footer {
   color: var(--text);
   line-height: 1.5;
   display: none;
+}
+
+/* ===== GLOBAL PRINT OVERRIDES ===== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header, footer, nav, #splash {
+    display: none !important;
+  }
 }

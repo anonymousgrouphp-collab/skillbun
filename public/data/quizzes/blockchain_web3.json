@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A user wants to store sensitive personal photos on a blockchain to ensure privacy and immutability. What is the primary reason this approach is generally discouraged for large files like images?",
+    "options": [
+      "Blockchain transactions are too slow to upload images.",
+      "Storing large data on-chain is prohibitively expensive due to gas fees.",
+      "Most blockchains do not support image file types directly.",
+      "Immutability means the photos can never be deleted, which can be a privacy concern."
+    ],
+    "correctIndex": 1,
+    "explanation": "Blockchains are designed for small, verifiable data (transactions, contract state), not large files. Storing large data directly on-chain is extremely expensive due to gas costs and would bloat the blockchain, making it less efficient. While immutability is a factor, the immediate practical barrier is cost.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A new user receives an Ethereum address. What is the fundamental secret piece of information that grants control over the funds associated with this address?",
+    "options": [
+      "The public key",
+      "The transaction hash",
+      "The private key",
+      "The seed phrase of another wallet"
+    ],
+    "correctIndex": 2,
+    "explanation": "The private key is the ultimate secret that proves ownership and allows spending of funds from an Ethereum address. The public key is derived from the private key, and the address is derived from the public key. A transaction hash identifies a specific transaction, not wallet control. A seed phrase can recover a private key, but the private key itself is the direct control mechanism.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which component of the Ethereum stack is responsible for executing smart contract bytecode and managing the state of the blockchain?",
+    "options": [
+      "JSON-RPC API",
+      "Ethereum Virtual Machine (EVM)",
+      "A full node client",
+      "Metamask wallet"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Ethereum Virtual Machine (EVM) is the runtime environment for smart contracts on Ethereum. It's where all the logic defined in smart contracts is executed, and it manages the global state of the network. A full node runs an EVM, the RPC API is for interaction, and Metamask is a wallet.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer wants to create a smart contract on Ethereum that acts as a simple voting system. Which programming language is primarily used for writing such smart contracts on Ethereum?",
+    "options": [
+      "JavaScript",
+      "Python",
+      "Solidity",
+      "Rust"
+    ],
+    "correctIndex": 2,
+    "explanation": "Solidity is the most widely used object-oriented, high-level language for implementing smart contracts on various blockchain platforms, most notably Ethereum.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Solidity, which keyword is used to restrict access to certain functions, ensuring only specific addresses (like the contract owner) can call them?",
+    "options": [
+      "`private`",
+      "`internal`",
+      "`onlyOwner` (as a common modifier name)",
+      "`public`"
+    ],
+    "correctIndex": 2,
+    "explanation": "While `private` and `internal` control visibility *within* the contract or its derived contracts, a `modifier` is typically used to enforce access control externally. `onlyOwner` is a common pattern for such a modifier, often defined to check `msg.sender == owner`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A new project wants to create a fungible token for its in-game currency on Ethereum. Which ERC standard should they primarily implement to ensure compatibility with wallets and exchanges?",
+    "options": [
+      "ERC-721",
+      "ERC-1155",
+      "ERC-20",
+      "ERC-777"
+    ],
+    "correctIndex": 2,
+    "explanation": "ERC-20 is the most common standard for fungible tokens on Ethereum, defining a standard interface for tokens that are interchangeable and have a supply. ERC-721 is for non-fungible tokens, and ERC-1155 is for multi-token types (fungible and non-fungible).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing a blockchain application, a key principle is that the blockchain itself should NOT store:",
+    "options": [
+      "Cryptographic hashes of data.",
+      "Small, verifiable transaction records.",
+      "Large, frequently changing personal user data.",
+      "The current state of smart contract variables."
+    ],
+    "correctIndex": 2,
+    "explanation": "Blockchains are inefficient and expensive for storing large, dynamic data. It's best practice to store hashes of large data on-chain, and the actual data off-chain (e.g., IPFS). Transaction records and contract state are precisely what blockchains are designed to store efficiently.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A user initiates a transaction to send Ether. After broadcasting, the transaction is pending for an extended period. What is the most common reason for a transaction to remain pending and how can it often be resolved?",
+    "options": [
+      "The recipient's address is invalid; it will eventually be rejected.",
+      "The network is congested, and the gas price offered was too low; increasing the gas price can resolve it.",
+      "The user's wallet is not synced with the latest block; refreshing the wallet will fix it.",
+      "The transaction was signed with the wrong private key; it will never be confirmed."
+    ],
+    "correctIndex": 1,
+    "explanation": "Transactions are prioritized by miners based on the gas price offered. If the network is congested, transactions with low gas prices might wait indefinitely. Increasing the gas price signals a higher incentive for miners to include it in a block.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing a Solidity smart contract for an auction. They need to ensure that only the contract owner can finalize the auction and distribute funds. Which Solidity feature is best suited for implementing this access control?",
+    "options": [
+      "Using a `view` function",
+      "Implementing an `interface`",
+      "Applying a `modifier` to the `finalizeAuction` function",
+      "Making the `finalizeAuction` function `internal`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Modifiers are explicitly designed in Solidity to easily add pre-conditions to functions, such as access control checks (`onlyOwner`). A `view` function doesn't modify state, an `interface` defines a contract's public functions without implementation, and `internal` would prevent external calls entirely.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider a Solidity contract where `ContractB` inherits from `ContractA`. `ContractA` has a `private` state variable `_secretValue`. If `ContractB` tries to access `_secretValue`, what will happen?",
+    "options": [
+      "`ContractB` will successfully access `_secretValue` through inheritance.",
+      "The compiler will issue a warning but allow access.",
+      "The compiler will produce an error, as `private` variables are not inherited in a way that allows direct access by derived contracts.",
+      "`ContractB` can access it only if `_secretValue` also has an `internal` getter function in `ContractA`."
+    ],
+    "correctIndex": 2,
+    "explanation": "In Solidity, `private` state variables are only visible and accessible within the contract they are declared in. They are not accessible to derived contracts, even through inheritance. To allow controlled access, `ContractA` would need an `internal` or `public` getter function.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A dapp requires users to 'approve' a marketplace contract to spend their ERC-20 tokens on their behalf. What is the primary security concern if a user approves an extremely high (e.g., `uint256(-1)`) amount of tokens to a contract that turns out to be malicious?",
+    "options": [
+      "The marketplace contract can immediately drain all tokens from the user's wallet.",
+      "The user will be unable to transfer any of their tokens to other addresses.",
+      "The malicious contract can spend up to the approved amount of tokens at any time without further user consent.",
+      "The approval transaction will consume an excessive amount of gas, making it very expensive."
+    ],
+    "correctIndex": 2,
+    "explanation": "The `approve` function grants the approved address the ability to spend up to the specified amount of tokens from the approving user's balance. If a malicious contract is approved for an extremely high amount, it can exploit this permission to steal tokens without the user needing to sign future transactions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a smart contract threat review, a team identifies a function that allows an attacker to repeatedly call back into the contract before the current execution context is finished, potentially draining funds. What common vulnerability does this describe?",
+    "options": [
+      "Integer Overflow",
+      "Front-running",
+      "Reentrancy",
+      "Denial of Service"
+    ],
+    "correctIndex": 2,
+    "explanation": "Reentrancy occurs when a contract makes an external call to another contract or address, and the external contract then makes a recursive call back to the original contract before the first invocation has completed its state updates. This can lead to unexpected behavior, most notably fund draining in withdrawal functions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is building a Dapp and needs to interact with an Ethereum node without running a full node locally. Which technology or service allows them to send RPC requests (e.g., `eth_getBalance`, `eth_sendRawTransaction`) to an Ethereum network?",
+    "options": [
+      "IPFS gateway",
+      "A web browser's built-in JavaScript engine",
+      "An Infura or Alchemy endpoint",
+      "A local Hardhat development environment"
+    ],
+    "correctIndex": 2,
+    "explanation": "Services like Infura and Alchemy provide hosted Ethereum nodes that expose RPC endpoints, allowing developers to interact with the blockchain (read data, send transactions) without needing to run their own full node. IPFS is for decentralized storage, a browser engine doesn't interact directly, and Hardhat is a local development environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Dapp frontend needs to display a user's current token balance from an ERC-20 contract. Which method is typically used to achieve this without requiring the user to sign a transaction?",
+    "options": [
+      "Calling the `transfer` function on the ERC-20 contract.",
+      "Sending a `send` transaction to the token contract.",
+      "Calling a `view` or `pure` function (like `balanceOf`) on the token contract via an RPC provider.",
+      "Indexing past `Transfer` events for the user's address."
+    ],
+    "correctIndex": 2,
+    "explanation": "Reading contract state (like `balanceOf`) can be done by calling `view` or `pure` functions. These calls do not modify the blockchain state, do not require gas, and can be executed locally by an Ethereum node via an RPC call, making them ideal for Dapp frontends to display data. `transfer` and `send` modify state, and indexing events would be too complex for a simple current balance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Web3 developer implements a contract that relies on the `block.timestamp` to determine the start of a timed event. What is a common security risk associated with using `block.timestamp` in critical timing mechanisms?",
+    "options": [
+      "`block.timestamp` can be easily manipulated by normal users.",
+      "Miners have a limited ability to manipulate `block.timestamp` within a small range.",
+      "`block.timestamp` is only updated once a day, leading to imprecise timing.",
+      "`block.timestamp` is randomized and unpredictable."
+    ],
+    "correctIndex": 1,
+    "explanation": "Miners can slightly adjust `block.timestamp` (typically up to 900 seconds in the future) to influence outcomes in their favor if a contract's logic heavily depends on precise timing for critical operations like randomness or fund distribution. For highly sensitive operations, decentralized oracles for time might be preferred.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary role of a 'full node' in a decentralized blockchain network like Ethereum?",
+    "options": [
+      "To mine new blocks and earn transaction fees.",
+      "To solely act as a wallet for users to store their funds.",
+      "To store a complete copy of the blockchain ledger and validate all transactions and blocks.",
+      "To provide an API for centralized exchanges to list tokens."
+    ],
+    "correctIndex": 2,
+    "explanation": "A full node downloads the entire blockchain history, verifies every transaction and block according to the network's consensus rules, and can independently verify the state of the blockchain. This contributes significantly to the network's security and decentralization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a Solidity smart contract, which of the following is NOT a characteristic of how its code and state exist on the blockchain?",
+    "options": [
+      "The compiled bytecode is stored on the blockchain at a specific address.",
+      "Its state variables are stored permanently on the blockchain.",
+      "The contract's source code (Solidity) is directly stored on-chain for easy readability.",
+      "Interactions with the contract are recorded as transactions."
+    ],
+    "correctIndex": 2,
+    "explanation": "Only the compiled bytecode of a smart contract is stored on the blockchain. The original Solidity source code is not stored directly on-chain. It is common practice to verify the source code on block explorers, but this is a separate process where the source code is submitted to a third-party service, not directly stored as part of the contract's on-chain data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to upgrade an existing smart contract but maintain its address and state. Which Solidity feature or design pattern is most commonly used to achieve this 'upgradeability'?",
+    "options": [
+      "Using `fallback` functions.",
+      "Implementing a proxy contract pattern.",
+      "Simply deploying a new contract with the updated logic.",
+      "Using abstract contracts."
+    ],
+    "correctIndex": 1,
+    "explanation": "The proxy pattern involves a 'proxy' contract that holds the state and delegates calls to a separate 'logic' contract. To upgrade, a new logic contract is deployed, and the proxy is updated to point to the new logic, thus preserving the contract address and its state data. Deploying a new contract would change the address and lose old state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building a marketplace for unique digital art pieces. Which Ethereum token standard is most suitable for representing these distinct, non-interchangeable assets?",
+    "options": [
+      "ERC-20",
+      "ERC-721",
+      "ERC-1155",
+      "ERC-4626"
+    ],
+    "correctIndex": 1,
+    "explanation": "ERC-721 is the standard specifically designed for non-fungible tokens (NFTs), where each token is unique and has distinct properties, making it ideal for representing digital art, collectibles, or unique items. ERC-20 is for fungible tokens, and ERC-1155 is for multi-token types.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Dapp needs to bridge assets between Ethereum and a Layer 2 scaling solution. What is the primary purpose of such a bridge in the context of scaling options?",
+    "options": [
+      "To convert fungible tokens into non-fungible tokens.",
+      "To allow users to pay gas fees in different cryptocurrencies.",
+      "To enable the transfer of assets and data between different blockchain networks or layers.",
+      "To reduce the total supply of a token to increase its value."
+    ],
+    "correctIndex": 2,
+    "explanation": "Bridges are critical infrastructure for interoperability, allowing users to move assets (like tokens) and sometimes data between different blockchain networks (e.g., Ethereum mainnet and a Layer 2 like Optimism or Arbitrum) to leverage different network properties or scaling benefits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is conducting 'fuzz testing' on a Solidity smart contract. What is the primary objective of this type of testing in the context of smart contracts?",
+    "options": [
+      "To verify that the contract behaves correctly with predefined, expected inputs.",
+      "To measure the precise gas cost of each function call.",
+      "To discover unexpected vulnerabilities by providing a wide range of random or semi-random inputs.",
+      "To ensure the contract can interact correctly with other deployed contracts on a live network."
+    ],
+    "correctIndex": 2,
+    "explanation": "Fuzz testing (or fuzzing) involves feeding a program with large amounts of invalid, unexpected, or random data inputs to stress its boundaries and uncover bugs, crashes, or security vulnerabilities that might not be caught by typical unit or integration tests.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A DAO governance contract uses a simple majority vote to approve proposals. An attacker, observing an upcoming high-value proposal, buys a significant amount of the DAO's governance token just before the vote and sells them immediately after influencing the outcome. What type of vulnerability or attack vector does this scenario most closely describe?",
+    "options": [
+      "Reentrancy attack",
+      "Oracle manipulation",
+      "Flash loan attack",
+      "Governance attack (or vote buying/selling, often related to MEV)"
+    ],
+    "correctIndex": 3,
+    "explanation": "This scenario describes a governance attack where an attacker manipulates the voting outcome by temporarily acquiring enough voting power. This can be related to MEV (Miner Extractable Value) if the attacker can profit from front-running or sandwiching their vote manipulation. It's not reentrancy (recursive calls), oracle manipulation (external data feeds), or specifically a flash loan attack (though flash loans could be used to acquire tokens for the vote).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A decentralized autonomous organization (DAO) is considering a critical upgrade to its main smart contract. To minimize the risk of a single point of failure or malicious actor, they typically implement a 'deployment ceremony' involving a multi-signature wallet and a timelock. What is the primary benefit of combining a timelock with a multisig for such an upgrade?",
+    "options": [
+      "It reduces the gas costs for the upgrade transaction.",
+      "It allows immediate execution of the upgrade once enough signatures are gathered.",
+      "It provides a transparent delay period after the proposal is approved, allowing the community to react or veto.",
+      "It ensures that only the original developer can initiate the upgrade."
+    ],
+    "correctIndex": 2,
+    "explanation": "A multisig ensures that multiple trusted parties must approve the upgrade. A timelock then adds a delay between the approval and the actual execution of the upgrade. This delay is crucial as it gives the wider community time to review the proposed changes, detect potential malicious updates, and react (e.g., by withdrawing funds) if necessary, thereby increasing security and trust.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When documenting the architecture for a 'security checklist' for a Dapp deployed to a testnet, which of the following items is LEAST critical for a security audit but still good practice for a comprehensive project?",
+    "options": [
+      "Detailed description of access control mechanisms and roles.",
+      "Mapping of all external calls made by the contract.",
+      "List of all third-party libraries and their versions.",
+      "A roadmap for future feature additions and UI/UX improvements."
+    ],
+    "correctIndex": 3,
+    "explanation": "A security audit primarily focuses on the current state of the code and its immediate vulnerabilities. While a future roadmap is excellent for project planning and transparency, it's not a direct part of the *security* checklist for the *currently deployed* contract. Access control, external calls, and third-party libraries are all highly critical for security analysis.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A lending protocol's oracle reports the price of an asset. An attacker notices that this oracle can be manipulated by executing a series of rapid, low-liquidity trades on a decentralized exchange that the oracle uses as a data source. They execute these trades, inflate the price temporarily, take a large loan against the inflated collateral, and then let the price drop, defaulting on the loan. What vulnerability class does this exploit fall under?",
+    "options": [
+      "Integer underflow",
+      "Denial of Service (DoS)",
+      "Oracle manipulation / Price feed attack",
+      "Front-running"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario directly describes an oracle manipulation attack, where the integrity of external data (in this case, the asset price) fed into the smart contract is compromised, leading to incorrect contract behavior (e.g., approving an unbacked loan).",
+    "difficulty": "hard"
+  }
+]

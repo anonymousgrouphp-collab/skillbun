@@ -5,6 +5,7 @@ const navItems = [
   { key: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
   { key: 'quiz', label: 'Career Quiz', href: '/quiz', icon: 'quiz' },
   { key: 'roadmaps', label: 'Roadmaps', href: '/roadmap', icon: 'map' },
+  { key: 'certifications', label: 'My Certifications', href: '/dashboard/certifications', icon: 'cert' },
   { key: 'profile', label: 'Profile', href: '/onboarding?edit=1', icon: 'user' },
   { key: 'settings', label: 'Settings', href: '/settings', icon: 'settings' },
   { key: 'help', label: 'Help', href: '/contact', icon: 'help' },
@@ -42,6 +43,12 @@ function WorkspaceIcon({ name }) {
         <path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z" />
         <path d="M9 3v15" />
         <path d="M15 6v15" />
+      </>
+    ),
+    cert: (
+      <>
+        <circle cx="12" cy="8" r="6" />
+        <path d="M15.47 14.39L19 22l-7-3-7 3 3.53-7.61" />
       </>
     ),
     user: (

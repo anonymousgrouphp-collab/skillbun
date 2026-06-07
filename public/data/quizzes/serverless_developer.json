@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A serverless developer is tasked with building an application. Which of the following is a primary benefit of using a serverless architecture?",
+    "options": [
+      "Full control over underlying server infrastructure.",
+      "Automatic scaling and reduced operational overhead.",
+      "Guaranteed zero cold starts for all functions.",
+      "Mandatory use of a single programming language."
+    ],
+    "correctIndex": 1,
+    "explanation": "Serverless architectures automatically scale resources based on demand and significantly reduce the need for developers to manage servers, thus reducing operational overhead. Full control over infrastructure is characteristic of traditional server-based deployments, cold starts can still occur, and serverless platforms support multiple languages.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of AWS Lambda, what does \"event-driven\" primarily refer to?",
+    "options": [
+      "Functions are executed only when a human user interacts with the application.",
+      "Functions are triggered by specific occurrences or state changes in other services.",
+      "Functions must poll external services for new data.",
+      "Functions require a dedicated server instance to remain active and listen for requests."
+    ],
+    "correctIndex": 1,
+    "explanation": "Event-driven architecture means functions are invoked in response to events, such as a file upload to S3, a message in SQS, or an API Gateway request, rather than continuously running or polling.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When setting up a local development environment for serverless applications, which tool is commonly used to simulate AWS Lambda and API Gateway locally?",
+    "options": [
+      "Docker Desktop",
+      "AWS CLI",
+      "SAM Local (part of AWS SAM CLI)",
+      "Terraform"
+    ],
+    "correctIndex": 2,
+    "explanation": "AWS SAM CLI (specifically `sam local`) allows developers to test Lambda functions and API Gateway locally without deploying to the cloud, significantly speeding up the development and debugging process. Docker Desktop is a containerization platform, AWS CLI is for managing AWS services from the command line, and Terraform is for infrastructure as code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A serverless developer is designing an application where a Lambda function needs to process messages from an SQS queue. What is the most efficient way to configure the Lambda function to consume messages from this queue?",
+    "options": [
+      "Configure the Lambda function to poll the SQS queue periodically using a scheduled event.",
+      "Set up an SQS trigger directly on the Lambda function.",
+      "Embed a long-running process within the Lambda function that continuously listens to the SQS queue.",
+      "Manually invoke the Lambda function after each message is added to SQS."
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Lambda supports SQS as an event source. By configuring an SQS trigger, Lambda automatically polls the queue and invokes the function with a batch of messages, handling scaling and retries without developer intervention. Polling with scheduled events is less efficient and requires custom logic. Long-running processes are antithetical to Lambda, and manual invocation is not scalable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A serverless application needs to handle varying loads, with occasional spikes. To ensure responsiveness and avoid function timeouts, what is a common pattern for long-running or resource-intensive tasks in a serverless workflow?",
+    "options": [
+      "Increase the memory and timeout settings for the primary Lambda function to handle all processing.",
+      "Implement a synchronous invocation pattern where the client waits for the entire process to complete.",
+      "Decouple the task using an asynchronous messaging service like SQS or SNS, and process it with another Lambda function.",
+      "Provision an EC2 instance to handle the heavy processing instead of a Lambda function."
+    ],
+    "correctIndex": 2,
+    "explanation": "For long-running or resource-intensive tasks, it's best to decouple them using asynchronous messaging (e.g., SQS for queues, SNS for topics) and have a separate Lambda function or service process these messages. This prevents the primary function from timing out, improves responsiveness, and allows for better error handling and retries. Increasing memory/timeout might mitigate some issues but doesn't address true long-running processes effectively within Lambda's limitations. Synchronous invocation for long tasks leads to poor user experience. Provisioning EC2 is not a serverless pattern.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a serverless function, which type of testing would involve invoking the function with a simulated event payload to verify its logic and output, without deploying it to the cloud?",
+    "options": [
+      "Integration testing",
+      "End-to-end testing",
+      "Unit testing",
+      "Load testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unit testing focuses on individual components (like a specific Lambda function's handler logic) in isolation, often with mocked dependencies and simulated event payloads. Integration testing verifies interactions between multiple components or services. End-to-end testing simulates a full user flow. Load testing checks performance under stress.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A serverless developer is deploying an application to production. To ensure continuous operation and quickly identify issues, what is a critical aspect of observability for serverless applications?",
+    "options": [
+      "Manual log inspection on a daily basis.",
+      "Implementing comprehensive logging, monitoring, and tracing across all functions and services.",
+      "Relying solely on local development environment tests.",
+      "Setting up a cron job to restart all functions hourly."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive observability, including detailed logging, real-time monitoring of metrics (invocations, errors, duration), and distributed tracing (e.g., using AWS X-Ray), is crucial for understanding the behavior of serverless applications in production, identifying bottlenecks, and troubleshooting issues. Manual inspection is inefficient, local tests don't reflect production, and restarting functions hourly is a workaround, not a solution for observability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A serverless application processes sensitive customer data. What is the most robust approach to protect this data at rest within a managed database service (e.g., DynamoDB or RDS Aurora Serverless)?",
+    "options": [
+      "Relying on application-level encryption only, implemented within the Lambda function.",
+      "Ensuring all data is stored in plain text and restricting database access via network ACLs.",
+      "Utilizing the database service's native encryption features (e.g., KMS integration for DynamoDB, RDS encryption) combined with strong access controls.",
+      "Exporting all sensitive data to S3 and encrypting only the S3 bucket."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most robust approach for data at rest in managed databases is to leverage the database service's native encryption capabilities, which often integrate with key management services (like AWS KMS) for robust key management. This ensures data is encrypted before it hits storage. Strong access controls (IAM policies, security groups) are also essential. Application-level encryption is good but should complement, not replace, database-level encryption. Storing data in plain text is a security vulnerability. Exporting to S3 might be part of a larger strategy but doesn't cover the primary database storage.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a serverless development team, what is the primary purpose of defining \"measurable acceptance criteria\" for user stories or features?",
+    "options": [
+      "To guide the design of the user interface only.",
+      "To establish subjective goals that can be interpreted differently by team members.",
+      "To provide clear, verifiable conditions that must be met for a feature to be considered complete and correct.",
+      "To dictate the specific implementation details for the serverless functions."
+    ],
+    "correctIndex": 2,
+    "explanation": "Measurable acceptance criteria provide objective, testable conditions that define \"done\" for a feature. They ensure common understanding among the team and stakeholders, facilitate testing, and prevent scope creep. They are not limited to UI, should not be subjective, and typically focus on what the system does, not how it's implemented.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When preparing a serverless developer portfolio, which of the following items is most crucial for demonstrating practical skills?",
+    "options": [
+      "A list of all courses attended.",
+      "A detailed resume with employment history.",
+      "GitHub repositories with working serverless projects, including READMEs and deployment notes.",
+      "Certificates from non-technical workshops."
+    ],
+    "correctIndex": 2,
+    "explanation": "GitHub repositories with well-documented, working serverless projects provide concrete proof of practical skills, showing actual code, architectural choices, and deployment experience. While courses and resumes are important, they don't showcase hands-on ability as effectively as actual projects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A serverless developer is writing a case study for a project. Which section should primarily describe the architectural choices made, why they were chosen, and any significant design decisions?",
+    "options": [
+      "\"Problem Statement\"",
+      "\"Implementation Details\"",
+      "\"Validation and Testing\"",
+      "\"Outcomes and Improvements\""
+    ],
+    "correctIndex": 1,
+    "explanation": "The \"Implementation Details\" section (or a dedicated \"Decisions\" section) in a case study is where the architectural choices, the rationale behind them, and key design decisions for the serverless solution are typically discussed. The problem statement defines the challenge, validation describes how correctness was ensured, and outcomes discuss results and future enhancements.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "For a serverless developer portfolio capstone project, why is including diagrams or screenshots particularly beneficial?",
+    "options": [
+      "They are mandatory for all serverless deployments.",
+      "They prove the developer has graphic design skills.",
+      "They provide a clear visual representation of the architecture and demonstrate understanding of system design.",
+      "They replace the need for written explanations."
+    ],
+    "correctIndex": 2,
+    "explanation": "Diagrams (like architecture diagrams) and screenshots effectively communicate the system's design, how different serverless components interact, and the overall solution structure. This visually demonstrates the developer's understanding of system design, which is a key skill. They complement, rather than replace, written explanations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following best describes the \"shared responsibility model\" in the context of serverless computing platforms like AWS Lambda?",
+    "options": [
+      "The cloud provider is solely responsible for all security and operational aspects of the application.",
+      "The customer is solely responsible for all security and operational aspects, including the underlying infrastructure.",
+      "The cloud provider manages the underlying infrastructure and runtime, while the customer is responsible for application code, configuration, and data security.",
+      "Both the cloud provider and the customer share responsibility equally across all layers of the stack."
+    ],
+    "correctIndex": 2,
+    "explanation": "In the shared responsibility model, the cloud provider is responsible for \"security of the cloud\" (e.g., global infrastructure, hardware, managed services), while the customer is responsible for \"security in the cloud\" (e.g., their code, data, configurations, access management). This model is fundamental to understanding cloud roles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which term describes the phenomenon where a serverless function experiences a delay on its first invocation after a period of inactivity?",
+    "options": [
+      "Function overhead",
+      "Warm start",
+      "Throttling",
+      "Cold start"
+    ],
+    "correctIndex": 3,
+    "explanation": "A \"cold start\" refers to the latency incurred when a serverless function is invoked for the first time or after a period of inactivity, requiring the provider to provision a new execution environment. Warm starts occur when an existing environment is reused. Throttling is when invocations are limited due to capacity or concurrency limits.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A serverless developer is using Git for version control. After making changes to a Lambda function locally, what is the recommended next step before deploying or pushing to a remote repository?",
+    "options": [
+      "Immediately push changes to the main branch.",
+      "Run local tests and commit changes to a feature branch.",
+      "Delete the local changes and re-clone the repository.",
+      "Deploy directly to production without testing."
+    ],
+    "correctIndex": 1,
+    "explanation": "After making local changes, the recommended workflow is to run local tests to ensure functionality, then commit those changes to a feature branch (or a dedicated development branch) before eventually merging into main/master through a pull request. Pushing directly to main, deleting changes, or deploying without testing are all poor practices.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing an event-driven serverless system where a large volume of IoT device data needs to be ingested, transformed, and stored. Latency is critical for ingestion, but subsequent processing can be asynchronous. Which combination of AWS services would be most appropriate for the ingestion and initial fan-out stage to handle high throughput and decouple processing?",
+    "options": [
+      "API Gateway -> Lambda -> S3",
+      "Kinesis Data Streams -> Lambda -> DynamoDB",
+      "SQS -> Lambda -> RDS",
+      "CloudFront -> EC2 -> Aurora Serverless"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kinesis Data Streams is designed for high-throughput, real-time data ingestion and can efficiently fan out data to multiple consumers, including Lambda. Lambda is excellent for event-driven processing, and DynamoDB is a highly scalable NoSQL database suitable for IoT data. This combination handles high volume ingestion with low latency and decouples downstream processing effectively.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A serverless application processes customer orders. Due to external API rate limits, a specific downstream service call must be throttled and retried with an exponential backoff strategy. Which AWS serverless pattern effectively manages this complexity and ensures reliable delivery without custom retry logic in every Lambda function?",
+    "options": [
+      "Direct Lambda invocation with a custom retry loop.",
+      "AWS Step Functions with a Task state that includes a Retry policy.",
+      "API Gateway with a custom Throttling configuration.",
+      "Using SNS for publishing messages and relying on default SNS retries."
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Step Functions are ideal for orchestrating complex workflows, including managing retries with exponential backoff and handling rate limits for external services. Its Task states can be configured with specific retry policies, centralizing this logic and making it more robust than custom retry loops in Lambda functions. API Gateway throttling protects the API itself, not a downstream service. SNS retries are for delivery to subscribers, not for managing external API rate limits from a Lambda function.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Before deploying a serverless API to production, a developer wants to ensure that the API's endpoints behave as expected when interacting with all integrated services (e.g., database, other microservices). What type of testing is most suitable for this purpose?",
+    "options": [
+      "Unit testing",
+      "Integration testing",
+      "Performance testing",
+      "Security testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Integration testing verifies that different components or services of an application work together correctly. For a serverless API, this means testing the API Gateway, Lambda functions, and any downstream services (like databases or other APIs) as a cohesive unit. Unit testing isolates individual functions, performance testing checks load, and security testing checks vulnerabilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a critical production incident for a serverless application, the operations team observes a sudden spike in Lambda function errors related to external API calls. What is the most effective immediate action to mitigate the impact while root cause analysis is underway?",
+    "options": [
+      "Redeploy the entire application with the last known good configuration.",
+      "Disable the Lambda function's trigger to prevent further erroneous invocations and allow the external service to recover.",
+      "Increase the Lambda function's memory and timeout settings.",
+      "Send an email to all customers notifying them of the outage."
+    ],
+    "correctIndex": 1,
+    "explanation": "Temporarily disabling the Lambda function's trigger (e.g., an SQS event source mapping, API Gateway method) is an effective immediate mitigation to stop the flow of erroneous invocations, prevent cascading failures, and allow the affected external service time to recover without overwhelming it further. Redeploying might introduce new issues or take too long. Increasing memory/timeout might not solve an external service issue. Emailing customers is important, but not an immediate technical mitigation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A serverless developer needs to grant a Lambda function permission to write items to a specific DynamoDB table. What is the most secure and granular way to achieve this using AWS IAM?",
+    "options": [
+      "Grant the Lambda function an IAM policy with `DynamoDB:*` permissions.",
+      "Attach an IAM policy to the Lambda function's execution role that grants `dynamodb:PutItem` on the specific DynamoDB table's ARN.",
+      "Grant the Lambda function root user credentials to access DynamoDB.",
+      "Make the DynamoDB table publicly writable."
+    ],
+    "correctIndex": 1,
+    "explanation": "The principle of least privilege dictates granting only the necessary permissions. Attaching an IAM policy with `dynamodb:PutItem` (or other specific actions) restricted to the ARN of the target DynamoDB table ensures the Lambda function has exactly the permissions it needs, no more. `DynamoDB:*` is overly broad, root credentials are a major security risk, and public writability is highly insecure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collaborating on a serverless project using Git, a \"Pull Request\" (PR) serves what primary purpose?",
+    "options": [
+      "To immediately merge all code changes into the main branch without review.",
+      "To request that another developer reviews your code changes before they are merged into a shared branch.",
+      "To directly deploy code to a production environment.",
+      "To create a backup of your local changes."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Pull Request (or Merge Request) is a core part of team delivery workflows using Git. It's a formal request to merge changes from one branch (typically a feature branch) into another (e.g., `main` or `develop`), facilitating code review, discussion, and automated checks before integration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To best showcase your ability to communicate the impact of your serverless projects to potential employers, which of the following should be prioritized in your portfolio?",
+    "options": [
+      "Listing every dependency and package version used in your projects.",
+      "Including detailed, concise case studies that explain problems solved, decisions made, and measurable outcomes.",
+      "Providing only raw code files without any accompanying documentation.",
+      "A collection of screenshots of terminal commands."
+    ],
+    "correctIndex": 1,
+    "explanation": "Detailed, concise case studies that articulate the problem, the serverless solution, key decisions, and measurable outcomes (like cost savings or performance improvements) are highly effective in demonstrating not only technical skills but also the ability to communicate business value to potential employers. Listing dependencies or raw code without context is less impactful for demonstrating overall project impact.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A serverless developer is documenting a complex project for a case study. In the \"Outcomes and Next Improvements\" section, what is the most important type of information to include to demonstrate the business value and forward-thinking of the solution?",
+    "options": [
+      "A list of every single Lambda function deployed.",
+      "Metrics showing cost reduction, performance improvements, or increased scalability, along with potential future enhancements.",
+      "Detailed code snippets for all implemented functions.",
+      "Subjective opinions on the project's success."
+    ],
+    "correctIndex": 1,
+    "explanation": "The \"Outcomes and Next Improvements\" section should focus on tangible, measurable results (e.g., cost savings, performance gains, scalability achievements) and strategic forward-looking plans. This demonstrates business value and a proactive approach to continuous improvement. A list of functions or code snippets is too granular for this section, and subjective opinions lack credibility.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why is a `README` file considered essential for a portfolio-grade Serverless Developer project on GitHub?",
+    "options": [
+      "It is required by GitHub for all public repositories.",
+      "It serves as the primary documentation, explaining what the project does, how to set it up, and how to run/deploy it.",
+      "It's mainly for aesthetic purposes to make the repository look complete.",
+      "It's where all the project's source code is stored."
+    ],
+    "correctIndex": 1,
+    "explanation": "A `README` file is critical documentation for any software project. For a portfolio project, it provides a quick overview, setup instructions, usage examples, and often architectural notes, allowing potential employers or collaborators to quickly understand and interact with the project.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A serverless function needs to access resources in a private VPC (e.g., an RDS database). What configuration change is necessary for the Lambda function to access these resources?",
+    "options": [
+      "No special configuration is needed; Lambda functions can access VPC resources by default.",
+      "Configure the Lambda function to execute outside the VPC and use a public endpoint for the database.",
+      "Place the Lambda function within the VPC, by configuring its subnets and security groups.",
+      "Create a VPC peering connection directly from the Lambda function to the database."
+    ],
+    "correctIndex": 2,
+    "explanation": "To access resources within a private VPC, a Lambda function must be configured to execute within that VPC. This involves specifying subnets and security groups for the Lambda function, allowing it to communicate with other resources within the VPC using private IP addresses. Accessing public endpoints might be an option if the database is public, but for private resources, it's VPC configuration. VPC peering is for connecting two separate VPCs, not for a Lambda inside a VPC.",
+    "difficulty": "moderate"
+  }
+]

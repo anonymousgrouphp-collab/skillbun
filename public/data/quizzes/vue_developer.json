@@ -1,0 +1,302 @@
+[
+  {
+    "question": "In Vue 3, which core feature allows developers to organize reactive logic and reusable functionality within components in a more flexible way than Options API?",
+    "options": [
+      "Mixins API",
+      "Composition API",
+      "Vuex API",
+      "Render Functions API"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Composition API in Vue 3 provides a set of APIs that allow us to author Vue components using imported functions. It's the primary way to organize reactive logic and reusable functionality, offering better readability and maintainability for complex components compared to the Options API or Mixins. Vuex is for state management, and Render Functions are a lower-level alternative to templates.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the primary purpose of `ref()` in Vue's Composition API?",
+    "options": [
+      "To create a computed property.",
+      "To declare a non-reactive variable.",
+      "To make a primitive value reactive.",
+      "To define a component's props."
+    ],
+    "correctIndex": 2,
+    "explanation": "`ref()` is used in the Composition API to make primitive values (like numbers, strings, booleans) reactive. When its `.value` property is accessed or modified, it triggers reactivity updates in the template or other reactive effects. Computed properties are created with `computed()`, and `props` are defined separately.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When starting a new Vue 3 project, which command-line tool is commonly used to scaffold the project with essential build tools and configurations?",
+    "options": [
+      "npm install vue-cli",
+      "npm create vue@latest",
+      "vue add component",
+      "yarn build"
+    ],
+    "correctIndex": 1,
+    "explanation": "`npm create vue@latest` (or `yarn create vue@latest`, `pnpm create vue@latest`) is the officially recommended command to scaffold a new Vue 3 project using Vite, providing a fast and efficient development setup. `npm install vue-cli` installs the older Vue CLI, `vue add component` is for adding plugins/features, and `yarn build` is for building a project, not creating one.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a Vue application, what is the main role of a \"component\"?",
+    "options": [
+      "To manage global state for the entire application.",
+      "To define application routing paths.",
+      "To encapsulate a reusable, self-contained piece of UI and its logic.",
+      "To handle backend API requests."
+    ],
+    "correctIndex": 2,
+    "explanation": "Components are the building blocks of a Vue application. They encapsulate specific parts of the UI, along with their associated logic, styling, and behavior, making them reusable and modular. Global state is typically managed by a state management library (like Pinia), routing by Vue Router, and API requests usually within components or dedicated service files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which library is the official router for Vue.js applications?",
+    "options": [
+      "React Router",
+      "Vue Router",
+      "Angular Router",
+      "Nuxt Router"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vue Router is the official client-side routing library for Vue.js applications, enabling single-page application navigation. React Router and Angular Router are for their respective frameworks. Nuxt Router is built on top of Vue Router but is specific to the Nuxt framework.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Pinia primarily used for in a Vue 3 application?",
+    "options": [
+      "Handling server-side rendering.",
+      "Global state management.",
+      "Creating custom directives.",
+      "Defining reactive components."
+    ],
+    "correctIndex": 1,
+    "explanation": "Pinia is the official state management library for Vue.js. Its primary purpose is to manage global state across components in a predictable and centralized manner. Server-side rendering is a different concern, custom directives extend HTML, and reactive components are a core Vue feature without needing Pinia specifically for their definition.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of writing unit tests for Vue components?",
+    "options": [
+      "To ensure the application is accessible to all users.",
+      "To verify that individual component units function correctly in isolation.",
+      "To check the performance of the entire application under load.",
+      "To manage application-wide state changes."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests focus on testing individual, isolated units of code, such as a single Vue component, to ensure it works as expected without relying on other parts of the system. Accessibility is covered by other tools/practices, performance by load testing, and state management by libraries like Pinia.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Vue developer is building a component that needs to fetch data when it's mounted and also re-fetch data whenever a specific prop changes. Which Composition API lifecycle hook(s) and feature(s) would be most appropriate for this scenario?",
+    "options": [
+      "onMounted and watch",
+      "onCreated and computed",
+      "onBeforeMount and methods",
+      "onUpdated and ref"
+    ],
+    "correctIndex": 0,
+    "explanation": "`onMounted` is the appropriate lifecycle hook to perform actions after the component has been mounted (e.g., initial data fetch). To re-fetch data when a prop changes, `watch` is used to reactively observe changes in a reactive source (like a prop) and trigger a callback function. `onCreated` doesn't exist in Composition API (use `setup`), `computed` is for derived state, `onBeforeMount` runs before mounting, `methods` are for functions, `onUpdated` runs on component updates, and `ref` makes values reactive but doesn't handle side effects on change.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are using Pinia for state management. To update a state property `user.name` within an action, which approach is generally recommended?",
+    "options": [
+      "Directly modifying `this.user.name = newName` within the action.",
+      "Calling a mutation explicitly, e.g., `this.commit('SET_USER_NAME', newName)`.",
+      "Accessing the store's state and modifying it directly via `store.user.name = newName`.",
+      "Dispatching an action to a separate mutation, if mutations were still a thing."
+    ],
+    "correctIndex": 0,
+    "explanation": "In Pinia, actions can directly mutate the state. Unlike Vuex, Pinia does not have mutations. Actions are designed to handle both synchronous and asynchronous logic and can modify the state directly using `this` or by accessing the store instance. Options 1 and 3 reflect Vuex patterns, and option 2 is incorrect syntax for direct store access inside an action (it would be `this.user.name = newName`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Vue application needs to protect certain routes so that only authenticated users can access them. Which Vue Router feature is best suited for implementing this access control?",
+    "options": [
+      "Dynamic Route Matching",
+      "Nested Routes",
+      "Navigation Guards",
+      "Route Aliases"
+    ],
+    "correctIndex": 2,
+    "explanation": "Navigation Guards are specifically designed to intercept navigation. They allow you to redirect, cancel, or modify navigation based on certain conditions, such as user authentication status. Dynamic Route Matching is for routes with parameters, Nested Routes for hierarchical UI, and Route Aliases for alternative paths to the same component.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a Vue component for maximum reusability and flexibility, especially for layout components that need to inject content from their parent, which feature should be utilized?",
+    "options": [
+      "Props",
+      "Events",
+      "Slots",
+      "Custom Directives"
+    ],
+    "correctIndex": 2,
+    "explanation": "Slots are a powerful mechanism in Vue for content distribution. They allow parent components to \"inject\" template content into designated areas within a child component's template, making the child component highly reusable for various content structures. Props are for passing data, events for communication back to the parent, and custom directives for manipulating the DOM directly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to test the interaction between two sibling components, where one emits an event and the other listens to it via a shared parent. What type of test would be most appropriate for this scenario?",
+    "options": [
+      "Unit Test",
+      "End-to-End (E2E) Test",
+      "Snapshot Test",
+      "Integration Test"
+    ],
+    "correctIndex": 3,
+    "explanation": "An integration test verifies that different parts of a system (in this case, multiple components and their interaction) work together correctly. Unit tests focus on isolation, E2E tests simulate user flow across the entire application, and snapshot tests compare rendered output over time, but don't explicitly test interactions between components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "While debugging a Vue component, you notice that a reactive variable defined with `ref()` is not updating in the template as expected, even though its `.value` has been changed. What is a common pitfall to check in this situation?",
+    "options": [
+      "The component is using Options API instead of Composition API.",
+      "The variable is being modified directly without using `.value`.",
+      "The `watchEffect` hook is missing.",
+      "The component has not been globally registered."
+    ],
+    "correctIndex": 1,
+    "explanation": "When working with `ref()` in the Composition API, you must always access or modify its reactive value through its `.value` property (e.g., `myRef.value = newValue`). Directly assigning `myRef = newValue` will replace the `ref` object itself, breaking its reactivity connection. Options API vs Composition API doesn't prevent `ref` from working correctly if used properly, `watchEffect` is for side effects, not making `ref` reactive, and global registration is for component availability, not reactivity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Vue form has a text input that needs to sync its value with a data property, and also apply a specific format (e.g., uppercase) to the input value before it's stored. Which combination of directives/features is most efficient for this?",
+    "options": [
+      "`v-model` with a `computed` property with setter.",
+      "`v-bind:value` with an `@input` event listener and a `method`.",
+      "`v-model.lazy` and a `watch` handler.",
+      "`v-text` and a separate data property."
+    ],
+    "correctIndex": 0,
+    "explanation": "`v-model` provides two-way data binding. When combined with a `computed` property that has both a `getter` (for displaying the formatted value) and a `setter` (for processing and storing the input value), it elegantly handles syncing and formatting simultaneously. Using `v-bind:value` and `@input` requires more manual wiring. `v-model.lazy` only delays updates, and `watch` would be an alternative but less integrated than a computed setter for two-way binding. `v-text` only renders content, not for input.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a code review for a new Vue feature, a team member points out that the component logic is becoming very large and difficult to read. What is a common practice for improving component architecture and maintainability in such a scenario?",
+    "options": [
+      "Merge all related components into one single, larger component.",
+      "Break down the component into smaller, single-responsibility components and/or extract reusable logic into composables.",
+      "Disable linting rules to allow for larger files.",
+      "Rewrite the entire application in a different framework."
+    ],
+    "correctIndex": 1,
+    "explanation": "A key principle of good component architecture is to keep components small and focused on a single responsibility. Extracting reusable logic into composables (Vue 3 Composition API) further improves modularity and reusability. Merging components would worsen the problem, disabling linting is bad practice, and rewriting the entire app is an extreme and often unnecessary measure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a Vue application to production, a developer needs to ensure that the build output is optimized for performance (e.g., smaller bundle size, faster loading). Which build command is typically used for this purpose?",
+    "options": [
+      "npm run dev",
+      "npm run serve",
+      "npm run build",
+      "npm run test"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `npm run build` command (or `yarn build`, `pnpm build`) compiles the application's source code into a production-ready, optimized bundle of static assets (HTML, CSS, JavaScript) that can be deployed to a web server. `npm run dev` starts a development server, `npm run serve` is often an alias for dev or serves the build locally, and `npm run test` runs tests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Vue application handles user input which is then rendered directly into the DOM. What is the primary security risk associated with this practice if the input is not properly sanitized?",
+    "options": [
+      "Cross-Site Request Forgery (CSRF)",
+      "Denial of Service (DoS)",
+      "SQL Injection",
+      "Cross-Site Scripting (XSS)"
+    ],
+    "correctIndex": 3,
+    "explanation": "If user input containing malicious scripts (e.g., `<script>alert('xss')</script>`) is rendered directly into the DOM without proper sanitization, it leads to a Cross-Site Scripting (XSS) vulnerability. An attacker can inject arbitrary client-side scripts to steal data, hijack sessions, etc. Vue automatically escapes content within templates, but raw HTML rendering (e.g., `v-html`) requires caution. CSRF is about forged requests, DoS about service availability, and SQL Injection targets databases.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A child component needs to notify its parent component when a specific event occurs (e.g., a button click within the child). How is this typically achieved in Vue?",
+    "options": [
+      "By directly modifying a prop received from the parent.",
+      "By emitting a custom event using `emit`.",
+      "By accessing the parent instance directly via `$parent`.",
+      "By using a global JavaScript variable."
+    ],
+    "correctIndex": 1,
+    "explanation": "The recommended way for a child component to communicate with its parent is by emitting a custom event using `emit`. The parent can then listen for this event using `v-on` (or `@`) and react accordingly. Directly modifying props is an anti-pattern (props flow down, events flow up). Accessing `$parent` is generally discouraged for maintainability. Global variables are not a Vue-specific communication pattern and lead to unmanageable code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collaborating on a Vue project using Git, a developer has finished a new feature on a dedicated branch. What is the standard next step to integrate this feature into the main development branch while preserving a clean, linear history?",
+    "options": [
+      "`git revert` the feature branch.",
+      "`git push --force` to the main branch.",
+      "`git merge --no-ff` the feature branch into the main branch.",
+      "`git rebase` the feature branch onto the main branch, then `git merge`."
+    ],
+    "correctIndex": 3,
+    "explanation": "Rebasing the feature branch onto the main branch rewrites the feature branch's commit history to appear as if it branched off the latest main commit. This creates a linear history. After rebasing, a fast-forward merge (or regular merge) can then be performed, or a squash merge if all feature commits are to be combined into one. `git merge --no-ff` preserves the merge commit, but doesn't create a linear history if the feature branch had diverged. `git revert` undoes changes, and `git push --force` should be avoided on shared branches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have a set of related reactive states and functions that are used across multiple Vue components (e.g., a counter with increment/decrement logic). In the Composition API, what is the best practice for extracting and reusing this logic?",
+    "options": [
+      "Create a global JavaScript object and export it.",
+      "Use Vuex (or Pinia) for this local component logic.",
+      "Define it as a custom directive.",
+      "Create a composable function."
+    ],
+    "correctIndex": 3,
+    "explanation": "Composable functions (functions starting with `use...`) are the idiomatic way in Vue 3's Composition API to extract, encapsulate, and reuse stateful logic across multiple components. They leverage the reactivity system and can contain `refs`, `computed` properties, `watchers`, etc. Global objects lack reactivity, Pinia is for global application state (not typically local component logic reuse), and custom directives are for direct DOM manipulation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Vue application interacts with a backend API that requires an authentication token. To protect this token from Cross-Site Scripting (XSS) attacks, where is the most secure place to store it on the client-side, assuming the token is short-lived and refreshed regularly?",
+    "options": [
+      "In `localStorage`",
+      "In `sessionStorage`",
+      "In a JavaScript variable",
+      "In an `HttpOnly` cookie"
+    ],
+    "correctIndex": 3,
+    "explanation": "An `HttpOnly` cookie is generally considered the most secure client-side storage for authentication tokens (especially session IDs) against XSS attacks. Because JavaScript cannot access `HttpOnly` cookies, even if an XSS vulnerability exists, the attacker's injected script cannot read the token. `localStorage`, `sessionStorage`, and regular JavaScript variables are all accessible via JavaScript, making them vulnerable to XSS. This assumes the server is responsible for setting and validating the cookie. For long-lived tokens, more complex strategies might be needed, but for XSS protection, HttpOnly is key.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Vue application is deployed to a CDN (Content Delivery Network). To ensure users always get the latest version of the application after a new deployment, but without forcing a hard refresh for every visit, what strategy is most effective for managing client-side caching?",
+    "options": [
+      "Setting a very short `Cache-Control` header (e.g., `no-cache`) for all assets.",
+      "Using unique, content-hashed filenames for JavaScript and CSS bundles.",
+      "Implementing Server-Side Rendering (SSR) to always serve fresh HTML.",
+      "Relying solely on `ETag` headers for cache validation."
+    ],
+    "correctIndex": 1,
+    "explanation": "Content-hashed filenames (e.g., `app.[hash].js`, `style.[hash].css`) are the most effective strategy. When the content of a file changes, its hash in the filename also changes, forcing browsers to download the new file because the URL is different. The `index.html` file, which references these hashed assets, can have a short `Cache-Control` or `no-cache` to ensure it's always fresh, fetching the newly referenced hashed files. `no-cache` for all assets would negate CDN benefits. SSR is a different architectural pattern, and `ETag` validation still involves a request to the server to check for changes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When performing End-to-End (E2E) testing on a Vue application, a common challenge is dealing with asynchronous operations (e.g., API calls, animations) that might cause tests to fail prematurely. Which strategy is most robust for handling these in E2E tests?",
+    "options": [
+      "Implementing a global `setTimeout` to wait a fixed amount of time after every action.",
+      "Using the E2E testing framework's built-in waiting mechanisms (e.g., `waitForSelector`, `waitUntil`) to assert element visibility or network activity.",
+      "Disabling all animations and network requests during E2E tests.",
+      "Only testing synchronous parts of the application."
+    ],
+    "correctIndex": 1,
+    "explanation": "E2E testing frameworks (like Cypress, Playwright) provide sophisticated waiting mechanisms that intelligently poll for elements to become visible, network requests to complete, or specific conditions to be met. This is far more robust than arbitrary `setTimeout`s, which are brittle and can lead to flaky tests. Disabling features or only testing synchronous parts compromises test coverage and realism.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are developing a large-scale Vue application with many components that frequently update and re-render due to data changes. Some components have complex rendering logic. To optimize performance and reduce unnecessary re-renders in specific scenarios, what advanced optimization technique related to component rendering might be considered?",
+    "options": [
+      "Always use `v-if` instead of `v-show` for conditional rendering.",
+      "Implement `shouldComponentUpdate` lifecycle hook (if it existed in Vue 3).",
+      "Utilize `memoization` for heavy computations and `shallowRef` for specific non-nested reactive objects where full deep reactivity isn't needed.",
+      "Increase the component's `key` attribute uniqueness."
+    ],
+    "correctIndex": 2,
+    "explanation": "While Vue's reactivity system is efficient, for heavy computations or deeply nested reactive objects that don't need full deep reactivity, `memoization` (e.g., using a library or manual caching) can prevent recalculations. `shallowRef` and `shallowReactive` are specific Vue 3 features that opt-out of deep reactivity, only making the top-level `.value` (for `shallowRef`) or the first level of properties (for `shallowReactive`) reactive. This can significantly improve performance for large data structures by reducing the overhead of proxy creation. `v-if` vs `v-show` is for initial render cost vs toggle cost. Vue 3 doesn't have `shouldComponentUpdate` like React. Increasing `key` uniqueness is primarily for list rendering efficiency, not general re-render optimization of a single component.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When architecting a new portfolio-grade Vue application, you need to decide between a Monorepo setup (e.g., using Lerna or Yarn Workspaces) versus a traditional Multirepo setup. For a single Vue application with shared UI components, utility functions, and potentially a separate API client, what is a primary benefit of choosing a Monorepo approach?",
+    "options": [
+      "Eliminates the need for version control entirely.",
+      "Simplifies dependency management and ensures consistent versions across shared packages.",
+      "Guarantees faster initial build times for the main application.",
+      "Automatically handles all deployment and CI/CD configurations."
+    ],
+    "correctIndex": 1,
+    "explanation": "A primary benefit of a Monorepo for this scenario is simplified dependency management. Shared UI components or utility functions can be developed and versioned together, ensuring that all parts of the application using them are on the same, compatible version without needing to publish and manage separate packages in a registry. It doesn't eliminate version control, doesn't guarantee faster build times (can sometimes be slower due to larger scope), and doesn't automatically handle all deployment/CI/CD (though it can streamline it).",
+    "difficulty": "hard"
+  }
+]

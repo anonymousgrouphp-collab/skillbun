@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A developer is setting up a simple circuit on a breadboard to blink an LED using a microcontroller. Which of the following components is essential to protect the LED from excessive current?",
+    "options": [
+      "Capacitor",
+      "Inductor",
+      "Resistor",
+      "Diode"
+    ],
+    "correctIndex": 2,
+    "explanation": "A resistor is used in series with an LED to limit the current flowing through it, preventing damage to the LED and the microcontroller's GPIO pin. Capacitors are used for filtering or energy storage, inductors for energy storage or filtering, and diodes for unidirectional current flow or voltage regulation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In C programming for microcontrollers, which of the following best describes the purpose of the 'volatile' keyword when declaring a variable?",
+    "options": [
+      "Indicates the variable will be stored in flash memory.",
+      "Tells the compiler that the variable's value can change unexpectedly, preventing aggressive optimizations.",
+      "Ensures the variable is initialized to zero at startup.",
+      "Declares a constant value that cannot be modified."
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'volatile' keyword informs the compiler that a variable's value might change at any time without any action from the code itself (e.g., by hardware, an interrupt service routine). This prevents the compiler from optimizing away reads of the variable, ensuring the most up-to-date value is always fetched from memory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which digital communication protocol is commonly used for short-distance, multi-master/multi-slave communication between microcontrollers and peripherals, requiring only two wires (SDA and SCL)?",
+    "options": [
+      "UART",
+      "SPI",
+      "I2C",
+      "Ethernet"
+    ],
+    "correctIndex": 2,
+    "explanation": "I2C (Inter-Integrated Circuit) is a two-wire serial communication protocol often used for connecting low-speed peripherals to microcontrollers. It uses SDA (Serial Data Line) and SCL (Serial Clock Line). UART, SPI, and Ethernet use more wires or different communication paradigms.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to quickly prototype an IoT device that needs Wi-Fi connectivity and a good selection of GPIOs. Which of the following development boards is a popular choice for this purpose, known for its integrated Wi-Fi capabilities?",
+    "options": [
+      "Arduino Uno",
+      "ESP32",
+      "Raspberry Pi Zero W",
+      "PIC16F877A"
+    ],
+    "correctIndex": 1,
+    "explanation": "The ESP32 is a popular low-cost, low-power system-on-a-chip microcontroller with integrated Wi-Fi and Bluetooth capabilities, making it ideal for IoT projects requiring wireless connectivity. Arduino Uno has no built-in Wi-Fi, Raspberry Pi Zero W is a single-board computer, and PIC16F877A is an older microcontroller without integrated Wi-Fi.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When an IoT device publishes data using MQTT, what is the primary purpose of an MQTT 'topic'?",
+    "options": [
+      "To identify the device uniquely on the network.",
+      "To specify the encryption method for the payload.",
+      "To categorize and route messages to interested subscribers.",
+      "To define the physical port used for communication."
+    ],
+    "correctIndex": 2,
+    "explanation": "An MQTT topic is a UTF-8 string that the broker uses to filter messages for each connected client. Publishers send messages to a specific topic, and subscribers receive messages from topics they are subscribed to, enabling flexible one-to-many or many-to-many communication.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After successfully deploying an IoT device, a developer wants to visually represent the collected sensor data over time. Which component of an IoT cloud platform is best suited for this task?",
+    "options": [
+      "Firmware update service",
+      "Device registry",
+      "Dashboard",
+      "Identity and Access Management (IAM)"
+    ],
+    "correctIndex": 2,
+    "explanation": "A dashboard in an IoT cloud platform provides a graphical user interface to visualize real-time and historical sensor data, configure devices, and monitor their status, making it ideal for representing collected telemetry.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To ensure a deployed IoT device remains operational and can recover from unexpected software issues, what mechanism is commonly implemented to reset the device if it becomes unresponsive?",
+    "options": [
+      "Real-Time Operating System (RTOS)",
+      "Analog-to-Digital Converter (ADC)",
+      "Watchdog Timer",
+      "Pulse Width Modulation (PWM)"
+    ],
+    "correctIndex": 2,
+    "explanation": "A watchdog timer (WDT) is a hardware or software timer that triggers a system reset if it's not periodically 'petted' (reset) by the main application code. This prevents the device from getting stuck in an infinite loop or an unresponsive state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A firmware developer is writing an Interrupt Service Routine (ISR) for a microcontroller. Why is it generally advised to keep ISRs as short and fast as possible, often only setting a flag or copying data to a buffer?",
+    "options": [
+      "To minimize power consumption of the microcontroller.",
+      "To prevent other interrupts from being missed or delayed excessively.",
+      "To ensure proper memory alignment for data transfers.",
+      "To reduce the overall firmware binary size."
+    ],
+    "correctIndex": 1,
+    "explanation": "ISRs execute with higher priority, often disabling other interrupts or delaying their processing. A long-running ISR can cause latency issues, miss other critical events, or disrupt real-time operations. By keeping them short, the system can return to normal execution quicker.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to read an analog voltage from a temperature sensor using a microcontroller that only understands digital signals. Which peripheral module is required for this conversion?",
+    "options": [
+      "GPIO (General Purpose Input/Output)",
+      "PWM (Pulse Width Modulation)",
+      "ADC (Analog-to-Digital Converter)",
+      "DAC (Digital-to-Analog Converter)"
+    ],
+    "correctIndex": 2,
+    "explanation": "An Analog-to-Digital Converter (ADC) converts continuous analog voltage signals into discrete digital values that a microcontroller can process. GPIO pins are for digital input/output, PWM generates analog-like signals from digital, and DAC converts digital to analog.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An IoT device needs to send small, infrequent sensor readings to a cloud platform over an unreliable network connection, with minimal overhead and without requiring a constant active connection. Which protocol is best suited for this scenario?",
+    "options": [
+      "HTTP",
+      "MQTT",
+      "WebSocket",
+      "FTP"
+    ],
+    "correctIndex": 1,
+    "explanation": "MQTT (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe protocol designed for constrained devices and unreliable networks. It uses a broker to manage message delivery, allowing devices to send data without direct knowledge of subscribers and supporting Quality of Service (QoS) levels to ensure delivery. HTTP often involves more overhead for small messages and requires the client to initiate requests.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A smart home system uses MQTT for communication. A light switch publishes 'ON' or 'OFF' states to a topic '/home/lighting/livingroom/state'. When a new client subscribes, it should immediately know the current state of the light. Which MQTT feature should the light switch utilize?",
+    "options": [
+      "Quality of Service (QoS) level 2",
+      "Will Message",
+      "Retained Message",
+      "Last Will and Testament"
+    ],
+    "correctIndex": 2,
+    "explanation": "A retained message is the last message published on a specific topic with the retain flag set. The MQTT broker stores this message and delivers it to any new subscribers immediately upon subscription, allowing them to instantly know the current state of a topic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In an RTOS environment, a developer needs to protect a shared resource (like a global data buffer) from being accessed simultaneously by multiple tasks, which could lead to data corruption. Which RTOS primitive is typically used for this purpose?",
+    "options": [
+      "Timer",
+      "Queue",
+      "Semaphore",
+      "Event Group"
+    ],
+    "correctIndex": 2,
+    "explanation": "A semaphore (specifically a mutex, a type of binary semaphore) is used for mutual exclusion, ensuring that only one task can access a shared resource at a time, preventing race conditions and data corruption. Queues are for inter-task communication, timers for time-based events, and event groups for synchronizing tasks based on multiple events.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During sensor calibration, a developer observes that the sensor readings are consistently higher than the actual reference values across the entire measurement range. What type of error is this, and how can it typically be corrected?",
+    "options": [
+      "Non-linearity; apply a polynomial correction.",
+      "Drift; implement periodic re-calibration.",
+      "Offset error; subtract a constant value from the readings.",
+      "Gain error; multiply readings by a constant factor."
+    ],
+    "correctIndex": 2,
+    "explanation": "A consistent difference between measured and actual values across the range indicates an offset error. This can be corrected by subtracting a fixed offset value from all sensor readings. Gain error would be a proportional difference, non-linearity a varying difference across the range, and drift is a change over time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying an IoT device to the field, why is securing firmware updates (OTA updates) crucial for maintaining the device's integrity and security?",
+    "options": [
+      "To optimize the firmware for faster execution.",
+      "To reduce the network bandwidth consumed during updates.",
+      "To prevent malicious code injection or device hijacking through compromised updates.",
+      "To ensure the update process can proceed even with intermittent network connectivity."
+    ],
+    "correctIndex": 2,
+    "explanation": "Secure OTA (Over-The-Air) updates, typically involving digital signatures and encryption, are vital to ensure that only legitimate, authenticated, and untampered firmware is installed on the device, preventing attackers from injecting malicious code or taking control of the device.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer has successfully prototyped an IoT device on a breadboard and now needs to transition to a more permanent solution. What is the primary advantage of designing a custom Printed Circuit Board (PCB) over continuing with a breadboard or perfboard?",
+    "options": [
+      "Easier to modify circuits in the field.",
+      "Reduced cost for single unit prototypes.",
+      "Improved reliability, compactness, and manufacturability for production.",
+      "Eliminates the need for soldering components."
+    ],
+    "correctIndex": 2,
+    "explanation": "Custom PCBs offer significantly improved reliability due to robust soldered connections, allow for compact and optimized layouts, and are essential for mass production, making them superior to breadboards or perfboards for deployed products.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To effectively troubleshoot an IoT device failing intermittently in the field, a developer decides to implement a detailed logging mechanism. What information is most critical for these device logs to provide actionable insights?",
+    "options": [
+      "Only the final output data sent to the cloud.",
+      "Memory usage, CPU load, and network connection status at critical junctures.",
+      "Ambient temperature and humidity readings only.",
+      "A list of all installed software packages."
+    ],
+    "correctIndex": 1,
+    "explanation": "Comprehensive logs should capture internal device states, resource usage (memory, CPU), critical sensor readings, and network events at various points in time. This provides context for failures, allowing developers to diagnose intermittent issues that are hard to reproduce in a lab.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an RTOS-based application, a developer configures multiple tasks with different priorities. If a high-priority task is ready to run, but a lower-priority task currently holds a critical resource (e.g., a mutex), what potential issue might arise that could impact real-time performance?",
+    "options": [
+      "Task starvation",
+      "Priority inversion",
+      "Deadlock",
+      "Memory leak"
+    ],
+    "correctIndex": 1,
+    "explanation": "Priority inversion occurs when a high-priority task is blocked by a lower-priority task that holds a required resource, and then the lower-priority task itself is preempted by a medium-priority task. This effectively inverts the priorities, leading to the high-priority task waiting longer than expected.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is optimizing firmware for a memory-constrained microcontroller. They need to store a large lookup table that will not change during runtime. Where should this table ideally be placed to conserve RAM?",
+    "options": [
+      "Heap memory",
+      "Stack memory",
+      "Global RAM segment",
+      "Flash memory (as a constant)"
+    ],
+    "correctIndex": 3,
+    "explanation": "For constant data that doesn't change, placing it in flash memory (often using keywords like 'const' and sometimes specific compiler directives or PROGMEM on Arduino) saves precious RAM, which is typically much more limited on microcontrollers than flash memory.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before moving an IoT prototype to field deployment and mass production, extensive testing is required. Which type of testing focuses on ensuring the device can withstand environmental stresses like temperature extremes, humidity, and vibrations over time?",
+    "options": [
+      "Unit testing",
+      "Integration testing",
+      "Endurance/Environmental testing",
+      "Usability testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "Endurance or Environmental testing subjects the device to various stresses (temperature, humidity, vibration, power cycles) to ensure its long-term reliability and performance in real-world operating conditions, moving beyond basic functional verification.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An IoT sensor system is designed to publish data to the cloud. How can the system be designed to handle intermittent network connectivity and prevent data loss when the device temporarily goes offline?",
+    "options": [
+      "Immediately discard data if the connection is lost.",
+      "Store data locally on the device and re-transmit once the connection is restored.",
+      "Increase the MQTT QoS level to 2 for all messages.",
+      "Reboot the device every time the connection drops."
+    ],
+    "correctIndex": 1,
+    "explanation": "To prevent data loss during offline periods, the device should implement a local data buffering mechanism (e.g., using flash memory or an SD card). When connectivity is restored, the buffered data can then be transmitted to the cloud. While QoS 2 helps ensure delivery *once connected*, it doesn't handle the device being entirely offline.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical IoT device contains sensitive cryptographic keys that must be protected from physical extraction attempts, even if an attacker gains physical access to the device. Which hardware security feature is specifically designed to address this challenge?",
+    "options": [
+      "Software-based encryption libraries",
+      "Secure Boot",
+      "Trusted Platform Module (TPM) or Hardware Security Module (HSM)",
+      "Over-The-Air (OTA) updates"
+    ],
+    "correctIndex": 2,
+    "explanation": "Trusted Platform Modules (TPMs) or Hardware Security Modules (HSMs) are dedicated hardware components designed to securely store cryptographic keys, perform cryptographic operations, and protect against physical tampering, making key extraction extremely difficult even with physical access. Software libraries, Secure Boot (validates firmware integrity), and OTA updates (for secure delivery) are important but don't inherently protect keys from physical extraction.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Consider an RTOS-based system with three tasks: Task A (Highest Priority), Task B (Medium Priority), Task C (Lowest Priority). Task C acquires a mutex, then Task A becomes ready and attempts to acquire the same mutex, blocking itself. While Task A is blocked, Task B becomes ready and preempts Task C. What is the most severe consequence of this scenario in a real-time system without proper mutex protection mechanisms?",
+    "options": [
+      "Task B will be starved of CPU time.",
+      "Task C will immediately release the mutex.",
+      "Task A will experience unbounded latency due to priority inversion.",
+      "The system will enter a deadlock state."
+    ],
+    "correctIndex": 2,
+    "explanation": "This is a classic priority inversion scenario. Task A (highest) is blocked by Task C (lowest). Then Task B (medium) preempts Task C. Now, Task A effectively has to wait for Task B to complete (which could be arbitrarily long) before Task C can resume, release the mutex, and unblock Task A. This leads to unbounded latency for the high-priority task, severely impacting real-time guarantees. Solutions like priority inheritance or priority ceiling protocols are used to mitigate this.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When preparing an IoT system for high-volume manufacturing and field use, a common design challenge is ensuring consistent power delivery and protection against transient voltage spikes or reverse polarity. Which set of components or design practices is crucial for robust power protection?",
+    "options": [
+      "Using larger capacitors on power lines and adding a diode for reverse polarity protection.",
+      "Implementing a sophisticated RTOS scheduler and increasing system clock speed.",
+      "Adding more GPIO pins and reducing the number of external sensors.",
+      "Focusing purely on software watchdogs and aggressive power-saving modes."
+    ],
+    "correctIndex": 0,
+    "explanation": "Robust power protection involves using decoupling/bulk capacitors to stabilize power lines and filter noise. A reverse polarity protection diode (e.g., a Schottky diode in series with the power input) or a MOSFET-based circuit is essential to prevent damage if power is connected incorrectly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A designer is creating a PCB for an IoT device that includes both sensitive analog sensor circuitry and a noisy digital Wi-Fi module. What critical PCB layout technique should be employed to minimize interference between these sections and ensure signal integrity?",
+    "options": [
+      "Place all components on a single, large ground plane without segmentation.",
+      "Route analog and digital traces closely together to reduce loop area.",
+      "Implement separate ground planes (analog ground, digital ground) connected at a single point, and physically isolate sensitive traces.",
+      "Increase the trace width for all signals to reduce resistance."
+    ],
+    "correctIndex": 2,
+    "explanation": "To minimize interference between sensitive analog and noisy digital sections, it's crucial to separate their ground planes and connect them at a single, low-impedance point (star ground or using a ferrite bead/small trace). Additionally, physically separating components and routing their traces away from each other helps maintain signal integrity. Routing traces closely together or using a monolithic ground plane without consideration for noise sources can worsen interference.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An IoT device in a remote deployment is experiencing intermittent failures that are difficult to diagnose. The device is equipped with OTA update capabilities and telemetry alerts. To create a robust recovery strategy, what sophisticated field diagnostics capability should be implemented for this scenario, beyond basic logging and watchdogs?",
+    "options": [
+      "Only rely on manual power cycling.",
+      "Implement a 'safe mode' firmware or OTA rollback plan triggered by persistent health check failures.",
+      "Disable all non-essential sensor readings to conserve battery.",
+      "Replace the entire device every time an error occurs."
+    ],
+    "correctIndex": 1,
+    "explanation": "For intermittent and hard-to-diagnose failures in remote deployments, a robust strategy involves not just detecting failures but also attempting recovery. An OTA rollback plan, where the device can revert to a previously known good firmware version if the current one causes persistent issues, or a 'safe mode' firmware for basic operation and remote debugging, is a powerful field diagnostics and recovery capability.",
+    "difficulty": "hard"
+  }
+]

@@ -366,3 +366,43 @@
   .sk-node-card { max-width: 100%; }
   .sk-float { display: none; }
 }
+
+/* ── Certification Button ── */
+.sk-cert-btn-container {
+  margin-top: 1.5rem;
+}
+.sk-cert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  font-family: var(--font-fredoka), cursive;
+  font-size: 0.92rem;
+  font-weight: 900;
+  text-decoration: none;
+  border: none;
+  transition: all 0.25s ease;
+}
+.sk-cert-btn.unlocked {
+  background: var(--green);
+  color: var(--primary-contrast);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(46,204,113,0.3);
+}
+.sk-cert-btn.unlocked:hover {
+  background: var(--lime);
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(168,255,62,0.4);
+}
+.sk-cert-btn.locked {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+[data-theme='light'] .sk-cert-btn.locked {
+  background: color-mix(in srgb, var(--surface-raised) 85%, transparent);
+}
+

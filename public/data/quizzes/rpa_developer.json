@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A business process involves highly subjective decision-making at multiple steps and requires human judgment for each transaction. Which aspect makes it less suitable for RPA?",
+    "options": [
+      "High transaction volume",
+      "Repetitive data entry",
+      "Rule-based workflow",
+      "Subjective human judgment"
+    ],
+    "correctIndex": 3,
+    "explanation": "RPA excels at automating rule-based, repetitive tasks. Processes requiring subjective human judgment are generally not suitable for automation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before automating a process, an RPA developer is asked to identify all systems involved, the specific inputs for each step, and the decision points. Which activity is the developer performing?",
+    "options": [
+      "ROI calculation",
+      "Process discovery",
+      "Bot deployment",
+      "Performance monitoring"
+    ],
+    "correctIndex": 1,
+    "explanation": "Process discovery involves documenting the current steps, systems, inputs, and decisions to understand a process comprehensively before automation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A bot needs to extract all email addresses from a large unstructured text document. Which programming concept is most appropriate for this task?",
+    "options": [
+      "Looping through an array",
+      "Using a conditional 'If-Else' statement",
+      "Applying Regular Expressions (Regex)",
+      "Sorting a data table"
+    ],
+    "correctIndex": 2,
+    "explanation": "Regular Expressions (Regex) are powerful tools for pattern matching and extraction from unstructured text, making them ideal for tasks like finding email addresses.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An RPA developer is creating a bot that needs to process a queue of 100 invoice items. The bot should pick one item at a time, process it, and then move to the next. What mechanism is best suited for managing these items in an organized and auditable way?",
+    "options": [
+      "A simple List variable",
+      "An Excel spreadsheet",
+      "A queue management system (e.g., UiPath Orchestrator Queues)",
+      "Direct database interaction"
+    ],
+    "correctIndex": 2,
+    "explanation": "Queue management systems like UiPath Orchestrator Queues are designed to handle large volumes of transactional data, provide auditability, enable retries, and manage item status efficiently for bot processing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In UiPath Studio, what is the primary purpose of a \"Selector\"?",
+    "options": [
+      "To define the flow of execution in a workflow",
+      "To uniquely identify a UI element on the screen for interaction",
+      "To store data temporarily during bot execution",
+      "To publish a bot to Orchestrator"
+    ],
+    "correctIndex": 1,
+    "explanation": "Selectors are XML fragments used in UiPath to precisely identify and locate specific UI elements (buttons, text fields, etc.) on applications or web pages, allowing the bot to interact with them.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A user wants to create an automation that triggers every morning at 9:00 AM, fetches a report from an online service, and saves it to SharePoint. Which type of Power Automate flow is most appropriate?",
+    "options": [
+      "Instant cloud flow",
+      "UI flow (Desktop flow)",
+      "Scheduled cloud flow",
+      "Business process flow"
+    ],
+    "correctIndex": 2,
+    "explanation": "A scheduled cloud flow is designed to run automatically at a specific date and time or on a recurring schedule, making it ideal for daily tasks like fetching reports.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During an invoice processing bot's execution, a critical web application unexpectedly crashes after processing 5 out of 50 invoices. The requirement is to log the error, take a screenshot, and then reattempt the failed invoice item up to 3 times before marking it as an exception and escalating. Which UiPath/Power Automate features would be central to implementing this robust error handling?",
+    "options": [
+      "'If' activities, 'Delay' activities, and simple 'Log Message'.",
+      "'Try-Catch' blocks, 'Retry Scope', 'Take Screenshot' activity, Queue Item status updates, and custom logging.",
+      "'Flowchart' layouts, 'Assign' activities, and basic 'Message Box'.",
+      "'Sequence' activities, 'For Each' loops, and hardcoded pauses."
+    ],
+    "correctIndex": 1,
+    "explanation": "'Try-Catch' blocks are essential for handling exceptions, 'Retry Scope' allows for reattempting specific actions, 'Take Screenshot' provides visual context, Queue Item status updates are crucial for transaction management and escalation, and custom logging for detailed records.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A newly deployed bot occasionally fails due to transient network issues, causing it to mark transactions as failed. To improve its reliability without human intervention, what is the best strategy for these types of failures?",
+    "options": [
+      "Manually restart the bot after each failure.",
+      "Implement a 'Retry' mechanism within the exception handling framework.",
+      "Disable all logging to speed up execution.",
+      "Redeploy the bot daily."
+    ],
+    "correctIndex": 1,
+    "explanation": "Implementing a 'Retry' mechanism allows the bot to reattempt an operation a specified number of times when a transient error occurs, significantly improving reliability for issues like temporary network problems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A bot processing customer orders encounters an invalid customer ID for a transaction from a queue. This is a business rule violation. How should this be typically handled within an RPA framework like UiPath?",
+    "options": [
+      "Stop the bot immediately and alert the developer.",
+      "Mark the queue item as \"Failed\" with an \"Application Exception\".",
+      "Mark the queue item as \"Failed\" with a \"Business Exception\".",
+      "Skip the item and proceed without logging."
+    ],
+    "correctIndex": 2,
+    "explanation": "An invalid customer ID is a business rule violation, not an application crash. Therefore, it should be logged as a \"Business Exception\" to distinguish it from technical issues and allow business users to address the data problem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying an invoice processing bot to production, the development team needs to ensure it correctly handles various invoice formats and data validation rules. What is the most effective approach to achieve this?",
+    "options": [
+      "Run the bot once with a single sample invoice.",
+      "Deploy directly to production and monitor for errors.",
+      "Create comprehensive test cases with diverse fake data, including valid and invalid scenarios.",
+      "Rely solely on manual review of the bot's code."
+    ],
+    "correctIndex": 2,
+    "explanation": "Thorough testing with diverse test cases and fake data (including edge cases and invalid scenarios) is crucial to validate a bot's robustness and accuracy before production deployment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical step in deploying a new automation solution involves getting formal approval from the business process owner to confirm it meets their requirements. What is this step commonly known as?",
+    "options": [
+      "Technical review",
+      "Code debugging",
+      "Business sign-off",
+      "Infrastructure provisioning"
+    ],
+    "correctIndex": 2,
+    "explanation": "Business sign-off is the formal approval from business stakeholders, confirming that the developed automation meets their needs and is ready for production use.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An RPA bot needs to log in to a financial application using sensitive credentials. Where should these credentials be securely stored and retrieved from in an enterprise RPA environment, rather than hardcoding them?",
+    "options": [
+      "Directly in the bot's configuration file (e.g., `config.txt`).",
+      "In a public cloud storage bucket.",
+      "In a centralized credential management system (e.g., UiPath Orchestrator Assets, Azure Key Vault).",
+      "As plain text variables within the workflow."
+    ],
+    "correctIndex": 2,
+    "explanation": "Centralized credential management systems (like Orchestrator Assets or Azure Key Vault) provide secure storage, encryption, and access control for sensitive credentials, preventing them from being exposed in code or configuration files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building an Invoice Processing Bot. After successfully extracting data from a PDF invoice, you need to validate that the total amount calculated from line items matches the invoice's grand total. If there's a mismatch, the bot should send an email to a specific department, attach the original invoice, and mark the transaction for manual review. Which combination of elements is most suitable for this scenario?",
+    "options": [
+      "'If' activity for comparison, 'Send Outlook Mail Message' with attachment, and updating a 'Data Row' in a DataTable.",
+      "'For Each' loop for comparison, 'Message Box' for notification, and deleting the invoice file.",
+      "'Switch' activity for comparison, 'Log Message' for notification, and marking the process as completed.",
+      "'Delay' activity for comparison, 'Open Browser' for notification, and archiving the invoice without further action."
+    ],
+    "correctIndex": 0,
+    "explanation": "An 'If' activity is perfect for the comparison logic. 'Send Outlook Mail Message' with attachment allows sending the notification with the original invoice. Updating a 'Data Row' or marking a queue item for manual review (which can be done by adding a flag to a Data Row or queue item) ensures the transaction is flagged correctly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A developer is designing a complex automation in UiPath Studio that involves multiple sub-processes (e.g., login, data extraction, data entry). To promote modularity, reusability, and easier maintenance, what UiPath feature should be primarily used to structure these sub-processes?",
+    "options": [
+      "Creating a single, monolithic sequence activity.",
+      "Using the REFramework template.",
+      "Encapsulating logic within separate workflows (.xaml files) and invoking them.",
+      "Commenting extensively within a single large workflow."
+    ],
+    "correctIndex": 2,
+    "explanation": "Encapsulating logic within separate .xaml files and invoking them as reusable workflows is a core practice for modularity, reusability, and maintainability in UiPath, making complex projects more manageable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company uses Microsoft Teams and SharePoint extensively. They want an automation where, upon a new document being uploaded to a specific SharePoint library, an approval request is automatically sent to a manager in Teams. Which Power Automate feature would connect these services seamlessly?",
+    "options": [
+      "Desktop flows",
+      "Custom scripts",
+      "Connectors",
+      "UI automation actions"
+    ],
+    "correctIndex": 2,
+    "explanation": "Connectors in Power Automate are pre-built proxies to services that allow users to connect their accounts and leverage the service's APIs without writing custom code, enabling seamless integration between services like SharePoint and Teams.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which characteristic is a strong indicator that a process is a good candidate for Robotic Process Automation (RPA)?",
+    "options": [
+      "It requires constant human intervention for every decision.",
+      "It is highly complex with many unstructured inputs.",
+      "It is repetitive, rule-based, and has high transaction volumes.",
+      "It frequently changes its steps and underlying applications."
+    ],
+    "correctIndex": 2,
+    "explanation": "RPA is most effective for processes that are repetitive, follow clear rules, and have a high volume of transactions, as these maximize the return on automation investment.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A bot in production frequently encounters `System.OutOfMemoryException` errors after processing a large number of transactions consecutively. The bot processes data tables and large files. What is the most likely cause and a recommended proactive measure to address this?",
+    "options": [
+      "The bot is running on a slow machine; upgrade hardware.",
+      "Memory resources are not being properly released after processing each transaction; optimize workflow to clear variables/data tables or reduce data processing chunks.",
+      "The application being automated is crashing; report to application support.",
+      "The bot needs more 'Delay' activities to slow down execution."
+    ],
+    "correctIndex": 1,
+    "explanation": "`System.OutOfMemoryException` often indicates that memory resources are accumulating without being released. This can happen when large data structures (like DataTables) are used in loops and not cleared, or when processes are not designed to handle memory efficiently. Optimizing resource usage and processing data in smaller chunks are key proactive measures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An RPA team has deployed several bots. To ensure ongoing performance and quickly detect any failures or unexpected behavior, what solution should be implemented?",
+    "options": [
+      "Review bot logs manually once a month.",
+      "Implement a robust monitoring solution with dashboards and alerts.",
+      "Only check bot status when a business user reports an issue.",
+      "Redeploy all bots daily to reset them."
+    ],
+    "correctIndex": 1,
+    "explanation": "Robust monitoring solutions with dashboards and alerts are essential for proactive detection of bot failures, performance degradation, and unexpected behavior, enabling quick response and minimizing business impact.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to ensure that only authorized bots can access specific queues and assets in UiPath Orchestrator. Which Orchestrator feature is used to manage and restrict bot access permissions?",
+    "options": [
+      "Licenses",
+      "Folders and Roles",
+      "Schedules",
+      "Processes"
+    ],
+    "correctIndex": 1,
+    "explanation": "In UiPath Orchestrator, Folders provide logical segregation for resources, and Roles are used to define permissions, allowing administrators to control which bots (or users) have access to specific assets, queues, and other resources within those folders.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A bot needs to repeatedly perform a series of actions for each row in an Excel spreadsheet. Which programming construct is most suitable for this task?",
+    "options": [
+      "An 'If' condition",
+      "A 'Sequence'",
+      "A 'Loop' (e.g., For Each Row)",
+      "A 'Switch' statement"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'Loop' (specifically a 'For Each Row' loop) is designed to iterate through each item in a collection, such as rows in a data table or spreadsheet, allowing the bot to perform actions repeatedly for each item.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing UI automation in UiPath, it is crucial to create reliable selectors. Which property of a selector should be avoided or used carefully if it changes dynamically, potentially breaking the automation?",
+    "options": [
+      "`aaname` (accessible name)",
+      "`title` (window title)",
+      "`idx` (index)",
+      "`app` (application name)"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `idx` (index) attribute in a selector refers to the position of an element among its siblings. If the order of elements on the screen changes, or if new elements are added, the index can become unreliable, leading to broken automation. More robust attributes like `aaname`, `name`, `id`, or `title` should be preferred.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A bot processes transactions from a queue. For a specific transaction, the target application is temporarily unavailable (e.g., database connection error). The bot should retry this specific transaction after a delay, up to a maximum of 3 retries, before marking it as failed and moving to the next item. How should this be implemented in UiPath Orchestrator Queues?",
+    "options": [
+      "The bot should simply log the error and stop the process.",
+      "The bot should mark the item as 'Failed' with an 'Application Exception', and Orchestrator's automatic retry mechanism (configured on the queue) will handle the retries.",
+      "The bot should use a 'Try-Catch' block, and if an exception occurs, use 'Add Queue Item' to re-add the same item to the queue.",
+      "The bot should use a 'Delay' activity for 10 minutes and then re-process the item in the same workflow instance."
+    ],
+    "correctIndex": 1,
+    "explanation": "UiPath Orchestrator Queues have a built-in automatic retry mechanism. When a bot marks a queue item as 'Failed' with an 'Application Exception', and the 'Auto Retry' property is set for that queue, Orchestrator will automatically requeue the item for processing by an available robot, up to the configured number of retries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After a bot has been successfully deployed and is running in production, what ongoing governance activity is crucial to ensure its continued value and identify areas for improvement or expansion?",
+    "options": [
+      "Daily redeployment of the bot.",
+      "Regular review of ROI reports and performance metrics.",
+      "Constantly changing the bot's schedule.",
+      "Ignoring user feedback."
+    ],
+    "correctIndex": 1,
+    "explanation": "Regular review of ROI reports and performance metrics is essential for ongoing governance. It helps validate the initial business case, identify if the bot is meeting its objectives, and uncover opportunities for further optimization or new automation initiatives.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which type of Power Automate flow is designed to automate tasks on legacy desktop applications or websites that lack modern APIs?",
+    "options": [
+      "Cloud flow",
+      "Desktop flow (UI flow)",
+      "Business process flow",
+      "Data flow"
+    ],
+    "correctIndex": 1,
+    "explanation": "Desktop flows (formerly UI flows) in Power Automate are specifically designed for Robotic Process Automation (RPA) on desktop applications and web browsers, mimicking human interactions for systems without direct API access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A business analyst is mapping a complex \"Order-to-Cash\" process for potential automation. They encounter a step where a human agent decides whether to apply a discount based on customer loyalty data, which is stored in a separate CRM, and current promotional offers, which vary weekly and are communicated via email. The decision rule is not explicitly defined but relies on agent discretion. What is the biggest challenge for RPA in this specific step, and how should it be addressed in the process map?",
+    "options": [
+      "High transaction volume; capture this as a high-priority automation candidate.",
+      "Multiple systems involved; document system integrations for API development.",
+      "Subjective decision-making with unclear rules; document as a human-in-the-loop step or define explicit rules before automation.",
+      "Slow SLA; design a parallel processing bot."
+    ],
+    "correctIndex": 2,
+    "explanation": "The core challenge is the subjective, non-rule-based decision-making. RPA struggles with human discretion. In the process map, this step should be explicitly identified as a bottleneck for full automation, requiring either human intervention (human-in-the-loop) or a prior effort to define clear, quantifiable business rules that the bot can follow.",
+    "difficulty": "hard"
+  }
+]

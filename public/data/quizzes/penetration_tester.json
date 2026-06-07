@@ -1,0 +1,302 @@
+[
+  {
+    "question": "What is the primary purpose of responsible disclosure in ethical hacking?",
+    "options": [
+      "To immediately publicize vulnerabilities to warn users.",
+      "To allow vendors sufficient time to develop and distribute patches before public disclosure.",
+      "To sell vulnerability details to the highest bidder on the dark web.",
+      "To exploit vulnerabilities for personal financial gain without detection."
+    ],
+    "correctIndex": 1,
+    "explanation": "Responsible disclosure is a practice where security researchers privately inform vendors about vulnerabilities, allowing them to develop and distribute patches, thus protecting users before the vulnerabilities become widely known and potentially exploited maliciously.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is commonly used in Linux to change file permissions for users, groups, and others?",
+    "options": [
+      "chmod",
+      "chown",
+      "ls -l",
+      "grep"
+    ],
+    "correctIndex": 0,
+    "explanation": "`chmod` (change mode) is the command used to modify file permissions (read, write, execute) in Linux, specifying who can access and manipulate files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main objective of establishing 'Rules of Engagement' (RoE) before starting a penetration test?",
+    "options": [
+      "To define the specific hacking tools that must be utilized during the assessment.",
+      "To outline the legal boundaries, scope, duration, and acceptable procedures for the test.",
+      "To guarantee the discovery of a predetermined number of critical vulnerabilities.",
+      "To determine the exact content of the report's executive summary in advance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Rules of Engagement (RoE) are crucial for establishing the clear legal and procedural boundaries, defining the scope, duration, and acceptable actions of a penetration test, ensuring all parties are aligned.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary function of the Proxy tool in Burp Suite when performing web application testing?",
+    "options": [
+      "To automate SQL injection attacks against database servers.",
+      "To intercept, inspect, and modify HTTP/S traffic between the browser and the target application.",
+      "To perform brute-force attacks on login credentials.",
+      "To scan for open ports and services on a network."
+    ],
+    "correctIndex": 1,
+    "explanation": "Burp Suite's Proxy is fundamental for intercepting, inspecting, and modifying all HTTP and HTTPS requests and responses that pass between the tester's browser and the target web application.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which tool is widely recognized and frequently used by penetration testers for network scanning and host discovery?",
+    "options": [
+      "Wireshark",
+      "Metasploit",
+      "Nmap",
+      "John the Ripper"
+    ],
+    "correctIndex": 2,
+    "explanation": "Nmap (Network Mapper) is a powerful, free, and open-source utility for network discovery and security auditing, widely used to identify hosts and services on a network.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is typically the purpose of an 'Executive Summary' in a professional penetration test report?",
+    "options": [
+      "To list every highly technical detail of all identified findings and remediation steps.",
+      "To provide a high-level overview of the test's scope, key findings, and overall risk posture for non-technical stakeholders.",
+      "To detail the complete history of all penetration testing activities performed.",
+      "To present raw data logs and screenshots without any analysis."
+    ],
+    "correctIndex": 1,
+    "explanation": "The executive summary provides a concise, high-level overview for management and non-technical stakeholders, highlighting critical issues, business impact, and the overall security status without getting bogged down in technical details.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the role of a 'safe lab environment' in penetration testing training?",
+    "options": [
+      "A live production system used for real-world client engagements.",
+      "An isolated, controlled system designed for practicing ethical hacking techniques without causing real-world damage.",
+      "A public-facing server used to host vulnerable applications for general research purposes.",
+      "A virtual machine specifically configured for compiling and deploying malicious payloads on external targets."
+    ],
+    "correctIndex": 1,
+    "explanation": "A safe lab environment is a crucial component of training, allowing penetration testers to practice and refine their skills on vulnerable systems in a controlled, isolated setting, preventing any unintended damage or legal issues to production systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A penetration tester needs to automate the process of checking multiple web server headers and parsing their responses efficiently. Which scripting language is commonly favored for such tasks due to its strong web-related libraries and ease of use in automation?",
+    "options": [
+      "C++",
+      "Assembly",
+      "Python",
+      "Java"
+    ],
+    "correctIndex": 2,
+    "explanation": "Python is a very popular scripting language in penetration testing due to its extensive libraries (e.g., requests for HTTP, Beautiful Soup for parsing) and its clear, readable syntax, making it ideal for automation tasks like web interaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a web application test, a tester discovers that by submitting `'><script>alert('XSS')</script>` into a comment field, an alert box pops up for other users viewing the comment. What type of vulnerability is this?",
+    "options": [
+      "SQL Injection",
+      "Cross-Site Scripting (XSS)",
+      "Server-Side Request Forgery (SSRF)",
+      "Broken Authentication"
+    ],
+    "correctIndex": 1,
+    "explanation": "This scenario describes Cross-Site Scripting (XSS), where an attacker injects malicious client-side script into web pages viewed by other users, allowing them to execute arbitrary code in the victim's browser.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A tester is analyzing a login form and wants to try multiple password combinations against a single username to find a valid credential. Which Burp Suite tool is best suited for this automated, iterative task?",
+    "options": [
+      "Proxy",
+      "Repeater",
+      "Intruder",
+      "Scanner"
+    ],
+    "correctIndex": 2,
+    "explanation": "Burp Intruder is specifically designed for automating customized attacks against web applications, such as brute-forcing credentials, dictionary attacks, and fuzzing, by sending multiple requests with varying payloads.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A penetration tester observes that an API endpoint `/api/v1/users/{id}` allows a user to retrieve details about any user by changing the `{id}` parameter in the request, without proper authorization checks. What OWASP API Security Top 10 vulnerability does this most likely represent?",
+    "options": [
+      "Broken Object Level Authorization (BOLA)",
+      "Mass Assignment",
+      "Broken Function Level Authorization",
+      "Rate Limiting"
+    ],
+    "correctIndex": 0,
+    "explanation": "Broken Object Level Authorization (BOLA), also known as Insecure Direct Object Reference (IDOR), occurs when an API allows a user to access or modify resources (objects) they are not authorized for, typically by manipulating object IDs in the request.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After gaining initial access to a Linux server with low privileges, a tester wants to identify misconfigurations that could lead to elevated privileges. Which of the following common techniques would be part of a privilege escalation attempt?",
+    "options": [
+      "Analyzing the `/etc/passwd` file for default user accounts.",
+      "Checking for SUID/SGID binaries with unusual permissions.",
+      "Running `ping -c 4 google.com` to test internet connectivity.",
+      "Disabling the server's firewall to allow all incoming connections."
+    ],
+    "correctIndex": 1,
+    "explanation": "Checking for SUID/SGID binaries is a common privilege escalation technique, as these programs run with the permissions of their owner (often root) regardless of the executing user, potentially allowing a low-privileged user to execute code as root.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When performing reconnaissance on a target organization, a penetration tester uses `nslookup` or `dig` commands. What kind of information are they primarily trying to gather?",
+    "options": [
+      "Information about open ports on web servers.",
+      "DNS records and associated domain information, such as IP addresses and mail servers.",
+      "A list of all employee email addresses from publicly available directories.",
+      "Details about the target's network firewall rules."
+    ],
+    "correctIndex": 1,
+    "explanation": "`nslookup` and `dig` are DNS query tools used to gather information about domain name servers, hostnames, IP addresses, mail servers (MX records), and other DNS-related configurations, which is crucial for early-stage reconnaissance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A penetration tester has successfully identified a vulnerability that could allow for remote code execution. Before proceeding, what is the most critical step to ensure they adhere to ethical guidelines and the Rules of Engagement?",
+    "options": [
+      "Immediately deploy the exploit to verify full system compromise and maximum impact.",
+      "Document the vulnerability, capture proof of concept without causing destructive actions, and confirm it's within the defined scope.",
+      "Publicly disclose the vulnerability on social media to gain recognition for the discovery.",
+      "Delete all system logs to cover their tracks and avoid detection."
+    ],
+    "correctIndex": 1,
+    "explanation": "Ethical guidelines and the Rules of Engagement mandate safely validating vulnerabilities, documenting proof of concept without causing any destructive actions, and ensuring all activities remain strictly within the agreed-upon scope.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When documenting a critical vulnerability in a penetration test report, what is the main reason for including a Common Vulnerability Scoring System (CVSS) score?",
+    "options": [
+      "To comply with specific client contractual obligations only.",
+      "To provide a standardized, objective measure of the vulnerability's severity and characteristics.",
+      "To impress the client with technical jargon and complex metrics.",
+      "To determine the exact cost of remediation for the discovered vulnerability."
+    ],
+    "correctIndex": 1,
+    "explanation": "CVSS provides a standardized and quantifiable way to describe the characteristics and severity of a vulnerability, allowing for consistent and objective risk assessment across different organizations and aiding in prioritization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a penetration test, the tester discovers a critical vulnerability in a system that was explicitly *out of scope* according to the Rules of Engagement. What is the appropriate next step for the tester?",
+    "options": [
+      "Exploit the vulnerability immediately due to its critical nature and potential impact.",
+      "Ignore the vulnerability completely and continue testing only within the defined scope.",
+      "Report the finding privately to the client's point of contact, without actively exploiting it.",
+      "Publicly disclose the out-of-scope vulnerability to highlight the client's security weaknesses."
+    ],
+    "correctIndex": 2,
+    "explanation": "While adhering to scope is paramount, critical out-of-scope findings should be reported privately and immediately to the client's designated point of contact, explaining the potential risk without any active exploitation, allowing the client to decide on next steps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When writing a web finding writeup, besides the vulnerability description and remediation, what critical piece of information must always be included to help the client verify the vulnerability and understand the impact?",
+    "options": [
+      "The full IP address of the testing machine used for the engagement.",
+      "A detailed historical log of every tool and its version used during the test.",
+      "Clear, step-by-step reproduction instructions and compelling evidence (e.g., screenshots or video).",
+      "A comprehensive list of all operating system patches installed on the test machine."
+    ],
+    "correctIndex": 2,
+    "explanation": "Clear, step-by-step reproduction instructions and compelling evidence (like screenshots or video) are essential for the client to verify the vulnerability, understand its impact, and efficiently develop appropriate remediation, making the report actionable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer implemented a feature where users can upload profile pictures. A penetration tester tries uploading a `.php` file instead of an image, and surprisingly, the server executes it. This indicates a potential vulnerability in:",
+    "options": [
+      "Broken Authentication",
+      "Mass Assignment",
+      "Insecure File Upload",
+      "Missing Rate Limiting"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario points to an Insecure File Upload vulnerability. It occurs when an application fails to properly validate the type, content, or size of uploaded files, allowing malicious files (like executable scripts) to be uploaded and executed on the server.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A pentester is using Kali Linux within a safe lab environment. Which of the following is *not* typically a core activity performed within such an environment as described in the roadmap?",
+    "options": [
+      "Practicing Nmap scans against target virtual machines to map networks.",
+      "Developing custom Python scripts for exploit development and automation.",
+      "Exploiting a real-world production server containing sensitive customer data.",
+      "Analyzing network traffic with Wireshark on isolated network segments."
+    ],
+    "correctIndex": 2,
+    "explanation": "Safe lab environments are specifically for practicing and developing techniques in an isolated, non-production setting to prevent real-world damage and adhere to ethical hacking principles. Exploiting a real-world production server is strictly outside the scope and ethics of a safe lab environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A penetration tester has successfully gained a low-privileged shell on a target system. The next logical step, before attempting privilege escalation, is often to:",
+    "options": [
+      "Immediately delete all system logs to hide their presence.",
+      "Install a persistent backdoor to maintain access.",
+      "Perform local enumeration to identify potential privilege escalation vectors and system weaknesses.",
+      "Reboot the target system to clear any temporary security measures."
+    ],
+    "correctIndex": 2,
+    "explanation": "After initial access with low privileges, local enumeration (gathering information about the system, its users, processes, services, and configurations) is a critical step to identify weaknesses that could lead to privilege escalation, allowing the tester to plan their next move.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An API endpoint `PATCH /api/v2/users/me` allows a user to update their own profile. A tester observes that by including `{\"isAdmin\": true}` in the request body, despite `isAdmin` not being part of the frontend form, their account privileges are elevated. This is an example of what vulnerability?",
+    "options": [
+      "Broken Authentication",
+      "Broken Object Level Authorization",
+      "Mass Assignment",
+      "Server-Side Request Forgery"
+    ],
+    "correctIndex": 2,
+    "explanation": "This is an example of Mass Assignment (or 'Excessive Data Exposure'). It occurs when an application automatically binds client-supplied data to internal data models without proper filtering, allowing attackers to modify properties (like `isAdmin`) they shouldn't have access to.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A penetration tester has compromised a web server located in a DMZ and now wants to reach an internal database server that is not directly accessible from the internet. Which technique would they likely employ to achieve this?",
+    "options": [
+      "Performing a direct DNS lookup for the internal database server from their external machine.",
+      "Pivoting through the compromised web server to access the internal network.",
+      "Sending a SYN flood attack from the DMZ to overwhelm the internal database.",
+      "Attempting to disable the DMZ firewall from the compromised web server."
+    ],
+    "correctIndex": 1,
+    "explanation": "Pivoting is a technique where a compromised system (like the web server in the DMZ) is used as an intermediary or 'jump box' to gain access to other systems on an otherwise inaccessible internal network.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a penetration test, a web application is found to make HTTP requests to internal resources based on user-supplied URLs without proper validation. For instance, `http://example.com/load_image?url=http://internal-service/data`. What kind of vulnerability does this represent?",
+    "options": [
+      "Cross-Site Scripting (XSS)",
+      "SQL Injection",
+      "Server-Side Request Forgery (SSRF)",
+      "Cross-Site Request Forgery (CSRF)"
+    ],
+    "correctIndex": 2,
+    "explanation": "This scenario describes Server-Side Request Forgery (SSRF). SSRF occurs when a web application fetches a remote resource without sufficiently validating the user-supplied URL, allowing an attacker to coerce the application to send requests to arbitrary locations, including internal network services.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A penetration tester discovers a binary on a Linux system with the SUID bit set, owned by root, and it executes `/bin/sh` without specifying a full path. If the tester modifies their PATH environment variable to point to a malicious `sh` script before executing the SUID binary, what is the likely outcome?",
+    "options": [
+      "The SUID binary will fail to execute due to permission issues.",
+      "The malicious `sh` script will be executed with the tester's current low privileges.",
+      "The malicious `sh` script will be executed with root privileges.",
+      "The system will automatically reboot for security reasons."
+    ],
+    "correctIndex": 2,
+    "explanation": "This is a classic SUID binary privilege escalation vulnerability. If an SUID binary executes another command (like `sh`) without a full path, and the attacker can manipulate the `PATH` environment variable, the system will look for `sh` in the attacker's modified `PATH`, potentially executing a malicious script with the SUID binary's owner (root) privileges.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A penetration tester has completed a comprehensive assessment of a legal lab environment. They have found multiple vulnerabilities, including a critical RCE. When structuring the final professional report, which of the following elements is most crucial for the client's C-suite and immediate risk assessment, often appearing early in the report?",
+    "options": [
+      "Detailed network diagrams of the lab setup, including every device and connection.",
+      "A comprehensive list of every tool and its specific version used during the test.",
+      "An executive summary outlining key findings, their business impact, and the overall risk posture.",
+      "Raw log files from all exploited systems with technical timestamps."
+    ],
+    "correctIndex": 2,
+    "explanation": "For C-suite and immediate risk assessment, the Executive Summary is paramount. It provides a high-level, non-technical overview of the most critical findings, their business impact, and the overall security posture, enabling executives to quickly grasp the situation and make informed decisions without needing to delve into technical specifics.",
+    "difficulty": "hard"
+  }
+]

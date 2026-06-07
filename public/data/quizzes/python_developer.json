@@ -1,0 +1,302 @@
+[
+  {
+    "question": "A developer starts a new Python project and wants to isolate its dependencies from other projects on their system. Which command is typically used to create a new virtual environment in the project directory?",
+    "options": [
+      "python -m venv .venv",
+      "pip install virtualenv",
+      "python -m virtualenv env",
+      "conda create --name myenv python"
+    ],
+    "correctIndex": 0,
+    "explanation": "`python -m venv .venv` is the standard and recommended way to create a virtual environment since Python 3.3. `pip install virtualenv` installs the package but doesn't create the env directly. `python -m virtualenv` requires `virtualenv` to be installed separately, and `conda` is for Anaconda, not standard Python virtual environments.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Python data structure is designed to store an ordered collection of items, allows duplicates, and is mutable?",
+    "options": [
+      "tuple",
+      "list",
+      "set",
+      "dictionary"
+    ],
+    "correctIndex": 1,
+    "explanation": "A list is an ordered, mutable collection that allows duplicate elements. Tuples are ordered but immutable. Sets are unordered collections of unique items. Dictionaries store key-value pairs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Python, which keyword is used to handle exceptions that might occur within a block of code?",
+    "options": [
+      "catch",
+      "throw",
+      "except",
+      "error"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `try...except` block is used for exception handling in Python, where `except` catches the specified exception type. `catch` and `throw` are used in other languages like Java or JavaScript. `error` is a general term, not a keyword.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to define a Python function that accepts any number of positional arguments. Which syntax accomplishes this?",
+    "options": [
+      "def func(*args):",
+      "def func(**kwargs):",
+      "def func(args[]):",
+      "def func(args):"
+    ],
+    "correctIndex": 0,
+    "explanation": "The `*args` syntax allows a function to accept an arbitrary number of positional arguments, which are then received as a tuple. `**kwargs` is for keyword arguments. The other options are incorrect Python syntax for this purpose.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After activating a virtual environment, a developer needs to install a package named `requests`. What is the correct command to do this?",
+    "options": [
+      "python install requests",
+      "pip install requests",
+      "npm install requests",
+      "pip add requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "`pip install <package_name>` is the standard command to install Python packages using pip, especially after activating a virtual environment. `python install` is incorrect. `npm` is for Node.js packages. `pip add` is not a valid pip command for installation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To reuse code from a file named `my_utils.py` containing a function `calculate_sum`, what is the correct way to import and use the function in another file?",
+    "options": [
+      "import my_utils; my_utils.calculate_sum()",
+      "from my_utils import calculate_sum; calculate_sum()",
+      "include my_utils; my_utils.calculate_sum()",
+      "require 'my_utils'; calculate_sum()"
+    ],
+    "correctIndex": 1,
+    "explanation": "`from my_utils import calculate_sum` directly imports the function, allowing it to be called by its name. `import my_utils` also works but requires `my_utils.calculate_sum()`. `include` and `require` are not Python keywords for importing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A script needs to output informational messages to the console for debugging purposes. Which standard Python module is best suited for this task?",
+    "options": [
+      "print",
+      "debug",
+      "logging",
+      "syslog"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `logging` module provides a flexible framework for emitting log messages at various severity levels (DEBUG, INFO, WARNING, ERROR, CRITICAL) and directing them to different handlers (console, file, etc.). While `print` can output messages, it lacks the flexibility and features of the `logging` module for structured and configurable logging. `debug` and `syslog` are not standard Python modules for general application logging in this context.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You have a list of numbers `[1, 2, 3, 4, 5]` and need to create a new list containing the squares of only the even numbers. Which list comprehension achieves this?",
+    "options": [
+      "[x**2 for x in numbers if x % 2 == 0]",
+      "[x for x in numbers if x**2 % 2 == 0]",
+      "[x*x for x in numbers if x % 2 != 0]",
+      "{x**2 for x in numbers if x % 2 == 0}"
+    ],
+    "correctIndex": 0,
+    "explanation": "The correct list comprehension iterates through `numbers`, filters for even numbers (`if x % 2 == 0`), and then squares them (`x**2`). The second option squares before checking for evenness, the third checks for odd numbers, and the fourth creates a set comprehension, not a list.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Python developer is creating a class `Car` with attributes `make` and `model`. How should they define the `__init__` method to properly initialize these attributes?",
+    "options": [
+      "def __init__(self, make, model): self.make = make; self.model = model",
+      "def init(make, model): self.make = make; self.model = model",
+      "def __init__(self, make, model): self.Make = make; self.Model = model",
+      "def __new__(self, make, model): self.make = make; self.model = model"
+    ],
+    "correctIndex": 0,
+    "explanation": "The `__init__` method is the constructor in Python classes. It must take `self` as its first argument, followed by other parameters. `self.attribute = value` assigns the parameter to an instance attribute. The second option uses an incorrect method name. The third option uses incorrect capitalization for attribute assignment, potentially creating new attributes instead of the intended ones. The fourth uses `__new__` which is for object creation, not initialization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to specify build system requirements and project metadata for their Python package in a modern way. Which file is the standard for this purpose according to PEP 518 and PEP 621?",
+    "options": [
+      "setup.py",
+      "requirements.txt",
+      "pyproject.toml",
+      "MANIFEST.in"
+    ],
+    "correctIndex": 2,
+    "explanation": "`pyproject.toml` is the modern, standardized way to declare build system requirements and project metadata for Python packages, replacing parts of `setup.py` and `setup.cfg` for this purpose. `requirements.txt` is for application dependencies, and `MANIFEST.in` specifies files to include in source distributions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a web API with either FastAPI or Django REST Framework, what is the primary purpose of a \"serializer\" or \"Pydantic model\"?",
+    "options": [
+      "To encrypt sensitive data for transfer.",
+      "To define and validate the structure of request/response data.",
+      "To handle database migrations automatically.",
+      "To manage user authentication sessions."
+    ],
+    "correctIndex": 1,
+    "explanation": "In FastAPI, Pydantic models define the shape of data and provide automatic validation. In Django REST Framework, serializers serve a similar role, converting complex data types (like model instances) to native Python types that can be rendered into JSON/XML, and also handling incoming data validation. Encryption is a separate concern. Database migrations are handled by ORMs/migration tools. Authentication is handled by specific auth components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Python application uses an ORM (Object-Relational Mapper) to interact with a PostgreSQL database. What is the main benefit of using an ORM compared to writing raw SQL queries directly in the application code?",
+    "options": [
+      "It makes the application run faster by optimizing all queries.",
+      "It removes the need for a database entirely.",
+      "It allows developers to interact with the database using Python objects and methods, improving code readability and maintainability.",
+      "It automatically handles complex database replication strategies."
+    ],
+    "correctIndex": 2,
+    "explanation": "ORMs like SQLAlchemy or Django ORM abstract database interactions, allowing developers to work with Python objects and methods instead of writing raw SQL. This generally improves code readability, maintainability, and can offer some security benefits against SQL injection. While some ORMs have optimization features, it's not their primary benefit and they don't always make queries faster. They don't remove the need for a database or handle replication automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing unit tests for a Python function using `pytest`. They need to provide a setup routine that runs before each test in a module and a teardown routine that runs after. Which `pytest` feature is best suited for this?",
+    "options": [
+      "Test classes with `setUp` and `tearDown` methods.",
+      "Using `unittest.TestCase` directly.",
+      "Fixtures with `scope='function'` and `yield`.",
+      "Decorators like `@before_each` and `@after_each`."
+    ],
+    "correctIndex": 2,
+    "explanation": "`pytest` fixtures are the idiomatic way to manage setup and teardown for tests. A fixture with `scope='function'` runs before each test that uses it, and `yield` allows for teardown logic to run after the test. While `unittest.TestCase` has `setUp` and `tearDown`, `pytest` favors fixtures. `@before_each` and `@after_each` are not standard pytest features for this.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Python script needs to be runnable from the command line, accepting arguments like `--input-file` and `--output-dir`. Which standard library module is commonly used to parse command-line arguments in Python?",
+    "options": [
+      "sys",
+      "os",
+      "argparse",
+      "subprocess"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `argparse` module is the standard and recommended way to write user-friendly command-line interfaces in Python. It allows defining arguments, generating help messages, and parsing input. `sys` provides access to system-specific parameters and functions, including `sys.argv` for raw arguments, but doesn't parse them. `os` interacts with the operating system. `subprocess` is for running external commands.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When deploying a Python web application, sensitive information like database credentials or API keys should not be hardcoded in the codebase. What is the most common and secure way to provide this information to the application in a production environment?",
+    "options": [
+      "Storing them in a `.env` file committed to version control.",
+      "Passing them as command-line arguments directly to the application startup script.",
+      "Using environment variables.",
+      "Encrypting them within the source code and decrypting at runtime."
+    ],
+    "correctIndex": 2,
+    "explanation": "Environment variables are the standard and most secure way to manage sensitive configuration in production. They keep sensitive data out of source control and allow easy modification without redeploying code. Committing `.env` files (especially with sensitive data) to version control is a security risk. Command-line arguments can be exposed in process lists. Encrypting in source code is complex and can still expose keys or decryption logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing a function `greet(name: str) -> str` and wants to indicate that the `name` parameter should be a string and the function should return a string. What is the primary benefit of adding these type hints?",
+    "options": [
+      "They enforce strict type checking at runtime, preventing all type errors.",
+      "They improve performance by optimizing variable assignments.",
+      "They enhance code readability and enable static analysis tools (linters, IDEs) to catch potential type-related bugs before runtime.",
+      "They automatically convert incorrect types to the expected types."
+    ],
+    "correctIndex": 2,
+    "explanation": "Type hints in Python are primarily for improving code readability, allowing better static analysis by tools like MyPy, and enhancing IDE support. They do *not* enforce type checking at runtime by default, nor do they automatically convert types or directly improve runtime performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a FastAPI application, a developer wants to define an endpoint that responds to HTTP GET requests at the path `/items/{item_id}` where `item_id` is an integer. Which decorator and function signature correctly define this?",
+    "options": [
+      "@app.get('/items/<item_id>') def read_item(item_id: int):",
+      "@app.route('/items/{item_id}', methods=['GET']) def read_item(item_id: int):",
+      "@app.get('/items/{item_id}') def read_item(item_id: int):",
+      "@app.get('/items/{item_id:int}') def read_item(item_id):"
+    ],
+    "correctIndex": 2,
+    "explanation": "FastAPI uses path parameters enclosed in curly braces (`{item_id}`) and type hints in the function signature (`item_id: int`) to automatically validate and convert path parameters. The `@app.get` decorator specifies the HTTP method and path. The first option uses Flask/Django style path parameters. The second is more akin to Flask. The fourth incorrectly tries to specify type in the path.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After adding a new column to a database model in a Django or SQLAlchemy application, a developer needs to update the database schema without losing existing data. What is the typical process or tool used for this?",
+    "options": [
+      "Manually altering the database table using SQL `ALTER TABLE` commands.",
+      "Deleting the database and recreating it from scratch.",
+      "Running ORM-specific migration commands (e.g., `makemigrations`/`migrate` for Django, Alembic for SQLAlchemy).",
+      "Restarting the application server to auto-update the schema."
+    ],
+    "correctIndex": 2,
+    "explanation": "ORM-specific migration tools (like Django's `makemigrations` and `migrate`, or SQLAlchemy's Alembic) are designed to track schema changes and generate SQL scripts to safely update the database without data loss. Manually altering tables is error-prone. Deleting and recreating the database loses data. Restarting the server does not usually trigger schema updates in production.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team wants to automate the running of their `pytest` suite and `flake8` linter whenever new code is pushed to their GitHub repository. Which CI/CD service and configuration type are best suited for this in the GitHub ecosystem?",
+    "options": [
+      "Jenkins with a `Jenkinsfile`.",
+      "GitHub Actions with a `.github/workflows/ci.yml` file.",
+      "GitLab CI with a `.gitlab-ci.yml` file.",
+      "Travis CI with a `.travis.yml` file."
+    ],
+    "correctIndex": 1,
+    "explanation": "GitHub Actions is GitHub's integrated CI/CD service, configured using YAML files in the `.github/workflows` directory. Jenkins, GitLab CI, and Travis CI are other CI/CD solutions, but GitHub Actions is the native and most integrated option for GitHub repositories.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Python project mandates code style compliance with PEP 8 and automatically fixes common formatting issues. Which two tools are typically used together to achieve this?",
+    "options": [
+      "MyPy and Black",
+      "Flake8 and Pytest",
+      "Black and Flake8",
+      "Pylint and Mypy"
+    ],
+    "correctIndex": 2,
+    "explanation": "Black is an opinionated code formatter that automatically reformats Python code to a consistent style, largely PEP 8 compliant. Flake8 is a linter that checks for PEP 8 compliance, syntax errors, and complexity. Together, they enforce code style and identify issues. MyPy is for type checking. Pytest is for testing. Pylint is another linter, but Black is for formatting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to create a decorator that logs the execution time of any function it wraps. The decorator should accept an argument, `unit` (e.g., 'ms' or 's'), to specify the logging unit. Which structure correctly defines such a decorator?",
+    "options": [
+      "def timer_decorator(unit): def decorator(func): def wrapper(*args, **kwargs): ...; return wrapper; return decorator",
+      "def timer_decorator(func): def wrapper(*args, **kwargs): ...; return wrapper; return timer_decorator",
+      "def decorator(func, unit): def wrapper(*args, **kwargs): ...; return wrapper",
+      "def timer_decorator(unit): @wraps(func) def wrapper(*args, **kwargs): ..."
+    ],
+    "correctIndex": 0,
+    "explanation": "A decorator that accepts arguments is a higher-order function that returns the actual decorator. So, `timer_decorator(unit)` returns `decorator`, which then takes the `func` and returns `wrapper`. This nested structure is key for decorators with arguments. The `@wraps(func)` is typically used inside the inner `decorator` function, around `wrapper`, to preserve metadata, but the option provided is syntactically incomplete for the overall structure.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Consider a scenario where an application needs to acquire a database connection from a pool and ensure it's always released, even if errors occur during its use. Which Python construct is most appropriate for managing the acquisition and release of this resource automatically?",
+    "options": [
+      "Using a `try-finally` block around the connection usage.",
+      "Implementing a generator function with `yield` for connection management.",
+      "Creating a class that implements the context manager protocol (`__enter__` and `__exit__`).",
+      "Employing a global variable to track connection status and manually release it."
+    ],
+    "correctIndex": 2,
+    "explanation": "A class implementing the context manager protocol (`__enter__` to acquire, `__exit__` to release and handle exceptions) is the most robust and Pythonic way to manage resources like database connections, ensuring proper cleanup even in the face of errors. While `try-finally` can achieve similar results, context managers provide a cleaner, more encapsulated approach. A generator with `yield` *can* be used with `contextlib.contextmanager`, but creating a class is the direct implementation of the protocol. Global variables and manual release are error-prone.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Python FastAPI application relies on specific OS-level libraries and Python packages, and needs to be deployed consistently across different environments. To achieve this, the developer decides to containerize the application. Which of the following `Dockerfile` snippets is the most appropriate and secure approach for a production-ready Python application?",
+    "options": [
+      "FROM python:3.9-slim COPY . /app WORKDIR /app RUN pip install -r requirements.txt CMD [\"python\", \"app.py\"]",
+      "FROM python:3.9-alpine WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY . . CMD [\"uvicorn\", \"app:app\", \"--host\", \"0.0.0.0\"]",
+      "FROM ubuntu:latest RUN apt-get update && apt-get install -y python3-pip COPY . /app WORKDIR /app RUN pip install -r requirements.txt CMD [\"python3\", \"app.py\"]",
+      "FROM python:3.9 WORKDIR /app COPY . . RUN pip install -r requirements.txt CMD [\"python\", \"app.py\"]"
+    ],
+    "correctIndex": 1,
+    "explanation": "This `Dockerfile` uses `python:3.9-alpine`, which is a small, secure base image. It copies `requirements.txt` first to leverage Docker layer caching, then installs dependencies with `--no-cache-dir` to reduce image size. It then copies the rest of the application code and uses `uvicorn` (common for FastAPI) with host binding for production. Other options use larger base images (`slim` is better than base, but alpine is smaller), copy everything too early (breaking cache), use `python app.py` instead of a WSGI server, or install python from `apt-get` which is less standard for Python images.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "For a FastAPI `Operations API` requiring user authentication, a developer implements JWT (JSON Web Token) based authentication. After a user successfully logs in and receives a JWT, how should subsequent protected API requests typically include this token for validation?",
+    "options": [
+      "As a query parameter in the URL (e.g., `?token=XYZ`).",
+      "In the request body of all API calls.",
+      "In the `Authorization` HTTP header with the `Bearer` scheme (e.g., `Authorization: Bearer XYZ`).",
+      "As a custom HTTP header named `X-Auth-Token`."
+    ],
+    "correctIndex": 2,
+    "explanation": "The standard and most secure way to transmit JWTs for authenticated API requests is in the `Authorization` HTTP header, using the `Bearer` scheme. Query parameters are insecure as they can be logged or exposed. Request bodies are not standard for general API authentication. While `X-Auth-Token` is a custom header, `Bearer` token in the `Authorization` header is the widely adopted standard for JWTs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An `Operations API` processes long-running tasks (e.g., generating complex reports or sending bulk emails) that should not block the main API response. Which architecture pattern and related Python tool would be most suitable for handling these tasks asynchronously?",
+    "options": [
+      "Performing the tasks directly within the FastAPI endpoint using `asyncio.sleep`.",
+      "Using a message queue (e.g., Redis with Celery) to offload tasks to a separate worker process.",
+      "Spawning a new thread for each long-running task within the FastAPI process.",
+      "Writing the task results to a temporary file and having a separate script poll for it."
+    ],
+    "correctIndex": 1,
+    "explanation": "Using a message queue like Redis with a task queue framework like Celery is the standard and robust pattern for handling long-running background tasks asynchronously. The API endpoint can quickly enqueue a task, returning an immediate response to the client, while a separate worker process picks up and executes the task. Direct execution (`asyncio.sleep` blocks), spawning threads (can block GIL, resource limits), or polling temporary files are less scalable, less reliable, and generally not recommended for production-grade async task processing.",
+    "difficulty": "hard"
+  }
+]
