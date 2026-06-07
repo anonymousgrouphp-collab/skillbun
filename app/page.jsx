@@ -56,9 +56,16 @@ export default function Home() {
 
     // Shuffle text animation (delayed until after splash)
     const shuffleTexts = document.querySelectorAll('.shuffle-text');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+
+    // Scramble immediately on client mount so it doesn't flash the final word first
+    shuffleTexts.forEach((el) => {
+      const finalWord = el.getAttribute('data-final') || '';
+      el.innerText = finalWord.split('').map(() => chars[Math.floor(Math.random() * chars.length)]).join('');
+    });
+
     shuffleTexts.forEach((el, idx) => {
       const finalWord = el.getAttribute('data-final') || '';
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
       let iteration = 0;
       const timeoutId = window.setTimeout(() => {
         const iv = setInterval(() => {
