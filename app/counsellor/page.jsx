@@ -73,6 +73,22 @@ export default function CounsellorPage() {
               </ul>
             </div>
 
+            <div className="sidebar-card limit-card" id="limitCard">
+              <h4>⏳ Usage Limit</h4>
+              <div className="limit-progress-container">
+                <div className="limit-text">
+                  <span>Messages Left:</span>
+                  <strong id="limitCount">15 / 15</strong>
+                </div>
+                <div className="limit-bar-bg">
+                  <div className="limit-bar" id="limitBar" style={{ width: '100%' }}></div>
+                </div>
+              </div>
+              <div className="limit-reset-info" id="limitReset">
+                Timer starts on first message
+              </div>
+            </div>
+
             <div className="sidebar-card nav-card">
               <h4>🛠️ Fast Links</h4>
               <a href="/dashboard" className="sidebar-link">📊 Dashboard</a>
