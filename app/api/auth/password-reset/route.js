@@ -32,11 +32,12 @@ function getClientAddress(request) {
   )
 }
 
-async function checkRateLimit({ address, email }) {
+async function checkRateLimit({ address, email, increment = true }) {
   return checkServerRateLimit({
     namespace: 'passwordReset',
     subject: { address, email },
     limits: RATE_LIMITS,
+    increment,
   })
 }
 
@@ -99,7 +100,8 @@ export async function POST(request) {
     }
 
     const address = getClientAddress(request)
-    const rateLimit = await checkRateLimit({ address, email })
+    // 1. Check rate limit (without incrementing)
+    const rateLimit = await checkRateLimit({ address, email, increment: false })
     if (!rateLimit.allowed) {
       return NextResponse.json(
         { error: 'Please wait before requesting another reset email.', retryAfterMs: rateLimit.retryAfterMs },
@@ -116,6 +118,10 @@ export async function POST(request) {
       await auth.getUserByEmail(email)
     } catch (error) {
       if (error?.code === 'auth/user-not-found') {
+        // Increment rate limit to prevent brute force email enumeration
+        await checkRateLimit({ address, email, increment: true }).catch((err) => {
+          console.error('Failed to increment rate limit on user-not-found:', err)
+        })
         return okResponse()
       }
 
@@ -124,6 +130,12 @@ export async function POST(request) {
 
     const resetLink = await auth.generatePasswordResetLink(email, buildActionCodeSettings(request))
     await sendSkillBunPasswordResetEmail({ email, resetLink })
+
+    // 2. Increment rate limit on successful mail delivery
+    await checkRateLimit({ address, email, increment: true }).catch((err) => {
+      console.error('Failed to increment rate limit after successful send:', err)
+    })
+
     return okResponse()
   } catch (error) {
     console.error('Password reset request failed:', {
