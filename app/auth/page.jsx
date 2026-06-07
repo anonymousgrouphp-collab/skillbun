@@ -30,6 +30,10 @@ function friendlyAuthError(error) {
     return 'That email already has an account. Try logging in instead.';
   }
 
+  if (code.includes('auth/account-exists-with-different-credential') || code.includes('account-exists')) {
+    return 'An account already exists with this email address. Please sign in using the method you originally registered with (e.g. Google or Password).';
+  }
+
   if (code.includes('auth/weak-password')) {
     return 'Use a password with at least 6 characters.';
   }
