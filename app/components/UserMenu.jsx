@@ -21,8 +21,7 @@ const INCOMPLETE_PROFILE_ITEMS = [
 const COMPLETE_PROFILE_ITEMS = [
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
-  { href: '/dashboard', label: 'Learning Progress', icon: 'progress' },
-  { href: '/dashboard', label: 'Saved Paths', icon: 'saved' },
+  { href: '/roadmap?view=saved', label: 'Saved Paths', icon: 'saved' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
   { href: '/contact', label: 'Support Center', icon: 'support', external: false },
 ];
