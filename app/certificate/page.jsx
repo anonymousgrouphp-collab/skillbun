@@ -50,7 +50,11 @@ export default function VerifyRegistryPage() {
       }
     } catch (err) {
       console.error('Failed to verify certificate ID:', err);
-      setError('An error occurred during verification query. Please try again.');
+      if (typeof window !== 'undefined' && !window.navigator.onLine) {
+        setError('Network offline. Please check your internet connection and try again.');
+      } else {
+        setError('An error occurred during verification query. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

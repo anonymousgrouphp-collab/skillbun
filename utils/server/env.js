@@ -100,7 +100,22 @@ export function getHumanProofSecret() {
 }
 
 export function getAppOrigin() {
-  return getFirstNonEmpty(process.env.APP_ORIGIN).replace(/\/+$/, '')
+  const origin = getFirstNonEmpty(process.env.APP_ORIGIN)
+  if (origin) {
+    return origin.replace(/\/+$/, '')
+  }
+
+  const vercelUrl = getFirstNonEmpty(process.env.VERCEL_URL || process.env.NEXT_PUBLIC_VERCEL_URL)
+  if (vercelUrl) {
+    const hasProtocol = vercelUrl.startsWith('http://') || vercelUrl.startsWith('https://')
+    if (hasProtocol) {
+      return vercelUrl.replace(/\/+$/, '')
+    }
+    const protocol = vercelUrl.includes('localhost') || vercelUrl.includes('127.0.0.1') ? 'http' : 'https'
+    return `${protocol}://${vercelUrl}`.replace(/\/+$/, '')
+  }
+
+  return ''
 }
 
 export function getAllowedAppOrigins() {
