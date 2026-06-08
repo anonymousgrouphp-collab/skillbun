@@ -1,201 +1,746 @@
 {
   "id": "embedded_iot",
   "title": "Embedded & IoT Developer",
-  "description": "A roadmap for building connected devices with electronics basics, microcontrollers, firmware, sensors, protocols, and cloud integration.",
+  "description": "A comprehensive roadmap for building connected devices, starting from fundamental electronics and programming, through microcontroller development, real-time operating systems, IoT protocols, cloud integration, security, and preparing for production.",
   "format": "tree",
   "tree": [
     {
-      "id": "iot_foundations",
-      "name": "Electronics and Programming Foundations",
+      "id": "core_embedded_fundamentals",
+      "name": "Core Embedded Systems Fundamentals",
       "tag": "essential",
-      "description": "Learn C/C++, circuits, digital logic, sensors, actuators, debugging, and microcontroller basics.",
+      "description": "Solidify foundational knowledge in electronics, C/C++ programming for constrained environments, and basic microcontroller operation to build a strong base for embedded development.",
       "resources": [
         {
-          "title": "Arduino Course for Everybody (freeCodeCamp)",
+          "title": "Introduction to Embedded Systems (Coursera)",
+          "url": "https://www.coursera.org/learn/introduction-to-embedded-systems",
+          "type": "course"
+        },
+        {
+          "title": "Embedded Systems Basics with Arduino",
           "url": "https://www.youtube.com/watch?v=DPqiIzK97K0",
           "type": "video"
         },
         {
-          "title": "Arduino Documentation",
-          "url": "https://docs.arduino.cc/",
-          "type": "article"
+          "title": "Embedded Systems Course - From Beginner to Advanced",
+          "url": "https://www.youtube.com/watch?v=QXsY_8M0I6g",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/embedded_iot/core_embedded_fundamentals.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "iot_c_cpp",
-          "name": "C/C++ for Firmware",
+          "id": "embedded_c_cpp",
+          "name": "C/C++ for Embedded Systems",
           "tag": "essential",
-          "description": "Use variables, pointers, structs, memory, interrupts, timing, and hardware-aware code safely.",
+          "description": "Master C/C++ specific features for firmware development: memory models (stack, heap, static, flash), pointers, bitwise operations, preprocessor directives, volatile keyword, interrupt service routines (ISRs), inline functions, `const` correctness, and hardware-aware code. Understand basic assembly language concepts.",
           "resources": [
             {
-              "title": "C Programming Handbook",
+              "title": "Embedded C Programming Handbook",
               "url": "https://www.freecodecamp.org/news/the-c-programming-handbook-for-beginners/",
               "type": "article"
+            },
+            {
+              "title": "Advanced C Programming for Embedded Systems",
+              "url": "https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard",
+              "type": "article"
+            },
+            {
+              "title": "C Programming Tutorial for Embedded Systems",
+              "url": "https://www.youtube.com/watch?v=Fj-P3g4T85Q",
+              "type": "video"
+            },
+            {
+              "title": "C++ For Embedded Systems",
+              "url": "https://www.youtube.com/watch?v=L2G6C-m1xX4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/embedded_c_cpp.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "iot_electronics",
-          "name": "Circuits and Sensors",
+          "id": "digital_analog_electronics_sensors",
+          "name": "Digital & Analog Electronics with Sensors",
           "tag": "essential",
-          "description": "Understand voltage, current, resistors, breadboards, GPIO, ADC, PWM, I2C, SPI, and UART.",
+          "description": "Understand fundamental electronic components (resistors, capacitors, inductors, diodes, transistors), Ohm's law, Kirchhoff's laws, power supply design basics, digital logic gates, truth tables, combinational/sequential logic, and basic principles of common sensors (temperature, humidity, light, motion) and actuators (motors, LEDs).",
           "resources": [
             {
-              "title": "SparkFun Electronics Tutorials",
-              "url": "https://learn.sparkfun.com/tutorials",
+              "title": "Practical Electronics for Inventors",
+              "url": "https://www.amazon.com/Practical-Electronics-Inventors-Fourth-Scherz/dp/1259587546",
               "type": "article"
+            },
+            {
+              "title": "Digital Electronics Basics Tutorial",
+              "url": "https://www.allaboutcircuits.com/textbook/digital/",
+              "type": "article"
+            },
+            {
+              "title": "Learn Basic Electronics - A Complete Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=0_jK-yPzB1s",
+              "type": "video"
+            },
+            {
+              "title": "Arduino Tutorial for Beginners | Getting Started with Arduino",
+              "url": "https://www.youtube.com/watch?v=sI-3Q_W5gUo",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/digital_analog_electronics_sensors.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "mcu_arch_peripherals",
+          "name": "Microcontroller Architecture & Peripherals",
+          "tag": "essential",
+          "description": "Explore CPU core types (e.g., ARM Cortex-M, RISC-V), memory organization (Flash, SRAM, EEPROM, memory-mapped I/O), General Purpose I/O (GPIO), timers, counters, interrupt controllers, ADC/DAC, PWM, watchdog timers. Learn to effectively read datasheets, reference manuals, and block diagrams.",
+          "resources": [
+            {
+              "title": "Introduction to Microcontrollers (Coursera)",
+              "url": "https://www.coursera.org/learn/introduction-to-microcontrollers",
+              "type": "course"
+            },
+            {
+              "title": "STM32 Microcontroller Fundamentals",
+              "url": "https://www.st.com/content/st_com/en/campaigns/what-is-stm32.html",
+              "type": "article"
+            },
+            {
+              "title": "What Is a Microcontroller?",
+              "url": "https://www.youtube.com/watch?v=kYJjWc5DnjU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/mcu_arch_peripherals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "basic_interfacing_comm",
+          "name": "Basic Interfacing & Communication Protocols",
+          "tag": "essential",
+          "description": "Implement common peripheral communication interfaces: Universal Asynchronous Receiver-Transmitter (UART/USART), Serial Peripheral Interface (SPI), and Inter-Integrated Circuit (I2C). Understand their principles, data formats, timing diagrams, and typical applications with various sensors and actuators.",
+          "resources": [
+            {
+              "title": "I2C Communication Protocol Tutorial",
+              "url": "https://learn.sparkfun.com/tutorials/i2c/all",
+              "type": "article"
+            },
+            {
+              "title": "SPI Bus: An Introduction",
+              "url": "https://www.sparkfun.com/tutorials/198",
+              "type": "article"
+            },
+            {
+              "title": "I2C Explained – What is I2C, How I2C Works, I2C Bus Tutorial",
+              "url": "https://www.youtube.com/watch?v=FchZfaiL8kU",
+              "type": "video"
+            },
+            {
+              "title": "SPI vs I2C vs UART - Which One Should You Use",
+              "url": "https://www.youtube.com/watch?v=Q74V3y-G57k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/basic_interfacing_comm.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "embedded_dev_tools_debugging",
+          "name": "Embedded Development Tools & Debugging",
+          "tag": "essential",
+          "description": "Learn essential debugging techniques (e.g., `printf` debugging, breakpoints, watchpoints, step-by-step execution), effective use of Integrated Development Environments (IDEs), basic use of oscilloscopes and logic analyzers. Understand version control (Git) for embedded projects, build systems (Makefiles, CMake), and bootloaders for flash programming.",
+          "resources": [
+            {
+              "title": "Embedded Debugging Techniques: A Comprehensive Guide",
+              "url": "https://interrupt.memfault.com/blog/embedded-debugging-techniques",
+              "type": "article"
+            },
+            {
+              "title": "PlatformIO IDE for VSCode Documentation",
+              "url": "https://docs.platformio.org/en/latest/ide/vscode.html",
+              "type": "article"
+            },
+            {
+              "title": "Debugging for Embedded Systems - Beginners Guide",
+              "url": "https://www.youtube.com/watch?v=F01y5s-z5eQ",
+              "type": "video"
+            },
+            {
+              "title": "Makefile Tutorial - Learn the Basics of Makefiles",
+              "url": "https://www.youtube.com/watch?v=LqN685E6rVw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/embedded_dev_tools_debugging.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "iot_devices_protocols",
-      "name": "Devices and IoT Protocols",
+      "id": "firmware_rtos_dev",
+      "name": "Firmware Development & Real-Time Systems",
       "tag": "essential",
-      "description": "Build firmware on Arduino, ESP32, or Raspberry Pi Pico and send data over Wi-Fi, BLE, MQTT, and HTTP.",
+      "description": "Develop robust and efficient firmware using modern development practices, integrating real-time operating systems and various connectivity options for IoT devices.",
       "resources": [
         {
-          "title": "IoT Full Course (Edureka)",
-          "url": "https://www.youtube.com/watch?v=h0gWfVCSGQQ",
+          "title": "The Ultimate Guide to RTOS",
+          "url": "https://www.freertos.org/Documentation/RTOS_book.html",
+          "type": "article"
+        },
+        {
+          "title": "What is an RTOS? Introduction to Real-Time Operating Systems",
+          "url": "https://www.youtube.com/watch?v=kYx4u-n53uQ",
           "type": "video"
         },
         {
-          "title": "ESP-IDF Programming Guide",
-          "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/",
-          "type": "article"
+          "title": "FreeRTOS Tutorial for Beginners - Task, Queue, Semaphore",
+          "url": "https://www.youtube.com/watch?v=yW61oNnK1Rk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/embedded_iot/firmware_rtos_dev.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "iot_mqtt",
-          "name": "MQTT and Device Messaging",
+          "id": "mcu_platforms_ecosystems",
+          "name": "Microcontroller Platforms & Ecosystems",
           "tag": "essential",
-          "description": "Use topics, retained messages, QoS, certificates, device shadows, and telemetry payloads.",
+          "description": "Gain practical experience with popular platforms like Arduino (for rapid prototyping), ESP32 (integrated Wi-Fi/BLE), STM32 (ARM Cortex-M), and potentially Raspberry Pi Pico. Learn their respective Software Development Kits (SDKs), hardware abstraction layers (HAL), and development board ecosystems.",
           "resources": [
             {
-              "title": "MQTT Essentials",
+              "title": "ESP-IDF Programming Guide (ESP32)",
+              "url": "https://docs.espressif.com/projects/esp-idf/en/latest/esp32/",
+              "type": "article"
+            },
+            {
+              "title": "STM32CubeIDE User Manual & HAL Drivers",
+              "url": "https://www.st.com/resource/en/user_manual/dm00105879-getting-started-with-stm32cubeide-stmicroelectronics.pdf",
+              "type": "article"
+            },
+            {
+              "title": "What Microcontroller Should You Learn? (Arduino vs ESP32 vs Raspberry Pi Pico vs STM32)",
+              "url": "https://www.youtube.com/watch?v=Jm_XpP87630",
+              "type": "video"
+            },
+            {
+              "title": "Getting Started with Microcontrollers - Build An IoT Device",
+              "url": "https://www.youtube.com/watch?v=yYkH_9xW1O4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/mcu_platforms_ecosystems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "real_time_operating_systems",
+          "name": "Real-Time Operating Systems (RTOS)",
+          "tag": "essential",
+          "description": "Understand core RTOS concepts: tasks, threads, scheduling (preemptive vs. cooperative), inter-task communication (queues, semaphores, mutexes, event flags), software timers, and memory management. Gain hands-on experience with common RTOS like FreeRTOS or Zephyr, including critical sections and resource protection.",
+          "resources": [
+            {
+              "title": "Mastering FreeRTOS (Embedded Systems Course)",
+              "url": "https://www.udemy.com/course/mastering-freertos/",
+              "type": "course"
+            },
+            {
+              "title": "Zephyr RTOS Documentation & Tutorials",
+              "url": "https://docs.zephyrproject.org/latest/getting_started/index.html",
+              "type": "article"
+            },
+            {
+              "title": "What is an RTOS? A Real-Time Operating System Explained",
+              "url": "https://www.youtube.com/watch?v=5Xm4tJ1I77A",
+              "type": "video"
+            },
+            {
+              "title": "FreeRTOS Tutorial for Beginners - 1 What is FreeRTOS",
+              "url": "https://www.youtube.com/watch?v=A3nF5p4y51U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/real_time_operating_systems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "wireless_iot_connectivity",
+          "name": "Wireless Connectivity for IoT",
+          "tag": "essential",
+          "description": "Implement communication using key wireless technologies: Wi-Fi (TCP/IP stack basics, sockets programming, access point/station modes), Bluetooth Low Energy (BLE profiles, services, GATT), and gain awareness of other protocols like LoRa/LoRaWAN, Zigbee, and cellular IoT (NB-IoT, LTE-M) for different IoT use cases.",
+          "resources": [
+            {
+              "title": "Wi-Fi for IoT Devices: Connecting ESP32 to AWS IoT Core",
+              "url": "https://www.digikey.com/en/maker/projects/wifi-iot-device-tutorial-connecting-an-esp32-to-aws-iot-core/b4f35e98f06144e5b8d00921fb9d1469",
+              "type": "article"
+            },
+            {
+              "title": "Bluetooth Low Energy (BLE) Fundamentals",
+              "url": "https://www.bluetooth.com/specifications/bluetooth-core-specification/",
+              "type": "article"
+            },
+            {
+              "title": "IoT (Internet of Things) Full Course | Learn IoT",
+              "url": "https://www.youtube.com/watch?v=EZk3_jS461A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/wireless_iot_connectivity.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "iot_messaging_protocols",
+          "name": "IoT Messaging & Application Protocols",
+          "tag": "essential",
+          "description": "Master essential IoT messaging protocols like MQTT (topics, QoS levels, retained messages, Last Will & Testament, MQTT-SN), CoAP (resource discovery, observe), and HTTP/HTTPS for efficient device-to-cloud and device-to-device communication, including telemetry payloads (JSON, Protobuf).",
+          "resources": [
+            {
+              "title": "MQTT Essentials: A Lightweight Messaging Protocol",
               "url": "https://www.hivemq.com/mqtt-essentials/",
               "type": "article"
+            },
+            {
+              "title": "Constrained Application Protocol (CoAP) Introduction",
+              "url": "https://datatracker.ietf.org/doc/html/rfc7252",
+              "type": "article"
+            },
+            {
+              "title": "MQTT Tutorial for Beginners | Internet of Things (IoT) Protocol Explained",
+              "url": "https://www.youtube.com/watch?v=kYJ6Xp_6yS0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/iot_messaging_protocols.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "iot_rtos",
-          "name": "RTOS Basics",
-          "tag": "advanced",
-          "description": "Learn tasks, scheduling, queues, semaphores, timers, and real-time constraints.",
+          "id": "power_management_optimization",
+          "name": "Power Management & Optimization",
+          "tag": "essential",
+          "description": "Implement advanced power management techniques crucial for battery-powered IoT devices: deep sleep modes, low-power peripherals, clock gating, dynamic voltage and frequency scaling (DVFS), and optimizing code for energy efficiency. Understand power profiling and measurement.",
           "resources": [
             {
-              "title": "FreeRTOS Documentation",
-              "url": "https://www.freertos.org/Documentation/RTOS_book.html",
+              "title": "Low Power Design in Embedded Systems",
+              "url": "https://www.embedded.com/low-power-design-techniques-for-embedded-systems/",
               "type": "article"
+            },
+            {
+              "title": "ESP32 Low Power Modes Tutorial",
+              "url": "https://randomnerdtutorials.com/esp32-sleep-modes-power-consumption/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Low Power Design for IoT",
+              "url": "https://www.youtube.com/watch?v=F08m9y1-47k",
+              "type": "video"
+            },
+            {
+              "title": "ESP32 Deep Sleep Tutorial - Battery Life Optimization",
+              "url": "https://www.youtube.com/watch?v=R9pS_4gA8bQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/power_management_optimization.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "embedded_iot_practice_lab",
-          "name": "Practice: Sensor Calibration Lab",
-          "tag": "advanced",
-          "description": "Calibrate sensor readings, handle noisy data, add watchdog behavior, and document wiring plus test results.",
-          "resources": [],
-          "children": []
+          "id": "advanced_firmware_dev_testing",
+          "name": "Advanced Firmware Practices & Testing",
+          "tag": "essential",
+          "description": "Implement robust error handling, develop fault-tolerant firmware using watchdog timers, implement defensive programming strategies, and perform comprehensive testing: unit testing (e.g., Ceedling, Unity), integration testing, hardware-in-the-loop (HIL) testing, and basic sensor calibration algorithms.",
+          "resources": [
+            {
+              "title": "Embedded Software Best Practices and Coding Standards",
+              "url": "https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard",
+              "type": "article"
+            },
+            {
+              "title": "Test-Driven Development for Embedded C",
+              "url": "https://www.amazon.com/Test-Driven-Development-Embedded-James-Grenning/dp/1934356628",
+              "type": "article"
+            },
+            {
+              "title": "What is Hardware-in-the-Loop Simulation?",
+              "url": "https://www.youtube.com/watch?v=kYV3-K6-3S0",
+              "type": "video"
+            },
+            {
+              "title": "Learn to Write Robust Embedded C Code with Test-Driven Development",
+              "url": "https://www.youtube.com/watch?v=o0B7r4c4Bdc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/advanced_firmware_dev_testing.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "iot_cloud_capstone",
-      "name": "Cloud, Security, and Projects",
+      "id": "iot_cloud_security",
+      "name": "IoT Cloud Integration & Security",
       "tag": "advanced",
-      "description": "Connect devices to dashboards, secure firmware updates, monitor telemetry, and document hardware projects.",
+      "description": "Connect devices securely to cloud platforms, manage device lifecycles, process IoT data, and implement robust security measures to protect devices and data.",
       "resources": [
         {
-          "title": "IoT Home Automation Project (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=eidD14dXW8s",
+          "title": "AWS IoT Core Developer Guide",
+          "url": "https://docs.aws.amazon.com/iot/",
+          "type": "article"
+        },
+        {
+          "title": "AWS IoT Core Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=sI9p_e9vK3s",
           "type": "video"
         },
         {
-          "title": "AWS IoT Core Documentation",
-          "url": "https://docs.aws.amazon.com/iot/",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/embedded_iot/iot_cloud_security.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "iot_security",
-          "name": "IoT Security",
+          "id": "iot_cloud_platforms",
+          "name": "IoT Cloud Platforms",
           "tag": "advanced",
-          "description": "Secure keys, firmware, OTA updates, device identity, encrypted transport, and physical attack assumptions.",
+          "description": "Work with major cloud IoT services like AWS IoT Core, Azure IoT Hub, or Google Cloud IoT Core, or open-source alternatives like ThingsBoard. Focus on device registration, data ingestion, rules engines, device shadows/digital twins, command & control, dashboard visualization, and serverless functions (Lambda, Azure Functions).",
           "resources": [
             {
-              "title": "OWASP IoT Top 10",
-              "url": "https://owasp.org/www-project-internet-of-things/",
+              "title": "Azure IoT Hub Documentation and Quickstarts",
+              "url": "https://docs.microsoft.com/en-us/azure/iot-hub/",
               "type": "article"
+            },
+            {
+              "title": "Google Cloud IoT Core Overview and Tutorials",
+              "url": "https://cloud.google.com/iot-core",
+              "type": "article"
+            },
+            {
+              "title": "AWS IoT Core Tutorial for Beginners - Connect Raspberry Pi to AWS IoT Core",
+              "url": "https://www.youtube.com/watch?v=0wQv70V1nLw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/iot_cloud_platforms.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "iot_capstone",
-          "name": "Project: Connected Sensor System",
+          "id": "iot_device_data_security",
+          "name": "IoT Device & Data Security",
           "tag": "advanced",
-          "description": "Build a sensor device that publishes data, shows a dashboard, handles offline cases, and includes wiring diagrams.",
+          "description": "Understand IoT threat models, secure boot, trusted execution environments (TEE), hardware security modules (HSM/TPM), secure key storage, secure firmware updates (OTA with authenticity/integrity), TLS/DTLS for encrypted communication, and robust device authentication and authorization strategies using X.509 certificates and secure element integration.",
           "resources": [
             {
-              "title": "Raspberry Pi Documentation",
-              "url": "https://www.raspberrypi.com/documentation/",
+              "title": "OWASP IoT Top 10 Vulnerabilities",
+              "url": "https://owasp.org/www-project-internet-of-things/",
               "type": "article"
+            },
+            {
+              "title": "NIST IoT Device Cybersecurity Guidance",
+              "url": "https://nvlpubs.nist.gov/nistpubs/ir/2020/NIST.IR.8259A.pdf",
+              "type": "article"
+            },
+            {
+              "title": "IoT Security Tutorial For Beginners | IoT Security Architecture | IoT Training | Simplilearn",
+              "url": "https://www.youtube.com/watch?v=Nn1kF8-Q8-8",
+              "type": "video"
+            },
+            {
+              "title": "TLS Explained (and HTTPs)",
+              "url": "https://www.youtube.com/watch?v=s0F9Z-J5xV4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/iot_device_data_security.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "edge_computing_data_processing",
+          "name": "Edge Computing & Data Pre-processing",
+          "tag": "advanced",
+          "description": "Explore edge computing concepts: local data processing, filtering, aggregation, and analytics on the device or a local gateway to reduce latency, bandwidth, and improve privacy. Implement basic machine learning inference at the edge and understand frameworks like TensorFlow Lite for Microcontrollers.",
+          "resources": [
+            {
+              "title": "Introduction to Edge Computing for IoT",
+              "url": "https://www.ibm.com/cloud/what-is-edge-computing",
+              "type": "article"
+            },
+            {
+              "title": "TinyML: Machine Learning for Tiny Devices",
+              "url": "https://www.tensorflow.org/lite/microcontrollers",
+              "type": "article"
+            },
+            {
+              "title": "What is Edge Computing? The Beginner's Guide",
+              "url": "https://www.youtube.com/watch?v=FBYhF2y7f0U",
+              "type": "video"
+            },
+            {
+              "title": "TensorFlow Lite for Microcontrollers - ML for Embedded Devices",
+              "url": "https://www.youtube.com/watch?v=8VwBfG3IgoY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/edge_computing_data_processing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_analytics_visualization",
+          "name": "IoT Data Analytics & Visualization",
+          "tag": "advanced",
+          "description": "Learn to effectively store and manage time-series sensor data in the cloud (e.g., AWS Timestream, InfluxDB). Apply data analytics for monitoring device health, detecting anomalies, telemetry trends, and setting up complex rules-based alerts and notifications. Create interactive dashboards using tools like Grafana, Power BI, or cloud-native dashboards.",
+          "resources": [
+            {
+              "title": "Time Series Databases for IoT Analytics",
+              "url": "https://aws.amazon.com/timestream/",
+              "type": "article"
+            },
+            {
+              "title": "Building IoT Dashboards with Grafana",
+              "url": "https://www.youtube.com/watch?v=S0D_V1Q0jT4",
+              "type": "video"
+            },
+            {
+              "title": "InfluxDB Tutorial for Beginners | Getting Started with Time Series Databases",
+              "url": "https://www.youtube.com/watch?v=7uK3g1X0w7w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/data_analytics_visualization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "end_to_end_iot_project",
+          "name": "Capstone Project: End-to-End IoT Solution",
+          "tag": "advanced",
+          "description": "Design and implement a complete, functional IoT solution from device to cloud. This includes embedded device firmware, secure cloud integration, edge data processing (optional), robust data analytics, and interactive dashboard visualization. Address real-world considerations like security, scalability, offline handling, and fault tolerance.",
+          "resources": [
+            {
+              "title": "Practical IoT Projects with ESP32 and AWS",
+              "url": "https://www.udemy.com/course/practical-iot-projects/",
+              "type": "course"
+            },
+            {
+              "title": "Advanced IoT Project Ideas & Implementations",
+              "url": "https://circuitdigest.com/iot-projects",
+              "type": "article"
+            },
+            {
+              "title": "Internet of Things (IoT) Full Course",
+              "url": "https://www.youtube.com/watch?v=EZk_g0B7T0s",
+              "type": "video"
+            },
+            {
+              "title": "Build an IoT Temperature Monitoring System with AWS IoT, Lambda, DynamoDB, and Grafana",
+              "url": "https://www.youtube.com/watch?v=s7sX9s36t1w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/end_to_end_iot_project.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "iot_reliability_manufacturing",
-      "name": "Reliability and Hardware Handoff",
+      "id": "deployment_advanced_hardware",
+      "name": "Deployment, Maintenance & Advanced Hardware",
       "tag": "advanced",
-      "description": "Move beyond prototypes by testing devices, documenting hardware, and preparing systems for field use.",
+      "description": "Transition IoT solutions from prototypes to production, manage devices in the field, implement advanced diagnostics, and understand fundamental hardware design considerations for mass deployment and product lifecycle management.",
       "resources": [
         {
-          "title": "KiCad Documentation",
+          "title": "KiCad EDA Software Documentation",
           "url": "https://docs.kicad.org/",
           "type": "article"
+        },
+        {
+          "title": "Designing Embedded Hardware (Book)",
+          "url": "https://www.oreilly.com/library/view/designing-embedded-hardware/0596007558/",
+          "type": "article"
+        },
+        {
+          "title": "AWS IoT Device Management Tutorial for Beginners | Learn how to manage 1M devices.",
+          "url": "https://www.youtube.com/watch?v=F5v6-D-L52s",
+          "type": "video"
+        },
+        {
+          "title": "EEVblog #1257 - Embedded Systems Design For Mass Production",
+          "url": "https://www.youtube.com/watch?v=LqUa2Xq0n0o",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/embedded_iot/deployment_advanced_hardware.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "iot_pcb_enclosure",
-          "name": "PCB and Enclosure Basics",
+          "id": "ota_device_management",
+          "name": "Over-the-Air (OTA) Updates & Device Management",
           "tag": "advanced",
-          "description": "Translate breadboard prototypes into schematics, simple PCBs, connectors, power protection, and enclosure constraints.",
+          "description": "Implement robust and secure OTA firmware update mechanisms, including A/B partitioning, rollback strategies, differential updates, device provisioning, remote configuration management, and fleet management capabilities for deployed devices. Understand FOTA (Firmware Over-The-Air) and SOTA (Software Over-The-Air).",
           "resources": [
             {
-              "title": "SparkFun PCB Basics",
-              "url": "https://learn.sparkfun.com/tutorials/pcb-basics/all",
+              "title": "Embedded Systems Blog: Over-the-Air Update Strategies",
+              "url": "https://interrupt.memfault.com/blog/categories/over-the-air-update",
               "type": "article"
+            },
+            {
+              "title": "Secure OTA Firmware Updates with ESP32",
+              "url": "https://randomnerdtutorials.com/esp32-over-the-air-ota-programming/",
+              "type": "article"
+            },
+            {
+              "title": "Over The Air (OTA) Updates For IoT Devices Using AWS IoT Core",
+              "url": "https://www.youtube.com/watch?v=kYv_6L0R34A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/ota_device_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "iot_field_diagnostics",
-          "name": "Field Diagnostics",
+          "id": "remote_diagnostics_monitoring",
+          "name": "Remote Diagnostics & Predictive Maintenance",
           "tag": "advanced",
-          "description": "Add device logs, health checks, watchdogs, OTA rollback plans, telemetry alerts, and hardware test checklists.",
+          "description": "Develop comprehensive strategies for remote logging, crash reporting (e.g., coredump analysis), device health monitoring, telemetry-based anomaly detection, and implementing sophisticated watchdogs and self-recovery mechanisms for field reliability. Understand predictive maintenance concepts and their implementation.",
           "resources": [
             {
-              "title": "Memfault Embedded Systems Blog",
+              "title": "Memfault: Embedded Device Observability",
               "url": "https://interrupt.memfault.com/blog",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Remote Monitoring for IoT Devices",
+              "url": "https://www.balena.io/blog/remote-monitoring-iot-devices/",
+              "type": "article"
+            },
+            {
+              "title": "IoT Device Management - A Beginner's Guide",
+              "url": "https://www.youtube.com/watch?v=Xh1j3605k8Q",
+              "type": "video"
+            },
+            {
+              "title": "What is Predictive Maintenance? (An introduction for beginners)",
+              "url": "https://www.youtube.com/watch?v=s1t2M-sFk-w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/remote_diagnostics_monitoring.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "hardware_design_prototyping",
+          "name": "Hardware Design & Prototyping Fundamentals",
+          "tag": "advanced",
+          "description": "Introduction to schematic capture and Printed Circuit Board (PCB) layout using EDA tools like KiCad or Eagle. Learn component selection, basic power management for PCBs, signal integrity considerations, design for manufacturability (DFM) principles, and considerations for mechanical enclosure design (CAD basics). Understand board bring-up processes.",
+          "resources": [
+            {
+              "title": "SparkFun PCB Design Basics",
+              "url": "https://learn.sparkfun.com/tutorials/pcb-basics/all",
+              "type": "article"
+            },
+            {
+              "title": "KiCad Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=vaL3q-P1f4k",
+              "type": "video"
+            },
+            {
+              "title": "How to Design PCBs (Part 1 - The Basics)",
+              "url": "https://www.youtube.com/watch?v=17oG09g669A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/hardware_design_prototyping.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "testing_certification_regulatory",
+          "name": "Testing, Certification & Regulatory Compliance",
+          "tag": "advanced",
+          "description": "Understand the importance of comprehensive product testing: environmental testing (temperature, humidity, vibration), Electromagnetic Interference/Compatibility (EMI/EMC) considerations and testing, basic regulatory compliance (e.g., CE, FCC, UL, RoHS), and product lifecycle management for IoT devices from concept to end-of-life.",
+          "resources": [
+            {
+              "title": "EMI/EMC Fundamentals and Design Guide",
+              "url": "https://www.allaboutcircuits.com/textbook/alternating-current/chpt-15/emi-emc-considerations/",
+              "type": "article"
+            },
+            {
+              "title": "IoT Device Certification & Compliance Guide",
+              "url": "https://www.csa-iot.org/newsroom/iot-device-certification-guide/",
+              "type": "article"
+            },
+            {
+              "title": "How to get FCC and CE Approval for your Product",
+              "url": "https://www.youtube.com/watch?v=FqM5gG9gB18",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/embedded_iot/testing_certification_regulatory.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

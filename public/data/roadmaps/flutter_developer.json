@@ -1,201 +1,1071 @@
 {
   "id": "flutter_developer",
   "title": "Flutter Developer",
-  "description": "A roadmap for building production-ready cross-platform mobile apps with Dart, Flutter UI, state management, APIs, testing, and store release.",
+  "description": "A comprehensive roadmap for building production-ready, high-performance cross-platform mobile (and optionally web/desktop) applications with Dart, Flutter UI, advanced state management, API integration, robust testing, CI/CD, and professional store release.",
   "format": "tree",
   "tree": [
     {
-      "id": "flutter_foundations",
-      "name": "Dart and Flutter Foundations",
+      "id": "flutter_foundations_pro",
+      "name": "Dart Language & Flutter Fundamentals",
       "tag": "essential",
-      "description": "Learn Dart syntax, Flutter project structure, widgets, layout constraints, hot reload, and debugging.",
+      "description": "Master the Dart language syntax, set up your development environment, understand Flutter's core principles, widget tree, element tree, render tree, layout system, and debugging tools.",
       "resources": [
+        {
+          "title": "Flutter Get Started: Install",
+          "url": "https://docs.flutter.dev/get-started/install",
+          "type": "article"
+        },
+        {
+          "title": "Dart Language Tour",
+          "url": "https://dart.dev/language",
+          "type": "article"
+        },
         {
           "title": "Flutter Course for Beginners (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=VPvVD8t02U8",
           "type": "video"
         },
         {
-          "title": "Flutter Full Course with Projects (WsCube Tech)",
-          "url": "https://www.youtube.com/watch?v=1bQwDO88Gyw",
-          "type": "video"
-        },
-        {
-          "title": "Flutter Full Tutorial for Beginners (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=pTJJsmejUOQ",
-          "type": "video"
-        },
-        {
-          "title": "Flutter Get Started",
-          "url": "https://docs.flutter.dev/get-started/install",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/flutter_developer/flutter_foundations_pro.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "flutter_dart",
-          "name": "Dart Language",
+          "id": "flutter_env_setup",
+          "name": "Environment Setup & Tooling",
           "tag": "essential",
-          "description": "Use types, null safety, collections, classes, async/await, streams, packages, and clean project structure.",
+          "description": "Install Flutter SDK, Android Studio/VS Code, Xcode, set up emulators/simulators, and understand Flutter DevTools for debugging and profiling.",
           "resources": [
             {
-              "title": "Dart Language Tour",
-              "url": "https://dart.dev/language",
+              "title": "Flutter DevTools",
+              "url": "https://docs.flutter.dev/tools/devtools",
               "type": "article"
+            },
+            {
+              "title": "Setting up an Android emulator",
+              "url": "https://docs.flutter.dev/get-started/install/windows#set-up-your-android-device",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Course for Beginners - Build Your First App With Flutter (Setup section)",
+              "url": "https://www.youtube.com/watch?v=VPvVD8t02S8",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Course for Beginners - Build a Complete App (Setup section)",
+              "url": "https://www.youtube.com/watch?v=MQxG7t1vQfI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_env_setup.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "flutter_widgets_layout",
-          "name": "Widgets and Layout",
+          "id": "dart_core_language_features",
+          "name": "Dart Core Language Features",
           "tag": "essential",
-          "description": "Build responsive screens with rows, columns, stacks, lists, forms, navigation, themes, and custom widgets.",
+          "description": "Understand Dart's type system, null safety, object-oriented programming (OOP) concepts, functional programming aspects, package management, and essential collection types.",
           "resources": [
             {
-              "title": "Flutter Widget Catalog",
-              "url": "https://docs.flutter.dev/ui/widgets",
+              "title": "Effective Dart: Style Guide",
+              "url": "https://dart.dev/guides/language/effective-dart",
               "type": "article"
+            },
+            {
+              "title": "Understanding Null Safety in Dart",
+              "url": "https://dart.dev/null-safety",
+              "type": "article"
+            },
+            {
+              "title": "Dart Programming Tutorial - Full Course",
+              "url": "https://www.youtube.com/watch?v=Ej_PMEiI71w",
+              "type": "video"
+            },
+            {
+              "title": "Dart Tutorial for Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=QjR0Upr1oAE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/dart_core_language_features.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "dart_async_programming_streams",
+          "name": "Dart Asynchronous Programming & Streams",
+          "tag": "essential",
+          "description": "Learn about Futures, async/await, Streams, and Isolates for concurrent, non-blocking operations, and effective event handling.",
+          "resources": [
+            {
+              "title": "Asynchronous programming: futures, async, await",
+              "url": "https://dart.dev/codelabs/async-await",
+              "type": "article"
+            },
+            {
+              "title": "Streams in Dart and Flutter",
+              "url": "https://dart.dev/articles/libraries/streams",
+              "type": "article"
+            },
+            {
+              "title": "Futures & Async Await - The Dart & Flutter Bootcamp",
+              "url": "https://www.youtube.com/watch?v=R9j6Qx16_hI",
+              "type": "video"
+            },
+            {
+              "title": "Streams - The Dart & Flutter Bootcamp",
+              "url": "https://www.youtube.com/watch?v=E7q59s2c4t8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/dart_async_programming_streams.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_widgets_intro_lifecycle",
+          "name": "Flutter Widgets & Lifecycle",
+          "tag": "essential",
+          "description": "Build user interfaces using Stateless and Stateful Widgets, understand the Widget tree, Element tree, Render tree, and the widget lifecycle.",
+          "resources": [
+            {
+              "title": "Introduction to widgets",
+              "url": "https://docs.flutter.dev/ui/widgets-intro",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - Stateless vs Stateful Widgets #8",
+              "url": "https://www.youtube.com/watch?v=Sm55mK-c5E0",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Tutorial - Widget Lifecycle (Stateful Widgets) #16",
+              "url": "https://www.youtube.com/watch?v=FjI1J4V5T-4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_widgets_intro_lifecycle.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_layout_basics_material",
+          "name": "Flutter Layout Basics & Material Design",
+          "tag": "essential",
+          "description": "Construct basic layouts using Rows, Columns, Stacks, Containers. Implement Material Design principles and use common Material widgets (AppBar, Scaffold, Button, TextField, etc.).",
+          "resources": [
+            {
+              "title": "Layout and widgets",
+              "url": "https://docs.flutter.dev/ui/layout/layout-overview",
+              "type": "article"
+            },
+            {
+              "title": "Material Design for Flutter",
+              "url": "https://docs.flutter.dev/ui/widgets/material",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - Layout Widgets (Rows, Columns, Expanded, Flexible)",
+              "url": "https://www.youtube.com/watch?v=F0_k2g2d4Sg",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Course for Beginners - Learn Flutter with Dart",
+              "url": "https://www.youtube.com/watch?v=VPvVD8t02S8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_layout_basics_material.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_navigation_gestures",
+          "name": "Navigation & User Interaction",
+          "tag": "essential",
+          "description": "Manage screen flow with Navigator 1.0, handle basic user interactions with GestureDetector, and understand form handling.",
+          "resources": [
+            {
+              "title": "Navigation and routing",
+              "url": "https://docs.flutter.dev/ui/navigation",
+              "type": "article"
+            },
+            {
+              "title": "Handling gestures in Flutter",
+              "url": "https://docs.flutter.dev/ui/interaction/gestures",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - #14 Navigation & Routes",
+              "url": "https://www.youtube.com/watch?v=R9C1m8y1m7I",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Form Validation - Flutter Forms Tutorial",
+              "url": "https://www.youtube.com/watch?v=yYy7gJ7mG4Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_navigation_gestures.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "flutter_app_architecture",
-      "name": "App Architecture and Data",
+      "id": "flutter_architecture_data_advanced",
+      "name": "App Architecture & Data Management",
       "tag": "essential",
-      "description": "Structure apps around state, routing, APIs, local storage, validation, error handling, and offline-friendly flows.",
+      "description": "Design scalable Flutter applications by understanding architectural patterns, implementing robust state management, integrating with APIs, handling local data persistence, and ensuring smooth navigation.",
       "resources": [
         {
-          "title": "Flutter State Management",
-          "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/intro",
+          "title": "Flutter State Management Approaches",
+          "url": "https://docs.flutter.dev/data-and-backend/state-mgmt/options",
           "type": "article"
+        },
+        {
+          "title": "Flutter State Management Explained - In-depth Guide",
+          "url": "https://www.youtube.com/watch?v=nY5TjB9D_8A",
+          "type": "video"
+        },
+        {
+          "title": "Flutter Architecture & Project Structure (The Net Ninja)",
+          "url": "https://www.youtube.com/watch?v=r0wI_j3yN84",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/flutter_developer/flutter_architecture_data_advanced.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "flutter_state",
-          "name": "State Management",
+          "id": "flutter_state_mgmt_provider_bloc",
+          "name": "State Management (Provider, Riverpod, BLoC)",
           "tag": "essential",
-          "description": "Choose Provider, Riverpod, Bloc, or simpler patterns based on app complexity and team needs.",
+          "description": "Explore and implement popular state management solutions like Provider, Riverpod, and BLoC/Cubit, understanding their principles, advantages, and use cases for different application complexities.",
           "resources": [
+            {
+              "title": "Provider Package Documentation",
+              "url": "https://pub.dev/packages/provider",
+              "type": "article"
+            },
             {
               "title": "Riverpod Documentation",
               "url": "https://riverpod.dev/docs/introduction/getting_started",
               "type": "article"
+            },
+            {
+              "title": "Bloc Library Documentation",
+              "url": "https://bloclibrary.dev/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Flutter State Management (BLoC, Provider, Riverpod, GetX) Tutorial",
+              "url": "https://www.youtube.com/watch?v=F0S18_vM_qA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_state_mgmt_provider_bloc.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "flutter_network_storage",
-          "name": "Networking and Persistence",
+          "id": "flutter_api_integration_secure_comm",
+          "name": "API Integration & Secure Communication",
           "tag": "essential",
-          "description": "Call REST APIs, decode JSON, cache data, store preferences, handle auth tokens, and support offline states.",
+          "description": "Perform HTTP requests using `http` package or Dio, handle JSON serialization/deserialization, manage authentication tokens (JWT, OAuth), implement secure API communication, and handle common API error scenarios.",
           "resources": [
             {
               "title": "Flutter Networking Cookbook",
               "url": "https://docs.flutter.dev/cookbook/networking/fetch-data",
               "type": "article"
+            },
+            {
+              "title": "Dio HTTP client for Dart",
+              "url": "https://pub.dev/packages/dio",
+              "type": "article"
+            },
+            {
+              "title": "Flutter & Firebase Tutorial for Beginners #16 - HTTP Request (JSON Data)",
+              "url": "https://www.youtube.com/watch?v=F0kI2XgQd2Q",
+              "type": "video"
+            },
+            {
+              "title": "Flutter & Firebase Tutorial for Beginners #17 - Creating a new item (HTTP POST)",
+              "url": "https://www.youtube.com/watch?v=zJ4g8M1d-7M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_api_integration_secure_comm.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "flutter_developer_practice_lab",
-          "name": "Practice: Responsive UI Clone",
-          "tag": "advanced",
-          "description": "Rebuild a real mobile screen with adaptive layouts, theme tokens, form validation, and loading/error states.",
-          "resources": [],
-          "children": []
+          "id": "flutter_local_data_persistence_offline",
+          "name": "Local Data Persistence & Offline Support",
+          "tag": "essential",
+          "description": "Persist data locally using SharedPreferences, explore relational databases with SQLite/drift, and utilize NoSQL solutions like Hive or Isar for offline capabilities and caching strategies.",
+          "resources": [
+            {
+              "title": "Persist data with SQLite",
+              "url": "https://docs.flutter.dev/data-and-backend/sqlite",
+              "type": "article"
+            },
+            {
+              "title": "Hive: Lightweight and lightning fast key-value database",
+              "url": "https://pub.dev/packages/hive",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - SharedPreferences (Local Storage)",
+              "url": "https://www.youtube.com/watch?v=S2EkhT-9bC4",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Hive Database Tutorial - Best Local Storage",
+              "url": "https://www.youtube.com/watch?v=5rG43h9l-Vw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_local_data_persistence_offline.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_dependency_injection_getit",
+          "name": "Dependency Injection & Service Location",
+          "tag": "essential",
+          "description": "Understand the principles of Dependency Injection (DI) and Service Location to create maintainable and testable codebases using packages like GetIt, and their role in clean architecture.",
+          "resources": [
+            {
+              "title": "GetIt: Simple DI for Flutter",
+              "url": "https://pub.dev/packages/get_it",
+              "type": "article"
+            },
+            {
+              "title": "Dependency Injection in Dart & Flutter",
+              "url": "https://www.filledstacks.com/post/dependency-injection-in-dart-and-flutter/",
+              "type": "article"
+            },
+            {
+              "title": "Flutter & Firebase Tutorial - #23 Dependency Injection (GetIt & Injectable)",
+              "url": "https://www.youtube.com/watch?v=ELQY8pX4J-A",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Dependency Injection with GetIt | Inversion of Control",
+              "url": "https://www.youtube.com/watch?v=Jm2q3P0Q9h8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_dependency_injection_getit.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_app_routing_advanced_nav",
+          "name": "Advanced App Routing & Deep Linking",
+          "tag": "essential",
+          "description": "Implement advanced navigation with Navigator 2.0 (Router API), named routes, nested navigation, and handle deep linking for seamless user experience.",
+          "resources": [
+            {
+              "title": "Declarative navigation in Flutter",
+              "url": "https://docs.flutter.dev/data-and-backend/navigation/router",
+              "type": "article"
+            },
+            {
+              "title": "Deep Linking in Flutter",
+              "url": "https://flutter.dev/docs/development/data-and-backend/url-strategies",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - Navigator 2.0 & go_router - Part 1",
+              "url": "https://www.youtube.com/watch?v=Fj-y5jT-xN8",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Tutorial - Go Router & Deeplinking - Part 6",
+              "url": "https://www.youtube.com/watch?v=D-a61qU_52Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_app_routing_advanced_nav.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_error_handling_logging",
+          "name": "Robust Error Handling & Logging",
+          "tag": "essential",
+          "description": "Implement effective error handling strategies across different layers of the application, utilize logging frameworks (e.g., Logger, Sentry) for debugging and monitoring.",
+          "resources": [
+            {
+              "title": "Error handling in Dart",
+              "url": "https://dart.dev/guides/language/error-handling",
+              "type": "article"
+            },
+            {
+              "title": "Sentry for Flutter",
+              "url": "https://docs.sentry.io/platforms/flutter/",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - #22 Error Handling & Loading State",
+              "url": "https://www.youtube.com/watch?v=F3Jd_lJbTjQ",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Error Handling & Debugging for Beginners",
+              "url": "https://www.youtube.com/watch?v=R9_mQjP-y-k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_error_handling_logging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_architectural_patterns_intro",
+          "name": "Introduction to Architectural Patterns",
+          "tag": "essential",
+          "description": "Understand common architectural patterns like MVC, MVVM, MVI, and a gentle introduction to Clean Architecture principles to structure your Flutter projects for scalability and maintainability.",
+          "resources": [
+            {
+              "title": "Flutter Architecture Samples",
+              "url": "https://github.com/flutter/samples/tree/main/architectures",
+              "type": "article"
+            },
+            {
+              "title": "Flutter - Architectural Patterns & State Management explained simply",
+              "url": "https://www.youtube.com/watch?v=S5z-p3X-494",
+              "type": "video"
+            },
+            {
+              "title": "Clean Architecture in Flutter (YouTube)",
+              "url": "https://www.youtube.com/watch?v=dcY7Qc9wLqQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_architectural_patterns_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_project_recipe_app",
+          "name": "Project: Recipe App with Auth & API",
+          "tag": "essential",
+          "description": "Build a multi-screen recipe application incorporating user authentication, an advanced state management solution, local data persistence for favorites, and robust API integration for fetching recipe data.",
+          "resources": [
+            {
+              "title": "Flutter Recipe App UI (Example)",
+              "url": "https://github.com/flutter/samples/tree/main/cookbook/recipes",
+              "type": "article"
+            },
+            {
+              "title": "Flutter REST API Tutorial - Build a News App",
+              "url": "https://www.youtube.com/watch?v=F5K4A5Qj8jY",
+              "type": "video"
+            },
+            {
+              "title": "Riverpod Crash Course - State Management in Flutter",
+              "url": "https://www.youtube.com/watch?v=yC2S71Lq6j8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_project_recipe_app.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "flutter_quality",
-      "name": "Testing, Native Features, and Performance",
+      "id": "flutter_advanced_dev_qa",
+      "name": "Advanced Development, Quality & Performance",
       "tag": "advanced",
-      "description": "Use device APIs, write reliable tests, profile performance, and polish apps for real phones.",
+      "description": "Integrate native device features, implement comprehensive testing strategies (unit, widget, integration), optimize application performance, and ensure accessibility for a superior user experience.",
       "resources": [
         {
-          "title": "Flutter Testing",
+          "title": "Flutter Testing Documentation",
           "url": "https://docs.flutter.dev/testing",
           "type": "article"
+        },
+        {
+          "title": "Flutter Performance Best Practices",
+          "url": "https://docs.flutter.dev/perf/ui-performance",
+          "type": "article"
+        },
+        {
+          "title": "Flutter Platform Channels - The Native Code Tutorial (Android & iOS)",
+          "url": "https://www.youtube.com/watch?v=FqI_uF5558k",
+          "type": "video"
+        },
+        {
+          "title": "Flutter Testing Crash Course",
+          "url": "https://www.youtube.com/watch?v=uDk9x1J8Q0Y",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/flutter_developer/flutter_advanced_dev_qa.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "flutter_device_features",
-          "name": "Device Features",
+          "id": "flutter_native_features_platform_channels",
+          "name": "Native Features & Platform Channels",
           "tag": "advanced",
-          "description": "Add camera, location, push notifications, deep links, permissions, platform channels, and background work.",
+          "description": "Interact with native platform APIs using Platform Channels (Method, Event), FFI, integrate device hardware like camera, location, sensors, and understand background processing and notifications.",
           "resources": [
             {
-              "title": "Flutter Platform Channels",
+              "title": "Platform channels in Flutter",
               "url": "https://docs.flutter.dev/platform-integration/platform-channels",
               "type": "article"
+            },
+            {
+              "title": "Using FFI with Flutter",
+              "url": "https://docs.flutter.dev/platform-integration/c-interop",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Native Features - Platform Channels (Part 1)",
+              "url": "https://www.youtube.com/watch?v=F0B6R2r8H7w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_native_features_platform_channels.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "flutter_performance_tests",
-          "name": "Performance and Tests",
+          "id": "flutter_firebase_baas_integration",
+          "name": "Firebase & BaaS Integration",
           "tag": "advanced",
-          "description": "Write unit/widget/integration tests, profile frames, reduce jank, optimize images, and monitor crashes.",
+          "description": "Integrate Firebase services like Authentication, Firestore, Realtime Database, Cloud Functions, Storage, and Crashlytics for robust backend and analytics solutions.",
           "resources": [
             {
-              "title": "Flutter Performance Profiling",
-              "url": "https://docs.flutter.dev/perf/ui-performance",
+              "title": "Firebase for Flutter",
+              "url": "https://firebase.google.com/docs/flutter/setup",
               "type": "article"
+            },
+            {
+              "title": "Firebase Cloud Messaging for Flutter",
+              "url": "https://firebase.google.com/docs/cloud-messaging/flutter/client",
+              "type": "article"
+            },
+            {
+              "title": "Flutter & Firebase Course - Build a Full-Stack App",
+              "url": "https://www.youtube.com/watch?v=D-N-QO0J-3Y",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Firebase Authentication & Firestore Tutorial",
+              "url": "https://www.youtube.com/watch?v=EXi_P_c1w-c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_firebase_baas_integration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "flutter_comprehensive_testing_tdd",
+          "name": "Comprehensive Testing & TDD",
+          "tag": "advanced",
+          "description": "Write effective Unit Tests for business logic, Widget Tests for UI components, and Integration Tests for end-to-end flows. Learn about mocking, faking, and Test-Driven Development (TDD) practices.",
+          "resources": [
+            {
+              "title": "Unit test a Flutter app",
+              "url": "https://docs.flutter.dev/cookbook/testing/unit-testing",
+              "type": "article"
+            },
+            {
+              "title": "Widget testing",
+              "url": "https://docs.flutter.dev/cookbook/testing/widget-testing",
+              "type": "article"
+            },
+            {
+              "title": "Integration testing",
+              "url": "https://docs.flutter.dev/cookbook/testing/integration-tests",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - Testing #1 - Intro to Testing & Unit Tests",
+              "url": "https://www.youtube.com/watch?v=F_f0iW1qN5E",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Tutorial - Testing #2 - Widget Tests",
+              "url": "https://www.youtube.com/watch?v=n-W2-a1bQjM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_comprehensive_testing_tdd.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_performance_optimization_profiling",
+          "name": "Performance Optimization & Profiling",
+          "tag": "advanced",
+          "description": "Use Flutter DevTools to profile UI rendering, CPU usage, and memory. Optimize app startup, reduce jank, manage assets efficiently, optimize image loading, and debug complex issues.",
+          "resources": [
+            {
+              "title": "Debug a Flutter app",
+              "url": "https://docs.flutter.dev/testing/debugging",
+              "type": "article"
+            },
+            {
+              "title": "Profiling Flutter apps",
+              "url": "https://docs.flutter.dev/perf/rendering/tools",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Performance Guide (part 1) - Optimizing Widget Rebuilds",
+              "url": "https://www.youtube.com/watch?v=GkL6Jj92h14",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Performance Debugging - The DevTools Guide",
+              "url": "https://www.youtube.com/watch?v=kY31bY-1yqE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_performance_optimization_profiling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_animations_custom_painters",
+          "name": "Advanced Animations & Custom Painters",
+          "tag": "advanced",
+          "description": "Implement explicit and implicit animations, hero animations, custom transitions, and create unique UI elements using CustomPainter and CustomClipper.",
+          "resources": [
+            {
+              "title": "Animations in Flutter",
+              "url": "https://docs.flutter.dev/ui/animations/overview",
+              "type": "article"
+            },
+            {
+              "title": "Custom painting in Flutter",
+              "url": "https://docs.flutter.dev/ui/advanced/custom-painting",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Animations: The Ultimate Guide for Beginners & Advanced",
+              "url": "https://www.youtube.com/watch?v=F_fV17W9b7Y",
+              "type": "video"
+            },
+            {
+              "title": "Flutter CustomPainter Tutorial - Custom Shapes & Graphs",
+              "url": "https://www.youtube.com/watch?v=k_jH15q2Q4Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_animations_custom_painters.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_internationalization_localization",
+          "name": "Internationalization & Localization (i18n & l10n)",
+          "tag": "advanced",
+          "description": "Make your app accessible to a global audience by implementing internationalization (i18n) and localization (l10n) for multiple languages and regions.",
+          "resources": [
+            {
+              "title": "Internationalizing Flutter apps",
+              "url": "https://docs.flutter.dev/data-and-backend/internationalization",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - Internationalization & Localization (i18n) #21",
+              "url": "https://www.youtube.com/watch?v=0kFhI1iGk2A",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Localization and Internationalization Tutorial",
+              "url": "https://www.youtube.com/watch?v=tI8L1y9N0C4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_internationalization_localization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_theming_dynamic_themes",
+          "name": "Theming & Dynamic Themes",
+          "tag": "advanced",
+          "description": "Implement consistent theming across your application, including light/dark modes and custom dynamic themes, leveraging Flutter's theming capabilities.",
+          "resources": [
+            {
+              "title": "Using themes to share colors and font styles",
+              "url": "https://docs.flutter.dev/cookbook/design/themes",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Tutorial - #22 Custom Themes & Fonts",
+              "url": "https://www.youtube.com/watch?v=F0J5G0a6g7Q",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Theme Changer (Light & Dark Mode)",
+              "url": "https://www.youtube.com/watch?v=L2GjH782T4Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_theming_dynamic_themes.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_security_best_practices",
+          "name": "Security Best Practices in Flutter",
+          "tag": "advanced",
+          "description": "Understand and apply security best practices for Flutter applications, including secure coding, data protection, API key management, and preventing common vulnerabilities.",
+          "resources": [
+            {
+              "title": "Security tips for Flutter apps (article)",
+              "url": "https://medium.com/flutter/flutter-security-best-practices-2023-e1f2b6e5b4a5",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Security: A Practical Guide to Protecting Your Apps",
+              "url": "https://www.youtube.com/watch?v=R9N3J-2K4wE",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Secure Storage Tutorial - Securely Store Data Locally",
+              "url": "https://www.youtube.com/watch?v=F_YkH_6bQ1s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_security_best_practices.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "flutter_release_project",
-      "name": "Release and Portfolio",
+      "id": "flutter_deployment_cicd_production",
+      "name": "Deployment, CI/CD & Production Readiness",
       "tag": "advanced",
-      "description": "Prepare builds, store assets, analytics, crash reporting, release notes, and a portfolio-quality demo.",
+      "description": "Prepare your Flutter applications for production release on app stores, implement Continuous Integration/Continuous Deployment (CI/CD) pipelines, and explore advanced development practices for large-scale applications.",
       "resources": [
         {
-          "title": "Flutter Deployment",
+          "title": "Flutter Deployment Guide",
           "url": "https://docs.flutter.dev/deployment",
           "type": "article"
+        },
+        {
+          "title": "Android App Bundle (AAB)",
+          "url": "https://developer.android.com/guide/app-bundle",
+          "type": "article"
+        },
+        {
+          "title": "Flutter App Deployment to Play Store & App Store | Full Tutorial",
+          "url": "https://www.youtube.com/watch?v=F3SjVn02w-U",
+          "type": "video"
+        },
+        {
+          "title": "Flutter CI/CD with Github Actions - A Complete Guide",
+          "url": "https://www.youtube.com/watch?v=2r5p-K893-U",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/flutter_developer/flutter_deployment_cicd_production.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "flutter_store_release",
-          "name": "Store Release Workflow",
+          "id": "flutter_app_deployment_store_release",
+          "name": "Mobile App Deployment & Store Release",
           "tag": "advanced",
-          "description": "Configure signing, flavors, app icons, screenshots, privacy labels, beta testing, and staged rollout.",
+          "description": "Configure app signing for Android (Play Store) and iOS (App Store), generate app bundles/archives, manage app store listings (metadata, screenshots), conduct beta testing, and understand release cycles.",
           "resources": [
             {
-              "title": "Android Distribution Documentation",
-              "url": "https://developer.android.com/distribute",
+              "title": "Build and release an Android app",
+              "url": "https://docs.flutter.dev/deployment/android",
               "type": "article"
+            },
+            {
+              "title": "Build and release an iOS app",
+              "url": "https://docs.flutter.dev/deployment/ios",
+              "type": "article"
+            },
+            {
+              "title": "How to RELEASE a Flutter app to the PLAY STORE (Android) - Flutter Tutorial",
+              "url": "https://www.youtube.com/watch?v=Vj81NfQzB30",
+              "type": "video"
+            },
+            {
+              "title": "How to RELEASE a Flutter app to the APP STORE (iOS) - Flutter Tutorial",
+              "url": "https://www.youtube.com/watch?v=JmK856tqU1w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_app_deployment_store_release.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "flutter_project_marketplace_app",
-          "name": "Project: Marketplace Mobile App",
+          "id": "flutter_web_desktop_deployment",
+          "name": "Web & Desktop Deployment",
           "tag": "advanced",
-          "description": "Build a Flutter app with auth, product listing, search, cart, offline cache, tests, analytics, and release checklist.",
+          "description": "Understand the specifics of deploying Flutter applications to web and desktop platforms, including configuration, platform-specific considerations, and optimization.",
           "resources": [
             {
-              "title": "Flutter Samples",
-              "url": "https://docs.flutter.dev/cookbook",
+              "title": "Build and release a web app",
+              "url": "https://docs.flutter.dev/deployment/web",
               "type": "article"
+            },
+            {
+              "title": "Build and release a desktop app",
+              "url": "https://docs.flutter.dev/deployment/desktop",
+              "type": "article"
+            },
+            {
+              "title": "How to Deploy a Flutter Web Application (Firebase, Github Pages, Netlify)",
+              "url": "https://www.youtube.com/watch?v=wG5bN9C_N40",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Desktop App Development & Deployment - Windows, Mac & Linux",
+              "url": "https://www.youtube.com/watch?v=7hR8XhM0778",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_web_desktop_deployment.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "flutter_ci_cd_pipelines",
+          "name": "Continuous Integration & Deployment (CI/CD)",
+          "tag": "advanced",
+          "description": "Set up automated testing, build, and deployment pipelines using CI/CD tools like GitHub Actions, GitLab CI, Codemagic, or Bitrise to streamline your development workflow and ensure consistent releases.",
+          "resources": [
+            {
+              "title": "Codemagic for Flutter CI/CD",
+              "url": "https://codemagic.io/start/",
+              "type": "article"
+            },
+            {
+              "title": "Flutter CI/CD with GitHub Actions",
+              "url": "https://docs.flutter.dev/resources/ci-cd",
+              "type": "article"
+            },
+            {
+              "title": "Flutter CI/CD With GitHub Actions - Build & Deploy To App Stores",
+              "url": "https://www.youtube.com/watch?v=Fj-c88z8w7g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_ci_cd_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_analytics_crash_reporting",
+          "name": "Analytics, Crash Reporting & Monitoring",
+          "tag": "advanced",
+          "description": "Integrate analytics tools (e.g., Firebase Analytics, Amplitude) to track user behavior, and crash reporting services (e.g., Firebase Crashlytics, Sentry) for monitoring app stability in production.",
+          "resources": [
+            {
+              "title": "Firebase Analytics for Flutter",
+              "url": "https://firebase.google.com/docs/analytics/flutter/start",
+              "type": "article"
+            },
+            {
+              "title": "Firebase Crashlytics for Flutter",
+              "url": "https://firebase.google.com/docs/crashlytics/get-started?platform=flutter",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Firebase Analytics Tutorial - The Net Ninja",
+              "url": "https://www.youtube.com/watch?v=Rpp62-rP9v0",
+              "type": "video"
+            },
+            {
+              "title": "Flutter & Firebase Crashlytics Tutorial - The Net Ninja",
+              "url": "https://www.youtube.com/watch?v=F_S61hT207o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_analytics_crash_reporting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_scalable_architecture_implementation",
+          "name": "Scalable Architecture Implementation",
+          "tag": "advanced",
+          "description": "Deep dive into implementing Clean Architecture, Domain-Driven Design (DDD), and other patterns for building highly scalable, maintainable, and testable large-scale Flutter applications.",
+          "resources": [
+            {
+              "title": "Clean Architecture in Flutter (Article Series)",
+              "url": "https://resocoder.com/2019/08/04/flutter-tdd-clean-architecture-course-1-explanation-project-setup/",
+              "type": "article"
+            },
+            {
+              "title": "Flutter & Clean Architecture Tutorial - PART 1 - Setup & Overview",
+              "url": "https://www.youtube.com/watch?v=F0mE0Z1_B8Y",
+              "type": "video"
+            },
+            {
+              "title": "Building Clean Architecture with Flutter",
+              "url": "https://www.youtube.com/watch?v=epv8qgVbS4I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_scalable_architecture_implementation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_modularization_multi_package",
+          "name": "Modularization & Multi-package Projects",
+          "tag": "advanced",
+          "description": "Learn to structure large projects using modularization, monorepos, and multi-package setups to manage feature isolation, code reuse, and team collaboration effectively.",
+          "resources": [
+            {
+              "title": "Flutter Modularization Guide",
+              "url": "https://medium.com/flutter-community/modular-architecture-in-flutter-e129f1b4a69",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Melos Tutorial: Manage Multiple Packages in a Monorepo",
+              "url": "https://www.youtube.com/watch?v=FjI5jY1W2tI",
+              "type": "video"
+            },
+            {
+              "title": "How to structure your Flutter app for Scale | Flutter Monorepo with Melos | Flutter Modularization",
+              "url": "https://www.youtube.com/watch?v=r_2_233Fk8o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_modularization_multi_package.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_internals_engine_deep_dive",
+          "name": "Flutter Internals & Engine Deep Dive",
+          "tag": "advanced",
+          "description": "Gain a deep understanding of Flutter's rendering pipeline, engine architecture, Skia graphics, Dart VM, and how Flutter communicates with native platforms at a low level.",
+          "resources": [
+            {
+              "title": "Flutter Architecture Explained",
+              "url": "https://docs.flutter.dev/resources/architectural-overview",
+              "type": "article"
+            },
+            {
+              "title": "Demystifying Flutter Rendering",
+              "url": "https://medium.com/flutter/demystifying-flutter-rendering-5f284992576b",
+              "type": "article"
+            },
+            {
+              "title": "Flutter Internals: A Deep Dive into the Rendering Pipeline",
+              "url": "https://www.youtube.com/watch?v=F0S0EWhOq_Y",
+              "type": "video"
+            },
+            {
+              "title": "Flutter Internals - The Architecture and Rendering Pipeline",
+              "url": "https://www.youtube.com/watch?v=R9N3F60b6yY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_internals_engine_deep_dive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "flutter_capstone_marketplace_app_fullstack",
+          "name": "Capstone Project: Full-stack E-commerce App",
+          "tag": "advanced",
+          "description": "Develop a complete e-commerce marketplace app with user authentication, product listings, search, shopping cart, order management, secure API interactions, local caching, push notifications, comprehensive testing, and prepare it for store release.",
+          "resources": [
+            {
+              "title": "Flutter E-commerce UI Kit (Example)",
+              "url": "https://github.com/flutter/samples/tree/main/platform_design",
+              "type": "article"
+            },
+            {
+              "title": "Build a Complete E-Commerce App with Flutter & Firebase - Tutorial",
+              "url": "https://www.youtube.com/watch?v=F_RBRfH3tys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/flutter_developer/flutter_capstone_marketplace_app_fullstack.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

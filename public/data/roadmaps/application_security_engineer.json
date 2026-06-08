@@ -1,211 +1,1066 @@
 {
   "id": "application_security_engineer",
   "title": "Application Security Engineer",
-  "description": "A deep, project-based roadmap for Application Security Engineer: Secure software delivery with threat modeling, secure code review, SAST/DAST, dependency security, API security, and developer enablement.",
+  "description": "A comprehensive and project-based roadmap for aspiring and experienced Application Security Engineers, covering secure software delivery from design to production. Master threat modeling, secure coding, SAST/DAST, API & cloud-native security, supply chain protection, and developer enablement for robust, industry-standard application security.",
   "format": "tree",
   "tree": [
     {
-      "id": "application_security_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "appsec_foundations",
+      "name": "Foundations of Application Security",
       "tag": "essential",
-      "description": "Understand what Application Security Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a robust understanding of core cybersecurity principles, fundamental web and cloud application architectures, the Secure Software Development Life Cycle (SSDLC), and the specific responsibilities and impact of an Application Security Engineer.",
       "resources": [
         {
-          "title": "Microsoft Front-End Course 6: Web Application Security Full Course | OWASP Security Tutorial (SoftFlow Academy)",
-          "url": "https://www.youtube.com/watch?v=2lWDPhI5Dwg",
+          "title": "What is AppSec and Why it's Important",
+          "url": "https://www.acunetix.com/blog/web-security-zone/what-is-application-security/",
+          "type": "article"
+        },
+        {
+          "title": "Web Security Crash Course",
+          "url": "https://www.youtube.com/watch?v=F0f-k-vWn_k",
           "type": "video"
         },
         {
-          "title": "OWASP ASVS",
-          "url": "https://owasp.org/www-project-application-security-verification-standard/",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/application_security_engineer/appsec_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "application_security_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "appsec_foundations_cybersecurity_info_sec",
+          "name": "Essential Cybersecurity & Information Security Concepts",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Grasp fundamental concepts like the CIA triad, threat actors, vulnerability types (OWASP Top 10 introduction), and basic risk management, specifically tailored to how they manifest in application security contexts.",
           "resources": [
             {
-              "title": "OWASP Top 10",
-              "url": "https://owasp.org/www-project-top-ten/",
+              "title": "NIST Cybersecurity Framework Explained",
+              "url": "https://www.nist.gov/cyberframework",
               "type": "article"
+            },
+            {
+              "title": "What is Application Security? (AppSec Explained)",
+              "url": "https://www.youtube.com/watch?v=S01B3J4c06w",
+              "type": "video"
+            },
+            {
+              "title": "OWASP Top 10 Explained - Web Application Security Tutorial",
+              "url": "https://www.youtube.com/watch?v=sIuP_s4y_2s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_foundations_cybersecurity_info_sec.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "application_security_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "appsec_foundations_web_api_arch",
+          "name": "Web & API Application Architecture Fundamentals",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Comprehend modern web application components (HTTP/S, client-server, RESTful APIs, GraphQL, microservices), database interactions, and common deployment patterns. Essential for identifying attack surfaces and understanding system interactions.",
           "resources": [
             {
-              "title": "OWASP DevSecOps Verification Standard",
-              "url": "https://owasp.org/www-project-devsecops-verification-standard/",
+              "title": "How The Web Works: A Primer for Newcomers to Web Development",
+              "url": "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_web_works",
               "type": "article"
+            },
+            {
+              "title": "HTTP: The Protocol Every Web Developer Must Know",
+              "url": "https://www.youtube.com/watch?v=pHx_o8P0-bM",
+              "type": "video"
+            },
+            {
+              "title": "What is an API? In simple terms",
+              "url": "https://www.youtube.com/watch?v=GZvP4w468u8",
+              "type": "video"
+            },
+            {
+              "title": "REST API Crash Course - Learn the basics of RESTful API Development",
+              "url": "https://www.youtube.com/watch?v=LooL_Fv2A7I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_foundations_web_api_arch.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "appsec_foundations_networking_os",
+          "name": "Networking & Operating System Basics for AppSec",
+          "tag": "essential",
+          "description": "Learn core networking concepts (TCP/IP, common protocols, firewalls, proxies) and operating system security fundamentals (user management, permissions, process isolation) relevant to understanding application attack vectors and deployment environments.",
+          "resources": [
+            {
+              "title": "Linux Security Hardening Guide",
+              "url": "https://linuxsecurity.com/features/linux-hardening-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Networking Basics for Hackers",
+              "url": "https://www.youtube.com/watch?v=3QhU9jd0gZY",
+              "type": "video"
+            },
+            {
+              "title": "Linux for Hackers (Full Course)",
+              "url": "https://www.youtube.com/watch?v=d_M5d0I7o64",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_foundations_networking_os.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_foundations_secure_sdlc",
+          "name": "Secure Software Development Life Cycle (SSDLC)",
+          "tag": "essential",
+          "description": "Integrate security practices and gates into every phase of the SDLC, from requirements gathering and design (Shift-Left Security) through implementation, testing, deployment, and operational maintenance. Familiarity with frameworks like OWASP SAMM.",
+          "resources": [
+            {
+              "title": "Introduction to Secure SDLC (SANS)",
+              "url": "https://www.sans.org/blog/an-introduction-to-the-secure-software-development-lifecycle/",
+              "type": "article"
+            },
+            {
+              "title": "OWASP SAMM: Software Assurance Maturity Model",
+              "url": "https://owasp.org/www-project-software-assurance-maturity-model/",
+              "type": "article"
+            },
+            {
+              "title": "Secure SDLC - What is Secure SDLC? Software Development Lifecycle",
+              "url": "https://www.youtube.com/watch?v=F0v-10gW-4o",
+              "type": "video"
+            },
+            {
+              "title": "Secure SDLC: Integrating Security into Your Development Pipeline",
+              "url": "https://www.youtube.com/watch?v=p79D08sR1-U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_foundations_secure_sdlc.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_foundations_appsec_role",
+          "name": "The Application Security Engineer Role & Collaboration",
+          "tag": "essential",
+          "description": "Define the responsibilities, key daily activities, required technical and soft skills, and effective collaboration strategies with development, DevOps, and other security teams. Understand career paths and impact.",
+          "resources": [
+            {
+              "title": "What Does an AppSec Engineer Do?",
+              "url": "https://blog.snyk.io/what-does-an-appsec-engineer-do/",
+              "type": "article"
+            },
+            {
+              "title": "Application Security Engineer Career Path",
+              "url": "https://www.youtube.com/watch?v=Vl0yJ1X_V70",
+              "type": "video"
+            },
+            {
+              "title": "Application Security Engineer Explained - What Is AppSec & How To Become One",
+              "url": "https://www.youtube.com/watch?v=1d8bL2K420I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_foundations_appsec_role.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "application_security_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "appsec_core_skills",
+      "name": "Core Secure Design & Implementation Skills",
       "tag": "essential",
-      "description": "Build the practical skill stack for Application Security Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Develop practical skills to design, build, and configure applications securely by applying defensive programming, secure architectural patterns, and robust vulnerability mitigation techniques.",
       "resources": [
         {
-          "title": "OWASP Top 10 Web Application Security Risks (Telusko)",
-          "url": "https://www.youtube.com/watch?v=wUaeKEl1RCw",
-          "type": "video"
-        },
-        {
-          "title": "OWASP Top 10",
+          "title": "OWASP Top 10 Web Application Security Risks",
           "url": "https://owasp.org/www-project-top-ten/",
           "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "application_security_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
-          "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "OWASP ASVS",
-              "url": "https://owasp.org/www-project-application-security-verification-standard/",
-              "type": "article"
-            }
-          ],
-          "children": []
         },
         {
-          "id": "application_security_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "OWASP DevSecOps Verification Standard",
-              "url": "https://owasp.org/www-project-devsecops-verification-standard/",
-              "type": "article"
-            }
-          ],
-          "children": []
+          "title": "OWASP Proactive Controls",
+          "url": "https://owasp.org/www-project-proactive-controls/",
+          "type": "article"
         },
         {
-          "id": "application_security_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "application_security_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "A Complete Guide to OWASP & Mobile Application Security (INFOSEC TRAIN)",
-          "url": "https://www.youtube.com/watch?v=5OsfgmPNKEg",
+          "title": "Web Security Crash Course - Learn How To Protect Websites From Cyber Attacks",
+          "url": "https://www.youtube.com/watch?v=Fj-c1lq-69o",
           "type": "video"
         },
         {
-          "title": "OWASP DevSecOps Verification Standard",
-          "url": "https://owasp.org/www-project-devsecops-verification-standard/",
-          "type": "article"
+          "title": "The OWASP Top 10 Explained - Web Security Tutorial",
+          "url": "https://www.youtube.com/watch?v=sIby9vR70jY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/application_security_engineer/appsec_core_skills.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "application_security_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "appsec_core_threat_modeling_secure_design",
+          "name": "Threat Modeling & Secure Design Principles",
+          "tag": "essential",
+          "description": "Master methodologies like STRIDE, DREAD, and PASTA to systematically identify potential threats, evaluate associated risks, and integrate security requirements and controls early in the application design phase. Focus on practical application to real-world systems.",
           "resources": [
             {
-              "title": "OWASP Top 10",
-              "url": "https://owasp.org/www-project-top-ten/",
+              "title": "Threat Modeling: Designing for Security (Microsoft)",
+              "url": "https://docs.microsoft.com/en-us/security/engineering/threat-modeling-tool",
               "type": "article"
+            },
+            {
+              "title": "Simplified Threat Modeling for Developers",
+              "url": "https://www.youtube.com/watch?v=F0S15B9Q3yA",
+              "type": "video"
+            },
+            {
+              "title": "Threat Modeling: Identifying Threats with STRIDE",
+              "url": "https://www.youtube.com/watch?v=k_l281u06vI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_threat_modeling_secure_design.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "application_security_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "appsec_core_secure_coding_best_practices",
+          "name": "Secure Coding Best Practices & Defensive Programming",
+          "tag": "essential",
+          "description": "Apply defensive programming techniques, understand language-specific security pitfalls (e.g., buffer overflows in C/C++, deserialization in Java, prototype pollution in JS), and leverage secure coding guidelines (e.g., OWASP Secure Coding Practices) to write robust and secure code.",
           "resources": [
             {
-              "title": "OWASP ASVS",
-              "url": "https://owasp.org/www-project-application-security-verification-standard/",
+              "title": "OWASP Secure Coding Practices Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_Practices_Cheat_Sheet.html",
               "type": "article"
+            },
+            {
+              "title": "Common Weakness Enumeration (CWE) Top 25",
+              "url": "https://cwe.mitre.org/top25/archive/2023/2023_cwe_top25.html",
+              "type": "article"
+            },
+            {
+              "title": "Secure Coding Best Practices - How to Write Safe Code",
+              "url": "https://www.youtube.com/watch?v=F0pX5QpX81I",
+              "type": "video"
+            },
+            {
+              "title": "Introduction to Application Security - The Most Important Security Concepts Explained",
+              "url": "https://www.youtube.com/watch?v=N6L6eWq6V5U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_secure_coding_best_practices.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "appsec_core_auth_authz_session_mgmt",
+          "name": "Authentication, Authorization & Session Management",
+          "tag": "essential",
+          "description": "Implement secure authentication mechanisms (MFA, password hashing best practices, OpenID Connect, SAML), robust authorization models (RBAC, ABAC, granular permissions), and resilient session management strategies (JWTs, secure cookies, token revocation).",
+          "resources": [
+            {
+              "title": "OWASP Authentication Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "Authentication Basics: OAuth 2.0 and OpenID Connect",
+              "url": "https://www.youtube.com/watch?v=996Ogd8m-0c",
+              "type": "video"
+            },
+            {
+              "title": "JWT Authentication Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=mbsmsi7l3rc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_auth_authz_session_mgmt.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_core_applied_cryptography",
+          "name": "Applied Cryptography for Secure Systems",
+          "tag": "essential",
+          "description": "Understand the practical application of cryptographic primitives: symmetric/asymmetric encryption, hashing, digital signatures, key management lifecycle, Public Key Infrastructure (PKI), and secure TLS/SSL implementation within applications.",
+          "resources": [
+            {
+              "title": "OWASP Cryptographic Storage Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "Cryptography Explained: Modern Applied Cryptography (Cybermentor)",
+              "url": "https://www.youtube.com/watch?v=tI1Me8jV_7Y",
+              "type": "video"
+            },
+            {
+              "title": "Cryptography - Full Course",
+              "url": "https://www.youtube.com/watch?v=f_V0P1JvG8E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_applied_cryptography.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_core_input_output_security",
+          "name": "Input Validation, Sanitization & Output Encoding",
+          "tag": "essential",
+          "description": "Prevent common injection vulnerabilities (SQLi, XSS, Command Injection, XXE) by diligently validating and sanitizing all untrusted input, and properly encoding all output displayed to users or stored in various formats.",
+          "resources": [
+            {
+              "title": "OWASP Input Validation Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "Cross-Site Scripting (XSS) Prevention Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "Cross-Site Scripting (XSS) Explained",
+              "url": "https://www.youtube.com/watch?v=F-B0y9_x1u4",
+              "type": "video"
+            },
+            {
+              "title": "SQL Injection Explained: A Quick Intro",
+              "url": "https://www.youtube.com/watch?v=ciT6zDgaoXs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_input_output_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_core_secrets_config_management",
+          "name": "Secrets Management & Secure Configuration",
+          "tag": "essential",
+          "description": "Learn best practices for managing application secrets (API keys, database credentials) using solutions like Vault, AWS Secrets Manager, Azure Key Vault. Implement secure configuration management, ensuring applications run with least privilege and hardened settings.",
+          "resources": [
+            {
+              "title": "HashiCorp Vault: Getting Started",
+              "url": "https://developer.hashicorp.com/vault/tutorials/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Secure Configuration Management Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Configuration_Management_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "What is HashiCorp Vault? | Vault Explained",
+              "url": "https://www.youtube.com/watch?v=F07xV9gN1B0",
+              "type": "video"
+            },
+            {
+              "title": "AWS Secrets Manager Explained | Protecting your secrets on AWS",
+              "url": "https://www.youtube.com/watch?v=k_950S4vE3c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_secrets_config_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_core_data_security_privacy",
+          "name": "Data Security & Privacy Principles",
+          "tag": "essential",
+          "description": "Understand how to protect sensitive data at rest and in transit. Implement data classification, encryption, anonymization techniques, and comprehend privacy regulations (GDPR, CCPA) and their impact on application design and data handling.",
+          "resources": [
+            {
+              "title": "Data Encryption Standard (DES) vs. Advanced Encryption Standard (AES)",
+              "url": "https://www.cloudflare.com/learning/encryption/what-is-encryption/des-vs-aes/",
+              "type": "article"
+            },
+            {
+              "title": "An Introduction to GDPR",
+              "url": "https://gdpr.eu/basics/",
+              "type": "article"
+            },
+            {
+              "title": "GDPR Explained: A Guide to the General Data Protection Regulation",
+              "url": "https://www.youtube.com/watch?v=F0kI_04423U",
+              "type": "video"
+            },
+            {
+              "title": "Cryptography Tutorial for Beginners - Learn to encrypt and decrypt data with code",
+              "url": "https://www.youtube.com/watch?v=yP5_AN9T5mI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_data_security_privacy.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_core_software_composition_analysis",
+          "name": "Software Composition Analysis (SCA) & Dependency Management",
+          "tag": "essential",
+          "description": "Identify, track, and mitigate vulnerabilities (CVEs) and licensing issues in third-party libraries and open-source components used by applications. Integrate SCA tools into the development workflow and manage software bill of materials (SBOMs).",
+          "resources": [
+            {
+              "title": "What is Software Composition Analysis (SCA)?",
+              "url": "https://www.synopsys.com/glossary/what-is-software-composition-analysis.html",
+              "type": "article"
+            },
+            {
+              "title": "Dependency-Track: Continuous SBOM Analysis",
+              "url": "https://dependencytrack.org/",
+              "type": "article"
+            },
+            {
+              "title": "What is Software Composition Analysis (SCA)? Explained Visually",
+              "url": "https://www.youtube.com/watch?v=F07l3K6k654",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_core_software_composition_analysis.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "application_security_engineer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
-      "tag": "advanced",
-      "description": "Turn your Application Security Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "id": "appsec_testing_automation",
+      "name": "Application Security Testing & DevSecOps Integration",
+      "tag": "essential",
+      "description": "Master the tools and techniques for automated and manual security testing, integrating them into the CI/CD pipeline for a robust 'Shift-Left' DevSecOps approach that ensures continuous security assurance.",
       "resources": [
         {
-          "title": "OWASP ASVS",
-          "url": "https://owasp.org/www-project-application-security-verification-standard/",
+          "title": "OWASP Web Security Testing Guide (WSTG)",
+          "url": "https://owasp.org/www-project-web-security-testing-guide/",
           "type": "article"
         },
         {
-          "title": "OWASP Top 10",
-          "url": "https://owasp.org/www-project-top-ten/",
-          "type": "article"
+          "title": "DevSecOps: Integrating Security into CI/CD",
+          "url": "https://www.youtube.com/watch?v=Fj-yJq-SgeM",
+          "type": "video"
         },
         {
-          "title": "OWASP DevSecOps Verification Standard",
-          "url": "https://owasp.org/www-project-devsecops-verification-standard/",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/application_security_engineer/appsec_testing_automation.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "application_security_engineer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "id": "appsec_testing_sast",
+          "name": "Static Application Security Testing (SAST)",
+          "tag": "essential",
+          "description": "Utilize SAST tools to analyze source code for vulnerabilities without executing it. Focus on effective tool selection, configuration, integration into CI, triaging findings, and interpreting results to guide remediation.",
           "resources": [
             {
-              "title": "OWASP ASVS",
-              "url": "https://owasp.org/www-project-application-security-verification-standard/",
+              "title": "What is SAST? Static Application Security Testing Explained",
+              "url": "https://www.veracode.com/security/static-analysis-sast",
               "type": "article"
+            },
+            {
+              "title": "Introduction to SonarQube for Static Code Analysis",
+              "url": "https://www.youtube.com/watch?v=R0LgP78P_20",
+              "type": "video"
+            },
+            {
+              "title": "Application Security (AppSec) For Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=zJg5A0iWpWc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_sast.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "application_security_engineer_project_capstone",
-          "name": "Project: Application Security Engineer Portfolio Capstone",
+          "id": "appsec_testing_dast_iaas_rasp",
+          "name": "Dynamic, Interactive & Runtime Application Security Testing (DAST/IAST/RASP)",
+          "tag": "essential",
+          "description": "Employ DAST tools (like Burp Suite, OWASP ZAP) to find vulnerabilities in running applications, IAST tools for runtime analysis within the application context, and RASP for self-protection against attacks in real-time.",
+          "resources": [
+            {
+              "title": "PortSwigger Web Security Academy: Burp Suite Basics",
+              "url": "https://portswigger.net/web-security/burp",
+              "type": "course"
+            },
+            {
+              "title": "OWASP ZAP User Guide",
+              "url": "https://www.zaproxy.org/docs/desktop/",
+              "type": "article"
+            },
+            {
+              "title": "What are SAST, DAST, IAST, RASP, and SCA? | AppSec Explained",
+              "url": "https://www.youtube.com/watch?v=J_jQ7J7jF6M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_dast_iaas_rasp.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_testing_api_security",
+          "name": "API Security Testing & Hardening",
+          "tag": "essential",
+          "description": "Focus on specific security challenges and testing methodologies for RESTful, GraphQL, SOAP, and gRPC APIs. Cover OWASP API Security Top 10 vulnerabilities, authentication, authorization, rate limiting, and robust API gateway security.",
+          "resources": [
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/www-project-api-security/",
+              "type": "article"
+            },
+            {
+              "title": "Testing APIs for Security Vulnerabilities (Postman)",
+              "url": "https://www.postman.com/blog/testing-apis-for-security-vulnerabilities/",
+              "type": "article"
+            },
+            {
+              "title": "API Security Tutorial for Beginners | OWASP API Top 10",
+              "url": "https://www.youtube.com/watch?v=F0S18p8G-z0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_api_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_testing_container_kubernetes_security",
+          "name": "Container & Kubernetes Application Security",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Application Security Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Secure containerized applications (Docker, OCI) and their orchestration (Kubernetes) from an application perspective. Topics include image scanning, runtime protection, network policies, secrets injection, and Pod Security Standards.",
+          "resources": [
+            {
+              "title": "Docker Security Best Practices",
+              "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#security",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Security Best Practices",
+              "url": "https://kubernetes.io/docs/concepts/security/security-considerations/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Security Tutorial for Beginners | K8s Security Basics",
+              "url": "https://www.youtube.com/watch?v=F3z7X5d6G0Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_container_kubernetes_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_testing_mobile_app_security",
+          "name": "Mobile Application Security (iOS/Android)",
+          "tag": "advanced",
+          "description": "Explore unique security challenges of mobile applications. Learn about OWASP Mobile Top 10, reverse engineering, jailbreak/root detection, secure storage, network communication, and client-side vulnerability testing for iOS and Android platforms.",
+          "resources": [
+            {
+              "title": "OWASP Mobile Security Testing Guide",
+              "url": "https://owasp.org/www-project-mobile-security-testing-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Mobile App Security Explained",
+              "url": "https://www.veracode.com/security/mobile-application-security",
+              "type": "article"
+            },
+            {
+              "title": "Mobile Application Security Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=Fj-6-iHnB6I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_mobile_app_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_testing_devsecops_cicd_integration",
+          "name": "DevSecOps Principles & CI/CD Security Integration",
+          "tag": "advanced",
+          "description": "Implement security automation throughout the CI/CD pipeline, embed security gates, configure policy-as-code, and establish a 'shift-left' security approach for continuous security assurance from code commit to deployment. Focus on practical pipeline tools (e.g., Jenkins, GitLab CI, GitHub Actions).",
           "resources": [
             {
               "title": "OWASP DevSecOps Verification Standard",
               "url": "https://owasp.org/www-project-devsecops-verification-standard/",
               "type": "article"
+            },
+            {
+              "title": "Practical DevSecOps - CI/CD Security (Course)",
+              "url": "https://www.practical-devsecops.com/ci-cd-security-training/",
+              "type": "course"
+            },
+            {
+              "title": "What is DevSecOps? (DevSecOps Explained)",
+              "url": "https://www.youtube.com/watch?v=F3S0wXN58rY",
+              "type": "video"
+            },
+            {
+              "title": "DevSecOps Crash Course with a Live Demo",
+              "url": "https://www.youtube.com/watch?v=s5e8_cM-E8Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_devsecops_cicd_integration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "appsec_testing_supply_chain_security",
+          "name": "Software Supply Chain Security",
+          "tag": "advanced",
+          "description": "Go beyond SCA to understand broader software supply chain risks. Implement secure build practices, code signing, provenance tracking, verifiable builds, and integrate tools like Notary or Sigstore for integrity and authenticity.",
+          "resources": [
+            {
+              "title": "SLSA: Supply-chain Levels for Software Artifacts",
+              "url": "https://slsa.dev/",
+              "type": "article"
+            },
+            {
+              "title": "Software Supply Chain Security Explained",
+              "url": "https://www.youtube.com/watch?v=kYJ0hT9a6eY",
+              "type": "video"
+            },
+            {
+              "title": "Securing the Software Supply Chain with Sigstore",
+              "url": "https://www.youtube.com/watch?v=1rB34h_2c5E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_supply_chain_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_testing_manual_pentesting_vuln_mgmt",
+          "name": "Manual Penetration Testing & Vulnerability Management",
+          "tag": "advanced",
+          "description": "Learn ethical hacking methodologies and tools (e.g., Burp Suite Pro, Nmap, Metasploit) to conduct manual penetration tests on applications. Focus on reporting findings, prioritizing remediation, and managing the full vulnerability lifecycle (discovery, triage, remediation, verification).",
+          "resources": [
+            {
+              "title": "Penetration Testing Execution Standard (PTES)",
+              "url": "http://www.pentest-standard.org/index.php/Main_Page",
+              "type": "article"
+            },
+            {
+              "title": "Vulnerability Management Process (CyberArk)",
+              "url": "https://www.cyberark.com/resources/threat-research-blog/understanding-vulnerability-management-process",
+              "type": "article"
+            },
+            {
+              "title": "Burp Suite Tutorial for Beginners (Full Course)",
+              "url": "https://www.youtube.com/watch?v=Fte_Y5W8qW0",
+              "type": "video"
+            },
+            {
+              "title": "Full Ethical Hacking Course - Network Penetration Testing for Beginners",
+              "url": "https://www.youtube.com/watch?v=p2_V_H0hX4U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_testing_manual_pentesting_vuln_mgmt.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appsec_production_collaboration",
+      "name": "Operational Security, Architecture & Culture",
+      "tag": "advanced",
+      "description": "Extend security focus to production environments. Master aspects of security architecture, incident response, cloud-native deployments, and fostering a strong security culture through collaboration and developer enablement.",
+      "resources": [
+        {
+          "title": "The Role of AppSec in Production Systems (Snyk)",
+          "url": "https://snyk.io/blog/application-security-in-production/",
+          "type": "article"
+        },
+        {
+          "title": "Building a Security Culture in Development Teams",
+          "url": "https://www.youtube.com/watch?v=R9_3kLp2L7Y",
+          "type": "video"
+        },
+        {
+          "title": "What is Cloud Security?",
+          "url": "https://www.youtube.com/watch?v=S0T2XQ9t2b0",
+          "type": "video"
+        },
+        {
+          "title": "What is Incident Response?",
+          "url": "https://www.youtube.com/watch?v=Nn_G8mG6q4w",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/application_security_engineer/appsec_production_collaboration.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "appsec_prod_security_architecture_patterns",
+          "name": "Security Architecture & Design Patterns",
+          "tag": "advanced",
+          "description": "Design secure and resilient application architectures. Learn about security design patterns (e.g., Zero Trust, defense-in-depth, security isolation), microservices security, and architectural reviews to embed security from the ground up.",
+          "resources": [
+            {
+              "title": "Zero Trust Architecture (NIST SP 800-207)",
+              "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-207.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Security Design Patterns for Microservices",
+              "url": "https://docs.microsoft.com/en-us/azure/architecture/microservices/securing-microservices",
+              "type": "article"
+            },
+            {
+              "title": "Zero Trust Security Explained - 40 Minute Security Awareness Training",
+              "url": "https://www.youtube.com/watch?v=F_f0i5aT3_g",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Security Architect Path - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=zT3oX_GfD3A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_security_architecture_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_prod_cloud_native_appsec",
+          "name": "Cloud-Native Application Security",
+          "tag": "advanced",
+          "description": "Secure applications deployed across major cloud providers (AWS, Azure, GCP). Focus on shared responsibility model, serverless function security, container-as-a-service (CaaS), platform-as-a-service (PaaS), Identity and Access Management (IAM), and cloud WAFs.",
+          "resources": [
+            {
+              "title": "AWS Shared Responsibility Model",
+              "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+              "type": "article"
+            },
+            {
+              "title": "Securing Serverless Applications (OWASP)",
+              "url": "https://owasp.org/www-project-serverless-top-10/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Cloud Security Basics - Full Course",
+              "url": "https://www.youtube.com/watch?v=FjI1J4V5Gcs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_cloud_native_appsec.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_prod_security_logging_monitoring",
+          "name": "Security Logging, Monitoring & Alerting",
+          "tag": "advanced",
+          "description": "Design and implement comprehensive security logging for application events. Configure monitoring solutions (SIEM, EDR) for suspicious activities, and establish real-time alerting mechanisms to detect and respond to security threats effectively in production.",
+          "resources": [
+            {
+              "title": "OWASP Logging Cheat Sheet",
+              "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+              "type": "article"
+            },
+            {
+              "title": "ELK Stack for Security Monitoring",
+              "url": "https://www.elastic.co/blog/elk-for-security-monitoring",
+              "type": "article"
+            },
+            {
+              "title": "What is SIEM, EDR, XDR? Security Operations Explained",
+              "url": "https://www.youtube.com/watch?v=oEge4J3jNl0",
+              "type": "video"
+            },
+            {
+              "title": "OWASP Top 10 A09:2021 Security Logging and Monitoring Failures Explained",
+              "url": "https://www.youtube.com/watch?v=F_fV171_oXw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_security_logging_monitoring.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_prod_incident_response_handling",
+          "name": "Application Security Incident Response & Forensics",
+          "tag": "advanced",
+          "description": "Develop and practice application-specific incident response plans. Understand the phases of incident handling (preparation, identification, containment, eradication, recovery, post-incident analysis) and basic forensics for application breaches.",
+          "resources": [
+            {
+              "title": "NIST SP 800-61 Rev. 2: Computer Security Incident Handling Guide",
+              "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Crafting an Application Security Incident Response Plan",
+              "url": "https://www.invicti.com/blog/application-security-incident-response-plan/",
+              "type": "article"
+            },
+            {
+              "title": "Cyber Security Incident Response (CSIR) Explained",
+              "url": "https://www.youtube.com/watch?v=S0B3tG8Jk3Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_incident_response_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_prod_developer_enablement_culture",
+          "name": "Developer Enablement & Security Culture Building",
+          "tag": "advanced",
+          "description": "Empower development teams with security knowledge, tools, and best practices. Establish security champions programs, conduct tailored secure coding training, and foster a proactive security-first culture across the engineering organization.",
+          "resources": [
+            {
+              "title": "Building a Security Champion Program",
+              "url": "https://www.darkreading.com/application-security/building-a-security-champion-program",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Security Awareness",
+              "url": "https://owasp.org/www-project-security-awareness/",
+              "type": "article"
+            },
+            {
+              "title": "Application Security Explained",
+              "url": "https://www.youtube.com/watch?v=FfQY_z2u2G4",
+              "type": "video"
+            },
+            {
+              "title": "Web Security Crash Course | OWASP Top 10",
+              "url": "https://www.youtube.com/watch?v=hExuD4FjTys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_developer_enablement_culture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_prod_grc_appsec_compliance",
+          "name": "Governance, Risk & Compliance (GRC) for AppSec",
+          "tag": "advanced",
+          "description": "Understand how application security fits into organizational GRC. Learn about security frameworks (NIST, ISO 27001), regulatory compliance (PCI DSS, HIPAA, SOC 2), auditing processes, and managing application security risks from a business perspective.",
+          "resources": [
+            {
+              "title": "NIST Cybersecurity Framework",
+              "url": "https://www.nist.gov/cyberframework",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to ISO 27001",
+              "url": "https://www.iso.org/isoiec-27001-information-security.html",
+              "type": "article"
+            },
+            {
+              "title": "What is GRC? - Governance, Risk, and Compliance",
+              "url": "https://www.youtube.com/watch?v=7h2992jPzXo",
+              "type": "video"
+            },
+            {
+              "title": "NIST Cybersecurity Framework Overview",
+              "url": "https://www.youtube.com/watch?v=f2n476bY37E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_prod_grc_appsec_compliance.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appsec_portfolio_career",
+      "name": "Portfolio, Practical Experience & Career Advancement",
+      "tag": "advanced",
+      "description": "Translate learned AppSec knowledge into demonstrable skills. Gain hands-on experience through practical challenges, build a strong professional portfolio, and prepare effectively for interviews to launch or advance your career as an Application Security Engineer.",
+      "resources": [
+        {
+          "title": "How to Build an Application Security Portfolio",
+          "url": "https://www.stackrox.com/blog/how-to-build-an-application-security-portfolio/",
+          "type": "article"
+        },
+        {
+          "title": "Preparing for Your AppSec Interview (Snyk)",
+          "url": "https://snyk.io/blog/application-security-interview-questions/",
+          "type": "article"
+        },
+        {
+          "title": "How to Build an Ethical Hacking/Cybersecurity Portfolio (Walkthrough)",
+          "url": "https://www.youtube.com/watch?v=F0pX56yE_bE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/application_security_engineer/appsec_portfolio_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "appsec_career_ctfs_bug_bounties_labs",
+          "name": "CTFs, Bug Bounties & Hands-on Security Labs",
+          "tag": "advanced",
+          "description": "Gain invaluable practical experience by actively participating in Capture The Flag (CTF) competitions, responsible disclosure/bug bounty programs, and dedicated web/API security labs to hone both offensive (exploitation) and defensive (patching) skills.",
+          "resources": [
+            {
+              "title": "PortSwigger Web Security Academy",
+              "url": "https://portswigger.net/web-security",
+              "type": "course"
+            },
+            {
+              "title": "TryHackMe - AppSec Learning Paths",
+              "url": "https://tryhackme.com/path/outline/web",
+              "type": "course"
+            },
+            {
+              "title": "What is Bug Bounty? A complete guide for beginners",
+              "url": "https://www.youtube.com/watch?v=F0pX56oD3E4",
+              "type": "video"
+            },
+            {
+              "title": "Learn Ethical Hacking - CTF Walkthrough (Beginner Friendly)",
+              "url": "https://www.youtube.com/watch?v=f2w8q8rK-tM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_career_ctfs_bug_bounties_labs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_career_capstone_project",
+          "name": "Capstone Project: Secure Full-Stack Application",
+          "tag": "advanced",
+          "description": "Design, build, secure, and comprehensively test a full-stack application incorporating all learned principles of secure development and DevSecOps. Document the entire process, including security decisions, identified vulnerabilities, and remediation strategies.",
+          "resources": [
+            {
+              "title": "OWASP Juice Shop (Deliberately Insecure Web App for Practice)",
+              "url": "https://owasp.org/www-project-juice-shop/",
+              "type": "article"
+            },
+            {
+              "title": "MERN Stack Full Course 2023 - Build An E-commerce Website (React, NodeJS, Express, MongoDB)",
+              "url": "https://www.youtube.com/watch?v=rx5gZ5l3S-w",
+              "type": "video"
+            },
+            {
+              "title": "OWASP Top 10 for Developers: A Guide to Web Application Security",
+              "url": "https://www.youtube.com/watch?v=sIbyBwP70gY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_career_capstone_project.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "appsec_career_resume_interview_prep",
+          "name": "Resume, Portfolio & Interview Preparation",
+          "tag": "advanced",
+          "description": "Craft a compelling, AppSec-focused resume and build a professional portfolio showcasing your secure coding projects, vulnerability reports, and security tool usage. Prepare for common technical and behavioral interview questions specific to Application Security Engineer roles.",
+          "resources": [
+            {
+              "title": "AppSec Interview Questions and Answers",
+              "url": "https://www.geeksforgeeks.org/application-security-interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "Creating a Technical Portfolio for Cybersecurity",
+              "url": "https://www.youtube.com/watch?v=JcE230R-j2k",
+              "type": "video"
+            },
+            {
+              "title": "Cybersecurity Resume Tips (2024 Guide)",
+              "url": "https://www.youtube.com/watch?v=o0Bsw7o4S58",
+              "type": "video"
+            },
+            {
+              "title": "Application Security Engineer Interview Questions (w/Answers)",
+              "url": "https://www.youtube.com/watch?v=8V-jR1s-5-A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/application_security_engineer/appsec_career_resume_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

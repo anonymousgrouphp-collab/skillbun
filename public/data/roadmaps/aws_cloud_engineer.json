@@ -6,161 +6,864 @@
   "tree": [
     {
       "id": "aws_cloud_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "name": "Foundations and Core Concepts",
       "tag": "essential",
-      "description": "Understand what AWS Cloud Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of cloud computing principles, AWS global infrastructure, account management, and fundamental networking concepts essential for an AWS Cloud Engineer.",
       "resources": [
+        {
+          "title": "AWS Documentation",
+          "url": "https://docs.aws.amazon.com/",
+          "type": "article"
+        },
         {
           "title": "What is Amazon Web Services? AWS Explained | Tutorial & Resources (Apna College)",
           "url": "https://www.youtube.com/watch?v=BSGcQi2WNPg",
           "type": "video"
         },
         {
-          "title": "AWS Documentation",
-          "url": "https://docs.aws.amazon.com/",
-          "type": "article"
+          "title": "What is Cloud Computing & How Does It Work? | Cloud Computing Explained (Traversy Media)",
+          "url": "https://www.youtube.com/watch?v=t5Qc7GvK8c0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "aws_cloud_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "aws_cloud_engineer_intro_cloud",
+          "name": "Introduction to Cloud Computing & AWS",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Understand the definition, benefits, service models (IaaS, PaaS, SaaS), deployment models, and the value proposition of AWS in the cloud landscape.",
           "resources": [
             {
-              "title": "AWS Well-Architected Framework",
-              "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-              "type": "article"
+              "title": "Introduction to Cloud Computing - AWS Training",
+              "url": "https://aws.amazon.com/training/digital/cloud-computing-basics/",
+              "type": "course"
+            },
+            {
+              "title": "What is Cloud Computing? - Explained with Animations",
+              "url": "https://www.youtube.com/watch?v=M9dsK0k_tHk",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Computing Explained - AWS, Azure, GCP, etc.",
+              "url": "https://www.youtube.com/watch?v=t1r-T_W-t-I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_intro_cloud.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "aws_cloud_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "aws_cloud_engineer_global_infra",
+          "name": "AWS Global Infrastructure",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Learn about AWS Regions, Availability Zones, Edge Locations, and how they contribute to high availability, fault tolerance, and low latency.",
           "resources": [
             {
-              "title": "AWS Skill Builder",
-              "url": "https://skillbuilder.aws/",
-              "type": "course"
+              "title": "AWS Global Infrastructure Overview",
+              "url": "https://aws.amazon.com/about-aws/global-infrastructure/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Global Infrastructure Explained - Regions, Availability Zones, Edge Locations",
+              "url": "https://www.youtube.com/watch?v=Fj2s_011d04",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_global_infra.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_account_billing",
+          "name": "AWS Account Management & Billing",
+          "tag": "essential",
+          "description": "Master AWS account creation, root user best practices, AWS Organizations, consolidated billing, and basic cost management tools.",
+          "resources": [
+            {
+              "title": "Managing Your AWS Account and Billing",
+              "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/account-management.html",
+              "type": "article"
+            },
+            {
+              "title": "AWS Organizations Tutorial - Create and Manage Multiple AWS Accounts",
+              "url": "https://www.youtube.com/watch?v=FqGj2R_eF-o",
+              "type": "video"
+            },
+            {
+              "title": "AWS Cost Management: Billing, Budgets, Cost Explorer for Beginners",
+              "url": "https://www.youtube.com/watch?v=kYJv1zT8eC0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_account_billing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_networking_basics",
+          "name": "Networking Fundamentals",
+          "tag": "essential",
+          "description": "Acquire foundational knowledge of TCP/IP, DNS, CIDR, subnets, routing, and common network protocols essential for configuring AWS networking.",
+          "resources": [
+            {
+              "title": "Networking Fundamentals – The Complete Guide (Tutorial)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_networking_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_linux_cli",
+          "name": "Linux & Command Line Basics",
+          "tag": "essential",
+          "description": "Develop proficiency in Linux commands, shell scripting, and using the AWS Command Line Interface (CLI) for interacting with AWS services.",
+          "resources": [
+            {
+              "title": "What is the AWS CLI?",
+              "url": "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-what-is.html",
+              "type": "article"
+            },
+            {
+              "title": "Linux Command Line Tutorial For Beginners",
+              "url": "https://www.youtube.com/watch?v=R0_J0G9Jd-o",
+              "type": "video"
+            },
+            {
+              "title": "Linux Shell Scripting Tutorial | Shell Scripting for Beginners",
+              "url": "https://www.youtube.com/watch?v=v-F3YLdCCS4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_linux_cli.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "aws_cloud_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "aws_cloud_engineer_core_services",
+      "name": "Core AWS Services & Infrastructure",
       "tag": "essential",
-      "description": "Build the practical skill stack for AWS Cloud Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Dive deep into the fundamental AWS services, learning their architecture, configuration, and best practices for building robust cloud infrastructure.",
       "resources": [
+        {
+          "title": "AWS Well-Architected Framework",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+          "type": "article"
+        },
         {
           "title": "AWS Tutorial For Beginners | AWS Full Course - Learn AWS In 10 Hours | AWS Training | Edureka (edureka!)",
           "url": "https://www.youtube.com/watch?v=k1RI5locZE4",
           "type": "video"
         },
         {
-          "title": "AWS Well-Architected Framework",
-          "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-          "type": "article"
+          "title": "AWS Crash Course For Beginners",
+          "url": "https://www.youtube.com/watch?v=ulprqHHWlng",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_core_services.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "aws_cloud_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "aws_cloud_engineer_iam",
+          "name": "Identity and Access Management (IAM)",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Understand IAM users, groups, roles, policies, multi-factor authentication, and apply least privilege principles for secure access control.",
           "resources": [
             {
-              "title": "AWS Documentation",
-              "url": "https://docs.aws.amazon.com/",
-              "type": "article"
+              "title": "AWS IAM Masterclass - AWS Identity and Access Management (Theory + Demos)",
+              "url": "https://www.youtube.com/watch?v=Q7b5n7YJ_i8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_iam.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "aws_cloud_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "aws_cloud_engineer_vpc",
+          "name": "Virtual Private Cloud (VPC)",
+          "tag": "essential",
+          "description": "Configure custom VPCs, subnets, route tables, Internet Gateways, NAT Gateways, Security Groups, Network ACLs, and VPC Peering to build isolated network environments.",
           "resources": [
             {
-              "title": "AWS Skill Builder",
-              "url": "https://skillbuilder.aws/",
-              "type": "course"
+              "title": "Mastering AWS VPC in 3 Hours",
+              "url": "https://www.youtube.com/watch?v=K3pQ0F8s514",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_vpc.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "aws_cloud_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
+          "id": "aws_cloud_engineer_ec2",
+          "name": "Compute Services: EC2, Elastic Load Balancing & Auto Scaling",
+          "tag": "essential",
+          "description": "Launch and manage EC2 instances, understand instance types, AMIs, EBS volumes. Configure Elastic Load Balancers (ALB, NLB, GWLB) for traffic distribution, and set up Auto Scaling Groups for elasticity and high availability.",
+          "resources": [
+            {
+              "title": "AWS EC2 Master Class - The Most Complete EC2 Course!",
+              "url": "https://www.youtube.com/watch?v=sI916xM3G_w",
+              "type": "video"
+            },
+            {
+              "title": "AWS Elastic Load Balancers Explained",
+              "url": "https://www.youtube.com/watch?v=3Wn7XqB8_3k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_ec2.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_elb",
+          "name": "Elastic Load Balancing (ELB)",
+          "tag": "essential",
+          "description": "Understand and configure Application Load Balancers (ALB), Network Load Balancers (NLB), and Gateway Load Balancers (GWLB) for distributing incoming application traffic across multiple targets.",
+          "resources": [
+            {
+              "title": "Introduction to AWS Elastic Load Balancing",
+              "url": "https://www.youtube.com/watch?v=7u8V23yK69k",
+              "type": "video"
+            },
+            {
+              "title": "AWS ELB Tutorial - Application Load Balancer (ALB) Explained",
+              "url": "https://www.youtube.com/watch?v=R9o62t7l36o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_elb.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_ebs",
+          "name": "Elastic Block Store (EBS)",
+          "tag": "essential",
+          "description": "Learn about different EBS volume types (gp2, gp3, io1, io2, st1, sc1), creating snapshots, managing volumes, and their use cases with EC2 instances.",
+          "resources": [
+            {
+              "title": "AWS EBS Explained | Elastic Block Store Tutorial",
+              "url": "https://www.youtube.com/watch?v=R9_W_Jb597c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_ebs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_s3",
+          "name": "Storage Services: Object, File & Archive",
+          "tag": "essential",
+          "description": "Work with S3 buckets for highly durable object storage, manage object lifecycle, versioning, access control, and explore Glacier for cost-effective archiving. Learn about EFS and FSx for managed file systems.",
+          "resources": [
+            {
+              "title": "AWS S3 Tutorial for Beginners | Amazon S3 Simply Explained (Theory and Demo)",
+              "url": "https://www.youtube.com/watch?v=vVj4w8nNq20",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_s3.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_efs_fsx",
+          "name": "File Storage: EFS & FSx",
           "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "description": "Explore Amazon Elastic File System (EFS) for scalable NFS file storage for EC2 instances and AWS FSx for Windows File Server or Lustre for specialized file system needs.",
+          "resources": [
+            {
+              "title": "AWS EFS Explained (Elastic File System)",
+              "url": "https://www.youtube.com/watch?v=3M_x3I5u_p0",
+              "type": "video"
+            },
+            {
+              "title": "AWS FSx explained | Learn in 10 minutes",
+              "url": "https://www.youtube.com/watch?v=7Gq90DqE_0A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_efs_fsx.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_databases",
+          "name": "Database Services: Relational, NoSQL, Caching & Data Warehousing",
+          "tag": "essential",
+          "description": "Set up and manage relational databases with RDS (Multi-AZ, Read Replicas) and Aurora. Explore DynamoDB for NoSQL applications, ElastiCache for in-memory caching, and Redshift for analytical data warehousing.",
+          "resources": [
+            {
+              "title": "AWS RDS for Beginners",
+              "url": "https://www.youtube.com/watch?v=vVj4w8nNq20",
+              "type": "video"
+            },
+            {
+              "title": "DynamoDB Explained in 100 Seconds",
+              "url": "https://www.youtube.com/watch?v=FDd1hA36u-M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_databases.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_aurora",
+          "name": "Amazon Aurora",
+          "tag": "essential",
+          "description": "Understand Amazon Aurora, a MySQL and PostgreSQL-compatible relational database built for the cloud, offering high performance and availability.",
+          "resources": [
+            {
+              "title": "What is Amazon Aurora?",
+              "url": "https://www.youtube.com/watch?v=pYq2y-B8J90",
+              "type": "video"
+            },
+            {
+              "title": "AWS RDS & Aurora Database Tutorial",
+              "url": "https://www.youtube.com/watch?v=KzL7u4lO2yU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_aurora.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_elasticache",
+          "name": "Amazon ElastiCache",
+          "tag": "advanced",
+          "description": "Implement in-memory caching solutions using Amazon ElastiCache (Redis and Memcached) to improve application performance and reduce database load.",
+          "resources": [
+            {
+              "title": "AWS ElastiCache for Beginners",
+              "url": "https://www.youtube.com/watch?v=qT44mH1-o9k",
+              "type": "video"
+            },
+            {
+              "title": "AWS ElastiCache Deep Dive for Redis and Memcached",
+              "url": "https://www.youtube.com/watch?v=xM_R089oGkQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_elasticache.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_redshift",
+          "name": "Amazon Redshift",
+          "tag": "advanced",
+          "description": "Explore Amazon Redshift, a fully managed, petabyte-scale data warehouse service, for complex analytical queries and business intelligence.",
+          "resources": [
+            {
+              "title": "AWS Redshift Explained: What is Amazon Redshift?",
+              "url": "https://www.youtube.com/watch?v=oE-7JbKqPkk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_redshift.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_serverless",
+          "name": "Serverless Computing: Lambda & API Gateway",
+          "tag": "essential",
+          "description": "Develop and deploy serverless functions using AWS Lambda, configure triggers, integrate with API Gateway, and understand serverless architectures.",
+          "resources": [
+            {
+              "title": "AWS Lambda - A Complete Guide",
+              "url": "https://www.youtube.com/watch?v=TSJjN-72L50",
+              "type": "video"
+            },
+            {
+              "title": "AWS API Gateway & Lambda Tutorial | Create a Serverless API",
+              "url": "https://www.youtube.com/watch?v=l_C-5-T6r94",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_serverless.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_dns_route53",
+          "name": "DNS & Traffic Management: Route 53",
+          "tag": "essential",
+          "description": "Utilize Amazon Route 53 for domain registration, various DNS record types, health checks, and advanced routing policies (e.g., Weighted, Latency, Failover).",
+          "resources": [
+            {
+              "title": "AWS Route 53 in 20 Minutes",
+              "url": "https://www.youtube.com/watch?v=S2fFz1Q1s9Y",
+              "type": "video"
+            },
+            {
+              "title": "AWS Route 53 Tutorial | What is Route 53? A Practical Introduction",
+              "url": "https://www.youtube.com/watch?v=o0_gS2y-56w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_dns_route53.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_iac",
+          "name": "Infrastructure as Code (IaC): CloudFormation & Terraform",
+          "tag": "essential",
+          "description": "Learn to define, provision, and manage AWS infrastructure resources using AWS CloudFormation templates. Explore other industry-standard IaC tools like Terraform for multi-cloud and advanced deployments.",
+          "resources": [
+            {
+              "title": "AWS CloudFormation Tutorial For Beginners",
+              "url": "https://www.youtube.com/watch?v=9g2Rk2R1lQ8",
+              "type": "video"
+            },
+            {
+              "title": "Terraform Tutorial for Beginners - Full Course (2022)",
+              "url": "https://www.youtube.com/watch?v=EXD6Yn4sXys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_iac.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_terraform",
+          "name": "Terraform for AWS",
+          "tag": "advanced",
+          "description": "Master HashiCorp Terraform for defining, provisioning, and managing AWS infrastructure as code, covering providers, resources, data sources, and modules.",
+          "resources": [
+            {
+              "title": "Terraform Crash Course - AWS Provisioning",
+              "url": "https://www.youtube.com/watch?v=Yrmm8qYc7s4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_terraform.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_containerization",
+          "name": "Containerization: ECR, ECS & EKS",
+          "tag": "advanced",
+          "description": "Understand container fundamentals and deploy containerized applications using Amazon Elastic Container Registry (ECR) for image storage, Elastic Container Service (ECS) for orchestration, and Elastic Kubernetes Service (EKS) for Kubernetes deployments.",
+          "resources": [
+            {
+              "title": "AWS ECR, ECS, Fargate - Containers on AWS Explained",
+              "url": "https://www.youtube.com/watch?v=2e10c7I7k8Y",
+              "type": "video"
+            },
+            {
+              "title": "Introduction to Amazon EKS",
+              "url": "https://www.youtube.com/watch?v=n72p4L0e9s8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_containerization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_messaging",
+          "name": "Messaging & Streaming: SQS, SNS & Kinesis",
+          "tag": "essential",
+          "description": "Implement asynchronous communication patterns using Amazon Simple Queue Service (SQS) for message queues and Simple Notification Service (SNS) for pub/sub messaging. Explore Kinesis for real-time data streaming.",
+          "resources": [
+            {
+              "title": "AWS SQS, SNS, Kinesis Explained (Theory + Demos)",
+              "url": "https://www.youtube.com/watch?v=q-0g06uJj5g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_messaging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_cdn",
+          "name": "Content Delivery Network: CloudFront",
+          "tag": "essential",
+          "description": "Distribute web content globally with low latency using Amazon CloudFront, configuring distributions, origins, caching behaviors, and security features.",
+          "resources": [
+            {
+              "title": "AWS CloudFront Explained in 10 Minutes",
+              "url": "https://www.youtube.com/watch?v=Yf90oW5K6kM",
+              "type": "video"
+            },
+            {
+              "title": "AWS CloudFront Tutorial",
+              "url": "https://www.youtube.com/watch?v=1F251mJ8b1o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_cdn.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "aws_cloud_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "id": "aws_cloud_engineer_operations",
+      "name": "Operations, Monitoring, & Automation",
+      "tag": "essential",
+      "description": "Implement robust operational practices including monitoring, logging, automation, security, and cost optimization to maintain healthy and efficient AWS environments.",
       "resources": [
-        {
-          "title": "AWS Certified Cloud Practitioner Training 2020 - Full Course (freeCodeCamp.org)",
-          "url": "https://www.youtube.com/watch?v=3hLmDS179YE",
-          "type": "video"
-        },
         {
           "title": "AWS Skill Builder",
           "url": "https://skillbuilder.aws/",
           "type": "course"
+        },
+        {
+          "title": "AWS CloudWatch Tutorial for Beginners | Monitoring AWS Resources",
+          "url": "https://www.youtube.com/watch?v=Jm0F7i4oB7o",
+          "type": "video"
+        },
+        {
+          "title": "AWS Systems Manager Tutorial | What is SSM? Run Command, Patch Manager, Session Manager",
+          "url": "https://www.youtube.com/watch?v=R9Kx8Q1_qG4",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_operations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "aws_cloud_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "aws_cloud_engineer_monitoring_logging",
+          "name": "Observability & Monitoring: CloudWatch, CloudTrail & X-Ray",
+          "tag": "essential",
+          "description": "Configure CloudWatch for metrics, logs, and alarms. Utilize CloudTrail for auditing AWS API calls and AWS X-Ray for end-to-end tracing of distributed applications to gain deep operational insights.",
           "resources": [
             {
-              "title": "AWS Well-Architected Framework",
-              "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-              "type": "article"
+              "title": "Monitoring, Logging, and Auditing on AWS: CloudWatch, CloudTrail, and X-Ray",
+              "url": "https://www.youtube.com/watch?v=e58j_M1n11o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_monitoring_logging.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "aws_cloud_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "aws_cloud_engineer_xray",
+          "name": "Distributed Tracing: AWS X-Ray",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Implement AWS X-Ray to analyze and debug production, distributed applications, providing insights into performance bottlenecks and service issues.",
           "resources": [
             {
-              "title": "AWS Documentation",
-              "url": "https://docs.aws.amazon.com/",
-              "type": "article"
+              "title": "AWS X-Ray Explained",
+              "url": "https://www.youtube.com/watch?v=gq83mRjJ8A4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_xray.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_ci_cd",
+          "name": "CI/CD with AWS Developer Tools",
+          "tag": "advanced",
+          "description": "Build automated continuous integration and continuous delivery pipelines using AWS CodeCommit, CodeBuild, CodeDeploy, and CodePipeline.",
+          "resources": [
+            {
+              "title": "AWS DevOps CI/CD Pipeline from Scratch",
+              "url": "https://www.youtube.com/watch?v=yW6P-mX1uJc",
+              "type": "video"
+            },
+            {
+              "title": "AWS CodePipeline & CodeBuild Crash Course",
+              "url": "https://www.youtube.com/watch?v=sI91-eQ8U6E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_ci_cd.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_security_best_practices",
+          "name": "Security Management & Compliance",
+          "tag": "essential",
+          "description": "Implement comprehensive security practices across AWS services. Leverage AWS security services for threat detection, configuration management, network protection, and managing encryption keys and secrets.",
+          "resources": [
+            {
+              "title": "AWS Well-Architected Framework - Security Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/security.html",
+              "type": "article"
+            },
+            {
+              "title": "AWS Identity and Access Management (IAM) - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=k_xUaYw2E8A",
+              "type": "video"
+            },
+            {
+              "title": "AWS Security Best Practices - The Ultimate Guide",
+              "url": "https://www.youtube.com/watch?v=wz-E785uQoE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_security_best_practices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_security_services_detect",
+          "name": "Threat Detection & Configuration: GuardDuty, Security Hub & Config",
+          "tag": "advanced",
+          "description": "Utilize Amazon GuardDuty for intelligent threat detection, AWS Security Hub for centralized security posture management, and AWS Config for continuous monitoring and compliance auditing of resource configurations.",
+          "resources": [
+            {
+              "title": "AWS GuardDuty, Security Hub & Config Explained",
+              "url": "https://www.youtube.com/watch?v=O11C-s_U2u8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_security_services_detect.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_security_services_protect",
+          "name": "Network & Application Protection: WAF, Shield & Firewall Manager",
+          "tag": "advanced",
+          "description": "Deploy AWS WAF (Web Application Firewall) to protect web applications from common web exploits, configure AWS Shield for DDoS protection, and manage security policies across accounts with Firewall Manager.",
+          "resources": [
+            {
+              "title": "AWS WAF Explained | What is a Web Application Firewall?",
+              "url": "https://www.youtube.com/watch?v=Fj-y5j1iC8U",
+              "type": "video"
+            },
+            {
+              "title": "AWS WAF, Shield & Firewall Manager - AWS Security & Advanced Networking Part 15",
+              "url": "https://www.youtube.com/watch?v=R9M-gJc6H7E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_security_services_protect.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_kms_secrets",
+          "name": "Key & Secret Management: KMS & Secrets Manager",
+          "tag": "essential",
+          "description": "Securely manage cryptographic keys with AWS Key Management Service (KMS) and automate the rotation, management, and retrieval of database credentials, API keys, and other secrets with AWS Secrets Manager.",
+          "resources": [
+            {
+              "title": "AWS KMS - Key Management Service explained",
+              "url": "https://www.youtube.com/watch?v=R9_W_Jb597c",
+              "type": "video"
+            },
+            {
+              "title": "AWS Secrets Manager in 5 Minutes",
+              "url": "https://www.youtube.com/watch?v=K7eF_2XjL5Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_kms_secrets.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_cost_optimization",
+          "name": "Cost Management & Optimization",
+          "tag": "advanced",
+          "description": "Learn to analyze and optimize AWS costs using services like Cost Explorer, AWS Budgets, Reserved Instances, Savings Plans, and Tagging strategies.",
+          "resources": [
+            {
+              "title": "AWS Cost Optimization: The Complete Guide",
+              "url": "https://www.youtube.com/watch?v=f2v2tqQvBwE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_cost_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_disaster_recovery",
+          "name": "High Availability & Disaster Recovery",
+          "tag": "advanced",
+          "description": "Design and implement highly available and disaster-resilient architectures using Multi-AZ deployments, backups, snapshots, and recovery strategies.",
+          "resources": [
+            {
+              "title": "AWS Well-Architected Framework - Reliability Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/reliability.html",
+              "type": "article"
+            },
+            {
+              "title": "AWS Certified Solutions Architect - Associate Full Course (SAA-C03) - Free Training",
+              "url": "https://www.youtube.com/watch?v=Ia-UEYYYZs4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_disaster_recovery.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_automation_scripting",
+          "name": "Automation & Configuration Management: Python/Boto3 & SSM",
+          "tag": "advanced",
+          "description": "Automate operational tasks using Python with Boto3 for programmatic interaction with AWS services. Leverage AWS Systems Manager (SSM) for instance management, patch management, and running automation documents across your fleet.",
+          "resources": [
+            {
+              "title": "Automate AWS with Python and Boto3",
+              "url": "https://www.youtube.com/watch?v=uK1Xf03C7uE",
+              "type": "video"
+            },
+            {
+              "title": "AWS Systems Manager Tutorial",
+              "url": "https://www.youtube.com/watch?v=x7E-d-JqTz4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_automation_scripting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_ssm",
+          "name": "AWS Systems Manager (SSM)",
+          "tag": "essential",
+          "description": "Utilize AWS Systems Manager for operational insights, simplifying resource management, automating operational tasks, and maintaining security and compliance across your AWS infrastructure.",
+          "resources": [
+            {
+              "title": "AWS Systems Manager Explained (SSM) in 10 minutes",
+              "url": "https://www.youtube.com/watch?v=6P6v6l4fD1E",
+              "type": "video"
+            },
+            {
+              "title": "AWS Systems Manager Tutorial (SSM)",
+              "url": "https://www.youtube.com/watch?v=jWJ8tH31z7w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_ssm.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_troubleshooting",
+          "name": "Troubleshooting & Incident Response",
+          "tag": "advanced",
+          "description": "Develop skills to diagnose and resolve common AWS issues, understand incident response procedures, and utilize AWS diagnostic tools.",
+          "resources": [
+            {
+              "title": "AWS Cloud Troubleshooting Basics",
+              "url": "https://www.youtube.com/watch?v=O11C-s_U2u8",
+              "type": "video"
+            },
+            {
+              "title": "AWS CloudWatch Deep Dive - Learn to Monitor Your AWS Infrastructure",
+              "url": "https://www.youtube.com/watch?v=R2g9L6K6Q48",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_troubleshooting.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "aws_cloud_engineer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "aws_cloud_engineer_projects_career",
+      "name": "Project Work & Career Readiness",
       "tag": "advanced",
-      "description": "Turn your AWS Cloud Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Apply learned skills to real-world projects, build a strong portfolio, prepare for AWS certifications, and effectively position yourself for an AWS Cloud Engineer role.",
       "resources": [
         {
           "title": "AWS Documentation",
@@ -176,36 +879,138 @@
           "title": "AWS Skill Builder",
           "url": "https://skillbuilder.aws/",
           "type": "course"
+        },
+        {
+          "title": "How to Get Started with AWS Cloud - A Cloud Engineer Roadmap",
+          "url": "https://www.youtube.com/watch?v=k_k9fF-Kq_8",
+          "type": "video"
+        },
+        {
+          "title": "Become a Cloud Engineer - Roadmap & Guide",
+          "url": "https://www.youtube.com/watch?v=5z-nS4f70gU",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_projects_career.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "aws_cloud_engineer_case_study",
-          "name": "Case Study Writing",
+          "id": "aws_cloud_engineer_project_portfolio",
+          "name": "Project: Build a Scalable Web Application on AWS",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Design and deploy a multi-tier web application using VPC, EC2, Auto Scaling, Load Balancer, RDS, S3, and implement CI/CD with AWS Developer Tools. Document the architecture, challenges, and solutions.",
           "resources": [
             {
-              "title": "AWS Documentation",
-              "url": "https://docs.aws.amazon.com/",
-              "type": "article"
+              "title": "Deploy a Scalable React App to AWS Elastic Beanstalk (freeCodeCamp.org)",
+              "url": "https://www.youtube.com/watch?v=F3P_MtrD70Q",
+              "type": "video"
+            },
+            {
+              "title": "AWS CI/CD Project - Deploy React App with CodePipeline, CodeBuild, CodeDeploy to S3 & CloudFront (freeCodeCamp.org)",
+              "url": "https://www.youtube.com/watch?v=Qf2E-e5n_lE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_project_portfolio.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "aws_cloud_engineer_project_capstone",
-          "name": "Project: AWS Cloud Engineer Portfolio Capstone",
+          "id": "aws_cloud_engineer_project_serverless_api",
+          "name": "Project: Serverless Data Processing Pipeline",
           "tag": "advanced",
-          "description": "Build a portfolio-grade AWS Cloud Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Create a serverless backend for data ingestion and processing using S3, Lambda, API Gateway, DynamoDB, and CloudWatch for monitoring.",
           "resources": [
             {
-              "title": "AWS Skill Builder",
-              "url": "https://skillbuilder.aws/",
-              "type": "course"
+              "title": "Build a Serverless API with AWS Lambda, API Gateway, DynamoDB",
+              "url": "https://www.youtube.com/watch?v=D-y-vD48y98",
+              "type": "video"
+            },
+            {
+              "title": "AWS Lambda S3 Trigger Tutorial",
+              "url": "https://www.youtube.com/watch?v=CqgS_D2dJ7M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_project_serverless_api.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_case_study",
+          "name": "Case Study & Documentation",
+          "tag": "advanced",
+          "description": "Document your projects as concise case studies, detailing problems, chosen AWS services, architectural decisions, implementation steps, and outcomes.",
+          "resources": [
+            {
+              "title": "Crafting Effective Case Studies for Your Portfolio",
+              "url": "https://aws.amazon.com/blogs/aws/tag/case-studies/",
+              "type": "article"
+            },
+            {
+              "title": "Technical Writing Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=J_jQk2Jt-7c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_case_study.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_cert_prep",
+          "name": "AWS Certification Preparation",
+          "tag": "advanced",
+          "description": "Prepare for relevant AWS certifications like AWS Certified Solutions Architect - Associate or AWS Certified SysOps Administrator - Associate to validate your skills.",
+          "resources": [
+            {
+              "title": "AWS Certifications Overview",
+              "url": "https://aws.amazon.com/certification/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Certified Solutions Architect Associate Course",
+              "url": "https://www.youtube.com/watch?v=vpnQ4yWn_lY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_cert_prep.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "aws_cloud_engineer_interview_prep",
+          "name": "Interview & Career Strategy",
+          "tag": "advanced",
+          "description": "Develop interview skills, practice technical questions, and learn to articulate your AWS project experience effectively for Cloud Engineer roles.",
+          "resources": [
+            {
+              "title": "AWS Cloud Engineer Interview Questions and Answers",
+              "url": "https://www.youtube.com/watch?v=2-25q7K4B5g",
+              "type": "video"
+            },
+            {
+              "title": "How to GET A CLOUD JOB (even with NO EXPERIENCE) | My Journey from Junior to Senior Cloud Engineer",
+              "url": "https://www.youtube.com/watch?v=FjIuHj9i85w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/aws_cloud_engineer/aws_cloud_engineer_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

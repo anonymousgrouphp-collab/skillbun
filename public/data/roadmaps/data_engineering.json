@@ -6,225 +6,1271 @@
   "tree": [
     {
       "id": "de_foundations",
-      "name": "SQL, Python, and Data Modeling",
+      "name": "Foundational Skills for Data Engineers",
       "tag": "essential",
-      "description": "Learn the languages and modeling habits used to transform raw data into trusted tables.",
+      "description": "Establish a robust base in programming, databases, version control, operating systems, and core data concepts essential for any data engineer.",
       "resources": [
+        {
+          "title": "The Data Engineering Lifecycle (Databricks)",
+          "url": "https://www.databricks.com/glossary/data-engineering-lifecycle",
+          "type": "article"
+        },
         {
           "title": "Data Engineering Course for Beginners (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=PHsC_t0j1dU",
           "type": "video"
         },
         {
-          "title": "Complete Roadmap to Learn Data Engineering (Anshul Gupta)",
-          "url": "https://www.youtube.com/watch?v=aPzPqxdNuoI",
+          "title": "SQL Tutorial - Full Database Course for Beginners (12 hours) (freeCodeCamp.org)",
+          "url": "https://www.youtube.com/watch?v=p3qvj9hO_bo",
           "type": "video"
         },
         {
-          "title": "PostgreSQL Tutorial",
-          "url": "https://www.postgresql.org/docs/current/tutorial.html",
-          "type": "article"
-        },
-        {
-          "title": "Python for Everybody",
-          "url": "https://www.py4e.com/",
-          "type": "course"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "de_sql",
-          "name": "Advanced SQL",
+          "id": "de_python_essentials",
+          "name": "Python Programming Essentials",
           "tag": "essential",
-          "description": "Master joins, windows, CTEs, indexes, query plans, transactions, and data quality checks.",
+          "description": "Master Python fundamentals, including data structures, algorithms, functional programming, OOP basics, error handling, and writing clean, modular code. Introduce relevant libraries like Pandas, NumPy, and requests for data manipulation and API interaction.",
+          "resources": [
+            {
+              "title": "Python for Everybody Specialization",
+              "url": "https://www.coursera.org/specializations/python",
+              "type": "course"
+            },
+            {
+              "title": "Effective Python: 90 Specific Ways to Write Better Python",
+              "url": "https://www.oreilly.com/library/view/effective-python-90/9780134853982/",
+              "type": "article"
+            },
+            {
+              "title": "Pandas User Guide",
+              "url": "https://pandas.pydata.org/docs/user_guide/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Learn Python - Full Course for Beginners [Tutorial]",
+              "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_python_essentials.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_advanced_sql_rdbms",
+          "name": "Advanced SQL & Relational Databases",
+          "tag": "essential",
+          "description": "Deepen SQL proficiency with complex queries, window functions, CTEs, performance optimization (indexing, query plans), transactions, and understand RDBMS concepts (ACID, normalization, denormalization). Work with popular RDBMS like PostgreSQL or MySQL.",
           "resources": [
             {
               "title": "Mode SQL Tutorial",
               "url": "https://mode.com/sql-tutorial/",
               "type": "course"
+            },
+            {
+              "title": "PostgreSQL Tutorial",
+              "url": "https://www.postgresql.org/docs/current/tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "SQL Performance Explained",
+              "url": "https://use-the-index-luke.com/",
+              "type": "article"
+            },
+            {
+              "title": "SQL Window Functions Tutorial - FULL COURSE for Beginners & Advanced Users",
+              "url": "https://www.youtube.com/watch?v=tkcI4R1_c3s",
+              "type": "video"
+            },
+            {
+              "title": "Database Normalization Explained - 1NF, 2NF, 3NF, 4NF, BCNF, 5NF",
+              "url": "https://www.youtube.com/watch?v=TK91F0w6B0k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_advanced_sql_rdbms.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "de_modeling",
-          "name": "Dimensional Modeling",
+          "id": "de_git_version_control",
+          "name": "Version Control with Git",
           "tag": "essential",
-          "description": "Design facts, dimensions, slowly changing dimensions, and analytics-friendly warehouse models.",
+          "description": "Learn Git for collaborative development, including branching strategies (GitFlow, GitHub Flow), merging, rebasing, pull requests, resolving conflicts, and managing code repositories.",
+          "resources": [
+            {
+              "title": "Git - The Simple Guide",
+              "url": "https://rogerdudler.github.io/git-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Atlassian Git Tutorials",
+              "url": "https://www.atlassian.com/git/tutorials",
+              "type": "article"
+            },
+            {
+              "title": "Git and GitHub for Beginners - Crash Course",
+              "url": "https://www.youtube.com/watch?v=RqvQY2WJ1p4",
+              "type": "video"
+            },
+            {
+              "title": "Learn Git In 15 Minutes",
+              "url": "https://www.youtube.com/watch?v=HVsyGzCgS_4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_git_version_control.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_linux_shell_basics",
+          "name": "Linux & Shell Scripting Basics",
+          "tag": "essential",
+          "description": "Familiarize with Linux command line for navigating file systems, managing permissions, common utilities (grep, sed, awk), process management, and writing basic shell scripts for automating data-related tasks.",
+          "resources": [
+            {
+              "title": "Linux Command Line Basics (Ubuntu Community)",
+              "url": "https://ubuntu.com/tutorials/command-line-for-beginners",
+              "type": "article"
+            },
+            {
+              "title": "Bash Scripting Tutorial",
+              "url": "https://ryanstutorials.net/bash-scripting-tutorial/",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Command Line (Book)",
+              "url": "https://linuxcommand.org/tlcl.php",
+              "type": "article"
+            },
+            {
+              "title": "Linux Command Line Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=R5g1K2f5hQ4",
+              "type": "video"
+            },
+            {
+              "title": "Bash Scripting Full Course 2023",
+              "url": "https://www.youtube.com/watch?v=e7M1M3QY6t0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_linux_shell_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_networking_os_fundamentals",
+          "name": "Networking & OS Fundamentals",
+          "tag": "essential",
+          "description": "Understand fundamental networking concepts (TCP/IP, HTTP/HTTPS, DNS, Load Balancing) and operating system principles (processes, threads, memory management, file systems, I/O) crucial for distributed systems, cloud computing, and troubleshooting data infrastructure.",
+          "resources": [
+            {
+              "title": "Computer Networking: A Top-Down Approach (Book)",
+              "url": "https://www.pearson.com/us/higher-education/program/Kurose-Computer-Networking-A-Top-Down-Approach-8th-Edition/PGM335805.html",
+              "type": "article"
+            },
+            {
+              "title": "Operating Systems: Three Easy Pieces",
+              "url": "http://pages.cs.wisc.edu/~remzi/OSTEP/",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Course - Network Fundamentals for Beginners",
+              "url": "https://www.youtube.com/watch?v=J3L0g1bV504",
+              "type": "video"
+            },
+            {
+              "title": "Operating Systems Full Course | Operating System Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=gXplFm_qfQk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_networking_os_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_data_modeling_warehousing",
+      "name": "Data Modeling & Warehousing",
+      "tag": "essential",
+      "description": "Learn to design efficient and robust data models for analytical workloads and understand the architecture of modern data warehouses, data lakes, and lakehouses.",
+      "resources": [
+        {
+          "title": "The Data Warehouse Toolkit (Kimball Group)",
+          "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-books/data-warehouse-toolkit-3rd-edition/",
+          "type": "article"
+        },
+        {
+          "title": "Data Modeling with ERDs",
+          "url": "https://www.lucidchart.com/pages/data-modeling",
+          "type": "article"
+        },
+        {
+          "title": "Database Design Course - Learn to create a database from scratch",
+          "url": "https://www.youtube.com/watch?v=ztNFc42kQys",
+          "type": "video"
+        },
+        {
+          "title": "Data Warehousing Tutorial for Beginners | Data Warehousing Concepts | Data Engineering | Simplilearn",
+          "url": "https://www.youtube.com/watch?v=0h6C9c0dJ7g",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_data_modeling_warehousing.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_dimensional_schema",
+          "name": "Dimensional Modeling & Schema Design",
+          "tag": "essential",
+          "description": "Master dimensional modeling concepts: facts, dimensions, slowly changing dimensions (SCDs Type 1-3), star/snowflake schemas, and data vault modeling for creating analytics-friendly and scalable data warehouses. Understand surrogate keys and grain.",
           "resources": [
             {
               "title": "dbt Analytics Engineering Guide",
               "url": "https://docs.getdbt.com/docs/introduction",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Dimensional Modeling",
+              "url": "https://www.kimballgroup.com/data-warehouse-business-intelligence-books/data-warehouse-toolkit-3rd-edition/dimensional-modeling-techniques/",
+              "type": "article"
+            },
+            {
+              "title": "Data Vault Modeling Explained",
+              "url": "https://datavaultalliance.com/what-is-data-vault/",
+              "type": "article"
+            },
+            {
+              "title": "What is Dimensional Modeling? Star Schema & Snowflake Schema | Data Warehousing Tutorial | Simplilearn",
+              "url": "https://www.youtube.com/watch?v=F_f0h9Uq_oU",
+              "type": "video"
+            },
+            {
+              "title": "Slowly Changing Dimensions (SCD) Types Explained",
+              "url": "https://www.youtube.com/watch?v=sK1q_i554yU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_dimensional_schema.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "de_data_lakehouse",
+          "name": "Data Lake & Data Lakehouse Architectures",
+          "tag": "essential",
+          "description": "Understand the concepts and evolution of data lakes, optimal storage strategies (e.g., separating raw, processed, curated zones), and the emerging data lakehouse paradigm with platforms and open formats like Delta Lake, Apache Hudi, or Apache Iceberg.",
+          "resources": [
+            {
+              "title": "What is a Data Lakehouse? (Databricks)",
+              "url": "https://www.databricks.com/glossary/data-lakehouse",
+              "type": "article"
+            },
+            {
+              "title": "Apache Parquet Documentation",
+              "url": "https://parquet.apache.org/",
+              "type": "article"
+            },
+            {
+              "title": "Delta Lake Documentation",
+              "url": "https://delta.io/",
+              "type": "article"
+            },
+            {
+              "title": "Data Lake vs Data Warehouse Explained (What's the Difference?)",
+              "url": "https://www.youtube.com/watch?v=F0s3k_tX0uA",
+              "type": "video"
+            },
+            {
+              "title": "Data Lakehouse Architecture Explained | Delta Lake, Iceberg, Hudi",
+              "url": "https://www.youtube.com/watch?v=Y8kC8a5-m6w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_lakehouse.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_cloud_data_warehouses_deep_dive",
+          "name": "Cloud Data Warehouses Deep Dive",
+          "tag": "essential",
+          "description": "Dive deeper into leading cloud data warehouse solutions (e.g., Snowflake, Google BigQuery, AWS Redshift, Azure Synapse Analytics), exploring their architecture, columnar storage, query optimization, cost management, and security features.",
+          "resources": [
+            {
+              "title": "Snowflake Data Cloud Overview",
+              "url": "https://www.snowflake.com/en/",
+              "type": "article"
+            },
+            {
+              "title": "Google BigQuery Documentation",
+              "url": "https://cloud.google.com/bigquery/docs",
+              "type": "article"
+            },
+            {
+              "title": "AWS Redshift Getting Started",
+              "url": "https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html",
+              "type": "article"
+            },
+            {
+              "title": "What is a Data Warehouse? Explained in simple terms",
+              "url": "https://www.youtube.com/watch?v=zJg7b64h7Bw",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Data Warehouses Explained: BigQuery, Snowflake, Redshift & Synapse Analytics",
+              "url": "https://www.youtube.com/watch?v=F_S-d9B5U8c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_cloud_data_warehouses_deep_dive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_nosql_databases_concepts",
+          "name": "NoSQL Databases Concepts",
+          "tag": "essential",
+          "description": "Explore various NoSQL database types (Key-Value, Document, Column-Family, Graph) and their use cases in data engineering, understanding their strengths and weaknesses compared to RDBMS (e.g., MongoDB, Cassandra, Redis, DynamoDB).",
+          "resources": [
+            {
+              "title": "NoSQL Databases Explained (IBM)",
+              "url": "https://www.ibm.com/cloud/blog/nosql-database-explained/",
+              "type": "article"
+            },
+            {
+              "title": "Amazon DynamoDB Developer Guide",
+              "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "MongoDB Documentation",
+              "url": "https://www.mongodb.com/docs/",
+              "type": "article"
+            },
+            {
+              "title": "NoSQL Databases Explained - Simply Explained",
+              "url": "https://www.youtube.com/watch?v=D-vS0P1fG8I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_nosql_databases_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_data_marts_data_virtualization",
+          "name": "Data Marts & Data Virtualization",
+          "tag": "advanced",
+          "description": "Understand the role and design of data marts for focused analytical needs. Explore data virtualization techniques and tools for creating integrated, logical views over disparate data sources without physical consolidation, improving agility and data access.",
+          "resources": [
+            {
+              "title": "What are Data Marts?",
+              "url": "https://www.tableau.com/learn/articles/data-mart",
+              "type": "article"
+            },
+            {
+              "title": "Data Virtualization Explained",
+              "url": "https://www.denodo.com/en/data-virtualization-explained",
+              "type": "article"
+            },
+            {
+              "title": "Data Warehouse vs Data Mart vs Data Lake: What's the Difference?",
+              "url": "https://www.youtube.com/watch?v=F3x_lV1p31M",
+              "type": "video"
+            },
+            {
+              "title": "What is Data Virtualization? | Top 10 Data Virtualization Tools | Data Virtualization Tutorial | Simplilearn",
+              "url": "https://www.youtube.com/watch?v=p428X7uI_1I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_marts_data_virtualization.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "de_batch_processing",
-      "name": "Batch Processing",
+      "name": "Batch Data Pipelines",
       "tag": "essential",
-      "description": "Move and transform files, tables, and large datasets with reproducible jobs.",
+      "description": "Develop skills to build, optimize, and manage batch ETL/ELT pipelines for large-scale data ingestion and transformation, ensuring data quality and efficiency.",
       "resources": [
+        {
+          "title": "Designing Data-Intensive Applications",
+          "url": "https://dataintensive.net/",
+          "type": "article"
+        },
         {
           "title": "Data Engineering with Python and AI/LLMs (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=T23Bs75F7ZQ",
           "type": "video"
         },
         {
-          "title": "PySpark Overview",
-          "url": "https://spark.apache.org/docs/latest/api/python/index.html",
-          "type": "article"
+          "title": "Apache Airflow Full Course for Data Engineering",
+          "url": "https://www.youtube.com/watch?v=A_eRj1L0LgY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_batch_processing.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "de_spark",
-          "name": "Apache Spark",
+          "id": "de_etl_elt_ingestion",
+          "name": "ETL/ELT Concepts & Data Ingestion",
           "tag": "essential",
-          "description": "Use DataFrames, Spark SQL, partitioning, and cluster-aware transformations.",
+          "description": "Understand the fundamental differences and trade-offs between ETL and ELT. Learn various methods for ingesting data (e.g., file-based, API integration, database replication, Change Data Capture (CDC), web scraping) and best practices for robust data loading.",
+          "resources": [
+            {
+              "title": "ETL vs ELT - What's the Difference?",
+              "url": "https://www.stitchdata.com/resources/etl-vs-elt/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Change Data Capture (CDC)",
+              "url": "https://www.confluent.io/blog/change-data-capture-with-kafka-connect/",
+              "type": "article"
+            },
+            {
+              "title": "Data Ingestion Strategies",
+              "url": "https://www.talend.com/resources/data-ingestion-strategies/",
+              "type": "article"
+            },
+            {
+              "title": "ETL vs ELT Explained (Differences, Benefits, Use Cases) - Data Engineering Basics",
+              "url": "https://www.youtube.com/watch?v=F_f0hS57Q0E",
+              "type": "video"
+            },
+            {
+              "title": "Introduction to Data Engineering - Data Ingestion",
+              "url": "https://www.youtube.com/watch?v=D-87612f0XQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_etl_elt_ingestion.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_spark_distributed",
+          "name": "Distributed Processing with Apache Spark",
+          "tag": "essential",
+          "description": "Master Spark architecture, RDDs, DataFrames, Spark SQL, and Structured Streaming. Learn about partitioning, caching, cluster modes, fault tolerance, and performance tuning techniques for large-scale batch and near real-time processing using PySpark.",
           "resources": [
             {
               "title": "PySpark Getting Started",
               "url": "https://spark.apache.org/docs/latest/api/python/getting_started/index.html",
               "type": "article"
+            },
+            {
+              "title": "Learning Spark, 2nd Edition",
+              "url": "https://www.oreilly.com/library/view/learning-spark-2nd/9781492050032/",
+              "type": "article"
+            },
+            {
+              "title": "Apache Spark Documentation",
+              "url": "https://spark.apache.org/docs/latest/",
+              "type": "article"
+            },
+            {
+              "title": "PySpark Tutorial for Beginners - Full Course (2023)",
+              "url": "https://www.youtube.com/watch?v=F3P_MEYn5n0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_spark_distributed.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "de_dbt",
-          "name": "dbt Transformations",
+          "id": "de_dbt_transformations",
+          "name": "Data Transformation with dbt",
           "tag": "essential",
-          "description": "Build tested SQL models, sources, docs, snapshots, and repeatable data transformations.",
+          "description": "Utilize dbt (data build tool) for building modular, tested, and documented SQL models. Learn about managing data sources, defining tests, creating repeatable data transformations, and deploying them in a modern data stack with best practices.",
           "resources": [
             {
               "title": "dbt Guides",
               "url": "https://docs.getdbt.com/guides",
               "type": "article"
+            },
+            {
+              "title": "dbt Best Practices",
+              "url": "https://docs.getdbt.com/best-practices",
+              "type": "article"
+            },
+            {
+              "title": "dbt Tutorial for Beginners - Learn dbt (Data Build Tool) from Scratch",
+              "url": "https://www.youtube.com/watch?v=Xh7L6sE2B4g",
+              "type": "video"
+            },
+            {
+              "title": "The Hitchhiker's Guide to dbt!",
+              "url": "https://www.youtube.com/watch?v=0t7j6lT6yys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_dbt_transformations.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "data_engineering_practice_lab",
-          "name": "Practice: Dirty Data Cleaning Lab",
-          "tag": "advanced",
-          "description": "Clean messy CSV/API data, document assumptions, add quality checks, and publish trusted transformed tables.",
-          "resources": [],
-          "children": []
+          "id": "de_data_formats_compression",
+          "name": "Data Formats & Compression",
+          "tag": "essential",
+          "description": "Learn about various data formats (CSV, JSON, XML for raw data; Parquet, ORC, Avro for columnar and row-based storage) and compression techniques (Gzip, Snappy, Zstd) for efficient storage, fast querying, and reduced costs of large datasets in data lakes and warehouses.",
+          "resources": [
+            {
+              "title": "Apache Parquet: A Primer",
+              "url": "https://www.databricks.com/glossary/apache-parquet",
+              "type": "article"
+            },
+            {
+              "title": "ORC File Format",
+              "url": "https://orc.apache.org/",
+              "type": "article"
+            },
+            {
+              "title": "Comparison of Data Compression Algorithms",
+              "url": "https://en.wikipedia.org/wiki/Comparison_of_data_compression_algorithms",
+              "type": "article"
+            },
+            {
+              "title": "Parquet, ORC, Avro: What's the Difference for Data Engineers",
+              "url": "https://www.youtube.com/watch?v=F_fJ_2b7yP4",
+              "type": "video"
+            },
+            {
+              "title": "GZIP vs Snappy vs Zstd Explained | Compression Algorithms for Data Engineers",
+              "url": "https://www.youtube.com/watch?v=R6u_zR8XvGk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_formats_compression.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_data_cleansing_lab",
+          "name": "Practice Lab: Data Cleansing & Transformation",
+          "tag": "essential",
+          "description": "Apply learned skills to clean messy real-world datasets, identify and handle missing values, outliers, and inconsistencies. Document assumptions, implement data quality checks, and publish trusted transformed tables ready for analysis or further processing.",
+          "resources": [
+            {
+              "title": "Kaggle Datasets",
+              "url": "https://www.kaggle.com/datasets",
+              "type": "article"
+            },
+            {
+              "title": "Awesome Public Datasets",
+              "url": "https://github.com/awesomedata/awesome-public-datasets",
+              "type": "article"
+            },
+            {
+              "title": "Practical Data Cleaning with Python",
+              "url": "https://towardsdatascience.com/practical-data-cleaning-with-python-9721782252",
+              "type": "article"
+            },
+            {
+              "title": "Data Cleaning in Python with Pandas (Numpy, Matplotlib) - Full Course",
+              "url": "https://www.youtube.com/watch?v=VMj-3S1tku0",
+              "type": "video"
+            },
+            {
+              "title": "Data Cleaning Tutorial | Data Preprocessing in Machine Learning | Missing Values | Feature Scaling",
+              "url": "https://www.youtube.com/watch?v=F0S1E7tVv-4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_cleansing_lab.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "de_streaming_orchestration",
-      "name": "Streaming and Orchestration",
+      "id": "de_streaming_pipelines",
+      "name": "Streaming Data Pipelines",
       "tag": "advanced",
-      "description": "Coordinate pipelines and process events for near-real-time systems.",
+      "description": "Build and manage real-time and near-real-time data pipelines using event streaming platforms and stream processing frameworks, handling high throughput and low-latency requirements.",
       "resources": [
         {
-          "title": "Apache Kafka Quickstart",
-          "url": "https://kafka.apache.org/quickstart/",
+          "title": "Designing Data-Intensive Applications",
+          "url": "https://dataintensive.net/",
           "type": "article"
         },
         {
-          "title": "Apache Airflow Tutorials",
-          "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html",
+          "title": "The Log: What every software engineer should know about real-time data's unifying abstraction",
+          "url": "https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying-abstraction",
           "type": "article"
+        },
+        {
+          "title": "Apache Kafka Crash Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=KzVbVd4xG8E",
+          "type": "video"
+        },
+        {
+          "title": "Apache Flink Tutorial for Beginners - Full Course",
+          "url": "https://www.youtube.com/watch?v=iR8F110L0kU",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_streaming_pipelines.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "de_kafka",
-          "name": "Event Streaming",
+          "id": "de_kafka_event_streaming",
+          "name": "Event Streaming with Apache Kafka",
           "tag": "advanced",
-          "description": "Understand topics, partitions, consumers, producers, schemas, and delivery tradeoffs.",
+          "description": "Deep dive into Kafka concepts: topics, partitions, producers, consumers, consumer groups, offsets, message delivery semantics (at-least-once, exactly-once), schema registries (Avro, Protobuf), Kafka Connect for integration, and Kafka Streams for lightweight processing.",
           "resources": [
+            {
+              "title": "Apache Kafka Quickstart",
+              "url": "https://kafka.apache.org/quickstart/",
+              "type": "article"
+            },
             {
               "title": "Kafka Documentation",
               "url": "https://kafka.apache.org/documentation/",
               "type": "article"
+            },
+            {
+              "title": "Confluent Kafka Tutorials",
+              "url": "https://developer.confluent.io/tutorials/",
+              "type": "course"
+            },
+            {
+              "title": "Apache Kafka - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=KKJkC6c2w9k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_kafka_event_streaming.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "de_airflow",
-          "name": "Workflow Orchestration",
+          "id": "de_stream_processing",
+          "name": "Stream Processing Frameworks",
           "tag": "advanced",
-          "description": "Author DAGs, schedule jobs, handle retries, parameterize tasks, and monitor failures.",
+          "description": "Explore and implement stream processing with frameworks like Apache Flink or Spark Structured Streaming. Learn about windowing operations (tumbling, sliding, session), stateful stream processing, event time vs. processing time, and fault tolerance for real-time transformations and aggregations.",
           "resources": [
             {
-              "title": "Airflow Documentation",
-              "url": "https://airflow.apache.org/docs/",
+              "title": "Apache Flink Documentation",
+              "url": "https://flink.apache.org/docs/latest/learn/overview/",
               "type": "article"
+            },
+            {
+              "title": "Spark Structured Streaming Programming Guide",
+              "url": "https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html",
+              "type": "article"
+            },
+            {
+              "title": "Stream Processing with Apache Flink (Course)",
+              "url": "https://training.ververica.com/courses/stream-processing-with-apache-flink",
+              "type": "course"
+            },
+            {
+              "title": "Apache Spark Full Course - Learn Apache Spark in 3 Hours | Spark Structured Streaming, PySpark, Spark ML",
+              "url": "https://www.youtube.com/watch?v=Fj-E_Q3iV6U",
+              "type": "video"
+            },
+            {
+              "title": "Apache Flink Tutorial for Beginners | Learn Apache Flink Fundamentals",
+              "url": "https://www.youtube.com/watch?v=q6bT88d5750",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_stream_processing.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "de_realtime_ingestion",
+          "name": "Real-time Data Ingestion & APIs",
+          "tag": "advanced",
+          "description": "Understand how to ingest data from various real-time sources, including webhooks, message queues (e.g., AWS SQS/Kinesis, RabbitMQ, Google Pub/Sub), real-time APIs, and integrating with IoT devices for continuous data flows.",
+          "resources": [
+            {
+              "title": "AWS Kinesis Data Streams Developer Guide",
+              "url": "https://docs.aws.amazon.com/streams/latest/dev/introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "RabbitMQ Tutorials",
+              "url": "https://www.rabbitmq.com/getstarted.html",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Pub/Sub Overview",
+              "url": "https://cloud.google.com/pubsub/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Apache Kafka Tutorial for Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=ch8tI6P_d6o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_realtime_ingestion.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_event_driven_architecture_patterns",
+          "name": "Event-Driven Architecture Patterns",
+          "tag": "advanced",
+          "description": "Deepen understanding of event-driven architectures. Explore patterns such as event sourcing, Command Query Responsibility Segregation (CQRS), saga patterns, and the distinctions between publish-subscribe messaging and message queues in complex distributed systems.",
+          "resources": [
+            {
+              "title": "Event-Driven Architecture (AWS)",
+              "url": "https://aws.amazon.com/event-driven-architecture/",
+              "type": "article"
+            },
+            {
+              "title": "Microservices.io - Event Sourcing",
+              "url": "https://microservices.io/patterns/data/event-sourcing.html",
+              "type": "article"
+            },
+            {
+              "title": "Event-Driven Architecture (EDA) Explained - System Design for Beginners",
+              "url": "https://www.youtube.com/watch?v=R_Qp3hM9L90",
+              "type": "video"
+            },
+            {
+              "title": "What is Event Sourcing? - System Design Explained",
+              "url": "https://www.youtube.com/watch?v=Fq0_S-E6V3c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_event_driven_architecture_patterns.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "de_cloud_quality",
-      "name": "Cloud Warehouses and Data Quality",
-      "tag": "advanced",
-      "description": "Operate data platforms with storage, permissions, testing, lineage, cost controls, and reliable delivery.",
+      "id": "de_orchestration_monitoring",
+      "name": "Workflow Orchestration & Monitoring",
+      "tag": "essential",
+      "description": "Learn to schedule, manage, and monitor complex data workflows, ensuring reliability, data quality, and operational efficiency across diverse environments.",
       "resources": [
         {
-          "title": "BigQuery Documentation",
-          "url": "https://cloud.google.com/bigquery/docs",
+          "title": "Data Orchestration for Dummies (O'Reilly)",
+          "url": "https://www.oreilly.com/library/view/data-orchestration-for/9781071918341/",
           "type": "article"
         },
         {
-          "title": "AWS Data Engineering",
-          "url": "https://aws.amazon.com/big-data/datalakes-and-analytics/",
+          "title": "The Rise of the Data Orchestration Layer",
+          "url": "https://blog.getdbt.com/the-rise-of-the-data-orchestration-layer/",
           "type": "article"
+        },
+        {
+          "title": "Apache Airflow Tutorial - Workflow Orchestration with Python",
+          "url": "https://www.youtube.com/watch?v=A2Wp-k8j_18",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_orchestration_monitoring.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "de_quality",
-          "name": "Data Quality and Lineage",
+          "id": "de_airflow_orchestration",
+          "name": "Workflow Orchestration with Apache Airflow",
+          "tag": "essential",
+          "description": "Design and implement DAGs (Directed Acyclic Graphs), manage dependencies, schedule tasks, handle retries, parameterize workflows, and monitor job failures in Airflow. Explore different executors, sensors, and operators for complex pipeline management.",
+          "resources": [
+            {
+              "title": "Apache Airflow Tutorials",
+              "url": "https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Airflow Documentation",
+              "url": "https://airflow.apache.org/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Managed Airflow (e.g., MWAA, Cloud Composer)",
+              "url": "https://airflow.apache.org/docs/apache-airflow/stable/howto/external-services/cloud-composer.html",
+              "type": "article"
+            },
+            {
+              "title": "Apache Airflow Tutorial for Beginners | Getting Started with Airflow",
+              "url": "https://www.youtube.com/watch?v=A_c0K73tVho",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_airflow_orchestration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_docker_containerization",
+          "name": "Containerization with Docker",
+          "tag": "essential",
+          "description": "Understand Docker concepts for packaging applications and dependencies into isolated containers. Learn to build Docker images, manage containers, use Docker Compose for multi-container applications, facilitating consistent environments for development and deployment of data pipelines.",
+          "resources": [
+            {
+              "title": "Docker Get Started Guide",
+              "url": "https://docs.docker.com/get-started/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Deep Dive (Pluralsight)",
+              "url": "https://www.pluralsight.com/courses/docker-deep-dive",
+              "type": "course"
+            },
+            {
+              "title": "Docker Compose Overview",
+              "url": "https://docs.docker.com/compose/",
+              "type": "article"
+            },
+            {
+              "title": "Docker for Developers Full Course",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJhkg",
+              "type": "video"
+            },
+            {
+              "title": "Docker Crash Course For Absolute Beginners",
+              "url": "https://www.youtube.com/watch?v=pFAISX_y5QY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_docker_containerization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_cicd_for_data_pipelines",
+          "name": "CI/CD for Data Pipelines",
+          "tag": "essential",
+          "description": "Implement Continuous Integration and Continuous Delivery (CI/CD) practices for data pipelines. Learn about automated testing (unit, integration, data quality tests), code reviews, versioning data assets, and automated deployments for ensuring reliability, maintainability, and faster iteration cycles.",
+          "resources": [
+            {
+              "title": "CI/CD Pipeline for Data Engineering (Medium)",
+              "url": "https://medium.com/data-engineering-spark-ml/ci-cd-pipeline-for-data-engineering-2321855a0198",
+              "type": "article"
+            },
+            {
+              "title": "Implementing CI/CD for dbt",
+              "url": "https://docs.getdbt.com/guides/advanced/cicd",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions for CI/CD",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "What is CI/CD? Continuous Integration & Continuous Delivery",
+              "url": "https://www.youtube.com/watch?v=sc5MX70tT5Q",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial - CI/CD for Beginners",
+              "url": "https://www.youtube.com/watch?v=Xh0lD-gG9gE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_cicd_for_data_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_monitoring_logging_alerting",
+          "name": "Monitoring, Logging & Alerting",
+          "tag": "essential",
+          "description": "Implement robust monitoring for data pipelines and infrastructure, set up proactive alerting for anomalies, performance bottlenecks, and failures (e.g., Prometheus, Grafana, Datadog). Establish comprehensive logging practices (e.g., ELK stack, cloud logging services) for debugging, auditing, and operational insights.",
+          "resources": [
+            {
+              "title": "Prometheus Monitoring System",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            },
+            {
+              "title": "Grafana Documentation",
+              "url": "https://grafana.com/docs/",
+              "type": "article"
+            },
+            {
+              "title": "ELK Stack Tutorial",
+              "url": "https://www.elastic.co/what-is/elk-stack",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus & Grafana Tutorial for Beginners | Monitoring Docker",
+              "url": "https://www.youtube.com/watch?v=bP-A1C8D4y4",
+              "type": "video"
+            },
+            {
+              "title": "ELK Stack Tutorial for Beginners - Elasticsearch, Logstash, Kibana (Linux)",
+              "url": "https://www.youtube.com/watch?v=0kH8327mU0M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_monitoring_logging_alerting.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de_cloud_mlops_governance",
+      "name": "Cloud Data Platforms, MLOps & Governance",
+      "tag": "advanced",
+      "description": "Master cloud-native data services, ensure data quality and governance, and understand the data engineer's role in supporting machine learning operations and maintaining production-grade data ecosystems.",
+      "resources": [
+        {
+          "title": "AWS Data Engineering",
+          "url": "https://aws.amazon.com/big-data/datalakes-and-analytics/",
+          "type": "article"
+        },
+        {
+          "title": "Google Cloud Data Analytics Products",
+          "url": "https://cloud.google.com/data-analytics",
+          "type": "article"
+        },
+        {
+          "title": "Azure Data Platform",
+          "url": "https://azure.microsoft.com/en-us/solutions/data-platform",
+          "type": "article"
+        },
+        {
+          "title": "What is Data Engineering? | The Data Engineer's Role Explained",
+          "url": "https://www.youtube.com/watch?v=F0K4fR5zK5s",
+          "type": "video"
+        },
+        {
+          "title": "MLOps for Beginners | Deploy a Machine Learning Model with MLOps",
+          "url": "https://www.youtube.com/watch?v=sS6L1c5K7_M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/data_engineering/de_cloud_mlops_governance.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "de_cloud_ecosystems",
+          "name": "Cloud Data Platform Ecosystems (AWS/GCP/Azure)",
           "tag": "advanced",
-          "description": "Add tests, freshness checks, contracts, observability, and lineage to reduce broken dashboards.",
+          "description": "Explore and compare key data services across major cloud providers (e.g., AWS S3, Glue, Kinesis, Redshift, Athena, EMR; GCP Cloud Storage, Dataflow, BigQuery, Pub/Sub, Dataproc; Azure Data Lake, Data Factory, Synapse, Event Hubs, Databricks on Azure). Focus on service selection, integration patterns, and cost optimization for specific data workloads.",
+          "resources": [
+            {
+              "title": "AWS Glue Documentation",
+              "url": "https://docs.aws.amazon.com/glue/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Data Factory Documentation",
+              "url": "https://docs.microsoft.com/en-us/azure/data-factory/",
+              "type": "article"
+            },
+            {
+              "title": "GCP Dataflow Documentation",
+              "url": "https://cloud.google.com/dataflow/docs",
+              "type": "article"
+            },
+            {
+              "title": "AWS vs. Azure vs. GCP: In-Depth Comparison of Cloud Services",
+              "url": "https://www.youtube.com/watch?v=S2uN4j2fL2U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_cloud_ecosystems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_iac",
+          "name": "Infrastructure as Code (IaC)",
+          "tag": "advanced",
+          "description": "Learn to provision and manage cloud infrastructure using declarative tools like Terraform or AWS CloudFormation (or Azure ARM templates, GCP Deployment Manager). Focus on creating reproducible, version-controlled, and automated deployments of data infrastructure.",
+          "resources": [
+            {
+              "title": "Terraform Documentation",
+              "url": "https://www.terraform.io/docs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "AWS CloudFormation User Guide",
+              "url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure Resource Manager (ARM) Templates",
+              "url": "https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview",
+              "type": "article"
+            },
+            {
+              "title": "Terraform Course - From BEGINNER to PRO! (Create, Deploy, and Manage AWS Infrastructure)",
+              "url": "https://www.youtube.com/watch?v=FjpN08Gj0A8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_iac.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_data_quality_observability",
+          "name": "Data Quality, Observability & Lineage",
+          "tag": "advanced",
+          "description": "Implement data quality frameworks (e.g., Great Expectations, Soda Core, dbt-expectations) to define and enforce data quality rules. Build data observability practices to monitor data health, detect anomalies, and establish data lineage to track data's journey and ensure trust and reliability in data assets.",
           "resources": [
             {
               "title": "Great Expectations Documentation",
               "url": "https://docs.greatexpectations.io/docs/home/",
               "type": "article"
+            },
+            {
+              "title": "Data Observability Explained",
+              "url": "https://atlan.com/what-is-data-observability/",
+              "type": "article"
+            },
+            {
+              "title": "Data Lineage for Analytics",
+              "url": "https://www.montecarlodata.com/what-is-data-lineage",
+              "type": "article"
+            },
+            {
+              "title": "Data Quality, Observability, and Lineage Explained (Data Engineering Explained)",
+              "url": "https://www.youtube.com/watch?v=mD07-m1o1C8",
+              "type": "video"
+            },
+            {
+              "title": "Great Expectations Tutorial | Data Quality with Python",
+              "url": "https://www.youtube.com/watch?v=kC7vB0y3vFw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_quality_observability.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "de_cost_governance",
-          "name": "Cost, Governance, and Privacy",
+          "id": "de_data_governance_security",
+          "name": "Data Governance, Security & Privacy",
           "tag": "advanced",
-          "description": "Control warehouse costs, protect PII, document ownership, and apply retention and access policies.",
+          "description": "Understand data governance policies, implement robust security best practices (IAM, encryption, network security, access control), manage Personally Identifiable Information (PII), ensure compliance with regulations (GDPR, CCPA, HIPAA), and implement strategies for cloud cost optimization.",
           "resources": [
             {
-              "title": "BigQuery Best Practices",
+              "title": "BigQuery Best Practices for Cost Optimization",
               "url": "https://cloud.google.com/bigquery/docs/best-practices-performance-overview",
               "type": "article"
+            },
+            {
+              "title": "Introduction to GDPR",
+              "url": "https://gdpr-info.eu/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Security Best Practices",
+              "url": "https://aws.amazon.com/security/security-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "What is Data Governance?",
+              "url": "https://www.youtube.com/watch?v=F0S12R-Xv2Y",
+              "type": "video"
+            },
+            {
+              "title": "What is Data Privacy? (Explained with Examples)",
+              "url": "https://www.youtube.com/watch?v=7hR-2k3-t50",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_governance_security.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "de_capstone",
-          "name": "Project: Analytics Pipeline",
+          "id": "de_mlops_intro",
+          "name": "Introduction to MLOps for Data Engineers",
           "tag": "advanced",
-          "description": "Ingest public data, transform it, test it, schedule it, and publish a dashboard-ready warehouse model.",
+          "description": "Understand the data engineer's crucial role in MLOps, including preparing and curating data for model training, building robust feature engineering pipelines, managing feature stores, and deploying/monitoring data components for machine learning systems in production.",
           "resources": [
+            {
+              "title": "MLOps Community Guide",
+              "url": "https://ml-ops.org/",
+              "type": "article"
+            },
+            {
+              "title": "Feature Stores for MLOps",
+              "url": "https://www.databricks.com/glossary/feature-store",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud MLOps Reference Architecture",
+              "url": "https://cloud.google.com/architecture/mlops-basics",
+              "type": "article"
+            },
+            {
+              "title": "What is MLOps? Machine Learning Operations Explained",
+              "url": "https://www.youtube.com/watch?v=kYQ2hM8l4fQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_mlops_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_data_api_design_serving",
+          "name": "Data API Design & Serving",
+          "tag": "advanced",
+          "description": "Learn to design and implement robust data APIs (RESTful, GraphQL, gRPC) for serving transformed datasets to analytics tools, applications, or machine learning models. Focus on creating clear data contracts, ensuring efficient access, scalability, and security for data consumers.",
+          "resources": [
+            {
+              "title": "API Design Best Practices",
+              "url": "https://www.restapitutorial.com/lessons/restfulresourcedesign.html",
+              "type": "article"
+            },
+            {
+              "title": "Building REST APIs with Python Flask",
+              "url": "https://realpython.com/flask-restful-api/",
+              "type": "article"
+            },
+            {
+              "title": "GraphQL Introduction",
+              "url": "https://graphql.org/learn/",
+              "type": "article"
+            },
+            {
+              "title": "API Design Best Practices for REST APIs",
+              "url": "https://www.youtube.com/watch?v=0o_Vl_E6Kdg",
+              "type": "video"
+            },
+            {
+              "title": "What is GraphQL? A quick overview",
+              "url": "https://www.youtube.com/watch?v=PEJdCFRu_s8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_data_api_design_serving.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "de_capstone_project",
+          "name": "Capstone Project: End-to-End Data Platform",
+          "tag": "advanced",
+          "description": "Design, build, and deploy a complete data pipeline solution, encompassing data ingestion (batch/streaming), transformation, warehousing (data lakehouse), quality checks, workflow orchestration, and a serving layer (APIs or dashboards) for analytics or ML applications using cloud services. Focus on best practices, scalability, and reliability.",
+          "resources": [
+            {
+              "title": "Awesome Data Engineering Projects",
+              "url": "https://github.com/hasura/awesome-data-engineering",
+              "type": "article"
+            },
             {
               "title": "UCI Machine Learning Repository",
               "url": "https://archive.ics.uci.edu/",
               "type": "article"
+            },
+            {
+              "title": "Public Data Sets for Data Engineering (Kaggle)",
+              "url": "https://www.kaggle.com/datasets?tags=data+engineering",
+              "type": "article"
+            },
+            {
+              "title": "How to build an End-to-End Data Pipeline (with Python & AWS)",
+              "url": "https://www.youtube.com/watch?v=F3S0t4o-2kQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_engineering/de_capstone_project.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

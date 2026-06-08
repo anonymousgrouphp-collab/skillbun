@@ -1,37 +1,85 @@
 {
   "id": "ai_ml_engineer",
   "title": "AI/ML Engineer",
-  "description": "A practical path from Python and math foundations to machine learning, deep learning, LLMs, and deployable AI projects.",
+  "description": "A comprehensive roadmap from foundational Python and mathematics to advanced machine learning, deep learning, LLMs, MLOps, and deploying production-ready AI systems.",
   "format": "tree",
   "tree": [
     {
       "id": "ai_foundations",
       "name": "Programming and Math Foundations",
       "tag": "essential",
-      "description": "Build the Python, statistics, and linear algebra base needed to understand models instead of only calling APIs.",
+      "description": "Establish a robust foundation in Python programming, data manipulation, visualization, and the core mathematical concepts (linear algebra, calculus, probability, and statistics) crucial for understanding and implementing AI/ML algorithms.",
       "resources": [
-        {
-          "title": "Machine Learning for Everybody (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
-          "type": "video"
-        },
         {
           "title": "Python for Everybody",
           "url": "https://www.py4e.com/",
           "type": "course"
         },
         {
-          "title": "Khan Academy Statistics",
-          "url": "https://www.khanacademy.org/math/statistics-probability",
-          "type": "course"
+          "title": "Mathematics for Machine Learning",
+          "url": "https://mml-book.github.io/",
+          "type": "article"
+        },
+        {
+          "title": "Python for Data Science - Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=LHEXBB_hQ_o",
+          "type": "video"
+        },
+        {
+          "title": "Mathematics for Machine Learning Full Course | Linear Algebra | Calculus | Probability | & Statistics",
+          "url": "https://www.youtube.com/watch?v=LUFhQ2yTfS0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_ml_engineer/ai_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "ai_python_numpy",
-          "name": "Python, NumPy, and Pandas",
+          "id": "ai_python_fundamentals",
+          "name": "Python Programming Fundamentals",
           "tag": "essential",
-          "description": "Use notebooks, arrays, data frames, plotting, and clean code for repeatable experiments.",
+          "description": "Master core Python syntax, fundamental data structures (lists, dictionaries, sets, tuples), control flow, functions, object-oriented programming (OOP) principles, error handling, modular programming, file I/O, virtual environments, and basic command-line usage for reproducible development.",
+          "resources": [
+            {
+              "title": "Python Official Tutorial",
+              "url": "https://docs.python.org/3/tutorial/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Real Python Tutorials",
+              "url": "https://realpython.com/",
+              "type": "article"
+            },
+            {
+              "title": "Python Data Structures and Algorithms",
+              "url": "https://runestone.academy/runestone/static/pythonds/index.html",
+              "type": "course"
+            },
+            {
+              "title": "Learn Python - Full Course for Beginners [Tutorial]",
+              "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+              "type": "video"
+            },
+            {
+              "title": "Python for Beginners - Full Course [2024]",
+              "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_python_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_data_manipulation_viz",
+          "name": "Data Manipulation & Visualization",
+          "tag": "essential",
+          "description": "Learn to effectively use NumPy for numerical operations and array manipulation, Pandas for efficient data loading, cleaning, transformation (e.g., handling missing values, categorical encoding), aggregation, and merging datasets. Master Matplotlib/Seaborn for exploratory data analysis, statistical plotting, and presentation-ready visualizations.",
           "resources": [
             {
               "title": "Pandas Getting Started",
@@ -42,23 +90,107 @@
               "title": "NumPy Learn",
               "url": "https://numpy.org/learn/",
               "type": "article"
+            },
+            {
+              "title": "Matplotlib Tutorials",
+              "url": "https://matplotlib.org/stable/tutorials/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Seaborn Tutorial",
+              "url": "https://seaborn.pydata.org/tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "Learn Python for Data Analysis with NumPy, Pandas, and Matplotlib",
+              "url": "https://www.youtube.com/watch?v=r-uolx_nR0Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_data_manipulation_viz.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_math_stats",
-          "name": "Statistics and Linear Algebra",
+          "id": "ai_linear_algebra",
+          "name": "Linear Algebra for ML",
           "tag": "essential",
-          "description": "Learn vectors, matrices, probability, distributions, hypothesis testing, and evaluation metrics.",
+          "description": "Understand vectors, matrices, their operations (addition, multiplication), concepts like determinants, inverse matrices, eigenvalues, eigenvectors, and matrix decompositions (SVD, QR). These are vital for data representation, dimensionality reduction, and algorithm optimization.",
           "resources": [
             {
-              "title": "Mathematics for Machine Learning",
-              "url": "https://mml-book.github.io/",
-              "type": "article"
+              "title": "Khan Academy Linear Algebra",
+              "url": "https://www.khanacademy.org/math/linear-algebra",
+              "type": "course"
+            },
+            {
+              "title": "Linear Algebra for Machine Learning Course (with Python)",
+              "url": "https://www.youtube.com/watch?v=kYJz9b1F98c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_linear_algebra.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ai_calculus",
+          "name": "Calculus for ML",
+          "tag": "essential",
+          "description": "Grasp derivatives, gradients, partial derivatives, chain rule, and optimization techniques. Understand how these concepts are applied in loss functions and optimization algorithms like gradient descent, crucial for training machine learning models.",
+          "resources": [
+            {
+              "title": "Khan Academy Differential Calculus",
+              "url": "https://www.khanacademy.org/math/differential-calculus",
+              "type": "course"
+            },
+            {
+              "title": "3Blue1Brown - Essence of Calculus",
+              "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6gvptNAXzmK6ahxu",
+              "type": "video"
+            },
+            {
+              "title": "Calculus for Machine Learning Explained",
+              "url": "https://www.youtube.com/watch?v=qcXbX2x_XqU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_calculus.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_prob_stats",
+          "name": "Probability and Statistics for ML",
+          "tag": "essential",
+          "description": "Learn probability theory (conditional probability, Bayes' theorem), common probability distributions (Bernoulli, Binomial, Poisson, Normal), hypothesis testing, confidence intervals, and descriptive statistics (mean, median, variance, standard deviation) for data analysis and model evaluation.",
+          "resources": [
+            {
+              "title": "Khan Academy Statistics and Probability",
+              "url": "https://www.khanacademy.org/math/statistics-probability",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to Probability (MIT OpenCourseWare)",
+              "url": "https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/",
+              "type": "course"
+            },
+            {
+              "title": "Statistics and Probability Full Course || Statistics For Data Science",
+              "url": "https://www.youtube.com/watch?v=mk85_gLqK44",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_prob_stats.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
@@ -66,175 +198,683 @@
       "id": "ai_classical_ml",
       "name": "Classical Machine Learning",
       "tag": "essential",
-      "description": "Train, validate, tune, and explain supervised and unsupervised models.",
+      "description": "Dive into traditional machine learning algorithms, covering supervised and unsupervised learning, feature engineering, model validation, and basic interpretability techniques.",
       "resources": [
-        {
-          "title": "Complete Machine Learning in 6 Hours (Krish Naik)",
-          "url": "https://www.youtube.com/watch?v=JxgmHe2NyeY",
-          "type": "video"
-        },
         {
           "title": "Google Machine Learning Crash Course",
           "url": "https://developers.google.com/machine-learning/crash-course",
           "type": "course"
         },
         {
-          "title": "Scikit-learn Getting Started",
-          "url": "https://scikit-learn.org/stable/getting_started.html",
+          "title": "Scikit-learn User Guide",
+          "url": "https://scikit-learn.org/stable/user_guide.html",
           "type": "article"
+        },
+        {
+          "title": "Machine Learning by Andrew Ng (Coursera)",
+          "url": "https://www.coursera.org/learn/machine-learning",
+          "type": "course"
+        },
+        {
+          "title": "Machine Learning Full Course - Learn Machine Learning 10 Hours | Machine Learning Tutorial | Edureka",
+          "url": "https://www.youtube.com/watch?v=PPLM4zRzT9k",
+          "type": "video"
+        },
+        {
+          "title": "Machine Learning for Everybody - Full Course",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_ml_engineer/ai_classical_ml.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "ai_regression_classification",
-          "name": "Regression and Classification",
+          "id": "ai_supervised_learning",
+          "name": "Supervised Learning Algorithms",
           "tag": "essential",
-          "description": "Build baseline models, choose metrics, prevent leakage, and interpret model behavior.",
+          "description": "Explore and implement various regression (Linear, Polynomial, Ridge, Lasso, ElasticNet) and classification (Logistic Regression, SVMs, Decision Trees, K-Nearest Neighbors, Naive Bayes) models. Deep dive into ensemble methods like Random Forest, Gradient Boosting (XGBoost, LightGBM, CatBoost). Understand bias-variance trade-off, model assumptions, and practical considerations like handling imbalanced datasets.",
           "resources": [
             {
-              "title": "Google ML Classification Module",
-              "url": "https://developers.google.com/machine-learning/crash-course/classification",
+              "title": "Scikit-learn Supervised Learning",
+              "url": "https://scikit-learn.org/stable/supervised_learning.html",
+              "type": "article"
+            },
+            {
+              "title": "Applied Machine Learning (Columbia University)",
+              "url": "https://www.edx.org/course/applied-machine-learning",
               "type": "course"
+            },
+            {
+              "title": "Python Machine Learning Tutorial (Data Science)",
+              "url": "https://www.youtube.com/watch?v=oL_T0Cg_Eys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_supervised_learning.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_feature_engineering",
-          "name": "Feature Engineering and Evaluation",
+          "id": "ai_unsupervised_dr",
+          "name": "Unsupervised Learning & Dim. Reduction",
           "tag": "essential",
-          "description": "Create features, split data correctly, tune hyperparameters, and compare models fairly.",
+          "description": "Understand clustering algorithms (K-Means, Hierarchical Clustering, DBSCAN, Gaussian Mixtures) for pattern discovery and segmentation. Learn dimensionality reduction techniques (PCA, t-SNE, UMAP) for data compression, visualization, and noise reduction. Explore anomaly detection methods.",
           "resources": [
             {
-              "title": "Scikit-learn Model Selection",
+              "title": "Scikit-learn Unsupervised Learning",
+              "url": "https://scikit-learn.org/stable/unsupervised_learning.html",
+              "type": "article"
+            },
+            {
+              "title": "Towards Data Science - PCA Explained",
+              "url": "https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c",
+              "type": "article"
+            },
+            {
+              "title": "Unsupervised Machine Learning in Python Tutorial | K-Means Clustering, PCA, & More",
+              "url": "https://www.youtube.com/watch?v=Evq-t_F8t18",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_unsupervised_dr.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_feature_eng_selection",
+          "name": "Feature Engineering & Selection",
+          "tag": "essential",
+          "description": "Master techniques for creating new features, transforming existing ones (e.g., numerical scaling - standardization, normalization; categorical encoding - one-hot, label, target; handling outliers, missing values, date/time features), and selecting relevant features (e.g., filter, wrapper, embedded methods). Understand the impact of feature choices on different algorithms and model performance.",
+          "resources": [
+            {
+              "title": "Feature Engineering for Machine Learning (O'Reilly book/course)",
+              "url": "https://www.oreilly.com/library/view/feature-engineering-for/9781491953234/",
+              "type": "course"
+            },
+            {
+              "title": "Kaggle Feature Engineering Tutorials",
+              "url": "https://www.kaggle.com/learn/feature-engineering",
+              "type": "course"
+            },
+            {
+              "title": "Feature Engineering for Machine Learning Tutorial",
+              "url": "https://www.youtube.com/watch?v=F0pG70S1O7M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_feature_eng_selection.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_model_validation_hpt",
+          "name": "Model Validation & Hyperparameter Tuning",
+          "tag": "essential",
+          "description": "Implement robust model validation strategies (k-fold cross-validation, stratified cross-validation, time series cross-validation) and choose appropriate evaluation metrics for classification (accuracy, precision, recall, F1-score, ROC-AUC, PR-AUC) and regression (MAE, MSE, RMSE, R²). Optimize model hyperparameters using techniques like Grid Search, Random Search, Bayesian Optimization, and genetic algorithms.",
+          "resources": [
+            {
+              "title": "Scikit-learn Model Selection and Evaluation",
               "url": "https://scikit-learn.org/stable/model_selection.html",
               "type": "article"
+            },
+            {
+              "title": "Hyperparameter Tuning with Optuna",
+              "url": "https://optuna.org/docs/latest/",
+              "type": "article"
+            },
+            {
+              "title": "How to Evaluate and Select Your Machine Learning Models in Python with scikit-learn",
+              "url": "https://www.youtube.com/watch?v=0_u0jD2Hh78",
+              "type": "video"
+            },
+            {
+              "title": "Grid Search CV in Machine Learning | Hyperparameter Tuning | CodeWithHarry",
+              "url": "https://www.youtube.com/watch?v=F_fP45zGqj0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_model_validation_hpt.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_ml_engineer_practice_lab",
-          "name": "Practice: Model Error Analysis Lab",
+          "id": "ai_model_interpretability",
+          "name": "Model Interpretability (XAI)",
           "tag": "advanced",
-          "description": "Analyze false positives, leakage, bias, and metric tradeoffs on a real dataset before improving the model.",
-          "resources": [],
-          "children": []
+          "description": "Learn methods to understand and explain model predictions, including global interpretability (feature importance, Partial Dependence Plots (PDP), Individual Conditional Expectation (ICE) plots) and local interpretability (SHAP (SHapley Additive exPlanations), LIME (Local Interpretable Model-agnostic Explanations)). Crucial for building trust, debugging models, and ensuring fairness and regulatory compliance.",
+          "resources": [
+            {
+              "title": "Interpretable Machine Learning Book",
+              "url": "https://christophm.github.io/interpretable-ml-book/",
+              "type": "article"
+            },
+            {
+              "title": "LIME and SHAP Documentation",
+              "url": "https://github.com/marcotcr/lime#tutorials",
+              "type": "article"
+            },
+            {
+              "title": "Explainable AI (XAI) for Data Scientists with LIME and SHAP",
+              "url": "https://www.youtube.com/watch?v=s5XmS2iTf3I",
+              "type": "video"
+            },
+            {
+              "title": "XAI Explainable AI LIME SHAP With Python Hands On Implementation For Beginners",
+              "url": "https://www.youtube.com/watch?v=F0bBv_gH0h8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_model_interpretability.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_advanced_ml_project",
+          "name": "Practice: Advanced Classical ML Project",
+          "tag": "essential",
+          "description": "Apply classical ML techniques to a complex real-world dataset, focusing on end-to-end workflow from data preprocessing, rigorous feature engineering, model selection, robust validation, to performance evaluation. Participate in Kaggle competitions or complete a capstone project to demonstrate proficiency.",
+          "resources": [
+            {
+              "title": "Kaggle Learn - Intro to Machine Learning",
+              "url": "https://www.kaggle.com/learn/intro-to-machine-learning",
+              "type": "course"
+            },
+            {
+              "title": "Towards Data Science - ML Projects",
+              "url": "https://towardsdatascience.com/tagged/machine-learning-project",
+              "type": "article"
+            },
+            {
+              "title": "End-to-End Machine Learning Project with Scikit-learn",
+              "url": "https://www.youtube.com/watch?v=APh1e2fGjU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_advanced_ml_project.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ai_deep_learning",
-      "name": "Deep Learning and LLMs",
+      "id": "ai_deep_learning_modern_ai",
+      "name": "Deep Learning and Modern AI",
       "tag": "advanced",
-      "description": "Move from neural network basics to transformers, computer vision, NLP, and modern generative AI workflows.",
+      "description": "Progress from foundational neural networks to advanced architectures like CNNs, RNNs, and the latest in Large Language Models (LLMs) and generative AI, covering their practical applications.",
       "resources": [
+        {
+          "title": "Deep Learning Specialization (Coursera - Andrew Ng)",
+          "url": "https://www.coursera.org/specializations/deep-learning",
+          "type": "course"
+        },
+        {
+          "title": "Fast.ai Practical Deep Learning for Coders",
+          "url": "https://course.fast.ai/",
+          "type": "course"
+        },
         {
           "title": "PyTorch for Deep Learning & Machine Learning (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
           "type": "video"
         },
         {
-          "title": "PyTorch Tutorials",
-          "url": "https://docs.pytorch.org/tutorials/",
-          "type": "article"
+          "title": "Neural Networks and Deep Learning Explained (Machine Learning Fundamentals)",
+          "url": "https://www.youtube.com/watch?v=aircAruvnKk",
+          "type": "video"
         },
         {
-          "title": "Hugging Face NLP/LLM Course",
-          "url": "https://huggingface.co/learn/nlp-course",
-          "type": "course"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_ml_engineer/ai_deep_learning_modern_ai.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "ai_pytorch_basics",
-          "name": "PyTorch Training Loops",
-          "tag": "advanced",
-          "description": "Understand tensors, datasets, autograd, training loops, checkpoints, and GPU usage.",
+          "id": "ai_nn_fundamentals",
+          "name": "Neural Network Fundamentals & PyTorch",
+          "tag": "essential",
+          "description": "Understand perceptrons, activation functions, feedforward networks, backpropagation, and various optimization algorithms (SGD, Adam, RMSprop). Implement basic NNs using PyTorch, covering tensors, datasets, data loaders, autograd, regularization techniques (dropout, batch normalization), and effective training loops. Gain familiarity with TensorFlow/Keras as an alternative.",
           "resources": [
             {
               "title": "PyTorch Learn the Basics",
               "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html",
               "type": "article"
+            },
+            {
+              "title": "Deep Learning Book (Goodfellow et al.)",
+              "url": "https://www.deeplearningbook.org/",
+              "type": "article"
+            },
+            {
+              "title": "TensorFlow 2.0 Complete Guide",
+              "url": "https://www.tensorflow.org/guide",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch for Deep Learning - Full Course",
+              "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_nn_fundamentals.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_transformers",
-          "name": "Transformers and Fine-tuning",
+          "id": "ai_cnns",
+          "name": "Convolutional Neural Networks (CNNs)",
           "tag": "advanced",
-          "description": "Use pretrained models, tokenizers, datasets, fine-tuning, evaluation, and responsible model sharing.",
+          "description": "Explore fundamental CNN architectures (LeNet, AlexNet, VGG, ResNet, Inception), convolutional layers, pooling, data augmentation, and transfer learning with pre-trained models. Apply CNNs to computer vision tasks like image classification, object detection (R-CNN, YOLO, SSD), and semantic segmentation.",
           "resources": [
             {
-              "title": "Transformers Documentation",
-              "url": "https://huggingface.co/docs/transformers/index",
+              "title": "Stanford CS231n: Convolutional Neural Networks for Visual Recognition",
+              "url": "http://cs231n.stanford.edu/",
+              "type": "course"
+            },
+            {
+              "title": "Papers With Code - Computer Vision",
+              "url": "https://paperswithcode.com/area/computer-vision",
               "type": "article"
+            },
+            {
+              "title": "Convolutional Neural Networks (CNNs) Explained",
+              "url": "https://www.youtube.com/watch?v=aircAruvnKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_cnns.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ai_rnns_sequence",
+          "name": "Recurrent Neural Networks (RNNs) & Sequence Models",
+          "tag": "advanced",
+          "description": "Learn about Recurrent Neural Networks (RNNs), Long Short-Term Memory (LSTMs), Gated Recurrent Units (GRUs), and various word embedding techniques (Word2Vec, GloVe, FastText) for processing sequential data. Understand encoder-decoder architectures for sequence-to-sequence tasks. Apply them to tasks such as sentiment analysis, machine translation, and time series prediction.",
+          "resources": [
+            {
+              "title": "Understanding LSTMs (Colah's Blog)",
+              "url": "https://colah.github.io/posts/2015-08-Understanding-LSTMs/",
+              "type": "article"
+            },
+            {
+              "title": "Stanford CS224N: Natural Language Processing with Deep Learning",
+              "url": "http://web.stanford.edu/class/cs224n/",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to Recurrent Neural Networks (RNNs) | Deep Learning with PyTorch & Python",
+              "url": "https://www.youtube.com/watch?v=0_qN-4jN7yE",
+              "type": "video"
+            },
+            {
+              "title": "Word Embeddings Explained: Word2Vec, GloVe, FastText",
+              "url": "https://www.youtube.com/watch?v=gS59P4kH_h4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_rnns_sequence.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_attention_transformers",
+          "name": "Attention Mechanisms & Transformers",
+          "tag": "advanced",
+          "description": "Deep dive into the attention mechanism, self-attention, multi-head attention, and the groundbreaking Transformer architecture. Learn to use pre-trained models (BERT, GPT, T5) and the Hugging Face ecosystem for various Natural Language Processing (NLP) tasks including text classification, question answering, and text generation.",
+          "resources": [
+            {
+              "title": "Hugging Face NLP/LLM Course",
+              "url": "https://huggingface.co/learn/nlp-course",
+              "type": "course"
+            },
+            {
+              "title": "The Illustrated Transformer",
+              "url": "http://jalammar.github.io/illustrated-transformer/",
+              "type": "article"
+            },
+            {
+              "title": "Hugging Face Transformers Course - Use Transformers for NLP",
+              "url": "https://www.youtube.com/watch?v=OVhK3X0fB9E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_attention_transformers.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_llms_generative_ai",
+          "name": "Large Language Models (LLMs) & Generative AI",
+          "tag": "advanced",
+          "description": "Explore foundational LLM architectures, pretraining objectives, prompt engineering techniques (zero-shot, few-shot, chain-of-thought, self-consistency), advanced fine-tuning techniques (LoRA, QLoRA, Reinforcement Learning from Human Feedback - RLHF), Retrieval Augmented Generation (RAG), and robust evaluation strategies for modern generative AI applications. Gain exposure to other generative models like Generative Adversarial Networks (GANs) and Variational Autoencoders (VAEs) for image and data generation.",
+          "resources": [
+            {
+              "title": "LLM University",
+              "url": "https://llm.university/",
+              "type": "course"
+            },
+            {
+              "title": "LangChain Documentation",
+              "url": "https://python.langchain.com/docs/get_started/introduction",
+              "type": "article"
+            },
+            {
+              "title": "Generative AI with Transformers (Google Cloud)",
+              "url": "https://www.coursera.org/specializations/generative-ai-with-transformers",
+              "type": "course"
+            },
+            {
+              "title": "Large Language Models (LLMs) Explained in 10 Minutes",
+              "url": "https://www.youtube.com/watch?v=zjkx0L-0V_g",
+              "type": "video"
+            },
+            {
+              "title": "Mastering Prompt Engineering for LLMs (Full Course)",
+              "url": "https://www.youtube.com/watch?v=d_fd_o7qj1Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_llms_generative_ai.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_responsible_ai",
+          "name": "Responsible AI & Ethics",
+          "tag": "advanced",
+          "description": "Understand key considerations in responsible AI development, including fairness (bias detection and mitigation), explainability, privacy-preserving techniques (federated learning, differential privacy), robustness, security, data governance, and ethical implications of AI systems. Learn to identify and address societal impacts and establish guardrails for AI deployment.",
+          "resources": [
+            {
+              "title": "Google's AI Principles",
+              "url": "https://ai.google/responsibility/principles/",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Responsible AI Resources",
+              "url": "https://www.microsoft.com/en-us/ai/responsible-ai",
+              "type": "article"
+            },
+            {
+              "title": "Responsible AI: How to create ethical and fair AI systems",
+              "url": "https://www.youtube.com/watch?v=JtLq_3i4g0c",
+              "type": "video"
+            },
+            {
+              "title": "What is AI Ethics? (And why you should care)",
+              "url": "https://www.youtube.com/watch?v=oVwRkM3qN0A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_responsible_ai.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ai_mlops",
-      "name": "MLOps and Portfolio",
+      "id": "ai_mlops_deployment_portfolio",
+      "name": "MLOps, Deployment & Portfolio",
       "tag": "advanced",
-      "description": "Package models, serve predictions, track experiments, monitor quality, and build interview-ready projects.",
+      "description": "Learn to design, build, deploy, monitor, and maintain machine learning systems in production. Develop an industry-standard portfolio and prepare for ML engineering interviews.",
       "resources": [
         {
-          "title": "MLflow Documentation",
-          "url": "https://mlflow.org/docs/latest/index.html",
+          "title": "MLOps Community",
+          "url": "https://mlops.community/",
           "type": "article"
         },
         {
-          "title": "FastAPI Tutorial",
-          "url": "https://fastapi.tiangolo.com/tutorial/",
+          "title": "Made With ML - MLOps",
+          "url": "https://madewithml.com/",
+          "type": "course"
+        },
+        {
+          "title": "Practical MLOps (Databricks/O'Reilly)",
+          "url": "https://www.databricks.com/resources/ebooks/practical-mlops",
           "type": "article"
+        },
+        {
+          "title": "MLOps Tutorial for Beginners | Full Course",
+          "url": "https://www.youtube.com/watch?v=Nn1p2U2K_90",
+          "type": "video"
+        },
+        {
+          "title": "Build & Deploy a Machine Learning Model (TensorFlow.js & Python Flask)",
+          "url": "https://www.youtube.com/watch?v=kC7xR7qB454",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_ml_engineer/ai_mlops_deployment_portfolio.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "ai_model_serving",
-          "name": "Model APIs and Deployment",
+          "id": "ai_ml_system_design",
+          "name": "ML System Design & Architecture",
           "tag": "advanced",
-          "description": "Serve a model through an API, add validation, containerize it, and document the inference contract.",
+          "description": "Understand principles for designing scalable, reliable, and efficient ML systems, including data ingestion pipelines, feature stores, model registries, online vs. batch inference patterns, API design for serving, and system architecture considerations for different use cases (e.g., real-time predictions, recommendation engines).",
           "resources": [
+            {
+              "title": "Designing Machine Learning Systems Book",
+              "url": "https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/",
+              "type": "article"
+            },
+            {
+              "title": "Grokking Machine Learning System Design",
+              "url": "https://www.educative.io/courses/grokking-machine-learning-system-design",
+              "type": "course"
+            },
+            {
+              "title": "Machine Learning System Design Interview Course",
+              "url": "https://www.youtube.com/watch?v=Ty-U9f_1D6E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_ml_system_design.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_model_deployment_serving",
+          "name": "Model Deployment & Serving",
+          "tag": "advanced",
+          "description": "Build and expose machine learning models via RESTful APIs using frameworks like FastAPI or Flask. Containerize applications with Docker and orchestrate with Docker Compose. Understand concepts of deploying to cloud platforms (e.g., AWS Sagemaker, GCP Vertex AI, Azure ML, or general compute like EC2, GKE, AKS) and leveraging Kubernetes for scalable and resilient serving. Explore serverless options (AWS Lambda, Google Cloud Functions).",
+          "resources": [
+            {
+              "title": "FastAPI Tutorial",
+              "url": "https://fastapi.tiangolo.com/tutorial/",
+              "type": "article"
+            },
             {
               "title": "Docker Get Started",
               "url": "https://docs.docker.com/get-started/",
               "type": "article"
+            },
+            {
+              "title": "Kubernetes Basics",
+              "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+              "type": "article"
+            },
+            {
+              "title": "Deploy a Machine Learning Model with FastAPI and Docker",
+              "url": "https://www.youtube.com/watch?v=J_jQ9rXg_r8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_model_deployment_serving.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_interview_readiness",
-          "name": "ML Interviews and Experiment Reports",
+          "id": "ai_experiment_tracking_versioning",
+          "name": "Experiment Tracking & Versioning",
           "tag": "advanced",
-          "description": "Practice ML system design, model tradeoff explanations, error analysis, and concise experiment reports.",
+          "description": "Implement tools like MLflow, DVC (Data Version Control), or Weights & Biases for tracking experiments, managing datasets and model versions, and ensuring reproducibility of results. Master code version control with Git and understand best practices for branching, merging, and pull requests in an ML context. Integrate with CI/CD systems.",
           "resources": [
             {
-              "title": "Made With ML - MLOps",
-              "url": "https://madewithml.com/",
-              "type": "course"
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html",
+              "type": "article"
+            },
+            {
+              "title": "DVC Get Started",
+              "url": "https://dvc.org/doc/start",
+              "type": "article"
+            },
+            {
+              "title": "Weights & Biases Quickstart",
+              "url": "https://docs.wandb.ai/quickstart",
+              "type": "article"
+            },
+            {
+              "title": "MLflow Complete Tutorial (Tracking, Projects, Models, Registry)",
+              "url": "https://www.youtube.com/watch?v=x_uWk0D0M54",
+              "type": "video"
+            },
+            {
+              "title": "How to Version Control Your Data and Models for Machine Learning with DVC",
+              "url": "https://www.youtube.com/watch?v=e_4XqjFwJt0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_experiment_tracking_versioning.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ai_capstone",
-          "name": "Project: End-to-end AI App",
+          "id": "ai_model_monitoring",
+          "name": "Model Monitoring & Maintenance",
           "tag": "advanced",
-          "description": "Build a dataset-to-deployment project with a README, metrics, limitations, and demo UI.",
+          "description": "Set up continuous monitoring for deployed models to detect data drift, concept drift, performance degradation, and operational issues. Implement alerting mechanisms, build dashboards (e.g., with Grafana, Prometheus), analyze logs, and design automated retraining strategies. Understand A/B testing, canary deployments, and shadow deployments for model updates and improvements.",
+          "resources": [
+            {
+              "title": "Evidently AI Documentation",
+              "url": "https://docs.evidently.ai/",
+              "type": "article"
+            },
+            {
+              "title": "Why ML Monitoring Is Crucial",
+              "url": "https://www.datarobot.com/wiki/ml-monitoring/",
+              "type": "article"
+            },
+            {
+              "title": "MLOps Tutorial | Machine Learning Operations for Beginners",
+              "url": "https://www.youtube.com/watch?v=kYJ0_l1R58o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_model_monitoring.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_end_to_end_mlops",
+          "name": "Project: End-to-End MLOps Pipeline",
+          "tag": "advanced",
+          "description": "Develop a complete AI application from data ingestion and processing to model training, deployment, and monitoring, incorporating MLOps best practices. Implement CI/CD pipelines for ML, automated testing (unit, integration, model validation), and showcase the project with a robust README, clear documentation, and an interactive demo UI (e.g., Streamlit, Gradio).",
           "resources": [
             {
               "title": "Gradio Quickstart",
               "url": "https://www.gradio.app/guides/quickstart",
               "type": "article"
+            },
+            {
+              "title": "Streamlit Documentation",
+              "url": "https://docs.streamlit.io/",
+              "type": "article"
+            },
+            {
+              "title": "Awesome MLOps Projects",
+              "url": "https://github.com/visenger/awesome-mlops-projects",
+              "type": "article"
+            },
+            {
+              "title": "MLOps Project Tutorial - Deploy a Machine Learning Model with AWS, Docker, and GitHub Actions",
+              "url": "https://www.youtube.com/watch?v=kYJvLp5bK9A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_end_to_end_mlops.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ai_career_interview_prep",
+          "name": "Career & Interview Preparation",
+          "tag": "advanced",
+          "description": "Prepare for ML Engineering and Data Scientist roles by building a compelling portfolio of diverse projects, crafting an impactful resume and LinkedIn profile, mastering technical (coding, ML fundamentals) and behavioral interview questions, practicing ML system design discussions, and networking effectively. Understand different career paths and required skill sets in the AI/ML industry.",
+          "resources": [
+            {
+              "title": "Cracking the Coding Interview (for general tech)",
+              "url": "https://www.crackingthecodinginterview.com/",
+              "type": "article"
+            },
+            {
+              "title": "ML System Design Interview Book",
+              "url": "https://www.amazon.com/Machine-Learning-System-Design-Interview/dp/B0B5P21YQJ",
+              "type": "article"
+            },
+            {
+              "title": "AI/ML Interview Questions",
+              "url": "https://www.interviewquery.com/p/machine-learning-interview-questions",
+              "type": "article"
+            },
+            {
+              "title": "How To Get A Data Science Job (Even If You Have No Experience)",
+              "url": "https://www.youtube.com/watch?v=FjI5jY-Q0f8",
+              "type": "video"
+            },
+            {
+              "title": "ML System Design Interview: A Complete Guide",
+              "url": "https://www.youtube.com/watch?v=k_jHml2K9j4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_ml_engineer/ai_career_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

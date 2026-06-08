@@ -3,6 +3,8 @@ import { useMemo, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../components/AuthProvider';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import './roadmap.css';
 
 function isSafeUrl(url) {
@@ -114,6 +116,7 @@ export default function GameMap({ roadmap, slug }) {
   const [expanded, setExpanded] = useState(null);
   const [confetti, setConfetti] = useState(null);
   const [progressNotice, setProgressNotice] = useState('');
+  const [selectedDocNode, setSelectedDocNode] = useState(null);
 
   const roadmapTree = useMemo(() => normalizeRoadmapTree(roadmap), [roadmap]);
   const allNodes = flattenTree(roadmapTree);
@@ -231,10 +234,35 @@ export default function GameMap({ roadmap, slug }) {
                   <div className="sk-res-section">
                     <h4>📚 Resources</h4>
                     {node.resources.filter(r => isSafeUrl(r.url)).map((r, i) => (
-                      <a href={r.url} target="_blank" rel="noopener noreferrer" className="sk-res" key={i} onClick={e => e.stopPropagation()}>
-                        <span className="sk-res-type">{r.type === 'video' ? '📺' : '📖'}</span>
+                      <a
+                        href={r.url}
+                        target={r.type === 'doc' ? undefined : "_blank"}
+                        rel="noopener noreferrer"
+                        className="sk-res"
+                        key={i}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (r.type === 'doc') {
+                            e.preventDefault();
+                            setSelectedDocNode({
+                              topicId: node.id,
+                              topicName: node.name,
+                              topicDesc: node.description,
+                              roadmapTitle: roadmap.title,
+                              docUrl: r.url,
+                              resources: node.resources,
+                              isUnlocked: isUnlocked,
+                              isDone: isDone,
+                              nodeId: node.id
+                            });
+                          }
+                        }}
+                      >
+                        <span className="sk-res-type">
+                          {r.type === 'doc' ? '📖' : r.type === 'video' ? '📺' : '🔗'}
+                        </span>
                         <span>{r.title}</span>
-                        <span className="sk-res-go">↗</span>
+                        <span className="sk-res-go">{r.type === 'doc' ? '→' : '↗'}</span>
                       </a>
                     ))}
                   </div>
@@ -355,6 +383,158 @@ export default function GameMap({ roadmap, slug }) {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* Study Guide Drawer */}
+      {selectedDocNode && (
+        <StudyGuideDrawer
+          node={selectedDocNode}
+          onClose={() => setSelectedDocNode(null)}
+          onToggleComplete={() => {
+            toggle(selectedDocNode.nodeId);
+            setSelectedDocNode(prev => prev ? { ...prev, isDone: !prev.isDone } : null);
+          }}
+          authLoading={authLoading}
+        />
+      )}
+    </div>
+  );
+}
+
+// Slide-out Study Guide Drawer Component
+function StudyGuideDrawer({ node, onClose, onToggleComplete, authLoading }) {
+  const [docHtml, setDocHtml] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    setError(false);
+
+    fetch(node.docUrl)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load study guide');
+        return res.text();
+      })
+      .then(text => {
+        if (active) {
+          const parsed = marked.parse(text);
+          const clean = DOMPurify.sanitize(parsed);
+          setDocHtml(clean);
+          setLoading(false);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        if (active) {
+          setError(true);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [node.docUrl]);
+
+  const youtubeVideos = useMemo(() => {
+    return (node.resources || []).filter(r => r.type === 'video' && (r.url.includes('youtube.com') || r.url.includes('youtu.be')));
+  }, [node.resources]);
+
+  const getEmbedUrl = (url) => {
+    try {
+      const u = new URL(url);
+      let videoId = '';
+      if (u.hostname === 'youtu.be') {
+        videoId = u.pathname.substring(1);
+      } else {
+        videoId = u.searchParams.get('v');
+      }
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    } catch {
+      return null;
+    }
+  };
+
+  return (
+    <div className="sk-drawer-overlay" onClick={onClose}>
+      <div className="sk-drawer" onClick={e => e.stopPropagation()}>
+        <div className="sk-drawer-header">
+          <div className="sk-drawer-title-info">
+            <h2>{node.topicName}</h2>
+            <span className="sk-drawer-context">{node.roadmapTitle}</span>
+          </div>
+          <button className="sk-drawer-close" onClick={onClose} aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="sk-drawer-body">
+          {/* Quick Actions */}
+          <div className="sk-drawer-actions">
+            <button
+              className={`sk-btn-mark ${node.isDone ? 'done' : ''}`}
+              disabled={!node.isUnlocked || authLoading}
+              onClick={onToggleComplete}
+            >
+              {node.isUnlocked ? (node.isDone ? '✅ Completed — Undo?' : '🎯 Mark Complete (+100 XP)') : 'Complete prerequisite first'}
+            </button>
+            <a href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai">
+              🤖 Ask Bun-Bot
+            </a>
+          </div>
+
+          {/* YouTube Video Resource */}
+          {youtubeVideos.length > 0 && (
+            <div className="sk-drawer-video-section">
+              <h3>📺 Video Tutorials</h3>
+              {youtubeVideos.map((video, idx) => {
+                const embedUrl = getEmbedUrl(video.url);
+                return (
+                  <div className="sk-video-container" key={idx}>
+                    {embedUrl ? (
+                      <iframe
+                        width="100%"
+                        height="240"
+                        src={embedUrl}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <a href={video.url} target="_blank" rel="noopener noreferrer" className="sk-res">
+                        <span className="sk-res-type">📺</span>
+                        <span>{video.title}</span>
+                        <span className="sk-res-go">↗</span>
+                      </a>
+                    )}
+                    <span className="sk-video-title">{video.title}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Study Guide Content */}
+          <div className="sk-drawer-doc-section">
+            <h3>📖 SkillBun Original Study Guide</h3>
+            {loading ? (
+              <div className="sk-drawer-loading">
+                <div className="sk-spinner"></div>
+                <p>Loading study guide...</p>
+              </div>
+            ) : error ? (
+              <p className="sk-drawer-error">Could not load the study guide. Please try again or ask Bun-Bot.</p>
+            ) : (
+              <div className="sk-markdown-content" dangerouslySetInnerHTML={{ __html: docHtml }} />
+            )}
+          </div>
         </div>
       </div>
     </div>

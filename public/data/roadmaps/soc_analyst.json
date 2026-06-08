@@ -1,201 +1,752 @@
 {
   "id": "soc_analyst",
-  "title": "SOC Analyst",
-  "description": "A roadmap for security operations: networking, logs, SIEM, alert triage, incident response, threat intelligence, detection rules, and SOC portfolio labs.",
+  "title": "SOC Analyst Career Roadmap: From Fundamentals to Advanced Threat Detection & Response",
+  "description": "A comprehensive roadmap for aspiring and current Security Operations Center (SOC) Analysts, covering essential IT foundations, networking, operating systems, log management, SIEM operations, alert triage, incident response, threat intelligence, detection engineering, threat hunting, and practical lab environments to build a robust SOC portfolio.",
   "format": "tree",
   "tree": [
     {
-      "id": "soc_foundations",
-      "name": "Security and Networking Foundations",
+      "id": "cyber_it_fundamentals",
+      "name": "Cybersecurity & IT Foundations",
       "tag": "essential",
-      "description": "Build the base needed to understand alerts: networking, Windows/Linux basics, identity, malware, web attacks, and security controls.",
+      "description": "Build a solid understanding of fundamental IT concepts including networking, operating systems, cloud basics, and core cybersecurity principles necessary for effective security analysis.",
       "resources": [
         {
-          "title": "Security Operations 101 (The Cyber Mentor)",
-          "url": "https://www.youtube.com/watch?v=56NDgBOSpUg",
+          "title": "CompTIA Network+ Certification Course",
+          "url": "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-training-course/",
+          "type": "course"
+        },
+        {
+          "title": "CompTIA Security+ Certification Course",
+          "url": "https://www.professormesser.com/security-plus/sy0-601/sy0-601-video/sy0-601-training-course/",
+          "type": "course"
+        },
+        {
+          "title": "Learn Linux in 5 Days (Free Code Camp)",
+          "url": "https://www.youtube.com/watch?v=ROJHDW_X10c",
           "type": "video"
         },
         {
-          "title": "How to Become a SOC Analyst (WsCube Cyber Security)",
-          "url": "https://www.youtube.com/watch?v=lcNPdxOI7PY",
-          "type": "video"
-        },
-        {
-          "title": "SOC Analyst Complete Roadmap (Hack to root)",
-          "url": "https://www.youtube.com/watch?v=q464wiBTRJE",
-          "type": "video"
-        },
-        {
-          "title": "MITRE ATT&CK",
-          "url": "https://attack.mitre.org/",
+          "title": "Introduction to Cloud Computing",
+          "url": "https://aws.amazon.com/what-is-cloud-computing/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "soc_network_os",
-          "name": "Networking and OS Logs",
+          "id": "network_os_essentials_soc",
+          "name": "Networking & Operating System Essentials for SOC",
           "tag": "essential",
-          "description": "Understand TCP/IP, DNS, HTTP, Windows Event Logs, Linux auth logs, process activity, and endpoint telemetry.",
+          "description": "Master TCP/IP, DNS, HTTP/S, common network devices, security implications of protocols, Windows internals (Event Logs, PowerShell for security), and Linux fundamentals (syslog, bash scripting for security tasks). This forms the bedrock for understanding security events and initial investigation.",
           "resources": [
+            {
+              "title": "TCP/IP Fundamentals for Security Analysts",
+              "url": "https://www.sans.org/blog/tcp-ip-fundamentals-for-security-analysts/",
+              "type": "article"
+            },
             {
               "title": "Windows Event Log Documentation",
               "url": "https://learn.microsoft.com/en-us/windows/win32/eventlog/event-logging",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "soc_attack_basics",
-          "name": "Common Attacks",
-          "tag": "essential",
-          "description": "Recognize phishing, brute force, suspicious PowerShell, malware beacons, web attacks, lateral movement, and data exfiltration.",
-          "resources": [
+            },
             {
-              "title": "OWASP Top 10",
-              "url": "https://owasp.org/www-project-top-ten/",
+              "title": "Linux Logging Explained",
+              "url": "https://www.loggly.com/blog/linux-logging-explained/",
+              "type": "article"
+            },
+            {
+              "title": "Practical Packet Analysis (Wireshark)",
+              "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+              "type": "article"
+            },
+            {
+              "title": "Nmap: Network Scanning Basics",
+              "url": "https://nmap.org/book/man.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "cloud_security_fundamentals",
+          "name": "Cloud Security Fundamentals",
+          "tag": "essential",
+          "description": "Understand core cloud computing models (IaaS, PaaS, SaaS), the shared responsibility model, and foundational cloud security concepts relevant to monitoring and incident response in cloud environments (e.g., AWS, Azure, GCP).",
+          "resources": [
+            {
+              "title": "AWS Shared Responsibility Model",
+              "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Security Best Practices",
+              "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-security",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Security Overview",
+              "url": "https://cloud.google.com/security",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "core_cybersec_concepts",
+          "name": "Core Cybersecurity Principles",
+          "tag": "essential",
+          "description": "Grasp the CIA Triad, risk management basics, vulnerability vs. exploit, common security controls (administrative, technical, physical), and authentication mechanisms like MFA, SSO, and IAM concepts.",
+          "resources": [
+            {
+              "title": "CIA Triad Explained",
+              "url": "https://www.cloudflare.com/learning/security/what-is-the-cia-triad/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Security Controls",
+              "url": "https://www.cisa.gov/resources-tools/resources/cybersecurity-framework",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Identity and Access Management (IAM)",
+              "url": "https://www.okta.com/identity-101/what-is-iam/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "soc_siem_triage",
-      "name": "SIEM and Alert Triage",
+      "id": "threat_landscape_intel",
+      "name": "Threat Landscape & Intelligence",
       "tag": "essential",
-      "description": "Use SIEM tools to search logs, validate alerts, enrich events, prioritize incidents, and write useful case notes.",
+      "description": "Learn about common attack vectors, malware types, and how to utilize threat intelligence frameworks like MITRE ATT&CK to understand and categorize adversary tactics, techniques, and procedures (TTPs).",
       "resources": [
         {
-          "title": "Splunk Search Tutorial",
-          "url": "https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial",
+          "title": "MITRE ATT&CK Framework",
+          "url": "https://attack.mitre.org/",
+          "type": "article"
+        },
+        {
+          "title": "OWASP Top 10 Web Application Security Risks",
+          "url": "https://owasp.org/www-project-top-ten/",
+          "type": "article"
+        },
+        {
+          "title": "What is Threat Intelligence?",
+          "url": "https://www.recordedfuture.com/what-is-threat-intelligence",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "soc_log_search",
-          "name": "Log Search and Correlation",
+          "id": "common_attack_vectors",
+          "name": "Common Attack Vectors & Techniques",
           "tag": "essential",
-          "description": "Search by host, user, IP, hash, process, URL, time window, event ID, and correlate across data sources.",
+          "description": "Identify and understand the mechanics of various attacks including phishing, malware (ransomware, trojans, worms), web application attacks (OWASP Top 10), network attacks (DDoS, sniffing), and common post-exploitation techniques.",
           "resources": [
             {
-              "title": "Microsoft Sentinel Documentation",
-              "url": "https://learn.microsoft.com/en-us/azure/sentinel/",
+              "title": "Malware Analysis Fundamentals Course",
+              "url": "https://www.cybrary.it/course/malware-analysis-fundamentals/",
+              "type": "course"
+            },
+            {
+              "title": "Phishing Attacks: How They Work and How to Stop Them",
+              "url": "https://www.imperva.com/learn/application-security/phishing-attacks/",
+              "type": "article"
+            },
+            {
+              "title": "DDoS Attack Types Explained",
+              "url": "https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "soc_case_management",
-          "name": "Case Notes and Escalation",
+          "id": "intro_threat_intelligence",
+          "name": "Introduction to Threat Intelligence",
           "tag": "essential",
-          "description": "Document evidence, impact, timeline, scope, false-positive reasons, next actions, and escalation paths.",
+          "description": "Explore the different types of threat intelligence (strategic, operational, tactical), understand Indicators of Compromise (IOCs) and Indicators of Attack (IOAs), and learn to apply the MITRE ATT&CK framework for threat analysis and mapping.",
           "resources": [
             {
-              "title": "NIST Incident Handling Guide",
-              "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final",
+              "title": "Using MITRE ATT&CK in Your SOC",
+              "url": "https://www.splunk.com/en_us/blog/security/using-mitre-attack-in-your-soc.html",
+              "type": "article"
+            },
+            {
+              "title": "STIX/TAXII Standards Overview",
+              "url": "https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=cti",
+              "type": "article"
+            },
+            {
+              "title": "Threat Intelligence Platforms (TIPs) Explained",
+              "url": "https://www.logrhythm.com/blog/what-is-a-threat-intelligence-platform/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "soc_analyst_practice_lab",
-          "name": "Practice: Suspicious Login Triage",
-          "tag": "advanced",
-          "description": "Investigate login logs, IP reputation, impossible travel, MFA status, device history, and escalation notes.",
-          "resources": [],
-          "children": []
+          "id": "cyber_kill_chain_frameworks",
+          "name": "Cyber Kill Chain & Unified Kill Chain",
+          "tag": "essential",
+          "description": "Understand classic attack frameworks like the Lockheed Martin Cyber Kill Chain and the Unified Kill Chain to better comprehend the stages of an adversary's operation and how to disrupt them.",
+          "resources": [
+            {
+              "title": "The Cyber Kill Chain",
+              "url": "https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html",
+              "type": "article"
+            },
+            {
+              "title": "Unified Kill Chain Overview",
+              "url": "https://www.sans.org/blog/unified-kill-chain-a-framework-for-cyber-incident-response/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "malware_analysis_intro",
+          "name": "Malware Analysis Fundamentals",
+          "tag": "essential",
+          "description": "Gain a foundational understanding of various malware types, their infection vectors, and basic static and dynamic analysis techniques to aid in identifying and triaging malware-related alerts.",
+          "resources": [
+            {
+              "title": "Practical Malware Analysis (Book)",
+              "url": "https://www.nostarch.com/malware.htm",
+              "type": "article"
+            },
+            {
+              "title": "What is a Malware Sandbox?",
+              "url": "https://www.cuckoo.sh/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "soc_detection_ir",
-      "name": "Detection Engineering and Incident Response",
-      "tag": "advanced",
-      "description": "Move from reacting to alerts toward writing detections, tuning rules, hunting threats, and improving playbooks.",
+      "id": "log_siem_operations",
+      "name": "Log Management & SIEM Operations",
+      "tag": "essential",
+      "description": "Gain proficiency in collecting, aggregating, normalizing, searching, and analyzing security logs using Security Information and Event Management (SIEM) platforms to identify anomalous activities and potential threats.",
       "resources": [
         {
-          "title": "Sigma Rules",
+          "title": "Splunk Fundamentals 1 Course",
+          "url": "https://www.splunk.com/en_us/training/free-courses/splunk-fundamentals-1.html",
+          "type": "course"
+        },
+        {
+          "title": "Microsoft Sentinel Documentation",
+          "url": "https://learn.microsoft.com/en-us/azure/sentinel/",
+          "type": "article"
+        },
+        {
+          "title": "Elastic SIEM Guide",
+          "url": "https://www.elastic.co/guide/en/security/current/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "critical_log_sources_edr_cloud",
+          "name": "Critical Log Sources & Telemetry",
+          "tag": "essential",
+          "description": "Identify and understand critical log sources from Windows (Event Logs, Sysmon), Linux (syslog, auditd), network devices (firewalls, routers, proxies), Active Directory, cloud environments (e.g., CloudTrail, Azure Activity Logs), and Endpoint Detection and Response (EDR) solutions.",
+          "resources": [
+            {
+              "title": "Sysmon for Security Monitoring",
+              "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to EDR Tools",
+              "url": "https://www.crowdstrike.com/cybersecurity-101/endpoint-security/what-is-edr/",
+              "type": "article"
+            },
+            {
+              "title": "AWS CloudTrail Event History",
+              "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-history.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "data_ingestion_normalization",
+          "name": "Data Ingestion & Normalization",
+          "tag": "essential",
+          "description": "Learn how logs are collected using various agents (e.g., Winlogbeat, rsyslog, filebeat, data connectors) and the basics of parsing, normalization, data enrichment, and data modeling (e.g., CIM, ECS) for efficient analysis in a SIEM. Understand common log formats like CEF and LEEF.",
+          "resources": [
+            {
+              "title": "Introduction to rsyslog",
+              "url": "https://www.rsyslog.com/doc/",
+              "type": "article"
+            },
+            {
+              "title": "Elastic Beats Documentation",
+              "url": "https://www.elastic.co/beats/reference/current/",
+              "type": "article"
+            },
+            {
+              "title": "Splunk Common Information Model (CIM)",
+              "url": "https://docs.splunk.com/Documentation/CIM/latest/User/Overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "siem_alerting_reporting",
+          "name": "SIEM Querying, Alerting & Reporting",
+          "tag": "essential",
+          "description": "Develop advanced search skills using SIEM query languages (e.g., SPL for Splunk, KQL for Sentinel, EQL for Elastic). Practice correlating events across diverse data sources, building effective detection rules, reducing false positives, creating dashboards, and generating reports.",
+          "resources": [
+            {
+              "title": "Splunk Search Tutorial",
+              "url": "https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial",
+              "type": "article"
+            },
+            {
+              "title": "Kusto Query Language (KQL) Tutorial",
+              "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/",
+              "type": "article"
+            },
+            {
+              "title": "Elastic Query Language (EQL) Guide",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "hands_on_siem_practice",
+          "name": "Hands-on SIEM Practice & Scenarios",
+          "tag": "essential",
+          "description": "Apply SIEM knowledge through practical exercises and simulated scenarios. Practice investigating common security incidents using a SIEM, honing skills in data exploration, alert validation, and initial analysis within different SIEM platforms.",
+          "resources": [
+            {
+              "title": "Splunk Boss of the SOC (BOTS) Practice",
+              "url": "https://www.splunk.com/en_us/training/cyber-security-games/bots-capture-the-flag.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure Sentinel Hands-on Labs",
+              "url": "https://github.com/Azure/Azure-Sentinel/tree/master/Workbooks/Labs",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alert_triage_investigation",
+      "name": "Alert Triage & Incident Investigation",
+      "tag": "essential",
+      "description": "Learn the structured process of validating, enriching, prioritizing, and responding to security alerts. Master incident documentation, timeline creation, and effective communication during an incident using established frameworks.",
+      "resources": [
+        {
+          "title": "NIST SP 800-61 Rev. 2 - Computer Security Incident Handling Guide",
+          "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final",
+          "type": "article"
+        },
+        {
+          "title": "SANS Incident Handler's Handbook",
+          "url": "https://www.sans.org/blog/the-incident-handlers-handbook/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "soc_alert_triage_process",
+          "name": "SOC Alert Triage Process",
+          "tag": "essential",
+          "description": "Understand the full lifecycle of an alert from generation to closure, including initial review, validation (true positive/false positive), severity classification, impact assessment, and initial containment steps. Learn to enrich alerts with threat intelligence and contextual data.",
+          "resources": [
+            {
+              "title": "SOC Alert Triage Best Practices",
+              "url": "https://socprime.com/blog/soc-alert-triage-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Security Onion Alert Triage Tutorial",
+              "url": "https://docs.securityonion.net/en/2.4/soca.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "incident_investigation_playbooks",
+          "name": "Incident Investigation & Playbooks",
+          "tag": "essential",
+          "description": "Investigate common incident scenarios like suspicious logins, malware infections, web attacks, and data exfiltration. Learn to follow and adapt structured incident response playbooks effectively, utilizing tools like EDR consoles, network sniffers, and sandboxes.",
+          "resources": [
+            {
+              "title": "Splunk Security Playbooks",
+              "url": "https://www.splunk.com/en_us/blog/security/security-playbooks.html",
+              "type": "article"
+            },
+            {
+              "title": "TheHive Project - Case Management",
+              "url": "https://thehive-project.org/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "network_endpoint_investigation",
+          "name": "Network & Endpoint Investigation Techniques",
+          "tag": "essential",
+          "description": "Develop skills in investigating network traffic for suspicious patterns, analyzing endpoint logs and processes, and understanding how to leverage EDR/XDR solutions for deep dives into compromised systems. Focus on specific forensic artifacts from common operating systems.",
+          "resources": [
+            {
+              "title": "Analyzing Network Traffic for Malicious Activity",
+              "url": "https://isc.sans.edu/diary/26359",
+              "type": "article"
+            },
+            {
+              "title": "Practical Windows Forensics for Analysts",
+              "url": "https://www.sans.org/blog/practical-windows-forensics/",
+              "type": "article"
+            },
+            {
+              "title": "Leveraging EDR for Incident Response",
+              "url": "https://www.crowdstrike.com/cybersecurity-101/endpoint-security/edr-for-incident-response/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "basic_digital_forensics_triage",
+          "name": "Basic Digital Forensics for Triage",
+          "tag": "essential",
+          "description": "Understand foundational concepts of digital forensics relevant to initial incident triage, including chain of custody, volatile data collection, basic disk image analysis, and memory forensics to preserve evidence for deeper analysis.",
+          "resources": [
+            {
+              "title": "Introduction to Digital Forensics",
+              "url": "https://www.cybrary.it/course/digital-forensics-fundamentals/",
+              "type": "course"
+            },
+            {
+              "title": "Volatile Data Collection Techniques",
+              "url": "https://www.sans.org/blog/incident-response-volatile-data-collection/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "incident_documentation_reporting",
+          "name": "Incident Documentation & Reporting",
+          "tag": "essential",
+          "description": "Master the art of documenting evidence, creating clear timelines, assessing impact, classifying severity, and writing comprehensive case notes and post-incident reports. Understand escalation paths and effective communication with stakeholders.",
+          "resources": [
+            {
+              "title": "Incident Reporting Best Practices",
+              "url": "https://www.sentinelone.com/cybersecurity-101/incident-report/",
+              "type": "article"
+            },
+            {
+              "title": "Practical Incident Handling & Forensics (Course)",
+              "url": "https://www.sans.org/cyber-security-courses/digital-forensics-incident-response-starter/",
+              "type": "course"
+            },
+            {
+              "title": "Creating Effective Incident Timelines",
+              "url": "https://dfir.training/dfir-resources/blogs/the-art-of-the-incident-timeline/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "threat_detection_ir_advanced",
+      "name": "Advanced Threat Detection & Incident Response",
+      "tag": "advanced",
+      "description": "Transition from reacting to alerts to proactively engineering detections, hunting for threats, and leading full incident response efforts. This includes detection rule writing, tuning, advanced investigative techniques, and leveraging automation.",
+      "resources": [
+        {
+          "title": "Sigma Rules: Generic Signature Format for SIEM Systems",
           "url": "https://sigmahq.io/",
           "type": "article"
+        },
+        {
+          "title": "YARA: The Pattern Matching Swiss Knife for Malware Researchers",
+          "url": "https://yara.readthedocs.io/en/stable/",
+          "type": "article"
+        },
+        {
+          "title": "SANS FOR508: Advanced Incident Response, Threat Hunting, and Digital Forensics",
+          "url": "https://www.sans.org/cyber-security-courses/advanced-incident-response-threat-hunting-forensics/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "soc_detection_rules",
-          "name": "Detection Rules",
+          "id": "advanced_detection_engineering",
+          "name": "Advanced Detection Engineering",
           "tag": "advanced",
-          "description": "Write Sigma/YARA-style detections, tune noisy alerts, map to ATT&CK, and test with sample telemetry.",
+          "description": "Learn to design, implement, and fine-tune robust detection rules, distinguishing between signature, behavioral, and anomaly-based detections. Map detections to MITRE ATT&CK, perform threat modeling, and understand techniques like aggregation, baselining, and machine learning for enhanced detection.",
           "resources": [
             {
-              "title": "YARA Documentation",
-              "url": "https://yara.readthedocs.io/en/stable/",
+              "title": "Practical Detection Engineering (Book/Resources)",
+              "url": "https://practicaldetectionengineering.com/",
+              "type": "article"
+            },
+            {
+              "title": "ATT&CK Navigator for Detection Coverage",
+              "url": "https://mitre-attack.github.io/attack-navigator/",
+              "type": "article"
+            },
+            {
+              "title": "Behavioral Detections for Security Operations",
+              "url": "https://www.splunk.com/en_us/blog/security/behavioral-detections.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "soc_threat_hunting",
-          "name": "Threat Hunting",
+          "id": "proactive_threat_hunting",
+          "name": "Proactive Threat Hunting Methodologies",
           "tag": "advanced",
-          "description": "Use hypotheses, indicators, baselines, timelines, ATT&CK techniques, and hunting reports.",
+          "description": "Develop proactive threat hunting skills using hypotheses, baselines, and advanced threat intelligence. Utilize various hunting frameworks (e.g., Hunt Chain), data sources, and analytical techniques to uncover hidden threats and unknown compromises within an environment.",
           "resources": [
             {
-              "title": "Elastic Security Labs",
+              "title": "Threat Hunting with Elastic Security",
               "url": "https://www.elastic.co/security-labs",
               "type": "article"
+            },
+            {
+              "title": "Cyber Threat Hunting (Book)",
+              "url": "https://www.amazon.com/Cyber-Threat-Hunting-Advanced-Analytics/dp/1119565757",
+              "type": "article"
+            },
+            {
+              "title": "The Threat Hunter's Playbook",
+              "url": "https://www.sans.org/blog/the-threat-hunters-playbook/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "advanced_incident_response_management",
+          "name": "Advanced Incident Response Management",
+          "tag": "advanced",
+          "description": "Deep dive into the complete NIST incident response lifecycle: Preparation, Identification, Containment, Eradication, Recovery, and Post-Incident Activities (lessons learned, advanced forensic analysis, legal/compliance considerations, crisis communications).",
+          "resources": [
+            {
+              "title": "NIST SP 800-61 Rev. 2 - Incident Response Lifecycle",
+              "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final",
+              "type": "article"
+            },
+            {
+              "title": "Digital Forensics & Incident Response Fundamentals",
+              "url": "https://www.cybrary.it/course/dfir-fundamentals/",
+              "type": "course"
+            },
+            {
+              "title": "SANS SEC504: Hacker Tools, Techniques, Exploits, and Incident Handling",
+              "url": "https://www.sans.org/cyber-security-courses/hacker-tools-techniques-exploits-incident-handling/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "vulnerability_threat_management",
+          "name": "Vulnerability & Threat Management",
+          "tag": "advanced",
+          "description": "Understand the lifecycle of vulnerability management, including scanning, assessment, prioritization (e.g., CVSS, EPSS), remediation tracking, and patch management. Learn how vulnerability data feeds into threat detection and risk mitigation strategies for a SOC analyst.",
+          "resources": [
+            {
+              "title": "Nessus Vulnerability Scanner Documentation",
+              "url": "https://docs.tenable.com/nessus/",
+              "type": "article"
+            },
+            {
+              "title": "Vulnerability Management Process Guide",
+              "url": "https://www.cisa.gov/resources-tools/resources/vulnerability-management-guide",
+              "type": "article"
+            },
+            {
+              "title": "Common Vulnerability Scoring System (CVSS)",
+              "url": "https://www.first.org/cvss/v3.1/user-guide",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "security_automation_orchestration",
+          "name": "Security Automation & Orchestration (SOAR)",
+          "tag": "advanced",
+          "description": "Understand the concepts of Security Orchestration, Automation, and Response (SOAR). Learn how SOAR platforms integrate with SIEM and other security tools to automate routine tasks, enrich alerts, streamline incident handling workflows, and create automated playbooks.",
+          "resources": [
+            {
+              "title": "What is SOAR?",
+              "url": "https://www.paloaltonetworks.com/cyberpedia/what-is-soar",
+              "type": "article"
+            },
+            {
+              "title": "Demisto (Cortex XSOAR) Introduction",
+              "url": "https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-10/cortex-xsoar-admin/get-started",
+              "type": "article"
+            },
+            {
+              "title": "IBM Security SOAR (Resilient) Documentation",
+              "url": "https://www.ibm.com/docs/en/spp/2.1.0?topic=getting-started-getting-started-soar",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cloud_native_detection_response",
+          "name": "Cloud-Native Detection & Response",
+          "tag": "advanced",
+          "description": "Focus on security operations within cloud environments. Understand cloud-native security services (e.g., AWS Security Hub, Azure Security Center, GCP Security Command Center), cloud log sources, serverless security, container security, and responding to incidents in a cloud-first infrastructure.",
+          "resources": [
+            {
+              "title": "AWS Security Fundamentals (Course)",
+              "url": "https://aws.amazon.com/training/digital/aws-security-fundamentals/",
+              "type": "course"
+            },
+            {
+              "title": "Azure Defender for Cloud Documentation",
+              "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/",
+              "type": "article"
+            },
+            {
+              "title": "Container Security Best Practices",
+              "url": "https://cloud.google.com/container-registry/docs/best-practices",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "malware_reverse_engineering_intro",
+          "name": "Introduction to Malware Reverse Engineering",
+          "tag": "advanced",
+          "description": "Gain a basic understanding of reverse engineering concepts and tools (e.g., Ghidra, IDA Free, x64dbg) to perform deeper analysis of suspicious binaries, extract IOCs, and understand malware functionality beyond typical sandbox reports.",
+          "resources": [
+            {
+              "title": "Beginner's Guide to Reverse Engineering (Video Series)",
+              "url": "https://www.youtube.com/playlist?list=PL_B4tD1R396P4QW5gJpX631p_P4K5P3m7",
+              "type": "video"
+            },
+            {
+              "title": "Ghidra Reverse Engineering Framework",
+              "url": "https://ghidra-sre.org/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "soc_lab_project",
-      "name": "SOC Lab and Career Readiness",
+      "id": "soc_practical_career",
+      "name": "SOC Practical Skills & Career Readiness",
       "tag": "advanced",
-      "description": "Build evidence of SOC skill with home labs, alert writeups, detection rules, reports, and interview stories.",
+      "description": "Apply learned concepts in practical lab environments, build a professional SOC portfolio, and prepare for interviews and certifications to launch and advance a successful career as a SOC Analyst.",
       "resources": [
         {
           "title": "Security Onion Documentation",
           "url": "https://docs.securityonion.net/",
           "type": "article"
+        },
+        {
+          "title": "Wazuh Documentation",
+          "url": "https://documentation.wazuh.com/",
+          "type": "article"
+        },
+        {
+          "title": "Cyber Defenders (Lab Platform)",
+          "url": "https://cyberdefenders.org/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "soc_home_lab",
-          "name": "Home Lab",
+          "id": "soc_home_lab_setup",
+          "name": "Building a SOC Home Lab",
           "tag": "advanced",
-          "description": "Run Security Onion, Splunk, Wazuh, sample logs, attack simulations, and incident response notebooks.",
+          "description": "Set up a virtualized home lab environment using tools like Security Onion, Splunk Free, Elastic Stack, or Wazuh. Practice data ingestion, alert generation, and incident investigation with simulated attacks (e.g., Atomic Red Team, Caldera).",
           "resources": [
             {
-              "title": "Wazuh Documentation",
-              "url": "https://documentation.wazuh.com/",
+              "title": "Configure a Splunk Home Lab for Blue Team",
+              "url": "https://www.youtube.com/watch?v=F_fXqJ1iO2s",
+              "type": "video"
+            },
+            {
+              "title": "Atomic Red Team - Attack Simulation",
+              "url": "https://atomicredteam.io/",
               "type": "article"
+            },
+            {
+              "title": "Setting up a Home SIEM (Elastic Stack)",
+              "url": "https://www.youtube.com/playlist?list=PLtP1t7Q1PjG8j9P_x_r-gW89_Cj4g4S5w",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "soc_project_alert_triage",
-          "name": "Project: Alert Triage Portfolio",
+          "id": "soc_portfolio_projects",
+          "name": "SOC Portfolio Projects",
           "tag": "advanced",
-          "description": "Analyze sample alerts, write case notes, build a timeline, classify severity, propose detection tuning, and publish a report.",
+          "description": "Develop a strong professional portfolio by completing practical projects such as detailed alert triage write-ups, custom detection rule development, incident response playbooks, threat hunting reports, and post-incident analysis summaries. Showcase your work on platforms like GitHub.",
           "resources": [
             {
-              "title": "Blue Team Labs Online",
+              "title": "Blue Team Labs Online (Practical Labs)",
               "url": "https://blueteamlabs.online/",
               "type": "course"
+            },
+            {
+              "title": "TryHackMe - SOC Analyst Path",
+              "url": "https://tryhackme.com/path/soc-analyst",
+              "type": "course"
+            },
+            {
+              "title": "Creating a Cybersecurity Portfolio",
+              "url": "https://cybersecuritynews.com/cybersecurity-portfolio/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "soft_skills_communication",
+          "name": "Soft Skills & Professional Communication",
+          "tag": "advanced",
+          "description": "Develop essential soft skills for a SOC analyst role, including critical thinking, problem-solving, attention to detail, teamwork, and effective communication (written and verbal) for incident reporting, stakeholder updates, and collaboration with other teams.",
+          "resources": [
+            {
+              "title": "Communication Skills for Cybersecurity Professionals",
+              "url": "https://www.sans.org/blog/communication-skills-for-cybersecurity-professionals/",
+              "type": "article"
+            },
+            {
+              "title": "Critical Thinking in Cybersecurity",
+              "url": "https://www.isc2.org/articles/Critical-Thinking-in-Cybersecurity",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "career_certification_prep",
+          "name": "Career & Certification Preparation",
+          "tag": "advanced",
+          "description": "Prepare for job interviews with common technical questions, scenario-based challenges, and behavioral questions. Understand relevant industry certifications (e.g., CompTIA CySA+, Splunk certifications, Microsoft SC-200, SANS GCIH) and strategies for continuous learning and career growth.",
+          "resources": [
+            {
+              "title": "CompTIA CySA+ Certification Exam Prep",
+              "url": "https://www.comptia.org/certifications/cysa",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft SC-200: Microsoft Security Operations Analyst",
+              "url": "https://learn.microsoft.com/en-us/certifications/exams/sc-200/",
+              "type": "article"
+            },
+            {
+              "title": "SOC Analyst Interview Questions and Answers",
+              "url": "https://www.simplilearn.com/tutorials/cyber-security-tutorial/soc-analyst-interview-questions",
+              "type": "article"
+            },
+            {
+              "title": "SANS GCIH (GIAC Certified Incident Handler)",
+              "url": "https://www.sans.org/certifications/gcih/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

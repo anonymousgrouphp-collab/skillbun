@@ -1,14 +1,154 @@
 {
   "id": "blockchain_web3",
-  "title": "Blockchain/Web3 Developer",
-  "description": "Learn blockchain fundamentals, Solidity smart contracts, Ethereum tooling, dapp frontends, testing, and security basics.",
+  "title": "Blockchain/Web3 Developer Roadmap",
+  "description": "A comprehensive roadmap to become a proficient Blockchain/Web3 Developer, covering foundational concepts, Solidity smart contract development, Ethereum ecosystem tooling, Dapp frontends, security best practices, and advanced topics, structured for industry standards.",
   "format": "tree",
   "tree": [
     {
-      "id": "web3_foundations",
-      "name": "Blockchain Foundations",
+      "id": "blockchain_web3_fundamentals",
+      "name": "Blockchain & Web3 Fundamentals",
       "tag": "essential",
-      "description": "Understand blocks, transactions, wallets, keys, gas, consensus, nodes, and what should not go on-chain.",
+      "description": "Deep dive into the core concepts, architecture, and principles underpinning blockchain technology and the broader Web3 ecosystem, establishing a strong theoretical foundation.",
+      "resources": [
+        {
+          "title": "Mastering Bitcoin (Chapter 1-3)",
+          "url": "https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/",
+          "type": "article"
+        },
+        {
+          "title": "Ethereum Whitepaper",
+          "url": "https://ethereum.org/en/whitepaper/",
+          "type": "article"
+        },
+        {
+          "title": "A beginner's guide to the blockchain",
+          "url": "https://www.youtube.com/watch?v=SSo_EIw35m4",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/blockchain_web3_fundamentals.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "dlt_cryptography_basics",
+          "name": "DLT & Cryptography Basics",
+          "tag": "essential",
+          "description": "Understand foundational cryptographic primitives like hashing (SHA-256, Keccak-256), public-key cryptography, digital signatures, Merkle trees, and basic distributed ledger concepts.",
+          "resources": [
+            {
+              "title": "Simply Explained: Hashing",
+              "url": "https://www.youtube.com/watch?v=KRd0yTzU3X0",
+              "type": "video"
+            },
+            {
+              "title": "How the Bitcoin Blockchain Works",
+              "url": "https://www.youtube.com/watch?v=J3mC3o9Q68k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/dlt_cryptography_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "blockchain_architecture_components",
+          "name": "Blockchain Architecture & Components",
+          "tag": "essential",
+          "description": "Learn about the structure of blocks, transactions, the chain data structure, network nodes, peer-to-peer communication, and an overview of consensus mechanisms (Proof-of-Work, Proof-of-Stake).",
+          "resources": [
+            {
+              "title": "Blockchain Explained Simply",
+              "url": "https://andersbrownworth.com/blockchain/",
+              "type": "article"
+            },
+            {
+              "title": "Consensus Mechanisms",
+              "url": "https://ethereum.org/en/developers/docs/consensus-mechanisms/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/blockchain_architecture_components.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "decentralization_principles_usecases",
+          "name": "Decentralization & Web3 Principles",
+          "tag": "essential",
+          "description": "Explore the core tenets of decentralization, immutability, censorship resistance, and trustlessness. Compare and contrast Web2 vs Web3 paradigms, identify key use cases, and understand current limitations.",
+          "resources": [
+            {
+              "title": "What is Web3?",
+              "url": "https://ethereum.org/en/web3/",
+              "type": "article"
+            },
+            {
+              "title": "The Promise of Decentralization",
+              "url": "https://a16z.com/2020/03/17/the-promise-of-decentralization/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/decentralization_principles_usecases.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "wallets_keys_addresses",
+          "name": "Wallets, Keys, and Addresses",
+          "tag": "essential",
+          "description": "Master the concepts of private keys, public keys, blockchain addresses, mnemonic phrases (seed phrases), and Hierarchical Deterministic (HD) wallets.",
+          "resources": [
+            {
+              "title": "How do wallets work?",
+              "url": "https://ethereum.org/en/wallets/docs/how-wallets-work/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/wallets_keys_addresses.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "blockchain_transaction_lifecycle_gas",
+          "name": "Transaction Lifecycle & Gas Model",
+          "tag": "essential",
+          "description": "Understand the journey of a transaction from creation to inclusion in a block, including transaction nonce, gas limit, gas price, transaction pool mechanics, and finalization.",
+          "resources": [
+            {
+              "title": "Ethereum Transactions Explained",
+              "url": "https://ethereum.org/en/developers/docs/transactions/",
+              "type": "article"
+            },
+            {
+              "title": "Gas and Fees",
+              "url": "https://ethereum.org/en/developers/docs/gas/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/blockchain_transaction_lifecycle_gas.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ethereum_ecosystem_evm",
+      "name": "Ethereum Ecosystem & EVM Deep Dive",
+      "tag": "essential",
+      "description": "Gain a comprehensive understanding of the Ethereum blockchain, its virtual machine, account model, and the broader ecosystem components.",
       "resources": [
         {
           "title": "Ethereum Developer Docs",
@@ -16,113 +156,686 @@
           "type": "article"
         },
         {
-          "title": "Solidity in 100 Seconds (Fireship)",
-          "url": "https://www.youtube.com/watch?v=kdvVwGrV7ec",
-          "type": "video"
+          "title": "The Ethereum Virtual Machine (EVM)",
+          "url": "https://ethereum.org/en/developers/docs/evm/",
+          "type": "article"
         },
         {
-          "title": "Bitcoin Whitepaper",
-          "url": "https://bitcoin.org/en/bitcoin-paper",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/ethereum_ecosystem_evm.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "web3_wallets",
-          "name": "Wallets and Transactions",
+          "id": "ethereum_account_model_state",
+          "name": "Ethereum Account Model & State",
           "tag": "essential",
-          "description": "Learn accounts, private keys, addresses, signatures, gas fees, and transaction lifecycle.",
+          "description": "Distinguish between Externally Owned Accounts (EOAs) and Contract Accounts. Understand the components of an account's state (nonce, balance, storageRoot, codeHash) and the global state tree.",
           "resources": [
             {
-              "title": "Ethereum Transactions",
-              "url": "https://ethereum.org/en/developers/docs/transactions/",
+              "title": "Accounts in Ethereum",
+              "url": "https://ethereum.org/en/developers/docs/accounts/",
               "type": "article"
+            },
+            {
+              "title": "World State",
+              "url": "https://ethereum.org/en/developers/docs/blocks/#world-state",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/ethereum_account_model_state.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "web3_ethereum_stack",
-          "name": "Ethereum Stack",
+          "id": "evm_architecture",
+          "name": "EVM Architecture & Opcodes",
           "tag": "essential",
-          "description": "Map clients, RPC, EVM, smart contracts, events, tokens, bridges, and scaling options.",
+          "description": "Dive into the EVM's stack-based architecture, memory, storage, call data, return data, execution environment, and the function of various opcodes.",
           "resources": [
             {
-              "title": "Intro to Ethereum Stack",
-              "url": "https://ethereum.org/en/developers/docs/ethereum-stack/",
+              "title": "Ethereum EVM Illustrated",
+              "url": "https://www.evm.codes/",
               "type": "article"
+            },
+            {
+              "title": "EVM Opcodes (EthHub)",
+              "url": "https://docs.ethhub.io/ethereum-basics/glossary/#opcodes",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/evm_architecture.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ethereum_gas_model_costs",
+          "name": "Ethereum Gas Model & Costs",
+          "tag": "essential",
+          "description": "Understand how gas measures computation, the role of gas limit, gas price, base fee (EIP-1559), priority fee, and how transaction costs are calculated and refunded.",
+          "resources": [
+            {
+              "title": "Gas and Fees (EIP-1559)",
+              "url": "https://ethereum.org/en/developers/docs/gas/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Ethereum's EIP-1559",
+              "url": "https://www.alchemy.com/overviews/eip-1559",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/ethereum_gas_model_costs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ethereum_clients_networks",
+          "name": "Ethereum Clients & Network Types",
+          "tag": "essential",
+          "description": "Understand execution and consensus clients, public vs. private networks, Mainnet, Testnets (Sepolia, Goerli), and an introduction to Layer 2 scaling solutions like Optimistic and ZK Rollups.",
+          "resources": [
+            {
+              "title": "Clients & Node Operators",
+              "url": "https://ethereum.org/en/developers/docs/nodes-and-clients/",
+              "type": "article"
+            },
+            {
+              "title": "Scaling Ethereum",
+              "url": "https://ethereum.org/en/developers/docs/scaling/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/ethereum_clients_networks.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "json_rpc_web3_providers",
+          "name": "JSON-RPC & Web3 Providers",
+          "tag": "essential",
+          "description": "Learn how to interact with the EVM via the JSON-RPC API, use third-party node providers (Infura, Alchemy, QuickNode), and understand common RPC methods for reading blockchain state and sending transactions.",
+          "resources": [
+            {
+              "title": "JSON-RPC API",
+              "url": "https://ethereum.org/en/developers/docs/apis/json-rpc/",
+              "type": "article"
+            },
+            {
+              "title": "What is Infura?",
+              "url": "https://docs.infura.io/infura/getting-started/what-is-infura",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/json_rpc_web3_providers.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "web3_solidity",
-      "name": "Solidity Smart Contracts",
+      "id": "solidity_programming_language",
+      "name": "Solidity Programming Language",
       "tag": "essential",
-      "description": "Write, compile, test, and deploy contracts with clear rules and predictable state changes.",
+      "description": "Master the Solidity language to write secure, efficient, and reliable smart contracts for the Ethereum Virtual Machine and other EVM-compatible blockchains.",
       "resources": [
-        {
-          "title": "Solidity, Blockchain, and Smart Contract Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=M576WGiDBdQ",
-          "type": "video"
-        },
         {
           "title": "Solidity Documentation",
           "url": "https://docs.soliditylang.org/en/latest/",
           "type": "article"
         },
         {
-          "title": "Ethereum Smart Contracts",
-          "url": "https://ethereum.org/en/developers/docs/smart-contracts/",
-          "type": "article"
+          "title": "Solidity, Blockchain, and Smart Contract Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=M576WGiDBdQ",
+          "type": "video"
+        },
+        {
+          "title": "CryptoZombies - Learn Solidity by Building Games",
+          "url": "https://cryptozombies.io/",
+          "type": "course"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/solidity_programming_language.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "web3_contract_anatomy",
-          "name": "Contract Anatomy",
+          "id": "solidity_basics_datatypes",
+          "name": "Solidity Basics & Data Types",
           "tag": "essential",
-          "description": "Use state variables, functions, modifiers, events, errors, mappings, inheritance, and interfaces.",
+          "description": "Variables, fixed and dynamic size value types (uint, address, bool), reference types (bytes, string, arrays, structs, mappings), operators, control flow (if/else, loops), and enums.",
           "resources": [
             {
-              "title": "Anatomy of Smart Contracts",
-              "url": "https://ethereum.org/en/developers/docs/smart-contracts/anatomy/",
+              "title": "Solidity Data Types",
+              "url": "https://docs.soliditylang.org/en/latest/types.html",
               "type": "article"
+            },
+            {
+              "title": "Structure of a Contract",
+              "url": "https://docs.soliditylang.org/en/latest/structure_of_a_contract.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_basics_datatypes.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "web3_standards",
-          "name": "Token Standards",
-          "tag": "advanced",
-          "description": "Understand ERC-20, ERC-721, ERC-1155, approvals, transfers, metadata, and common pitfalls.",
+          "id": "solidity_functions_events_modifiers",
+          "name": "Functions, Modifiers, & Events",
+          "tag": "essential",
+          "description": "Understand function visibility (public, private, internal, external), state mutability (pure, view, payable, non-payable), function modifiers for access control, custom errors, and emitting events for off-chain communication and logging.",
           "resources": [
             {
-              "title": "OpenZeppelin Contracts",
-              "url": "https://docs.openzeppelin.com/contracts/",
+              "title": "Functions",
+              "url": "https://docs.soliditylang.org/en/latest/contracts.html#functions",
               "type": "article"
+            },
+            {
+              "title": "Events",
+              "url": "https://docs.soliditylang.org/en/latest/contracts.html#events",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_functions_events_modifiers.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "blockchain_web3_practice_lab",
-          "name": "Practice: Smart Contract Threat Review",
+          "id": "solidity_error_handling",
+          "name": "Error Handling & Assertions",
+          "tag": "essential",
+          "description": "Implement robust error handling using `require()`, `revert()`, and `assert()`. Understand when to use each for input validation, state consistency, and internal errors, and their gas implications.",
+          "resources": [
+            {
+              "title": "Error Handling: Assert, Require, Revert",
+              "url": "https://docs.soliditylang.org/en/latest/control-structures.html#error-handling-assert-require-revert-and-exceptions",
+              "type": "article"
+            },
+            {
+              "title": "Solidity Errors",
+              "url": "https://solidity-by-example.org/error/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_error_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solidity_storage_memory_calldata",
+          "name": "Storage, Memory, and Calldata",
+          "tag": "essential",
+          "description": "Differentiate between storage, memory, and calldata for efficient data handling and gas optimization. Understand their scope, mutability, and impact on contract design.",
+          "resources": [
+            {
+              "title": "Data Locations (Solidity Docs)",
+              "url": "https://docs.soliditylang.org/en/latest/types.html#data-locations",
+              "type": "article"
+            },
+            {
+              "title": "Solidity Data Location",
+              "url": "https://www.alchemy.com/overviews/solidity-data-location",
+              "type": "article"
+            },
+            {
+              "title": "Solidity Storage vs Memory vs Calldata - Solidity Tutorial",
+              "url": "https://www.youtube.com/watch?v=yC62WpC9m_Q",
+              "type": "video"
+            },
+            {
+              "title": "Understanding Solidity Data Locations | Storage vs Memory vs Calldata",
+              "url": "https://www.youtube.com/watch?v=CqYx9L8K2mY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_storage_memory_calldata.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solidity_inheritance_interfaces_libraries",
+          "name": "Inheritance, Interfaces, & Libraries",
+          "tag": "essential",
+          "description": "Implement code reusability and modularity using inheritance, abstract contracts, define contract structures with interfaces (EIP-165), and share stateless logic with libraries.",
+          "resources": [
+            {
+              "title": "Inheritance",
+              "url": "https://docs.soliditylang.org/en/latest/contracts.html#inheritance",
+              "type": "article"
+            },
+            {
+              "title": "Interfaces",
+              "url": "https://docs.soliditylang.org/en/latest/contracts.html#interfaces",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_inheritance_interfaces_libraries.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solidity_contract_lifecycle",
+          "name": "Contract Deployment & Interaction",
+          "tag": "essential",
+          "description": "Understand the process of compiling, deploying a smart contract to the blockchain, and interacting with its functions and state variables from other contracts or external accounts.",
+          "resources": [
+            {
+              "title": "Contracts (Solidity Docs)",
+              "url": "https://docs.soliditylang.org/en/latest/contracts.html",
+              "type": "article"
+            },
+            {
+              "title": "Deploying Your First Smart Contract",
+              "url": "https://www.alchemy.com/blog/deploy-smart-contract",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_contract_lifecycle.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solidity_advanced_concepts",
+          "name": "Solidity Advanced Concepts",
           "tag": "advanced",
-          "description": "Review access control, reentrancy, upgradeability, events, tests, and gas assumptions before deployment.",
-          "resources": [],
-          "children": []
+          "description": "Explore low-level calls (`call`, `delegatecall`, `staticcall`), understanding `msg.sender` vs `tx.origin`, assembly (Yul) for optimized code, and the nuances of contract creation (`create`, `create2`).",
+          "resources": [
+            {
+              "title": "Low-level calls (Solidity By Example)",
+              "url": "https://solidity-by-example.org/call/",
+              "type": "article"
+            },
+            {
+              "title": "Yul, an intermediate language",
+              "url": "https://docs.soliditylang.org/en/latest/yul.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_advanced_concepts.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "web3_tooling",
-      "name": "Tooling, Testing, and Dapps",
-      "tag": "advanced",
-      "description": "Use professional tools to test contracts, deploy safely, and connect them to frontend apps.",
+      "id": "smart_contract_standards_patterns",
+      "name": "Smart Contract Standards & Design Patterns",
+      "tag": "essential",
+      "description": "Learn to implement and adhere to established token standards and common design patterns for robust, secure, and interoperable smart contracts, leveraging community-vetted solutions.",
+      "resources": [
+        {
+          "title": "OpenZeppelin Contracts Documentation",
+          "url": "https://docs.openzeppelin.com/contracts/",
+          "type": "article"
+        },
+        {
+          "title": "EIPs (Ethereum Improvement Proposals)",
+          "url": "https://eips.ethereum.org/",
+          "type": "article"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/smart_contract_standards_patterns.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "erc_token_standards",
+          "name": "ERC Token Standards",
+          "tag": "essential",
+          "description": "Deep dive into ERC-20 (Fungible Tokens), ERC-721 (Non-Fungible Tokens), ERC-1155 (Multi-token Standard), and ERC-4626 (Tokenized Vaults). Understand their interfaces, implementations, and use cases.",
+          "resources": [
+            {
+              "title": "ERC-20 Token Standard",
+              "url": "https://eips.ethereum.org/EIPS/eip-20",
+              "type": "article"
+            },
+            {
+              "title": "ERC-721 Non-Fungible Token Standard",
+              "url": "https://eips.ethereum.org/EIPS/eip-721",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/erc_token_standards.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "common_design_patterns",
+          "name": "Common Smart Contract Design Patterns",
+          "tag": "essential",
+          "description": "Explore widely used design patterns like Withdrawal, Emergency Stop, Factory, Registry, and Oracle patterns. Understand their implementation and when to apply them for maintainability and functionality.",
+          "resources": [
+            {
+              "title": "Smart Contract Design Patterns (OpenZeppelin Blog)",
+              "url": "https://blog.openzeppelin.com/categories/design-patterns/",
+              "type": "article"
+            },
+            {
+              "title": "Solidity Design Patterns",
+              "url": "https://fravoll.github.io/solidity-patterns/",
+              "type": "article"
+            },
+            {
+              "title": "Solidity & Smart Contract Design Patterns",
+              "url": "https://www.youtube.com/watch?v=FjD9F36u9aQ",
+              "type": "video"
+            },
+            {
+              "title": "Solidity Design Patterns (OpenZeppelin's Best Practices for Smart Contracts)",
+              "url": "https://www.youtube.com/watch?v=kR2p7xW8Wc4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/common_design_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "access_control_ownership_patterns",
+          "name": "Access Control & Ownership Patterns",
+          "tag": "essential",
+          "description": "Implement secure access control mechanisms using `Ownable` contracts, Role-Based Access Control (RBAC), and understand the principles and use cases of multi-signature wallets for critical operations.",
+          "resources": [
+            {
+              "title": "OpenZeppelin AccessControl",
+              "url": "https://docs.openzeppelin.com/contracts/4.x/api/access#AccessControl",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/access_control_ownership_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solidity_storage_layout_proxies",
+          "name": "Storage Layout & Upgradeability Fundamentals",
+          "tag": "advanced",
+          "description": "Understand how data is stored in contract storage slots, the implications for contract state, and the basic principles that enable upgradeable contracts via proxy patterns.",
+          "resources": [
+            {
+              "title": "Layout of State Variables in Storage",
+              "url": "https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Contract Upgradability",
+              "url": "https://blog.openzeppelin.com/proxy-patterns/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/solidity_storage_layout_proxies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pausable_upgradeable_proxy_patterns",
+          "name": "Pausable & Advanced Upgradeable Proxy Patterns",
+          "tag": "advanced",
+          "description": "Learn about the Pausable pattern for emergency stops and various upgradeability patterns (Transparent Proxies, UUPS Proxies, Beacon Proxies) for managing contract evolution and bug fixes without redeployment.",
+          "resources": [
+            {
+              "title": "OpenZeppelin Upgrades Docs",
+              "url": "https://docs.openzeppelin.com/upgrades-plugins/",
+              "type": "article"
+            },
+            {
+              "title": "Upgrading Smart Contracts",
+              "url": "https://ethereum.org/en/developers/docs/smart-contracts/upgrading/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/pausable_upgradeable_proxy_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "secure_contract_design_best_practices",
+          "name": "Secure Contract Design Best Practices",
+          "tag": "essential",
+          "description": "Apply common secure design patterns like Checks-Effects-Interactions, pull vs. push payments, reentrancy guards, secure arithmetic using SafeMath/OpenZeppelin's math libraries, and handling external calls safely.",
+          "resources": [
+            {
+              "title": "SWC Registry",
+              "url": "https://swcregistry.io/",
+              "type": "article"
+            },
+            {
+              "title": "Smart Contract Best Practices (ConsenSys)",
+              "url": "https://consensys.github.io/smart-contract-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/secure_contract_design_best_practices.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dev_environments_testing",
+      "name": "Development Environments & Testing",
+      "tag": "essential",
+      "description": "Set up professional development workflows, write comprehensive tests, and simulate real-world scenarios for smart contract robustness and reliability.",
+      "resources": [
+        {
+          "title": "Hardhat Documentation",
+          "url": "https://hardhat.org/docs",
+          "type": "article"
+        },
+        {
+          "title": "Foundry Book",
+          "url": "https://book.getfoundry.sh/",
+          "type": "article"
+        },
+        {
+          "title": "Smart Contract Development Tools",
+          "url": "https://ethereum.org/en/developers/docs/smart-contracts/getting-started/",
+          "type": "article"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/dev_environments_testing.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "local_dev_tooling",
+          "name": "Local Development Tooling",
+          "tag": "essential",
+          "description": "Configure popular frameworks like Hardhat or Foundry, set up local blockchain instances (Anvil/Ganache/Hardhat Network), and integrate with code editors for an efficient development experience.",
+          "resources": [
+            {
+              "title": "Hardhat Quickstart",
+              "url": "https://hardhat.org/hardhat-runner/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Foundry Installation",
+              "url": "https://book.getfoundry.sh/getting-started/installation",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/local_dev_tooling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "code_quality_linting_formatting",
+          "name": "Code Quality, Linting & Formatting",
+          "tag": "essential",
+          "description": "Implement best practices for clean and readable Solidity code. Use tools like Solhint for linting, Prettier for formatting, and Natspec for documentation to ensure code quality and maintainability.",
+          "resources": [
+            {
+              "title": "Solhint Documentation",
+              "url": "https://solhint.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Prettier for Solidity",
+              "url": "https://github.com/prettier-solidity/prettier-plugin-solidity",
+              "type": "article"
+            },
+            {
+              "title": "NatSpec Format",
+              "url": "https://docs.soliditylang.org/en/latest/natspec-format.html",
+              "type": "article"
+            },
+            {
+              "title": "Solidity Smart Contract Development Environment Setup Tutorial (Hardhat, Ethers.js, Typechain, Prettier, ESLint)",
+              "url": "https://www.youtube.com/watch?v=gypMHq5_0bM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/code_quality_linting_formatting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dev_debugging_tools",
+          "name": "Debugging Smart Contracts",
+          "tag": "essential",
+          "description": "Learn to effectively debug smart contracts using console logging, transaction tracing, and debugger tools provided by development environments (e.g., Hardhat Network debugger, Remix debugger).",
+          "resources": [
+            {
+              "title": "Hardhat Debugging Guide",
+              "url": "https://hardhat.org/hardhat-runner/docs/guides/debugger",
+              "type": "article"
+            },
+            {
+              "title": "Remix IDE Debugger",
+              "url": "https://remix-ide.readthedocs.io/en/latest/debugger.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/dev_debugging_tools.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "smart_contract_testing_frameworks",
+          "name": "Smart Contract Testing Frameworks",
+          "tag": "essential",
+          "description": "Write comprehensive unit, integration, property-based (fuzz), and fork tests. Learn to use testing libraries like Waffle/Chai (Hardhat) or write native Solidity tests (Foundry's Forge).",
+          "resources": [
+            {
+              "title": "Testing Contracts (Hardhat)",
+              "url": "https://hardhat.org/hardhat-runner/docs/guides/waffle-testing",
+              "type": "article"
+            },
+            {
+              "title": "Foundry Testing Guide",
+              "url": "https://book.getfoundry.sh/forge/writing-tests",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/smart_contract_testing_frameworks.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "deployment_strategies_scripting",
+          "name": "Deployment Strategies & Scripting",
+          "tag": "essential",
+          "description": "Develop robust deployment scripts, manage network configurations (chain IDs, RPC URLs, private keys), use Ethers.js/Web3.js for programmatic interaction, and deploy to testnets and mainnet securely.",
+          "resources": [
+            {
+              "title": "Deploying Smart Contracts (Hardhat)",
+              "url": "https://hardhat.org/hardhat-runner/docs/guides/deploying",
+              "type": "article"
+            },
+            {
+              "title": "Foundry Scripting",
+              "url": "https://book.getfoundry.sh/forge/scripting",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/deployment_strategies_scripting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ci_cd_for_smart_contracts",
+          "name": "CI/CD for Smart Contracts",
+          "tag": "advanced",
+          "description": "Automate contract testing, compilation, linting, and deployment using Continuous Integration/Continuous Deployment (CI/CD) pipelines with tools like GitHub Actions or Jenkins for consistent, reliable releases.",
+          "resources": [
+            {
+              "title": "Hardhat CI/CD Guide",
+              "url": "https://hardhat.org/hardhat-runner/docs/guides/continuous-integration",
+              "type": "article"
+            },
+            {
+              "title": "Foundry with GitHub Actions",
+              "url": "https://book.getfoundry.sh/forge/ci",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/ci_cd_for_smart_contracts.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decentralized_application_development",
+      "name": "Decentralized Application (Dapp) Development",
+      "tag": "essential",
+      "description": "Build interactive user interfaces that seamlessly connect with and leverage the functionality of smart contracts on the blockchain, providing a full-stack Web3 experience.",
       "resources": [
         {
           "title": "Full Stack Web3 Development with JavaScript (freeCodeCamp)",
@@ -130,106 +843,648 @@
           "type": "video"
         },
         {
-          "title": "Hardhat",
-          "url": "https://hardhat.org/",
+          "title": "Ethers.js Documentation",
+          "url": "https://docs.ethers.org/v6/",
           "type": "article"
         },
         {
-          "title": "Foundry Book",
-          "url": "https://book.getfoundry.sh/",
+          "title": "Wagmi Hooks for React",
+          "url": "https://wagmi.sh/react/getting-started",
           "type": "article"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/decentralized_application_development.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "web3_testing",
-          "name": "Contract Testing",
-          "tag": "advanced",
-          "description": "Write unit, integration, fuzz, fork, and gas tests before deployment.",
+          "id": "web3_frontend_libraries",
+          "name": "Web3 Frontend Libraries",
+          "tag": "essential",
+          "description": "Integrate client-side JavaScript libraries like Ethers.js or Web3.js to interact with blockchain nodes, send raw transactions, and parse blockchain data.",
           "resources": [
             {
-              "title": "Hardhat Documentation",
-              "url": "https://hardhat.org/docs",
+              "title": "Ethers.js: Interacting with Contracts",
+              "url": "https://docs.ethers.org/v6/getting-started/#creating-a-project",
               "type": "article"
+            },
+            {
+              "title": "Web3.js Documentation",
+              "url": "https://web3js.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/web3_frontend_libraries.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "web3_frontend",
-          "name": "Dapp Frontend",
-          "tag": "advanced",
-          "description": "Connect wallets, read contract state, send transactions, handle pending states, and index events.",
+          "id": "frontend_wallet_ux",
+          "name": "Wallet Integration & UX Considerations",
+          "tag": "essential",
+          "description": "Implement wallet connection using libraries like Wagmi, Web3Modal, or ConnectKit. Understand EIP-1193 for provider interfaces and design intuitive user experiences for transaction signing, network switching, and error handling.",
           "resources": [
             {
-              "title": "Ethers.js Documentation",
-              "url": "https://docs.ethers.org/v6/",
+              "title": "Connect Wallet with wagmi",
+              "url": "https://wagmi.sh/react/wallet-connection",
               "type": "article"
+            },
+            {
+              "title": "EIP-1193: Provider JavaScript API",
+              "url": "https://eips.ethereum.org/EIPS/eip-1193",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/frontend_wallet_ux.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "frontend_frameworks_integration",
+          "name": "Frontend Frameworks Integration",
+          "tag": "essential",
+          "description": "Develop dApp user interfaces using popular JavaScript frameworks like React, Vue, or Next.js, integrating Web3 context providers, state management, and component libraries.",
+          "resources": [
+            {
+              "title": "Build a Dapp with React and Ethers",
+              "url": "https://www.blockchain-council.org/blockchain/how-to-build-a-dapp-with-react-and-ethers-js/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/frontend_frameworks_integration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "interact_contracts_frontend",
+          "name": "Interacting with Smart Contracts (Frontend)",
+          "tag": "essential",
+          "description": "Learn to read contract state (call methods), send transactions (send methods), handle transaction confirmations, monitor on-chain events, and manage pending states and error messages in the UI.",
+          "resources": [
+            {
+              "title": "Calling Contracts (Ethers.js)",
+              "url": "https://docs.ethers.org/v6/getting-started/#calling-contracts",
+              "type": "article"
+            },
+            {
+              "title": "Handling Events in Dapps",
+              "url": "https://docs.alchemy.com/reference/alchemy-sdk-getlogs",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/interact_contracts_frontend.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "offchain_data_processing_event_handling",
+          "name": "Off-chain Data Processing & Event Handling",
+          "tag": "advanced",
+          "description": "Learn strategies for handling and reacting to on-chain events off-chain. Implement server-side listeners, webhooks, and integrate with backend services to aggregate and process blockchain data efficiently for complex dApps.",
+          "resources": [
+            {
+              "title": "Alchemy SDK: Get Logs",
+              "url": "https://docs.alchemy.com/reference/alchemy-sdk-getlogs",
+              "type": "article"
+            },
+            {
+              "title": "How to listen to Ethereum Events in JavaScript",
+              "url": "https://www.quicknode.com/guides/ethereum-development/how-to-listen-to-ethereum-events-in-javascript",
+              "type": "article"
+            },
+            {
+              "title": "How to Listen to Ethereum Events with Ethers.js",
+              "url": "https://www.youtube.com/watch?v=F0f-yN9L0-w",
+              "type": "video"
+            },
+            {
+              "title": "Web3.js - #15 Listen for Events",
+              "url": "https://www.youtube.com/watch?v=oV853_H5LgA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/offchain_data_processing_event_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ipfs_decentralized_storage",
+          "name": "IPFS & Decentralized Storage",
+          "tag": "advanced",
+          "description": "Understand the InterPlanetary File System (IPFS), how to store and retrieve immutable data (e.g., NFT metadata, dApp assets), and use pinning services like Pinata or Infura IPFS for reliable content addressing.",
+          "resources": [
+            {
+              "title": "What is IPFS?",
+              "url": "https://docs.ipfs.tech/concepts/what-is-ipfs/",
+              "type": "article"
+            },
+            {
+              "title": "Pinata Docs",
+              "url": "https://docs.pinata.cloud/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/ipfs_decentralized_storage.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "web3_security",
-      "name": "Security and Portfolio",
+      "id": "smart_contract_security_audits",
+      "name": "Smart Contract Security & Audits",
       "tag": "advanced",
-      "description": "Learn common vulnerabilities, audits, upgrades, testnets, and responsible deployment habits.",
+      "description": "Crucial knowledge for identifying vulnerabilities, understanding auditing processes, and implementing robust security measures in smart contracts to protect assets and user trust.",
       "resources": [
         {
-          "title": "Smart Contract Security",
+          "title": "Smart Contract Security (Ethereum.org)",
           "url": "https://ethereum.org/en/developers/docs/smart-contracts/security/",
           "type": "article"
         },
         {
-          "title": "Smart Contract Security Verification Standard",
-          "url": "https://github.com/ComposableSecurity/SCSVS",
+          "title": "Solidity Security Best Practices",
+          "url": "https://consensys.github.io/smart-contract-best-practices/",
           "type": "article"
+        },
+        {
+          "title": "Ethernaut - Learn by Hacking Smart Contracts",
+          "url": "https://ethernaut.openzeppelin.com/",
+          "type": "course"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/smart_contract_security_audits.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "web3_vulnerabilities",
-          "name": "Common Vulnerabilities",
-          "tag": "advanced",
-          "description": "Study reentrancy, access control, integer assumptions, oracle risk, MEV, and upgrade risks.",
+          "id": "common_vulnerabilities_exploits",
+          "name": "Common Vulnerabilities & Exploits",
+          "tag": "essential",
+          "description": "Deep dive into known attack vectors: reentrancy, front-running (MEV), integer over/underflows, access control issues, oracle manipulation, transaction origin misuse, denial of service attacks, and short address attacks.",
           "resources": [
             {
-              "title": "Ethernaut",
-              "url": "https://ethernaut.openzeppelin.com/",
-              "type": "course"
+              "title": "List of Common Smart Contract Vulnerabilities",
+              "url": "https://github.com/solidified-platform/smart-contract-vulnerabilities",
+              "type": "article"
+            },
+            {
+              "title": "MEV Explained",
+              "url": "https://www.paradigm.xyz/2020/08/ethereum-is-a-dark-forest",
+              "type": "article"
+            },
+            {
+              "title": "Smart Contract Hacking Course - Learn Solidity & Ethereum Hacking",
+              "url": "https://www.youtube.com/watch?v=0k-s8a2N0-o",
+              "type": "video"
+            },
+            {
+              "title": "Common Smart Contract Vulnerabilities Explained (Solidity)",
+              "url": "https://www.youtube.com/watch?v=x9I8216H66o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/common_vulnerabilities_exploits.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "web3_gas_upgrades",
-          "name": "Gas, Upgrades, and Governance",
+          "id": "security_tools_static_dynamic",
+          "name": "Security Tools & Analysis",
           "tag": "advanced",
-          "description": "Understand gas optimization, proxy upgrade risks, multisigs, timelocks, governance, and deployment ceremonies.",
+          "description": "Utilize static analysis tools (Slither, Mythril) for code review, dynamic analysis tools for runtime behavior, fuzz testing for edge cases, and understand the basics of formal verification for critical contract logic.",
           "resources": [
             {
-              "title": "OpenZeppelin Upgrades",
-              "url": "https://docs.openzeppelin.com/upgrades-plugins/",
+              "title": "Slither - Static Analyzer",
+              "url": "https://github.com/crytic/slither",
               "type": "article"
+            },
+            {
+              "title": "Mythril Classic",
+              "url": "https://github.com/ConsenSys/mythril",
+              "type": "article"
+            },
+            {
+              "title": "Smart Contract Security - Full Course",
+              "url": "https://www.youtube.com/watch?v=kY_c9v4w-fI",
+              "type": "video"
+            },
+            {
+              "title": "Solidity Security & Auditing Tools Explained",
+              "url": "https://www.youtube.com/watch?v=iX61q5rLqF4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/security_tools_static_dynamic.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "web3_capstone",
-          "name": "Project: Audited Testnet Dapp",
+          "id": "auditing_bug_bounties_responsible_disclosure",
+          "name": "Auditing, Bug Bounties & Responsible Disclosure",
           "tag": "advanced",
-          "description": "Build and test a dapp, deploy to a testnet, document architecture, and include a security checklist.",
+          "description": "Learn about the smart contract auditing process, engaging with audit firms, participating in bug bounty programs (e.g., Immunefi), and practicing responsible vulnerability disclosure to the community.",
           "resources": [
             {
-              "title": "Deploying Smart Contracts",
-              "url": "https://ethereum.org/en/developers/docs/smart-contracts/deploying/",
+              "title": "Smart Contract Audits Explained",
+              "url": "https://www.chainlinklabs.com/education/smart-contract-audits",
               "type": "article"
+            },
+            {
+              "title": "Immunefi - Crypto Bug Bounties",
+              "url": "https://immunefi.com/",
+              "type": "article"
+            },
+            {
+              "title": "Blockchain Security & Auditing | Full Stack Blockchain Development with Solidity, Hardhat, & Ethers.js",
+              "url": "https://www.youtube.com/watch?v=M5FmN81qS98",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/auditing_bug_bounties_responsible_disclosure.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        }
+      ]
+    },
+    {
+      "id": "advanced_ecosystem_tools",
+      "name": "Advanced Topics & Ecosystem Tools",
+      "tag": "advanced",
+      "description": "Explore specialized tools and advanced concepts vital for building complex, data-rich, and scalable decentralized applications in the modern Web3 landscape.",
+      "resources": [
+        {
+          "title": "The Graph Documentation",
+          "url": "https://thegraph.com/docs/en/",
+          "type": "article"
+        },
+        {
+          "title": "Chainlink Documentation",
+          "url": "https://docs.chain.link/",
+          "type": "article"
+        },
+        {
+          "title": "Blockchain Layer 2 Scaling Explained | Optimism, Arbitrum, ZK-Rollups, and More",
+          "url": "https://www.youtube.com/watch?v=hP4fT1a7C4Y",
+          "type": "video"
+        },
+        {
+          "title": "Chainlink Decentralized Oracles Crash Course",
+          "url": "https://www.youtube.com/watch?v=j_SjY6r82Ew",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/advanced_ecosystem_tools.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "l2_scaling_deep_dive",
+          "name": "Layer 2 Scaling Solutions Deep Dive",
+          "tag": "advanced",
+          "description": "Dive deeper into various Layer 2 solutions, including Optimistic Rollups (Arbitrum, Optimism), ZK-Rollups (zkSync, StarkNet), State Channels, and Sidechains. Understand their mechanisms, trade-offs, and use cases.",
+          "resources": [
+            {
+              "title": "The Hitchhiker’s Guide to Ethereum Scaling",
+              "url": "https://ethereum.org/en/developers/docs/scaling/",
+              "type": "article"
+            },
+            {
+              "title": "Rollups - Ethereum.org",
+              "url": "https://ethereum.org/en/developers/docs/scaling/rollups/",
+              "type": "article"
+            },
+            {
+              "title": "Ethereum Layer 2 Explained - Arbitrum, Optimism, zkSync, StarkWare, and more",
+              "url": "https://www.youtube.com/watch?v=F0f-lB-c4_Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/l2_scaling_deep_dive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "oracles_offchain_data",
+          "name": "Oracles & Off-Chain Data",
+          "tag": "advanced",
+          "description": "Understand how oracles (e.g., Chainlink) securely provide external data to smart contracts. Explore price feeds, verifiable randomness, external adapters, and the challenges of oracle security.",
+          "resources": [
+            {
+              "title": "What is an Oracle?",
+              "url": "https://docs.chain.link/chainlink-basics/what-is-an-oracle",
+              "type": "article"
+            },
+            {
+              "title": "Chainlink Price Feeds",
+              "url": "https://docs.chain.link/data-feeds/price-feeds/",
+              "type": "article"
+            },
+            {
+              "title": "What is Chainlink? Simply Explained",
+              "url": "https://www.youtube.com/watch?v=F_f_KxRj_R0",
+              "type": "video"
+            },
+            {
+              "title": "Chainlink Tutorial - Learning Smart Contract Oracles",
+              "url": "https://www.youtube.com/watch?v=52sS7m3fJ64",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/oracles_offchain_data.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_indexing_subgraphs",
+          "name": "Data Indexing & Subgraphs",
+          "tag": "advanced",
+          "description": "Learn to use The Graph Protocol to index blockchain data efficiently. Create custom subgraphs to transform and store relevant data, and query them using GraphQL for dApp development.",
+          "resources": [
+            {
+              "title": "The Graph Quick Start",
+              "url": "https://thegraph.com/docs/en/developer/quick-start/",
+              "type": "article"
+            },
+            {
+              "title": "Building a Subgraph",
+              "url": "https://thegraph.com/docs/en/developing/creating-a-subgraph/",
+              "type": "article"
+            },
+            {
+              "title": "The Graph Protocol Course – Build and Deploy a Subgraph",
+              "url": "https://www.youtube.com/watch?v=Fj4S-yU5z08",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/data_indexing_subgraphs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "decentralized_autonomous_organizations_governance",
+          "name": "DAOs & On-Chain Governance",
+          "tag": "advanced",
+          "description": "Explore the structure and functionality of Decentralized Autonomous Organizations (DAOs), including voting mechanisms, treasury management, and platforms like Aragon, Snapshot, and Tally for on-chain governance.",
+          "resources": [
+            {
+              "title": "What is a DAO?",
+              "url": "https://ethereum.org/en/dao/",
+              "type": "article"
+            },
+            {
+              "title": "Snapshot Documentation",
+              "url": "https://docs.snapshot.org/",
+              "type": "article"
+            },
+            {
+              "title": "What is a DAO? (Decentralized Autonomous Organizations) - Simply Explained",
+              "url": "https://www.youtube.com/watch?v=F0O_z787p3c",
+              "type": "video"
+            },
+            {
+              "title": "Decentralized Autonomous Organizations (DAOs) Explained | Web3 & Blockchain Explained",
+              "url": "https://www.youtube.com/watch?v=Mvy_XFzY_Dk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/decentralized_autonomous_organizations_governance.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cross_chain_interoperability",
+          "name": "Cross-Chain Interoperability",
+          "tag": "advanced",
+          "description": "Understand the challenges and solutions for communication and asset transfer between different blockchains. Explore various bridge architectures (e.g., canonical, generic message passing like Wormhole, LayerZero) and their security implications.",
+          "resources": [
+            {
+              "title": "Blockchain Bridges Explained",
+              "url": "https://ethereum.org/en/developers/docs/cross-chain-bridges/",
+              "type": "article"
+            },
+            {
+              "title": "LayerZero Documentation",
+              "url": "https://layerzero.gitbook.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "What is Cross-Chain Interoperability? Blockchain Explained",
+              "url": "https://www.youtube.com/watch?v=D-X3S6g19Wc",
+              "type": "video"
+            },
+            {
+              "title": "LayerZero Explained - Omnichain Fungible Tokens (OFTs) in Depth",
+              "url": "https://www.youtube.com/watch?v=F0K1o_1L3R8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/cross_chain_interoperability.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "account_abstraction_erc4337",
+          "name": "Account Abstraction (ERC-4337)",
+          "tag": "advanced",
+          "description": "Delve into Account Abstraction and EIP-4337, understanding how it enables smart contract wallets with advanced features like gasless transactions, multi-factor authentication, and social recovery without protocol-level changes.",
+          "resources": [
+            {
+              "title": "What is Account Abstraction?",
+              "url": "https://www.alchemy.com/overviews/account-abstraction",
+              "type": "article"
+            },
+            {
+              "title": "ERC-4337: Account Abstraction via Entry Point",
+              "url": "https://eips.ethereum.org/EIPS/eip-4337",
+              "type": "article"
+            },
+            {
+              "title": "What is ERC-4337 Account Abstraction? How Smart Contract Wallets Work",
+              "url": "https://www.youtube.com/watch?v=J_7_O64jE7U",
+              "type": "video"
+            },
+            {
+              "title": "Build an ERC-4337 Smart Account Wallet | EIP-4337 Tutorial",
+              "url": "https://www.youtube.com/watch?v=XWp4Jq3-lE8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/account_abstraction_erc4337.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portfolio_real_world_projects",
+      "name": "Portfolio & Real-World Projects",
+      "tag": "advanced",
+      "description": "Apply all acquired knowledge to build impactful, production-ready projects and contribute actively to the Web3 ecosystem, enhancing career readiness and showcasing practical skills.",
+      "resources": [
+        {
+          "title": "How to Build a Web3 Portfolio",
+          "url": "https://www.coindesk.com/learn/how-to-build-a-web3-portfolio/",
+          "type": "article"
+        },
+        {
+          "title": "Awesome Web3 Bounties",
+          "url": "https://github.com/ChainShot/awesome-web3-bounties",
+          "type": "article"
+        },
+        {
+          "title": "Build a Full Stack Blockchain App (dApp) - Ethereum, React, Hardhat Tutorial",
+          "url": "https://www.youtube.com/watch?v=gyMwXuJrbJQ",
+          "type": "video"
+        },
+        {
+          "title": "NFT Minting DApp Tutorial (Solidity & React) - Full Course",
+          "url": "https://www.youtube.com/watch?v=S0T2m9jF-tU",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/blockchain_web3/portfolio_real_world_projects.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "project_defi_protocol",
+          "name": "Project: Build a DeFi Protocol",
+          "tag": "advanced",
+          "description": "Develop and deploy a simplified DeFi lending/borrowing platform or a decentralized exchange (DEX) on a testnet, complete with robust smart contracts and an interactive frontend, demonstrating complex financial logic.",
+          "resources": [
+            {
+              "title": "Learn Blockchain, Solidity, and Full Stack Web3 Development with JavaScript – 32-Hour Course",
+              "url": "https://www.youtube.com/watch?v=gyMwXuJrbJQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/project_defi_protocol.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "project_nft_marketplace",
+          "name": "Project: Create an NFT Marketplace",
+          "tag": "advanced",
+          "description": "Build an end-to-end NFT marketplace, including contracts for minting (ERC-721/1155), listing, and trading. Integrate with IPFS for metadata storage and develop a responsive frontend for browsing and interaction.",
+          "resources": [
+            {
+              "title": "How to Build an NFT Marketplace (Moralis)",
+              "url": "https://moralis.io/how-to-build-an-nft-marketplace/",
+              "type": "article"
+            },
+            {
+              "title": "Build a Full Stack Blockchain App (DAPP) with Solidity, Hardhat, Ethers.js, Next.js",
+              "url": "https://www.youtube.com/watch?v=s0a9Jm8x4wI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/project_nft_marketplace.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "contributing_open_source_bounties",
+          "name": "Contributing to Open Source & Bounties",
+          "tag": "advanced",
+          "description": "Actively participate in the Web3 ecosystem by contributing to open-source projects, solving Gitcoin bounties, or building small utility dApps. This demonstrates collaborative skills and real-world problem-solving.",
+          "resources": [
+            {
+              "title": "Gitcoin Bounties",
+              "url": "https://gitcoin.co/bounties",
+              "type": "article"
+            },
+            {
+              "title": "How to Get Started in Open Source",
+              "url": "https://opensource.guide/how-to-contribute/",
+              "type": "article"
+            },
+            {
+              "title": "How to Contribute to Open Source - Git & GitHub Tutorial",
+              "url": "https://www.youtube.com/watch?v=J_K_H0Wp1fM",
+              "type": "video"
+            },
+            {
+              "title": "What is Gitcoin & How to earn Crypto by contributing to Web3",
+              "url": "https://www.youtube.com/watch?v=kY67K-5272U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/contributing_open_source_bounties.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "career_readiness_interview_prep",
+          "name": "Career Readiness & Interview Prep",
+          "tag": "advanced",
+          "description": "Prepare for the Web3 job market by refining your resume, showcasing a strong portfolio, practicing common technical and behavioral interview questions, and staying updated on industry trends and compensation.",
+          "resources": [
+            {
+              "title": "Web3 Developer Interview Questions",
+              "url": "https://www.figment.io/resources/web3-developer-interview-questions-and-answers/",
+              "type": "article"
+            },
+            {
+              "title": "Building a Strong Developer Portfolio",
+              "url": "https://www.freecodecamp.org/news/build-a-strong-developer-portfolio/",
+              "type": "article"
+            },
+            {
+              "title": "Interview Questions for Web3 Developers",
+              "url": "https://www.youtube.com/watch?v=kYJvP3o_mR0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/blockchain_web3/career_readiness_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

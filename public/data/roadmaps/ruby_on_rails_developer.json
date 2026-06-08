@@ -1,211 +1,664 @@
 {
   "id": "ruby_on_rails_developer",
   "title": "Ruby on Rails Developer",
-  "description": "A deep, project-based roadmap for Ruby on Rails Developer: Create Rails applications with Ruby, MVC, Active Record, REST, authentication, testing, background jobs, and deployment.",
+  "description": "A deep, project-based roadmap for Ruby on Rails Developer: Create robust and scalable Rails applications, mastering Ruby, MVC, Active Record, RESTful APIs, modern front-end integration, authentication, testing, background jobs, and deployment strategies for production-ready systems.",
   "format": "tree",
   "tree": [
     {
-      "id": "ruby_on_rails_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "ror_foundations",
+      "name": "Foundations: Ruby & Web Basics",
       "tag": "essential",
-      "description": "Understand what Ruby on Rails Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of the Ruby programming language, fundamental web concepts, and essential development tools before diving into Rails.",
       "resources": [
         {
-          "title": "Learn Ruby on Rails - Full Course (freeCodeCamp.org)",
-          "url": "https://www.youtube.com/watch?v=fmyvWz5TUWg",
+          "title": "Learn Ruby Programming - Full Course (freeCodeCamp.org)",
+          "url": "https://www.youtube.com/watch?v=Dji9ht6mMoU",
           "type": "video"
         },
         {
           "title": "Ruby Documentation",
           "url": "https://www.ruby-lang.org/en/documentation/",
           "type": "article"
+        },
+        {
+          "title": "MDN Web Docs: Learn web development",
+          "url": "https://developer.mozilla.org/en-US/docs/Web",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ruby_on_rails_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "ror_ruby_language_fundamentals",
+          "name": "Ruby Language Fundamentals",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Master Ruby's syntax, data types, control flow, object-oriented programming principles, metaprogramming basics, blocks, procs, lambdas, modules, and error handling, all crucial for effective Rails development.",
           "resources": [
             {
-              "title": "Ruby on Rails Guides",
-              "url": "https://guides.rubyonrails.org/",
+              "title": "The Ruby Way: Solutions in Ruby from 2000s to Today",
+              "url": "https://www.amazon.com/Ruby-Way-Solutions-2000s-Today/dp/0321714631",
+              "type": "course"
+            },
+            {
+              "title": "Eloquent Ruby by Russ Olsen",
+              "url": "https://www.amazon.com/Eloquent-Ruby-Russ-Olsen/dp/0321580626",
               "type": "article"
+            },
+            {
+              "title": "Ruby Koans",
+              "url": "https://www.rubykoans.com/",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ruby_on_rails_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "ror_web_development_basics",
+          "name": "Web Development Basics",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Understand core web technologies like HTTP/HTTPS protocols, browser-server interaction, HTML for structure, CSS for styling, fundamental JavaScript for interactivity, and relational databases for data persistence.",
+          "resources": [
+            {
+              "title": "HTTP: The Definitive Guide",
+              "url": "https://www.amazon.com/HTTP-Definitive-Guide-David-Gourley/dp/1565925092",
+              "type": "article"
+            },
+            {
+              "title": "Learn HTML, CSS, JavaScript (The Odin Project)",
+              "url": "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/foundations",
+              "type": "course"
+            },
+            {
+              "title": "SQL Tutorial - Full Database Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=p3qvj9hO_bo",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ror_development_environment",
+          "name": "Development Environment & Workflow",
+          "tag": "essential",
+          "description": "Set up a robust development environment, master version control with Git, navigate the command line, and explore containerization with Docker for consistent setups.",
           "resources": [
             {
               "title": "Rails Getting Started Guide",
               "url": "https://guides.rubyonrails.org/getting_started.html",
-              "type": "course"
+              "type": "article"
+            },
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "The Command Line Crash Course (Learn Enough)",
+              "url": "https://www.learnenough.com/command-line-tutorial",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "ruby_on_rails_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "ror_core_rails_development",
+      "name": "Core Rails Development",
       "tag": "essential",
-      "description": "Build the practical skill stack for Ruby on Rails Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Dive deep into the Ruby on Rails framework, mastering its core components like MVC, Active Record, routing, controllers, and views to build functional and data-driven web applications.",
       "resources": [
-        {
-          "title": "Ruby On Rails Crash Course (Traversy Media)",
-          "url": "https://www.youtube.com/watch?v=B3Fbujmgo60",
-          "type": "video"
-        },
         {
           "title": "Ruby on Rails Guides",
           "url": "https://guides.rubyonrails.org/",
           "type": "article"
+        },
+        {
+          "title": "The Ruby on Rails Tutorial (Michael Hartl)",
+          "url": "https://www.railstutorial.org/book",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "ruby_on_rails_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "ror_rails_introduction",
+          "name": "Rails Introduction & Setup",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "Ruby Documentation",
-              "url": "https://www.ruby-lang.org/en/documentation/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "ruby_on_rails_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "description": "Understand the Rails philosophy, project structure, generators, and perform initial setup for a new Rails application.",
           "resources": [
             {
               "title": "Rails Getting Started Guide",
               "url": "https://guides.rubyonrails.org/getting_started.html",
-              "type": "course"
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ruby_on_rails_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "ror_mvc_architecture",
+          "name": "MVC Architecture in Rails",
+          "tag": "essential",
+          "description": "Grasp the Model-View-Controller pattern as implemented in Rails, understanding how each component interacts to handle requests and render responses.",
+          "resources": [
+            {
+              "title": "Rails Architecture: MVC and Beyond",
+              "url": "https://www.freecodecamp.org/news/rails-architecture-mvc-and-beyond/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_routing",
+          "name": "Routing",
+          "tag": "essential",
+          "description": "Define and manage application routes, understanding RESTful routes, custom routes, and URL helpers.",
+          "resources": [
+            {
+              "title": "Rails Routing from the Outside In",
+              "url": "https://guides.rubyonrails.org/routing.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_controllers_actions",
+          "name": "Controllers & Actions",
+          "tag": "essential",
+          "description": "Implement controller logic, handle requests, manage session state, and prepare data for views.",
+          "resources": [
+            {
+              "title": "Action Controller Overview",
+              "url": "https://guides.rubyonrails.org/action_controller_overview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_views_forms",
+          "name": "Views, ERB & Forms",
+          "tag": "essential",
+          "description": "Render dynamic content using ERB templates, utilize helpers, build forms, and implement strong parameters for secure data handling.",
+          "resources": [
+            {
+              "title": "Action View Overview",
+              "url": "https://guides.rubyonrails.org/action_view_overview.html",
+              "type": "article"
+            },
+            {
+              "title": "Working with Forms in Rails",
+              "url": "https://guides.rubyonrails.org/form_helpers.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_active_record",
+          "name": "Models & Active Record",
+          "tag": "essential",
+          "description": "Master Active Record for object-relational mapping. This includes database migrations, defining model associations, implementing robust validations, using callbacks, and performing advanced data querying.",
+          "resources": [
+            {
+              "title": "Active Record Basics",
+              "url": "https://guides.rubyonrails.org/active_record_basics.html",
+              "type": "article"
+            },
+            {
+              "title": "Active Record Associations",
+              "url": "https://guides.rubyonrails.org/association_basics.html",
+              "type": "article"
+            },
+            {
+              "title": "Active Record Validations",
+              "url": "https://guides.rubyonrails.org/active_record_validations.html",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ruby_on_rails_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "ror_advanced_features",
+      "name": "Advanced Rails Features & Patterns",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Explore powerful Rails features and common architectural patterns for building complex, real-world applications, including user management, APIs, rich interactive experiences, and asynchronous processing.",
       "resources": [
         {
-          "title": "Ruby on Rails Tutorial for Beginners | Full Course (miss google)",
-          "url": "https://www.youtube.com/watch?v=_L-QNLBmITY",
-          "type": "video"
+          "title": "Advanced Rails Recipes (The Pragmatic Programmers)",
+          "url": "https://www.amazon.com/Advanced-Rails-Recipes-Pragmatic-Programmers/dp/097873926X",
+          "type": "article"
         },
         {
-          "title": "Rails Getting Started Guide",
-          "url": "https://guides.rubyonrails.org/getting_started.html",
+          "title": "Learn Rails 7 with Hotwire (GoRails)",
+          "url": "https://gorails.com/courses/hotwire",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "ruby_on_rails_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "ror_authentication_authorization",
+          "name": "Authentication & Authorization",
+          "tag": "essential",
+          "description": "Implement secure user registration, login, password management with Devise, and role-based or attribute-based access control using authorization gems like Pundit or CanCanCan.",
           "resources": [
             {
-              "title": "Ruby on Rails Guides",
-              "url": "https://guides.rubyonrails.org/",
+              "title": "Devise Gem GitHub Repo",
+              "url": "https://github.com/heartcombo/devise",
+              "type": "article"
+            },
+            {
+              "title": "Pundit Gem GitHub Repo",
+              "url": "https://github.com/varvet/pundit",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ruby_on_rails_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "ror_restful_apis",
+          "name": "Building RESTful APIs",
+          "tag": "essential",
+          "description": "Develop robust JSON APIs with Rails. Understand API design principles, serialization (e.g., Jbuilder, Active Model Serializers), versioning strategies, and authentication methods for APIs (e.g., JWT, API Keys).",
           "resources": [
             {
-              "title": "Ruby Documentation",
-              "url": "https://www.ruby-lang.org/en/documentation/",
+              "title": "Building a REST API with Rails",
+              "url": "https://www.honeybadger.io/blog/rails-api-tutorial/",
+              "type": "article"
+            },
+            {
+              "title": "Active Model Serializers",
+              "url": "https://github.com/rails-api/active_model_serializers",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ror_background_jobs",
+          "name": "Background Jobs & Asynchronous Processing",
+          "tag": "advanced",
+          "description": "Implement Active Job with background processing libraries like Sidekiq, Resque, or Delayed Job for handling long-running, non-blocking tasks efficiently, such as email sending or data processing.",
+          "resources": [
+            {
+              "title": "Active Job Basics",
+              "url": "https://guides.rubyonrails.org/active_job_basics.html",
+              "type": "article"
+            },
+            {
+              "title": "Sidekiq Wiki",
+              "url": "https://github.com/mperham/sidekiq/wiki",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_rich_features",
+          "name": "Action Mailer, Active Storage & Action Text",
+          "tag": "advanced",
+          "description": "Integrate rich functionalities like email delivery with Action Mailer, file uploads/attachments with Active Storage, and advanced text editing with Action Text directly within your Rails application.",
+          "resources": [
+            {
+              "title": "Action Mailer Basics",
+              "url": "https://guides.rubyonrails.org/action_mailer_basics.html",
+              "type": "article"
+            },
+            {
+              "title": "Active Storage Overview",
+              "url": "https://guides.rubyonrails.org/active_storage_overview.html",
+              "type": "article"
+            },
+            {
+              "title": "Action Text Overview",
+              "url": "https://guides.rubyonrails.org/action_text_overview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_realtime_action_cable",
+          "name": "Real-time Features with Action Cable",
+          "tag": "advanced",
+          "description": "Add WebSocket-based real-time functionality to your Rails applications using Action Cable for features like live updates and chat.",
+          "resources": [
+            {
+              "title": "Action Cable Overview",
+              "url": "https://guides.rubyonrails.org/action_cable_overview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_modern_frontend_integration",
+          "name": "Modern Frontend Integration (Hotwire/JavaScript)",
+          "tag": "advanced",
+          "description": "Integrate modern frontend techniques with Rails. Master Hotwire (Turbo, Stimulus) for rich, interactive experiences with minimal JavaScript, or understand how to effectively integrate traditional JavaScript frameworks if required.",
+          "resources": [
+            {
+              "title": "Hotwire.dev",
+              "url": "https://hotwire.dev/",
+              "type": "article"
+            },
+            {
+              "title": "Stimulus Handbook",
+              "url": "https://stimulus.hotwired.dev/handbook/introduction",
+              "type": "article"
+            },
+            {
+              "title": "Turbo Handbook",
+              "url": "https://turbo.hotwired.dev/handbook/introduction",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_design_patterns_services",
+          "name": "Design Patterns & Service Objects",
+          "tag": "advanced",
+          "description": "Explore advanced architectural patterns and organize complex business logic using Service Objects, Form Objects, Decorators/Presenters, and other Ruby design patterns to keep your codebase clean and maintainable.",
+          "resources": [
+            {
+              "title": "Practical Object-Oriented Design in Ruby (POODR)",
+              "url": "https://www.poodr.com/",
+              "type": "course"
+            },
+            {
+              "title": "Rails Design Patterns (Book)",
+              "url": "https://www.amazon.com/Rails-Design-Patterns-Code-Maintainable/dp/1680502127",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ruby_on_rails_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
-      "tag": "advanced",
-      "description": "Turn your Ruby on Rails Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "id": "ror_quality_testing",
+      "name": "Quality, Testing & Refinement",
+      "tag": "essential",
+      "description": "Develop a robust testing mindset and apply various testing methodologies to ensure the reliability, maintainability, and correctness of your Rails applications through unit, integration, and end-to-end tests.",
       "resources": [
         {
-          "title": "Ruby Documentation",
-          "url": "https://www.ruby-lang.org/en/documentation/",
+          "title": "A Guide to Testing Rails Applications",
+          "url": "https://guides.rubyonrails.org/testing.html",
           "type": "article"
         },
         {
-          "title": "Ruby on Rails Guides",
-          "url": "https://guides.rubyonrails.org/",
-          "type": "article"
-        },
-        {
-          "title": "Rails Getting Started Guide",
-          "url": "https://guides.rubyonrails.org/getting_started.html",
+          "title": "Everyday Rails Testing with RSpec",
+          "url": "https://everydayrails.com/books/",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "ruby_on_rails_developer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "id": "ror_testing_fundamentals",
+          "name": "Testing Fundamentals & Frameworks",
+          "tag": "essential",
+          "description": "Understand the importance of testing, different test types (unit, integration, system/feature), and popular testing frameworks like RSpec or Minitest. Embrace Test-Driven Development (TDD) or Behavior-Driven Development (BDD) principles.",
           "resources": [
             {
-              "title": "Ruby Documentation",
-              "url": "https://www.ruby-lang.org/en/documentation/",
+              "title": "RSpec Documentation",
+              "url": "https://rspec.info/",
+              "type": "article"
+            },
+            {
+              "title": "Rails Minitest Guide",
+              "url": "https://guides.rubyonrails.org/testing.html#minitest",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ruby_on_rails_developer_project_capstone",
-          "name": "Project: Ruby on Rails Developer Portfolio Capstone",
-          "tag": "advanced",
-          "description": "Build a portfolio-grade Ruby on Rails Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "id": "ror_model_controller_testing",
+          "name": "Model & Controller Testing",
+          "tag": "essential",
+          "description": "Write effective unit tests for your models and integration tests for your controllers to verify business logic and request handling.",
           "resources": [
             {
-              "title": "Rails Getting Started Guide",
-              "url": "https://guides.rubyonrails.org/getting_started.html",
+              "title": "Testing Models in Rails",
+              "url": "https://www.freecodecamp.org/news/how-to-test-rails-model-unit-tests/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_feature_system_testing",
+          "name": "Feature & System Testing",
+          "tag": "advanced",
+          "description": "Conduct end-to-end testing of user flows with tools like Capybara to simulate user interactions and ensure application behavior meets requirements.",
+          "resources": [
+            {
+              "title": "System Testing",
+              "url": "https://guides.rubyonrails.org/testing.html#system-testing",
+              "type": "article"
+            },
+            {
+              "title": "Capybara GitHub Repo",
+              "url": "https://github.com/teamcapybara/capybara",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_api_testing",
+          "name": "API Testing",
+          "tag": "advanced",
+          "description": "Write tests specifically for your Rails API endpoints to ensure correct responses, status codes, and data formats.",
+          "resources": [
+            {
+              "title": "Testing APIs in Rails with RSpec",
+              "url": "https://www.honeybadger.io/blog/rails-api-testing-rspec/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_factories_fixtures",
+          "name": "Test Data Management (Factories & Fixtures)",
+          "tag": "advanced",
+          "description": "Learn to effectively manage test data using FactoryBot or fixtures to create predictable and consistent test environments.",
+          "resources": [
+            {
+              "title": "FactoryBot Getting Started",
+              "url": "https://github.com/thoughtbot/factory_bot/blob/main/GETTING_STARTED.md",
+              "type": "article"
+            },
+            {
+              "title": "Fixtures in Rails",
+              "url": "https://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_advanced_testing_topics",
+          "name": "Advanced Testing Topics",
+          "tag": "advanced",
+          "description": "Delve into more specialized testing scenarios for different Rails components and strategies for test suite optimization.",
+          "resources": [
+            {
+              "title": "How to Test Ruby on Rails Mailers",
+              "url": "https://www.sitepoint.com/testing-ruby-rails-mailers/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ror_deployment_operations",
+      "name": "Deployment, Operations & Performance",
+      "tag": "advanced",
+      "description": "Prepare, deploy, and operate your Rails applications in production environments. Implement robust monitoring, optimize performance, and ensure application security and scalability.",
+      "resources": [
+        {
+          "title": "Deployment Options for Rails Applications",
+          "url": "https://gorails.com/deploy",
+          "type": "article"
+        },
+        {
+          "title": "Rails Production Best Practices",
+          "url": "https://guides.rubyonrails.org/configuring.html#configuring-a-production-environment",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "ror_environment_configuration",
+          "name": "Environment Configuration",
+          "tag": "essential",
+          "description": "Understand how to configure Rails for different environments (development, test, production) using environment variables and configuration files.",
+          "resources": [
+            {
+              "title": "Configuring Rails Applications",
+              "url": "https://guides.rubyonrails.org/configuring.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_deployment_strategies",
+          "name": "Deployment Strategies & Tools",
+          "tag": "essential",
+          "description": "Learn to deploy Rails applications to various platforms including PaaS (Heroku, Render), IaaS (AWS EC2, DigitalOcean) using tools like Capistrano, or container-based deployments with Docker and Kubernetes.",
+          "resources": [
+            {
+              "title": "Deploying Rails to Heroku",
+              "url": "https://devcenter.heroku.com/articles/getting-started-with-rails5",
+              "type": "article"
+            },
+            {
+              "title": "Deploying Rails to AWS Elastic Beanstalk",
+              "url": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-Ruby.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_cicd",
+          "name": "Continuous Integration/Deployment (CI/CD)",
+          "tag": "advanced",
+          "description": "Set up CI/CD pipelines using tools like GitHub Actions, GitLab CI, or CircleCI to automate testing and deployment workflows.",
+          "resources": [
+            {
+              "title": "Continuous Integration for Ruby on Rails",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-ruby",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_monitoring_logging",
+          "name": "Monitoring & Logging",
+          "tag": "advanced",
+          "description": "Implement comprehensive application monitoring (e.g., New Relic, Datadog), error tracking (e.g., Sentry, Honeybadger), and centralized logging solutions (e.g., Papertrail, ELK Stack) to ensure production health.",
+          "resources": [
+            {
+              "title": "Rails Logging",
+              "url": "https://guides.rubyonrails.org/debugging_rails.html#the-logger",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Application Monitoring",
+              "url": "https://newrelic.com/blog/best-practices/application-monitoring-introduction",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_performance_optimization",
+          "name": "Performance Optimization",
+          "tag": "advanced",
+          "description": "Identify and resolve performance bottlenecks. Master database indexing, query optimization, various caching strategies (page, fragment, object, low-level), and profiling tools to improve application responsiveness and scalability.",
+          "resources": [
+            {
+              "title": "Rails Performance Guide",
+              "url": "https://guides.rubyonrails.org/performance_testing.html",
+              "type": "article"
+            },
+            {
+              "title": "Caching with Rails: An Overview",
+              "url": "https://guides.rubyonrails.org/caching_with_rails.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_security_best_practices",
+          "name": "Security Best Practices",
+          "tag": "essential",
+          "description": "Learn common web vulnerabilities and implement Rails' built-in security features and best practices to protect your application from attacks like CSRF, XSS, and SQL injection.",
+          "resources": [
+            {
+              "title": "Securing Rails Applications",
+              "url": "https://guides.rubyonrails.org/security.html",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ror_portfolio_career",
+      "name": "Portfolio & Career Readiness",
+      "tag": "advanced",
+      "description": "Transition from learning to career readiness by building a compelling portfolio, preparing for interviews, and positioning yourself as a competent Ruby on Rails Developer.",
+      "resources": [
+        {
+          "title": "How to Build a Portfolio Website for Developers (freeCodeCamp)",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-portfolio-website-for-developers/",
+          "type": "article"
+        },
+        {
+          "title": "Cracking the Coding Interview",
+          "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "ror_project_capstone",
+          "name": "Project: Full-Stack Rails Application",
+          "tag": "advanced",
+          "description": "Develop one or more comprehensive, full-stack Ruby on Rails applications from scratch. Incorporate essential and advanced features learned throughout the roadmap, creating a strong, portfolio-quality project.",
+          "resources": [
+            {
+              "title": "Build a SaaS App with Ruby on Rails 7 & Hotwire",
+              "url": "https://code.smarter.dev/build-a-saas-app-with-ruby-on-rails-7-and-hotwire",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ror_code_quality_refactoring",
+          "name": "Code Quality, Refactoring & Best Practices",
+          "tag": "advanced",
+          "description": "Focus on writing clean, maintainable, and idiomatic Ruby and Rails code. Understand refactoring techniques, apply design principles like SOLID, and utilize static analysis tools like RuboCop for code consistency.",
+          "resources": [
+            {
+              "title": "Practical Object-Oriented Design in Ruby (POODR)",
+              "url": "https://www.poodr.com/",
+              "type": "course"
+            },
+            {
+              "title": "The Ruby Way",
+              "url": "https://www.amazon.com/Ruby-Way-Solutions-2000s-Today/dp/0321714631",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ror_interview_preparation",
+          "name": "Interview Preparation & Job Search",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews, practice common Ruby/Rails questions, understand resume building for development roles, and strategies for job searching.",
+          "resources": [
+            {
+              "title": "Awesome Ruby Interview Questions",
+              "url": "https://github.com/ganmacs/awesome-ruby-interviews",
+              "type": "article"
+            },
+            {
+              "title": "The Rails Interview Handbook (GoRails)",
+              "url": "https://gorails.com/download/the-rails-interview-handbook",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

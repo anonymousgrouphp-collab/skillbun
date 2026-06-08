@@ -1,211 +1,953 @@
 {
   "id": "angular_developer",
-  "title": "Angular Developer",
-  "description": "A deep, project-based roadmap for Angular Developer: Build enterprise web apps with Angular, TypeScript, components, RxJS, forms, routing, testing, and deployment.",
+  "title": "Angular Developer Roadmap: Building Enterprise Web Apps",
+  "description": "A deep, project-based roadmap for Angular Developers: Build enterprise web applications with Angular, TypeScript, components, RxJS, forms, routing, testing, and deployment. This roadmap covers foundational web concepts, core Angular principles, advanced enterprise patterns, and comprehensive career readiness.",
   "format": "tree",
   "tree": [
     {
-      "id": "angular_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "angular_foundational_concepts",
+      "name": "Foundational Web & Angular Concepts",
       "tag": "essential",
-      "description": "Understand what Angular Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Grasp the essential web development prerequisites and the core introductory concepts of the Angular framework, TypeScript, and setting up your development environment for modern web development.",
       "resources": [
         {
-          "title": "Angular Tutorial in Hindi (CodeWithHarry)",
-          "url": "https://www.youtube.com/watch?v=0LhBvp8qpro",
+          "title": "Angular Official Documentation - Get Started",
+          "url": "https://angular.dev/docs",
+          "type": "article"
+        },
+        {
+          "title": "TypeScript Official Handbook",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+          "type": "article"
+        },
+        {
+          "title": "Angular Crash Course for Beginners 2023 - Build an Angular App",
+          "url": "https://www.youtube.com/watch?v=F3u_w9e9eOQ",
           "type": "video"
         },
+        {
+          "title": "TypeScript Tutorial for Beginners",
+          "url": "https://www.youtube.com/watch?v=r_Ffvk50m0Y",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/angular_developer/angular_foundational_concepts.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "angular_web_prerequisites",
+          "name": "Web Development Prerequisites (HTML5, CSS3, Modern JavaScript ES6+)",
+          "tag": "essential",
+          "description": "Reinforce fundamental knowledge of HTML5 for structuring semantic web content, CSS3 for advanced styling and responsive design, and modern JavaScript (ES6+) for programming logic, asynchronous operations, and modularity, which are essential for any frontend development.",
+          "resources": [
+            {
+              "title": "Mozilla HTML Introduction",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+              "type": "article"
+            },
+            {
+              "title": "Mozilla CSS Introduction",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+              "type": "article"
+            },
+            {
+              "title": "JavaScript.info - The Modern JavaScript Tutorial",
+              "url": "https://javascript.info/",
+              "type": "article"
+            },
+            {
+              "title": "Learn HTML5 and CSS3 From Scratch - Full Course",
+              "url": "https://www.youtube.com/watch?v=G3e-cpL7ofc",
+              "type": "video"
+            },
+            {
+              "title": "JavaScript Full Course for Beginners | Complete All-in-One Tutorial | 8 Hours",
+              "url": "https://www.youtube.com/watch?v=lUe0R2rP7yE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_web_prerequisites.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_typescript_fundamentals",
+          "name": "TypeScript Fundamentals",
+          "tag": "essential",
+          "description": "Learn TypeScript, the strongly-typed superset of JavaScript that powers Angular. Understand types, interfaces, classes, enums, generics, modules, decorators, and advanced type utilities to write robust and maintainable code.",
+          "resources": [
+            {
+              "title": "TypeScript for JavaScript Programmers (Official)",
+              "url": "https://www.typescriptlang.org/docs/handbook/typescript-for-javascript-programmers.html",
+              "type": "article"
+            },
+            {
+              "title": "Full TypeScript Course (freeCodeCamp.org)",
+              "url": "https://www.youtube.com/watch?v=F2azQ_mS5j8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_typescript_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_introduction_cli",
+          "name": "Introduction to Angular & CLI",
+          "tag": "essential",
+          "description": "Understand what Angular is, its core architectural concepts (components, modules, services, dependency injection, change detection), and how to efficiently use the Angular CLI for project generation, scaffolding, building, serving applications, and managing configurations.",
+          "resources": [
+            {
+              "title": "Angular Documentation - What is Angular?",
+              "url": "https://angular.dev/docs/guide/what-is-angular",
+              "type": "article"
+            },
+            {
+              "title": "Angular CLI Documentation",
+              "url": "https://angular.dev/cli",
+              "type": "article"
+            },
+            {
+              "title": "Angular for Beginners Course [Full Front End Tutorial with TypeScript] (freeCodeCamp.org)",
+              "url": "https://www.youtube.com/watch?v=3qBXWUpoPHo",
+              "type": "video"
+            },
+            {
+              "title": "Angular 13 Tutorial #2 - Angular CLI & Project Structure",
+              "url": "https://www.youtube.com/watch?v=4L-vGqZJ-7Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_introduction_cli.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_environment_setup",
+          "name": "Environment Setup & Tooling",
+          "tag": "essential",
+          "description": "Set up your local development environment with essential tools: Node.js (runtime), npm/yarn (package managers), Visual Studio Code (with recommended Angular extensions), Git for version control, and browser developer tools for inspecting and debugging web applications.",
+          "resources": [
+            {
+              "title": "Node.js Installation Guide",
+              "url": "https://nodejs.org/en/download",
+              "type": "article"
+            },
+            {
+              "title": "VS Code for Angular Development",
+              "url": "https://angular.dev/guide/setup-local",
+              "type": "article"
+            },
+            {
+              "title": "Git - Official Documentation",
+              "url": "https://git-scm.com/doc",
+              "type": "article"
+            },
+            {
+              "title": "Node.js & NPM Crash Course | Learn How To Use Node & NPM",
+              "url": "https://www.youtube.com/watch?v=FjYjB0Q9h-E",
+              "type": "video"
+            },
+            {
+              "title": "VS Code Setup for Web Development",
+              "url": "https://www.youtube.com/watch?v=s_D4eBfF05w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_environment_setup.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angular_core_development",
+      "name": "Building Blocks: Angular Core",
+      "tag": "essential",
+      "description": "Master the fundamental building blocks of Angular applications, including components, data binding, services, modules, routing, forms, and reactive programming with RxJS for asynchronous operations and state management.",
+      "resources": [
+        {
+          "title": "Angular Documentation - Fundamentals",
+          "url": "https://angular.dev/docs/category/fundamentals",
+          "type": "article"
+        },
+        {
+          "title": "RxJS Guide - Overview",
+          "url": "https://rxjs.dev/guide/overview",
+          "type": "article"
+        },
+        {
+          "title": "Angular 17 Tutorial for Beginners - Full Course",
+          "url": "https://www.youtube.com/watch?v=3dHNOWTI7qc",
+          "type": "video"
+        },
+        {
+          "title": "Angular Course for Beginners - Learn Angular with TypeScript (Full Tutorial)",
+          "url": "https://www.youtube.com/watch?v=htz_27tMvQo",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/angular_developer/angular_core_development.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "angular_components_templates",
+          "name": "Components, Templates & Data Binding",
+          "tag": "essential",
+          "description": "Understand Angular components, their lifecycle hooks, templates (HTML), component-specific styles (CSS), template syntax, interpolation, property binding, event binding, two-way data binding, and component interaction using @Input() and @Output().",
+          "resources": [
+            {
+              "title": "Angular Docs - Components Overview",
+              "url": "https://angular.dev/docs/components",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Template Syntax",
+              "url": "https://angular.dev/docs/guide/templates",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Component Interaction (Inputs/Outputs)",
+              "url": "https://angular.dev/docs/guide/inputs-outputs",
+              "type": "article"
+            },
+            {
+              "title": "Angular Crash Course For Beginners 2021",
+              "url": "https://www.youtube.com/watch?v=3dHNOWTI7H8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_components_templates.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_directives_pipes",
+          "name": "Directives & Pipes",
+          "tag": "essential",
+          "description": "Explore Angular's built-in structural directives (*ngIf, *ngFor, *ngSwitch), attribute directives ([ngClass], [ngStyle]), and built-in pipes (DatePipe, CurrencyPipe, AsyncPipe) for transforming and formatting data. Learn to create custom structural and attribute directives and custom pipes for reusable UI logic.",
+          "resources": [
+            {
+              "title": "Angular Docs - Built-in Directives",
+              "url": "https://angular.dev/docs/guide/built-in-directives",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Built-in Pipes",
+              "url": "https://angular.dev/docs/guide/built-in-pipes",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Custom Structural Directives",
+              "url": "https://angular.dev/docs/guide/structural-directives",
+              "type": "article"
+            },
+            {
+              "title": "Angular Crash Course - Directives & Pipes",
+              "url": "https://www.youtube.com/watch?v=J9y5rB386Sg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_directives_pipes.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_services_di",
+          "name": "Services & Dependency Injection",
+          "tag": "essential",
+          "description": "Learn to create and use injectable services for encapsulating reusable business logic, data access, and sharing state across components. Master Angular's powerful dependency injection (DI) system for managing and providing dependencies, understanding providers, and hierarchical injectors.",
+          "resources": [
+            {
+              "title": "Angular Docs - Services and Dependency Injection",
+              "url": "https://angular.dev/docs/guide/dependency-injection",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Dependency Injection Providers",
+              "url": "https://angular.dev/docs/guide/di/dependency-injection-providers",
+              "type": "article"
+            },
+            {
+              "title": "Angular Tutorial for Beginners: Services and Dependency Injection",
+              "url": "https://www.youtube.com/watch?v=LqN60G5Kz4E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_services_di.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_routing_navigation",
+          "name": "Routing & Navigation",
+          "tag": "essential",
+          "description": "Implement client-side routing using Angular's RouterModule. Define routes, navigate programmatically, pass route parameters, use route guards (CanActivate, CanDeactivate, Resolve) for authorization and data pre-fetching, and implement lazy loading for performance optimization of feature modules.",
+          "resources": [
+            {
+              "title": "Angular Docs - Routing & Navigation Overview",
+              "url": "https://angular.dev/docs/guide/routing/routing-overview",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Lazy Loading Feature Modules",
+              "url": "https://angular.dev/docs/guide/routing/lazy-loading-routes",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Route Guards",
+              "url": "https://angular.dev/docs/guide/routing/common-router-tasks#preventing-unauthorized-access-with-route-guards",
+              "type": "article"
+            },
+            {
+              "title": "Angular 14 Tutorial #21 - Routing Basics",
+              "url": "https://www.youtube.com/watch?v=2tX2L2mP7nQ",
+              "type": "video"
+            },
+            {
+              "title": "Angular Routing Tutorial",
+              "url": "https://www.youtube.com/watch?v=NeWfT1f9W7U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_routing_navigation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_forms_handling",
+          "name": "Forms & User Input",
+          "tag": "essential",
+          "description": "Handle user input effectively with Angular forms. Learn about template-driven forms (FormsModule) and reactive forms (ReactiveFormsModule), including FormControls, FormGroups, and FormArrays. Implement robust validation techniques, including built-in validators, custom validators, and asynchronous validators.",
+          "resources": [
+            {
+              "title": "Angular Docs - Forms Overview",
+              "url": "https://angular.dev/docs/forms",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Reactive Forms",
+              "url": "https://angular.dev/docs/guide/forms/reactive-forms",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Form Validation",
+              "url": "https://angular.dev/docs/guide/forms/form-validation",
+              "type": "article"
+            },
+            {
+              "title": "Angular Forms Tutorial (Template Driven & Reactive Forms)",
+              "url": "https://www.youtube.com/watch?v=F0f-lBnt4v8",
+              "type": "video"
+            },
+            {
+              "title": "Angular Reactive Forms Tutorial - Full Course (from scratch)",
+              "url": "https://www.youtube.com/watch?v=sU142_mQz64",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_forms_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_rxjs_httpclient",
+          "name": "Reactive Programming with RxJS & HTTPClient",
+          "tag": "essential",
+          "description": "Understand reactive programming principles with RxJS. Work with Observables, Observers, Subscriptions, and key Operators (map, filter, switchMap, mergeMap, debounceTime, catchError, retry). Integrate with backend APIs using Angular's HttpClient module for making HTTP requests, error handling, and implementing HTTP interceptors.",
+          "resources": [
+            {
+              "title": "RxJS Official Guide",
+              "url": "https://rxjs.dev/guide/overview",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Communicating with backend services (HttpClient)",
+              "url": "https://angular.dev/docs/guide/http",
+              "type": "article"
+            },
+            {
+              "title": "RxJS Crash Course (Academind)",
+              "url": "https://www.youtube.com/watch?v=PhSAxP8qRj8",
+              "type": "video"
+            },
+            {
+              "title": "Angular HTTPClient & Interceptors (Net Ninja)",
+              "url": "https://www.youtube.com/watch?v=s_D72T-XqK0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_rxjs_httpclient.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angular_advanced_enterprise",
+      "name": "Advanced Concepts & Enterprise Development",
+      "tag": "advanced",
+      "description": "Dive into advanced Angular features, state management, complex architectural patterns, performance optimization, robust testing strategies, and preparing applications for production environments and large-scale enterprise use.",
+      "resources": [
+        {
+          "title": "Angular Docs - Advanced Topics",
+          "url": "https://angular.dev/docs/category/advanced",
+          "type": "article"
+        },
+        {
+          "title": "Angular Enterprise-Grade Application Architecture (Thoughtram)",
+          "url": "https://blog.thoughtram.io/angular/2018/06/18/architecting-an-angular-application.html",
+          "type": "article"
+        },
+        {
+          "title": "Angular NgRx Tutorial - Learn State Management with NgRx",
+          "url": "https://www.youtube.com/watch?v=s0K6p0W532s",
+          "type": "video"
+        },
+        {
+          "title": "Angular Advanced Topics & Enterprise Development",
+          "url": "https://www.youtube.com/watch?v=F07pU4o5c7k",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/angular_developer/angular_advanced_enterprise.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "angular_state_management",
+          "name": "State Management Patterns",
+          "tag": "advanced",
+          "description": "Learn various strategies for managing application state in large-scale Angular applications. Explore simple service-based patterns with RxJS, Flux/Redux patterns using NgRx (Store, Effects, Reducers, Selectors), and other solutions like NgXs or Akita for efficient and predictable state handling.",
+          "resources": [
+            {
+              "title": "NgRx Official Documentation",
+              "url": "https://ngrx.io/",
+              "type": "article"
+            },
+            {
+              "title": "Angular State Management with Services",
+              "url": "https://angular.dev/docs/cookbook/component-communication#sharing-data-with-a-service",
+              "type": "article"
+            },
+            {
+              "title": "Understanding NgRx in 10 minutes (Fireship)",
+              "url": "https://www.youtube.com/watch?v=F0SjGfJux2s",
+              "type": "video"
+            },
+            {
+              "title": "NgRx Crash Course | Angular State Management",
+              "url": "https://www.youtube.com/watch?v=qsQ3x05N_wQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_state_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_performance_optimization",
+          "name": "Performance, Optimization & Change Detection",
+          "tag": "advanced",
+          "description": "Optimize Angular application performance through techniques like change detection strategies (OnPush), lazy loading of modules and routes, Ahead-of-Time (AOT) compilation, tree shaking for bundle size reduction, differential loading, Web Workers, and comprehensive performance profiling with browser dev tools and Angular DevTools.",
+          "resources": [
+            {
+              "title": "Angular Docs - Change Detection",
+              "url": "https://angular.dev/docs/guide/change-detection",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Ahead-of-Time Compilation",
+              "url": "https://angular.dev/docs/guide/aot-compiler",
+              "type": "article"
+            },
+            {
+              "title": "Angular Performance Optimization Tips (inDepth.dev)",
+              "url": "https://indepth.dev/posts/1000/angular-performance-tips-and-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "Angular Performance Optimization Tutorial",
+              "url": "https://www.youtube.com/watch?v=Fj2F5B6Xp20",
+              "type": "video"
+            },
+            {
+              "title": "Angular Performance Tips & Tricks",
+              "url": "https://www.youtube.com/watch?v=6hV1_oX0r2U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_performance_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_pwa_development",
+          "name": "Progressive Web Apps (PWA) & Offline Capabilities",
+          "tag": "advanced",
+          "description": "Build robust web experiences by transforming Angular applications into Progressive Web Apps. Implement service workers for offline caching and network resilience, create a Web App Manifest for installability, and explore strategies for background sync and push notifications.",
+          "resources": [
+            {
+              "title": "Angular Docs - Progressive Web Apps",
+              "url": "https://angular.dev/docs/guide/service-worker-getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Google Developers - Progressive Web Apps",
+              "url": "https://developer.chrome.com/docs/capabilities/how-to/your-first-pwa",
+              "type": "article"
+            },
+            {
+              "title": "Build a Progressive Web App (PWA) with Angular - Full Tutorial",
+              "url": "https://www.youtube.com/watch?v=F0f_cWj-FvQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_pwa_development.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_ssr_seo",
+          "name": "Server-Side Rendering (SSR) & SEO with Angular Universal",
+          "tag": "advanced",
+          "description": "Implement Server-Side Rendering (SSR) with Angular Universal to improve initial page load performance, enhance SEO, and provide a better user experience on slower networks. Understand state transfer and hydration for seamless client-side interactivity.",
+          "resources": [
+            {
+              "title": "Angular Docs - Server-Side Rendering with Universal",
+              "url": "https://angular.dev/docs/ssr",
+              "type": "article"
+            },
+            {
+              "title": "Angular Universal Tutorial (Academind)",
+              "url": "https://www.youtube.com/watch?v=hG7q3S2eQG8",
+              "type": "video"
+            },
+            {
+              "title": "Angular SSR Tutorial - Server Side Rendering in Angular",
+              "url": "https://www.youtube.com/watch?v=b1u6zL1f7e0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_ssr_seo.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_internationalization_localization",
+          "name": "Internationalization (i18n) & Localization",
+          "tag": "advanced",
+          "description": "Add multi-language support (i18n) to Angular applications for a global audience. Learn about Angular's built-in i18n tooling for translating text, handling pluralization, date, currency, and number formatting, and adapting to right-to-left (RTL) layouts.",
+          "resources": [
+            {
+              "title": "Angular Docs - Internationalization",
+              "url": "https://angular.dev/docs/guide/i18n",
+              "type": "article"
+            },
+            {
+              "title": "Angular i18n Tutorial (freeCodeCamp.org)",
+              "url": "https://www.freecodecamp.org/news/angular-internationalization-tutorial/",
+              "type": "article"
+            },
+            {
+              "title": "Angular (full tutorial) #30 - i18n (internationalisation)",
+              "url": "https://www.youtube.com/watch?v=kYJ5WbN2S9Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_internationalization_localization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_testing_debugging",
+          "name": "Testing & Debugging Angular Applications",
+          "tag": "essential",
+          "description": "Master comprehensive testing strategies including unit testing with Karma/Jasmine for services and components, integration testing, and end-to-end (E2E) testing with modern tools like Cypress or Playwright. Learn effective debugging techniques using browser developer tools, VS Code's debugger, and Angular DevTools.",
+          "resources": [
+            {
+              "title": "Angular Docs - Testing",
+              "url": "https://angular.dev/docs/guide/testing",
+              "type": "article"
+            },
+            {
+              "title": "Angular Docs - Debugging",
+              "url": "https://angular.dev/docs/cookbook/debugging",
+              "type": "article"
+            },
+            {
+              "title": "Cypress.io - Getting Started",
+              "url": "https://docs.cypress.io/guides/getting-started/installing-cypress",
+              "type": "article"
+            },
+            {
+              "title": "Angular Testing Tutorial - How to Unit Test your Components, Services, and Pipes",
+              "url": "https://www.youtube.com/watch?v=zVv8s94g9f0",
+              "type": "video"
+            },
+            {
+              "title": "Cypress vs Playwright vs Selenium - Frontend E2E Testing Tutorial",
+              "url": "https://www.youtube.com/watch?v=F1hJm-Qx9h4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_testing_debugging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_security_best_practices",
+          "name": "Security Best Practices",
+          "tag": "advanced",
+          "description": "Understand common web vulnerabilities like Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), clickjacking, and insecure direct object references. Implement Angular's built-in security features and follow best practices for secure coding, input sanitization, and protecting against common attacks.",
+          "resources": [
+            {
+              "title": "Angular Docs - Security",
+              "url": "https://angular.dev/docs/guide/security",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10 Web Application Security Risks",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Angular Security & Preventing XSS Attacks",
+              "url": "https://www.youtube.com/watch?v=F01yV7kH3qI",
+              "type": "video"
+            },
+            {
+              "title": "Building Secure Angular Applications - A Must Have For Your Skillset!",
+              "url": "https://www.youtube.com/watch?v=FjIuC8a7DqU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_security_best_practices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_authentication_authorization",
+          "name": "Authentication & Authorization Strategies",
+          "tag": "advanced",
+          "description": "Deep dive into implementing secure authentication and authorization in Angular applications. Explore common patterns like JWT (JSON Web Tokens), OAuth2, OpenID Connect. Learn to integrate with identity providers, manage tokens, implement route guards, and utilize HTTP interceptors for secure API communication.",
+          "resources": [
+            {
+              "title": "Angular Docs - Authentication Example",
+              "url": "https://angular.dev/docs/cookbook/security/user-authentication",
+              "type": "article"
+            },
+            {
+              "title": "OAuth 2.0 Simplified",
+              "url": "https://aaronparecki.com/oauth-2-simplified/",
+              "type": "article"
+            },
+            {
+              "title": "Implementing JWT in Angular (Auth0)",
+              "url": "https://auth0.com/blog/secure-angular-apps-with-jwt/",
+              "type": "article"
+            },
+            {
+              "title": "Angular Authentication Tutorial - Build a Login System from Scratch",
+              "url": "https://www.youtube.com/watch?v=F0f-9gUo5j8",
+              "type": "video"
+            },
+            {
+              "title": "Angular & NodeJS Auth Tutorial - Login, Register, & JWT",
+              "url": "https://www.youtube.com/watch?v=R_S-G1jYc6A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_authentication_authorization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_monorepo_microfrontends",
+          "name": "Monorepos, Micro Frontends & Web Components",
+          "tag": "advanced",
+          "description": "Explore strategies for scaling large enterprise applications. Learn about monorepos with tools like Nx Workspace for managing multiple Angular applications and libraries. Understand micro frontend architectures for independent deployments and team scaling, and leverage Web Components for framework-agnostic UI elements.",
+          "resources": [
+            {
+              "title": "Nx Workspace Official Documentation",
+              "url": "https://nx.dev/",
+              "type": "article"
+            },
+            {
+              "title": "Micro Frontends (Martin Fowler)",
+              "url": "https://martinfowler.com/articles/micro-frontends.html",
+              "type": "article"
+            },
+            {
+              "title": "Building Angular Elements (Web Components)",
+              "url": "https://angular.dev/docs/elements",
+              "type": "article"
+            },
+            {
+              "title": "What is an Nx Monorepo? | Learn how to build scalable apps",
+              "url": "https://www.youtube.com/watch?v=F_S6eW6v48U",
+              "type": "video"
+            },
+            {
+              "title": "Micro Frontends Tutorial - Building a Micro Frontend Architecture with React",
+              "url": "https://www.youtube.com/watch?v=d_kH0N1A2xM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_monorepo_microfrontends.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "angular_deployment_cicd",
+          "name": "Deployment & CI/CD",
+          "tag": "advanced",
+          "description": "Learn to build and deploy Angular applications to various hosting platforms (e.g., Netlify, Vercel, Firebase Hosting, AWS S3/CloudFront, Azure Static Web Apps). Set up Continuous Integration and Continuous Deployment (CI/CD) pipelines with tools like GitHub Actions, GitLab CI/CD, or Jenkins for automated testing and deployment.",
+          "resources": [
+            {
+              "title": "Angular Docs - Deployment",
+              "url": "https://angular.dev/docs/guide/deployment/deploy-overview",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions for CI/CD",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "Deploying Angular to Vercel",
+              "url": "https://vercel.com/docs/frameworks/angular",
+              "type": "article"
+            },
+            {
+              "title": "Deploying an Angular App to Netlify with GitHub Actions",
+              "url": "https://www.youtube.com/watch?v=D-N-44QoKk4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_deployment_cicd.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angular_project_career_growth",
+      "name": "Project & Career Advancement",
+      "tag": "advanced",
+      "description": "Apply all learned concepts to build a comprehensive portfolio project, solidify best practices, and prepare for career opportunities as a professional Angular Developer in the industry.",
+      "resources": [
         {
           "title": "Angular Documentation",
           "url": "https://angular.dev/",
           "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "angular_developer_domain_basics",
-          "name": "Domain Basics",
-          "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
-          "resources": [
-            {
-              "title": "Angular Tutorials",
-              "url": "https://angular.dev/tutorials",
-              "type": "course"
-            }
-          ],
-          "children": []
         },
         {
-          "id": "angular_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
-          "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
-          "resources": [
-            {
-              "title": "RxJS Guide",
-              "url": "https://rxjs.dev/guide/overview",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "angular_developer_core_skills",
-      "name": "Core Skills and Implementation",
-      "tag": "essential",
-      "description": "Build the practical skill stack for Angular Developer through small exercises, realistic constraints, and repeatable workflows.",
-      "resources": [
+          "title": "How to Build a Portfolio Website (freeCodeCamp)",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-portfolio-website/",
+          "type": "article"
+        },
         {
-          "title": "Angular for Beginners Course [Full Front End Tutorial with TypeScript] (freeCodeCamp.org)",
-          "url": "https://www.youtube.com/watch?v=3qBXWUpoPHo",
+          "title": "Build a Full-Stack Angular & Node.js App - Tutorial",
+          "url": "https://www.youtube.com/watch?v=3q-rL_d3z90",
           "type": "video"
         },
         {
-          "title": "Angular Tutorials",
-          "url": "https://angular.dev/tutorials",
-          "type": "course"
-        }
-      ],
-      "children": [
-        {
-          "id": "angular_developer_implementation_patterns",
-          "name": "Implementation Patterns",
-          "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "Angular Documentation",
-              "url": "https://angular.dev/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "angular_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "RxJS Guide",
-              "url": "https://rxjs.dev/guide/overview",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "angular_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "angular_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "Angular Developer Full Course in 8 Hours | Angular Tutorial For Beginners | Edureka (edureka!)",
-          "url": "https://www.youtube.com/watch?v=TxVLC0Vye2o",
+          "title": "How to Get a Junior Developer Job - 10 Tips for Your First Tech Job",
+          "url": "https://www.youtube.com/watch?v=qTvxWzUuR7Y",
           "type": "video"
         },
         {
-          "title": "RxJS Guide",
-          "url": "https://rxjs.dev/guide/overview",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/angular_developer/angular_project_career_growth.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "angular_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
+          "id": "angular_capstone_project",
+          "name": "Capstone Project: Enterprise Web Application",
           "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Build a substantial, full-stack Angular application from scratch that demonstrates mastery of core and advanced concepts. Focus on a clear problem statement, robust architecture, comprehensive testing, secure implementation, and documented deployment, mimicking a real-world enterprise project.",
           "resources": [
             {
-              "title": "Angular Tutorials",
-              "url": "https://angular.dev/tutorials",
+              "title": "Angular Tour of Heroes Tutorial (Official, project-based)",
+              "url": "https://angular.dev/tutorials/tour-of-heroes",
               "type": "course"
+            },
+            {
+              "title": "Ideas for Frontend Projects (GitHub)",
+              "url": "https://github.com/florinpop17/app-ideas",
+              "type": "article"
+            },
+            {
+              "title": "Build a Full-Stack E-commerce App with Angular, NestJS & MongoDB (MERN Stack Tutorial)",
+              "url": "https://www.youtube.com/watch?v=wzJ_B7gW8Bw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_capstone_project.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "angular_developer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "angular_architecture_quality_patterns",
+          "name": "Angular Architecture, Code Quality & Best Practices",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Adopt industry best practices for code quality: linting (ESLint), formatting (Prettier), effective project structuring (e.g., feature modules, core/shared modules, standalone components), architectural patterns (smart/dumb components, container/presenter), and design principles (SOLID, DRY, KISS) for scalable and maintainable Angular applications.",
           "resources": [
             {
-              "title": "Angular Documentation",
-              "url": "https://angular.dev/",
+              "title": "Angular Style Guide (Official)",
+              "url": "https://angular.dev/docs/guide/styleguide",
               "type": "article"
+            },
+            {
+              "title": "ESLint Official Documentation",
+              "url": "https://eslint.org/docs/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Prettier Official Documentation",
+              "url": "https://prettier.io/docs/en/",
+              "type": "article"
+            },
+            {
+              "title": "Angular Project Structure Best Practices - Build an enterprise Angular Application",
+              "url": "https://www.youtube.com/watch?v=F0f-90eQf3E",
+              "type": "video"
+            },
+            {
+              "title": "Angular Components: Smart vs Dumb (Container vs Presentational)",
+              "url": "https://www.youtube.com/watch?v=R9Q8zT9Wb4c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_architecture_quality_patterns.md",
+              "type": "doc"
             }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "angular_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
-      "tag": "advanced",
-      "description": "Turn your Angular Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
-      "resources": [
-        {
-          "title": "Angular Documentation",
-          "url": "https://angular.dev/",
-          "type": "article"
+          ]
         },
         {
-          "title": "Angular Tutorials",
-          "url": "https://angular.dev/tutorials",
-          "type": "course"
-        },
-        {
-          "title": "RxJS Guide",
-          "url": "https://rxjs.dev/guide/overview",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "angular_developer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "id": "angular_soft_skills_collaboration",
+          "name": "Soft Skills & Team Collaboration",
+          "tag": "essential",
+          "description": "Develop essential soft skills crucial for team environments, including effective communication, constructive conflict resolution, active participation in code reviews, mastering advanced Git collaboration workflows (branching strategies, pull requests, rebase), and understanding Agile methodologies (Scrum/Kanban) for project management.",
           "resources": [
             {
-              "title": "Angular Documentation",
-              "url": "https://angular.dev/",
+              "title": "Git Branching Workflow Guide (Atlassian)",
+              "url": "https://www.atlassian.com/git/tutorials/comparing-workflows",
               "type": "article"
+            },
+            {
+              "title": "Effective Code Review Practices (Smartbear)",
+              "url": "https://smartbear.com/learn/code-review/what-is-code-review/",
+              "type": "article"
+            },
+            {
+              "title": "Git Workflow - Mastering Git from basics to advanced",
+              "url": "https://www.youtube.com/watch?v=S38Qx-jO01U",
+              "type": "video"
+            },
+            {
+              "title": "Agile vs Scrum vs Kanban - What's the Difference?",
+              "url": "https://www.youtube.com/watch?v=KzQ1-e1jF8g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_soft_skills_collaboration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "angular_developer_project_capstone",
-          "name": "Project: Angular Developer Portfolio Capstone",
+          "id": "angular_career_prep",
+          "name": "Portfolio, Interview Prep & Continuous Learning",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Angular Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Craft a compelling developer portfolio showcasing your Angular projects and skills. Prepare for technical interviews (covering data structures, algorithms, system design, and Angular-specific questions). Cultivate a mindset of continuous learning to stay current with the evolving web landscape, new Angular features, and ecosystem trends.",
           "resources": [
             {
-              "title": "RxJS Guide",
-              "url": "https://rxjs.dev/guide/overview",
+              "title": "Frontend Interview Handbook (Angular Questions)",
+              "url": "https://www.frontendinterviewhandbook.com/angular-interview-questions/",
               "type": "article"
+            },
+            {
+              "title": "Building a Strong Developer Portfolio (freeCodeCamp)",
+              "url": "https://www.freecodecamp.org/news/how-to-build-a-developer-portfolio-that-gets-you-hired/",
+              "type": "article"
+            },
+            {
+              "title": "Keeping up with Angular (Official Blog)",
+              "url": "https://blog.angular.io/",
+              "type": "article"
+            },
+            {
+              "title": "How to Create a Portfolio Website for Developers – Full Course",
+              "url": "https://www.youtube.com/watch?v=F0fM07P5gqQ",
+              "type": "video"
+            },
+            {
+              "title": "Frontend Developer Interview Questions (HTML, CSS, JavaScript, React, Angular)",
+              "url": "https://www.youtube.com/watch?v=W0q0c04Lp5c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/angular_developer/angular_career_prep.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

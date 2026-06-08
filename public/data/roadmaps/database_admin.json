@@ -1,215 +1,1145 @@
 {
   "id": "database_admin",
   "title": "Database Administrator",
-  "description": "A roadmap for operating reliable databases: SQL, backups, performance, security, replication, and production monitoring.",
+  "description": "A comprehensive roadmap for operating reliable, high-performance, and secure databases across various environments, from on-premise to cloud.",
   "format": "tree",
   "tree": [
     {
-      "id": "dba_foundations",
-      "name": "Database Fundamentals",
+      "id": "it_foundations",
+      "name": "Essential IT Foundations for DBAs",
       "tag": "essential",
-      "description": "Understand relational models, SQL, transactions, indexing, normalization, and database server responsibilities.",
+      "description": "Build a strong understanding of underlying IT infrastructure crucial for database administration, including operating systems, networking, storage, and virtualization.",
       "resources": [
+        {
+          "title": "Storage Basics: HDD vs SSD vs NVMe",
+          "url": "https://www.techtarget.com/searchstorage/tip/HDD-vs-SSD-vs-NVMe-Whats-the-difference",
+          "type": "article"
+        },
+        {
+          "title": "Linux for Developers - freeCodeCamp",
+          "url": "https://www.youtube.com/watch?v=VMzX0O2l3c0",
+          "type": "video"
+        },
+        {
+          "title": "Networking Fundamentals - CompTIA Network+ N10-008 - Full Course",
+          "url": "https://www.youtube.com/watch?v=qiQR5rWpzxw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/it_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_os_administration",
+          "name": "Linux OS Administration for Databases",
+          "tag": "essential",
+          "description": "Master Linux command line, file systems, user/group management (sudoers), process management (systemd), package management (apt/yum), logging (journalctl), and essential system utilities for database server administration.",
+          "resources": [
+            {
+              "title": "Linux Commands Handbook",
+              "url": "https://www.freecodecamp.org/news/the-linux-commands-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Systemd",
+              "url": "https://www.redhat.com/sysadmin/systemd-getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Linux System Administration Basics - RHCSA - RHEL 8 Course",
+              "url": "https://www.youtube.com/watch?v=0g7jXbJcQ6Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/linux_os_administration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "linux_system_scripting",
+          "name": "Linux System Utilities & Scripting",
+          "tag": "essential",
+          "description": "Utilize disk and memory management tools (df, du, free), CPU monitoring (top, htop), I/O monitoring (iostat, vmstat), and develop basic Bash scripts for automation and task scheduling (cron).",
+          "resources": [
+            {
+              "title": "Linux Performance Monitoring Tools",
+              "url": "https://www.loggly.com/blog/linux-monitoring-tools-commands-you-need-to-know/",
+              "type": "article"
+            },
+            {
+              "title": "Bash Scripting Tutorial",
+              "url": "https://ryanstutorials.net/bash-scripting-tutorial/",
+              "type": "course"
+            },
+            {
+              "title": "Learn Bash Scripting - Full Course",
+              "url": "https://www.youtube.com/watch?v=e7V9C4_o7gM",
+              "type": "video"
+            },
+            {
+              "title": "Linux Commands Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=pK_yQ5zWw50",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/linux_system_scripting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "network_fundamentals_security",
+          "name": "Networking Fundamentals & Security",
+          "tag": "essential",
+          "description": "Understand TCP/IP, DNS, ports, firewalls (iptables/firewalld), routing, VPNs, basic load balancing concepts, and network troubleshooting tools (ping, traceroute, netstat, ss) relevant to database connectivity and security.",
+          "resources": [
+            {
+              "title": "iptables Essentials",
+              "url": "https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands",
+              "type": "article"
+            },
+            {
+              "title": "Networking for Developers (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=ipv_t_4h8_Q",
+              "type": "video"
+            },
+            {
+              "title": "Networking Basics for Beginners - An Introduction to Computer Networks (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rWmwXY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/network_fundamentals_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "server_hardware_storage_virtualization",
+          "name": "Server Hardware, Storage & Virtualization",
+          "tag": "essential",
+          "description": "Learn about CPU architectures, RAM, different storage technologies (HDD, SSD, NVMe, SAN, NAS), RAID levels, filesystems (ext4, XFS, ZFS), and their impact on database performance and reliability.",
+          "resources": [
+            {
+              "title": "Understanding RAID Levels",
+              "url": "https://www.ibm.com/docs/en/STXKQY/raid_levels.html",
+              "type": "article"
+            },
+            {
+              "title": "Computer Hardware Full Course - Learn to Build a PC & More!",
+              "url": "https://www.youtube.com/watch?v=eiGekH6BwRk",
+              "type": "video"
+            },
+            {
+              "title": "What is Virtualization? (Full Explained)",
+              "url": "https://www.youtube.com/watch?v=o0hP6zFmP0s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/server_hardware_storage_virtualization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "virtualization_containerization_basics",
+          "name": "Virtualization & Containerization Basics",
+          "tag": "essential",
+          "description": "Introduction to virtualization concepts (VMware, KVM, Hyper-V) and containerization technologies (Docker, Kubernetes basics), understanding their role in deploying and managing databases.",
+          "resources": [
+            {
+              "title": "Virtualization Explained",
+              "url": "https://www.redhat.com/en/topics/virtualization/what-is-virtualization",
+              "type": "article"
+            },
+            {
+              "title": "Docker Crash Course for Absolute Beginners",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJlOU",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Tutorial for Beginners [FULL COURSE]",
+              "url": "https://www.youtube.com/watch?v=X48VuDV0Uqs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/virtualization_containerization_basics.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relational_db_fundamentals",
+      "name": "Relational Database Fundamentals",
+      "tag": "essential",
+      "description": "Deep dive into the core concepts of relational databases, including their architecture, transaction management, schema design, and essential SQL knowledge, with a focus on practical application in PostgreSQL.",
+      "resources": [
+        {
+          "title": "PostgreSQL Tutorial",
+          "url": "https://www.postgresql.org/docs/current/tutorial.html",
+          "type": "article"
+        },
         {
           "title": "Databases In-Depth - Complete Course (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=pPqazMTzNOM",
           "type": "video"
         },
         {
-          "title": "Database Administrator Explained (Neso Academy)",
-          "url": "https://www.youtube.com/watch?v=fO5tDyOY5Fw",
+          "title": "SQL Tutorial - Full Database Course for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=RquXERLbc_U",
           "type": "video"
         },
         {
-          "title": "PostgreSQL Tutorial",
-          "url": "https://www.postgresql.org/docs/current/tutorial.html",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/relational_db_fundamentals.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dba_sql",
-          "name": "SQL and Querying",
+          "id": "db_architecture_internals",
+          "name": "Database Architecture & Internals",
           "tag": "essential",
-          "description": "Write joins, CTEs, window functions, transactions, constraints, views, and stored procedures.",
+          "description": "Understand storage engines, memory structures (buffers, caches, shared memory), process models, Write-Ahead Logging (WAL), transaction logs, data files, and physical file management. Focus on how these components interact in a relational database.",
           "resources": [
             {
-              "title": "SQLBolt",
-              "url": "https://sqlbolt.com/",
-              "type": "course"
+              "title": "PostgreSQL Architecture Overview",
+              "url": "https://www.interdb.jp/pg/index.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Physical Storage",
+              "url": "https://www.postgresql.org/docs/current/storage.html",
+              "type": "article"
+            },
+            {
+              "title": "How a Database Works",
+              "url": "https://www.youtube.com/watch?v=A2dY2Xg_n9E",
+              "type": "video"
+            },
+            {
+              "title": "Database Internals: How Database Stores Data? (Buffer Pool, WAL, LSM Trees, B Trees & More)",
+              "url": "https://www.youtube.com/watch?v=Fj-c6pP_VdM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/db_architecture_internals.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dba_modeling",
-          "name": "Schema Design",
+          "id": "acid_transactions_concurrency",
+          "name": "ACID, Transactions & Concurrency Control",
           "tag": "essential",
-          "description": "Design tables, keys, relationships, indexes, constraints, and migrations for maintainable systems.",
+          "description": "Learn about Atomicity, Consistency, Isolation, Durability (ACID) properties, various transaction isolation levels (Read Committed, Repeatable Read, Serializable), locking mechanisms (row-level, table-level), and strategies for concurrency control including MVCC (Multi-Version Concurrency Control).",
+          "resources": [
+            {
+              "title": "ACID Properties in DBMS",
+              "url": "https://www.geeksforgeeks.org/acid-properties-in-dbms/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Transaction Isolation",
+              "url": "https://www.postgresql.org/docs/current/transaction-iso.html",
+              "type": "article"
+            },
+            {
+              "title": "ACID Properties Explained (Database Transactions)",
+              "url": "https://www.youtube.com/watch?v=S0yT_B3ePys",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/acid_transactions_concurrency.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "sql_mastery_postgresql",
+          "name": "SQL Mastery & Advanced Querying (PostgreSQL)",
+          "tag": "essential",
+          "description": "Master DDL, DML, DCL, advanced joins, Common Table Expressions (CTEs), window functions, stored procedures, user-defined functions, triggers, and views. Understand query execution flow, basic optimization, and PostgreSQL-specific SQL extensions.",
+          "resources": [
+            {
+              "title": "SQLBolt: Learn SQL Interactive",
+              "url": "https://sqlbolt.com/",
+              "type": "course"
+            },
+            {
+              "title": "Advanced SQL: PostgreSQL (Udemy)",
+              "url": "https://www.udemy.com/course/advanced-sql-postgresql/",
+              "type": "course"
+            },
+            {
+              "title": "PostgreSQL Functions and Operators",
+              "url": "https://www.postgresql.org/docs/current/functions.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Advanced SQL Tutorial - Window Functions, CTEs, and more",
+              "url": "https://www.youtube.com/watch?v=Fj-6-dKkF84",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/sql_mastery_postgresql.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "schema_data_modeling",
+          "name": "Schema Design, Data Modeling & Constraints",
+          "tag": "essential",
+          "description": "Design efficient database schemas, apply normalization forms (1NF-3NF, BCNF), understand entity-relationship diagrams, choosing appropriate data types, defining constraints (PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK), and planning schema migrations (e.g., using Flyway or Liquibase).",
           "resources": [
             {
               "title": "PostgreSQL Data Definition",
               "url": "https://www.postgresql.org/docs/current/ddl.html",
               "type": "article"
+            },
+            {
+              "title": "Database Normalization Explained",
+              "url": "https://www.essentialsql.com/what-is-database-normalization/",
+              "type": "article"
+            },
+            {
+              "title": "Schema Migrations with Flyway",
+              "url": "https://flywaydb.org/documentation/",
+              "type": "article"
+            },
+            {
+              "title": "Database Design Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=ZT_i2z7Xw0g",
+              "type": "video"
+            },
+            {
+              "title": "Database Normalization - 1NF, 2NF, 3NF & BCNF Explained Simply",
+              "url": "https://www.youtube.com/watch?v=8lJm_u39B0k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/schema_data_modeling.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "indexing_strategies",
+          "name": "Indexing Strategies & Maintenance",
+          "tag": "essential",
+          "description": "Learn about different index types (B-tree, Hash, GIN, GiST), when and how to use them, multi-column indexes, partial indexes, expression indexes, index-only scans, and their impact on query performance and storage. Understand index maintenance techniques like `REINDEX` and `VACUUM`.",
+          "resources": [
+            {
+              "title": "PostgreSQL Indexes",
+              "url": "https://www.postgresql.org/docs/current/indexes.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL VACUUM Deep Dive",
+              "url": "https://www.cybertec-postgresql.com/en/postgresql-vacuum-deep-dive/",
+              "type": "article"
+            },
+            {
+              "title": "Database Indexing Explained - What is an Index in a Database?",
+              "url": "https://www.youtube.com/watch?v=sa5_b1x3_F4",
+              "type": "video"
+            },
+            {
+              "title": "Databases Tutorial #12 - Indexing",
+              "url": "https://www.youtube.com/watch?v=F01wT6eT2x0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/indexing_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "postgresql_deep_dive",
+          "name": "PostgreSQL Configuration & Management",
+          "tag": "essential",
+          "description": "Understand PostgreSQL server configuration (`postgresql.conf`), client authentication (`pg_hba.conf`), user and role management, database creation, object privileges, and essential command-line tools like `psql`, `pg_dump`, `pg_restore`.",
+          "resources": [
+            {
+              "title": "PostgreSQL Server Configuration",
+              "url": "https://www.postgresql.org/docs/current/runtime-config.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Roles and Privileges",
+              "url": "https://www.postgresql.org/docs/current/user-manag.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Tutorial - Full Course",
+              "url": "https://www.youtube.com/watch?v=D1a3gVD5_dc",
+              "type": "video"
+            },
+            {
+              "title": "PostgreSQL in 60 Minutes | PostgreSQL Crash Course",
+              "url": "https://www.youtube.com/watch?v=qwFfX8y5c9U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/postgresql_deep_dive.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "dba_operations",
-      "name": "Operations and Reliability",
+      "id": "db_operations_reliability",
+      "name": "Database Operations & Reliability Engineering",
       "tag": "essential",
-      "description": "Keep databases available through backups, restores, replication, upgrades, monitoring, and capacity planning.",
+      "description": "Ensure continuous availability, data integrity, and operational efficiency through robust practices in backup, recovery, replication, monitoring, maintenance, automation, and capacity planning.",
       "resources": [
         {
-          "title": "How to Become a Database Administrator (Intellipaat)",
-          "url": "https://www.youtube.com/watch?v=e2oj-xgpiH0",
+          "title": "Site Reliability Engineering (SRE) Book - Data Intensive Applications",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "type": "article"
+        },
+        {
+          "title": "PostgreSQL Tutorial for Beginners (Full Course)",
+          "url": "https://www.youtube.com/watch?v=qw--VYLpx6I",
           "type": "video"
         },
         {
-          "title": "PostgreSQL Backup and Restore",
-          "url": "https://www.postgresql.org/docs/current/backup.html",
-          "type": "article"
+          "title": "SQL Performance Tuning Course",
+          "url": "https://www.youtube.com/watch?v=mJ2W54h619o",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/db_operations_reliability.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dba_backup_restore",
-          "name": "Backup and Restore",
+          "id": "backup_recovery_dr",
+          "name": "Backup, Recovery & Disaster Recovery Strategies",
           "tag": "essential",
-          "description": "Create backup policies, test restores, plan retention, and define RPO/RTO expectations.",
+          "description": "Implement comprehensive backup policies (logical via pg_dump, physical via pg_basebackup/pgBackRest), perform various restore types (full, point-in-time recovery), define Recovery Point Objective (RPO) and Recovery Time Objective (RTO) objectives, and develop robust disaster recovery plans, including continuous archiving (WAL shipping).",
           "resources": [
             {
-              "title": "pgBackRest Documentation",
+              "title": "PostgreSQL Backup and Restore",
+              "url": "https://www.postgresql.org/docs/current/backup.html",
+              "type": "article"
+            },
+            {
+              "title": "pgBackRest User Guide",
               "url": "https://pgbackrest.org/user-guide.html",
               "type": "article"
+            },
+            {
+              "title": "Point-in-Time Recovery (PITR) in PostgreSQL",
+              "url": "https://www.cybertec-postgresql.com/en/postgresql-point-in-time-recovery-pitr-explained/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Backup and Restore (pg_dump, pg_basebackup, PITR)",
+              "url": "https://www.youtube.com/watch?v=Jm3z73kH_80",
+              "type": "video"
+            },
+            {
+              "title": "PostgreSQL Point in Time Recovery (PITR) with WAL Archiving",
+              "url": "https://www.youtube.com/watch?v=sT_oK5h4sD8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/backup_recovery_dr.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dba_replication",
-          "name": "Replication and High Availability",
-          "tag": "advanced",
-          "description": "Understand read replicas, failover, streaming replication, lag, and disaster recovery tradeoffs.",
+          "id": "replication_high_availability",
+          "name": "Replication, High Availability (HA) & Load Balancing",
+          "tag": "essential",
+          "description": "Configure and manage various replication methods (streaming physical replication, logical replication), understand master-replica topologies, implement automatic failover with quorum-based solutions, and ensure high availability with tools like Patroni, Pgpool-II, or repmgr. Explore load balancing and connection pooling for distributed environments.",
           "resources": [
             {
-              "title": "PostgreSQL High Availability",
+              "title": "PostgreSQL High Availability, Load Balancing, and Replication",
               "url": "https://www.postgresql.org/docs/current/high-availability.html",
               "type": "article"
+            },
+            {
+              "title": "Patroni: A Template for PostgreSQL High Availability",
+              "url": "https://patroni.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Pgpool-II Documentation",
+              "url": "https://www.pgpool.net/docs/latest/en/html/index.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL High Availability Part 1: Replication",
+              "url": "https://www.youtube.com/watch?v=Jm2e3vKkMwo",
+              "type": "video"
+            },
+            {
+              "title": "Patroni PostgreSQL Tutorial - Automatic Failover for PostgreSQL",
+              "url": "https://www.youtube.com/watch?v=H72K2oN77iQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/replication_high_availability.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "database_admin_practice_lab",
-          "name": "Practice: Restore and Tune Drill",
-          "tag": "advanced",
-          "description": "Restore a backup, find slow queries, add indexes carefully, and document before/after performance.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "dba_performance_security",
-      "name": "Performance and Security",
-      "tag": "advanced",
-      "description": "Tune queries, protect sensitive data, control access, audit changes, and document operational runbooks.",
-      "resources": [
-        {
-          "title": "PostgreSQL Performance Tips",
-          "url": "https://www.postgresql.org/docs/current/performance-tips.html",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "dba_query_tuning",
-          "name": "Query Tuning",
-          "tag": "advanced",
-          "description": "Use EXPLAIN, indexes, statistics, query plans, slow query logs, and workload-aware tuning.",
+          "id": "monitoring_alerting",
+          "name": "Database Monitoring, Logging & Alerting",
+          "tag": "essential",
+          "description": "Set up robust monitoring for key database metrics (CPU, RAM, I/O, connections, query performance, replication lag, table/index bloat), configure intelligent alerts, and build insightful dashboards using tools like Prometheus, Grafana, Datadog, or Pgbadger. Understand database log analysis for troubleshooting.",
           "resources": [
             {
-              "title": "PostgreSQL EXPLAIN",
-              "url": "https://www.postgresql.org/docs/current/using-explain.html",
+              "title": "PostgreSQL Monitoring Tools & Best Practices",
+              "url": "https://www.percona.com/blog/2021/04/21/postgresql-monitoring-tools-best-practices/",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Prometheus (CNCF)",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            },
+            {
+              "title": "Pgbadger: PostgreSQL Log Analyzer",
+              "url": "https://pgbadger.darold.net/",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus Monitoring Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=F0pG7yI9-0g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/monitoring_alerting.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dba_security",
-          "name": "Database Security",
-          "tag": "advanced",
-          "description": "Manage roles, grants, encryption, auditing, secrets, least privilege, and compliance basics.",
+          "id": "patching_upgrades",
+          "name": "Database Patching & Version Upgrades",
+          "tag": "essential",
+          "description": "Plan and execute database patching, minor/major version upgrades (e.g., using pg_upgrade). Understand impact analysis, develop comprehensive test procedures, and create rollback strategies to minimize downtime and risk. Familiarity with database vendor release cycles.",
           "resources": [
             {
-              "title": "PostgreSQL Client Authentication",
-              "url": "https://www.postgresql.org/docs/current/client-authentication.html",
+              "title": "PostgreSQL Major Version Upgrades",
+              "url": "https://www.postgresql.org/docs/current/upgrading.html",
               "type": "article"
+            },
+            {
+              "title": "PostgreSQL Full Upgrade with pg_upgrade - Major Version Database Upgrade",
+              "url": "https://www.youtube.com/watch?v=F9pYjGg9-wU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/patching_upgrades.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dba_project_operations_lab",
-          "name": "Project: Database Operations Lab",
+          "id": "dba_automation_iac",
+          "name": "Automation for DBAs & Infrastructure as Code",
           "tag": "advanced",
-          "description": "Provision PostgreSQL, design a schema, load sample data, configure backups, test restore, tune slow queries, and document a DBA runbook.",
+          "description": "Automate routine DBA tasks using scripting (Bash, Python), cron jobs, and configuration management tools (e.g., Ansible, Chef, Puppet). Embrace Infrastructure as Code (IaC) principles with tools like Terraform to manage database infrastructure provision, deployment, and configuration, improving efficiency, consistency, and reducing human error.",
+          "resources": [
+            {
+              "title": "Automating PostgreSQL with Ansible",
+              "url": "https://www.ansible.com/blog/automating-postgresql-with-ansible",
+              "type": "article"
+            },
+            {
+              "title": "Python for DevOps: Automating DB Tasks",
+              "url": "https://realpython.com/python-for-devops-automation/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform Getting Started Tutorials",
+              "url": "https://learn.hashicorp.com/terraform/aws/getting-started",
+              "type": "course"
+            },
+            {
+              "title": "Terraform Course - From BEGINNER to PRO! (Learn Terraform with Examples)",
+              "url": "https://www.youtube.com/watch?v=Ex7S_30Ue0E",
+              "type": "video"
+            },
+            {
+              "title": "Ansible Tutorial for Beginners - Learn DevOps with Ansible",
+              "url": "https://www.youtube.com/watch?v=Zc2P_t1y3KA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/dba_automation_iac.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "capacity_planning_scaling",
+          "name": "Capacity Planning, Scaling & Partitioning",
+          "tag": "advanced",
+          "description": "Forecast database growth, plan for resource allocation (storage, CPU, memory, network), and understand horizontal (sharding) and vertical scaling strategies to meet future demands. Implement table partitioning for performance and manageability of large datasets.",
+          "resources": [
+            {
+              "title": "Database Capacity Planning Best Practices",
+              "url": "https://www.bmc.com/blogs/database-capacity-planning/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Table Partitioning",
+              "url": "https://www.postgresql.org/docs/current/ddl-partitioning.html",
+              "type": "article"
+            },
+            {
+              "title": "What is Database Sharding? | Explanation",
+              "url": "https://www.youtube.com/watch?v=F0pG7E3x_88",
+              "type": "video"
+            },
+            {
+              "title": "Database Sharding - System Design Interview Concept",
+              "url": "https://www.youtube.com/watch?v=E_Dmi_f5wU8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/capacity_planning_scaling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dba_operational_lab",
+          "name": "Practice Lab: Operational Drill",
+          "tag": "advanced",
+          "description": "Perform a full backup and point-in-time restore, simulate a failover to a replica, identify and resolve a replication lag issue, perform a minor version upgrade on a test cluster, and document the steps and lessons learned in a runbook format.",
           "resources": [
             {
               "title": "PostgreSQL Sample Databases",
               "url": "https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/",
               "type": "article"
+            },
+            {
+              "title": "PostgreSQL Physical Streaming Replication on AWS EC2 - Failover Test",
+              "url": "https://www.youtube.com/watch?v=k_l25z4vV5U",
+              "type": "video"
+            },
+            {
+              "title": "MySQL Backup and Recovery Tutorial | Point-in-Time Recovery with Binary Log",
+              "url": "https://www.youtube.com/watch?v=fXv0mJj7R9w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/dba_operational_lab.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "dba_cloud_incidents",
-      "name": "Cloud Databases and Incident Response",
+      "id": "db_performance_security",
+      "name": "Database Performance & Security Optimization",
       "tag": "advanced",
-      "description": "Operate managed databases, automate maintenance, and respond calmly when production data systems misbehave.",
+      "description": "Optimize database performance at all levels (query, server, OS) and implement robust security measures to protect sensitive data, ensure compliance with industry standards, and maintain a strong security posture.",
+      "resources": [
+        {
+          "title": "PostgreSQL Performance Tips",
+          "url": "https://www.postgresql.org/docs/current/performance-tips.html",
+          "type": "article"
+        },
+        {
+          "title": "Database Security Best Practices",
+          "url": "https://www.imperva.com/learn/database-security/database-security-best-practices/",
+          "type": "article"
+        },
+        {
+          "title": "SQL Performance Tuning Tutorial For Beginners | Learn SQL Performance Tuning For Free",
+          "url": "https://www.youtube.com/watch?v=F0f8uQyqR1Y",
+          "type": "video"
+        },
+        {
+          "title": "Database Security Tutorial | Learn Database Security in 1 Hour",
+          "url": "https://www.youtube.com/watch?v=1d8p0oP-8jM",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/db_performance_security.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "query_performance_tuning",
+          "name": "Query Performance Tuning & Optimization",
+          "tag": "advanced",
+          "description": "Utilize `EXPLAIN`/`EXPLAIN ANALYZE` deeply to interpret query plans, identify bottlenecks, optimize complex SQL queries, manage database statistics (ANALYZE/VACUUM ANALYZE), tune optimizer parameters, and understand workload-aware tuning and profiling tools.",
+          "resources": [
+            {
+              "title": "PostgreSQL EXPLAIN Explained",
+              "url": "https://www.postgresql.org/docs/current/using-explain.html",
+              "type": "article"
+            },
+            {
+              "title": "pg_stat_statements for Query Analysis",
+              "url": "https://www.postgresql.org/docs/current/pgstatstatements.html",
+              "type": "article"
+            },
+            {
+              "title": "Practical PostgreSQL Query Optimization",
+              "url": "https://www.youtube.com/watch?v=R9K13p-t0R0",
+              "type": "video"
+            },
+            {
+              "title": "SQL Query Optimization - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=FjIqvjC4FvM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/query_performance_tuning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "db_server_os_tuning",
+          "name": "Database Server & OS-Level Tuning",
+          "tag": "advanced",
+          "description": "Configure database server parameters (e.g., `shared_buffers`, `work_mem`, `effective_cache_size`, `checkpoint` settings, `maintenance_work_mem`) and OS-level settings (kernel parameters like `shmmax`, `shmall`, `vm.swappiness`, I/O schedulers, NUMA awareness) for maximum performance and resource utilization.",
+          "resources": [
+            {
+              "title": "Tuning Your PostgreSQL Server",
+              "url": "https://pgtune.leopard.in.ua/",
+              "type": "article"
+            },
+            {
+              "title": "Linux Kernel Tuning for Database Servers",
+              "url": "https://www.percona.com/blog/2014/06/03/linux-kernel-tuning-for-database-servers/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Performance Tuning: Top 5 Parameters (Must Watch)",
+              "url": "https://www.youtube.com/watch?v=F_Y4q4-1t8A",
+              "type": "video"
+            },
+            {
+              "title": "Linux Kernel Tuning for Database Performance",
+              "url": "https://www.youtube.com/watch?v=sU142_mQ1iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/db_server_os_tuning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "security_access_control",
+          "name": "Database Security, Access Control & Authentication",
+          "tag": "advanced",
+          "description": "Implement robust user/role management, grant/revoke permissions with the principle of least privilege, manage secrets effectively (e.g., using HashiCorp Vault), and configure secure client authentication methods (e.g., SSL certificates, Kerberos, LDAP, MFA). Explore Row-Level Security (RLS).",
+          "resources": [
+            {
+              "title": "PostgreSQL Client Authentication",
+              "url": "https://www.postgresql.org/docs/current/client-authentication.html",
+              "type": "article"
+            },
+            {
+              "title": "Principle of Least Privilege Explained",
+              "url": "https://www.beyondtrust.com/resources/glossary/principle-of-least-privilege/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Row-Level Security",
+              "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Tutorial for Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=D0bN4sA3x-Y",
+              "type": "video"
+            },
+            {
+              "title": "MySQL Crash Course | Learn MySQL in one video",
+              "url": "https://www.youtube.com/watch?v=WuK7W_lG2S0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/security_access_control.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_encryption_compliance",
+          "name": "Data Encryption, Masking & Compliance",
+          "tag": "advanced",
+          "description": "Understand data encryption at rest (filesystem or TDE) and in transit (SSL/TLS), manage certificates, implement data masking/redaction and tokenization for sensitive information, and navigate complex compliance requirements such as GDPR, HIPAA, PCI DSS, and SOC 2.",
+          "resources": [
+            {
+              "title": "PostgreSQL SSL Support",
+              "url": "https://www.postgresql.org/docs/current/ssl-tcp.html",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Data Compliance Regulations",
+              "url": "https://www.verizon.com/business/resources/articles/what-is-data-compliance/",
+              "type": "article"
+            },
+            {
+              "title": "Data Masking Best Practices",
+              "url": "https://www.imperva.com/learn/data-security/data-masking/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/data_encryption_compliance.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "auditing_vulnerability_management",
+          "name": "Auditing, Vulnerability Management & Security Patching",
+          "tag": "advanced",
+          "description": "Configure detailed database auditing (e.g., with pgaudit), review audit logs for anomalies and suspicious activities, conduct regular vulnerability assessments and penetration testing, and establish a rigorous security patching cycle to mitigate known risks effectively. Understand common database attack vectors (e.g., SQL Injection, privilege escalation).",
+          "resources": [
+            {
+              "title": "PostgreSQL Audit Logging with pgaudit",
+              "url": "https://www.cybertec-postgresql.com/en/postgresql-security-audit-logging-with-pgaudit/",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10 for Web Application Security",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Penetration Testing",
+              "url": "https://www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-penetration-testing/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/auditing_vulnerability_management.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud_db_incident_response",
+      "name": "Cloud Databases & Advanced Incident Management",
+      "tag": "advanced",
+      "description": "Specialize in managing databases in various cloud environments, leveraging cloud-native features, and developing robust incident response capabilities for complex production scenarios.",
       "resources": [
         {
           "title": "Amazon RDS Documentation",
           "url": "https://docs.aws.amazon.com/rds/",
           "type": "article"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/cloud_db_incident_response.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dba_managed_databases",
-          "name": "Managed Database Services",
+          "id": "managed_db_services_deep_dive",
+          "name": "Managed Database Services Deep Dive",
           "tag": "advanced",
-          "description": "Compare RDS, Cloud SQL, Azure SQL, read replicas, parameter groups, maintenance windows, and snapshots.",
+          "description": "Explore and compare major cloud-managed relational database services (AWS RDS/Aurora, Google Cloud SQL, Azure Database for PostgreSQL). Understand their features, architecture (multi-AZ/regional deployments), serverless options, automated backups, parameter groups, maintenance windows, and shared responsibilities model.",
           "resources": [
             {
               "title": "Cloud SQL Documentation",
               "url": "https://cloud.google.com/sql/docs",
               "type": "article"
+            },
+            {
+              "title": "Azure Database for PostgreSQL Documentation",
+              "url": "https://learn.microsoft.com/en-us/azure/postgresql/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Aurora Documentation",
+              "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/managed_db_services_deep_dive.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dba_incident_runbooks",
-          "name": "Incident Runbooks",
+          "id": "cloud_db_operations_cost_iac",
+          "name": "Cloud Database Operations, Cost Optimization & IaC",
           "tag": "advanced",
-          "description": "Write runbooks for slow queries, replication lag, storage exhaustion, failed backups, and emergency restores.",
+          "description": "Learn cloud-specific monitoring strategies and tools (CloudWatch, Stackdriver, Azure Monitor), scaling patterns (read replicas, auto-scaling, serverless options), high availability patterns in the cloud, and advanced cost management/optimization for managed database services. Implement Infrastructure as Code (IaC) for cloud database provisioning (e.g., with Terraform or CloudFormation).",
           "resources": [
             {
-              "title": "Google SRE Incident Response",
+              "title": "AWS RDS Pricing Overview",
+              "url": "https://aws.amazon.com/rds/pricing/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for AWS RDS Deployment",
+              "url": "https://learn.hashicorp.com/tutorials/terraform/aws-rds",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/cloud_db_operations_cost_iac.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "db_migration_strategies_cloud",
+          "name": "Database Migration Strategies to/from Cloud",
+          "tag": "advanced",
+          "description": "Understand various strategies and tools for migrating databases to the cloud (e.g., AWS DMS, Azure Migrate, Google Cloud Database Migration Service) or between different cloud providers/on-premise. Cover online/offline migrations, zero-downtime migration patterns, data integrity checks, and planning for hybrid cloud database environments.",
+          "resources": [
+            {
+              "title": "AWS Database Migration Service (DMS)",
+              "url": "https://docs.aws.amazon.com/dms/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Logical Replication for Migrations",
+              "url": "https://www.postgresql.org/docs/current/logical-replication.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/db_migration_strategies_cloud.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "incident_management_postmortems",
+          "name": "Incident Management, Runbooks & Post-Mortems",
+          "tag": "advanced",
+          "description": "Develop and utilize detailed incident runbooks for common and complex database issues (slow queries, replication lag, storage exhaustion, failed backups, performance degradation). Practice structured incident response, conduct thorough root cause analysis, and lead effective post-mortems to learn from failures and implement preventative measures.",
+          "resources": [
+            {
+              "title": "Google SRE: Managing Incidents",
               "url": "https://sre.google/sre-book/managing-incidents/",
               "type": "article"
+            },
+            {
+              "title": "ITIL 4 Foundation Course (Simplilearn)",
+              "url": "https://www.simplilearn.com/itil-4-foundation-certification-training",
+              "type": "course"
+            },
+            {
+              "title": "How to Write a Postmortem",
+              "url": "https://www.atlassian.com/incident-management/postmortem/how-to-write-a-postmortem",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/incident_management_postmortems.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "advanced_db_ops_project_lab",
+          "name": "Project: Advanced Cloud Database Operations Lab",
+          "tag": "advanced",
+          "description": "Provision a highly available and scalable database cluster in a chosen cloud environment (e.g., AWS RDS/Aurora) using Infrastructure as Code. Implement comprehensive backup/restore with PITR, configure advanced monitoring and alerting, simulate and resolve a complex database incident, and document an operational runbook and post-mortem report.",
+          "resources": [
+            {
+              "title": "AWS CloudFormation User Guide",
+              "url": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/advanced_db_ops_project_lab.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dba_specialized_topics",
+      "name": "Specialized & Emerging Database Technologies",
+      "tag": "advanced",
+      "description": "Explore specialized areas and emerging trends in the database landscape, broadening your expertise beyond traditional relational systems to address diverse data management needs and modern architectures.",
+      "resources": [
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/database_admin/dba_specialized_topics.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "nosql_databases_deep_dive",
+          "name": "NoSQL Databases Deep Dive",
+          "tag": "advanced",
+          "description": "Understand different NoSQL types (document, key-value, columnar, graph), their use cases, and when to choose them over relational databases. Deep dive into operational aspects of popular NoSQL systems like MongoDB (document), Cassandra (columnar), and Redis (key-value/in-memory data structure store).",
+          "resources": [
+            {
+              "title": "NoSQL Explained (AWS)",
+              "url": "https://aws.amazon.com/nosql/",
+              "type": "article"
+            },
+            {
+              "title": "MongoDB Official Documentation",
+              "url": "https://www.mongodb.com/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Apache Cassandra Documentation",
+              "url": "https://cassandra.apache.org/doc/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Redis Documentation",
+              "url": "https://redis.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/nosql_databases_deep_dive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_warehousing_etl_elt",
+          "name": "Data Warehousing, Data Lakes & ETL/ELT",
+          "tag": "advanced",
+          "description": "Introduction to data warehousing concepts, OLAP vs. OLTP, star/snowflake schemas, and the Extract, Transform, Load (ETL) and Extract, Load, Transform (ELT) processes for analytical workloads. Understand the role of data lakes and modern data stack components.",
+          "resources": [
+            {
+              "title": "Data Warehousing Concepts",
+              "url": "https://www.geeksforgeeks.org/data-warehousing-concepts/",
+              "type": "article"
+            },
+            {
+              "title": "What is a Data Lake?",
+              "url": "https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/data_warehousing_etl_elt.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "search_graph_time_series_dbs",
+          "name": "Search, Graph & Time-Series Databases",
+          "tag": "advanced",
+          "description": "Explore specialized database types: Search databases (e.g., Elasticsearch, OpenSearch) for full-text search and analytics, Graph databases (e.g., Neo4j, Amazon Neptune) for relational data, and Time-Series databases (e.g., InfluxDB, TimescaleDB) for monitoring and IoT data.",
+          "resources": [
+            {
+              "title": "Elasticsearch Guide",
+              "url": "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Neo4j Graph Database Introduction",
+              "url": "https://neo4j.com/developer/graph-database/",
+              "type": "article"
+            },
+            {
+              "title": "TimescaleDB Documentation",
+              "url": "https://docs.timescale.com/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/search_graph_time_series_dbs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "distributed_sql_databases",
+          "name": "Distributed SQL Databases",
+          "tag": "advanced",
+          "description": "Understand the architecture and benefits of Distributed SQL databases (e.g., CockroachDB, YugabyteDB, Vitess), which combine relational database features with horizontal scalability and global distribution.",
+          "resources": [
+            {
+              "title": "CockroachDB Fundamentals",
+              "url": "https://www.cockroachlabs.com/docs/stable/cockroachdb-feature-overview.html",
+              "type": "article"
+            },
+            {
+              "title": "YugabyteDB Documentation",
+              "url": "https://docs.yugabyte.com/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/distributed_sql_databases.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "polyglot_persistence_data_strategy",
+          "name": "Polyglot Persistence & Data Strategy",
+          "tag": "advanced",
+          "description": "Understand the concept of using multiple data storage technologies within a single application or system, each best suited for a particular data workload or domain. Learn to define a comprehensive data strategy for complex microservices architectures.",
+          "resources": [
+            {
+              "title": "What is Polyglot Persistence?",
+              "url": "https://martinfowler.com/bliki/PolyglotPersistence.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/database_admin/polyglot_persistence_data_strategy.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

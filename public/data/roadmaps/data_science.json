@@ -5,201 +5,476 @@
   "stages": [
     {
       "step": 1,
-      "title": "Python, Math, and Data Analysis",
+      "title": "Python, Math, and Data Analysis Fundamentals",
       "topics": [
         {
-          "id": "ds_python",
-          "name": "Python for Data Science",
+          "id": "ds_python_fundamentals",
+          "name": "Python Programming Fundamentals for Data Science",
           "tag": "essential",
-          "description": "Use Python, notebooks, Pandas, NumPy, Matplotlib, Seaborn, environments, and clean project structure.",
+          "description": "Master Python syntax, data structures (lists, tuples, dicts, sets), control flow, functions, error handling, and object-oriented programming concepts essential for data manipulation and analysis.",
           "resources": [
             {
-              "title": "CampusX - 100 Days of ML",
-              "url": "https://www.youtube.com/playlist?list=PLKnIA16_Rmvbr7zKYQuBfsVkjoLcUaHDi",
+              "title": "Learn Python - Full Course for Beginners [Tutorial]",
+              "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
               "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_python_fundamentals.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "ds_math",
-          "name": "Statistics and Probability",
+          "id": "ds_pandas_numpy",
+          "name": "Data Manipulation with Pandas & NumPy",
           "tag": "essential",
-          "description": "Learn distributions, sampling, hypothesis testing, confidence intervals, correlation, regression, and experiment design.",
+          "description": "Learn advanced data structures (DataFrames, Series), indexing, filtering, grouping, merging, pivoting, reshaping data, and vectorized operations for efficient numerical computation in Python. Understand data cleaning basics like handling missing values and duplicates.",
+          "resources": [
+            {
+              "title": "Pandas User Guide",
+              "url": "https://pandas.pydata.org/docs/user_guide/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Learn Python Pandas in 30 Minutes",
+              "url": "https://www.youtube.com/watch?v=vmEHCJofhf0",
+              "type": "video"
+            },
+            {
+              "title": "Pandas Full Course - Python Data Analysis Library",
+              "url": "https://www.youtube.com/watch?v=Uh2ebFW8WDs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_pandas_numpy.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_sql_database_fundamentals",
+          "name": "SQL and Database Fundamentals",
+          "tag": "essential",
+          "description": "Master SQL for querying, filtering, joining, and aggregating data from relational databases. Understand common database concepts like tables, keys, and basic schema design. Practice extracting data for analysis using various SQL commands.",
+          "resources": [
+            {
+              "title": "SQL Tutorial (W3Schools)",
+              "url": "https://www.w3schools.com/sql/",
+              "type": "article"
+            },
+            {
+              "title": "SQL Tutorial - Full Database Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=R9jFkM_wD5c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_sql_database_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_statistics_probability_core",
+          "name": "Core Statistics and Probability for Data Science",
+          "tag": "essential",
+          "description": "Understand descriptive statistics (measures of central tendency, dispersion), probability theory (random variables, distributions like Normal, Bernoulli, Binomial, Poisson), inferential statistics (sampling, Central Limit Theorem, confidence intervals, hypothesis testing - t-tests, ANOVA, Chi-squared), A/B testing principles, and correlation vs. causation.",
           "resources": [
             {
               "title": "Complete Statistics for Data Science (Krish Naik)",
               "url": "https://www.youtube.com/watch?v=LZzq1zSL1bs",
               "type": "video"
+            },
+            {
+              "title": "Statistics for Data Science Full Course | Study Session",
+              "url": "https://www.youtube.com/watch?v=ua-sg0LhK7A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_statistics_probability_core.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "ds_eda",
-          "name": "Exploratory Data Analysis",
+          "id": "ds_eda_visualization",
+          "name": "Exploratory Data Analysis and Visualization",
           "tag": "essential",
-          "description": "Profile datasets, handle missing values, find outliers, visualize trends, and write useful analysis notes.",
+          "description": "Perform comprehensive data profiling, univariate, bivariate, and multivariate analysis. Master advanced data cleaning (outliers detection and treatment, inconsistent data, type conversion), feature understanding, and effective data visualization using Matplotlib and Seaborn for uncovering patterns, relationships, and anomalies. Document findings and generate actionable insights through compelling plots and reports.",
           "resources": [
             {
               "title": "Seaborn Tutorial",
               "url": "https://seaborn.pydata.org/tutorial.html",
               "type": "course"
+            },
+            {
+              "title": "Exploratory Data Analysis with Python - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=Bp_P-r2yL94",
+              "type": "video"
+            },
+            {
+              "title": "Exploratory Data Analysis (EDA) in Python With Pandas, Matplotlib, Seaborn Tutorial",
+              "url": "https://www.youtube.com/watch?v=0_u6eP3jT0U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_eda_visualization.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "UCI Machine Learning Repository",
-        "description": "Analyze a public dataset, clean it, visualize key patterns, and publish a short notebook with business insights.",
+        "title": "UCI Machine Learning Repository Data Story",
+        "description": "Analyze a public dataset, clean it, perform thorough EDA, visualize key patterns, and publish a short notebook with insightful business recommendations.",
         "url": "https://archive.ics.uci.edu/"
       }
     },
     {
       "step": 2,
-      "title": "Machine Learning Core",
+      "title": "Machine Learning Core Concepts and Applications",
       "topics": [
         {
-          "id": "ds_supervised",
-          "name": "Supervised Learning",
+          "id": "ds_data_preprocessing_feature_engineering_basics",
+          "name": "Data Preprocessing and Foundational Feature Engineering",
           "tag": "essential",
-          "description": "Train regression and classification models, split data correctly, tune hyperparameters, and compare baselines.",
+          "description": "Prepare data for machine learning models: handle categorical variables (one-hot, label encoding), numerical scaling (standardization, normalization), manage imbalanced datasets (oversampling, undersampling, SMOTE), split data into training, validation, and test sets. Understand feature scaling importance and basic feature transformation.",
+          "resources": [
+            {
+              "title": "Feature Scaling for Machine Learning",
+              "url": "https://www.geeksforgeeks.org/feature-scaling-in-machine-learning/",
+              "type": "article"
+            },
+            {
+              "title": "Data Preprocessing for Machine Learning in Python Tutorial",
+              "url": "https://www.youtube.com/watch?v=5V4f4S7hH3E",
+              "type": "video"
+            },
+            {
+              "title": "Feature Engineering for Machine Learning Tutorial",
+              "url": "https://www.youtube.com/watch?v=Qf6Zg3sWbT0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_data_preprocessing_feature_engineering_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_supervised_learning_models",
+          "name": "Supervised Learning: Regression and Classification Models",
+          "tag": "essential",
+          "description": "Deep dive into fundamental supervised algorithms: Linear Regression, Logistic Regression, K-Nearest Neighbors, Decision Trees, and Support Vector Machines (SVMs). Understand model training, regularization (L1, L2), and the bias-variance tradeoff. Learn about ensemble methods like Random Forests, Bagging, Boosting, and Gradient Boosting Machines (e.g., XGBoost, LightGBM, CatBoost).",
           "resources": [
             {
               "title": "Scikit-learn Getting Started",
               "url": "https://scikit-learn.org/stable/getting_started.html",
               "type": "article"
-            }
-          ]
-        },
-        {
-          "id": "ds_unsupervised",
-          "name": "Unsupervised Learning",
-          "tag": "advanced",
-          "description": "Use clustering, dimensionality reduction, anomaly detection, embeddings, and similarity search for discovery tasks.",
-          "resources": [
+            },
             {
-              "title": "Google Machine Learning Crash Course",
-              "url": "https://developers.google.com/machine-learning/crash-course",
-              "type": "course"
+              "title": "Introduction to Machine Learning with Python - Full Course",
+              "url": "https://www.youtube.com/watch?v=RnFGhXYg_1E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_supervised_learning_models.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "data_science_practice_lab",
-          "name": "Practice: Model Evaluation Drill",
-          "tag": "advanced",
-          "description": "Compare three models on the same dataset, inspect errors, check leakage, and explain metric tradeoffs.",
+          "id": "ds_model_evaluation_tuning",
+          "name": "Model Evaluation, Validation, and Hyperparameter Tuning",
+          "tag": "essential",
+          "description": "Master essential evaluation metrics for classification (accuracy, precision, recall, F1-score, ROC-AUC, PR-AUC, confusion matrix) and regression (MAE, MSE, RMSE, R-squared, Adjusted R-squared). Understand cross-validation techniques (k-fold, stratified), hold-out sets, data leakage, and hyperparameter tuning strategies (Grid Search, Random Search, Bayesian Optimization intro).",
           "resources": [
             {
               "title": "Scikit-Learn Model Evaluation",
               "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
               "type": "article"
+            },
+            {
+              "title": "Machine Learning Concepts: Model Evaluation (Accuracy, Precision, Recall, F1, ROC, AUC, Cross-Validation)",
+              "url": "https://www.youtube.com/watch?v=0hWf2k0d0iA",
+              "type": "video"
+            },
+            {
+              "title": "Hyperparameter Optimization Tutorial - Grid Search vs Random Search vs Bayesian Optimization with Python",
+              "url": "https://www.youtube.com/watch?v=qM8_lHh_6gQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_model_evaluation_tuning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_unsupervised_learning_dr",
+          "name": "Unsupervised Learning and Dimensionality Reduction",
+          "tag": "advanced",
+          "description": "Explore clustering algorithms (K-Means, DBSCAN, Hierarchical Clustering, Gaussian Mixture Models) for grouping data. Understand dimensionality reduction techniques (PCA, t-SNE, UMAP, LDA) for visualization and feature extraction. Learn about anomaly detection algorithms (Isolation Forest, One-Class SVM) and similarity search concepts.",
+          "resources": [
+            {
+              "title": "Google Machine Learning Crash Course",
+              "url": "https://developers.google.com/machine-learning/crash-course",
+              "type": "course"
+            },
+            {
+              "title": "Unsupervised Learning with Python - Full Course",
+              "url": "https://www.youtube.com/watch?v=0wQJj5C7m6Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_unsupervised_learning_dr.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Prediction Model Notebook",
-        "description": "Build a baseline and improved model, document preprocessing, evaluate fairly, and write recommendations.",
+        "title": "Advanced Prediction Model Notebook",
+        "description": "Build and compare multiple models (baseline and advanced), document preprocessing steps, evaluate models fairly using appropriate metrics and cross-validation, and write detailed recommendations based on model performance and insights.",
         "url": "https://scikit-learn.org/stable/auto_examples/index.html"
       }
     },
     {
       "step": 3,
-      "title": "Feature Engineering, Deep Learning, and AI",
+      "title": "Feature Engineering, Deep Learning, and Specialized AI",
       "topics": [
         {
-          "id": "ds_feature_engineering",
-          "name": "Feature Engineering",
+          "id": "ds_advanced_feature_engineering",
+          "name": "Advanced Feature Engineering and Selection",
           "tag": "essential",
-          "description": "Create numeric, categorical, text, time, and aggregate features while avoiding leakage and unstable signals.",
+          "description": "Develop expertise in creating meaningful features from raw data: numeric transformations (polynomial, interaction terms, Fourier transforms), advanced categorical encoding (target encoding, frequency encoding, leave-one-out encoding), date/time features (cyclical features, time differences), text-based features (TF-IDF, word embeddings overview), and geographical features. Implement robust feature selection methods (filter, wrapper, embedded methods, RFE) to improve model performance and interpretability.",
           "resources": [
             {
               "title": "Feature Engineering Playlist (Krish Naik)",
               "url": "https://www.youtube.com/watch?v=6WDFfaYtN6s&list=PLZoTAELRMXVPwYGE2PXD3x0bfKnR0cJjN",
               "type": "video"
+            },
+            {
+              "title": "Feature Engineering for Machine Learning - Data Science Crash Course",
+              "url": "https://www.youtube.com/watch?v=jW_jVj7Bv7k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_advanced_feature_engineering.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "ds_deep_learning",
-          "name": "Deep Learning Basics",
+          "id": "ds_deep_learning_fundamentals_pytorch_tf",
+          "name": "Deep Learning Fundamentals with TensorFlow/PyTorch",
           "tag": "advanced",
-          "description": "Understand neural networks, tensors, training loops, overfitting, embeddings, transfer learning, and GPU workflows.",
+          "description": "Grasp the core concepts of artificial neural networks (ANNs), activation functions, loss functions, optimizers, and regularization (dropout, batch normalization). Learn about backpropagation, gradient descent variants, and the architecture of Multi-Layer Perceptrons (MLPs). Introduce Convolutional Neural Networks (CNNs) for image data and Recurrent Neural Networks (RNNs) for sequential data. Understand practical aspects like data loading, transfer learning, and GPU utilization using frameworks like TensorFlow and PyTorch.",
           "resources": [
             {
               "title": "PyTorch Tutorials",
               "url": "https://pytorch.org/tutorials/",
               "type": "course"
+            },
+            {
+              "title": "Deep Learning for Beginners - A Free Course",
+              "url": "https://www.youtube.com/watch?v=VMz6eR9tQ8Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_deep_learning_fundamentals_pytorch_tf.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "ds_responsible_ai",
-          "name": "Responsible AI and Explainability",
+          "id": "ds_natural_language_processing_intro",
+          "name": "Introduction to Natural Language Processing (NLP)",
           "tag": "advanced",
-          "description": "Check fairness, drift, interpretability, privacy, documentation, and when not to use a model.",
+          "description": "Learn fundamentals of NLP including text preprocessing (tokenization, stemming, lemmatization), text representation (Bag-of-Words, TF-IDF), sentiment analysis, topic modeling (LDA), and an introduction to word embeddings (Word2Vec, GloVe) and transformer models (BERT, GPT basics).",
+          "resources": [
+            {
+              "title": "NLTK Book",
+              "url": "https://www.nltk.org/book/",
+              "type": "course"
+            },
+            {
+              "title": "Natural Language Processing In 5 Minutes | What Is NLP? | NLP Explained | NLP Tutorial | Simplilearn",
+              "url": "https://www.youtube.com/watch?v=f0b5VjB_Fm0",
+              "type": "video"
+            },
+            {
+              "title": "Natural Language Processing (NLP) Tutorial | Learn NLP with Python",
+              "url": "https://www.youtube.com/watch?v=X2FDyY_c20A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_natural_language_processing_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_computer_vision_intro",
+          "name": "Introduction to Computer Vision (CV)",
+          "tag": "advanced",
+          "description": "Explore core concepts of Computer Vision: image preprocessing, feature detection (edge, corner), object recognition, and image classification. Understand basic architectures like CNNs for image tasks, transfer learning with pre-trained models (e.g., ResNet, VGG), and practical applications.",
+          "resources": [
+            {
+              "title": "OpenCV-Python Tutorials",
+              "url": "https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_image_display/py_image_display.html",
+              "type": "article"
+            },
+            {
+              "title": "Computer Vision Full Course - Python, OpenCV, and Deep Learning (FreeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=W0S8gpA8pDE",
+              "type": "video"
+            },
+            {
+              "title": "What is Computer Vision? (Introduction to Computer Vision)",
+              "url": "https://www.youtube.com/watch?v=F0B9WfT4FmI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_computer_vision_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_responsible_ai_ethics_explainability",
+          "name": "Responsible AI, Ethics, and Explainability (XAI)",
+          "tag": "advanced",
+          "description": "Address crucial aspects of AI ethics: fairness (bias detection, mitigation strategies, fairness metrics), privacy (differential privacy, federated learning concepts), and transparency. Learn about model interpretability techniques such as LIME, SHAP, Permutation Feature Importance, and Partial Dependence Plots to understand 'why' models make predictions. Discuss ethical considerations, societal impact, and governance of AI systems.",
           "resources": [
             {
               "title": "Google Responsible AI Practices",
               "url": "https://ai.google/responsibility/responsible-ai-practices/",
               "type": "article"
+            },
+            {
+              "title": "What is Responsible AI? | AI Ethics Explained",
+              "url": "https://www.youtube.com/watch?v=0hK8h1y2s8c",
+              "type": "video"
+            },
+            {
+              "title": "Explainable AI (XAI) - How to Interpret Machine Learning Models",
+              "url": "https://www.youtube.com/watch?v=xV8gS5P4K8g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_responsible_ai_ethics_explainability.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Explainable ML Report",
-        "description": "Train a model, explain top drivers, test subgroup performance, and write a non-technical model risk summary.",
+        "title": "Explainable and Fair ML Report",
+        "description": "Train a model, explain top drivers using XAI tools, test subgroup performance for fairness, and write a non-technical model risk summary for stakeholders.",
         "url": "https://christophm.github.io/interpretable-ml-book/"
       }
     },
     {
       "step": 4,
-      "title": "Portfolio and Production Readiness",
+      "title": "MLOps, Data Storytelling, and Capstone Project",
       "topics": [
         {
-          "id": "ds_mlops_intro",
-          "name": "MLOps Basics",
+          "id": "ds_mlops_deployment_monitoring_orchestration",
+          "name": "MLOps: Deployment, Monitoring, and Orchestration",
           "tag": "advanced",
-          "description": "Track experiments, version data, package models, serve predictions, monitor drift, and document model lifecycle decisions.",
+          "description": "Implement MLOps best practices: experiment tracking (MLflow, Weights & Biases), data versioning (DVC), model versioning and registries. Learn model deployment strategies (API endpoints with Flask/FastAPI, containerization with Docker, serverless functions, cloud services like AWS SageMaker, Azure ML, GCP AI Platform). Understand continuous integration/delivery (CI/CD) for ML, model monitoring (data drift, concept drift, performance decay), and automated model retraining strategies. Introduce workflow orchestration tools (Apache Airflow, Kubeflow).",
           "resources": [
             {
               "title": "MLflow Tracking Quickstart",
               "url": "https://mlflow.org/docs/latest/ml/getting-started/quickstart/",
               "type": "article"
+            },
+            {
+              "title": "MLOps Full Course - Machine Learning Operations Tutorial",
+              "url": "https://www.youtube.com/watch?v=FjI8s-0D1m0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_mlops_deployment_monitoring_orchestration.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "ds_storytelling",
-          "name": "Data Storytelling and Stakeholder Communication",
+          "id": "ds_data_storytelling_business_communication",
+          "name": "Data Storytelling, Business Communication, and Visualization Design",
           "tag": "essential",
-          "description": "Turn analysis into clear recommendations, visuals, assumptions, limitations, and next actions.",
+          "description": "Transform complex analytical findings into compelling narratives tailored for business impact. Master principles of effective data visualization (choosing appropriate chart types, clear labeling, avoiding misleading visuals). Learn to tailor communication for diverse technical and non-technical audiences, present actionable insights, articulate assumptions and limitations, and guide stakeholders towards data-driven decisions. Practice presenting findings through interactive dashboards (e.g., Tableau, Power BI, Streamlit) and professional reports.",
           "resources": [
             {
               "title": "Data Visualization Catalogue",
               "url": "https://datavizcatalogue.com/",
               "type": "article"
+            },
+            {
+              "title": "Data Science Storytelling with Dashboards and Python (Full Course)",
+              "url": "https://www.youtube.com/watch?v=kYvjJd251I0",
+              "type": "video"
+            },
+            {
+              "title": "Data Visualization Tutorial for Beginners (Learn Data Vis)",
+              "url": "https://www.youtube.com/watch?v=S_Y1w70aHzo",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_data_storytelling_business_communication.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "data_science_project_end_to_end",
-          "name": "Project: End-to-End Data Science Portfolio",
+          "id": "ds_capstone_mlops_project",
+          "name": "Capstone Project: End-to-End MLOps Application",
           "tag": "advanced",
-          "description": "Publish a complete project with dataset, EDA, model, evaluation, explainability, deployment demo, and README.",
+          "description": "Design, develop, and deploy a complete machine learning project from problem definition to production. This includes rigorous dataset acquisition/creation, comprehensive EDA, advanced feature engineering, model selection, robust evaluation, interpretability analysis, containerized deployment (e.g., using Docker and a web framework like Flask/FastAPI or Streamlit), experiment tracking, CI/CD pipeline integration, and a clear, professional README, technical documentation, and a final presentation.",
           "resources": [
             {
               "title": "Made With ML",
               "url": "https://madewithml.com/",
               "type": "course"
+            },
+            {
+              "title": "Deploy Machine Learning Models to Production with FastAPI & Docker",
+              "url": "https://www.youtube.com/watch?v=F0p7C2e5I7M",
+              "type": "video"
+            },
+            {
+              "title": "MLOps: From Zero to Hero (Full Course)",
+              "url": "https://www.youtube.com/watch?v=nNlS7P3W20k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/data_science/ds_capstone_mlops_project.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Deployed ML Demo",
-        "description": "Create a simple model API or Streamlit app with tracked experiments, clean README, and a short project write-up.",
+        "title": "Deployed ML Demo with MLOps Practices",
+        "description": "Create a simple model API or Streamlit app, deploy it, integrate with tracked experiments (e.g., MLflow), write a clean README, and provide a short project write-up detailing the end-to-end process and MLOps considerations.",
         "url": "https://streamlit.io/"
       }
     }

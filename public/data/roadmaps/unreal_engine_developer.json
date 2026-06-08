@@ -5,10 +5,10 @@
   "format": "tree",
   "tree": [
     {
-      "id": "unreal_engine_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "ue_foundations_editor_setup",
+      "name": "Unreal Engine Foundations & Editor Setup",
       "tag": "essential",
-      "description": "Understand what Unreal Engine Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of the Unreal Engine ecosystem, navigate the editor, grasp core game development concepts, and configure a professional development environment.",
       "resources": [
         {
           "title": "Unreal Engine 5 - Full Course for Beginners (freeCodeCamp.org)",
@@ -16,47 +16,68 @@
           "type": "video"
         },
         {
-          "title": "Unreal Engine Documentation",
-          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine",
+          "title": "Unreal Engine Documentation: Getting Started",
+          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/getting-started-with-unreal-engine",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unreal_engine_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "ue_intro_editor_concepts",
+          "name": "Introduction to Unreal Editor & Core Concepts",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Explore the Unreal Editor interface, essential components like Actors, Components, Worlds, Levels, Blueprints, C++, and the overall game development workflow.",
           "resources": [
             {
-              "title": "Unreal Online Learning",
-              "url": "https://dev.epicgames.com/community/learning",
+              "title": "Unreal Online Learning: Getting Started with UE5",
+              "url": "https://dev.epicgames.com/community/learning/paths/9mB3/getting-started-with-unreal-engine-5",
               "type": "course"
+            },
+            {
+              "title": "Unreal Engine Documentation: Editor Interface",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-editor-user-interface",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unreal_engine_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "ue_dev_environment_config",
+          "name": "Setting Up Your Development Environment & Source Control",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Configure Unreal Engine, integrate Visual Studio/Rider for C++ development, understand the project structure, and establish robust source control practices using Git or Perforce.",
           "resources": [
             {
               "title": "Unreal Engine C++ Programming",
               "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
               "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Source Control",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/source-control-in-unreal-engine",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ue_asset_management_content_browser",
+          "name": "Asset Management & Content Browser",
+          "tag": "essential",
+          "description": "Learn to organize, import, and manage various asset types within the Content Browser, including static meshes, textures, sounds, and Blueprints, ensuring efficient project structure.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Content Browser",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/content-browser",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unreal_engine_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "ue_core_gameplay_programming",
+      "name": "Core Gameplay Programming with Blueprints & C++",
       "tag": "essential",
-      "description": "Build the practical skill stack for Unreal Engine Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Master the fundamental programming and design tools within Unreal Engine, including Blueprints for rapid prototyping and C++ for robust, performant systems.",
       "resources": [
         {
           "title": "Game Development Full Course in Hindi/Urdu (UNREAL ENGINE 5) (Nafay 3D)",
@@ -64,55 +85,297 @@
           "type": "video"
         },
         {
-          "title": "Unreal Online Learning",
-          "url": "https://dev.epicgames.com/community/learning",
+          "title": "Unreal Online Learning: C++ Fundamentals",
+          "url": "https://dev.epicgames.com/community/learning/paths/Z7X/unreal-engine-c-fundamentals",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "unreal_engine_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "ue_blueprint_visual_scripting_deep_dive",
+          "name": "Blueprint Visual Scripting Deep Dive",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Learn to rapidly prototype and build gameplay mechanics, UI, and complex logic using Unreal Engine's visual scripting system. Understand event graphs, functions, macros, and interfaces.",
           "resources": [
             {
-              "title": "Unreal Engine Documentation",
-              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine",
+              "title": "Unreal Engine Documentation: Blueprints",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/blueprints-visual-scripting-in-unreal-engine",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unreal_engine_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "ue_cpp_programming_fundamentals_ue",
+          "name": "C++ Programming Fundamentals in Unreal Engine",
+          "tag": "essential",
+          "description": "Understand the deep integration of C++ with Unreal Engine, essential C++ classes (AActor, UComponent, AGameModeBase), and the Unreal reflection system (UCLASS, UPROPERTY, UFUNCTION).",
           "resources": [
             {
               "title": "Unreal Engine C++ Programming",
               "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unreal_engine_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "ue_gameplay_framework_architecture",
+          "name": "Unreal Gameplay Framework Architecture",
+          "tag": "essential",
+          "description": "Dive into essential gameplay classes like GameMode, PlayerController, Pawn, Character, GameState, PlayerState, and Controllers to structure your game logic effectively.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Gameplay Framework",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-architecture",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_enhanced_input_umg_events",
+          "name": "Enhanced Input System, UI (UMG) & Event Handling",
+          "tag": "essential",
+          "description": "Implement robust player input actions using the Enhanced Input System, design intuitive user interfaces with UMG, and manage events, delegates, and interfaces for seamless interactions.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Enhanced Input System",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-system",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: UMG UI Designer",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-ui-designer",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_data_tables_assets_config",
+          "name": "Data-Driven Design: Data Tables & Data Assets",
+          "tag": "essential",
+          "description": "Implement data-driven gameplay using Data Tables for structured data storage and Data Assets for configurable object settings, promoting flexibility and rapid iteration.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Data Tables",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/data-driven-gameplay-with-data-tables",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Data Assets",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/data-assets",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unreal_engine_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "ue_graphics_vfx_audio",
+      "name": "Graphics, VFX & Audio Systems",
+      "tag": "essential",
+      "description": "Deepen your expertise by exploring Unreal Engine's systems for visual fidelity, real-time rendering, dynamic visual effects, and immersive audio experiences.",
+      "resources": [
+        {
+          "title": "Unreal Engine Documentation: Graphics & Rendering",
+          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/graphics-and-rendering-in-unreal-engine",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "ue_materials_shaders_pbr",
+          "name": "Materials, Shaders & PBR Fundamentals",
+          "tag": "essential",
+          "description": "Create realistic and stylized visuals using Unreal's material editor, understand Physically Based Rendering (PBR) workflows, and optimize material performance.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Materials",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/materials",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_lighting_reflections_post_process",
+          "name": "Lighting, Reflections & Post-Processing",
+          "tag": "essential",
+          "description": "Master various lighting techniques (static, dynamic, Lumen, Nanite), reflection captures, Sky Atmosphere, Volumetric Fog, and manipulate post-processing volumes for atmospheric and stylistic effects.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Lighting the Environment",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lighting-the-environment-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Post Process Effects",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/post-process-effects-in-unreal-engine",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_world_building_landscapes_foliage",
+          "name": "World Building: Landscapes, Foliage & Level Streaming",
+          "tag": "essential",
+          "description": "Utilize Unreal's tools to sculpt terrains, paint foliage, and manage large open worlds efficiently using World Partition, Data Layers, and Level Streaming techniques.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Landscapes",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/landscapes-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: World Partition",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/world-partition",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_animation_rigging_montages",
+          "name": "Animation Systems, Rigging & Montages",
+          "tag": "essential",
+          "description": "Work with skeletal meshes, create and manage Animation Blueprints, utilize Animation Montages for dynamic actions, and understand animation retargeting and blending.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Animation",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Control Rig",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/control-rig",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_vfx_niagara_systems",
+          "name": "Visual Effects with Niagara Systems",
+          "tag": "advanced",
+          "description": "Design and implement complex particle effects, environmental effects, and dynamic visual spectacles using Unreal's powerful Niagara visual effects system.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Niagara",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/niagara-overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_audio_sound_design_integration",
+          "name": "Audio & Sound Design Integration",
+          "tag": "essential",
+          "description": "Integrate sound effects, background music, and environmental audio using Sound Cues, Attenuation, Concurrency, and explore MetaSounds for advanced sound design.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Audio",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/audio-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: MetaSounds",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/metasounds-in-unreal-engine",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ue_advanced_gameplay_ai_systems",
+      "name": "Advanced Gameplay, AI & Core Systems",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Develop sophisticated gameplay mechanics, implement intelligent AI, and understand advanced engine systems for creating dynamic and engaging interactive experiences.",
+      "resources": [
+        {
+          "title": "Unreal Engine Documentation: Gameplay Ability System",
+          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-ability-system-in-unreal-engine",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "ue_physics_collision_tracing_advanced",
+          "name": "Physics, Collision & Tracing Systems",
+          "tag": "essential",
+          "description": "Work with Unreal's physics engine, set up intricate collision profiles and complex physical materials, and utilize line traces, shape traces, and overlap events for precise gameplay interactions.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Physics",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/physics-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Collision Overview",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/collision-overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_ai_navigation_behavior_trees",
+          "name": "AI, Navigation & Behavior Trees",
+          "tag": "advanced",
+          "description": "Implement intelligent agent behaviors using AI controllers, navigation meshes (NavMesh), behavior trees, Environmental Query System (EQS), and AI Perception for dynamic AI.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Artificial Intelligence",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/artificial-intelligence-in-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Behavior Trees",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/behavior-trees",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_gameplay_ability_system_foundations",
+          "name": "Gameplay Ability System (GAS) Foundations",
+          "tag": "advanced",
+          "description": "Understand the architecture and core concepts of the Gameplay Ability System for implementing robust, scalable abilities, attributes, and effects (GEs/GAs) in complex games.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Gameplay Ability System",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-ability-system-in-unreal-engine",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_save_load_persistence_systems",
+          "name": "Save/Load & Persistence Systems",
+          "tag": "essential",
+          "description": "Implement robust save and load functionalities, understand persistent data management, and design modular save game systems for different game states.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: SaveGame Objects",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/savegame-objects",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_sequencer_cinematics",
+          "name": "Sequencer & Cinematics",
+          "tag": "advanced",
+          "description": "Create stunning in-game cinematics, cutscenes, and animated sequences using Unreal's powerful Sequencer tool for storytelling and presentation.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Sequencer",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/sequencer",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ue_optimization_multiplayer_pipelines",
+      "name": "Optimization, Multiplayer & Production Pipelines",
+      "tag": "advanced",
+      "description": "Learn to optimize, package, and deploy Unreal Engine projects efficiently, implement robust multiplayer systems, and understand best practices for robust team collaboration and automated pipelines.",
       "resources": [
         {
           "title": "Unreal Engine 5 Beginner Tutorial - UE5 Starter Course (Unreal Sensei)",
@@ -120,47 +383,109 @@
           "type": "video"
         },
         {
-          "title": "Unreal Engine C++ Programming",
-          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
+          "title": "Unreal Engine Documentation: Performance & Profiling",
+          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/profiling-for-performance-in-unreal-engine",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unreal_engine_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "ue_performance_optimization_profiling_deep_dive",
+          "name": "Performance Optimization & Profiling Deep Dive",
+          "tag": "essential",
+          "description": "Identify and resolve performance bottlenecks using Unreal's profiling tools (Stat Commands, Unreal Insights, GPUView) across CPU, GPU, memory, and draw calls. Implement optimization strategies for assets and code.",
           "resources": [
             {
-              "title": "Unreal Online Learning",
-              "url": "https://dev.epicgames.com/community/learning",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "unreal_engine_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
-          "resources": [
+              "title": "Unreal Engine Documentation: Profiling for Performance",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/profiling-for-performance-in-unreal-engine",
+              "type": "article"
+            },
             {
-              "title": "Unreal Engine Documentation",
-              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine",
+              "title": "Unreal Engine Documentation: Optimization Cookbook",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/optimization-cookbook-for-unreal-engine-games",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ue_multiplayer_networking_replication",
+          "name": "Multiplayer & Networking: Replication & RPCs",
+          "tag": "advanced",
+          "description": "Understand the core principles of Unreal's multiplayer framework, master actor and property replication, Remote Procedure Calls (RPCs), and network authority for online gameplay.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Networking and Multiplayer",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/networking-and-multiplayer",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Replication Graph",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/replication-graph",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_packaging_deployment_platforms_shipping",
+          "name": "Packaging, Deployment & Platform Shipping",
+          "tag": "essential",
+          "description": "Prepare your project for release by understanding packaging settings, build configurations, and handling platform-specific deployments for PC, consoles, and mobile. Learn about cook and build processes.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Packaging Projects",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/packaging-projects",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Shipping your Project",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/shipping-your-unreal-engine-project",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_automated_testing_ci_cd",
+          "name": "Automated Testing & CI/CD Pipelines",
+          "tag": "advanced",
+          "description": "Implement automated testing frameworks within Unreal Engine (Automation Tests) and integrate with Continuous Integration/Continuous Deployment (CI/CD) pipelines for efficient development and reliable releases.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Automation System",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/automation-system-for-unreal-engine",
+              "type": "article"
+            },
+            {
+              "title": "Building and Deploying Games with Jenkins and Unreal Engine",
+              "url": "https://www.jenkins.io/blog/2020/09/23/building-deploying-games-unreal-engine/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ue_plugin_module_development",
+          "name": "Plugin & Module Development",
+          "tag": "advanced",
+          "description": "Extend Unreal Engine's functionality by developing custom plugins and modules, understanding the modular architecture, and integrating third-party libraries.",
+          "resources": [
+            {
+              "title": "Unreal Engine Documentation: Modular Programming",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/modular-programming-with-plugins",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Documentation: Creating Plugins",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/creating-plugins",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unreal_engine_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "ue_professional_development_portfolio",
+      "name": "Professional Development & Portfolio",
       "tag": "advanced",
-      "description": "Turn your Unreal Engine Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Translate your Unreal Engine development expertise into a compelling professional profile: build impressive case studies, robust GitHub artifacts, compelling demos, and prepare for industry interviews.",
       "resources": [
         {
           "title": "Unreal Engine Documentation",
@@ -171,41 +496,65 @@
           "title": "Unreal Online Learning",
           "url": "https://dev.epicgames.com/community/learning",
           "type": "course"
-        },
-        {
-          "title": "Unreal Engine C++ Programming",
-          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
-          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unreal_engine_developer_case_study",
-          "name": "Case Study Writing",
+          "id": "ue_project_showcase_tech_docs",
+          "name": "Project Showcase & Technical Documentation",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Document your projects effectively, create captivating demos, and articulate your technical decisions and problem-solving approaches in a clear, concise manner for a professional audience.",
           "resources": [
             {
-              "title": "Unreal Engine Documentation",
-              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine",
-              "type": "article"
+              "title": "Effective Documentation for Game Development (GDC Talk)",
+              "url": "https://www.youtube.com/watch?v=0w5uQ3Nf6yI",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unreal_engine_developer_project_capstone",
-          "name": "Project: Unreal Engine Developer Portfolio Capstone",
+          "id": "ue_capstone_portfolio_project_advanced",
+          "name": "Advanced Unreal Engine Capstone Portfolio Project",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Unreal Engine Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Develop a substantial, portfolio-grade Unreal Engine project applying all acquired skills from design, advanced implementation, optimization, and deployment, ready for showcasing to potential employers.",
           "resources": [
             {
               "title": "Unreal Engine C++ Programming",
               "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-cplusplus-in-unreal-engine",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ue_job_search_interview_preparation",
+          "name": "Job Search & Interview Preparation",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews specific to Unreal Engine developer roles, understand common industry challenges, build a strong professional network, and refine your resume and portfolio.",
+          "resources": [
+            {
+              "title": "Game Developer Jobs: How to Get Hired (GDC Talk)",
+              "url": "https://www.youtube.com/watch?v=sR8sM898m8o",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ue_community_contributions_networking",
+          "name": "Community Contributions & Professional Networking",
+          "tag": "advanced",
+          "description": "Engage with the Unreal Engine community through forums, Discord, and events. Explore opportunities for open-source contributions, fostering professional growth and connections.",
+          "resources": [
+            {
+              "title": "Unreal Engine Developer Community",
+              "url": "https://dev.epicgames.com/community/",
+              "type": "article"
+            },
+            {
+              "title": "GDC Vault (Game Developers Conference)",
+              "url": "https://www.gdcvault.com/",
+              "type": "course"
+            }
+          ]
         }
       ]
     }

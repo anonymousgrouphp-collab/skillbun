@@ -1,23 +1,18 @@
 {
   "id": "ios_developer",
   "title": "iOS Developer",
-  "description": "Learn Swift, SwiftUI, app architecture, networking, persistence, testing, and App Store release workflow.",
+  "description": "Master Swift, SwiftUI, robust app architecture, networking, data persistence, comprehensive testing, performance optimization, and the complete App Store release workflow to build high-quality iOS applications.",
   "format": "tree",
   "tree": [
     {
       "id": "ios_foundations",
-      "name": "Swift and Xcode Foundations",
+      "name": "Swift Language & Xcode Fundamentals",
       "tag": "essential",
-      "description": "Get comfortable with Swift syntax, optionals, collections, functions, types, and the Xcode workflow.",
+      "description": "Establish a strong foundation in the Swift programming language, covering its core syntax, paradigms, advanced features, concurrency, and mastering the essential development tools and workflows within Xcode and Git.",
       "resources": [
         {
           "title": "Swift Programming Tutorial - Full Course for Beginners (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
-          "type": "video"
-        },
-        {
-          "title": "SwiftUI Fundamentals Full Course (Sean Allen)",
-          "url": "https://www.youtube.com/watch?v=b1oC7sLIgpI",
           "type": "video"
         },
         {
@@ -26,47 +21,124 @@
           "type": "course"
         },
         {
-          "title": "Swift Book",
-          "url": "https://github.com/swiftlang/swift-book",
+          "title": "The Swift Programming Language",
+          "url": "https://docs.swift.org/swift-book/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ios_swift_basics",
-          "name": "Swift Language Basics",
+          "id": "ios_swift_core_advanced_features",
+          "name": "Swift Core Language & Advanced Features",
           "tag": "essential",
-          "description": "Learn optionals, structs, classes, protocols, extensions, generics, and error handling.",
+          "description": "Deep dive into Swift's fundamental syntax, data types, operators, control flow, functions, optionals, structs, classes, enums, protocols, extensions, and generics. Understand memory management with ARC, explore protocol-oriented programming, and property wrappers.",
           "resources": [
             {
               "title": "A Swift Tour",
               "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/guidedtour/",
               "type": "article"
+            },
+            {
+              "title": "Structures and Classes",
+              "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/structuresandclasses/",
+              "type": "article"
+            },
+            {
+              "title": "Protocols",
+              "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/protocols/",
+              "type": "article"
+            },
+            {
+              "title": "Automatic Reference Counting",
+              "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/automaticreferencecounting/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ios_xcode",
-          "name": "Xcode Workflow",
+          "id": "ios_swift_concurrency_error",
+          "name": "Swift Concurrency & Error Handling",
           "tag": "essential",
-          "description": "Use projects, previews, debugging, simulators, assets, signing basics, and Instruments introductions.",
+          "description": "Explore asynchronous programming with async/await, Tasks, Actors, structured concurrency, and implement robust error handling mechanisms using 'do-catch', 'try-throw', and custom error types.",
+          "resources": [
+            {
+              "title": "Concurrency in Swift",
+              "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+              "type": "article"
+            },
+            {
+              "title": "Error Handling in Swift",
+              "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/errorhandling/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_xcode_ide_mastery",
+          "name": "Xcode IDE Mastery & Tooling",
+          "tag": "essential",
+          "description": "Understand Xcode project management, Interface Builder basics, Previews, advanced debugging tools (breakpoints, view debugger, memory graph debugger), simulators, asset catalogs, and essential signing & capabilities for app deployment.",
           "resources": [
             {
               "title": "Xcode Documentation",
               "url": "https://developer.apple.com/documentation/xcode",
               "type": "article"
+            },
+            {
+              "title": "Debugging with Xcode",
+              "url": "https://developer.apple.com/documentation/xcode/debugging-with-xcode",
+              "type": "article"
+            },
+            {
+              "title": "Using the View Debugger",
+              "url": "https://developer.apple.com/videos/play/wwdc2022/10043/",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ios_version_control_git",
+          "name": "Version Control with Git & Collaboration",
+          "tag": "essential",
+          "description": "Learn Git fundamentals, common commands, branching strategies (e.g., Git Flow, GitHub Flow), pull requests, code reviews, and integrating Git seamlessly into your Xcode workflow for team collaboration.",
+          "resources": [
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Managing projects with Git and Xcode",
+              "url": "https://developer.apple.com/documentation/xcode/managing-projects-with-git-and-xcode",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_dependency_management",
+          "name": "Dependency Management",
+          "tag": "essential",
+          "description": "Understand and utilize Swift Package Manager (SPM) for integrating third-party libraries and managing project dependencies efficiently. Explore CocoaPods and Carthage as alternative solutions.",
+          "resources": [
+            {
+              "title": "Adding Package Dependencies to Your App",
+              "url": "https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app",
+              "type": "article"
+            },
+            {
+              "title": "Swift Package Manager Documentation",
+              "url": "https://github.com/apple/swift-package-manager/blob/main/Documentation/Usage.md",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ios_swiftui",
-      "name": "SwiftUI Interfaces",
+      "id": "ios_swiftui_development",
+      "name": "Declarative UI with SwiftUI",
       "tag": "essential",
-      "description": "Build declarative screens, navigation, forms, lists, animations, and adaptive layouts.",
+      "description": "Build modern, responsive, and adaptive user interfaces for iOS using Apple's declarative UI framework, SwiftUI. Master state management, user interaction, navigation, and best practices for creating engaging and accessible user experiences.",
       "resources": [
         {
           "title": "SwiftUI Course for Beginners - Create an iOS App from Scratch (freeCodeCamp)",
@@ -86,96 +158,309 @@
       ],
       "children": [
         {
-          "id": "ios_state",
-          "name": "State and Data Flow",
+          "id": "ios_swiftui_views_modifiers_layout",
+          "name": "SwiftUI Views, Modifiers & Layout",
           "tag": "essential",
-          "description": "Use state, bindings, observable models, environment, navigation, and predictable updates.",
+          "description": "Master essential views, layout containers (Stacks, Grids, `VStack`, `HStack`, `ZStack`), custom views, view modifiers, `ViewBuilder`, and understand the SwiftUI view lifecycle. Learn to create flexible and adaptive layouts.",
+          "resources": [
+            {
+              "title": "Views and Modifiers",
+              "url": "https://developer.apple.com/tutorials/swiftui-concepts/views-and-modifiers",
+              "type": "article"
+            },
+            {
+              "title": "Layout and Presentation",
+              "url": "https://developer.apple.com/documentation/swiftui/layout-and-presentation",
+              "type": "article"
+            },
+            {
+              "title": "ViewBuilder in SwiftUI",
+              "url": "https://www.hackingwithswift.com/quick-start/swiftui/what-is-the-viewbuilder-attribute",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_swiftui_state_data_flow",
+          "name": "SwiftUI State & Data Flow Management",
+          "tag": "essential",
+          "description": "Effectively manage application data and UI updates using `@State`, `@Binding`, `@ObservedObject`, `@StateObject`, `@EnvironmentObject`, `@Environment`, `UserDefaults`, `AppStorage`, and explore more advanced data flow patterns.",
           "resources": [
             {
               "title": "SwiftUI Data Essentials",
               "url": "https://developer.apple.com/tutorials/swiftui-concepts/driving-changes-in-your-ui-with-state-and-bindings",
               "type": "article"
+            },
+            {
+              "title": "Managing Model Data in Your App",
+              "url": "https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ios_design",
-          "name": "Apple Human Interface Guidelines",
+          "id": "ios_swiftui_navigation_presentation",
+          "name": "SwiftUI Navigation & Presentation",
           "tag": "essential",
-          "description": "Design apps that feel native through platform conventions, accessibility, navigation, and controls.",
+          "description": "Implement robust and modern navigation flows using `NavigationStack` and `NavigationPath`. Master sheets, alerts, confirmation dialogs, popovers, full-screen covers, and other presentation methods.",
+          "resources": [
+            {
+              "title": "Navigation and Links",
+              "url": "https://developer.apple.com/documentation/swiftui/navigation-and-links",
+              "type": "article"
+            },
+            {
+              "title": "What's new in NavigationStack (WWDC22)",
+              "url": "https://developer.apple.com/videos/play/wwdc2022/10054/",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ios_swiftui_user_interaction_gestures",
+          "name": "User Interaction & Gestures",
+          "tag": "essential",
+          "description": "Handle various user inputs, including taps, long presses, drags, magnifications, rotations, and custom gestures. Learn to manage interactive components like buttons, toggles, sliders, and text fields effectively.",
+          "resources": [
+            {
+              "title": "Gestures in SwiftUI",
+              "url": "https://developer.apple.com/documentation/swiftui/gestures",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_swiftui_animations_transitions",
+          "name": "SwiftUI Animations & Transitions",
+          "tag": "essential",
+          "description": "Create engaging user experiences with implicit and explicit animations (`.animation`), matched geometries (`.matchedGeometryEffect`), custom view transitions, and explore advanced animation techniques for dynamic UI.",
+          "resources": [
+            {
+              "title": "Animations",
+              "url": "https://developer.apple.com/documentation/swiftui/animations",
+              "type": "article"
+            },
+            {
+              "title": "Demystifying SwiftUI animations (WWDC22)",
+              "url": "https://developer.apple.com/videos/play/wwdc2022/10006/",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ios_combine_framework_basics",
+          "name": "Combine Framework Fundamentals",
+          "tag": "advanced",
+          "description": "Understand the basics of Apple's reactive programming framework, Combine. Learn Publishers, Subscribers, Operators, and how to integrate Combine for asynchronous event handling and data flow within SwiftUI apps.",
+          "resources": [
+            {
+              "title": "Introducing Combine",
+              "url": "https://developer.apple.com/documentation/combine/",
+              "type": "article"
+            },
+            {
+              "title": "Combine Framework in Swift - Simplified",
+              "url": "https://www.youtube.com/watch?v=kLntFvE2T0U",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ios_human_interface_guidelines_accessibility",
+          "name": "Human Interface Guidelines & Advanced Accessibility",
+          "tag": "essential",
+          "description": "Design native-feeling applications by rigorously adhering to Apple's Human Interface Guidelines. Implement comprehensive accessibility best practices, including dynamic type, VoiceOver, reduced motion, and custom accessibility actions for inclusive apps.",
           "resources": [
             {
               "title": "Human Interface Guidelines",
               "url": "https://developer.apple.com/design/human-interface-guidelines",
               "type": "article"
+            },
+            {
+              "title": "Accessibility for iOS Developers",
+              "url": "https://developer.apple.com/documentation/accessibility/",
+              "type": "article"
+            },
+            {
+              "title": "Writing Accessible Apps (WWDC20)",
+              "url": "https://developer.apple.com/videos/play/wwdc2020/10080/",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ios_developer_practice_lab",
-          "name": "Practice: Offline-first Feature",
+          "id": "ios_localization_internationalization",
+          "name": "Localization & Internationalization",
+          "tag": "essential",
+          "description": "Prepare your app for a global audience by implementing localization for strings, images, and other resources. Understand date, time, and number formatting for different locales to ensure a culturally appropriate user experience.",
+          "resources": [
+            {
+              "title": "Internationalization and Localization Guide",
+              "url": "https://developer.apple.com/documentation/Xcode/internationalization",
+              "type": "article"
+            },
+            {
+              "title": "Localizing Your App",
+              "url": "https://developer.apple.com/tutorials/swiftui/localizing-your-app",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "ios_uikit_interoperability",
+          "name": "UIKit Interoperability & Integration",
           "tag": "advanced",
-          "description": "Add offline cache, sync states, error handling, and user feedback to a SwiftUI app flow.",
-          "resources": [],
-          "children": []
+          "description": "Learn to integrate legacy UIKit views and view controllers seamlessly into SwiftUI applications using `UIViewRepresentable` and `UIViewControllerRepresentable`. Understand how to pass data and handle events between the two frameworks.",
+          "resources": [
+            {
+              "title": "Integrating with UIKit",
+              "url": "https://developer.apple.com/documentation/swiftui/integrating-with-uikit",
+              "type": "article"
+            },
+            {
+              "title": "Using UIKit in your SwiftUI apps (WWDC19)",
+              "url": "https://developer.apple.com/videos/play/wwdc2019/231/",
+              "type": "video"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ios_app_architecture",
-      "name": "App Architecture and Data",
+      "id": "ios_app_architecture_data",
+      "name": "Robust App Architecture & Data Management",
       "tag": "advanced",
-      "description": "Connect APIs, store data, manage async work, and keep app code testable.",
+      "description": "Design scalable, maintainable, and testable iOS applications by applying modern architectural patterns and design principles. Learn to integrate with external APIs, manage complex network requests, and handle various local data storage solutions efficiently and securely.",
       "resources": [
-        {
-          "title": "Swift Book",
-          "url": "https://github.com/swiftlang/swift-book",
-          "type": "article"
-        },
         {
           "title": "SwiftData Documentation",
           "url": "https://developer.apple.com/documentation/swiftdata",
+          "type": "article"
+        },
+        {
+          "title": "Networking Fundamentals",
+          "url": "https://developer.apple.com/documentation/foundation/urlsession",
+          "type": "article"
+        },
+        {
+          "title": "Advanced Architectures for iOS",
+          "url": "https://www.hackingwithswift.com/articles/71/advanced-architectures-for-ios",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ios_networking",
-          "name": "Networking and Codable",
+          "id": "ios_architectural_patterns_principles",
+          "name": "Architectural Patterns & Design Principles",
           "tag": "advanced",
-          "description": "Fetch JSON, decode responses, handle errors, cache data, and keep networking testable.",
+          "description": "Understand and apply common iOS architectural patterns like MVVM, MVP, VIPER, and Redux-like approaches (e.g., Composable Architecture). Apply SOLID principles, DRY, KISS, and dependency injection for clean, modular, and testable codebases.",
           "resources": [
             {
-              "title": "Codable Documentation",
-              "url": "https://developer.apple.com/documentation/swift/codable",
+              "title": "Swift Architecture: MVVM, Redux, and More",
+              "url": "https://www.raywenderlich.com/books/ios-architecture-patterns/articles/introduction-to-ios-architecture-patterns",
+              "type": "article"
+            },
+            {
+              "title": "Dependency Injection in Swift",
+              "url": "https://www.swiftbysundell.com/articles/dependency-injection-in-swift/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ios_persistence",
-          "name": "Persistence",
+          "id": "ios_networking_api_integration_advanced",
+          "name": "Networking & Advanced API Integration",
           "tag": "advanced",
-          "description": "Store app state with SwiftData, files, user defaults, and offline-friendly patterns.",
+          "description": "Implement robust network requests using `URLSession`, parse complex JSON with `Codable` strategies, handle RESTful APIs, manage various authentication flows (OAuth 2.0, API Keys, JWT), perform advanced error handling, and implement efficient image loading and caching. Explore GraphQL basics.",
           "resources": [
             {
-              "title": "SwiftData Persistence",
-              "url": "https://developer.apple.com/documentation/swiftdata/preserving-your-apps-model-data-across-launches",
+              "title": "Fetching URL Content",
+              "url": "https://developer.apple.com/documentation/foundation/url_loading_system/fetching_url_content",
+              "type": "article"
+            },
+            {
+              "title": "Encoding and Decoding Custom Types",
+              "url": "https://developer.apple.com/documentation/swift/codable",
+              "type": "article"
+            },
+            {
+              "title": "Image Caching Best Practices",
+              "url": "https://www.raywenderlich.com/4474343-image-caching-best-practices",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ios_local_data_persistence_advanced",
+          "name": "Local Data Persistence & Storage Solutions",
+          "tag": "advanced",
+          "description": "Choose and implement appropriate local storage solutions based on data complexity and security requirements: SwiftData for modern declarative persistence, Core Data for robust object graphs, PropertyList, UserDefaults for small settings, and Keychain for secure storage of sensitive information. Briefly explore third-party options like Realm or SQLite wrappers.",
+          "resources": [
+            {
+              "title": "Preserving Your App's Model Data Across Launches with SwiftData",
+              "url": "https://developer.apple.com/documentation/swiftdata/preserving-your-apps-model-data-across-launches",
+              "type": "article"
+            },
+            {
+              "title": "Core Data Documentation",
+              "url": "https://developer.apple.com/documentation/coredata",
+              "type": "article"
+            },
+            {
+              "title": "Storing Data Securely with Keychain",
+              "url": "https://developer.apple.com/documentation/security/keychain_services",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_realtime_data_push",
+          "name": "Realtime Data & Push Notifications",
+          "tag": "advanced",
+          "description": "Integrate realtime data solutions like WebSockets for instant updates and implement the Apple Push Notification Service (APNS) for effective user engagement. Understand silent notifications, notification content extensions, and best practices for managing user permissions.",
+          "resources": [
+            {
+              "title": "Push Notifications Tutorial",
+              "url": "https://www.raywenderlich.com/8164-push-notifications-tutorial-getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Registering, Scheduling, and Handling Notifications",
+              "url": "https://developer.apple.com/documentation/usernotifications",
+              "type": "article"
+            },
+            {
+              "title": "URLSessionWebSocketTask",
+              "url": "https://developer.apple.com/documentation/foundation/urlsessionwebsockettask",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_cloudkit_firebase",
+          "name": "Backend-as-a-Service (BaaS) Integration",
+          "tag": "advanced",
+          "description": "Learn to integrate cloud-based backend services like Apple's CloudKit for syncing data across devices and users. Explore Firebase (Firestore, Authentication, Storage) as a popular cross-platform BaaS solution for rapid development and scalability.",
+          "resources": [
+            {
+              "title": "CloudKit Documentation",
+              "url": "https://developer.apple.com/documentation/cloudkit/",
+              "type": "article"
+            },
+            {
+              "title": "Firebase for Apple Platforms",
+              "url": "https://firebase.google.com/docs/ios/setup",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ios_release",
-      "name": "Testing, Performance, and Release",
+      "id": "ios_app_quality_deployment",
+      "name": "App Quality, Performance & Deployment",
       "tag": "advanced",
-      "description": "Test core flows, profile performance, prepare screenshots, and ship through App Store Connect.",
+      "description": "Ensure the quality and reliability of your applications through comprehensive testing, optimize for performance and resource efficiency, and master the entire App Store submission and distribution process, including continuous integration and delivery practices.",
       "resources": [
         {
           "title": "Testing with Xcode",
@@ -186,50 +471,128 @@
           "title": "App Store Connect Help",
           "url": "https://developer.apple.com/help/app-store-connect/",
           "type": "article"
+        },
+        {
+          "title": "Xcode Cloud Documentation",
+          "url": "https://developer.apple.com/documentation/xcode/xcode_cloud",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ios_testing",
-          "name": "Unit and UI Testing",
+          "id": "ios_testing_strategies_tdd",
+          "name": "Testing Strategies & Test-Driven Development (TDD)",
           "tag": "advanced",
-          "description": "Write tests for models, services, and important user flows with XCTest.",
+          "description": "Implement robust Unit Testing with XCTest, UI Testing for user flows, and explore concepts like mocking, stubbing, and Test Doubles. Learn the principles of Test-Driven Development (TDD) to write higher-quality, maintainable code from the start.",
           "resources": [
             {
               "title": "XCTest Documentation",
               "url": "https://developer.apple.com/documentation/xctest",
               "type": "article"
+            },
+            {
+              "title": "UI Testing in Xcode",
+              "url": "https://developer.apple.com/documentation/xctest/ui_testing_your_app",
+              "type": "article"
+            },
+            {
+              "title": "Test-Driven Development in iOS with Swift",
+              "url": "https://www.raywenderlich.com/13136774-test-driven-development-in-ios-with-swift",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ios_app_store_ops",
-          "name": "App Store Operations",
+          "id": "ios_performance_optimization_profiling",
+          "name": "Performance Optimization & Profiling",
           "tag": "advanced",
-          "description": "Prepare screenshots, privacy nutrition labels, TestFlight builds, release notes, crash review, and phased rollout plans.",
+          "description": "Identify and resolve performance bottlenecks using Xcode Instruments (Time Profiler, Allocations, Leaks, Energy Loggers, Core Animation). Optimize memory usage, detect and fix retain cycles, improve UI rendering performance (scrolling, drawing), and enhance app startup time and battery efficiency.",
           "resources": [
+            {
+              "title": "Instruments Documentation",
+              "url": "https://developer.apple.com/documentation/xcode/measuring-performance-with-instruments",
+              "type": "article"
+            },
+            {
+              "title": "Diagnose performance with Instruments (WWDC22)",
+              "url": "https://developer.apple.com/videos/play/wwdc2022/10077/",
+              "type": "video"
+            },
+            {
+              "title": "Demystify memory in Swift (WWDC21)",
+              "url": "https://developer.apple.com/videos/play/wwdc2021/10216/",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ios_app_store_submission_release",
+          "name": "App Store Submission & Release Management",
+          "tag": "advanced",
+          "description": "Navigate the complete App Store submission process, including managing certificates, provisioning profiles, App Store Connect workflows, TestFlight for beta testing, preparing compelling metadata (screenshots, descriptions), understanding App Review Guidelines, privacy requirements, and phased releases. Implement crash reporting and analytics.",
+          "resources": [
+            {
+              "title": "App Store Connect Overview",
+              "url": "https://developer.apple.com/app-store-connect/",
+              "type": "article"
+            },
             {
               "title": "TestFlight Overview",
               "url": "https://developer.apple.com/testflight/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "ios_capstone",
-          "name": "Project: App Store-ready App",
-          "tag": "advanced",
-          "description": "Build a polished app with API data, offline persistence, tests, screenshots, and a release checklist.",
-          "resources": [
+            },
             {
               "title": "App Review Guidelines",
               "url": "https://developer.apple.com/app-store/review/guidelines/",
               "type": "article"
+            },
+            {
+              "title": "Prepare your app for distribution",
+              "url": "https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ios_ci_cd_automation",
+          "name": "Continuous Integration & Delivery (CI/CD)",
+          "tag": "advanced",
+          "description": "Learn the basics of automating builds, testing, and deployment pipelines to streamline your development workflow. Explore tools like Fastlane for local automation, GitHub Actions for cloud-based CI/CD, and Apple's native Xcode Cloud solution for integrated development.",
+          "resources": [
+            {
+              "title": "Fastlane Documentation",
+              "url": "https://docs.fastlane.tools/",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Cloud Documentation",
+              "url": "https://developer.apple.com/documentation/xcode/xcode_cloud",
+              "type": "article"
+            },
+            {
+              "title": "Continuous Integration with GitHub Actions for iOS",
+              "url": "https://nalexn.github.io/github-actions-for-ios/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ios_capstone_production_app",
+          "name": "Capstone Project: Building a Production-Ready iOS App",
+          "tag": "advanced",
+          "description": "Develop a complete, high-quality iOS application from scratch, integrating all learned concepts including modern UI (SwiftUI), robust networking, scalable data persistence, comprehensive testing, performance optimization, and preparing it for a successful App Store release. Focus on best practices and clean code.",
+          "resources": [
+            {
+              "title": "Your First iOS App (Apple Dev Academy)",
+              "url": "https://developer.apple.com/academy/ios/project/",
+              "type": "course"
+            },
+            {
+              "title": "Building a Complete App with SwiftUI",
+              "url": "https://www.hackingwithswift.com/books/swiftui-book",
+              "type": "course"
+            }
+          ]
         }
       ]
     }

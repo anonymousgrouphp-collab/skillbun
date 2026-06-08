@@ -5,154 +5,543 @@
   "format": "tree",
   "tree": [
     {
-      "id": "kubernetes_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "kubernetes_engineer_foundational_skills",
+      "name": "Foundational Skills for Kubernetes Engineers",
       "tag": "essential",
-      "description": "Understand what Kubernetes Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong baseline in Linux system administration, networking, containerization, and version control, crucial for understanding and operating Kubernetes environments effectively.",
       "resources": [
         {
-          "title": "Learn Kubernetes in 6 Hours - Full Course with Real-World Project (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=_4uQI4ihGVU",
+          "title": "Linux Command Line Basics for DevOps",
+          "url": "https://www.youtube.com/watch?v=R9Ym_LhBf_A",
           "type": "video"
         },
         {
-          "title": "Kubernetes Workloads",
-          "url": "https://kubernetes.io/docs/concepts/workloads/",
-          "type": "article"
+          "title": "Docker Crash Course for Absolute Beginners",
+          "url": "https://www.youtube.com/watch?v=fqMOX6JJhkg",
+          "type": "video"
+        },
+        {
+          "title": "Kubernetes Architecture Explained",
+          "url": "https://www.youtube.com/watch?v=QJ4fM4Fz-H0",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "kubernetes_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "kubernetes_engineer_linux_system_scripting",
+          "name": "Linux System Internals & Shell Scripting",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Master essential Linux commands, process management, file systems, permissions, `systemd` for service management, `cgroups` and `namespaces` for resource isolation, and shell scripting for automation.",
           "resources": [
             {
-              "title": "Kubernetes Tutorials",
-              "url": "https://kubernetes.io/docs/tutorials/",
+              "title": "Linux Tutorial for Beginners: Learn Linux in 5 Days",
+              "url": "https://www.guru99.com/linux-tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "Linux cgroups v1 and v2",
+              "url": "https://lwn.net/Articles/670838/",
+              "type": "article"
+            },
+            {
+              "title": "Bash Scripting Tutorial for Beginners",
+              "url": "https://www.shellscript.sh/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_networking_deep_dive",
+          "name": "Networking Essentials Deep Dive",
+          "tag": "essential",
+          "description": "Understand the OSI model, TCP/IP stack, DNS resolution, routing, subnetting, firewall concepts (`iptables`, `nftables`), and network troubleshooting tools (`netstat`, `ss`, `tcpdump`).",
+          "resources": [
+            {
+              "title": "The OSI Model Explained",
+              "url": "https://www.youtube.com/watch?v=vv4y_rsK9uM",
+              "type": "video"
+            },
+            {
+              "title": "TCP/IP Fundamentals",
+              "url": "https://www.ibm.com/docs/en/aix/7.2?topic=protocols-tcpip-overview",
+              "type": "article"
+            },
+            {
+              "title": "DNS Explained Simply",
+              "url": "https://www.cloudflare.com/learning/dns/what-is-dns/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_docker_oci",
+          "name": "Containerization with Docker & OCI Standards",
+          "tag": "essential",
+          "description": "Learn to build, run, and manage Docker containers, understand Dockerfiles, images, layers, registries, volumes, networking, multi-stage builds, and the Open Container Initiative (OCI) standards.",
+          "resources": [
+            {
+              "title": "Docker Deep Dive Course",
+              "url": "https://www.udemy.com/course/docker-mastery/",
               "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "kubernetes_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
-          "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
-          "resources": [
+            },
             {
-              "title": "Helm Documentation",
-              "url": "https://helm.sh/docs/",
+              "title": "Dockerfile Best Practices",
+              "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "What is OCI?",
+              "url": "https://opencontainers.org/about/overview/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_git_version_control",
+          "name": "Git and Version Control",
+          "tag": "essential",
+          "description": "Master basic Git commands, branching strategies, merging, rebasing, and collaborative workflows using platforms like GitHub, GitLab, or Bitbucket.",
+          "resources": [
+            {
+              "title": "Getting Started with Git",
+              "url": "https://git-scm.com/docs/gittutorial",
+              "type": "article"
+            },
+            {
+              "title": "Git Branching - Basic Branching and Merging",
+              "url": "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_k8s_core_architecture",
+          "name": "Kubernetes Core Concepts & Architecture",
+          "tag": "essential",
+          "description": "Understand the Kubernetes control plane (API Server, etcd, Kube-scheduler, Kube-controller-manager) and worker nodes (Kubelet, Kube-proxy, Container Runtime), and the declarative nature of Kubernetes.",
+          "resources": [
+            {
+              "title": "Kubernetes Documentation: Core Concepts",
+              "url": "https://kubernetes.io/docs/concepts/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Components",
+              "url": "https://kubernetes.io/docs/concepts/overview/components/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_local_dev_kubectl",
+          "name": "Local Kubernetes Development & kubectl Mastery",
+          "tag": "essential",
+          "description": "Set up a local Kubernetes environment (Minikube, Kind, k3s) and master `kubectl` for interacting with clusters, including applying manifests, inspecting resources, and managing contexts.",
+          "resources": [
+            {
+              "title": "kubectl Cheatsheet",
+              "url": "https://kubernetes.io/docs/reference/kubectl/cheatsheet/",
+              "type": "article"
+            },
+            {
+              "title": "Minikube Official Documentation",
+              "url": "https://minikube.sigs.k8s.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Getting started with Kind",
+              "url": "https://kind.sigs.k8s.io/docs/user/quick-start/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "kubernetes_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "kubernetes_engineer_app_deployment",
+      "name": "Kubernetes Application Deployment and Management",
       "tag": "essential",
-      "description": "Build the practical skill stack for Kubernetes Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Learn to define, deploy, and manage stateless and stateful applications using core Kubernetes objects, package managers, and advanced scaling techniques.",
       "resources": [
         {
-          "title": "What is Kubernetes? | Kubernetes Explained (Piyush Garg)",
-          "url": "https://www.youtube.com/watch?v=a-nWPre5QYI",
+          "title": "Kubernetes Crash Course for Absolute Beginners - Hands-on",
+          "url": "https://www.youtube.com/watch?v=X48g_sFvP5A",
           "type": "video"
         },
         {
-          "title": "Kubernetes Tutorials",
-          "url": "https://kubernetes.io/docs/tutorials/",
-          "type": "course"
+          "title": "The Illustrated Children's Guide to Kubernetes",
+          "url": "https://www.youtube.com/watch?v=fDCc_hQo83Q",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "kubernetes_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "kubernetes_engineer_workload_management",
+          "name": "Workload Management: Pods, Deployments, StatefulSets, DaemonSets, Jobs",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Deep dive into Pods (lifecycle, Init Containers, Ephemeral Containers), Deployments (ReplicaSets, rolling updates, rollbacks, deployment strategies), StatefulSets (stable identity, ordered operations, persistent storage), DaemonSets (node-specific agents), and Jobs/CronJobs for batch processing.",
           "resources": [
             {
-              "title": "Kubernetes Workloads",
-              "url": "https://kubernetes.io/docs/concepts/workloads/",
+              "title": "Kubernetes Deployments",
+              "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes StatefulSets",
+              "url": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/",
+              "type": "article"
+            },
+            {
+              "title": "Init Containers",
+              "url": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "kubernetes_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "kubernetes_engineer_service_discovery",
+          "name": "Service Discovery and Load Balancing",
+          "tag": "essential",
+          "description": "Understand different Service types (ClusterIP, NodePort, LoadBalancer, ExternalName), how Ingress works with Ingress Controllers for external access, and CoreDNS for in-cluster service discovery.",
           "resources": [
             {
-              "title": "Helm Documentation",
+              "title": "Kubernetes Services",
+              "url": "https://kubernetes.io/docs/concepts/services-networking/service/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Kubernetes Ingress",
+              "url": "https://www.nginx.com/blog/kubernetes-ingress-nginx/",
+              "type": "article"
+            },
+            {
+              "title": "CoreDNS in Kubernetes",
+              "url": "https://kubernetes.io/docs/tasks/administer-cluster/coredns/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_config_secrets",
+          "name": "Configuration, Secrets, and Resource Management",
+          "tag": "essential",
+          "description": "Manage application configuration with ConfigMaps, handle sensitive data with Secrets (including best practices for security), and apply resource management with Resource Quotas and Limit Ranges.",
+          "resources": [
+            {
+              "title": "ConfigMaps and Secrets in Kubernetes",
+              "url": "https://www.youtube.com/watch?v=F07_W46r_AA",
+              "type": "video"
+            },
+            {
+              "title": "Managing Resources for Containers",
+              "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_persistent_storage",
+          "name": "Persistent Storage in Kubernetes",
+          "tag": "essential",
+          "description": "Learn to persist data using Persistent Volumes (PVs), Persistent Volume Claims (PVCs), and Storage Classes for dynamic provisioning. Understand different access modes, volume types, and CSI drivers.",
+          "resources": [
+            {
+              "title": "Persistent Volumes in Kubernetes",
+              "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
+              "type": "article"
+            },
+            {
+              "title": "Storage Classes",
+              "url": "https://kubernetes.io/docs/concepts/storage/storage-classes/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_helm_packaging",
+          "name": "Application Packaging with Helm",
+          "tag": "essential",
+          "description": "Learn to use Helm for templating and managing Kubernetes applications, including creating custom charts, managing releases, and using public repositories. Understand chart structure, values, and dependencies.",
+          "resources": [
+            {
+              "title": "Helm Official Documentation",
               "url": "https://helm.sh/docs/",
               "type": "article"
+            },
+            {
+              "title": "Getting Started with Helm",
+              "url": "https://www.youtube.com/watch?v=Nn1R-kY6K7M",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "kubernetes_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "kubernetes_engineer_scaling_autoscaling",
+          "name": "Scaling and Autoscaling Applications",
+          "tag": "essential",
+          "description": "Explore manual scaling and automated scaling strategies using Horizontal Pod Autoscaler (HPA) based on resource metrics and custom metrics, Vertical Pod Autoscaler (VPA) for resource recommendations, and Pod Disruption Budgets (PDBs) for maintaining application availability.",
+          "resources": [
+            {
+              "title": "Horizontal Pod Autoscaler",
+              "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+              "type": "article"
+            },
+            {
+              "title": "Vertical Pod Autoscaler",
+              "url": "https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler",
+              "type": "article"
+            },
+            {
+              "title": "Pod Disruption Budgets",
+              "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_app_debugging",
+          "name": "Debugging and Troubleshooting Applications",
+          "tag": "essential",
+          "description": "Develop skills in identifying and resolving issues in Kubernetes applications using `kubectl` commands like `logs`, `describe`, `events`, and `exec`. Understand the importance of Liveness, Readiness, and Startup Probes for application health.",
+          "resources": [
+            {
+              "title": "Troubleshooting Applications",
+              "url": "https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/",
+              "type": "article"
+            },
+            {
+              "title": "Configure Liveness, Readiness and Startup Probes",
+              "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "kubernetes_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "kubernetes_engineer_production_ops",
+      "name": "Advanced Operations, Security, and Ecosystem",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Learn best practices for running and securing Kubernetes clusters in production, focusing on advanced security, comprehensive observability, automation, maintenance, and extending Kubernetes capabilities.",
       "resources": [
         {
-          "title": "Learn Kubernetes in 6 Hours - Full Course with Real-World Project (freeCodeCamp.org)",
-          "url": "https://www.youtube.com/watch?v=_4uQI4ihGVU",
-          "type": "video"
+          "title": "Certified Kubernetes Administrator (CKA) Course",
+          "url": "https://training.linuxfoundation.org/training/certified-kubernetes-administrator-cka/",
+          "type": "course"
         },
         {
-          "title": "Helm Documentation",
-          "url": "https://helm.sh/docs/",
+          "title": "Kubernetes Security Best Practices",
+          "url": "https://cloud.google.com/kubernetes-engine/docs/concepts/security-overview",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "kubernetes_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "kubernetes_engineer_security_best_practices",
+          "name": "Kubernetes Security Best Practices",
+          "tag": "essential",
+          "description": "Implement robust security measures: Authentication (x509, Service Accounts, OIDC), Authorization (RBAC), Pod Security Standards (PSS), Network Policies, Admission Controllers, image security (scanning, trusted registries, supply chain security), and runtime security tools (Falco, AppArmor, Seccomp).",
           "resources": [
             {
-              "title": "Kubernetes Tutorials",
-              "url": "https://kubernetes.io/docs/tutorials/",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "kubernetes_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
-          "resources": [
+              "title": "Kubernetes RBAC Explained",
+              "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+              "type": "article"
+            },
             {
-              "title": "Kubernetes Workloads",
-              "url": "https://kubernetes.io/docs/concepts/workloads/",
+              "title": "Pod Security Standards",
+              "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Network Policies",
+              "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Native Security Whitepaper v2",
+              "url": "https://www.cncf.io/reports/cloud-native-security-whitepaper/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_observability",
+          "name": "Observability: Monitoring, Logging, Tracing",
+          "tag": "essential",
+          "description": "Set up and manage comprehensive observability stacks. Implement monitoring with Prometheus and Grafana for metrics and alerting, centralized logging solutions (Fluentd/Fluent Bit, Loki, ELK Stack), and distributed tracing with OpenTelemetry, Jaeger, or Zipkin.",
+          "resources": [
+            {
+              "title": "Prometheus Monitoring Tutorial",
+              "url": "https://www.youtube.com/watch?v=h4Sl2FYG7m4",
+              "type": "video"
+            },
+            {
+              "title": "Centralized Logging with ELK Stack on Kubernetes",
+              "url": "https://www.elastic.co/blog/centralized-logging-with-fluentd-elasticsearch-and-kibana-on-kubernetes",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to OpenTelemetry",
+              "url": "https://opentelemetry.io/docs/what-is-opentelemetry/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_ci_cd_gitops",
+          "name": "CI/CD & GitOps with Kubernetes",
+          "tag": "advanced",
+          "description": "Integrate Kubernetes with modern CI/CD pipelines (e.g., GitHub Actions, GitLab CI, Jenkins, Tekton). Explore GitOps principles using tools like Argo CD or Flux CD for declarative cluster management and automated deployments (Canary, Blue/Green).",
+          "resources": [
+            {
+              "title": "Introduction to GitOps with Argo CD",
+              "url": "https://argoproj.github.io/argo-cd/getting_started/",
+              "type": "article"
+            },
+            {
+              "title": "Continuous Delivery with Kubernetes and GitHub Actions",
+              "url": "https://www.youtube.com/watch?v=r04k-sIeG6k",
+              "type": "video"
+            },
+            {
+              "title": "Getting started with Flux CD",
+              "url": "https://fluxcd.io/flux/get-started/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_advanced_networking_mesh",
+          "name": "Kubernetes Networking Deep Dive & Service Mesh",
+          "tag": "advanced",
+          "description": "Gain a deeper understanding of CNI plugins (Calico, Cilium, Flannel), advanced Ingress configurations with various Ingress Controllers and API Gateways, and the principles and implementation of Service Meshes (Istio, Linkerd) for traffic management, security (mTLS), and observability.",
+          "resources": [
+            {
+              "title": "Understanding Kubernetes Networking: Pods, Services, and CNI",
+              "url": "https://www.tigera.io/blog/understanding-kubernetes-networking-pods-services-and-cni/",
+              "type": "article"
+            },
+            {
+              "title": "What is a Service Mesh?",
+              "url": "https://aws.amazon.com/microservices/service-mesh/",
+              "type": "article"
+            },
+            {
+              "title": "Istio / Learn Istio",
+              "url": "https://istio.io/latest/docs/concepts/what-is-istio/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_cloud_k8s_services",
+          "name": "Cloud Provider Kubernetes Services (EKS, AKS, GKE)",
+          "tag": "advanced",
+          "description": "Explore the features, management, and cost implications of managed Kubernetes offerings like AWS EKS, Azure AKS, and Google GKE. Understand their integrations with cloud provider-specific services (IAM, Load Balancers, Storage) and strategies for hybrid/multi-cloud deployments.",
+          "resources": [
+            {
+              "title": "Amazon EKS Documentation",
+              "url": "https://docs.aws.amazon.com/eks/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Kubernetes Service (AKS) Documentation",
+              "url": "https://learn.microsoft.com/en-us/azure/aks/",
+              "type": "article"
+            },
+            {
+              "title": "Google Kubernetes Engine (GKE) Documentation",
+              "url": "https://cloud.google.com/kubernetes-engine/docs",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_operators_crds",
+          "name": "Kubernetes Operators & Custom Resource Definitions (CRDs)",
+          "tag": "advanced",
+          "description": "Understand how to extend the Kubernetes API with Custom Resource Definitions (CRDs) and implement the Operator pattern to automate complex application lifecycle management, including using existing Operators and an introduction to tools like Operator SDK or Kubebuilder.",
+          "resources": [
+            {
+              "title": "Extend the Kubernetes API with CustomResources",
+              "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+              "type": "article"
+            },
+            {
+              "title": "What is an Operator?",
+              "url": "https://operatorframework.io/operator-basics/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_cluster_maint_dr",
+          "name": "Cluster Management: Upgrades, Backup, & Disaster Recovery",
+          "tag": "advanced",
+          "description": "Learn about the Kubernetes cluster lifecycle, upgrade strategies, patching, and maintenance. Implement robust backup and restore solutions (Velero, etcd backup), ensure high availability for control plane and worker nodes, and plan for disaster recovery, including multi-cluster management strategies.",
+          "resources": [
+            {
+              "title": "Upgrading Kubernetes Clusters",
+              "url": "https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/upgrade-cluster/",
+              "type": "article"
+            },
+            {
+              "title": "Velero for Kubernetes Backup and Restore",
+              "url": "https://velero.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "etcd backup and restore",
+              "url": "https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_performance_cost",
+          "name": "Performance Tuning & Cost Optimization",
+          "tag": "advanced",
+          "description": "Optimize Kubernetes cluster and application performance through careful tuning of resource requests and limits. Implement cost optimization strategies using Cluster Autoscaler, Karpenter (node auto-provisioning), VPA in recommendation mode, and apply FinOps principles to manage cloud spend.",
+          "resources": [
+            {
+              "title": "Kubernetes Cost Optimization Best Practices",
+              "url": "https://www.cncf.io/blog/2023/02/10/kubernetes-cost-optimization-a-practical-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Cluster Autoscaler",
+              "url": "https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler",
+              "type": "article"
+            },
+            {
+              "title": "Karpenter Documentation",
+              "url": "https://karpenter.sh/docs/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_advanced_troubleshooting_chaos",
+          "name": "Advanced Troubleshooting & Chaos Engineering",
+          "tag": "advanced",
+          "description": "Develop advanced skills in diagnosing complex cluster and application issues, including network, control plane, and storage problems. Utilize tools like `strace` and `nsenter` for deep inspection. Understand and apply Chaos Engineering principles with tools like Litmus Chaos to build more resilient systems and conduct effective post-mortems.",
+          "resources": [
+            {
+              "title": "Advanced Kubernetes Troubleshooting",
+              "url": "https://www.youtube.com/watch?v=F_f0iY5Jb24",
+              "type": "video"
+            },
+            {
+              "title": "Incident Management Best Practices",
+              "url": "https://www.atlassian.com/incident-management/on-call",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Chaos Engineering",
+              "url": "https://litmuschaos.github.io/litmus/docs/get-started/intro/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
@@ -160,21 +549,16 @@
       "id": "kubernetes_engineer_portfolio_career",
       "name": "Portfolio and Career Readiness",
       "tag": "advanced",
-      "description": "Turn your Kubernetes Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Translate your Kubernetes Engineer expertise into tangible proof through projects, case studies, and interview preparation to secure a role.",
       "resources": [
         {
-          "title": "Kubernetes Workloads",
-          "url": "https://kubernetes.io/docs/concepts/workloads/",
+          "title": "Crafting a Compelling Tech Portfolio",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-portfolio-that-gets-you-hired/",
           "type": "article"
         },
         {
-          "title": "Kubernetes Tutorials",
-          "url": "https://kubernetes.io/docs/tutorials/",
-          "type": "course"
-        },
-        {
-          "title": "Helm Documentation",
-          "url": "https://helm.sh/docs/",
+          "title": "Kubernetes Interview Questions and Answers",
+          "url": "https://www.interviewbit.com/kubernetes-interview-questions/",
           "type": "article"
         }
       ],
@@ -183,29 +567,45 @@
           "id": "kubernetes_engineer_case_study",
           "name": "Case Study Writing",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Document successful Kubernetes projects by detailing the problem, solution, technologies used, challenges faced, and measurable outcomes.",
           "resources": [
             {
-              "title": "Kubernetes Workloads",
-              "url": "https://kubernetes.io/docs/concepts/workloads/",
+              "title": "How to Write a Technical Case Study",
+              "url": "https://www.indeed.com/career-advice/career-development/how-to-write-a-technical-case-study",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
           "id": "kubernetes_engineer_project_capstone",
           "name": "Project: Kubernetes Engineer Portfolio Capstone",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Kubernetes Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Build a comprehensive, production-ready Kubernetes project from scratch, demonstrating deployment, scaling, monitoring, and security best practices. Include a detailed README, diagrams, and deployment notes.",
           "resources": [
             {
-              "title": "Helm Documentation",
-              "url": "https://helm.sh/docs/",
+              "title": "Awesome Kubernetes Projects for Learning",
+              "url": "https://github.com/learnk8s/awesome-kubernetes",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Native Buildpacks",
+              "url": "https://buildpacks.io/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "kubernetes_engineer_mock_interviews",
+          "name": "Mock Interviews and Technical Assessments",
+          "tag": "advanced",
+          "description": "Practice technical interviews, whiteboard sessions, and scenario-based questions common for Kubernetes Engineer roles.",
+          "resources": [
+            {
+              "title": "Cracking the Kubernetes Interview",
+              "url": "https://www.linkedin.com/pulse/cracking-kubernetes-interviews-a-comprehensive-guide-rajesh-kumar/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

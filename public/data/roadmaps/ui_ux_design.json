@@ -1,123 +1,532 @@
 {
   "id": "ui_ux_design",
   "title": "UI/UX Designer",
-  "description": "A practical design roadmap covering research, information architecture, interaction design, visual design, accessibility, and portfolio case studies.",
+  "description": "A comprehensive and practical design roadmap covering foundational UX principles, user research, information architecture, interaction design, visual design, Figma mastery, design systems, accessibility, usability testing, and professional portfolio development to meet industry standards.",
   "format": "tree",
   "tree": [
     {
-      "id": "ux_foundations",
-      "name": "UX Foundations",
+      "id": "ux_foundations_research",
+      "name": "UX Fundamentals & User Research",
       "tag": "essential",
-      "description": "Understand users, problems, constraints, journeys, usability, and how design decisions affect outcomes.",
+      "description": "Establish a strong understanding of Human-Centered Design, design thinking, and essential user research methodologies to uncover user needs, problems, and behaviors, forming the bedrock of effective design solutions.",
       "resources": [
-        {
-          "title": "UI/UX Design Tutorial - Wireframe, Mockup & Design in Figma (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=c9Wg6Cb_YlU",
-          "type": "video"
-        },
-        {
-          "title": "Figma Basics in One Video (CodeWithHarry)",
-          "url": "https://www.youtube.com/watch?v=mpJb9GNxdYI",
-          "type": "video"
-        },
         {
           "title": "Nielsen Norman Group Articles",
           "url": "https://www.nngroup.com/articles/",
           "type": "article"
         },
         {
-          "title": "Laws of UX",
-          "url": "https://lawsofux.com/",
+          "title": "Don't Make Me Think, Revisited by Steve Krug",
+          "url": "https://www.amazon.com/Dont-Make-Me-Think-Revisited/dp/0321965515",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ux_research",
-          "name": "User Research",
+          "id": "intro_hcd",
+          "name": "Introduction to Human-Centered Design & Design Thinking",
           "tag": "essential",
-          "description": "Plan interviews, surveys, competitive analysis, personas, and journey maps without inventing user needs.",
+          "description": "Understand the core philosophy of Human-Centered Design (HCD) and the iterative Design Thinking process (Empathize, Define, Ideate, Prototype, Test). Learn the value proposition of UX in business and its impact.",
           "resources": [
             {
-              "title": "NN/g User Research Methods",
-              "url": "https://www.nngroup.com/articles/which-ux-research-methods/",
+              "title": "What is Human-Centered Design?",
+              "url": "https://www.ideou.com/blogs/news/what-is-human-centered-design",
+              "type": "article"
+            },
+            {
+              "title": "Design Thinking: A Quick Overview",
+              "url": "https://www.interaction-design.org/literature/article/design-thinking-a-quick-overview",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ux_information_architecture",
-          "name": "Information Architecture",
+          "id": "ux_principles_ethics",
+          "name": "Core UX Principles & Design Ethics",
           "tag": "essential",
-          "description": "Structure navigation, labels, content hierarchy, user flows, and task paths.",
+          "description": "Explore fundamental UX principles like usability, usefulness, desirability, and accessibility. Discuss ethical considerations in design, data privacy, persuasive design, and identifying dark patterns.",
           "resources": [
             {
-              "title": "Usability.gov Information Architecture",
-              "url": "https://www.usability.gov/what-and-why/information-architecture.html",
+              "title": "Laws of UX",
+              "url": "https://lawsofux.com/",
+              "type": "article"
+            },
+            {
+              "title": "Ethics in Design: How to Avoid Dark Patterns",
+              "url": "https://www.uxmatters.com/mt/archives/2019/07/ethics-in-design-how-to-avoid-dark-patterns.php",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "user_research_planning",
+          "name": "User Research Planning & Methodologies",
+          "tag": "essential",
+          "description": "Learn to define clear research goals, formulate hypotheses, select appropriate qualitative and quantitative methods, create detailed research plans, and understand sampling strategies.",
+          "resources": [
+            {
+              "title": "NN/g User Research Methods: When to Use Which",
+              "url": "https://www.nngroup.com/articles/which-ux-research-methods/",
+              "type": "article"
+            },
+            {
+              "title": "The Ultimate Guide to UX Research",
+              "url": "https://www.smashingmagazine.com/2021/08/ultimate-guide-ux-research/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qual_research_methods",
+          "name": "Qualitative Research: Interviews, Surveys, Contextual Inquiry",
+          "tag": "essential",
+          "description": "Practice conducting effective user interviews, writing unbiased survey questions, facilitating focus groups, and performing contextual inquiries to gather rich, deep descriptive data about user behaviors and motivations.",
+          "resources": [
+            {
+              "title": "User Interviews: How to Conduct Them",
+              "url": "https://www.nngroup.com/articles/user-interviews/",
+              "type": "article"
+            },
+            {
+              "title": "Writing Good Survey Questions",
+              "url": "https://www.nngroup.com/articles/survey-questions/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "quant_research_methods",
+          "name": "Quantitative Research: Analytics, A/B Testing, Benchmarking",
+          "tag": "advanced",
+          "description": "Understand the basics of quantitative data, how to set up and interpret website/app analytics, principles of A/B testing for validating hypotheses, and UX benchmarking to measure performance over time.",
+          "resources": [
+            {
+              "title": "Introduction to Google Analytics for UX",
+              "url": "https://www.uxmatters.com/mt/archives/2014/10/introduction-to-google-analytics-for-ux.php",
+              "type": "article"
+            },
+            {
+              "title": "A/B Testing: The Ultimate Guide",
+              "url": "https://vwo.com/ab-testing/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "user_analysis_artifacts",
+          "name": "User Analysis: Personas, Empathy Maps, Journey Maps",
+          "tag": "essential",
+          "description": "Create actionable user artifacts like detailed personas, empathy maps, and user journey maps to synthesize research findings, build shared understanding of users and their experiences, and identify pain points and opportunities.",
+          "resources": [
+            {
+              "title": "Personas: The Foundation of a Great UX Strategy",
+              "url": "https://www.interaction-design.org/literature/article/personas-the-foundation-of-a-great-ux-strategy",
+              "type": "article"
+            },
+            {
+              "title": "User Journey Maps 101",
+              "url": "https://www.nngroup.com/articles/customer-journey-mapping/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "comp_analysis",
+          "name": "Competitive Analysis & Market Research",
+          "tag": "essential",
+          "description": "Analyze direct and indirect competitors to identify industry best practices, market gaps, strengths, weaknesses, and opportunities for differentiation. Learn to conduct a thorough competitive audit and SWOT analysis.",
+          "resources": [
+            {
+              "title": "How to Conduct a UX Competitive Analysis",
+              "url": "https://www.smashingmagazine.com/2019/01/ux-competitive-analysis/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "stakeholder_interviews_mapping",
+          "name": "Stakeholder Interviews & Mapping",
+          "tag": "essential",
+          "description": "Learn to conduct effective interviews with project stakeholders to gather business requirements, understand organizational goals, and map stakeholder relationships and influence.",
+          "resources": [
+            {
+              "title": "How to Interview Stakeholders",
+              "url": "https://www.uxmatters.com/mt/archives/2017/08/how-to-interview-stakeholders.php",
+              "type": "article"
+            },
+            {
+              "title": "Stakeholder Analysis and Mapping",
+              "url": "https://www.mindtools.com/aq7939/stakeholder-analysis",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "synthesis_insights",
+          "name": "Synthesizing Research & Uncovering Actionable Insights",
+          "tag": "essential",
+          "description": "Master methods like affinity mapping, thematic analysis, and prioritization matrices to group research data, identify patterns, and translate raw observations into actionable design insights and well-defined problem statements.",
+          "resources": [
+            {
+              "title": "Affinity Diagram: A Visual Tool for Organizing Ideas",
+              "url": "https://www.interaction-design.org/literature/article/affinity-diagram-a-visual-tool-for-organizing-ideas",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ux_visual_design",
-      "name": "UI and Visual Design",
+      "id": "ia_ixd_design",
+      "name": "Information Architecture & Interaction Design",
       "tag": "essential",
-      "description": "Learn layout, spacing, typography, color, component states, responsive design, and design critique.",
+      "description": "Learn to structure digital products logically, design intuitive navigation, and create engaging, usable interactions that guide users effectively through a seamless experience.",
+      "resources": [
+        {
+          "title": "Usability.gov Information Architecture",
+          "url": "https://www.usability.gov/what-and-why/information-architecture.html",
+          "type": "article"
+        },
+        {
+          "title": "About Face: The Essentials of Interaction Design",
+          "url": "https://www.amazon.com/About-Face-Essentials-Interaction-Design/dp/1118766571",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "information_architecture",
+          "name": "Information Architecture Principles & Methods",
+          "tag": "essential",
+          "description": "Understand how to organize, structure, and label content effectively. Explore methods like card sorting, tree testing, sitemaps, and content inventories to create clear navigation systems and mental models.",
+          "resources": [
+            {
+              "title": "Card Sorting: What It Is & How to Do It",
+              "url": "https://www.nngroup.com/articles/card-sorting-definition/",
+              "type": "article"
+            },
+            {
+              "title": "Tree Testing: How to Find the Right Information Structure",
+              "url": "https://www.nngroup.com/articles/tree-testing/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "content_strategy_ux",
+          "name": "Content Strategy for UX & UX Writing",
+          "tag": "essential",
+          "description": "Develop strategies for planning, creating, and governing content. Learn principles of UX writing for clarity, conciseness, tone of voice, and microcopy to enhance the user experience and guide users.",
+          "resources": [
+            {
+              "title": "UX Writing: How to Do It Like a Pro",
+              "url": "https://www.smashingmagazine.com/2021/05/ux-writing-guide/",
+              "type": "article"
+            },
+            {
+              "title": "The Importance of Content Strategy in UX",
+              "url": "https://uxdesign.cc/the-importance-of-content-strategy-in-ux-293e5066928e",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "interaction_design_principles",
+          "name": "Interaction Design Principles: Laws of UX, Heuristics",
+          "tag": "essential",
+          "description": "Dive into core interaction design principles, including Jakob Nielsen's 10 Usability Heuristics, Hick's Law, Fitt's Law, Miller's Law, and Gestalt principles to create intuitive, efficient, and delightful interactions.",
+          "resources": [
+            {
+              "title": "Jakob Nielsen's 10 Usability Heuristics",
+              "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+              "type": "article"
+            },
+            {
+              "title": "Applying Gestalt Principles in UI Design",
+              "url": "https://www.interaction-design.org/literature/article/applying-gestalt-principles-in-ui-design",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_patterns_states",
+          "name": "Common UI Patterns & Component States",
+          "tag": "essential",
+          "description": "Identify and apply common UI design patterns (e.g., navigation, forms, search, data display) and understand different component states (hover, active, disabled, error, success) to build predictable and robust interfaces.",
+          "resources": [
+            {
+              "title": "UI Patterns",
+              "url": "https://ui-patterns.com/",
+              "type": "article"
+            },
+            {
+              "title": "Designing System States: Empty, Loading, Error, Success",
+              "url": "https://uxdesign.cc/designing-system-states-empty-loading-error-success-c011e4f4b162",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "user_flows_task_analysis",
+          "name": "User Flows, Task Analysis & Wireframing",
+          "tag": "essential",
+          "description": "Map out user flows to visualize task completion steps and conduct task analysis to simplify complex processes. Translate research and conceptual designs into basic wireframes to establish layout and functionality.",
+          "resources": [
+            {
+              "title": "User Flow vs. Journey Map vs. Sitemap",
+              "url": "https://www.nngroup.com/articles/user-flows-vs-journey-maps-vs-sitemaps/",
+              "type": "article"
+            },
+            {
+              "title": "Wireframes: The Basics of Good UX Design",
+              "url": "https://www.interaction-design.org/literature/article/wireframes-the-basics-of-good-ux-design",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "lo_fi_prototyping",
+          "name": "Low-Fidelity Prototyping & Ideation",
+          "tag": "essential",
+          "description": "Learn to quickly translate ideas into tangible low-fidelity prototypes using sketching or basic digital tools. Explore ideation techniques like brainstorming, crazy eights, and concept mapping to generate diverse solutions.",
+          "resources": [
+            {
+              "title": "Low-Fidelity Prototyping: The What, Why, and How",
+              "url": "https://careerfoundry.com/en/blog/ux-design/low-fidelity-prototyping/",
+              "type": "article"
+            },
+            {
+              "title": "Crazy Eights: A Fast Sketching Exercise",
+              "url": "https://designsprintkit.withgoogle.com/methods/sketch/crazy-eights",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "form_design_best_practices",
+          "name": "Form Design Best Practices",
+          "tag": "essential",
+          "description": "Master the principles of designing usable and efficient forms, including input types, validation, error handling, layout, and progressive disclosure to minimize user effort and errors.",
+          "resources": [
+            {
+              "title": "Form Design: From Foundations to Advanced",
+              "url": "https://www.smashingmagazine.com/2018/08/form-design-foundations-advanced/",
+              "type": "article"
+            },
+            {
+              "title": "Best Practices for Form Design",
+              "url": "https://www.nngroup.com/articles/form-design-best-practices/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "microinteractions_animation",
+          "name": "Microinteractions & UI Animation",
+          "tag": "advanced",
+          "description": "Explore the power of microinteractions to enhance usability, provide feedback, and delight users. Learn principles of UI animation for transitions, states, and conveying hierarchy and flow.",
+          "resources": [
+            {
+              "title": "Microinteractions: Designing with Details by Dan Saffer",
+              "url": "https://www.oreilly.com/library/view/microinteractions-designing-with/9781491931811/",
+              "type": "article"
+            },
+            {
+              "title": "The Ultimate Guide to UI Animation",
+              "url": "https://blog.prototypr.io/the-ultimate-guide-to-ui-animation-4ba148408f9c",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "high_fidelity_prototyping",
+          "name": "High-Fidelity Prototyping",
+          "tag": "essential",
+          "description": "Develop advanced, interactive prototypes that closely resemble the final product's look and feel, enabling realistic testing and clear communication of the user experience to stakeholders.",
+          "resources": [
+            {
+              "title": "High-Fidelity Prototyping: Best Practices",
+              "url": "https://www.uxpin.com/studio/blog/high-fidelity-prototyping-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "How to Build a High-Fidelity Prototype (Figma focused)",
+              "url": "https://careerfoundry.com/en/blog/ux-design/how-to-build-a-high-fidelity-prototype-in-figma/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ui_visual_design",
+      "name": "UI & Visual Design Excellence",
+      "tag": "essential",
+      "description": "Master the aesthetics of user interfaces, including layout, typography, color, and responsive design, ensuring visual appeal, intuitive understanding, and brand consistency across all platforms.",
       "resources": [
         {
           "title": "Material Design",
           "url": "https://m3.material.io/",
           "type": "article"
+        },
+        {
+          "title": "Refactoring UI by Adam Wathan and Steve Schoger",
+          "url": "https://refactoringui.com/",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ux_typography_layout",
-          "name": "Typography and Layout",
+          "id": "visual_design_fundamentals",
+          "name": "Visual Design Fundamentals: Layout, Grids, Space",
           "tag": "essential",
-          "description": "Use readable type scales, grids, alignment, rhythm, contrast, and content-first layouts.",
+          "description": "Understand the core principles of visual design, including effective use of white space, grid systems (8pt grid, columns), alignment, proximity, and visual hierarchy to create clean, organized, and balanced interfaces.",
+          "resources": [
+            {
+              "title": "The 8-Point Grid System in UI Design",
+              "url": "https://medium.com/design-with-figma/the-8-point-grid-system-in-ui-design-6a56e2107d6a",
+              "type": "article"
+            },
+            {
+              "title": "Using White Space in UX Design",
+              "url": "https://www.interaction-design.org/literature/article/using-white-space-in-ux-design",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "typography_readability",
+          "name": "Typography & Readability",
+          "tag": "essential",
+          "description": "Learn to select appropriate typefaces, establish a readable and accessible type scale, manage line height, letter spacing, font weights, and paragraph styles to optimize text readability and visual appeal for diverse contexts.",
           "resources": [
             {
               "title": "Material Design Typography",
               "url": "https://m3.material.io/styles/typography/overview",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "ux_accessibility",
-          "name": "Accessibility",
-          "tag": "essential",
-          "description": "Design for keyboard use, labels, contrast, readable content, focus states, and inclusive patterns.",
-          "resources": [
+            },
             {
-              "title": "MDN Understanding WCAG",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG",
+              "title": "The Elements of Typographic Style by Robert Bringhurst",
+              "url": "https://www.amazon.com/Elements-Typographic-Style-Robert-Bringhurst/dp/0881792128",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ui_ux_design_practice_lab",
-          "name": "Practice: Usability Critique Sprint",
+          "id": "color_theory_application",
+          "name": "Color Theory & Application in UI",
+          "tag": "essential",
+          "description": "Explore color theory, color psychology, and best practices for creating harmonious, accessible, and brand-aligned color palettes for user interfaces. Understand primary, secondary, accent, and semantic colors.",
+          "resources": [
+            {
+              "title": "Color in UI Design: A Practical Guide",
+              "url": "https://www.smashingmagazine.com/2021/08/color-in-ui-design-practical-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Adobe Color Wheel",
+              "url": "https://color.adobe.com/create/color-wheel",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "iconography_imagery",
+          "name": "Iconography, Imagery & Branding",
+          "tag": "essential",
+          "description": "Design and select effective, consistent icons. Utilize photography, illustrations, and other imagery to enhance user experience. Understand how to integrate brand identity and visual language consistently across a product.",
+          "resources": [
+            {
+              "title": "The Noun Project",
+              "url": "https://thenounproject.com/",
+              "type": "article"
+            },
+            {
+              "title": "Mastering Icon Design for UI/UX",
+              "url": "https://www.uxpin.com/studio/blog/mastering-icon-design-for-ui-ux/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "responsive_design_principles",
+          "name": "Responsive & Adaptive Design",
+          "tag": "essential",
+          "description": "Design interfaces that adapt seamlessly to various screen sizes, orientations, and devices (mobile, tablet, desktop, wearables). Understand breakpoints, flexible layouts, content prioritization, and mobile-first approach.",
+          "resources": [
+            {
+              "title": "Responsive Design: What It Is and How to Use It",
+              "url": "https://www.nngroup.com/articles/responsive-design/",
+              "type": "article"
+            },
+            {
+              "title": "Mobile-First Design",
+              "url": "https://www.smashingmagazine.com/2010/09/mobile-first-for-the-future-of-web/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_for_platforms",
+          "name": "Designing for Specific Platforms (iOS, Android, Web)",
+          "tag": "essential",
+          "description": "Learn to design native applications adhering to platform-specific guidelines like Apple's Human Interface Guidelines (HIG) and Google's Material Design, as well as best practices for web applications.",
+          "resources": [
+            {
+              "title": "Apple Human Interface Guidelines",
+              "url": "https://developer.apple.com/design/human-interface-guidelines/",
+              "type": "article"
+            },
+            {
+              "title": "Google Material Design 3",
+              "url": "https://m3.material.io/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_systems_application",
+          "name": "Applying & Contributing to Design Systems",
           "tag": "advanced",
-          "description": "Review a real app flow, identify usability issues, propose design changes, and validate with lightweight tests.",
-          "resources": [],
-          "children": []
+          "description": "Understand how to effectively use an existing design system to maintain consistency and efficiency in your UI work. Learn about contributing new patterns and components, adhering to documentation and governance.",
+          "resources": [
+            {
+              "title": "Using a Design System: A Guide for Designers",
+              "url": "https://www.interaction-design.org/literature/article/using-a-design-system-a-guide-for-designers",
+              "type": "article"
+            },
+            {
+              "title": "Lightning Design System (Example)",
+              "url": "https://www.lightningdesignsystem.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_critique_feedback",
+          "name": "Design Critique & Feedback Processes",
+          "tag": "essential",
+          "description": "Learn to give and receive constructive design feedback effectively. Participate in design critiques to refine solutions, articulate design decisions with rationale, and collaborate effectively with peers and stakeholders.",
+          "resources": [
+            {
+              "title": "How to Give a Design Critique",
+              "url": "https://www.nngroup.com/articles/design-critique/",
+              "type": "article"
+            },
+            {
+              "title": "The Art of Constructive Feedback in Design",
+              "url": "https://uxplanet.org/the-art-of-constructive-feedback-in-design-e5c9b2d3e5e3",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ux_figma_systems",
-      "name": "Figma and Design Systems",
+      "id": "figma_design_systems",
+      "name": "Figma Mastery & Design Systems",
       "tag": "essential",
-      "description": "Use Figma professionally with components, variants, auto layout, prototypes, libraries, and handoff.",
+      "description": "Become proficient in Figma for collaborative design, building efficient component libraries, and establishing scalable design systems to maintain consistency and accelerate development.",
       "resources": [
         {
           "title": "Figma Tutorial for UI Design - Course for Beginners (freeCodeCamp)",
@@ -125,101 +534,483 @@
           "type": "video"
         },
         {
-          "title": "Figma Components Guide",
-          "url": "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma",
-          "type": "article"
-        },
-        {
-          "title": "Figma Prototyping Guide",
-          "url": "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
+          "title": "Figma Help Center",
+          "url": "https://help.figma.com/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ux_components",
-          "name": "Components and Variants",
+          "id": "figma_essentials",
+          "name": "Figma Essentials: Tools, Frames, Text, Images",
           "tag": "essential",
-          "description": "Create reusable, documented UI components with states, variants, and component properties.",
+          "description": "Master the fundamental tools and features of Figma, including frames, shapes, vectors, text, images, and basic layer management to efficiently create static designs and layouts.",
           "resources": [
+            {
+              "title": "Figma Basics in One Video (CodeWithHarry)",
+              "url": "https://www.youtube.com/watch?v=mpJb9GNxdYI",
+              "type": "video"
+            },
+            {
+              "title": "Figma Basic Tools Tutorial",
+              "url": "https://www.youtube.com/watch?v=k_xI_oG6RjQ",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "auto_layout_constraints",
+          "name": "Auto Layout & Constraints in Figma",
+          "tag": "essential",
+          "description": "Learn to use Auto Layout for creating responsive and flexible components and designs that adapt to content changes and screen sizes. Understand constraints for adapting elements within frames.",
+          "resources": [
+            {
+              "title": "Mastering Auto Layout in Figma",
+              "url": "https://help.figma.com/hc/en-us/articles/360040451373-Mastering-Auto-layout",
+              "type": "article"
+            },
+            {
+              "title": "Figma Constraints Explained",
+              "url": "https://www.youtube.com/watch?v=02F2o_yV9W8",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "components_variants_properties",
+          "name": "Components, Variants & Component Properties",
+          "tag": "essential",
+          "description": "Create reusable UI components, manage their states, types, and interactions with Variants, and leverage Component Properties for greater flexibility, scalability, and maintainability in your designs.",
+          "resources": [
+            {
+              "title": "Figma Components Guide",
+              "url": "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma",
+              "type": "article"
+            },
             {
               "title": "Figma Variants Fundamentals",
               "url": "https://help.figma.com/hc/en-us/articles/39636737843735-Components-collection-Variants-and-component-set-fundamentals",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ux_design_systems",
-          "name": "Design Systems",
+          "id": "advanced_prototyping_animation",
+          "name": "Advanced Prototyping & Animation in Figma",
+          "tag": "essential",
+          "description": "Build interactive prototypes with complex flows, dynamic overlays, smart animate transitions, and interactive components. Simulate realistic user experiences for effective testing and presentation.",
+          "resources": [
+            {
+              "title": "Figma Prototyping Guide",
+              "url": "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
+              "type": "article"
+            },
+            {
+              "title": "Smart Animate in Figma Tutorial",
+              "url": "https://www.youtube.com/watch?v=8lJ_19h9U2A",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "figma_plugins_shortcuts",
+          "name": "Figma Plugins, Shortcuts & Workflow Optimization",
           "tag": "advanced",
-          "description": "Build tokens, components, usage rules, documentation, and governance for product teams.",
+          "description": "Enhance your Figma workflow with powerful plugins for various tasks (e.g., content generation, accessibility checks) and master keyboard shortcuts to maximize efficiency and speed up your design process.",
+          "resources": [
+            {
+              "title": "Best Figma Plugins for UI/UX Designers",
+              "url": "https://www.figma.com/community/plugins",
+              "type": "article"
+            },
+            {
+              "title": "Figma Keyboard Shortcuts",
+              "url": "https://help.figma.com/hc/en-us/articles/360040722234-Figma-keyboard-shortcuts",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "collaborative_workflows_versioning",
+          "name": "Collaborative Workflows & Version Control in Figma",
+          "tag": "essential",
+          "description": "Learn to collaborate effectively with teams in Figma, manage file versions and history, utilize comments, and establish a clear file organization structure for shared projects.",
+          "resources": [
+            {
+              "title": "Collaboration in Figma: Best Practices",
+              "url": "https://www.figma.com/blog/how-we-work-at-figma-a-peek-into-our-design-process/",
+              "type": "article"
+            },
+            {
+              "title": "Figma Version History Guide",
+              "url": "https://help.figma.com/hc/en-us/articles/360039238873-Use-version-history",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_systems_intro",
+          "name": "Introduction to Design Systems & Tokens",
+          "tag": "essential",
+          "description": "Understand the purpose, benefits, and core components of design systems. Learn about design tokens as the atomic elements that define visual and interactive properties across a product suite.",
           "resources": [
             {
               "title": "Figma Introduction to Design Systems",
               "url": "https://help.figma.com/hc/en-us/articles/14552901442839-Overview-Introduction-to-design-systems",
               "type": "course"
+            },
+            {
+              "title": "What are Design Tokens?",
+              "url": "https://www.designsystem.com/design-tokens/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "building_design_library",
+          "name": "Building & Maintaining a Design System Library",
+          "tag": "advanced",
+          "description": "Learn to create and manage a scalable design system library in Figma, including component architecture, documentation best practices, versioning strategies, and governance for collaborative teams.",
+          "resources": [
+            {
+              "title": "Building a Design System in Figma - Full Course",
+              "url": "https://www.youtube.com/watch?v=Nn1-jN43Wf4",
+              "type": "video"
+            },
+            {
+              "title": "Design Systems Handbook by InVision",
+              "url": "https://www.designbetter.co/design-systems-handbook",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "ux_portfolio",
-      "name": "Testing and Portfolio",
-      "tag": "advanced",
-      "description": "Validate designs, measure usability, and present strong case studies with problem, process, tradeoffs, and results.",
+      "id": "accessibility_testing_handoff",
+      "name": "Accessibility, Testing & Handoff",
+      "tag": "essential",
+      "description": "Design for inclusivity, validate designs through rigorous usability testing, and ensure smooth collaboration and efficient handoff processes with development teams for successful implementation.",
       "resources": [
         {
           "title": "NN/g Usability Testing 101",
           "url": "https://www.nngroup.com/articles/usability-testing-101/",
           "type": "article"
+        },
+        {
+          "title": "MDN Understanding WCAG",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "ux_usability_testing",
-          "name": "Usability Testing",
-          "tag": "advanced",
-          "description": "Create tasks, observe behavior, synthesize findings, and improve designs based on evidence.",
+          "id": "accessibility_guidelines",
+          "name": "Web Content Accessibility Guidelines (WCAG)",
+          "tag": "essential",
+          "description": "Deep dive into WCAG principles (Perceivable, Operable, Understandable, Robust) and success criteria (A, AA, AAA) to ensure your designs meet international accessibility standards for diverse users.",
+          "resources": [
+            {
+              "title": "Web Content Accessibility Guidelines (WCAG) 2.1 Overview",
+              "url": "https://www.w3.org/WAI/WCAG21/Understanding/",
+              "type": "article"
+            },
+            {
+              "title": "Designing for Web Accessibility - WAI Tutorials",
+              "url": "https://www.w3.org/WAI/tutorials/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "inclusive_design_practices",
+          "name": "Inclusive Design Practices & Assistive Technologies",
+          "tag": "essential",
+          "description": "Adopt inclusive design mindsets and understand how people with diverse abilities (cognitive, motor, visual, auditory) interact with digital products. Learn about common assistive technologies (screen readers, voice control, switch control).",
+          "resources": [
+            {
+              "title": "Microsoft Inclusive Design Toolkit",
+              "url": "https://www.microsoft.com/design/inclusive/",
+              "type": "article"
+            },
+            {
+              "title": "Designing for Screen Readers",
+              "url": "https://www.nngroup.com/articles/screen-readers-and-accessibility/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "accessibility_testing_tools",
+          "name": "Accessibility Testing & Auditing Tools",
+          "tag": "essential",
+          "description": "Learn to use various tools for accessibility testing, including contrast checkers, keyboard navigation checks, screen reader emulators, and automated accessibility auditing tools (e.g., Axe, Lighthouse).",
+          "resources": [
+            {
+              "title": "Web Accessibility Evaluation Tools List",
+              "url": "https://www.w3.org/WAI/ER/tools/",
+              "type": "article"
+            },
+            {
+              "title": "Axe DevTools for Web Accessibility Testing",
+              "url": "https://www.deque.com/axe/devtools/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "usability_testing_methods",
+          "name": "Usability Testing Methods & Planning",
+          "tag": "essential",
+          "description": "Learn to plan and conduct various usability tests (moderated, unmoderated, remote, in-person, guerrilla testing). Define clear objectives, recruit representative participants, create realistic tasks, and facilitate sessions effectively.",
           "resources": [
             {
               "title": "Usability.gov Testing Basics",
               "url": "https://www.usability.gov/how-to-and-tools/methods/usability-testing.html",
               "type": "article"
+            },
+            {
+              "title": "Remote Usability Testing Guide",
+              "url": "https://www.usertesting.com/blog/remote-usability-testing",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ux_handoff_critique",
-          "name": "Design Critique and Developer Handoff",
-          "tag": "advanced",
-          "description": "Present design rationale, respond to critique, prepare specs, annotate states, and support implementation.",
+          "id": "test_analysis_reporting",
+          "name": "Analyzing Test Results & Reporting Findings",
+          "tag": "essential",
+          "description": "Synthesize qualitative and quantitative data from usability tests. Identify patterns, prioritize usability problems by severity, and present actionable recommendations to stakeholders for design improvements and iterations.",
+          "resources": [
+            {
+              "title": "How to Analyze and Present Usability Test Results",
+              "url": "https://www.uxmatters.com/mt/archives/2007/04/how-to-analyze-and-present-usability-test-results.php",
+              "type": "article"
+            },
+            {
+              "title": "Severity Rating for Usability Problems",
+              "url": "https://www.nngroup.com/articles/how-to-rate-severity-for-usability-problems/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "design_handoff_devmode",
+          "name": "Design Handoff & Developer Collaboration (Figma Dev Mode)",
+          "tag": "essential",
+          "description": "Prepare designs for seamless developer handoff. Learn to use Figma's Dev Mode effectively, create clear specifications, annotate designs, and provide assets for efficient, accurate implementation.",
           "resources": [
             {
               "title": "Figma Dev Mode",
               "url": "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode",
               "type": "article"
+            },
+            {
+              "title": "The Art of Design Handoff",
+              "url": "https://uxplanet.org/the-art-of-design-handoff-a764d73286f0",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "ux_case_study",
-          "name": "Project: Product Redesign Case Study",
-          "tag": "advanced",
-          "description": "Redesign a real flow, document research, prototype, test, iterate, and publish a concise portfolio story.",
+          "id": "cross_functional_communication",
+          "name": "Cross-functional Communication & Stakeholder Management",
+          "tag": "essential",
+          "description": "Develop strong communication, presentation, and negotiation skills. Learn to collaborate effectively with product managers, engineers, marketing, and other stakeholders, advocating for user needs and design decisions.",
           "resources": [
             {
-              "title": "Google UX Design Portfolio Tips",
-              "url": "https://grow.google/certificates/ux-design/",
-              "type": "course"
+              "title": "Communicating UX: Speak User Experience",
+              "url": "https://www.nngroup.com/articles/communicating-ux/",
+              "type": "article"
+            },
+            {
+              "title": "Stakeholder Management for UX Designers",
+              "url": "https://www.smashingmagazine.com/2017/04/stakeholder-management-ux-designers/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "post_launch_monitoring_iteration",
+          "name": "Post-Launch Monitoring & Design Iteration",
+          "tag": "advanced",
+          "description": "Understand the importance of post-launch monitoring using analytics and feedback loops. Learn to identify areas for improvement and engage in continuous design iteration and optimization based on real-world data.",
+          "resources": [
+            {
+              "title": "The Continuous Design Cycle",
+              "url": "https://www.interaction-design.org/literature/article/the-continuous-design-cycle",
+              "type": "article"
+            },
+            {
+              "title": "UX Metrics for Post-Launch Evaluation",
+              "url": "https://www.smashingmagazine.com/2019/07/ux-metrics-post-launch-evaluation/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "portfolio_career_dev",
+      "name": "Portfolio & Career Development",
+      "tag": "advanced",
+      "description": "Craft compelling case studies, strategically build your personal brand, and prepare rigorously for interviews to effectively launch and advance your UI/UX design career in the industry.",
+      "resources": [
+        {
+          "title": "Google UX Design Professional Certificate",
+          "url": "https://grow.google/certificates/ux-design/",
+          "type": "course"
+        },
+        {
+          "title": "The Ultimate Guide to a UX Portfolio",
+          "url": "https://careerfoundry.com/en/blog/ux-design/how-to-create-a-ux-portfolio/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "case_study_crafting",
+          "name": "Crafting UX Case Studies: Problem, Process, Solution, Impact",
+          "tag": "advanced",
+          "description": "Learn the art of storytelling in UX. Structure your case studies with clear problem statements, detailed process, design solutions, trade-offs, and measurable impact using STAR method principles.",
+          "resources": [
+            {
+              "title": "How to Write a Great UX Case Study",
+              "url": "https://www.nngroup.com/articles/ux-case-studies/",
+              "type": "article"
+            },
+            {
+              "title": "UX Portfolio: Case Study Best Practices",
+              "url": "https://www.youtube.com/watch?v=kYJjY8V6-Xw",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "portfolio_website_best_practices",
+          "name": "Building Your Portfolio Website: Best Practices",
+          "tag": "advanced",
+          "description": "Design and build a professional online portfolio that showcases your best work. Focus on clear navigation, visual appeal, concise project summaries, and articulating your unique design voice and process.",
+          "resources": [
+            {
+              "title": "10 Best UX Portfolio Examples",
+              "url": "https://www.uxdesign.cc/10-best-ux-portfolio-examples-for-2023-e40d6c934f8d",
+              "type": "article"
+            },
+            {
+              "title": "Portfolio.io (Portfolio Builder)",
+              "url": "https://www.portfolio.io/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "resume_linkedin_optimization",
+          "name": "Resume & LinkedIn Optimization",
+          "tag": "advanced",
+          "description": "Tailor your resume and LinkedIn profile to stand out to recruiters in the UI/UX field. Highlight relevant skills, experience, and accomplishments using industry-specific keywords and a strong personal brand narrative.",
+          "resources": [
+            {
+              "title": "Crafting a UX Designer Resume",
+              "url": "https://careerfoundry.com/en/blog/ux-design/ux-designer-resume/",
+              "type": "article"
+            },
+            {
+              "title": "LinkedIn for UX Designers: Tips & Tricks",
+              "url": "https://medium.com/design-bootcamp/linkedin-for-ux-designers-tips-tricks-c1f964c4c235",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "interview_preparation",
+          "name": "Interview Preparation: Portfolio Reviews, Whiteboard Challenges",
+          "tag": "advanced",
+          "description": "Prepare for common UX interview formats, including in-depth portfolio walkthroughs, live design/whiteboarding challenges, technical questions, and behavioral questions. Practice articulating your design process and rationale under pressure.",
+          "resources": [
+            {
+              "title": "UX Interview Questions: The Ultimate Guide",
+              "url": "https://careerfoundry.com/en/blog/ux-design/ux-interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "Cracking the UX Whiteboard Challenge",
+              "url": "https://uxdesign.cc/cracking-the-ux-whiteboard-challenge-428a95d73c88",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "networking_mentorship",
+          "name": "Networking & Mentorship",
+          "tag": "advanced",
+          "description": "Learn the importance of networking in the design community, how to effectively connect with peers and industry leaders, and seek out mentorship opportunities for career growth and guidance.",
+          "resources": [
+            {
+              "title": "Networking for UX Designers: A Practical Guide",
+              "url": "https://uxplanet.org/networking-for-ux-designers-a-practical-guide-b7a4d6f4c80c",
+              "type": "article"
+            },
+            {
+              "title": "Finding a UX Mentor",
+              "url": "https://www.nngroup.com/articles/finding-ux-mentor/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "personal_branding_online_presence",
+          "name": "Personal Branding & Online Presence",
+          "tag": "advanced",
+          "description": "Develop a unique personal brand that reflects your design philosophy and skills. Learn to leverage platforms like Medium, Dribbble, Behance, and Twitter to build a professional online presence and thought leadership.",
+          "resources": [
+            {
+              "title": "Building Your Personal Brand as a Designer",
+              "url": "https://medium.com/ux-planet/building-your-personal-brand-as-a-designer-a4d1f2d3a3f5",
+              "type": "article"
+            },
+            {
+              "title": "Why Designers Should Blog",
+              "url": "https://www.smashingmagazine.com/2012/06/why-designers-should-blog/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "freelance_vs_inhouse",
+          "name": "Career Paths: Freelance, Agency, In-House",
+          "tag": "advanced",
+          "description": "Explore different career avenues for UI/UX designers, understanding the pros and cons, required skill sets, and typical work environments of freelancing, working at agencies, or joining in-house product teams.",
+          "resources": [
+            {
+              "title": "Agency vs. In-House UX Design: Which is Right For You?",
+              "url": "https://careerfoundry.com/en/blog/ux-design/agency-vs-in-house-ux-design/",
+              "type": "article"
+            },
+            {
+              "title": "How to Become a Freelance UX Designer",
+              "url": "https://careerfoundry.com/en/blog/ux-design/how-to-become-a-freelance-ux-designer/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cont_learning_trends",
+          "name": "Continuous Learning & Industry Trends",
+          "tag": "advanced",
+          "description": "Stay updated with the latest trends and innovations in UI/UX design, emerging technologies (e.g., AI in UX, VR/AR, voice UI), and cultivate a mindset of continuous learning and skill development to remain competitive.",
+          "resources": [
+            {
+              "title": "Top UX Design Trends to Watch",
+              "url": "https://uxdesign.cc/top-ux-design-trends-to-watch-in-2024-e8f0b0c6c726",
+              "type": "article"
+            },
+            {
+              "title": "UX Collective (Medium Publication)",
+              "url": "https://uxdesign.cc/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

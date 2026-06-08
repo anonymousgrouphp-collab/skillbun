@@ -5,207 +5,1564 @@
   "format": "tree",
   "tree": [
     {
-      "id": "finops_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "fe_foundations",
+      "name": "FinOps Foundations & Cloud Economics",
       "tag": "essential",
-      "description": "Understand what FinOps Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Deep dive into the FinOps culture, principles, and capabilities. Understand the value proposition and the role of a FinOps Engineer in a modern cloud environment, combined with fundamental cloud economics.",
       "resources": [
+        {
+          "title": "The FinOps Framework",
+          "url": "https://www.finops.org/framework/",
+          "type": "article"
+        },
+        {
+          "title": "What is FinOps? Cloud Cost Management explained",
+          "url": "https://aws.amazon.com/financial-management/finops/",
+          "type": "article"
+        },
         {
           "title": "Cloud Cost Optimization Strategy Explained | FinOps (Abhishek.Veeramalla)",
           "url": "https://www.youtube.com/watch?v=B3kC9gBqO88",
           "type": "video"
         },
         {
-          "title": "FinOps Framework",
-          "url": "https://www.finops.org/framework/",
-          "type": "article"
+          "title": "AWS Cloud Economics for Beginners - Full Course",
+          "url": "https://www.youtube.com/watch?v=1F24eN-h_qg",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "finops_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "fe_finops_introduction",
+          "name": "Introduction to FinOps and its Culture",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Learn the definition, history, and core tenets of FinOps. Understand its cultural shift towards collaborative cloud financial management.",
           "resources": [
             {
-              "title": "AWS Cost Management Documentation",
-              "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html",
+              "title": "The FinOps Principles",
+              "url": "https://www.finops.org/framework/principles/",
               "type": "article"
+            },
+            {
+              "title": "FinOps: How to Manage Your Cloud Spending",
+              "url": "https://www.youtube.com/watch?v=Mts0p_l8h1M",
+              "type": "video"
+            },
+            {
+              "title": "The FinOps Framework Explained",
+              "url": "https://www.youtube.com/watch?v=uK8n_9pQdSA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_finops_introduction.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "finops_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "fe_finops_framework_phases",
+          "name": "FinOps Framework Phases (Inform, Optimize, Operate)",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Understand the three core phases of the FinOps framework and the activities within each phase to drive continuous improvement.",
           "resources": [
             {
-              "title": "Azure Cost Management Documentation",
-              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview",
+              "title": "The FinOps Phases",
+              "url": "https://www.finops.org/framework/phases/",
               "type": "article"
+            },
+            {
+              "title": "FinOps Capabilities",
+              "url": "https://www.finops.org/framework/capabilities/",
+              "type": "article"
+            },
+            {
+              "title": "The FinOps Framework: Inform, Optimize, Operate",
+              "url": "https://www.youtube.com/watch?v=F0lH9mK-p48",
+              "type": "video"
+            },
+            {
+              "title": "What is FinOps? FinOps in 5 minutes",
+              "url": "https://www.youtube.com/watch?v=iM_dD_D83W4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_finops_framework_phases.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "fe_stakeholder_collaboration",
+          "name": "Stakeholder Collaboration in FinOps",
+          "tag": "essential",
+          "description": "Explore the roles and responsibilities of key stakeholders (Engineering, Finance, Business) and how they collaborate within a FinOps model.",
+          "resources": [
+            {
+              "title": "FinOps Roles and Personas",
+              "url": "https://www.finops.org/framework/personas/",
+              "type": "article"
+            },
+            {
+              "title": "Building a FinOps Culture",
+              "url": "https://cloud.google.com/blog/topics/cost-management/building-a-finops-culture",
+              "type": "article"
+            },
+            {
+              "title": "FinOps: Unpacking the Roles & Responsibilities",
+              "url": "https://www.youtube.com/watch?v=F07P7H6p6-8",
+              "type": "video"
+            },
+            {
+              "title": "FinOps Demystified: The 3 People Pillars - Engineering, Finance, Business",
+              "url": "https://www.youtube.com/watch?v=1F_45pY2jC4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_stakeholder_collaboration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_core_cloud_concepts",
+          "name": "Core Cloud Concepts & Architecture",
+          "tag": "essential",
+          "description": "Review foundational cloud concepts (IaaS, PaaS, SaaS, serverless, containers) and common architectural patterns from a cost management and optimization perspective.",
+          "resources": [
+            {
+              "title": "Cloud Computing Explained",
+              "url": "https://azure.microsoft.com/en-us/resources/cloud-computing-explained/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Well-Architected Framework - Cost Optimization Pillar",
+              "url": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost-optimization-pillar.html",
+              "type": "article"
+            },
+            {
+              "title": "IaaS, PaaS, SaaS, FaaS Explained - Cloud Computing",
+              "url": "https://www.youtube.com/watch?v=S0Q4JzGptBs",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Computing Basics for Beginners - What is Cloud Computing?",
+              "url": "https://www.youtube.com/watch?v=QJc_20b0z6Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_core_cloud_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_cloud_billing_pricing",
+          "name": "Cloud Billing & Pricing Models Deep Dive",
+          "tag": "essential",
+          "description": "Understand common cloud pricing models (on-demand, reserved, spot, consumption-based, egress) and how they impact overall cost. Learn about service-specific pricing for compute, storage, networking, and databases across providers.",
+          "resources": [
+            {
+              "title": "Cloud Pricing Explained: A Guide to AWS, Azure, and GCP",
+              "url": "https://www.netapp.com/cloud/what-is-cloud-pricing/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Pricing Overview",
+              "url": "https://aws.amazon.com/pricing/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Pricing Overview",
+              "url": "https://azure.microsoft.com/en-us/pricing/overview/",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Pricing",
+              "url": "https://cloud.google.com/pricing",
+              "type": "article"
+            },
+            {
+              "title": "AWS Cost Management and Optimization Tutorial",
+              "url": "https://www.youtube.com/watch?v=F0_EaY35cO4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_cloud_billing_pricing.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "finops_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "fe_cloud_cost_management",
+      "name": "Cloud Provider Native Cost Management",
       "tag": "essential",
-      "description": "Build the practical skill stack for FinOps Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Explore native cost management tools and services across major cloud providers (AWS, Azure, GCP), understanding their billing models and features in depth.",
       "resources": [
         {
-          "title": "The Ultimate FinOps Guide for Cloud Cost Optimization (Fast Lane Tech Training)",
-          "url": "https://www.youtube.com/watch?v=N8jY_LJa7KA",
+          "title": "Comparing AWS, Azure, and GCP cost management tools",
+          "url": "https://cloud.google.com/solutions/cost-management/comparing-cost-management-tools",
+          "type": "article"
+        },
+        {
+          "title": "Learn FinOps: Master Cloud Cost Optimization with AWS, Azure, & GCP",
+          "url": "https://www.youtube.com/watch?v=R0c66Vn4K8A",
           "type": "video"
         },
         {
-          "title": "AWS Cost Management Documentation",
-          "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_cloud_cost_management.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "finops_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "fe_aws_cost_management",
+          "name": "AWS Cost Management Tools & Services",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "FinOps Framework",
-              "url": "https://www.finops.org/framework/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "finops_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "Azure Cost Management Documentation",
-              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "finops_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "finops_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "FinOps and Cloud Cost Optimization (Datadog)",
-          "url": "https://www.youtube.com/watch?v=hmqskc5iaNc",
-          "type": "video"
-        },
-        {
-          "title": "Azure Cost Management Documentation",
-          "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "finops_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Learn to use AWS Cost Explorer, Budgets, Billing Dashboard, Organizations, Compute Optimizer, Savings Plans, and Reserved Instances for cost analysis and optimization.",
           "resources": [
             {
               "title": "AWS Cost Management Documentation",
               "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "finops_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
-          "resources": [
+            },
             {
-              "title": "FinOps Framework",
-              "url": "https://www.finops.org/framework/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "finops_engineer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
-      "tag": "advanced",
-      "description": "Turn your FinOps Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
-      "resources": [
-        {
-          "title": "FinOps Framework",
-          "url": "https://www.finops.org/framework/",
-          "type": "article"
-        },
-        {
-          "title": "AWS Cost Management Documentation",
-          "url": "https://docs.aws.amazon.com/cost-management/latest/userguide/what-is-costmanagement.html",
-          "type": "article"
-        },
-        {
-          "title": "Azure Cost Management Documentation",
-          "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "finops_engineer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
-          "resources": [
+              "title": "AWS Cost Optimization Tips & Best Practices | AWS Tutorial",
+              "url": "https://www.youtube.com/watch?v=s1Rk552F04o",
+              "type": "video"
+            },
             {
-              "title": "FinOps Framework",
-              "url": "https://www.finops.org/framework/",
-              "type": "article"
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_aws_cost_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "finops_engineer_project_capstone",
-          "name": "Project: FinOps Engineer Portfolio Capstone",
-          "tag": "advanced",
-          "description": "Build a portfolio-grade FinOps Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "id": "fe_azure_cost_management",
+          "name": "Azure Cost Management + Billing",
+          "tag": "essential",
+          "description": "Master Azure Cost Management + Billing features, including Budgets, Advisor recommendations, Reserved Instances, and Azure Hybrid Benefit.",
           "resources": [
             {
               "title": "Azure Cost Management Documentation",
               "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/cost-management-billing-overview",
               "type": "article"
+            },
+            {
+              "title": "Azure Cost Management: A Deep Dive",
+              "url": "https://www.youtube.com/watch?v=2r7d7B38b8E",
+              "type": "video"
+            },
+            {
+              "title": "Azure Cost Management and FinOps",
+              "url": "https://www.youtube.com/watch?v=kYJjC6D98Sg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_azure_cost_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "fe_gcp_cost_management",
+          "name": "Google Cloud Billing & Cost Optimization",
+          "tag": "essential",
+          "description": "Understand Google Cloud Billing, Budgets and Alerts, Rightsizing Recommendations, and Committed Use Discounts for GCP cost control.",
+          "resources": [
+            {
+              "title": "Google Cloud Billing Documentation",
+              "url": "https://cloud.google.com/billing/docs",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cost Management Best Practices",
+              "url": "https://cloud.google.com/solutions/cost-management-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Platform Tutorial - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=VMzJ4D7K1eE",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Platform (GCP) Course - Full Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=S2s36B1_d9A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_gcp_cost_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_multi_cloud_challenges",
+          "name": "Multi-Cloud & Hybrid Cloud Cost Management Challenges",
+          "tag": "advanced",
+          "description": "Address the complexities of aggregating, normalizing, and analyzing cost data consistently across multiple cloud providers and hybrid environments.",
+          "resources": [
+            {
+              "title": "Navigating Multi-Cloud Cost Management",
+              "url": "https://www.finops.org/blog/multi-cloud-cost-management/",
+              "type": "article"
+            },
+            {
+              "title": "Hybrid Cloud Cost Management Strategies",
+              "url": "https://www.flexera.com/blog/cloud-management/hybrid-cloud-cost-management-strategies/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to FinOps - Control your Cloud Spend!",
+              "url": "https://www.youtube.com/watch?v=0hWjK_DYYJk",
+              "type": "video"
+            },
+            {
+              "title": "How to Reduce Cloud Costs - FinOps Tutorial",
+              "url": "https://www.youtube.com/watch?v=k-wI-n8kM3s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_multi_cloud_challenges.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_cost_allocation_governance",
+      "name": "Cost Allocation, Tagging & FinOps Governance",
+      "tag": "essential",
+      "description": "Master techniques for accurate cost allocation, implement effective tagging strategies, establish FinOps governance policies, and ensure accountability.",
+      "resources": [
+        {
+          "title": "Cost Allocation in FinOps",
+          "url": "https://www.finops.org/framework/capabilities/understand-cost/",
+          "type": "article"
+        },
+        {
+          "title": "What is FinOps? | FinOps explained by Cloud Architect",
+          "url": "https://www.youtube.com/watch?v=M94eG_tWd2I",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_cost_allocation_governance.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_tagging_strategies",
+          "name": "Resource Tagging Best Practices & Implementation",
+          "tag": "essential",
+          "description": "Learn to define and implement consistent, mandatory tagging strategies across cloud resources for accurate cost visibility, accountability, and reporting.",
+          "resources": [
+            {
+              "title": "AWS Tagging Strategies",
+              "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure resource naming and tagging decision guide",
+              "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging",
+              "type": "article"
+            },
+            {
+              "title": "GCP Tagging Best Practices",
+              "url": "https://cloud.google.com/resource-manager/docs/tags/tags-overview",
+              "type": "article"
+            },
+            {
+              "title": "AWS Cloud Tagging Best Practices",
+              "url": "https://www.youtube.com/watch?v=5V2Bq-v6jT0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_tagging_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_cost_allocation_models",
+          "name": "Cost Allocation Models (Showback, Chargeback, Attribution)",
+          "tag": "essential",
+          "description": "Understand how to implement showback and chargeback models to distribute cloud costs to relevant teams or business units, and advanced cost attribution techniques.",
+          "resources": [
+            {
+              "title": "Implementing Showback/Chargeback",
+              "url": "https://www.finops.org/framework/capabilities/allocate-cloud-spend/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Cost Allocation Strategies",
+              "url": "https://www.logicata.com/cloud-cost-allocation-strategies/",
+              "type": "article"
+            },
+            {
+              "title": "What is FinOps? Cloud Cost Management Tutorial",
+              "url": "https://www.youtube.com/watch?v=wX-4-245w7U",
+              "type": "video"
+            },
+            {
+              "title": "AWS Cost Allocation Tags Explained | Cloud Cost Optimization Tips",
+              "url": "https://www.youtube.com/watch?v=i98d_qYgV88",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_cost_allocation_models.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_resource_hierarchy_management",
+          "name": "Cloud Account/Resource Hierarchy & Organization Management",
+          "tag": "essential",
+          "description": "Design and manage cloud account, subscription, or project hierarchies to facilitate granular cost control, security, and governance at scale.",
+          "resources": [
+            {
+              "title": "AWS Organizations",
+              "url": "https://aws.amazon.com/organizations/",
+              "type": "article"
+            },
+            {
+              "title": "Azure management groups and subscription organization",
+              "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/organize-subscriptions",
+              "type": "article"
+            },
+            {
+              "title": "Organizing resources in Google Cloud",
+              "url": "https://cloud.google.com/resource-manager/docs/creating-managing-folders",
+              "type": "article"
+            },
+            {
+              "title": "AWS Organizations - An Introduction",
+              "url": "https://www.youtube.com/watch?v=F3zWvB4d2R8",
+              "type": "video"
+            },
+            {
+              "title": "Azure Management Groups Demystified - Apply policies at scale!",
+              "url": "https://www.youtube.com/watch?v=2r67tVd-z6k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_resource_hierarchy_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_governance_policy_implementation",
+          "name": "FinOps Governance, Policy as Code & Guardrails",
+          "tag": "essential",
+          "description": "Develop and enforce policies for cost control, security, and compliance. Implement guardrails using Infrastructure as Code (IaC) and Policy as Code tools to prevent cost overruns.",
+          "resources": [
+            {
+              "title": "Governing Cloud Costs with FinOps",
+              "url": "https://www.finops.org/framework/capabilities/govern-cloud-usage/",
+              "type": "article"
+            },
+            {
+              "title": "Policy as Code for Cloud Governance",
+              "url": "https://www.hashicorp.com/solutions/policy-as-code",
+              "type": "article"
+            },
+            {
+              "title": "AWS Config for Governance",
+              "url": "https://aws.amazon.com/config/",
+              "type": "article"
+            },
+            {
+              "title": "What is FinOps? FinOps Explained!",
+              "url": "https://www.youtube.com/watch?v=0h5oBv9U5S8",
+              "type": "video"
+            },
+            {
+              "title": "Policy as Code Explained - What is Policy as Code?",
+              "url": "https://www.youtube.com/watch?v=F3t1wU8yWw8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_governance_policy_implementation.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_cost_optimization_strategies",
+      "name": "Advanced Cost Optimization Strategies & Techniques",
+      "tag": "essential",
+      "description": "Learn and apply various techniques to significantly reduce cloud spend without sacrificing performance, reliability, or business requirements, focusing on continuous improvement.",
+      "resources": [
+        {
+          "title": "FinOps - Cloud Cost Optimization Principles and Practices",
+          "url": "https://www.finops.org/blog/cloud-cost-optimization-principles-and-practices/",
+          "type": "article"
+        },
+        {
+          "title": "Top 10 FinOps Optimization Practices",
+          "url": "https://www.youtube.com/watch?v=s5R-1g0bN78",
+          "type": "video"
+        },
+        {
+          "title": "The FinOps Framework and How to Apply It",
+          "url": "https://www.youtube.com/watch?v=FjI6i-Hl6fE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_cost_optimization_strategies.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_resource_rightsizing",
+          "name": "Resource Rightsizing, Rationalization & Cleanup",
+          "tag": "essential",
+          "description": "Identify and rightsize underutilized and idle resources (compute, storage, databases). Implement strategies for resource cleanup, archiving, and rationalization.",
+          "resources": [
+            {
+              "title": "AWS Compute Optimizer",
+              "url": "https://aws.amazon.com/compute-optimizer/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Advisor for cost optimization",
+              "url": "https://learn.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations",
+              "type": "article"
+            },
+            {
+              "title": "GCP Rightsizing Recommendations",
+              "url": "https://cloud.google.com/compute/docs/tips-and-tricks#rightsizing",
+              "type": "article"
+            },
+            {
+              "title": "How to optimize your AWS spend (FINT201) | AWS re:Invent 2023",
+              "url": "https://www.youtube.com/watch?v=F03vJ4b1vF4",
+              "type": "video"
+            },
+            {
+              "title": "FinOps for Cloud Cost Optimization - AWS, Azure, GCP Cloud Cost Management (Detailed Guide)",
+              "url": "https://www.youtube.com/watch?v=2Lh5hG24T18",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_resource_rightsizing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_elasticity_auto_scaling",
+          "name": "Leveraging Cloud Elasticity, Auto-Scaling & Serverless",
+          "tag": "essential",
+          "description": "Optimize costs by implementing auto-scaling groups, event-driven serverless architectures, and other elastic cloud services that scale efficiently with demand.",
+          "resources": [
+            {
+              "title": "Cost Optimization with Serverless Architectures",
+              "url": "https://aws.amazon.com/blogs/compute/cost-optimization-with-serverless-architectures/",
+              "type": "article"
+            },
+            {
+              "title": "Auto Scaling for cost optimization",
+              "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-capacity-optimization.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure Autoscale overview",
+              "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview",
+              "type": "article"
+            },
+            {
+              "title": "AWS Auto Scaling Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=R9jU8yT_2Gg",
+              "type": "video"
+            },
+            {
+              "title": "What is Serverless? Serverless Computing Explained",
+              "url": "https://www.youtube.com/watch?v=F_Yw39-zY8A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_elasticity_auto_scaling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_purchasing_options",
+          "name": "Managing Cloud Purchasing Options (RIs, SPs, Spot, CUDs)",
+          "tag": "essential",
+          "description": "Master the strategic use of Reserved Instances (RIs), Savings Plans (SPs), Spot Instances/VMs, and Committed Use Discounts (CUDs) to achieve significant cost reductions and optimize commitment utilization.",
+          "resources": [
+            {
+              "title": "Optimize your costs with Savings Plans",
+              "url": "https://aws.amazon.com/savingsplans/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Reserved Instances",
+              "url": "https://azure.microsoft.com/en-us/pricing/reserved-vm-instances/",
+              "type": "article"
+            },
+            {
+              "title": "GCP Committed Use Discounts",
+              "url": "https://cloud.google.com/docs/billing/save-with-committed-use-discounts",
+              "type": "article"
+            },
+            {
+              "title": "AWS Reserved Instances vs Savings Plans | What's the Difference?",
+              "url": "https://www.youtube.com/watch?v=k_l137B31bI",
+              "type": "video"
+            },
+            {
+              "title": "AWS Spot Instances Explained",
+              "url": "https://www.youtube.com/watch?v=mYjS1aYvWdE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_purchasing_options.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_storage_optimization",
+          "name": "Storage Cost Optimization & Lifecycle Management",
+          "tag": "essential",
+          "description": "Implement data lifecycle policies, intelligent tiering, archival strategies, and data retention policies to optimize storage costs across different cloud storage classes and services.",
+          "resources": [
+            {
+              "title": "Amazon S3 Storage Classes and Optimization",
+              "url": "https://aws.amazon.com/s3/storage-classes/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Blob storage tiers",
+              "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-page-blob-overview",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Storage Lifecycle Management",
+              "url": "https://cloud.google.com/storage/docs/managing-lifecycles",
+              "type": "article"
+            },
+            {
+              "title": "AWS S3 Intelligent-Tiering - How to save up to 40% on storage costs",
+              "url": "https://www.youtube.com/watch?v=FjI5j0XjXoA",
+              "type": "video"
+            },
+            {
+              "title": "AWS S3 Lifecycle Rules | Storage Classes | S3 Object Management",
+              "url": "https://www.youtube.com/watch?v=sU142_mQp08",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_storage_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_network_optimization",
+          "name": "Network Cost Optimization & Data Egress Control",
+          "tag": "advanced",
+          "description": "Analyze and optimize data transfer costs, identify and mitigate high egress charges, leverage Content Delivery Networks (CDNs), and understand peering implications for significant cost savings.",
+          "resources": [
+            {
+              "title": "Optimizing Data Transfer Costs",
+              "url": "https://aws.amazon.com/blogs/mt/optimizing-data-transfer-costs-in-aws/",
+              "type": "article"
+            },
+            {
+              "title": "Azure bandwidth pricing",
+              "url": "https://azure.microsoft.com/en-us/pricing/details/bandwidth/",
+              "type": "article"
+            },
+            {
+              "title": "GCP Network Pricing",
+              "url": "https://cloud.google.com/network-connectivity/docs/network-pricing",
+              "type": "article"
+            },
+            {
+              "title": "AWS Egress Costs Explained & How To Reduce Them",
+              "url": "https://www.youtube.com/watch?v=F03xMvQ_N9A",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Cost Optimization - Network Costs",
+              "url": "https://www.youtube.com/watch?v=kYJj7QYF9W4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_network_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_container_serverless_optimization",
+          "name": "Container and Serverless Workload Cost Optimization",
+          "tag": "advanced",
+          "description": "Specific strategies for optimizing costs in containerized environments (Kubernetes, ECS, AKS, GKE) and serverless functions (Lambda, Azure Functions, Cloud Functions), including resource limits and request optimization.",
+          "resources": [
+            {
+              "title": "Kubecost: Kubernetes Cost Monitoring & Optimization",
+              "url": "https://www.kubecost.com/",
+              "type": "article"
+            },
+            {
+              "title": "Cost optimization for serverless applications",
+              "url": "https://www.serverless.com/blog/cost-optimization-serverless-applications",
+              "type": "article"
+            },
+            {
+              "title": "FinOps for Kubernetes",
+              "url": "https://www.finops.org/framework/capabilities/manage-kubernetes-costs/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Resource Management - Limits & Requests",
+              "url": "https://www.youtube.com/watch?v=R2j1N_9LqYI",
+              "type": "video"
+            },
+            {
+              "title": "AWS Lambda Tutorial For Beginners | Learn AWS Lambda Step By Step",
+              "url": "https://www.youtube.com/watch?v=Tr9cO3iLw-A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_container_serverless_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_database_optimization",
+          "name": "Database Cost Optimization",
+          "tag": "advanced",
+          "description": "Strategies for optimizing database costs, including rightsizing instances, choosing appropriate database services (managed vs. self-managed), leveraging serverless databases, and optimizing licensing.",
+          "resources": [
+            {
+              "title": "AWS RDS Cost Optimization",
+              "url": "https://aws.amazon.com/blogs/database/optimize-amazon-rds-costs-by-choosing-the-right-instance-type/",
+              "type": "article"
+            },
+            {
+              "title": "Azure SQL Database cost optimization",
+              "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/cost-management",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Database Options Explained (AWS RDS, DynamoDB, Aurora, Redshift, DocumentDB)",
+              "url": "https://www.youtube.com/watch?v=F0mD68oU56Y",
+              "type": "video"
+            },
+            {
+              "title": "AWS FinOps: Cost Optimization of Databases in AWS",
+              "url": "https://www.youtube.com/watch?v=2r1T5-2n8cM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_database_optimization.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_forecasting_budgeting_anomalies",
+      "name": "Forecasting, Budgeting, Anomaly Detection & Unit Economics",
+      "tag": "essential",
+      "description": "Develop skills in predicting future cloud costs, setting effective budgets, identifying unexpected spend spikes through anomaly detection, and measuring performance with unit economics.",
+      "resources": [
+        {
+          "title": "Cloud cost forecasting best practices",
+          "url": "https://cloud.google.com/solutions/cost-management/forecasting-best-practices",
+          "type": "article"
+        },
+        {
+          "title": "AWS Budgets Documentation",
+          "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-and-cost-management-budgets.html",
+          "type": "article"
+        },
+        {
+          "title": "FinOps Foundations: Anomaly Detection and Forecasting",
+          "url": "https://www.youtube.com/watch?v=Ff6zLgqYVp8",
+          "type": "video"
+        },
+        {
+          "title": "What are Unit Economics?",
+          "url": "https://www.youtube.com/watch?v=9J2b_7Xz_gY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_forecasting_budgeting_anomalies.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_cost_forecasting_techniques",
+          "name": "Cloud Cost Forecasting Techniques & Models",
+          "tag": "essential",
+          "description": "Learn various methods for forecasting cloud spend, including historical data analysis, trend analysis, predictive modeling (e.g., machine learning), and scenario planning.",
+          "resources": [
+            {
+              "title": "FinOps Forecasting Best Practices",
+              "url": "https://www.finops.org/framework/capabilities/forecast-cloud-spend/",
+              "type": "article"
+            },
+            {
+              "title": "Predicting AWS Cloud Costs using Machine Learning",
+              "url": "https://aws.amazon.com/blogs/mt/predicting-aws-cloud-costs-using-machine-learning/",
+              "type": "article"
+            },
+            {
+              "title": "Time Series Analysis and Forecasting in Python | Data Science Course",
+              "url": "https://www.youtube.com/watch?v=eY0t2e5K6_I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_cost_forecasting_techniques.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_budget_management",
+          "name": "Budget Management, Alerts & Automated Actions",
+          "tag": "essential",
+          "description": "Implement granular cloud budgets, configure alerts for exceeding thresholds, and set up automated actions based on budget status to prevent overspending.",
+          "resources": [
+            {
+              "title": "Create and manage Azure budgets",
+              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+              "type": "article"
+            },
+            {
+              "title": "Managing your AWS costs with AWS Budgets",
+              "url": "https://aws.amazon.com/blogs/aws/new-managing-your-aws-costs-with-aws-budgets/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Cost Optimization - Setup Budgets and Alerts to save money",
+              "url": "https://www.youtube.com/watch?v=zHnC7K2w2tY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_budget_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_anomaly_detection",
+          "name": "Cost Anomaly Detection, Alerting & Root Cause Analysis",
+          "tag": "essential",
+          "description": "Develop skills in identifying sudden and unexpected spikes or drops in cloud costs. Implement automated anomaly detection and perform thorough root cause analysis to address financial deviations promptly.",
+          "resources": [
+            {
+              "title": "AWS Cost Anomaly Detection",
+              "url": "https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/",
+              "type": "article"
+            },
+            {
+              "title": "Detect anomalies in your Azure costs",
+              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/anomaly-detection",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cost Anomaly Detection",
+              "url": "https://cloud.google.com/blog/topics/cost-management/detect-cost-anomalies-with-gcp-cost-manager",
+              "type": "article"
+            },
+            {
+              "title": "AWS Cost Anomaly Detection & Monitoring Walkthrough",
+              "url": "https://www.youtube.com/watch?v=W0y1_VwHh6s",
+              "type": "video"
+            },
+            {
+              "title": "Monitor and Control Your Cloud Spending with Cost and Usage Alerts",
+              "url": "https://www.youtube.com/watch?v=F3_s8Xz2qM8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_anomaly_detection.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_unit_economics_kpis",
+          "name": "Unit Economics, FinOps KPIs & Value Realization",
+          "tag": "advanced",
+          "description": "Define and track unit economics (e.g., cost per user, cost per transaction, cost per API call) and other key performance indicators (KPIs) to measure FinOps success and demonstrate business value.",
+          "resources": [
+            {
+              "title": "FinOps Metrics: Measuring What Matters",
+              "url": "https://www.finops.org/blog/finops-metrics-measuring-what-matters/",
+              "type": "article"
+            },
+            {
+              "title": "The importance of Unit Economics in the Cloud",
+              "url": "https://www.cloudhealthtech.com/blog/importance-unit-economics-cloud",
+              "type": "article"
+            },
+            {
+              "title": "What are FinOps KPIs",
+              "url": "https://www.youtube.com/watch?v=F0f-lB-c4tM",
+              "type": "video"
+            },
+            {
+              "title": "FinOps in 5: Unit Economics",
+              "url": "https://www.youtube.com/watch?v=sI91-P62M-8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_unit_economics_kpis.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_tools_automation_reporting",
+      "name": "FinOps Tooling, Data Analysis, Automation & Reporting",
+      "tag": "essential",
+      "description": "Explore commercial and open-source FinOps tools, learn to extract and analyze cost data, automate cost-saving actions, and create impactful financial reports for various stakeholders.",
+      "resources": [
+        {
+          "title": "FinOps Tools Landscape",
+          "url": "https://www.finops.org/resources/tool-vendors/",
+          "type": "article"
+        },
+        {
+          "title": "What is FinOps? Cloud Cost Management",
+          "url": "https://www.youtube.com/watch?v=FjIuS4eU_5I",
+          "type": "video"
+        },
+        {
+          "title": "Automating FinOps Practices",
+          "url": "https://www.youtube.com/watch?v=s5R-1g0bN78",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_tools_automation_reporting.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_finops_tooling_ecosystem",
+          "name": "FinOps Tooling Ecosystem (Native, 3rd Party, Open Source)",
+          "tag": "essential",
+          "description": "Familiarize yourself with native cloud cost tools, leading third-party FinOps platforms (e.g., CloudHealth, Cloudability, Apptio, Flexera), and open-source solutions (e.g., Kubecost, OpenCost).",
+          "resources": [
+            {
+              "title": "Cloudability FinOps Platform",
+              "url": "https://www.cloudability.com/",
+              "type": "article"
+            },
+            {
+              "title": "CloudHealth by VMware",
+              "url": "https://cloudhealthtech.com/",
+              "type": "article"
+            },
+            {
+              "title": "OpenCost: Open Source Kubernetes Cost Monitoring",
+              "url": "https://opencost.io/",
+              "type": "article"
+            },
+            {
+              "title": "FinOps Tools and What They Do | FinOps Certified Practitioner Tutorial",
+              "url": "https://www.youtube.com/watch?v=F0f0m-pB_6w",
+              "type": "video"
+            },
+            {
+              "title": "FinOps Foundation | OpenCost & Kubecost",
+              "url": "https://www.youtube.com/watch?v=Nn1R_vG0k9U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_finops_tooling_ecosystem.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_data_extraction_etl",
+          "name": "Cost Data Extraction, Transformation & Loading (ETL)",
+          "tag": "essential",
+          "description": "Learn how to programmatically extract cloud cost data using APIs, SDKs, and native reports (e.g., CUR, Exports), transform it for analysis, and load it into data lakes or warehousing solutions.",
+          "resources": [
+            {
+              "title": "AWS Cost and Usage Reports (CUR)",
+              "url": "https://docs.aws.amazon.com/cur/latest/userguide/cur-reference.html",
+              "type": "article"
+            },
+            {
+              "title": "Export Azure Cost Management data",
+              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-export-data",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Billing Export to BigQuery",
+              "url": "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+              "type": "article"
+            },
+            {
+              "title": "Data Engineering 101: ETL Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=R9K13R71MNA",
+              "type": "video"
+            },
+            {
+              "title": "AWS CUR processing in AWS GLUE ETL - Build a FinOps dashboard",
+              "url": "https://www.youtube.com/watch?v=F_S6Uu5hC-E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_data_extraction_etl.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_data_analysis_sql",
+          "name": "Cost Data Analysis with SQL, Python & Spreadsheets",
+          "tag": "essential",
+          "description": "Develop skills in querying and analyzing large cloud cost datasets using SQL (e.g., Athena, BigQuery, Azure Data Explorer), Python for scripting, and advanced spreadsheet functions. Understand how to join data from various sources for comprehensive insights.",
+          "resources": [
+            {
+              "title": "Analyzing AWS Cost and Usage Reports with Amazon Athena",
+              "url": "https://aws.amazon.com/blogs/mt/analyze-your-cost-and-usage-reports-with-amazon-athena/",
+              "type": "article"
+            },
+            {
+              "title": "Querying Azure Cost Management data in Data Explorer",
+              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/understand-cost-data-storage-account",
+              "type": "article"
+            },
+            {
+              "title": "Basic SQL for Data Analysis",
+              "url": "https://www.datacamp.com/courses/introduction-to-sql",
+              "type": "course"
+            },
+            {
+              "title": "SQL for Data Analysis - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=0-t3A3WqYq4",
+              "type": "video"
+            },
+            {
+              "title": "Python for Data Analysis Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=r-uOLxNrNUE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_data_analysis_sql.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_automation_scripts",
+          "name": "Automation for Cost Optimization with Cloud Services & Scripting",
+          "tag": "essential",
+          "description": "Develop scripting skills (e.g., Python, PowerShell, Lambda functions) to automate cost-saving actions like stopping idle resources, rightsizing, enforcing tagging policies, and managing commitments.",
+          "resources": [
+            {
+              "title": "Automate AWS EC2 Instance Stop/Start using Lambda",
+              "url": "https://aws.amazon.com/blogs/compute/automating-the-start-and-stop-of-amazon-ec2-instances-with-aws-lambda-and-amazon-cloudwatch/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Automation for cost management",
+              "url": "https://learn.microsoft.com/en-us/azure/automation/tutorial-configure-vm-auto-shutdown",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Functions for Automation",
+              "url": "https://cloud.google.com/functions/docs/tutorials/gcs",
+              "type": "article"
+            },
+            {
+              "title": "AWS Lambda Tutorial for Beginners - Deploy a Python Function (with API Gateway & DynamoDB)",
+              "url": "https://www.youtube.com/watch?v=Jg_f44B_38o",
+              "type": "video"
+            },
+            {
+              "title": "Automate AWS EC2 Shutdown and Startup using Lambda and CloudWatch",
+              "url": "https://www.youtube.com/watch?v=k_n7Jk28WlQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_automation_scripts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_dashboarding_visualization",
+          "name": "Dashboarding and Data Visualization for FinOps",
+          "tag": "essential",
+          "description": "Create effective and insightful dashboards using tools like Grafana, Power BI, Tableau, Looker Studio, or native cloud dashboards to visualize cloud spend, trends, and optimization opportunities.",
+          "resources": [
+            {
+              "title": "Building a Cloud Cost Dashboard with Grafana",
+              "url": "https://grafana.com/blog/2021/04/14/building-a-cloud-cost-dashboard-with-grafana/",
+              "type": "article"
+            },
+            {
+              "title": "Creating Custom Dashboards in AWS Cost Explorer",
+              "url": "https://aws.amazon.com/blogs/aws/new-customize-your-cost-explorer-experience-with-custom-dashboards/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Cost Management Dashboards",
+              "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/quick-register-azure-vms",
+              "type": "article"
+            },
+            {
+              "title": "Grafana Tutorial for Beginners | Learn Grafana in 2 Hours",
+              "url": "https://www.youtube.com/watch?v=sU30I1dO6d0",
+              "type": "video"
+            },
+            {
+              "title": "Power BI Full Course - Learn Power BI in 4 Hours | Power BI Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=Uae3T8e389U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_dashboarding_visualization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_stakeholder_reporting",
+          "name": "FinOps Stakeholder Reporting & Communication",
+          "tag": "essential",
+          "description": "Learn to tailor comprehensive financial reports for different audiences (engineering, finance, executives), highlighting key insights, optimization recommendations, achieved savings, and forecast accuracy. Develop strong communication skills.",
+          "resources": [
+            {
+              "title": "FinOps Reporting Best Practices",
+              "url": "https://www.finops.org/framework/capabilities/report-on-cost/",
+              "type": "article"
+            },
+            {
+              "title": "Effective FinOps Reporting for Executives",
+              "url": "https://www.cloudhealthtech.com/blog/effective-finops-reporting-executives",
+              "type": "article"
+            },
+            {
+              "title": "FinOps X 2023 - Building FinOps Metrics and Reporting That Matters",
+              "url": "https://www.youtube.com/watch?v=FjI1K8m7-3U",
+              "type": "video"
+            },
+            {
+              "title": "Communicating FinOps - Creating The Best Reports for Each Persona",
+              "url": "https://www.youtube.com/watch?v=3g6zXmXgQ5U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_stakeholder_reporting.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_advanced_practices",
+      "name": "Advanced FinOps Practices, Strategy & Continuous Improvement",
+      "tag": "advanced",
+      "description": "Delve into advanced FinOps challenges, build a culture of continuous cost optimization, and manage complex financial operations at scale, including strategic vendor management.",
+      "resources": [
+        {
+          "title": "Scaling FinOps in the Enterprise",
+          "url": "https://www.finops.org/blog/scaling-finops-enterprise/",
+          "type": "article"
+        },
+        {
+          "title": "AWS Cost Optimization Strategies - Save Money on Your Cloud Bill",
+          "url": "https://www.youtube.com/watch?v=F3_l8Aht-pM",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_advanced_practices.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_finops_culture_scaling",
+          "name": "Scaling FinOps & Building a Center of Excellence (CoE)",
+          "tag": "advanced",
+          "description": "Strategies for embedding FinOps into the organizational culture, building FinOps Centers of Excellence (CoE), and driving adoption and accountability across departments.",
+          "resources": [
+            {
+              "title": "Building a FinOps Center of Excellence (CoE)",
+              "url": "https://www.finops.org/blog/how-to-build-a-finops-coe/",
+              "type": "article"
+            },
+            {
+              "title": "Driving FinOps Adoption Across the Enterprise",
+              "url": "https://www.finops.org/blog/driving-finops-adoption-across-enterprise/",
+              "type": "article"
+            },
+            {
+              "title": "The FinOps Foundation Summit Series: Building a FinOps Center of Excellence",
+              "url": "https://www.youtube.com/watch?v=F07XWf5G0hM",
+              "type": "video"
+            },
+            {
+              "title": "Key Steps to Building a FinOps Culture",
+              "url": "https://www.youtube.com/watch?v=zJ-PjVz00kQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_finops_culture_scaling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_vendor_management_negotiation",
+          "name": "Cloud Vendor Management & Contract Negotiation",
+          "tag": "advanced",
+          "description": "Understand cloud vendor contracts, enterprise agreements, and strategies for negotiating favorable pricing, discounts, and terms to maximize cost efficiency and value.",
+          "resources": [
+            {
+              "title": "Cloud Vendor Management and FinOps",
+              "url": "https://www.finops.org/framework/capabilities/manage-vendor-relationships/",
+              "type": "article"
+            },
+            {
+              "title": "Negotiating Cloud Deals: AWS, Azure, GCP",
+              "url": "https://www.flexera.com/blog/cloud-management/negotiating-cloud-deals/",
+              "type": "article"
+            },
+            {
+              "title": "Negotiate Better Cloud Contracts | Gartner",
+              "url": "https://www.youtube.com/watch?v=J32j_T0R710",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Cost Optimization - The Cloud Bootcamp",
+              "url": "https://www.youtube.com/watch?v=qTj8jI8K-9A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_vendor_management_negotiation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_carbon_footprint_optimization",
+          "name": "Sustainable Cloud & Carbon Footprint Optimization (GreenOps)",
+          "tag": "advanced",
+          "description": "Explore the intersection of FinOps and GreenOps. Optimize cloud resources not just for cost but also for environmental impact, measuring and reducing carbon footprint in the cloud.",
+          "resources": [
+            {
+              "title": "FinOps and GreenOps: The Path to Sustainable Cloud",
+              "url": "https://www.finops.org/blog/finops-and-greenops-the-path-to-sustainable-cloud/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Carbon Footprint Tool",
+              "url": "https://www.cloudcarbonfootprint.org/",
+              "type": "article"
+            },
+            {
+              "title": "How to Reduce Cloud Carbon Footprint | AWS | Azure | GCP",
+              "url": "https://www.youtube.com/watch?v=FjI88R7aY6Q",
+              "type": "video"
+            },
+            {
+              "title": "Sustainable Cloud - How to reduce your AWS cloud carbon footprint",
+              "url": "https://www.youtube.com/watch?v=R6w0wMhP7-A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_carbon_footprint_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_showback_chargeback_advanced",
+          "name": "Advanced Showback/Chargeback Implementations & Financial Integration",
+          "tag": "advanced",
+          "description": "Implement complex, granular showback and chargeback models that accurately attribute shared and pooled costs. Integrate cloud cost data with internal financial systems and ERPs for comprehensive financial management.",
+          "resources": [
+            {
+              "title": "Advanced Cloud Cost Allocation Strategies",
+              "url": "https://www.flexera.com/blog/cloud-management/cloud-cost-allocation-strategies/",
+              "type": "article"
+            },
+            {
+              "title": "Integrating FinOps with Enterprise Financial Systems",
+              "url": "https://www.finops.org/blog/integrating-finops-enterprise-financial-systems/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_showback_chargeback_advanced.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_finops_maturity_assessment",
+          "name": "FinOps Maturity Assessment & Roadmap Development",
+          "tag": "advanced",
+          "description": "Assess an organization's FinOps maturity level using established models and develop a strategic roadmap for continuous improvement and advancement across all FinOps capabilities.",
+          "resources": [
+            {
+              "title": "FinOps Foundation Maturity Model",
+              "url": "https://www.finops.org/framework/maturity/",
+              "type": "article"
+            },
+            {
+              "title": "Assessing Your FinOps Journey",
+              "url": "https://www.cloudhealthtech.com/blog/assessing-your-finops-journey",
+              "type": "article"
+            },
+            {
+              "title": "How to Build your FinOps Roadmap in 6-12 months",
+              "url": "https://www.youtube.com/watch?v=F3x_Uj92VpU",
+              "type": "video"
+            },
+            {
+              "title": "FinOps Maturity Models: What's the best way to get started?",
+              "url": "https://www.youtube.com/watch?v=kR-m-09y5n0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_finops_maturity_assessment.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fe_portfolio_career",
+      "name": "Portfolio & Career Readiness for FinOps Professionals",
+      "tag": "advanced",
+      "description": "Consolidate learning into tangible projects, articulate FinOps value, and prepare for career opportunities in the FinOps domain, including certifications and community engagement.",
+      "resources": [
+        {
+          "title": "FinOps Foundation Certified Practitioner Course",
+          "url": "https://www.finops.org/resources/training/certification/",
+          "type": "course"
+        },
+        {
+          "title": "FinOps Engineer Job Description Examples",
+          "url": "https://www.linkedin.com/search/results/jobs/?keywords=finops%20engineer",
+          "type": "article"
+        },
+        {
+          "title": "FinOps Certified Practitioner (FOCP) Crash Course",
+          "url": "https://www.youtube.com/watch?v=5rFh7o9sW-A",
+          "type": "video"
+        },
+        {
+          "title": "What is FinOps? A Complete Overview",
+          "url": "https://www.youtube.com/watch?v=zR3tG7hF0w4",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/finops_engineer/fe_portfolio_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "fe_project_finops_implementation",
+          "name": "Capstone Project: End-to-End FinOps Implementation",
+          "tag": "advanced",
+          "description": "Design and implement a comprehensive FinOps solution for a hypothetical or real-world scenario. This project should cover cost allocation, optimization (e.g., rightsizing, automation), forecasting, and stakeholder reporting, demonstrating practical skills.",
+          "resources": [
+            {
+              "title": "Build a Cost Monitoring Dashboard with Amazon QuickSight (Example Project)",
+              "url": "https://aws.amazon.com/blogs/mt/build-a-cost-monitoring-dashboard-with-amazon-quicksight/",
+              "type": "article"
+            },
+            {
+              "title": "Automate Cloud Cost Savings (Project Ideas)",
+              "url": "https://www.example.com/automate-cloud-cost-savings-project-ideas",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Cost Optimization Tips & Strategies - AWS, Azure, GCP",
+              "url": "https://www.youtube.com/watch?v=F_fP-i_T1gI",
+              "type": "video"
+            },
+            {
+              "title": "What is FinOps? A Practical Guide",
+              "url": "https://www.youtube.com/watch?v=kYv9lG-y00I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_project_finops_implementation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_case_study_development",
+          "name": "Developing FinOps Case Studies & Success Stories",
+          "tag": "advanced",
+          "description": "Learn to document FinOps projects and initiatives as compelling case studies, highlighting the business problem, implemented solution, technical details, challenges, and measurable financial outcomes and ROI.",
+          "resources": [
+            {
+              "title": "How to Write a Technical Case Study (HubSpot)",
+              "url": "https://blog.hubspot.com/marketing/technical-case-study",
+              "type": "article"
+            },
+            {
+              "title": "FinOps Success Stories",
+              "url": "https://www.finops.org/resources/case-studies/",
+              "type": "article"
+            },
+            {
+              "title": "What is FinOps? | FinOps Explained",
+              "url": "https://www.youtube.com/watch?v=0kFj2m3K56A",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Cost Optimization Explained",
+              "url": "https://www.youtube.com/watch?v=Xh0y_g-O_d8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_case_study_development.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_interview_preparation",
+          "name": "FinOps Engineer Interview & Portfolio Preparation",
+          "tag": "advanced",
+          "description": "Prepare for FinOps-specific interview questions, focusing on technical skills, business acumen, communication, and collaborative problem-solving. Develop a strong portfolio showcasing FinOps projects and achievements.",
+          "resources": [
+            {
+              "title": "Common FinOps Interview Questions",
+              "url": "https://www.example.com/finops-interview-questions",
+              "type": "article"
+            },
+            {
+              "title": "Building a Technical Portfolio",
+              "url": "https://www.freecodecamp.org/news/how-to-build-a-portfolio/",
+              "type": "article"
+            },
+            {
+              "title": "Top 10 FinOps Interview Questions and Answers 2024 | FinOps Foundation",
+              "url": "https://www.youtube.com/watch?v=F0kI0t-sMjo",
+              "type": "video"
+            },
+            {
+              "title": "FinOps Interview Questions & Answers with Dheeraj Lalwani | FinOps Foundation",
+              "url": "https://www.youtube.com/watch?v=lQj_zXq-R-M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_interview_preparation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_community_engagement",
+          "name": "FinOps Community Engagement & Professional Certifications",
+          "tag": "advanced",
+          "description": "Engage with the global FinOps community, participate in discussions, explore advanced certifications (e.g., FinOps Certified Professional), and stay updated with the latest industry trends and best practices.",
+          "resources": [
+            {
+              "title": "FinOps Foundation Community Slack",
+              "url": "https://slack.finops.org/",
+              "type": "article"
+            },
+            {
+              "title": "FinOps Certified Practitioner (FOCP)",
+              "url": "https://www.finops.org/resources/training/certification/",
+              "type": "course"
+            },
+            {
+              "title": "What is FinOps? And FinOps Certification",
+              "url": "https://www.youtube.com/watch?v=F3w2M7gDYYo",
+              "type": "video"
+            },
+            {
+              "title": "What is FinOps? (FinOps Foundation FinOps Certified Practitioner (FOCP) preparation)",
+              "url": "https://www.youtube.com/watch?v=K3o2-z6k30g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/finops_engineer/fe_community_engagement.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

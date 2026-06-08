@@ -1,14 +1,14 @@
 {
   "id": "computer_vision_engineer",
   "title": "Computer Vision Engineer",
-  "description": "A specialized AI roadmap for image/video processing, OpenCV, deep learning vision models, annotation, deployment, and portfolio projects.",
+  "description": "A comprehensive, industry-aligned roadmap for Computer Vision Engineers, covering foundational concepts, deep learning for vision, MLOps, deployment, responsible AI, and practical project development.",
   "format": "tree",
   "tree": [
     {
-      "id": "cv_foundations",
-      "name": "Python, Images, and OpenCV",
+      "id": "computer_vision_fundamentals",
+      "name": "Foundational Concepts: Math, Python, and Traditional CV",
       "tag": "essential",
-      "description": "Start with Python, NumPy arrays, image formats, color spaces, filters, contours, camera input, and OpenCV workflows.",
+      "description": "Master the mathematical underpinnings, core Python libraries, and traditional image processing techniques crucial for understanding modern computer vision. This module lays the groundwork for advanced deep learning applications.",
       "resources": [
         {
           "title": "OpenCV Course - Full Tutorial with Python (freeCodeCamp)",
@@ -19,178 +19,970 @@
           "title": "OpenCV Python Tutorials",
           "url": "https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html",
           "type": "article"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/computer_vision_fundamentals.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cv_python_numpy",
-          "name": "Python, NumPy, and Matplotlib",
+          "id": "python_scientific_stack",
+          "name": "Python Scientific Stack: NumPy, Pandas, Matplotlib",
           "tag": "essential",
-          "description": "Manipulate arrays, plot images, debug pipelines, and create clean notebooks for experiments.",
+          "description": "Learn to efficiently manipulate numerical data with NumPy, handle structured data with Pandas, and visualize results with Matplotlib, forming the backbone of data science and machine learning workflows in computer vision.",
           "resources": [
             {
               "title": "NumPy Learn",
               "url": "https://numpy.org/learn/",
               "type": "article"
+            },
+            {
+              "title": "Pandas User Guide",
+              "url": "https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Matplotlib Documentation",
+              "url": "https://matplotlib.org/stable/users/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/python_scientific_stack.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cv_image_processing",
-          "name": "Image Processing",
+          "id": "version_control_basics",
+          "name": "Version Control with Git",
           "tag": "essential",
-          "description": "Use thresholding, edge detection, contours, morphology, histograms, feature matching, and camera calibration.",
+          "description": "Learn the fundamental principles of Git for version control, including basic commands (commit, push, pull, branch, merge), repository management, and collaborative development workflows, essential for any software engineering or ML project.",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Git and GitHub for Beginners - Crash Course",
+              "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/version_control_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cv_math_basics",
+          "name": "Mathematical Foundations for CV",
+          "tag": "essential",
+          "description": "Review essential linear algebra (vector spaces, matrices, transformations), calculus (gradients, optimization), and probability & statistics (distributions, Bayes' theorem) concepts as they directly apply to image processing, computer vision algorithms, and neural networks.",
+          "resources": [
+            {
+              "title": "Mathematics for Machine Learning (Coursera)",
+              "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+              "type": "course"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/cv_math_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "digital_image_processing_basics",
+          "name": "Digital Image Fundamentals and Pre-processing",
+          "tag": "essential",
+          "description": "Understand how digital images are represented (pixels, channels, color spaces like RGB, HSV, Grayscale), common image formats (JPEG, PNG), and fundamental pre-processing techniques such as resizing, cropping, rotation, histogram equalization, and basic noise reduction.",
+          "resources": [
+            {
+              "title": "Image Basics in OpenCV",
+              "url": "https://docs.opencv.org/4.x/d1/dee/tutorial_py_image_display.html",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/digital_image_processing_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "traditional_image_analysis_opencv",
+          "name": "Traditional Image Analysis with OpenCV",
+          "tag": "essential",
+          "description": "Dive into classic computer vision algorithms including image filtering (convolution, blurring, sharpening), edge detection (Sobel, Canny, Laplacian), feature extraction (Harris, SIFT, SURF, ORB), morphological operations (erosion, dilation), segmentation (thresholding, connected components, watershed), and geometric transformations (translation, rotation, scaling, affine).",
           "resources": [
             {
               "title": "OpenCV Image Processing Tutorials",
               "url": "https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html",
               "type": "article"
+            },
+            {
+              "title": "OpenCV Course - Full Tutorial for Beginners (Python)",
+              "url": "https://www.youtube.com/watch?v=oXlwWbU8l2o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/traditional_image_analysis_opencv.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "camera_geometry_calibration",
+          "name": "Camera Models and Calibration",
+          "tag": "advanced",
+          "description": "Understand the pinhole camera model, intrinsic (focal length, principal point) and extrinsic (rotation, translation) parameters, lens distortion models (radial, tangential), and techniques for camera calibration to remove distortions and estimate real-world coordinates from image points.",
+          "resources": [
+            {
+              "title": "Camera Calibration with OpenCV",
+              "url": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
+              "type": "article"
+            },
+            {
+              "title": "Camera Calibration Tutorial with OpenCV - Python",
+              "url": "https://www.youtube.com/watch?v=F3P0f_1W5u0",
+              "type": "video"
+            },
+            {
+              "title": "Understanding the Pinhole Camera Model (Computer Vision)",
+              "url": "https://www.youtube.com/watch?v=k_x7Y1G9Q6c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/camera_geometry_calibration.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cv_deep_learning",
-      "name": "Deep Learning for Vision",
-      "tag": "advanced",
-      "description": "Train and fine-tune neural networks for classification, detection, segmentation, and tracking.",
+      "id": "dl_core_concepts",
+      "name": "Deep Learning Core Concepts and Frameworks",
+      "tag": "essential",
+      "description": "Build a strong understanding of neural networks, convolutional architectures, and practical skills in major deep learning frameworks like PyTorch or TensorFlow, crucial for modern computer vision.",
       "resources": [
+        {
+          "title": "Deep Learning Specialization (deeplearning.ai)",
+          "url": "https://www.deeplearning.ai/courses/deep-learning-specialization/",
+          "type": "course"
+        },
+        {
+          "title": "PyTorch Course - Learn PyTorch for Deep Learning",
+          "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/dl_core_concepts.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ml_dl_review",
+          "name": "Machine Learning & Deep Learning Refresher",
+          "tag": "essential",
+          "description": "Quick review of foundational machine learning concepts including supervised vs. unsupervised learning, regression, classification, clustering, model training, validation, testing, overfitting/underfitting, and a gentle introduction to artificial neural networks.",
+          "resources": [
+            {
+              "title": "Machine Learning Crash Course (Google Developers)",
+              "url": "https://developers.google.com/machine-learning/crash-course/",
+              "type": "course"
+            },
+            {
+              "title": "Machine Learning for Everybody - Full Course",
+              "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/ml_dl_review.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gpu_acceleration_cuda_basics",
+          "name": "GPU Acceleration and CUDA Basics",
+          "tag": "essential",
+          "description": "Understand the role of GPUs in accelerating deep learning training and inference. Learn about NVIDIA CUDA toolkit, cuDNN, and how to configure deep learning frameworks to effectively utilize GPU resources for high-performance computing.",
+          "resources": [
+            {
+              "title": "NVIDIA CUDA Documentation",
+              "url": "https://docs.nvidia.com/cuda/cuda-toolkit-documentation/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Getting started with PyTorch on CUDA",
+              "url": "https://pytorch.org/get-started/locally/",
+              "type": "article"
+            },
+            {
+              "title": "How to Setup an NVIDIA GPU for Deep Learning in 2024 (CUDA, cuDNN, PyTorch, TensorFlow, WSL2)",
+              "url": "https://www.youtube.com/watch?v=3K2h8e47V1k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/gpu_acceleration_cuda_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "neural_network_architectures",
+          "name": "Neural Networks and CNN Architectures",
+          "tag": "essential",
+          "description": "Explore the building blocks of neural networks: perceptrons, activation functions, loss functions, forward and backward propagation. Delve into key CNN architectures: LeNet, AlexNet, VGG, ResNet, Inception, understanding their unique contributions and how they learn hierarchical features.",
+          "resources": [
+            {
+              "title": "CS231n: Convolutional Neural Networks for Visual Recognition",
+              "url": "http://cs231n.stanford.edu/",
+              "type": "course"
+            },
+            {
+              "title": "Neural Networks Explained - Machine Learning Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=BFd70qf-n-Y",
+              "type": "video"
+            },
+            {
+              "title": "CNN Architectures Explained | LeNet, AlexNet, VGG, Inception, ResNet",
+              "url": "https://www.youtube.com/watch?v=Fj-y5jOaH18",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/neural_network_architectures.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "training_dl_models_optimization",
+          "name": "Training Deep Learning Models: Optimization and Regularization",
+          "tag": "essential",
+          "description": "Master the techniques for effectively training deep neural networks, including understanding various loss functions, optimizers (SGD, Adam, RMSprop), learning rate scheduling, regularization (dropout, batch normalization, L1/L2), and hyperparameter tuning strategies.",
+          "resources": [
+            {
+              "title": "An Overview of Gradient Descent Optimization Algorithms",
+              "url": "https://ruder.io/optimizing-gradient-descent/",
+              "type": "article"
+            },
+            {
+              "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+              "url": "https://arxiv.org/abs/1502.03167",
+              "type": "article"
+            },
+            {
+              "title": "Activation Functions, Loss Functions & Optimizers in Neural Networks | Keras & Tensorflow Tutorial",
+              "url": "https://www.youtube.com/watch?v=s_ncJ2Xk28Q",
+              "type": "video"
+            },
+            {
+              "title": "Overfitting and Underfitting: Machine Learning 101",
+              "url": "https://www.youtube.com/watch?v=TRyC0MQrJ3I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/training_dl_models_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dl_frameworks_basics",
+          "name": "Deep Learning Frameworks: PyTorch/TensorFlow",
+          "tag": "essential",
+          "description": "Gain hands-on experience with either PyTorch or TensorFlow, covering data loading with custom datasets and dataloaders, model definition, building training loops, managing device allocation (CPU/GPU), and basic model saving/loading.",
+          "resources": [
+            {
+              "title": "PyTorch Official Tutorials",
+              "url": "https://pytorch.org/tutorials/",
+              "type": "article"
+            },
+            {
+              "title": "TensorFlow Core Tutorials",
+              "url": "https://www.tensorflow.org/tutorials/customization/basics",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch for Deep Learning - Full Course",
+              "url": "https://www.youtube.com/watch?v=V_xro1bcAuI",
+              "type": "video"
+            },
+            {
+              "title": "TensorFlow 2.0 Tutorial for Beginners - Learn how to use TensorFlow 2.0 and Keras",
+              "url": "https://www.youtube.com/watch?v=tQzyUjL0b5I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/dl_frameworks_basics.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dl_vision_tasks",
+      "name": "Deep Learning for Core Computer Vision Tasks",
+      "tag": "essential",
+      "description": "Learn to apply deep learning models to solve fundamental computer vision problems such as image classification, object detection, and semantic/instance segmentation, mastering the practical application of these techniques.",
+      "resources": [
+        {
+          "title": "TorchVision Documentation",
+          "url": "https://pytorch.org/vision/stable/index.html",
+          "type": "article"
+        },
         {
           "title": "Deep Learning for Computer Vision with Python and TensorFlow (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=IA3WxTTPXqQ",
           "type": "video"
         },
         {
-          "title": "TorchVision Documentation",
-          "url": "https://pytorch.org/vision/stable/index.html",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/dl_vision_tasks.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cv_classification_detection",
-          "name": "Classification and Object Detection",
-          "tag": "advanced",
-          "description": "Build datasets, augment images, train models, evaluate precision/recall, and visualize predictions.",
-          "resources": [
-            {
-              "title": "PyTorch Transfer Learning Tutorial",
-              "url": "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "cv_annotation",
-          "name": "Annotation and Datasets",
-          "tag": "advanced",
-          "description": "Label images, manage train/validation splits, detect label noise, and version datasets.",
+          "id": "data_annotation_management",
+          "name": "Data Annotation and Dataset Management",
+          "tag": "essential",
+          "description": "Master techniques for annotating images/videos for various vision tasks (bounding boxes, polygons, keypoints), managing dataset versions, ensuring data quality, handling class imbalances, and ethical considerations in data collection.",
           "resources": [
             {
               "title": "Roboflow Docs",
               "url": "https://docs.roboflow.com/",
               "type": "article"
+            },
+            {
+              "title": "FiftyOne Documentation",
+              "url": "https://docs.voxel51.com/fiftyone/index.html",
+              "type": "article"
+            },
+            {
+              "title": "How to Build Your Own Custom Object Detection Model (with YOLOv7)",
+              "url": "https://www.youtube.com/watch?v=F_f-nS_Lq0c",
+              "type": "video"
+            },
+            {
+              "title": "How to Use Data Augmentation for Image Recognition in PyTorch",
+              "url": "https://www.youtube.com/watch?v=VArx3H5e52A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/data_annotation_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "computer_vision_engineer_practice_lab",
-          "name": "Practice: Dataset Quality Audit",
+          "id": "data_quality_audit_project",
+          "name": "Project: Data Quality Audit and Preprocessing",
+          "tag": "essential",
+          "description": "Conduct a thorough inspection of a real-world dataset to identify label errors, inconsistencies, class imbalance, and apply appropriate preprocessing, augmentation (e.g., albumentations, imgaug), and data splitting strategies to prepare for model training.",
+          "resources": [
+            {
+              "title": "Albumentations Documentation",
+              "url": "https://albumentations.ai/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Image Data Augmentation for Deep Learning with Keras and Tensorflow",
+              "url": "https://www.youtube.com/watch?v=F0f1rQ7W26w",
+              "type": "video"
+            },
+            {
+              "title": "Full Stack Deep Learning Course - Lecture 4: Data",
+              "url": "https://www.youtube.com/watch?v=R2g8D21DqfQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/data_quality_audit_project.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "image_classification_techniques",
+          "name": "Image Classification",
+          "tag": "essential",
+          "description": "Implement and evaluate image classification models, covering advanced concepts like transfer learning, fine-tuning, knowledge distillation, data augmentation, and understanding performance metrics (accuracy, precision, recall, F1-score, confusion matrices, ROC curves).",
+          "resources": [
+            {
+              "title": "PyTorch Transfer Learning Tutorial",
+              "url": "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "Image Classification with Keras: Transfer Learning, Data Augmentation, and more",
+              "url": "https://www.youtube.com/watch?v=FjI5xS0d7sY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/image_classification_techniques.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "object_detection_models",
+          "name": "Object Detection Models",
           "tag": "advanced",
-          "description": "Inspect labels, lighting, class imbalance, failure cases, and evaluation metrics before model training.",
-          "resources": [],
-          "children": []
+          "description": "Explore state-of-the-art object detection algorithms, including two-stage detectors (R-CNN family: Faster R-CNN, Mask R-CNN) and one-stage detectors (YOLO series: YOLOv3, YOLOv5, YOLOv8; SSD), along with their evaluation metrics (IoU, mAP, AP50, AP75).",
+          "resources": [
+            {
+              "title": "YOLO (You Only Look Once) Official Website",
+              "url": "https://pjreddie.com/darknet/yolo/",
+              "type": "article"
+            },
+            {
+              "title": "Detectron2 Documentation",
+              "url": "https://detectron2.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Object Detection in 7 Minutes | YOLO, SSD, R-CNN, Faster R-CNN",
+              "url": "https://www.youtube.com/watch?v=HXd_GqN0gGk",
+              "type": "video"
+            },
+            {
+              "title": "YOLOv8 Tutorial - Object Detection with Custom Data",
+              "url": "https://www.youtube.com/watch?v=FjIty41Q_b8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/object_detection_models.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "semantic_instance_segmentation",
+          "name": "Semantic and Instance Segmentation",
+          "tag": "advanced",
+          "description": "Learn about pixel-wise classification (semantic segmentation) using fully convolutional networks (FCNs), U-Net, DeepLab, and object-aware segmentation (instance segmentation) with models like Mask R-CNN and panoptic segmentation approaches. Understand common datasets like Cityscapes and COCO.",
+          "resources": [
+            {
+              "title": "Segmentation Models PyTorch",
+              "url": "https://github.com/qubvel/segmentation_models.pytorch",
+              "type": "article"
+            },
+            {
+              "title": "U-Net from Scratch in PyTorch | Semantic Segmentation Tutorial",
+              "url": "https://www.youtube.com/watch?v=IHq1t7NxS8k",
+              "type": "video"
+            },
+            {
+              "title": "Image Segmentation Tutorial: U-Net and Mask R-CNN Explained",
+              "url": "https://www.youtube.com/watch?v=F3R4v-zN4e4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/semantic_instance_segmentation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "keypoint_detection_pose_estimation",
+          "name": "Keypoint Detection and Pose Estimation",
+          "tag": "advanced",
+          "description": "Explore techniques for detecting specific keypoints (e.g., facial landmarks, human body joints) in images and videos. Learn about popular models for 2D and 3D pose estimation, such as OpenPose, AlphaPose, and HRNet, and their applications in human-computer interaction, robotics, and sports analytics.",
+          "resources": [
+            {
+              "title": "OpenPose GitHub",
+              "url": "https://github.com/CMU-Perceptual-Computing-Lab/openpose",
+              "type": "article"
+            },
+            {
+              "title": "Human Pose Estimation - A survey (arXiv)",
+              "url": "https://arxiv.org/abs/2105.07403",
+              "type": "article"
+            },
+            {
+              "title": "Pose Estimation Explained: From Theory to Applications",
+              "url": "https://www.youtube.com/watch?v=oV852WbW39Y",
+              "type": "video"
+            },
+            {
+              "title": "Human Pose Estimation Tutorial with OpenPose and OpenCV",
+              "url": "https://www.youtube.com/watch?v=J_7Jc_T2c3k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/keypoint_detection_pose_estimation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "project_dl_vision_application",
+          "name": "Project: End-to-End Object Detection/Segmentation Application",
+          "tag": "essential",
+          "description": "Apply knowledge of object detection or segmentation to a real-world problem. This project involves dataset preparation, model selection/training (using pre-trained models and fine-tuning), evaluation, and basic deployment demonstration, consolidating practical skills.",
+          "resources": [
+            {
+              "title": "Kaggle Datasets",
+              "url": "https://www.kaggle.com/datasets",
+              "type": "article"
+            },
+            {
+              "title": "YOLOv8 Tutorial for Beginners - Custom Object Detection Using YOLOv8",
+              "url": "https://www.youtube.com/watch?v=F_h0R189_gY",
+              "type": "video"
+            },
+            {
+              "title": "Build a Computer Vision App for Product Defect Detection - Mask R-CNN Tutorial",
+              "url": "https://www.youtube.com/watch?v=zT11v9GqE44",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/project_dl_vision_application.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cv_deployment",
-      "name": "Video, Deployment, and Portfolio",
+      "id": "advanced_cv_techniques",
+      "name": "Advanced Computer Vision Techniques",
       "tag": "advanced",
-      "description": "Run models on images, video streams, APIs, edge devices, and build demos that prove real-world usefulness.",
+      "description": "Delve into more specialized and cutting-edge computer vision topics, including video analysis, generative models, self-supervised learning, and 3D vision, pushing the boundaries of what CV can achieve.",
       "resources": [
         {
           "title": "Advanced Computer Vision with Python (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=01sAkU_NvOY",
           "type": "video"
+        },
+        {
+          "title": "GANs - Generative Adversarial Networks | Deep Learning Tutorial",
+          "url": "https://www.youtube.com/watch?v=odp3pC_P-Cg",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/advanced_cv_techniques.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cv_video_tracking",
-          "name": "Video and Tracking",
+          "id": "video_processing_object_tracking",
+          "name": "Video Processing and Object Tracking",
           "tag": "advanced",
-          "description": "Process video streams, track objects, smooth detections, measure FPS, and handle latency.",
+          "description": "Understand how to process video streams efficiently, implement robust object tracking algorithms (e.g., SORT, DeepSORT, Kalman Filters, state-of-the-art multi-object tracking), analyze motion, estimate optical flow, and manage real-time performance considerations for video analytics.",
           "resources": [
             {
-              "title": "OpenCV Python Tutorials",
-              "url": "https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html",
+              "title": "OpenCV Video Analysis and Object Tracking",
+              "url": "https://docs.opencv.org/4.x/d7/d9f/tutorial_py_table_of_contents_video.html",
               "type": "article"
+            },
+            {
+              "title": "YOLOv8 Object Tracking with DeepSORT in Python - Computer Vision Tutorial",
+              "url": "https://www.youtube.com/watch?v=F_fP00UqjYg",
+              "type": "video"
+            },
+            {
+              "title": "Object Tracking in OpenCV Python",
+              "url": "https://www.youtube.com/watch?v=vV9QfV0gK1Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/video_processing_object_tracking.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cv_capstone",
-          "name": "Project: Vision App",
+          "id": "generative_models_cv",
+          "name": "Generative Models for Vision (GANs, VAEs, Diffusion Models)",
           "tag": "advanced",
-          "description": "Build a document scanner, attendance system, defect detector, or traffic counter with evaluation and demo video.",
+          "description": "Explore Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), and Diffusion Models for tasks like realistic image generation, style transfer, super-resolution, data augmentation, and image-to-image translation. Understand their architectures and training challenges.",
           "resources": [
             {
-              "title": "Gradio Quickstart",
-              "url": "https://www.gradio.app/guides/quickstart",
-              "type": "article"
+              "title": "Generative Adversarial Networks (GANs) Specialization",
+              "url": "https://www.deeplearning.ai/courses/generative-adversarial-networks-specialization/",
+              "type": "course"
+            },
+            {
+              "title": "Generative Adversarial Networks (GANs) Explained",
+              "url": "https://www.youtube.com/watch?v=odp-s-qjS_c",
+              "type": "video"
+            },
+            {
+              "title": "Diffusion Models Explained",
+              "url": "https://www.youtube.com/watch?v=Zf1z6aV4N38",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/generative_models_cv.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "self_supervised_vision_transformers",
+          "name": "Self-Supervised Learning and Vision Transformers",
+          "tag": "advanced",
+          "description": "Learn about methods for pre-training powerful models without explicit human labels (e.g., SimCLR, BYOL, MAE) and the rising importance of Transformer architectures in computer vision (Vision Transformers ViT, DETR, Swin Transformers), understanding their attention mechanisms and scalability.",
+          "resources": [
+            {
+              "title": "Hugging Face Transformers: Vision",
+              "url": "https://huggingface.co/docs/transformers/model_doc/vision",
+              "type": "article"
+            },
+            {
+              "title": "Vision Transformers EXPLAINED! (ViT, DETR, Swin Transformers)",
+              "url": "https://www.youtube.com/watch?v=yW_x7mN389Q",
+              "type": "video"
+            },
+            {
+              "title": "What is Self-Supervised Learning? (Intuition, Contrastive Learning, BYOL, MAE)",
+              "url": "https://www.youtube.com/watch?v=JmK8c1rA6k8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/self_supervised_vision_transformers.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "3d_computer_vision_and_scene_understanding",
+          "name": "3D Computer Vision and Scene Understanding",
+          "tag": "advanced",
+          "description": "Explore techniques for perceiving and reconstructing 3D information from 2D images. Topics include stereo vision, structure-from-motion (SfM), Simultaneous Localization and Mapping (SLAM), point clouds, 3D object detection, and neural radiance fields (NeRFs) for novel view synthesis.",
+          "resources": [
+            {
+              "title": "OpenCV 3D Reconstruction",
+              "url": "https://docs.opencv.org/4.x/da/de9/tutorial_py_depthmap.html",
+              "type": "article"
+            },
+            {
+              "title": "Stanford CS231A: Computer Vision. From 2D to 3D. (Lecture series)",
+              "url": "https://www.youtube.com/playlist?list=PLD_o2kF5eC7WwP1W60J7N0kP9L672F6fL",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/3d_computer_vision_and_scene_understanding.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cv_mLOps_edge",
-      "name": "MLOps, Edge, and Responsible Vision",
+      "id": "cv_mlops_production",
+      "name": "MLOps, Deployment, and Production for CV Models",
       "tag": "advanced",
-      "description": "Prepare vision models for production with versioning, monitoring, edge optimization, and ethical evaluation.",
+      "description": "Understand the full lifecycle of computer vision models in production, from data and model versioning to scalable deployment, monitoring, and optimization for various real-world environments.",
       "resources": [
         {
-          "title": "ONNX Runtime Documentation",
-          "url": "https://onnxruntime.ai/docs/",
+          "title": "MLOps Guide by Google Cloud",
+          "url": "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
           "type": "article"
+        },
+        {
+          "title": "MLOps Tutorial for Beginners - Deploy a Machine Learning Model with TensorFlow Serving, Docker, and Kubernetes",
+          "url": "https://www.youtube.com/watch?v=FjIuKk-s5r8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/cv_mlops_production.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cv_edge_optimization",
-          "name": "Edge Optimization",
+          "id": "mlops_experiment_management",
+          "name": "Experiment Tracking and Model Versioning",
           "tag": "advanced",
-          "description": "Export models, benchmark latency, reduce size, quantize carefully, and test on CPU/GPU/edge hardware.",
+          "description": "Implement tools and practices for tracking experiments (parameters, metrics, artifacts), managing dataset and model versions, ensuring reproducibility, and facilitating collaborative development in an MLOps environment using tools like MLflow, Weights & Biases, and DVC.",
           "resources": [
             {
-              "title": "LiteRT Documentation",
-              "url": "https://ai.google.dev/edge/litert",
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html",
               "type": "article"
+            },
+            {
+              "title": "DVC (Data Version Control) Documentation",
+              "url": "https://dvc.org/doc",
+              "type": "article"
+            },
+            {
+              "title": "MLflow Crash Course - MLOps Explained (Tutorial)",
+              "url": "https://www.youtube.com/watch?v=F0P3wTjF24g",
+              "type": "video"
+            },
+            {
+              "title": "DVC with Git - Version Control for Data Science Projects",
+              "url": "https://www.youtube.com/watch?v=N0kP2Vvj164",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/mlops_experiment_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cv_bias_monitoring",
-          "name": "Bias, Drift, and Monitoring",
+          "id": "model_deployment_strategies",
+          "name": "Model Deployment Strategies: Cloud, API, Streaming",
           "tag": "advanced",
-          "description": "Measure dataset bias, false positives, false negatives, lighting failures, privacy risk, and production drift.",
+          "description": "Learn to deploy CV models as robust REST APIs using frameworks like Flask/FastAPI, containerize applications with Docker, orchestrate scalable deployments with Kubernetes, and leverage cloud platforms (AWS SageMaker, GCP Vertex AI, Azure ML) for managed and auto-scaling inference endpoints.",
+          "resources": [
+            {
+              "title": "Deploying Machine Learning Models (TensorFlow)",
+              "url": "https://www.tensorflow.org/tfx/guide/serving",
+              "type": "article"
+            },
+            {
+              "title": "Docker for Data Scientists",
+              "url": "https://www.docker.com/blog/docker-for-data-scientists/",
+              "type": "article"
+            },
+            {
+              "title": "Deploy a Machine Learning Model with FastAPI & Docker - Full Course",
+              "url": "https://www.youtube.com/watch?v=F0OqVv9X-w8",
+              "type": "video"
+            },
+            {
+              "title": "Deploy a PyTorch Model to Production with AWS SageMaker",
+              "url": "https://www.youtube.com/watch?v=R9IqO0XbB7c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/model_deployment_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "edge_device_optimization",
+          "name": "Edge Device Optimization and Inference",
+          "tag": "advanced",
+          "description": "Optimize CV models for constrained environments: techniques like quantization (post-training, quantization-aware), pruning, model distillation, and deployment on edge devices like NVIDIA Jetson, Google Coral, or mobile platforms using specialized tools like ONNX, TensorRT, and TensorFlow Lite.",
+          "resources": [
+            {
+              "title": "ONNX Runtime Documentation",
+              "url": "https://onnxruntime.ai/docs/",
+              "type": "article"
+            },
+            {
+              "title": "TensorFlow Lite Documentation",
+              "url": "https://www.tensorflow.org/lite/guide",
+              "type": "article"
+            },
+            {
+              "title": "NVIDIA TensorRT Documentation",
+              "url": "https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html",
+              "type": "article"
+            },
+            {
+              "title": "TensorFlow Lite Tutorial: Machine Learning on Mobile & Embedded Devices",
+              "url": "https://www.youtube.com/watch?v=Fj-V2t-7K_E",
+              "type": "video"
+            },
+            {
+              "title": "NVIDIA TensorRT Explained | Build an AI Inference Engine in Python",
+              "url": "https://www.youtube.com/watch?v=s71k1kX5r18",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/edge_device_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "model_monitoring_explainability",
+          "name": "Model Monitoring, Drift, and Explainability",
+          "tag": "advanced",
+          "description": "Set up comprehensive systems for monitoring model performance in production, detecting data drift and concept drift, and understanding model predictions through explainable AI (XAI) techniques like LIME, SHAP, Grad-CAM, and counterfactual explanations to build trust and debug issues.",
+          "resources": [
+            {
+              "title": "Evidently AI Documentation",
+              "url": "https://docs.evidently.ai/",
+              "type": "article"
+            },
+            {
+              "title": "Explainable AI (Google Cloud)",
+              "url": "https://cloud.google.com/explainable-ai",
+              "type": "article"
+            },
+            {
+              "title": "MLOps: What is Model Monitoring and How to Implement It",
+              "url": "https://www.youtube.com/watch?v=FjD9oDqGvEw",
+              "type": "video"
+            },
+            {
+              "title": "Explainable AI (XAI) in Machine Learning | LIME, SHAP, and Interpretable Models",
+              "url": "https://www.youtube.com/watch?v=dYkLqQ88eW8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/model_monitoring_explainability.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "responsible_ai_capstone",
+      "name": "Responsible AI and Capstone Projects",
+      "tag": "advanced",
+      "description": "Address critical ethical considerations in computer vision, understand and implement responsible AI practices, and apply all acquired knowledge to build comprehensive, real-world capstone projects that demonstrate industry readiness.",
+      "resources": [
+        {
+          "title": "What is Responsible AI? | Google Cloud AI Ethics & Governance",
+          "url": "https://www.youtube.com/watch?v=FqIqD_z1pzA",
+          "type": "video"
+        },
+        {
+          "title": "Complete Machine Learning Project in Python (Step-by-Step)",
+          "url": "https://www.youtube.com/watch?v=D-M6pBvA9x4",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/computer_vision_engineer/responsible_ai_capstone.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ethics_bias_privacy",
+          "name": "Ethics, Bias, and Privacy in Computer Vision",
+          "tag": "advanced",
+          "description": "Examine potential biases in CV models and datasets (e.g., gender, race), discuss fairness metrics, understand privacy concerns (e.g., facial recognition, data anonymization), and explore ethical guidelines and regulatory frameworks (e.g., GDPR, AI Act) for responsible AI development.",
           "resources": [
             {
               "title": "Google Responsible AI Practices",
               "url": "https://ai.google/responsibility/responsible-ai-practices/",
               "type": "article"
+            },
+            {
+              "title": "Microsoft Responsible AI Resources",
+              "url": "https://www.microsoft.com/en-us/ai/responsible-ai-resources",
+              "type": "article"
+            },
+            {
+              "title": "AI Ethics: Understanding Bias",
+              "url": "https://www.youtube.com/watch?v=7P-gYp6J3Wk",
+              "type": "video"
+            },
+            {
+              "title": "What is the EU AI Act? (Simplified Explanation)",
+              "url": "https://www.youtube.com/watch?v=gT83h2L-W74",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/ethics_bias_privacy.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "adversarial_attacks_robustness",
+          "name": "Adversarial Attacks and Model Robustness",
+          "tag": "advanced",
+          "description": "Investigate methods for adversarial attacks (e.g., FGSM, PGD) that can fool CV models and explore defense mechanisms to improve model robustness and security. Understand the implications for critical applications like autonomous driving and surveillance.",
+          "resources": [
+            {
+              "title": "CleverHans Library for Adversarial Examples",
+              "url": "https://github.com/cleverhans-lab/cleverhans",
+              "type": "article"
+            },
+            {
+              "title": "Adversarial Examples in the Physical World",
+              "url": "https://arxiv.org/abs/1607.02533",
+              "type": "article"
+            },
+            {
+              "title": "Adversarial Attacks Explained! FGSM, PGD, CW attacks",
+              "url": "https://www.youtube.com/watch?v=0kE4d_V_N_A",
+              "type": "video"
+            },
+            {
+              "title": "Adversarial Attacks - How to Fool a Neural Network",
+              "url": "https://www.youtube.com/watch?v=CqK7z3n2x94",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/adversarial_attacks_robustness.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "industry_capstone_project",
+          "name": "Industry-Standard Capstone Project",
+          "tag": "advanced",
+          "description": "Execute an end-to-end computer vision project, from problem definition, literature review, and data collection to model development, MLOps integration, deployment as a user-friendly application (e.g., with Gradio/Streamlit), and thorough performance evaluation, culminating in a robust demo and detailed report.",
+          "resources": [
+            {
+              "title": "Gradio Quickstart",
+              "url": "https://www.gradio.app/guides/quickstart",
+              "type": "article"
+            },
+            {
+              "title": "Streamlit Documentation",
+              "url": "https://docs.streamlit.io/",
+              "type": "article"
+            },
+            {
+              "title": "Build and Deploy a Machine Learning App with Gradio - Full Course",
+              "url": "https://www.youtube.com/watch?v=Jm00lS3k_lY",
+              "type": "video"
+            },
+            {
+              "title": "MLOps Course - Machine Learning DevOps for Beginners",
+              "url": "https://www.youtube.com/watch?v=kC7xGv8G2iQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/computer_vision_engineer/industry_capstone_project.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

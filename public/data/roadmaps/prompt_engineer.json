@@ -1,14 +1,14 @@
 {
   "id": "prompt_engineer",
   "title": "Prompt Engineer",
-  "description": "A roadmap for designing, testing, and evaluating prompts for LLM applications with structured outputs, tool use, safety, and measurable quality.",
+  "description": "A comprehensive roadmap for designing, testing, evaluating, and deploying prompts for LLM applications with a focus on structured outputs, advanced tool use, robust safety, and measurable quality in production environments.",
   "format": "tree",
   "tree": [
     {
-      "id": "prompt_foundations",
-      "name": "LLM and Prompting Foundations",
+      "id": "llm_prompt_foundations",
+      "name": "Foundational Concepts & Principles of Prompt Engineering",
       "tag": "essential",
-      "description": "Understand how LLMs respond to instructions, context, examples, constraints, and ambiguity.",
+      "description": "Master the core mechanisms of Large Language Models, understand how they process information, and apply fundamental principles for designing effective prompts that elicit desired responses.",
       "resources": [
         {
           "title": "Prompt Engineering Tutorial (freeCodeCamp)",
@@ -33,169 +33,402 @@
       ],
       "children": [
         {
-          "id": "prompt_basics",
-          "name": "Instruction, Context, and Examples",
+          "id": "core_llm_concepts_arch",
+          "name": "Core LLM Concepts & Architectures",
           "tag": "essential",
-          "description": "Write clear tasks, define audience and tone, provide examples, constrain outputs, and reduce ambiguity.",
+          "description": "Gain a foundational understanding of LLM architecture (e.g., Transformer, Decoder-only), tokenization, the attention mechanism, embedding spaces, and the difference between pre-training, fine-tuning, and in-context learning to grasp model capabilities and limitations.",
+          "resources": [
+            {
+              "title": "The Illustrated Transformer",
+              "url": "https://jalammar.github.io/illustrated-transformer/",
+              "type": "article"
+            },
+            {
+              "title": "What are LLMs?",
+              "url": "https://www.ibm.com/topics/large-language-models",
+              "type": "article"
+            },
+            {
+              "title": "An Intro to Large Language Models",
+              "url": "https://www.youtube.com/watch?v=zjkQ_fJ9bQk",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "prompt_structure_elements",
+          "name": "Prompt Structure and Key Elements",
+          "tag": "essential",
+          "description": "Learn to construct effective prompts using clear instructions, providing relevant context, defining roles/personas, using few-shot examples effectively, and employing delimiters for clarity and structured input. Understand the impact of prompt length and order.",
           "resources": [
             {
               "title": "OpenAI Prompt Engineering Guide",
               "url": "https://platform.openai.com/docs/guides/prompt-engineering",
               "type": "article"
+            },
+            {
+              "title": "Learn Prompting: Basic Techniques",
+              "url": "https://learnprompting.org/docs/intro",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "prompt_llm_limits",
-          "name": "LLM Limits and Failure Modes",
+          "id": "principles_effective_prompt_design",
+          "name": "Principles of Effective Prompt Design",
           "tag": "essential",
-          "description": "Recognize hallucinations, stale knowledge, prompt injection, context limits, hidden assumptions, and overconfident answers.",
+          "description": "Understand best practices for writing clear, concise, specific, and unambiguous prompts. Learn iterative refinement techniques to optimize prompt performance, reliability, and cost-efficiency, focusing on aligning model output with user intent and business objectives.",
+          "resources": [
+            {
+              "title": "Best practices for prompt engineering with OpenAI API",
+              "url": "https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api",
+              "type": "article"
+            },
+            {
+              "title": "DeepLearning.AI - Prompt Engineering for Developers",
+              "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "llm_limitations_failure_modes",
+          "name": "LLM Limitations & Common Failure Modes",
+          "tag": "essential",
+          "description": "Identify common challenges such as hallucinations, stale knowledge, prompt injection vulnerabilities, context window limitations, inherent biases, and overconfident responses. Learn strategies to anticipate, detect, and mitigate these issues effectively through prompt design.",
           "resources": [
             {
               "title": "OWASP Top 10 for LLM Apps",
               "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
               "type": "article"
+            },
+            {
+              "title": "Understanding and Mitigating LLM Hallucinations",
+              "url": "https://www.mlflow.org/docs/latest/llms/llm-evaluate/llm-evaluate-hallucinations.html",
+              "type": "article"
+            },
+            {
+              "title": "Bias and Fairness in LLMs",
+              "url": "https://blogs.nvidia.com/blog/ai-fairness-bias-large-language-models/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "prompt_patterns",
-      "name": "Prompt Patterns and Structured Outputs",
+      "id": "advanced_prompt_patterns",
+      "name": "Advanced Prompt Design Patterns & Structured Outputs",
       "tag": "essential",
-      "description": "Design repeatable prompt patterns for classification, extraction, generation, summarization, reasoning, and JSON outputs.",
+      "description": "Explore advanced prompting strategies and design patterns for complex tasks, generating highly structured data, enhancing LLM reasoning capabilities, and integrating external knowledge for robust application development.",
       "resources": [
         {
           "title": "Anthropic Prompt Engineering",
           "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
           "type": "article"
+        },
+        {
+          "title": "Learn Prompting: Advanced Techniques",
+          "url": "https://learnprompting.org/docs/advanced_techniques/cot",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "prompt_extraction_classification",
-          "name": "Extraction and Classification",
+          "id": "reasoning_techniques",
+          "name": "Advanced Reasoning Techniques (CoT, ToT, Self-Consistency)",
           "tag": "essential",
-          "description": "Extract fields, classify tickets, route requests, validate outputs, and handle uncertain or missing information.",
+          "description": "Master advanced reasoning techniques like Chain-of-Thought (CoT), Tree-of-Thought (ToT), Self-consistency, and Generated Knowledge Prompting. Learn to guide LLMs through complex multi-step reasoning tasks, enabling self-correction, planning, and improved logical coherence.",
+          "resources": [
+            {
+              "title": "Chain-of-Thought Prompting",
+              "url": "https://arxiv.org/abs/2201.11903",
+              "type": "article"
+            },
+            {
+              "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+              "url": "https://arxiv.org/abs/2305.10601",
+              "type": "article"
+            },
+            {
+              "title": "Self-consistency improves chain of thought reasoning",
+              "url": "https://arxiv.org/abs/2203.11171",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "generating_structured_outputs",
+          "name": "Generating Structured Outputs (JSON, XML, Pydantic)",
+          "tag": "essential",
+          "description": "Learn to precisely control LLM output formats, including JSON, XML, Markdown, and custom schemas. Implement schema enforcement, leverage Pydantic models for robust validation, and develop strategies for handling uncertain or missing information while ensuring valid, parseable, and usable structured data.",
           "resources": [
             {
               "title": "OpenAI Structured Outputs",
               "url": "https://platform.openai.com/docs/guides/structured-outputs",
               "type": "article"
+            },
+            {
+              "title": "Pydantic with LLMs",
+              "url": "https://docs.pydantic.dev/latest/usage/models/#dataclasses",
+              "type": "article"
+            },
+            {
+              "title": "Instructor: Library for structured outputs",
+              "url": "https://github.jxst.com/instructor-ai/instructor",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "prompt_multistep",
-          "name": "Multi-step Reasoning and Tools",
+          "id": "tool_use_function_calling_agents",
+          "name": "Tool Use, Function Calling, and Agents",
           "tag": "advanced",
-          "description": "Break tasks into steps, call tools, use retrieval, ask clarifying questions, and verify intermediate results.",
+          "description": "Integrate LLMs with external tools and APIs through function calling. Understand agentic workflows, multi-step planning, memory, and frameworks like ReAct, LangChain, or LlamaIndex to enable LLMs to interact with the real world, retrieve information, and perform complex actions autonomously.",
           "resources": [
             {
               "title": "OpenAI Function Calling",
               "url": "https://platform.openai.com/docs/guides/function-calling",
               "type": "article"
+            },
+            {
+              "title": "LangChain Agents",
+              "url": "https://python.langchain.com/docs/modules/agents/",
+              "type": "article"
+            },
+            {
+              "title": "LlamaIndex: Agents and Tools",
+              "url": "https://docs.llamaindex.ai/en/stable/module_guides/agents/index.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "prompt_engineer_practice_lab",
-          "name": "Practice: Prompt Regression Set",
+          "id": "retrieval_augmented_generation",
+          "name": "Retrieval Augmented Generation (RAG)",
           "tag": "advanced",
-          "description": "Create test prompts, expected outputs, edge cases, scoring notes, and compare two prompt versions.",
-          "resources": [],
-          "children": []
+          "description": "Understand the RAG paradigm for grounding LLMs in up-to-date and specific knowledge. Learn about advanced chunking strategies, embedding models, vector databases, and effectively integrating retrieved context into prompts to reduce hallucinations and improve factual accuracy and relevance. Explore re-ranking and query transformation.",
+          "resources": [
+            {
+              "title": "Retrieval Augmented Generation (RAG) Explained",
+              "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+              "type": "article"
+            },
+            {
+              "title": "Vector Databases: What Are They?",
+              "url": "https://www.pinecone.io/learn/vector-database/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced RAG Techniques",
+              "url": "https://www.llamaindex.ai/blog/a-comprehensive-guide-to-advanced-rag",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "prompt_eval_safety",
-      "name": "Evaluation and Safety",
+      "id": "robustness_eval_testing_safety",
+      "name": "Robustness: Evaluation, Testing & LLM Safety",
       "tag": "advanced",
-      "description": "Measure prompt quality through test sets, rubrics, regression checks, safety cases, and user feedback.",
+      "description": "Develop robust methodologies for systematically evaluating prompt performance, ensuring reliability, detecting biases, and implementing comprehensive safety and guardrail mechanisms for LLM applications in production.",
       "resources": [
         {
           "title": "OpenAI Evals",
           "url": "https://github.com/openai/evals",
           "type": "article"
+        },
+        {
+          "title": "DeepLearning.AI - Evaluating and Debugging Generative AI Models",
+          "url": "https://www.deeplearning.ai/short-courses/evaluating-and-debugging-generative-ai-models/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "prompt_eval_sets",
-          "name": "Prompt Evaluation Sets",
+          "id": "prompt_eval_methodologies",
+          "name": "Prompt Evaluation Methodologies & Metrics",
           "tag": "advanced",
-          "description": "Create golden examples, edge cases, adversarial prompts, scoring rubrics, and comparison reports.",
+          "description": "Explore different evaluation approaches, including human-in-the-loop, LLM-assisted evaluation, and programmatic checks. Define and measure quantitative metrics (e.g., accuracy, relevance, completeness, conciseness) and qualitative rubrics for assessing prompt output quality and identifying areas for improvement using tools like LangSmith or DeepEval.",
           "resources": [
             {
               "title": "LangSmith Evaluation Concepts",
               "url": "https://docs.smith.langchain.com/evaluation/concepts",
               "type": "article"
+            },
+            {
+              "title": "DeepEval: LLM Evaluation Framework",
+              "url": "https://github.com/confident-ai/deepeval",
+              "type": "article"
+            },
+            {
+              "title": "Evaluating LLM Applications: Practical Approaches",
+              "url": "https://www.databricks.com/blog/2023/12/12/practical-approaches-evaluating-llm-applications",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "prompt_safety",
-          "name": "Safety, Privacy, and Guardrails",
+          "id": "test_set_benchmarking",
+          "name": "Developing Comprehensive Test Sets & Benchmarking",
           "tag": "advanced",
-          "description": "Handle sensitive data, refusals, jailbreaks, prompt injection, output filters, and human review paths.",
+          "description": "Learn to create diverse and comprehensive test sets, including 'golden' examples, edge cases, and adversarial prompts to test robustness. Establish baselines and perform systematic benchmarking to compare prompt versions, model variations, or different LLMs against predefined performance criteria.",
+          "resources": [
+            {
+              "title": "Best Practices for Building LLM Benchmarks",
+              "url": "https://www.databricks.com/blog/2023/12/05/best-practices-building-llm-benchmarks",
+              "type": "article"
+            },
+            {
+              "title": "Adversarial Prompting: What it is and How to Mitigate it",
+              "url": "https://www.guardrailsai.com/blog/adversarial-prompting-what-it-is-and-how-to-mitigate-it",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llm_safety_bias_guardrails",
+          "name": "LLM Safety, Bias Mitigation & Guardrails",
+          "tag": "advanced",
+          "description": "Implement robust safety measures to prevent prompt injection, data leakage, adversarial attacks, and content generation of harmful outputs. Understand strategies for detecting and mitigating biases, implementing content moderation, and utilizing guardrail frameworks like Guardrails AI or NeMo Guardrails for responsible AI development and deployment.",
           "resources": [
             {
               "title": "NIST AI Risk Management Framework",
               "url": "https://www.nist.gov/itl/ai-risk-management-framework",
               "type": "article"
+            },
+            {
+              "title": "Guardrails AI",
+              "url": "https://www.guardrailsai.com/",
+              "type": "article"
+            },
+            {
+              "title": "NVIDIA NeMo Guardrails",
+              "url": "https://developer.nvidia.com/nemo-guardrails",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "practice_iterative_refinement",
+          "name": "Practice: Iterative Prompt Refinement & A/B Testing",
+          "tag": "advanced",
+          "description": "Gain hands-on experience in iteratively refining prompts based on evaluation feedback and real-world performance data. Learn to set up, execute, and analyze A/B tests for different prompt versions or strategies to identify optimal performance, user engagement, and achieve desired outcomes in production environments.",
+          "resources": [
+            {
+              "title": "A/B Testing with LLMs",
+              "url": "https://www.giskard.ai/llm-ab-testing-framework/",
+              "type": "article"
+            },
+            {
+              "title": "Iterative Prompt Development (Google)",
+              "url": "https://ai.google.dev/docs/guides/prompt_iterative",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "prompt_project",
-      "name": "Prompt Ops and Portfolio",
+      "id": "promptops_deployment_management",
+      "name": "PromptOps: Deployment, Monitoring & Management",
       "tag": "advanced",
-      "description": "Version prompts, document decisions, monitor failures, and build a portfolio that shows measurable improvement.",
+      "description": "Master the operational aspects of prompt engineering, including version control, deployment strategies, continuous monitoring, and effective project management for LLM applications in production environments.",
       "resources": [
         {
           "title": "Humanloop Prompt Management Guide",
           "url": "https://humanloop.com/blog/prompt-management",
           "type": "article"
+        },
+        {
+          "title": "Best practices for building LLM applications",
+          "url": "https://www.deeplearning.ai/short-courses/building-llm-applications/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "prompt_versioning",
-          "name": "Prompt Versioning and Monitoring",
+          "id": "prompt_versioning_registries",
+          "name": "Prompt Versioning, Management, and Registries",
           "tag": "advanced",
-          "description": "Track prompt versions, model changes, evaluation scores, user feedback, cost, latency, and failure patterns.",
+          "description": "Learn best practices for version controlling prompts, managing prompt libraries, and utilizing prompt registries or hubs. Understand prompt templating engines, configuration management, and environment-specific prompt variations for dynamic, scalable, and maintainable prompt generation and deployment.",
           "resources": [
             {
               "title": "PromptLayer Docs",
               "url": "https://docs.promptlayer.com/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "prompt_project_support_bot",
-          "name": "Project: Support Prompt System",
-          "tag": "advanced",
-          "description": "Design prompts for ticket triage, answer drafting, escalation, JSON output, eval sets, safety checks, and a quality report.",
-          "resources": [
+            },
             {
-              "title": "OpenAI Safety Best Practices",
-              "url": "https://platform.openai.com/docs/guides/safety-best-practices",
+              "title": "What is a Prompt Registry?",
+              "url": "https://withprompt.com/blog/what-is-a-prompt-registry",
+              "type": "article"
+            },
+            {
+              "title": "LangChain Hub (Prompt Hub)",
+              "url": "https://python.langchain.com/docs/langchain_api/hub/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "llm_monitoring_observability",
+          "name": "LLM Application Monitoring & Observability",
+          "tag": "advanced",
+          "description": "Implement robust monitoring for LLM applications, tracking key metrics like latency, cost, token usage, error rates, user satisfaction, and output quality. Establish feedback loops, implement data/concept drift detection, and set up alerting for continuous model and prompt improvement in production using platforms like LangSmith or Weights & Biases.",
+          "resources": [
+            {
+              "title": "LangChain LangSmith",
+              "url": "https://docs.smith.langchain.com/",
+              "type": "article"
+            },
+            {
+              "title": "LLM Observability with Weights & Biases",
+              "url": "https://wandb.ai/site/solutions/llm-observability",
+              "type": "article"
+            },
+            {
+              "title": "Monitoring LLMs: Why it's critical and how to do it right",
+              "url": "https://whylabs.ai/blog/monitoring-llms",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ci_cd_llm_apps",
+          "name": "CI/CD for LLM Applications",
+          "tag": "advanced",
+          "description": "Integrate prompt and LLM application testing into Continuous Integration/Continuous Deployment (CI/CD) pipelines. Automate deployment, testing, performance validation, and rollback strategies to ensure reliable and efficient updates for LLM-powered systems, treating prompts as code.",
+          "resources": [
+            {
+              "title": "MLOps for LLMs",
+              "url": "https://neptune.ai/blog/mlops-for-llms",
+              "type": "article"
+            },
+            {
+              "title": "Operationalizing LLMs: MLOps and Prompt Engineering",
+              "url": "https://www.databricks.com/blog/2023/11/17/operationalizing-llms-mlops-and-prompt-engineering",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "building_portfolio_case_studies",
+          "name": "Building a Prompt Engineering Portfolio & Case Studies",
+          "tag": "advanced",
+          "description": "Document and showcase prompt engineering projects, demonstrating measurable improvements in performance, safety, efficiency, and user experience. Develop compelling case studies that highlight problem-solving skills, technical choices, and the tangible business impact of prompt engineering solutions, suitable for a professional portfolio.",
+          "resources": [
+            {
+              "title": "How to Build an AI/ML Portfolio",
+              "url": "https://www.freecodecamp.org/news/how-to-build-an-ai-ml-portfolio/",
+              "type": "article"
+            },
+            {
+              "title": "Showcase your Generative AI projects",
+              "url": "https://www.kaggle.com/code/shreyapandey23/showcase-your-generative-ai-projects",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

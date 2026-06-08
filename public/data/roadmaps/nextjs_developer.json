@@ -5,162 +5,366 @@
   "format": "tree",
   "tree": [
     {
-      "id": "nextjs_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "nextjs_dev_foundations_web_react",
+      "name": "Foundational Web & React Ecosystem",
       "tag": "essential",
-      "description": "Understand what Next.js Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of modern web development principles and core React.js concepts before diving into Next.js specifics.",
       "resources": [
-        {
-          "title": "Next.js Full Course in Hindi | Learn Everything + Build 2 Projects + Typescript Tutorial (VIRTUAL CODE)",
-          "url": "https://www.youtube.com/watch?v=Mct6dyl_gz4",
-          "type": "video"
-        },
         {
           "title": "Next.js Documentation",
           "url": "https://nextjs.org/docs",
+          "type": "article"
+        },
+        {
+          "title": "React Official Documentation",
+          "url": "https://react.dev/learn",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "nextjs_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "nextjs_dev_web_react_fundamentals",
+          "name": "Modern Web & React Fundamentals",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Grasp the underlying technologies of the web (HTML, CSS, JavaScript ES6+) and master React's core principles, including JSX, component composition, state management (local & global context), props, hooks (useState, useEffect, useContext, useReducer, useRef), and common styling approaches (CSS Modules, Tailwind CSS, Styled Components).",
           "resources": [
             {
-              "title": "Next.js Learn",
-              "url": "https://nextjs.org/learn",
+              "title": "JavaScript.info: The Modern JavaScript Tutorial",
+              "url": "https://javascript.info/",
+              "type": "article"
+            },
+            {
+              "title": "React Official Tutorial: Learning React",
+              "url": "https://react.dev/learn",
               "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "nextjs_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
-          "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
-          "resources": [
+            },
             {
-              "title": "Vercel Documentation",
-              "url": "https://vercel.com/docs",
+              "title": "MDN Web Docs: Learn Web Development",
+              "url": "https://developer.mozilla.org/en-US/docs/Web",
+              "type": "article"
+            },
+            {
+              "title": "Tailwind CSS Documentation",
+              "url": "https://tailwindcss.com/docs",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "nextjs_dev_env_tooling",
+          "name": "Development Environment & Tooling",
+          "tag": "essential",
+          "description": "Set up your development environment with VS Code, understand Node.js and npm/yarn/pnpm, master Git for version control, and configure essential developer tools like ESLint and Prettier for code quality and consistency.",
+          "resources": [
+            {
+              "title": "Getting Started with Next.js",
+              "url": "https://nextjs.org/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Node.js Official Website",
+              "url": "https://nodejs.org/en/docs",
+              "type": "article"
+            },
+            {
+              "title": "ESLint Documentation",
+              "url": "https://eslint.org/docs/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Prettier Documentation",
+              "url": "https://prettier.io/docs/en/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "nextjs_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "nextjs_dev_core_app_router",
+      "name": "Next.js Core Concepts: App Router & Server Components",
       "tag": "essential",
-      "description": "Build the practical skill stack for Next.js Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Deep dive into the latest Next.js features, focusing on the App Router, server components, data fetching strategies, and fundamental rendering mechanisms.",
       "resources": [
+        {
+          "title": "Next.js Learn",
+          "url": "https://nextjs.org/learn",
+          "type": "course"
+        },
         {
           "title": "Next.js 16 Full Course | Build and Deploy a Production-Ready Full Stack App (JavaScript Mastery)",
           "url": "https://www.youtube.com/watch?v=I1V9YWqRIeI",
           "type": "video"
-        },
-        {
-          "title": "Next.js Learn",
-          "url": "https://nextjs.org/learn",
-          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "nextjs_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "nextjs_dev_app_router_deep_dive",
+          "name": "App Router Deep Dive: Routing, Layouts & Data Fetching",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Master file-system based routing, route groups, parallel routes, dynamic routes, and catch-all routes. Understand nested layouts, templates, and integrate metadata. Deep dive into Server Components vs. Client Components, streaming with Suspense, Loading UIs, and Error Boundaries. Explore various data fetching patterns like `fetch` with `async/await` in Server Components, caching, and revalidation.",
           "resources": [
             {
-              "title": "Next.js Documentation",
-              "url": "https://nextjs.org/docs",
+              "title": "Next.js App Router Documentation",
+              "url": "https://nextjs.org/docs/app",
+              "type": "article"
+            },
+            {
+              "title": "Server Components",
+              "url": "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+              "type": "article"
+            },
+            {
+              "title": "Data Fetching in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/data-fetching/fetching",
+              "type": "article"
+            },
+            {
+              "title": "Layouts & Templates in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts",
+              "type": "article"
+            },
+            {
+              "title": "Loading UI & Streaming with Suspense",
+              "url": "https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "nextjs_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "nextjs_dev_forms_api_server_actions",
+          "name": "Forms, Server Actions & API Routes",
+          "tag": "essential",
+          "description": "Learn to build and handle forms effectively. Implement robust data mutations with Server Actions, including validation (e.g., Zod) and error handling. Develop RESTful API endpoints using Route Handlers (API Routes) for server-side logic and integrate third-party services.",
           "resources": [
             {
-              "title": "Vercel Documentation",
-              "url": "https://vercel.com/docs",
+              "title": "API Routes in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+              "type": "article"
+            },
+            {
+              "title": "Server Actions and Mutations",
+              "url": "https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations",
+              "type": "article"
+            },
+            {
+              "title": "Zod Documentation",
+              "url": "https://zod.dev/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "nextjs_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
+          "id": "nextjs_dev_auth_authorization",
+          "name": "Authentication & Authorization",
+          "tag": "essential",
+          "description": "Secure your Next.js applications by implementing user authentication (e.g., NextAuth.js, Clerk) and authorization strategies. Understand session management, JWTs, and secure API access.",
+          "resources": [
+            {
+              "title": "NextAuth.js Documentation",
+              "url": "https://next-auth.js.org/getting-started/example",
+              "type": "article"
+            },
+            {
+              "title": "Clerk for Next.js",
+              "url": "https://clerk.com/docs/references/nextjs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Secure Next.js Authentication Patterns",
+              "url": "https://vercel.com/guides/authentication-patterns-nextjs",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_styling_perf_best_practices",
+          "name": "Next.js Styling, Optimizations & Best Practices",
+          "tag": "essential",
+          "description": "Explore various styling solutions (Tailwind CSS, CSS-in-JS, modules). Implement image and font optimization, understand bundle analysis, and leverage features like `next/script` and `next/link`. Learn general Next.js best practices for maintainable and performant applications.",
+          "resources": [
+            {
+              "title": "Optimizing Performance in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/optimizing",
+              "type": "article"
+            },
+            {
+              "title": "Image Optimization in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/optimizing/images",
+              "type": "article"
+            },
+            {
+              "title": "Web Vitals Report (Google)",
+              "url": "https://web.dev/vitals/",
+              "type": "article"
+            },
+            {
+              "title": "Font Optimization in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/optimizing/fonts",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_testing_strategies",
+          "name": "Testing Next.js Applications",
           "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "description": "Implement robust testing strategies for your Next.js applications. Learn unit testing with Jest/React Testing Library, integration testing, and end-to-end (E2E) testing with Playwright or Cypress. Understand mocking and testing server components and actions.",
+          "resources": [
+            {
+              "title": "Testing Next.js Applications",
+              "url": "https://nextjs.org/docs/app/building-your-application/testing",
+              "type": "article"
+            },
+            {
+              "title": "React Testing Library Documentation",
+              "url": "https://testing-library.com/docs/react-testing-library/intro/",
+              "type": "article"
+            },
+            {
+              "title": "Playwright Documentation",
+              "url": "https://playwright.dev/docs/intro",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_project_core_app",
+          "name": "Project: Build a Full-Stack Modern Web Application",
+          "tag": "essential",
+          "description": "Apply all core Next.js skills by building a complete application, integrating App Router, Server Components, API routes/Server Actions, data fetching, and a responsive UI. Connect to a database (e.g., PostgreSQL with Prisma) and implement basic authentication.",
+          "resources": [
+            {
+              "title": "Next.js Learn - Building a Dashboard (Example Project)",
+              "url": "https://nextjs.org/learn",
+              "type": "course"
+            },
+            {
+              "title": "Prisma Documentation",
+              "url": "https://www.prisma.io/docs/orm/more/platforms/nextjs",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "nextjs_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "nextjs_dev_deployment_scalability",
+      "name": "Deployment, Scalability & Advanced Practices",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Learn to deploy Next.js applications to production, implement monitoring, ensure security, and explore advanced features for building robust and scalable solutions.",
       "resources": [
-        {
-          "title": "Next.js Crash Course for Beginners 2025 | In Hindi | Day 50/100 (Coder's Gyan)",
-          "url": "https://www.youtube.com/watch?v=NZU8U_5HOlQ",
-          "type": "video"
-        },
         {
           "title": "Vercel Documentation",
           "url": "https://vercel.com/docs",
+          "type": "article"
+        },
+        {
+          "title": "Next.js Deployment Documentation",
+          "url": "https://nextjs.org/docs/app/building-your-application/deploying",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "nextjs_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
+          "id": "nextjs_dev_prod_deployment_cicd",
+          "name": "Production Deployment & CI/CD",
           "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Master deploying Next.js applications to platforms like Vercel and AWS Amplify. Set up robust Continuous Integration/Continuous Deployment (CI/CD) pipelines using GitHub Actions to automate builds, tests, and deployments. Understand environment variables for production.",
           "resources": [
             {
-              "title": "Next.js Learn",
-              "url": "https://nextjs.org/learn",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "nextjs_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
-          "resources": [
+              "title": "Deploying Next.js with Vercel",
+              "url": "https://vercel.com/docs/deployments/overview",
+              "type": "article"
+            },
             {
-              "title": "Next.js Documentation",
-              "url": "https://nextjs.org/docs",
+              "title": "GitHub Actions for CI/CD",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration",
+              "type": "article"
+            },
+            {
+              "title": "AWS Amplify Documentation",
+              "url": "https://docs.amplify.aws/console/start/nextjs/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "nextjs_dev_monitoring_logging",
+          "name": "Monitoring, Logging & Error Handling",
+          "tag": "advanced",
+          "description": "Integrate monitoring tools (e.g., Sentry, Datadog, Vercel Analytics) to track application performance, errors, and user behavior in production. Implement comprehensive logging strategies and graceful error handling for both server and client components.",
+          "resources": [
+            {
+              "title": "Sentry for Error Monitoring",
+              "url": "https://docs.sentry.io/platforms/javascript/guides/nextjs/",
+              "type": "article"
+            },
+            {
+              "title": "Vercel Analytics",
+              "url": "https://vercel.com/docs/analytics/overview",
+              "type": "article"
+            },
+            {
+              "title": "Next.js Error Handling",
+              "url": "https://nextjs.org/docs/app/building-your-application/routing/error-handling",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_caching_edge",
+          "name": "Caching Strategies & Edge Runtime",
+          "tag": "advanced",
+          "description": "Implement advanced caching strategies using Next.js's built-in caching, HTTP caching headers, and CDN integration to optimize performance and reduce server load. Leverage the Edge Runtime and Edge Functions for low-latency responses and global distribution.",
+          "resources": [
+            {
+              "title": "Next.js Caching",
+              "url": "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate",
+              "type": "article"
+            },
+            {
+              "title": "Edge and Node.js Runtimes",
+              "url": "https://nextjs.org/docs/app/api-reference/edge",
+              "type": "article"
+            },
+            {
+              "title": "CDN Integration with Next.js",
+              "url": "https://vercel.com/docs/edge-network/caching",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_i18n_webhooks",
+          "name": "Internationalization (i18n) & Webhooks",
+          "tag": "advanced",
+          "description": "Implement multi-language support and internationalization (i18n) in your Next.js applications for a global audience. Learn to integrate and handle webhooks for real-time updates and integrations with external services.",
+          "resources": [
+            {
+              "title": "Internationalization in Next.js",
+              "url": "https://nextjs.org/docs/app/building-your-application/routing/internationalization",
+              "type": "article"
+            },
+            {
+              "title": "Handling Webhooks in Next.js (Example)",
+              "url": "https://vercel.com/guides/how-to-implement-webhooks-with-nextjs-and-serverless-functions",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "nextjs_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "nextjs_dev_pro_dev_projects",
+      "name": "Professional Development & Advanced Projects",
       "tag": "advanced",
-      "description": "Turn your Next.js Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Refine your skills with complex project architectures, prepare for technical interviews, and build a compelling portfolio to showcase your expertise as a Next.js Developer.",
       "resources": [
         {
           "title": "Next.js Documentation",
@@ -168,11 +372,6 @@
           "type": "article"
         },
         {
-          "title": "Next.js Learn",
-          "url": "https://nextjs.org/learn",
-          "type": "course"
-        },
-        {
           "title": "Vercel Documentation",
           "url": "https://vercel.com/docs",
           "type": "article"
@@ -180,32 +379,91 @@
       ],
       "children": [
         {
-          "id": "nextjs_developer_case_study",
-          "name": "Case Study Writing",
+          "id": "nextjs_dev_advanced_state_data",
+          "name": "Advanced State Management & Data Layer",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Explore advanced global state management solutions beyond React Context (e.g., Zustand, Jotai, Redux Toolkit). Integrate complex data layers with GraphQL (Apollo Client, Relay) or TRPC for type-safe full-stack communication. Understand database integration patterns (ORMs like Prisma, DrizzleORM) and serverless database access.",
           "resources": [
             {
-              "title": "Next.js Documentation",
-              "url": "https://nextjs.org/docs",
+              "title": "State Management in React (Zustand, Jotai, Redux Toolkit)",
+              "url": "https://react.dev/learn/choosing-the-state-structure",
+              "type": "article"
+            },
+            {
+              "title": "Integrating GraphQL with Next.js",
+              "url": "https://www.apollographql.com/blog/next-js/next-js-graphql-server-components-app-router/",
+              "type": "article"
+            },
+            {
+              "title": "tRPC Documentation",
+              "url": "https://trpc.io/docs/nextjs",
+              "type": "article"
+            },
+            {
+              "title": "Prisma with Next.js",
+              "url": "https://www.prisma.io/docs/orm/more/platforms/nextjs",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "nextjs_developer_project_capstone",
-          "name": "Project: Next.js Developer Portfolio Capstone",
+          "id": "nextjs_dev_complex_arch_patterns",
+          "name": "Complex Project Architecture & Design Patterns",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Next.js Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Learn to design and architect large-scale Next.js applications. Explore design patterns (e.g., HOCs, Render Props, Compound Components), monorepo setups (Turborepo, Nx), and module federation for micro-frontends. Understand how to structure code for scalability and maintainability in enterprise environments.",
           "resources": [
             {
-              "title": "Vercel Documentation",
-              "url": "https://vercel.com/docs",
+              "title": "Building a Scalable Next.js App - Vercel Blog",
+              "url": "https://vercel.com/blog/building-a-scalable-next-js-app",
+              "type": "article"
+            },
+            {
+              "title": "Monorepo with Next.js and Turborepo",
+              "url": "https://nextjs.org/docs/getting-started/installation#turborepo",
+              "type": "article"
+            },
+            {
+              "title": "Micro-frontend Architectures",
+              "url": "https://martinfowler.com/articles/micro-frontends.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "nextjs_dev_capstone_project",
+          "name": "Capstone Project: Full-Stack SaaS / Enterprise Application",
+          "tag": "advanced",
+          "description": "Build a comprehensive, production-grade Next.js SaaS or enterprise-level application. This project should integrate advanced features, demonstrate robust testing, CI/CD, and impeccable documentation. Focus on real-world challenges like multi-tenancy, complex workflows, and third-party integrations.",
+          "resources": [
+            {
+              "title": "ShipFast - Boilerplate for SaaS with Next.js",
+              "url": "https://shipfa.st/",
+              "type": "article"
+            },
+            {
+              "title": "Next.js E-commerce Example",
+              "url": "https://github.com/vercel/nextjs-commerce",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "nextjs_dev_interview_portfolio_networking",
+          "name": "Career Readiness: Interviews, Portfolio & Networking",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews with common Next.js, React, and general web development questions and coding challenges. Optimize your resume and LinkedIn profile, build a strong online portfolio showcasing your best work, and learn effective networking strategies to land your dream job.",
+          "resources": [
+            {
+              "title": "Cracking the Coding Interview (Book)",
+              "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+              "type": "article"
+            },
+            {
+              "title": "How to Build a Developer Portfolio that Gets You Hired",
+              "url": "https://www.freecodecamp.org/news/how-to-build-a-developer-portfolio/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

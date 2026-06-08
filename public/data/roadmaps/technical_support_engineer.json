@@ -1,201 +1,481 @@
 {
   "id": "technical_support_engineer",
   "title": "Technical Support Engineer",
-  "description": "A roadmap for IT and product support careers: troubleshooting, operating systems, networking, customer communication, ticketing, scripting, and escalation.",
+  "description": "A comprehensive roadmap for aspiring and current Technical Support Engineers, covering fundamental IT knowledge, advanced troubleshooting techniques, customer service excellence, and operational best practices.",
   "format": "tree",
   "tree": [
     {
-      "id": "support_foundations",
-      "name": "IT Support Foundations",
+      "id": "it_support_foundations",
+      "name": "IT Support Foundations: Core Systems & Networking",
       "tag": "essential",
-      "description": "Learn operating systems, hardware, networking, browsers, accounts, permissions, common errors, and structured troubleshooting.",
+      "description": "Master the core concepts of IT infrastructure, including operating systems, computer hardware, networking fundamentals, command line interfaces, and basic virtualization, coupled with structured problem-solving methodologies.",
       "resources": [
         {
-          "title": "Technical Support Engineer Full Course in Hindi",
-          "url": "https://www.youtube.com/watch?v=msktxCCQC9U",
-          "type": "video"
-        },
-        {
-          "title": "IT Support vs Technical Support vs Desktop Support (Raymond Roshan)",
-          "url": "https://www.youtube.com/watch?v=FTMyzaNEeBM",
-          "type": "video"
-        },
-        {
-          "title": "Skills Required for Technical Support (BA Professional)",
-          "url": "https://www.youtube.com/watch?v=sAiL68Jn2qw",
-          "type": "video"
-        },
-        {
-          "title": "Google IT Support Certificate",
+          "title": "Google IT Support Professional Certificate",
           "url": "https://grow.google/certificates/it-support/",
           "type": "course"
+        },
+        {
+          "title": "CompTIA A+ Certification Training",
+          "url": "https://www.comptia.org/certifications/a",
+          "type": "course"
+        },
+        {
+          "title": "A Day in the Life of a Technical Support Engineer",
+          "url": "https://www.youtube.com/watch?v=sAiL68Jn2qw",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "support_os_hardware",
-          "name": "OS and Hardware Basics",
+          "id": "os_fundamentals_advanced",
+          "name": "Operating System Architecture & Troubleshooting",
           "tag": "essential",
-          "description": "Troubleshoot Windows/macOS/Linux basics, drivers, storage, memory, printers, updates, browsers, and device issues.",
+          "description": "Gain proficiency in core OS concepts (processes, memory, file systems), user management, and common troubleshooting for Windows (Client/Server), macOS, and various Linux distributions (e.g., Ubuntu, CentOS).",
           "resources": [
             {
-              "title": "Microsoft Windows Support",
-              "url": "https://support.microsoft.com/windows",
+              "title": "Microsoft Learn: Windows Server Introduction",
+              "url": "https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-in-windows-server-2022",
+              "type": "article"
+            },
+            {
+              "title": "macOS Support Essentials Course",
+              "url": "https://www.apple.com/macos/support/",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Command Line: A Complete Introduction",
+              "url": "https://www.linuxcommand.org/tlcl.php",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "support_networking",
-          "name": "Networking and Web Basics",
+          "id": "computer_hardware_diagnostics",
+          "name": "Computer Hardware & Peripheral Diagnostics",
           "tag": "essential",
-          "description": "Use ping, DNS lookup, traceroute, IP config, Wi-Fi checks, VPN troubleshooting, HTTP status codes, and browser devtools.",
+          "description": "Identify, diagnose, and resolve common hardware issues in desktops, laptops (CPU, RAM, Storage, Motherboard), and peripherals (printers, monitors, input devices). Understand component compatibility and upgrade paths.",
           "resources": [
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
+              "title": "PC Hardware Troubleshooting Guide",
+              "url": "https://www.youtube.com/watch?v=rx5f91rBv4c",
+              "type": "video"
+            },
+            {
+              "title": "Common Printer Problems and Solutions",
+              "url": "https://www.hp.com/us-en/shop/tech-takes/how-to-troubleshoot-printer-problems",
+              "type": "article"
+            },
+            {
+              "title": "Building a PC: A Step-by-Step Guide",
+              "url": "https://www.tomshardware.com/reviews/build-your-own-pc,2601.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "networking_tcpip_dns_dhcp",
+          "name": "Networking Essentials: TCP/IP, DNS, DHCP & Wi-Fi",
+          "tag": "essential",
+          "description": "Grasp essential networking concepts including the OSI model, TCP/IP stack, DNS resolution, DHCP, common protocols (HTTP/S, FTP, SSH), network devices (routers, switches, firewalls), and wireless technologies. Troubleshoot connectivity issues using tools like ping, tracert, ipconfig/ifconfig, netstat.",
+          "resources": [
+            {
+              "title": "Introduction to Networking (Cisco)",
+              "url": "https://www.netacad.com/courses/networking/introduction-to-networks",
+              "type": "course"
+            },
+            {
+              "title": "CompTIA Network+ N10-008 Exam Prep",
+              "url": "https://www.comptia.org/certifications/network",
+              "type": "course"
+            },
+            {
+              "title": "DNS Explained Simply",
+              "url": "https://www.cloudflare.com/learning/dns/what-is-dns/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cli_powershell_bash",
+          "name": "Command Line Interface (CLI): PowerShell & Bash",
+          "tag": "essential",
+          "description": "Learn to navigate file systems, manage processes, configure network settings, and execute commands efficiently using the command line in both Windows (Command Prompt, PowerShell) and Linux/macOS (Bash, Zsh).",
+          "resources": [
+            {
+              "title": "PowerShell Tutorial for Beginners",
+              "url": "https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.2",
+              "type": "article"
+            },
+            {
+              "title": "Bash Scripting Tutorial",
+              "url": "https://ryanstutorials.net/bash-scripting-tutorial/",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Command Line Book",
+              "url": "http://linuxcommand.org/tlcl.php",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "virtualization_container_basics",
+          "name": "Virtualization & Containerization Basics",
+          "tag": "essential",
+          "description": "Understand the concepts of virtualization (VMs, hypervisors) and containerization (Docker basics). Learn to identify and troubleshoot issues related to virtual machines in desktop and server environments (e.g., VirtualBox, VMware Workstation).",
+          "resources": [
+            {
+              "title": "What is Virtualization?",
+              "url": "https://www.vmware.com/topics/glossary/content/virtualization.html",
+              "type": "article"
+            },
+            {
+              "title": "Docker for Beginners",
+              "url": "https://www.docker.com/get-started",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "support_ticketing_customer",
-      "name": "Ticketing and Customer Communication",
+      "id": "customer_excellence_itsm",
+      "name": "Customer Excellence & IT Service Management (ITSM)",
       "tag": "essential",
-      "description": "Resolve issues through clear questions, reproduction steps, prioritization, SLAs, empathy, and complete ticket notes.",
+      "description": "Develop exceptional customer service skills, efficient ticketing system management, effective communication strategies, and an understanding of IT Service Management (ITSM) principles for various support scenarios.",
       "resources": [
         {
           "title": "Zendesk Customer Service Guide",
           "url": "https://www.zendesk.com/blog/customer-service-skills/",
           "type": "article"
+        },
+        {
+          "title": "HubSpot Customer Support Skills",
+          "url": "https://blog.hubspot.com/service/customer-support-skills",
+          "type": "article"
+        },
+        {
+          "title": "ITIL 4 Foundation Course",
+          "url": "https://www.udemy.com/course/itil-4-foundation-training/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "support_ticket_quality",
-          "name": "Ticket Quality",
+          "id": "ticketing_systems_slas",
+          "name": "Ticketing System Management & SLAs",
           "tag": "essential",
-          "description": "Write summaries, environment details, reproduction steps, impact, severity, troubleshooting tried, and next actions.",
+          "description": "Learn to use industry-standard ticketing systems (e.g., Zendesk, Jira Service Management, ServiceNow). Understand ticket lifecycle, categorization, prioritization, Service Level Agreements (SLAs), and escalation procedures in an ITIL-aligned context.",
           "resources": [
             {
               "title": "Atlassian ITSM Guide",
               "url": "https://www.atlassian.com/itsm",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "support_soft_skills",
-          "name": "Communication and De-escalation",
-          "tag": "essential",
-          "description": "Use calm language, expectation setting, escalation updates, customer education, and concise follow-ups.",
-          "resources": [
+            },
             {
-              "title": "HubSpot Customer Support Skills",
-              "url": "https://blog.hubspot.com/service/customer-support-skills",
+              "title": "Introduction to ITIL 4",
+              "url": "https://www.axelos.com/certifications/itil-service-management",
+              "type": "article"
+            },
+            {
+              "title": "ServiceNow Essentials for Support",
+              "url": "https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/doc-type/resource-center/white-paper/itsm-for-dummies-ebook.pdf",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "technical_support_engineer_practice_lab",
-          "name": "Practice: Ticket Triage Queue",
-          "tag": "advanced",
-          "description": "Prioritize sample support tickets, ask clarifying questions, document reproduction, and write customer updates.",
-          "resources": [],
-          "children": []
+          "id": "customer_comm_de_escalation",
+          "name": "Customer Communication, Empathy & De-escalation",
+          "tag": "essential",
+          "description": "Master active listening, clear and concise verbal/written communication, empathy, expectation setting, and advanced de-escalation techniques for challenging customers and high-pressure situations. Focus on building positive customer relationships.",
+          "resources": [
+            {
+              "title": "De-escalation Techniques for Customer Service",
+              "url": "https://www.youtube.com/watch?v=i90G7w4L5bU",
+              "type": "video"
+            },
+            {
+              "title": "Active Listening in Customer Service",
+              "url": "https://www.helpscout.com/blog/active-listening-customer-service/",
+              "type": "article"
+            },
+            {
+              "title": "Empathy in Customer Support",
+              "url": "https://hbr.org/2019/07/why-empathy-is-the-most-important-customer-service-skill",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "technical_documentation_reporting",
+          "name": "Technical Documentation & Reporting for Support",
+          "tag": "essential",
+          "description": "Write comprehensive ticket notes, incident reports, and internal documentation (runbooks, FAQs). Learn to collect, structure, and report relevant information, identify recurring issues, and contribute to knowledge base articles for problem management.",
+          "resources": [
+            {
+              "title": "Technical Writing for Support Engineers",
+              "url": "https://www.writethedocs.org/guide/technical-writing/",
+              "type": "article"
+            },
+            {
+              "title": "Structuring Support Documentation",
+              "url": "https://docs.microsoft.com/en-us/style-guide/guidance/guidance-for-content-creators",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "practice_incident_resolution_workflow",
+          "name": "Practice Lab: Incident Resolution Workflow",
+          "tag": "essential",
+          "description": "Hands-on practice prioritizing, diagnosing, escalating, and resolving simulated customer incidents. Focus on adhering to SLAs, effective communication, thorough documentation, and leveraging available resources throughout the support workflow.",
+          "resources": []
         }
       ]
     },
     {
-      "id": "support_product_technical",
-      "name": "Product and Technical Troubleshooting",
+      "id": "advanced_technical_troubleshooting_deep_dive",
+      "name": "Advanced Technical Troubleshooting & Modern IT",
       "tag": "advanced",
-      "description": "Support SaaS and software products with logs, APIs, databases, integrations, auth, and monitoring context.",
+      "description": "Dive into advanced diagnostic techniques for complex software applications, cloud infrastructure, security incidents, and specific product environments, including comprehensive log analysis, API debugging, database querying, and leveraging scripting for automation.",
       "resources": [
         {
-          "title": "Postman Learning Center",
-          "url": "https://learning.postman.com/",
-          "type": "article"
+          "title": "CompTIA Network+ Certification Training",
+          "url": "https://www.comptia.org/certifications/network",
+          "type": "course"
+        },
+        {
+          "title": "Certified Ethical Hacker (CEH) - Introduction to Security",
+          "url": "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "support_logs_api",
-          "name": "Logs, APIs, and Integrations",
+          "id": "software_application_debugging",
+          "name": "Software & Web Application Debugging",
           "tag": "advanced",
-          "description": "Inspect logs, API responses, webhooks, payloads, auth failures, rate limits, and integration errors.",
+          "description": "Diagnose complex issues with desktop, web, and mobile applications. Understand common software errors, dependencies, installation challenges, configuration problems, and use browser developer tools (console, network, elements) for effective debugging.",
           "resources": [
             {
-              "title": "Chrome DevTools Network Panel",
-              "url": "https://developer.chrome.com/docs/devtools/network",
+              "title": "Debugging Web Applications with Chrome DevTools",
+              "url": "https://developer.chrome.com/docs/devtools/javascript/",
+              "type": "article"
+            },
+            {
+              "title": "Debugging in VS Code",
+              "url": "https://code.visualstudio.com/docs/editor/debugging",
+              "type": "article"
+            },
+            {
+              "title": "Common Software Errors and How to Fix Them",
+              "url": "https://www.howtogeek.com/712313/the-most-common-windows-error-codes-and-what-they-mean/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "support_sql_scripting",
-          "name": "SQL and Scripting",
+          "id": "cloud_infrastructure_support",
+          "name": "Cloud Infrastructure & Services Support (AWS, Azure, GCP)",
           "tag": "advanced",
-          "description": "Read database records safely, write simple SQL, automate checks with scripts, and create support utilities.",
+          "description": "Understand core services (compute, storage, networking, databases) on major cloud platforms (AWS, Azure, GCP). Learn to identify and troubleshoot common cloud-related issues, manage access (IAM), and understand cloud billing basics from a support perspective.",
           "resources": [
             {
-              "title": "Mode SQL Tutorial",
-              "url": "https://mode.com/sql-tutorial/",
+              "title": "AWS Cloud Practitioner Essentials",
+              "url": "https://aws.amazon.com/training/course-descriptions/cloud-practitioner-essentials/",
+              "type": "course"
+            },
+            {
+              "title": "Azure Fundamentals (AZ-900) Course",
+              "url": "https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/",
+              "type": "course"
+            },
+            {
+              "title": "GCP Cloud Digital Leader Learning Path",
+              "url": "https://cloud.google.com/certification/cloud-digital-leader",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "system_security_basics_support",
+          "name": "System Security Fundamentals for Support",
+          "tag": "advanced",
+          "description": "Understand common security threats (malware, phishing, ransomware), basic cybersecurity best practices, user access management (MFA, SSO), endpoint protection (antivirus, EDR), and initial incident response steps for security-related issues.",
+          "resources": [
+            {
+              "title": "Introduction to Cybersecurity (IBM)",
+              "url": "https://www.coursera.org/learn/introduction-to-cybersecurity-for-developers",
+              "type": "course"
+            },
+            {
+              "title": "NIST Cybersecurity Framework",
+              "url": "https://www.nist.gov/cyberframework",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Malware and Ransomware",
+              "url": "https://www.kaspersky.com/resource-center/definitions/malware",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "advanced_diagnostic_tools_log_api_db",
+          "name": "Advanced Diagnostic Tools: Logs, APIs, Databases & Monitoring",
+          "tag": "advanced",
+          "description": "Master analysis of system, application, and network logs. Inspect API requests/responses using tools like Postman/Insomnia. Query databases (SQL, NoSQL basics) for troubleshooting complex software and integration issues. Understand basic monitoring dashboards (e.g., Splunk, Grafana).",
+          "resources": [
+            {
+              "title": "Postman Learning Center",
+              "url": "https://learning.postman.com/",
+              "type": "article"
+            },
+            {
+              "title": "SQL Tutorial for Beginners",
+              "url": "https://www.w3schools.com/sql/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding System Logs",
+              "url": "https://www.loggly.com/blog/introduction-to-system-logging/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scripting_automation_for_efficiency",
+          "name": "Scripting & Automation for Support Efficiency",
+          "tag": "advanced",
+          "description": "Develop intermediate scripting skills in Bash, PowerShell, or Python to automate repetitive support tasks, generate diagnostic reports, manage system configurations, and build simple utilities to streamline workflows and reduce manual effort.",
+          "resources": [
+            {
+              "title": "Automate the Boring Stuff with Python",
+              "url": "https://automatetheboringstuff.com/",
+              "type": "course"
+            },
+            {
+              "title": "Advanced Bash-Scripting Guide",
+              "url": "https://tldp.org/LDP/abs/html/",
+              "type": "article"
+            },
+            {
+              "title": "PowerShell Scripting for IT Pros",
+              "url": "https://mva.microsoft.com/en-us/training-courses/introduction-to-powershell-8422?l=U5P5F8422_2406218949",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "support_knowledge_project",
-      "name": "Knowledge Base and Career Readiness",
+      "id": "operational_excellence_strategic_growth",
+      "name": "Operational Excellence & Strategic Career Growth",
       "tag": "advanced",
-      "description": "Improve support quality through documentation, runbooks, macros, internal tools, metrics, and escalation playbooks.",
+      "description": "Enhance support operations through advanced IT Service Management (ITSM) practices, robust knowledge management strategies, performance analytics, and planning for continuous professional development and career specialization.",
       "resources": [
         {
-          "title": "ITIL 4 Overview",
-          "url": "https://www.axelos.com/certifications/itil-service-management",
-          "type": "article"
+          "title": "ITIL 4 Managing Professional Learning Journey",
+          "url": "https://www.axelos.com/certifications/itil-service-management/itil-4-managing-professional",
+          "type": "course"
+        },
+        {
+          "title": "Customer Success Management Course",
+          "url": "https://www.udemy.com/course/customer-success-management-fundamentals/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "support_kb_runbooks",
-          "name": "Knowledge Base and Runbooks",
+          "id": "advanced_knowledge_management_self_service",
+          "name": "Advanced Knowledge Management & Self-Service Portals",
           "tag": "advanced",
-          "description": "Create troubleshooting articles, known issue pages, escalation checklists, incident notes, and customer-facing guides.",
+          "description": "Design, implement, and maintain comprehensive internal and external knowledge bases. Develop strategies for content creation, curation, discoverability, and promotion of self-service portals to empower users and reduce support volume.",
           "resources": [
             {
               "title": "Diataxis Documentation Framework",
               "url": "https://diataxis.fr/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "support_project_helpdesk_lab",
-          "name": "Project: Helpdesk Troubleshooting Lab",
-          "tag": "advanced",
-          "description": "Create sample tickets, reproduce issues, write resolutions, build a KB, add scripts, and report support metrics.",
-          "resources": [
+            },
             {
-              "title": "Freshservice ITSM Resources",
-              "url": "https://www.freshworks.com/freshservice/itsm/",
+              "title": "Building a Knowledge Base Strategy",
+              "url": "https://www.freshworks.com/freshservice/itsm/knowledge-base-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Best Practices for Self-Service Portals",
+              "url": "https://www.servicenow.com/success/blog/self-service-portal-best-practices.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "itsm_problem_change_management",
+          "name": "ITSM Deep Dive: Problem, Change & Service Request Management",
+          "tag": "advanced",
+          "description": "Beyond incident management, delve into structured Problem Management to identify root causes, Change Management to control service modifications, and Service Request Management to streamline routine service delivery, all within an ITIL framework.",
+          "resources": [
+            {
+              "title": "What is Problem Management?",
+              "url": "https://www.bmc.com/blogs/itil-problem-management/",
+              "type": "article"
+            },
+            {
+              "title": "ITIL 4: Change Enablement (Change Management)",
+              "url": "https://www.axelos.com/itil-4-change-enablement-itil-4-change-management",
+              "type": "article"
+            },
+            {
+              "title": "Service Request Management Explained",
+              "url": "https://www.freshworks.com/freshservice/itsm/service-request-management-guide/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "support_kpis_analytics_reporting",
+          "name": "Support KPIs, Service Analytics & Strategic Reporting",
+          "tag": "advanced",
+          "description": "Learn to define, track, and analyze key performance indicators (KPIs) such as FCR, AHT, CSAT, NPS, and SLA adherence. Generate insightful reports, identify trends, predict issues, and use data to drive continuous improvement in support quality and efficiency.",
+          "resources": [
+            {
+              "title": "Key Customer Service Metrics",
+              "url": "https://www.zendesk.com/blog/customer-service-metrics/",
+              "type": "article"
+            },
+            {
+              "title": "Data Analytics for Customer Service",
+              "url": "https://www.tableau.com/solutions/customer-service-analytics",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "career_development_specialization_paths",
+          "name": "Career Development & Specialization Paths",
+          "tag": "advanced",
+          "description": "Explore potential career trajectories within technical support (L2/L3, Product Support, SRE, DevOps). Identify opportunities for specialization (e.g., cloud support, security support) and develop a plan for continuous learning and professional growth.",
+          "resources": [
+            {
+              "title": "Technical Support Career Paths",
+              "url": "https://www.linkedin.com/business/talent/blog/talent-management/technical-support-engineer-career-path",
+              "type": "article"
+            },
+            {
+              "title": "From Support Engineer to SRE",
+              "url": "https://sre.google/sre-book/chapters/appendix/career-development/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "capstone_project_full_stack_support",
+          "name": "Capstone Project: Full-Stack Support Simulation",
+          "tag": "advanced",
+          "description": "Undertake a comprehensive simulation involving complex, multi-layered incidents across various technologies (OS, network, cloud, application). Apply advanced troubleshooting, scripting, ITSM principles, and detailed reporting to achieve end-to-end resolution and improve system reliability.",
+          "resources": []
         }
       ]
     }

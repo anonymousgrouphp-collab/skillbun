@@ -5,173 +5,526 @@
   "format": "tree",
   "tree": [
     {
-      "id": "windows_app_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "windows_app_dev_foundations",
+      "name": "Foundations and Ecosystem Context",
       "tag": "essential",
-      "description": "Understand what Windows App Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Understand the Windows development landscape, historical context, modern technologies like WinUI and Windows App SDK, and set up your foundational development environment.",
       "resources": [
         {
-          "title": "Build native Windows apps with WinUI, .NET and the Windows App SDK (CSharpCorner)",
+          "title": "Introduction to Windows app development",
+          "url": "https://learn.microsoft.com/en-us/windows/apps/develop/",
+          "type": "article"
+        },
+        {
+          "title": "Windows App SDK Documentation",
+          "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "windows_app_dev_ecosystem_overview",
+          "name": "Windows Ecosystem & App Landscape",
+          "tag": "essential",
+          "description": "Explore the evolution of Windows development (UWP, WPF, WinForms), understand the role of WinUI 3 and Windows App SDK in modern app development, and identify target platforms.",
+          "resources": [
+            {
+              "title": "Why choose Windows App SDK?",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/winui/winui3-considerations",
+              "type": "article"
+            },
+            {
+              "title": "Overview of WPF, UWP, and WinUI 3",
+              "url": "https://www.youtube.com/watch?v=F3a79sR1b9Q",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_dev_environment",
+          "name": "Development Environment Setup",
+          "tag": "essential",
+          "description": "Set up Visual Studio, install the .NET SDK and Windows App SDK, configure debugging tools, and establish a basic project structure.",
+          "resources": [
+            {
+              "title": "Install tools for the Windows App SDK",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=vs-2022%2Cvs-2022-winui%2Cvs-2022-unpackaged",
+              "type": "article"
+            },
+            {
+              "title": "Create your first WinUI 3 (Windows App SDK) project",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/create-new-project",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_csharp_dotnet_fundamentals",
+          "name": "C# and .NET Fundamentals",
+          "tag": "essential",
+          "description": "Master C# syntax, object-oriented programming concepts, basic data structures, exception handling, async/await basics, and an introduction to the .NET runtime, garbage collection, and CLI.",
+          "resources": [
+            {
+              "title": "C# fundamentals for absolute beginners",
+              "url": "https://learn.microsoft.com/en-us/shows/c-sharp-fundamentals-for-absolute-beginners/",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/get-started",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_xaml_introduction",
+          "name": "XAML and UI Layout Introduction",
+          "tag": "essential",
+          "description": "Learn the Extensible Application Markup Language (XAML) for declarative UI definition, understand common layout panels (Grid, StackPanel, RelativePanel, UniformGrid), and basic UI controls.",
+          "resources": [
+            {
+              "title": "XAML overview",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/layout/xaml-layout-overview",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to XAML in WinUI 3",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/xaml-basics/xaml-intro",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_ui_ux_principles",
+          "name": "Introduction to UI/UX Design Principles",
+          "tag": "essential",
+          "description": "Understand fundamental UI/UX design concepts, user-centered design, usability heuristics, and principles of effective visual design for desktop applications. Learn to apply Microsoft's Fluent Design System guidelines.",
+          "resources": [
+            {
+              "title": "Fluent Design System overview",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/fluent-design-system/",
+              "type": "article"
+            },
+            {
+              "title": "Design basics for Windows apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windows_app_dev_core_ui_logic",
+      "name": "Building Interactive Applications with WinUI",
+      "tag": "essential",
+      "description": "Build interactive user interfaces using WinUI 3, implement robust application logic, manage data, and master essential architectural patterns for scalable Windows applications.",
+      "resources": [
+        {
+          "title": "WinUI 3 controls gallery",
+          "url": "https://learn.microsoft.com/en-us/windows/apps/design/controls/",
+          "type": "article"
+        },
+        {
+          "title": "Build native Windows apps with WinUI, .NET and the Windows App SDK",
           "url": "https://www.youtube.com/watch?v=RbHdGjgG5NA",
           "type": "video"
-        },
-        {
-          "title": "Windows App SDK Documentation",
-          "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
-          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "windows_app_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "windows_app_dev_common_ui_controls",
+          "name": "Common UI Controls and Interaction Patterns",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Work with a comprehensive set of WinUI controls (buttons, text inputs, lists, data grids, navigation views, dialogs), understand their properties and events, and implement standard interaction patterns.",
           "resources": [
             {
-              "title": "WinUI Documentation",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/",
+              "title": "Controls and patterns for WinUI 3 apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/controls/index",
+              "type": "article"
+            },
+            {
+              "title": "Common UI controls in WinUI 3",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/xaml-basics/common-controls",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "windows_app_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "windows_app_dev_xaml_styling_theming",
+          "name": "XAML Styling, Theming, and Resources",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Deep dive into XAML resources, styles, control templates, and visual states. Learn to apply light/dark themes, custom branding, and manage UI assets effectively.",
           "resources": [
             {
-              "title": "Create Your First WinUI App",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/start-here",
+              "title": "Styling and templating for WinUI 3 apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/style/xaml-styles-themes",
+              "type": "article"
+            },
+            {
+              "title": "Brushes and resources in WinUI 3",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/xaml-basics/brushes-and-resources",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_responsive_adaptive_ui",
+          "name": "Responsive Layouts and Adaptive UI",
+          "tag": "essential",
+          "description": "Design UIs that adapt to different screen sizes and orientations using adaptive techniques like `VisualStateManager`, fluid layouts, and responsive panels (Grid, RelativePanel, VariableSizedWrapGrid).",
+          "resources": [
+            {
+              "title": "Layout panels in WinUI 3",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/xaml-basics/layout-panels",
+              "type": "article"
+            },
+            {
+              "title": "Handle windowing and adapting to different screen sizes",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/layout/responsive-design",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_data_binding_mvvm",
+          "name": "Data Binding and MVVM Architecture",
+          "tag": "essential",
+          "description": "Deep dive into data binding modes (OneWay, TwoWay, OneTime), implement `INotifyPropertyChanged` and `ICommand`, and apply the Model-View-ViewModel (MVVM) pattern using the MVVM Toolkit for robust separation of concerns and testability.",
+          "resources": [
+            {
+              "title": "Data binding in WinUI 3",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/xaml-basics/data-binding-basics",
+              "type": "article"
+            },
+            {
+              "title": "MVVM Toolkit for .NET",
+              "url": "https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_navigation_state_management",
+          "name": "App Navigation, Lifecycle & State Management",
+          "tag": "essential",
+          "description": "Implement multi-page navigation using `Frame` and `NavigationView`, understand the application lifecycle (launch, suspend, resume), handle application state changes, and implement strategies for saving/restoring user state.",
+          "resources": [
+            {
+              "title": "Navigation in WinUI 3 apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/navigation",
+              "type": "article"
+            },
+            {
+              "title": "Application lifecycle",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/app-lifecycle",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_data_persistence",
+          "name": "Data Persistence and Local Storage",
+          "tag": "essential",
+          "description": "Learn to store and retrieve application data using `ApplicationData.Current.LocalSettings`, local files (JSON, XML), and embedded databases like SQLite, including ORM libraries like Entity Framework Core.",
+          "resources": [
+            {
+              "title": "Store and retrieve settings and other app data",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/app-settings/store-and-retrieve-app-data",
+              "type": "article"
+            },
+            {
+              "title": "SQLite in WinUI 3 apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/data/sqlite",
+              "type": "article"
+            },
+            {
+              "title": "Entity Framework Core",
+              "url": "https://learn.microsoft.com/en-us/ef/core/",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "windows_app_dev_networking_apis",
+          "name": "Networking and Web API Integration",
+          "tag": "essential",
+          "description": "Perform asynchronous HTTP requests using `HttpClient`, handle authentication with OAuth/JWT, parse JSON data, integrate with RESTful web services, and manage network connectivity states.",
+          "resources": [
+            {
+              "title": "HttpClient Class",
+              "url": "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient",
+              "type": "article"
+            },
+            {
+              "title": "JSON serialization and deserialization in .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_dependency_injection",
+          "name": "Dependency Injection and Services",
+          "tag": "advanced",
+          "description": "Understand the principles of Dependency Injection (DI) and Inversion of Control (IoC). Implement DI frameworks (e.g., Microsoft.Extensions.DependencyInjection) to build loosely coupled and testable applications.",
+          "resources": [
+            {
+              "title": "Dependency injection in .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection",
+              "type": "article"
+            },
+            {
+              "title": "Dependency Injection in WinUI 3 Desktop apps",
+              "url": "https://github.com/microsoft/WindowsAppSDK-Samples/tree/main/Samples/WinUI-3-0/DITutorial",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_asynchronous_programming",
+          "name": "Asynchronous Programming and Concurrency",
+          "tag": "advanced",
+          "description": "Master `async`/`await` patterns for responsive UIs, understand `Task` Parallel Library (TPL), handle cancellation tokens, and apply techniques for managing concurrent operations and background tasks efficiently.",
+          "resources": [
+            {
+              "title": "Asynchronous programming with async and await",
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-and-await",
+              "type": "article"
+            },
+            {
+              "title": "Tasks in C#",
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/task-asynchronous-programming-model",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_testing_debugging",
+          "name": "Unit, Integration, and UI Testing",
+          "tag": "advanced",
+          "description": "Write comprehensive unit tests for application logic using xUnit/MSTest, perform integration tests for data and service layers, and introduce UI testing strategies using tools like WinAppDriver or Playwright for desktop apps.",
+          "resources": [
+            {
+              "title": "Unit test C# in .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest",
+              "type": "article"
+            },
+            {
+              "title": "WinAppDriver GitHub",
+              "url": "https://github.com/microsoft/WinAppDriver",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_project_mid_app",
+          "name": "Mid-Project: Feature-Rich Application",
+          "tag": "essential",
+          "description": "Develop a moderately complex Windows application demonstrating UI design, MVVM, data persistence (local or remote), networking, and basic navigation. Examples: a recipe manager, a media player interface, or a personal finance tracker.",
+          "resources": [
+            {
+              "title": "Build a WinUI 3 PhotoStore app",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/winui3/quickstart-photos",
+              "type": "course"
+            },
+            {
+              "title": "Expense Tracker Sample WinUI 3",
+              "url": "https://github.com/microsoft/WinUI-Gallery/tree/main/samples/ExpenseTracker",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "windows_app_developer_core_skills",
-      "name": "Core Skills and Implementation",
-      "tag": "essential",
-      "description": "Build the practical skill stack for Windows App Developer through small exercises, realistic constraints, and repeatable workflows.",
-      "resources": [
-        {
-          "title": "How Does The Windows App SDK work with all apps? | One Dev Question (Windows Developer)",
-          "url": "https://www.youtube.com/watch?v=XGJ_QWdcYAA",
-          "type": "video"
-        },
-        {
-          "title": "WinUI Documentation",
-          "url": "https://learn.microsoft.com/en-us/windows/apps/winui/",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "windows_app_developer_implementation_patterns",
-          "name": "Implementation Patterns",
-          "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "Windows App SDK Documentation",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "windows_app_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "Create Your First WinUI App",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/start-here",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "windows_app_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "windows_app_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "windows_app_dev_deployment_advanced_production",
+      "name": "Deployment, Advanced Features, and Production Readiness",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Prepare Windows applications for production environments, including robust packaging, secure deployment, deep system integrations, performance optimization, and ongoing maintenance.",
       "resources": [
         {
-          "title": "Build your first Windows app with WinUI and Visual Studio (Microsoft Visual Studio)",
-          "url": "https://www.youtube.com/watch?v=XO_LnDfsQmc",
-          "type": "video"
+          "title": "Publish your WinUI 3 app with MSIX",
+          "url": "https://learn.microsoft.com/en-us/windows/apps/publish/overview",
+          "type": "article"
         },
         {
-          "title": "Create Your First WinUI App",
-          "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/start-here",
-          "type": "course"
+          "title": "Windows Dev Center",
+          "url": "https://developer.microsoft.com/en-us/windows/",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "windows_app_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "windows_app_dev_packaging_deployment",
+          "name": "App Packaging and Deployment with MSIX",
+          "tag": "essential",
+          "description": "Understand MSIX packaging, create app packages for distribution, and learn about various deployment methods including sideloading, web installation, and automatic updates for both packaged and unpackaged apps.",
           "resources": [
             {
-              "title": "WinUI Documentation",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/winui/",
+              "title": "Overview of MSIX",
+              "url": "https://learn.microsoft.com/en-us/windows/msix/overview",
+              "type": "article"
+            },
+            {
+              "title": "Deploying apps with the Windows App SDK",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/deploy-overview",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "windows_app_developer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "windows_app_dev_store_submission_monetization",
+          "name": "Microsoft Store Submission and Monetization",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Navigate the Microsoft Partner Center, prepare and submit apps to the Microsoft Store, understand store certification policies, and explore monetization strategies like in-app purchases, subscriptions, and advertisements.",
           "resources": [
             {
-              "title": "Windows App SDK Documentation",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
+              "title": "Publish your Windows app",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Store Policies",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "windows_app_dev_accessibility_globalization",
+          "name": "Accessibility, Localization, and Globalization",
+          "tag": "essential",
+          "description": "Design and implement accessible UIs for users with disabilities (screen readers, keyboard navigation, high contrast), localize applications for multiple languages and cultures, and ensure compliance with accessibility standards.",
+          "resources": [
+            {
+              "title": "Accessibility in Windows applications",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/accessibility/",
+              "type": "article"
+            },
+            {
+              "title": "Globalization and localization",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/globalizing/globalizing-your-app",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_advanced_sdk_features",
+          "name": "Advanced Windows App SDK Features",
+          "tag": "advanced",
+          "description": "Explore and integrate powerful Windows App SDK features such as toast notifications, widgets, app services for inter-process communication, multi-window support, and extending the shell.",
+          "resources": [
+            {
+              "title": "Notifications in Windows apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/shell/tiles-and-notifications/toast-notifications-overview",
+              "type": "article"
+            },
+            {
+              "title": "Create app widgets",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/design/widgets/create-widgets",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_native_interop_p_invoke",
+          "name": "Native System Interoperability (P/Invoke, WinRT)",
+          "tag": "advanced",
+          "description": "Leverage WinRT APIs for deep OS integration, understand Platform Invoke (P/Invoke) for calling native C/C++ functions (DLLs), and explore COM interop for integrating with legacy Windows components.",
+          "resources": [
+            {
+              "title": "Call Windows Runtime APIs in desktop apps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/api-for-win32",
+              "type": "article"
+            },
+            {
+              "title": "Platform invoke (P/Invoke)",
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/interop/pinvoke",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_performance_profiling",
+          "name": "Performance Profiling and Optimization",
+          "tag": "advanced",
+          "description": "Identify and resolve performance bottlenecks using Visual Studio's profiling tools (CPU Usage, Memory Usage, UI Debugging Tools). Optimize UI responsiveness, startup time, and resource consumption.",
+          "resources": [
+            {
+              "title": "Analyze CPU usage in Visual Studio",
+              "url": "https://learn.microsoft.com/en-us/visualstudio/profiling/cpu-usage?view=vs-2022",
+              "type": "article"
+            },
+            {
+              "title": "Diagnose memory issues with Visual Studio",
+              "url": "https://learn.microsoft.com/en-us/visualstudio/profiling/analyze-memory-usage?view=vs-2022",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_security_authentication",
+          "name": "Security and User Authentication",
+          "tag": "advanced",
+          "description": "Implement secure coding practices, protect sensitive data, understand Windows security features, and integrate authentication mechanisms using Microsoft Identity Platform (Azure AD), OAuth 2.0, or Windows Hello.",
+          "resources": [
+            {
+              "title": "Security for Windows applications",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/security/",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Identity Platform documentation",
+              "url": "https://learn.microsoft.com/en-us/azure/active-directory/develop/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_telemetry_crash_reporting",
+          "name": "Telemetry, Logging, and Crash Reporting",
+          "tag": "advanced",
+          "description": "Integrate telemetry for usage analytics (e.g., Application Insights), implement robust logging (e.g., Serilog), and set up crash reporting mechanisms (e.g., App Center, WER) for monitoring and improving application stability.",
+          "resources": [
+            {
+              "title": "Monitor your UWP app with Visual Studio Application Insights (Windows Dev Docs)",
+              "url": "https://www.youtube.com/watch?v=7u20tB9306k",
+              "type": "video"
+            },
+            {
+              "title": "Serilog for .NET",
+              "url": "https://serilog.net/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "windows_app_dev_cicd_collaboration",
+          "name": "CI/CD Pipelines and Team Collaboration",
+          "tag": "advanced",
+          "description": "Implement Continuous Integration/Continuous Deployment (CI/CD) pipelines for Windows apps using Azure DevOps or GitHub Actions, manage version control (Git), and practice effective team collaboration workflows.",
+          "resources": [
+            {
+              "title": "Build your WinUI 3 desktop app with Azure DevOps",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/winui/winui3-ci-cd-azure-devops",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions for .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/devops/github-actions-overview",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "windows_app_developer_portfolio_career",
+      "id": "windows_app_dev_portfolio_career",
       "name": "Portfolio and Career Readiness",
       "tag": "advanced",
-      "description": "Turn your Windows App Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Translate your technical skills into tangible proof: build a robust portfolio, document your projects, and prepare for career opportunities in Windows app development.",
       "resources": [
-        {
-          "title": "Windows App SDK Documentation",
-          "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
-          "type": "article"
-        },
-        {
-          "title": "WinUI Documentation",
-          "url": "https://learn.microsoft.com/en-us/windows/apps/winui/",
-          "type": "article"
-        },
         {
           "title": "Create Your First WinUI App",
           "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/start-here",
@@ -180,32 +533,58 @@
       ],
       "children": [
         {
-          "id": "windows_app_developer_case_study",
-          "name": "Case Study Writing",
+          "id": "windows_app_dev_professional_practices",
+          "name": "Professional Development Practices",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Learn best practices for writing clean, maintainable, and performant code. Understand code review processes, documentation standards, and effective use of design patterns.",
           "resources": [
             {
-              "title": "Windows App SDK Documentation",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/",
+              "title": "Clean Code principles",
+              "url": "https://www.oreilly.com/library/view/clean-code-a/9780132350884/",
+              "type": "article"
+            },
+            {
+              "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+              "url": "https://www.oreilly.com/library/view/design-patterns-elements/9780201633610/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "windows_app_developer_project_capstone",
-          "name": "Project: Windows App Developer Portfolio Capstone",
+          "id": "windows_app_dev_case_study_writing",
+          "name": "Case Study and Project Documentation",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Windows App Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Develop compelling case studies for your projects, detailing the problem, solution, technologies used, architectural decisions, challenges faced, and measurable outcomes. Create professional READMEs and project wikis.",
           "resources": [
             {
-              "title": "Create Your First WinUI App",
-              "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/start-here",
-              "type": "course"
+              "title": "How to write a case study (HubSpot)",
+              "url": "https://blog.hubspot.com/marketing/how-to-write-case-study",
+              "type": "article"
+            },
+            {
+              "title": "How to write a great README for your GitHub project",
+              "url": "https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "windows_app_dev_project_capstone",
+          "name": "Capstone Project: Professional Windows Application",
+          "tag": "advanced",
+          "description": "Design and build a comprehensive, portfolio-grade Windows application. This project should integrate a wide range of skills, from advanced UI/UX design, data management, complex business logic, advanced Windows App SDK features, and deployment readiness. Include professional documentation, architectural diagrams, and a retrospective.",
+          "resources": [
+            {
+              "title": "WinUI 3 Gallery - Reference app showcasing WinUI controls",
+              "url": "https://github.com/microsoft/WinUI-Gallery",
+              "type": "article"
+            },
+            {
+              "title": "Sample apps for Windows app development",
+              "url": "https://learn.microsoft.com/en-us/windows/apps/get-started/samples",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

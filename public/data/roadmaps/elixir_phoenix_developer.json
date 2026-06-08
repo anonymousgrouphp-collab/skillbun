@@ -5,207 +5,1951 @@
   "format": "tree",
   "tree": [
     {
-      "id": "elixir_phoenix_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "elixir_fundamentals",
+      "name": "Elixir Language Fundamentals",
       "tag": "essential",
-      "description": "Understand what Elixir/Phoenix Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Master the core syntax, functional programming paradigms, and foundational concepts of the Elixir language to build robust and maintainable applications.",
       "resources": [
-        {
-          "title": "Learning Elixir and Phoenix LiveView | Claudey With a Chance of DevOps (Jason Smith)",
-          "url": "https://www.youtube.com/watch?v=OUhguI44bGo",
-          "type": "video"
-        },
         {
           "title": "Elixir Getting Started",
           "url": "https://elixir-lang.org/getting-started/introduction.html",
           "type": "course"
+        },
+        {
+          "title": "Elixir School",
+          "url": "https://elixirschool.com/",
+          "type": "course"
+        },
+        {
+          "title": "Programming Elixir 1.6 (Book)",
+          "url": "https://pragprog.com/titles/elixir16/programming-elixir-1-6/",
+          "type": "course"
+        },
+        {
+          "title": "Learn Elixir 0-60 in one Hour - Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=R9Q8rXbW8p0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/elixir_fundamentals.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "elixir_phoenix_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "elixir_syntax_data_types",
+          "name": "Syntax, Data Types & Pattern Matching",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Understand basic syntax, core data types (atoms, lists, maps, tuples), and the power of pattern matching in Elixir.",
           "resources": [
             {
-              "title": "Phoenix Framework Guides",
-              "url": "https://hexdocs.pm/phoenix/overview.html",
+              "title": "Elixir School: Basic Types",
+              "url": "https://elixirschool.com/en/lessons/basics/basics/",
               "type": "article"
+            },
+            {
+              "title": "Elixir School: Pattern Matching",
+              "url": "https://elixirschool.com/en/lessons/basics/pattern-matching/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Tutorial (2020) - 4 - Basic Data Types",
+              "url": "https://www.youtube.com/watch?v=J74N0PqH0D4",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Tutorial (2020) - 7 - Pattern Matching",
+              "url": "https://www.youtube.com/watch?v=eB80s3mHl-Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_syntax_data_types.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "elixir_phoenix_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "elixir_functional_concepts",
+          "name": "Functional Programming Concepts",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Grasp immutability, pure functions, recursion, higher-order functions, and pipe operator for clean and declarative code.",
           "resources": [
             {
-              "title": "Ecto Documentation",
-              "url": "https://hexdocs.pm/ecto/Ecto.html",
+              "title": "Elixir School: The Pipe Operator",
+              "url": "https://elixirschool.com/en/lessons/basics/pipe_operator/",
               "type": "article"
+            },
+            {
+              "title": "Functional Programming for the Object-Oriented Programmer",
+              "url": "https://www.youtube.com/watch?v=sOEFY1vA9_E",
+              "type": "video"
+            },
+            {
+              "title": "Functional Programming Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=e-5obG1G_FY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_functional_concepts.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "elixir_modules_functions",
+          "name": "Modules, Functions & Organizers",
+          "tag": "essential",
+          "description": "Learn to define modules, functions, use `defp` for private functions, and organize code with `import`, `alias`, `require`.",
+          "resources": [
+            {
+              "title": "Elixir School: Modules",
+              "url": "https://elixirschool.com/en/lessons/basics/modules/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir School: Aliases, Imports and Requires",
+              "url": "https://elixirschool.com/en/lessons/basics/aliases/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Tutorial for Beginners - 3 - Modules, Functions, Recursion & Pattern Matching",
+              "url": "https://www.youtube.com/watch?v=F070qK66W0c",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Tutorial for Beginners - 4 - Code Organization & Imports",
+              "url": "https://www.youtube.com/watch?v=D-hS7v3i5n4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_modules_functions.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_enums_comprehensions",
+          "name": "Enum Module & Comprehensions",
+          "tag": "essential",
+          "description": "Effectively work with collections using the powerful `Enum` module and leverage list/map comprehensions for concise data transformations.",
+          "resources": [
+            {
+              "title": "Elixir School: Enum",
+              "url": "https://elixirschool.com/en/lessons/basics/enum/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir School: Comprehensions",
+              "url": "https://elixirschool.com/en/lessons/basics/comprehensions/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir - 31 - Enum module",
+              "url": "https://www.youtube.com/watch?v=sI91-G_wMdo",
+              "type": "video"
+            },
+            {
+              "title": "Elixir - 32 - Comprehensions",
+              "url": "https://www.youtube.com/watch?v=fD0i5sU4lK4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_enums_comprehensions.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_error_handling",
+          "name": "Error Handling & Control Flow",
+          "tag": "essential",
+          "description": "Implement robust error handling strategies using `case`, `with`, `try/catch`, `raise`, `exit`, and understand different types of errors.",
+          "resources": [
+            {
+              "title": "Elixir School: Error Handling",
+              "url": "https://elixirschool.com/en/lessons/basics/try_catch_throw_and_rescue/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir School: With",
+              "url": "https://elixirschool.com/en/lessons/basics/with/",
+              "type": "article"
+            },
+            {
+              "title": "Error Handling in Elixir - Try, Rescue, Catch, Throw and Exit",
+              "url": "https://www.youtube.com/watch?v=s5R8R3VqS-g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_error_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_mix_escript",
+          "name": "Mix Build Tool & Escript",
+          "tag": "essential",
+          "description": "Understand Mix for project management, dependencies, tasks, and building executable Escripts.",
+          "resources": [
+            {
+              "title": "Elixir School: Mix",
+              "url": "https://elixirschool.com/en/lessons/basics/mix/",
+              "type": "article"
+            },
+            {
+              "title": "Mix and OTP: Escript",
+              "url": "https://hexdocs.pm/mix/Mix.Tasks.Escript.Build.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Tutorial (2020) - Mix, IEx, and Project Structure",
+              "url": "https://www.youtube.com/watch?v=F3Q93lQ9f_w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_mix_escript.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "elixir_phoenix_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "elixir_otp_concurrency",
+      "name": "OTP and Concurrency Model",
       "tag": "essential",
-      "description": "Build the practical skill stack for Elixir/Phoenix Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Dive deep into Elixir's concurrency model based on the Erlang Virtual Machine (BEAM) and the Open Telecom Platform (OTP) for building fault-tolerant and distributed systems.",
       "resources": [
+        {
+          "title": "Elixir School: Concurrency",
+          "url": "https://elixirschool.com/en/lessons/advanced/concurrency/",
+          "type": "course"
+        },
+        {
+          "title": "Programming Phoenix LiveView (Book, covers OTP)",
+          "url": "https://pragprog.com/titles/phoenix_storybook/programming-phoenix-liveview/",
+          "type": "course"
+        },
+        {
+          "title": "Learn You Some Erlang for Great Good! (Covers OTP fundamentals)",
+          "url": "http://learnyousomeerlang.com/what-is-otp/basics.html",
+          "type": "course"
+        },
+        {
+          "title": "Elixir Tutorial - 11 - OTP GenServer",
+          "url": "https://www.youtube.com/watch?v=F3a1uL5rV_8",
+          "type": "video"
+        },
+        {
+          "title": "Elixir Tutorial - 12 - OTP Supervisor",
+          "url": "https://www.youtube.com/watch?v=6r2S_j-hF7Y",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/elixir_otp_concurrency.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "elixir_processes_messaging",
+          "name": "Elixir Processes & Message Passing",
+          "tag": "essential",
+          "description": "Learn about lightweight processes, message passing, `spawn`, `send`, `receive` for concurrent execution.",
+          "resources": [
+            {
+              "title": "Elixir School: Processes",
+              "url": "https://elixirschool.com/en/lessons/advanced/processes/",
+              "type": "article"
+            },
+            {
+              "title": "Working with Processes in Elixir (Thoughtbot)",
+              "url": "https://thoughtbot.com/blog/working-with-processes-in-elixir",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Crash Course - Learn Elixir in 2 hours!",
+              "url": "https://www.youtube.com/watch?v=Jm4z_e4lK3g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_processes_messaging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_gen_server",
+          "name": "GenServer Behavior",
+          "tag": "essential",
+          "description": "Master `GenServer` for building robust server-client applications, managing state, and handling asynchronous requests.",
+          "resources": [
+            {
+              "title": "Elixir School: GenServer",
+              "url": "https://elixirschool.com/en/lessons/advanced/genserver/",
+              "type": "article"
+            },
+            {
+              "title": "Hexdocs: GenServer",
+              "url": "https://hexdocs.pm/elixir/GenServer.html",
+              "type": "article"
+            },
+            {
+              "title": "GenServer in Elixir - Build a Simple Key-Value Store",
+              "url": "https://www.youtube.com/watch?v=F_fG1yM-l0k",
+              "type": "video"
+            },
+            {
+              "title": "Learn GenServer in Elixir: The COMPLETE Guide (from basic to advanced)",
+              "url": "https://www.youtube.com/watch?v=s9s7R4c-V-s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_gen_server.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_agent_task",
+          "name": "Agent & Task Behaviors",
+          "tag": "essential",
+          "description": "Utilize `Agent` for simple state management and `Task` for running one-off, asynchronous computations.",
+          "resources": [
+            {
+              "title": "Elixir School: Agent",
+              "url": "https://elixirschool.com/en/lessons/advanced/agent/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir School: Task",
+              "url": "https://elixirschool.com/en/lessons/advanced/task/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Language: Concurrency with Agent and Task",
+              "url": "https://www.youtube.com/watch?v=33K8mYj7W7k",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Concurrency with Task.async and Task.await",
+              "url": "https://www.youtube.com/watch?v=kYJj7oKj07I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_agent_task.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_supervisors",
+          "name": "Supervisors & Supervision Trees",
+          "tag": "essential",
+          "description": "Implement fault-tolerant systems using `Supervisor` to manage process lifecycles and recovery strategies.",
+          "resources": [
+            {
+              "title": "Elixir School: Supervisors",
+              "url": "https://elixirschool.com/en/lessons/advanced/supervisors/",
+              "type": "article"
+            },
+            {
+              "title": "Hexdocs: Supervisor",
+              "url": "https://hexdocs.pm/elixir/Supervisor.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir/Phoenix Training #3 - Supervisors",
+              "url": "https://www.youtube.com/watch?v=Fj-cWj_H-80",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_supervisors.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_applications_releases",
+          "name": "OTP Applications & Releases",
+          "tag": "essential",
+          "description": "Structure your projects as OTP applications and learn to build standalone releases for deployment with `Mix Release`.",
+          "resources": [
+            {
+              "title": "Elixir School: Applications",
+              "url": "https://elixirschool.com/en/lessons/advanced/applications/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir: Releases",
+              "url": "https://elixir-lang.org/getting-started/mix-otp/releases.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Mix Release Tutorial",
+              "url": "https://www.youtube.com/watch?v=Fj2F2R-5oD0",
+              "type": "video"
+            },
+            {
+              "title": "Elixir & OTP Introduction",
+              "url": "https://www.youtube.com/watch?v=hB2X8_K3xT8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_applications_releases.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phoenix_framework_core",
+      "name": "Phoenix Framework Essentials",
+      "tag": "essential",
+      "description": "Get started with the Phoenix web framework, understanding its structure, MVC pattern, routing, and basic request/response cycle for building powerful web applications.",
+      "resources": [
+        {
+          "title": "Phoenix Framework Guides",
+          "url": "https://hexdocs.pm/phoenix/overview.html",
+          "type": "course"
+        },
         {
           "title": "Phoenix Framework REST API Crash Course - Introduction + Full Elixir API Tutorial (Caleb Curry)",
           "url": "https://www.youtube.com/watch?v=9xaN44PNxps",
           "type": "video"
         },
         {
-          "title": "Phoenix Framework Guides",
-          "url": "https://hexdocs.pm/phoenix/overview.html",
-          "type": "article"
+          "title": "Learn Phoenix Framework - Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=r_G_7X1L8qY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/phoenix_framework_core.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "elixir_phoenix_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "phoenix_project_setup",
+          "name": "Phoenix Project Setup",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Set up a new Phoenix project, understand its directory structure, and basic configuration.",
           "resources": [
             {
-              "title": "Elixir Getting Started",
-              "url": "https://elixir-lang.org/getting-started/introduction.html",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "elixir_phoenix_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "Ecto Documentation",
-              "url": "https://hexdocs.pm/ecto/Ecto.html",
+              "title": "Phoenix Installation Guide",
+              "url": "https://hexdocs.pm/phoenix/installation.html",
               "type": "article"
+            },
+            {
+              "title": "Phoenix phx.new",
+              "url": "https://hexdocs.pm/phoenix/Mix.Tasks.Phx.New.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix Framework Crash Course | Build a Web App with Elixir & Phoenix",
+              "url": "https://www.youtube.com/watch?v=S2fF_nN_sY8",
+              "type": "video"
+            },
+            {
+              "title": "Elixir & Phoenix Introduction - Start Here (2022)",
+              "url": "https://www.youtube.com/watch?v=fXv0qfX91wU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_project_setup.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "elixir_phoenix_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "phoenix_routing_controllers",
+          "name": "Routing & Controllers",
+          "tag": "essential",
+          "description": "Define routes, create controllers, handle HTTP requests, and manage request parameters.",
+          "resources": [
+            {
+              "title": "Phoenix.Router Guide",
+              "url": "https://hexdocs.pm/phoenix/Phoenix.Router.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix.Controller Guide",
+              "url": "https://hexdocs.pm/phoenix/Phoenix.Controller.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix Framework Routing Tutorial | Phoenix Framework Crash Course Part 2",
+              "url": "https://www.youtube.com/watch?v=F_fGvJ9J8eU",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix 1.7 Quick Start: Routing and Controllers",
+              "url": "https://www.youtube.com/watch?v=076zUj-f1kY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_routing_controllers.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "phoenix_plugs_middleware",
+          "name": "Plugs & Middleware",
+          "tag": "essential",
+          "description": "Understand and utilize Plugs for building modular and composable web request pipelines, including custom plugs and the Plug specification.",
+          "resources": [
+            {
+              "title": "Plug Introduction",
+              "url": "https://hexdocs.pm/plug/Plug.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix Guides: Plugs",
+              "url": "https://hexdocs.pm/phoenix/plugs.html",
+              "type": "article"
+            },
+            {
+              "title": "Building a Custom Plug in Elixir Phoenix - Plugs 101",
+              "url": "https://www.youtube.com/watch?v=FqS7bM_W45E",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Plug Framework Tutorial",
+              "url": "https://www.youtube.com/watch?v=LqN648t07Lg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_plugs_middleware.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "phoenix_views_templates",
+          "name": "Views & EEx Templates",
+          "tag": "essential",
+          "description": "Work with Phoenix views, EEx templates, layouts, and helpers for rendering dynamic HTML.",
+          "resources": [
+            {
+              "title": "Phoenix.View Guide",
+              "url": "https://hexdocs.pm/phoenix/Phoenix.View.html",
+              "type": "article"
+            },
+            {
+              "title": "EEx Templating Engine",
+              "url": "https://hexdocs.pm/eex/EEx.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix Framework Views and Templates Tutorial | How to build a custom Layout | Elixir",
+              "url": "https://www.youtube.com/watch?v=J3-s-n1d28c",
+              "type": "video"
+            },
+            {
+              "title": "Views and Templates in Phoenix 1.7",
+              "url": "https://www.youtube.com/watch?v=k5l3K3_pX0c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_views_templates.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "phoenix_contexts_app_structure",
+          "name": "Contexts & Application Structure",
+          "tag": "essential",
+          "description": "Organize business logic using Phoenix Contexts for a clear, maintainable, and domain-driven application architecture.",
+          "resources": [
+            {
+              "title": "Phoenix Contexts (Official Blog Post)",
+              "url": "https://phoenixframework.org/blog/introducing-phoenix-contexts",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix.Context module (Hexdocs)",
+              "url": "https://hexdocs.pm/phoenix/Phoenix.Context.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix Contexts - The Right Way!",
+              "url": "https://www.youtube.com/watch?v=F0P5iU0-w20",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix Contexts Explained: What are they, and how do you use them?",
+              "url": "https://www.youtube.com/watch?v=p4vW93U_4d8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_contexts_app_structure.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "phoenix_static_assets",
+          "name": "Static Assets & Asset Pipeline",
+          "tag": "essential",
+          "description": "Manage static files, integrate with asset bundlers like esbuild, and understand the asset pipeline for efficient front-end delivery.",
+          "resources": [
+            {
+              "title": "Phoenix Static Files (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix/static_files.html",
+              "type": "article"
+            },
+            {
+              "title": "Integrating Esbuild with Phoenix",
+              "url": "https://hexdocs.pm/phoenix/asset_management.html",
+              "type": "article"
+            },
+            {
+              "title": "Modern JavaScript Tooling & Build Processes (Webpack, Parcel, Vite, Rollup)",
+              "url": "https://www.youtube.com/watch?v=FqE4y_hU73Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_static_assets.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "phoenix_channels_intro",
+          "name": "Introduction to Phoenix Channels",
+          "tag": "essential",
+          "description": "Understand the basics of Phoenix Channels for real-time communication, including topics and pub/sub patterns.",
+          "resources": [
+            {
+              "title": "Phoenix Channels Guide",
+              "url": "https://hexdocs.pm/phoenix/channels.html",
+              "type": "article"
+            },
+            {
+              "title": "Build a Simple Chat App with Phoenix Channels",
+              "url": "https://www.youtube.com/watch?v=7uC84LqI2A4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_channels_intro.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "elixir_phoenix_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "id": "ecto_data_persistence",
+      "name": "Data Persistence with Ecto",
+      "tag": "essential",
+      "description": "Learn how to interact with databases using Ecto, Elixir's powerful data mapping and query tool, enabling robust data management in your applications.",
       "resources": [
+        {
+          "title": "Ecto Documentation",
+          "url": "https://hexdocs.pm/ecto/Ecto.html",
+          "type": "course"
+        },
+        {
+          "title": "Programming Ecto (Book)",
+          "url": "https://pragprog.com/titles/ectox/programming-ecto/",
+          "type": "course"
+        },
+        {
+          "title": "Elixir & Phoenix Crash Course - Ecto + Deploying to Heroku (Part 2)",
+          "url": "https://www.youtube.com/watch?v=Fj-E_b-X4C8",
+          "type": "video"
+        },
+        {
+          "title": "Elixir Crash Course | Build a ToDo App with Phoenix and LiveView",
+          "url": "https://www.youtube.com/watch?v=uF_iWpYvFvE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/ecto_data_persistence.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ecto_schemas_migrations",
+          "name": "Ecto Schemas & Migrations",
+          "tag": "essential",
+          "description": "Define data structures with Ecto schemas and manage database changes using migrations.",
+          "resources": [
+            {
+              "title": "Ecto.Schema Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Schema.html",
+              "type": "article"
+            },
+            {
+              "title": "Ecto.Migration Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Migration.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix 1.5 - Ecto Schemas",
+              "url": "https://www.youtube.com/watch?v=Qp_8eL5p1qM",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Tutorial - Ecto Migration",
+              "url": "https://www.youtube.com/watch?v=S2fF_T3_09E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_schemas_migrations.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_changesets",
+          "name": "Ecto Changesets",
+          "tag": "essential",
+          "description": "Master `Changesets` for data validation, casting, and manipulation before persisting to the database.",
+          "resources": [
+            {
+              "title": "Ecto.Changeset Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Changeset.html",
+              "type": "article"
+            },
+            {
+              "title": "Validation with Ecto Changesets (Elixir School)",
+              "url": "https://elixirschool.com/en/lessons/ecto/changesets/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Ecto Changesets - Phoenix Framework Tutorial",
+              "url": "https://www.youtube.com/watch?v=52G4qK25k2k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_changesets.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_queries_repos",
+          "name": "Ecto Queries & Repositories",
+          "tag": "essential",
+          "description": "Build powerful queries using Ecto.Query and interact with your database via Ecto.Repo.",
+          "resources": [
+            {
+              "title": "Ecto.Query Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Query.html",
+              "type": "article"
+            },
+            {
+              "title": "Ecto.Repo Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Repo.html",
+              "type": "article"
+            },
+            {
+              "title": "Ecto for Beginners Part 1 - Elixir Tutorial",
+              "url": "https://www.youtube.com/watch?v=FqGj70_t72U",
+              "type": "video"
+            },
+            {
+              "title": "Ecto in Phoenix - Database Interaction with Ecto in Elixir",
+              "url": "https://www.youtube.com/watch?v=eJmJ09_h8aQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_queries_repos.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_associations",
+          "name": "Ecto Associations",
+          "tag": "essential",
+          "description": "Handle relationships between schemas (has_many, belongs_to, has_one, many_to_many) for complex data models.",
+          "resources": [
+            {
+              "title": "Ecto: Associations and Preloading",
+              "url": "https://hexdocs.pm/ecto/Ecto.Schema.html#module-associations",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Ecto Schema Associations",
+              "url": "https://www.youtube.com/watch?v=nJ2f2l14bCE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_associations.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_transactions_multi",
+          "name": "Transactions & Ecto.Multi",
+          "tag": "essential",
+          "description": "Ensure data consistency with database transactions and compose multiple Ecto operations atomically using `Ecto.Multi`.",
+          "resources": [
+            {
+              "title": "Ecto.Repo.transaction (Hexdocs)",
+              "url": "https://hexdocs.pm/ecto/Ecto.Repo.html#c:transaction/2",
+              "type": "article"
+            },
+            {
+              "title": "Ecto.Multi Guide",
+              "url": "https://hexdocs.pm/ecto/Ecto.Multi.html",
+              "type": "article"
+            },
+            {
+              "title": "Ecto Multi - Group Multiple Database Operations into an Atomic Transaction in Elixir - Part 1",
+              "url": "https://www.youtube.com/watch?v=F08h_00QvYw",
+              "type": "video"
+            },
+            {
+              "title": "Atomic Updates with Ecto.Multi",
+              "url": "https://www.youtube.com/watch?v=wXQJ3l1w5k0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_transactions_multi.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_embedded_custom_types",
+          "name": "Embedded Schemas & Custom Types",
+          "tag": "advanced",
+          "description": "Work with embedded schemas for complex data structures within a single record and define custom Ecto types for specific data representations.",
+          "resources": [
+            {
+              "title": "Ecto.Schema: Embedded Schemas",
+              "url": "https://hexdocs.pm/ecto/Ecto.Schema.html#module-embedded-schemas",
+              "type": "article"
+            },
+            {
+              "title": "Ecto.Type Behaviour",
+              "url": "https://hexdocs.pm/ecto/Ecto.Type.html",
+              "type": "article"
+            },
+            {
+              "title": "Ecto Embeds Explained - Elixir",
+              "url": "https://www.youtube.com/watch?v=F07l3J5W05s",
+              "type": "video"
+            },
+            {
+              "title": "Custom Ecto Types - Elixir",
+              "url": "https://www.youtube.com/watch?v=cI7Uj4zH8b8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_embedded_custom_types.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phoenix_liveview",
+      "name": "Real-time UIs with Phoenix LiveView",
+      "tag": "essential",
+      "description": "Master Phoenix LiveView to build rich, interactive user interfaces with server-rendered HTML and minimal JavaScript, creating highly responsive web applications.",
+      "resources": [
+        {
+          "title": "Phoenix LiveView Guides",
+          "url": "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html",
+          "type": "course"
+        },
         {
           "title": "Phoenix LiveView Crash Course (LiveView Mastery)",
           "url": "https://www.youtube.com/watch?v=SDDGOqPOHJ4",
           "type": "video"
         },
         {
-          "title": "Ecto Documentation",
-          "url": "https://hexdocs.pm/ecto/Ecto.html",
-          "type": "article"
+          "title": "Learning Elixir and Phoenix LiveView | Claudey With a Chance of DevOps (Jason Smith)",
+          "url": "https://www.youtube.com/watch?v=OUhguI44bGo",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/phoenix_liveview.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "elixir_phoenix_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "liveview_basics",
+          "name": "LiveView Lifecycle & Interactions",
+          "tag": "essential",
+          "description": "Understand the LiveView lifecycle (`mount`, `handle_event`, `render`), state management, and basic user interactions.",
           "resources": [
             {
-              "title": "Phoenix Framework Guides",
-              "url": "https://hexdocs.pm/phoenix/overview.html",
+              "title": "LiveView Lifecycle (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#module-lifecycle",
               "type": "article"
+            },
+            {
+              "title": "Handling Events (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#module-handling-events",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix LiveView Tutorial for Beginners (Basic example)",
+              "url": "https://www.youtube.com/watch?v=7M_H4s1Xf6g",
+              "type": "video"
+            },
+            {
+              "title": "Getting Started with Phoenix LiveView (Part 1 - Phoenix LiveView From Scratch)",
+              "url": "https://www.youtube.com/watch?v=t80E31L56S4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_basics.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "elixir_phoenix_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "liveview_components",
+          "name": "LiveComponents & Layouts",
+          "tag": "essential",
+          "description": "Create reusable LiveComponents, manage contexts, and utilize layouts for consistent UI.",
           "resources": [
             {
-              "title": "Elixir Getting Started",
-              "url": "https://elixir-lang.org/getting-started/introduction.html",
-              "type": "course"
+              "title": "LiveComponents (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html",
+              "type": "article"
+            },
+            {
+              "title": "Building a reusable LiveView Component (Learn Phoenix LiveView)",
+              "url": "https://www.learnphoenixliveview.com/posts/reusable-liveview-components",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix LiveView Components Tutorial",
+              "url": "https://www.youtube.com/watch?v=Jp1_eA5k_K0",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix LiveView Tutorial #1 - Intro & Setup",
+              "url": "https://www.youtube.com/watch?v=k_l2jR_Wk7I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_components.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "liveview_forms_validation",
+          "name": "Forms & Validation in LiveView",
+          "tag": "essential",
+          "description": "Handle forms, implement real-time client-side and server-side validation using Ecto Changesets in LiveView.",
+          "resources": [
+            {
+              "title": "Form Bindings and Inputs (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/form-bindings.html",
+              "type": "article"
+            },
+            {
+              "title": "LiveView Forms - Building a CRUD app in LiveView Part 2",
+              "url": "https://www.youtube.com/watch?v=F014L2xS_1k",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix LiveView Validation with Ecto Changesets",
+              "url": "https://www.youtube.com/watch?v=m4v8yvF-e4s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_forms_validation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "liveview_uploads_streaming",
+          "name": "File Uploads & Streaming",
+          "tag": "advanced",
+          "description": "Implement direct-to-S3 or server-backed file uploads and leverage LiveView's streaming capabilities for efficient data display.",
+          "resources": [
+            {
+              "title": "File Uploads (Official LiveView Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/uploads.html",
+              "type": "article"
+            },
+            {
+              "title": "LiveView Streaming (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/streams.html",
+              "type": "article"
+            },
+            {
+              "title": "Upload Files with Phoenix LiveView and S3 Presigned URLs",
+              "url": "https://www.youtube.com/watch?v=F0S12U2y26Y",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix LiveView Streaming: Insert, Update & Delete Elements",
+              "url": "https://www.youtube.com/watch?v=R5xJp760KqI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_uploads_streaming.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "liveview_authentication_authorization",
+          "name": "Authentication & Authorization with LiveView",
+          "tag": "essential",
+          "description": "Implement user authentication and authorization logic within LiveView applications, including session management and access control.",
+          "resources": [
+            {
+              "title": "Phoenix.Auth (Hexdocs, common patterns)",
+              "url": "https://hexdocs.pm/phoenix/authentication.html",
+              "type": "article"
+            },
+            {
+              "title": "Building a LiveView Authentication System",
+              "url": "https://www.youtube.com/watch?v=F_Yc2M-329U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_authentication_authorization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "liveview_js_interop",
+          "name": "JavaScript Interoperability",
+          "tag": "advanced",
+          "description": "Integrate custom JavaScript using `phx-hook`, `JS.exec`, and manage client-side features that LiveView doesn't cover.",
+          "resources": [
+            {
+              "title": "JavaScript Interoperability (Official Docs)",
+              "url": "https://hexdocs.pm/phoenix_live_view/js-interop.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix LiveView JavaScript Hooks Explained",
+              "url": "https://www.youtube.com/watch?v=2n-1Wv4r_eQ",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix LiveView: JS Commands for Front-End Interaction",
+              "url": "https://www.youtube.com/watch?v=F_fP7u4oG20",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/liveview_js_interop.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "elixir_phoenix_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
-      "tag": "advanced",
-      "description": "Turn your Elixir/Phoenix Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "id": "testing_qa",
+      "name": "Testing, Debugging & Quality Assurance",
+      "tag": "essential",
+      "description": "Implement robust testing strategies, effective debugging techniques, and best practices for code quality in Elixir and Phoenix applications to ensure reliability.",
       "resources": [
         {
-          "title": "Elixir Getting Started",
-          "url": "https://elixir-lang.org/getting-started/introduction.html",
+          "title": "Elixir School: Testing",
+          "url": "https://elixirschool.com/en/lessons/specifics/testing/",
           "type": "course"
         },
         {
-          "title": "Phoenix Framework Guides",
-          "url": "https://hexdocs.pm/phoenix/overview.html",
+          "title": "Hexdocs: ExUnit",
+          "url": "https://hexdocs.pm/ex_unit/ExUnit.html",
           "type": "article"
         },
         {
-          "title": "Ecto Documentation",
-          "url": "https://hexdocs.pm/ecto/Ecto.html",
-          "type": "article"
+          "title": "Elixir Unit Testing with ExUnit - The Simplest Introduction",
+          "url": "https://www.youtube.com/watch?v=7uV_s3e-j5U",
+          "type": "video"
+        },
+        {
+          "title": "Elixir Debugging 101: pry, dbg, IO.inspect and Observer",
+          "url": "https://www.youtube.com/watch?v=x9aM39M1k1A",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/testing_qa.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "elixir_phoenix_developer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "id": "exunit_unit_integration",
+          "name": "ExUnit: Unit & Integration Testing",
+          "tag": "essential",
+          "description": "Write comprehensive unit tests for Elixir modules and integration tests for application logic using ExUnit.",
           "resources": [
             {
-              "title": "Elixir Getting Started",
-              "url": "https://elixir-lang.org/getting-started/introduction.html",
-              "type": "course"
+              "title": "Writing Tests (Elixir Lang Docs)",
+              "url": "https://elixir-lang.org/getting-started/mix-otp/testing.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir For Beginners - Testing Your Application with ExUnit",
+              "url": "https://www.youtube.com/watch?v=8K0jV7-J3Ww",
+              "type": "video"
+            },
+            {
+              "title": "Elixir ExUnit Testing Tutorial",
+              "url": "https://www.youtube.com/watch?v=k_n7xR0m8dE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/exunit_unit_integration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "elixir_phoenix_developer_project_capstone",
-          "name": "Project: Elixir/Phoenix Developer Portfolio Capstone",
+          "id": "elixir_mocking_stubbing",
+          "name": "Mocking & Stubbing in Tests",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Elixir/Phoenix Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Learn techniques for isolating units of code during testing using mocking, stubbing, and dependency injection patterns in Elixir.",
           "resources": [
             {
-              "title": "Ecto Documentation",
-              "url": "https://hexdocs.pm/ecto/Ecto.html",
+              "title": "Testing Elixir with Mocks and Stubs",
+              "url": "https://blog.appsignal.com/2020/07/07/testing-elixir-with-mocks-and-stubs.html",
               "type": "article"
+            },
+            {
+              "title": "Mox - Simple mocking library",
+              "url": "https://hexdocs.pm/mox/Mox.html",
+              "type": "article"
+            },
+            {
+              "title": "Testing Elixir with Mox",
+              "url": "https://www.youtube.com/watch?v=F_f0iW4wHlA",
+              "type": "video"
+            },
+            {
+              "title": "Testing Third Party APIs in Elixir",
+              "url": "https://www.youtube.com/watch?v=R9j6V4Vp7uM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_mocking_stubbing.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "phoenix_liveview_testing",
+          "name": "Testing Phoenix & LiveView",
+          "tag": "essential",
+          "description": "Learn to test Phoenix controllers, views, channels, and specifically LiveView components and interactions.",
+          "resources": [
+            {
+              "title": "Phoenix.ConnTest Guide",
+              "url": "https://hexdocs.pm/phoenix/Phoenix.ConnTest.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix.LiveViewTest Guide",
+              "url": "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveViewTest.html",
+              "type": "article"
+            },
+            {
+              "title": "Phoenix LiveView: Testing Interactive Components",
+              "url": "https://www.youtube.com/watch?v=R9_W_1aH7vM",
+              "type": "video"
+            },
+            {
+              "title": "Testing a Phoenix LiveView Application - Phoenix 1.7",
+              "url": "https://www.youtube.com/watch?v=JmYjD4jQ52w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/phoenix_liveview_testing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ecto_testing_strategies",
+          "name": "Ecto Database Testing",
+          "tag": "essential",
+          "description": "Implement database testing strategies, including transactional tests and seeding data for tests.",
+          "resources": [
+            {
+              "title": "Testing Ecto (Ecto Docs)",
+              "url": "https://hexdocs.pm/ecto/Ecto.Repo.html#module-testing",
+              "type": "article"
+            },
+            {
+              "title": "Effective Database Testing with Ecto - Joe White - ElixirConf 2017",
+              "url": "https://www.youtube.com/watch?v=F_S9p-m1L3c",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix LiveView Testing with Ecto Integration",
+              "url": "https://www.youtube.com/watch?v=uK4J64hF62s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/ecto_testing_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_code_quality_tools",
+          "name": "Code Quality & Static Analysis",
+          "tag": "essential",
+          "description": "Utilize tools like `mix format` for consistent code styling and `Credo` for static analysis to enforce coding standards and identify potential issues.",
+          "resources": [
+            {
+              "title": "Mix Format (Official Elixir Docs)",
+              "url": "https://elixir-lang.org/getting-started/mix-otp/code-formatter.html",
+              "type": "article"
+            },
+            {
+              "title": "Credo (Static Code Analysis)",
+              "url": "https://hexdocs.pm/credo/Credo.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Quick Bits - Credo",
+              "url": "https://www.youtube.com/watch?v=0wQ7-D10b3Q",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Mix Format - A Guide to Consistent Code Style",
+              "url": "https://www.youtube.com/watch?v=cM2yRk1cWf0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_code_quality_tools.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "debugging_tools",
+          "name": "Debugging & Observability Tools",
+          "tag": "essential",
+          "description": "Utilize `IEx`, `IO.inspect`, `Logger`, and the Erlang `Observer` for effective debugging and runtime inspection.",
+          "resources": [
+            {
+              "title": "Elixir School: Logging",
+              "url": "https://elixirschool.com/en/lessons/specifics/logging/",
+              "type": "article"
+            },
+            {
+              "title": "Using the Erlang Observer in Elixir",
+              "url": "https://www.honeybadger.io/blog/erlang-observer-elixir/",
+              "type": "article"
+            },
+            {
+              "title": "ElixirConf EU 2021 - Elixir Debugging: The Good Parts - Alex Koutmos",
+              "url": "https://www.youtube.com/watch?v=F0f-N8Vn2K8",
+              "type": "video"
+            },
+            {
+              "title": "Explore your Elixir App with Erlang Observer",
+              "url": "https://www.youtube.com/watch?v=Q-43XjV-x1k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/debugging_tools.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deployment_observability",
+      "name": "Deployment, Operations & Observability",
+      "tag": "advanced",
+      "description": "Learn to deploy, monitor, and maintain Elixir/Phoenix applications in production environments, focusing on reliability, security, and performance at scale.",
+      "resources": [
+        {
+          "title": "Building and Deploying Elixir Applications (DockYard)",
+          "url": "https://dockyard.com/blog/2021/04/09/building-and-deploying-elixir-applications",
+          "type": "article"
+        },
+        {
+          "title": "Elixir School: Deployment",
+          "url": "https://elixirschool.com/en/lessons/specifics/deployment/",
+          "type": "course"
+        },
+        {
+          "title": "Deploy a Phoenix App to Gigalixir in 2023",
+          "url": "https://www.youtube.com/watch?v=F07X6J2r1l4",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/deployment_observability.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "elixir_deployment_strategies",
+          "name": "Elixir Deployment Strategies",
+          "tag": "advanced",
+          "description": "Explore various deployment methods like releases, Docker, cloud platforms (Gigalixir, Fly.io, Kubernetes) and understand their trade-offs.",
+          "resources": [
+            {
+              "title": "Deploying Elixir to Fly.io",
+              "url": "https://fly.io/docs/elixir/getting-started/elixir-on-fly/",
+              "type": "article"
+            },
+            {
+              "title": "Dockerizing Elixir & Phoenix Applications",
+              "url": "https://hexdocs.pm/phoenix/container_deployment.html",
+              "type": "article"
+            },
+            {
+              "title": "Deploy Elixir & Phoenix to Fly.io",
+              "url": "https://www.youtube.com/watch?v=FqS0aF6U1jI",
+              "type": "video"
+            },
+            {
+              "title": "How to Deploy a Phoenix App to Gigalixir in 2023",
+              "url": "https://www.youtube.com/watch?v=Yf-0260tC_s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_deployment_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_env_config_secrets",
+          "name": "Environment Configuration & Secrets Management",
+          "tag": "advanced",
+          "description": "Effectively manage environment-specific configurations and securely handle sensitive data and secrets in Elixir applications.",
+          "resources": [
+            {
+              "title": "Managing Configuration (Elixir School)",
+              "url": "https://elixirschool.com/en/lessons/specifics/configuration/",
+              "type": "article"
+            },
+            {
+              "title": "How to Store Production Secrets for Elixir Apps",
+              "url": "https://blog.appsignal.com/2021/09/21/how-to-store-production-secrets-for-elixir-apps.html",
+              "type": "article"
+            },
+            {
+              "title": "Configuring a Phoenix Project",
+              "url": "https://www.youtube.com/watch?v=F3z0FwYt_4A",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix Environment Variables & Configuration Files",
+              "url": "https://www.youtube.com/watch?v=qT3xVp4K9gU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_env_config_secrets.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_ci_cd_pipelines",
+          "name": "CI/CD Pipelines for Elixir/Phoenix",
+          "tag": "advanced",
+          "description": "Set up continuous integration and continuous deployment pipelines using tools like GitHub Actions or GitLab CI for automated testing and deployment.",
+          "resources": [
+            {
+              "title": "CI/CD for Elixir and Phoenix with GitHub Actions",
+              "url": "https://blog.appsignal.com/2020/09/15/ci-cd-for-elixir-and-phoenix-with-github-actions.html",
+              "type": "article"
+            },
+            {
+              "title": "Building Elixir Releases with GitLab CI",
+              "url": "https://medium.com/flatiron-labs/building-elixir-releases-with-gitlab-ci-4c54019fb00d",
+              "type": "article"
+            },
+            {
+              "title": "Deploying Elixir/Phoenix Apps with GitHub Actions | ElixirConf 2022",
+              "url": "https://www.youtube.com/watch?v=F5i5n8aFk0Y",
+              "type": "video"
+            },
+            {
+              "title": "Elixir Phoenix Deployment to Fly.io with GitLab CI/CD",
+              "url": "https://www.youtube.com/watch?v=kR2Vw1S43V4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_ci_cd_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "monitoring_logging_metrics",
+          "name": "Monitoring, Logging & Metrics",
+          "tag": "advanced",
+          "description": "Implement structured logging with `Logger`, capture application metrics with `Telemetry`, and integrate with monitoring tools (e.g., Prometheus, Grafana).",
+          "resources": [
+            {
+              "title": "Telemetry: Metrics for Elixir Applications",
+              "url": "https://hexdocs.pm/telemetry/Telemetry.html",
+              "type": "article"
+            },
+            {
+              "title": "Monitoring Elixir applications with Prometheus and Grafana",
+              "url": "https://www.erlang-solutions.com/blog/monitoring-elixir-applications-with-prometheus-and-grafana/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir Phoenix Monitoring and Logging with PromEx",
+              "url": "https://www.youtube.com/watch?v=F0S12d_M-fE",
+              "type": "video"
+            },
+            {
+              "title": "The Telemetry Library with Benwilson. ElixirConf US 2021",
+              "url": "https://www.youtube.com/watch?v=W-LzH2J485Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/monitoring_logging_metrics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "performance_optimization",
+          "name": "Performance Optimization",
+          "tag": "advanced",
+          "description": "Identify bottlenecks, optimize Elixir code, database queries, and manage concurrency for high-performance applications.",
+          "resources": [
+            {
+              "title": "Optimizing Elixir applications (AppSignal)",
+              "url": "https://appsignal.com/elixir/guides/performance",
+              "type": "article"
+            },
+            {
+              "title": "Ecto performance tips",
+              "url": "https://hexdocs.pm/ecto/Ecto.Repo.html#module-performance-tips",
+              "type": "article"
+            },
+            {
+              "title": "Optimizing Elixir Applications at Scale - Todd Resudek - ElixirConf 2018",
+              "url": "https://www.youtube.com/watch?v=JgT6vjYxW-w",
+              "type": "video"
+            },
+            {
+              "title": "Faster Ecto Queries - Andrew Ek - ElixirConfEU 2021",
+              "url": "https://www.youtube.com/watch?v=4T194mC-72w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/performance_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "security_best_practices",
+          "name": "Security Best Practices",
+          "tag": "advanced",
+          "description": "Understand common web vulnerabilities, implement secure coding practices, and secure Phoenix applications (e.g., Cross-Site Request Forgery, SQL Injection, authentication).",
+          "resources": [
+            {
+              "title": "Phoenix Security Guide",
+              "url": "https://hexdocs.pm/phoenix/security.html",
+              "type": "article"
+            },
+            {
+              "title": "Secure Coding in Elixir: Part 1 - Common Web Application Vulnerabilities",
+              "url": "https://www.amberbit.com/blog/2021/4/27/secure-coding-in-elixir-part-1-common-web-application-vulnerabilities/",
+              "type": "article"
+            },
+            {
+              "title": "Top 10 OWASP Web Application Security Risks Explained",
+              "url": "https://www.youtube.com/watch?v=F0nyT_h7WvQ",
+              "type": "video"
+            },
+            {
+              "title": "A Comprehensive Guide to Web Security: What to know as a Developer",
+              "url": "https://www.youtube.com/watch?v=0_u6uB2dgl0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/security_best_practices.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "advanced_elixir_phoenix",
+      "name": "Advanced Topics & Ecosystem",
+      "tag": "advanced",
+      "description": "Explore deeper into the Elixir and Phoenix ecosystem, covering advanced features, distributed systems, and powerful libraries to extend application capabilities.",
+      "resources": [
+        {
+          "title": "Elixir School: Advanced Topics",
+          "url": "https://elixirschool.com/en/lessons/advanced/",
+          "type": "course"
+        },
+        {
+          "title": "The Big Elixir Book Club (Phoenix & Elixir books)",
+          "url": "https://bigelixirbookclub.com/",
+          "type": "course"
+        },
+        {
+          "title": "Elixir - GenStage & Broadway - Part 1: Intro to GenStage",
+          "url": "https://www.youtube.com/watch?v=JbT1XJjXW8k",
+          "type": "video"
+        },
+        {
+          "title": "How to Build a Simple Distributed Application in Elixir",
+          "url": "https://www.youtube.com/watch?v=s_KjXo2bWq8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/advanced_elixir_phoenix.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "distributed_elixir_systems",
+          "name": "Distributed Elixir Systems",
+          "tag": "advanced",
+          "description": "Understand how to build and manage distributed Elixir applications, including clustering, distributed processes, and RPC.",
+          "resources": [
+            {
+              "title": "Elixir School: Distributed Elixir",
+              "url": "https://elixirschool.com/en/lessons/advanced/distributed/",
+              "type": "article"
+            },
+            {
+              "title": "Hexdocs: Erlang Distribution Guide",
+              "url": "https://www.erlang.org/doc/apps/erts/dist_overview.html",
+              "type": "article"
+            },
+            {
+              "title": "ElixirConf 2018 - Elixir and Distributed Systems - Bryan Hunter",
+              "url": "https://www.youtube.com/watch?v=N9p1y4l-S8k",
+              "type": "video"
+            },
+            {
+              "title": "ElixirConf EU 2023 - Mastering Distributed Systems with Elixir and OTP - Filip Trojanowski",
+              "url": "https://www.youtube.com/watch?v=Kz1t88M_F4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/distributed_elixir_systems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "advanced_otp_behaviors",
+          "name": "Advanced OTP Behaviors (GenStage, GenRegistry)",
+          "tag": "advanced",
+          "description": "Explore more advanced OTP behaviors like `GenStage` for building data processing pipelines and `GenRegistry` for distributed named processes.",
+          "resources": [
+            {
+              "title": "Hexdocs: GenStage",
+              "url": "https://hexdocs.pm/gen_stage/GenStage.html",
+              "type": "article"
+            },
+            {
+              "title": "Hexdocs: GenRegistry",
+              "url": "https://hexdocs.pm/gen_registry/GenRegistry.html",
+              "type": "article"
+            },
+            {
+              "title": "Elixir School: GenStage - Demystified",
+              "url": "https://www.youtube.com/watch?v=R0iL1I0xYJ8",
+              "type": "video"
+            },
+            {
+              "title": "Phoenix Process Registry and PubSub",
+              "url": "https://www.youtube.com/watch?v=r_2X-F0xJvY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/advanced_otp_behaviors.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "meta_programming_macros",
+          "name": "Metaprogramming & Macros",
+          "tag": "advanced",
+          "description": "Delve into Elixir's metaprogramming capabilities, including understanding and writing macros for code generation and DSLs.",
+          "resources": [
+            {
+              "title": "Elixir School: Metaprogramming",
+              "url": "https://elixirschool.com/en/lessons/advanced/metaprogramming/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir: Macros",
+              "url": "https://elixir-lang.org/getting-started/meta/macros.html",
+              "type": "article"
+            },
+            {
+              "title": "Metaprogramming in Elixir by Alex Koutmos | ElixirConf US 2021",
+              "url": "https://www.youtube.com/watch?v=03i9X7jH7gQ",
+              "type": "video"
+            },
+            {
+              "title": "Elixir - Macros and Code Generation",
+              "url": "https://www.youtube.com/watch?v=kYJj055t34k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/meta_programming_macros.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_data_science_ml",
+          "name": "Elixir for Data Science & Machine Learning",
+          "tag": "advanced",
+          "description": "Explore the growing ecosystem around numerical Elixir, including `Nx` for numerical computing, `Explorer`, and basic machine learning concepts.",
+          "resources": [
+            {
+              "title": "Nx: Numerical Elixir",
+              "url": "https://hexdocs.pm/nx/Nx.html",
+              "type": "article"
+            },
+            {
+              "title": "ElixirConf 2023 - Machine Learning with Elixir",
+              "url": "https://www.youtube.com/watch?v=kY3j_jT0hC4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_data_science_ml.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_ecosystem_libraries",
+          "name": "Key Ecosystem Libraries",
+          "tag": "advanced",
+          "description": "Explore essential Elixir libraries for common tasks: background jobs (Oban), GraphQL (Absinthe), API clients, and more.",
+          "resources": [
+            {
+              "title": "Oban: Reliable Background Jobs in Elixir",
+              "url": "https://hexdocs.pm/oban/Oban.html",
+              "type": "article"
+            },
+            {
+              "title": "Absinthe: GraphQL for Elixir",
+              "url": "https://hexdocs.pm/absinthe/Absinthe.html",
+              "type": "article"
+            },
+            {
+              "title": "Tesla: HTTP Client for Elixir",
+              "url": "https://hexdocs.pm/tesla/Tesla.html",
+              "type": "article"
+            },
+            {
+              "title": "Oban - Persistent and Reliable Background Jobs for Elixir",
+              "url": "https://www.youtube.com/watch?v=FjIu_uNfD8g",
+              "type": "video"
+            },
+            {
+              "title": "Getting Started with Absinthe GraphQL",
+              "url": "https://www.youtube.com/watch?v=Y7FwYp3oG_s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_ecosystem_libraries.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project_portfolio_readiness",
+      "name": "Project-Based Learning & Portfolio",
+      "tag": "advanced",
+      "description": "Apply your learned skills to build real-world projects, refine problem-solving abilities, and prepare a strong portfolio for career advancement as an Elixir/Phoenix Developer.",
+      "resources": [
+        {
+          "title": "The Pragmatic Programmer (Book, project-based thinking)",
+          "url": "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/",
+          "type": "course"
+        },
+        {
+          "title": "Build an online presence as a developer",
+          "url": "https://www.freecodecamp.org/news/how-to-build-an-online-presence-as-a-developer/",
+          "type": "article"
+        },
+        {
+          "title": "Phoenix Framework Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=0h6kX02WlV0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/elixir_phoenix_developer/project_portfolio_readiness.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "mini_projects_skill_drills",
+          "name": "Mini-Projects & Skill Drills",
+          "tag": "essential",
+          "description": "Undertake small, focused projects (e.g., chat app, CRUD API, real-time dashboard) to solidify specific Elixir/Phoenix concepts and patterns.",
+          "resources": [
+            {
+              "title": "Phoenix TodoMVC Example",
+              "url": "https://github.com/phoenixframework/phoenix_todo",
+              "type": "course"
+            },
+            {
+              "title": "Build a Real-time Chat with Phoenix LiveView",
+              "url": "https://www.youtube.com/watch?v=wX2G3B7X1d8",
+              "type": "video"
+            },
+            {
+              "title": "Learn Phoenix LiveView by Building a Blog - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=sO7P0iQp_Q8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/mini_projects_skill_drills.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "capstone_portfolio_project",
+          "name": "Capstone Portfolio Project",
+          "tag": "advanced",
+          "description": "Design and build a comprehensive, full-stack Elixir/Phoenix application from scratch, showcasing a wide range of skills (e.g., e-commerce platform, project management tool, social media clone).",
+          "resources": [
+            {
+              "title": "Project ideas for your portfolio",
+              "url": "https://www.freecodecamp.org/news/web-developer-portfolio-projects/",
+              "type": "article"
+            },
+            {
+              "title": "Example Elixir/Phoenix Projects on GitHub",
+              "url": "https://github.com/topics/elixir-phoenix-project",
+              "type": "article"
+            },
+            {
+              "title": "Learn Phoenix LiveView by Building a Chat App - Part 1",
+              "url": "https://www.youtube.com/watch?v=F0f-gA_m1-E",
+              "type": "video"
+            },
+            {
+              "title": "Building a Phoenix LiveView CRUD Application - Learn Elixir & Phoenix LiveView",
+              "url": "https://www.youtube.com/watch?v=x_u0r_yY-8Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/capstone_portfolio_project.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_code_review_collaboration",
+          "name": "Code Review & Collaborative Development",
+          "tag": "advanced",
+          "description": "Participate in code reviews, understand best practices for submitting and evaluating pull requests, and learn effective pair programming techniques.",
+          "resources": [
+            {
+              "title": "How to do a code review (Google Engineering Practices)",
+              "url": "https://google.github.io/eng-practices/review/reviewer/",
+              "type": "article"
+            },
+            {
+              "title": "The Art of Pair Programming",
+              "url": "https://www.youtube.com/watch?v=zT_cE4eK2qE",
+              "type": "video"
+            },
+            {
+              "title": "Code Review Best Practices",
+              "url": "https://www.youtube.com/watch?v=R23E9Gj1nK8",
+              "type": "video"
+            },
+            {
+              "title": "How To Make Great Pull Requests",
+              "url": "https://www.youtube.com/watch?v=F3z77I9403s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_code_review_collaboration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "project_documentation_presentation",
+          "name": "Project Documentation & Presentation",
+          "tag": "advanced",
+          "description": "Learn to write clear READMEs, create architectural diagrams, document design choices, and effectively present your project's features and technical details.",
+          "resources": [
+            {
+              "title": "How to write a great README",
+              "url": "https://medium.com/@macmickey/how-to-write-a-great-readme-b3b3a3721345",
+              "type": "article"
+            },
+            {
+              "title": "How To Write A Good README.md | Project Documentation",
+              "url": "https://www.youtube.com/watch?v=c5Y_P8D3_S8",
+              "type": "video"
+            },
+            {
+              "title": "Technical Documentation Tutorial for Developers",
+              "url": "https://www.youtube.com/watch?v=OVFwN0nF1zM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/project_documentation_presentation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "elixir_open_source_contributions",
+          "name": "Open Source Contributions",
+          "tag": "advanced",
+          "description": "Discover how to contribute to existing Elixir/Phoenix open-source projects, a valuable way to learn from experienced developers and build a public portfolio.",
+          "resources": [
+            {
+              "title": "How to Contribute to Open Source",
+              "url": "https://opensource.guide/how-to-contribute/",
+              "type": "article"
+            },
+            {
+              "title": "Elixir on GitHub - Explore projects",
+              "url": "https://github.com/topics/elixir",
+              "type": "article"
+            },
+            {
+              "title": "How to Contribute to Open Source - The Ultimate Guide",
+              "url": "https://www.youtube.com/watch?v=yzeVMecydz8",
+              "type": "video"
+            },
+            {
+              "title": "Open Source Contribution Guide (Git & Github Tutorial)",
+              "url": "https://www.youtube.com/watch?v=RGy_fV0Xlqo",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/elixir_open_source_contributions.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "interview_career_prep",
+          "name": "Interview & Career Preparation",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews, discuss project experiences, articulate your problem-solving process, and position yourself effectively for Elixir/Phoenix roles.",
+          "resources": [
+            {
+              "title": "Elixir Interview Questions",
+              "url": "https://www.interviewbit.com/elixir-interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "Cracking the Coding Interview (Book, general principles)",
+              "url": "https://www.crackingthecodinginterview.com/",
+              "type": "course"
+            },
+            {
+              "title": "Top Tips for Growing an Elixir Career",
+              "url": "https://www.youtube.com/watch?v=FqS2Bv26o58",
+              "type": "video"
+            },
+            {
+              "title": "Building a Scalable System with Elixir: Best Practices and Pitfalls",
+              "url": "https://www.youtube.com/watch?v=A3_Nn9E3-Q4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/elixir_phoenix_developer/interview_career_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

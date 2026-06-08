@@ -6,18 +6,13 @@
   "tree": [
     {
       "id": "qa_foundations",
-      "name": "Testing Foundations",
+      "name": "Testing Foundations & Principles",
       "tag": "essential",
-      "description": "Learn test design, bug reporting, risk-based testing, SDLC, and quality mindset.",
+      "description": "Master core software testing principles, methodologies, and the crucial role of quality assurance in the Software Development Life Cycle (SDLC) and Software Testing Life Cycle (STLC), including Agile and DevOps contexts.",
       "resources": [
         {
           "title": "Software Testing Course - Playwright, E2E, and AI Agents (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=jydYq7oAtD8",
-          "type": "video"
-        },
-        {
-          "title": "Playwright MiniProject: End-to-End Automation (Automation Step by Step)",
-          "url": "https://www.youtube.com/watch?v=5wSztvWhx14",
           "type": "video"
         },
         {
@@ -28,40 +23,102 @@
       ],
       "children": [
         {
-          "id": "qa_test_cases",
-          "name": "Test Cases and Bug Reports",
+          "id": "qa_sdlc_stlc_agile",
+          "name": "SDLC, STLC & Agile Methodologies",
           "tag": "essential",
-          "description": "Write clear scenarios, expected results, reproduction steps, severity, and priority.",
+          "description": "Understand the Software Development Life Cycle (SDLC) and Software Testing Life Cycle (STLC). Explore popular methodologies like Waterfall, V-model, and Agile (Scrum, Kanban), focusing on the QA role and testing activities in each, especially in modern CI/CD environments.",
           "resources": [
             {
-              "title": "Atlassian Testing Guide",
-              "url": "https://www.atlassian.com/continuous-delivery/software-testing",
+              "title": "Agile Testing: A Practical Guide for Testers and Agile Teams (Book)",
+              "url": "https://www.amazon.com/Agile-Testing-Practical-Testers-Teams/dp/0321534468",
+              "type": "course"
+            },
+            {
+              "title": "SDLC and STLC Tutorial",
+              "url": "https://www.guru99.com/sdlc-stlc.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "qa_programming",
-          "name": "Programming for Testers",
+          "id": "qa_test_design_reporting",
+          "name": "Test Design & Defect Reporting",
           "tag": "essential",
-          "description": "Use JavaScript or Java for assertions, data setup, page objects, helpers, and CI scripts.",
+          "description": "Learn to create effective test cases using techniques like equivalence partitioning, boundary value analysis, and decision tables. Understand different testing types (functional, non-functional, smoke, sanity, regression), and report defects with clarity and actionable detail, including severity, priority, and steps to reproduce.",
           "resources": [
             {
-              "title": "JavaScript Guide - MDN",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+              "title": "Atlassian Testing Guide: Test Case Management",
+              "url": "https://www.atlassian.com/continuous-delivery/software-testing/test-case-management",
+              "type": "article"
+            },
+            {
+              "title": "How to Write a Good Bug Report",
+              "url": "https://www.softwaretestinghelp.com/how-to-write-a-good-bug-report/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "qa_test_planning_strategy",
+          "name": "Test Planning & Strategy",
+          "tag": "essential",
+          "description": "Develop skills in crafting comprehensive test plans, performing risk assessments, implementing traceability matrices, and defining robust testing strategies for diverse projects.",
+          "resources": [
+            {
+              "title": "Test Planning Best Practices",
+              "url": "https://www.guru99.com/test-plan.html",
+              "type": "article"
+            },
+            {
+              "title": "Risk-Based Testing Explained",
+              "url": "https://www.techtarget.com/searchsoftwarequality/definition/risk-based-testing",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_essential_programming",
+          "name": "Essential Programming for Automation",
+          "tag": "essential",
+          "description": "Acquire fundamental programming concepts including variables, data types, control flow (loops, conditionals), functions, basic object-oriented principles, and error handling using a relevant language like JavaScript or Python.",
+          "resources": [
+            {
+              "title": "JavaScript Guide - MDN Web Docs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+              "type": "article"
+            },
+            {
+              "title": "Python for Beginners - FreeCodeCamp",
+              "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "qa_version_control_git",
+          "name": "Version Control with Git",
+          "tag": "essential",
+          "description": "Learn to manage code changes, collaborate effectively with teams, and utilize Git commands for efficient branching, merging, and overall software development and test automation workflows.",
+          "resources": [
+            {
+              "title": "Git Handbook - GitHub Guides",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "qa_api",
-      "name": "API Testing",
+      "id": "qa_api_automation",
+      "name": "API Automation Testing",
       "tag": "essential",
-      "description": "Validate HTTP APIs, contracts, auth flows, status codes, payloads, and error behavior.",
+      "description": "Validate backend services and APIs directly, ensuring data integrity, security, and performance using robust automation frameworks and tools, focusing on RESTful and potentially GraphQL APIs.",
       "resources": [
         {
           "title": "Postman Learning Center",
@@ -71,51 +128,87 @@
       ],
       "children": [
         {
-          "id": "qa_http",
-          "name": "HTTP and REST",
+          "id": "qa_http_rest_principles",
+          "name": "HTTP & RESTful Principles",
           "tag": "essential",
-          "description": "Understand verbs, headers, cookies, sessions, JSON schemas, idempotency, and pagination.",
+          "description": "Deep dive into HTTP methods (GET, POST, PUT, DELETE), status codes, headers, cookies, sessions, JSON structures, idempotency, and REST architectural constraints for effective API interaction.",
           "resources": [
             {
               "title": "MDN HTTP Overview",
               "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
               "type": "article"
+            },
+            {
+              "title": "REST API Tutorial",
+              "url": "https://restfulapi.net/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "qa_contracts",
-          "name": "Contract and Schema Testing",
+          "id": "qa_api_tools_frameworks",
+          "name": "API Automation Tools & Frameworks",
+          "tag": "essential",
+          "description": "Implement automated API tests using popular tools and frameworks (e.g., Postman, RestAssured for Java, Supertest/Playwright for JavaScript/TypeScript, requests for Python), covering request creation, parameterization, assertions, data-driven testing, and environment management.",
+          "resources": [
+            {
+              "title": "RestAssured Getting Started",
+              "url": "https://github.com/rest-assured/rest-assured/wiki/Usage",
+              "type": "article"
+            },
+            {
+              "title": "Supertest Documentation",
+              "url": "https://github.com/visionmedia/supertest",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_advanced_api_concepts",
+          "name": "Advanced API Concepts & Security",
           "tag": "advanced",
-          "description": "Use schemas and contract tests so clients and services do not silently drift apart.",
+          "description": "Explore complex authentication mechanisms (e.g., OAuth, JWT), rate limiting, robust error handling strategies, and fundamental API security testing practices.",
+          "resources": [
+            {
+              "title": "OAuth 2.0 Simplified",
+              "url": "https://aaronparecki.com/oauth-2-simplified/",
+              "type": "article"
+            },
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/www-project-api-security/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_contract_schema_testing",
+          "name": "API Contract & Schema Testing",
+          "tag": "advanced",
+          "description": "Utilize schema validation (e.g., JSON Schema) and contract testing frameworks (e.g., Pact, OpenAPI tools) to ensure consistency and prevent silent drift between API providers and consumers.",
           "resources": [
             {
               "title": "OpenAPI Specification",
               "url": "https://spec.openapis.org/oas/latest.html",
               "type": "article"
+            },
+            {
+              "title": "Pact Contract Testing Introduction",
+              "url": "https://docs.pact.io/what_is_pact",
+              "type": "article"
             }
-          ],
-          "children": []
-        },
-        {
-          "id": "qa_automation_practice_lab",
-          "name": "Practice: Bug Reproduction Lab",
-          "tag": "advanced",
-          "description": "Turn vague bug reports into reproducible cases, automated checks, screenshots, and clear defect notes.",
-          "resources": [],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "qa_ui_automation",
-      "name": "UI Automation",
+      "id": "qa_ui_automation_testing",
+      "name": "UI Automation Testing & Advanced Concepts",
       "tag": "essential",
-      "description": "Automate realistic browser journeys with reliable selectors, fixtures, screenshots, and traces.",
+      "description": "Build robust, maintainable, and scalable UI test suites for web applications, focusing on modern frameworks, design patterns, cross-browser compatibility, and advanced testing types like visual and accessibility testing.",
       "resources": [
         {
-          "title": "Playwright Automation Tutorial for Beginners (Mukesh otwani)",
+          "title": "Playwright Automation Tutorial for Beginners (Mukesh Otwani)",
           "url": "https://www.youtube.com/watch?v=pq20Gd4LXeI",
           "type": "video"
         },
@@ -125,47 +218,150 @@
           "type": "article"
         },
         {
-          "title": "Selenium Documentation",
+          "title": "Selenium Documentation Overview",
           "url": "https://www.selenium.dev/documentation/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "qa_playwright",
-          "name": "Playwright Test",
+          "id": "qa_ui_frameworks_playwright",
+          "name": "UI Automation with Playwright",
           "tag": "essential",
-          "description": "Use locators, fixtures, assertions, projects, traces, and parallel test execution.",
+          "description": "Master Playwright for end-to-end web testing, including its powerful locators, fixtures, assertions, test projects, tracing, and parallel test execution capabilities.",
           "resources": [
             {
               "title": "Playwright Running Tests",
               "url": "https://playwright.dev/docs/running-tests",
               "type": "article"
+            },
+            {
+              "title": "Playwright Locators Guide",
+              "url": "https://playwright.dev/docs/locators",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "qa_accessibility",
-          "name": "Accessibility Checks",
+          "id": "qa_locators_waits_interactions",
+          "name": "Locators, Wait Strategies & Interactions",
+          "tag": "essential",
+          "description": "Learn effective element identification using various locator strategies, handling asynchronous operations with implicit and explicit waits, and simulating complex user interactions for reliable and resilient tests.",
+          "resources": [
+            {
+              "title": "Playwright Auto-Waiting",
+              "url": "https://playwright.dev/docs/actionability",
+              "type": "article"
+            },
+            {
+              "title": "Advanced UI Interactions",
+              "url": "https://www.lambdatest.com/blog/advanced-user-interactions-in-selenium/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_pom_test_data",
+          "name": "Page Object Model & Test Data Management",
+          "tag": "essential",
+          "description": "Apply design patterns like the Page Object Model (POM) and Screenplay pattern for creating maintainable, readable, and reusable test code. Implement effective strategies for generating, managing, and provisioning diverse test data, including faker libraries and database integration.",
+          "resources": [
+            {
+              "title": "Page Object Model Explained",
+              "url": "https://www.browserstack.com/guide/page-object-model-in-selenium",
+              "type": "article"
+            },
+            {
+              "title": "Test Data Management Strategies",
+              "url": "https://www.testsigma.com/blog/test-data-management/",
+              "type": "article"
+            },
+            {
+              "title": "Screenplay Pattern Explained",
+              "url": "https://serenity-bdd.info/docs/screenplay/screenplay-pattern.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_accessibility_testing",
+          "name": "Automated Accessibility Testing",
           "tag": "advanced",
-          "description": "Add automated accessibility checks while still understanding what must be manually reviewed.",
+          "description": "Integrate automated accessibility checks into UI test suites using tools like Axe-core to identify common WCAG violations while understanding the critical aspects that still require manual review for inclusive user experiences.",
           "resources": [
             {
               "title": "Playwright Accessibility Testing",
               "url": "https://playwright.dev/docs/accessibility-testing",
               "type": "article"
+            },
+            {
+              "title": "Web Content Accessibility Guidelines (WCAG)",
+              "url": "https://www.w3.org/WAI/WCAG21/quickref/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "qa_cross_browser_mobile_ui",
+          "name": "Cross-Browser & Responsive UI Testing",
+          "tag": "advanced",
+          "description": "Configure and execute tests across different browsers and operating systems, addressing compatibility issues and validating responsive design across various viewports and device emulations.",
+          "resources": [
+            {
+              "title": "Playwright Cross-Browser Testing",
+              "url": "https://playwright.dev/docs/browsers",
+              "type": "article"
+            },
+            {
+              "title": "Responsive Design Testing",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/Responsive/Testing",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_visual_regression_testing",
+          "name": "Visual Regression Testing",
+          "tag": "advanced",
+          "description": "Implement visual regression testing to detect unintended UI changes using tools like Applitools Eyes, Percy, or Playwright's built-in screenshot capabilities. Understand pixel-by-pixel comparisons, baseline management, and threshold configurations.",
+          "resources": [
+            {
+              "title": "Playwright Visual Comparison",
+              "url": "https://playwright.dev/docs/screenshots#visual-comparisons",
+              "type": "article"
+            },
+            {
+              "title": "Applitools Eyes Overview",
+              "url": "https://applitools.com/platform/eyes/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_bdd_gherkin",
+          "name": "BDD & Gherkin for UI Automation",
+          "tag": "advanced",
+          "description": "Learn Behavior-Driven Development (BDD) principles and how to write executable specifications using Gherkin syntax (Given/When/Then). Integrate BDD frameworks like Cucumber or Playwright-bdd into UI automation projects for better collaboration and readability.",
+          "resources": [
+            {
+              "title": "Cucumber Gherkin Reference",
+              "url": "https://cucumber.io/docs/gherkin/reference/",
+              "type": "article"
+            },
+            {
+              "title": "Playwright BDD Guide",
+              "url": "https://playwright-bdd.com/docs/intro",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "qa_performance_ci",
-      "name": "Performance and CI",
+      "id": "qa_ci_cd_advanced_eng",
+      "name": "CI/CD, Performance & Advanced Automation Engineering",
       "tag": "advanced",
-      "description": "Run automation in pipelines, track flaky tests, and test performance under realistic load.",
+      "description": "Integrate automation into CI/CD pipelines, implement containerization for consistent test execution, conduct comprehensive performance and reliability testing, and establish robust monitoring and reporting for continuous quality assurance.",
       "resources": [
         {
           "title": "k6 Documentation",
@@ -180,46 +376,148 @@
       ],
       "children": [
         {
-          "id": "qa_load_testing",
-          "name": "Load Testing",
+          "id": "qa_ci_cd_integration",
+          "name": "CI/CD Integration for Test Automation",
+          "tag": "essential",
+          "description": "Automate test execution within Continuous Integration/Continuous Delivery (CI/CD) pipelines using tools like GitHub Actions, Jenkins, or GitLab CI, focusing on trigger events, parallelization, and comprehensive reporting.",
+          "resources": [
+            {
+              "title": "Jenkins Pipelines Tutorial",
+              "url": "https://www.jenkins.io/doc/book/pipeline/",
+              "type": "article"
+            },
+            {
+              "title": "GitLab CI/CD Basics",
+              "url": "https://docs.gitlab.com/ee/ci/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_containerization_tests",
+          "name": "Containerization for Test Environments (Docker)",
+          "tag": "essential",
+          "description": "Understand the benefits of containerization for creating isolated and consistent test environments. Learn to use Docker to package test suites, application dependencies, and browsers, ensuring reliable and reproducible test execution across different machines and CI/CD pipelines.",
+          "resources": [
+            {
+              "title": "Docker for Beginners",
+              "url": "https://docs.docker.com/get-started/",
+              "type": "article"
+            },
+            {
+              "title": "Running Playwright tests in Docker",
+              "url": "https://playwright.dev/docs/docker",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_performance_load_testing",
+          "name": "Performance & Load Testing Engineering",
           "tag": "advanced",
-          "description": "Model users, thresholds, response times, throughput, and failure modes before launches.",
+          "description": "Design and execute various types of performance tests, including load, stress, and scalability tests, to identify bottlenecks and ensure system resilience under realistic user traffic and varying loads.",
           "resources": [
             {
               "title": "k6 Get Started",
               "url": "https://grafana.com/docs/k6/latest/get-started/",
               "type": "article"
+            },
+            {
+              "title": "JMeter User's Manual",
+              "url": "https://jmeter.apache.org/usermanual/index.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "qa_flaky_tests",
-          "name": "Flaky Test Management",
+          "id": "qa_performance_tools_analysis",
+          "name": "Performance Testing Tools & Analysis",
           "tag": "advanced",
-          "description": "Debug unstable tests, improve selectors, isolate test data, quarantine failures, and track reliability metrics.",
+          "description": "Utilize specialized tools like k6, JMeter, or LoadRunner to simulate user loads, collect performance metrics, analyze results, and generate actionable insights for system optimization.",
+          "resources": [
+            {
+              "title": "Analyzing k6 Test Results",
+              "url": "https://grafana.com/docs/k6/latest/results/",
+              "type": "article"
+            },
+            {
+              "title": "JMeter Listeners for Results Analysis",
+              "url": "https://jmeter.apache.org/usermanual/component_reference.html#listeners",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_flaky_test_management",
+          "name": "Flaky Test Management & Reporting",
+          "tag": "advanced",
+          "description": "Understand the causes of flaky tests, implement strategies to debug and resolve them, improve test stability through better selectors and isolated data, and track reliability metrics for continuous improvement.",
           "resources": [
             {
               "title": "Playwright Test Retries",
               "url": "https://playwright.dev/docs/test-retries",
               "type": "article"
+            },
+            {
+              "title": "How to Deal with Flaky Tests",
+              "url": "https://martinfowler.com/articles/flakyTests.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "qa_capstone",
-          "name": "Project: Test Suite for a Web App",
+          "id": "qa_test_reporting_metrics",
+          "name": "Test Reporting, Metrics & Dashboards",
+          "tag": "essential",
+          "description": "Implement comprehensive test reporting mechanisms (e.g., Allure, ExtentReports) to visualize test results, track key metrics like pass/fail rates, test execution time, and flakiness. Create dashboards to provide clear insights into product quality and automation health.",
+          "resources": [
+            {
+              "title": "Allure Framework Documentation",
+              "url": "https://docs.qameta.io/allure/",
+              "type": "article"
+            },
+            {
+              "title": "ExtentReports Introduction",
+              "url": "http://extentreports.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_test_observability_monitoring",
+          "name": "Test Observability & Monitoring",
           "tag": "advanced",
-          "description": "Create API, UI, accessibility, and load tests, then run them in CI with reports.",
+          "description": "Explore strategies for monitoring test environments and execution in real-time. Integrate logging, tracing, and metrics collection to quickly diagnose issues, analyze test performance, and improve the efficiency and reliability of the automation pipeline.",
+          "resources": [
+            {
+              "title": "OpenTelemetry for Beginners",
+              "url": "https://opentelemetry.io/docs/concepts/getting-started/",
+              "type": "article"
+            },
+            {
+              "title": "Log Management for Testers",
+              "url": "https://www.testlio.com/blog/logging-in-software-testing/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "qa_comprehensive_automation_project",
+          "name": "Capstone Project: Comprehensive Automation Suite",
+          "tag": "advanced",
+          "description": "Apply all learned skills to build a complete end-to-end automation solution for a web application, integrating API, UI, accessibility, performance, and visual tests. Implement the solution within a CI/CD pipeline, generating detailed reports and dashboards for continuous monitoring and improvement.",
           "resources": [
             {
               "title": "Playwright Test Reporters",
               "url": "https://playwright.dev/docs/test-reporters",
               "type": "article"
+            },
+            {
+              "title": "Allure Reporting for Test Automation",
+              "url": "https://docs.qameta.io/allure/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

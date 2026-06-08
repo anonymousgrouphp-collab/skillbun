@@ -1,14 +1,14 @@
 {
   "id": "cloud_security_engineer",
   "title": "Cloud Security Engineer",
-  "description": "A roadmap for securing cloud systems across AWS, Azure, and GCP: identity, network controls, logging, posture management, DevSecOps, and incident response.",
+  "description": "A comprehensive roadmap for securing cloud systems across AWS, Azure, and GCP, covering fundamental security principles, advanced platform security architecture, robust security operations, DevSecOps integration, and strategic governance, risk, and compliance.",
   "format": "tree",
   "tree": [
     {
       "id": "cse_cloud_security_foundations",
-      "name": "Cloud and Security Foundations",
+      "name": "Cloud and Cybersecurity Foundations",
       "tag": "essential",
-      "description": "Build the base: cloud shared responsibility, Linux, networking, IAM, encryption, logging, threat models, and security operations.",
+      "description": "Establish a robust foundation in core cybersecurity principles, essential Linux and networking knowledge, and fundamental cloud computing concepts critical for securing modern cloud environments across AWS, Azure, and GCP.",
       "resources": [
         {
           "title": "Cloud Security Full Course (Intellipaat)",
@@ -21,103 +21,288 @@
           "type": "article"
         },
         {
-          "title": "CSA Security Guidance",
-          "url": "https://cloudsecurityalliance.org/research/guidance",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_cloud_security_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cse_shared_responsibility",
-          "name": "Shared Responsibility and Threat Models",
+          "id": "cse_cybersecurity_fundamentals",
+          "name": "Cybersecurity Fundamentals",
           "tag": "essential",
-          "description": "Map which controls belong to the cloud provider, platform team, app team, and security team for every workload.",
+          "description": "Understand core cybersecurity principles (CIA triad), common attack vectors, security models, and foundational technologies like encryption, hashing, Public Key Infrastructure (PKI), and authentication vs. authorization mechanisms. Gain an overview of major security frameworks (e.g., NIST CSF, ISO 27001) that guide secure practices.",
+          "resources": [
+            {
+              "title": "CompTIA Security+ SY0-601 Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/playlist?list=PLGgWULp-2sPVJ1b7n45U8cQj2n109dG6c",
+              "type": "video"
+            },
+            {
+              "title": "Cryptographic Services (NIST SP 800-57)",
+              "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cybersecurity_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_linux_networking_essentials",
+          "name": "Linux & Networking Essentials",
+          "tag": "essential",
+          "description": "Master essential Linux commands, system hardening techniques, fundamental network protocols (TCP/IP), network topologies, firewall configurations, VPNs, IDS/IPS basics, network segmentation principles, and DNS for effective cloud infrastructure management and security.",
+          "resources": [
+            {
+              "title": "Linux Journey",
+              "url": "https://linuxjourney.com/",
+              "type": "article"
+            },
+            {
+              "title": "The OSI Model Explained (Cloudflare)",
+              "url": "https://www.cloudflare.com/learning/network-layer/what-is-the-osi-model/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_linux_networking_essentials.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_cloud_computing_fundamentals",
+          "name": "Cloud Computing Fundamentals",
+          "tag": "essential",
+          "description": "Learn fundamental cloud computing concepts including service models (IaaS, PaaS, SaaS), deployment models (public, private, hybrid), virtualization, containerization, serverless architectures, and core cloud services (compute, storage, databases, networking basics) across major providers (AWS, Azure, GCP).",
+          "resources": [
+            {
+              "title": "What is Cloud Computing? (AWS)",
+              "url": "https://aws.amazon.com/what-is-cloud-computing/",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Azure Fundamentals AZ-900 Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=NPEs_J42eT8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cloud_computing_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_shared_responsibility_threat_modeling",
+          "name": "Cloud Shared Responsibility Model & Threat Modeling",
+          "tag": "essential",
+          "description": "Understand the nuances of the shared responsibility model across AWS, Azure, and GCP. Apply systematic threat modeling methodologies (e.g., STRIDE) to identify, analyze, and mitigate security risks in cloud-native applications and infrastructure, focusing on cloud-specific attack vectors.",
           "resources": [
             {
               "title": "AWS Shared Responsibility Model",
               "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "cse_network_security",
-          "name": "Cloud Network Security",
-          "tag": "essential",
-          "description": "Secure VPC/VNet design, subnets, routing, security groups, firewalls, private endpoints, DNS, TLS, and zero-trust access paths.",
-          "resources": [
+            },
             {
-              "title": "AWS Well-Architected Security Pillar",
-              "url": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+              "title": "Microsoft Threat Modeling Tool",
+              "url": "https://www.microsoft.com/en-us/security/business/security-risk-management/threat-modeling",
               "type": "article"
+            },
+            {
+              "title": "Cloud Shared Responsibility Model Explained Simply",
+              "url": "https://www.youtube.com/watch?v=kY67_fN8F98",
+              "type": "video"
+            },
+            {
+              "title": "What is Threat Modeling? | Threat Modeling Fundamentals",
+              "url": "https://www.youtube.com/watch?v=sO32aR8_75g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_shared_responsibility_threat_modeling.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "cse_identity_posture",
-      "name": "Identity, Access, and Posture Management",
+      "id": "cse_platform_security_architecture",
+      "name": "Cloud Platform Security Architecture",
       "tag": "essential",
-      "description": "Control blast radius through least privilege, MFA, workload identities, permission reviews, guardrails, and continuous posture checks.",
+      "description": "Dive deep into securing core cloud infrastructure components: identity and access management, network security design, comprehensive data protection strategies, and leveraging platform-specific security services across major cloud providers (AWS, Azure, GCP).",
       "resources": [
         {
-          "title": "AWS Tutorial with IAM and Security Section (Simplilearn)",
-          "url": "https://www.youtube.com/watch?v=RLd_XTyt-w8",
+          "title": "AWS Well-Architected Security Pillar",
+          "url": "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+          "type": "article"
+        },
+        {
+          "title": "What is Cloud Security? Crash Course",
+          "url": "https://www.youtube.com/watch?v=F5c1aD7Gj7o",
           "type": "video"
         },
         {
-          "title": "Azure Identity and Access Security Best Practices",
-          "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/identity-management-best-practices",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_platform_security_architecture.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cse_iam_least_privilege",
-          "name": "IAM and Least Privilege",
+          "id": "cse_iam_deep_dive",
+          "name": "Cloud Identity & Access Management (IAM)",
           "tag": "essential",
-          "description": "Design users, groups, roles, policies, permission boundaries, federation, service identities, secrets, and temporary credentials.",
+          "description": "Master granular IAM concepts, including users, groups, roles, policies (identity-based, resource-based), multi-factor authentication (MFA), identity federation, Single Sign-On (SSO), workload identities, and robust secrets management strategies across AWS IAM, Azure AD, and GCP IAM. Emphasize least privilege and just-in-time access principles.",
           "resources": [
             {
               "title": "AWS IAM Best Practices",
               "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
               "type": "article"
+            },
+            {
+              "title": "Azure Identity and Access Security Best Practices",
+              "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/identity-management-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "GCP Identity and Access Management",
+              "url": "https://cloud.google.com/iam/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud IAM Explained: Understanding Identity and Access Management (IAM) in AWS, Azure, and GCP",
+              "url": "https://www.youtube.com/watch?v=0k571s4vj44",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_iam_deep_dive.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cse_cspm_config",
-          "name": "CSPM and Configuration Governance",
-          "tag": "advanced",
-          "description": "Use policy-as-code, asset inventory, baseline controls, compliance mappings, exception workflows, and remediation tracking.",
+          "id": "cse_network_security_design",
+          "name": "Cloud Network Security Design",
+          "tag": "essential",
+          "description": "Design and implement secure cloud network architectures, covering VPC/VNet segmentation, routing, security groups/NSGs, Network Access Control Lists (NACLs), Web Application Firewalls (WAFs), DDoS protection, private connectivity solutions (e.g., PrivateLink, Private Endpoints), implementing micro-segmentation, and adhering rigorously to Zero Trust principles.",
           "resources": [
             {
-              "title": "AWS Security Hub Documentation",
-              "url": "https://aws.amazon.com/documentation-overview/security-hub/",
+              "title": "AWS Network Security",
+              "url": "https://aws.amazon.com/vpc/details/security/",
               "type": "article"
+            },
+            {
+              "title": "Azure Network Security Overview",
+              "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/network-overview",
+              "type": "article"
+            },
+            {
+              "title": "GCP Network security",
+              "url": "https://cloud.google.com/security/products/network",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Network Security (AWS, Azure, GCP)",
+              "url": "https://www.youtube.com/watch?v=FjIsv8oXj0k",
+              "type": "video"
+            },
+            {
+              "title": "Zero Trust Network Architecture (ZTNA) Explained",
+              "url": "https://www.youtube.com/watch?v=kY3P08wH674",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_network_security_design.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cloud_security_engineer_practice_lab",
-          "name": "Practice: IAM Policy Review Lab",
+          "id": "cse_data_protection_encryption",
+          "name": "Data Protection & Encryption in Cloud",
+          "tag": "essential",
+          "description": "Implement robust data protection strategies including data classification, encryption at rest and in transit, key management services (KMS), hardware security modules (HSM), data loss prevention (DLP) techniques, and secure database configurations across cloud platforms. Understand data residency and sovereignty requirements.",
+          "resources": [
+            {
+              "title": "AWS Key Management Service (KMS)",
+              "url": "https://aws.amazon.com/kms/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Data Encryption at Rest",
+              "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-atrest",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud KMS",
+              "url": "https://cloud.google.com/kms",
+              "type": "article"
+            },
+            {
+              "title": "Data Protection in Cloud Computing - Cloud Security Tutorial",
+              "url": "https://www.youtube.com/watch?v=0kO9E64Q_oA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_data_protection_encryption.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_platform_specific_security_services",
+          "name": "Platform-Specific Security Services & Tools",
           "tag": "advanced",
-          "description": "Review overly broad permissions, rewrite policies to least privilege, document risks, and add tests or guardrails to prevent regression.",
-          "resources": [],
-          "children": []
+          "description": "Explore and implement advanced security services unique to each cloud provider, extending beyond core IAM, network, and data protection. This includes leveraging native Web Application Firewalls (WAFs), DDoS protection (e.g., AWS WAF, Shield; Azure DDoS Protection, Front Door; GCP Cloud Armor), advanced threat detection and intelligence (e.g., Amazon GuardDuty, Azure Security Center/Defender for Cloud, GCP Security Command Center, Chronicle Security Operations), endpoint protection, host-level protection, and securing managed services (databases, containers, serverless). Focus on integrating these services for comprehensive security orchestration.",
+          "resources": [
+            {
+              "title": "AWS WAF & Shield",
+              "url": "https://aws.amazon.com/waf/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Defender for Cloud",
+              "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/",
+              "type": "article"
+            },
+            {
+              "title": "GCP Security Command Center",
+              "url": "https://cloud.google.com/security-command-center",
+              "type": "article"
+            },
+            {
+              "title": "AWS GuardDuty Deep Dive | Protect your AWS Environment",
+              "url": "https://www.youtube.com/watch?v=S016f4Lq82c",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Armor for Security Policy Management | Google Cloud",
+              "url": "https://www.youtube.com/watch?v=kYJqBqT2c2g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_platform_specific_security_services.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "cse_detection_response",
-      "name": "Detection, Logging, and Incident Response",
-      "tag": "advanced",
-      "description": "Collect cloud logs, detect suspicious activity, investigate findings, preserve evidence, and automate response workflows.",
+      "id": "cse_security_operations_management",
+      "name": "Cloud Security Operations & Management",
+      "tag": "essential",
+      "description": "Establish robust security operations within cloud environments, covering continuous posture management, comprehensive logging, advanced threat detection, proactive vulnerability management, and effective incident response procedures.",
       "resources": [
         {
           "title": "AWS Security Best Practices (Amazon Web Services)",
@@ -125,101 +310,594 @@
           "type": "video"
         },
         {
-          "title": "AWS Security Hub Best Practices",
-          "url": "https://aws.amazon.com/blogs/security/nine-aws-security-hub-best-practices/",
-          "type": "article"
+          "title": "Cloud Security: A Beginner's Guide",
+          "url": "https://www.youtube.com/watch?v=N_z9tB2K_3E",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_security_operations_management.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cse_logging_detection",
-          "name": "Cloud Logging and Threat Detection",
-          "tag": "advanced",
-          "description": "Enable audit logs, flow logs, object access logs, GuardDuty or Defender alerts, SIEM forwarding, and alert triage playbooks.",
+          "id": "cse_cspm_ciems",
+          "name": "CSPM, CIEM, & Configuration Governance",
+          "tag": "essential",
+          "description": "Implement and manage Cloud Security Posture Management (CSPM) and Cloud Infrastructure Entitlement Management (CIEM) solutions. Enforce security baselines, policy-as-code (e.g., OPA, CloudFormation Guard), gain comprehensive asset inventory, map to compliance frameworks, and automate remediation workflows across multi-cloud environments.",
+          "resources": [
+            {
+              "title": "AWS Security Hub Documentation",
+              "url": "https://aws.amazon.com/documentation-overview/security-hub/",
+              "type": "article"
+            },
+            {
+              "title": "What is Cloud Security Posture Management (CSPM)?",
+              "url": "https://www.paloaltonetworks.com/cyberpedia/what-is-cspm",
+              "type": "article"
+            },
+            {
+              "title": "What is Cloud Security Posture Management (CSPM)? Simply Explained",
+              "url": "https://www.youtube.com/watch?v=F0fI0r_8NzA",
+              "type": "video"
+            },
+            {
+              "title": "What is Cloud Infrastructure Entitlement Management (CIEM)?",
+              "url": "https://www.youtube.com/watch?v=FjIu_u3kXnI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cspm_ciems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_logging_monitoring_detection",
+          "name": "Cloud Logging, Monitoring & Threat Detection",
+          "tag": "essential",
+          "description": "Configure and utilize cloud-native logging (e.g., AWS CloudTrail, Amazon CloudWatch, Azure Monitor, GCP Cloud Logging, VPC Flow Logs, object access logs) for audit, flow, and object access. Implement proactive threat detection using services like Amazon GuardDuty, Azure Security Center, and GCP Security Command Center, and integrate with SIEM/SOAR platforms for advanced analysis, automated alerting, and proactive response workflows.",
           "resources": [
             {
               "title": "Amazon GuardDuty User Guide",
               "url": "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
               "type": "article"
+            },
+            {
+              "title": "AWS Security Hub Best Practices",
+              "url": "https://aws.amazon.com/blogs/security/nine-aws-security-hub-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "AWS Monitoring, Logging and Auditing with CloudWatch, CloudTrail, Config, GuardDuty & Inspector",
+              "url": "https://www.youtube.com/watch?v=D0sR6a6j4S8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_logging_monitoring_detection.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "cse_incident_response",
-          "name": "Cloud Incident Response",
+          "id": "cse_vulnerability_management",
+          "name": "Vulnerability Management & Patching",
+          "tag": "essential",
+          "description": "Establish comprehensive vulnerability management programs for cloud resources, including regular scanning of virtual machines, containers, and web applications. Develop effective patch management strategies and ensure timely security updates for managed cloud services and operating systems.",
+          "resources": [
+            {
+              "title": "AWS Systems Manager Patch Manager",
+              "url": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure Update Management overview",
+              "url": "https://learn.microsoft.com/en-us/azure/automation/update-management/overview",
+              "type": "article"
+            },
+            {
+              "title": "Vulnerability Management & Patching (from CompTIA Security+ Full Course)",
+              "url": "https://www.youtube.com/watch?v=F7nMq8L58pI&t=8580s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_vulnerability_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_cloud_incident_response_forensics",
+          "name": "Cloud Incident Response & Forensics",
           "tag": "advanced",
-          "description": "Practice credential containment, snapshot preservation, key rotation, compromised instance isolation, root-cause timelines, and postmortems.",
+          "description": "Develop and execute cloud-specific incident response playbooks aligned with industry frameworks (e.g., NIST). Practice credential containment, compromised resource isolation, forensic data preservation, root-cause analysis, and post-incident review, integrating cloud-native tools for effective response and recovery in multi-cloud environments.",
           "resources": [
             {
               "title": "AWS Security Incident Response Guide",
               "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html",
               "type": "article"
+            },
+            {
+              "title": "NIST SP 800-61 Rev. 2: Computer Security Incident Handling Guide",
+              "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Incident Response: Best Practices & Strategies",
+              "url": "https://www.youtube.com/watch?v=Jm9n2g-yY-0",
+              "type": "video"
+            },
+            {
+              "title": "AWS Incident Response: Best Practices for Cloud Security",
+              "url": "https://www.youtube.com/watch?v=W3o8C-D13sY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cloud_incident_response_forensics.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "cse_devsecops_portfolio",
-      "name": "DevSecOps, Containers, and Portfolio",
+      "id": "cse_devsecops_appsec",
+      "name": "DevSecOps & Application Security in Cloud",
       "tag": "advanced",
-      "description": "Shift security into delivery pipelines with IaC scanning, container security, secrets checks, supply-chain controls, and practical portfolio proof.",
+      "description": "Integrate security seamlessly into the entire software development lifecycle (SDLC) within cloud environments, focusing on automation, container security, Kubernetes hardening, API protection, and securing the software supply chain.",
       "resources": [
-        {
-          "title": "The Cloud Experience with Ashish Rajan",
-          "url": "https://www.youtube.com/watch?v=IzBhNthDUMk",
-          "type": "video"
-        },
         {
           "title": "OWASP Kubernetes Top 10",
           "url": "https://owasp.org/www-project-kubernetes-top-ten/",
           "type": "article"
+        },
+        {
+          "title": "A Complete DevSecOps Course | DevSecOps Training",
+          "url": "https://www.youtube.com/watch?v=F_fP7F5vL6w",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_devsecops_appsec.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "cse_iac_container_security",
-          "name": "IaC and Container Security",
+          "id": "cse_iac_security",
+          "name": "Infrastructure as Code (IaC) Security",
           "tag": "advanced",
-          "description": "Scan Terraform, Kubernetes manifests, images, dependencies, and secrets before deployment; enforce policy gates in CI/CD.",
-          "resources": [
-            {
-              "title": "Aqua Trivy GitHub Repository",
-              "url": "https://github.com/aquasecurity/trivy",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "cse_compliance_privacy",
-          "name": "Compliance, Privacy, and Risk Reporting",
-          "tag": "advanced",
-          "description": "Connect controls to frameworks, classify data, track exceptions, write risk summaries, and communicate findings to engineering leaders.",
-          "resources": [
-            {
-              "title": "AWS Compliance Programs",
-              "url": "https://aws.amazon.com/compliance/programs/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "cse_project_secure_cloud_baseline",
-          "name": "Project: Secure Cloud Baseline",
-          "tag": "advanced",
-          "description": "Create a small cloud account baseline with IAM guardrails, private networking, logging, Security Hub or Defender alerts, IaC scans, and an incident runbook.",
+          "description": "Implement security best practices for Infrastructure as Code (IaC). Utilize static analysis tools to scan and validate IaC templates (Terraform, CloudFormation, ARM, Helm) for misconfigurations, enforce security policies via policy-as-code, and detect configuration drift to maintain secure infrastructure baselines.",
           "resources": [
             {
               "title": "AWS CloudFormation Guard",
               "url": "https://docs.aws.amazon.com/cfn-guard/latest/ug/what-is-guard.html",
               "type": "article"
+            },
+            {
+              "title": "Checkov GitHub Repository",
+              "url": "https://github.com/bridgecrewio/checkov",
+              "type": "article"
+            },
+            {
+              "title": "Demystifying IaC Security",
+              "url": "https://www.youtube.com/watch?v=dYk87y21L3c",
+              "type": "video"
+            },
+            {
+              "title": "Terraform Security Best Practices - The Ultimate Guide",
+              "url": "https://www.youtube.com/watch?v=M5Jj2Qj5l6c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_iac_security.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "cse_container_kubernetes_security",
+          "name": "Container & Kubernetes Security",
+          "tag": "advanced",
+          "description": "Secure containerized workloads and Kubernetes clusters. Implement image scanning in CI/CD, enforce runtime security policies, configure network policies (e.g., Calico), manage secrets securely, utilize admission controllers, and understand service mesh security considerations (e.g., Istio).",
+          "resources": [
+            {
+              "title": "Aqua Trivy GitHub Repository",
+              "url": "https://github.com/aquasecurity/trivy",
+              "type": "article"
+            },
+            {
+              "title": "Kube-bench GitHub Repository",
+              "url": "https://github.com/aquasecurity/kube-bench",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Security Tutorial - Securing K8s Clusters with Falco, OPA Gatekeeper, and Kube-bench",
+              "url": "https://www.youtube.com/watch?v=F01q_W0vVd8",
+              "type": "video"
+            },
+            {
+              "title": "Docker & Container Security Tutorial",
+              "url": "https://www.youtube.com/watch?v=s51o4d52f6c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_container_kubernetes_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_cicd_supply_chain_security",
+          "name": "CI/CD Pipeline & Supply Chain Security",
+          "tag": "advanced",
+          "description": "Embed security throughout the CI/CD pipeline. Implement dependency scanning, Software Composition Analysis (SCA), static and dynamic application security testing (SAST/DAST), artifact signing, and controls to mitigate software supply chain risks, including understanding common attack vectors and managing Software Bill of Materials (SBOMs).",
+          "resources": [
+            {
+              "title": "OWASP Top 10 for CI/CD Pipeline",
+              "url": "https://owasp.org/www-project-top-10-ci-cd/",
+              "type": "article"
+            },
+            {
+              "title": "What is the Supply-chain Levels for Software Artifacts (SLSA)?",
+              "url": "https://slsa.dev/spec/v0.1/what",
+              "type": "article"
+            },
+            {
+              "title": "What is DevSecOps? Learn how to automate security in your CI/CD pipeline",
+              "url": "https://www.youtube.com/watch?v=Fj-y5_m_hO4",
+              "type": "video"
+            },
+            {
+              "title": "Software Supply Chain Security Explained",
+              "url": "https://www.youtube.com/watch?v=x0b6Q5mD0Qk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cicd_supply_chain_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_api_serverless_security",
+          "name": "API & Serverless Security",
+          "tag": "advanced",
+          "description": "Secure APIs and serverless applications. Implement robust security measures for API Gateways, enforce strong authentication and authorization for APIs, understand the OWASP API Security Top 10, and apply security best practices for serverless functions (e.g., AWS Lambda, Azure Functions, GCP Cloud Functions), including least privilege and secure configuration.",
+          "resources": [
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/www-project-api-security-top-10/",
+              "type": "article"
+            },
+            {
+              "title": "Serverless Security Best Practices",
+              "url": "https://www.puresec.io/serverless-security-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "API Security Tutorial - Protecting RESTful APIs with JSON Web Tokens (JWT) and OAuth 2.0",
+              "url": "https://www.youtube.com/watch?v=FjIesgHlXoU",
+              "type": "video"
+            },
+            {
+              "title": "The OWASP API Security Top 10 - Explained",
+              "url": "https://www.youtube.com/watch?v=kR2jK91Jt98",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_api_serverless_security.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cse_grc_advanced_topics",
+      "name": "Governance, Risk, & Compliance (GRC) & Advanced Topics",
+      "tag": "advanced",
+      "description": "Understand the broader organizational context of cloud security, including governance frameworks, comprehensive risk management, regulatory compliance, secure architecture design, and emerging security technologies and threats.",
+      "resources": [
+        {
+          "title": "CSA Security Guidance",
+          "url": "https://cloudsecurityalliance.org/research/guidance",
+          "type": "article"
+        },
+        {
+          "title": "AWS Certified Security - Specialty Full Course",
+          "url": "https://www.youtube.com/watch?v=Ia-UEYYYD44",
+          "type": "video"
+        },
+        {
+          "title": "What is GRC? Governance, Risk and Compliance in Cybersecurity Explained",
+          "url": "https://www.youtube.com/watch?v=jW0iP0oQj9w",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_grc_advanced_topics.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_cloud_grc",
+          "name": "Cloud Governance, Risk Management & Compliance",
+          "tag": "advanced",
+          "description": "Navigate cloud governance frameworks (e.g., NIST CSF, ISO 27001, CIS Benchmarks, CSA STAR), manage organizational risk through assessment methodologies, and ensure compliance with regulatory standards (e.g., GDPR, HIPAA, PCI DSS). Conduct risk assessments, prepare for audits, and effectively report security posture to stakeholders.",
+          "resources": [
+            {
+              "title": "AWS Compliance Programs",
+              "url": "https://aws.amazon.com/compliance/programs/",
+              "type": "article"
+            },
+            {
+              "title": "CIS Cloud Computing Benchmarks",
+              "url": "https://www.cisecurity.org/cis-benchmarks/cloud",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Governance, Risk, and Compliance | Cloud Security Training | Simplilearn",
+              "url": "https://www.youtube.com/watch?v=F_Yw3s-g18Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_cloud_grc.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_security_architecture_review",
+          "name": "Cloud Security Architecture Review & Design",
+          "tag": "advanced",
+          "description": "Apply advanced security architecture principles to design resilient, secure, and compliant cloud systems. Conduct thorough security reviews of existing architectures and perform in-depth threat modeling to identify and mitigate design-level vulnerabilities effectively.",
+          "resources": [
+            {
+              "title": "Microsoft Azure Well-Architected Framework: Security",
+              "url": "https://learn.microsoft.com/en-us/azure/architecture/framework/security/",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Architecture Center: Security",
+              "url": "https://cloud.google.com/architecture/security",
+              "type": "article"
+            },
+            {
+              "title": "Learn AWS Cloud Security in 4 Hours | AWS Cloud Security Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=F3qL-q86g9E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_security_architecture_review.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_emerging_tech_threats",
+          "name": "Emerging Cloud Security Technologies & Threats",
+          "tag": "advanced",
+          "description": "Stay abreast of the latest trends in cloud security, including the application of Artificial Intelligence/Machine Learning in security, advancements in confidential computing, the impact of quantum computing, evolving serverless security challenges, and sophisticated Advanced Persistent Threats (APTs) targeting cloud environments.",
+          "resources": [
+            {
+              "title": "Gartner Top Security and Risk Management Trends",
+              "url": "https://www.gartner.com/en/articles/gartner-top-security-and-risk-management-trends",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Alliance (CSA) Blog",
+              "url": "https://cloudsecurityalliance.org/blog/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Trends to Watch Out For in 2024",
+              "url": "https://www.youtube.com/watch?v=JcE_k6u3R14",
+              "type": "video"
+            },
+            {
+              "title": "What is Confidential Computing? | Google Cloud Tech",
+              "url": "https://www.youtube.com/watch?v=kYJmQWbV8rM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_emerging_tech_threats.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cse_practical_application_portfolio",
+      "name": "Practical Application & Portfolio Building",
+      "tag": "essential",
+      "description": "Apply theoretical knowledge through hands-on labs and comprehensive projects, building a robust portfolio to demonstrate practical cloud security engineering skills and prepare for industry certifications.",
+      "resources": [
+        {
+          "title": "How to Build a Cyber Security Portfolio (Projects, Tips, Resume Advice)",
+          "url": "https://www.youtube.com/watch?v=s5RjY0-vW0c",
+          "type": "video"
+        },
+        {
+          "title": "AWS Certified Security - Specialty Full Course",
+          "url": "https://www.youtube.com/watch?v=f2a_625E11E",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/cloud_security_engineer/cse_practical_application_portfolio.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "cse_practice_iam_policy_review_lab",
+          "name": "Practice: IAM Policy Review & Remediation Lab",
+          "tag": "essential",
+          "description": "Hands-on lab to identify and remediate overly broad IAM permissions, refactor policies to enforce least privilege, document risks, and implement automated guardrails to prevent future regressions across AWS, Azure, and GCP.",
+          "resources": [
+            {
+              "title": "Palo Alto Networks - Hands-on IAM Permissions Boundaries in AWS",
+              "url": "https://www.paloaltonetworks.com/cyberpedia/hands-on-iam-permissions-boundaries-in-aws",
+              "type": "article"
+            },
+            {
+              "title": "AWS Certified Security - Specialty (SCS-C01) Full Course",
+              "url": "https://www.youtube.com/watch?v=N4tL4n0fZpM",
+              "type": "video"
+            },
+            {
+              "title": "AWS Certified Solutions Architect - Associate 2024 (SAA-C03) - Full Course",
+              "url": "https://www.youtube.com/watch?v=9jeP7X2H13Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_practice_iam_policy_review_lab.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_project_secure_cloud_baseline",
+          "name": "Project: Secure Cloud Baseline Deployment (Multi-Cloud)",
+          "tag": "advanced",
+          "description": "Design and deploy a secure cloud account baseline using Infrastructure-as-Code (IaC) across multiple providers (AWS, Azure, GCP). Include robust IAM guardrails, private networking, centralized logging, posture management alerts (e.g., Security Hub, Defender), integrated IaC security scans, and a foundational incident response runbook.",
+          "resources": [
+            {
+              "title": "Terraform AWS Security Baseline Module",
+              "url": "https://registry.terraform.io/modules/cloudposse/security-baseline/aws/latest",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Fundamentals Course (AWS, Azure, GCP) - Full Tutorial",
+              "url": "https://www.youtube.com/watch?v=k_j6fS-F-3g",
+              "type": "video"
+            },
+            {
+              "title": "Zero Trust Architecture Explained For Beginners",
+              "url": "https://www.youtube.com/watch?v=FjIesN4Y3eM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_project_secure_cloud_baseline.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_project_devsecops_pipeline",
+          "name": "Project: Secure DevSecOps Pipeline Implementation",
+          "tag": "advanced",
+          "description": "Implement a secure CI/CD pipeline for a cloud-native application, incorporating automated security tools such as IaC scanning, container image scanning, SAST/DAST, and dependency checks. Configure pipeline security to enforce policies and manage secrets, demonstrating a robust DevSecOps workflow.",
+          "resources": [
+            {
+              "title": "OWASP DevSecOps Guideline",
+              "url": "https://owasp.org/www-project-devsecops-guideline/",
+              "type": "article"
+            },
+            {
+              "title": "Automating Security in CI/CD Pipelines (freeCodeCamp)",
+              "url": "https://www.freecodecamp.org/news/automating-security-in-ci-cd-pipelines/",
+              "type": "article"
+            },
+            {
+              "title": "DevSecOps Tutorial - Build a Secure CI/CD Pipeline using Docker, Kubernetes & GitHub Actions",
+              "url": "https://www.youtube.com/watch?v=s5R5P-8y8Dk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_project_devsecops_pipeline.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_project_incident_response_simulation",
+          "name": "Project: Cloud Incident Response Simulation & Playbook",
+          "tag": "advanced",
+          "description": "Simulate a common cloud security incident (e.g., compromised IAM credential, data exfiltration from storage bucket). Develop and execute an incident response playbook, including detection, containment, eradication, recovery, and post-mortem analysis. Focus on using cloud-native tools for forensic data collection and response automation.",
+          "resources": [
+            {
+              "title": "AWS Security Incident Response Guide: Playbooks",
+              "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/example-incident-response-playbooks.html",
+              "type": "article"
+            },
+            {
+              "title": "Azure incident response workflow overview",
+              "url": "https://learn.microsoft.com/en-us/azure/security/fundamentals/incident-response-overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security: How to Prepare Your Organization (Course)",
+              "url": "https://www.youtube.com/watch?v=S213pXjA0wI",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Incident Response 101",
+              "url": "https://www.youtube.com/watch?v=k5j4cE0Fj6k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_project_incident_response_simulation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cse_certifications_career",
+          "name": "Certifications & Career Development",
+          "tag": "advanced",
+          "description": "Prepare for industry-recognized cloud security certifications (e.g., AWS Certified Security - Specialty, Azure Security Engineer Associate, Google Professional Cloud Security Engineer, CCSK, CCSP) and develop strategies for career advancement, including interview preparation, resume building, and portfolio showcasing.",
+          "resources": [
+            {
+              "title": "AWS Certified Security - Specialty Exam Guide",
+              "url": "https://aws.amazon.com/certification/certified-security-specialty/",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Certified: Azure Security Engineer Associate",
+              "url": "https://learn.microsoft.com/en-us/certifications/azure-security-engineer/",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Professional Cloud Security Engineer",
+              "url": "https://cloud.google.com/certification/cloud-security-engineer",
+              "type": "article"
+            },
+            {
+              "title": "CCSK (Certificate of Cloud Security Knowledge)",
+              "url": "https://cloudsecurityalliance.org/education/ccsk/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Engineer Roadmap (Certifications, Interview Prep & More!)",
+              "url": "https://www.youtube.com/watch?v=7b7l2R6X7kU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/cloud_security_engineer/cse_certifications_career.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

@@ -1,168 +1,520 @@
 {
   "id": "fullstack",
   "title": "Full Stack Developer",
-  "description": "Complete roadmap to becoming a Full Stack Web Developer — from HTML to Deployment.",
+  "description": "A comprehensive, in-depth roadmap to becoming a professional Full Stack Web Developer — from foundational web technologies to advanced deployment and production best practices.",
   "stages": [
     {
       "step": 1,
-      "title": "Frontend Foundations",
+      "title": "Frontend Core Foundations & Modern Development",
       "topics": [
         {
-          "id": "fs_html_css",
-          "name": "HTML5 & CSS3",
+          "id": "fe_html_css_adv",
+          "name": "HTML5 & Advanced CSS3 for Modern Web",
           "tag": "essential",
-          "description": "Semantic HTML, Flexbox, Grid, and responsive design.",
+          "description": "Mastering semantic HTML5 structure, advanced CSS techniques including Flexbox, Grid Layout, Custom Properties, modern responsive design patterns, CSS preprocessors (Sass/SCSS), and fundamental web accessibility (ARIA attributes, semantic structure, color contrast). Understanding modern CSS frameworks like Bootstrap/Material UI, and basic animation principles.",
           "resources": [
+            {
+              "title": "MDN Web Docs - Learn CSS",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+              "type": "article"
+            },
+            {
+              "title": "A Complete Guide to Flexbox (CSS-Tricks)",
+              "url": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/",
+              "type": "article"
+            },
+            {
+              "title": "A Complete Guide to CSS Grid (CSS-Tricks)",
+              "url": "https://css-tricks.com/snippets/css/complete-guide-grid/",
+              "type": "article"
+            },
             {
               "title": "HTML Tutorial for Beginners in Hindi (CodeWithHarry)",
               "url": "https://www.youtube.com/watch?v=BsDoLVMnmZs",
               "type": "video"
+            },
+            {
+              "title": "Advanced CSS Tutorial - Custom Properties, Responsive, Grid, Flexbox, & more!",
+              "url": "https://www.youtube.com/watch?v=FjH8u-iQz_Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fe_html_css_adv.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_js",
-          "name": "JavaScript Essentials",
+          "id": "fe_js_modern",
+          "name": "JavaScript Fundamentals & Modern ESNext",
           "tag": "essential",
-          "description": "Variables, DOM, Events, Promises, Fetch API.",
+          "description": "Deep dive into JavaScript, covering variables, data types, operators, control flow, functions, objects, arrays, comprehensive ES6+ features (arrow functions, destructuring, spread/rest operators, template literals, classes, modules), advanced array methods, asynchronous JavaScript (Promises, Async/Await), error handling, and robust DOM manipulation with event handling and performance considerations.",
           "resources": [
+            {
+              "title": "JavaScript.info - The Modern JavaScript Tutorial",
+              "url": "https://javascript.info/",
+              "type": "article"
+            },
+            {
+              "title": "MDN Web Docs - JavaScript",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+              "type": "article"
+            },
             {
               "title": "Chai aur JavaScript (Hitesh Choudhary)",
               "url": "https://www.youtube.com/playlist?list=PLu71SKxNbfoBuX3f4EOACle2y-tRC5Q37",
               "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fe_js_modern.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_react",
-          "name": "React.js",
+          "id": "fe_tooling_styling",
+          "name": "Frontend Tooling, Build Systems & Modern Styling",
           "tag": "essential",
-          "description": "Components, Props, Hooks, Context API, React Router.",
+          "description": "Understanding core frontend build tools (e.g., npm/yarn/pnpm for package management), module bundlers (Webpack, Vite) for optimizing assets and development server setup. Exploring modern styling methodologies: Utility-first CSS frameworks like Tailwind CSS, CSS-in-JS libraries (e.g., Styled Components, Emotion), and best practices for responsive, maintainable, and scalable styles.",
           "resources": [
+            {
+              "title": "Vite Official Guide",
+              "url": "https://vitejs.dev/guide/",
+              "type": "article"
+            },
+            {
+              "title": "Tailwind CSS Documentation - Installation",
+              "url": "https://tailwindcss.com/docs/installation",
+              "type": "article"
+            },
+            {
+              "title": "npm Docs - About npm",
+              "url": "https://docs.npmjs.com/about-npm",
+              "type": "article"
+            },
+            {
+              "title": "Front-End Tooling Fundamentals - Learn the basic tools for web development",
+              "url": "https://www.youtube.com/watch?v=F3JgP_1D6iQ",
+              "type": "video"
+            },
+            {
+              "title": "Tailwind CSS Tutorial - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=lC_Kkp22N6k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fe_tooling_styling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_react_core",
+          "name": "Core React.js & Component-Based UI",
+          "tag": "essential",
+          "description": "Understanding React fundamentals: component-based architecture (functional and class components), props for data flow, state management with useState and useReducer, essential hooks (useEffect, useContext, useRef, custom hooks), conditional rendering, list rendering, React Router for declarative navigation, and Context API for global state. Introduction to PropTypes for type checking.",
+          "resources": [
+            {
+              "title": "React Official Documentation - Learn React",
+              "url": "https://react.dev/learn",
+              "type": "article"
+            },
+            {
+              "title": "React Router Official Documentation",
+              "url": "https://reactrouter.com/en/main",
+              "type": "article"
+            },
             {
               "title": "Best ReactJS Course - Namaste React (Akshay Saini)",
               "url": "https://www.youtube.com/watch?v=83_7HQuIQfU",
               "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fe_react_core.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "fe_state_mgmt_testing",
+          "name": "Advanced React State Management & Testing",
+          "tag": "advanced",
+          "description": "Exploring robust global state management patterns with libraries like Redux Toolkit (Thunks, Slices) or lightweight alternatives (Zustand, Jotai). Implementing performance optimization techniques (memoization with React.memo, useCallback, useMemo) to prevent re-renders. Fundamental testing concepts for React components using Jest and React Testing Library for unit and integration tests. Introduction to storybook for component isolation and documentation.",
+          "resources": [
+            {
+              "title": "Redux Toolkit Official Documentation",
+              "url": "https://redux-toolkit.js.org/",
+              "type": "article"
+            },
+            {
+              "title": "React Testing Library Documentation",
+              "url": "https://testing-library.com/docs/react-testing-library/intro/",
+              "type": "article"
+            },
+            {
+              "title": "Zustand - A small, fast and scalable bearbones state-management solution",
+              "url": "https://zustand-demo.pmnd.rs/",
+              "type": "article"
+            },
+            {
+              "title": "React Redux Toolkit Crash Course",
+              "url": "https://www.youtube.com/watch?v=9zyvF_9LFN0",
+              "type": "video"
+            },
+            {
+              "title": "React Testing Library Tutorial for Beginners - Learn React Testing with Jest",
+              "url": "https://www.youtube.com/watch?v=ddfO2lB2PGE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fe_state_mgmt_testing.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Portfolio Website",
-        "description": "Build a personal portfolio with React and deploy on Vercel.",
+        "title": "Interactive Portfolio Website & Reusable Component Library",
+        "description": "Build a responsive, interactive personal portfolio website using React.js, showcasing your skills and projects. Additionally, create a small reusable component library for common UI elements (buttons, inputs, cards) with Storybook integration to demonstrate reusability and maintainability.",
         "url": "https://vercel.com/"
       }
     },
     {
       "step": 2,
-      "title": "Backend Development",
+      "title": "Backend Development & Data Management",
       "topics": [
         {
-          "id": "fs_node",
-          "name": "Node.js & Express",
+          "id": "be_nodejs_express",
+          "name": "Node.js & Express.js API Development",
           "tag": "essential",
-          "description": "Server-side JavaScript, REST APIs, middleware, routing.",
+          "description": "Building scalable RESTful APIs with Node.js and the Express.js framework. Covers server setup, robust routing, middleware, request/response handling, asynchronous operations, comprehensive error handling, input validation (e.g., Joi, Zod), structuring large projects, environment configuration, and an introduction to TypeScript with Node.js for type safety.",
           "resources": [
             {
-              "title": "What is NodeJS? (Piyush Garg)",
-              "url": "https://www.youtube.com/watch?v=ohIAiuHMKMI",
+              "title": "Express.js Official Guide - Using middleware",
+              "url": "https://expressjs.com/en/guide/using-middleware.html",
+              "type": "article"
+            },
+            {
+              "title": "Node.js Official Documentation",
+              "url": "https://nodejs.org/en/docs",
+              "type": "article"
+            },
+            {
+              "title": "Node.js & Express.js - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=pKd0RveBLA0",
               "type": "video"
+            },
+            {
+              "title": "Express JS Crash Course | Express JS Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=gT0Lh1eYk88",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/be_nodejs_express.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_db",
-          "name": "MongoDB & SQL Basics",
+          "id": "be_sql_db",
+          "name": "Relational Databases (PostgreSQL & ORMs)",
           "tag": "essential",
-          "description": "CRUD operations, schemas, Mongoose ODM, PostgreSQL basics.",
+          "description": "Fundamentals of relational databases, advanced SQL querying (CRUD, joins, aggregations, subqueries, views, stored procedures), database design principles (normalization, indexing, relationships), and integration with Node.js using powerful Object-Relational Mappers (ORMs) like Prisma or Sequelize for PostgreSQL. Covers database migrations and transactions.",
           "resources": [
+            {
+              "title": "Prisma Documentation - Getting Started",
+              "url": "https://www.prisma.io/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "SQL Tutorial - W3Schools",
+              "url": "https://www.w3schools.com/sql/",
+              "type": "article"
+            },
+            {
+              "title": "PostgreSQL Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=pgXvG3_Yy08",
+              "type": "video"
+            },
+            {
+              "title": "Prisma Tutorial for Beginners | Node.js & PostgreSQL",
+              "url": "https://www.youtube.com/watch?v=eXgQdopN_h0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/be_sql_db.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_nosql_db",
+          "name": "NoSQL Databases (MongoDB & Mongoose)",
+          "tag": "essential",
+          "description": "Understanding NoSQL database concepts, their use cases, and flexible schema design. MongoDB CRUD operations, advanced data modeling for document databases, Mongoose ODM for Node.js interaction, indexing strategies, aggregation pipelines for complex data processing, and basic database administration and performance tuning.",
+          "resources": [
+            {
+              "title": "Mongoose Official Documentation",
+              "url": "https://mongoosejs.com/docs/",
+              "type": "article"
+            },
+            {
+              "title": "MongoDB University - Developer Path",
+              "url": "https://learn.mongodb.com/courses/developer",
+              "type": "course"
+            },
             {
               "title": "MongoDB Crash Course (Traversy Media)",
               "url": "https://www.youtube.com/watch?v=-56x56UppqQ",
               "type": "video"
+            },
+            {
+              "title": "MongoDB Tutorial for Beginners | Learn MongoDB in 3 Hours",
+              "url": "https://www.youtube.com/watch?v=oeC6wePAgXQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/be_nosql_db.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_auth",
-          "name": "Authentication & Security",
+          "id": "be_api_auth_security",
+          "name": "API Authentication & Security Best Practices",
           "tag": "essential",
-          "description": "JWT, OAuth 2.0, bcrypt, session management.",
+          "description": "Implementing secure authentication strategies using JSON Web Tokens (JWT), OAuth 2.0, and session-based authentication. Covers robust password hashing with bcrypt, input sanitization to prevent common injection attacks (SQL, XSS), rate limiting, Cross-Origin Resource Sharing (CORS) configuration, secure cookie management, and HTTPS implementation. Deep dive into common web vulnerabilities (OWASP Top 10) and mitigation strategies.",
           "resources": [
+            {
+              "title": "OWASP Top 10 Web Application Security Risks",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Passport.js Official Documentation",
+              "url": "http://www.passportjs.org/",
+              "type": "article"
+            },
             {
               "title": "JWT Authentication Tutorial - Node.js (Web Dev Simplified)",
               "url": "https://www.youtube.com/watch?v=mbsmsi7l3r4",
               "type": "video"
+            },
+            {
+              "title": "OWASP Top 10 Explained - Web Security Fundamentals",
+              "url": "https://www.youtube.com/watch?v=sO-z60k02x4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/be_api_auth_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_realtime_caching",
+          "name": "Real-time Communication & Caching Strategies",
+          "tag": "advanced",
+          "description": "Implementing real-time functionalities using WebSockets with libraries like Socket.IO for chat applications or live updates. Understanding various caching strategies (in-memory, Redis, database caching) to improve API performance and reduce database load. Discussing message queues (e.g., RabbitMQ, Kafka) for asynchronous processing and microservices communication.",
+          "resources": [
+            {
+              "title": "Socket.IO Get Started Guide",
+              "url": "https://socket.io/get-started/chat",
+              "type": "article"
+            },
+            {
+              "title": "Redis Crash Course (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=F6E_aV02y9U",
+              "type": "video"
+            },
+            {
+              "title": "Build a Realtime Chat App with Node.js, Express & Socket.io",
+              "url": "https://www.youtube.com/watch?v=jD7FnbI76g4",
+              "type": "video"
+            },
+            {
+              "title": "RabbitMQ Tutorial For Beginners - Message Queues Explained",
+              "url": "https://www.youtube.com/watch?v=K3fA_F26k0k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/be_realtime_caching.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Blog API",
-        "description": "Build a full CRUD REST API with Node/Express, MongoDB, and JWT auth.",
+        "title": "Advanced RESTful API for a Social Media Platform with Real-time Features",
+        "description": "Build a full CRUD REST API for a social media application with Node.js/Express, integrating both PostgreSQL (for structured data like users, posts) and MongoDB (for less structured data like comments, notifications). Implement JWT authentication, robust error handling, comprehensive input validation, and introduce real-time features like live chat or notifications using WebSockets.",
         "url": "https://expressjs.com/"
       }
     },
     {
       "step": 3,
-      "title": "Full Stack Integration & Deployment",
+      "title": "Full Stack Integration, Deployment & Production Readiness",
       "topics": [
         {
-          "id": "fs_nextjs",
-          "name": "Next.js (Full Stack Framework)",
+          "id": "fs_nextjs_fullstack",
+          "name": "Full Stack Frameworks (Next.js App Router)",
           "tag": "essential",
-          "description": "SSR, SSG, API routes, middleware — the standard for production React.",
+          "description": "Mastering Next.js for full-stack development, focusing on the App Router architecture. Covers Server Components, Client Components, advanced data fetching strategies (SSR, SSG, ISR, Client-side fetching), API Routes, Middleware, file-system based Routing, Static File Serving, and optimizing for performance, SEO, and image optimization.",
           "resources": [
+            {
+              "title": "Next.js Official Documentation (App Router)",
+              "url": "https://nextjs.org/docs/app",
+              "type": "article"
+            },
+            {
+              "title": "Building a Full Stack App with Next.js & Supabase",
+              "url": "https://supabase.com/docs/guides/getting-started/quickstarts/nextjs",
+              "type": "article"
+            },
             {
               "title": "Next.js 14 Full Stack App Tutorial (Lama Dev)",
               "url": "https://www.youtube.com/watch?v=vCOSTG10Y4o",
               "type": "video"
+            },
+            {
+              "title": "Next.js 14 Crash Course | App Router, Server Actions, API Routes, MongoDB",
+              "url": "https://www.youtube.com/watch?v=Jm_VqL_c8j8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fs_nextjs_fullstack.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_git",
-          "name": "Git & GitHub",
+          "id": "fs_git_github",
+          "name": "Version Control with Git & GitHub (Advanced Workflows)",
           "tag": "essential",
-          "description": "Version control, branching, PRs, collaboration workflows.",
+          "description": "Comprehensive understanding of Git for version control, including basic and advanced commands (add, commit, push, pull, rebase, cherry-pick, reflog). Mastering branching strategies (Git Flow, GitHub Flow, Trunk-based development), collaborative development workflows on GitHub (pull requests/merge requests, code reviews), resolving complex merge conflicts, and managing Git hooks.",
           "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Git Branching Strategies Explained",
+              "url": "https://www.atlassian.com/git/tutorials/comparing-workflows",
+              "type": "article"
+            },
             {
               "title": "Complete Git and GitHub Tutorial (Kunal Kushwaha)",
               "url": "https://www.youtube.com/watch?v=apGV9Kg7ics",
               "type": "video"
+            },
+            {
+              "title": "Advanced Git Tutorial for Developers",
+              "url": "https://www.youtube.com/watch?v=USjZJg5r_gM",
+              "type": "video"
+            },
+            {
+              "title": "Git Branching Strategies: GitFlow, GitHub Flow, Trunk Based Development Explained",
+              "url": "https://www.youtube.com/watch?v=vV95Ew_Vd04",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fs_git_github.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fs_deploy",
-          "name": "Deployment & DevOps Basics",
-          "tag": "advanced",
-          "description": "Vercel, Docker basics, CI/CD, environment variables.",
+          "id": "fs_container_cicd_deploy",
+          "name": "Containerization, CI/CD & Cloud Deployment Fundamentals",
+          "tag": "essential",
+          "description": "Introduction to containerization with Docker (Dockerfiles, building images, running containers, Docker Compose for multi-service applications). Understanding Continuous Integration/Continuous Deployment (CI/CD) pipelines using tools like GitHub Actions (workflows, jobs, steps). Covers environment management, secret handling, and deploying full-stack applications to platforms like Vercel, Render, Railway, or basic concepts of cloud providers (e.g., AWS EC2/ECS, DigitalOcean Droplets, Azure App Service).",
           "resources": [
+            {
+              "title": "GitHub Actions Documentation - About workflows",
+              "url": "https://docs.github.com/en/actions/learn-github-actions/understanding-workflows",
+              "type": "article"
+            },
+            {
+              "title": "Deploy Next.js with Vercel",
+              "url": "https://vercel.com/docs/deployments/overview",
+              "type": "article"
+            },
             {
               "title": "Docker Crash Course #1 - What is Docker? (Net Ninja)",
               "url": "https://www.youtube.com/watch?v=31ieHmcTUOk",
               "type": "video"
+            },
+            {
+              "title": "Docker Compose Crash Course | Docker Tutorial For Beginners",
+              "url": "https://www.youtube.com/watch?v=Qw9dg9SgV20",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial - CI/CD for Beginners",
+              "url": "https://www.youtube.com/watch?v=R8_veQr_yP8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fs_container_cicd_deploy.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "fullstack_practice_lab",
-          "name": "Practice: End-to-End Feature Slice",
+          "id": "fs_testing_best_practices",
+          "name": "Advanced Testing, Monitoring & Production Best Practices",
           "tag": "advanced",
-          "description": "Ship one small feature across database schema, API route, UI state, validation, tests, and deployment config.",
+          "description": "Implementing comprehensive testing strategies for both frontend and backend: unit testing (Jest), integration testing (React Testing Library, Supertest), and end-to-end testing (Playwright/Cypress). Covers logging (Winston, Pino), monitoring (e.g., Sentry, Prometheus, Grafana), performance optimization (caching, code splitting, lazy loading, database query optimization), security hardening, and maintaining code quality with linting (ESLint) and formatting (Prettier) for scalable production applications.",
           "resources": [
             {
               "title": "Next.js Testing Documentation",
-              "url": "https://nextjs.org/docs/app/guides/testing",
+              "url": "https://nextjs.org/docs/app/building-your-application/testing",
               "type": "article"
+            },
+            {
+              "title": "Cypress Documentation - Getting Started",
+              "url": "https://docs.cypress.io/guides/getting-started/installing-cypress",
+              "type": "article"
+            },
+            {
+              "title": "Jest Documentation - Getting Started",
+              "url": "https://jestjs.io/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Playwright Tutorial for Beginners - End to End Testing with Playwright",
+              "url": "https://www.youtube.com/watch?v=RYC4P_en-NU",
+              "type": "video"
+            },
+            {
+              "title": "Node.js Production Best Practices - Dev to Production Series",
+              "url": "https://www.youtube.com/watch?v=FqP-k1eU4aQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/fullstack/fs_testing_best_practices.md",
+              "type": "doc"
             }
           ]
         }
       ],
       "project": {
-        "title": "Full Stack E-Commerce App",
-        "description": "Build a complete store with Next.js, Supabase, Stripe payments, and deploy on Vercel.",
+        "title": "Full Stack E-Commerce Platform with Next.js and Cloud Deployment",
+        "description": "Build a complete, production-ready e-commerce store with Next.js (App Router), integrating a PostgreSQL database (e.g., via Supabase or a custom backend using Prisma), implementing secure user authentication, product management, shopping cart, and Stripe payments. Implement comprehensive testing, configure CI/CD pipelines (GitHub Actions), and deploy the entire application to a cloud platform like Vercel or Render, including environment management and secret handling.",
         "url": "https://nextjs.org/"
       }
     }

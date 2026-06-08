@@ -1,72 +1,101 @@
 {
   "id": "game_development",
   "title": "Game Developer",
-  "description": "A beginner-to-portfolio roadmap for game programming, engines, gameplay systems, art/audio pipeline, testing, and publishing.",
+  "description": "A beginner-to-portfolio roadmap for game programming, engines, gameplay systems, art/audio pipeline, testing, and publishing. This comprehensive guide covers foundational computer science, game engine mastery, core gameplay mechanics, production workflows, and crucial steps for publishing and building a professional portfolio.",
   "format": "tree",
   "tree": [
     {
-      "id": "game_foundations",
-      "name": "Programming and Game Math",
+      "id": "gdev_programming_foundations",
+      "name": "Programming & Game Math Fundamentals",
       "tag": "essential",
-      "description": "Learn enough code and math to move objects, simulate rules, and reason about game loops.",
+      "description": "Establish a robust foundation in programming and mathematics, indispensable for understanding and implementing game logic, physics, and complex systems.",
       "resources": [
         {
           "title": "CS50 Introduction to Game Development",
           "url": "https://cs50.harvard.edu/games/",
           "type": "course"
-        },
-        {
-          "title": "Godot in 100 Seconds (Fireship)",
-          "url": "https://www.youtube.com/watch?v=QKgTZWbwD1U",
-          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "game_programming",
-          "name": "C# or GDScript Basics",
+          "id": "gdev_prog_core",
+          "name": "Core Programming Concepts (C#/GDScript)",
           "tag": "essential",
-          "description": "Use variables, functions, classes, events, collections, and debugging inside a game project.",
+          "description": "Master variables, data types, control flow, functions, classes, events, collections, debugging, error handling, and basic command-line usage. Focus on practical application in a game development context.",
           "resources": [
             {
               "title": "Microsoft C# Documentation",
               "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
               "type": "article"
+            },
+            {
+              "title": "GDScript Basics - Godot Documentation",
+              "url": "https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "game_math",
-          "name": "Vectors, Collision, and Movement",
+          "id": "gdev_data_structures_algorithms",
+          "name": "Data Structures & Algorithms for Games",
           "tag": "essential",
-          "description": "Understand coordinates, vectors, delta time, physics basics, collision, and cameras.",
+          "description": "Understand and apply fundamental data structures (arrays, lists, dictionaries, stacks, queues) and basic algorithms (searching, sorting) to efficiently manage game data and logic. Explore their practical use in game scenarios.",
+          "resources": [
+            {
+              "title": "Data Structures & Algorithms in C# (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=g_w9E7a8LhY",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "gdev_applied_game_math",
+          "name": "Applied Game Math & Physics Basics",
+          "tag": "essential",
+          "description": "Learn coordinate systems, vector math (addition, subtraction, dot/cross products, normalization, magnitude), basic matrix transformations, quaternions for rotation, linear interpolation (Lerp), trigonometry (sine, cosine), delta time, collision detection (AABB, sphere, raycasting), and fundamental kinematics for game physics.",
           "resources": [
             {
               "title": "Godot Vector Math",
               "url": "https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html",
               "type": "article"
+            },
+            {
+              "title": "3D Math Primer for Graphics and Game Development",
+              "url": "https://gamemath.com/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gdev_oop_design_patterns",
+          "name": "Object-Oriented Principles & Game Patterns",
+          "tag": "essential",
+          "description": "Dive into OOP concepts like encapsulation, inheritance, polymorphism, and interfaces. Explore common game programming patterns such as Component, State, Command, Observer, Singleton, and Object Pool patterns for cleaner, more maintainable code.",
+          "resources": [
+            {
+              "title": "Game Programming Patterns",
+              "url": "https://gameprogrammingpatterns.com/",
+              "type": "article"
+            },
+            {
+              "title": "Unity C# Survival Guide - Object Oriented Programming",
+              "url": "https://learn.unity.com/tutorial/object-oriented-programming",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "game_engine",
-      "name": "Choose an Engine",
+      "id": "gdev_engine_fundamentals",
+      "name": "Game Engine Fundamentals",
       "tag": "essential",
-      "description": "Pick one primary engine, then learn scenes, assets, input, UI, physics, animation, and builds.",
+      "description": "Gain proficiency with a leading game engine, understanding its core architecture, editor workflow, and integrated systems for crafting interactive experiences.",
       "resources": [
         {
           "title": "Godot Game Development Crash Course for Beginners (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=S8lMTwSRoRg",
           "type": "video"
-        },
-        {
-          "title": "Godot Step by Step",
-          "url": "https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html",
-          "type": "article"
         },
         {
           "title": "Unity Learn",
@@ -76,145 +105,410 @@
       ],
       "children": [
         {
-          "id": "game_godot",
-          "name": "Godot Path",
+          "id": "gdev_engine_selection_setup",
+          "name": "Engine Selection, Installation & Project Setup",
           "tag": "essential",
-          "description": "Use nodes, scenes, signals, scripts, resources, physics, UI, and exports.",
+          "description": "Evaluate and choose an appropriate game engine. Learn to install the engine, set up new projects, configure editor settings, manage project settings (build targets, quality), and organize project files effectively, including basic package/plugin management.",
           "resources": [
             {
-              "title": "Godot Tutorial for Unity Developers and Beginners (freeCodeCamp)",
-              "url": "https://www.youtube.com/watch?v=1EFKe24X8vI",
-              "type": "video"
+              "title": "Getting Started with Godot",
+              "url": "https://docs.godotengine.org/en/stable/getting_started/introduction/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Editor Overview",
+              "url": "https://docs.unity3d.com/Manual/UnityOverview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_engine_core_concepts",
+          "name": "Engine Core Concepts (Scenes, Objects, Components)",
+          "tag": "essential",
+          "description": "Understand fundamental engine concepts: Scenes/Levels, GameObjects/Nodes, Components/Scripts, Prefabs/Instancing, and the Scene Hierarchy. Learn how these elements combine to build game worlds and manage complexity.",
+          "resources": [
+            {
+              "title": "Godot Nodes and Scenes Tutorial",
+              "url": "https://docs.godotengine.org/en/stable/getting_started/step_by_step/nodes_and_scenes.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity - GameObjects, Components, and Prefabs",
+              "url": "https://docs.unity3d.com/Manual/GameObjects.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_asset_pipeline_basics",
+          "name": "Basic Asset Pipeline & Management",
+          "tag": "essential",
+          "description": "Learn to import various asset types (3D models, textures, sprites, audio), set up materials (PBR workflow basics), configure import settings, utilize sprite atlases, and manage assets within the engine for efficient development.",
+          "resources": [
+            {
+              "title": "Godot Asset Library",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/import_process.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity - Importing Assets",
+              "url": "https://docs.unity3d.com/Manual/AssetWorkflow.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_input_systems",
+          "name": "Input Management & Controls",
+          "tag": "essential",
+          "description": "Implement responsive player input for keyboard, mouse, and gamepads. Understand input mapping, action systems, event-driven input handling, input remapping, and basic mobile touch input.",
+          "resources": [
+            {
+              "title": "Godot Input Management",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/inputs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Input System",
+              "url": "https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_ui_development",
+          "name": "User Interface (UI) Development",
+          "tag": "essential",
+          "description": "Design and implement in-game menus, HUDs, pause screens, and other interactive UI elements using the engine's dedicated UI system. Understand layout groups, responsive UI design, and basic localization considerations.",
+          "resources": [
+            {
+              "title": "Godot UI Development",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/ui/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity UI Toolkit",
+              "url": "https://docs.unity3d.com/Manual/UIElements.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_physics_collision_systems",
+          "name": "Physics & Collision Systems",
+          "tag": "essential",
+          "description": "Work with rigidbodies, colliders (various shapes like box, sphere, capsule, mesh), triggers, and physics layers/tags to create realistic interactions, detect collisions, apply forces, create joints, and manage physical simulations within the game world.",
+          "resources": [
+            {
+              "title": "Godot Physics Introduction",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/physics/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Physics Overview",
+              "url": "https://docs.unity3d.com/Manual/PhysicsOverview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_animation_systems",
+          "name": "Animation Systems (Characters, Objects)",
+          "tag": "essential",
+          "description": "Implement character animation using state machines, blend trees, and keyframe animation. Learn to animate objects, UI elements, understand root motion, basic inverse kinematics (IK), and integrate animation events into gameplay logic.",
+          "resources": [
+            {
+              "title": "Godot Animation Documentation",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/animation/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Mecanim Animation System",
+              "url": "https://docs.unity3d.com/Manual/Mecanim.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_unity_essentials",
+          "name": "Unity Engine Essentials",
+          "tag": "essential",
+          "description": "Specific deep dive into Unity's architecture: MonoBehaviours, ScriptableObjects, Prefab workflow, Editor Scripting basics, understanding the Game/Editor lifecycle (Update, FixedUpdate, LateUpdate), Coroutines, Scene Management, and an introduction to rendering pipelines (URP/HDRP).",
+          "resources": [
+            {
+              "title": "Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity ScriptableObjects Tutorial",
+              "url": "https://learn.unity.com/tutorial/scriptable-objects",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "gdev_godot_essentials",
+          "name": "Godot Engine Essentials",
+          "tag": "essential",
+          "description": "Specific deep dive into Godot's node-based architecture: SceneTree, Signals and slots, Resources, AutoLoad (Singletons), custom editor tools, understanding the process callback (delta), and 2D/3D rendering specifics with GDScript and C#.",
+          "resources": [
+            {
+              "title": "Godot Step by Step",
+              "url": "https://docs.godotengine.org/en/stable/getting_started/step_by_step/index.html",
+              "type": "article"
             },
             {
               "title": "Your First 2D Game - Godot",
               "url": "https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html",
               "type": "article"
             }
-          ],
-          "children": []
-        },
-        {
-          "id": "game_unity",
-          "name": "Unity Path",
-          "tag": "essential",
-          "description": "Use GameObjects, components, prefabs, scenes, input, physics, and C# scripts.",
-          "resources": [
-            {
-              "title": "Unity Manual",
-              "url": "https://docs.unity3d.com/Manual/index.html",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "game_development_practice_lab",
-          "name": "Practice: Game Feel Polish Pass",
-          "tag": "advanced",
-          "description": "Improve controls, feedback, animation, audio, difficulty, and onboarding for a tiny playable prototype.",
-          "resources": [],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "game_systems",
-      "name": "Gameplay Systems",
+      "id": "gdev_gameplay_systems",
+      "name": "Core Gameplay Systems Development",
       "tag": "advanced",
-      "description": "Build the systems players notice: controls, enemies, levels, saves, menus, audio, and feedback.",
-      "resources": [
-        {
-          "title": "Game Programming Patterns",
-          "url": "https://gameprogrammingpatterns.com/",
-          "type": "article"
-        }
-      ],
+      "description": "Develop robust and engaging gameplay systems, including character behaviors, AI, core game mechanics, and dynamic level interactions.",
+      "resources": [],
       "children": [
         {
-          "id": "game_ai_levels",
-          "name": "AI and Level Design",
+          "id": "gdev_character_controllers",
+          "name": "Character Controllers & Player Movement",
           "tag": "advanced",
-          "description": "Create enemy states, pathfinding basics, difficulty curves, level flow, and encounter design.",
+          "description": "Build responsive player and character controllers for various genres (e.g., first-person, third-person, 2D platformer, top-down). Implement advanced movement mechanics like jumping, dashing, climbing, ground detection, slope handling, step-up mechanics, and intuitive camera controls.",
+          "resources": [
+            {
+              "title": "Godot Character Body 2D/3D",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/physics/using_character_body_3d.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_game_mechanics_impl",
+          "name": "Core Game Mechanics Implementation",
+          "tag": "advanced",
+          "description": "Implement essential game mechanics such as health and damage systems, stat systems, status effects, inventory management, item usage, basic crafting, progression systems (XP, leveling), resource management, and robust save/load functionality with data persistence.",
+          "resources": [
+            {
+              "title": "Unity Game Dev - Inventory System",
+              "url": "https://learn.unity.com/tutorial/inventory-system-2019",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "gdev_game_ai_basics",
+          "name": "Basic Game AI (State Machines, Pathfinding)",
+          "tag": "advanced",
+          "description": "Create intelligent enemy behaviors using finite state machines and an introduction to behavior trees. Implement basic pathfinding algorithms like A* and utilize navigation meshes for intelligent NPC movement, including sensing (line of sight, hearing) and basic decision-making.",
           "resources": [
             {
               "title": "Godot Navigation",
               "url": "https://docs.godotengine.org/en/stable/tutorials/navigation/index.html",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "game_ui_audio",
-          "name": "Game UI and Audio",
-          "tag": "advanced",
-          "description": "Add menus, HUD, pause, accessibility options, sound effects, music, and polish.",
-          "resources": [
+            },
             {
-              "title": "Unity UI Toolkit",
-              "url": "https://docs.unity3d.com/Manual/UIElements.html",
+              "title": "AI in Games (Gamasutra)",
+              "url": "https://www.gamasutra.com/view/feature/130103/the_a_star_algorithm_for_game_.php",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gdev_level_design_tools",
+          "name": "Level Design & Environmental Interaction",
+          "tag": "advanced",
+          "description": "Learn principles of level design, including whiteboxing, prototyping, pacing, difficulty curves, environmental storytelling, and modular level design. Implement interactive elements, environmental puzzles, and event triggers within levels.",
+          "resources": [
+            {
+              "title": "Level Design Theory (GDC Vault)",
+              "url": "https://www.gdcvault.com/play/1012228/The-Art-of-Level",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "gdev_game_state_management",
+          "name": "Game State, Event & Scene Management",
+          "tag": "advanced",
+          "description": "Implement robust systems for managing game states (e.g., main menu, gameplay, pause, game over), handling game-wide events (event bus), and efficiently transitioning between scenes/levels. Understand game flow and data management across different states.",
+          "resources": [
+            {
+              "title": "Game Architecture - State Machines",
+              "url": "https://gameprogrammingpatterns.com/state.html",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "game_publish",
-      "name": "Testing and Publishing",
+      "id": "gdev_production_polish",
+      "name": "Production, Polish & Game Design",
       "tag": "advanced",
-      "description": "Playtest, optimize, package builds, create store pages, and publish small finished games.",
+      "description": "Integrate art and audio, optimize game performance, apply advanced game design principles, and manage collaborative workflows to elevate the quality of your game.",
       "resources": [
         {
-          "title": "itch.io Creator Guide",
-          "url": "https://itch.io/docs/creators/getting-started",
+          "title": "Game Feel: A Game Designer's Guide to Virtual Sensation",
+          "url": "https://www.gamedeveloper.com/design/game-feel-a-game-designer-s-guide-to-virtual-sensation",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "game_playtesting",
-          "name": "Playtesting and Performance",
+          "id": "gdev_art_audio_integration",
+          "name": "Art & Audio Asset Integration",
           "tag": "advanced",
-          "description": "Collect feedback, fix bugs, measure frame rate, reduce build size, and improve onboarding.",
+          "description": "Learn advanced techniques for integrating 2D and 3D art assets (spritesheets, tilemaps, models, textures, animations, UV mapping basics, LOD groups). Implement sound effects, background music, audio mixing, soundbanks, and spatial audio for immersive experiences.",
+          "resources": [
+            {
+              "title": "Godot Audio Bus Layout",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/audio/audio_buses.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Audio Overview",
+              "url": "https://docs.unity3d.com/Manual/AudioOverview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_vfx_shaders_intro",
+          "name": "Visual Effects & Shader Introduction",
+          "tag": "advanced",
+          "description": "Create compelling visual effects using particle systems, post-processing effects (color grading, bloom, ambient occlusion), and learn the basics of shader programming (vertex/fragment shaders, PBR materials, shader graphs/visual editors) for custom visual styles and effects like decals.",
+          "resources": [
+            {
+              "title": "Godot Particle Systems",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/3d/particle_systems.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity VFX Graph",
+              "url": "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@10.0/manual/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_game_design_principles",
+          "name": "Game Design Principles & Player Experience",
+          "tag": "advanced",
+          "description": "Deepen your understanding of core game design principles, including player psychology, feedback loops, core loops, balancing, emergent gameplay, creating a positive user experience (UX), and the importance of 'game feel'.",
+          "resources": [
+            {
+              "title": "The Art of Game Design: A Book of Lenses",
+              "url": "https://www.amazon.com/Art-Game-Design-Lenses-Third/dp/1138634149",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_performance_optimization",
+          "name": "Performance Optimization & Profiling",
+          "tag": "advanced",
+          "description": "Identify and resolve performance bottlenecks using profiling tools (CPU, GPU). Implement strategies for draw call reduction, batching, occlusion culling, LODs, asset compression, memory management, and understanding common causes of memory leaks for smooth gameplay.",
           "resources": [
             {
               "title": "Unity Profiler",
               "url": "https://docs.unity3d.com/Manual/Profiler.html",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "game_marketing_community",
-          "name": "Store Page and Community Feedback",
-          "tag": "advanced",
-          "description": "Create trailers, screenshots, itch.io/Steam pages, feedback forms, devlogs, and release checklists.",
-          "resources": [
+            },
             {
-              "title": "itch.io Creator Guide",
-              "url": "https://itch.io/docs/creators/getting-started",
+              "title": "Godot Performance Optimization",
+              "url": "https://docs.godotengine.org/en/stable/tutorials/performance/index.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "game_capstone",
-          "name": "Project: Publish a Small Game",
+          "id": "gdev_version_control_collaboration",
+          "name": "Version Control & Collaborative Workflows",
           "tag": "advanced",
-          "description": "Finish a polished 2D game with menus, saves, sound, tutorial, builds, screenshots, and a store page.",
+          "description": "Master Git for version control, including branching strategies (e.g., GitFlow, Feature Branching), merging, pull requests, and resolving conflicts. Learn best practices for collaborative game development using Git LFS (Large File Storage) for assets and implementing code reviews.",
+          "resources": [
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Git for Game Developers",
+              "url": "https://www.perforce.com/blog/git-game-development",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdev_testing_publishing",
+      "name": "Testing, Deployment & Portfolio",
+      "tag": "advanced",
+      "description": "Navigate the final stages of game development, from rigorous testing and optimization to successful deployment, marketing, and creating a strong professional portfolio.",
+      "resources": [],
+      "children": [
+        {
+          "id": "gdev_qa_playtesting_feedback",
+          "name": "Quality Assurance & Playtesting Feedback",
+          "tag": "advanced",
+          "description": "Develop strategies for internal and external playtesting. Learn to collect, analyze, and act on player feedback. Implement basic unit and integration testing for game logic, utilize bug tracking systems, and conduct user experience (UX) testing to ensure a high level of game quality and polish.",
+          "resources": [
+            {
+              "title": "The Importance of Playtesting",
+              "url": "https://www.gamasutra.com/view/news/247192/The_Importance_of_Playtesting.php",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_build_deployment",
+          "name": "Building & Cross-Platform Deployment",
+          "tag": "advanced",
+          "description": "Understand the process of building your game for various platforms (PC, WebGL, Mobile). Configure build settings, optimize for different target environments, manage asset packaging, create debugging builds, and package your game for release. Introduction to basic CI/CD pipelines.",
           "resources": [
             {
               "title": "Godot Exporting Projects",
               "url": "https://docs.godotengine.org/en/stable/tutorials/export/index.html",
               "type": "article"
+            },
+            {
+              "title": "Unity Build Settings",
+              "url": "https://docs.unity3d.com/Manual/BuildSettings.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gdev_marketing_community",
+          "name": "Game Marketing & Community Engagement",
+          "tag": "advanced",
+          "description": "Learn to create compelling store pages (itch.io, Steam, app stores), develop engaging trailers and screenshots, craft professional press kits, engage with communities via devlogs and social media, manage post-launch feedback, and understand basic monetization strategies (F2P, premium).",
+          "resources": [
+            {
+              "title": "itch.io Creator Guide",
+              "url": "https://itch.io/docs/creators/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "Marketing Your Indie Game",
+              "url": "https://www.gamasutra.com/view/news/332163/Marketing_Your_Indie_Game_Lessons_Learned_from_3_Years_of_Game_Launches.php",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "gdev_capstone_project",
+          "name": "Capstone Project: Develop & Publish Your Game",
+          "tag": "advanced",
+          "description": "Apply all acquired knowledge and skills to design, develop, polish, and successfully publish a complete, small-scale game. This project serves as a cornerstone for your professional portfolio, showcasing your ability to deliver a full game experience.",
+          "resources": []
         }
       ]
     }

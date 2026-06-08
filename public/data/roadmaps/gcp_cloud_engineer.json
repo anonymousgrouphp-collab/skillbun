@@ -6,153 +6,715 @@
   "tree": [
     {
       "id": "gcp_cloud_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "name": "Foundations and Cloud Fundamentals",
       "tag": "essential",
-      "description": "Understand what GCP Cloud Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Understand core cloud computing concepts, Google Cloud's global infrastructure, and foundational services essential for any cloud engineer.",
       "resources": [
+        {
+          "title": "Google Cloud Documentation",
+          "url": "https://cloud.google.com/docs",
+          "type": "article"
+        },
         {
           "title": "Google Cloud Full Course for Beginners [2025] | GCP Tutorial with Hands-On Labs | GCP Crash Course (Tech Tutorials with Piyush)",
           "url": "https://www.youtube.com/watch?v=lvZk_sc8u5I",
           "type": "video"
         },
         {
-          "title": "Google Cloud Documentation",
-          "url": "https://cloud.google.com/docs",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "gcp_cloud_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "gcp_cloud_engineer_cloud_computing_essentials",
+          "name": "Cloud Computing Essentials",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Learn fundamental cloud concepts including IaaS, PaaS, SaaS, serverless, virtualization, containerization, benefits of cloud adoption, CAPEX vs. OPEX, and the shared responsibility model.",
           "resources": [
             {
-              "title": "Google Cloud Architecture Center",
-              "url": "https://docs.cloud.google.com/architecture",
+              "title": "What is Cloud Computing?",
+              "url": "https://cloud.google.com/learn/what-is-cloud-computing",
               "type": "article"
+            },
+            {
+              "title": "Google Cloud for DevOps Engineers - Free Course (Google Cloud Skills Boost)",
+              "url": "https://www.cloudskillsboost.google/course_templates/396",
+              "type": "course"
+            },
+            {
+              "title": "Understanding the Shared Responsibility Model",
+              "url": "https://cloud.google.com/security/philosophy/shared-responsibility",
+              "type": "article"
+            },
+            {
+              "title": "What is Cloud Computing? - Free Crash Course",
+              "url": "https://www.youtube.com/watch?v=M9dd9W_CKl4",
+              "type": "video"
+            },
+            {
+              "title": "IaaS, PaaS, SaaS in 5 Minutes",
+              "url": "https://www.youtube.com/watch?v=yWbB3y5xJ-4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_cloud_computing_essentials.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "gcp_cloud_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "gcp_cloud_engineer_gcp_fundamentals_organization",
+          "name": "GCP Global Infrastructure and Resource Hierarchy",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Explore Google Cloud's global infrastructure (regions, zones, edge networks), understand the resource hierarchy (organization, folders, projects, billing accounts), and manage quotas and service limits.",
           "resources": [
             {
-              "title": "Google Cloud Skills Boost",
-              "url": "https://www.cloudskillsboost.google/",
-              "type": "course"
+              "title": "Google Cloud Resource Hierarchy",
+              "url": "https://cloud.google.com/resource-manager/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Regions and Zones",
+              "url": "https://cloud.google.com/docs/overview/regions-zones",
+              "type": "article"
+            },
+            {
+              "title": "Managing Quotas",
+              "url": "https://cloud.google.com/docs/quota",
+              "type": "article"
+            },
+            {
+              "title": "GCP Regions & Zones Explained Simply",
+              "url": "https://www.youtube.com/watch?v=0h0D8w5NnJc",
+              "type": "video"
+            },
+            {
+              "title": "GCP RESOURCE HIERARCHY | How to Design Your Resource Hierarchy | Google Cloud | Cloud Career",
+              "url": "https://www.youtube.com/watch?v=64p-gEwzJd0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_gcp_fundamentals_organization.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_developer_tools_cli",
+          "name": "Developer Tools: Cloud Console, gcloud CLI, and Cloud Shell",
+          "tag": "essential",
+          "description": "Master the essential graphical interface (Cloud Console), command-line tools (gcloud CLI), and browser-based environment (Cloud Shell) for interacting with GCP services. Learn basic Git for version control.",
+          "resources": [
+            {
+              "title": "Installing the gcloud CLI",
+              "url": "https://cloud.google.com/sdk/docs/install",
+              "type": "article"
+            },
+            {
+              "title": "Using Google Cloud Shell",
+              "url": "https://cloud.google.com/shell/docs",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Console Overview",
+              "url": "https://cloud.google.com/console/docs",
+              "type": "article"
+            },
+            {
+              "title": "GCP Essentials - Google Cloud Platform Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=R8x1n01x02Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_developer_tools_cli.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "gcp_cloud_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "gcp_cloud_engineer_core_gcp_services",
+      "name": "Core GCP Services: Compute, Networking, Storage, and Identity",
       "tag": "essential",
-      "description": "Build the practical skill stack for GCP Cloud Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Build practical skills by learning and implementing key Google Cloud services across compute, networking, storage, and identity management for robust cloud solutions.",
       "resources": [
-        {
-          "title": "Google Cloud Platform Full Course | GCP Tutorial | Google Cloud Training | Edureka (edureka!)",
-          "url": "https://www.youtube.com/watch?v=IUU6OR8yHCc",
-          "type": "video"
-        },
         {
           "title": "Google Cloud Architecture Center",
           "url": "https://docs.cloud.google.com/architecture",
           "type": "article"
+        },
+        {
+          "title": "Google Cloud Platform (GCP) Fundamentals Course",
+          "url": "https://www.youtube.com/watch?v=KkM7s5gC_d8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_core_gcp_services.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "gcp_cloud_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "gcp_cloud_engineer_identity_access_management",
+          "name": "Identity and Access Management (IAM)",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Implement fine-grained access control using IAM roles (primitive, predefined, custom), policies, service accounts, and understanding best practices for security including IAM Conditions and Audit Logs.",
           "resources": [
             {
-              "title": "Google Cloud Documentation",
-              "url": "https://cloud.google.com/docs",
+              "title": "Understanding IAM",
+              "url": "https://cloud.google.com/iam/docs/overview",
               "type": "article"
+            },
+            {
+              "title": "IAM Conditions Overview",
+              "url": "https://cloud.google.com/iam/docs/conditions-overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud IAM Explained Simply (IAM in GCP)",
+              "url": "https://www.youtube.com/watch?v=k_l25jF5Y0A",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Audit Logs Explained (GCP Logging & Monitoring)",
+              "url": "https://www.youtube.com/watch?v=pD45k3w2f_Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_identity_access_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "gcp_cloud_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "gcp_cloud_engineer_vpc_networking",
+          "name": "Virtual Private Cloud (VPC) Networking Fundamentals",
+          "tag": "essential",
+          "description": "Configure and manage VPC networks, subnets, custom modes, firewall rules, routing tables, and connect resources securely within GCP.",
           "resources": [
             {
-              "title": "Google Cloud Skills Boost",
-              "url": "https://www.cloudskillsboost.google/",
-              "type": "course"
+              "title": "VPC network overview",
+              "url": "https://cloud.google.com/vpc/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Networking Fundamentals (Google Cloud Tech)",
+              "url": "https://www.youtube.com/watch?v=J_jQ7uQ-P_U",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Networking Tutorial - Step by Step Guide",
+              "url": "https://www.youtube.com/watch?v=hSjQf4l7q8c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_vpc_networking.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "gcp_cloud_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
+          "id": "gcp_cloud_engineer_advanced_network_services",
+          "name": "Advanced Network Services and Connectivity",
+          "tag": "essential",
+          "description": "Utilize Cloud DNS, Cloud Load Balancing (global, regional, internal), Cloud CDN, Cloud NAT, Private Google Access, and understand Hybrid Connectivity options like Cloud VPN and Cloud Interconnect.",
+          "resources": [
+            {
+              "title": "Cloud Load Balancing overview",
+              "url": "https://cloud.google.com/load-balancing/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud DNS overview",
+              "url": "https://cloud.google.com/dns/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud NAT overview",
+              "url": "https://cloud.google.com/nat/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Platform (GCP) Networking Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=k_lX7V6z39g",
+              "type": "video"
+            },
+            {
+              "title": "GCP Hybrid Connectivity with Cloud VPN & Cloud Interconnect explained",
+              "url": "https://www.youtube.com/watch?v=5rT_2uK2K_8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_advanced_network_services.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_compute_engine",
+          "name": "Compute Engine: Virtual Machines and Instance Groups",
+          "tag": "essential",
+          "description": "Provision, configure, and manage virtual machines (VMs) on Compute Engine, including instances, custom images, persistent disks, snapshots, and Managed Instance Groups (MIGs) with auto-scaling.",
+          "resources": [
+            {
+              "title": "Compute Engine documentation",
+              "url": "https://cloud.google.com/compute/docs",
+              "type": "article"
+            },
+            {
+              "title": "Managed Instance Groups (MIGs) Overview",
+              "url": "https://cloud.google.com/compute/docs/instance-groups/overview",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with Google Compute Engine (Tech Primers)",
+              "url": "https://www.youtube.com/watch?v=0k7bJqD1B9A",
+              "type": "video"
+            },
+            {
+              "title": "GCP Managed Instance Groups - AutoScaling, AutoHealing, Rolling Update!",
+              "url": "https://www.youtube.com/watch?v=kYJ-lF6G3uM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_compute_engine.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_serverless_platforms",
+          "name": "Serverless Platforms (Cloud Run, Functions, App Engine)",
+          "tag": "essential",
+          "description": "Deploy and manage event-driven serverless functions with Cloud Functions, containerized applications with Cloud Run, and scalable web applications with App Engine (Standard & Flexible Environment).",
+          "resources": [
+            {
+              "title": "Cloud Run overview",
+              "url": "https://cloud.google.com/run/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Functions overview",
+              "url": "https://cloud.google.com/functions/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "App Engine overview",
+              "url": "https://cloud.google.com/appengine/docs/standard/go/overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Run Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=n-P2y8s22p8",
+              "type": "video"
+            },
+            {
+              "title": "Serverless with Google Cloud Functions for Beginners",
+              "url": "https://www.youtube.com/watch?v=kYJ0hHjP1d4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_serverless_platforms.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_google_kubernetes_engine",
+          "name": "Google Kubernetes Engine (GKE)",
+          "tag": "essential",
+          "description": "Understand container orchestration with Kubernetes and deploy, manage, and scale containerized applications using GKE. Learn about clusters, nodes, pods, deployments, services, and GKE modes (Standard, Autopilot).",
+          "resources": [
+            {
+              "title": "GKE overview",
+              "url": "https://cloud.google.com/kubernetes-engine/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "GKE Autopilot vs Standard",
+              "url": "https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Kubernetes (Google Cloud Tech)",
+              "url": "https://www.youtube.com/watch?v=s_o8kwxK4f8",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Course - Full Crash Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=X48VuFYp0cs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_google_kubernetes_engine.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_storage_solutions",
+          "name": "Storage Solutions: Object, Block, and File",
+          "tag": "essential",
+          "description": "Choose and implement appropriate storage services: Cloud Storage for object storage (buckets, object lifecycle), Persistent Disks for block storage, and Filestore for managed network file storage (NFS).",
+          "resources": [
+            {
+              "title": "Cloud Storage documentation",
+              "url": "https://cloud.google.com/storage/docs",
+              "type": "article"
+            },
+            {
+              "title": "Persistent Disk documentation",
+              "url": "https://cloud.google.com/compute/docs/disks",
+              "type": "article"
+            },
+            {
+              "title": "Filestore overview",
+              "url": "https://cloud.google.com/filestore/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Storage: A Complete Tutorial",
+              "url": "https://www.youtube.com/watch?v=S7fH-M-6n18",
+              "type": "video"
+            },
+            {
+              "title": "Persistent Disk in GCP Explained",
+              "url": "https://www.youtube.com/watch?v=oE-VlJ3D8dI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_storage_solutions.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_database_services",
+          "name": "Database Services: Relational and NoSQL",
+          "tag": "essential",
+          "description": "Select and manage various database services including Cloud SQL (managed MySQL, PostgreSQL, SQL Server), Cloud Spanner (horizontally scalable relational), Firestore (NoSQL document database), and Bigtable (NoSQL wide-column database).",
+          "resources": [
+            {
+              "title": "Cloud SQL documentation",
+              "url": "https://cloud.google.com/sql/docs",
+              "type": "article"
+            },
+            {
+              "title": "Firestore documentation",
+              "url": "https://cloud.google.com/firestore/docs",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Spanner overview",
+              "url": "https://cloud.google.com/spanner/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Choosing a Database for Google Cloud",
+              "url": "https://www.youtube.com/watch?v=Fj-y5kM4a7E",
+              "type": "video"
+            },
+            {
+              "title": "Firestore Tutorial for Beginners | Getting Started",
+              "url": "https://www.youtube.com/watch?v=LqN2F4_J148",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_database_services.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_infrastructure_as_code",
+          "name": "Infrastructure as Code (IaC) with Terraform and Deployment Manager",
+          "tag": "essential",
+          "description": "Automate infrastructure provisioning and management using declarative tools like Terraform and Google Cloud Deployment Manager for consistent, repeatable, and version-controlled deployments.",
+          "resources": [
+            {
+              "title": "Manage your infrastructure as code on Google Cloud (Google Cloud Blog)",
+              "url": "https://cloud.google.com/blog/products/management-tools/manage-your-infrastructure-as-code-on-google-cloud",
+              "type": "article"
+            },
+            {
+              "title": "Terraform with Google Cloud (HashiCorp)",
+              "url": "https://developer.hashicorp.com/terraform/tutorials/gcp-get-started",
+              "type": "article"
+            },
+            {
+              "title": "Terraform Course for Beginners - Create Infrastructure as Code with AWS, Azure, & GCP",
+              "url": "https://www.youtube.com/watch?v=f2bAHbU6qjA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_infrastructure_as_code.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_ci_cd_pipelines",
+          "name": "CI/CD Pipelines with Cloud Build and Artifact Registry",
           "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "description": "Build and automate continuous integration and continuous delivery (CI/CD) pipelines using Cloud Build for automated builds and tests, Cloud Source Repositories for version control, and Artifact Registry for managing artifacts and container images.",
+          "resources": [
+            {
+              "title": "Cloud Build overview",
+              "url": "https://cloud.google.com/build/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Setting up a CI/CD pipeline on Google Cloud (Google Cloud Architecture Center)",
+              "url": "https://cloud.google.com/architecture/setting-up-a-cicd-pipeline",
+              "type": "article"
+            },
+            {
+              "title": "Artifact Registry overview",
+              "url": "https://cloud.google.com/artifact-registry/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Build and deploy containers with Cloud Build and Artifact Registry | Google Cloud Tech",
+              "url": "https://www.youtube.com/watch?v=F0fC1i95Ld8",
+              "type": "video"
+            },
+            {
+              "title": "Getting Started With Cloud Build | Google Cloud Tech",
+              "url": "https://www.youtube.com/watch?v=y3hR3c08y24",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_ci_cd_pipelines.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "gcp_cloud_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "id": "gcp_cloud_engineer_operations_security_cost",
+      "name": "Operations, Security, Compliance, and Cost Management",
+      "tag": "essential",
+      "description": "Implement robust operational practices, monitor system health, manage logs, ensure security and compliance, and optimize costs for production-ready GCP environments.",
       "resources": [
-        {
-          "title": "Google Cloud(GCP) Certifications Roadmap 2025 | Which GCP Certification Should You Choose? (Swati Thakur)",
-          "url": "https://www.youtube.com/watch?v=dCrdoNmsMIQ",
-          "type": "video"
-        },
         {
           "title": "Google Cloud Skills Boost",
           "url": "https://www.cloudskillsboost.google/",
           "type": "course"
+        },
+        {
+          "title": "Mastering Cloud Monitoring & Logging for GCP | Google Cloud Logging Tutorial",
+          "url": "https://www.youtube.com/watch?v=F3_z-nCg13Y",
+          "type": "video"
+        },
+        {
+          "title": "GCP Security Best Practices for Cloud Engineers",
+          "url": "https://www.youtube.com/watch?v=9_1b4h2i3kQ",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_operations_security_cost.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "gcp_cloud_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "gcp_cloud_engineer_observability_monitoring_logging",
+          "name": "Cloud Operations Suite (Monitoring, Logging, Alerting)",
+          "tag": "essential",
+          "description": "Configure and utilize Cloud Monitoring for collecting metrics, creating dashboards, and setting up alerting policies. Use Cloud Logging for centralized log management, log analytics, and exporting logs. Explore Cloud Trace and Error Reporting for application insights.",
           "resources": [
             {
-              "title": "Google Cloud Architecture Center",
-              "url": "https://docs.cloud.google.com/architecture",
+              "title": "Cloud Monitoring documentation",
+              "url": "https://cloud.google.com/monitoring/docs",
               "type": "article"
+            },
+            {
+              "title": "Cloud Logging documentation",
+              "url": "https://cloud.google.com/logging/docs",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Trace overview",
+              "url": "https://cloud.google.com/trace/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Platform (GCP) Associate Cloud Engineer Certification Course",
+              "url": "https://www.youtube.com/watch?v=jpv_oFwJ51I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_observability_monitoring_logging.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "gcp_cloud_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "gcp_cloud_engineer_troubleshooting_incident_response",
+          "name": "Troubleshooting, Debugging, and Incident Response",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Develop skills in diagnosing issues across GCP services, utilizing logging and monitoring tools for root cause analysis, implementing debugging strategies, and following incident response procedures based on SRE principles.",
           "resources": [
             {
-              "title": "Google Cloud Documentation",
-              "url": "https://cloud.google.com/docs",
+              "title": "Troubleshooting Google Cloud operations",
+              "url": "https://cloud.google.com/architecture/framework/operations/troubleshooting",
               "type": "article"
+            },
+            {
+              "title": "Site Reliability Engineering (SRE) Workbook",
+              "url": "https://landing.google.com/sre/workbook/chapters/",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Debugger overview",
+              "url": "https://cloud.google.com/debugger/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "What is Site Reliability Engineering (SRE)? – Learn SRE Basics",
+              "url": "https://www.youtube.com/watch?v=A2dEPtM1N6k",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Logging Tutorial for Beginners | Getting Started with Stackdriver Logging",
+              "url": "https://www.youtube.com/watch?v=Xh0yP8oKx4U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_troubleshooting_incident_response.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_security_compliance_data_protection",
+          "name": "Advanced Security, Compliance, and Data Protection",
+          "tag": "advanced",
+          "description": "Implement security best practices, utilize services like Security Command Center for threat detection, Cloud KMS for key management, Secret Manager for sensitive data, and understand compliance requirements. Explore VPC Service Controls and Data Loss Prevention (DLP).",
+          "resources": [
+            {
+              "title": "Google Cloud security",
+              "url": "https://cloud.google.com/security",
+              "type": "article"
+            },
+            {
+              "title": "Security Command Center overview",
+              "url": "https://cloud.google.com/security-command-center/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "VPC Service Controls overview",
+              "url": "https://cloud.google.com/vpc-service-controls/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud KMS overview",
+              "url": "https://cloud.google.com/kms/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Security Overview - Top 10 Things You Need To Know",
+              "url": "https://www.youtube.com/watch?v=F_fX2V79XzI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_security_compliance_data_protection.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_cost_management_optimization",
+          "name": "Cost Management and Optimization Strategies",
+          "tag": "essential",
+          "description": "Manage billing accounts, set up budgets and alerts, analyze cost reports with Billing Export, implement strategies for optimizing GCP resource utilization (rightsizing, auto-scaling), and leverage committed use discounts (CUDs) and sustained use discounts (SUDs).",
+          "resources": [
+            {
+              "title": "Google Cloud pricing",
+              "url": "https://cloud.google.com/pricing",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cost Management Best Practices (Cloudskills.io)",
+              "url": "https://cloudskills.io/gcp-cost-management-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Cost optimization in Google Cloud",
+              "url": "https://cloud.google.com/architecture/framework/cost-optimization",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Cost Management with FinOps - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=S0y_6sP5t3w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_cost_management_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_automation_devops_practices",
+          "name": "Automation and DevOps Practices on GCP",
+          "tag": "advanced",
+          "description": "Implement automation for operational tasks using Cloud Scheduler, Cloud Workflows, and Cloud Tasks. Integrate these tools into DevOps practices for automated deployments, scaling, and maintenance. Understand infrastructure orchestration patterns.",
+          "resources": [
+            {
+              "title": "Cloud Workflows overview",
+              "url": "https://cloud.google.com/workflows/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Scheduler overview",
+              "url": "https://cloud.google.com/scheduler/docs/overview",
+              "type": "article"
+            },
+            {
+              "title": "DevOps on Google Cloud",
+              "url": "https://cloud.google.com/devops",
+              "type": "article"
+            },
+            {
+              "title": "GCP CI/CD Pipeline using Cloud Build and Cloud Deploy | Google Cloud DevOps Tutorial",
+              "url": "https://www.youtube.com/watch?v=F3x_U177b94",
+              "type": "video"
+            },
+            {
+              "title": "Cloud Workflows: The Best of Your Google Cloud Services",
+              "url": "https://www.youtube.com/watch?v=1FfL3W8-oWw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_automation_devops_practices.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
@@ -160,7 +722,7 @@
       "id": "gcp_cloud_engineer_portfolio_career",
       "name": "Portfolio and Career Readiness",
       "tag": "advanced",
-      "description": "Turn your GCP Cloud Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Showcase your GCP Cloud Engineer expertise through practical projects, case studies, and prepare for interviews to successfully land a role.",
       "resources": [
         {
           "title": "Google Cloud Documentation",
@@ -176,36 +738,107 @@
           "title": "Google Cloud Skills Boost",
           "url": "https://www.cloudskillsboost.google/",
           "type": "course"
+        },
+        {
+          "title": "How to Become a Cloud Engineer",
+          "url": "https://www.youtube.com/watch?v=JcE791Sg_bU",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_portfolio_career.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "gcp_cloud_engineer_case_study",
-          "name": "Case Study Writing",
+          "id": "gcp_cloud_engineer_case_study_writing",
+          "name": "Case Study Writing and Documentation",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Learn to articulate technical projects into compelling case studies, detailing problem, solution, implementation, impact, and architectural decisions. Master creating clear and concise technical documentation.",
           "resources": [
             {
-              "title": "Google Cloud Documentation",
-              "url": "https://cloud.google.com/docs",
+              "title": "How to Write a Technical Case Study",
+              "url": "https://cloud.google.com/blog/topics/developers-practitioners/how-to-write-technical-case-study",
               "type": "article"
+            },
+            {
+              "title": "Documenting Your Architecture",
+              "url": "https://cloud.google.com/architecture/framework/architecture/document-your-architecture",
+              "type": "article"
+            },
+            {
+              "title": "Technical Writing Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=F_f0h9u-JZM",
+              "type": "video"
+            },
+            {
+              "title": "How to Write a Tech Case Study | Technical Project Case Study | Tech Case Study | Tech Talk",
+              "url": "https://www.youtube.com/watch?v=840Qy6zR00c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_case_study_writing.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "gcp_cloud_engineer_project_capstone",
-          "name": "Project: GCP Cloud Engineer Portfolio Capstone",
+          "id": "gcp_cloud_engineer_portfolio_capstone_project",
+          "name": "GCP Cloud Engineer Portfolio Capstone Project",
           "tag": "advanced",
-          "description": "Build a portfolio-grade GCP Cloud Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Design, implement, and document a comprehensive, end-to-end GCP project that demonstrates a wide range of skills acquired throughout the roadmap, creating a strong professional portfolio centerpiece.",
           "resources": [
             {
-              "title": "Google Cloud Skills Boost",
-              "url": "https://www.cloudskillsboost.google/",
+              "title": "Google Cloud Skills Boost - Advanced GCP Projects",
+              "url": "https://www.cloudskillsboost.google/catalog?keywords=advanced+project",
               "type": "course"
+            },
+            {
+              "title": "Building a Cloud Portfolio (Google Cloud Tech)",
+              "url": "https://www.youtube.com/watch?v=FjIq2N44PjY",
+              "type": "video"
+            },
+            {
+              "title": "Build an Event-Driven Serverless Application on Google Cloud",
+              "url": "https://www.youtube.com/watch?v=yY1tL3M4T4w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_portfolio_capstone_project.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "gcp_cloud_engineer_interview_prep",
+          "name": "Interview Preparation and Professional Networking",
+          "tag": "advanced",
+          "description": "Prepare for technical and behavioral interviews, practice scenario-based problem-solving, develop resume and LinkedIn presence, and actively engage in professional networking within the cloud community.",
+          "resources": [
+            {
+              "title": "Preparing for your Google Cloud Certification (Google Cloud Blog)",
+              "url": "https://cloud.google.com/blog/topics/training-certification/preparing-for-your-google-cloud-certification",
+              "type": "article"
+            },
+            {
+              "title": "GCP Professional Cloud Architect Exam Questions and Answers | Google Cloud Certification",
+              "url": "https://www.youtube.com/watch?v=N64kG8gX67g",
+              "type": "video"
+            },
+            {
+              "title": "How to get a job at Google Cloud as a Cloud Engineer in 2024?",
+              "url": "https://www.youtube.com/watch?v=Jm36IuL9R0Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/gcp_cloud_engineer/gcp_cloud_engineer_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }
