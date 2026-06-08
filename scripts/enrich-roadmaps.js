@@ -74,7 +74,7 @@ async function callLLM(apiKey, prompt, schema) {
 
 async function callGeminiDirect(apiKey, prompt, schema) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ async function callOpenAIDirect(apiKey, prompt, schema) {
 
   const promptWithSchema = `${prompt}\n\nIMPORTANT: You must return your response as a valid JSON object strictly matching this JSON Schema:\n${JSON.stringify(schema, null, 2)}`;
 
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -137,7 +137,8 @@ async function callOpenAIDirect(apiKey, prompt, schema) {
       response_format: { type: 'json_object' },
       temperature: 0.2,
       max_tokens: 8192
-    })
+    }),
+    timeout: 180000 // 3 minutes timeout
   });
 
   if (!response.ok) {
@@ -157,6 +158,26 @@ async function callOpenAIDirect(apiKey, prompt, schema) {
   }
 
   return JSON.parse(cleanText);
+}
+
+// Fetch with timeout helper to prevent hanging on slow/unstable APIs
+async function fetchWithTimeout(resource, options = {}) {
+  const { timeout = 120000 } = options; // 2 minutes default timeout
+  
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  
+  try {
+    const response = await fetch(resource, {
+      ...options,
+      signal: controller.signal
+    });
+    clearTimeout(id);
+    return response;
+  } catch (err) {
+    clearTimeout(id);
+    throw err;
+  }
 }
 
 // Sleep utility
