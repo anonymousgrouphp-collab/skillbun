@@ -142,45 +142,6 @@ The script supports Google Gemini and SiliconFlow (DeepSeek/Qwen). Configure the
    - `--file <filename.json>`: Runs only on the specified roadmap file for testing.
    - `--limit <number>`: Processes only the first N roadmaps.
 
-### Running on Google Colab (Using SiliconFlow Cloud API)
-
-You can run the enrichment pipeline on Google Colab using a SiliconFlow API key for extremely fast generation (DeepSeek-V3 in the cloud, taking only 2-3 seconds per roadmap):
-
-1. **Clone Repo and Install Dependencies**:
-   Save your GitHub Personal Access Token (PAT) under Colab's **Secrets (Key 🔑 icon)** as `GITHUB_TOKEN`. Then run:
-   ```python
-   from google.colab import userdata
-   github_token = userdata.get('GITHUB_TOKEN')
-
-   # Clone private repository
-   !git clone https://{github_token}@github.com/anonymousgrouphp-collab/skillbun-v2.git
-   %cd skillbun-v2
-   !npm install
-   ```
-
-2. **Configure Environment & Run**:
-   Configure your SiliconFlow API key and run the script:
-   ```python
-   import os
-   os.environ["API_PROVIDER"] = "siliconflow"
-   os.environ["SILICONFLOW_API_KEY"] = "YOUR_SILICONFLOW_API_KEY_HERE"
-   os.environ["SILICONFLOW_MODEL"] = "deepseek-ai/DeepSeek-V3"
-
-   # Run the enricher script
-   !node scripts/enrich-roadmaps.js
-   ```
-
-3. **Commit and Push Back**:
-   ```python
-   from google.colab import userdata
-   github_token = userdata.get('GITHUB_TOKEN')
-
-   !git config --global user.name "Your GitHub Name"
-   !git config --global user.email "your-github-email@example.com"
-   !git add public/data/
-   !git commit -m "Enrich roadmaps with SiliconFlow"
-   !git push https://{github_token}@github.com/anonymousgrouphp-collab/skillbun-v2.git main
-   ```
 
 ## API Routes
 
