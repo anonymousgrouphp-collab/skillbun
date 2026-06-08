@@ -135,7 +135,13 @@ async function callOpenAIDirect(apiKey, prompt, schema) {
         }
       ],
       response_format: { type: 'json_object' },
-      temperature: 0.2
+      temperature: 0.2,
+      // Pass Ollama-specific options if calling a local instance to prevent context truncation
+      ...(baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1') || baseUrl.includes('11434') ? {
+        options: {
+          num_ctx: 16384
+        }
+      } : {})
     })
   });
 
