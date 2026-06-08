@@ -17,7 +17,8 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Sends password reset emails via Zoho SMTP (limited to 1/min and 3/hr per email, 10/hr per IP, only incremented on successful send/user-not-found), featuring automatic fallback to Vercel's URL configurations for link generation in serverless environments.
 - Provides a public certificate registry lookup search page at `/certificate` with client-side network offline state detection, a dedicated verified certificate dynamic page at `/certificate/[id]`, and integrated entry points across the homepage and navbar dropdown for easy student access.
 - Corrects user menu navigation flow by removing the redundant "Learning Progress" button and routing the "Saved Paths" button directly to `/roadmap?view=saved` instead of duplicate `/dashboard` links, with full URL query parameters support on the Roadmap Hub to seamlessly load the appropriate tab (saved vs explore).
-- Enriches all 100 career roadmaps with structured, in-depth "SkillBun Originals" study guide documentation in precise English and verified YouTube video resource links, rendered seamlessly in an interactive, responsive Slide-out Study Guide Drawer with support for dark/light themes, completion indicators, and direct AI counsellor integration.
+- Features an interactive, responsive Slide-out Study Guide Drawer with support for dark/light themes, completion indicators, and direct AI counsellor integration, whitelisting YouTube in the Content Security Policy to prevent iframe blocking.
+- Allows students to read all 1,304 generated study guides by correcting URL validation to support relative paths (`/data/docs/...`) and adding support for YouTube playlist embeds in the drawer.
 
 ## Tech Stack
 

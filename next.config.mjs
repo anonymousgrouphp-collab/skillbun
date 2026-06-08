@@ -16,7 +16,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   `script-src 'self' 'unsafe-inline'${isProduction ? '' : " 'unsafe-eval'"} https://challenges.cloudflare.com https://www.gstatic.com https://apis.google.com`,
   `connect-src 'self'${isProduction ? '' : ' ws://localhost:* http://localhost:*'} https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://*.googleapis.com https://*.firebaseio.com https://challenges.cloudflare.com`,
-  `frame-src 'self' ${firebaseAuthOrigin} https://challenges.cloudflare.com https://accounts.google.com`,
+  `frame-src 'self' ${firebaseAuthOrigin} https://challenges.cloudflare.com https://accounts.google.com https://www.youtube.com https://youtube.com`,
   "worker-src 'self' blob:",
   "form-action 'self'",
   ...(isProduction ? ["upgrade-insecure-requests"] : []),
