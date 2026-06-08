@@ -212,10 +212,10 @@ const treeSchema = {
   required: ['id', 'title', 'description', 'format', 'tree']
 };
 
-// Phase 2 Schema definitions
 const phase2Schema = {
   type: 'OBJECT',
   properties: {
+    needsLocalGuide: { type: 'BOOLEAN' },
     documentation: { type: 'STRING' },
     youtubeResources: {
       type: 'ARRAY',
@@ -230,7 +230,7 @@ const phase2Schema = {
       }
     }
   },
-  required: ['documentation', 'youtubeResources']
+  required: ['needsLocalGuide', 'documentation', 'youtubeResources']
 };
 
 // Helper to extract list of topics from a roadmap JSON
@@ -362,22 +362,20 @@ async function processPhase2(item, apiKey, workerId) {
 
     console.log(`  [Worker ${workerId}] Processing topic: "${topic.name}" (${topic.id}) [${i+1}/${topics.length}]`);
 
-    const existingVideos = Array.isArray(topic.resources) 
-      ? topic.resources.filter(r => r.type === 'video') 
-      : [];
-
+    const existingResources = Array.isArray(topic.resources) ? topic.resources : [];
     const prompt = `You are an expert technical writer and educator for SkillBun.
-Your task is to generate high-quality education content for the following topic inside the "${roadmap.title}" roadmap:
+Your task is to evaluate the existing resources for the following topic inside the "${roadmap.title}" roadmap:
 
 Topic Name: ${topic.name}
 Topic Description: ${topic.description}
 
-We also have the following existing YouTube video resources listed for this topic (if any):
-${JSON.stringify(existingVideos, null, 2)}
+Existing Resources list:
+${JSON.stringify(existingResources, null, 2)}
 
-You must return a JSON object with two fields:
-1. "documentation": String. This must contain a precise, highly informative, and structured Study Guide written in clean, engaging English. Use proper Markdown formatting (headings, lists, bullet points, and code syntax blocks if applicable). Keep it technical, clear, and direct. Explain core concepts, provide a simple code example or configuration sample if relevant, and add a quick 3-item checklist/exercise to test understanding.
-2. "youtubeResources": Array of objects. Evaluate the existing YouTube video resources provided. If they are irrelevant, bad, or missing, replace them with 1 to 2 highly relevant, popular, and high-quality YouTube tutorial videos (specifically from channels like freeCodeCamp, Traversy Media, Net Ninja, CodeWithHarry, Apna College, Chai aur Code, etc.). Provide the exact 'title', 'url' (direct YouTube watch URL), and set 'type' to "video". Ensure the URLs are valid and the video is directly relevant.
+You must return a JSON object with three fields:
+1. "needsLocalGuide": Boolean. Set to true if the existing resources list does not contain any highly specific, high-quality, and official external documentation/article links (like official developers docs, standard guides, MDN Web Docs, W3C specifications) that already make a custom local study guide redundant. Set to false if there is already a great specific external documentation/article link so that we do not generate duplicate content.
+2. "documentation": String. If "needsLocalGuide" is true, write a precise, highly informative, and structured Study Guide in clean, engaging English using proper Markdown formatting. If "needsLocalGuide" is false, return an empty string.
+3. "youtubeResources": Array of objects. Evaluate the existing YouTube video resources. If they are irrelevant, bad, or missing, replace them with 1 to 2 highly relevant, popular, and high-quality YouTube tutorial videos (specifically from channels like freeCodeCamp, Traversy Media, Net Ninja, CodeWithHarry, Apna College, Chai aur Code, etc.). Provide the exact 'title', 'url' (direct YouTube watch URL), and set 'type' to "video". Ensure the URLs are valid and the video is directly relevant.
 
 Format your response strictly using the provided JSON schema.`;
 
@@ -387,25 +385,31 @@ Format your response strictly using the provided JSON schema.`;
       try {
         const result = await callGemini(apiKey, prompt, phase2Schema);
         
-        // 1. Write the markdown file
-        fs.writeFileSync(docPath, result.documentation, 'utf8');
-
-        // 2. Update the topic resources in memory
-        // Filter out old video and old doc resources
         const nonVideoDocResources = Array.isArray(topic.resources)
           ? topic.resources.filter(r => r.type !== 'video' && r.type !== 'doc')
           : [];
 
-        // Append the new validated videos and the study guide doc resource
-        topic.resources = [
-          ...nonVideoDocResources,
-          ...result.youtubeResources,
-          {
-            title: 'Study Guide & Notes',
-            url: `/data/docs/${slug}/${topic.id}.md`,
-            type: 'doc'
-          }
-        ];
+        if (result.needsLocalGuide && result.documentation) {
+          // 1. Write the markdown file
+          fs.writeFileSync(docPath, result.documentation, 'utf8');
+
+          // 2. Update the topic resources in memory
+          topic.resources = [
+            ...nonVideoDocResources,
+            ...result.youtubeResources,
+            {
+              title: 'Study Guide & Notes',
+              url: `/data/docs/${slug}/${topic.id}.md`,
+              type: 'doc'
+            }
+          ];
+        } else {
+          // Just update the YouTube resources and keep existing non-video resources
+          topic.resources = [
+            ...nonVideoDocResources,
+            ...result.youtubeResources
+          ];
+        }
 
         modified = true;
         success = true;
