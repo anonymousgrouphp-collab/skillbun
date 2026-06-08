@@ -9,6 +9,7 @@ import './roadmap.css';
 
 function isSafeUrl(url) {
   if (typeof url !== 'string' || !url.trim()) return false;
+  if (url.startsWith('/') || url.startsWith('./') || url.startsWith('../')) return true;
   try { return ['https:', 'http:'].includes(new URL(url).protocol); } catch { return false; }
 }
 function askBunBot(t, r) {
