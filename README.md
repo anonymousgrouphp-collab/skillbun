@@ -115,14 +115,86 @@ To enrich all 100 career roadmaps with in-depth study documentation and verified
 node scripts/enrich-roadmaps.js
 ```
 
+### LLM Providers & Configurations
+
+The script supports Google Gemini, SiliconFlow, and standard OpenAI-compatible APIs (like local Ollama). Configure the following in your `.env` file:
+
+- **Gemini (Default)**:
+  ```env
+  API_PROVIDER=gemini
+  GEMINI_API_KEY=your_key_here
+  ```
+- **SiliconFlow (DeepSeek / Qwen)**:
+  ```env
+  API_PROVIDER=siliconflow
+  SILICONFLOW_API_KEY=your_siliconflow_key_here
+  SILICONFLOW_MODEL=deepseek-ai/DeepSeek-V3
+  SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
+  ```
+- **Ollama / Custom OpenAI Endpoint**:
+  ```env
+  API_PROVIDER=openai
+  OPENAI_API_KEY=ollama
+  OPENAI_MODEL=qwen2.5:7b
+  OPENAI_BASE_URL=http://localhost:11434/v1
+  ```
+
 ### Script Capabilities:
-1. **Pipeline Architecture**: Processes roadmaps in two stages using a dynamic task queue. Workers 1 to 4 optimize the structure and add/update nodes, while remaining workers validate resources, correct irrelevant YouTube videos, and generate study guides.
-2. **Dynamic Scaling & Load Balancing**: Uses parallel workers matching the number of `GEMINI_API_KEY_X` variables defined in `.env` (scales automatically from 1 to any number of keys). Workers 1 to 4 automatically transition to help with Phase 2 once Phase 1 is finished, ensuring maximum speed.
-3. **Resumable Runs & Local Disk Cache Skipping**: Automatically checks if a topic's Markdown study guide already exists on disk (under `public/data/docs/`). If the file exists, it skips the Gemini API call entirely, updates the JSON structure in memory, and moves on, saving API quota and preventing duplicate costs.
-4. **Outage Resilience**: Implemented a 6-attempt retry strategy with exponential backoff (10s, 20s, 30s, etc.) to gracefully handle Gemini API 500 (Internal Server Error) and 503 (Unavailable) codes.
-5. **Options**:
+1. **Multi-Provider LLM Integration**: Dynamically routes API calls through Gemini, SiliconFlow, or standard OpenAI/Ollama endpoints. Supports indexed keys (e.g. `SILICONFLOW_API_KEY_2`) for concurrent execution.
+2. **Pipeline Architecture**: Processes roadmaps in two stages using a dynamic task queue. Workers 1 to 4 optimize the structure and add/update nodes, while remaining workers validate resources, correct irrelevant YouTube videos, and generate study guides.
+3. **Dynamic Scaling & Load Balancing**: Uses parallel workers matching the number of API keys defined in `.env`. Workers 1 to 4 automatically transition to help with Phase 2 once Phase 1 is finished, ensuring maximum speed.
+4. **Resumable Runs & Local Disk Cache Skipping**: Automatically checks if a topic's Markdown study guide already exists on disk (under `public/data/docs/`). If the file exists, it skips the LLM API call entirely, updates the JSON structure in memory, and moves on, saving API quota and preventing duplicate costs.
+5. **Outage Resilience**: Implemented a 6-attempt retry strategy with exponential backoff (10s, 20s, 30s, etc.) to gracefully handle LLM API 500 (Internal Server Error) and 503 (Unavailable) codes.
+6. **Options**:
    - `--file <filename.json>`: Runs only on the specified roadmap file for testing.
    - `--limit <number>`: Processes only the first N roadmaps.
+
+### Running on Google Colab (Free T4 GPU + Local Ollama)
+
+If you do not have an API key or want to run generation 100% free offline, you can run the enrichment pipeline directly on Google Colab:
+
+1. **Mount Drive or Clone Repo in a Colab Cell**:
+   ```bash
+   !git clone https://github.com/your-username/skillbun-backup.git
+   %cd skillbun-backup
+   !npm install
+   ```
+
+2. **Install & Run Ollama in Colab**:
+   ```python
+   # Install Ollama client
+   !curl -fsSL https://ollama.com/install.sh | sh
+
+   # Start Ollama server in background
+   import subprocess
+   import time
+   subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+   time.sleep(5)  # Wait for startup
+
+   # Pull Qwen 2.5 Coder or standard model
+   !ollama pull qwen2.5:7b
+   ```
+
+3. **Configure Environment & Run**:
+   ```python
+   import os
+   os.environ["API_PROVIDER"] = "openai"
+   os.environ["OPENAI_API_KEY"] = "ollama"
+   os.environ["OPENAI_BASE_URL"] = "http://localhost:11434/v1"
+   os.environ["OPENAI_MODEL"] = "qwen2.5:7b"
+
+   # Run the enricher script
+   !node scripts/enrich-roadmaps.js
+   ```
+
+4. **Commit and Push Back**:
+   ```bash
+   !git config --global user.name "Your Name"
+   !git config --global user.email "your.email@example.com"
+   !git add public/data/
+   !git commit -m "Enrich roadmaps with Colab Ollama"
+   !git push origin main
+   ```
 
 ## API Routes
 
