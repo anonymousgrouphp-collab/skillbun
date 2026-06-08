@@ -117,7 +117,7 @@ node scripts/enrich-roadmaps.js
 
 ### LLM Providers & Configurations
 
-The script supports Google Gemini, SiliconFlow, and standard OpenAI-compatible APIs (like local Ollama). Configure the following in your `.env` file:
+The script supports Google Gemini and SiliconFlow (DeepSeek/Qwen). Configure the following in your `.env` file:
 
 - **Gemini (Default)**:
   ```env
@@ -131,16 +131,9 @@ The script supports Google Gemini, SiliconFlow, and standard OpenAI-compatible A
   SILICONFLOW_MODEL=deepseek-ai/DeepSeek-V3
   SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
   ```
-- **Ollama / Custom OpenAI Endpoint**:
-  ```env
-  API_PROVIDER=openai
-  OPENAI_API_KEY=ollama
-  OPENAI_MODEL=qwen2.5:7b
-  OPENAI_BASE_URL=http://localhost:11434/v1
-  ```
 
 ### Script Capabilities:
-1. **Multi-Provider LLM Integration**: Dynamically routes API calls through Gemini, SiliconFlow, or standard OpenAI/Ollama endpoints. Supports indexed keys (e.g. `SILICONFLOW_API_KEY_2`) for concurrent execution.
+1. **Multi-Provider LLM Integration**: Dynamically routes API calls through Gemini or SiliconFlow. Supports indexed keys (e.g. `SILICONFLOW_API_KEY_2`) for concurrent execution.
 2. **Pipeline Architecture**: Processes roadmaps in two stages using a dynamic task queue. Workers 1 to 4 optimize the structure and add/update nodes, while remaining workers validate resources, correct irrelevant YouTube videos, and generate study guides.
 3. **Dynamic Scaling & Load Balancing**: Uses parallel workers matching the number of API keys defined in `.env`. Workers 1 to 4 automatically transition to help with Phase 2 once Phase 1 is finished, ensuring maximum speed.
 4. **Resumable Runs & Local Disk Cache Skipping**: Automatically checks if a topic's Markdown study guide already exists on disk (under `public/data/docs/`). If the file exists, it skips the LLM API call entirely, updates the JSON structure in memory, and moves on, saving API quota and preventing duplicate costs.
@@ -149,51 +142,44 @@ The script supports Google Gemini, SiliconFlow, and standard OpenAI-compatible A
    - `--file <filename.json>`: Runs only on the specified roadmap file for testing.
    - `--limit <number>`: Processes only the first N roadmaps.
 
-### Running on Google Colab (Free T4 GPU + Local Ollama)
+### Running on Google Colab (Using SiliconFlow Cloud API)
 
-If you do not have an API key or want to run generation 100% free offline, you can run the enrichment pipeline directly on Google Colab:
+You can run the enrichment pipeline on Google Colab using a SiliconFlow API key for extremely fast generation (DeepSeek-V3 in the cloud, taking only 2-3 seconds per roadmap):
 
-1. **Mount Drive or Clone Repo in a Colab Cell**:
-   ```bash
-   !git clone https://github.com/your-username/skillbun-backup.git
-   %cd skillbun-backup
+1. **Clone Repo and Install Dependencies**:
+   Save your GitHub Personal Access Token (PAT) under Colab's **Secrets (Key 🔑 icon)** as `GITHUB_TOKEN`. Then run:
+   ```python
+   from google.colab import userdata
+   github_token = userdata.get('GITHUB_TOKEN')
+
+   # Clone private repository
+   !git clone https://{github_token}@github.com/anonymousgrouphp-collab/skillbun-v2.git
+   %cd skillbun-v2
    !npm install
    ```
 
-2. **Install & Run Ollama in Colab**:
-   ```python
-   # Install Ollama client
-   !curl -fsSL https://ollama.com/install.sh | sh
-
-   # Start Ollama server in background
-   import subprocess
-   import time
-   subprocess.Popen(["ollama", "serve"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-   time.sleep(5)  # Wait for startup
-
-   # Pull Qwen 2.5 Coder or standard model
-   !ollama pull qwen2.5:7b
-   ```
-
-3. **Configure Environment & Run**:
+2. **Configure Environment & Run**:
+   Configure your SiliconFlow API key and run the script:
    ```python
    import os
-   os.environ["API_PROVIDER"] = "openai"
-   os.environ["OPENAI_API_KEY"] = "ollama"
-   os.environ["OPENAI_BASE_URL"] = "http://localhost:11434/v1"
-   os.environ["OPENAI_MODEL"] = "qwen2.5:7b"
+   os.environ["API_PROVIDER"] = "siliconflow"
+   os.environ["SILICONFLOW_API_KEY"] = "YOUR_SILICONFLOW_API_KEY_HERE"
+   os.environ["SILICONFLOW_MODEL"] = "deepseek-ai/DeepSeek-V3"
 
    # Run the enricher script
    !node scripts/enrich-roadmaps.js
    ```
 
-4. **Commit and Push Back**:
-   ```bash
-   !git config --global user.name "Your Name"
-   !git config --global user.email "your.email@example.com"
+3. **Commit and Push Back**:
+   ```python
+   from google.colab import userdata
+   github_token = userdata.get('GITHUB_TOKEN')
+
+   !git config --global user.name "Your GitHub Name"
+   !git config --global user.email "your-github-email@example.com"
    !git add public/data/
-   !git commit -m "Enrich roadmaps with Colab Ollama"
-   !git push origin main
+   !git commit -m "Enrich roadmaps with SiliconFlow"
+   !git push https://{github_token}@github.com/anonymousgrouphp-collab/skillbun-v2.git main
    ```
 
 ## API Routes
