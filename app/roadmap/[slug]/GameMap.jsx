@@ -404,6 +404,7 @@ export default function GameMap({ roadmap, slug }) {
       {/* Study Guide Drawer */}
       {selectedDocNode && (
         <StudyGuideDrawer
+          key={selectedDocNode.docUrl}
           node={selectedDocNode}
           verifiedVideos={verifiedVideos}
           onClose={() => setSelectedDocNode(null)}
@@ -426,8 +427,6 @@ function StudyGuideDrawer({ node, verifiedVideos, onClose, onToggleComplete, aut
 
   useEffect(() => {
     let active = true;
-    setLoading(true);
-    setError(false);
 
     fetch(node.docUrl)
       .then(res => {

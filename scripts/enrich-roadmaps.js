@@ -34,11 +34,20 @@ if (!fs.existsSync(DOCS_DIR)) {
   fs.mkdirSync(DOCS_DIR, { recursive: true });
 }
 
+const provider = (process.env.API_PROVIDER || 'gemini').toLowerCase();
+
 // Retrieve API Keys
 const apiKeys = [];
 let idx = 1;
+let keyPrefix = 'GEMINI_API_KEY';
+if (provider === 'siliconflow') {
+  keyPrefix = 'SILICONFLOW_API_KEY';
+} else if (provider === 'openai') {
+  keyPrefix = 'OPENAI_API_KEY';
+}
+
 while (true) {
-  const envName = idx === 1 ? 'GEMINI_API_KEY' : `GEMINI_API_KEY_${idx}`;
+  const envName = idx === 1 ? keyPrefix : `${keyPrefix}_${idx}`;
   const keyVal = process.env[envName];
   if (!keyVal) {
     break;
@@ -48,14 +57,22 @@ while (true) {
 }
 
 if (apiKeys.length === 0) {
-  console.error('Error: No GEMINI_API_KEY variables found in .env');
+  console.error(`Error: No API keys found for provider "${provider}" using prefix "${keyPrefix}" in .env`);
   process.exit(1);
 }
 
-console.log(`Enricher initialized with ${apiKeys.length} API keys.`);
+console.log(`Enricher initialized with ${apiKeys.length} keys for provider: ${provider}`);
 
-// Helper to make API calls to Gemini
-async function callGemini(apiKey, prompt, schema) {
+// Helper to make API calls to Gemini or OpenAI-compatible endpoint
+async function callLLM(apiKey, prompt, schema) {
+  if (provider === 'gemini') {
+    return callGeminiDirect(apiKey, prompt, schema);
+  } else {
+    return callOpenAIDirect(apiKey, prompt, schema);
+  }
+}
+
+async function callGeminiDirect(apiKey, prompt, schema) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
   const response = await fetch(url, {
     method: 'POST',
@@ -88,6 +105,57 @@ async function callGemini(apiKey, prompt, schema) {
   }
 
   return JSON.parse(text);
+}
+
+async function callOpenAIDirect(apiKey, prompt, schema) {
+  const baseUrl = provider === 'siliconflow'
+    ? (process.env.SILICONFLOW_BASE_URL || 'https://api.siliconflow.cn/v1')
+    : (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1');
+
+  const model = provider === 'siliconflow'
+    ? (process.env.SILICONFLOW_MODEL || 'deepseek-ai/DeepSeek-V3')
+    : (process.env.OPENAI_MODEL || 'gpt-4o-mini');
+
+  const url = `${baseUrl}/chat/completions`;
+
+  const promptWithSchema = `${prompt}\n\nIMPORTANT: You must return your response as a valid JSON object strictly matching this JSON Schema:\n${JSON.stringify(schema, null, 2)}`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({
+      model: model,
+      messages: [
+        {
+          role: 'user',
+          content: promptWithSchema
+        }
+      ],
+      response_format: { type: 'json_object' },
+      temperature: 0.2
+    })
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`${provider.toUpperCase()} API Error [${response.status}]: ${errorText}`);
+  }
+
+  const result = await response.json();
+  const text = result?.choices?.[0]?.message?.content;
+  if (!text) {
+    throw new Error(`${provider.toUpperCase()} API returned empty response.`);
+  }
+
+  let cleanText = text.trim();
+  if (cleanText.startsWith('```')) {
+    cleanText = cleanText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
+  }
+
+  return JSON.parse(cleanText);
 }
 
 // Sleep utility
@@ -303,7 +371,7 @@ Requirements:
   const maxRetries = 6;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      const optimizedRoadmap = await callGemini(apiKey, prompt, schema);
+      const optimizedRoadmap = await callLLM(apiKey, prompt, schema);
       
       // Save Phase 1 optimized roadmap
       fs.writeFileSync(roadmapPath, JSON.stringify(optimizedRoadmap, null, 2), 'utf8');
@@ -383,7 +451,7 @@ Format your response strictly using the provided JSON schema.`;
     let success = false;
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const result = await callGemini(apiKey, prompt, phase2Schema);
+        const result = await callLLM(apiKey, prompt, phase2Schema);
         
         const nonVideoDocResources = Array.isArray(topic.resources)
           ? topic.resources.filter(r => r.type !== 'video' && r.type !== 'doc')
