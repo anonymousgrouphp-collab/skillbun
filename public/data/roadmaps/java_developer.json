@@ -1,14 +1,14 @@
 {
   "id": "java_developer",
   "title": "Java Developer",
-  "description": "A roadmap for Java careers covering core Java, OOP, Spring Boot, databases, testing, build tools, APIs, and enterprise deployment.",
+  "description": "A comprehensive roadmap for aspiring and experienced Java Developers, covering core language features, modern backend frameworks, database interactions, testing methodologies, build tools, enterprise integration patterns, and cloud deployment strategies to meet industry standards.",
   "format": "tree",
   "tree": [
     {
-      "id": "java_foundations",
+      "id": "java_core_foundations",
       "name": "Core Java Foundations",
       "tag": "essential",
-      "description": "Learn Java syntax, OOP, collections, exceptions, generics, streams, concurrency basics, and JVM behavior.",
+      "description": "Master the fundamental concepts of Java programming, including syntax, object-oriented principles, data structures, and advanced language features crucial for building robust applications.",
       "resources": [
         {
           "title": "Java Programming for Beginners (freeCodeCamp)",
@@ -21,181 +21,722 @@
           "type": "video"
         },
         {
-          "title": "Learn Java 8 Full Tutorial (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=grEKMHGYyns",
-          "type": "video"
-        },
-        {
           "title": "Dev.java Learn Java",
           "url": "https://dev.java/learn/",
+          "type": "article"
+        },
+        {
+          "title": "Oracle Java Tutorials",
+          "url": "https://docs.oracle.com/javase/tutorial/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "java_oop_collections",
-          "name": "OOP, Collections, and Generics",
+          "id": "java_syntax_oop",
+          "name": "Java Syntax & OOP Principles",
           "tag": "essential",
-          "description": "Model domains with classes, interfaces, records, enums, collections, generics, equals/hashCode, and immutability.",
+          "description": "Learn Java syntax, data types, control flow, and fundamental Object-Oriented Programming (OOP) concepts like classes, objects, inheritance, polymorphism, abstraction, and encapsulation. Understand interfaces, abstract classes, records, and enums. Master `equals()`, `hashCode()`, `toString()`, and principles of immutability.",
           "resources": [
             {
-              "title": "Java Tutorials",
-              "url": "https://docs.oracle.com/javase/tutorial/",
+              "title": "Object-Oriented Programming in Java",
+              "url": "https://www.baeldung.com/java-oop",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "java_streams_concurrency",
-          "name": "Streams and Concurrency Basics",
+          "id": "java_collections_generics",
+          "name": "Java Collections Framework & Generics",
+          "tag": "essential",
+          "description": "Deep dive into the Java Collections Framework. Understand and utilize `List`, `Set`, `Map` interfaces, common implementations (ArrayList, HashMap, HashSet). Master `Iterators`, `Generics` for type safety, and how to use `Comparable` and `Comparator` for custom sorting.",
+          "resources": [
+            {
+              "title": "Java Collections Tutorial",
+              "url": "https://www.baeldung.com/java-collections",
+              "type": "article"
+            },
+            {
+              "title": "Java Generics Tutorial",
+              "url": "https://docs.oracle.com/javase/tutorial/java/generics/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "java_exceptions_io",
+          "name": "Exception Handling, File I/O & Networking",
+          "tag": "essential",
+          "description": "Learn to manage errors effectively with Java's exception handling mechanism (checked vs unchecked, try-catch-finally, try-with-resources). Understand file operations using `java.io` (streams, readers, writers) and `java.nio` (Paths, Files, Channels). Get a basic understanding of network programming with Sockets.",
+          "resources": [
+            {
+              "title": "Java Exception Handling",
+              "url": "https://www.geeksforgeeks.org/exception-handling-in-java/",
+              "type": "article"
+            },
+            {
+              "title": "NIO.2 File API in Java",
+              "url": "https://www.baeldung.com/java-nio-2",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "java_streams_lambdas",
+          "name": "Advanced Java: Lambdas & Stream API",
+          "tag": "essential",
+          "description": "Explore functional programming concepts in Java. Master lambda expressions, method references, and the Stream API for efficient data processing. Understand `Optional` for handling null values gracefully and the modern `java.time` API for date and time manipulations.",
+          "resources": [
+            {
+              "title": "Java 8 Streams Tutorial",
+              "url": "https://www.baeldung.com/java-8-streams",
+              "type": "article"
+            },
+            {
+              "title": "Java 8 Lambda Expressions",
+              "url": "https://www.baeldung.com/java-8-lambda-expressions-tips",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "java_concurrency_multithreading",
+          "name": "Java Concurrency & Multithreading",
           "tag": "advanced",
-          "description": "Use streams, optionals, lambdas, executors, futures, synchronization, and thread-safety fundamentals.",
+          "description": "Understand the fundamentals of concurrent programming in Java. Learn about `Threads`, `Runnables`, and `Thread` lifecycles. Master synchronization mechanisms like `synchronized` blocks/methods, `volatile` keyword, and `Lock` interface. Explore the `ExecutorService`, `Callable`, `Future`, and basic concurrent collections for building high-performance applications.",
           "resources": [
             {
               "title": "Java Concurrency Lesson",
               "url": "https://docs.oracle.com/javase/tutorial/essential/concurrency/",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Java Concurrency",
+              "url": "https://www.baeldung.com/java-concurrency",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "java_jvm_memory",
+          "name": "JVM Internals & Memory Management",
+          "tag": "advanced",
+          "description": "Gain insight into the Java Virtual Machine (JVM) architecture, including classloaders and runtime data areas. Understand garbage collection mechanisms (generations, common algorithms like G1, Parallel, CMS basics) and how to identify and prevent common memory leaks. Learn basic Java profiling techniques.",
+          "resources": [
+            {
+              "title": "JVM Architecture Explained",
+              "url": "https://www.baeldung.com/jvm-architecture",
+              "type": "article"
+            },
+            {
+              "title": "Java Garbage Collection Handbook",
+              "url": "https://www.baeldung.com/java-garbage-collection-handbook",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "java_spring_backend",
-      "name": "Spring Boot Backend Development",
+      "id": "database_fundamentals_orm",
+      "name": "Database Fundamentals & ORM",
       "tag": "essential",
-      "description": "Build REST APIs with Spring Boot, dependency injection, validation, persistence, configuration, and security.",
+      "description": "Learn to interact with databases, from fundamental SQL concepts to advanced Object-Relational Mapping (ORM) using JPA and Hibernate, essential for persistent data storage in Java applications.",
+      "resources": [
+        {
+          "title": "SQL Tutorial for Beginners",
+          "url": "https://www.youtube.com/watch?v=AAyZ8rN_L0Q",
+          "type": "video"
+        },
+        {
+          "title": "JDBC Tutorial",
+          "url": "https://www.javatpoint.com/jdbc-tutorial",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "db_relational_concepts",
+          "name": "Relational Database Concepts & SQL",
+          "tag": "essential",
+          "description": "Understand core relational database concepts, including tables, keys, relationships. Master SQL for data definition (DDL), data manipulation (DML), and data control (DCL). Learn about database normalization and work with popular databases like PostgreSQL or MySQL.",
+          "resources": [
+            {
+              "title": "PostgreSQL Tutorial",
+              "url": "https://www.postgresql.org/docs/current/tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "MySQL 8.0 Reference Manual",
+              "url": "https://dev.mysql.com/doc/refman/8.0/en/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "db_jdbc_data_access",
+          "name": "JDBC & Basic Data Access",
+          "tag": "essential",
+          "description": "Learn how Java applications connect to databases using JDBC. Understand how to execute queries, use Prepared Statements to prevent SQL injection, process Result Sets, and implement connection pooling with libraries like HikariCP for efficient database interactions.",
+          "resources": [
+            {
+              "title": "JDBC Basics",
+              "url": "https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html",
+              "type": "article"
+            },
+            {
+              "title": "HikariCP GitHub",
+              "url": "https://github.com/brettwooldridge/HikariCP",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "db_jpa_hibernate",
+          "name": "JPA & Hibernate ORM",
+          "tag": "advanced",
+          "description": "Dive into Object-Relational Mapping (ORM) with the Java Persistence API (JPA) and its most popular implementation, Hibernate. Learn to define entities, map relationships (One-to-One, One-to-Many, Many-to-Many), write JPQL (Java Persistence Query Language) queries, and understand native SQL queries within JPA.",
+          "resources": [
+            {
+              "title": "Hibernate User Guide",
+              "url": "https://docs.jboss.org/hibernate/orm/5.6/userguide/html_single/Hibernate_User_Guide.html",
+              "type": "article"
+            },
+            {
+              "title": "JPA Tutorial",
+              "url": "https://www.baeldung.com/jpa",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spring_boot_core_web",
+      "name": "Spring Boot Core & Web Development",
+      "tag": "essential",
+      "description": "Master Spring Boot for building modern, production-ready backend applications and RESTful APIs with ease, focusing on core concepts, web development, and data persistence.",
       "resources": [
         {
           "title": "Spring Quickstart",
           "url": "https://spring.io/quickstart",
           "type": "article"
+        },
+        {
+          "title": "Spring Boot Tutorial for Beginners",
+          "url": "https://www.youtube.com/watch?v=e_w1jXg1c_c",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "java_rest",
-          "name": "REST APIs and Validation",
+          "id": "spring_framework_basics",
+          "name": "Spring Framework Core Concepts",
           "tag": "essential",
-          "description": "Create controllers, services, DTOs, validation, error handling, pagination, OpenAPI docs, and API versioning.",
+          "description": "Understand the foundational concepts of the Spring Framework: Dependency Injection (DI), Inversion of Control (IoC) container, Spring Beans, and core annotations like `@Component`, `@Service`, `@Repository`, `@Autowired`, `@Qualifier`, and `@Value`. Learn about Spring Profiles and Configuration using `@Configuration` and `@PropertySource`.",
+          "resources": [
+            {
+              "title": "Spring Framework Documentation",
+              "url": "https://docs.spring.io/spring-framework/reference/",
+              "type": "article"
+            },
+            {
+              "title": "Spring IoC Container Tutorial",
+              "url": "https://www.baeldung.com/spring-ioc-container-tutorial",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_boot_intro",
+          "name": "Introduction to Spring Boot",
+          "tag": "essential",
+          "description": "Learn what Spring Boot is and how it simplifies Spring application development. Understand auto-configuration, `spring-boot-starter` dependencies, embedded servers (Tomcat, Jetty), and how to build executable JARs. Explore Command Line Runner for application startup logic.",
+          "resources": [
+            {
+              "title": "Spring Boot Reference Documentation",
+              "url": "https://docs.spring.io/spring-boot/docs/current/reference/html/",
+              "type": "article"
+            },
+            {
+              "title": "Spring Boot for Beginners",
+              "url": "https://www.baeldung.com/spring-boot-start",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_restful_apis",
+          "name": "Building RESTful APIs with Spring Boot",
+          "tag": "essential",
+          "description": "Develop RESTful web services using Spring Boot. Master `@RestController` and `@RequestMapping`. Understand HTTP methods (GET, POST, PUT, DELETE, PATCH), request/response handling using `@RequestBody`, `@ResponseBody`, `ResponseEntity`, path variables, and request parameters. Learn to structure APIs with Data Transfer Objects (DTOs).",
           "resources": [
             {
               "title": "Spring REST Service Guide",
               "url": "https://spring.io/guides/gs/rest-service",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "java_data_security",
-          "name": "Spring Data and Security",
-          "tag": "essential",
-          "description": "Use JPA repositories, transactions, migrations, auth, roles, password hashing, JWT, and secure defaults.",
-          "resources": [
+            },
             {
-              "title": "Spring Security Docs",
-              "url": "https://docs.spring.io/spring-security/reference/",
+              "title": "Building a RESTful Web Service",
+              "url": "https://spring.io/guides/tutorials/rest/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "java_developer_practice_lab",
-          "name": "Practice: Spring Boot CRUD Module",
-          "tag": "advanced",
-          "description": "Build a small CRUD module with validation, transactions, tests, migrations, and OpenAPI documentation.",
-          "resources": [],
-          "children": []
+          "id": "spring_validation_exception_handling",
+          "name": "Data Validation & Global Exception Handling",
+          "tag": "essential",
+          "description": "Implement robust data validation using the Bean Validation API (`@Valid`, `@Validated`) and create custom validators. Learn to handle exceptions globally across your REST APIs using `@ControllerAdvice` and `@ExceptionHandler`, providing consistent and informative error responses.",
+          "resources": [
+            {
+              "title": "Spring Boot Validation",
+              "url": "https://www.baeldung.com/spring-boot-bean-validation",
+              "type": "article"
+            },
+            {
+              "title": "Global Exception Handling in Spring Boot",
+              "url": "https://www.baeldung.com/exception-handling-for-rest-with-spring",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_data_jpa_transactions",
+          "name": "Spring Data JPA & Transactions",
+          "tag": "essential",
+          "description": "Simplify data access with Spring Data JPA. Implement the Repository Pattern using `CrudRepository` and `JpaRepository`. Write custom queries with `@Query`, handle pagination and sorting, and ensure data integrity with declarative transaction management using `@Transactional`.",
+          "resources": [
+            {
+              "title": "Spring Data JPA Reference Documentation",
+              "url": "https://docs.spring.io/spring-data/jpa/docs/current/reference/html/",
+              "type": "article"
+            },
+            {
+              "title": "Spring Data JPA Tutorial",
+              "url": "https://www.baeldung.com/spring-data-jpa-tutorial",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "java_quality_enterprise",
-      "name": "Testing and Enterprise Practices",
+      "id": "enterprise_spring_dev",
+      "name": "Enterprise-Grade Spring Development",
       "tag": "advanced",
-      "description": "Work like a professional Java team with builds, tests, observability, messaging, and maintainable architecture.",
+      "description": "Advance your Spring skills to build secure, scalable, and resilient enterprise applications by integrating security, messaging, caching, and exploring advanced Spring features.",
+      "resources": [
+        {
+          "title": "Spring Security Docs",
+          "url": "https://docs.spring.io/spring-security/reference/",
+          "type": "article"
+        },
+        {
+          "title": "Spring AMQP Documentation",
+          "url": "https://docs.spring.io/spring-amqp/docs/current/reference/html/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "spring_security_authz",
+          "name": "Spring Security & Authorization",
+          "tag": "advanced",
+          "description": "Implement robust security in your Spring Boot applications. Differentiate between authentication and authorization. Learn to secure endpoints with Basic Auth, Form Login, JWT (JSON Web Tokens), and explore basics of OAuth2 (Resource Server, Client). Apply method-level security using `@PreAuthorize` and `@PostAuthorize`.",
+          "resources": [
+            {
+              "title": "Spring Security with JWT Tutorial",
+              "url": "https://www.baeldung.com/spring-security-jwt",
+              "type": "article"
+            },
+            {
+              "title": "Spring Security OAuth2",
+              "url": "https://www.baeldung.com/spring-security-oauth-auth-server",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_messaging_event_driven",
+          "name": "Messaging & Event-Driven Architectures",
+          "tag": "advanced",
+          "description": "Integrate messaging queues into your Spring applications. Understand message queue concepts (Producer, Consumer). Implement Spring AMQP for RabbitMQ or Spring Kafka for high-throughput messaging. Explore the basics of Event-Driven Architecture, design for idempotency, and implement retry mechanisms for message processing.",
+          "resources": [
+            {
+              "title": "Spring Kafka Tutorial",
+              "url": "https://www.baeldung.com/spring-kafka",
+              "type": "article"
+            },
+            {
+              "title": "Event-Driven Architecture with Spring",
+              "url": "https://www.baeldung.com/spring-event-driven-architecture",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_caching_strategies",
+          "name": "Caching Strategies with Spring",
+          "tag": "advanced",
+          "description": "Improve application performance using caching. Understand different caching strategies (in-memory, distributed). Utilize Spring's Cache Abstraction with annotations like `@Cacheable`, `@CachePut`, and `@CacheEvict`. Explore integration with caching providers like Ehcache or Redis.",
+          "resources": [
+            {
+              "title": "Spring Caching Guide",
+              "url": "https://www.baeldung.com/spring-cache-tutorial",
+              "type": "article"
+            },
+            {
+              "title": "Spring Boot and Redis Cache",
+              "url": "https://www.baeldung.com/spring-boot-redis-cache",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_resilience_microservices",
+          "name": "Resilience Patterns & Microservices Communication",
+          "tag": "advanced",
+          "description": "Design resilient microservices using patterns like Circuit Breaker (e.g., Resilience4j), Bulkhead, and Retry. Explore inter-service communication mechanisms (REST, gRPC) and pattern implementations like API Gateways (e.g., Spring Cloud Gateway) for routing and cross-cutting concerns, and Service Discovery (e.g., Eureka, Consul) for dynamic service location.",
+          "resources": [
+            {
+              "title": "Resilience4j Official Documentation",
+              "url": "https://resilience4j.readme.io/",
+              "type": "article"
+            },
+            {
+              "title": "Building an API Gateway with Spring Cloud Gateway",
+              "url": "https://www.baeldung.com/spring-cloud-gateway",
+              "type": "article"
+            },
+            {
+              "title": "Spring Cloud Netflix Eureka for Service Discovery",
+              "url": "https://www.baeldung.com/spring-cloud-eureka-intro",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "spring_advanced_features",
+          "name": "Advanced Spring Features",
+          "tag": "advanced",
+          "description": "Explore specialized Spring modules. Understand Aspect-Oriented Programming (AOP) for cross-cutting concerns. Get an introduction to reactive programming with Spring WebFlux and Spring Reactor. Discover Spring Batch for building robust batch processing applications.",
+          "resources": [
+            {
+              "title": "Spring AOP Tutorial",
+              "url": "https://www.baeldung.com/spring-aop-vs-aspectj",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Spring WebFlux",
+              "url": "https://www.baeldung.com/spring-webflux",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "testing_quality_assurance",
+      "name": "Testing & Quality Assurance",
+      "tag": "essential",
+      "description": "Develop high-quality, reliable Java applications by mastering various testing methodologies, build tools, and dependency management strategies.",
       "resources": [
         {
           "title": "JUnit 5 User Guide",
           "url": "https://junit.org/junit5/docs/current/user-guide/",
           "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "java_testing_builds",
-          "name": "Testing, Maven, and Gradle",
-          "tag": "advanced",
-          "description": "Write unit/integration tests, use Testcontainers, manage dependencies, builds, profiles, and CI pipelines.",
-          "resources": [
-            {
-              "title": "Testcontainers Java",
-              "url": "https://java.testcontainers.org/",
-              "type": "article"
-            }
-          ],
-          "children": []
         },
         {
-          "id": "java_messaging_observability",
-          "name": "Messaging and Observability",
-          "tag": "advanced",
-          "description": "Use queues/events, retries, idempotency, structured logging, metrics, tracing, and operational dashboards.",
-          "resources": [
-            {
-              "title": "Spring Boot Actuator",
-              "url": "https://docs.spring.io/spring-boot/reference/actuator/index.html",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "java_deploy_project",
-      "name": "Deployment and Portfolio",
-      "tag": "advanced",
-      "description": "Containerize, deploy, monitor, and document a Spring Boot application that resembles real enterprise work.",
-      "resources": [
-        {
-          "title": "Docker Java Guide",
-          "url": "https://docs.docker.com/language/java/",
+          "title": "Mockito Tutorial",
+          "url": "https://www.baeldung.com/mockito-series",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "java_deployment",
-          "name": "Production Deployment",
+          "id": "testing_unit_testing",
+          "name": "Unit Testing with JUnit & Mockito",
+          "tag": "essential",
+          "description": "Write effective unit tests for your Java code using JUnit 5 (annotations, assertions). Learn to mock dependencies and verify interactions using Mockito. Understand the principles of Test-Driven Development (TDD) to design better code.",
+          "resources": [
+            {
+              "title": "JUnit 5 Tutorial",
+              "url": "https://www.baeldung.com/junit-5",
+              "type": "article"
+            },
+            {
+              "title": "TDD for Dummies",
+              "url": "https://www.freecodecamp.org/news/test-driven-development-for-dummies/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "testing_integration_component",
+          "name": "Integration & Component Testing",
+          "tag": "essential",
+          "description": "Perform comprehensive testing using Spring Boot Test annotations like `@SpringBootTest`, `@WebMvcTest`, and `@DataJpaTest`. Leverage Testcontainers to spin up real databases and message brokers for reliable integration tests. Use REST Assured for testing RESTful APIs.",
+          "resources": [
+            {
+              "title": "Spring Boot Testing Documentation",
+              "url": "https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing",
+              "type": "article"
+            },
+            {
+              "title": "Testcontainers Java",
+              "url": "https://java.testcontainers.org/",
+              "type": "article"
+            },
+            {
+              "title": "REST Assured Tutorial",
+              "url": "https://www.baeldung.com/rest-assured-tutorial",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "build_tools_dependency_mgmt",
+          "name": "Build Tools & Dependency Management",
+          "tag": "essential",
+          "description": "Master essential build automation tools. Learn Maven (POM, build lifecycle, plugins) and Gradle (Groovy/Kotlin DSL, tasks, plugins) for compiling, testing, and packaging your applications. Understand dependency management, including dependency scopes and transitive dependencies.",
+          "resources": [
+            {
+              "title": "Maven in 5 Minutes",
+              "url": "https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html",
+              "type": "article"
+            },
+            {
+              "title": "Gradle User Manual",
+              "url": "https://docs.gradle.org/current/userguide/userguide.html",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deployment_operations",
+      "name": "Deployment & Operations",
+      "tag": "advanced",
+      "description": "Learn to deploy, monitor, and maintain Java applications in production environments, covering version control, containerization, cloud platforms, and observability practices.",
+      "resources": [
+        {
+          "title": "Docker Java Guide",
+          "url": "https://docs.docker.com/language/java/",
+          "type": "article"
+        },
+        {
+          "title": "Spring Boot Actuator",
+          "url": "https://docs.spring.io/spring-boot/reference/actuator/index.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "version_control_ci_cd",
+          "name": "Version Control & CI/CD",
+          "tag": "essential",
+          "description": "Master Git for version control, including branching, merging, and rebasing strategies. Understand the principles of Continuous Integration (CI) and Continuous Deployment (CD). Get familiar with basic configurations for CI/CD pipelines using tools like GitHub Actions, GitLab CI, or Jenkins.",
+          "resources": [
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Explained",
+              "url": "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "containerization_orchestration",
+          "name": "Containerization & Orchestration",
           "tag": "advanced",
-          "description": "Use Docker, environment config, database migrations, health checks, log aggregation, and rollback plans.",
+          "description": "Learn to containerize Java applications using Docker. Master Dockerfile creation, image building, container management, volumes, and networks. Use Docker Compose for multi-container applications. Get an introduction to container orchestration with Kubernetes (Pods, Deployments, Services).",
+          "resources": [
+            {
+              "title": "Docker Crash Course",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJhkg",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Basics",
+              "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "monitoring_logging_tracing",
+          "name": "Monitoring, Logging & Tracing",
+          "tag": "advanced",
+          "description": "Implement observability for production applications. Utilize Spring Boot Actuator for health checks and metrics. Implement structured logging with SLF4J and Logback/Log4j2. Explore centralized logging solutions (ELK Stack basics), metrics collection (Micrometer, Prometheus, Grafana), and distributed tracing (OpenTelemetry, Zipkin).",
+          "resources": [
+            {
+              "title": "Spring Boot and Centralized Logging",
+              "url": "https://www.baeldung.com/spring-boot-centralized-logging",
+              "type": "article"
+            },
+            {
+              "title": "Monitoring Spring Boot with Prometheus and Grafana",
+              "url": "https://www.baeldung.com/spring-boot-prometheus-grafana",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cloud_deployment_basics",
+          "name": "Cloud Deployment Basics",
+          "tag": "advanced",
+          "description": "Get an introduction to deploying applications on major cloud providers (AWS, GCP, Azure). Learn to deploy Spring Boot applications to Platform as a Service (PaaS) offerings like Heroku or AWS Elastic Beanstalk, or container services. Understand Database as a Service (e.g., AWS RDS, GCP Cloud SQL).",
+          "resources": [
+            {
+              "title": "Deploy Spring Boot to AWS EC2",
+              "url": "https://www.baeldung.com/spring-boot-aws-ec2",
+              "type": "article"
+            },
+            {
+              "title": "Deploying to Google Cloud Platform",
+              "url": "https://cloud.google.com/docs/tutorials",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "software_design_best_practices",
+      "name": "Software Design & Best Practices",
+      "tag": "advanced",
+      "description": "Cultivate strong software engineering practices, focusing on robust design principles, clean code, effective refactoring, and professional API design.",
+      "resources": [
+        {
+          "title": "SOLID Principles in Java",
+          "url": "https://www.baeldung.com/solid-principles",
+          "type": "article"
+        },
+        {
+          "title": "Clean Code Summary",
+          "url": "https://www.freecodecamp.org/news/a-quick-summary-of-clean-code-by-robert-c-martin-d6a9a30d473b/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "oop_design_patterns",
+          "name": "Object-Oriented Design & Patterns",
+          "tag": "advanced",
+          "description": "Deepen your understanding of Object-Oriented Design (OOD) with SOLID Principles. Explore common Gang of Four Design Patterns (Creational, Structural, Behavioral) and understand their application in real-world scenarios. Get an introduction to Domain-Driven Design (DDD) concepts.",
+          "resources": [
+            {
+              "title": "Design Patterns in Java",
+              "url": "https://www.baeldung.com/java-design-patterns",
+              "type": "article"
+            },
+            {
+              "title": "Domain Driven Design Reference",
+              "url": "https://www.domainlanguage.com/ddd/reference/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "clean_code_refactoring",
+          "name": "Clean Code & Refactoring",
+          "tag": "advanced",
+          "description": "Learn to write maintainable, readable, and efficient code. Identify and eliminate code smells. Master refactoring techniques to improve existing codebases without changing external behavior. Understand the importance and process of effective code reviews.",
+          "resources": [
+            {
+              "title": "Refactoring Guru",
+              "url": "https://refactoring.guru/",
+              "type": "article"
+            },
+            {
+              "title": "Code Review Best Practices",
+              "url": "https://www.atlassian.com/agile/devops/code-reviews",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "api_design_principles",
+          "name": "API Design Principles & Documentation",
+          "tag": "advanced",
+          "description": "Design well-structured and user-friendly RESTful APIs. Understand best practices for API versioning strategies, error handling, and resource naming. Learn to document your APIs effectively using OpenAPI/Swagger for better collaboration and consumption.",
+          "resources": [
+            {
+              "title": "REST API Design Best Practices",
+              "url": "https://restfulapi.net/rest-api-design-rules/",
+              "type": "article"
+            },
+            {
+              "title": "OpenAPI Specification",
+              "url": "https://swagger.io/specification/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capstone_project",
+      "name": "Capstone Project: Full-Stack Banking Application",
+      "tag": "advanced",
+      "description": "Apply all learned skills to build a comprehensive, production-ready full-stack banking application, demonstrating proficiency in modern Java development practices.",
+      "resources": [
+        {
+          "title": "Spring Guides",
+          "url": "https://spring.io/guides",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "project_planning_architecture",
+          "name": "Project Planning & Architecture",
+          "tag": "advanced",
+          "description": "Define the scope, gather requirements, and design the architecture for a banking application. This includes database schema design, API endpoint definitions, and technology stack selection.",
+          "resources": [
+            {
+              "title": "System Design Primer",
+              "url": "https://github.com/donnemartin/system-design-primer",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "project_implementation_testing",
+          "name": "Implementation & Testing",
+          "tag": "advanced",
+          "description": "Develop core banking features such as user management, account creation, transaction processing (deposit, withdrawal, transfer). Integrate Spring Security for authentication and authorization (using JWT or OAuth2). Write comprehensive unit and integration tests, and manage database schema changes using Flyway or Liquibase.",
           "resources": [
             {
               "title": "Flyway Documentation",
               "url": "https://documentation.red-gate.com/fd",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "java_project_banking_api",
-          "name": "Project: Banking API",
-          "tag": "advanced",
-          "description": "Build a Spring Boot API with auth, accounts, transactions, validation, PostgreSQL, tests, Docker, and audit logs.",
-          "resources": [
+            },
             {
-              "title": "Spring Guides",
-              "url": "https://spring.io/guides",
+              "title": "Liquibase Documentation",
+              "url": "https://docs.liquibase.com/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "project_deployment_documentation",
+          "name": "Deployment & Documentation",
+          "tag": "advanced",
+          "description": "Containerize the application using Docker, then deploy it to a chosen cloud platform (e.g., AWS, GCP). Implement robust monitoring and logging solutions. Generate detailed OpenAPI documentation for the API, ensuring it's ready for future development and consumption.",
+          "resources": [
+            {
+              "title": "SpringDoc OpenAPI UI",
+              "url": "https://springdoc.org/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

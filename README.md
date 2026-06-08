@@ -17,6 +17,7 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Sends password reset emails via Zoho SMTP (limited to 1/min and 3/hr per email, 10/hr per IP, only incremented on successful send/user-not-found), featuring automatic fallback to Vercel's URL configurations for link generation in serverless environments.
 - Provides a public certificate registry lookup search page at `/certificate` with client-side network offline state detection, a dedicated verified certificate dynamic page at `/certificate/[id]`, and integrated entry points across the homepage and navbar dropdown for easy student access.
 - Corrects user menu navigation flow by removing the redundant "Learning Progress" button and routing the "Saved Paths" button directly to `/roadmap?view=saved` instead of duplicate `/dashboard` links, with full URL query parameters support on the Roadmap Hub to seamlessly load the appropriate tab (saved vs explore).
+- Enriches all 100 career roadmaps with structured, in-depth "SkillBun Originals" study guide documentation in precise English and verified YouTube video resource links, rendered seamlessly in an interactive, responsive Slide-out Study Guide Drawer with support for dark/light themes, completion indicators, and direct AI counsellor integration.
 
 ## Tech Stack
 
@@ -104,6 +105,23 @@ certificates/{certId}
 `certificates/{certId}` stores public, verifiable digital certifications containing user metadata, score, and completion timestamp.
 
 Deploy `firestore.rules` so each signed-in user can read and write only their own profile and progress, while certificates are publicly readable.
+
+## Sourcing and Enrichment Pipeline
+
+To enrich all 100 career roadmaps with in-depth study documentation and verified resources, an offline generator script is provided:
+
+```bash
+node scripts/enrich-roadmaps.js
+```
+
+### Script Capabilities:
+1. **Pipeline Architecture**: Processes roadmaps in two stages using a dynamic task queue. Workers 1 to 4 optimize the structure and add/update nodes, while remaining workers validate resources, correct irrelevant YouTube videos, and generate study guides.
+2. **Dynamic Scaling & Load Balancing**: Uses parallel workers matching the number of `GEMINI_API_KEY_X` variables defined in `.env` (scales automatically from 1 to any number of keys). Workers 1 to 4 automatically transition to help with Phase 2 once Phase 1 is finished, ensuring maximum speed.
+3. **Resumable Runs & Local Disk Cache Skipping**: Automatically checks if a topic's Markdown study guide already exists on disk (under `public/data/docs/`). If the file exists, it skips the Gemini API call entirely, updates the JSON structure in memory, and moves on, saving API quota and preventing duplicate costs.
+4. **Outage Resilience**: Implemented a 6-attempt retry strategy with exponential backoff (10s, 20s, 30s, etc.) to gracefully handle Gemini API 500 (Internal Server Error) and 503 (Unavailable) codes.
+5. **Options**:
+   - `--file <filename.json>`: Runs only on the specified roadmap file for testing.
+   - `--limit <number>`: Processes only the first N roadmaps.
 
 ## API Routes
 

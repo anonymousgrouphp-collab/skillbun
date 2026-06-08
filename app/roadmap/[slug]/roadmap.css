@@ -406,3 +406,269 @@
   background: color-mix(in srgb, var(--surface-raised) 85%, transparent);
 }
 
+/* ═══════════════════════════════════════
+   STUDY GUIDE DRAWER
+   ═══════════════════════════════════════ */
+
+.sk-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: flex-end;
+  animation: skFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes skFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sk-drawer {
+  width: 100%;
+  max-width: 580px;
+  height: 100%;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+  animation: skSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes skSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.sk-drawer-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.sk-drawer-title-info h2 {
+  font-family: var(--font-fredoka), cursive;
+  font-size: 1.35rem;
+  color: var(--text);
+  margin: 0 0 0.2rem;
+  background: linear-gradient(135deg, #2ECC71, #A8FF3E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sk-drawer-context {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sk-drawer-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  background: transparent;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sk-drawer-close:hover {
+  background: rgba(248, 81, 73, 0.1);
+  color: #f85149;
+  border-color: rgba(248, 81, 73, 0.2);
+  transform: rotate(90deg);
+}
+
+.sk-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  scrollbar-color: rgba(46, 204, 113, 0.45) transparent;
+}
+
+.sk-drawer-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.sk-drawer-actions .sk-btn-mark {
+  flex: 1.2;
+}
+
+.sk-drawer-actions .sk-btn-ai {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.sk-drawer-video-section h3,
+.sk-drawer-doc-section h3 {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.8rem;
+  border-left: 2px solid var(--green);
+  padding-left: 0.5rem;
+}
+
+.sk-video-container {
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.sk-video-container iframe {
+  display: block;
+}
+
+.sk-video-title {
+  display: block;
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+}
+
+/* Markdown styling inside drawer */
+.sk-markdown-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--text) 92%, transparent);
+}
+
+.sk-markdown-content h1,
+.sk-markdown-content h2,
+.sk-markdown-content h3 {
+  font-family: var(--font-fredoka), cursive;
+  color: var(--text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.sk-markdown-content h1 { font-size: 1.4rem; }
+.sk-markdown-content h2 { font-size: 1.15rem; border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent); padding-bottom: 0.3rem; }
+.sk-markdown-content h3 { font-size: 1rem; }
+
+.sk-markdown-content p {
+  margin: 0 0 1rem;
+}
+
+.sk-markdown-content ul,
+.sk-markdown-content ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.25rem;
+}
+
+.sk-markdown-content li {
+  margin-bottom: 0.4rem;
+}
+
+.sk-markdown-content li strong {
+  color: var(--text);
+}
+
+.sk-markdown-content code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  background: rgba(46, 204, 113, 0.08);
+  color: var(--green);
+  border: 1px solid rgba(46, 204, 113, 0.15);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+}
+
+.sk-markdown-content pre {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 0 0 1.2rem;
+}
+
+.sk-markdown-content pre code {
+  background: transparent;
+  color: #c9d1d9;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+/* Loading Spinner */
+.sk-drawer-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+  gap: 0.8rem;
+  color: var(--muted);
+}
+
+.sk-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: skSpinLoader 0.8s linear infinite;
+}
+
+@keyframes skSpinLoader {
+  to { transform: rotate(360deg); }
+}
+
+.sk-drawer-error {
+  color: #f85149;
+  text-align: center;
+  padding: 2rem 0;
+  font-weight: 700;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .sk-drawer {
+  background: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+  border-left-color: color-mix(in srgb, var(--green) 12%, var(--border));
+}
+
+[data-theme="light"] .sk-video-container {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: color-mix(in srgb, var(--green) 12%, var(--border));
+}
+
+[data-theme="light"] .sk-markdown-content pre {
+  background: #f6f8fa;
+  border-color: #d0d7de;
+}
+
+[data-theme="light"] .sk-markdown-content pre code {
+  color: #24292f;
+}
+
+[data-theme="light"] .sk-markdown-content code {
+  background: color-mix(in srgb, var(--green-subtle) 80%, var(--surface));
+  border-color: color-mix(in srgb, var(--green) 16%, var(--border));
+}
+

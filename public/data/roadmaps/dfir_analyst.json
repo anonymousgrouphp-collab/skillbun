@@ -6,206 +6,774 @@
   "tree": [
     {
       "id": "dfir_analyst_foundations",
-      "name": "Foundations and Role Context",
+      "name": "DFIR Fundamentals & Incident Response Lifecycle",
       "tag": "essential",
-      "description": "Understand what DFIR Analyst work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of what DFIR work entails, its ethical and legal boundaries, and the structured approach to handling security incidents.",
       "resources": [
         {
-          "title": "What is DFIR? | Digital Forensics & Incident Response Explained in Hindi | Cybersecurity Series (Hack to root)",
-          "url": "https://www.youtube.com/watch?v=8N6OvU49tbs",
-          "type": "video"
-        },
-        {
-          "title": "NIST Incident Handling Guide",
+          "title": "NIST Incident Handling Guide SP 800-61 Rev. 2",
           "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
           "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "dfir_analyst_domain_basics",
-          "name": "Domain Basics",
-          "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
-          "resources": [
-            {
-              "title": "Velociraptor Documentation",
-              "url": "https://docs.velociraptor.app/",
-              "type": "article"
-            }
-          ],
-          "children": []
         },
         {
-          "id": "dfir_analyst_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
-          "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
-          "resources": [
-            {
-              "title": "Volatility Documentation",
-              "url": "https://volatility3.readthedocs.io/en/latest/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "dfir_analyst_core_skills",
-      "name": "Core Skills and Implementation",
-      "tag": "essential",
-      "description": "Build the practical skill stack for DFIR Analyst through small exercises, realistic constraints, and repeatable workflows.",
-      "resources": [
+          "title": "SANS Incident Handler's Handbook",
+          "url": "https://www.sans.org/white-papers/33908/",
+          "type": "article"
+        },
         {
-          "title": "Digital Forensics and Incident Response | DFIR | DFIR Step-by-Step Process | DFIR 101 | DFIR (CyberPlatter)",
-          "url": "https://www.youtube.com/watch?v=9h0UvuRVQTQ",
+          "title": "What is Digital Forensics & Incident Response (DFIR)?",
+          "url": "https://www.youtube.com/watch?v=F0S22a4b8yI",
           "type": "video"
         },
         {
-          "title": "Velociraptor Documentation",
-          "url": "https://docs.velociraptor.app/",
-          "type": "article"
+          "title": "Incident Response Full Course - Learn to Protect Your Systems from Cyber Attacks",
+          "url": "https://www.youtube.com/watch?v=x0xN-8l8d3U",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/dfir_analyst/dfir_analyst_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dfir_analyst_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "dfir_analyst_ir_lifecycle",
+          "name": "Incident Response Life Cycle & Frameworks",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Deep dive into the stages of incident response (preparation, identification, containment, eradication, recovery, post-incident activity) as per NIST, SANS, and other industry frameworks. Understand playbooks and runbooks for structured incident management.",
           "resources": [
             {
-              "title": "NIST Incident Handling Guide",
-              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "title": "Understanding the NIST Incident Response Life Cycle",
+              "url": "https://www.sans.org/blog/understanding-the-nist-incident-response-life-cycle/",
               "type": "article"
+            },
+            {
+              "title": "Incident Response Playbooks: What Are They & How to Create One",
+              "url": "https://www.rapid7.com/fundamentals/incident-response-playbooks/",
+              "type": "article"
+            },
+            {
+              "title": "What is an Incident Response Plan? (NIST 800-61 Explained)",
+              "url": "https://www.youtube.com/watch?v=Ff_6Vqg56t8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_ir_lifecycle.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dfir_analyst_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "dfir_analyst_forensics_principles",
+          "name": "Digital Forensics Principles & Evidence Handling",
+          "tag": "essential",
+          "description": "Understand the fundamental principles of digital forensics, the importance of chain of custody, proper evidence preservation techniques, legal and ethical considerations, and standardized reporting.",
           "resources": [
             {
-              "title": "Volatility Documentation",
-              "url": "https://volatility3.readthedocs.io/en/latest/",
+              "title": "ACPO Good Practice Guide for Digital Evidence",
+              "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/pdf/digital-evidence-guidance.pdf",
               "type": "article"
+            },
+            {
+              "title": "Digital Forensics: Chain of Custody",
+              "url": "https://resources.infosecinstitute.com/topic/digital-forensics-chain-of-custody/",
+              "type": "article"
+            },
+            {
+              "title": "What is Digital Forensics? (Explained)",
+              "url": "https://www.youtube.com/watch?v=Fj-eI05P-xM",
+              "type": "video"
+            },
+            {
+              "title": "Digital Forensics for Beginners | Intro to Cybersecurity",
+              "url": "https://www.youtube.com/watch?v=Mh88-e_d64I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_forensics_principles.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dfir_analyst_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "dfir_analyst_tooling_lab_setup",
+          "name": "DFIR Lab Setup & Essential Tooling",
+          "tag": "essential",
+          "description": "Setting up a secure and effective DFIR lab environment (virtual machines, forensic workstations). Introduction to essential tools for triage, forensic imaging (DD, E01), hashing for integrity verification, and write-blocking (hardware/software). Practical use of tools like FTK Imager, Autopsy, and KAPE.",
+          "resources": [
+            {
+              "title": "Building a DFIR Lab",
+              "url": "https://dfir.blog/building-a-dfir-lab-part-1/",
+              "type": "article"
+            },
+            {
+              "title": "FTK Imager User Guide",
+              "url": "https://accessdata.com/product-downloads/docs/ftkimager/FTKImager_User_Guide.pdf",
+              "type": "article"
+            },
+            {
+              "title": "KAPE (Kroll Artifact Parser and Extractor) Documentation",
+              "url": "https://www.kroll.com/en/insights/publications/cyber-risk-news/kroll-artifact-parser-extractor-kape",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Forensic Imaging and Acquisition",
+              "url": "https://www.forensicswiki.org/wiki/Acquisition",
+              "type": "article"
+            },
+            {
+              "title": "How to set up a Digital Forensics Virtual Lab",
+              "url": "https://www.youtube.com/watch?v=0h6kS3CqQ7A",
+              "type": "video"
+            },
+            {
+              "title": "Digital Forensics with Autopsy Tutorial",
+              "url": "https://www.youtube.com/watch?v=R94yFwP4f2g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_tooling_lab_setup.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_os_fundamentals_for_dfir",
+          "name": "Operating System Fundamentals for Forensics",
+          "tag": "essential",
+          "description": "Understand core operating system components critical for forensic analysis: processes, services, user accounts, file permissions, kernel modules, boot processes, and system architecture across Windows, Linux, and macOS environments.",
+          "resources": [
+            {
+              "title": "Windows Internals, Part 1 (7th Edition)",
+              "url": "https://www.oreilly.com/library/view/windows-internals-part/9780735684188/",
+              "type": "course"
+            },
+            {
+              "title": "Operating System Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=uls-8f-d-1c",
+              "type": "video"
+            },
+            {
+              "title": "Linux Kernel Internals - A Crash Course",
+              "url": "https://www.youtube.com/watch?v=2e6iR8wH_0A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_os_fundamentals_for_dfir.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "dfir_analyst_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "id": "dfir_analyst_core_skills_implementation",
+      "name": "Core Technical Skills & Implementation",
+      "tag": "essential",
+      "description": "Develop hands-on expertise in various forensic disciplines to collect, analyze, and interpret digital evidence from diverse sources effectively.",
       "resources": [
         {
-          "title": "Digital Forensics & Incident Response (DFIR) Master Class 2026 (Prabh Nair)",
+          "title": "Digital Forensics Course - Learn the Basics of Computer Forensics",
+          "url": "https://www.youtube.com/watch?v=w9_tI4pC320",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/dfir_analyst/dfir_analyst_core_skills_implementation.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "dfir_analyst_live_response_triage",
+          "name": "Live Response & Endpoint Triage",
+          "tag": "essential",
+          "description": "Learn techniques for collecting volatile data from active systems without disturbing ongoing operations. This includes capturing memory dumps, running processes, network connections, command history, and utilizing live response scripting and Endpoint Detection and Response (EDR) tools for immediate incident investigation and containment.",
+          "resources": [
+            {
+              "title": "Sysinternals Suite Documentation",
+              "url": "https://docs.microsoft.com/en-us/sysinternals/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Live Response with Kansa",
+              "url": "https://cyberwardawg.com/live-response-with-kansa/",
+              "type": "article"
+            },
+            {
+              "title": "Live Response for Incident Response & Threat Hunting",
+              "url": "https://www.youtube.com/watch?v=kYv9lXvjJ8s",
+              "type": "video"
+            },
+            {
+              "title": "DFIR | Live Forensics | Windows Memory Forensics | Process Dumper | FTK Imager",
+              "url": "https://www.youtube.com/watch?v=3KzJ4tYhW_A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_live_response_triage.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_windows_host_forensics",
+          "name": "Windows Host Forensics",
+          "tag": "essential",
+          "description": "Master forensic analysis of Windows systems, including detailed examination of file systems (NTFS, FAT), registry hive analysis, event logs, prefetch files, JumpLists, ShellBags, LNK files, ShimCache, Amcache, and MFT analysis. Understand common Windows artifacts related to user activity, execution, and persistence.",
+          "resources": [
+            {
+              "title": "Windows Forensic Analysis Toolkit - SANS",
+              "url": "https://www.sans.org/blog/windows-forensic-analysis-toolkit/",
+              "type": "article"
+            },
+            {
+              "title": "The Windows Registry: A Forensic Perspective",
+              "url": "https://www.researchgate.net/publication/262744885_The_Windows_Registry_A_Forensic_Perspective",
+              "type": "article"
+            },
+            {
+              "title": "Windows Forensics Crash Course Part 1 - Windows Artifacts",
+              "url": "https://www.youtube.com/watch?v=F0pX5qKj53E",
+              "type": "video"
+            },
+            {
+              "title": "DFIR: Windows Host Forensics - Tools and Artifacts",
+              "url": "https://www.youtube.com/watch?v=N804xS7p04I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_windows_host_forensics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_linux_macos_host_forensics",
+          "name": "Linux & macOS Host Forensics",
+          "tag": "essential",
+          "description": "Perform forensic investigations on Linux systems (Ext4, system logs, Bash history, process accounting, cron jobs, network configurations) and macOS (APFS, Unified Log, Plists, Time Machine backups, TCC database, browser artifacts, Spotlight metadata).",
+          "resources": [
+            {
+              "title": "Linux Forensics Quick Reference",
+              "url": "https://www.sans.org/cyber-security-resources/free-sample-chapter/linux-forensics-quick-reference-2015-103325/",
+              "type": "article"
+            },
+            {
+              "title": "Linux Forensics 101",
+              "url": "https://www.youtube.com/watch?v=kYcI8fJvW4I",
+              "type": "video"
+            },
+            {
+              "title": "macOS Incident Response and Forensics with Phil Hagen",
+              "url": "https://www.youtube.com/watch?v=W13oYwB1j6c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_linux_macos_host_forensics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_file_system_forensics_deep_dive",
+          "name": "File System Forensics Deep Dive",
+          "tag": "essential",
+          "description": "A dedicated exploration of common file systems (NTFS, Ext4, APFS, HFS+), their structures, metadata, journaling mechanisms, and advanced artifact analysis like Master File Table (MFT) records, USN Journal, Volume Shadow Copies, and APFS snapshots. Understand deleted file recovery techniques.",
+          "resources": [
+            {
+              "title": "File System Forensic Analysis (Brian Carrier)",
+              "url": "https://www.amazon.com/File-System-Forensic-Analysis-Carrier/dp/0321268172",
+              "type": "course"
+            },
+            {
+              "title": "Digital Forensics and Incident Response: Mastering NTFS",
+              "url": "https://www.sans.org/blog/digital-forensics-and-incident-response-mastering-ntfs/",
+              "type": "article"
+            },
+            {
+              "title": "Master File Table (MFT) Deep Dive | DFIR",
+              "url": "https://www.youtube.com/watch?v=F07-4_pI53U",
+              "type": "video"
+            },
+            {
+              "title": "Deep Dive into Linux Filesystems (ext4) and Forensics",
+              "url": "https://www.youtube.com/watch?v=D-aV485qjJk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_file_system_forensics_deep_dive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_memory_forensics",
+          "name": "Memory Forensics",
+          "tag": "essential",
+          "description": "Learn to acquire and analyze memory dumps using tools like Volatility and Rekall. Focus on extracting running processes, network connections, loaded DLLs, injected code, command history, user activity, and detecting rootkits or hidden processes.",
+          "resources": [
+            {
+              "title": "Volatility3 Documentation",
+              "url": "https://volatility3.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Memory Forensics: A Deep Dive",
+              "url": "https://www.sans.org/blog/memory-forensics-a-deep-dive/",
+              "type": "article"
+            },
+            {
+              "title": "Practical Memory Forensics with Volatility",
+              "url": "https://www.youtube.com/watch?v=F0v4_4k289o",
+              "type": "video"
+            },
+            {
+              "title": "Memory Forensics | DFIR Series",
+              "url": "https://www.youtube.com/watch?v=0kI0tN90y8Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_memory_forensics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_network_forensics_pcap",
+          "name": "Network Forensics & Packet Analysis",
+          "tag": "essential",
+          "description": "Analyze network traffic for indicators of compromise (IOCs). Understand common network protocols (TCP/IP, DNS, HTTP, SMB), use packet capture tools like Wireshark and TShark, interpret network flow data (NetFlow, IPFIX), and detect anomalies or malicious communication patterns.",
+          "resources": [
+            {
+              "title": "Wireshark User's Guide",
+              "url": "https://www.wireshark.org/docs/wsug_html/",
+              "type": "article"
+            },
+            {
+              "title": "Network Forensics for Incident Response",
+              "url": "https://www.sans.org/white-papers/36557/",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial for Beginners - Network Analysis",
+              "url": "https://www.youtube.com/watch?v=0hB8_0k7V5w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_network_forensics_pcap.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_log_analysis_siem",
+          "name": "Log Analysis & SIEM Fundamentals",
+          "tag": "essential",
+          "description": "Develop skills in parsing, filtering, and analyzing various log types (system, application, firewall, web server, cloud logs). Understand SIEM concepts, data ingestion, normalization, correlation rules, alert generation, and integration with threat intelligence. Gain practical experience with platforms like Splunk, ELK Stack, and Microsoft Sentinel, including query languages like KQL or SPL.",
+          "resources": [
+            {
+              "title": "Getting Started with Splunk",
+              "url": "https://docs.splunk.com/Documentation/Splunk/latest/SearchTutorial/WelcometotheSearchTutorial",
+              "type": "article"
+            },
+            {
+              "title": "The ELK Stack: A Deep Dive into Logs",
+              "url": "https://www.elastic.co/what-is/elk-stack",
+              "type": "article"
+            },
+            {
+              "title": "KQL (Kusto Query Language) Documentation",
+              "url": "https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with SIEM | Security Information and Event Management Explained",
+              "url": "https://www.youtube.com/watch?v=FqSjj8L1vN8",
+              "type": "video"
+            },
+            {
+              "title": "ELK Stack Tutorial - ELK Stack Explained",
+              "url": "https://www.youtube.com/watch?v=vV1i0y76-Xo",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_log_analysis_siem.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dfir_analyst_advanced_practices",
+      "name": "Advanced DFIR & Operational Excellence",
+      "tag": "advanced",
+      "description": "Transition from foundational skills to advanced enterprise-level incident response practices, proactive threat hunting, and specialized forensic areas like cloud, malware analysis, and automation.",
+      "resources": [
+        {
+          "title": "Digital Forensics & Incident Response (DFIR) Master Class (Prabh Nair)",
           "url": "https://www.youtube.com/watch?v=Snr1BQcptlA",
           "type": "video"
         },
         {
-          "title": "Volatility Documentation",
-          "url": "https://volatility3.readthedocs.io/en/latest/",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/dfir_analyst/dfir_analyst_advanced_practices.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dfir_analyst_security_reliability",
-          "name": "Security, Reliability, and Risk",
+          "id": "dfir_analyst_enterprise_ir_orchestration",
+          "name": "Enterprise IR & SOAR Automation",
           "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Learn to manage and scale incident response within large organizations. Explore Security Orchestration, Automation, and Response (SOAR) platforms, develop playbooks for automated responses, and integrate with security tools via APIs to streamline operations.",
           "resources": [
             {
-              "title": "Velociraptor Documentation",
-              "url": "https://docs.velociraptor.app/",
+              "title": "What is SOAR (Security Orchestration, Automation, and Response)?",
+              "url": "https://www.paloaltonetworks.com/cyberpedia/what-is-soar",
               "type": "article"
+            },
+            {
+              "title": "Python Automation Tutorial for Beginners (Full Course)",
+              "url": "https://www.youtube.com/watch?v=PXx9Q0Y0b8w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_enterprise_ir_orchestration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dfir_analyst_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "dfir_analyst_threat_hunting_mitre",
+          "name": "Threat Hunting & MITRE ATT&CK",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Develop proactive threat hunting methodologies. Utilize threat intelligence and frameworks like MITRE ATT&CK to identify adversary tactics, techniques, and procedures (TTPs) that bypass traditional security controls, and build robust detection rules.",
           "resources": [
             {
-              "title": "NIST Incident Handling Guide",
-              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "title": "MITRE ATT&CK Framework Official Site",
+              "url": "https://attack.mitre.org/",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Threat Hunting",
+              "url": "https://www.splunk.com/en_us/blog/security/introduction-to-threat-hunting.html",
+              "type": "article"
+            },
+            {
+              "title": "MITRE ATT&CK Explained",
+              "url": "https://www.youtube.com/watch?v=7u7P77k3WlY",
+              "type": "video"
+            },
+            {
+              "title": "Threat Hunting 101: What it is and How to get Started",
+              "url": "https://www.youtube.com/watch?v=X-j34aT-n30",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_threat_hunting_mitre.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "dfir_analyst_cloud_container_forensics",
+          "name": "Cloud & Container Forensics",
+          "tag": "advanced",
+          "description": "Understand the unique challenges and techniques for performing forensics in cloud environments (AWS, Azure, GCP) including logging, snapshotting, API analysis, and cloud-native security tools. Explore incident response and forensics within containerized environments (Docker, Kubernetes).",
+          "resources": [
+            {
+              "title": "AWS Cloud Forensics Guide",
+              "url": "https://aws.amazon.com/blogs/security/how-to-implement-a-forensic-investigation-workflow-in-aws/",
+              "type": "article"
+            },
+            {
+              "title": "Container Forensics: A Practical Guide",
+              "url": "https://www.youtube.com/watch?v=B7b3cK5d3t0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_cloud_container_forensics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_malware_triage_basic_analysis",
+          "name": "Malware Triage & Basic Analysis",
+          "tag": "advanced",
+          "description": "Perform basic static analysis (file signatures, strings, packers, PE header analysis) and dynamic analysis (sandboxing, process monitoring, network traffic analysis) of suspicious executables, scripts, and documents to understand their behavior, extract indicators of compromise (IOCs), and write basic YARA rules for detection.",
+          "resources": [
+            {
+              "title": "Practical Malware Analysis Book",
+              "url": "https://www.nostarch.com/malwareanalysis/",
+              "type": "course"
+            },
+            {
+              "title": "REMnux: The Linux Toolkit for Reverse-Engineering and Malware Analysis",
+              "url": "https://remnux.org/",
+              "type": "article"
+            },
+            {
+              "title": "YARA: The Pattern Matching Swiss Knife for Malware Researchers",
+              "url": "https://virustotal.github.io/yara/",
+              "type": "article"
+            },
+            {
+              "title": "Malware Analysis Crash Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=F55zD0iK2F8",
+              "type": "video"
+            },
+            {
+              "title": "YARA Rules Tutorial For Beginners | Create & Test YARA Rules",
+              "url": "https://www.youtube.com/watch?v=Tq_Yc2S3r1g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_malware_triage_basic_analysis.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_scripting_for_dfir",
+          "name": "Scripting for DFIR Automation",
+          "tag": "advanced",
+          "description": "Develop essential scripting skills (Python, PowerShell, Bash) for automating repetitive DFIR tasks such as data parsing, log analysis, evidence collection, tool integration, and report generation. Focus on practical scripts for efficiency and scalability.",
+          "resources": [
+            {
+              "title": "Automate the Boring Stuff with Python",
+              "url": "https://automatetheboringstuff.com/",
+              "type": "course"
+            },
+            {
+              "title": "PowerShell for Security Professionals",
+              "url": "https://www.sans.org/blog/powershell-for-security-professionals/",
+              "type": "article"
+            },
+            {
+              "title": "Python Automation Tutorial for Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=F0p7Z4D-g3w",
+              "type": "video"
+            },
+            {
+              "title": "PowerShell for Beginners Course - Learn in 4 Hours",
+              "url": "https://www.youtube.com/watch?v=S2fGk7B9_qM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_scripting_for_dfir.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_email_forensics",
+          "name": "Email Forensics",
+          "tag": "advanced",
+          "description": "Master techniques for analyzing email headers, body content, attachments, and links to investigate phishing attempts, Business Email Compromise (BEC), malware delivery vectors, and insider threats. Understand email protocols (SMTP, POP3, IMAP) and anti-spam technologies.",
+          "resources": [
+            {
+              "title": "Email Header Analyzer Tool",
+              "url": "https://mxtoolbox.com/EmailHeaders.aspx",
+              "type": "article"
+            },
+            {
+              "title": "Investigating Email: A Forensic Guide",
+              "url": "https://www.blackbagtech.com/blog/email-investigation-forensic-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Email Header Analysis For Phishing Investigations",
+              "url": "https://www.youtube.com/watch?v=0hYhPjWw89Y",
+              "type": "video"
+            },
+            {
+              "title": "Analyzing Phishing Emails with John Hammond",
+              "url": "https://www.youtube.com/watch?v=eP7j-1I57b0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_email_forensics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "dfir_analyst_advanced_threat_detection_response",
+          "name": "Advanced Threat Detection & Response",
+          "tag": "advanced",
+          "description": "Explore advanced threat detection techniques, understanding sophisticated adversary tactics like Advanced Persistent Threats (APTs), supply chain attacks, and leveraging frameworks beyond MITRE ATT&CK for deeper incident analysis and response strategies. Focus on proactive hunting and innovative defense mechanisms.",
+          "resources": [
+            {
+              "title": "Advanced Persistent Threats: A Practical Guide",
+              "url": "https://www.sans.org/white-papers/37772/",
+              "type": "article"
+            },
+            {
+              "title": "Cyber Threat Intelligence Fundamentals",
+              "url": "https://www.recordedfuture.com/resources/cyber-threat-intelligence-fundamentals",
+              "type": "article"
+            },
+            {
+              "title": "Cyber Security: Threat Hunting - Learn to hunt for threats in your network",
+              "url": "https://www.youtube.com/watch?v=0h5Hq1XmJzY",
+              "type": "video"
+            },
+            {
+              "title": "What is an APT attack? (Advanced Persistent Threat)",
+              "url": "https://www.youtube.com/watch?v=5rT4e9m_1yA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_advanced_threat_detection_response.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "dfir_analyst_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "dfir_analyst_portfolio_career_readiness",
+      "name": "Portfolio & Career Readiness",
       "tag": "advanced",
-      "description": "Turn your DFIR Analyst learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Transform theoretical knowledge and practical skills into demonstrable proof for career advancement. Focus on effective communication, professional development, and showcasing expertise.",
       "resources": [
         {
-          "title": "NIST Incident Handling Guide",
-          "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+          "title": "Creating a Cybersecurity Portfolio",
+          "url": "https://www.linkedin.com/pulse/creating-cybersecurity-portfolio-get-hired-faster-luke-hickerson/",
           "type": "article"
         },
         {
-          "title": "Velociraptor Documentation",
-          "url": "https://docs.velociraptor.app/",
-          "type": "article"
+          "title": "Building a Cybersecurity Portfolio (A Must-Have for Beginners)!",
+          "url": "https://www.youtube.com/watch?v=F07D4I7-E8I",
+          "type": "video"
         },
         {
-          "title": "Volatility Documentation",
-          "url": "https://volatility3.readthedocs.io/en/latest/",
-          "type": "article"
+          "title": "How to Get a Job in Cybersecurity (Tips, Tricks & Resources)",
+          "url": "https://www.youtube.com/watch?v=kY67Uu87140",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/dfir_analyst/dfir_analyst_portfolio_career_readiness.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "dfir_analyst_case_study",
-          "name": "Case Study Writing",
+          "id": "dfir_analyst_incident_reporting_communication",
+          "name": "Incident Reporting & Stakeholder Communication",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Master the art of crafting clear, concise, and actionable incident reports. Learn to effectively communicate findings and recommendations to technical teams, management, legal counsel, and other stakeholders.",
           "resources": [
             {
-              "title": "NIST Incident Handling Guide",
-              "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+              "title": "Writing Effective Incident Reports",
+              "url": "https://www.sans.org/blog/writing-effective-incident-reports/",
               "type": "article"
+            },
+            {
+              "title": "Incident Reporting in Cybersecurity",
+              "url": "https://www.youtube.com/watch?v=S0Tq4Hq0u0s",
+              "type": "video"
+            },
+            {
+              "title": "Cyber Security Incident Response: Communication Plan",
+              "url": "https://www.youtube.com/watch?v=XhY7H-r19F4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_incident_reporting_communication.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dfir_analyst_project_capstone",
-          "name": "Project: DFIR Analyst Portfolio Capstone",
+          "id": "dfir_analyst_capstone_project",
+          "name": "DFIR Capstone Project: End-to-End Incident Simulation",
           "tag": "advanced",
-          "description": "Build a portfolio-grade DFIR Analyst project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Apply all learned skills in a comprehensive, simulated incident response scenario. This project should cover the entire IR lifecycle, from initial detection, evidence collection, analysis, containment, eradication, recovery, to final reporting, suitable for a professional portfolio.",
           "resources": [
             {
-              "title": "Volatility Documentation",
-              "url": "https://volatility3.readthedocs.io/en/latest/",
-              "type": "article"
+              "title": "Blue Team Labs Online (BTLO) Challenges",
+              "url": "https://blueteamlabs.online/",
+              "type": "course"
+            },
+            {
+              "title": "CyberDefenders Labs",
+              "url": "https://cyberdefenders.org/labs/",
+              "type": "course"
+            },
+            {
+              "title": "Blue Team Labs Online - Incident Response Challenge Walkthrough",
+              "url": "https://www.youtube.com/watch?v=F07_Nl1R7aU",
+              "type": "video"
+            },
+            {
+              "title": "Incident Response in the Real World: The Basics",
+              "url": "https://www.youtube.com/watch?v=sI9f-mJp_0Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_capstone_project.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "dfir_analyst_career_development",
+          "name": "Career Development & Certifications",
+          "tag": "advanced",
+          "description": "Explore common DFIR career paths, prepare for interviews, and understand relevant industry certifications (e.g., GCIH, GCFA, CySA+, eCIR, CREST). Develop strategies for continuous learning, professional networking, and personal branding.",
+          "resources": [
+            {
+              "title": "Top DFIR Certifications for Your Career",
+              "url": "https://www.eccouncil.org/cybersecurity-exchange/blogs/top-dfir-certifications/",
+              "type": "article"
+            },
+            {
+              "title": "DFIR Interview Questions & Preparation",
+              "url": "https://www.sans.org/blog/dfir-interview-questions-preparation/",
+              "type": "article"
+            },
+            {
+              "title": "How To Get Into DFIR (Digital Forensics & Incident Response)",
+              "url": "https://www.youtube.com/watch?v=kRkQ-g12G5Y",
+              "type": "video"
+            },
+            {
+              "title": "Top DFIR Certifications You NEED to Know!",
+              "url": "https://www.youtube.com/watch?v=jW0NlU98y2o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/dfir_analyst/dfir_analyst_career_development.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

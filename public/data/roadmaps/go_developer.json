@@ -1,14 +1,14 @@
 {
   "id": "go_developer",
   "title": "Go Developer",
-  "description": "A roadmap for Go backend development: core language, concurrency, APIs, databases, testing, containers, observability, and cloud-ready services.",
+  "description": "A comprehensive roadmap for building robust, scalable backend services with Go, covering core language, advanced concurrency patterns, modern web development with frameworks, data persistence, advanced system design, thorough testing, sophisticated observability, and robust cloud deployment strategies.",
   "format": "tree",
   "tree": [
     {
       "id": "go_foundations",
-      "name": "Go Foundations",
+      "name": "Go Language Foundations",
       "tag": "essential",
-      "description": "Learn Go syntax, modules, structs, interfaces, errors, packages, tooling, and idiomatic code organization.",
+      "description": "Master the fundamental syntax, data structures, control flow, error handling, and core principles of the Go language, along with project organization, modern module management, and essential tooling.",
       "resources": [
         {
           "title": "Go Programming Course (freeCodeCamp)",
@@ -33,135 +33,466 @@
       ],
       "children": [
         {
-          "id": "go_core",
-          "name": "Core Language and Tooling",
+          "id": "go_lang_fundamentals",
+          "name": "Core Language Constructs",
           "tag": "essential",
-          "description": "Use slices, maps, structs, methods, interfaces, errors, modules, gofmt, go vet, and project layout.",
+          "description": "Understand Go's basic syntax, primitive and composite data types (arrays, slices, maps, structs), control flow statements, functions, methods, and the struct-based object model.",
           "resources": [
             {
               "title": "Effective Go",
               "url": "https://go.dev/doc/effective_go",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "go_concurrency",
-          "name": "Concurrency",
-          "tag": "advanced",
-          "description": "Use goroutines, channels, contexts, cancellation, worker pools, mutexes, race detection, and graceful shutdown.",
-          "resources": [
+            },
             {
-              "title": "Go Concurrency Patterns",
-              "url": "https://go.dev/blog/pipelines",
+              "title": "Go Data Structures",
+              "url": "https://go.dev/blog/go-slices-usage-and-internals",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "go_error_handling",
+          "name": "Idiomatic Error Handling",
+          "tag": "essential",
+          "description": "Learn Go's robust approach to error handling including multiple return values, using the 'errors' package, creating custom error types, wrapping errors, and sentinel errors for clear error propagation.",
+          "resources": [
+            {
+              "title": "Error Handling in Go",
+              "url": "https://go.dev/blog/error-handling-and-go",
+              "type": "article"
+            },
+            {
+              "title": "Working with Errors in Go 1.13",
+              "url": "https://go.dev/blog/go1.13-errors",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_interfaces_composition",
+          "name": "Interfaces and Composition",
+          "tag": "essential",
+          "description": "Grasp the power of Go interfaces for achieving polymorphism and designing flexible APIs. Understand type embedding and how composition is favored over inheritance for building adaptable systems.",
+          "resources": [
+            {
+              "title": "Go Interfaces Tutorial",
+              "url": "https://www.youtube.com/watch?v=L46zS7E1s1U",
+              "type": "video"
+            },
+            {
+              "title": "Go's Tour of Composition",
+              "url": "https://go.dev/doc/effective_go#embedding",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_packages_modules",
+          "name": "Packages, Modules, and Workspace",
+          "tag": "essential",
+          "description": "Understand Go's module system for dependency management, package organization, import paths, versioning, `go work` for multi-module development, and the standard project layout.",
+          "resources": [
+            {
+              "title": "Go Modules Reference",
+              "url": "https://go.dev/ref/mod",
+              "type": "article"
+            },
+            {
+              "title": "Go Workspaces Tutorial",
+              "url": "https://go.dev/doc/tutorial/workspaces",
+              "type": "article"
+            },
+            {
+              "title": "Standard Go Project Layout",
+              "url": "https://github.com/golang-standards/project-layout",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_generics_principles",
+          "name": "Generics and Type Parameters",
+          "tag": "essential",
+          "description": "Explore Go's generics feature (Go 1.18+) to write more flexible and reusable code. Understand type parameters, type constraints, and their application in functions and data structures.",
+          "resources": [
+            {
+              "title": "An Introduction to Go Generics",
+              "url": "https://go.dev/doc/tutorial/generics",
+              "type": "article"
+            },
+            {
+              "title": "Go Generics Cheatsheet",
+              "url": "https://medium.com/a-journey-with-go/go-generics-cheatsheet-75c120a16869",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_tooling_practices",
+          "name": "Essential Tooling and Best Practices",
+          "tag": "essential",
+          "description": "Utilize Go's built-in tools like 'gofmt', 'goimports', 'go vet', 'go generate', and understand general best practices for writing clean, performant, and maintainable Go code, including Go Proverbs and common idioms.",
+          "resources": [
+            {
+              "title": "Go Tooling",
+              "url": "https://go.dev/doc/tutorial/call-module-code",
+              "type": "article"
+            },
+            {
+              "title": "Go Proverbs",
+              "url": "https://go-proverbs.github.io/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_reflection_unsafe",
+          "name": "Reflection and Unsafe Operations",
+          "tag": "advanced",
+          "description": "Dive into Go's reflection capabilities for runtime inspection and modification of types. Understand the `unsafe` package for direct memory manipulation and its careful use cases and implications.",
+          "resources": [
+            {
+              "title": "The Laws of Reflection",
+              "url": "https://go.dev/blog/laws-of-reflection",
+              "type": "article"
+            },
+            {
+              "title": "Using Go's unsafe package",
+              "url": "https://medium.com/a-journey-with-go/go-using-unsafe-package-a764acb3858c",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "go_web_services",
-      "name": "Web Services and Databases",
+      "id": "go_concurrency_mastery",
+      "name": "Concurrency Mastery",
       "tag": "essential",
-      "description": "Build REST APIs, middleware, auth, validation, database access, migrations, and service boundaries.",
+      "description": "Dive deep into Go's powerful concurrency model using goroutines, channels, and the 'context' package for building highly efficient, responsive, and robust applications.",
+      "resources": [
+        {
+          "title": "Go Concurrency Patterns",
+          "url": "https://go.dev/blog/pipelines",
+          "type": "article"
+        },
+        {
+          "title": "Concurrency in Go (Go by Example)",
+          "url": "https://gobyexample.com/goroutines",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_goroutines_channels",
+          "name": "Goroutines and Channels",
+          "tag": "essential",
+          "description": "Learn to launch and manage goroutines for concurrent execution, communicate safely using channels (buffered and unbuffered), and coordinate complex flows with 'select' statements.",
+          "resources": [
+            {
+              "title": "Visualizing Concurrency in Go",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYds",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "go_sync_primitives",
+          "name": "Synchronization Primitives",
+          "tag": "essential",
+          "description": "Understand and apply primitives from the 'sync' package like Mutex, RWMutex, WaitGroup, Once, and Cond to prevent race conditions, safely access shared resources, and synchronize concurrent operations.",
+          "resources": [
+            {
+              "title": "Go Sync Package",
+              "url": "https://pkg.go.dev/sync",
+              "type": "article"
+            },
+            {
+              "title": "Shared Memory By Communicating",
+              "url": "https://go.dev/blog/codelab-share",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_context_management",
+          "name": "Context and Cancellation",
+          "tag": "essential",
+          "description": "Utilize the 'context' package for managing request-scoped values, propagating cancellation signals, and setting timeouts and deadlines across complex goroutine hierarchies and API calls.",
+          "resources": [
+            {
+              "title": "Go Concurrency Patterns: Context",
+              "url": "https://go.dev/blog/go1.7-context",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_advanced_concurrency_patterns",
+          "name": "Advanced Concurrency Patterns",
+          "tag": "advanced",
+          "description": "Explore common and advanced concurrency patterns like worker pools, fan-in/fan-out, throttling, error propagation in pipelines, and techniques for graceful shutdown and resource cleanup.",
+          "resources": [
+            {
+              "title": "Advanced Go Concurrency Patterns",
+              "url": "https://www.ardanlabs.com/blog/2018/11/goroutine-leaks-the-abandoned-goroutine.html",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns: Context and cancellation of goroutines",
+              "url": "https://www.youtube.com/watch?v=o0M_p7XlQ1E",
+              "type": "video"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_web_services_dev",
+      "name": "Building Web Services",
+      "tag": "essential",
+      "description": "Develop robust, scalable, and secure HTTP APIs and services, covering routing, middleware, data persistence, caching, and foundational security practices using Go's standard library and popular frameworks.",
       "resources": [
         {
           "title": "Go Web Examples",
           "url": "https://gowebexamples.com/",
           "type": "article"
+        },
+        {
+          "title": "Building a REST API with Go (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=F3Ps2t-aW0Q",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "go_http_api",
-          "name": "HTTP APIs",
+          "id": "go_http_server_basics",
+          "name": "HTTP Server Fundamentals & Routing",
           "tag": "essential",
-          "description": "Use net/http, routers, middleware, JSON, validation, error responses, pagination, and OpenAPI docs.",
+          "description": "Build web servers using Go's powerful 'net/http' package. Learn to handle requests, generate responses, perform JSON serialization/deserialization, and integrate popular routing libraries like 'chi', 'gin', or 'echo'.",
           "resources": [
             {
-              "title": "net/http Package",
+              "title": "net/http Package Documentation",
               "url": "https://pkg.go.dev/net/http",
               "type": "article"
+            },
+            {
+              "title": "Chi Router Documentation",
+              "url": "https://go-chi.io/",
+              "type": "article"
+            },
+            {
+              "title": "Gin Web Framework",
+              "url": "https://gin-gonic.com/docs/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "go_sql",
-          "name": "SQL and Persistence",
+          "id": "go_middleware_api_design",
+          "name": "Middleware and API Design",
           "tag": "essential",
-          "description": "Use database/sql, pgx, migrations, transactions, query performance, and repository patterns.",
+          "description": "Implement reusable middleware for common concerns like logging, authentication, authorization, error recovery, and rate limiting. Learn principles of RESTful API design, versioning, and documentation (OpenAPI/Swagger).",
+          "resources": [
+            {
+              "title": "Writing Go Middleware",
+              "url": "https://www.alexedwards.net/blog/making-and-using-middleware",
+              "type": "article"
+            },
+            {
+              "title": "OpenAPI Specification",
+              "url": "https://swagger.io/specification/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_data_persistence",
+          "name": "Data Persistence with SQL and NoSQL",
+          "tag": "essential",
+          "description": "Interact with SQL databases (PostgreSQL, MySQL) using 'database/sql' and modern drivers like 'pgx'. Explore popular ORMs/query builders like GORM, SQLC, or sqlx. Learn basic NoSQL (Redis, MongoDB) integration for various use cases.",
           "resources": [
             {
               "title": "Go SQL Database Tutorial",
               "url": "https://go.dev/doc/database/",
               "type": "article"
+            },
+            {
+              "title": "pgx PostgreSQL Driver",
+              "url": "https://github.com/jackc/pgx",
+              "type": "article"
+            },
+            {
+              "title": "GORM Documentation",
+              "url": "https://gorm.io/docs/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "go_developer_practice_lab",
-          "name": "Practice: Concurrent Worker Pool",
-          "tag": "advanced",
-          "description": "Build a worker pool with context cancellation, retries, metrics, tests, and graceful shutdown.",
-          "resources": [],
-          "children": []
+          "id": "go_caching_strategies",
+          "name": "Caching Strategies and Implementation",
+          "tag": "essential",
+          "description": "Understand the importance of caching for performance. Learn different caching patterns (e.g., write-through, cache-aside) and implement caching solutions using in-memory caches or external stores like Redis.",
+          "resources": [
+            {
+              "title": "Caching in Go with Redis",
+              "url": "https://pkg.go.dev/github.com/go-redis/redis/v8",
+              "type": "article"
+            },
+            {
+              "title": "Implementing a simple cache in Go",
+              "url": "https://golangbot.com/cache-go/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_auth_validation_security",
+          "name": "Authentication, Validation, and Security",
+          "tag": "essential",
+          "description": "Implement secure authentication mechanisms (JWT, OAuth2, session management), robust data validation using libraries like 'go-playground/validator', handle CORS, and apply other critical security best practices for Go web services.",
+          "resources": [
+            {
+              "title": "JWT in Go",
+              "url": "https://www.youtube.com/watch?v=n7zR9Ea-x84",
+              "type": "video"
+            },
+            {
+              "title": "Go-Playground/Validator",
+              "url": "https://github.com/go-playground/validator",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10 for Go",
+              "url": "https://owasp.org/www-project-top-ten/2017/01_The_Biggest_Risks/A6-2017-Security_Misconfiguration",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "go_quality_ops",
-      "name": "Testing, Performance, and Operations",
+      "id": "go_advanced_system_design",
+      "name": "Advanced Go & System Design",
       "tag": "advanced",
-      "description": "Write robust services with tests, benchmarks, profiling, observability, background workers, and deployment discipline.",
+      "description": "Explore advanced Go topics and common system design patterns for building scalable, distributed, and resilient systems, including messaging, gRPC, and robust architectural principles.",
+      "resources": [
+        {
+          "title": "Building Microservices with Go",
+          "url": "https://www.youtube.com/watch?v=d_kH0X916W8",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_messaging_queues",
+          "name": "Messaging Queues and Background Jobs",
+          "tag": "advanced",
+          "description": "Integrate Go services with reliable message brokers (e.g., RabbitMQ, Kafka, NATS) for asynchronous communication, event-driven architectures, background processing, and building robust distributed systems.",
+          "resources": [
+            {
+              "title": "Go with RabbitMQ (tutorial)",
+              "url": "https://www.rabbitmq.com/tutorials/tutorial-one-go.html",
+              "type": "article"
+            },
+            {
+              "title": "Confluent Kafka Go Client",
+              "url": "https://github.com/confluentinc/confluent-kafka-go",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_grpc_microservices",
+          "name": "gRPC and Microservices",
+          "tag": "advanced",
+          "description": "Learn to build high-performance inter-service communication using gRPC and Protocol Buffers. Understand core microservice architecture concepts like service discovery, API gateways, circuit breakers, and an introduction to Service Mesh concepts (e.g., Linkerd, Istio).",
+          "resources": [
+            {
+              "title": "gRPC Basics - Go",
+              "url": "https://grpc.io/docs/languages/go/basics/",
+              "type": "article"
+            },
+            {
+              "title": "Protocol Buffers Developer Guide",
+              "url": "https://developers.google.com/protocol-buffers",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Service Mesh",
+              "url": "https://www.cncf.io/blog/2021/08/17/an-introduction-to-service-mesh/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_config_env_management",
+          "name": "Configuration and Environment Management",
+          "tag": "essential",
+          "description": "Implement robust configuration management for Go applications using environment variables, command-line flags, and configuration files (YAML, JSON). Explore libraries like Viper and best practices for managing secrets.",
+          "resources": [
+            {
+              "title": "Go Config Management Best Practices",
+              "url": "https://www.ardanlabs.com/blog/2022/01/configuration-management-in-go.html",
+              "type": "article"
+            },
+            {
+              "title": "Viper Documentation",
+              "url": "https://github.com/spf13/viper",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_design_patterns_principles",
+          "name": "Design Patterns and Principles",
+          "tag": "advanced",
+          "description": "Apply common software design patterns in Go (e.g., Builder, Factory, Strategy, Observer) and understand fundamental principles like SOLID, Dependency Injection, and architectural styles like Clean Architecture, Hexagonal Architecture, and Event-Driven Architecture.",
+          "resources": [
+            {
+              "title": "Go Design Patterns (tutorials)",
+              "url": "https://refactoring.guru/design-patterns/go",
+              "type": "article"
+            },
+            {
+              "title": "Clean Architecture in Go",
+              "url": "https://medium.com/@mohsen.tahmid/clean-architecture-in-go-c598ae90302b",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_advanced_io_networking",
+          "name": "Advanced I/O and Networking",
+          "tag": "advanced",
+          "description": "Deep dive into Go's 'io' and 'net' packages. Understand network programming fundamentals, building custom TCP/UDP servers and clients, multiplexing, and advanced I/O operations for high-performance applications.",
+          "resources": [
+            {
+              "title": "Go's net package documentation",
+              "url": "https://pkg.go.dev/net",
+              "type": "article"
+            },
+            {
+              "title": "Building a TCP Server in Go",
+              "url": "https://tutorialedge.net/golang/building-a-tcp-server-in-go/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_ops_production",
+      "name": "Testing, Observability, & Deployment",
+      "tag": "advanced",
+      "description": "Build robust, production-ready Go applications by implementing comprehensive testing strategies, establishing effective observability, and mastering deployment to containerized and cloud environments.",
       "resources": [
         {
           "title": "Go Testing Package",
           "url": "https://pkg.go.dev/testing",
           "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "go_testing_benchmarks",
-          "name": "Testing and Benchmarks",
-          "tag": "advanced",
-          "description": "Write table-driven tests, mocks, integration tests, benchmarks, fuzz tests, and race-detector checks.",
-          "resources": [
-            {
-              "title": "Go Fuzzing",
-              "url": "https://go.dev/doc/security/fuzz/",
-              "type": "article"
-            }
-          ],
-          "children": []
         },
-        {
-          "id": "go_observability",
-          "name": "Observability and Profiling",
-          "tag": "advanced",
-          "description": "Add structured logs, metrics, traces, pprof profiling, health checks, and SLO-style dashboards.",
-          "resources": [
-            {
-              "title": "pprof Documentation",
-              "url": "https://pkg.go.dev/net/http/pprof",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "go_deploy_project",
-      "name": "Deployment and Portfolio",
-      "tag": "advanced",
-      "description": "Ship a Go service as a small binary or container with safe config, release automation, and runbooks.",
-      "resources": [
         {
           "title": "Docker Go Guide",
           "url": "https://docs.docker.com/language/golang/",
@@ -170,32 +501,136 @@
       ],
       "children": [
         {
-          "id": "go_deployment",
-          "name": "Deployment Patterns",
+          "id": "go_comprehensive_testing",
+          "name": "Comprehensive Testing Strategies",
           "tag": "advanced",
-          "description": "Build minimal Docker images, manage config/secrets, add graceful shutdown, migrations, and rollout checks.",
+          "description": "Write effective unit, integration, and end-to-end tests using Go's built-in testing framework. Learn about table-driven tests, mocking and dependency injection, property-based testing, fuzz testing, benchmarking, and utilizing the race detector for concurrency issues.",
           "resources": [
             {
-              "title": "Go Modules Reference",
-              "url": "https://go.dev/ref/mod",
+              "title": "Go Fuzzing",
+              "url": "https://go.dev/doc/security/fuzz/",
+              "type": "article"
+            },
+            {
+              "title": "Testing in Go: A Deep Dive",
+              "url": "https://go.dev/blog/cover",
+              "type": "article"
+            },
+            {
+              "title": "Testify Mocking Framework",
+              "url": "https://pkg.go.dev/github.com/stretchr/testify/mock",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "go_project_url_shortener",
-          "name": "Project: URL Shortener Service",
+          "id": "go_observability_prod",
+          "name": "Observability in Production",
           "tag": "advanced",
-          "description": "Build a Go API with PostgreSQL, Redis cache, rate limits, tests, metrics, Docker, and deployment notes.",
+          "description": "Implement structured logging, gather and visualize metrics (Prometheus, Grafana), configure distributed tracing (OpenTelemetry, Jaeger), perform in-depth profiling with 'pprof', and set up health checks and alerting strategies for monitoring Go services in production.",
           "resources": [
+            {
+              "title": "pprof Documentation",
+              "url": "https://pkg.go.dev/net/http/pprof",
+              "type": "article"
+            },
             {
               "title": "OpenTelemetry Go",
               "url": "https://opentelemetry.io/docs/languages/go/",
               "type": "article"
+            },
+            {
+              "title": "Prometheus Go Client",
+              "url": "https://prometheus.io/docs/guides/go-application/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "go_containerization_deployment",
+          "name": "Containerization and Cloud Deployment",
+          "tag": "advanced",
+          "description": "Containerize Go applications using Docker (focus on multi-stage builds and minimal images), understand Kubernetes deployment basics (Pods, Deployments, Services), and deploy to major cloud platforms (AWS, GCP, Azure) including configuration, secrets management, and serverless deployments (e.g., AWS Lambda, GCP Cloud Functions).",
+          "resources": [
+            {
+              "title": "Official Docker Go Image",
+              "url": "https://hub.docker.com/_/golang",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Concepts",
+              "url": "https://kubernetes.io/docs/concepts/",
+              "type": "article"
+            },
+            {
+              "title": "Go with AWS Lambda",
+              "url": "https://aws.github.io/aws-lambda-go/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_capstone_pro_dev",
+      "name": "Capstone Project & Professional Development",
+      "tag": "advanced",
+      "description": "Apply all learned concepts to build a production-ready Go service, focusing on performance, scalability, maintainability, and preparing for professional roles in the industry.",
+      "resources": [],
+      "children": [
+        {
+          "id": "go_production_service_project",
+          "name": "Build a Production-Ready Go Service",
+          "tag": "advanced",
+          "description": "Develop a complex Go backend service (e.g., URL shortener, e-commerce API, real-time chat) integrating databases, caching, message queues, robust error handling, full test coverage, and comprehensive observability, fully containerized and ready for cloud deployment.",
+          "resources": [
+            {
+              "title": "Building a Modern Go Application",
+              "url": "https://www.ardanlabs.com/blog/2021/08/go-microservice-architecture.html",
+              "type": "article"
+            },
+            {
+              "title": "Designing Data-Intensive Applications",
+              "url": "https://dataintensive.net/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "go_performance_optimization",
+          "name": "Performance Optimization & Refactoring",
+          "tag": "advanced",
+          "description": "Learn to identify and resolve performance bottlenecks using profiling tools ('pprof', tracing). Master refactoring techniques to improve code quality, maintainability, readability, and scalability of Go applications. Understand memory management and garbage collection in Go.",
+          "resources": [
+            {
+              "title": "Go Performance Tuning",
+              "url": "https://go.dev/doc/diagnose",
+              "type": "article"
+            },
+            {
+              "title": "Refactoring Techniques (Martin Fowler)",
+              "url": "https://martinfowler.com/books/refactoring.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "go_ci_cd_pipelines",
+          "name": "CI/CD Pipelines for Go",
+          "tag": "advanced",
+          "description": "Understand Continuous Integration and Continuous Delivery principles. Implement robust CI/CD pipelines for Go projects using tools like GitHub Actions, GitLab CI, or Jenkins to automate testing, build processes, and deployment workflows efficiently.",
+          "resources": [
+            {
+              "title": "Go CI/CD with GitHub Actions",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go",
+              "type": "article"
+            },
+            {
+              "title": "GitLab CI for Go projects",
+              "url": "https://docs.gitlab.com/ee/ci/examples/go.html",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

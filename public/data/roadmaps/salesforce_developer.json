@@ -1,14 +1,14 @@
 {
   "id": "salesforce_developer",
   "title": "Salesforce Developer",
-  "description": "A roadmap for Salesforce careers: CRM fundamentals, admin basics, Apex, Lightning Web Components, integrations, automation, and portfolio orgs.",
+  "description": "A comprehensive roadmap for aspiring Salesforce Developers, covering core CRM fundamentals, declarative and programmatic development with Apex and Lightning Web Components, integrations, DevOps practices, and preparing for industry-standard certifications and real-world projects.",
   "format": "tree",
   "tree": [
     {
-      "id": "sf_foundations",
-      "name": "Salesforce and CRM Foundations",
+      "id": "sf_platform_fundamentals",
+      "name": "Salesforce Platform Fundamentals",
       "tag": "essential",
-      "description": "Understand CRM concepts, Salesforce clouds, objects, fields, records, security, automation, and business processes.",
+      "description": "Develop a solid understanding of CRM concepts, the Salesforce ecosystem, declarative customization, data architecture, and robust security models.",
       "resources": [
         {
           "title": "Salesforce Full Course (Edureka)",
@@ -28,40 +28,52 @@
       ],
       "children": [
         {
-          "id": "sf_admin_basics",
-          "name": "Admin Basics",
+          "id": "crm_ecosystem_basics",
+          "name": "CRM Concepts & Salesforce Ecosystem Overview",
           "tag": "essential",
-          "description": "Learn objects, fields, page layouts, profiles, permission sets, flows, reports, and validation rules.",
+          "description": "Grasp core CRM principles, understand the Salesforce Customer 360 vision, explore various Salesforce Clouds (Sales Cloud, Service Cloud, Experience Cloud, Marketing Cloud, Analytics Cloud, etc.), AppExchange, and the multi-tenant architecture to comprehend the platform's breadth and capabilities.",
+          "resources": []
+        },
+        {
+          "id": "declarative_development",
+          "name": "Declarative Customization & Automation (Admin Essentials)",
+          "tag": "essential",
+          "description": "Master standard and custom objects, fields, relationships, page layouts, record types, compact layouts, path, profiles, permission sets, roles, sharing settings, validation rules, formula fields, rollup summary fields, and powerful automation tools like Salesforce Flow (Screen Flow, Record-Triggered Flow, Schedule-Triggered Flow, Autolaunched Flow) to build robust business logic without code.",
           "resources": [
             {
               "title": "Trailhead Admin Beginner",
               "url": "https://trailhead.salesforce.com/content/learn/trails/force_com_admin_beginner",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "sf_data_model",
-          "name": "Data Model and Security",
+          "id": "data_model_architecture",
+          "name": "Salesforce Data Model & Object Architecture",
           "tag": "essential",
-          "description": "Design object relationships, sharing rules, field-level security, role hierarchy, and record access.",
+          "description": "Design efficient and scalable data models using standard and custom objects. Understand different relationship types (Lookup, Master-Detail, Many-to-Many using Junction Objects), external objects, schema builder, field history tracking, and data storage considerations.",
           "resources": [
             {
               "title": "Data Modeling Trailhead",
               "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "security_access_control",
+          "name": "Salesforce Security & Access Control Model",
+          "tag": "essential",
+          "description": "Implement a multi-layered security model by understanding Organization-Wide Defaults (OWD), Role Hierarchy, Sharing Rules (owner-based, criteria-based), Manual Sharing, Profiles, Permission Sets, Public Groups, Queues, Territory Management, and Field-Level Security (FLS) to control data visibility and access effectively.",
+          "resources": []
         }
       ]
     },
     {
-      "id": "sf_development",
-      "name": "Apex and Lightning Web Components",
+      "id": "sf_developer_core",
+      "name": "Salesforce Developer Core Skills",
       "tag": "essential",
-      "description": "Build custom Salesforce behavior with Apex, SOQL, triggers, tests, LWC, events, and platform APIs.",
+      "description": "Acquire foundational programming and declarative automation skills using Apex, SOQL, Lightning Web Components, and essential developer tools for custom solutions.",
       "resources": [
         {
           "title": "How to Become a Salesforce Developer in 100 Days (Salesforce Hulk)",
@@ -76,126 +88,247 @@
       ],
       "children": [
         {
-          "id": "sf_apex",
-          "name": "Apex, SOQL, and Triggers",
+          "id": "developer_tools_environments",
+          "name": "Developer Tools & Development Environments",
           "tag": "essential",
-          "description": "Write bulk-safe Apex, SOQL queries, triggers, services, governor-limit-aware logic, and unit tests.",
+          "description": "Set up Salesforce CLI, VS Code with Salesforce extensions (Apex, LWC, Aura Components, ESLint, Prettier), understand different development environments (Developer Orgs, Sandboxes - Dev, Dev Pro, Partial, Full), Scratch Orgs, and efficient development workflows for a productive and collaborative environment.",
+          "resources": [
+            {
+              "title": "Salesforce CLI",
+              "url": "https://developer.salesforce.com/tools/salesforcecli/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "apex_programming",
+          "name": "Apex Programming Language Fundamentals",
+          "tag": "essential",
+          "description": "Learn Apex syntax, data types, variables, operators, control flow statements (if/else, loops), collections (Lists, Sets, Maps), DML operations, database methods, exception handling, classes, objects, interfaces, inheritance, polymorphism, and basic SOQL/SOSL integration within Apex. Understand Apex best practices like bulkification and avoiding hardcoding.",
           "resources": [
             {
               "title": "Apex Developer Guide",
               "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "sf_lwc",
-          "name": "Lightning Web Components",
-          "tag": "advanced",
-          "description": "Create reusable UI components with JavaScript, templates, decorators, events, wire adapters, and LDS.",
+          "id": "soql_sosl_queries",
+          "name": "SOQL & SOSL for Data Manipulation",
+          "tag": "essential",
+          "description": "Master Salesforce Object Query Language (SOQL) for efficient data retrieval, including relationship queries (parent-to-child, child-to-parent), aggregate functions, and understanding query performance. Utilize Salesforce Object Search Language (SOSL) for full-text searches across multiple objects and fields.",
+          "resources": []
+        },
+        {
+          "id": "apex_triggers_automation",
+          "name": "Apex Triggers, Automation & Best Practices",
+          "tag": "essential",
+          "description": "Develop bulk-safe and efficient Apex Triggers, understand trigger context variables, trigger order of execution, and implement best practices such as one trigger per object pattern and trigger handler classes. Compare and contrast Apex triggers with Salesforce Flow for automation use cases.",
+          "resources": []
+        },
+        {
+          "id": "asynchronous_apex_techniques",
+          "name": "Asynchronous Apex Techniques",
+          "tag": "essential",
+          "description": "Implement asynchronous processing using Future Methods, Batch Apex for large data sets, Queueable Apex for more complex chaining, and Scheduled Apex for recurring tasks, understanding their use cases and governor limits.",
+          "resources": []
+        },
+        {
+          "id": "apex_testing_debugging",
+          "name": "Apex Testing, Debugging & Quality Assurance",
+          "tag": "essential",
+          "description": "Write robust unit tests for Apex classes and triggers, including test data creation (Test.startTest(), Test.stopTest()), mocking callouts, asserting expected results, and achieving the required code coverage. Utilize debug logs, system.debug statements, and the Developer Console for efficient troubleshooting and performance analysis of Apex code.",
+          "resources": []
+        },
+        {
+          "id": "lwc_fundamentals",
+          "name": "Lightning Web Components (LWC) Fundamentals",
+          "tag": "essential",
+          "description": "Build modern and performant user interfaces using HTML templates, JavaScript controllers, and CSS. Master key LWC concepts such as decorators (@api, @track, @wire), data binding, component composition, lifecycle hooks, event handling (custom events, standard events), and understanding the Lightning Data Service (LDS) for efficient data interaction.",
           "resources": [
             {
               "title": "Lightning Web Components Dev Guide",
               "url": "https://developer.salesforce.com/docs/platform/lwc/guide",
               "type": "article"
             }
-          ],
-          "children": []
-        },
-        {
-          "id": "salesforce_developer_practice_lab",
-          "name": "Practice: Governor Limit Refactor",
-          "tag": "advanced",
-          "description": "Refactor a naive Apex flow to be bulk-safe, testable, secure, and ready for high-volume records.",
-          "resources": [],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "sf_integrations_portfolio",
-      "name": "Integrations, DevOps, and Portfolio",
+      "id": "sf_advanced_dev_practices",
+      "name": "Advanced Salesforce Development & Practices",
       "tag": "advanced",
-      "description": "Connect Salesforce to external systems, manage releases, automate deployments, and build recruiter-visible projects.",
-      "resources": [
-        {
-          "title": "Salesforce CLI",
-          "url": "https://developer.salesforce.com/tools/salesforcecli/",
-          "type": "article"
-        }
-      ],
+      "description": "Deep dive into advanced development patterns, performance optimization, security best practices, and event-driven architecture within the Salesforce platform.",
+      "resources": [],
       "children": [
         {
-          "id": "sf_integrations",
-          "name": "APIs and Integrations",
+          "id": "apex_design_patterns",
+          "name": "Advanced Apex Design Patterns & Frameworks",
           "tag": "advanced",
-          "description": "Use REST/SOAP APIs, callouts, named credentials, platform events, webhooks, and middleware patterns.",
-          "resources": [
-            {
-              "title": "Salesforce REST API Developer Guide",
-              "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/",
-              "type": "article"
-            }
-          ],
-          "children": []
+          "description": "Apply advanced architectural patterns for scalable and maintainable Apex development, including Trigger Frameworks (e.g., fflib), Service Layer, Domain Layer, Selector Layer, Unit of Work patterns, and enterprise-grade architecture considerations.",
+          "resources": []
         },
         {
-          "id": "sf_capstone",
-          "name": "Project: Custom CRM App",
+          "id": "lwc_advanced_patterns",
+          "name": "LWC Advanced Concepts, Performance & Best Practices",
           "tag": "advanced",
-          "description": "Build a Salesforce app with custom objects, flows, Apex, LWC, tests, deployment notes, and a demo video.",
-          "resources": [
-            {
-              "title": "Sample Gallery - Salesforce Developers",
-              "url": "https://developer.salesforce.com/sample-gallery",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "sf_enterprise_readiness",
-      "name": "Enterprise Readiness",
-      "tag": "advanced",
-      "description": "Prepare for real Salesforce teams with governance, performance, security review habits, and certification direction.",
-      "resources": [
+          "description": "Implement advanced inter-component communication patterns (pub-sub, Lightning Message Service), dynamic component creation, working with third-party JavaScript libraries, performance optimization techniques (memoization, lazy loading), accessibility considerations, and advanced styling in LWCs.",
+          "resources": []
+        },
         {
-          "title": "Salesforce Well-Architected",
-          "url": "https://architect.salesforce.com/well-architected",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "sf_governor_limits_performance",
-          "name": "Governor Limits and Performance",
+          "id": "governor_limits_optimization",
+          "name": "Governor Limits, Scalability & Performance Optimization",
           "tag": "advanced",
-          "description": "Design bulk-safe automations, avoid SOQL/DML limits, measure slow pages, and review async processing patterns.",
+          "description": "Gain an in-depth understanding of all Salesforce Governor Limits (CPU time, SOQL queries, DML statements, heap size, etc.). Design and implement solutions to proactively avoid hitting limits, optimize SOQL and DML operations, manage large data volumes, and ensure application scalability and performance.",
           "resources": [
             {
               "title": "Apex Governor Limits",
               "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "sf_certification_interview",
-          "name": "Certification and Interview Prep",
+          "id": "platform_event_architecture",
+          "name": "Event-Driven Architecture: Platform Events & CDC",
           "tag": "advanced",
-          "description": "Prepare for Platform Developer I style topics, scenario interviews, debugging questions, and portfolio demos.",
+          "description": "Design and implement event-driven architectures using Platform Events for custom notifications and integrations, and Change Data Capture (CDC) for near real-time data synchronization with external systems. Understand the CometD streaming API for subscribing to these events.",
+          "resources": []
+        },
+        {
+          "id": "secure_development_practices",
+          "name": "Secure Development Practices & Code Review",
+          "tag": "advanced",
+          "description": "Implement robust security best practices in Apex (CRUD/FLS enforcement using Schema methods and WITH USER_MODE, SOQL Injection prevention with 'escapeSingleQuotes', CSRF protection) and LWC (XSS prevention, Locker Service compliance, CSP) to build secure and compliant applications. Understand common security vulnerabilities and how to mitigate them.",
+          "resources": []
+        },
+        {
+          "id": "custom_metadata_settings",
+          "name": "Custom Metadata Types & Custom Settings",
+          "tag": "advanced",
+          "description": "Understand and implement Custom Metadata Types and Custom Settings for storing configurable application data, promoting reusability, and reducing hardcoding in Apex and Flow for flexible and easily maintainable solutions.",
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "sf_integrations_devops",
+      "name": "Integrations & DevOps",
+      "tag": "advanced",
+      "description": "Master techniques for connecting Salesforce with external systems, managing source code effectively, and implementing modern deployment pipelines.",
+      "resources": [],
+      "children": [
+        {
+          "id": "salesforce_apis",
+          "name": "Salesforce APIs: REST, SOAP, Metadata, Bulk, Streaming",
+          "tag": "advanced",
+          "description": "Master various Salesforce APIs for programmatic access: REST API for general data operations, SOAP API for complex integrations, Metadata API for programmatic metadata deployment and retrieval, Bulk API for large-scale data operations, and Streaming API (including Platform Events and CDC) for real-time notifications. Understand API authentication methods (OAuth, Session ID).",
+          "resources": [
+            {
+              "title": "Salesforce REST API Developer Guide",
+              "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "external_services_callouts",
+          "name": "External Integrations & Apex Callouts",
+          "tag": "advanced",
+          "description": "Integrate Salesforce with external web services using Apex HTTP Callouts, Named Credentials for secure endpoint configuration, External Services (Mulesoft Composer, Salesforce Connect), and handling various authentication mechanisms (OAuth, API Keys) and data formats (JSON, XML).",
+          "resources": []
+        },
+        {
+          "id": "version_control_git",
+          "name": "Version Control with Git & GitHub",
+          "tag": "advanced",
+          "description": "Learn Git fundamentals for source code management, including common commands (clone, add, commit, push, pull, branch, merge, rebase), resolving merge conflicts, and collaborating effectively on Salesforce development projects using platforms like GitHub, GitLab, or Bitbucket.",
+          "resources": []
+        },
+        {
+          "id": "salesforce_dx_deployment",
+          "name": "Salesforce DX & Modern Metadata Deployment",
+          "tag": "advanced",
+          "description": "Understand the Salesforce DX project structure, manifest files (package.xml), scratch orgs for ephemeral development, source tracking, and perform efficient metadata deployments and retrievals using the Salesforce CLI and VS Code. Explore the Salesforce CLI commands for various development tasks.",
+          "resources": []
+        },
+        {
+          "id": "ci_cd_fundamentals",
+          "name": "CI/CD Pipeline Fundamentals for Salesforce",
+          "tag": "advanced",
+          "description": "Explore Continuous Integration (CI) and Continuous Delivery/Deployment (CD) concepts. Learn about setting up basic CI/CD pipelines for Salesforce using tools like GitHub Actions, GitLab CI/CD, Azure DevOps, Jenkins, or specialized Salesforce DevOps platforms (e.g., Copado, Gearset). Understand automated testing, static code analysis, and deployment automation.",
+          "resources": []
+        },
+        {
+          "id": "packaging_appexchange_strategies",
+          "name": "Managed Packages & AppExchange Strategies",
+          "tag": "advanced",
+          "description": "Understand the concepts of Unmanaged and Managed Packages. Learn how to create, test, and deploy managed packages for distributing applications via AppExchange, including considerations for subscriber orgs, security reviews, and versioning.",
+          "resources": []
+        }
+      ]
+    },
+    {
+      "id": "sf_project_career_readiness",
+      "name": "Project & Career Readiness",
+      "tag": "advanced",
+      "description": "Apply learned skills to real-world projects, understand solution design principles, and thoroughly prepare for professional certifications and job interviews.",
+      "resources": [],
+      "children": [
+        {
+          "id": "portfolio_capstone_projects",
+          "name": "Portfolio Building & Capstone Projects",
+          "tag": "advanced",
+          "description": "Develop and implement a comprehensive Salesforce application or a series of mini-projects showcasing custom objects, declarative automation, Apex, LWC, integrations, CI/CD setup, and robust testing. Document your architectural choices, development process, and create compelling demos and GitHub repositories to present your capabilities.",
+          "resources": [
+            {
+              "title": "Sample Gallery - Salesforce Developers",
+              "url": "https://developer.salesforce.com/sample-gallery",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "solution_design_architecture",
+          "name": "Salesforce Solution Design & Architectural Principles",
+          "tag": "advanced",
+          "description": "Understand Salesforce Well-Architected principles (Trust, Clarity, Simplicity, Sustainability, Resiliency, Agility). Learn about various architectural patterns (e.g., integration patterns, data migration strategies), considerations for large-scale enterprise implementations, governance, and effective documentation for solutions. Explore common design challenges and solutions.",
+          "resources": [
+            {
+              "title": "Salesforce Well-Architected",
+              "url": "https://architect.salesforce.com/well-architected",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "certification_interview_prep",
+          "name": "Certification & Job Interview Preparation",
+          "tag": "advanced",
+          "description": "Thoroughly prepare for the Salesforce Platform Developer I and optionally Platform Developer II certifications. Practice common interview questions, scenario-based problem-solving, live coding challenges, and effectively present your portfolio and experience to potential employers. Understand the Salesforce career path and ecosystem roles.",
           "resources": [
             {
               "title": "Salesforce Platform Developer I Exam Guide",
               "url": "https://developer.salesforce.com/resources2/certification-site/files/SGCertifiedPlatformDeveloperI.pdf",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "debugging_troubleshooting",
+          "name": "Advanced Debugging & Troubleshooting Techniques",
+          "tag": "advanced",
+          "description": "Develop advanced skills in diagnosing and resolving complex issues across Apex, LWC, Flows, declarative automation, and integrations. Utilize advanced debugging tools (VS Code debugger, Apex Debugger, browser developer tools), event monitoring, Health Check, and various systematic troubleshooting methodologies to identify root causes and implement effective solutions.",
+          "resources": []
+        },
+        {
+          "id": "post_deployment_maintenance",
+          "name": "Post-Deployment & Application Maintenance",
+          "tag": "advanced",
+          "description": "Understand best practices for post-deployment activities, including monitoring application performance, managing change requests, handling bug fixes, implementing continuous improvement, and documenting ongoing maintenance procedures for Salesforce applications.",
+          "resources": []
         }
       ]
     }

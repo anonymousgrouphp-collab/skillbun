@@ -1,166 +1,366 @@
 {
   "id": "php_laravel_developer",
   "title": "PHP/Laravel Developer",
-  "description": "A roadmap for modern PHP and Laravel development: language basics, MVC apps, APIs, databases, queues, testing, deployment, and portfolio work.",
+  "description": "A comprehensive roadmap for modern PHP and Laravel development, covering language fundamentals, web concepts, MVC applications, APIs, database management, queues, robust testing, production deployment, and portfolio-building projects.",
   "format": "tree",
   "tree": [
     {
-      "id": "laravel_foundations",
-      "name": "PHP and Web Foundations",
+      "id": "php_web_foundations",
+      "name": "PHP & Web Foundations",
       "tag": "essential",
-      "description": "Learn PHP syntax, Composer, HTTP, MVC, forms, sessions, security basics, and modern project structure.",
+      "description": "Establish a strong base in modern PHP programming, fundamental web concepts, and the MVC architectural pattern essential for Laravel development.",
       "resources": [
-        {
-          "title": "Learn Laravel by Building a Medium Clone (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=MG1kt_wiIz0",
-          "type": "video"
-        },
-        {
-          "title": "Laravel PHP Framework Full Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=ImtZ5yENzgE",
-          "type": "video"
-        },
-        {
-          "title": "Learn Laravel from Scratch (Laravel)",
-          "url": "https://www.youtube.com/watch?v=MOLZOXqaomM",
-          "type": "video"
-        },
         {
           "title": "PHP Manual",
           "url": "https://www.php.net/manual/en/",
+          "type": "article"
+        },
+        {
+          "title": "MDN HTTP Overview",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "laravel_php_core",
-          "name": "Modern PHP",
+          "id": "modern_php_essentials",
+          "name": "Modern PHP Essentials",
           "tag": "essential",
-          "description": "Use types, namespaces, Composer, autoloading, OOP, exceptions, arrays, dates, and dependency management.",
+          "description": "Master core PHP syntax, data types, control structures, functions, arrays, strings, date/time API (DateTimeImmutable), basic error handling with exceptions, and file system operations. Understand modern features like scalar and return type declarations, null coalescing, and arrow functions.",
+          "resources": [
+            {
+              "title": "PHP: The Right Way",
+              "url": "https://phptherightway.com/",
+              "type": "article"
+            },
+            {
+              "title": "PHP for Beginners - Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=D-C3g70ETkE",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "php_oop_advanced_tooling",
+          "name": "Object-Oriented PHP & Advanced Tooling",
+          "tag": "essential",
+          "description": "Dive into OOP principles (classes, objects, inheritance, polymorphism, interfaces, traits), visibility (public, protected, private), abstract classes, final keyword, static members, and basic magic methods. Master namespaces, Composer for dependency management, autoloading, PSR standards, and debugging with XDebug. Introduce static analysis tools like PHPStan/Psalm.",
           "resources": [
             {
               "title": "Composer Documentation",
               "url": "https://getcomposer.org/doc/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "laravel_mvc_basics",
-          "name": "HTTP and MVC Basics",
-          "tag": "essential",
-          "description": "Understand requests, responses, routing, controllers, views, sessions, CSRF, validation, and redirects.",
-          "resources": [
+            },
             {
-              "title": "MDN HTTP Overview",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview",
+              "title": "PHP PSR Standards",
+              "url": "https://www.php-fig.org/psr/",
+              "type": "article"
+            },
+            {
+              "title": "XDebug Documentation",
+              "url": "https://xdebug.org/docs/",
+              "type": "article"
+            },
+            {
+              "title": "PHPStan Documentation",
+              "url": "https://phpstan.org/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "web_fundamentals_security",
+          "name": "Web Fundamentals & Security",
+          "tag": "essential",
+          "description": "Understand the HTTP protocol (methods, status codes, headers, stateless nature, REST principles), the request/response cycle, MVC pattern basics, forms, sessions, cookies, and critical web security concepts (XSS, CSRF, SQL injection prevention). Learn about input validation, sanitization, and server-side vs. client-side processing.",
+          "resources": [
+            {
+              "title": "MVC Architecture Explained",
+              "url": "https://www.freecodecamp.org/news/model-view-controller-mvc-architecture-and-how-to-use-it/",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "version_control_git",
+          "name": "Version Control with Git",
+          "tag": "essential",
+          "description": "Master Git for version control, including branching, merging, pull requests, resolving conflicts, and collaborating on projects effectively using platforms like GitHub/GitLab. Understand essential Git commands and workflows.",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Learn Git Branching",
+              "url": "https://learngitbranching.js.org/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "laravel_core",
-      "name": "Laravel Application Development",
+      "id": "laravel_core_dev",
+      "name": "Laravel Core Application Development",
       "tag": "essential",
-      "description": "Build Laravel apps with routing, controllers, Blade, Eloquent, migrations, validation, auth, and policies.",
+      "description": "Develop robust web applications using Laravel's core features, including routing, controllers, templating with Blade, and advanced database interactions with Eloquent.",
       "resources": [
         {
           "title": "Laravel Documentation",
           "url": "https://laravel.com/docs",
           "type": "article"
+        },
+        {
+          "title": "Laravel PHP Framework Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=ImtZ5yENzgE",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "laravel_eloquent_auth",
-          "name": "Eloquent, Migrations, and Auth",
+          "id": "laravel_routing_views_validation",
+          "name": "Routing, Views & Request Validation",
           "tag": "essential",
-          "description": "Model data, relationships, scopes, factories, seeders, login flows, authorization, and password resets.",
+          "description": "Implement routing definitions (resource, named, grouped), controller actions, comprehensive request validation using Form Request Objects, and effective use of middleware. Master the Blade templating engine, including components, slots, and efficient data passing to views, layout inheritance.",
           "resources": [
             {
-              "title": "Laravel Eloquent",
-              "url": "https://laravel.com/docs/eloquent",
+              "title": "Laravel Routing",
+              "url": "https://laravel.com/docs/routing",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Blade Templates",
+              "url": "https://laravel.com/docs/blade",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Form Request Validation",
+              "url": "https://laravel.com/docs/validation#form-request-validation",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "laravel_api",
-          "name": "APIs and Frontend Integration",
+          "id": "laravel_eloquent_migrations_db",
+          "name": "Eloquent ORM, Migrations & Database",
           "tag": "essential",
-          "description": "Build JSON APIs, resources, Sanctum auth, validation errors, pagination, file uploads, and SPA integration.",
+          "description": "Manage databases with Migrations, Seeders, and factories. Interact with data using Eloquent ORM, defining relationships (one-to-one, one-to-many, many-to-many), query scopes, mutators/accessors, custom casts, and database transactions. Understand N+1 problem and eager loading. Utilize soft deletes and raw database queries (DB facade).",
+          "resources": [
+            {
+              "title": "Laravel Eloquent ORM",
+              "url": "https://laravel.com/docs/eloquent",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Migrations",
+              "url": "https://laravel.com/docs/migrations",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "laravel_authentication_authorization",
+          "name": "Authentication & Authorization",
+          "tag": "essential",
+          "description": "Implement robust user authentication with Laravel Breeze or Jetstream, manage user sessions, understand secure password hashing, and configure password reset functionality. Implement role-based authorization using Policies and Gates. Explore concepts like multi-auth (guards) and rate limiting for login attempts. Briefly touch upon Socialite for social login.",
+          "resources": [
+            {
+              "title": "Laravel Breeze",
+              "url": "https://laravel.com/docs/breeze",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Authorization",
+              "url": "https://laravel.com/docs/authorization",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Socialite",
+              "url": "https://laravel.com/docs/socialite",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "laravel_restful_api_dev",
+          "name": "RESTful API Development",
+          "tag": "essential",
+          "description": "Build RESTful APIs with JSON responses, utilize API resources for data transformation, handle API authentication with Laravel Sanctum, validate API requests, implement pagination, manage file uploads, and integrate with single-page applications (SPAs). Understand API versioning and rate limiting strategies. Explore Webhooks for real-time communication.",
           "resources": [
             {
               "title": "Laravel Sanctum",
               "url": "https://laravel.com/docs/sanctum",
               "type": "article"
+            },
+            {
+              "title": "Laravel API Resources",
+              "url": "https://laravel.com/docs/eloquent-resources",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "php_laravel_developer_practice_lab",
-          "name": "Practice: Laravel Auth Feature",
-          "tag": "advanced",
-          "description": "Add a role-protected feature with validation, policies, migrations, tests, and user-facing messages.",
-          "resources": [],
-          "children": []
+          "id": "project_crud_rb_auth",
+          "name": "Project: User Management Module",
+          "tag": "essential",
+          "description": "Develop a complete user management module from scratch, including CRUD operations, role-based access control, robust validation, database migrations, and writing basic feature tests. This project reinforces core Laravel skills.",
+          "resources": [
+            {
+              "title": "Build a Simple User Management System in Laravel (Tutorial)",
+              "url": "https://www.youtube.com/watch?v=F_fG1V-3Rpg",
+              "type": "video"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "laravel_advanced",
-      "name": "Queues, Testing, and Performance",
+      "id": "laravel_advanced_ecosystem",
+      "name": "Advanced Laravel & Ecosystem",
       "tag": "advanced",
-      "description": "Handle background jobs, notifications, events, tests, caching, performance tuning, and production observability.",
+      "description": "Master advanced Laravel features like background processing, event-driven architecture, robust testing strategies, comprehensive caching, performance optimization techniques, and integrating with the broader Laravel ecosystem for production-ready applications.",
       "resources": [
         {
           "title": "Laravel Testing",
           "url": "https://laravel.com/docs/testing",
           "type": "article"
+        },
+        {
+          "title": "Laravel Queues",
+          "url": "https://laravel.com/docs/queues",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "laravel_queues_events",
-          "name": "Queues, Events, and Notifications",
+          "id": "laravel_async_processing_events_notifs",
+          "name": "Asynchronous Processing, Events & Notifications",
           "tag": "advanced",
-          "description": "Use jobs, workers, retries, failed jobs, events, listeners, mail, notifications, and scheduled tasks.",
+          "description": "Utilize Queues for asynchronous job processing, configure and manage workers, handle job retries, failed jobs, and job batching. Implement event-driven architecture with events and listeners, and explore event broadcasting with WebSockets (Laravel Echo/Pusher). Send various Notifications (mail, database, SMS) and schedule recurring tasks with the Task Scheduler.",
           "resources": [
             {
-              "title": "Laravel Queues",
-              "url": "https://laravel.com/docs/queues",
+              "title": "Laravel Events",
+              "url": "https://laravel.com/docs/events",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Notifications",
+              "url": "https://laravel.com/docs/notifications",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Broadcasting",
+              "url": "https://laravel.com/docs/broadcasting",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "laravel_testing_cache",
-          "name": "Testing, Cache, and Performance",
+          "id": "laravel_comprehensive_testing_debugging",
+          "name": "Comprehensive Testing & Debugging",
           "tag": "advanced",
-          "description": "Write feature/unit tests, use factories, cache queries, optimize N+1 issues, and profile slow pages.",
+          "description": "Write comprehensive tests (Unit, Feature, Browser with Dusk). Effectively use database factories for test data, implement mocks and fakes. Understand Test-Driven Development (TDD) principles and Behavior-Driven Development (BDD) with tools like Pest PHP. Master debugging techniques with XDebug and utilize development tools like Laravel Debugbar. Integrate tests into Continuous Integration pipelines.",
+          "resources": [
+            {
+              "title": "Laravel Dusk",
+              "url": "https://laravel.com/docs/dusk",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Debugbar",
+              "url": "https://github.com/barryvdh/laravel-debugbar",
+              "type": "article"
+            },
+            {
+              "title": "Pest PHP Documentation",
+              "url": "https://pestphp.com/docs/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "laravel_caching_optimization_strategies",
+          "name": "Caching & Performance Optimization Strategies",
+          "tag": "advanced",
+          "description": "Implement various caching strategies (file, Redis, database, Memcached). Optimize database queries (e.g., N+1 problem, eager loading, database indexing). Profile application performance, identify common bottlenecks, and apply solutions like OPcache, CDN integration, and asset management with Vite/Laravel Mix.",
           "resources": [
             {
               "title": "Laravel Cache",
               "url": "https://laravel.com/docs/cache",
               "type": "article"
+            },
+            {
+              "title": "Laravel Performance Optimization Tips",
+              "url": "https://dev.to/aschmelyun/10-ways-to-speed-up-your-laravel-application-2n5k",
+              "type": "article"
+            },
+            {
+              "title": "Vite with Laravel",
+              "url": "https://laravel.com/docs/vite",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "laravel_production_security_practices",
+          "name": "Production Security Best Practices",
+          "tag": "advanced",
+          "description": "Deep dive into common web vulnerabilities and implement advanced prevention techniques (e.g., Content Security Policy, HSTS). Secure file uploads, manage environment variables safely, and follow best practices for securing Laravel applications. Understand secure dependency management (Composer audit). Briefly explore OAuth/OpenID Connect and vulnerability scanning concepts.",
+          "resources": [
+            {
+              "title": "Laravel Security Documentation",
+              "url": "https://laravel.com/docs/master/security",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Composer Audit Command",
+              "url": "https://getcomposer.org/doc/03-cli.md#audit",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "laravel_ecosystem_packages",
+          "name": "Laravel Ecosystem & Packages",
+          "tag": "advanced",
+          "description": "Explore and integrate essential Laravel first-party packages (e.g., Nova for admin panels, Horizon for queue monitoring, Spark for SaaS starter kits) and popular community packages (e.g., Spatie packages for permissions, media library) to extend application functionality efficiently and adhere to common patterns.",
+          "resources": [
+            {
+              "title": "Laravel Nova",
+              "url": "https://nova.laravel.com/docs",
+              "type": "article"
+            },
+            {
+              "title": "Laravel Horizon",
+              "url": "https://horizon.laravel.com/docs",
+              "type": "article"
+            },
+            {
+              "title": "Spatie Packages Overview",
+              "url": "https://spatie.be/open-source/packages/laravel",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "laravel_deploy_project",
-      "name": "Deployment and Portfolio",
+      "id": "laravel_deploy_devops_portfolio",
+      "name": "Deployment, DevOps & Portfolio",
       "tag": "advanced",
-      "description": "Deploy Laravel with safe env config, queues, migrations, storage, logs, backups, and a recruiter-ready project.",
+      "description": "Learn to deploy Laravel applications professionally, incorporate DevOps principles for continuous integration and delivery, and build a compelling portfolio to showcase your skills.",
       "resources": [
         {
           "title": "Laravel Deployment",
@@ -170,32 +370,73 @@
       ],
       "children": [
         {
-          "id": "laravel_deployment",
-          "name": "Production Deployment",
+          "id": "laravel_ci_cd_monitoring_deployment",
+          "name": "CI/CD, Monitoring & Production Deployment",
           "tag": "advanced",
-          "description": "Configure Nginx, PHP-FPM, queues, scheduler, env vars, storage links, migrations, and rollback plans.",
+          "description": "Configure production environments (Nginx, PHP-FPM, Supervisor). Understand server provisioning tools (Laravel Forge, Vapor). Automate deployments with CI/CD pipelines (GitHub Actions, GitLab CI). Implement robust logging (structured logging, ELK stack basics), error tracking (Sentry), and monitoring (Prometheus/Grafana basics, New Relic). Grasp concepts of horizontal scaling and load balancing.",
           "resources": [
             {
-              "title": "Laravel Forge",
+              "title": "Laravel Forge Documentation",
               "url": "https://forge.laravel.com/docs",
               "type": "article"
+            },
+            {
+              "title": "Laravel Vapor Documentation",
+              "url": "https://vapor.laravel.com/docs",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions for Laravel CI/CD",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-php",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "laravel_project_crm",
-          "name": "Project: Mini CRM",
+          "id": "laravel_docker_containerization_orchestration",
+          "name": "Containerization with Docker & Orchestration",
           "tag": "advanced",
-          "description": "Build a Laravel CRM with auth, roles, leads, notes, file uploads, queues, email notifications, tests, and deployment docs.",
+          "description": "Containerize Laravel applications using Docker, create optimized Dockerfiles (multi-stage builds), manage multi-service applications with Docker Compose (Nginx, PHP-FPM, MySQL, Redis). Understand Docker volumes, networks, and basic container orchestration concepts with Kubernetes or AWS ECS.",
+          "resources": [
+            {
+              "title": "Dockerizing a Laravel Application",
+              "url": "https://docs.docker.com/samples/laravel/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Crash Course for Absolute Beginners",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJk50",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "project_fullstack_ecommerce_platform",
+          "name": "Project: Full-Stack E-commerce Platform",
+          "tag": "advanced",
+          "description": "Build a comprehensive full-stack e-commerce application including product management, shopping cart, order processing, secure payment gateway integration, user authentication with multi-level roles, a robust admin panel, APIs for potential mobile integration, and deploy it to a production environment with CI/CD. Integrate modern frontend solutions like Livewire or Inertia.js.",
           "resources": [
             {
               "title": "Laravel Bootcamp",
               "url": "https://bootcamp.laravel.com/",
               "type": "course"
+            },
+            {
+              "title": "Building an E-commerce Website with Laravel (Tutorial Series)",
+              "url": "https://www.youtube.com/playlist?list=PLgA782Rk430gQ4pY9nO_n8W7S6S8H0V7Q",
+              "type": "video"
+            },
+            {
+              "title": "Livewire Documentation",
+              "url": "https://livewire.laravel.com/docs",
+              "type": "article"
+            },
+            {
+              "title": "Inertia.js Documentation",
+              "url": "https://inertiajs.com/docs",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

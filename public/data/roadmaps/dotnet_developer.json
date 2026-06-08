@@ -1,72 +1,119 @@
 {
   "id": "dotnet_developer",
   "title": ".NET Developer",
-  "description": "A roadmap for building modern .NET applications with C#, ASP.NET Core, Entity Framework, testing, cloud deployment, and maintainable APIs.",
+  "description": "A comprehensive roadmap for mastering modern .NET development, encompassing C# language proficiency, robust ASP.NET Core API design, secure data management with Entity Framework, advanced testing strategies, architectural patterns, and scalable cloud deployment with DevOps practices.",
   "format": "tree",
   "tree": [
     {
       "id": "dotnet_foundations",
       "name": "C# and .NET Foundations",
       "tag": "essential",
-      "description": "Learn C#, the .NET runtime, OOP, collections, LINQ, async programming, project files, and dependency management.",
+      "description": "Master the C# language, understand the .NET runtime (CLR, BCL), object-oriented programming, fundamental data structures, error handling, and essential development tooling for building robust applications.",
       "resources": [
-        {
-          "title": "Learn C# Programming (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=YrtFtdTTfv0",
-          "type": "video"
-        },
-        {
-          "title": "Advanced C# Programming Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=YT8s-90oDC0",
-          "type": "video"
-        },
-        {
-          "title": "C# Tutorial Full Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
-          "type": "video"
-        },
         {
           "title": "Microsoft C# Documentation",
           "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
           "type": "article"
+        },
+        {
+          "title": "Learn C# Programming (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=YrtFtdTTfv0",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "dotnet_csharp_core",
-          "name": "C# Language Core",
+          "id": "dotnet_csharp_basics",
+          "name": "C# Language Fundamentals",
           "tag": "essential",
-          "description": "Use classes, records, interfaces, generics, LINQ, nullable references, exceptions, pattern matching, and async/await.",
+          "description": "Learn basic syntax, primitive data types, control flow statements (if/else, loops, switch), methods, classes, objects, inheritance, polymorphism, encapsulation, and abstraction. Understand value and reference types.",
           "resources": [
             {
-              "title": "C# Documentation",
-              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+              "title": "C# Language Tour",
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/",
               "type": "article"
+            },
+            {
+              "title": "C# Tutorial Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=GhQdlIFylQ8",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dotnet_tooling",
-          "name": ".NET CLI and Tooling",
+          "id": "dotnet_csharp_advanced_features",
+          "name": "Advanced C# Features",
           "tag": "essential",
-          "description": "Manage projects, packages, solution structure, configuration, logging, debugging, and local development workflow.",
+          "description": "Dive into generics for reusable code, Language Integrated Query (LINQ) for data manipulation, asynchronous programming (async/await) for responsive applications, delegates and events for flexible design, pattern matching for conditional logic, records for immutable data, and nullable reference types for preventing null-related errors.",
+          "resources": [
+            {
+              "title": "Asynchronous programming with async and await (Microsoft Docs)",
+              "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-and-await",
+              "type": "article"
+            },
+            {
+              "title": "Advanced C# Programming Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=YT8s-90oDC0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_data_structures_algorithms",
+          "name": "Data Structures & Algorithms in C#",
+          "tag": "essential",
+          "description": "Understand and implement common data structures like arrays, lists, dictionaries, stacks, queues, hash sets, and basic algorithms for searching and sorting using C# collections and generic types. Analyze time and space complexity.",
+          "resources": [
+            {
+              "title": "Common Collection Types (Microsoft Docs)",
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/collections/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_cli_tooling",
+          "name": ".NET CLI and Development Tooling",
+          "tag": "essential",
+          "description": "Learn to use the .NET Command-Line Interface (CLI) for project creation and management, understand the structure of solutions and projects (.csproj), master NuGet package management for dependencies, and utilize debugging and profiling techniques effectively in Visual Studio/VS Code.",
           "resources": [
             {
               "title": ".NET CLI Overview",
               "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/",
               "type": "article"
+            },
+            {
+              "title": "Install Visual Studio",
+              "url": "https://visualstudio.microsoft.com/vs/install/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "dotnet_io_networking",
+          "name": "File I/O and Basic Networking",
+          "tag": "essential",
+          "description": "Understand how to interact with file systems (reading/writing files), utilize streams for efficient data handling, perform basic network operations using HttpClient for web requests, and implement data serialization/deserialization (JSON, XML).",
+          "resources": [
+            {
+              "title": "File and Stream I/O (Microsoft Docs)",
+              "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+              "type": "article"
+            },
+            {
+              "title": "Make HTTP requests in .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "dotnet_web_api",
-      "name": "ASP.NET Core APIs",
+      "id": "dotnet_web_api_dev",
+      "name": "ASP.NET Core Web API Development",
       "tag": "essential",
-      "description": "Build web APIs with controllers or minimal APIs, middleware, DI, validation, auth, OpenAPI, and HTTP fundamentals.",
+      "description": "Learn to build robust, scalable, and secure RESTful APIs using ASP.NET Core, covering core concepts like HTTP, routing, middleware, dependency injection, and data transfer objects (DTOs).",
       "resources": [
         {
           "title": "ASP.NET Core Documentation",
@@ -76,91 +123,279 @@
       ],
       "children": [
         {
-          "id": "dotnet_minimal_api",
-          "name": "Minimal APIs and Controllers",
+          "id": "dotnet_http_rest_fundamentals",
+          "name": "HTTP & RESTful API Fundamentals",
           "tag": "essential",
-          "description": "Create endpoints, bind requests, return typed results, handle errors, version APIs, and generate OpenAPI docs.",
+          "description": "Understand the core principles of HTTP (methods, status codes, headers), RESTful architectural style, resource identification, statelessness, and effective design of API endpoints for client-server communication.",
+          "resources": [
+            {
+              "title": "Introduction to Web APIs",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-definition",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_aspnet_core_basics",
+          "name": "ASP.NET Core Fundamentals",
+          "tag": "essential",
+          "description": "Set up ASP.NET Core projects, understand the application's startup process (Program.cs), configure the request processing pipeline using middleware, and master Dependency Injection (DI) for loose coupling and testability.",
+          "resources": [
+            {
+              "title": "ASP.NET Core fundamentals",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/",
+              "type": "article"
+            },
+            {
+              "title": "Dependency injection in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_controllers_minimal_apis",
+          "name": "Controllers & Minimal APIs",
+          "tag": "essential",
+          "description": "Implement API endpoints efficiently using both MVC controllers with attributes and the modern minimal API approach. Cover routing, model binding, action results, input/output formatters, and integrate OpenAPI/Swagger for API documentation.",
           "resources": [
             {
               "title": "Minimal APIs Overview",
               "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/overview",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "dotnet_ef_auth",
-          "name": "Entity Framework and Auth",
-          "tag": "essential",
-          "description": "Use EF Core, migrations, relationships, transactions, Identity, JWT, roles, and secure configuration.",
-          "resources": [
+            },
             {
-              "title": "EF Core Documentation",
-              "url": "https://learn.microsoft.com/en-us/ef/core/",
+              "title": "Create web APIs with ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-introduction",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dotnet_developer_practice_lab",
-          "name": "Practice: Clean API Slice",
+          "id": "dotnet_api_validation_error_handling",
+          "name": "API Validation & Error Handling",
+          "tag": "essential",
+          "description": "Implement robust data validation using built-in data annotations or external libraries like FluentValidation. Design comprehensive error handling strategies for API responses, including custom exception filters, global error handling middleware, and standardized problem details (RFC 7807).",
+          "resources": [
+            {
+              "title": "Model validation in ASP.NET Core MVC and Razor Pages",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation",
+              "type": "article"
+            },
+            {
+              "title": "Handle errors in ASP.NET Core Web APIs",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_api_security",
+          "name": "Authentication & Authorization",
+          "tag": "essential",
+          "description": "Secure your APIs using ASP.NET Core Identity for user management, implement JSON Web Tokens (JWT) for stateless authentication, enforce fine-grained authorization policies based on roles, claims, and custom policies, and understand security best practices (e.g., CORS, CSRF, XSS).",
+          "resources": [
+            {
+              "title": "Authentication and authorization in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity",
+              "type": "article"
+            },
+            {
+              "title": "Bearer token authentication with ASP.NET Core Identity",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/bearer-token-with-identity",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dotnet_data_access",
+      "name": "Data Access and Persistence",
+      "tag": "essential",
+      "description": "Implement efficient data access layers using Entity Framework Core, including database migrations, powerful querying with LINQ, advanced database interactions, and strategies for performance optimization.",
+      "resources": [
+        {
+          "title": "Entity Framework Core Documentation",
+          "url": "https://learn.microsoft.com/en-us/ef/core/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "dotnet_database_basics",
+          "name": "Relational Database Basics",
+          "tag": "essential",
+          "description": "Learn fundamental SQL concepts (DDL, DML, DCL), relational database design principles, data normalization (1NF, 2NF, 3NF), primary/foreign keys, indexing, and basic to intermediate querying techniques (JOINs, aggregations).",
+          "resources": [
+            {
+              "title": "SQL tutorial (W3Schools)",
+              "url": "https://www.w3schools.com/sql/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_ef_core_fundamentals",
+          "name": "EF Core Fundamentals",
+          "tag": "essential",
+          "description": "Work with DbContext for database interactions, define entity models, perform Create, Read, Update, Delete (CRUD) operations, manage database schema changes using migrations, and understand change tracking.",
+          "resources": [
+            {
+              "title": "Getting started with EF Core",
+              "url": "https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_ef_core_advanced",
+          "name": "Advanced EF Core Topics",
           "tag": "advanced",
-          "description": "Implement one vertical API slice with endpoint, validation, EF Core model, tests, auth rule, and logs.",
-          "resources": [],
-          "children": []
+          "description": "Explore complex relationships (many-to-many, one-to-one), various data loading strategies (eager, lazy, explicit), advanced LINQ to Entities querying (projections, groupings), database transactions, executing raw SQL, and implementing performance optimization techniques like compiled queries and connection pooling.",
+          "resources": [
+            {
+              "title": "Querying Data with EF Core",
+              "url": "https://learn.microsoft.com/en-us/ef/core/querying/",
+              "type": "article"
+            },
+            {
+              "title": "Performance considerations (EF Core)",
+              "url": "https://learn.microsoft.com/en-us/ef/core/performance/overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_alternative_data_stores",
+          "name": "Alternative Data Stores & Caching",
+          "tag": "advanced",
+          "description": "Gain an introduction to NoSQL databases (e.g., MongoDB, Azure Cosmos DB, DynamoDB) and their use cases. Understand in-memory (e.g., IMemoryCache) and distributed caching strategies using technologies like Redis to significantly improve application performance and reduce database load.",
+          "resources": [
+            {
+              "title": "Introduction to NoSQL Databases",
+              "url": "https://learn.microsoft.com/en-us/azure/architecture/data-guide/big-data/nosql-data",
+              "type": "article"
+            },
+            {
+              "title": "Distributed caching in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
       "id": "dotnet_quality_architecture",
-      "name": "Testing and Architecture",
+      "name": "Quality, Architecture & Advanced Practices",
       "tag": "advanced",
-      "description": "Write maintainable .NET services with tests, architecture boundaries, background jobs, observability, and resilience.",
+      "description": "Develop high-quality, maintainable, and scalable .NET applications through comprehensive testing strategies, modern architectural patterns, advanced observability, and robust security practices.",
       "resources": [
         {
-          "title": ".NET Testing",
+          "title": ".NET Testing Documentation",
           "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "dotnet_testing",
-          "name": "Unit and Integration Testing",
+          "id": "dotnet_unit_integration_testing",
+          "name": "Unit & Integration Testing",
           "tag": "advanced",
-          "description": "Use xUnit, mocks, WebApplicationFactory, Testcontainers, coverage, and CI test reports.",
+          "description": "Write effective unit tests with popular frameworks (xUnit/NUnit/MSTest), use mocking frameworks (Moq, NSubstitute) for isolating dependencies, and perform integration tests for ASP.NET Core APIs using WebApplicationFactory and external dependencies via Testcontainers.",
           "resources": [
             {
-              "title": "Integration Tests in ASP.NET Core",
+              "title": "Unit testing C# in .NET Core",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test",
+              "type": "article"
+            },
+            {
+              "title": "Integration tests in ASP.NET Core",
               "url": "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dotnet_background_resilience",
-          "name": "Background Jobs and Resilience",
+          "id": "dotnet_architectural_patterns",
+          "name": "Architectural Patterns & Design Principles",
           "tag": "advanced",
-          "description": "Run hosted services, queues, retries, health checks, structured logs, metrics, and resilient HTTP clients.",
+          "description": "Apply SOLID principles for maintainable code, understand common architectural patterns like Layered Architecture, Clean Architecture, CQRS (Command Query Responsibility Segregation), and gain an introduction to Domain-Driven Design (DDD) principles.",
           "resources": [
             {
-              "title": "Worker Services",
-              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/workers",
+              "title": "Architecting Cloud Native .NET Applications for Azure",
+              "url": "https://learn.microsoft.com/en-us/dotnet/architecture/cloud-native/architectural-styles",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Clean Architecture",
+              "url": "https://ardalis.com/clean-architecture-for-asp-net-core/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "dotnet_background_processing_messaging",
+          "name": "Background Processing & Messaging",
+          "tag": "advanced",
+          "description": "Implement background services and long-running tasks using IHostedService, manage asynchronous operations with queues (e.g., Azure Queue Storage, Hangfire), schedule tasks, and integrate message brokers like RabbitMQ or Kafka for reliable asynchronous communication in distributed systems.",
+          "resources": [
+            {
+              "title": "Implement background tasks with hosted services in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services",
+              "type": "article"
+            },
+            {
+              "title": "An introduction to message brokers",
+              "url": "https://www.rabbitmq.com/tutorials/amqp-overview.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_observability",
+          "name": "Observability (Logging, Metrics, Tracing)",
+          "tag": "advanced",
+          "description": "Master structured logging (Serilog, NLog), collect and analyze application metrics (Prometheus, Grafana), implement distributed tracing (OpenTelemetry) to track requests across services, and understand health checks for monitoring service availability.",
+          "resources": [
+            {
+              "title": "Logging in .NET",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging",
+              "type": "article"
+            },
+            {
+              "title": "Monitor your .NET application with OpenTelemetry",
+              "url": "https://opentelemetry.io/docs/instrumentation/net/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_resilience_performance",
+          "name": "Resilience & Performance",
+          "tag": "advanced",
+          "description": "Build resilient applications using patterns like retries, circuit breakers, and timeouts (e.g., with Polly). Learn advanced caching strategies (e.g., response caching, output caching), implement performance profiling, and optimize database interactions and API endpoints for optimal speed and resource utilization.",
+          "resources": [
+            {
+              "title": "HttpClientFactory with Polly (Microsoft Docs)",
+              "url": "https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests",
+              "type": "article"
+            },
+            {
+              "title": "Performance best practices in ASP.NET Core",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/performance-best-practices",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "dotnet_deploy_project",
-      "name": "Deployment and Portfolio",
+      "id": "dotnet_deploy_devops_project",
+      "name": "Deployment, DevOps & Project Showcase",
       "tag": "advanced",
-      "description": "Ship .NET APIs with containers, cloud hosting, database migrations, monitoring, and production documentation.",
+      "description": "Deploy .NET applications to cloud environments, implement robust CI/CD pipelines, monitor production systems, and build a comprehensive portfolio project demonstrating full-stack capabilities and modern DevOps practices.",
       "resources": [
         {
           "title": ".NET Docker Images",
@@ -170,32 +405,89 @@
       ],
       "children": [
         {
-          "id": "dotnet_cloud_deploy",
-          "name": "Cloud Deployment",
+          "id": "dotnet_containerization_docker",
+          "name": "Containerization with Docker",
           "tag": "advanced",
-          "description": "Deploy to Azure App Service, containers, or VMs with environment config, secrets, health checks, and logs.",
+          "description": "Learn to containerize .NET applications using Docker, write efficient Dockerfiles, manage Docker images and registries, and use Docker Compose for orchestrating multi-container development and local testing environments.",
           "resources": [
             {
-              "title": "Deploy ASP.NET Core to Azure",
-              "url": "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/azure-apps/",
+              "title": "Containerize a .NET app",
+              "url": "https://learn.microsoft.com/en-us/dotnet/core/docker/build-container",
+              "type": "article"
+            },
+            {
+              "title": "Docker Compose overview",
+              "url": "https://docs.docker.com/compose/overview/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "dotnet_project_inventory_api",
-          "name": "Project: Inventory Management API",
+          "id": "dotnet_cloud_deployment",
+          "name": "Cloud Deployment on Azure",
           "tag": "advanced",
-          "description": "Build an ASP.NET Core API with EF Core, auth, role permissions, tests, Docker, CI, OpenAPI, and deployment notes.",
+          "description": "Deploy .NET applications to various Azure services like Azure App Service, Azure Container Apps, or Azure Kubernetes Service (AKS). Understand environment configuration, secrets management (Azure Key Vault), scaling strategies, and cost optimization.",
           "resources": [
             {
-              "title": "ASP.NET Core Tutorials",
+              "title": "Deploy ASP.NET Core to Azure App Service",
+              "url": "https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/azure-apps/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Azure Kubernetes Service (AKS)",
+              "url": "https://learn.microsoft.com/en-us/azure/aks/intro-to-aks",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_cicd_pipelines",
+          "name": "CI/CD Pipelines",
+          "tag": "advanced",
+          "description": "Implement Continuous Integration (CI) and Continuous Delivery/Deployment (CD) pipelines using industry-standard tools like GitHub Actions, Azure DevOps Pipelines, or GitLab CI. Automate build, test, static analysis, security scanning, and deployment processes.",
+          "resources": [
+            {
+              "title": "Build and deploy .NET Core app to Azure with Azure DevOps",
+              "url": "https://learn.microsoft.com/en-us/azure/devops/pipelines/apps/aspnet/build-aspnet-core",
+              "type": "article"
+            },
+            {
+              "title": "Automate .NET builds with GitHub Actions",
+              "url": "https://learn.microsoft.com/en-us/dotnet/devops/github-actions-overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_monitoring_alerting",
+          "name": "Production Monitoring & Alerting",
+          "tag": "advanced",
+          "description": "Set up and configure comprehensive monitoring solutions like Azure Monitor and Application Insights to track application health, performance metrics, user behavior, and logs in production. Configure actionable alerts for critical issues and integrate with incident management systems.",
+          "resources": [
+            {
+              "title": "Azure Monitor overview",
+              "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+              "type": "article"
+            },
+            {
+              "title": "What is Application Insights?",
+              "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "dotnet_portfolio_project",
+          "name": "Portfolio Project: Comprehensive API",
+          "tag": "advanced",
+          "description": "Develop a real-world, end-to-end ASP.NET Core API project (e.g., an e-commerce backend, a task management system, or a social media API). Incorporate all learned skills: robust EF Core data access, secure authentication and authorization, comprehensive testing, Dockerization, CI/CD pipeline integration, and deployment to a cloud environment.",
+          "resources": [
+            {
+              "title": "ASP.NET Core Tutorials (Microsoft Docs)",
               "url": "https://learn.microsoft.com/en-us/aspnet/core/tutorials/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

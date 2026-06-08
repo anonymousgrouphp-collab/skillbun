@@ -8,151 +8,778 @@
       "id": "design_systems_engineer_foundations",
       "name": "Foundations and Role Context",
       "tag": "essential",
-      "description": "Understand what Design Systems Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Understand the fundamental concepts of design systems, the pivotal role of a Design Systems Engineer, and the essential context needed before diving into practical implementation.",
       "resources": [
         {
-          "title": "How to Integrate Figma Design Systems with Storybook (newline)",
-          "url": "https://www.youtube.com/watch?v=O3afqyCS2-o",
+          "title": "What is a Design System? - Figma",
+          "url": "https://www.figma.com/resource-library/what-is-a-design-system/",
+          "type": "article"
+        },
+        {
+          "title": "Atomic Design by Brad Frost",
+          "url": "https://atomicdesign.bradfrost.com/table-of-contents/",
+          "type": "article"
+        },
+        {
+          "title": "8 Principles of a Successful Design System",
+          "url": "https://www.speckyboy.com/principles-of-a-successful-design-system/",
+          "type": "article"
+        },
+        {
+          "title": "Design Systems Tutorial for Beginners",
+          "url": "https://www.youtube.com/watch?v=FjI5oV1C_D0",
           "type": "video"
         },
         {
-          "title": "Storybook Documentation",
-          "url": "https://storybook.js.org/docs",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/design_systems_engineer/design_systems_engineer_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "design_systems_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "ds_core_concepts",
+          "name": "Design System Core Concepts & Principles",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Dive into the foundational principles (scalability, consistency, usability), core components, and vocabulary that define a robust design system, understanding its value proposition for organizations.",
           "resources": [
             {
-              "title": "Design Tokens Community Group",
-              "url": "https://www.w3.org/community/design-tokens/",
+              "title": "Design Systems Glossary",
+              "url": "https://zeroheight.com/blog/design-system-glossary/",
               "type": "article"
+            },
+            {
+              "title": "What is a Design System? (Everything You Need to Know)",
+              "url": "https://www.youtube.com/watch?v=0kFj_j_M6z4",
+              "type": "video"
+            },
+            {
+              "title": "Design Systems EXPLAINED - Everything you need to know to get started",
+              "url": "https://www.youtube.com/watch?v=gT1oJc8z_2Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_core_concepts.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "design_systems_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "ds_engineer_role_context",
+          "name": "Design Systems Engineer Role, Impact, and Collaboration",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Understand the responsibilities, typical daily tasks, and how the Design Systems Engineer role interfaces with design, product, and other engineering teams to drive efficiency, consistency, and innovation across product development cycles.",
           "resources": [
             {
-              "title": "Material Design Foundations",
-              "url": "https://m3.material.io/foundations",
+              "title": "A Day in the Life of a Design System Engineer",
+              "url": "https://www.linkedin.com/pulse/day-life-design-system-engineer-marko-saric/",
               "type": "article"
+            },
+            {
+              "title": "Understanding the Role of a Design Systems Engineer",
+              "url": "https://www.uxpin.com/studio/blog/design-systems-engineer-role/",
+              "type": "article"
+            },
+            {
+              "title": "What are Design Systems? Intro to Design Systems & How to Build One",
+              "url": "https://www.youtube.com/watch?v=Fj-yVwV6h3c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_engineer_role_context.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ds_dev_environment_setup",
+          "name": "Essential Development Environment & Tooling Setup",
+          "tag": "essential",
+          "description": "Set up your local development environment, establish version control best practices, understand modern package managers (npm, yarn, pnpm), and explore monorepo structures crucial for managing a large-scale design system.",
+          "resources": [
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Node.js & npm/yarn/pnpm documentation",
+              "url": "https://nodejs.org/en/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Intro to Monorepos",
+              "url": "https://turborepo.org/docs/core-concepts/monorepos",
+              "type": "article"
+            },
+            {
+              "title": "Git and GitHub Crash Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=FINZ7P_yYwU",
+              "type": "video"
+            },
+            {
+              "title": "Monorepos Explained (Nx, Lerna, Turborepo)",
+              "url": "https://www.youtube.com/watch?v=FqGjR_9_x7c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_dev_environment_setup.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_systems_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "name": "Core Skills: Design Tokens & Component Development",
       "tag": "essential",
-      "description": "Build the practical skill stack for Design Systems Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Build the practical skill stack for a Design Systems Engineer through hands-on exercises, realistic constraints, and repeatable component development workflows, focusing on modern frontend techniques.",
       "resources": [
         {
-          "title": "How to Integrate Figma Design Systems with Storybook (newline)",
-          "url": "https://www.youtube.com/watch?v=O3afqyCS2-o",
+          "title": "React Official Documentation",
+          "url": "https://react.dev/learn",
+          "type": "article"
+        },
+        {
+          "title": "Vue.js Official Documentation",
+          "url": "https://vuejs.org/guide/introduction.html",
+          "type": "article"
+        },
+        {
+          "title": "Angular Official Documentation",
+          "url": "https://angular.io/docs",
+          "type": "article"
+        },
+        {
+          "title": "What are Design Tokens? (Front-End Development)",
+          "url": "https://www.youtube.com/watch?v=S01NnE_j72E",
           "type": "video"
         },
         {
-          "title": "Design Tokens Community Group",
-          "url": "https://www.w3.org/community/design-tokens/",
-          "type": "article"
+          "title": "React & Storybook Tutorial - Build a Component Library",
+          "url": "https://www.youtube.com/watch?v=P_qNnsNns6s",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/design_systems_engineer/design_systems_engineer_core_skills.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "design_systems_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "ds_design_tokens_implementation",
+          "name": "Design Tokens: Definition, Structure & Implementation",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Learn to define, manage, and implement design tokens as the single source of truth for styling. Understand token architecture, tooling (e.g., Style Dictionary), and generating platform-agnostic outputs for consistent styling across various environments.",
+          "resources": [
+            {
+              "title": "W3C Design Tokens Community Group Specification",
+              "url": "https://www.w3.org/community/design-tokens/",
+              "type": "article"
+            },
+            {
+              "title": "Style Dictionary Documentation",
+              "url": "https://amzn.github.io/style-dictionary/",
+              "type": "article"
+            },
+            {
+              "title": "Figma Tokens Plugin",
+              "url": "https://www.figma.com/community/plugin/842846727284074219/Figma-Tokens",
+              "type": "article"
+            },
+            {
+              "title": "What are Design Tokens? | Supercharged #143",
+              "url": "https://www.youtube.com/watch?v=0wQ7-O0-wI4",
+              "type": "video"
+            },
+            {
+              "title": "Implementing Design Tokens with Style Dictionary | Build a Design System Part 4",
+              "url": "https://www.youtube.com/watch?v=F0f-E97iJjU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_design_tokens_implementation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_component_architecture_patterns",
+          "name": "Building Reusable UI Components & Architectural Patterns",
+          "tag": "essential",
+          "description": "Master the art of building robust, flexible, and accessible UI components. Explore component architecture patterns (composition, HOCs, render props), state management within components, and best practices for creating maintainable, scalable building blocks.",
+          "resources": [
+            {
+              "title": "Building a Component Library: Best Practices",
+              "url": "https://www.patterns.dev/posts/component-library",
+              "type": "article"
+            },
+            {
+              "title": "Component Patterns in React",
+              "url": "https://kentcdodds.com/blog/compound-components",
+              "type": "article"
+            },
+            {
+              "title": "How to create a React component library",
+              "url": "https://www.smashingmagazine.com/2020/04/react-component-library/",
+              "type": "article"
+            },
+            {
+              "title": "React Component Patterns: HOC, Render Props, and Compound Components Explained",
+              "url": "https://www.youtube.com/watch?v=ScR_tLpQMdY",
+              "type": "video"
+            },
+            {
+              "title": "How to Build a Design System - React Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=N6Yg0IeG6cI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_component_architecture_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_styling_solutions_and_frameworks",
+          "name": "Styling Strategies & Frontend Framework Integration",
+          "tag": "essential",
+          "description": "Deep dive into various styling solutions (CSS Modules, Styled Components, Emotion, TailwindCSS, SASS) and how to integrate them effectively within components across popular frontend frameworks like React, Vue, or Angular, considering theming and dark mode.",
+          "resources": [
+            {
+              "title": "Modern CSS-in-JS Solutions",
+              "url": "https://css-tricks.com/a-comprehensive-guide-to-css-in-javascript/",
+              "type": "article"
+            },
+            {
+              "title": "Tailwind CSS Documentation",
+              "url": "https://tailwindcss.com/docs",
+              "type": "article"
+            },
+            {
+              "title": "CSS Modules",
+              "url": "https://github.com/css-modules/css-modules",
+              "type": "article"
+            },
+            {
+              "title": "Styled Components vs Tailwind CSS vs CSS Modules | Which one should you use?",
+              "url": "https://www.youtube.com/watch?v=F_f8lY1yW54",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_styling_solutions_and_frameworks.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_storybook_documentation",
+          "name": "Interactive Component Documentation with Storybook",
+          "tag": "essential",
+          "description": "Learn to set up and leverage Storybook for interactive component development and documentation. Write clear stories, utilize controls, actions, args, and integrate addons for enhanced development, testing, and demonstration.",
           "resources": [
             {
               "title": "Storybook Documentation",
               "url": "https://storybook.js.org/docs",
               "type": "article"
+            },
+            {
+              "title": "Storybook Tutorial for React",
+              "url": "https://www.learnstorybook.com/react-component-guide/introduction/",
+              "type": "course"
+            },
+            {
+              "title": "Storybook Addons",
+              "url": "https://storybook.js.org/addons",
+              "type": "article"
+            },
+            {
+              "title": "Learn Storybook - Build UI Components in Isolation",
+              "url": "https://www.youtube.com/watch?v=F5K942fH6l4",
+              "type": "video"
+            },
+            {
+              "title": "Storybook Crash Course | Create Interactive UI Components",
+              "url": "https://www.youtube.com/watch?v=uC0_5z3h_xI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_storybook_documentation.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "design_systems_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "ds_a11y_in_components",
+          "name": "Building Truly Accessible UI Components",
+          "tag": "essential",
+          "description": "Integrate accessibility best practices from the start. Focus on semantic HTML, keyboard navigation, ARIA attributes, focus management, and contrast requirements to ensure components are usable by everyone, including those with disabilities, adhering to WCAG standards.",
           "resources": [
             {
-              "title": "Material Design Foundations",
-              "url": "https://m3.material.io/foundations",
+              "title": "WAI-ARIA Authoring Practices Guide",
+              "url": "https://www.w3.org/WAI/ARIA/apg/",
               "type": "article"
+            },
+            {
+              "title": "Web Content Accessibility Guidelines (WCAG) Overview",
+              "url": "https://www.w3.org/WAI/standards-guidelines/wcag/",
+              "type": "article"
+            },
+            {
+              "title": "Inclusive Components by Heydon Pickering",
+              "url": "https://inclusive-components.design/",
+              "type": "article"
+            },
+            {
+              "title": "Learn Web Accessibility - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=rg3aBwW6uY0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_a11y_in_components.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design_systems_engineer_quality_testing",
+      "name": "Quality Assurance, Testing, and Code Standards",
+      "tag": "essential",
+      "description": "Implement robust testing strategies, ensure high code quality, and establish review processes to maintain a reliable, consistent, and performant design system.",
+      "resources": [
+        {
+          "title": "Testing JavaScript Applications",
+          "url": "https://www.newline.co/courses/full-stack-testing-with-cypress-and-jest/introduction-to-testing",
+          "type": "course"
         },
         {
-          "id": "design_systems_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
+          "title": "The TypeScript Handbook",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+          "type": "article"
+        },
+        {
+          "title": "Frontend Testing Strategy",
+          "url": "https://kentcdodds.com/blog/frontend-testing-strategy",
+          "type": "article"
+        },
+        {
+          "title": "React Testing Tutorial (Jest & React Testing Library)",
+          "url": "https://www.youtube.com/watch?v=OVh9yXfUL0Y",
+          "type": "video"
+        },
+        {
+          "title": "Cypress Tutorial - E2E Testing for Web Devs",
+          "url": "https://www.youtube.com/watch?v=R8K6S9M_EaE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/design_systems_engineer/design_systems_engineer_quality_testing.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ds_unit_integration_testing",
+          "name": "Unit & Integration Testing for UI Components",
+          "tag": "essential",
+          "description": "Write effective unit and integration tests to ensure component logic, behavior, and interactions are correct. Master testing tools like Jest and React Testing Library for comprehensive coverage and robust component behavior.",
+          "resources": [
+            {
+              "title": "Jest Documentation",
+              "url": "https://jestjs.io/docs/getting-started",
+              "type": "article"
+            },
+            {
+              "title": "React Testing Library Guide",
+              "url": "https://testing-library.com/docs/react-testing-library/intro/",
+              "type": "article"
+            },
+            {
+              "title": "Testing Vue Components",
+              "url": "https://test-utils.vuejs.org/",
+              "type": "article"
+            },
+            {
+              "title": "React Testing Library Crash Course - Unit & Integration Testing React Apps",
+              "url": "https://www.youtube.com/watch?v=OVrWJc_F9TY",
+              "type": "video"
+            },
+            {
+              "title": "Learn React Testing Library (with Jest) by example",
+              "url": "https://www.youtube.com/watch?v=ddN_jQdE8lU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_unit_integration_testing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_visual_regression_testing",
+          "name": "Visual Regression Testing & UI Stability",
           "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "description": "Automate the detection of UI changes and prevent unintended visual regressions. Implement tools like Chromatic, Storybook's built-in visual testing, or other dedicated solutions to ensure pixel-perfect consistency across component updates.",
+          "resources": [
+            {
+              "title": "Introduction to Visual Regression Testing",
+              "url": "https://www.browserstack.com/guide/visual-regression-testing",
+              "type": "article"
+            },
+            {
+              "title": "Chromatic Documentation (Storybook Visual Testing)",
+              "url": "https://www.chromatic.com/docs/introduction",
+              "type": "article"
+            },
+            {
+              "title": "Storybook Interaction Testing",
+              "url": "https://storybook.js.org/docs/react/writing-tests/interaction-testing",
+              "type": "article"
+            },
+            {
+              "title": "Visual Regression Testing with Playwright - FREE TUTORIAL",
+              "url": "https://www.youtube.com/watch?v=0kFhJ24i32Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_visual_regression_testing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_code_quality_standards",
+          "name": "Code Quality, Linting, Typing & Pre-commit Hooks",
+          "tag": "essential",
+          "description": "Enforce consistent code style, catch errors early, and improve maintainability and developer experience. Configure ESLint, Prettier, and TypeScript, and integrate them with pre-commit hooks (e.g., Husky, lint-staged) and CI pipelines for automated quality checks.",
+          "resources": [
+            {
+              "title": "ESLint Documentation",
+              "url": "https://eslint.org/docs/latest/",
+              "type": "article"
+            },
+            {
+              "title": "Prettier Documentation",
+              "url": "https://prettier.io/docs/en/",
+              "type": "article"
+            },
+            {
+              "title": "Husky and lint-staged for Git Hooks",
+              "url": "https://typicode.github.io/husky/",
+              "type": "article"
+            },
+            {
+              "title": "ESLint & Prettier Setup For React/Next.js/Node.js/Vanilla JS (2023)",
+              "url": "https://www.youtube.com/watch?v=1F2bQc-4d3w",
+              "type": "video"
+            },
+            {
+              "title": "TypeScript Crash Course",
+              "url": "https://www.youtube.com/watch?v=r_F0Qe3i3_4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_code_quality_standards.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_a11y_testing_auditing",
+          "name": "Comprehensive Accessibility Testing & Auditing",
+          "tag": "essential",
+          "description": "Learn to use automated tools (e.g., Axe-core) and perform manual testing techniques (keyboard navigation, screen reader checks) to verify and ensure the accessibility of your design system components, leveraging browser developer tools and Lighthouse audits.",
+          "resources": [
+            {
+              "title": "Axe-core Accessibility Engine",
+              "url": "https://www.deque.com/axe/",
+              "type": "article"
+            },
+            {
+              "title": "Using Lighthouse for Accessibility Audits",
+              "url": "https://developer.chrome.com/docs/lighthouse/accessibility/",
+              "type": "article"
+            },
+            {
+              "title": "WebAIM Screen Reader Survey",
+              "url": "https://webaim.org/projects/screenreadersurvey/",
+              "type": "article"
+            },
+            {
+              "title": "Web Accessibility Tutorial for Beginners - Full Course",
+              "url": "https://www.youtube.com/watch?v=Jm_E1mP2BwE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_a11y_testing_auditing.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "design_systems_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "name": "Production Readiness, Collaboration, and System Operations",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Transition from isolated component development to managing a living design system in a production environment, fostering seamless collaboration with cross-functional teams, and ensuring its long-term health, evolution, and adoption.",
       "resources": [
         {
-          "title": "How To Integrate Figma Design Systems With Storybook - Best Method (Your Fix Expert)",
-          "url": "https://www.youtube.com/watch?v=6xuGwIyhLD0",
+          "title": "Scaling Design Systems",
+          "url": "https://medium.com/eightshapes-llc/scaling-a-design-system-f3d9d3753736",
+          "type": "article"
+        },
+        {
+          "title": "The Design System Playbook",
+          "url": "https://www.oreilly.com/library/view/the-design-system/9781492062531/",
+          "type": "course"
+        },
+        {
+          "title": "CI/CD for Design Systems",
+          "url": "https://www.youtube.com/watch?v=Fj2F2Tf9oT4",
           "type": "video"
         },
         {
-          "title": "Material Design Foundations",
-          "url": "https://m3.material.io/foundations",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/design_systems_engineer/design_systems_engineer_production_collaboration.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "design_systems_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
+          "id": "ds_versioning_packaging",
+          "name": "Versioning, Packaging, and Publishing Strategies",
           "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Implement semantic versioning for design system packages, understand module formats (ESM, CJS), and package components for efficient distribution. Master publishing to internal or public registries like npm, including changelog generation.",
           "resources": [
             {
-              "title": "Design Tokens Community Group",
-              "url": "https://www.w3.org/community/design-tokens/",
+              "title": "Semantic Versioning Specification (SemVer)",
+              "url": "https://semver.org/",
               "type": "article"
+            },
+            {
+              "title": "Publishing npm packages",
+              "url": "https://docs.npmjs.com/cli/v9/commands/npm-publish",
+              "type": "article"
+            },
+            {
+              "title": "Automating Changelog Generation",
+              "url": "https://github.com/conventional-changelog/conventional-changelog",
+              "type": "article"
+            },
+            {
+              "title": "What is Semantic Versioning (SemVer)?",
+              "url": "https://www.youtube.com/watch?v=R2T3Uj1o-F0",
+              "type": "video"
+            },
+            {
+              "title": "How to Create and Publish an NPM Package - A Quick Guide",
+              "url": "https://www.youtube.com/watch?v=H6K-m_5r9G0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_versioning_packaging.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "design_systems_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "ds_ci_cd_for_ds",
+          "name": "Continuous Integration & Delivery for Design Systems",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Automate testing, building, and deploying the design system using robust CI/CD pipelines (e.g., GitHub Actions, GitLab CI, Jenkins). Ensure rapid, reliable updates, version control, and consistent delivery to consuming applications.",
           "resources": [
             {
-              "title": "Storybook Documentation",
-              "url": "https://storybook.js.org/docs",
+              "title": "Introduction to CI/CD",
+              "url": "https://aws.amazon.com/devops/continuous-integration/",
               "type": "article"
+            },
+            {
+              "title": "GitHub Actions for Frontend Projects",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs-or-javascript",
+              "type": "article"
+            },
+            {
+              "title": "Automating Publishing with CI",
+              "url": "https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages",
+              "type": "article"
+            },
+            {
+              "title": "Learn CI/CD In 2 Hours | Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=W0NOE34Rj7w",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial For Beginners",
+              "url": "https://www.youtube.com/watch?v=R8_veQr_yP8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_ci_cd_for_ds.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ds_design_dev_collaboration",
+          "name": "Seamless Collaboration: Design, Development & Product",
+          "tag": "advanced",
+          "description": "Establish effective communication channels and sophisticated workflows to ensure seamless collaboration. Focus on Figma-to-code integration, automated design handoff, continuous feedback loops, and aligning engineering efforts with design intent for consistent user experiences.",
+          "resources": [
+            {
+              "title": "Figma API Documentation",
+              "url": "https://www.figma.com/developers/api",
+              "type": "article"
+            },
+            {
+              "title": "Using Supernova for DesignOps",
+              "url": "https://www.supernova.io/blog/what-is-design-ops",
+              "type": "article"
+            },
+            {
+              "title": "How to Integrate Figma Design Systems with Storybook",
+              "url": "https://www.youtube.com/watch?v=O3afqyCS2-o",
+              "type": "video"
+            },
+            {
+              "title": "What Are Design Tokens? (Figma, Style Dictionary, and React)",
+              "url": "https://www.youtube.com/watch?v=0k7bWfN5b2k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_design_dev_collaboration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_governance_adoption",
+          "name": "Design System Governance, Evolution & Adoption Metrics",
+          "tag": "advanced",
+          "description": "Define clear processes for contribution, evolution, and deprecation of design system assets. Understand different governance models (centralized, federated) and learn to measure the impact and adoption of the design system across the organization to drive success and maintain its long-term health.",
+          "resources": [
+            {
+              "title": "Design System Governance Strategies",
+              "url": "https://www.invisionapp.com/inside-design/design-system-governance/",
+              "type": "article"
+            },
+            {
+              "title": "Measuring Design System Adoption and Impact",
+              "url": "https://zeroheight.com/blog/measuring-design-system-adoption-and-impact/",
+              "type": "article"
+            },
+            {
+              "title": "Contribution Guidelines for Design Systems",
+              "url": "https://bradfrost.com/blog/post/contribution-models-for-design-systems/",
+              "type": "article"
+            },
+            {
+              "title": "Design System Tutorial for Beginners | Frontend Master | Traversy Media",
+              "url": "https://www.youtube.com/watch?v=FqGjG_K8e9Y",
+              "type": "video"
+            },
+            {
+              "title": "What is a Design System? Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=Nn1R_vN_J88",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_governance_adoption.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_performance_optimization",
+          "name": "Performance Optimization for Design Systems",
+          "tag": "advanced",
+          "description": "Optimize design system components for performance. Address bundle size, lazy loading, tree-shaking, runtime performance, and efficient rendering to ensure consuming applications remain fast and responsive, contributing to a superior user experience.",
+          "resources": [
+            {
+              "title": "Webpack Performance Guide",
+              "url": "https://webpack.js.org/guides/performance/",
+              "type": "article"
+            },
+            {
+              "title": "Optimizing React Performance",
+              "url": "https://react.dev/learn/understanding-your-ui#how-react-renders-your-ui",
+              "type": "article"
+            },
+            {
+              "title": "Lighthouse Performance Audits",
+              "url": "https://developer.chrome.com/docs/lighthouse/performance/",
+              "type": "article"
+            },
+            {
+              "title": "Web Performance Crash Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=F0B5-7vO1vU",
+              "type": "video"
+            },
+            {
+              "title": "Build High Performance React Apps - Crash Course",
+              "url": "https://www.youtube.com/watch?v=x2J43c4iQG8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_performance_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ds_internationalization_localization",
+          "name": "Internationalization and Localization (i18n & l10n)",
+          "tag": "advanced",
+          "description": "Implement internationalization and localization strategies within design system components. Ensure support for multiple languages, cultural nuances, date/time formats, and right-to-left (RTL) layouts, making the system globally ready and inclusive.",
+          "resources": [
+            {
+              "title": "i18n with React",
+              "url": "https://react.i18next.com/",
+              "type": "article"
+            },
+            {
+              "title": "RTL in CSS",
+              "url": "https://css-tricks.com/rtl-styling/",
+              "type": "article"
+            },
+            {
+              "title": "Globalizing with Intl APIs",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl",
+              "type": "article"
+            },
+            {
+              "title": "Internationalization (i18n) and Localization (l10n) with React and i18next",
+              "url": "https://www.youtube.com/watch?v=S-tS_tGk6wY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_internationalization_localization.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
@@ -160,52 +787,108 @@
       "id": "design_systems_engineer_portfolio_career",
       "name": "Portfolio and Career Readiness",
       "tag": "advanced",
-      "description": "Turn your Design Systems Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Transform your Design Systems Engineering knowledge and projects into a compelling portfolio, craft impactful case studies, and prepare for successful job interviews in this specialized field.",
       "resources": [
         {
-          "title": "Storybook Documentation",
-          "url": "https://storybook.js.org/docs",
+          "title": "Building a Strong Technical Portfolio",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-strong-technical-portfolio-as-a-developer/",
           "type": "article"
         },
         {
-          "title": "Design Tokens Community Group",
-          "url": "https://www.w3.org/community/design-tokens/",
+          "title": "Cracking the Coding Interview - Behavioral Section",
+          "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+          "type": "course"
+        },
+        {
+          "title": "The Tech Resume Inside Out",
+          "url": "https://www.amazon.com/Tech-Resume-Inside-Out-Impressive/dp/1089921447",
           "type": "article"
         },
         {
-          "title": "Material Design Foundations",
-          "url": "https://m3.material.io/foundations",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/design_systems_engineer/design_systems_engineer_portfolio_career.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "design_systems_engineer_case_study",
-          "name": "Case Study Writing",
+          "id": "ds_case_study_writing",
+          "name": "Crafting Impactful Design System Case Studies",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Learn to structure and write compelling case studies that effectively highlight your problem-solving skills, significant design system contributions, and measurable impact on product development and team efficiency, showcasing your value as a DSE.",
           "resources": [
             {
-              "title": "Storybook Documentation",
-              "url": "https://storybook.js.org/docs",
+              "title": "How to Write a Technical Case Study",
+              "url": "https://www.hackerearth.com/blog/developers/how-to-write-a-technical-case-study/",
               "type": "article"
+            },
+            {
+              "title": "Writing a Great Portfolio Case Study",
+              "url": "https://careerfoundry.com/en/blog/ux-design/writing-a-great-portfolio-case-study/",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_case_study_writing.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "design_systems_engineer_project_capstone",
-          "name": "Project: Design Systems Engineer Portfolio Capstone",
+          "id": "ds_capstone_project",
+          "name": "Capstone Project: Building a Production-Ready Design System",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Design Systems Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Develop a comprehensive, portfolio-ready design system from scratch, demonstrating your mastery of design tokens, component development, comprehensive documentation, testing, CI/CD, and collaboration workflows, showcasing a holistic understanding of the role.",
           "resources": [
             {
-              "title": "Material Design Foundations",
-              "url": "https://m3.material.io/foundations",
+              "title": "Example Design Systems on GitHub",
+              "url": "https://github.com/topics/design-system",
               "type": "article"
+            },
+            {
+              "title": "Good README Template for Projects",
+              "url": "https://github.com/othneildrew/Best-README-Template",
+              "type": "article"
+            },
+            {
+              "title": "Planning Your Open Source Project",
+              "url": "https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/planning-your-open-source-project",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_capstone_project.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ds_interview_preparation",
+          "name": "Interviewing for Design Systems Engineer Roles",
+          "tag": "advanced",
+          "description": "Prepare for technical, behavioral, and system design interviews specific to Design Systems Engineer positions, focusing on effective communication, problem-solving, and demonstrating deep domain knowledge in design systems principles and practices.",
+          "resources": [
+            {
+              "title": "Common Frontend Interview Questions",
+              "url": "https://www.frontendinterviewhandbook.com/questions/",
+              "type": "article"
+            },
+            {
+              "title": "System Design Interview Prep",
+              "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
+              "type": "course"
+            },
+            {
+              "title": "Behavioral Interview Questions",
+              "url": "https://www.themuse.com/advice/behavioral-interview-questions-answers-examples",
+              "type": "article"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/design_systems_engineer/ds_interview_preparation.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

@@ -1,323 +1,1079 @@
 {
   "id": "backend",
-  "title": "Backend Developer",
-  "description": "Master Backend Development — choose your own path through languages, frameworks, databases, and deployment.",
+  "title": "Backend Developer Roadmap",
+  "description": "A comprehensive, industry-aligned roadmap to master backend development, covering core programming, languages, frameworks, databases, API design, testing, deployment, and system architecture.",
   "format": "tree",
   "tree": [
     {
-      "id": "be_start",
-      "name": "Start: Programming Fundamentals",
-      "icon": "🎯",
-      "description": "Variables, loops, functions, OOP — the foundation of everything.",
+      "id": "be_core_and_languages",
+      "name": "Core Fundamentals & Programming Languages",
       "tag": "essential",
+      "description": "Establish a strong foundation in computer science principles and choose a primary programming language ecosystem for backend development.",
       "resources": [
         {
-          "title": "CS50x 2024 - Lecture 0 - Scratch (CS50)",
-          "url": "https://www.youtube.com/watch?v=3LPJfIKxwWc",
+          "title": "What is Backend Development? A Complete Guide",
+          "url": "https://www.youtube.com/watch?v=KZ_nK6-Lh-M",
           "type": "video"
+        },
+        {
+          "title": "Python, Node.js, Go, Java, C# - Which Backend Framework To Choose?",
+          "url": "https://www.youtube.com/watch?v=h9gP6P3R1_c",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/backend/be_core_and_languages.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "be_python",
-          "name": "Python",
-          "icon": "🐍",
-          "description": "Clean syntax, massive ecosystem. Best for beginners.",
+          "id": "be_programming_basics_oop",
+          "name": "Programming Basics & OOP",
           "tag": "essential",
+          "description": "Master essential programming concepts, including variables, control flow, functions, object-oriented programming (OOP) principles (encapsulation, inheritance, polymorphism), and functional programming basics for writing maintainable and scalable backend code.",
           "resources": [
             {
-              "title": "Python Tutorial for Beginners in Hindi (CodeWithHarry)",
-              "url": "https://www.youtube.com/watch?v=gfDE2a7MKjA",
+              "title": "Python Full Course for Beginners Tutorial",
+              "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
               "type": "video"
-            }
-          ],
-          "children": [
-            {
-              "id": "be_django",
-              "name": "Django",
-              "icon": "🏗️",
-              "description": "Batteries-included web framework. Admin panel, ORM, auth built-in.",
-              "tag": "essential",
-              "resources": [
-                {
-                  "title": "Python Django Tutorial: Full-Featured Web App Part 1 (Corey Schafer)",
-                  "url": "https://www.youtube.com/watch?v=UmljXZIypDc",
-                  "type": "video"
-                }
-              ],
-              "children": []
             },
             {
-              "id": "be_flask",
-              "name": "Flask",
-              "icon": "🧪",
-              "description": "Lightweight micro-framework. Full control, minimal boilerplate.",
-              "tag": "essential",
-              "resources": [
-                {
-                  "title": "Learn Flask for Python - Full Tutorial (freeCodeCamp)",
-                  "url": "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
-                  "type": "video"
-                }
-              ],
-              "children": []
+              "title": "Object-Oriented Programming (OOP) Crash Course",
+              "url": "https://www.youtube.com/watch?v=NUh4A1x041Y",
+              "type": "video"
             },
             {
-              "id": "be_fastapi",
-              "name": "FastAPI",
-              "icon": "⚡",
-              "description": "Modern, fast (async), automatic docs. Rising star in Python.",
-              "tag": "advanced",
-              "resources": [
-                {
-                  "title": "Python API Development - Comprehensive Course (freeCodeCamp)",
-                  "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA",
-                  "type": "video"
-                }
-              ],
-              "children": []
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_programming_basics_oop.md",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "be_nodejs",
-          "name": "Node.js",
-          "icon": "🟢",
-          "description": "JavaScript on the server. Same language for frontend & backend.",
+          "id": "be_data_structures_algorithms",
+          "name": "Data Structures & Algorithms",
           "tag": "essential",
-          "resources": [
-            {
-              "title": "Getting Started with Express and NodeJS (Piyush Garg)",
-              "url": "https://www.youtube.com/watch?v=N2-FyBBxOZA",
-              "type": "video"
-            }
-          ],
-          "children": [
-            {
-              "id": "be_express",
-              "name": "Express.js",
-              "icon": "🚂",
-              "description": "Minimalist framework. Routing, middleware, REST APIs.",
-              "tag": "essential",
-              "resources": [
-                {
-                  "title": "Express Crash Course (Traversy Media)",
-                  "url": "https://www.youtube.com/watch?v=CnH3kAXSrmU",
-                  "type": "video"
-                }
-              ],
-              "children": []
-            },
-            {
-              "id": "be_nestjs",
-              "name": "NestJS",
-              "icon": "🦅",
-              "description": "Enterprise-grade framework. TypeScript, DI, modular architecture.",
-              "tag": "advanced",
-              "resources": [
-                {
-                  "title": "NestJS Crash Course (Traversy Media)",
-                  "url": "https://www.youtube.com/watch?v=wqhNoDE6pb4",
-                  "type": "video"
-                }
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "be_java",
-          "name": "Java",
-          "icon": "☕",
-          "description": "Enterprise standard. Strong typing, massive job market in India.",
-          "tag": "essential",
+          "description": "Understand common data structures (arrays, linked lists, trees, hash maps, heaps, graphs) and algorithms (searching, sorting, graph traversal, dynamic programming) and analyze their time/space complexity (Big O notation).",
           "resources": [
             {
               "title": "Data Structures and Algorithms Course (Kunal Kushwaha)",
               "url": "https://www.youtube.com/watch?v=rZ41y93P2Qo",
               "type": "video"
-            }
-          ],
-          "children": [
+            },
             {
-              "id": "be_springboot",
-              "name": "Spring Boot",
-              "icon": "🌱",
-              "description": "Industry-standard Java framework. Auto-config, production-ready.",
-              "tag": "essential",
-              "resources": [
-                {
-                  "title": "Spring Boot Tutorial Full Course (Amigoscode)",
-                  "url": "https://www.youtube.com/watch?v=9SGDpanrc8U",
-                  "type": "video"
-                }
-              ],
-              "children": []
+              "title": "Big-O Notation Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=kYI_tM-A8mI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_data_structures_algorithms.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_version_control_git",
+          "name": "Version Control (Git & GitHub)",
+          "tag": "essential",
+          "description": "Learn to manage code changes, collaborate with teams, and use Git for version control and GitHub for repository hosting, including branching, merging, pull requests, and resolving conflicts.",
+          "resources": [
+            {
+              "title": "Git and GitHub for Beginners - Crash Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+              "type": "video"
+            },
+            {
+              "title": "Git & GitHub Crash Course From Scratch",
+              "url": "https://www.youtube.com/watch?v=SMtI3p32y3E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_version_control_git.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_linux_cli_basics",
+          "name": "Linux & Command Line Basics",
+          "tag": "essential",
+          "description": "Familiarize yourself with basic Linux commands, file system navigation, permissions, process management, and basic shell scripting, essential for server management and development environments.",
+          "resources": [
+            {
+              "title": "Linux Command Line Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=R9usV6vVfQY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_linux_cli_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_python_track",
+          "name": "Python Backend Development",
+          "tag": "essential",
+          "description": "Master Python for backend services, from core language features to popular web frameworks and asynchronous programming.",
+          "resources": [
+            {
+              "title": "Python Tutorial for Beginners in Hindi (CodeWithHarry)",
+              "url": "https://www.youtube.com/watch?v=gfDE2a7MKjA",
+              "type": "video"
+            },
+            {
+              "title": "Python Flask Tutorial | Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=Z1Yd7hdihAE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_python_track.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_django_framework",
+          "name": "Django: Full-Stack Web Framework",
+          "tag": "essential",
+          "description": "Learn Django's 'batteries-included' approach for rapid development, covering ORM, Admin panel, authentication, templating, and REST API creation with Django REST Framework.",
+          "resources": [
+            {
+              "title": "Python Django Tutorial: Full-Featured Web App Part 1 (Corey Schafer)",
+              "url": "https://www.youtube.com/watch?v=UmljXZIypDc",
+              "type": "video"
+            },
+            {
+              "title": "Django Full Course - Python Web Framework for Beginners",
+              "url": "https://www.youtube.com/watch?v=J_qmEw5nN0c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_django_framework.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_flask_microframework",
+          "name": "Flask: Lightweight Micro-Framework",
+          "tag": "essential",
+          "description": "Explore Flask for building simpler APIs and web services, focusing on routing, request handling, blueprints, and integrating with extensions for databases and authentication.",
+          "resources": [
+            {
+              "title": "Learn Flask for Python - Full Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_flask_microframework.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_fastapi_async",
+          "name": "FastAPI: Modern & Asynchronous",
+          "tag": "advanced",
+          "description": "Dive into FastAPI for high-performance APIs, leveraging Python type hints, Pydantic for data validation, dependency injection, WebSockets, and automatic OpenAPI documentation.",
+          "resources": [
+            {
+              "title": "Python API Development - Comprehensive Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=0sOvCWFmrtA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_fastapi_async.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_nodejs_track",
+          "name": "Node.js Backend Development",
+          "tag": "essential",
+          "description": "Build scalable and high-performance backend applications using JavaScript/TypeScript with Node.js and its robust ecosystem.",
+          "resources": [
+            {
+              "title": "Getting Started with Express and NodeJS (Piyush Garg)",
+              "url": "https://www.youtube.com/watch?v=N2-FyBBxOZA",
+              "type": "video"
+            },
+            {
+              "title": "Node.js & Express.js - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=Oe421EPjeBE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_nodejs_track.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_js_ts_fundamentals",
+          "name": "JavaScript/TypeScript Fundamentals",
+          "tag": "essential",
+          "description": "Solidify your understanding of modern JavaScript features (ES6+), asynchronous programming (Promises, Async/Await), event loop, Node.js runtime, and TypeScript for type-safe code, along with `npm/yarn` for package management.",
+          "resources": [
+            {
+              "title": "JavaScript Crash Course for Beginners (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=hdI2bqOjy3w",
+              "type": "video"
+            },
+            {
+              "title": "TypeScript Crash Course (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=F2azQp5i-nw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_js_ts_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_express_framework",
+          "name": "Express.js: Minimalist Web Framework",
+          "tag": "essential",
+          "description": "Learn Express.js for building RESTful APIs, focusing on middleware, routing, handling HTTP requests and responses efficiently, and integrating with database drivers.",
+          "resources": [
+            {
+              "title": "Express Crash Course (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=CnH3kAXSrmU",
+              "type": "video"
+            },
+            {
+              "title": "Express.js Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=D-w10mQ6Bq0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_express_framework.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_nestjs_enterprise",
+          "name": "NestJS: Enterprise-Grade Framework",
+          "tag": "advanced",
+          "description": "Explore NestJS for building scalable, maintainable, and testable applications with TypeScript, leveraging its modular architecture, dependency injection, decorators, microservice capabilities, and robust CLI.",
+          "resources": [
+            {
+              "title": "NestJS Crash Course (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=wqhNoDE6pb4",
+              "type": "video"
+            },
+            {
+              "title": "NestJS Full Course - Build an API with NestJS and Prisma",
+              "url": "https://www.youtube.com/watch?v=qAouQ_c_I6c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_nestjs_enterprise.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_java_track",
+          "name": "Java Backend Development",
+          "tag": "essential",
+          "description": "Delve into enterprise-grade backend development with Java, focusing on core language features, the JVM, and the Spring Boot ecosystem.",
+          "resources": [
+            {
+              "title": "Java Programming for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=e_p2c00Jj50",
+              "type": "video"
+            },
+            {
+              "title": "Spring Boot Tutorial for Beginners (Full Course)",
+              "url": "https://www.youtube.com/watch?v=9JVJc5g7mYg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_java_track.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_java_core_lang",
+          "name": "Core Java & JVM",
+          "tag": "essential",
+          "description": "Understand core Java concepts including OOP, Collections API, Concurrency (threads, executors), Generics, I/O, Exception Handling, and the Java Virtual Machine (JVM) architecture and memory management.",
+          "resources": [
+            {
+              "title": "Java Tutorial for Beginners (Programming with Mosh)",
+              "url": "https://www.youtube.com/watch?v=GoXwIVyNvX0",
+              "type": "video"
+            },
+            {
+              "title": "Java Tutorial for Beginners - Learn Java in 12 Hours",
+              "url": "https://www.youtube.com/watch?v=eK9bB5jYv1E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_java_core_lang.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_springboot_framework",
+          "name": "Spring Boot: Industry Standard",
+          "tag": "essential",
+          "description": "Master Spring Boot for building robust and production-ready applications, covering Spring MVC, Spring Data JPA, Spring Security, REST Controllers, and dependency injection.",
+          "resources": [
+            {
+              "title": "Spring Boot Tutorial Full Course (Amigoscode)",
+              "url": "https://www.youtube.com/watch?v=9SGDpanrc8U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_springboot_framework.md",
+              "type": "doc"
             }
           ]
         }
       ]
     },
     {
-      "id": "be_db_root",
-      "name": "Databases",
-      "icon": "💾",
-      "description": "Every backend needs data storage. Learn both SQL and NoSQL.",
+      "id": "be_data_management",
+      "name": "Data Management & Storage",
       "tag": "essential",
-      "resources": [],
+      "description": "Understand various database types, data modeling, querying, and optimization techniques crucial for persistent and scalable data storage.",
+      "resources": [
+        {
+          "title": "SQL vs NoSQL Databases Explained - What is a Relational Database and Non-Relational Database?",
+          "url": "https://www.youtube.com/watch?v=ZS_jMv0xPz0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/backend/be_data_management.md",
+          "type": "doc"
+        }
+      ],
       "children": [
         {
-          "id": "be_sql",
-          "name": "SQL (PostgreSQL)",
-          "icon": "🐘",
-          "description": "Relational databases. Joins, indexes, transactions, normalization.",
+          "id": "be_db_design_principles",
+          "name": "Database Design & Schema",
           "tag": "essential",
+          "description": "Learn principles of database design, including Entity-Relationship (ER) diagrams, relational schema design, normalization forms (1NF, 2NF, 3NF), indexing strategies, and schema migration tools.",
+          "resources": [
+            {
+              "title": "Database Design Tutorial for Beginners (Alex the Analyst)",
+              "url": "https://www.youtube.com/watch?v=ztHopE5Wkds",
+              "type": "video"
+            },
+            {
+              "title": "Database Design Course for Beginners - Learn how to design and plan a database for a web application",
+              "url": "https://www.youtube.com/watch?v=Wwfgw_CprQc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_db_design_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_relational_databases",
+          "name": "Relational Databases (SQL, PostgreSQL, MySQL)",
+          "tag": "essential",
+          "description": "Master SQL for querying and managing relational databases, focusing on PostgreSQL and MySQL, including complex joins, subqueries, transactions, stored procedures, and performance tuning.",
           "resources": [
             {
               "title": "SQL Tutorial - Full Database Course for Beginners (freeCodeCamp)",
               "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
               "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_relational_databases.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "be_nosql",
-          "name": "MongoDB",
-          "icon": "🍃",
-          "description": "Document database. Flexible schema, great for rapid prototyping.",
+          "id": "be_nosql_databases",
+          "name": "NoSQL Databases (MongoDB & Types)",
           "tag": "essential",
+          "description": "Explore NoSQL database paradigms including document (MongoDB), key-value (Redis), column-family (Cassandra), and graph databases (Neo4j), understanding their use cases, data models, and advantages over relational databases.",
           "resources": [
             {
               "title": "MongoDB Complete Course in Hindi (Thapa Technical)",
               "url": "https://www.youtube.com/watch?v=rU9ZODw5yvU",
               "type": "video"
+            },
+            {
+              "title": "What is MongoDB? NoSQL explained in 13 minutes",
+              "url": "https://www.youtube.com/watch?v=sBsmkQyF-lY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_nosql_databases.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "be_redis",
-          "name": "Redis",
-          "icon": "🔴",
-          "description": "In-memory cache. Sessions, rate-limiting, real-time leaderboards.",
-          "tag": "advanced",
+          "id": "be_caching_systems",
+          "name": "Caching Systems (Redis)",
+          "tag": "essential",
+          "description": "Implement caching strategies using in-memory data stores like Redis for improving application performance, reducing database load, session management, leaderboards, and real-time features. Understand cache invalidation and eviction policies.",
           "resources": [
             {
               "title": "Redis Crash Course (Web Dev Simplified)",
               "url": "https://www.youtube.com/watch?v=jgpVdJB2sKQ",
               "type": "video"
+            },
+            {
+              "title": "Redis Tutorial - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=XW9_y80PjF4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_caching_systems.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "be_message_queues_brokers",
+          "name": "Message Queues & Brokers",
+          "tag": "advanced",
+          "description": "Understand asynchronous communication patterns using message queues like RabbitMQ, Apache Kafka, or AWS SQS/GCP Pub/Sub for decoupling services, handling background tasks, building event-driven systems, and ensuring reliable data delivery.",
+          "resources": [
+            {
+              "title": "RabbitMQ Tutorial For Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=2m7R1Wb3g2c",
+              "type": "video"
+            },
+            {
+              "title": "Kafka Explained (Confluent)",
+              "url": "https://www.youtube.com/watch?v=FKXQfL2x62A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_message_queues_brokers.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_db_scaling_replication",
+          "name": "Database Scaling & Replication",
+          "tag": "advanced",
+          "description": "Learn about strategies for scaling databases, including horizontal and vertical scaling, replication (master-slave, multi-master), sharding, partitioning, and load balancing for high availability and performance.",
+          "resources": [
+            {
+              "title": "Scaling Databases (Hussein Nasser)",
+              "url": "https://www.youtube.com/watch?v=vVjH3iW2Dq4",
+              "type": "video"
+            },
+            {
+              "title": "Sharding Databases In 5 Minutes (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=vD2r2yK0gVw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_db_scaling_replication.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "be_api",
-      "name": "API Design",
-      "icon": "🔌",
-      "description": "REST, GraphQL, authentication — how services talk to each other.",
+      "id": "be_api_design_comm",
+      "name": "API Design & Communication",
       "tag": "essential",
+      "description": "Learn to design, build, and secure APIs that enable seamless and efficient communication between different services and clients.",
       "resources": [
         {
           "title": "What is a REST API? (IBM Technology)",
           "url": "https://www.youtube.com/watch?v=lsMQRaeKNDk",
           "type": "video"
+        },
+        {
+          "title": "REST API Crash Course - Design, Principles, and Best Practices",
+          "url": "https://www.youtube.com/watch?v=gT0Lh1eYbk8",
+          "type": "video"
+        },
+        {
+          "title": "What is GraphQL? - A Beginner's Guide",
+          "url": "https://www.youtube.com/watch?v=pK_A3W1P3g8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/backend/be_api_design_comm.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "be_rest",
-          "name": "RESTful APIs",
-          "icon": "🔗",
-          "description": "HTTP verbs, status codes, JSON, CRUD operations.",
+          "id": "be_restful_apis_principles",
+          "name": "RESTful API Principles",
           "tag": "essential",
-          "resources": [],
-          "children": []
+          "description": "Master the principles of REST, including HTTP methods, status codes, resource-based design, statelessness, idempotency, versioning, pagination, filtering, and HATEOAS. Learn to structure requests and responses effectively.",
+          "resources": [
+            {
+              "title": "REST API Design Best Practices (Gorrion)",
+              "url": "https://www.youtube.com/watch?v=LZB_g8g2b8k",
+              "type": "video"
+            },
+            {
+              "title": "What is REST API? Understanding RESTful APIs | MERN Stack",
+              "url": "https://www.youtube.com/watch?v=Ty-Kmmt-5n0",
+              "type": "video"
+            },
+            {
+              "title": "1 - What is a RESTful API?",
+              "url": "https://www.youtube.com/watch?v=QZ_11uQjPgg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_restful_apis_principles.md",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "be_graphql",
-          "name": "GraphQL",
-          "icon": "◈",
-          "description": "Query exactly what you need. Type-safe, flexible, modern.",
+          "id": "be_graphql_api",
+          "name": "GraphQL APIs",
           "tag": "advanced",
-          "resources": [],
-          "children": []
+          "description": "Explore GraphQL as an alternative to REST, focusing on its query language, schema definition language (SDL), resolvers, mutations, subscriptions for real-time data, and Apollo Client/Server integration.",
+          "resources": [
+            {
+              "title": "GraphQL Crash Course (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=Y0lDGtgO57w",
+              "type": "video"
+            },
+            {
+              "title": "GraphQL Tutorial for Beginners | Learn GraphQL from scratch",
+              "url": "https://www.youtube.com/watch?v=ZQL7tN_m09s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_graphql_api.md",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "be_auth",
-          "name": "Auth (JWT/OAuth)",
-          "icon": "🔐",
-          "description": "JWT tokens, OAuth2, session management, bcrypt.",
+          "id": "be_grpc_apis",
+          "name": "gRPC (Remote Procedure Calls)",
+          "tag": "advanced",
+          "description": "Understand gRPC for high-performance, language-agnostic communication using Protocol Buffers for efficient data serialization and HTTP/2 for stream-based microservices interaction.",
+          "resources": [
+            {
+              "title": "gRPC Crash Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=Txk69-x13-Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_grpc_apis.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_api_security_auth",
+          "name": "API Security & Authentication",
           "tag": "essential",
-          "resources": [],
-          "children": []
+          "description": "Implement secure authentication (JWT, OAuth2, session management, API keys) and authorization mechanisms (RBAC, ABAC). Understand common vulnerabilities (SQL injection, XSS, CSRF), input validation, password hashing (bcrypt), and rate limiting.",
+          "resources": [
+            {
+              "title": "Understanding JWT (Auth0)",
+              "url": "https://jwt.io/introduction",
+              "type": "article"
+            },
+            {
+              "title": "API Security Fundamentals (Nordic APIs)",
+              "url": "https://www.youtube.com/watch?v=xV0392Rj-aU",
+              "type": "video"
+            },
+            {
+              "title": "OAuth 2.0 and OpenID Connect (in plain English)",
+              "url": "https://www.youtube.com/watch?v=f2FkdJg8Npg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_api_security_auth.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_api_gateways_proxies",
+          "name": "API Gateways & Proxies",
+          "tag": "advanced",
+          "description": "Learn how API Gateways (e.g., Nginx, Kong, AWS API Gateway) manage routing, traffic management, rate limiting, authentication, logging, and aggregation for multiple backend services, enhancing security and manageability.",
+          "resources": [
+            {
+              "title": "What is an API Gateway? (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=F07gB5xM6W8",
+              "type": "video"
+            },
+            {
+              "title": "Microservices Tutorial | API Gateway",
+              "url": "https://www.youtube.com/watch?v=0h5i6jJ1t60",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_api_gateways_proxies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_api_documentation",
+          "name": "API Documentation (OpenAPI/Swagger)",
+          "tag": "essential",
+          "description": "Generate and maintain interactive API documentation using standards like OpenAPI (Swagger) for clear communication with API consumers, ensuring easy understanding and integration.",
+          "resources": [
+            {
+              "title": "Documenting Your API with OpenAPI and Swagger (Postman)",
+              "url": "https://www.youtube.com/watch?v=1xNKMf2h7uQ",
+              "type": "video"
+            },
+            {
+              "title": "OpenAPI and Swagger Tutorial - How to document your API",
+              "url": "https://www.youtube.com/watch?v=sIklx-S3q0s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_api_documentation.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "be_devops",
-      "name": "DevOps & Deployment",
-      "icon": "🚀",
-      "description": "Ship your code to production. CI/CD, containers, cloud.",
+      "id": "be_devops_cloud_infra",
+      "name": "Deployment, DevOps & Cloud",
       "tag": "essential",
-      "resources": [],
+      "description": "Acquire the skills to deploy, manage, monitor, and scale backend applications in production environments, leveraging cloud services and DevOps practices.",
+      "resources": [
+        {
+          "title": "What is DevOps? Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=W-LqM9k4b44",
+          "type": "video"
+        },
+        {
+          "title": "Docker Crash Course | Containers, Images, Volumes, Networking and more!",
+          "url": "https://www.youtube.com/watch?v=pFAW1bH2Cpw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/backend/be_devops_cloud_infra.md",
+          "type": "doc"
+        }
+      ],
       "children": [
         {
-          "id": "be_docker",
-          "name": "Docker",
-          "icon": "🐳",
-          "description": "Containerize your app. Consistent environments everywhere.",
+          "id": "be_containerization_docker",
+          "name": "Containerization (Docker)",
           "tag": "essential",
-          "resources": [],
-          "children": []
+          "description": "Containerize applications using Docker to ensure consistent environments across development, testing, and production. Learn Dockerfile creation, image management, volumes, networking, and Docker Compose for multi-container applications.",
+          "resources": [
+            {
+              "title": "Docker Crash Course for Absolute Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJlOU",
+              "type": "video"
+            },
+            {
+              "title": "Docker Compose Tutorial - Build a Multi-Container App",
+              "url": "https://www.youtube.com/watch?v=Qw9kgI-hL3w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_containerization_docker.md",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "be_cloud",
-          "name": "Cloud (AWS/GCP)",
-          "icon": "☁️",
-          "description": "EC2, S3, Lambda, Cloud Functions. Deploy at scale.",
+          "id": "be_container_orchestration_k8s",
+          "name": "Container Orchestration (Kubernetes Basics)",
           "tag": "advanced",
-          "resources": [],
-          "children": []
+          "description": "Get an introduction to Kubernetes for automating deployment, scaling, and management of containerized applications. Understand core concepts like Pods, Deployments, Services, and Namespaces.",
+          "resources": [
+            {
+              "title": "Kubernetes Crash Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=X48VuFYp0do",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_container_orchestration_k8s.md",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "be_cicd",
+          "id": "be_cloud_platforms",
+          "name": "Cloud Platforms (AWS/GCP/Azure)",
+          "tag": "advanced",
+          "description": "Learn to deploy and manage backend services on major cloud providers (AWS, GCP, Azure), focusing on compute (EC2/GCE/VMs), storage (S3/GCS/Blob Storage), networking (VPC/VNet), IAM, and basic managed database services (RDS/Cloud SQL).",
+          "resources": [
+            {
+              "title": "AWS Crash Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=IT1OtgeIpXA",
+              "type": "video"
+            },
+            {
+              "title": "Microsoft Azure Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=N_S-y_mD658",
+              "type": "video"
+            },
+            {
+              "title": "Google Cloud Platform (GCP) Crash Course",
+              "url": "https://www.youtube.com/watch?v=jpv2QJ4Vyzg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_cloud_platforms.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_serverless_compute",
+          "name": "Serverless Computing",
+          "tag": "advanced",
+          "description": "Explore serverless architectures using services like AWS Lambda, Google Cloud Functions, or Azure Functions to build event-driven, cost-effective, and highly scalable APIs and backend tasks.",
+          "resources": [
+            {
+              "title": "What is Serverless? (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=yYyK96mC6bI",
+              "type": "video"
+            },
+            {
+              "title": "AWS Lambda Tutorial for Beginners - Deploy a Serverless API",
+              "url": "https://www.youtube.com/watch?v=k_x8c8w185U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_serverless_compute.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_cicd_pipelines_automation",
           "name": "CI/CD Pipelines",
-          "icon": "🔄",
-          "description": "GitHub Actions, automated testing, continuous deployment.",
-          "tag": "advanced",
-          "resources": [],
-          "children": []
+          "tag": "essential",
+          "description": "Set up Continuous Integration and Continuous Deployment pipelines using tools like GitHub Actions, GitLab CI, Jenkins, or CircleCI for automated testing, building, and deployment, ensuring rapid and reliable releases.",
+          "resources": [
+            {
+              "title": "CI/CD Pipeline with GitHub Actions (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=TLdK7E6pW3k",
+              "type": "video"
+            },
+            {
+              "title": "CI/CD In 10 Minutes | What Is CI/CD, How It Works & Why It's Used",
+              "url": "https://www.youtube.com/watch?v=sc5MXw9uR60",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_cicd_pipelines_automation.md",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "backend_practice_lab",
-          "name": "Practice: API Hardening Drill",
+          "id": "be_monitoring_logging_alerts",
+          "name": "Monitoring, Logging & Alerting",
+          "tag": "essential",
+          "description": "Implement comprehensive monitoring (Prometheus, Grafana, Datadog), centralized logging (ELK stack, Splunk, CloudWatch, Stackdriver), and alerting systems (PagerDuty, custom notifications) for production applications to ensure reliability and quick issue resolution.",
+          "resources": [
+            {
+              "title": "Learn Prometheus and Grafana - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=FzU1z1WvD1g",
+              "type": "video"
+            },
+            {
+              "title": "Elastic Stack Course - Elasticsearch, Logstash, Kibana Tutorial",
+              "url": "https://www.youtube.com/watch?v=TjTjYgXlFjQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_monitoring_logging_alerts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_web_servers_reverse_proxies",
+          "name": "Web Servers & Reverse Proxies",
+          "tag": "essential",
+          "description": "Configure and manage web servers like Nginx or Apache, understanding their role as reverse proxies, load balancers, SSL termination points, and for static content serving. Learn about proxy configuration and caching.",
+          "resources": [
+            {
+              "title": "Nginx Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=J_jKjF9d-0M",
+              "type": "video"
+            },
+            {
+              "title": "Nginx Crash Course | Learn Nginx for Web Development",
+              "url": "https://www.youtube.com/watch?v=SYh6tJ-q71Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_web_servers_reverse_proxies.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "be_advanced_architecture_projects",
+      "name": "Advanced Architecture & Practical Projects",
+      "tag": "advanced",
+      "description": "Explore advanced architectural patterns, design principles, and apply all learned knowledge to build complex, production-ready backend systems.",
+      "resources": [
+        {
+          "title": "Microservices Master Class - Deploy to the Cloud with Docker & Kubernetes",
+          "url": "https://www.youtube.com/watch?v=msxWbY5_hK4",
+          "type": "video"
+        },
+        {
+          "title": "Event-Driven Architecture Explained",
+          "url": "https://www.youtube.com/watch?v=K_N3_bQ5t2k",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/backend/be_advanced_architecture_projects.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "be_microservices_architecture",
+          "name": "Microservices Architecture",
           "tag": "advanced",
-          "description": "Add validation, pagination, rate limiting, error handling, logging, and auth checks to an existing API.",
+          "description": "Understand the concepts, benefits, and challenges of designing and building microservices-based applications, including service discovery, inter-service communication patterns (sync/async), data consistency, and distributed transactions.",
+          "resources": [
+            {
+              "title": "Microservices Explained (Google Cloud)",
+              "url": "https://www.youtube.com/watch?v=rv4Ml1AeQ-Q",
+              "type": "video"
+            },
+            {
+              "title": "Microservices Crash Course - Part 1 - What are Microservices?",
+              "url": "https://www.youtube.com/watch?v=SjB-M6G-B38",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_microservices_architecture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_system_design_principles",
+          "name": "System Design Principles",
+          "tag": "advanced",
+          "description": "Learn to design scalable, reliable, and fault-tolerant distributed systems. Cover topics like CAP theorem, consistency models (strong, eventual), availability patterns, load balancing, sharding, and various architectural patterns for large-scale applications.",
+          "resources": [
+            {
+              "title": "System Design Interview Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=ZgdS0EUmn70",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_system_design_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_event_driven_architecture",
+          "name": "Event-Driven Architecture",
+          "tag": "advanced",
+          "description": "Explore building reactive systems using event sourcing, CQRS (Command Query Responsibility Segregation), and event streams. Understand concepts like sagas, eventual consistency, and how message brokers facilitate highly scalable and responsive systems.",
+          "resources": [
+            {
+              "title": "Event-Driven Architecture Explained (Gartner)",
+              "url": "https://www.youtube.com/watch?v=x0k_fF3-m24",
+              "type": "video"
+            },
+            {
+              "title": "Event Driven Architecture - For beginners",
+              "url": "https://www.youtube.com/watch?v=STK_Y88E9bI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_event_driven_architecture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "be_security_best_practices",
+          "name": "Backend Security Best Practices",
+          "tag": "essential",
+          "description": "Implement industry-standard security practices, including secure coding guidelines, input validation, encryption (TLS, data at rest), secure configuration, vulnerability scanning, and understanding the OWASP API Security Top 10 and common attack vectors.",
           "resources": [
             {
               "title": "OWASP API Security Top 10",
               "url": "https://owasp.org/www-project-api-security/",
               "type": "article"
+            },
+            {
+              "title": "API Security for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=J34Q7j8sV2Q",
+              "type": "video"
+            },
+            {
+              "title": "Web Security Basics - Frontend and Backend",
+              "url": "https://www.youtube.com/watch?v=yW68b0j16Fk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_security_best_practices.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "be_testing_strategies",
+          "name": "Advanced Testing Strategies",
+          "tag": "essential",
+          "description": "Develop comprehensive testing strategies including unit, integration, end-to-end, performance (load testing), security testing, and contract testing for robust backend applications. Learn about test doubles (mocks, stubs) and test coverage tools.",
+          "resources": [
+            {
+              "title": "Backend Testing Strategies (DevOpsGuys)",
+              "url": "https://www.devopsguys.com/blog/backend-testing-strategies/",
+              "type": "article"
+            },
+            {
+              "title": "The Pyramid of Testing (Martin Fowler)",
+              "url": "https://martinfowler.com/bliki/TestPyramid.html",
+              "type": "article"
+            },
+            {
+              "title": "Unit, Integration, and End-to-End Testing Explained",
+              "url": "https://www.youtube.com/watch?v=F_Rjuao-5pQ",
+              "type": "video"
+            },
+            {
+              "title": "Load Testing with k6 (freeCodeCamp.org)",
+              "url": "https://www.youtube.com/watch?v=R6w08K1hG20",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/be_testing_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "backend_practice_api_hardening",
+          "name": "Practice: API Hardening Drill",
+          "tag": "advanced",
+          "description": "Apply security and reliability principles to an existing API by adding robust input validation, pagination, rate limiting, advanced error handling, comprehensive structured logging, robust authentication and authorization checks, and preparing it for production deployment.",
+          "resources": [
+            {
+              "title": "Building a Robust API with Error Handling (Flask Example)",
+              "url": "https://realpython.com/python-api-development/#error-handling",
+              "type": "article"
+            },
+            {
+              "title": "API Security Tutorial for Beginners | Best Practices & Real-World Examples",
+              "url": "https://www.youtube.com/watch?v=F07gB56aVn0",
+              "type": "video"
+            },
+            {
+              "title": "Rate Limiting with Node.js, Express & Redis",
+              "url": "https://www.youtube.com/watch?v=R4C5nI0n-jM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/backend_practice_api_hardening.md",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "backend_project_production_api",
-          "name": "Project: Production Backend API",
+          "name": "Project: Production-Ready Backend API",
           "tag": "advanced",
-          "description": "Build and deploy a documented REST API with database migrations, authentication, tests, Docker, CI/CD, and monitoring notes.",
+          "description": "Build and deploy a fully documented REST API (or GraphQL/gRPC) for a complex application. Incorporate advanced features like database migrations, secure authentication, comprehensive tests, Docker containerization, CI/CD pipeline, and basic monitoring/alerting. This project should mimic a real-world, scalable application.",
           "resources": [
             {
               "title": "Express Production Best Practices",
               "url": "https://expressjs.com/en/advanced/best-practice-performance.html",
               "type": "article"
+            },
+            {
+              "title": "How to Build a REST API with Spring Boot (Baeldung)",
+              "url": "https://www.baeldung.com/spring-rest-api",
+              "type": "article"
+            },
+            {
+              "title": "Deploy a MERN Stack App to AWS with CI/CD - Full Course",
+              "url": "https://www.youtube.com/watch?v=S2g32_E6zK0",
+              "type": "video"
+            },
+            {
+              "title": "Dockerizing a Node.js Application for Production - Node.js & Docker Tutorial",
+              "url": "https://www.youtube.com/watch?v=sU1E_I8Qk34",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/backend/backend_project_production_api.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

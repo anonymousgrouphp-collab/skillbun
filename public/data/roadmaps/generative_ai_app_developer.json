@@ -1,201 +1,641 @@
 {
   "id": "generative_ai_app_developer",
   "title": "Generative AI App Developer",
-  "description": "A roadmap for building AI-powered applications with LLM APIs, RAG, tool use, evaluation, safety, cost control, and production deployment.",
+  "description": "A comprehensive roadmap for building industry-standard AI-powered applications. This covers core LLM APIs, advanced RAG systems, sophisticated tool use and agent design, rigorous evaluation, robust safety and cost controls, and production deployment with MLOps principles.",
   "format": "tree",
   "tree": [
     {
       "id": "genai_foundations",
-      "name": "LLM and App Foundations",
+      "name": "Foundations of Generative AI & Application Development",
       "tag": "essential",
-      "description": "Understand model capabilities, API calls, prompts, context windows, tokens, latency, cost, and user-facing AI UX.",
+      "description": "Establish a strong understanding of Generative AI principles, the landscape of Large Language Models (LLMs), core concepts like tokens, context windows, latency, and cost implications. This module also covers fundamental prompt design and an introduction to user experience considerations for AI-powered applications.",
       "resources": [
         {
-          "title": "GenAI for Developers Roadmap (Piyush Garg)",
-          "url": "https://www.youtube.com/watch?v=v1pj9XrJ_Lw",
-          "type": "video"
+          "title": "ChatGPT Prompt Engineering for Developers (DeepLearning.AI)",
+          "url": "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/",
+          "type": "course"
         },
         {
-          "title": "AI Complete OneShot Course for Beginners (Apna College)",
-          "url": "https://www.youtube.com/watch?v=D1eL1EnxXXQ",
-          "type": "video"
-        },
-        {
-          "title": "Generative AI Roadmap for Beginners (CodeWithHarry)",
-          "url": "https://www.youtube.com/watch?v=lv7ka-8FscI",
-          "type": "video"
-        },
-        {
-          "title": "OpenAI API Documentation",
-          "url": "https://platform.openai.com/docs",
+          "title": "OpenAI API Documentation: Key Concepts",
+          "url": "https://platform.openai.com/docs/introduction/key-concepts",
           "type": "article"
+        },
+        {
+          "title": "What is Generative AI? - Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=0_nB5K1g2yQ",
+          "type": "video"
+        },
+        {
+          "title": "Large Language Models (LLMs) Explained - Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=MInN2a0i13M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/generative_ai_app_developer/genai_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
           "id": "genai_api_basics",
-          "name": "LLM API Basics",
+          "name": "LLM API Integration and Management",
           "tag": "essential",
-          "description": "Call chat/completion APIs, stream responses, handle retries, manage keys, estimate cost, and parse structured outputs.",
+          "description": "Master the integration of LLMs via APIs from various providers (e.g., OpenAI, Anthropic, Google Gemini). Learn to handle chat/completion requests, manage API keys securely, implement streaming for real-time responses, manage rate limits, handle errors with robust retry mechanisms, estimate token usage for cost control, and parse structured model outputs (JSON, YAML).",
           "resources": [
             {
               "title": "OpenAI Text Generation Guide",
               "url": "https://platform.openai.com/docs/guides/text-generation",
               "type": "article"
+            },
+            {
+              "title": "Anthropic API Documentation",
+              "url": "https://docs.anthropic.com/claude/reference/getting-started-with-the-claude-api",
+              "type": "article"
+            },
+            {
+              "title": "Google Gemini API Quickstart",
+              "url": "https://ai.google.dev/gemini-api/docs/quickstart",
+              "type": "article"
+            },
+            {
+              "title": "Build a Chatbot with OpenAI API & Python - Full Course",
+              "url": "https://www.youtube.com/watch?v=pgW52gqW0nI",
+              "type": "video"
+            },
+            {
+              "title": "OpenAI API Python Tutorial - GPT-4, GPT-3.5, DALL-E 2, Whisper, Embeddings (2023)",
+              "url": "https://www.youtube.com/watch?v=FjIuK2-Fk6Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_api_basics.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "prompt_engineering_basics",
+          "name": "Core Prompt Engineering Techniques",
+          "tag": "essential",
+          "description": "Develop proficiency in fundamental prompt engineering techniques including zero-shot, few-shot, and chain-of-thought prompting. Learn to craft effective system messages, use persona-based prompting, design prompts for specific output formats (JSON, Markdown), and iterate on prompts for improved model performance and reliability.",
+          "resources": [
+            {
+              "title": "Prompt Engineering Guide",
+              "url": "https://www.promptingguide.ai/",
+              "type": "article"
+            },
+            {
+              "title": "LangChain Expression Language (LCEL) Primer",
+              "url": "https://python.langchain.com/docs/expression_language/",
+              "type": "article"
+            },
+            {
+              "title": "Prompt Engineering Full Course - LLM Guide for Beginners",
+              "url": "https://www.youtube.com/watch?v=d_fd1kX3s6s",
+              "type": "video"
+            },
+            {
+              "title": "A Beginner's Guide to Prompt Engineering (ChatGPT & Generative AI)",
+              "url": "https://www.youtube.com/watch?v=S2fF1c9w84A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/prompt_engineering_basics.md",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "genai_frontend_ux",
-          "name": "AI Product UX",
+          "name": "User Experience (UX) Design for AI Applications",
           "tag": "essential",
-          "description": "Design loading states, citations, confidence cues, human review, prompt controls, edit flows, and failure recovery.",
+          "description": "Design intuitive and effective user interfaces for AI applications. Focus on user feedback mechanisms, handling AI uncertainties (loading states, confidence scores), displaying citations, enabling human review workflows, prompt controls, edit/refinement flows, and graceful recovery from AI failures. Understand ethical considerations and user trust in AI design.",
           "resources": [
             {
               "title": "People + AI Guidebook",
               "url": "https://pair.withgoogle.com/guidebook/",
               "type": "article"
+            },
+            {
+              "title": "Designing AI: Principles for Human-Centered Artificial Intelligence",
+              "url": "https://www.oreilly.com/library/view/designing-ai/9781492067711/",
+              "type": "article"
+            },
+            {
+              "title": "UX for AI: Designing Intelligent Experiences",
+              "url": "https://www.youtube.com/watch?v=s5R-2o2k5wI",
+              "type": "video"
+            },
+            {
+              "title": "UX design principles for AI",
+              "url": "https://www.youtube.com/watch?v=F3a37jW7X9o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_frontend_ux.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "llm_dev_frameworks_intro",
+          "name": "LLM Application Development Frameworks",
+          "tag": "essential",
+          "description": "Get started with popular LLM orchestration frameworks like LangChain and LlamaIndex. Understand their core components (chains, agents, tools, retrievers, parsers, memory), how they simplify complex LLM workflows, and set up your development environment. This module bridges foundational LLM interactions with advanced application patterns.",
+          "resources": [
+            {
+              "title": "LangChain Getting Started",
+              "url": "https://python.langchain.com/docs/get_started",
+              "type": "article"
+            },
+            {
+              "title": "LlamaIndex Getting Started",
+              "url": "https://docs.llamaindex.ai/en/stable/getting_started/",
+              "type": "article"
+            },
+            {
+              "title": "LangChain Explained | LangChain Crash Course",
+              "url": "https://www.youtube.com/watch?v=Lq0n9k9E_bE",
+              "type": "video"
+            },
+            {
+              "title": "LlamaIndex Crash Course - Build Your Own Custom ChatGPT with LlamaIndex and OpenAI",
+              "url": "https://www.youtube.com/watch?v=2-J7bW4Dk00",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/llm_dev_frameworks_intro.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "genai_rag_tools",
-      "name": "RAG, Tools, and Agents",
+      "name": "Advanced Interaction: RAG, Tooling, and Autonomous Agents",
       "tag": "essential",
-      "description": "Connect models to private data and tools through retrieval, embeddings, vector databases, function calling, and workflows.",
+      "description": "Build sophisticated AI applications by enabling models to interact with external data and tools. This section covers Retrieval Augmented Generation (RAG) for grounding responses in private data, function/tool calling for external API interaction, and the development of intelligent, autonomous agents capable of multi-step reasoning.",
       "resources": [
         {
-          "title": "LangChain Tutorials",
-          "url": "https://python.langchain.com/docs/tutorials/",
+          "title": "LangChain Documentation",
+          "url": "https://python.langchain.com/docs/",
           "type": "article"
+        },
+        {
+          "title": "LlamaIndex Documentation",
+          "url": "https://docs.llamaindex.ai/en/stable/",
+          "type": "article"
+        },
+        {
+          "title": "Building LLM-Powered Applications (freeCodeCamp.org)",
+          "url": "https://www.youtube.com/playlist?list=PLB0vExo_b34U57X53oM_qjXgC04_vK8eL",
+          "type": "video"
+        },
+        {
+          "title": "Build AI Agents with Function Calling, Tools and more!",
+          "url": "https://www.youtube.com/watch?v=Fj-y83e1jWw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/generative_ai_app_developer/genai_rag_tools.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
           "id": "genai_rag",
-          "name": "Retrieval Augmented Generation",
+          "name": "Retrieval Augmented Generation (RAG) Systems",
           "tag": "essential",
-          "description": "Chunk documents, create embeddings, search vectors, rerank results, cite sources, and debug retrieval quality.",
+          "description": "Implement robust RAG systems to connect LLMs to external knowledge sources. Learn document loading, various text chunking strategies (fixed size, recursive, semantic), different embedding models, vector database selection (e.g., Chroma, Pinecone, Weaviate), advanced retrieval techniques (hybrid search, semantic search), re-ranking algorithms, and integrating citations for source attribution. Focus on debugging retrieval quality and minimizing hallucinations.",
           "resources": [
             {
               "title": "OpenAI Embeddings Guide",
               "url": "https://platform.openai.com/docs/guides/embeddings",
               "type": "article"
+            },
+            {
+              "title": "Vector Databases Explained (Google Cloud Tech)",
+              "url": "https://www.youtube.com/watch?v=kYJ5k8c85_U",
+              "type": "video"
+            },
+            {
+              "title": "Building RAG from scratch (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=h0n53Wd-76o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_rag.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rag_advanced_techniques",
+          "name": "Advanced RAG Optimizations and Architectures",
+          "tag": "advanced",
+          "description": "Dive into sophisticated RAG techniques to enhance performance and accuracy. Cover topics like query rewriting, hypothetical document embedding (HyDE), context compression, self-correction mechanisms in RAG, multi-query approaches, RAG-Fusion, and exploring multi-modal RAG systems. Understand the tradeoffs and applications of different RAG architectures.",
+          "resources": [
+            {
+              "title": "Advanced RAG Techniques: A Deep Dive (Towards Data Science)",
+              "url": "https://towardsdatascience.com/advanced-rag-techniques-a-deep-dive-f77344933a7f",
+              "type": "article"
+            },
+            {
+              "title": "HyDE: Hypothetical Document Embeddings (Paper)",
+              "url": "https://arxiv.org/abs/2212.10496",
+              "type": "article"
+            },
+            {
+              "title": "Advanced RAG Techniques | Best RAG Frameworks | RAG with LlamaIndex",
+              "url": "https://www.youtube.com/watch?v=F0f-lB-E5a8",
+              "type": "video"
+            },
+            {
+              "title": "RAG Fusion Explained",
+              "url": "https://www.youtube.com/watch?v=d_B3R8y_h4A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/rag_advanced_techniques.md",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "genai_tool_calling",
-          "name": "Tool Calling and Workflows",
+          "name": "Function Calling, External Tools, and Agentic Workflows",
           "tag": "advanced",
-          "description": "Let models call APIs, validate arguments, manage state, recover from tool errors, and keep humans in the loop.",
+          "description": "Enable LLMs to perform actions by calling external APIs and tools. Learn to define tools, implement function calling with precise argument validation, manage multi-step tool use, handle state across interactions, recover gracefully from tool execution errors, and design workflows that keep humans in the loop for critical decisions. Explore the foundations of agentic behavior.",
           "resources": [
             {
-              "title": "OpenAI Function Calling",
+              "title": "OpenAI Function Calling Guide",
               "url": "https://platform.openai.com/docs/guides/function-calling",
               "type": "article"
+            },
+            {
+              "title": "LangChain Tools",
+              "url": "https://python.langchain.com/docs/modules/agents/tools/",
+              "type": "article"
+            },
+            {
+              "title": "Building Tools and Function Calling with LLMs (Google Developers)",
+              "url": "https://www.youtube.com/watch?v=m77t6qj7l-U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_tool_calling.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "generative_ai_app_developer_practice_lab",
-          "name": "Practice: RAG Retrieval Debug",
+          "id": "agent_frameworks",
+          "name": "Building and Deploying Autonomous Agents",
           "tag": "advanced",
-          "description": "Test chunking, embeddings, retrieval misses, citations, hallucinations, and improve answer grounding.",
-          "resources": [],
-          "children": []
+          "description": "Explore advanced agent architectures and design patterns for building truly autonomous LLM applications. Learn about concepts like ReAct (Reasoning and Acting), planning, memory management, self-reflection, and implementing agents using frameworks like LangChain Agents or LlamaIndex Agents. Understand how to manage complex multi-agent systems and their application in real-world scenarios.",
+          "resources": [
+            {
+              "title": "LangChain Agents",
+              "url": "https://python.langchain.com/docs/modules/agents/",
+              "type": "article"
+            },
+            {
+              "title": "LlamaIndex Agents",
+              "url": "https://docs.llamaindex.ai/en/stable/module_guides/application/agent/",
+              "type": "article"
+            },
+            {
+              "title": "ReAct: Synergizing Reasoning and Acting in LLMs (Paper)",
+              "url": "https://arxiv.org/abs/2210.03629",
+              "type": "article"
+            },
+            {
+              "title": "LangChain Crash Course for Beginners (2024)",
+              "url": "https://www.youtube.com/watch?v=ms2X2tWvg3Q",
+              "type": "video"
+            },
+            {
+              "title": "Build Autonomous Agents with LangChain, Next.js, and Pinecone",
+              "url": "https://www.youtube.com/watch?v=S8L02M0m61A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/agent_frameworks.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "rag_retrieval_debug_practice",
+          "name": "Practice Lab: RAG Retrieval and Grounding Debugging",
+          "tag": "advanced",
+          "description": "Hands-on practice in debugging RAG systems. Test various chunking strategies, identify retrieval misses, analyze the impact of different embedding models, verify citation accuracy, and troubleshoot hallucinations. Implement techniques to improve answer grounding and overall RAG system reliability through iterative testing.",
+          "resources": [
+            {
+              "title": "RAG System Architecture & Best Practices - Learn to Build a RAG from Scratch",
+              "url": "https://www.youtube.com/watch?v=FqS_36S6K0c",
+              "type": "video"
+            },
+            {
+              "title": "Evaluating and Debugging RAG Applications with Ragas",
+              "url": "https://www.youtube.com/watch?v=kY31f13Cg9I",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/rag_retrieval_debug_practice.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "genai_eval_safety",
-      "name": "Evaluation, Safety, and Cost",
+      "name": "Robustness: Evaluation, Safety, Ethics, and Cost Optimization",
       "tag": "advanced",
-      "description": "Make AI apps reliable through eval datasets, safety checks, monitoring, privacy controls, and cost budgets.",
+      "description": "Ensure the reliability, safety, ethical compliance, and cost-efficiency of Generative AI applications. This module covers systematic evaluation methodologies, implementing robust safety and privacy measures, understanding responsible AI principles, and optimizing deployment costs for sustainable operation.",
       "resources": [
         {
-          "title": "OpenAI Evals",
-          "url": "https://github.com/openai/evals",
+          "title": "Responsible AI Practices (Microsoft Azure)",
+          "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai?view=azureml-api-2",
           "type": "article"
+        },
+        {
+          "title": "Ethical Guidelines for AI (Google AI)",
+          "url": "https://ai.google/principles/",
+          "type": "article"
+        },
+        {
+          "title": "Responsible AI Explained: What is Responsible AI?",
+          "url": "https://www.youtube.com/watch?v=wXh8o40K_qY",
+          "type": "video"
+        },
+        {
+          "title": "How to Evaluate Large Language Models (LLMs) & Benchmarking LLMs for Production",
+          "url": "https://www.youtube.com/watch?v=0h2hM7iV_fE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/generative_ai_app_developer/genai_eval_safety.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
           "id": "genai_evals",
-          "name": "Evaluation and Regression Tests",
+          "name": "Evaluation Metrics and Continuous Testing",
           "tag": "advanced",
-          "description": "Create golden questions, judge outputs, test hallucination cases, track model changes, and compare prompt versions.",
+          "description": "Develop comprehensive evaluation strategies for LLM applications. Create golden datasets, design automated and human-in-the-loop evaluation pipelines, assess output quality using metrics like faithfulness, relevancy, answer correctness, fluency, and toxicity. Implement regression testing, track model changes, compare prompt versions, and integrate A/B testing for continuous improvement.",
           "resources": [
             {
-              "title": "Ragas Documentation",
+              "title": "Ragas Documentation: Evaluating RAG Pipelines",
               "url": "https://docs.ragas.io/",
               "type": "article"
+            },
+            {
+              "title": "OpenAI Evals Framework",
+              "url": "https://github.com/openai/evals",
+              "type": "article"
+            },
+            {
+              "title": "Evaluating LLMs: A Comprehensive Guide (Weights & Biases)",
+              "url": "https://wandb.ai/site/articles/evaluating-llms",
+              "type": "article"
+            },
+            {
+              "title": "LLM Evaluation & Observability Tutorial",
+              "url": "https://www.youtube.com/watch?v=Jp4RzB19t50",
+              "type": "video"
+            },
+            {
+              "title": "How to Evaluate RAG with LangChain & Ragas",
+              "url": "https://www.youtube.com/watch?v=nC-L003gGbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_evals.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "genai_safety_cost",
-          "name": "Safety, Privacy, and Cost Control",
+          "id": "monitoring_observability",
+          "name": "AI Observability and Performance Monitoring",
           "tag": "advanced",
-          "description": "Handle PII, prompt injection, refusals, abuse, caching, rate limits, token budgets, and audit logs.",
-          "resources": [
-            {
-              "title": "OWASP LLM Top 10",
-              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "genai_deploy_project",
-      "name": "Deployment and Portfolio",
-      "tag": "advanced",
-      "description": "Deploy AI apps with observability, user feedback, secure secrets, model/version tracking, and documentation.",
-      "resources": [
-        {
-          "title": "FastAPI Tutorial",
-          "url": "https://fastapi.tiangolo.com/tutorial/",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "genai_observability",
-          "name": "AI Observability",
-          "tag": "advanced",
-          "description": "Track prompts, outputs, latency, cost, tool errors, retrieval misses, user ratings, and safety incidents.",
+          "description": "Implement robust logging, tracing, and monitoring for Generative AI applications in production. Track key metrics such as prompts, model outputs, token usage, latency, cost, tool errors, retrieval misses, hallucination rates, and user feedback. Establish alerts and dashboards to ensure continuous optimal performance, detect model drift, and identify safety incidents.",
           "resources": [
             {
               "title": "LangSmith Observability",
               "url": "https://docs.smith.langchain.com/observability",
               "type": "article"
+            },
+            {
+              "title": "Arize AI: LLM Observability",
+              "url": "https://www.arize.com/blog/llm-observability-guide",
+              "type": "article"
+            },
+            {
+              "title": "Why LLM Observability Matters (Datadog)",
+              "url": "https://www.datadoghq.com/blog/llm-observability/",
+              "type": "article"
+            },
+            {
+              "title": "Observability for LLM Applications with OpenTelemetry & LangChain",
+              "url": "https://www.youtube.com/watch?v=F0HlT4yq030",
+              "type": "video"
+            },
+            {
+              "title": "LLM Observability and Monitoring - A Comprehensive Guide",
+              "url": "https://www.youtube.com/watch?v=84jS_t1XQ1s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/monitoring_observability.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "genai_safety_cost",
+          "name": "Responsible AI: Safety, Ethics, and Cost Control",
+          "tag": "advanced",
+          "description": "Address critical aspects of responsible AI development including safety, ethical considerations, and cost management. Learn to mitigate risks like prompt injection, adversarial attacks, PII leakage, model refusals, and abuse. Implement content moderation, output filtering, and strategies for managing token budgets, caching, rate limiting, and auditing logs for compliance and transparency.",
+          "resources": [
+            {
+              "title": "OWASP LLM Top 10 Vulnerabilities",
+              "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+              "type": "article"
+            },
+            {
+              "title": "Generative AI Safety (Google DeepMind)",
+              "url": "https://deepmind.google/discover/blog/generative-ai-safety/",
+              "type": "article"
+            },
+            {
+              "title": "Cost Optimization Strategies for LLMs (DataCamp)",
+              "url": "https://www.datacamp.com/blog/cost-optimization-strategies-for-llms",
+              "type": "article"
+            },
+            {
+              "title": "What is Responsible AI? (AI Explainability, Bias, Privacy & Security)",
+              "url": "https://www.youtube.com/watch?v=S8pB4k_l-0I",
+              "type": "video"
+            },
+            {
+              "title": "What is AI Ethics? Bias, Fairness, Privacy, and Explainable AI",
+              "url": "https://www.youtube.com/watch?v=uK4zBpwY6l0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_safety_cost.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_privacy_security",
+          "name": "Data Privacy and Security in LLM Applications",
+          "tag": "advanced",
+          "description": "Implement best practices for securing data in LLM workflows. This includes data anonymization, encryption at rest and in transit, access control mechanisms, secure storage for sensitive data (e.g., vector databases), compliance with regulations (GDPR, HIPAA, CCPA), and strategies for handling proprietary or confidential information within RAG systems.",
+          "resources": [
+            {
+              "title": "Secure LLM Deployment Best Practices (Wallarm)",
+              "url": "https://www.wallarm.com/what/llm-security-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "Building Secure GenAI Applications with Amazon Bedrock (AWS)",
+              "url": "https://aws.amazon.com/blogs/security/building-secure-generative-ai-applications-with-amazon-bedrock/",
+              "type": "article"
+            },
+            {
+              "title": "Secure and Compliant Generative AI Applications",
+              "url": "https://www.youtube.com/watch?v=kYJmR_WqQ5M",
+              "type": "video"
+            },
+            {
+              "title": "Securing your Generative AI models from data breaches",
+              "url": "https://www.youtube.com/watch?v=kS7j3kR12y4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/data_privacy_security.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "genai_deploy_project",
+      "name": "Production Deployment and Scaling of AI Applications",
+      "tag": "advanced",
+      "description": "Prepare Generative AI applications for production. This module covers deploying scalable infrastructure, implementing CI/CD pipelines, managing model versions, ensuring security for secrets, collecting user feedback, and documenting the entire application lifecycle for maintainability and collaboration.",
+      "resources": [
+        {
+          "title": "FastAPI Tutorial: Deploying a Web Application",
+          "url": "https://fastapi.tiangolo.com/tutorial/",
+          "type": "article"
+        },
+        {
+          "title": "MLOps Fundamentals (Coursera)",
+          "url": "https://www.coursera.org/learn/mlops-fundamentals",
+          "type": "course"
+        },
+        {
+          "title": "MLOps Full Course for Beginners",
+          "url": "https://www.youtube.com/watch?v=F_R6f-mYx74",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/generative_ai_app_developer/genai_deploy_project.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "deployment_infrastructure",
+          "name": "Cloud Deployment, Containerization, and MLOps",
+          "tag": "advanced",
+          "description": "Master the deployment of GenAI applications to cloud environments (e.g., AWS, Azure, Google Cloud). Learn containerization with Docker, orchestration with Kubernetes, and serverless deployment options. Implement MLOps principles for automated build, test, and deployment pipelines, model versioning, artifact management, and infrastructure as code.",
+          "resources": [
+            {
+              "title": "Docker Get Started Guide",
+              "url": "https://docs.docker.com/get-started/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Basics",
+              "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+              "type": "article"
+            },
+            {
+              "title": "AWS SageMaker for LLMs",
+              "url": "https://aws.amazon.com/sagemaker/llm/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Tutorial for Beginners [FULL COURSE]",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJfo8",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Tutorial for Beginners [FULL COURSE]",
+              "url": "https://www.youtube.com/watch?v=X48VuFYp0cs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/deployment_infrastructure.md",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "genai_project_knowledge_assistant",
-          "name": "Project: Knowledge Assistant",
+          "name": "Capstone Project: Production-Ready Knowledge Assistant",
           "tag": "advanced",
-          "description": "Build a RAG assistant with upload, citations, tool calls, eval set, safety checks, usage dashboard, and deployment notes.",
+          "description": "Apply all learned concepts to build a comprehensive, production-grade RAG-based knowledge assistant. This project will involve document ingestion, advanced retrieval with citations, tool calling capabilities, an integrated evaluation dataset, robust safety checks, a user-facing dashboard for usage analytics and feedback, and detailed deployment notes for scaling and maintenance.",
           "resources": [
             {
-              "title": "Chroma Documentation",
+              "title": "Chroma Vector Database Documentation",
               "url": "https://docs.trychroma.com/",
               "type": "article"
+            },
+            {
+              "title": "Streamlit Documentation (for front-end)",
+              "url": "https://docs.streamlit.io/",
+              "type": "article"
+            },
+            {
+              "title": "Building a Full-Stack LLM App (Next.js, LangChain)",
+              "url": "https://www.youtube.com/watch?v=kYv_J5Uv4d8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/generative_ai_app_developer/genai_project_knowledge_assistant.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

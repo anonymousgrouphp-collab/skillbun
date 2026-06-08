@@ -5,10 +5,10 @@
   "format": "tree",
   "tree": [
     {
-      "id": "unity_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "unity_fundamentals",
+      "name": "Unity & C# Fundamentals",
       "tag": "essential",
-      "description": "Understand what Unity Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Master the foundational C# programming concepts and Unity Editor workflow essential for game development, laying the groundwork for creating interactive experiences.",
       "resources": [
         {
           "title": "Unity Game Development Full Course in Hindi/Urdu (Nafay 3D)",
@@ -16,47 +16,150 @@
           "type": "video"
         },
         {
-          "title": "Unity Learn",
+          "title": "Unity Learn: Get Started with Unity",
           "url": "https://unity.com/learn/beginner-tutorials",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "unity_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "csharp_programming_essentials",
+          "name": "C# Programming Essentials for Unity",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Learn core C# syntax including data types, variables, operators, control flow, functions, basic data structures (arrays, lists, dictionaries), delegates, and events, as directly applied in Unity scripting.",
           "resources": [
             {
-              "title": "Unity Documentation",
-              "url": "https://docs.unity.com/en-us",
+              "title": "C# Programming Basics - Unity Learn",
+              "url": "https://learn.unity.com/course/csharp-programming-fundamentals",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to C# in Unity - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/ScriptingOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "C# Introduction - Microsoft Docs",
+              "url": "https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unity_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "csharp_oop_principles",
+          "name": "Object-Oriented Programming (OOP) in C#",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Understand core OOP concepts: classes, objects, inheritance, polymorphism, encapsulation, abstraction, interfaces, and abstract classes, and effectively apply them in Unity game architecture and component design.",
           "resources": [
             {
-              "title": "Unity Manual",
-              "url": "https://docs.unity3d.com/Manual/index.html",
+              "title": "Object-Oriented Programming (OOP) - Unity Learn",
+              "url": "https://learn.unity.com/course/object-oriented-programming-oop",
+              "type": "course"
+            },
+            {
+              "title": "OOP in C# Tutorial - Mosh Hamedani",
+              "url": "https://www.youtube.com/watch?v=wfYx0W7N-vM",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_editor_interface",
+          "name": "Unity Editor Interface & Workflow",
+          "tag": "essential",
+          "description": "Navigate the Unity Editor, understand its key windows (Scene, Game, Inspector, Project, Hierarchy), manage project settings, asset import pipelines, and establish an efficient scene setup workflow.",
+          "resources": [
+            {
+              "title": "Unity Editor Interface Overview - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/UnityOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Basics - The Editor - Brackeys",
+              "url": "https://www.youtube.com/watch?v=gB1F2D6d4qg",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_gameobjects_components",
+          "name": "GameObjects, Components & Prefabs",
+          "tag": "essential",
+          "description": "Understand the GameObject-Component architecture, how to add/remove components, and create reusable Prefabs for efficient scene management, modularity, and rapid prototyping.",
+          "resources": [
+            {
+              "title": "GameObjects & Components - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/GameObjects.html",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Prefabs - Unity Learn",
+              "url": "https://learn.unity.com/tutorial/introduction-to-prefabs",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "unity_transforms_coordinates",
+          "name": "Transforms & Coordinate Systems",
+          "tag": "essential",
+          "description": "Master position, rotation, and scale of GameObjects. Understand local versus world space, pivot points, and the role of parent-child hierarchies in spatial relationships.",
+          "resources": [
+            {
+              "title": "Transforms - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/Transforms.html",
+              "type": "article"
+            },
+            {
+              "title": "World vs Local Space in Unity - Tarodev",
+              "url": "https://www.youtube.com/watch?v=n5Fm9F5K-2U",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_scripting_essentials",
+          "name": "Scripting Essentials & MonoBehaviour Lifecycle",
+          "tag": "essential",
+          "description": "Write basic Unity scripts, understand the MonoBehaviour lifecycle (Awake, Start, Update, FixedUpdate, LateUpdate, OnEnable, OnDisable), and handle events and interactions.",
+          "resources": [
+            {
+              "title": "Introduction to Scripting - Unity Learn",
+              "url": "https://learn.unity.com/course/introduction-to-scripting",
+              "type": "course"
+            },
+            {
+              "title": "Order of execution for event functions - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/ExecutionOrder.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "unity_version_control",
+          "name": "Version Control for Game Development",
+          "tag": "essential",
+          "description": "Set up Git for Unity projects, understand `.gitignore` for Unity, use Git LFS for large binary assets, and apply basic branching and merging strategies for collaborative development.",
+          "resources": [
+            {
+              "title": "Version control with Git and Unity - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/SmartMerge.html",
+              "type": "article"
+            },
+            {
+              "title": "Git Large File Storage (LFS)",
+              "url": "https://git-lfs.github.com/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unity_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "unity_core_game_systems",
+      "name": "Core Game Systems Development",
       "tag": "essential",
-      "description": "Build the practical skill stack for Unity Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Develop fundamental game mechanics using Unity's built-in systems for input, physics, UI, animation, audio, cameras, and basic rendering, forming the core of any interactive experience.",
       "resources": [
         {
           "title": "The Unity Tutorial For Complete Beginners (Game Maker's Toolkit)",
@@ -64,55 +167,235 @@
           "type": "video"
         },
         {
-          "title": "Unity Documentation",
-          "url": "https://docs.unity.com/en-us",
+          "title": "Unity User Manual",
+          "url": "https://docs.unity3d.com/Manual/index.html",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unity_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "unity_input_management",
+          "name": "Input Management",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Implement player input using both the Legacy Input Manager and the modern Input System package for various devices (keyboard, mouse, gamepad, touch) and robust action maps.",
           "resources": [
             {
-              "title": "Unity Learn",
-              "url": "https://unity.com/learn/beginner-tutorials",
-              "type": "course"
+              "title": "Input Manager - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/class-InputManager.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Input System Tutorial - Brackeys",
+              "url": "https://www.youtube.com/watch?v=mD0Vj2_9WnQ",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unity_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "unity_physics_collisions",
+          "name": "Physics & Collisions",
+          "tag": "essential",
+          "description": "Work with Rigidbodies, Colliders (2D & 3D), Physics Materials, Joints, Raycasting, and understand collision detection and triggers for realistic and engaging interactions.",
           "resources": [
             {
-              "title": "Unity Manual",
-              "url": "https://docs.unity3d.com/Manual/index.html",
+              "title": "Physics overview - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/PhysicsOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity 2D Physics Tutorial - Learn how to use Rigidbody2D, Colliders, & Joints",
+              "url": "https://www.youtube.com/watch?v=1F_45pYxG8Q",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_ui_ux_development",
+          "name": "UI/UX Development with Canvas",
+          "tag": "essential",
+          "description": "Design and implement user interfaces using Unity's UI Canvas system, rect transforms, fundamental UI elements (buttons, sliders, text, images), and responsive layouts for various screen sizes.",
+          "resources": [
+            {
+              "title": "Unity UI - Unity Learn",
+              "url": "https://learn.unity.com/course/unity-ui",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to the Canvas - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/Canvas.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unity_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "id": "unity_canvas_events_event_system",
+          "name": "UI Event System & Interactions",
+          "tag": "essential",
+          "description": "Understand how the Event System works, handle UI events (clicks, drags, hovers, selections), implement custom UI components, and effectively integrate UI with underlying game logic.",
+          "resources": [
+            {
+              "title": "Unity UI Event System - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/script-EventSystem.html",
+              "type": "article"
+            },
+            {
+              "title": "Creating UI in Unity - In-depth Tutorial - Mix and Jam",
+              "url": "https://www.youtube.com/watch?v=t5Jv17P-zI4",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_animation_vfx",
+          "name": "Animation & Visual Effects",
+          "tag": "essential",
+          "description": "Create character animations with the Animator and Mecanim (states, transitions, blend trees), implement keyframe animations, and use Particle Systems for dynamic visual effects.",
+          "resources": [
+            {
+              "title": "Animation in Unity - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/AnimationSection.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Particle System Tutorial - Brackeys",
+              "url": "https://www.youtube.com/watch?v=fbxO2p_0k_Y",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_timeline_cinematics",
+          "name": "Unity Timeline & Cinematics",
+          "tag": "essential",
+          "description": "Orchestrate sequences, cutscenes, and complex animations using Unity Timeline for dynamic storytelling, event sequencing, and non-linear animation control.",
+          "resources": [
+            {
+              "title": "Timeline - Unity Docs",
+              "url": "https://docs.unity3d.com/Packages/com.unity.timeline@latest/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Timeline Tutorial for Beginners - Indie-Pixel",
+              "url": "https://www.youtube.com/watch?v=Jm1nFf5k7cM",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_audio_integration",
+          "name": "Audio Integration",
+          "tag": "essential",
+          "description": "Integrate sound effects and background music using Audio Sources, Audio Listeners, Audio Mixers, and understand spatial audio for immersive and dynamic soundscapes.",
+          "resources": [
+            {
+              "title": "Audio - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/Audio.html",
+              "type": "article"
+            },
+            {
+              "title": "How to add sound in Unity (SFX and Music)",
+              "url": "https://www.youtube.com/watch?v=t5Jv17P-zI4",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_cameras_projections",
+          "name": "Cameras & Projections",
+          "tag": "essential",
+          "description": "Master different camera types, culling masks, viewports, orthographic vs. perspective projections, and camera effects for defining the player's perspective and rendering views.",
+          "resources": [
+            {
+              "title": "Cameras - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/CamerasOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Cameras in Unity - Games by Pascal",
+              "url": "https://www.youtube.com/watch?v=Xh0y8Rj5Q-M",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_lighting_rendering_basics",
+          "name": "Lighting & Basic Rendering",
+          "tag": "essential",
+          "description": "Understand basic lighting concepts (directional, point, spot lights), light modes (realtime, baked, mixed), shadows, materials, textures, and essential rendering settings to create visually appealing scenes.",
+          "resources": [
+            {
+              "title": "Lighting in Unity - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/LightingOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Materials, Shaders & Textures - Unity Learn",
+              "url": "https://learn.unity.com/tutorial/materials-shaders-textures",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "unity_scriptable_objects_data_management",
+          "name": "Scriptable Objects for Data Management",
+          "tag": "essential",
+          "description": "Utilize Scriptable Objects to store and manage game data, configurations, and settings independently of scenes and GameObjects, promoting modularity, reusability, and easier iteration.",
+          "resources": [
+            {
+              "title": "Scriptable Objects - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/class-ScriptableObject.html",
+              "type": "article"
+            },
+            {
+              "title": "The Power of Scriptable Objects in Unity - GDC",
+              "url": "https://www.youtube.com/watch?v=VlXj6dYy3cE",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_scene_persistence",
+          "name": "Scene Management & Data Persistence",
+          "tag": "essential",
+          "description": "Manage multiple scenes, load/unload scenes additively, and implement saving/loading game data using various persistence strategies (PlayerPrefs, JSON, Binary, custom solutions) for continuous gameplay.",
+          "resources": [
+            {
+              "title": "Scene Management - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/SceneManagement.html",
+              "type": "article"
+            },
+            {
+              "title": "How to Save & Load Game Data in Unity - Brackeys",
+              "url": "https://www.youtube.com/watch?v=nt_yQ9QzE_g",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_asset_management",
+          "name": "Asset Management & Organization",
+          "tag": "essential",
+          "description": "Import and manage various asset types (models, textures, audio, animations), optimize asset settings, and understand asset bundles and the Addressables system for efficient content delivery.",
+          "resources": [
+            {
+              "title": "Asset management - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/AssetWorkflow.html",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Addressables - Unity Learn",
+              "url": "https://learn.unity.com/tutorial/introduction-to-addressables",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unity_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
+      "id": "unity_advanced_game_dev_production",
+      "name": "Advanced Game Development & Production",
       "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "description": "Dive into performance optimization, advanced scripting architectures, AI, editor tooling, multiplayer networking, advanced rendering, robust testing, and preparing Unity projects for industry-standard deployment and live operations.",
       "resources": [
         {
           "title": "FREE GAME DEVELOPMENT (Full Course) | Beginner to Advance - Unity 3D (BUSINESS IDEA) (Azad Chaiwala)",
@@ -120,92 +403,316 @@
           "type": "video"
         },
         {
-          "title": "Unity Manual",
-          "url": "https://docs.unity3d.com/Manual/index.html",
+          "title": "Unity Best Practices Guide",
+          "url": "https://docs.unity3d.com/Manual/BestPracticeGuides.html",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unity_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
+          "id": "unity_performance_optimization_profiling",
+          "name": "Performance Optimization & Profiling",
           "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "description": "Identify and resolve performance bottlenecks using the Unity Profiler, Frame Debugger, and deep optimization techniques for scripts, graphics (batching, culling, GPU instancing), memory management (object pooling), and physics settings.",
           "resources": [
             {
-              "title": "Unity Documentation",
-              "url": "https://docs.unity.com/en-us",
+              "title": "Optimizing performance - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html",
               "type": "article"
+            },
+            {
+              "title": "Unity Profiler - Unity Learn",
+              "url": "https://learn.unity.com/tutorial/unity-profiler-getting-started",
+              "type": "course"
+            },
+            {
+              "title": "Object Pooling in Unity - Brackeys",
+              "url": "https://www.youtube.com/watch?v=tdmE_9-P-oQ",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "unity_developer_team_delivery",
-          "name": "Team Delivery Workflow",
+          "id": "unity_advanced_scripting_design_patterns",
+          "name": "Advanced Scripting & Design Patterns",
           "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "description": "Implement common game design patterns (e.g., Singleton, Observer, State Machine, Command, Service Locator, Factory) to create robust, maintainable, and scalable game architectures, promoting code reusability and flexibility.",
           "resources": [
             {
-              "title": "Unity Learn",
-              "url": "https://unity.com/learn/beginner-tutorials",
+              "title": "Game Programming Patterns",
+              "url": "https://gameprogrammingpatterns.com/contents.html",
+              "type": "article"
+            },
+            {
+              "title": "SOLID Principles in C# - Derek Banas",
+              "url": "https://www.youtube.com/watch?v=L2tP1k-E7f0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_advanced_csharp_features",
+          "name": "Advanced C# Features",
+          "tag": "advanced",
+          "description": "Leverage advanced C# features such as LINQ, generics, extension methods, asynchronous programming (async/await), and custom attributes for more expressive, efficient, and modern C# code in Unity.",
+          "resources": [
+            {
+              "title": "Asynchronous programming with async and await - Microsoft Docs",
+              "url": "https://docs.microsoft.com/en-us/dotnet/csharp/async/",
+              "type": "article"
+            },
+            {
+              "title": "LINQ (Language Integrated Query) - Microsoft Docs",
+              "url": "https://docs.microsoft.com/en-us/dotnet/csharp/linq/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_ai_pathfinding",
+          "name": "AI & Pathfinding",
+          "tag": "advanced",
+          "description": "Implement AI behaviors using finite state machines (FSMs), behavior trees, navigation meshes (NavMesh), obstacle avoidance, and basic AI agents for believable non-player characters and game challenges.",
+          "resources": [
+            {
+              "title": "AI Navigation (NavMesh) - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/nav-BuildingARuntimeNavMesh.html",
+              "type": "article"
+            },
+            {
+              "title": "Behavior Trees for AI - Unity Learn",
+              "url": "https://learn.unity.com/tutorial/creating-a-behavior-tree-for-ai",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "unity_editor_tool_development",
+          "name": "Editor Scripting & Tool Development",
+          "tag": "advanced",
+          "description": "Extend Unity Editor functionality with custom inspectors, editor windows, property drawers, and other tools to streamline workflows, automate tasks, and improve productivity for game development.",
+          "resources": [
+            {
+              "title": "Extending the Editor - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/ExtendingTheEditor.html",
+              "type": "article"
+            },
+            {
+              "title": "Editor Scripting in Unity - Catlike Coding",
+              "url": "https://catlikecoding.com/unity/tutorials/editor-extensions/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_multiplayer_networking",
+          "name": "Multiplayer & Networking (Optional)",
+          "tag": "advanced",
+          "description": "Explore concepts of client-server architecture, authoritative servers, state synchronization, and use Unity's Netcode for GameObjects or third-party solutions (PUN, Mirror) for robust multiplayer functionality.",
+          "resources": [
+            {
+              "title": "Netcode for GameObjects - Unity Docs",
+              "url": "https://docs-multiplayer.unity3d.com/netcode/current/about/",
+              "type": "article"
+            },
+            {
+              "title": "Photon Unity Networking (PUN) Documentation",
+              "url": "https://doc.photonengine.com/pun/current/getting-started/pun-intro",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_rendering_pipelines_shaders",
+          "name": "Rendering Pipelines & Shader Programming (Optional)",
+          "tag": "advanced",
+          "description": "Understand the High Definition Render Pipeline (HDRP) and Universal Render Pipeline (URP), Physically Based Rendering (PBR) workflows, and learn basic shader programming with Shader Graph or HLSL for custom visual effects.",
+          "resources": [
+            {
+              "title": "Universal Render Pipeline (URP) - Unity Docs",
+              "url": "https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Shader Graph - Unity Learn",
+              "url": "https://learn.unity.com/course/shader-graph-basics",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to PBR - Unity Blog",
+              "url": "https://unity.com/how-to/pbr-basics-game-development",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_testing_debugging",
+          "name": "Testing & Debugging",
+          "tag": "advanced",
+          "description": "Implement Unit Tests, Play Mode Tests, and Integration Tests to ensure code quality and game logic correctness, and master advanced debugging techniques in Unity and Visual Studio.",
+          "resources": [
+            {
+              "title": "Testing in Unity - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/testing-editortestsrunner.html",
+              "type": "article"
+            },
+            {
+              "title": "Debugging C# code in Unity - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/ManagedCodeDebugging.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_build_deployment_distribution",
+          "name": "Build, Deployment & Distribution",
+          "tag": "advanced",
+          "description": "Configure build settings for various platforms (PC, mobile, console, WebGL), optimize build size, implement CI/CD for automated builds, and understand distribution platforms (Steam, App Stores).",
+          "resources": [
+            {
+              "title": "Building a player - Unity Manual",
+              "url": "https://docs.unity3d.com/Manual/BuildingACustomPlayer.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Mobile Development - Unity Learn",
+              "url": "https://learn.unity.com/course/mobile-development-with-unity",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "unity_liveops_analytics_monetization",
+          "name": "Live Operations, Analytics & Monetization",
+          "tag": "advanced",
+          "description": "Integrate Unity Analytics to gather player data, implement Remote Config for dynamic game content, A/B testing, and understand strategies for post-launch updates, monetization (in-app purchases, ads), and community management.",
+          "resources": [
+            {
+              "title": "Unity Analytics - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/UnityAnalyticsOverview.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Remote Config - Unity Docs",
+              "url": "https://docs.unity3d.com/Packages/com.unity.remote-config@latest/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Unity Ads and In-App Purchasing - Unity Learn",
+              "url": "https://learn.unity.com/course/unity-monetization-essentials",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "unity_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "unity_portfolio_career",
+      "name": "Portfolio & Career Readiness",
       "tag": "advanced",
-      "description": "Turn your Unity Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Translate your Unity development skills into a strong portfolio, create compelling case studies, and prepare for interviews to land a Unity Developer role.",
       "resources": [
         {
-          "title": "Unity Learn",
-          "url": "https://unity.com/learn/beginner-tutorials",
+          "title": "Unity Learn: Prepare for a Career in Games",
+          "url": "https://unity.com/learn/pathway/career-pathways/prepare-for-a-career-in-games",
           "type": "course"
         },
         {
-          "title": "Unity Documentation",
-          "url": "https://docs.unity.com/en-us",
-          "type": "article"
-        },
-        {
-          "title": "Unity Manual",
-          "url": "https://docs.unity3d.com/Manual/index.html",
+          "title": "How to create a game development portfolio - Gamedev.net",
+          "url": "https://www.gamedev.net/articles/business/how-to-create-a-game-development-portfolio-r4836/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "unity_developer_case_study",
-          "name": "Case Study Writing",
+          "id": "unity_project_planning_docs",
+          "name": "Project Planning & Documentation",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Learn to create Game Design Documents (GDDs), technical design specifications, production roadmaps, and project management plans essential for organized game development.",
           "resources": [
             {
-              "title": "Unity Learn",
-              "url": "https://unity.com/learn/beginner-tutorials",
-              "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "unity_developer_project_capstone",
-          "name": "Project: Unity Developer Portfolio Capstone",
-          "tag": "advanced",
-          "description": "Build a portfolio-grade Unity Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
-          "resources": [
+              "title": "Writing a Game Design Document - Gamasutra",
+              "url": "https://www.gamasutra.com/view/feature/130101/how_to_write_a_great_design_.php",
+              "type": "article"
+            },
             {
-              "title": "Unity Manual",
-              "url": "https://docs.unity3d.com/Manual/index.html",
+              "title": "Game Design Document Template - Toptal",
+              "url": "https://www.toptal.com/game/game-design-document-template",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "unity_portfolio_project_development",
+          "name": "Portfolio Project Development",
+          "tag": "advanced",
+          "description": "Conceptualize, plan, and execute polished Unity projects that specifically showcase your core skills and specific interests (e.g., a mini-game, an interactive experience, a tool, a tech demo).",
+          "resources": [
+            {
+              "title": "Build Your First Game - Unity Learn",
+              "url": "https://learn.unity.com/project/create-your-first-game",
+              "type": "course"
+            },
+            {
+              "title": "Unity Capstone Project - Unity Learn",
+              "url": "https://learn.unity.com/project/create-your-first-game-project-capstone",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "unity_collaboration_teamwork",
+          "name": "Collaboration & Teamwork in Game Dev",
+          "tag": "advanced",
+          "description": "Understand collaborative development workflows using Git, Unity Teams/Cloud, Agile methodologies (Scrum/Kanban), and effective communication strategies within a game development team.",
+          "resources": [
+            {
+              "title": "Unity Teams Advanced - Unity Docs",
+              "url": "https://docs.unity3d.com/Manual/UnityTeams.html",
+              "type": "article"
+            },
+            {
+              "title": "Agile Development for Games - Gamasutra",
+              "url": "https://www.gamasutra.com/view/feature/130644/agile_development_for_games.php",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "unity_case_study_demo_reel",
+          "name": "Case Study & Demo Reel Creation",
+          "tag": "advanced",
+          "description": "Develop concise case studies for your projects, highlighting problem, solution, technologies used, challenges, and outcomes. Create a compelling demo reel to visually showcase your best work to potential employers.",
+          "resources": [
+            {
+              "title": "How to make a great portfolio for game development",
+              "url": "https://www.gamedesigning.org/gaming/portfolios/",
+              "type": "article"
+            },
+            {
+              "title": "Creating a Game Dev Demo Reel - The Gamedev Lawyer",
+              "url": "https://www.youtube.com/watch?v=R9j0c2v2sXk",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "unity_interview_job_search_prep",
+          "name": "Interview Preparation & Job Search",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews, coding challenges, and behavioral questions specific to Unity Developer roles. Understand the game industry job market, networking strategies, and resume/CV optimization.",
+          "resources": [
+            {
+              "title": "Game Development Interview Questions - Unity Forum",
+              "url": "https://forum.unity.com/threads/game-developer-interview-questions.464654/",
+              "type": "article"
+            },
+            {
+              "title": "Guide to Getting a Job in Games - Gamasutra",
+              "url": "https://www.gamasutra.com/view/feature/130664/the_guide_to_getting_a_job_in_.php",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

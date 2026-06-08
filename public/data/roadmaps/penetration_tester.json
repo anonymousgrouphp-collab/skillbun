@@ -1,196 +1,684 @@
 {
   "id": "penetration_tester",
   "title": "Penetration Tester",
-  "description": "A roadmap for ethical hacking and penetration testing with networking, Linux, web security, recon, exploitation, reporting, and legal boundaries.",
+  "description": "A comprehensive and in-depth roadmap for aspiring Penetration Testers, covering foundational cybersecurity, networking, and scripting, through advanced web, network, infrastructure, and mobile penetration testing, culminating in professional reporting and career development.",
   "format": "tree",
   "tree": [
     {
-      "id": "pentest_foundations",
-      "name": "Ethical Hacking Foundations",
+      "id": "foundational_cyber_pentesting",
+      "name": "Foundational Cybersecurity & Pentesting Basics",
       "tag": "essential",
-      "description": "Learn networking, Linux, scripting, web basics, vulnerability classes, legal scope, and responsible disclosure.",
+      "description": "Master the absolute core concepts of cybersecurity, networking, operating systems, and scripting. Understand ethical hacking principles, methodologies, and legal boundaries, forming the bedrock for advanced penetration testing.",
       "resources": [
         {
-          "title": "Web App Penetration Testing Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=2_lswM1S264",
+          "title": "CompTIA Network+ Certification Course (Professor Messer)",
+          "url": "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-comptia-network-plus-course/",
           "type": "video"
         },
         {
-          "title": "Hands-On Cybersecurity and Ethical Hacking (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=ug8W0sFiVJo",
+          "title": "Linux Command Line Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=R3f1m2f3KGY",
           "type": "video"
         },
         {
-          "title": "OWASP Web Security Testing Guide",
-          "url": "https://owasp.org/www-project-web-security-testing-guide/",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "pentest_network_linux",
-          "name": "Networking, Linux, and Scripting",
-          "tag": "essential",
-          "description": "Use TCP/IP, DNS, HTTP, Bash, Python, Kali tools, permissions, services, and safe lab environments.",
-          "resources": [
-            {
-              "title": "Kali Linux Documentation",
-              "url": "https://www.kali.org/docs/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "pentest_scope_ethics",
-          "name": "Scope, Ethics, and Methodology",
-          "tag": "essential",
-          "description": "Define rules of engagement, test windows, prohibited actions, evidence handling, and reporting expectations.",
-          "resources": [
-            {
-              "title": "PTES Technical Guidelines",
-              "url": "http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "pentest_web_app",
-      "name": "Web Application Testing",
-      "tag": "essential",
-      "description": "Test web apps for auth, access control, injection, XSS, SSRF, file upload, business logic, and API flaws.",
-      "resources": [
-        {
-          "title": "PortSwigger Web Security Academy",
-          "url": "https://portswigger.net/web-security",
+          "title": "Python for Everybody Specialization (Coursera/University of Michigan)",
+          "url": "https://www.coursera.org/specializations/python",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "pentest_burp_owasp",
-          "name": "Burp Suite and OWASP Top 10",
+          "id": "core_cybersecurity_concepts",
+          "name": "Core Cybersecurity Concepts",
           "tag": "essential",
-          "description": "Use proxying, repeater, intruder basics, request manipulation, auth testing, and vulnerability verification.",
+          "description": "Grasp fundamental cybersecurity principles: CIA triad, risk management, threat modeling, common attack types (malware, phishing), defense in depth. Understand different security roles and basic security controls.",
           "resources": [
             {
-              "title": "PortSwigger Web Security Academy",
-              "url": "https://portswigger.net/web-security",
-              "type": "article"
+              "title": "CompTIA Security+ Certification Guide",
+              "url": "https://www.comptia.org/certifications/security",
+              "type": "course"
+            },
+            {
+              "title": "Introduction to Cybersecurity (Coursera - NYU)",
+              "url": "https://www.coursera.org/learn/introduction-to-cybersecurity-fundamentals",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "pentest_api_testing",
-          "name": "API Penetration Testing",
-          "tag": "advanced",
-          "description": "Test REST/GraphQL APIs for broken auth, object-level access control, mass assignment, rate limits, and injection.",
+          "id": "network_os_internals",
+          "name": "Networking & OS Internals",
+          "tag": "essential",
+          "description": "Deep dive into TCP/IP stack, OSI model, common network protocols (HTTP, DNS, SSH, SMB, FTP, SMTP, ICMP) and their vulnerabilities. Gain advanced proficiency in Linux command line, file systems, permissions, processes, and service management. Understand Windows architecture, Active Directory (users, groups, GPOs, trusts), NTFS permissions, and common services.",
           "resources": [
             {
-              "title": "OWASP API Security Top 10",
-              "url": "https://owasp.org/API-Security/",
-              "type": "article"
+              "title": "Networking Fundamentals (Cybrary)",
+              "url": "https://www.cybrary.it/course/network-fundamentals",
+              "type": "course"
+            },
+            {
+              "title": "Practical Linux Security Course",
+              "url": "https://www.youtube.com/watch?v=R3f1m2f3KGY",
+              "type": "video"
+            },
+            {
+              "title": "Active Directory & GPO Fundamentals",
+              "url": "https://www.youtube.com/playlist?list=PLpM5C9JqWq5L7w186vLq_V93eX2_m6Q9p",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "penetration_tester_practice_lab",
-          "name": "Practice: Web Finding Writeup",
-          "tag": "advanced",
-          "description": "Exploit a legal lab bug, capture evidence, rate risk, and write remediation steps.",
-          "resources": [],
-          "children": []
+          "id": "scripting_automation_security",
+          "name": "Scripting & Automation for Security",
+          "tag": "essential",
+          "description": "Learn Bash for shell automation, reconnaissance scripting, and task orchestration. Master Python for network programming, data parsing, developing custom tools, interacting with APIs, and automating exploitation routines. Explore basic PowerShell for Windows automation.",
+          "resources": [
+            {
+              "title": "Bash Scripting for Pentesters (HackerSploit)",
+              "url": "https://www.youtube.com/playlist?list=PLBf0hzazHTG8h6Qo2_x_t7R2f_o8E6z7Y",
+              "type": "video"
+            },
+            {
+              "title": "Black Hat Python: Python Programming for Hackers and Pentesters",
+              "url": "https://www.amazon.com/Black-Hat-Python-Programming-Pentesters/dp/1593275900",
+              "type": "article"
+            },
+            {
+              "title": "PowerShell for Pentesters (Corey House)",
+              "url": "https://www.youtube.com/playlist?list=PLNmgFz2i_Vv8tQ5XjT51w6b02Jj4W4e1",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "web_api_fundamentals",
+          "name": "Web & API Technology Fundamentals",
+          "tag": "essential",
+          "description": "Understand the fundamental architecture of web applications: HTTP/HTTPS protocols, request/response cycles, common web servers (Apache, Nginx, IIS), databases (SQL, NoSQL basics), client-side vs. server-side processing, and the basics of RESTful APIs, JSON, and XML.",
+          "resources": [
+            {
+              "title": "How the Internet Works: A Practical Guide",
+              "url": "https://web.dev/how-the-web-works/",
+              "type": "article"
+            },
+            {
+              "title": "REST API Concepts and Examples",
+              "url": "https://www.restapitutorial.com/",
+              "type": "article"
+            },
+            {
+              "title": "Learn SQL Basics (SQLBolt)",
+              "url": "https://sqlbolt.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "pentest_ethics_methodologies",
+          "name": "Ethical Hacking Methodologies & Ethics",
+          "tag": "essential",
+          "description": "Learn the standardized phases of penetration testing (reconnaissance, scanning, enumeration, vulnerability analysis, exploitation, post-exploitation, reporting, remediation). Understand rules of engagement, legal considerations (e.g., local laws, GDPR, HIPAA), responsible disclosure, and ethical conduct. Familiarize yourself with industry standards like PTES, OWASP, NIST SP 800-115.",
+          "resources": [
+            {
+              "title": "PTES Technical Guidelines",
+              "url": "http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Web Security Testing Guide (WSTG)",
+              "url": "https://owasp.org/www-project-web-security-testing-guide/",
+              "type": "article"
+            },
+            {
+              "title": "NIST SP 800-115: Technical Guide to Information Security Testing and Assessment",
+              "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "hacking_lab_tools_setup",
+          "name": "Setting Up Your Hacking Lab & Basic Tools",
+          "tag": "essential",
+          "description": "Set up virtualized environments (VMware Workstation/Player, VirtualBox, KVM) with attacker machines (Kali Linux, Parrot OS) and deliberately vulnerable targets (Metasploitable, OWASP Juice Shop, VulnHub VMs). Learn to use fundamental tools like Wireshark for network analysis, Nmap for basic to advanced scanning, Netcat for network debugging, and basic Metasploit console usage.",
+          "resources": [
+            {
+              "title": "Kali Linux Documentation",
+              "url": "https://www.kali.org/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Building Your Home Lab for Pentesting (Cybermentor)",
+              "url": "https://www.youtube.com/playlist?list=PLBf0hzazHTG-6N6_6y9-2mB1JzB_m7z7n",
+              "type": "video"
+            },
+            {
+              "title": "Wireshark 101: Essential Skills for Network Analysis",
+              "url": "https://www.amazon.com/Wireshark-101-Essential-Skills-Network/dp/0321743621",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "pentest_infra",
-      "name": "Network and Infrastructure Testing",
-      "tag": "advanced",
-      "description": "Perform recon, scanning, enumeration, password testing, exploit validation, privilege escalation, and pivoting in labs.",
+      "id": "web_application_pentesting",
+      "name": "Web Application Penetration Testing",
+      "tag": "essential",
+      "description": "Specialize in identifying, exploiting, and mitigating vulnerabilities in modern web applications, covering common attack vectors, advanced techniques, and API security. This module emphasizes practical, hands-on testing.",
       "resources": [
         {
-          "title": "Network Penetration Testing Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+          "title": "PortSwigger Web Security Academy",
+          "url": "https://portswigger.net/web-security",
+          "type": "course"
+        },
+        {
+          "title": "Bug Bounty Hunter's Methodology (STOK)",
+          "url": "https://www.youtube.com/playlist?list=PLKAaETN5xH8d3T64d_qK5e7zT826l8Wz9",
           "type": "video"
         }
       ],
       "children": [
         {
-          "id": "pentest_recon_enum",
-          "name": "Recon and Enumeration",
-          "tag": "advanced",
-          "description": "Use Nmap, DNS tools, service banners, directories, SMB/SSH/HTTP enumeration, and attack surface notes.",
+          "id": "owasp_top10_web_vulnerabilities",
+          "name": "OWASP Top 10 & Common Web Vulnerabilities",
+          "tag": "essential",
+          "description": "Understand the most critical web application security risks as defined by OWASP Top 10. Learn about common vulnerability types (e.g., Injection, Broken Authentication, XSS, CSRF, Security Misconfiguration, Insecure Deserialization), their impact, and basic exploitation techniques.",
           "resources": [
             {
-              "title": "Nmap Reference Guide",
-              "url": "https://nmap.org/book/man.html",
+              "title": "OWASP Top 10 - 2021 (Official)",
+              "url": "https://owasp.org/www-project-top-ten/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "pentest_privilege",
-          "name": "Exploitation and Privilege Escalation",
-          "tag": "advanced",
-          "description": "Validate vulnerabilities safely, document proof, escalate privileges in labs, and avoid destructive actions.",
+          "id": "web_app_testing_proxies_tools",
+          "name": "Web Application Testing Proxies & Tools",
+          "tag": "essential",
+          "description": "Master Burp Suite (Proxy, Repeater, Intruder, Scanner, Sequencer, Comparer, Extender with BApp Store usage), OWASP ZAP, and browser developer tools for intercepting, modifying, and analyzing web traffic. Learn to use command-line tools like Curl and Wget for web interaction.",
           "resources": [
             {
-              "title": "HackTricks Knowledge Base",
-              "url": "https://book.hacktricks.wiki/en/index.html",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "pentest_reporting_project",
-      "name": "Reporting and Portfolio",
-      "tag": "advanced",
-      "description": "Write professional findings with impact, evidence, risk, reproduction steps, remediation, and executive summaries.",
-      "resources": [
-        {
-          "title": "OWASP Vulnerability Report Template",
-          "url": "https://owasp.org/www-project-web-security-testing-guide/latest/6-Appendix/A-Testing_Tools_Resource",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "pentest_reporting",
-          "name": "Professional Reports",
-          "tag": "advanced",
-          "description": "Create concise reports, screenshots, CVSS context, business impact, remediation guidance, and retest notes.",
-          "resources": [
+              "title": "PortSwigger Web Security Academy (Burp Suite Tutorials)",
+              "url": "https://portswigger.net/web-security/academy/burp-suite",
+              "type": "course"
+            },
             {
-              "title": "CVSS Calculator",
-              "url": "https://www.first.org/cvss/calculator/3.1",
+              "title": "OWASP ZAP User Guide",
+              "url": "https://www.zaproxy.org/docs/desktop/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "pentest_project_lab_report",
-          "name": "Project: Vulnerable Lab Assessment",
+          "id": "advanced_injection_attacks",
+          "name": "Advanced Injection Attacks (SQLi, Command, NoSQLi, LDAPi, XPathi)",
+          "tag": "essential",
+          "description": "Learn to identify and exploit various injection flaws: SQL Injection (Error-based, Union-based, Blind, Time-based), Command Injection, NoSQL Injection, LDAP Injection, and XPath Injection vulnerabilities to gain unauthorized access to databases, execute arbitrary commands, or manipulate application logic.",
+          "resources": [
+            {
+              "title": "SQL Injection Cheatsheet (PortSwigger)",
+              "url": "https://portswigger.net/web-security/sql-injection/cheat-sheet",
+              "type": "article"
+            },
+            {
+              "title": "Command Injection (OWASP)",
+              "url": "https://owasp.org/www-community/attacks/Command_Injection",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "auth_session_access_control_bypass",
+          "name": "Broken Authentication, Session Management & Access Control Bypass",
+          "tag": "essential",
+          "description": "Discover weaknesses in authentication mechanisms (password attacks, session fixation, JWT misconfigurations, multi-factor bypasses) and horizontal/vertical privilege escalation through Broken Access Control (IDOR, BOLA/BFLA, insecure direct object references, misconfigured roles, path traversal).",
+          "resources": [
+            {
+              "title": "Broken Authentication (OWASP)",
+              "url": "https://owasp.org/www-community/vulnerabilities/Broken_Authentication",
+              "type": "article"
+            },
+            {
+              "title": "Broken Access Control Explained (PortSwigger)",
+              "url": "https://portswigger.net/web-security/access-control",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cross_site_attacks_xss_csrf",
+          "name": "Cross-Site Attacks (XSS, CSRF, Clickjacking)",
+          "tag": "essential",
+          "description": "Identify and exploit Reflected, Stored, and DOM-based Cross-Site Scripting (XSS) vulnerabilities. Understand and protect against Cross-Site Request Forgery (CSRF) attacks, and learn how to bypass common mitigations. Explore Clickjacking techniques and defenses.",
+          "resources": [
+            {
+              "title": "XSS (Cross-Site Scripting) Explained (PortSwigger)",
+              "url": "https://portswigger.net/web-security/cross-site-scripting",
+              "type": "article"
+            },
+            {
+              "title": "CSRF (Cross-Site Request Forgery) Explained (PortSwigger)",
+              "url": "https://portswigger.net/web-security/csrf",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "server_side_vulnerabilities",
+          "name": "Server-Side Request Forgery (SSRF) & Insecure Deserialization",
           "tag": "advanced",
-          "description": "Test a legal lab app/network, find vulnerabilities, exploit safely, document evidence, and publish a polished report.",
+          "description": "Explore Server-Side Request Forgery (SSRF) to target internal networks, access cloud metadata services, and bypass firewalls. Understand insecure deserialization vulnerabilities across different languages (Java, .NET, Python, PHP) and their exploitation techniques for remote code execution.",
+          "resources": [
+            {
+              "title": "SSRF Explained (PortSwigger)",
+              "url": "https://portswigger.net/web-security/ssrf",
+              "type": "article"
+            },
+            {
+              "title": "Insecure Deserialization (OWASP)",
+              "url": "https://owasp.org/www-community/vulnerabilities/Insecure_Deserialization",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rest_graphql_api_pentesting",
+          "name": "REST, SOAP & GraphQL API Penetration Testing",
+          "tag": "advanced",
+          "description": "Test REST, SOAP, and GraphQL APIs for common vulnerabilities including broken object-level authorization (BOLA), mass assignment, excessive data exposure, rate limiting issues, injection flaws, and authentication weaknesses. Familiarize with OWASP API Security Top 10 and use tools like Postman, curl, and specialized Burp extensions.",
+          "resources": [
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/API-Security/",
+              "type": "article"
+            },
+            {
+              "title": "Practical GraphQL Security Testing (PortSwigger)",
+              "url": "https://portswigger.net/research/practical-graphql-security-testing",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "client_server_adv_web_attacks",
+          "name": "Advanced Client-Side & Server-Side Web Attacks",
+          "tag": "advanced",
+          "description": "Dive into advanced client-side attacks (DOM Clobbering, Prototype Pollution, WebSockets vulnerabilities, Post-Message exploits), Content Security Policy (CSP) bypasses, CORS misconfigurations, Server-Side Template Injection (SSTI), XML External Entity (XXE) attacks, and Single Sign-On (SSO)/OAuth related flaws.",
+          "resources": [
+            {
+              "title": "Web Security: A Guide to Hacking and Defense",
+              "url": "https://www.oreilly.com/library/view/web-security-a/9781492053896/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced SSTI (PortSwigger)",
+              "url": "https://portswigger.net/web-security/server-side-template-injection",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "web_app_assessment_project",
+          "name": "Practical Project: Web Application Assessment",
+          "tag": "advanced",
+          "description": "Conduct a full, end-to-end penetration test on a complex, deliberately vulnerable web application (e.g., OWASP Juice Shop, BWAAPP, DVWA). Identify, exploit, and document multiple vulnerability types, culminating in a detailed technical report suitable for client delivery.",
           "resources": [
             {
               "title": "OWASP Juice Shop",
               "url": "https://owasp.org/www-project-juice-shop/",
               "type": "article"
+            },
+            {
+              "title": "Web Hacking Playground (VulnHub)",
+              "url": "https://www.vulnhub.com/?q=web&sort=date-desc&type=web",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
+        }
+      ]
+    },
+    {
+      "id": "network_infrastructure_pentesting",
+      "name": "Network & Infrastructure Penetration Testing",
+      "tag": "essential",
+      "description": "Develop skills to assess the security of external and internal network infrastructure, server systems, and Active Directory environments. Learn to identify vulnerabilities, gain initial access, and escalate privileges effectively.",
+      "resources": [
+        {
+          "title": "Hands-On Network Penetration Testing (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+          "type": "video"
+        },
+        {
+          "title": "The Hacker Playbook 3: Practical Guide To Penetration Testing",
+          "url": "https://www.amazon.com/Hacker-Playbook-Practical-Penetration-Testing/dp/1980901759",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "infra_recon_info_gathering",
+          "name": "Infrastructure Reconnaissance & Information Gathering",
+          "tag": "essential",
+          "description": "Perform extensive passive reconnaissance using OSINT tools (Shodan, Censys, Maltego, Whois, Google Dorking, Subdomain enumeration). Conduct active reconnaissance with DNS enumeration (DNS Zone Transfer, Bruteforce), host discovery (ping sweeps, ARP scans), port scanning, and banner grabbing to thoroughly map target networks and identify potential entry points.",
+          "resources": [
+            {
+              "title": "OSINT Framework",
+              "url": "https://osintframework.com/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Google Dorking for Pentesters",
+              "url": "https://www.exploit-db.com/ghdb",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "network_scanning_vuln_analysis",
+          "name": "Network Scanning & Vulnerability Analysis",
+          "tag": "essential",
+          "description": "Master Nmap for advanced port scanning, OS detection, service version enumeration, and script usage (NSE scripts). Understand the principles and operation of commercial and open-source vulnerability scanners (Nessus, OpenVAS, Qualys, Tenable.io) for identifying known weaknesses, understanding CVEs, and prioritizing remediation.",
+          "resources": [
+            {
+              "title": "Nmap Network Scanning (Official Book)",
+              "url": "https://nmap.org/book/",
+              "type": "article"
+            },
+            {
+              "title": "Practical Vulnerability Scanning with Nessus (Tenable)",
+              "url": "https://www.tenable.com/education/webinars/practical-vulnerability-scanning-with-nessus",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "service_enum_weaknesses_exploitation",
+          "name": "Service Enumeration, Weaknesses & Exploitation",
+          "tag": "essential",
+          "description": "Enumerate and identify vulnerabilities in common network services: SMB (null sessions, share enumeration, relay attacks), SSH (bruteforce, misconfigurations), FTP (anonymous access, weak creds), SMTP (user enumeration, open relay), SNMP (community strings), DNS, Databases (SQL, PostgreSQL, MongoDB - weak creds, default configs), and directory services (LDAP).",
+          "resources": [
+            {
+              "title": "HackTricks Knowledge Base - Network Services Pentesting",
+              "url": "https://book.hacktricks.wiki/en/network-services-pentesting",
+              "type": "article"
+            },
+            {
+              "title": "SMB Pentesting Cheatsheet (RedTeamToolkit)",
+              "url": "https://www.redteamtoolkit.com/smb/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "exploitation_frameworks_techniques",
+          "name": "Exploitation Frameworks & Techniques",
+          "tag": "advanced",
+          "description": "Learn to utilize the Metasploit Framework for exploiting vulnerabilities, generating sophisticated payloads, configuring listeners, and managing sessions (Meterpreter). Understand manual exploitation methods, including basic buffer overflows (stack-based, SEH), format string bugs, and client-side exploits with tools like BeEF (Browser Exploitation Framework).",
+          "resources": [
+            {
+              "title": "Metasploit Unleashed (Offensive Security)",
+              "url": "https://www.offensive-security.com/metasploit-unleashed/",
+              "type": "course"
+            },
+            {
+              "title": "Buffer Overflows Made Easy (LiveOverflow)",
+              "url": "https://www.youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9CgWKUE1fGzKS_",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "linux_privilege_escalation",
+          "name": "Linux Privilege Escalation",
+          "tag": "advanced",
+          "description": "Master techniques to elevate privileges on Linux systems, including kernel exploits, SUID/SGID binaries abuse, cron jobs, environment variables, misconfigured services, path vulnerabilities, weak file permissions, unpatched software, and exploiting containers/namespaces.",
+          "resources": [
+            {
+              "title": "Linux Privilege Escalation Cheatsheet (PayloadAllTheThings)",
+              "url": "https://book.hacktricks.wiki/linux-hardening/linux-privilege-escalation-cheatsheet",
+              "type": "article"
+            },
+            {
+              "title": "Linux PrivEsc Course (Tib3rius)",
+              "url": "https://www.udemy.com/course/linux-privilege-escalation-for-beginners/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "windows_privilege_escalation",
+          "name": "Windows Privilege Escalation",
+          "tag": "advanced",
+          "description": "Learn to escalate privileges on Windows systems through kernel exploits, service misconfigurations (unquoted service paths, weak service permissions), registry abuses, cached credentials, DLL hijacking, UAC bypasses, exploiting vulnerable drivers, and understanding token impersonation.",
+          "resources": [
+            {
+              "title": "Windows Privilege Escalation Cheatsheet (PayloadAllTheThings)",
+              "url": "https://book.hacktricks.wiki/windows-hardening/windows-privilege-escalation-cheatsheet",
+              "type": "article"
+            },
+            {
+              "title": "Windows PrivEsc Course (Tib3rius)",
+              "url": "https://www.udemy.com/course/windows-privilege-escalation/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "active_directory_pentesting",
+          "name": "Active Directory Penetration Testing",
+          "tag": "advanced",
+          "description": "Focus on attacking Active Directory environments. Learn enumeration techniques (BloodHound, ADRecon), Kerberoasting, AS-REP Roasting, Pass-the-Hash/Ticket, Golden/Silver Ticket attacks, GPO abuses, and common misconfigurations leading to domain compromise using tools like Impacket, Mimikatz, and PowerView.",
+          "resources": [
+            {
+              "title": "Hack The Box - Active Directory Module",
+              "url": "https://academy.hackthebox.com/module/details/49",
+              "type": "course"
+            },
+            {
+              "title": "Active Directory Exploitation Cheat Sheet (HarmJ0y)",
+              "url": "https://gist.github.com/HarmJ0y/541f4860d5b6515c0e12e1ffb144b6c3",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "post_exploitation_persistence_lateral",
+          "name": "Post-Exploitation, Persistence & Lateral Movement",
+          "tag": "advanced",
+          "description": "Understand how to maintain access (backdoors, persistent implants, scheduled tasks, registry modifications), exfiltrate data securely, perform deeper reconnaissance on compromised hosts, and move laterally within a network using pivoting, tunneling (SSH, Chisel, Iodine), RDP, PsExec, and WMI techniques. Learn anti-forensics basics.",
+          "resources": [
+            {
+              "title": "Practical Post-Exploitation Guide (Cybermentor)",
+              "url": "https://www.youtube.com/playlist?list=PLBf0hzazHTG_l5mC2n6JjB4g-q39rIuD_",
+              "type": "video"
+            },
+            {
+              "title": "Impacket Examples for Post-Exploitation (Blog)",
+              "url": "https://byt3bl33d3r.github.io/posts/the-ultimate-guide-to-impacket-a-beginners-approach-part-1/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "wireless_network_pentesting",
+          "name": "Wireless Network Penetration Testing",
+          "tag": "advanced",
+          "description": "Explore techniques for auditing and exploiting wireless networks, including WEP/WPA/WPA2/WPA3 cracking, Evil Twin attacks, rogue access points, client deauthentication, and packet injection attacks using tools like Aircrack-ng suite, Kismet, and bettercap. Understand enterprise wireless security (802.1X).",
+          "resources": [
+            {
+              "title": "Aircrack-ng Documentation",
+              "url": "https://www.aircrack-ng.org/doku.php",
+              "type": "article"
+            },
+            {
+              "title": "Wireless Hacking Basics (Black Hills Infosec)",
+              "url": "https://www.youtube.com/watch?v=kY41yS1XzN0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "cloud_security_assessment_basics",
+          "name": "Cloud Security Assessment Fundamentals (AWS, Azure, GCP)",
+          "tag": "advanced",
+          "description": "Gain a foundational understanding of common cloud service provider (AWS, Azure, GCP) security models, shared responsibility, and common services. Learn about typical misconfigurations and attack vectors in S3 buckets, IAM roles, virtual networks, compute instances, serverless functions, and container services. Familiarize with cloud-specific tools like Pacu, CloudGoat.",
+          "resources": [
+            {
+              "title": "AWS Cloud Security Fundamentals",
+              "url": "https://aws.amazon.com/security/introduction/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Security Best Practices (Microsoft Docs)",
+              "url": "https://docs.microsoft.com/en-us/azure/security/fundamentals/best-practices",
+              "type": "article"
+            },
+            {
+              "title": "GCP Cloud Security Overview",
+              "url": "https://cloud.google.com/security/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adv_topics_professional_skills",
+      "name": "Advanced Topics & Professional Practice",
+      "tag": "advanced",
+      "description": "Refine professional skills in reporting and client communication, delve into specialized areas like social engineering and mobile testing, understand red teaming concepts, and prepare for career advancement including certifications and portfolio building.",
+      "resources": [
+        {
+          "title": "Penetration Testing: A Hands-On Introduction to Hacking",
+          "url": "https://www.amazon.com/Penetration-Testing-Hands-Introduction-Hacking/dp/1597499834",
+          "type": "article"
+        },
+        {
+          "title": "The Art of Invisibility (Kevin Mitnick)",
+          "url": "https://www.amazon.com/Art-Invisibility-World-Most-Wanted/dp/0316380536",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "professional_reporting_communication",
+          "name": "Professional Reporting & Client Communication",
+          "tag": "essential",
+          "description": "Develop skills in writing clear, concise, and impactful penetration test reports for both technical and executive audiences. Learn to articulate technical findings, provide compelling evidence, assess risk (CVSS, DREAD, industry best practices), recommend practical and prioritized remediations, and present findings effectively during debriefs.",
+          "resources": [
+            {
+              "title": "OWASP Vulnerability Report Template",
+              "url": "https://owasp.org/www-project-vulnerability-reporting-guide/latest/",
+              "type": "article"
+            },
+            {
+              "title": "CVSS Calculator (FIRST.org)",
+              "url": "https://www.first.org/cvss/calculator/3.1",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "social_engineering_techniques",
+          "name": "Social Engineering Techniques",
+          "tag": "advanced",
+          "description": "Understand the psychology behind social engineering attacks and how human factors are exploited. Learn about common tactics such as phishing, vishing, smishing, pretexting, baiting, quid pro quo, and physical security concepts like tailgating, impersonation, and basic lock picking (conceptual understanding for security awareness).",
+          "resources": [
+            {
+              "title": "Social Engineering: The Art of Human Hacking (Chris Hadnagy)",
+              "url": "https://www.amazon.com/Social-Engineering-Art-Human-Hacking/dp/1118420422",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "red_teaming_adversary_simulation",
+          "name": "Red Teaming & Adversary Simulation Concepts",
+          "tag": "advanced",
+          "description": "Gain an introduction to red teaming principles, understanding adversary tactics, techniques, and procedures (TTPs) using frameworks like MITRE ATT&CK. Learn about evading defensive measures like Antivirus (AV), Endpoint Detection and Response (EDR), Security Information and Event Management (SIEM) conceptually, and initial access techniques, command and control (C2) frameworks (e.g., Cobalt Strike, Sliver).",
+          "resources": [
+            {
+              "title": "MITRE ATT&CK Framework",
+              "url": "https://attack.mitre.org/",
+              "type": "article"
+            },
+            {
+              "title": "Red Team Operations: A Practical Guide",
+              "url": "https://www.amazon.com/Red-Team-Operations-Practical-Guide-ebook/dp/B085X79GXP",
+              "type": "article"
+            },
+            {
+              "title": "Intro to Red Teaming (Hack The Box Academy)",
+              "url": "https://academy.hackthebox.com/module/details/93",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "mobile_application_pentesting",
+          "name": "Mobile Application Penetration Testing (Android & iOS)",
+          "tag": "advanced",
+          "description": "Explore the security models of Android and iOS applications. Learn static (APK/IPA analysis, decompilation) and dynamic analysis techniques, runtime manipulation, reverse engineering basics, and common mobile vulnerabilities (OWASP Mobile Top 10) using tools like MobSF, Frida, Objection, Genymotion, and Burp Suite with proxy configurations for mobile traffic.",
+          "resources": [
+            {
+              "title": "OWASP Mobile Security Testing Guide (MSTG)",
+              "url": "https://owasp.org/www-project-mobile-security-testing-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Android & iOS App Hacking (Practical Guide)",
+              "url": "https://www.amazon.com/Android-iOS-App-Hacking-Practical/dp/1098106208",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "career_dev_certifications",
+          "name": "Career Development & Certifications",
+          "tag": "advanced",
+          "description": "Understand popular and industry-recognized penetration testing certifications (OSCP, PNPT, GPEN, eJPTv2, CEH). Learn strategies for building a strong professional portfolio, including CTF write-ups, bug bounty successes, personal projects, and active GitHub contributions. Prepare for interviews, resume optimization, and networking opportunities in the cybersecurity field.",
+          "resources": [
+            {
+              "title": "OSCP Review & Prep Guide (NetSec Focus)",
+              "url": "https://netsecfocus.com/oscp/2021/04/05/OSCP-Review.html",
+              "type": "article"
+            },
+            {
+              "title": "Building a Cybersecurity Portfolio (Simply Cyber)",
+              "url": "https://www.youtube.com/watch?v=Jm-G3iN4T7I",
+              "type": "video"
+            },
+            {
+              "title": "The Cyber Mentor's PNPT Review",
+              "url": "https://tcm-sec.com/pnpt-review/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "capstone_project_full_pentest",
+          "name": "Capstone Project: Full-Scope Penetration Test Simulation",
+          "tag": "advanced",
+          "description": "Execute a comprehensive, full-scope penetration test on a complex, simulated enterprise environment integrating web applications, network infrastructure, Active Directory, and potentially cloud elements. This involves end-to-end planning, reconnaissance, exploitation, privilege escalation, lateral movement, data exfiltration, and culminates in a professional report and simulated client debrief.",
+          "resources": [
+            {
+              "title": "Practical Ethical Hacking Course (TCM Security)",
+              "url": "https://tcm-sec.com/practical-ethical-hacking-course/",
+              "type": "course"
+            },
+            {
+              "title": "Cyber Defend Institute - Red Team Ops Lab",
+              "url": "https://cyberdefend.ca/labs/redteam-operations-lab/",
+              "type": "course"
+            },
+            {
+              "title": "TryHackMe - Enterprise Networks",
+              "url": "https://tryhackme.com/path/outline/enterprise",
+              "type": "course"
+            }
+          ]
         }
       ]
     }

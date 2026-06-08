@@ -1,14 +1,14 @@
 {
   "id": "rpa_developer",
   "title": "RPA Developer",
-  "description": "A roadmap for robotic process automation with UiPath/Power Automate, process analysis, bots, selectors, queues, exception handling, and production support.",
+  "description": "A comprehensive roadmap for becoming a proficient Robotic Process Automation (RPA) Developer, covering core concepts, leading platforms like UiPath and Power Automate, process analysis, bot development, advanced error handling, deployment, and production support.",
   "format": "tree",
   "tree": [
     {
       "id": "rpa_foundations",
       "name": "RPA and Process Foundations",
       "tag": "essential",
-      "description": "Understand repetitive process automation, process discovery, rule-based workflows, ROI, bot suitability, and automation limits.",
+      "description": "Establish a strong understanding of Robotic Process Automation principles, its business value, suitability for various processes, and the foundational techniques for process analysis and basic scripting.",
       "resources": [
         {
           "title": "RPA UiPath Crash Course (Mukesh Kala)",
@@ -26,176 +26,437 @@
           "type": "video"
         },
         {
-          "title": "UiPath Academy",
+          "title": "UiPath Academy Foundation Courses",
           "url": "https://academy.uipath.com/",
           "type": "course"
         }
       ],
       "children": [
         {
-          "id": "rpa_process_mapping",
-          "name": "Process Mapping",
+          "id": "rpa_process_analysis_design",
+          "name": "Process Analysis and Design",
           "tag": "essential",
-          "description": "Document current steps, systems, inputs, decisions, exceptions, volumes, SLAs, and automation risk.",
+          "description": "Learn methodologies for identifying automation opportunities, documenting 'as-is' and 'to-be' processes, creating Process Definition Documents (PDD) and Solution Design Documents (SDD), calculating ROI, and understanding process re-engineering principles and business process modeling notation (BPMN).",
           "resources": [
             {
-              "title": "Business Process Modeling Notation",
+              "title": "Business Process Modeling Notation (BPMN)",
               "url": "https://www.omg.org/spec/BPMN/",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "rpa_basic_programming",
-          "name": "Basic Programming and Data",
-          "tag": "essential",
-          "description": "Use variables, conditions, loops, tables, files, regex, email, APIs, and spreadsheet operations.",
-          "resources": [
+            },
             {
-              "title": "Python for Everybody",
-              "url": "https://www.py4e.com/",
+              "title": "UiPath - Process Definition Document (PDD) Template",
+              "url": "https://www.uipath.com/hubfs/UiPath_PDD_Template.docx",
+              "type": "article"
+            },
+            {
+              "title": "Estimating RPA ROI",
+              "url": "https://www.uipath.com/resources/rpa-calculators/roi-calculator",
+              "type": "article"
+            },
+            {
+              "title": "RPA Business Analyst Training",
+              "url": "https://academy.uipath.com/learning-plan/rpa-business-analyst-training",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rpa_programming_data_essentials",
+          "name": "Programming & Data Manipulation Essentials",
+          "tag": "essential",
+          "description": "Master foundational programming concepts (variables, data types, operators, control flow, functions), essential data structures (arrays, dictionaries, data tables), regular expressions for pattern matching, advanced file system operations (CSV, Excel, Text, JSON, XML), basic email automation, and fundamental API interaction concepts (REST, SOAP) for integrating with various systems.",
+          "resources": [
+            {
+              "title": "Python for Everybody (Basic Programming)",
+              "url": "https://www.py4e.com/",
+              "type": "course"
+            },
+            {
+              "title": "Excel VBA & Macros Training (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=h8-Jd15H77Q",
+              "type": "video"
+            },
+            {
+              "title": "Regular Expressions Tutorial (RegexOne)",
+              "url": "https://regexone.com/",
+              "type": "course"
+            },
+            {
+              "title": "Working with JSON and XML in RPA",
+              "url": "https://docs.uipath.com/studio/docs/working-with-json-and-xml",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "rpa_bot_building",
-      "name": "Bot Development",
+      "id": "rpa_core_bot_development",
+      "name": "Core Bot Development",
       "tag": "essential",
-      "description": "Build attended and unattended bots with UI automation, selectors, queues, credentials, documents, and reusable workflows.",
+      "description": "Dive into building robust RPA bots using industry-leading platforms, focusing on UI automation, data extraction, orchestrator integration, and developing reusable components for efficiency.",
       "resources": [
         {
-          "title": "UiPath Academy",
+          "title": "UiPath Academy Developer Path",
           "url": "https://academy.uipath.com/",
-          "type": "article"
+          "type": "course"
+        },
+        {
+          "title": "Microsoft Power Automate Learning Path",
+          "url": "https://learn.microsoft.com/en-us/training/paths/rpa-developer/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "rpa_uipath_studio",
-          "name": "UiPath Studio",
+          "id": "uipath_platform_mastery",
+          "name": "UiPath Platform Mastery",
           "tag": "essential",
-          "description": "Use activities, selectors, variables, arguments, data tables, REFramework, Orchestrator, and package publishing.",
+          "description": "Gain expertise in UiPath Studio features: UI/Image/Text automation, robust selectors (dynamic, fuzzy, partial), data scraping, screen scraping, Orchestrator asset/queue integration, package/library publishing, and utilizing the Robotic Enterprise Framework (REFramework).",
           "resources": [
             {
-              "title": "UiPath Academy",
-              "url": "https://academy.uipath.com/",
+              "title": "UiPath Academy - UI Automation",
+              "url": "https://academy.uipath.com/learning-plan/uipath-activities-automation-basics",
+              "type": "course"
+            },
+            {
+              "title": "Understanding UiPath Selectors",
+              "url": "https://docs.uipath.com/studio/docs/selectors",
+              "type": "article"
+            },
+            {
+              "title": "UiPath REFramework Overview",
+              "url": "https://docs.uipath.com/studio/docs/about-the-robotic-enterprise-framework",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "rpa_power_automate",
-          "name": "Power Automate",
+          "id": "power_automate_platform_mastery",
+          "name": "Power Automate Platform Mastery",
           "tag": "essential",
-          "description": "Create cloud flows, desktop flows, approvals, connectors, scheduled triggers, and Microsoft 365 automations.",
+          "description": "Develop proficiency in Power Automate, including creating Cloud flows, Desktop flows, UI flows, integrating AI Builder, using custom connectors, setting up data gateways, managing approvals, configuring scheduling, and leveraging Microsoft 365 services.",
           "resources": [
             {
               "title": "Power Automate Documentation",
               "url": "https://learn.microsoft.com/en-us/power-automate/",
               "type": "article"
+            },
+            {
+              "title": "Power Automate Desktop Getting Started",
+              "url": "https://learn.microsoft.com/en-us/power-automate/desktop-flows/get-started",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Learn - Build advanced flows with Power Automate",
+              "url": "https://learn.microsoft.com/en-us/training/paths/build-advanced-flows-power-automate/",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "rpa_developer_practice_lab",
-          "name": "Practice: Exception Handling Drill",
+          "id": "rpa_advanced_automation_techniques",
+          "name": "Advanced Automation Techniques",
           "tag": "advanced",
-          "description": "Design a bot flow that handles missing data, app crashes, duplicate records, retries, and escalation.",
-          "resources": [],
-          "children": []
+          "description": "Explore advanced UI interaction strategies beyond basic selectors, including native Citrix/RDP automation, virtual machine automation, background automation, keyboard shortcuts, image and advanced OCR automation (fine-tuning engines, anchor base), advanced data extraction methods (relative scraping, data mining), and integrating complex external systems via REST/SOAP APIs and direct database connections (SQL).",
+          "resources": [
+            {
+              "title": "UiPath - Advanced UI Automation",
+              "url": "https://academy.uipath.com/learning-plan/advanced-ui-automation-with-uipath",
+              "type": "course"
+            },
+            {
+              "title": "Working with APIs in UiPath Studio",
+              "url": "https://docs.uipath.com/studio/docs/using-web-api-activities",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate HTTP connector for API calls",
+              "url": "https://learn.microsoft.com/en-us/connectors/http/",
+              "type": "article"
+            },
+            {
+              "title": "UiPath - Citrix and Remote Desktop Automation",
+              "url": "https://docs.uipath.com/studio/docs/about-citrix-automation",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_ai_ml_integration",
+          "name": "Integrating AI/ML Capabilities",
+          "tag": "advanced",
+          "description": "Learn to leverage pre-built AI/ML models and services within RPA platforms (e.g., UiPath AI Center, Power Automate AI Builder) for tasks like document understanding, sentiment analysis, language translation, and image recognition to enhance bot intelligence and automate unstructured data processing.",
+          "resources": [
+            {
+              "title": "UiPath AI Center Overview",
+              "url": "https://docs.uipath.com/ai-center/docs/about-ai-center",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate - AI Builder",
+              "url": "https://learn.microsoft.com/en-us/ai-builder/",
+              "type": "article"
+            },
+            {
+              "title": "UiPath - Document Understanding",
+              "url": "https://docs.uipath.com/document-understanding/docs/about-document-understanding",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_version_control",
+          "name": "Version Control with Git",
+          "tag": "essential",
+          "description": "Understand the importance of version control in team development. Learn basic Git commands for branching, committing, merging, and collaborating on RPA projects with platforms like GitHub or Azure DevOps.",
+          "resources": [
+            {
+              "title": "Git - The Simple Guide",
+              "url": "https://rogerdudler.github.io/git-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Git and GitHub (UiPath Academy)",
+              "url": "https://academy.uipath.com/learning-plan/introduction-to-git-and-github",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
       "id": "rpa_reliability",
-      "name": "Reliability and Production Support",
+      "name": "Robustness, Reliability, and Production Support",
       "tag": "advanced",
-      "description": "Make bots resilient with exception handling, logging, queues, retries, test data, monitoring, and support runbooks.",
+      "description": "Build resilient bots capable of handling real-world exceptions, implement effective logging, monitoring, and develop comprehensive support strategies for maintaining automations in production environments.",
       "resources": [
         {
-          "title": "UiPath Academy",
-          "url": "https://academy.uipath.com/",
+          "title": "UiPath Academy - Advanced Exception Handling",
+          "url": "https://academy.uipath.com/learning-plan/advanced-exception-handling",
+          "type": "course"
+        },
+        {
+          "title": "Power Automate - Handling errors in flows",
+          "url": "https://learn.microsoft.com/en-us/power-automate/error-handling",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "rpa_exceptions",
-          "name": "Exception Handling and Queues",
+          "id": "rpa_exception_logging",
+          "name": "Exception Handling and Logging",
           "tag": "advanced",
-          "description": "Handle business/system exceptions, retries, screenshots, queue transactions, deadlines, and escalation rules.",
+          "description": "Implement structured exception handling (Try-Catch-Finally, Global Exception Handler), manage business and system exceptions, design robust retry mechanisms, capture screenshots on error, and develop detailed logging strategies (event logs, custom logs, diagnostic tools) for effective troubleshooting.",
           "resources": [
             {
-              "title": "UiPath Academy",
-              "url": "https://academy.uipath.com/",
+              "title": "UiPath - Global Exception Handler",
+              "url": "https://docs.uipath.com/studio/docs/global-exception-handler",
+              "type": "article"
+            },
+            {
+              "title": "Logging Best Practices in UiPath",
+              "url": "https://docs.uipath.com/studio/docs/logging-best-practices",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "rpa_testing_monitoring",
-          "name": "Testing and Monitoring",
+          "id": "rpa_queues_workload",
+          "name": "Queue Management and Workload Orchestration",
           "tag": "advanced",
-          "description": "Create test cases, fake data, logs, dashboards, alerts, versioning, bot schedules, and rollback procedures.",
+          "description": "Understand and implement queues for managing transactional processes, setting item priorities, processing deadlines, handling failed items, configuring retries, and designing scalable workload distribution solutions across multiple bots and environments.",
           "resources": [
             {
-              "title": "UiPath Academy",
-              "url": "https://academy.uipath.com/",
+              "title": "UiPath Orchestrator Queues",
+              "url": "https://docs.uipath.com/orchestrator/docs/managing-queues",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate - Working with Dataverse queues",
+              "url": "https://learn.microsoft.com/en-us/power-apps/maker/data-platform/manage-queues",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rpa_testing_debugging",
+          "name": "Testing and Debugging Methodologies",
+          "tag": "advanced",
+          "description": "Develop comprehensive test cases (unit, integration, UAT), create synthetic test data, utilize platform-specific debugging tools and techniques (breakpoints, watch panels, step-by-step execution), identify performance bottlenecks, and implement effective troubleshooting strategies for RPA bots.",
+          "resources": [
+            {
+              "title": "UiPath Test Suite Overview",
+              "url": "https://docs.uipath.com/test-suite/docs/about-test-suite",
+              "type": "article"
+            },
+            {
+              "title": "Debugging Power Automate Desktop flows",
+              "url": "https://learn.microsoft.com/en-us/power-automate/desktop-flows/debugging-desktop-flows",
+              "type": "article"
+            },
+            {
+              "title": "UiPath - Activity Coverage and Test Data Management",
+              "url": "https://docs.uipath.com/test-suite/docs/activity-coverage",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_monitoring_support",
+          "name": "Monitoring, Alerts, and Production Support",
+          "tag": "advanced",
+          "description": "Set up bot monitoring dashboards, configure alerts for failures and performance issues, establish incident management procedures, create support runbooks, define escalation matrices, and implement rollback strategies for production environments to ensure business continuity.",
+          "resources": [
+            {
+              "title": "UiPath Orchestrator Monitoring and Alerting",
+              "url": "https://docs.uipath.com/orchestrator/docs/monitoring-overview",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate Analytics and Reporting",
+              "url": "https://learn.microsoft.com/en-us/power-platform/admin/analytics-power-automate",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_developer_practice_lab_advanced",
+          "name": "Practice Project: Advanced Exception Handling",
+          "tag": "advanced",
+          "description": "Design and implement a complex bot flow that robustly handles various scenarios: missing input data, application crashes, invalid data formats, API call failures, configurable retries, and automatic escalation procedures using logs and email notifications, adhering to REFramework principles.",
+          "resources": [
+            {
+              "title": "UiPath - Advanced REFramework Practice",
+              "url": "https://academy.uipath.com/learning-plan/advanced-reframework",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "rpa_delivery_project",
-      "name": "Governance and Portfolio",
+      "id": "rpa_enterprise_rpa_governance",
+      "name": "Enterprise RPA Governance and Solution Delivery",
       "tag": "advanced",
-      "description": "Deliver automations with documentation, security reviews, ROI reports, business sign-off, and maintenance plans.",
+      "description": "Understand the principles of deploying, securing, and governing RPA solutions within an enterprise context, including project methodologies, security best practices, and demonstrating long-term business value.",
       "resources": [
         {
-          "title": "UiPath Academy",
-          "url": "https://academy.uipath.com/",
+          "title": "UiPath - RPA Governance Guide",
+          "url": "https://www.uipath.com/resources/rpa-whitepapers/rpa-governance-guide",
+          "type": "article"
+        },
+        {
+          "title": "Microsoft Power Platform Governance",
+          "url": "https://learn.microsoft.com/en-us/power-platform/admin/governance-powerplatform",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "rpa_governance",
-          "name": "Security and Governance",
+          "id": "rpa_security_compliance",
+          "name": "Security, Compliance, and Credential Management",
           "tag": "advanced",
-          "description": "Manage credentials, bot permissions, audit logs, PII, approvals, change requests, and automation ownership.",
+          "description": "Implement secure credential storage (e.g., UiPath Orchestrator Assets, Azure Key Vault), manage bot permissions and roles, understand audit logs, handle Personally Identifiable Information (PII) securely, and ensure compliance with organizational security policies and regulatory requirements (e.g., GDPR, HIPAA).",
           "resources": [
             {
-              "title": "UiPath Academy",
-              "url": "https://academy.uipath.com/",
+              "title": "UiPath Orchestrator Security",
+              "url": "https://docs.uipath.com/orchestrator/docs/security",
+              "type": "article"
+            },
+            {
+              "title": "Power Platform security and governance",
+              "url": "https://learn.microsoft.com/en-us/power-platform/admin/security",
+              "type": "article"
+            },
+            {
+              "title": "Best Practices for PII Handling in RPA",
+              "url": "https://www.uipath.com/resources/automation-blog/rpa-and-data-security",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "rpa_project_invoice_bot",
-          "name": "Project: Invoice Processing Bot",
+          "id": "rpa_deployment_lifecycle",
+          "name": "Deployment Lifecycle and Version Management",
           "tag": "advanced",
-          "description": "Build a bot that reads invoices, validates data, updates a spreadsheet/ERP mock, emails exceptions, and reports ROI.",
+          "description": "Learn CI/CD principles for RPA, managing package versions, environment promotion strategies (Development, Test, Production), implementing rollback procedures, and integrating effectively with version control systems (e.g., Git, Azure DevOps) and orchestrator deployments.",
           "resources": [
             {
-              "title": "UiPath Academy",
-              "url": "https://academy.uipath.com/",
+              "title": "UiPath Deployment Best Practices",
+              "url": "https://docs.uipath.com/orchestrator/docs/publishing-packages",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate solution management",
+              "url": "https://learn.microsoft.com/en-us/power-automate/create-flows-from-a-solution",
+              "type": "article"
+            },
+            {
+              "title": "Continuous Integration & Delivery for RPA",
+              "url": "https://docs.uipath.com/orchestrator/docs/continuous-integration-and-delivery",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rpa_project_lifecycle",
+          "name": "RPA Project Lifecycle and Documentation",
+          "tag": "advanced",
+          "description": "Understand the end-to-end RPA project lifecycle (discovery, design, development, UAT, deployment, hypercare, maintenance). Master creating comprehensive Solution Design Documents (SDD), Process Definition Documents (PDD), Test Plans, and User Manuals, aligning with Agile/Scrum methodologies for RPA.",
+          "resources": [
+            {
+              "title": "UiPath Solution Design Document (SDD) Template",
+              "url": "https://www.uipath.com/hubfs/UiPath_SDD_Template.docx",
+              "type": "article"
+            },
+            {
+              "title": "Agile Methodology for RPA Projects",
+              "url": "https://www.uipath.com/resources/rpa-case-studies/agile-rpa-implementation",
+              "type": "article"
+            },
+            {
+              "title": "RPA Development Standards and Best Practices",
+              "url": "https://www.uipath.com/resources/automation-blog/rpa-best-practices",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_performance_scalability",
+          "name": "Performance Optimization and Scalability",
+          "tag": "advanced",
+          "description": "Learn strategies for optimizing bot performance (e.g., efficient selectors, reduced UI interactions, parallel processing, asynchronous operations), managing resource utilization (CPU, memory, network), and designing scalable RPA solutions to handle increasing transaction volumes and diverse workloads across multiple robots and orchestrators.",
+          "resources": [
+            {
+              "title": "UiPath - Performance Considerations",
+              "url": "https://docs.uipath.com/studio/docs/performance-considerations",
+              "type": "article"
+            },
+            {
+              "title": "Power Automate - Scale Desktop flows",
+              "url": "https://learn.microsoft.com/en-us/power-automate/desktop-flows/manage-desktop-flow-queues",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rpa_capstone_project",
+          "name": "Capstone Project: End-to-End Business Process Automation",
+          "tag": "advanced",
+          "description": "Design, develop, test, and document a comprehensive RPA solution for a significant real-world business process (e.g., invoice processing with OCR, HR onboarding, data migration between systems). Incorporate best practices in exception handling, logging, scalability, security, and demonstrate tangible business value (ROI) in a simulated production environment.",
+          "resources": [
+            {
+              "title": "UiPath Academy - Build Your First Automation (Project based)",
+              "url": "https://academy.uipath.com/learning-plan/automation-developer-associate-course",
+              "type": "course"
+            },
+            {
+              "title": "Power Automate - Example Scenarios",
+              "url": "https://learn.microsoft.com/en-us/power-automate/examples",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

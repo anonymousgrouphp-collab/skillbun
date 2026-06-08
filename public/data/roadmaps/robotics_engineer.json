@@ -1,14 +1,14 @@
 {
   "id": "robotics_engineer",
   "title": "Robotics Engineer",
-  "description": "A roadmap for robotics software: mechanics intuition, sensors, ROS 2, simulation, perception, control, and autonomous robot projects.",
+  "description": "A comprehensive roadmap for robotics software: from foundational skills and core robotics concepts to advanced perception, control, ROS 2, simulation, hardware integration, and autonomous robot projects.",
   "format": "tree",
   "tree": [
     {
-      "id": "robotics_foundations",
-      "name": "Robotics Foundations",
+      "id": "core_foundations_for_robotics",
+      "name": "Core Foundations for Robotics",
       "tag": "essential",
-      "description": "Build the math, programming, electronics, and mechanical intuition needed to reason about robots.",
+      "description": "Build the mathematical, programming, computer science, and basic hardware understanding needed to approach robotics effectively.",
       "resources": [
         {
           "title": "Robotics Software Engineer Roadmap (Kevin Wood)",
@@ -23,32 +23,329 @@
       ],
       "children": [
         {
-          "id": "robotics_python_cpp",
-          "name": "Python/C++ for Robotics",
+          "id": "programming_essentials_for_robotics",
+          "name": "Programming Essentials for Robotics",
           "tag": "essential",
-          "description": "Use Python for scripting and C++ for performance-sensitive nodes, drivers, and control loops.",
+          "description": "Master Python for rapid prototyping, data analysis, and scripting, and C++ for high-performance components, real-time control, and driver development. Understand data structures, algorithms, and object-oriented programming in both.",
           "resources": [
             {
               "title": "Python for Everybody",
               "url": "https://www.py4e.com/",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "robotics_math",
-          "name": "Kinematics and Control Basics",
+          "id": "python_for_robotics",
+          "name": "Python for Robotics & Scripting",
           "tag": "essential",
-          "description": "Learn coordinate frames, transforms, velocity, feedback control, PID, and robot motion constraints.",
+          "description": "Learn Python's syntax, libraries (NumPy, SciPy, Matplotlib), object-oriented programming, and scripting for automation, data processing, and rapid prototyping in robotics.",
+          "resources": [
+            {
+              "title": "Automate the Boring Stuff with Python",
+              "url": "https://automatetheboringstuff.com/",
+              "type": "course"
+            },
+            {
+              "title": "Real Python Tutorials",
+              "url": "https://realpython.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "cpp_for_high_performance_robotics",
+          "name": "C++ for High-Performance Robotics",
+          "tag": "essential",
+          "description": "Dive into modern C++ (C++11/14/17/20) with a focus on memory management, pointers, classes, templates, STL, multi-threading, and performance optimization critical for real-time robotic systems and embedded applications.",
+          "resources": [
+            {
+              "title": "C++ Crash Course by John L. Vandevoorde",
+              "url": "https://www.amazon.com/C-Crash-Course-Beginner-Friendly-Approach/dp/0134057672",
+              "type": "course"
+            },
+            {
+              "title": "Effective Modern C++ by Scott Meyers",
+              "url": "https://www.amazon.com/Effective-Modern-Specific-Ways-Improve/dp/1491903996",
+              "type": "article"
+            },
+            {
+              "title": "Learn C++ (cppreference.com)",
+              "url": "https://en.cppreference.com/w/cpp",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "data_structures_algorithms",
+          "name": "Data Structures & Algorithms",
+          "tag": "essential",
+          "description": "Understand fundamental data structures (arrays, lists, trees, graphs, hash tables) and algorithms (sorting, searching, graph traversal, pathfinding, dynamic programming) crucial for efficient robotics software and problem-solving.",
+          "resources": [
+            {
+              "title": "Algorithms, 4th Edition by Sedgewick & Wayne",
+              "url": "https://algs4.cs.princeton.edu/home/",
+              "type": "course"
+            },
+            {
+              "title": "LeetCode / HackerRank",
+              "url": "https://leetcode.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "version_control_collaboration",
+          "name": "Version Control & Collaboration (Git)",
+          "tag": "essential",
+          "description": "Master Git for source code management, branching, merging, and collaborative development, essential for any software engineering role including robotics.",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "GitLab/GitHub Documentation",
+              "url": "https://docs.github.com/en/get-started/quickstart/set-up-git",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "mathematical_foundations_for_robotics",
+          "name": "Mathematical Foundations for Robotics",
+          "tag": "essential",
+          "description": "Build a strong mathematical background in linear algebra, calculus, probability, and statistics essential for understanding robot kinematics, dynamics, perception, and control.",
+          "resources": []
+        },
+        {
+          "id": "linear_algebra_for_robotics",
+          "name": "Linear Algebra for Robotics",
+          "tag": "essential",
+          "description": "Understand vectors, matrices, transformations (rotations, translations), eigenvalues, and eigenvectors, fundamental for rigid body motion, coordinate transformations, and robot inverse kinematics.",
+          "resources": [
+            {
+              "title": "3Blue1Brown: Essence of Linear Algebra",
+              "url": "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_63RTN_D6uJDSfO7G",
+              "type": "video"
+            },
+            {
+              "title": "MIT OpenCourseware: Linear Algebra (Gilbert Strang)",
+              "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "calculus_optimization_for_robotics",
+          "name": "Calculus & Optimization for Robotics",
+          "tag": "essential",
+          "description": "Grasp differential and integral calculus, multivariable calculus (gradients, Jacobians, Hessians), and optimization techniques (gradient descent, least squares) used in control, path planning, and machine learning for robotics.",
+          "resources": [
+            {
+              "title": "MIT OpenCourseware: Multivariable Calculus",
+              "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/",
+              "type": "course"
+            },
+            {
+              "title": "Stanford: Convex Optimization I",
+              "url": "https://web.stanford.edu/~boyd/cvxbook/bv_html/index.html",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "probability_statistics_for_robotics",
+          "name": "Probability & Statistics for Robotics",
+          "tag": "essential",
+          "description": "Learn probability distributions, Bayesian inference, Kalman filters, particle filters, and statistical methods vital for sensor fusion, state estimation, and machine learning in noisy robotic environments.",
+          "resources": [
+            {
+              "title": "Stanford Online: Introduction to Probability and Statistics",
+              "url": "https://online.stanford.edu/courses/stat110-probability-and-random-processes",
+              "type": "course"
+            },
+            {
+              "title": "Udacity: Intro to Statistics",
+              "url": "https://www.udacity.com/course/intro-to-statistics--st101",
+              "type": "course"
+            },
+            {
+              "title": "Probabilistic Robotics by Thrun, Burgard, Fox",
+              "url": "http://www.probabilistic-robotics.org/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "physics_mechanics_intuition",
+          "name": "Physics & Mechanics Intuition",
+          "tag": "essential",
+          "description": "Develop an intuitive understanding of classical mechanics, rigid body dynamics, statics, and basic electrical principles to reason about robot motion, forces, energy, and stability.",
+          "resources": [
+            {
+              "title": "MIT 8.01x: Classical Mechanics",
+              "url": "https://www.edx.org/course/mechanics-mastering-physics-part-1",
+              "type": "course"
+            },
+            {
+              "title": "HyperPhysics by Georgia State University",
+              "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "electronics_control_hardware_basics",
+          "name": "Electronics & Control Hardware Basics",
+          "tag": "essential",
+          "description": "Understand basic circuits (Ohm's Law, Kirchhoff's laws), digital logic, microcontrollers (e.g., Arduino, Raspberry Pi), basic sensors, actuators, and how they interface with robotic systems at a low level.",
+          "resources": [
+            {
+              "title": "SparkFun Tutorials",
+              "url": "https://learn.sparkfun.com/",
+              "type": "article"
+            },
+            {
+              "title": "EEVblog (YouTube Channel)",
+              "url": "https://www.youtube.com/user/EEVblog",
+              "type": "video"
+            },
+            {
+              "title": "Make: Electronics (Book)",
+              "url": "https://www.amazon.com/Make-Electronics-Learning-Through-Discovery/dp/1680456868",
+              "type": "course"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "robotics_core_concepts",
+      "name": "Robotics Core Concepts",
+      "tag": "essential",
+      "description": "Delve into the fundamental theories of robot kinematics, dynamics, and control systems, crucial for designing and programming robot movements and interactions.",
+      "resources": [
+        {
+          "title": "Modern Robotics Course",
+          "url": "https://modernrobotics.northwestern.edu/",
+          "type": "course"
+        },
+        {
+          "title": "Robotics: Science and Systems Proceedings",
+          "url": "http://www.robotics-stat.com/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "robot_kinematics",
+          "name": "Robot Kinematics",
+          "tag": "essential",
+          "description": "Learn about coordinate frames, homogeneous transformations, Denavit-Hartenberg parameters, forward and inverse kinematics for manipulators, and differential kinematics (Jacobians) for velocity and force analysis.",
           "resources": [
             {
               "title": "Modern Robotics Video Lessons",
               "url": "https://modernrobotics.northwestern.edu/nu-gm-book-resource/",
               "type": "course"
+            },
+            {
+              "title": "Robotics by John J. Craig",
+              "url": "https://www.pearson.com/us/higher-education/program/Craig-Introduction-to-Robotics-Mechanics-and-Control-3rd-Edition/PGM1047608.html",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "robot_dynamics",
+          "name": "Robot Dynamics",
+          "tag": "advanced",
+          "description": "Explore rigid body dynamics, Euler-Lagrange and Newton-Euler formulations, and how to model forces and torques for robot motion, enabling advanced control and simulation.",
+          "resources": [
+            {
+              "title": "Modern Robotics (Dynamics chapters)",
+              "url": "https://modernrobotics.northwestern.edu/legacy/pdf/mr_book_v1_024.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Robotics by Bruno Siciliano",
+              "url": "https://www.springer.com/gp/book/9781846289278",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "control_systems_design",
+          "name": "Control Systems Design",
+          "tag": "essential",
+          "description": "Understand open-loop and closed-loop control, stability analysis, frequency domain vs. time domain analysis, and robust control strategies for robotic systems.",
+          "resources": [
+            {
+              "title": "Feedback Control Systems by Ogata",
+              "url": "https://www.amazon.com/Modern-Control-Engineering-Katsuhiko-Ogata/dp/0136156738",
+              "type": "course"
+            },
+            {
+              "title": "Brian Douglas Controls Playlist",
+              "url": "https://www.youtube.com/user/ControlLectures",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "pid_control",
+          "name": "PID Control",
+          "tag": "essential",
+          "description": "Master the theory and practical tuning of Proportional-Integral-Derivative (PID) controllers for precise robot actuation, understanding concepts like overshoot, rise time, and steady-state error.",
+          "resources": [
+            {
+              "title": "Understanding PID Control",
+              "url": "https://www.csimn.com/CSI_pages/PID_Control.html",
+              "type": "article"
+            },
+            {
+              "title": "Brian Douglas PID Tutorial",
+              "url": "https://www.youtube.com/watch?v=VaO0F4p2_0Q",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "state_space_control",
+          "name": "State-Space Control",
+          "tag": "advanced",
+          "description": "Learn state-space modeling, LQR (Linear Quadratic Regulator), MPC (Model Predictive Control), and advanced control techniques for complex multi-input multi-output robotic systems.",
+          "resources": [
+            {
+              "title": "Introduction to State-Space Control (NPTEL)",
+              "url": "https://nptel.ac.in/courses/108102043/",
+              "type": "course"
+            },
+            {
+              "title": "Applied Control Theory (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/16-30-applied-control-theory-fall-2004/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "robot_actuation_drivetrains",
+          "name": "Robot Actuation & Drivetrains",
+          "tag": "essential",
+          "description": "Understand different types of actuators (motors, servos, pneumatics, hydraulics), motor control (PWM, H-bridges), gear ratios, and various drivetrain configurations (wheeled, tracked, legged) and their impact on robot performance.",
+          "resources": [
+            {
+              "title": "Robot Actuators: Types, Working & Applications",
+              "url": "https://www.engineersgarage.com/robot-actuators-types-working-applications/",
+              "type": "article"
+            },
+            {
+              "title": "Drivetrain Design Principles (various resources)",
+              "url": "https://www.google.com/search?q=robot+drivetrain+design+principles",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
@@ -56,7 +353,7 @@
       "id": "robotics_ros_sim",
       "name": "ROS 2 and Simulation",
       "tag": "essential",
-      "description": "Use ROS 2 nodes, topics, services, actions, launch files, parameters, bags, and simulation tools.",
+      "description": "Master the Robotics Operating System (ROS 2) for building distributed robotic applications and utilize simulation environments for development and testing, crucial for accelerating robotics development.",
       "resources": [
         {
           "title": "Learn ROS 2: Beginner to Advanced (Kevin Wood)",
@@ -71,126 +368,732 @@
       ],
       "children": [
         {
-          "id": "robotics_ros_nodes",
-          "name": "ROS 2 Nodes and Communication",
+          "id": "ros2_fundamentals",
+          "name": "ROS 2 Fundamentals",
           "tag": "essential",
-          "description": "Build publisher/subscriber nodes, services, actions, parameters, transforms, and launch systems.",
+          "description": "Understand ROS 2 architecture, build systems (Colcon), package creation, nodes, topics, services, actions, parameters, logging (rosbag), and the distributed data-centric publish/subscribe model (DDS).",
           "resources": [
             {
               "title": "ROS 2 Tutorials",
               "url": "https://docs.ros.org/en/rolling/Tutorials.html",
               "type": "article"
+            },
+            {
+              "title": "ROS 2 Foxy: A Concise Guide (Book)",
+              "url": "https://www.amazon.com/ROS-Foxy-Concise-Guide-programming/dp/1800206894",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "robotics_gazebo",
-          "name": "Simulation with Gazebo",
-          "tag": "advanced",
-          "description": "Create simulated worlds, sensors, robot models, plugins, and test scenarios before using hardware.",
+          "id": "ros2_communication_patterns",
+          "name": "ROS 2 Communication Patterns",
+          "tag": "essential",
+          "description": "Master publisher/subscriber patterns, client/server services, action servers/clients for long-running tasks, and managing robot state with TF2 (Transforms) for coordinate transformations across different frames.",
+          "resources": [
+            {
+              "title": "ROS 2 Tutorials: Topics",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Writing-A-Simple-Publisher-And-Subscriber-Python.html",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Tutorials: TF2",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Tf2/Introduction-To-Tf2.html",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Actions Tutorial",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ros2_tools_debugging",
+          "name": "ROS 2 Tools & Debugging",
+          "tag": "essential",
+          "description": "Learn to use Rviz2 for 3D visualization, rqt tools for introspection, rosbag for data logging and replay, command-line tools for node management, and integrated debugging techniques (e.g., GDB with ROS 2 nodes).",
+          "resources": [
+            {
+              "title": "Rviz2 Documentation",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Intermediate/Rviz-User-Guide.html",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Bag Tutorials",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Advanced/Recording-And-Playing-Back-Data-With-Rosbag-CLI.html",
+              "type": "article"
+            },
+            {
+              "title": "Using GDB with ROS 2",
+              "url": "https://docs.ros.org/en/foxy/Guides/Debugging-ROS-2-Applications.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "robot_modeling_simulation_advanced",
+          "name": "Robot Modeling & Advanced Simulation",
+          "tag": "essential",
+          "description": "Create accurate robot models and simulate robot behavior in realistic environments. This includes understanding the components of a robot model and interacting with powerful simulation platforms.",
           "resources": [
             {
               "title": "Gazebo Documentation",
-              "url": "https://gazebosim.org/docs/latest/getstarted/",
+              "url": "https://gazebosim.org/docs/latest/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "robotics_engineer_practice_lab",
-          "name": "Practice: Navigation Failure Replay",
+          "id": "urdf_xacro_robot_description",
+          "name": "Robot Description (URDF/XACRO)",
+          "tag": "essential",
+          "description": "Learn to define robot kinematics, visual properties, collision models, inertial properties, and sensor mounts using URDF and XACRO for ROS 2 applications and simulation.",
+          "resources": [
+            {
+              "title": "URDF Tutorials",
+              "url": "http://wiki.ros.org/urdf/Tutorials",
+              "type": "article"
+            },
+            {
+              "title": "ROS Wiki: XACRO",
+              "url": "http://wiki.ros.org/xacro",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "simulation_environments_gazebo_ignition",
+          "name": "Simulation Environments (Gazebo/Ignition)",
+          "tag": "essential",
+          "description": "Develop simulated worlds, integrate robot models, simulate various sensors (cameras, LiDAR, IMUs), and understand the physics engine for realistic testing and development before using hardware.",
+          "resources": [
+            {
+              "title": "Gazebo Tutorials",
+              "url": "https://gazebosim.org/docs/latest/tutorials/",
+              "type": "article"
+            },
+            {
+              "title": "Ignition Gazebo Documentation",
+              "url": "https://ignitionrobotics.org/docs/citadel/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "simulation_plugins_customization",
+          "name": "Simulation Plugins & Customization",
           "tag": "advanced",
-          "description": "Record a failed robot run, inspect sensor data, adjust parameters, and explain the navigation failure.",
-          "resources": [],
-          "children": []
+          "description": "Write custom Gazebo/Ignition plugins in C++ to extend simulation functionality, model custom sensors, actuators, or complex environmental interactions, and integrate with ROS 2.",
+          "resources": [
+            {
+              "title": "Gazebo Plugin Tutorials",
+              "url": "https://gazebosim.org/docs/latest/tutorials/plugins",
+              "type": "article"
+            },
+            {
+              "title": "Ignition Gazebo Plugin Tutorials",
+              "url": "https://ignitionrobotics.org/docs/garden/plugins_tutorial",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ros2_security_best_practices",
+          "name": "ROS 2 Security & Best Practices",
+          "tag": "advanced",
+          "description": "Understand ROS 2 security mechanisms (SROS2), access control, authentication, encryption, and best practices for writing robust, maintainable, and secure ROS 2 applications for production environments.",
+          "resources": [
+            {
+              "title": "SROS2 Documentation",
+              "url": "https://docs.ros.org/en/humble/Tutorials/Intermediate/Security/The-ROS2-Security-Concept.html",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Quality of Service Policies",
+              "url": "https://docs.ros.org/en/rolling/Concepts/About-Quality-Of-Service-Settings.html",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "robotics_perception_navigation",
-      "name": "Perception, Navigation, and Portfolio",
+      "id": "robotics_perception",
+      "name": "Perception for Robotics",
       "tag": "advanced",
-      "description": "Combine sensors, mapping, localization, planning, and control into autonomous robot behavior.",
+      "description": "Equip robots with the ability to 'see' and interpret their environment using various sensors and computer vision/point cloud processing techniques, essential for autonomy.",
       "resources": [
         {
           "title": "OpenCV Course - Full Tutorial with Python (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=oXlwWbU8l2o",
           "type": "video"
+        },
+        {
+          "title": "Multiple View Geometry in Computer Vision by Hartley & Zisserman",
+          "url": "https://www.amazon.com/Multiple-View-Geometry-Computer-Vision/dp/0521540518",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "robotics_navigation",
-          "name": "Navigation and SLAM",
-          "tag": "advanced",
-          "description": "Use maps, odometry, localization, path planning, obstacle avoidance, and navigation stacks.",
+          "id": "sensors_for_robotics",
+          "name": "Sensors for Robotics",
+          "tag": "essential",
+          "description": "Understand the principles and characteristics of common robotic sensors: cameras (monocular, stereo, RGB-D), LiDAR (2D/3D), IMUs, encoders, force/torque sensors, and ultrasonic sensors.",
           "resources": [
             {
-              "title": "Nav2 Documentation",
-              "url": "https://docs.nav2.org/",
-              "type": "article"
+              "title": "Introduction to Robotics: Sensors (Georgia Tech)",
+              "url": "https://www.youtube.com/playlist?list=PL_Jz4K_qf_k-qJ_p1uB8_y-G1x2sK_6W9",
+              "type": "video"
+            },
+            {
+              "title": "Sensor Fusion and Perception (NVIDIA Deep Learning Institute)",
+              "url": "https://www.nvidia.com/en-us/training/course/sensor-fusion/",
+              "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "robotics_capstone",
-          "name": "Project: Simulated Autonomous Robot",
-          "tag": "advanced",
-          "description": "Build a ROS 2 robot in simulation that senses, localizes, navigates, avoids obstacles, and logs runs.",
+          "id": "computer_vision_fundamentals_robotics",
+          "name": "Computer Vision Fundamentals for Robotics",
+          "tag": "essential",
+          "description": "Learn image processing techniques (filtering, edge detection), feature detection and description (e.g., SIFT, SURF, ORB, AKAZE), object recognition, camera models, and basic machine learning for vision tasks relevant to robotics.",
           "resources": [
             {
-              "title": "TurtleBot 4 User Manual",
-              "url": "https://turtlebot.github.io/turtlebot4-user-manual/",
+              "title": "OpenCV Python Tutorials",
+              "url": "https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html",
+              "type": "article"
+            },
+            {
+              "title": "Computer Vision: Algorithms and Applications by Richard Szeliski",
+              "url": "http://szeliski.org/Book/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "point_cloud_processing_3d",
+          "name": "Point Cloud Processing (3D Perception)",
+          "tag": "advanced",
+          "description": "Work with 3D sensor data (LiDAR, RGB-D cameras), including filtering, segmentation, feature extraction, 3D object detection, surface reconstruction, and registration (e.g., ICP, NDT) from point clouds using PCL.",
+          "resources": [
+            {
+              "title": "Point Cloud Library (PCL) Tutorials",
+              "url": "http://pointclouds.org/documentation/tutorials/",
+              "type": "article"
+            },
+            {
+              "title": "PCL Documentation",
+              "url": "http://pointclouds.org/documentation/",
+              "type": "article"
+            },
+            {
+              "title": "3D Computer Vision: Point Cloud Processing (Udemy)",
+              "url": "https://www.udemy.com/course/3d-computer-vision-point-cloud-processing/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "sensor_fusion_perception",
+          "name": "Sensor Fusion for Perception",
+          "tag": "advanced",
+          "description": "Combine data from multiple heterogeneous sensors (e.g., camera and LiDAR, radar, IMU) using probabilistic methods (Kalman Filters, Particle Filters, Extended Kalman Filters) to create a more robust and accurate understanding of the environment, crucial for robust perception and state estimation.",
+          "resources": [
+            {
+              "title": "Probabilistic Robotics by Thrun, Burgard, Fox (Sensor Fusion chapters)",
+              "url": "http://www.probabilistic-robotics.org/",
+              "type": "course"
+            },
+            {
+              "title": "Sensor Fusion and Tracking (Coursera)",
+              "url": "https://www.coursera.org/learn/sensor-fusion",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "deep_learning_for_robotic_perception",
+          "name": "Deep Learning for Robotic Perception",
+          "tag": "advanced",
+          "description": "Apply deep learning techniques (CNNs, RNNs, Transformers) for advanced perception tasks such as semantic segmentation, object detection, pose estimation, and scene understanding from images and 3D data.",
+          "resources": [
+            {
+              "title": "Deep Learning for Computer Vision (Stanford CS231n)",
+              "url": "http://cs231n.stanford.edu/",
+              "type": "course"
+            },
+            {
+              "title": "Awesome Robotics List: Deep Learning",
+              "url": "https://github.com/Awesome-Robotics/awesome-robotics#deep-learning-for-robotics",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "robotics_hardware_testing",
-      "name": "Hardware Integration and Testing",
+      "id": "robotics_navigation_control",
+      "name": "Navigation & Control for Autonomous Robots",
       "tag": "advanced",
-      "description": "Bridge simulation and real robots with sensor calibration, safety checks, hardware drivers, and repeatable experiments.",
+      "description": "Integrate perception, localization, mapping, planning, and low-level control to enable robots to autonomously move, interact, and operate in complex, dynamic environments.",
       "resources": [
         {
-          "title": "ROS 2 Control Documentation",
-          "url": "https://control.ros.org/",
+          "title": "Probabilistic Robotics by Thrun, Burgard, Fox",
+          "url": "http://www.probabilistic-robotics.org/",
+          "type": "course"
+        },
+        {
+          "title": "Nav2 Documentation",
+          "url": "https://docs.nav2.org/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "robotics_sensors_calibration",
-          "name": "Sensors and Calibration",
+          "id": "mapping_techniques_robotics",
+          "name": "Mapping Techniques for Robotics",
+          "tag": "essential",
+          "description": "Understand different map representations (occupancy grids, feature maps, topological maps) and algorithms for building static and dynamic maps of an environment using sensor data.",
+          "resources": [
+            {
+              "title": "Occupancy Grid Mapping Tutorial",
+              "url": "http://www.cs.cmu.edu/~rasc/Download/Papers/Elfes.pdf",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Mapping Tutorials",
+              "url": "https://navigation.ros.org/setup/mapping/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "localization_slam_algorithms",
+          "name": "Localization & SLAM Algorithms",
           "tag": "advanced",
-          "description": "Integrate cameras, LiDAR, IMUs, encoders, depth sensors, calibration targets, and synchronized timestamps.",
+          "description": "Understand odometry, absolute localization (GPS, IMU, beacons), and advanced Simultaneous Localization and Mapping (SLAM) algorithms (e.g., EKF-SLAM, Graph SLAM, Lidar SLAM, Visual SLAM) for real-time state estimation.",
+          "resources": [
+            {
+              "title": "Probabilistic Robotics (SLAM chapters)",
+              "url": "http://www.probabilistic-robotics.org/part_II.html",
+              "type": "article"
+            },
+            {
+              "title": "Cartographer Documentation",
+              "url": "https://google-cartographer.readthedocs.io/en/latest/",
+              "type": "article"
+            },
+            {
+              "title": "ORB-SLAM3: An accurate open-source library for Visual, Visual-Inertial and Multi-Map SLAM",
+              "url": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "global_local_path_planning",
+          "name": "Global & Local Path Planning",
+          "tag": "advanced",
+          "description": "Explore global path planning algorithms (A*, Dijkstra, RRT/RRT*, PRM) to find feasible paths through known environments, and local obstacle avoidance techniques (DWA, TEB, VFH) for real-time navigation in dynamic settings.",
+          "resources": [
+            {
+              "title": "Nav2 Planning Concepts",
+              "url": "https://docs.nav2.org/concepts/index.html#planning",
+              "type": "article"
+            },
+            {
+              "title": "Planning Algorithms by Steven M. LaValle",
+              "url": "http://planning.cs.uiuc.edu/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "trajectory_generation_execution",
+          "name": "Trajectory Generation & Execution",
+          "tag": "advanced",
+          "description": "Learn about generating smooth, time-optimal, and dynamically feasible trajectories. Understand trajectory following controllers and how to execute planned motions safely and efficiently on physical robots.",
+          "resources": [
+            {
+              "title": "Motion Planning for Robotics (MIT OCW)",
+              "url": "https://ocw.mit.edu/courses/16-412j-cognitive-robotics-fall-2004/video_lectures/lecture-14-motion-planning-for-robotics/",
+              "type": "video"
+            },
+            {
+              "title": "Robot Trajectory Planning: A Tutorial Review",
+              "url": "https://www.hindawi.com/journals/jr/2021/8877526/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "behavior_planning_decision_making",
+          "name": "Behavior Planning & Decision Making",
+          "tag": "advanced",
+          "description": "Explore higher-level planning architectures such as state machines, behavior trees, and hybrid deliberative/reactive systems for complex task execution, mission planning, and interaction with uncertain environments.",
+          "resources": [
+            {
+              "title": "Behavior Trees for AI in Robotics and Games (Book)",
+              "url": "https://www.amazon.com/Behavior-Trees-Robotics-Games-Introduction/dp/1000632363",
+              "type": "course"
+            },
+            {
+              "title": "Nav2 Behavior Trees",
+              "url": "https://docs.nav2.org/concepts/behaviors_concepts.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ros2_navigation_stack_nav2",
+          "name": "ROS 2 Navigation Stack (Nav2)",
+          "tag": "essential",
+          "description": "Implement and configure the ROS 2 Navigation Stack (Nav2) for autonomous navigation of mobile robots, including robot setup, behavior trees, costmaps, plugins, and parameter tuning for specific applications and environments.",
+          "resources": [
+            {
+              "title": "Nav2 Documentation",
+              "url": "https://docs.nav2.org/",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Navigation Tutorials",
+              "url": "https://navigation.ros.org/tutorials/index.html",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "robotics_hardware_testing",
+      "name": "Hardware Integration and Deployment",
+      "tag": "advanced",
+      "description": "Bridge simulation and real robots with robust hardware integration, sensor calibration, safety checks, reliable hardware drivers, and repeatable experiments for robust deployment in real-world scenarios.",
+      "resources": [
+        {
+          "title": "ROS 2 Control Documentation",
+          "url": "https://control.ros.org/",
+          "type": "article"
+        },
+        {
+          "title": "Robot Operating System (ROS) in Real-Time (Book)",
+          "url": "https://www.amazon.com/Robot-Operating-System-ROS-Real-Time/dp/1800206894",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "sensor_actuator_integration",
+          "name": "Sensor & Actuator Integration",
+          "tag": "advanced",
+          "description": "Connect, configure, and integrate various sensors (cameras, LiDAR, IMUs, encoders) and actuators (motors, servos, grippers) to the robot's control system, understanding electrical and mechanical considerations.",
+          "resources": [
+            {
+              "title": "Building ROS 2 Hardware Interfaces",
+              "url": "https://docs.ros.org/en/humble/Tutorials/Intermediate/Ros2-Control/Controllers-and-hardware-interfaces.html",
+              "type": "article"
+            },
+            {
+              "title": "Modern Robotics: Control (Ch. 11)",
+              "url": "https://modernrobotics.northwestern.edu/legacy/pdf/mr_book_v1_024.pdf",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "sensor_calibration_synchronization",
+          "name": "Sensor Calibration & Synchronization",
+          "tag": "advanced",
+          "description": "Perform intrinsic and extrinsic calibration for cameras, LiDAR, and IMUs. Ensure accurate time synchronization across all sensors and computing units using NTP or PTP for precise data fusion and perception.",
           "resources": [
             {
               "title": "OpenCV Camera Calibration",
               "url": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
               "type": "article"
+            },
+            {
+              "title": "ROS 2 Sensor Data Integration Tutorials",
+              "url": "https://docs.ros.org/en/galactic/Concepts/About-Tf2.html",
+              "type": "article"
+            },
+            {
+              "title": "Kalibr: Camera and IMU Calibration",
+              "url": "https://github.com/ethz-asl/kalibr",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "robotics_experiments",
-          "name": "Experiment Logs and Safety",
+          "id": "hardware_drivers_interfaces_ros2",
+          "name": "Hardware Drivers & Interfaces for ROS 2",
           "tag": "advanced",
-          "description": "Plan tests, record bags, analyze failures, set safety limits, and write reproducible experiment reports.",
+          "description": "Develop or adapt robust ROS 2 drivers for specific hardware components, understanding common communication protocols (UART, SPI, I2C, Ethernet, CAN, USB) and writing efficient low-level code.",
+          "resources": [
+            {
+              "title": "ROS 2 Hardware Interface Tutorials",
+              "url": "https://control.ros.org/master/doc/ros2_control/hardware_interface/doc/writing_hardware_interface.html",
+              "type": "article"
+            },
+            {
+              "title": "Manufacturer Datasheets & SDKs (examples from RealSense, Velodyne, etc.)",
+              "url": "https://www.google.com/search?q=robotics+sensor+datasheet+examples",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ros2_control_framework",
+          "name": "ROS 2 Control Framework",
+          "tag": "essential",
+          "description": "Implement robot controllers using the `ros2_control` framework, including hardware interfaces, controller managers, and various types of controllers (position, velocity, effort) for joint-level and Cartesian control.",
+          "resources": [
+            {
+              "title": "ROS 2 Control Documentation",
+              "url": "https://control.ros.org/master/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Migrating to ros2_control (YouTube)",
+              "url": "https://www.youtube.com/watch?v=S2i7r0S_G8E",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "real_world_testing_safety",
+          "name": "Real-world Testing & Safety",
+          "tag": "advanced",
+          "description": "Plan, execute, and analyze real-world robot experiments in structured and unstructured environments. Emphasize rigorous safety protocols, emergency stop systems, failure modes, and reproducible testing methodologies.",
+          "resources": [
+            {
+              "title": "Robot Operating System (ROS) in Real-Time (Ch. 12: Real-World Robot Development)",
+              "url": "https://www.amazon.com/Robot-Operating-System-ROS-Real-Time/dp/1800206894",
+              "type": "course"
+            },
+            {
+              "title": "Best Practices for Robotics System Deployment (Intel)",
+              "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/best-practices-for-robotics-system-deployment.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "experiment_design_data_analysis",
+          "name": "Experiment Design & Data Analysis",
+          "tag": "advanced",
+          "description": "Design robust test cases, create metrics for performance evaluation, record comprehensive logs (rosbags, other data streams), analyze performance, identify root causes of failures, and iterate on solutions encountered in physical deployments.",
           "resources": [
             {
               "title": "ROS 2 Bag Tutorials",
-              "url": "https://docs.ros.org/en/rolling/Tutorials/Advanced/Recording-A-Bag-From-Your-Own-Node-Py.html",
+              "url": "https://docs.ros.org/en/rolling/Tutorials/Advanced/Recording-And-Playing-Back-Data-With-Rosbag-CLI.html",
+              "type": "article"
+            },
+            {
+              "title": "PlotJuggler: Time Series Visualization Tool",
+              "url": "https://github.com/facontidavide/PlotJuggler",
+              "type": "article"
+            },
+            {
+              "title": "Matplotlib/Pandas for Data Analysis (Python)",
+              "url": "https://matplotlib.org/stable/gallery/index.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "robot_safety_ethical_considerations",
+          "name": "Robot Safety & Ethical Considerations",
+          "tag": "essential",
+          "description": "Understand international safety standards (e.g., ISO 10218, ISO/TS 15066 for collaborative robots), risk assessment frameworks, functional safety, emergency stop systems, and the ethical implications of designing and deploying autonomous robotic systems.",
+          "resources": [
+            {
+              "title": "ISO 10218 (overview)",
+              "url": "https://www.iso.org/standard/51351.html",
+              "type": "article"
+            },
+            {
+              "title": "IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems",
+              "url": "https://standards.ieee.org/industry-connections/ec/autonomous-systems.html",
+              "type": "article"
+            },
+            {
+              "title": "Robot Risk Assessment (OSHA)",
+              "url": "https://www.osha.gov/robotics/risk-assessment",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "advanced_robotics_specializations",
+      "name": "Advanced Robotics Topics & Specializations",
+      "tag": "advanced",
+      "description": "Explore cutting-edge areas in robotics, including advanced machine learning for complex tasks, human-robot interaction, and specialized applications for diverse environments.",
+      "resources": [
+        {
+          "title": "Robotics & AI Research Papers (e.g., ICRA, IROS)",
+          "url": "https://www.robotics-worldwide.info/conferences.html",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "machine_learning_for_robotics",
+          "name": "Machine Learning for Robotics",
+          "tag": "advanced",
+          "description": "Apply machine learning, deep learning, and reinforcement learning techniques to advanced perception (e.g., novel object detection, semantic mapping), adaptive control, robot learning from demonstration, and decision-making in complex robotic systems.",
+          "resources": [
+            {
+              "title": "Deep Reinforcement Learning for Robotics (UC Berkeley)",
+              "url": "http://rail.eecs.berkeley.edu/deeprlcourse/",
+              "type": "course"
+            },
+            {
+              "title": "TensorFlow/PyTorch for Robotics (various resources)",
+              "url": "https://www.tensorflow.org/robotics",
+              "type": "article"
+            },
+            {
+              "title": "Robot Learning Course (Columbia University)",
+              "url": "https://robot-learning.cs.columbia.edu/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "human_robot_interaction_hri",
+          "name": "Human-Robot Interaction (HRI)",
+          "tag": "advanced",
+          "description": "Study principles of safe, intuitive, and effective interaction between humans and robots. This includes shared autonomy, gesture recognition, natural language processing, collaborative robotics (cobots), and user experience design for robots.",
+          "resources": [
+            {
+              "title": "Human-Robot Interaction: An Introduction (textbook)",
+              "url": "https://hri.gatech.edu/book",
+              "type": "course"
+            },
+            {
+              "title": "HRI Conference Proceedings (e.g., ACM/IEEE HRI)",
+              "url": "https://humanrobotinteraction.org/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "field_robotics_autonomous_systems",
+          "name": "Field Robotics & Autonomous Systems",
+          "tag": "advanced",
+          "description": "Investigate challenges and solutions for robots operating in unstructured, dynamic, and harsh outdoor environments, including aerial robotics (drones), underwater robotics, agricultural robotics, and planetary exploration.",
+          "resources": [
+            {
+              "title": "Journal of Field Robotics",
+              "url": "https://onlinelibrary.wiley.com/journal/15564967",
+              "type": "article"
+            },
+            {
+              "title": "MIT OCW: Autonomous Flight of Unmanned Aerial Vehicles",
+              "url": "https://ocw.mit.edu/courses/16-412j-cognitive-robotics-fall-2004/video_lectures/lecture-7-autonomous-flight-of-unmanned-aerial-vehicles/",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "cloud_robotics_edge_ai",
+          "name": "Cloud Robotics & Edge AI",
+          "tag": "advanced",
+          "description": "Explore the integration of cloud computing and edge AI with robotic systems for offloading heavy computation, fleet management, data storage, and leveraging distributed intelligence. Understand cloud platforms like AWS RoboMaker or Google Cloud Robotics.",
+          "resources": [
+            {
+              "title": "AWS RoboMaker Documentation",
+              "url": "https://docs.aws.amazon.com/robomaker/latest/dg/what-is-robomaker.html",
+              "type": "article"
+            },
+            {
+              "title": "Google Cloud Robotics Platform (overview)",
+              "url": "https://cloud.google.com/solutions/robotics",
+              "type": "article"
+            },
+            {
+              "title": "Edge AI and Robotics: The Future of Automation",
+              "url": "https://www.intel.com/content/www/us/en/internet-of-things/industrial-iot/edge-ai/edge-ai-robotics.html",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "robotics_capstone_portfolio",
+      "name": "Capstone Projects & Portfolio",
+      "tag": "advanced",
+      "description": "Apply learned skills to build complex autonomous robotic systems, creating a robust portfolio of projects demonstrating proficiency and readiness for industry roles. This is where theory meets practice.",
+      "resources": [],
+      "children": [
+        {
+          "id": "simulated_autonomous_robot_project",
+          "name": "Project: Simulated Autonomous Robot",
+          "tag": "essential",
+          "description": "Develop a complete ROS 2-based autonomous robot application in simulation (e.g., Gazebo/Ignition). Implement perception, localization, mapping, navigation, and obstacle avoidance for a specific task. Focus on detailed logging, analysis, and iterative improvement.",
+          "resources": [
+            {
+              "title": "TurtleBot 4 User Manual",
+              "url": "https://turtlebot.github.io/turtlebot4-user-manual/",
+              "type": "article"
+            },
+            {
+              "title": "AWS RoboMaker Tutorials",
+              "url": "https://docs.aws.amazon.com/robomaker/latest/dg/tutorial-samples.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "real_robot_implementation_project",
+          "name": "Project: Real-world Robot Implementation",
+          "tag": "advanced",
+          "description": "Translate a simulated robot project or a new, equivalent project to a physical robot platform (e.g., TurtleBot, custom robot, robotic arm). Address real-world challenges such as sensor noise, actuator limitations, latency, calibration, and environmental variations.",
+          "resources": [
+            {
+              "title": "DonkeyCar Autonomous RC Car Platform",
+              "url": "http://www.donkeycar.com/",
+              "type": "article"
+            },
+            {
+              "title": "OpenManipulator-X Documentation",
+              "url": "https://emanual.robotis.com/docs/en/platform/openmanipulator_x/overview/",
+              "type": "article"
+            },
+            {
+              "title": "ROS 2 Hardware Setup Guide (various platforms)",
+              "url": "https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "open_source_contributions_portfolio",
+          "name": "Open-Source Contributions & Portfolio Building",
+          "tag": "advanced",
+          "description": "Contribute to existing open-source robotics projects (e.g., ROS, Nav2, MoveIt), document your projects thoroughly on GitHub, write technical blogs, and showcase your skills to build a strong professional portfolio.",
+          "resources": [
+            {
+              "title": "How to Build a Killer Robotics Portfolio",
+              "url": "https://www.theconstructsim.com/killer-robotics-portfolio/",
+              "type": "article"
+            },
+            {
+              "title": "Contributing to ROS 2",
+              "url": "https://docs.ros.org/en/galactic/Contributing.html",
+              "type": "article"
+            },
+            {
+              "title": "Writing a Technical Blog Post",
+              "url": "https://dev.to/ossamamehmood/how-to-write-a-technical-blog-post-3d97",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

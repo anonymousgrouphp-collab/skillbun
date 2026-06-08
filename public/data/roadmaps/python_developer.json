@@ -1,201 +1,403 @@
 {
   "id": "python_developer",
   "title": "Python Developer",
-  "description": "A roadmap for becoming a professional Python developer across scripting, web APIs, databases, testing, automation, packaging, and deployment.",
+  "description": "A comprehensive roadmap for becoming a professional Python developer, covering core language, advanced concepts, web APIs, databases, testing, automation, cloud deployment, and robust project delivery.",
   "format": "tree",
   "tree": [
     {
-      "id": "py_foundations",
-      "name": "Python Foundations",
+      "id": "py_fundamentals_env",
+      "name": "Python Fundamentals & Development Environment",
       "tag": "essential",
-      "description": "Learn Python syntax, data structures, functions, modules, files, exceptions, virtual environments, and clean code habits.",
+      "description": "Master the core Python language, foundational programming concepts, and establish a professional development environment with essential tools and best practices.",
       "resources": [
-        {
-          "title": "Python for Beginners (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=eWRfhZUzrAc",
-          "type": "video"
-        },
-        {
-          "title": "Python Tutorial for Beginners in Hindi (CodeWithHarry)",
-          "url": "https://www.youtube.com/watch?v=gfDE2a7MKjA",
-          "type": "video"
-        },
-        {
-          "title": "Learn Python Full Course (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
-          "type": "video"
-        },
         {
           "title": "Python Tutorial",
           "url": "https://docs.python.org/3/tutorial/",
+          "type": "article"
+        },
+        {
+          "title": "Automate the Boring Stuff with Python",
+          "url": "https://automatetheboringstuff.com/",
+          "type": "course"
+        },
+        {
+          "title": "PEP 8 – Style Guide for Python Code",
+          "url": "https://www.python.org/dev/peps/pep-0008/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "py_core",
-          "name": "Core Language",
+          "id": "py_core_lang",
+          "name": "Python Core Language & Paradigms",
           "tag": "essential",
-          "description": "Use lists, dicts, comprehensions, classes, iterators, decorators, context managers, and type hints.",
+          "description": "Deep dive into Python's syntax, data types, control flow, functions, modules, classes, error handling, file I/O, and advanced language features like iterators, generators, decorators, context managers, type hinting, and asynchronous programming.",
           "resources": [
             {
               "title": "Python Standard Library",
               "url": "https://docs.python.org/3/library/",
               "type": "article"
+            },
+            {
+              "title": "Fluent Python (Book)",
+              "url": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056315/",
+              "type": "course"
+            },
+            {
+              "title": "Async IO in Python",
+              "url": "https://realpython.com/async-io-python/",
+              "type": "article"
+            },
+            {
+              "title": "Python Type Checking Guide",
+              "url": "https://realpython.com/python-type-checking/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "py_tooling",
-          "name": "Tooling and Environments",
+          "id": "dev_env_tooling",
+          "name": "Development Environment & Tooling",
           "tag": "essential",
-          "description": "Manage venvs, pip, pyproject.toml, formatting, linting, debugging, logging, and project layouts.",
+          "description": "Set up a robust development workflow using virtual environments (venv, conda), package managers (pip, Poetry/pip-tools), code formatters (Black), linters (Flake8), static type checkers (Mypy), and version control systems (Git & GitHub/GitLab). Understand project structuring, dependency management, and build tools.",
           "resources": [
             {
               "title": "Python Packaging User Guide",
               "url": "https://packaging.python.org/en/latest/",
               "type": "article"
+            },
+            {
+              "title": "The Hitchhiker's Guide to Python! - Development Environments",
+              "url": "https://docs.python-guide.org/dev/virtualenvs/",
+              "type": "article"
+            },
+            {
+              "title": "Git - The Simple Guide",
+              "url": "https://rogerdudler.github.io/git-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Black: The Uncompromising Code Formatter",
+              "url": "https://github.com/psf/black",
+              "type": "article"
+            },
+            {
+              "title": "Poetry Documentation",
+              "url": "https://python-poetry.org/docs/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "data_structures_algo",
+          "name": "Data Structures & Algorithms (Basics)",
+          "tag": "essential",
+          "description": "Understand fundamental data structures like lists, dictionaries, sets, tuples, and basic algorithms for sorting and searching, including common usage patterns. Grasp the concept of time and space complexity (Big O notation).",
+          "resources": [
+            {
+              "title": "Python Data Structures and Algorithms",
+              "url": "https://www.freecodecamp.org/news/data-structures-and-algorithms-in-python/",
+              "type": "article"
+            },
+            {
+              "title": "Big O Notation Explained",
+              "url": "https://www.freecodecamp.org/news/big-o-notation-explained-with-examples/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "py_web_data",
-      "name": "Web APIs and Databases",
+      "id": "backend_web_dev",
+      "name": "Backend Web Development with Python",
       "tag": "essential",
-      "description": "Build backend services with FastAPI or Django, persist data, validate requests, and document APIs.",
+      "description": "Develop robust backend services and APIs using Python web frameworks, interact with various databases, and implement essential security practices for web applications.",
       "resources": [
         {
-          "title": "FastAPI Tutorial",
-          "url": "https://fastapi.tiangolo.com/tutorial/",
+          "title": "RESTful API Design Best Practices",
+          "url": "https://restfulapi.net/rest-api-design-tutorial/",
+          "type": "article"
+        },
+        {
+          "title": "Web Application Security Guide",
+          "url": "https://owasp.org/www-project-top-ten/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "py_fastapi_django",
-          "name": "FastAPI or Django",
+          "id": "web_frameworks_py",
+          "name": "Web Frameworks & API Design (FastAPI / Django)",
           "tag": "essential",
-          "description": "Learn routing, request validation, ORM patterns, auth, background tasks, settings, and API docs.",
+          "description": "Learn to build high-performance APIs and web applications. Master routing, request/response validation, middleware, request lifecycle, ORM integration, authentication, authorization, background tasks, serialization/deserialization, and API documentation using a framework like FastAPI (for async performance) or Django (for full-stack capabilities).",
           "resources": [
+            {
+              "title": "FastAPI Tutorial",
+              "url": "https://fastapi.tiangolo.com/tutorial/",
+              "type": "article"
+            },
             {
               "title": "Django Tutorial",
               "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/",
               "type": "article"
+            },
+            {
+              "title": "Flask Mega-Tutorial",
+              "url": "https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world",
+              "type": "article"
+            },
+            {
+              "title": "Building a RESTful API with Django REST Framework",
+              "url": "https://www.django-rest-framework.org/tutorial/quickstart/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "py_databases",
-          "name": "SQL and ORM",
+          "id": "database_mgmt",
+          "name": "Database Management & ORMs",
           "tag": "essential",
-          "description": "Use PostgreSQL, migrations, indexes, transactions, SQLAlchemy/Django ORM, and connection pooling.",
+          "description": "Gain proficiency in relational databases like PostgreSQL, SQL fundamentals, database design (normalization), and Object-Relational Mappers (ORMs) such as SQLAlchemy and Django ORM. Explore database migrations, indexing, transactions, connection pooling, query optimization, and an overview of NoSQL databases and caching strategies.",
           "resources": [
             {
               "title": "SQLAlchemy Tutorial",
               "url": "https://docs.sqlalchemy.org/en/20/tutorial/",
               "type": "article"
+            },
+            {
+              "title": "PostgreSQL Official Documentation",
+              "url": "https://www.postgresql.org/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Redis Quick Start",
+              "url": "https://redis.io/docs/getting-started/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "python_developer_practice_lab",
-          "name": "Practice: CLI Automation Tool",
+          "id": "api_security_best_practices",
+          "name": "API Security & Best Practices",
           "tag": "advanced",
-          "description": "Write a tested Python CLI that reads files/API data, logs actions, handles errors, and produces a report.",
-          "resources": [],
-          "children": []
+          "description": "Implement crucial security measures for web APIs, including authentication (JWT, OAuth), authorization (RBAC), input validation, rate limiting, Cross-Origin Resource Sharing (CORS), secure coding practices (e.g., preventing SQL injection, XSS), secret management, and HTTPS/SSL best practices.",
+          "resources": [
+            {
+              "title": "JWT Handbook",
+              "url": "https://jwt.io/introduction/",
+              "type": "article"
+            },
+            {
+              "title": "OAuth 2.0 Simplified",
+              "url": "https://oauth.net/2/",
+              "type": "article"
+            },
+            {
+              "title": "OWASP API Security Top 10",
+              "url": "https://owasp.org/www-project-api-security-top-10/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "py_quality_automation",
-      "name": "Testing, Automation, and Reliability",
+      "id": "automation_testing_devops",
+      "name": "Automation, Testing & DevOps Fundamentals",
       "tag": "advanced",
-      "description": "Write reliable code with automated tests, scripts, background jobs, observability, and deployment discipline.",
+      "description": "Build high-quality, reliable Python applications through comprehensive testing, automation of development workflows, and foundational DevOps practices including CI/CD and observability.",
       "resources": [
         {
-          "title": "pytest Documentation",
-          "url": "https://docs.pytest.org/en/stable/",
-          "type": "article"
+          "title": "The Phoenix Project (Book)",
+          "url": "https://itrevolution.com/the-phoenix-project/",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "py_testing",
-          "name": "Testing and CI",
+          "id": "automated_testing_quality",
+          "name": "Automated Testing & Quality Assurance",
           "tag": "advanced",
-          "description": "Use pytest, fixtures, mocks, coverage, type checking, GitHub Actions, and contract tests.",
+          "description": "Implement robust testing strategies including unit, integration, end-to-end, and regression tests using frameworks like pytest. Learn about fixtures, mocking, test coverage analysis, and the principles of Test-Driven Development (TDD).",
           "resources": [
             {
-              "title": "mypy Documentation",
-              "url": "https://mypy.readthedocs.io/en/stable/",
+              "title": "pytest Documentation",
+              "url": "https://docs.pytest.org/en/stable/",
+              "type": "article"
+            },
+            {
+              "title": "Test-Driven Development with Python (Book)",
+              "url": "http://www.obeythetestinggoat.com/pages/book.html",
+              "type": "course"
+            },
+            {
+              "title": "Unittest — Unit testing framework",
+              "url": "https://docs.python.org/3/library/unittest.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "py_tasks_scraping",
-          "name": "Automation and Background Jobs",
+          "id": "ci_cd_pipelines",
+          "name": "Continuous Integration & Deployment (CI/CD)",
           "tag": "advanced",
-          "description": "Build CLIs, schedulers, queues, web scrapers, file processors, and admin scripts with logging and retries.",
+          "description": "Understand the principles of Continuous Integration and Continuous Deployment. Set up automated build, test, and deployment pipelines using tools like GitHub Actions, GitLab CI, or Jenkins. Learn about artefact management, release management basics, and rollback strategies.",
+          "resources": [
+            {
+              "title": "Introduction to CI/CD",
+              "url": "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "task_mgmt_automation",
+          "name": "Scripting, Task Management & Automation",
+          "tag": "advanced",
+          "description": "Develop powerful command-line interface (CLI) tools, automate routine tasks, perform system automation (e.g., file operations, process management), data extraction (APIs, web scraping, parsing), and manage background jobs using message queues (e.g., Celery, Redis Queue) and schedulers. Understand data serialization formats like JSON, YAML, and CSV.",
           "resources": [
             {
               "title": "Typer Documentation",
               "url": "https://typer.tiangolo.com/",
               "type": "article"
+            },
+            {
+              "title": "Celery: Distributed Task Queue",
+              "url": "https://docs.celeryq.dev/en/stable/",
+              "type": "article"
+            },
+            {
+              "title": "Beautiful Soup Documentation",
+              "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+              "type": "article"
+            },
+            {
+              "title": "Scrapy Documentation",
+              "url": "https://docs.scrapy.org/en/latest/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "observability_py",
+          "name": "Observability: Logging, Monitoring & Tracing",
+          "tag": "advanced",
+          "description": "Implement robust logging strategies including structured logging, monitor application performance with metrics and dashboards, and understand distributed tracing to diagnose issues in complex systems. Learn to use tools like Prometheus, Grafana, OpenTelemetry, and establish effective alerting systems for proactive issue detection and root cause analysis.",
+          "resources": [
+            {
+              "title": "Python Logging Tutorial",
+              "url": "https://realpython.com/python-logging/",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus Monitoring Guide",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            },
+            {
+              "title": "OpenTelemetry Documentation",
+              "url": "https://opentelemetry.io/docs/instrumentation/python/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "py_deploy_project",
-      "name": "Deployment and Portfolio",
+      "id": "deployment_cloud_advanced",
+      "name": "Deployment, Cloud & Advanced Project",
       "tag": "advanced",
-      "description": "Package, containerize, deploy, monitor, and document a production-style Python application.",
+      "description": "Prepare Python applications for production environments by containerizing, deploying to cloud platforms, and understanding advanced system design principles. Conclude with a comprehensive, industry-standard project.",
       "resources": [
         {
-          "title": "Docker Python Guide",
-          "url": "https://docs.docker.com/language/python/",
+          "title": "The Twelve-Factor App",
+          "url": "https://12factor.net/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "py_deployment",
-          "name": "Deployment Patterns",
+          "id": "containerization_docker",
+          "name": "Containerization with Docker",
           "tag": "advanced",
-          "description": "Deploy with Docker, environment variables, migrations, health checks, logs, metrics, and rollback plans.",
+          "description": "Master Docker fundamentals: writing efficient Dockerfiles (including multi-stage builds), building images, running containers, managing networks and volumes. Understand container best practices, security considerations, and use Docker Compose for orchestrating multi-service local development environments and deploying to image registries like Docker Hub.",
           "resources": [
             {
-              "title": "Gunicorn",
-              "url": "https://gunicorn.org/",
+              "title": "Docker Python Guide",
+              "url": "https://docs.docker.com/language/python/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Compose Overview",
+              "url": "https://docs.docker.com/compose/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "py_project_ops_api",
-          "name": "Project: Operations API",
+          "id": "cloud_deployment",
+          "name": "Cloud Deployment & Infrastructure",
           "tag": "advanced",
-          "description": "Build a FastAPI service with PostgreSQL, auth, tests, CI, Docker, background jobs, monitoring, and API docs.",
+          "description": "Understand basic cloud computing concepts (IaaS, PaaS, SaaS) and deploy Python applications to public cloud providers (e.g., AWS EC2/Lambda/S3/RDS, Heroku, Render). Explore serverless functions, managed databases, cloud storage, basic networking (VPCs, Security Groups), and an introduction to Infrastructure as Code (Terraform/CloudFormation).",
+          "resources": [
+            {
+              "title": "AWS Free Tier",
+              "url": "https://aws.amazon.com/free/",
+              "type": "article"
+            },
+            {
+              "title": "Heroku Deployment with Python",
+              "url": "https://devcenter.heroku.com/articles/getting-started-with-python",
+              "type": "article"
+            },
+            {
+              "title": "Terraform Getting Started",
+              "url": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "system_design_scalability",
+          "name": "System Design & Scalability Basics",
+          "tag": "advanced",
+          "description": "Learn fundamental system design concepts for building scalable, resilient, and highly available applications. Cover topics like load balancing, API gateways, microservices vs. monoliths, message brokers (Kafka/RabbitMQ basics), event-driven architectures, caching strategies (CDN, in-memory, distributed), data consistency models, fault tolerance, and disaster recovery basics.",
+          "resources": [
+            {
+              "title": "Grokking System Design Interview (Course)",
+              "url": "https://www.educative.io/courses/grokking-system-design-interview",
+              "type": "course"
+            },
+            {
+              "title": "Anatomy of a Cloud-Native Application",
+              "url": "https://www.redhat.com/en/topics/cloud-native-development/what-is-cloud-native",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "final_project_production",
+          "name": "Final Project: Production-Ready Backend Service",
+          "tag": "advanced",
+          "description": "Apply all learned skills by building a complete production-ready FastAPI or Django service. This project should include robust API design, database integration, comprehensive authentication and authorization, background tasks, extensive automated testing with CI/CD, Dockerization, monitoring and logging, deployment to a cloud environment, and clear API documentation (e.g., Swagger/OpenAPI) with a focus on performance tuning.",
           "resources": [
             {
               "title": "OpenAPI Specification",
               "url": "https://spec.openapis.org/oas/latest.html",
               "type": "article"
+            },
+            {
+              "title": "Example Production FastAPI Project",
+              "url": "https://github.com/tiangolo/full-stack-fastapi-postgresql",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     }

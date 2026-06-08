@@ -6,161 +6,313 @@
   "tree": [
     {
       "id": "c_cpp_systems_developer_foundations",
-      "name": "Foundations and Role Context",
+      "name": "Foundations of C/C++ & Systems Context",
       "tag": "essential",
-      "description": "Understand what C/C++ Systems Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of core C and C++ language features, effective memory management techniques, and fundamental operating system concepts essential for robust systems development.",
       "resources": [
         {
-          "title": "C Programming and Memory Management - Full Course (Boot dev)",
-          "url": "https://www.youtube.com/watch?v=rJrd2QMVbGM",
-          "type": "video"
+          "title": "Operating Systems: Three Easy Pieces",
+          "url": "http://pages.cs.wisc.edu/~remzi/OSTEP/",
+          "type": "course"
         },
         {
-          "title": "C++ Reference",
-          "url": "https://en.cppreference.com/w/",
-          "type": "article"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/c_cpp_systems_developer/c_cpp_systems_developer_foundations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "c_cpp_systems_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "c_programming_essentials",
+          "name": "Core C Programming & Memory Model",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Master the fundamental syntax, data types, control structures, preprocessor directives, `typedef`, `struct`, `union`, function pointers, file I/O, storage classes, bit manipulation, and the C memory model including stack, heap, data sections, pointers, arrays, dynamic allocation, `volatile`, and `restrict` keywords.",
           "resources": [
             {
-              "title": "CMake Tutorial",
-              "url": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html",
+              "title": "The C Programming Language (K&R)",
+              "url": "https://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628",
               "type": "course"
+            },
+            {
+              "title": "C Programming and Memory Management - Full Course (Boot dev)",
+              "url": "https://www.youtube.com/watch?v=rJrd2QMVbGM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/c_programming_essentials.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "c_cpp_systems_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "cpp_language_fundamentals",
+          "name": "Modern C++ Language & STL",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Learn the basics of C++ including object-oriented programming (classes, inheritance, polymorphism), templates, RAII (Resource Acquisition Is Initialization), exception handling, and modern C++ features (C++11/14/17/20 basics like smart pointers (`std::unique_ptr`, `std::shared_ptr`), lambdas, move semantics, `constexpr`, `std::optional`, `std::variant`). Understand `const` correctness, the Rule of Zero/Three/Five. Explore the Standard Template Library (STL) including containers, algorithms, iterators, and utility libraries like `std::chrono` and `std::filesystem`.",
           "resources": [
             {
-              "title": "GDB Documentation",
-              "url": "https://sourceware.org/gdb/documentation/",
+              "title": "C++ Reference",
+              "url": "https://en.cppreference.com/w/",
               "type": "article"
+            },
+            {
+              "title": "A Tour of C++ (Bjarne Stroustrup)",
+              "url": "https://www.stroustrup.com/tour.html",
+              "type": "course"
+            },
+            {
+              "title": "Effective Modern C++ (Scott Meyers)",
+              "url": "https://www.oreilly.com/library/view/effective-modern-c/9781491908419/",
+              "type": "course"
+            },
+            {
+              "title": "C++ Programming Course - Beginner to Advanced",
+              "url": "https://www.youtube.com/watch?v=8jLOx1hD3_o",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/cpp_language_fundamentals.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "os_arch_concepts",
+          "name": "Operating System Internals & Computer Architecture",
+          "tag": "essential",
+          "description": "Understand core operating system concepts such as processes, threads, virtual memory, scheduling, system calls, kernel mode vs user mode, and basic computer architecture principles including CPU registers, assembly basics, memory hierarchy (caches), I/O devices, instruction sets, and interrupts. Learn how user-space programs interact with the kernel and the impact of compiler optimizations on hardware.",
+          "resources": [
+            {
+              "title": "Operating Systems: Three Easy Pieces",
+              "url": "http://pages.cs.wisc.edu/~remzi/OSTEP/",
+              "type": "course"
+            },
+            {
+              "title": "Computer Systems: A Programmer's Perspective",
+              "url": "https://csapp.cs.cmu.edu/",
+              "type": "course"
+            },
+            {
+              "title": "Operating System Course for Beginners | OS Concepts Explained",
+              "url": "https://www.youtube.com/watch?v=ursf4Y-lYf4",
+              "type": "video"
+            },
+            {
+              "title": "Computer Architecture Full Course - Microprocessors, Memory Controllers & CPUs",
+              "url": "https://www.youtube.com/watch?v=Jm_x29S4GzM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/os_arch_concepts.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
       "id": "c_cpp_systems_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "name": "Core Tooling and Development Workflow",
       "tag": "essential",
-      "description": "Build the practical skill stack for C/C++ Systems Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Master the essential tools and workflows for C/C++ systems development, including compilers, build systems, version control, debugging techniques, and testing frameworks.",
       "resources": [
-        {
-          "title": "C++ Tutorial For Beginners: Learn C Plus Plus In Hindi (CodeWithHarry)",
-          "url": "https://www.youtube.com/watch?v=yGB9jhsEsr8",
-          "type": "video"
-        },
         {
           "title": "CMake Tutorial",
           "url": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html",
           "type": "course"
-        }
-      ],
-      "children": [
-        {
-          "id": "c_cpp_systems_developer_implementation_patterns",
-          "name": "Implementation Patterns",
-          "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "C++ Reference",
-              "url": "https://en.cppreference.com/w/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "c_cpp_systems_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "GDB Documentation",
-              "url": "https://sourceware.org/gdb/documentation/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "c_cpp_systems_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "c_cpp_systems_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "C++ Full Course for free (Bro Code)",
-          "url": "https://www.youtube.com/watch?v=-TkoO8Z07hI",
-          "type": "video"
         },
         {
           "title": "GDB Documentation",
           "url": "https://sourceware.org/gdb/documentation/",
           "type": "article"
+        },
+        {
+          "title": "Pro Git Book",
+          "url": "https://git-scm.com/book/en/v2",
+          "type": "article"
+        },
+        {
+          "title": "Learn CMake In 20 Minutes - C++ Build Systems Tutorial",
+          "url": "https://www.youtube.com/watch?v=rlz-X78N_u0",
+          "type": "video"
+        },
+        {
+          "title": "Mastering GDB in 20 Minutes - C/C++ Debugger Tutorial",
+          "url": "https://www.youtube.com/watch?v=Porf_CgQcAY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/c_cpp_systems_developer/c_cpp_systems_developer_core_skills.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "c_cpp_systems_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "compilers_linkers_libs",
+          "name": "Compilers, Linkers & Libraries (GCC, Clang)",
+          "tag": "essential",
+          "description": "Deep dive into the compilation process (preprocessor, compiler, assembler, linker), understanding how source code becomes an executable binary. Learn about static and dynamic linking, shared libraries, symbol resolution, relocation, the Application Binary Interface (ABI), position-independent code (PIC), and the role of GCC and Clang.",
+          "resources": [
+            {
+              "title": "Linkers and Loaders (John R. Levine)",
+              "url": "https://www.amazon.com/Linkers-Loaders-John-Levine/dp/1558604960",
+              "type": "course"
+            },
+            {
+              "title": "How Compilers Work: An Overview",
+              "url": "https://www.youtube.com/watch?v=vdP_yL2lJ5E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/compilers_linkers_libs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "build_systems_make_cmake",
+          "name": "Build Systems (Make & CMake)",
+          "tag": "essential",
+          "description": "Learn to manage complex C/C++ projects using Makefiles for basic build automation and CMake for advanced, cross-platform project generation and build system configuration. Explore dependency management tools like `pkg-config`, `vcpkg`, or `Conan`.",
           "resources": [
             {
               "title": "CMake Tutorial",
               "url": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html",
               "type": "course"
+            },
+            {
+              "title": "GNU Make Manual",
+              "url": "https://www.gnu.org/software/make/manual/make.html",
+              "type": "article"
+            },
+            {
+              "title": "vcpkg Documentation",
+              "url": "https://vcpkg.io/en/docs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Learn C++ Build Systems: Make, CMake, and Autotools (Full Course)",
+              "url": "https://www.youtube.com/watch?v=0_jFvQx2p50",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/build_systems_make_cmake.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "c_cpp_systems_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "git_version_control",
+          "name": "Version Control with Git",
+          "tag": "essential",
+          "description": "Implement best practices for source code management and collaboration using Git, including branching strategies, merging, rebasing, pull requests, and distributed workflows.",
           "resources": [
             {
-              "title": "C++ Reference",
-              "url": "https://en.cppreference.com/w/",
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
               "type": "article"
+            },
+            {
+              "title": "Git and GitHub for Beginners - Crash Course",
+              "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/git_version_control.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "debugging_diagnostic_tools",
+          "name": "Debugging & Memory Error Detection",
+          "tag": "essential",
+          "description": "Develop strong debugging skills using GDB/LLDB to inspect program state, set breakpoints, trace execution, analyze stack traces, and work with core dumps. Learn to use memory error detection tools like Valgrind and compiler sanitizers (AddressSanitizer, UndefinedBehaviorSanitizer, ThreadSanitizer) to identify and resolve common issues like memory leaks, corrupted memory, and data races.",
+          "resources": [
+            {
+              "title": "GDB Documentation",
+              "url": "https://sourceware.org/gdb/documentation/",
+              "type": "article"
+            },
+            {
+              "title": "Valgrind User Manual",
+              "url": "https://valgrind.org/docs/manual/manual.html",
+              "type": "article"
+            },
+            {
+              "title": "Clang Sanitizers",
+              "url": "https://clang.llvm.org/docs/AddressSanitizer.html",
+              "type": "article"
+            },
+            {
+              "title": "Master the GDB Debugger for C and C++",
+              "url": "https://www.youtube.com/watch?v=PorfLSOWi2o",
+              "type": "video"
+            },
+            {
+              "title": "Learn C++ Memory Sanitizers in 10 Minutes",
+              "url": "https://www.youtube.com/watch?v=gT1m3S7bV-c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/debugging_diagnostic_tools.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "testing_frameworks",
+          "name": "Unit & Integration Testing Frameworks",
+          "tag": "essential",
+          "description": "Learn to write robust unit and integration tests for C/C++ code using popular frameworks such as Google Test or Catch2 to ensure code correctness and maintainability. Understand test-driven development (TDD) principles and explore mocking frameworks like Google Mock for isolating dependencies.",
+          "resources": [
+            {
+              "title": "Google Test User's Guide",
+              "url": "https://github.com/google/googletest/blob/main/docs/primer.md",
+              "type": "article"
+            },
+            {
+              "title": "Catch2 Documentation",
+              "url": "https://github.com/catchorg/Catch2/blob/devel/docs/Readme.md",
+              "type": "article"
+            },
+            {
+              "title": "Google Mock Documentation",
+              "url": "https://github.com/google/googletest/blob/main/googlemock/docs/for_dummies.md",
+              "type": "article"
+            },
+            {
+              "title": "Google Test C++ Unit Testing Tutorial",
+              "url": "https://www.youtube.com/watch?v=sRjJt0y6BPU",
+              "type": "video"
+            },
+            {
+              "title": "Catch2 C++ Unit Testing - A Quick Guide",
+              "url": "https://www.youtube.com/watch?v=F0f-9N0K41A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/testing_frameworks.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "c_cpp_systems_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "c_cpp_systems_developer_production_collaboration",
+      "name": "Advanced Systems Programming & Production Practices",
       "tag": "advanced",
-      "description": "Turn your C/C++ Systems Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Dive into advanced systems programming topics like concurrency, network programming, inter-process communication, and performance optimization. Learn practices for building robust, secure, and production-ready applications.",
       "resources": [
         {
           "title": "C++ Reference",
@@ -168,44 +320,394 @@
           "type": "article"
         },
         {
-          "title": "CMake Tutorial",
-          "url": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html",
+          "title": "C++ Concurrency in Action",
+          "url": "https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition",
           "type": "course"
         },
         {
-          "title": "GDB Documentation",
-          "url": "https://sourceware.org/gdb/documentation/",
+          "title": "Beej's Guide to Network Programming",
+          "url": "https://beej.us/guide/bgnet/",
           "type": "article"
+        },
+        {
+          "title": "C++ Concurrency Tutorial - Multithreading and Parallel Programming",
+          "url": "https://www.youtube.com/watch?v=F626jJ0L2NY",
+          "type": "video"
+        },
+        {
+          "title": "C++ Network Programming Tutorial",
+          "url": "https://www.youtube.com/watch?v=ztJ1jYwM8S0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/c_cpp_systems_developer/c_cpp_systems_developer_production_collaboration.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "c_cpp_systems_developer_case_study",
-          "name": "Case Study Writing",
+          "id": "advanced_memory_management",
+          "name": "Advanced Memory Management",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Explore custom allocators, memory pools, slab allocators, and advanced techniques for efficient and safe memory handling beyond standard `new`/`delete` and `malloc`/`free`. Understand memory alignment, placement new, custom container allocators, memory mapping (`mmap`), and basic concepts of virtual memory page tables.",
           "resources": [
             {
-              "title": "C++ Reference",
-              "url": "https://en.cppreference.com/w/",
+              "title": "The Memory Management Field Guide",
+              "url": "https://github.com/jemalloc/jemalloc/wiki/The-Memory-Management-Field-Guide",
               "type": "article"
+            },
+            {
+              "title": "Understanding and Using Memory Allocators",
+              "url": "https://www.youtube.com/watch?v=LIb3thPXoV8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/advanced_memory_management.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "c_cpp_systems_developer_project_capstone",
-          "name": "Project: C/C++ Systems Developer Portfolio Capstone",
+          "id": "concurrency_parallelism",
+          "name": "Concurrency & Parallelism",
           "tag": "advanced",
-          "description": "Build a portfolio-grade C/C++ Systems Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Master multi-threading with C++11 `<thread>` and POSIX threads (pthreads). Understand synchronization primitives (mutexes, condition variables, semaphores), atomic operations, thread-safe data structures, thread pools, futures and promises (`std::future`, `std::promise`), and parallel programming models. Explore basics of lock-free programming and parallel algorithms from the STL (e.g., C++17 execution policies). Gain exposure to external libraries like OpenMP or TBB.",
           "resources": [
             {
-              "title": "GDB Documentation",
-              "url": "https://sourceware.org/gdb/documentation/",
+              "title": "C++ Concurrency in Action",
+              "url": "https://www.manning.com/books/c-plus-plus-concurrency-in-action-second-edition",
+              "type": "course"
+            },
+            {
+              "title": "OpenMP API Specification",
+              "url": "https://www.openmp.org/specifications/",
               "type": "article"
+            },
+            {
+              "title": "Introduction to Parallel Programming with TBB",
+              "url": "https://www.intel.com/content/www/us/en/developer/tools/oneapi/threading-building-blocks.html",
+              "type": "article"
+            },
+            {
+              "title": "C++ Concurrency and Multithreading Tutorial",
+              "url": "https://www.youtube.com/watch?v=KfaJ3Q9G25w",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/concurrency_parallelism.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "network_programming",
+          "name": "Network Programming with Sockets",
+          "tag": "advanced",
+          "description": "Learn to build networked applications using Berkeley sockets. Understand different I/O models (blocking, non-blocking, multiplexing with `select`/`poll`/`epoll`/`kqueue`), TCP/UDP protocols, socket options, basic client-server communication, and event-driven programming models (e.g., libuv, or raw `epoll` usage). Explore basic network protocol design, serialization, and deserialization.",
+          "resources": [
+            {
+              "title": "Beej's Guide to Network Programming",
+              "url": "https://beej.us/guide/bgnet/",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Programming Interface (Michael Kerrisk) - Chapter 59, 60, 61",
+              "url": "https://man7.org/tlpi/html/index.html",
+              "type": "course"
+            },
+            {
+              "title": "Socket Programming in C - A complete Guide",
+              "url": "https://www.youtube.com/watch?v=LtXEMwGfKqI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/network_programming.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "inter_process_communication",
+          "name": "Inter-Process Communication (IPC)",
+          "tag": "advanced",
+          "description": "Explore various mechanisms for processes to communicate and synchronize, including pipes (named/unnamed), message queues, shared memory, semaphores, and mutexes. Understand Unix domain sockets, basic concepts of Message Passing Interface (MPI) for distributed systems, and Remote Procedure Call (RPC) frameworks. Analyze their trade-offs and appropriate use cases.",
+          "resources": [
+            {
+              "title": "Linux IPC Mechanisms Tutorial",
+              "url": "https://www.tldp.org/LDP/lpg/node11.html",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Programming Interface (Michael Kerrisk) - Chapter 44-54",
+              "url": "https://man7.org/tlpi/html/index.html",
+              "type": "course"
+            },
+            {
+              "title": "Operating Systems Full Course | Computer Science Basics",
+              "url": "https://www.youtube.com/watch?v=RKX1Q1eA7A8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/inter_process_communication.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "performance_profiling",
+          "name": "Performance Optimization & Profiling",
+          "tag": "advanced",
+          "description": "Identify performance bottlenecks using profiling tools like `perf`, Valgrind/Callgrind, and Intel VTune. Learn to optimize code for CPU caches (cache locality, false sharing), branch prediction, memory access patterns, and apply modern C++ features for maximum efficiency. Explore basics of SIMD (Single Instruction, Multiple Data) intrinsics and compiler intrinsics for specific architectures.",
+          "resources": [
+            {
+              "title": "Optimizing C++ Code (Agner Fog)",
+              "url": "https://www.agner.org/optimize/optimizing_c++.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Linux 'perf' Examples (Brendan Gregg)",
+              "url": "http://www.brendangregg.com/perf.html",
+              "type": "article"
+            },
+            {
+              "title": "Intel VTune Profiler Documentation",
+              "url": "https://www.intel.com/content/www/us/en/developer/tools/oneapi/vtune-profiler-documentation.html",
+              "type": "article"
+            },
+            {
+              "title": "C++ Performance Best Practices",
+              "url": "https://www.youtube.com/watch?v=F_fV176M6d4",
+              "type": "video"
+            },
+            {
+              "title": "C++ Performance - Copying vs. Moving",
+              "url": "https://www.youtube.com/watch?v=Wj8w3Gq223s",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/performance_profiling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "quality_static_analysis",
+          "name": "Code Quality, Static Analysis & Fuzzing",
+          "tag": "advanced",
+          "description": "Utilize static analysis tools like Clang-Tidy, Cppcheck, and linters to enforce code style, detect potential bugs, and improve maintainability. Employ code formatters like `clang-format`. Establish code review processes, integrate code coverage tools (`gcov`, `lcov`), and explore basics of fuzz testing (e.g., libFuzzer, AFL++) to find vulnerabilities and edge cases.",
+          "resources": [
+            {
+              "title": "Clang-Tidy Checks",
+              "url": "https://clang.llvm.org/extra/clang-tidy/checks/list.html",
+              "type": "article"
+            },
+            {
+              "title": "Cppcheck Manual",
+              "url": "https://cppcheck.sourceforge.io/manual.pdf",
+              "type": "article"
+            },
+            {
+              "title": "LibFuzzer Tutorial",
+              "url": "https://llvm.org/docs/LibFuzzer.html",
+              "type": "article"
+            },
+            {
+              "title": "Modern C++ Tooling - Static Analysis, Clang-Tidy, Clang-Format | CppNow 2022",
+              "url": "https://www.youtube.com/watch?v=R9_uQJ97N-U",
+              "type": "video"
+            },
+            {
+              "title": "Fuzzing a program with LibFuzzer",
+              "url": "https://www.youtube.com/watch?v=tT8b7k8zKPs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/quality_static_analysis.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "secure_coding_practices",
+          "name": "Secure C/C++ Coding Practices",
+          "tag": "advanced",
+          "description": "Understand common vulnerabilities in C/C++ (e.g., buffer overflows, integer overflows, use-after-free, format string bugs, race conditions). Implement defensive programming techniques, input validation, output encoding, privilege separation (Principle of Least Privilege), secure error handling, and basic sandboxing techniques to build robust and secure systems.",
+          "resources": [
+            {
+              "title": "CERT C++ Secure Coding Standard",
+              "url": "https://wiki.sei.cmu.edu/confluence/display/cplusplus/SEI+CERT+C%2B%2B+Coding+Standard",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Secure C/C++ Programming - Full Course",
+              "url": "https://www.youtube.com/watch?v=FqjU0nFk9uY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/secure_coding_practices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ci_cd_systems",
+          "name": "Continuous Integration/Delivery (CI/CD) for Systems",
+          "tag": "advanced",
+          "description": "Set up automated build, test, and deployment pipelines specifically for C/C++ projects using tools like Jenkins, GitLab CI, or GitHub Actions. Learn to leverage containerization (Docker) for consistent build environments, reproducible results, artifact management, dependency caching, and cross-compilation environments.",
+          "resources": [
+            {
+              "title": "CI/CD for C++ Projects with GitLab CI",
+              "url": "https://docs.gitlab.com/ee/ci/examples/cpp.html",
+              "type": "article"
+            },
+            {
+              "title": "Docker for C++ Development",
+              "url": "https://developers.redhat.com/articles/2021/04/09/docker-containers-c-developers",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions for C++",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-c-cpp-projects",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Pipeline Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=OP5E4fE_61k",
+              "type": "video"
+            },
+            {
+              "title": "Docker Crash Course For Absolute Beginners",
+              "url": "https://www.youtube.com/watch?v=pFAISyqspgY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/ci_cd_systems.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_cpp_systems_developer_portfolio_career",
+      "name": "Portfolio, Projects & Career Path",
+      "tag": "advanced",
+      "description": "Apply your C/C++ systems development skills to build impactful projects, create a compelling portfolio, and prepare for technical interviews to launch your career.",
+      "resources": [
+        {
+          "title": "How to Get a C++ Job in 2024 (A Programmer's Guide)",
+          "url": "https://www.youtube.com/watch?v=i9Y111jQe14",
+          "type": "video"
+        },
+        {
+          "title": "C++ Interview Questions and Answers for Freshers and Experienced",
+          "url": "https://www.youtube.com/watch?v=S0y_6s6U5aM",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/c_cpp_systems_developer/c_cpp_systems_developer_portfolio_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "project_based_learning",
+          "name": "Project-Based Learning & Practical Application",
+          "tag": "advanced",
+          "description": "Engage in hands-on projects, such as building a custom shell, a simple network server/client, a memory allocator, a custom data structure library, a concurrent queue, a simple file system utility, or a small command-line utility, to solidify your understanding and gain practical experience. Focus on applying learned concepts from memory management, concurrency, and networking.",
+          "resources": [
+            {
+              "title": "Socket Programming in C - A Detailed Guide (TCP/IP)",
+              "url": "https://www.youtube.com/watch?v=LtXEMwGky-o",
+              "type": "video"
+            },
+            {
+              "title": "PThreads Tutorial (Multithreading in C)",
+              "url": "https://www.youtube.com/watch?v=J3mS_BfK0jI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/project_based_learning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "capstone_systems_app",
+          "name": "Capstone Project: A Complex Systems Application",
+          "tag": "advanced",
+          "description": "Design, implement, test, and thoroughly document a significant, portfolio-grade systems project that showcases your comprehensive C/C++ development capabilities. This project should integrate multiple advanced topics like multi-threading, network communication, robust error handling, and possibly interaction with underlying OS features. Consider projects such as a high-performance logging library, a custom RPC framework, or a distributed key-value store.",
+          "resources": [
+            {
+              "title": "C++ Concurrency Tutorial - Threads, Mutexes, and More",
+              "url": "https://www.youtube.com/watch?v=K8rS_f3p8ac",
+              "type": "video"
+            },
+            {
+              "title": "C Socket Programming Tutorial - Linux Client Server Examples",
+              "url": "https://www.youtube.com/watch?v=esXGWN_fQ84",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/capstone_systems_app.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "career_dev_interview_prep",
+          "name": "Career Development & Interview Preparation",
+          "tag": "advanced",
+          "description": "Craft an impressive resume and GitHub portfolio. Prepare for technical interviews covering data structures, algorithms, advanced system design questions, and low-level C/C++ specific topics (e.g., memory model, concurrency, ABI). Develop effective communication skills for technical discussions and navigate the C/C++ job market effectively.",
+          "resources": [
+            {
+              "title": "Cracking the Coding Interview",
+              "url": "https://www.crackingthecodinginterview.com/",
+              "type": "course"
+            },
+            {
+              "title": "System Design Interview (Alex Xu)",
+              "url": "https://www.amazon.com/System-Design-Interview-insiders-guide/dp/B08CMKFHX6",
+              "type": "course"
+            },
+            {
+              "title": "C++ Interview Questions & Answers",
+              "url": "https://www.geeksforgeeks.org/cpp-interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "C++ Interview Questions and Answers for Freshers and Experienced",
+              "url": "https://www.youtube.com/watch?v=sO7zYt8QYw4",
+              "type": "video"
+            },
+            {
+              "title": "Low-Level Design (LLD) Interview Preparation | Full Course",
+              "url": "https://www.youtube.com/watch?v=qTsk5x8Jmhc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/c_cpp_systems_developer/career_dev_interview_prep.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

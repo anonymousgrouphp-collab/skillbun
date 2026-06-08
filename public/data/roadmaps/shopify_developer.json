@@ -1,14 +1,14 @@
 {
   "id": "shopify_developer",
   "title": "Shopify Developer",
-  "description": "A roadmap for Shopify development: store setup, Liquid themes, app extensions, product data, checkout constraints, performance, and ecommerce projects.",
+  "description": "A comprehensive roadmap for becoming a proficient Shopify Developer, covering core platform knowledge, in-depth theme development, advanced app and API integrations, performance optimization, headless commerce, and professional project delivery.",
   "format": "tree",
   "tree": [
     {
-      "id": "shopify_foundations",
-      "name": "Ecommerce and Shopify Foundations",
+      "id": "shopify_ecosystem_fundamentals",
+      "name": "Shopify Ecosystem & Web Foundations",
       "tag": "essential",
-      "description": "Understand Shopify admin, products, collections, themes, apps, payments, shipping, analytics, and ecommerce workflows.",
+      "description": "A comprehensive introduction to the Shopify platform, its core functionalities, the administrative interface, and the essential web development principles required for building on Shopify.",
       "resources": [
         {
           "title": "Shopify Full Course (Lets Uncover)",
@@ -16,108 +16,206 @@
           "type": "video"
         },
         {
-          "title": "Shopify Tutorial in Hindi (Genius Maker)",
-          "url": "https://www.youtube.com/watch?v=_iZp66ycgfE",
-          "type": "video"
-        },
-        {
-          "title": "Build a Shopify Store Tutorial (Nishkarsh Sharma)",
-          "url": "https://www.youtube.com/watch?v=AX0eHDslSEc",
-          "type": "video"
-        },
-        {
           "title": "Shopify Developer Docs",
           "url": "https://shopify.dev/docs",
+          "type": "article"
+        },
+        {
+          "title": "Shopify Help Center",
+          "url": "https://help.shopify.com/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "shopify_store_setup",
-          "name": "Store Setup and Merchandising",
+          "id": "shopify_admin_store_management",
+          "name": "Shopify Admin & Store Management",
           "tag": "essential",
-          "description": "Configure products, variants, collections, navigation, markets, shipping, taxes, discounts, and basic analytics.",
+          "description": "Learn to navigate the Shopify admin, configure store settings, manage products (variants, inventory, advanced product data modeling, merchandising), organize collections, set up navigation, markets, shipping, taxes, payments, and understand basic order fulfillment. Includes product data management and customization options for checkout.",
           "resources": [
             {
-              "title": "Shopify Help Center",
-              "url": "https://help.shopify.com/",
+              "title": "Shopify Admin Guide",
+              "url": "https://help.shopify.com/en/manual/shopify-admin",
+              "type": "article"
+            },
+            {
+              "title": "Product Management in Shopify",
+              "url": "https://help.shopify.com/en/manual/products",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "shopify_html_css_js",
-          "name": "HTML, CSS, JavaScript, and Liquid",
+          "id": "web_foundations_for_shopify",
+          "name": "Web Development Fundamentals for Shopify",
           "tag": "essential",
-          "description": "Learn theme structure, Liquid objects, filters, sections, snippets, responsive CSS, and small JavaScript enhancements.",
+          "description": "Reinforce essential HTML5 structure, semantic CSS3 (including modern CSS layouts like Flexbox and Grid, responsive design principles, preprocessors like SASS/SCSS, and CSS Custom Properties), and modern JavaScript (ES6+ for DOM manipulation, event handling, asynchronous operations, and performance considerations like debouncing/throttling). Focus on applying these within a Shopify context.",
+          "resources": [
+            {
+              "title": "MDN Web Docs (HTML, CSS, JS)",
+              "url": "https://developer.mozilla.org/",
+              "type": "article"
+            },
+            {
+              "title": "Responsive Web Design Basics",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/Responsive",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "liquid_templating_essentials",
+          "name": "Liquid Templating Language Essentials",
+          "tag": "essential",
+          "description": "A deep dive into Shopify's templating language: Liquid syntax, objects (shop, customer, cart, product), filters, tags, control flow, loops, theme structure, utilizing sections, snippets, and schema for dynamic content and localization. Understand the differences between `render` and `include` directives.",
           "resources": [
             {
               "title": "Liquid Reference",
               "url": "https://shopify.dev/docs/api/liquid",
               "type": "article"
+            },
+            {
+              "title": "Shopify Theme Architecture",
+              "url": "https://shopify.dev/docs/storefronts/themes/architecture",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "shopify_cli_development_environment",
+          "name": "Shopify CLI & Local Development Environment",
+          "tag": "essential",
+          "description": "Master local development with Shopify CLI (versions 2 & 3), including theme development workflows, `theme serve` for live preview, `theme pull` to fetch remote themes, `theme push` to upload changes, `theme deploy` for production, and `theme check` for static analysis. Utilize Git for version control, including branching, merging, and pull requests for collaborative coding.",
+          "resources": [
+            {
+              "title": "Shopify CLI Documentation",
+              "url": "https://shopify.dev/docs/api/shopify-cli",
+              "type": "article"
+            },
+            {
+              "title": "Git Handbook",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "shopify_theme_dev",
-      "name": "Theme Development",
+      "id": "shopify_theme_development_mastery",
+      "name": "Shopify Theme Development Mastery",
       "tag": "essential",
-      "description": "Customize Shopify themes with sections, blocks, templates, metafields, accessibility, and performance-friendly assets.",
+      "description": "Advanced techniques for custom Shopify theme development, focusing on modularity, dynamic content, performance, accessibility, and modern frontend practices.",
       "resources": [
         {
           "title": "Shopify Themes Documentation",
           "url": "https://shopify.dev/docs/storefronts/themes",
           "type": "article"
+        },
+        {
+          "title": "Shopify Dawn Theme",
+          "url": "https://github.com/Shopify/dawn",
+          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "shopify_sections_blocks",
-          "name": "Sections, Blocks, and Templates",
+          "id": "modular_theme_architecture",
+          "name": "Modular Theme Architecture: Sections, Blocks & Templates",
           "tag": "essential",
-          "description": "Build reusable theme sections, schema settings, product templates, collection templates, and landing pages.",
+          "description": "Design and implement advanced reusable theme sections and blocks, understanding `preset` and `default` values in schemas. Create custom JSON templates for products, collections, pages, and blogs, enabling flexible and configurable storefronts and specialized page layouts.",
           "resources": [
             {
-              "title": "Theme Architecture",
-              "url": "https://shopify.dev/docs/storefronts/themes/architecture",
+              "title": "Theme Sections",
+              "url": "https://shopify.dev/docs/themes/architecture/sections-and-blocks",
+              "type": "article"
+            },
+            {
+              "title": "JSON Templates in Shopify",
+              "url": "https://shopify.dev/docs/themes/json-templates",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "shopify_metafields",
-          "name": "Metafields and Dynamic Content",
-          "tag": "advanced",
-          "description": "Use metafields, metaobjects, product data, custom badges, size guides, FAQs, and structured content.",
+          "id": "dynamic_content_metafields_metaobjects",
+          "name": "Dynamic Content with Metafields & Metaobjects",
+          "tag": "essential",
+          "description": "Leverage metafields and metaobjects for custom data storage, dynamic content rendering, creating custom badges, size guides, FAQs, and structured product attributes within themes. Learn strategies for efficient data retrieval and best practices for organizing custom data.",
           "resources": [
             {
               "title": "Metafields Documentation",
               "url": "https://shopify.dev/docs/apps/build/custom-data/metafields",
               "type": "article"
+            },
+            {
+              "title": "Metaobjects Documentation",
+              "url": "https://shopify.dev/docs/apps/custom-data/metaobjects",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "shopify_developer_practice_lab",
-          "name": "Practice: Product Page Conversion Pass",
-          "tag": "advanced",
-          "description": "Improve product page sections, metafields, trust content, image performance, and analytics events.",
-          "resources": [],
-          "children": []
+          "id": "advanced_javascript_for_themes",
+          "name": "Advanced JavaScript for Shopify Themes",
+          "tag": "essential",
+          "description": "Develop interactive theme features using advanced JavaScript concepts, including modular architecture (ES Modules) and state management for complex UI components. Integrate with the Shopify AJAX API for dynamic cart manipulations and the Shopify Storefront API for advanced product/collection data fetching. Utilize modern frontend tooling and build processes (as integrated with Shopify CLI).",
+          "resources": [
+            {
+              "title": "Shopify Storefront API Overview",
+              "url": "https://shopify.dev/docs/api/storefront",
+              "type": "article"
+            },
+            {
+              "title": "Theme Development with JavaScript Best Practices",
+              "url": "https://shopify.dev/docs/themes/best-practices/javascript",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "theme_performance_accessibility_seo",
+          "name": "Theme Performance, Accessibility (A11y) & SEO",
+          "tag": "essential",
+          "description": "Optimize theme speed (Core Web Vitals, image optimization including lazy loading and responsive images with `srcset`, critical CSS, asset deferring), interpret Google Lighthouse audit reports. Implement accessible design (ARIA, keyboard navigation, semantic HTML for screen readers), and ensure SEO best practices (semantic HTML, structured data/Schema.org, mobile responsiveness).",
+          "resources": [
+            {
+              "title": "Shopify Theme Performance",
+              "url": "https://shopify.dev/docs/storefronts/themes/best-practices/performance",
+              "type": "article"
+            },
+            {
+              "title": "Web Content Accessibility Guidelines (WCAG)",
+              "url": "https://www.w3.org/WAI/WCAG22/quickref/",
+              "type": "article"
+            },
+            {
+              "title": "Schema.org for E-commerce",
+              "url": "https://schema.org/ECommerceBusiness",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "project_custom_theme_feature_dev",
+          "name": "Project: Custom Theme Feature Development",
+          "tag": "essential",
+          "description": "Apply learned skills to design and implement a complex, production-ready custom feature for a Shopify theme (e.g., dynamic product configurator, advanced filtering system, custom subscription management UI). Focus on modularity, performance, maintainability, code quality, testing, and deployment readiness, documenting the feature comprehensively.",
+          "resources": [
+            {
+              "title": "Shopify Developer Blog - Case Studies",
+              "url": "https://shopify.dev/custom-storefronts/blog",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "shopify_apps_performance",
-      "name": "Apps, Integrations, and Performance",
+      "id": "shopify_app_api_integrations",
+      "name": "Shopify App & API Integrations",
       "tag": "advanced",
-      "description": "Extend stores with apps, storefront APIs, analytics, conversion optimization, speed, and safe deployment workflows.",
+      "description": "Explore the Shopify API ecosystem, develop custom app extensions, integrate with third-party services, and implement advanced conversion optimization strategies.",
       "resources": [
         {
           "title": "Shopify App Development",
@@ -127,75 +225,181 @@
       ],
       "children": [
         {
-          "id": "shopify_app_extensions",
-          "name": "App Extensions and APIs",
-          "tag": "advanced",
-          "description": "Understand app blocks, admin APIs, storefront APIs, webhooks, auth, and API rate limits.",
+          "id": "shopify_api_fundamentals",
+          "name": "Shopify API Fundamentals (Admin & Storefront)",
+          "tag": "essential",
+          "description": "Understand the core Shopify APIs: Admin API (REST & GraphQL) for backend operations, Storefront API (REST & GraphQL) for frontend data. Master webhooks for event-driven automation, and authentication concepts including OAuth flows for public and custom app development. Learn about rate limiting and error handling strategies.",
           "resources": [
             {
               "title": "Shopify GraphQL Admin API",
               "url": "https://shopify.dev/docs/api/admin-graphql",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "shopify_speed_conversion",
-          "name": "Performance and Conversion",
-          "tag": "advanced",
-          "description": "Optimize Core Web Vitals, image loading, theme code, analytics events, product pages, and checkout funnels.",
-          "resources": [
+            },
             {
-              "title": "Shopify Theme Performance",
-              "url": "https://shopify.dev/docs/storefronts/themes/best-practices/performance",
+              "title": "Shopify Storefront API",
+              "url": "https://shopify.dev/docs/api/storefront",
+              "type": "article"
+            },
+            {
+              "title": "Shopify Webhooks",
+              "url": "https://shopify.dev/docs/apps/webhooks",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "shopify_app_extension_development",
+          "name": "Shopify App Extension Development",
+          "tag": "advanced",
+          "description": "Learn to build and deploy various Shopify App Extensions, including UI Extensions (e.g., Admin UI, Checkout UI, Product UI), Function Extensions (for discounts, shipping, payment customizations), and Web Pixel Extensions for client-side event tracking. Emphasize the importance of Checkout UI Extensions for advanced checkout customizations, replacing `checkout.liquid`.",
+          "resources": [
+            {
+              "title": "Shopify UI Extensions",
+              "url": "https://shopify.dev/docs/apps/ui-extensions",
+              "type": "article"
+            },
+            {
+              "title": "Checkout Extensibility Overview",
+              "url": "https://shopify.dev/docs/api/checkout-extensions",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "third_party_service_integrations",
+          "name": "Third-Party Service Integrations",
+          "tag": "advanced",
+          "description": "Integrate external services such as PIM (Product Information Management), ERP (Enterprise Resource Planning), CRM systems, marketing automation tools (e.g., Klaviyo, Mailchimp), loyalty programs, and various payment gateways. Focus on data synchronization, secure credential management, and leveraging Shopify APIs and partner apps for robust integrations.",
+          "resources": [
+            {
+              "title": "Building Custom Integrations with the Admin API",
+              "url": "https://shopify.dev/docs/api/admin-graphql/latest/guides/making-requests",
+              "type": "article"
+            },
+            {
+              "title": "Shopify App Store",
+              "url": "https://apps.shopify.com/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "conversion_rate_optimization",
+          "name": "Conversion Rate Optimization (CRO) for Shopify",
+          "tag": "advanced",
+          "description": "Implement CRO best practices: A/B testing (using native Shopify tools or third-party alternatives), user behavior analysis (e.g., heatmaps, session recordings), optimizing product pages (social proof, clear CTAs), cart abandonment recovery strategies, and checkout flow optimizations for speed and trust. Understand how to track and analyze conversion events and leverage Shopify Analytics to identify bottlenecks and opportunities.",
+          "resources": [
+            {
+              "title": "Shopify Analytics Overview",
+              "url": "https://help.shopify.com/en/manual/reports-and-analytics/shopify-analytics",
+              "type": "article"
+            },
+            {
+              "title": "CRO Best Practices",
+              "url": "https://www.shopify.com/blog/conversion-rate-optimization",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "shopify_delivery_project",
-      "name": "Client Delivery and Portfolio",
+      "id": "professional_shopify_deployment_ops",
+      "name": "Professional Deployment & Operations",
       "tag": "advanced",
-      "description": "Deliver client-ready ecommerce stores with Git workflow, staging, QA, analytics, handoff docs, and support plans.",
+      "description": "Master the professional aspects of Shopify development, including advanced deployment strategies, testing, headless commerce concepts, and effective client project delivery.",
       "resources": [
         {
-          "title": "Shopify CLI",
-          "url": "https://shopify.dev/docs/api/shopify-cli",
+          "title": "Shopify CLI for Theme Development",
+          "url": "https://shopify.dev/docs/themes/tools/cli",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "shopify_client_workflow",
-          "name": "Theme QA and Handoff",
-          "tag": "advanced",
-          "description": "Test responsive pages, carts, forms, discount flows, tracking, accessibility, app conflicts, and client editing workflows.",
+          "id": "git_version_control_ci_cd",
+          "name": "Git Version Control & CI/CD for Shopify",
+          "tag": "essential",
+          "description": "Implement robust Git workflows for theme and app development (e.g., Gitflow or Trunk-based development), including branching strategies, pull requests, and code reviews. Set up continuous integration and continuous deployment (CI/CD) pipelines using tools like GitHub Actions for automated testing (linting, unit tests, Theme Check) and releases across development, staging, and production environments.",
+          "resources": [
+            {
+              "title": "Git Branching Workflow",
+              "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD for Shopify Themes with GitHub Actions",
+              "url": "https://shopify.dev/docs/themes/tools/github",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "theme_app_qa_debugging",
+          "name": "Theme & App QA, Testing & Debugging",
+          "tag": "essential",
+          "description": "Conduct thorough QA testing for responsiveness, cross-browser compatibility, app conflicts, performance (using Lighthouse/PageSpeed Insights), accessibility, and critical e-commerce flows (payment, shipping, checkout). Master debugging tools and techniques for Shopify themes and apps using browser developer tools, Shopify's Theme Check, and Shopify's built-in developer console.",
           "resources": [
             {
               "title": "Shopify Theme Check",
               "url": "https://shopify.dev/docs/storefronts/themes/tools/theme-check",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "shopify_project_storefront",
-          "name": "Project: Niche Ecommerce Store",
-          "tag": "advanced",
-          "description": "Build a Shopify store with custom theme sections, metafields, conversion-focused product pages, analytics, and performance report.",
-          "resources": [
+            },
             {
-              "title": "Shopify Dawn Theme",
-              "url": "https://github.com/Shopify/dawn",
+              "title": "Browser Developer Tools",
+              "url": "https://developer.mozilla.org/en-US/docs/Tools",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "headless_shopify_architecture",
+          "name": "Headless Shopify & Custom Storefronts",
+          "tag": "advanced",
+          "description": "Explore headless commerce architectures using Shopify's Storefront API. Understand the benefits (custom UX, performance, multi-channel capabilities) and drawbacks (increased complexity, hosting, maintenance). Deep dive into frameworks like Hydrogen and Remix for building custom, React-based storefronts, including components, hooks, caching strategies, and understanding the role of Oxygen hosting. Compare and contrast with traditional monolithic theme development.",
+          "resources": [
+            {
+              "title": "Shopify Hydrogen Documentation",
+              "url": "https://shopify.dev/docs/custom-storefronts/hydrogen",
+              "type": "article"
+            },
+            {
+              "title": "Building Headless with Shopify",
+              "url": "https://www.shopify.com/partners/blog/headless-commerce",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "client_project_management_handoff",
+          "name": "Client Project Management & Handoff",
+          "tag": "advanced",
+          "description": "Best practices for client communication, project scoping, requirement gathering, and agile methodologies adapted for e-commerce projects. Deliver comprehensive documentation, provide client training (including video tutorials and guides), and establish post-launch support and maintenance plans with defined SLAs for successful project delivery and ongoing client relationships.",
+          "resources": [
+            {
+              "title": "Shopify Partner Academy",
+              "url": "https://www.shopify.com/partners/academy",
+              "type": "course"
+            },
+            {
+              "title": "Project Management Fundamentals",
+              "url": "https://www.coursera.org/learn/project-management-basics",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "capstone_shopify_ecommerce_project",
+          "name": "Capstone Project: End-to-End Shopify Store or App",
+          "tag": "advanced",
+          "description": "Design, develop, and deploy a full-scale, production-quality Shopify store from scratch or a complex, public/private Shopify App. This project should integrate custom theme elements, dynamic content with metafields/metaobjects, external API integrations, adhere to performance and accessibility best practices, implement a CI/CD pipeline, and include comprehensive documentation and a deployment report. Aim for a solution that solves a real-world e-commerce problem or offers a unique value proposition, demonstrating mastery across all roadmap topics.",
+          "resources": [
+            {
+              "title": "Shopify Developer Challenges",
+              "url": "https://shopify.dev/challenges",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

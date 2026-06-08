@@ -1,177 +1,712 @@
 {
   "id": "devops_cloud",
   "title": "DevOps & Cloud Engineer",
-  "description": "Learn Linux, networking, CI/CD, containers, Kubernetes, infrastructure as code, and production operations.",
+  "description": "Master Linux, networking, version control, CI/CD, containers, Kubernetes, infrastructure as code, cloud providers, and production operations for a robust DevOps career.",
   "format": "tree",
   "tree": [
     {
-      "id": "devops_foundations",
-      "name": "Linux, Git, and Networking",
+      "id": "fundamentals_linux_git_networking",
+      "name": "Foundational Skills: Linux, Git, and Networking",
       "tag": "essential",
-      "description": "Start with the operating system, version control, HTTP, DNS, SSH, and shell scripting.",
+      "description": "Establish a strong base in operating systems, essential command-line tools, version control, and fundamental networking concepts crucial for any DevOps role.",
       "resources": [
         {
-          "title": "DevOps Complete Guide for 2025 (Apna College)",
-          "url": "https://www.youtube.com/watch?v=RRBF2YWXFtY",
+          "title": "The Linux Command Line: A Complete Introduction",
+          "url": "https://linuxcommand.org/tlcl.php",
+          "type": "article"
+        },
+        {
+          "title": "Git and GitHub Tutorial for Beginners (Programming with Mosh)",
+          "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
           "type": "video"
         },
         {
-          "title": "Linux Journey",
-          "url": "https://linuxjourney.com/",
+          "title": "Networking Basics for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=FTqfGWo3D80",
+          "type": "video"
+        },
+        {
+          "title": "Linux Commands Tutorial - Learn the Linux Command Line by Example",
+          "url": "https://www.youtube.com/watch?v=R5g7vQhXb_M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/devops_cloud/fundamentals_linux_git_networking.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "linux_system_administration",
+          "name": "Linux System Administration",
+          "tag": "essential",
+          "description": "Deep dive into Linux file systems, permissions, process management, user and group management, package management (apt/yum/dnf), and system monitoring utilities (top, df, du, journalctl).",
+          "resources": [
+            {
+              "title": "Linux Journey",
+              "url": "https://linuxjourney.com/",
+              "type": "course"
+            },
+            {
+              "title": "Practical Linux Command Line Tips",
+              "url": "https://www.redhat.com/sysadmin/practical-linux-commands",
+              "type": "article"
+            },
+            {
+              "title": "Linux for Everybody - Full Course",
+              "url": "https://www.youtube.com/watch?v=sWbUDq4S6Y8",
+              "type": "video"
+            },
+            {
+              "title": "Linux Tutorial for Beginners: Introduction to Linux Operating System",
+              "url": "https://www.youtube.com/watch?v=VqGZ0kS6Nio",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/linux_system_administration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "advanced_shell_scripting",
+          "name": "Advanced Shell Scripting (Bash/Zsh)",
+          "tag": "essential",
+          "description": "Automate complex tasks with robust shell scripts, covering conditional logic, loops, functions, error handling, environment variables, and powerful text processing tools (sed, awk, grep, jq).",
+          "resources": [
+            {
+              "title": "Bash Guide for Beginners",
+              "url": "https://florian-dach.de/bash-guide-for-beginners/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Bash-Scripting Guide",
+              "url": "https://tldp.org/LDP/abs/html/",
+              "type": "article"
+            },
+            {
+              "title": "Learn Bash Scripting Full Course",
+              "url": "https://www.youtube.com/watch?v=e7V3fN_S64M",
+              "type": "video"
+            },
+            {
+              "title": "jq Tutorial - Process JSON at the command-line",
+              "url": "https://www.youtube.com/watch?v=Cq_Jc_FvM9E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/advanced_shell_scripting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "git_version_control_mastery",
+          "name": "Git Version Control Mastery",
+          "tag": "essential",
+          "description": "Master advanced Git concepts including branching strategies (Gitflow, Trunk-Based Development), rebasing, cherry-picking, interactive rebase, Git hooks, and resolving complex merge conflicts.",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Git Branching Tutorial",
+              "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Git Concepts - Interactive Rebase, Cherry-Pick, Reflog, Stash, and More",
+              "url": "https://www.youtube.com/watch?v=bk6TgS103c8",
+              "type": "video"
+            },
+            {
+              "title": "Git Branching Strategies - Git Flow vs Trunk Based Development",
+              "url": "https://www.youtube.com/watch?v=F0S12c8pXFw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/git_version_control_mastery.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "network_security_essentials",
+          "name": "Network & Security Essentials",
+          "tag": "essential",
+          "description": "Understand core networking protocols (TCP/IP, HTTP/S, DNS, DHCP), common utilities (ping, traceroute, netstat, ss, curl, telnet), firewall concepts (iptables/nftables, firewalld), VPN basics, and TLS/SSL.",
+          "resources": [
+            {
+              "title": "CompTIA Network+ N10-008 Full Course (Professor Messer)",
+              "url": "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-training-course/",
+              "type": "course"
+            },
+            {
+              "title": "The OSI Model Explained",
+              "url": "https://www.cloudflare.com/learning/network-layer/what-is-the-osi-model/",
+              "type": "article"
+            },
+            {
+              "title": "Networking Basics for Beginners. Learn how the Internet works.",
+              "url": "https://www.youtube.com/watch?v=IPvYhXMXCs4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/network_security_essentials.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ci_cd_release_engineering",
+      "name": "CI/CD and Release Engineering",
+      "tag": "essential",
+      "description": "Design, implement, and manage robust Continuous Integration and Continuous Delivery pipelines for automated testing, artifact management, and reliable application deployments.",
+      "resources": [
+        {
+          "title": "The CI/CD Pipeline - A Complete Guide",
+          "url": "https://www.atlassian.com/continuous-delivery/ci-cd-pipeline",
+          "type": "article"
+        },
+        {
+          "title": "Learn GitHub Actions (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=tl7d_79Hk-Y",
+          "type": "video"
+        },
+        {
+          "title": "What is CI/CD? A Beginner's Guide (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=sc5MX3470X8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/devops_cloud/ci_cd_release_engineering.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pipeline_fundamentals_tooling",
+          "name": "CI/CD Pipeline Fundamentals & Tooling",
+          "tag": "essential",
+          "description": "Understand core CI/CD principles, common pipeline stages (build, test, deploy), triggers, variables, and explore popular tools like GitHub Actions, GitLab CI, Jenkins, Azure DevOps, and CircleCI.",
+          "resources": [
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins: The Definitive Guide",
+              "url": "https://www.oreilly.com/library/view/jenkins-the-definitive/9781449305352/",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions Tutorial - CI/CD for Beginners",
+              "url": "https://www.youtube.com/watch?v=R8_Q_Qc20R8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/pipeline_fundamentals_tooling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "automated_testing_security_gates",
+          "name": "Automated Testing & Security Gates",
+          "tag": "essential",
+          "description": "Integrate various automated tests (unit, integration, E2E, linting, performance) and security scans (SAST, DAST, SCA, secret scanning, supply chain security) into CI pipelines.",
+          "resources": [
+            {
+              "title": "OWASP Top 10 Web Application Security Risks",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Shift Left Security with CI/CD",
+              "url": "https://www.redhat.com/en/topics/devops/what-is-shift-left-security",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Pipeline Tutorial for Beginners | GitHub Actions",
+              "url": "https://www.youtube.com/watch?v=R8_veQ_xR18",
+              "type": "video"
+            },
+            {
+              "title": "DevSecOps Tutorial for Beginners - Learn DevOps Security",
+              "url": "https://www.youtube.com/watch?v=0k_S3n2123U",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/automated_testing_security_gates.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "artifact_environment_secrets_management",
+          "name": "Artifact, Environment & Secrets Management",
+          "tag": "essential",
+          "description": "Manage build artifacts with versioning, utilize artifact repositories (Nexus, Artifactory), configure environment-specific variables, and securely handle secrets (Vault, Kubernetes Secrets, cloud KMS).",
+          "resources": [
+            {
+              "title": "The Twelve-Factor App: Configuration",
+              "url": "https://12factor.net/config",
+              "type": "article"
+            },
+            {
+              "title": "HashiCorp Vault Overview",
+              "url": "https://www.hashicorp.com/products/vault",
+              "type": "article"
+            },
+            {
+              "title": "What are Artifacts in DevOps? [Maven, Gradle, Nexus, Artifactory]",
+              "url": "https://www.youtube.com/watch?v=F07N_Dq62oE",
+              "type": "video"
+            },
+            {
+              "title": "What is Vault? | HashiCorp Vault Explained",
+              "url": "https://www.youtube.com/watch?v=gT53m_eJk_c",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/artifact_environment_secrets_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "advanced_deployment_strategies_rollback",
+          "name": "Advanced Deployment Strategies & Rollback",
+          "tag": "advanced",
+          "description": "Implement sophisticated deployment patterns like Blue/Green, Canary releases, rolling updates, A/B testing, and dark launches. Design robust rollback plans and automated recovery mechanisms.",
+          "resources": [
+            {
+              "title": "Deployment Strategies for Kubernetes",
+              "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+              "type": "article"
+            },
+            {
+              "title": "Blue/Green Deployment Explained",
+              "url": "https://martinfowler.com/bliki/BlueGreenDeployment.html",
+              "type": "article"
+            },
+            {
+              "title": "Blue/Green, Canary, Rolling Deployment Strategies | Explained",
+              "url": "https://www.youtube.com/watch?v=KzVb3s29S68",
+              "type": "video"
+            },
+            {
+              "title": "Deployment Strategies (Rolling vs Blue/Green vs Canary)",
+              "url": "https://www.youtube.com/watch?v=tIirG3p-dY8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/advanced_deployment_strategies_rollback.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "cicd_pipeline_troubleshooting_resilience",
+          "name": "Practice: CI/CD Troubleshooting & Resilience",
+          "tag": "advanced",
+          "description": "Hands-on exercises to diagnose, debug, and fix common CI/CD pipeline failures related to build, testing, deployment, environment configuration, and network issues. Implement pipeline resilience and fault tolerance.",
+          "resources": [
+            {
+              "title": "Debugging GitHub Actions Workflows",
+              "url": "https://docs.github.com/en/actions/managing-workflow-runs/debugging-workflows",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Pipeline Tutorial for Beginners | DevOps Tools & Concepts",
+              "url": "https://www.youtube.com/watch?v=sc2b1h34xWk",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial - CI/CD for Beginners",
+              "url": "https://www.youtube.com/watch?v=S0y_E_yT1h0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/cicd_pipeline_troubleshooting_resilience.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "gitops_declarative_deployments",
+          "name": "GitOps and Declarative Deployments",
+          "tag": "advanced",
+          "description": "Understand GitOps principles for managing infrastructure and application configurations. Implement declarative deployments using tools like Argo CD or Flux for Kubernetes.",
+          "resources": [
+            {
+              "title": "What is GitOps?",
+              "url": "https://www.gitops.tech/",
+              "type": "article"
+            },
+            {
+              "title": "Argo CD Getting Started Guide",
+              "url": "https://argo-cd.readthedocs.io/en/stable/getting_started/",
+              "type": "article"
+            },
+            {
+              "title": "What is GitOps? A Complete Guide",
+              "url": "https://www.youtube.com/watch?v=Fj-B_h9W-1c",
+              "type": "video"
+            },
+            {
+              "title": "ArgoCD & GitOps Tutorial | Git as your single source of truth",
+              "url": "https://www.youtube.com/watch?v=s0e5W-L7_eI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/gitops_declarative_deployments.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "containerization_orchestration",
+      "name": "Containerization and Orchestration",
+      "tag": "essential",
+      "description": "Master container technologies with Docker, learn to manage multi-service applications, and operate highly available, scalable workloads using Kubernetes.",
+      "resources": [
+        {
+          "title": "Kubernetes Basics",
+          "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
           "type": "course"
         },
-        {
-          "title": "Git Book",
-          "url": "https://git-scm.com/book/en/v2",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "devops_shell",
-          "name": "Shell Scripting",
-          "tag": "essential",
-          "description": "Automate repeatable tasks with Bash, environment variables, pipes, and exit codes.",
-          "resources": [
-            {
-              "title": "Bash Guide",
-              "url": "https://mywiki.wooledge.org/BashGuide",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "devops_networking",
-          "name": "Networking Basics",
-          "tag": "essential",
-          "description": "Understand TCP/IP, ports, DNS, TLS, proxies, firewalls, and request debugging.",
-          "resources": [
-            {
-              "title": "Cloudflare Learning Center",
-              "url": "https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "devops_cicd",
-      "name": "CI/CD and Release Automation",
-      "tag": "essential",
-      "description": "Build pipelines that test, package, scan, and deploy applications consistently.",
-      "resources": [
-        {
-          "title": "GitHub Actions Documentation",
-          "url": "https://docs.github.com/en/actions",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "devops_testing_pipelines",
-          "name": "Automated Tests in Pipelines",
-          "tag": "essential",
-          "description": "Run unit, integration, lint, and security checks before code reaches production.",
-          "resources": [
-            {
-              "title": "GitHub Actions Workflow Syntax",
-              "url": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "devops_artifacts",
-          "name": "Build Artifacts and Environments",
-          "tag": "essential",
-          "description": "Version releases, manage secrets, separate environments, and automate rollback plans.",
-          "resources": [
-            {
-              "title": "Twelve-Factor App",
-              "url": "https://12factor.net/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "devops_cloud_practice_lab",
-          "name": "Practice: CI/CD Failure Drill",
-          "tag": "advanced",
-          "description": "Break and fix pipeline failures, image builds, environment variables, health checks, and rollback steps.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "devops_containers",
-      "name": "Containers and Orchestration",
-      "tag": "essential",
-      "description": "Package apps with Docker, run multi-service systems, and operate workloads on Kubernetes.",
-      "resources": [
         {
           "title": "Docker Containers and Kubernetes Fundamentals (freeCodeCamp)",
           "url": "https://www.youtube.com/watch?v=kTp5xUtcalw",
           "type": "video"
         },
         {
-          "title": "Docker Get Started",
-          "url": "https://docs.docker.com/get-started/",
-          "type": "article"
+          "title": "Docker & Kubernetes Course - Learn when to use what for DevOps (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=S01Z_yJ8-rQ",
+          "type": "video"
         },
         {
-          "title": "Kubernetes Basics",
-          "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
-          "type": "course"
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/devops_cloud/containerization_orchestration.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "devops_docker_compose",
-          "name": "Docker Compose",
+          "id": "docker_fundamentals_best_practices",
+          "name": "Docker Fundamentals & Best Practices",
           "tag": "essential",
-          "description": "Run local service stacks with networks, volumes, health checks, and environment configuration.",
+          "description": "Learn Docker basics: images, containers, volumes, networks. Create efficient and secure Dockerfiles, understand multi-stage builds, and optimize image sizes for production.",
           "resources": [
             {
-              "title": "Docker Compose Quickstart",
-              "url": "https://docs.docker.com/compose/gettingstarted/",
+              "title": "Docker Get Started",
+              "url": "https://docs.docker.com/get-started/",
               "type": "article"
+            },
+            {
+              "title": "Dockerfile Best Practices",
+              "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Tutorial for Beginners [FULL COURSE]",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJfo0",
+              "type": "video"
+            },
+            {
+              "title": "Docker Crash Course | Learn Docker in 3 Hours",
+              "url": "https://www.youtube.com/watch?v=pFAISyqspgY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/docker_fundamentals_best_practices.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "devops_k8s_basics",
-          "name": "Kubernetes Workloads",
-          "tag": "advanced",
-          "description": "Deploy, expose, scale, update, and debug apps through Kubernetes primitives.",
+          "id": "docker_compose_advanced_local_orchestration",
+          "name": "Docker Compose for Local Orchestration",
+          "tag": "essential",
+          "description": "Orchestrate multi-container applications locally using Docker Compose, including advanced features like custom networks, volume management, health checks, environment configurations, and extension fields.",
           "resources": [
             {
-              "title": "Kubernetes Documentation",
-              "url": "https://kubernetes.io/docs/",
+              "title": "Compose file version 3 reference",
+              "url": "https://docs.docker.com/compose/compose-file/compose-file-v3/",
               "type": "article"
+            },
+            {
+              "title": "Docker Compose Crash Course",
+              "url": "https://www.youtube.com/watch?v=Qw9dg9-fJ7Q",
+              "type": "video"
+            },
+            {
+              "title": "Docker Compose in Practice - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=hrF5dD3y22Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/docker_compose_advanced_local_orchestration.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "container_registries_security_scanning",
+          "name": "Container Registries & Security Scanning",
+          "tag": "essential",
+          "description": "Understand public and private container registries (Docker Hub, ECR, GCR, ACR), image tagging, versioning, and integrating container image vulnerability scanning (e.g., Trivy, Clair) into CI/CD workflows.",
+          "resources": [
+            {
+              "title": "Introduction to Container Registries",
+              "url": "https://aws.amazon.com/ecr/features/",
+              "type": "article"
+            },
+            {
+              "title": "Trivy: A Comprehensive Scanner for Vulnerabilities in Container Images",
+              "url": "https://aquasecurity.github.io/trivy/",
+              "type": "article"
+            },
+            {
+              "title": "Docker Crash Course | Traversy Media",
+              "url": "https://www.youtube.com/watch?v=p_c_E0C_sBw",
+              "type": "video"
+            },
+            {
+              "title": "Open-source Tools for Docker Image Vulnerability Scanning",
+              "url": "https://www.youtube.com/watch?v=0hMhH0_09eM",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/container_registries_security_scanning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_architecture_core_components",
+          "name": "Kubernetes Architecture & Core Components",
+          "tag": "essential",
+          "description": "Explore Kubernetes architecture: master and worker nodes, control plane components (API Server, etcd, Scheduler, Controller Manager, Cloud Controller Manager), and kubelet/kube-proxy. Understand how these components interact.",
+          "resources": [
+            {
+              "title": "Kubernetes Components",
+              "url": "https://kubernetes.io/docs/concepts/overview/components/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Explained (Cloud Native Computing Foundation)",
+              "url": "https://www.cncf.io/what-is-kubernetes/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Crash Course for Absolute Beginners",
+              "url": "https://www.youtube.com/watch?v=X48VuFYp0cs",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Crash Course For Beginners",
+              "url": "https://www.youtube.com/watch?v=KVWFv_k6K04",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/kubernetes_architecture_core_components.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_core_workloads",
+          "name": "Kubernetes Core Workloads",
+          "tag": "essential",
+          "description": "Deploy, manage, and scale applications using core Kubernetes workload objects: Pods, Deployments, ReplicaSets, DaemonSets, StatefulSets, Jobs, and CronJobs. Understand resource requests and limits.",
+          "resources": [
+            {
+              "title": "Kubernetes Documentation: Workloads",
+              "url": "https://kubernetes.io/docs/concepts/workloads/",
+              "type": "article"
+            },
+            {
+              "title": "Managing Resources for Containers",
+              "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Crash Course For Beginners",
+              "url": "https://www.youtube.com/watch?v=p_C6Sj_q8bM",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Tutorial #7 - Deployments & ReplicaSets",
+              "url": "https://www.youtube.com/watch?v=Fj-yL0hY1j0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/kubernetes_core_workloads.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_services_ingress_networking",
+          "name": "Kubernetes Services, Ingress & Networking",
+          "tag": "advanced",
+          "description": "Expose and connect applications within and outside the cluster using Kubernetes Services (ClusterIP, NodePort, LoadBalancer, ExternalName), Ingress controllers, and understand fundamental CNI concepts and Network Policies.",
+          "resources": [
+            {
+              "title": "Kubernetes Services, Load Balancing, and Networking",
+              "url": "https://kubernetes.io/docs/concepts/services-networking/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Kubernetes Networking",
+              "url": "https://www.tigera.io/learn/kubernetes-networking/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Tutorial #13 - Services (Part 1)",
+              "url": "https://www.youtube.com/watch?v=FjI5jY1WfH0",
+              "type": "video"
+            },
+            {
+              "title": "Kubernetes Tutorial #15 - Ingress",
+              "url": "https://www.youtube.com/watch?v=R0d3L1qjUa8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/kubernetes_services_ingress_networking.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "kubernetes_storage_config_security",
+          "name": "Kubernetes Storage, Configuration & Security",
+          "tag": "advanced",
+          "description": "Dive into Kubernetes storage solutions (Volumes, Persistent Volumes, Persistent Volume Claims, StorageClasses). Manage application configuration with ConfigMaps and Secrets. Implement basic cluster security with RBAC and Service Accounts.",
+          "resources": [
+            {
+              "title": "Kubernetes Storage Concepts",
+              "url": "https://kubernetes.io/docs/concepts/storage/",
+              "type": "article"
+            },
+            {
+              "title": "Configure a Pod to Use a ConfigMap",
+              "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
+              "type": "article"
+            },
+            {
+              "title": "Manage RBAC Authorization",
+              "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Tutorial for Beginners [FULL COURSE in 4 HOURS!]",
+              "url": "https://www.youtube.com/watch?v=X48VuFYp4L4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/kubernetes_storage_config_security.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "helm_package_management_kubernetes",
+          "name": "Helm for Kubernetes Package Management",
+          "tag": "advanced",
+          "description": "Use Helm to define, install, and upgrade complex Kubernetes applications using Charts. Learn to create custom charts, manage releases, and leverage public/private Helm repositories.",
+          "resources": [
+            {
+              "title": "Helm Documentation",
+              "url": "https://helm.sh/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with Helm",
+              "url": "https://helm.sh/docs/intro/quickstart/",
+              "type": "article"
+            },
+            {
+              "title": "Helm Crash Course for Kubernetes Developers",
+              "url": "https://www.youtube.com/watch?v=Nn1c6dE_oJ4",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/helm_package_management_kubernetes.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "advanced_kubernetes_patterns_operators",
+          "name": "Advanced Kubernetes Patterns & Operators",
+          "tag": "advanced",
+          "description": "Explore advanced Kubernetes concepts such as Custom Resource Definitions (CRDs), Operators, Admission Controllers, and Service Mesh (Istio/Linkerd) for enhanced traffic management and security.",
+          "resources": [
+            {
+              "title": "Kubernetes Custom Resources",
+              "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Kubernetes Operators",
+              "url": "https://operatorframework.io/learn/overview/",
+              "type": "article"
+            },
+            {
+              "title": "What is a Service Mesh? | Istio & Linkerd",
+              "url": "https://www.youtube.com/watch?v=w7w_Kq1fDzs",
+              "type": "video"
+            },
+            {
+              "title": "What is Istio? Full Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=0kI6zCgQy-E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/advanced_kubernetes_patterns_operators.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "devops_iac_observability",
-      "name": "Infrastructure as Code and Operations",
+      "id": "cloud_iac_sre_operations",
+      "name": "Cloud, IaC & SRE Operations",
       "tag": "advanced",
-      "description": "Provision cloud resources, monitor systems, respond to incidents, and improve reliability.",
+      "description": "Provision and manage cloud infrastructure using IaC, implement robust observability, master incident response, and apply Site Reliability Engineering principles for highly available and resilient systems.",
       "resources": [
-        {
-          "title": "Learn Terraform and AWS by Building a Dev Environment (freeCodeCamp)",
-          "url": "https://www.youtube.com/watch?v=iRaai1IBlB0",
-          "type": "video"
-        },
         {
           "title": "Terraform Tutorials",
           "url": "https://developer.hashicorp.com/terraform/tutorials",
@@ -181,50 +716,219 @@
           "title": "Google SRE Book",
           "url": "https://sre.google/sre-book/table-of-contents/",
           "type": "article"
+        },
+        {
+          "title": "Learn Terraform and AWS by Building a Dev Environment (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=iRaai1IBlB0",
+          "type": "video"
+        },
+        {
+          "title": "Site Reliability Engineering (SRE) Crash Course",
+          "url": "https://www.youtube.com/watch?v=P_Yw8d92qJc",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/devops_cloud/cloud_iac_sre_operations.md",
+          "type": "doc"
         }
       ],
       "children": [
         {
-          "id": "devops_monitoring",
-          "name": "Monitoring and Logging",
+          "id": "cloud_provider_fundamentals",
+          "name": "Cloud Provider Fundamentals (AWS/Azure/GCP)",
+          "tag": "essential",
+          "description": "Introduction to core cloud computing concepts, service models (IaaS, PaaS, SaaS, FaaS), and foundational services of a major cloud provider (e.g., EC2, S3, VPC, IAM, RDS on AWS, or equivalent on Azure/GCP).",
+          "resources": [
+            {
+              "title": "AWS Cloud Practitioner Essentials (AWS Skill Builder)",
+              "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+              "type": "course"
+            },
+            {
+              "title": "Azure Fundamentals (AZ-900) Full Course",
+              "url": "https://www.youtube.com/watch?v=NPEhCj2t1y8",
+              "type": "video"
+            },
+            {
+              "title": "AWS Certified Cloud Practitioner Certification Course (CLF-C01) - Pass the Exam!",
+              "url": "https://www.youtube.com/watch?v=SaaS_9_eC7k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/cloud_provider_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "iac_terraform_cloud_provisioning",
+          "name": "Infrastructure as Code: Terraform",
           "tag": "advanced",
-          "description": "Collect metrics, logs, traces, alerts, and dashboards that explain production behavior.",
+          "description": "Master Infrastructure as Code (IaC) principles. Use Terraform to declaratively define, provision, and manage cloud resources across various providers with state management, modules, and workspaces. Explore Terragrunt for advanced use cases.",
+          "resources": [
+            {
+              "title": "Terraform Registry (Modules)",
+              "url": "https://registry.terraform.io/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform Crash Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=EXi_Pj2i06E",
+              "type": "video"
+            },
+            {
+              "title": "Terraform Crash Course",
+              "url": "https://www.youtube.com/watch?v=l5k1AE0dl_Y",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/iac_terraform_cloud_provisioning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "configuration_management_ansible",
+          "name": "Configuration Management (Ansible)",
+          "tag": "advanced",
+          "description": "Automate server configuration, application deployment, and orchestration using Ansible. Learn playbooks, roles, inventory management, dynamic inventories, and securing credentials with Ansible Vault.",
+          "resources": [
+            {
+              "title": "Ansible Documentation",
+              "url": "https://docs.ansible.com/",
+              "type": "article"
+            },
+            {
+              "title": "Ansible for Beginners (DevOps Project)",
+              "url": "https://www.youtube.com/watch?v=Zf_X72xMhQc",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/configuration_management_ansible.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "observability_monitoring_logging_tracing",
+          "name": "Observability: Monitoring, Logging & Tracing",
+          "tag": "advanced",
+          "description": "Implement comprehensive observability solutions: metrics collection and visualization (Prometheus, Grafana, cloud monitoring services), centralized logging (ELK stack, Loki, Splunk, cloud logging), and distributed tracing (Jaeger, OpenTelemetry).",
           "resources": [
             {
               "title": "Prometheus Documentation",
               "url": "https://prometheus.io/docs/introduction/overview/",
               "type": "article"
+            },
+            {
+              "title": "The ELK Stack: A Guide",
+              "url": "https://www.elastic.co/what-is/elk-stack",
+              "type": "article"
+            },
+            {
+              "title": "Distributed Tracing with OpenTelemetry",
+              "url": "https://opentelemetry.io/docs/concepts/what-is-opentelemetry/",
+              "type": "article"
+            },
+            {
+              "title": "What is Observability? Explained in under 10 minutes",
+              "url": "https://www.youtube.com/watch?v=2n-Y7_jQp0g",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/observability_monitoring_logging_tracing.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "devops_incident_response",
-          "name": "Incident Response and Runbooks",
+          "id": "sre_incident_response_postmortems",
+          "name": "SRE: Incident Response & Postmortems",
           "tag": "advanced",
-          "description": "Prepare on-call playbooks for outages, failed deploys, high latency, rollback, escalation, and postmortems.",
+          "description": "Learn Site Reliability Engineering (SRE) principles including SLAs, SLOs, SLIs, error budgets. Implement robust incident response methodologies, create effective runbooks, and conduct blameless post-mortems for continuous improvement and learning.",
           "resources": [
             {
-              "title": "Google SRE Incident Response",
+              "title": "Google SRE Book: Managing Incidents",
               "url": "https://sre.google/sre-book/managing-incidents/",
               "type": "article"
+            },
+            {
+              "title": "Building a Blameless Postmortem Culture",
+              "url": "https://www.atlassian.com/incident-management/postmortem/blameless",
+              "type": "article"
+            },
+            {
+              "title": "Site Reliability Engineering (SRE) Crash Course",
+              "url": "https://www.youtube.com/watch?v=kYJ5k8c8Q3Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/sre_incident_response_postmortems.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "devops_capstone",
-          "name": "Project: Deploy a Real App",
+          "id": "cloud_security_cost_optimization",
+          "name": "Cloud Security & Cost Optimization",
           "tag": "advanced",
-          "description": "Containerize an app, create CI/CD, deploy to cloud, add monitoring, and document runbooks.",
+          "description": "Understand and implement cloud security best practices: Identity and Access Management (IAM), network security (VPC, Security Groups, WAF, Private Endpoints), encryption, compliance. Strategies for monitoring and optimizing cloud costs (FinOps), and governance.",
           "resources": [
             {
-              "title": "AWS Getting Started Resource Center",
-              "url": "https://aws.amazon.com/getting-started/",
+              "title": "AWS Security Best Practices",
+              "url": "https://aws.amazon.com/security/best-practices/",
               "type": "article"
+            },
+            {
+              "title": "Cloud Cost Management & Optimization",
+              "url": "https://cloud.google.com/solutions/cost-management",
+              "type": "article"
+            },
+            {
+              "title": "Cloud Security Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=kYJv9iGZk6w",
+              "type": "video"
+            },
+            {
+              "title": "FinOps Explained - Understand Cloud Cost Management",
+              "url": "https://www.youtube.com/watch?v=FjIq2N5v5zE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/cloud_security_cost_optimization.md",
+              "type": "doc"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "capstone_production_devops_project",
+          "name": "Capstone Project: Production DevOps Deployment",
+          "tag": "advanced",
+          "description": "Apply all learned concepts to design, build, deploy, monitor, and maintain a real-world, highly available, scalable, and secure application on a chosen cloud provider using CI/CD, containers, Kubernetes, IaC, and SRE practices.",
+          "resources": [
+            {
+              "title": "Awesome DevOps Projects",
+              "url": "https://github.com/bregman-arie/devops-resources#projects-to-practice",
+              "type": "article"
+            },
+            {
+              "title": "Ultimate DevOps Project: Deploy a Three-Tier App on AWS with Terraform, Ansible, Jenkins, and Kubernetes",
+              "url": "https://www.youtube.com/watch?v=21Pj1v_y_cI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/devops_cloud/capstone_production_devops_project.md",
+              "type": "doc"
+            }
+          ]
         }
       ]
     }

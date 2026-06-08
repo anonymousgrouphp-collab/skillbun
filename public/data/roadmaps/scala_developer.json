@@ -5,10 +5,10 @@
   "format": "tree",
   "tree": [
     {
-      "id": "scala_developer_foundations",
-      "name": "Foundations and Role Context",
+      "id": "scala_foundations_ecosystem",
+      "name": "Scala Foundations & Ecosystem",
       "tag": "essential",
-      "description": "Understand what Scala Developer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong understanding of Scala's core philosophies, its place in the modern development landscape, and set up your development environment for both Scala 2 and Scala 3.",
       "resources": [
         {
           "title": "What is Scala? | Scala Programming Tutorial for Beginners | Apache Spark Training | Edureka (edureka!)",
@@ -16,53 +16,79 @@
           "type": "video"
         },
         {
-          "title": "Scala Documentation",
-          "url": "https://docs.scala-lang.org/",
+          "title": "Scala Documentation - Getting Started",
+          "url": "https://docs.scala-lang.org/getting-started/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "scala_developer_domain_basics",
-          "name": "Domain Basics",
+          "id": "scala_intro_paradigms",
+          "name": "Introduction to Scala & Its Paradigms",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Explore Scala's hybrid nature, combining Object-Oriented and Functional Programming. Understand its advantages for building robust, concurrent, and scalable systems, particularly within the JVM ecosystem.",
           "resources": [
             {
-              "title": "Scala Book",
+              "title": "Scala Book - Introduction",
               "url": "https://docs.scala-lang.org/overviews/scala-book/introduction.html",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "scala_developer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "scala_env_tooling",
+          "name": "Scala Environment Setup & Tooling",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Set up your development environment, including JVM, Coursier for Scala toolchain management, sbt as the primary build tool, and an IDE like IntelliJ IDEA with the Scala plugin. Learn basic sbt commands and project structure.",
           "resources": [
+            {
+              "title": "Installing Scala",
+              "url": "https://docs.scala-lang.org/getting-started/installing-scala.html",
+              "type": "article"
+            },
             {
               "title": "sbt Reference Manual",
               "url": "https://www.scala-sbt.org/1.x/docs/",
               "type": "article"
+            },
+            {
+              "title": "Install IntelliJ IDEA with Scala Plugin",
+              "url": "https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html",
+              "type": "article"
+            },
+            {
+              "title": "Coursier - The Pure Scala Application & Artifact Fetcher",
+              "url": "https://get-coursier.io/docs/cli-installation",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "scala_git_basics",
+          "name": "Version Control with Git",
+          "tag": "essential",
+          "description": "Master fundamental Git concepts and commands for collaborative development, branching, merging, and pull requests, essential for any modern software project.",
+          "resources": [
+            {
+              "title": "Git - The Simple Guide",
+              "url": "https://rogerdudler.github.io/git-guide/",
+              "type": "article"
+            },
+            {
+              "title": "Learn Git Branching",
+              "url": "https://learngitbranching.js.org/",
+              "type": "course"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "scala_developer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "scala_language_core",
+      "name": "Scala Language Core",
       "tag": "essential",
-      "description": "Build the practical skill stack for Scala Developer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Dive deep into the fundamental building blocks of the Scala language, covering both its object-oriented and functional aspects, including modern Scala 3 features.",
       "resources": [
-        {
-          "title": "Spark Scala | Spark Tutorial | Scala Tutorial | Spark Scala Full Course | Intellipaat (Intellipaat)",
-          "url": "https://www.youtube.com/watch?v=PzQ3DBrHW-U",
-          "type": "video"
-        },
         {
           "title": "Scala Book",
           "url": "https://docs.scala-lang.org/overviews/scala-book/introduction.html",
@@ -71,141 +97,681 @@
       ],
       "children": [
         {
-          "id": "scala_developer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "scala_basic_syntax",
+          "name": "Basic Syntax & Types",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Learn Scala's basic syntax, variable declarations (val/var), common data types, control structures (if/else, for loops), basic functions, and expression-oriented programming.",
           "resources": [
             {
-              "title": "Scala Documentation",
-              "url": "https://docs.scala-lang.org/",
+              "title": "Scala Documentation - Basics",
+              "url": "https://docs.scala-lang.org/tour/basics.html",
               "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "scala_developer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
+            },
             {
-              "title": "sbt Reference Manual",
-              "url": "https://www.scala-sbt.org/1.x/docs/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "scala_developer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "scala_developer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "Scala Tutorial Full Course (Telusko)",
-          "url": "https://www.youtube.com/watch?v=i9o70PMqMGY",
-          "type": "video"
-        },
-        {
-          "title": "sbt Reference Manual",
-          "url": "https://www.scala-sbt.org/1.x/docs/",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "scala_developer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
-          "resources": [
-            {
-              "title": "Scala Book",
-              "url": "https://docs.scala-lang.org/overviews/scala-book/introduction.html",
+              "title": "Scala for the Impatient by Cay S. Horstmann (Chapter 1-3)",
+              "url": "https://www.amazon.com/Scala-Impatient-Cay-S-Horstmann/dp/0321752542",
               "type": "course"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "scala_developer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "scala_oop",
+          "name": "Object-Oriented Programming in Scala",
+          "tag": "essential",
+          "description": "Understand classes, objects, traits, inheritance, polymorphism, and singleton objects. Explore advanced OOP features like abstract classes, companions, and enums (Scala 3).",
           "resources": [
             {
-              "title": "Scala Documentation",
-              "url": "https://docs.scala-lang.org/",
+              "title": "Scala Documentation - Classes and Objects",
+              "url": "https://docs.scala-lang.org/tour/classes.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Traits",
+              "url": "https://docs.scala-lang.org/tour/traits.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Enums",
+              "url": "https://docs.scala-lang.org/scala3/reference/enums/enums.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "scala_fp_fundamentals",
+          "name": "Functional Programming Fundamentals",
+          "tag": "essential",
+          "description": "Grasp the core principles of functional programming: immutability, pure functions, referential transparency, and expression-oriented programming, which are central to Scala.",
+          "resources": [
+            {
+              "title": "Functional Programming Principles in Scala (Coursera - Martin Odersky)",
+              "url": "https://www.coursera.org/learn/progfun1",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "scala_immutability_pure_fns",
+          "name": "Immutability & Pure Functions",
+          "tag": "essential",
+          "description": "Understand the benefits of immutable data structures and pure functions for building predictable, testable, and thread-safe code.",
+          "resources": [
+            {
+              "title": "Why Functional Programming Matters",
+              "url": "https://www.cs.kent.ac.uk/people/staff/dat/miranda/wadler87.pdf",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_hof_lambdas",
+          "name": "Higher-Order Functions & Lambdas",
+          "tag": "essential",
+          "description": "Learn to use functions as first-class citizens: passing functions as arguments, returning functions, and creating anonymous functions (lambdas/function literals).",
+          "resources": [
+            {
+              "title": "Scala Documentation - Higher-Order Functions",
+              "url": "https://docs.scala-lang.org/tour/higher-order-functions.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_pattern_matching",
+          "name": "Pattern Matching & Case Classes",
+          "tag": "essential",
+          "description": "Master Scala's powerful pattern matching for destructuring data, controlling flow, and defining Algebraic Data Types (ADTs) with case classes and sealed traits/enums.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Pattern Matching",
+              "url": "https://docs.scala-lang.org/tour/pattern-matching.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Case Classes",
+              "url": "https://docs.scala-lang.org/tour/case-classes.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_collections_api",
+          "name": "Collections API",
+          "tag": "essential",
+          "description": "Become proficient with Scala's rich, immutable, and functional collections library (Lists, Maps, Sets, Vectors, Options) and common operations like map, filter, fold, reduce, and flatMap.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Collections Overview",
+              "url": "https://docs.scala-lang.org/overviews/collections-2.13/introduction.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_error_handling",
+          "name": "Error Handling with Option, Either & Try",
+          "tag": "essential",
+          "description": "Implement robust error handling using Option for potential absence of values, Either for representing success or failure with different types, and Try for handling exceptions elegantly.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Option",
+              "url": "https://docs.scala-lang.org/overviews/scala-book/options.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Either",
+              "url": "https://docs.scala-lang.org/overviews/scala-book/either.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Try",
+              "url": "https://docs.scala-lang.org/overviews/scala-book/try.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_generics_type_params",
+          "name": "Generics & Type Parameters",
+          "tag": "essential",
+          "description": "Understand how to write generic code using type parameters, covering variance (covariance, contravariance) and type bounds, crucial for building flexible and reusable components.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Generics",
+              "url": "https://docs.scala-lang.org/tour/generic-classes.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Variance",
+              "url": "https://docs.scala-lang.org/tour/variances.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_advanced_language_features",
+          "name": "Advanced Scala 3 Language Features",
+          "tag": "advanced",
+          "description": "Explore modern Scala 3 features such as Contextual Abstractions (givens, using clauses), extension methods, union types, intersection types, and opaque types for more expressive, robust, and safe code.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Contextual Abstractions",
+              "url": "https://docs.scala-lang.org/scala3/guides/migration/contextual-abstractions-guide.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Extension Methods",
+              "url": "https://docs.scala-lang.org/scala3/reference/contextual/extension-methods.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Union and Intersection Types",
+              "url": "https://docs.scala-lang.org/scala3/reference/new-types/union-intersection-types.html",
+              "type": "article"
+            },
+            {
+              "title": "Scala Documentation - Opaque Types",
+              "url": "https://docs.scala-lang.org/scala3/reference/other-new-features/opaque-types.html",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "scala_developer_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "scala_advanced_concurrent",
+      "name": "Advanced Scala & Concurrent Programming",
       "tag": "advanced",
-      "description": "Turn your Scala Developer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Explore more sophisticated Scala features and learn how to build concurrent, parallel, and distributed applications effectively using both imperative and functional approaches.",
       "resources": [
         {
-          "title": "Scala Documentation",
-          "url": "https://docs.scala-lang.org/",
-          "type": "article"
-        },
-        {
-          "title": "Scala Book",
-          "url": "https://docs.scala-lang.org/overviews/scala-book/introduction.html",
+          "title": "Advanced Scala with Cats (Underscore.io)",
+          "url": "https://underscore.io/books/advanced-scala/",
           "type": "course"
         },
         {
-          "title": "sbt Reference Manual",
-          "url": "https://www.scala-sbt.org/1.x/docs/",
-          "type": "article"
+          "title": "Functional Programming in Scala (Red Book)",
+          "url": "https://www.manning.com/books/functional-programming-in-scala",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "scala_developer_case_study",
-          "name": "Case Study Writing",
-          "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "id": "scala_concurrency_parallelism_basics",
+          "name": "Concurrency & Parallelism Fundamentals",
+          "tag": "essential",
+          "description": "Understand core concepts of concurrency, parallelism, threads, and thread pools. Explore the `java.util.concurrent` package and basic concurrent data structures on the JVM, laying the groundwork for Scala's abstractions.",
           "resources": [
             {
-              "title": "Scala Documentation",
-              "url": "https://docs.scala-lang.org/",
+              "title": "Java Concurrency in Practice (Chapter Summaries)",
+              "url": "https://www.cs.umd.edu/~pugh/java/book.html",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Concurrency (Baeldung)",
+              "url": "https://www.baeldung.com/java-concurrency",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "scala_developer_project_capstone",
-          "name": "Project: Scala Developer Portfolio Capstone",
+          "id": "scala_futures_async",
+          "name": "Futures & Asynchronous Programming",
+          "tag": "essential",
+          "description": "Learn to manage asynchronous and non-blocking computations using Scala's `Future` API, including composing futures, handling callbacks, error recovery, and understanding the role of `ExecutionContext`.",
+          "resources": [
+            {
+              "title": "Scala Documentation - Futures and Promises",
+              "url": "https://docs.scala-lang.org/overviews/core/futures.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_type_classes",
+          "name": "Type Classes & Implicit Parameters",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Scala Developer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Understand type classes as a powerful way to achieve ad-hoc polymorphism and their implementation using implicit parameters and implicit conversions (Scala 2) or `givens` and `using` clauses (Scala 3).",
+          "resources": [
+            {
+              "title": "Type Classes in Scala",
+              "url": "https://docs.scala-lang.org/overviews/scala-book/type-classes.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_fp_type_classes_datatypes",
+          "name": "Functional Type Classes & Effect Systems (Cats/ZIO)",
+          "tag": "advanced",
+          "description": "Delve into fundamental functional programming type classes like `Functor`, `Applicative`, `Monad`, and `Traverse`. Understand their practical application in Scala using libraries like `Cats` or `ZIO` for composable and effectful programming, particularly with the `IO` monad.",
+          "resources": [
+            {
+              "title": "Typelevel Cats Documentation - Type Classes",
+              "url": "https://typelevel.org/cats/typeclasses.html",
+              "type": "article"
+            },
+            {
+              "title": "ZIO Documentation - What is ZIO?",
+              "url": "https://zio.dev/docs/getting_started/what-is-zio",
+              "type": "article"
+            },
+            {
+              "title": "What's a Monad? (Functors, Applicatives, Monads Explained)",
+              "url": "https://www.youtube.com/watch?v=Mw_J_z046G0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "scala_akka_toolkit",
+          "name": "Akka Toolkit: Actors & Streams",
+          "tag": "advanced",
+          "description": "Explore the Akka ecosystem for building highly concurrent, distributed, and fault-tolerant applications using the Actor model and Akka Streams for reactive data processing. Understand concepts like supervision, messaging patterns, and clustering basics.",
+          "resources": [
+            {
+              "title": "Akka Documentation - Actors",
+              "url": "https://doc.akka.io/docs/akka/current/typed/actors.html",
+              "type": "article"
+            },
+            {
+              "title": "Akka Documentation - Streams",
+              "url": "https://doc.akka.io/docs/akka/current/stream/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_functional_effects_ce_zio",
+          "name": "Functional Effect Systems (Cats Effect & ZIO)",
+          "tag": "advanced",
+          "description": "Master modern purely functional concurrency and resource management in Scala using `Cats Effect` and `ZIO`. Learn about the `IO` monad, fibers, concurrency primitives (e.g., Ref, MVar, Promise), and structured concurrency for building robust applications.",
+          "resources": [
+            {
+              "title": "Cats Effect Documentation",
+              "url": "https://typelevel.org/cats-effect/",
+              "type": "article"
+            },
+            {
+              "title": "ZIO Documentation - Core Concepts",
+              "url": "https://zio.dev/docs/reference/core/core_index",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scala_build_test",
+      "name": "Building & Testing Scala Applications",
+      "tag": "essential",
+      "description": "Master the essential tools and practices for building, testing, and managing dependencies in real-world Scala projects, ensuring code quality and reliability.",
+      "resources": [
+        {
+          "title": "Practical sbt",
+          "url": "https://underscore.io/books/practical-sbt/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "scala_sbt_mastery",
+          "name": "sbt: Build Tool Mastery",
+          "tag": "essential",
+          "description": "Deepen your understanding of sbt, including multi-project builds, dependency resolution, custom tasks, plugin development, and optimizing build performance for complex Scala projects.",
           "resources": [
             {
               "title": "sbt Reference Manual",
               "url": "https://www.scala-sbt.org/1.x/docs/",
               "type": "article"
+            },
+            {
+              "title": "Getting Started with sbt",
+              "url": "https://www.scala-sbt.org/1.x/docs/Getting-Started.html",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "scala_unit_integration_testing",
+          "name": "Unit & Integration Testing",
+          "tag": "essential",
+          "description": "Write effective unit and integration tests for Scala applications using frameworks like ScalaTest or Specs2, covering various testing styles (e.g., BDD, TDD) and best practices for test organization.",
+          "resources": [
+            {
+              "title": "ScalaTest Documentation",
+              "url": "https://www.scalatest.org/user_guide",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Specs2",
+              "url": "https://etorreborre.github.io/specs2/guide/org.specs2.guide.QuickStart.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_property_based_testing",
+          "name": "Property-Based Testing (e.g., ScalaCheck)",
+          "tag": "advanced",
+          "description": "Learn to use property-based testing tools like ScalaCheck to test properties of your code over a range of generated inputs, improving test robustness and uncovering edge cases.",
+          "resources": [
+            {
+              "title": "ScalaCheck User Guide",
+              "url": "https://github.com/typelevel/scalacheck/blob/main/doc/UserGuide.md",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_dependency_management",
+          "name": "Dependency Management & Ecosystem Libraries",
+          "tag": "essential",
+          "description": "Effectively manage external libraries and understand the Scala ecosystem. Explore popular libraries for common tasks (e.g., logging, JSON parsing, configuration) and dependency versioning best practices.",
+          "resources": [
+            {
+              "title": "Awesome Scala",
+              "url": "https://github.com/lauris/awesome-scala",
+              "type": "article"
+            },
+            {
+              "title": "sbt Reference Manual - Library Dependencies",
+              "url": "https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_code_quality_tooling",
+          "name": "Code Quality & Formatting",
+          "tag": "essential",
+          "description": "Implement best practices for code quality using tools like `Scalafmt` for consistent code formatting and `Scalafix` for automated code refactoring and linting. Understand static analysis tools.",
+          "resources": [
+            {
+              "title": "Scalafmt Documentation",
+              "url": "https://scalameta.org/scalafmt/",
+              "type": "article"
+            },
+            {
+              "title": "Scalafix Documentation",
+              "url": "https://scalacenter.github.io/scalafix/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scala_backend_data_apps",
+      "name": "Backend & Data Applications",
+      "tag": "advanced",
+      "description": "Apply your Scala skills to build real-world backend services and robust data processing pipelines, covering popular frameworks and tools.",
+      "resources": [
+        {
+          "title": "Scala with Cats Book (Noel Welsh)",
+          "url": "https://www.scalawithcats.com/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "scala_web_frameworks",
+          "name": "Web Frameworks (Akka HTTP, http4s, Play)",
+          "tag": "advanced",
+          "description": "Build RESTful APIs and web services using leading Scala web frameworks like Akka HTTP, http4s, and Play Framework. Understand concepts like routing, marshalling/unmarshalling, middleware, and type-safe API definitions (e.g., tapir).",
+          "resources": [
+            {
+              "title": "Akka HTTP Documentation",
+              "url": "https://doc.akka.io/docs/akka-http/current/introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "http4s Documentation",
+              "url": "https://http4s.org/v0.23/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Play Framework Documentation",
+              "url": "https://www.playframework.com/documentation/latest/ScalaHome",
+              "type": "article"
+            },
+            {
+              "title": "tapir Documentation",
+              "url": "https://tapir.softwaremill.com/en/latest/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_db_interaction",
+          "name": "Database Interaction (JDBC, Slick, Doobie)",
+          "tag": "advanced",
+          "description": "Connect Scala applications to relational databases. Learn about raw JDBC, object-relational mapping (ORM) with Slick, and purely functional database access with Doobie, focusing on best practices for data persistence.",
+          "resources": [
+            {
+              "title": "Slick Documentation",
+              "url": "https://scala-slick.org/doc/3.4.0/gettingstarted.html",
+              "type": "article"
+            },
+            {
+              "title": "Doobie Documentation",
+              "url": "https://tpolecat.github.io/doobie/docs/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_spark_data_processing",
+          "name": "Apache Spark for Data Processing",
+          "tag": "advanced",
+          "description": "Leverage Apache Spark with Scala for large-scale data processing. Understand Spark's architecture, RDDs, DataFrames, Datasets, Spark SQL, and Structured Streaming for batch and real-time analytics.",
+          "resources": [
+            {
+              "title": "Spark Scala | Spark Tutorial | Scala Tutorial | Spark Scala Full Course | Intellipaat (Intellipaat)",
+              "url": "https://www.youtube.com/watch?v=PzQ3DBrHW-U",
+              "type": "video"
+            },
+            {
+              "title": "Apache Spark Documentation",
+              "url": "https://spark.apache.org/docs/latest/api/scala/org/apache/spark/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_stream_processing",
+          "name": "Stream Processing (Kafka, Akka Streams, Flink)",
+          "tag": "advanced",
+          "description": "Implement real-time data processing and event-driven architectures using messaging systems like Apache Kafka and reactive stream libraries such as Akka Streams or Kafka Streams. Introduce Apache Flink for advanced stream processing scenarios.",
+          "resources": [
+            {
+              "title": "Apache Kafka Documentation - Streams",
+              "url": "https://kafka.apache.org/documentation/#streams",
+              "type": "article"
+            },
+            {
+              "title": "Akka Documentation - Streams",
+              "url": "https://doc.akka.io/docs/akka/current/stream/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Apache Flink Documentation",
+              "url": "https://flink.apache.org/docs/concepts/overview/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scala_production_deployment",
+      "name": "Production Practices & Deployment",
+      "tag": "advanced",
+      "description": "Understand how to deploy, monitor, and maintain Scala applications in production environments, ensuring reliability, performance, and scalability.",
+      "resources": [
+        {
+          "title": "The Twelve-Factor App",
+          "url": "https://12factor.net/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "scala_jvm_perf_monitoring",
+          "name": "JVM Performance Tuning & Monitoring",
+          "tag": "advanced",
+          "description": "Optimize Scala/JVM application performance, understand garbage collection mechanisms, memory management, and use JVM monitoring tools (e.g., JMX, VisualVM) for profiling and troubleshooting.",
+          "resources": [
+            {
+              "title": "Java Platform, Standard Edition HotSpot Virtual Machine Garbage Collection Tuning Guide",
+              "url": "https://docs.oracle.com/en/java/javase/17/gctuning/introduction-garbage-collection-tuning.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_logging_metrics",
+          "name": "Logging & Metrics",
+          "tag": "essential",
+          "description": "Implement effective logging (e.g., SLF4J, Logback) and integrate metrics (e.g., Prometheus, Grafana) for comprehensive observability in production environments.",
+          "resources": [
+            {
+              "title": "Logback Documentation",
+              "url": "http://logback.qos.ch/manual/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus Monitoring",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_configuration_management",
+          "name": "Configuration Management",
+          "tag": "essential",
+          "description": "Learn best practices for managing application configuration in Scala, using libraries like Lightbend Config or PureConfig for robust, type-safe, and environment-agnostic settings.",
+          "resources": [
+            {
+              "title": "Lightbend Config GitHub",
+              "url": "https://github.com/lightbend/config",
+              "type": "article"
+            },
+            {
+              "title": "PureConfig GitHub",
+              "url": "https://pureconfig.github.io/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_ci_cd",
+          "name": "CI/CD for Scala Projects",
+          "tag": "advanced",
+          "description": "Set up continuous integration and continuous deployment pipelines for Scala applications, automating testing, building, and deployment processes using tools like Jenkins, GitHub Actions, or GitLab CI.",
+          "resources": [
+            {
+              "title": "Jenkins Documentation",
+              "url": "https://www.jenkins.io/doc/",
+              "type": "article"
+            },
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_container_orchestration",
+          "name": "Containerization (Docker) & Orchestration (Kubernetes basics)",
+          "tag": "advanced",
+          "description": "Package Scala applications into Docker containers and understand basic concepts of container orchestration with Kubernetes for scalable, resilient, and manageable deployments.",
+          "resources": [
+            {
+              "title": "Docker Documentation - Get Started",
+              "url": "https://docs.docker.com/get-started/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Basics",
+              "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scala_professional_portfolio",
+      "name": "Professional Development & Portfolio",
+      "tag": "advanced",
+      "description": "Transform your learned skills into a compelling professional portfolio and prepare for career opportunities as a Scala Developer, emphasizing real-world project experience.",
+      "resources": [
+        {
+          "title": "Building a Strong Technical Portfolio",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/Guide/Technical_portfolio",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "scala_code_review",
+          "name": "Code Review & Best Practices",
+          "tag": "advanced",
+          "description": "Participate in and conduct effective code reviews, understand Scala idiomatic practices, and contribute to maintaining high code quality and collaborative development standards.",
+          "resources": [
+            {
+              "title": "Google Engineering Practices - Code Review",
+              "url": "https://google.github.io/eng-practices/review/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_project_fullstack",
+          "name": "Project: Full-Stack Scala Application",
+          "tag": "advanced",
+          "description": "Develop a complete web application using a Scala backend framework (e.g., Akka HTTP/http4s/Play) and integrate with a frontend framework (e.g., Scala.js, or a JavaScript framework like React/Vue).",
+          "resources": [
+            {
+              "title": "Full Stack Scala: Akka HTTP and Scala.js (Blog Series)",
+              "url": "https://www.wix.engineering/blog/full-stack-scala-part-1-akka-http-and-scala-js",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_project_spark_pipeline",
+          "name": "Project: Data Processing Pipeline with Spark",
+          "tag": "advanced",
+          "description": "Design and implement a scalable data ingestion and processing pipeline using Apache Spark, covering data transformation, analysis, and output to various sinks (e.g., databases, data lakes).",
+          "resources": [
+            {
+              "title": "Databricks - Building an end-to-end streaming data pipeline",
+              "url": "https://www.databricks.com/blog/2018/03/06/how-to-build-an-end-to-end-streaming-data-pipeline-using-apache-spark-structured-streaming-and-apache-kafka.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "scala_portfolio_interview",
+          "name": "Portfolio & Interview Preparation",
+          "tag": "advanced",
+          "description": "Curate your projects into a professional portfolio, prepare for technical interviews (including algorithms, data structures, and system design), and articulate your Scala development experience effectively.",
+          "resources": [
+            {
+              "title": "Cracking the Coding Interview by Gayle Laakmann McDowell",
+              "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+              "type": "course"
+            },
+            {
+              "title": "Scala Interview Questions",
+              "url": "https://www.interviewbit.com/scala-interview-questions/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

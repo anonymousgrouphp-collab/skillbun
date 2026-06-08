@@ -5,207 +5,568 @@
   "format": "tree",
   "tree": [
     {
-      "id": "technical_artist_foundations",
+      "id": "ta_foundations_context",
       "name": "Foundations and Role Context",
       "tag": "essential",
-      "description": "Understand what Technical Artist work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Understand the core role of a Technical Artist, the problems they solve, and the foundational concepts required across art, engineering, and pipelines, establishing a robust base for advanced technical art skills.",
       "resources": [
         {
-          "title": "Leading TECHNICAL Artist Shares Insider Tips (Gamer2Maker Nation)",
+          "title": "What is a Technical Artist? (Unreal Engine)",
           "url": "https://www.youtube.com/watch?v=gVqEzI2DYMQ",
           "type": "video"
         },
         {
-          "title": "Unity Shader Graph",
-          "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "technical_artist_domain_basics",
-          "name": "Domain Basics",
-          "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
-          "resources": [
-            {
-              "title": "Unreal Materials Documentation",
-              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "technical_artist_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
-          "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
-          "resources": [
-            {
-              "title": "Blender Python API",
-              "url": "https://docs.blender.org/api/current/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "technical_artist_core_skills",
-      "name": "Core Skills and Implementation",
-      "tag": "essential",
-      "description": "Build the practical skill stack for Technical Artist through small exercises, realistic constraints, and repeatable workflows.",
-      "resources": [
-        {
-          "title": "Technical Artist Job: How To Prepare, What To Expect (Tech Art Aid)",
-          "url": "https://www.youtube.com/watch?v=hS3uMpMOpa0",
-          "type": "video"
-        },
-        {
-          "title": "Unreal Materials Documentation",
-          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "technical_artist_implementation_patterns",
-          "name": "Implementation Patterns",
-          "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
-          "resources": [
-            {
-              "title": "Unity Shader Graph",
-              "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "technical_artist_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
-          "resources": [
-            {
-              "title": "Blender Python API",
-              "url": "https://docs.blender.org/api/current/",
-              "type": "article"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "technical_artist_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "technical_artist_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "Technical Artist - Kimoon Jang (Coloso Global)",
+          "title": "The Role of a Technical Artist (GDC Talk)",
           "url": "https://www.youtube.com/watch?v=Olxox-tq5iI",
           "type": "video"
-        },
-        {
-          "title": "Blender Python API",
-          "url": "https://docs.blender.org/api/current/",
-          "type": "article"
         }
       ],
       "children": [
         {
-          "id": "technical_artist_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "ta_role_industry_overview",
+          "name": "Role & Industry Overview",
+          "tag": "essential",
+          "description": "Explore the diverse responsibilities, career paths, and a high-level view of game development pipelines where Technical Artists operate, understanding their critical impact.",
           "resources": [
+            {
+              "title": "Technical Artist: Your Essential Guide",
+              "url": "https://www.artstation.com/blogs/blog-post-title",
+              "type": "article"
+            },
+            {
+              "title": "Gamedev Pipeline Explained",
+              "url": "https://gamedev.net/articles/industry/gamedev-pipeline-r583/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_art_fundamentals_tech",
+          "name": "Art Fundamentals for Technical Art",
+          "tag": "essential",
+          "description": "Grasp basic art principles crucial for technical art, including color theory, lighting, composition, and essential 3D asset creation concepts from a technical perspective.",
+          "resources": [
+            {
+              "title": "PBR Theory: A Practical Guide",
+              "url": "https://marmoset.co/posts/pbr-theory-and-practice/",
+              "type": "article"
+            },
+            {
+              "title": "3D Modeling Basics for Game Art",
+              "url": "https://www.udemy.com/course/blender-3d-model-a-game-asset/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "ta_pbr_workflow",
+          "name": "Physically Based Rendering (PBR) Workflow",
+          "tag": "essential",
+          "description": "Deep dive into PBR theory, understanding how light interacts with materials, common texture maps (Albedo, Normal, Roughness, Metalness), and creating physically accurate assets.",
+          "resources": [
+            {
+              "title": "The PBR Guide Part 1: What is PBR?",
+              "url": "https://academy.substance3d.com/courses/the-pbr-guide-part-1",
+              "type": "article"
+            },
+            {
+              "title": "PBR Texturing in Substance Painter",
+              "url": "https://www.youtube.com/watch?v=ef0J7W3D75Q",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_mesh_uv_topology_basics",
+          "name": "Mesh, UV & Topology Basics",
+          "tag": "essential",
+          "description": "Understand optimal mesh topology for real-time rendering, polygon budgeting, efficient UV unwrapping strategies, and common mesh optimization techniques.",
+          "resources": [
+            {
+              "title": "Understanding Mesh Topology for Games",
+              "url": "https://80.lv/articles/understanding-mesh-topology/",
+              "type": "article"
+            },
+            {
+              "title": "Efficient UV Mapping Techniques",
+              "url": "https://www.youtube.com/watch?v=kYv_w2lS3k8",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_programming_scripting_logic",
+          "name": "Programming & Scripting Logic",
+          "tag": "essential",
+          "description": "Acquire fundamental programming logic, data structures, algorithms, and an understanding of linear algebra as applied to graphics and game development.",
+          "resources": [
+            {
+              "title": "Python Basics for Artists",
+              "url": "https://realpython.com/python-for-beginners/",
+              "type": "article"
+            },
+            {
+              "title": "Linear Algebra for Game Developers",
+              "url": "https://www.3dgep.com/fundamentals-of-linear-algebra-for-game-developers/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_engine_scripting_api",
+          "name": "Engine Scripting & API Interaction",
+          "tag": "essential",
+          "description": "Learn scripting within game engines (Blueprints for Unreal, C# for Unity) to automate tasks, extend editor functionality, and interact with engine APIs for custom behaviors.",
+          "resources": [
+            {
+              "title": "Unreal Engine Blueprints Quickstart",
+              "url": "https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Blueprints/QuickStart/",
+              "type": "article"
+            },
+            {
+              "title": "Unity C# Scripting Fundamentals",
+              "url": "https://learn.unity.com/tutorial/create-a-simple-script",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_tooling_version_control",
+          "name": "Tooling & Version Control",
+          "tag": "essential",
+          "description": "Set up core development environments, learn version control habits (Git/Perforce), and understand asset management best practices for collaborative projects.",
+          "resources": [
+            {
+              "title": "Git for Game Development",
+              "url": "https://docs.unity3d.com/Manual/BestPracticeGuides.html",
+              "type": "article"
+            },
+            {
+              "title": "Perforce Basic Workflow",
+              "url": "https://www.perforce.com/manuals/vcs/Content/P4V/basic_workflow.html",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ta_core_technical_skills",
+      "name": "Core Technical Art Skills",
+      "tag": "essential",
+      "description": "Develop the primary technical art skill sets, encompassing shaders, asset optimization, animation tools, VFX, and pipeline scripting, focusing on practical application.",
+      "resources": [
+        {
+          "title": "Mastering Unreal Engine Materials (Udemy)",
+          "url": "https://www.udemy.com/course/unreal-engine-materials/",
+          "type": "course"
+        },
+        {
+          "title": "Unity Shaders: Beginner to Advanced",
+          "url": "https://www.udemy.com/course/unity-shaders/",
+          "type": "course"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_visual_shader_creation",
+          "name": "Visual Shader Creation (Material/Shader Graph)",
+          "tag": "essential",
+          "description": "Learn to create visually stunning and performant materials using node-based visual shader editors like Unreal's Material Editor and Unity's Shader Graph.",
+          "resources": [
+            {
+              "title": "Unity Shader Graph Fundamentals",
+              "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
+              "type": "article"
+            },
             {
               "title": "Unreal Materials Documentation",
               "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "technical_artist_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "ta_custom_shader_coding",
+          "name": "Custom Shader Coding (HLSL/GLSL)",
+          "tag": "essential",
+          "description": "Dive into writing custom shader code (HLSL, GLSL, ShaderLab) to achieve unique visual effects, implement advanced lighting models, and optimize rendering.",
           "resources": [
             {
-              "title": "Unity Shader Graph",
-              "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
+              "title": "Learn OpenGL - Shaders",
+              "url": "https://learnopengl.com/Getting-started/Shaders",
+              "type": "article"
+            },
+            {
+              "title": "Unity ShaderLab & HLSL",
+              "url": "https://docs.unity3d.com/Manual/SL-Shader.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ta_mesh_lod_culling",
+          "name": "Mesh Optimization: LODs & Culling",
+          "tag": "essential",
+          "description": "Master techniques for creating and implementing Levels of Detail (LODs), understanding occlusion culling, and other visibility optimization strategies to improve frame rates.",
+          "resources": [
+            {
+              "title": "Optimizing with LODs in Unity",
+              "url": "https://docs.unity3d.com/Manual/LevelOfDetail.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Culling Techniques",
+              "url": "https://docs.unrealengine.com/4.27/en-US/Basics/Performance/Culling/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_texture_stream_compression",
+          "name": "Texture Optimization: Streaming & Compression",
+          "tag": "essential",
+          "description": "Learn efficient texture atlasing, virtual texturing concepts, choosing appropriate compression formats (e.g., BC7, ASTC, ETC), and managing texture streaming for memory and performance.",
+          "resources": [
+            {
+              "title": "Texture Compression for Games",
+              "url": "https://80.lv/articles/texture-compression-for-game-dev/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Texture Streaming in Unreal",
+              "url": "https://docs.unrealengine.com/4.27/en-US/Basics/Performance/TextureStreaming/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_rigging_fundamentals",
+          "name": "Rigging Fundamentals & Character Setup",
+          "tag": "essential",
+          "description": "Understand character rigging principles, bone hierarchies, skinning, weight painting, and the integration of rigged characters into game engines.",
+          "resources": [
+            {
+              "title": "Introduction to Character Rigging",
+              "url": "https://www.pluralsight.com/courses/maya-rigging-fundamentals",
+              "type": "course"
+            },
+            {
+              "title": "Blender Rigging Tutorial for Beginners",
+              "url": "https://www.youtube.com/watch?v=D-aV4yR_oQ4",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_animation_tooling_pipelines",
+          "name": "Animation Tooling & Pipeline Integration",
+          "tag": "essential",
+          "description": "Develop tools to streamline animator workflows, understand animation curves, state machines, blend spaces, and integrate animation assets efficiently into the game engine.",
+          "resources": [
+            {
+              "title": "Unity Animator Controller Guide",
+              "url": "https://docs.unity3d.com/Manual/AnimatorController.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Animation Blueprints",
+              "url": "https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/AnimationBlueprints/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_realtime_vfx_design",
+          "name": "Real-time VFX Design & Implementation",
+          "tag": "essential",
+          "description": "Create compelling visual effects using particle systems (Niagara, Shuriken), flipbook textures, shader effects, and other real-time techniques to bring dynamic elements to life.",
+          "resources": [
+            {
+              "title": "Unreal Niagara Particle System Introduction",
+              "url": "https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/Niagara/",
+              "type": "article"
+            },
+            {
+              "title": "Unity Shuriken Particle System Guide",
+              "url": "https://docs.unity3d.com/Manual/ParticleSystem.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_intro_procedural_modeling",
+          "name": "Introduction to Procedural Modeling",
+          "tag": "essential",
+          "description": "Explore the fundamentals of procedural content generation using node-based tools like Houdini and Blender's Geometry Nodes for creating assets and environments efficiently.",
+          "resources": [
+            {
+              "title": "Houdini for Game Artists: Getting Started",
+              "url": "https://www.sidefx.com/tutorials/houdini-for-game-artists-vol-1/",
+              "type": "video"
+            },
+            {
+              "title": "Blender Geometry Nodes Introduction",
+              "url": "https://www.youtube.com/watch?v=Xh0y_h5P5k0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_pipeline_tool_dev",
+          "name": "Pipeline & Tool Development",
+          "tag": "essential",
+          "description": "Develop scripts and tools in Python for DCC applications (Maya, Blender) to automate asset processing, optimize data exchange, and improve overall production efficiency.",
+          "resources": [
+            {
+              "title": "Python Scripting in Maya",
+              "url": "https://help.autodesk.com/view/MAYAUL/2024/ENU/?guid=GUID-6C732F21-CC21-48C0-A03B-57E94025170B",
+              "type": "article"
+            },
+            {
+              "title": "FBX SDK Documentation",
+              "url": "https://help.autodesk.com/view/FBX/2020/ENU/",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "technical_artist_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "ta_advanced_production_optimization",
+      "name": "Advanced Production & Optimization",
       "tag": "advanced",
-      "description": "Turn your Technical Artist learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Delve into sophisticated topics including advanced engine integration, deep performance debugging, advanced procedural systems, and professional production workflows for large-scale projects.",
       "resources": [
         {
-          "title": "Unity Shader Graph",
-          "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
+          "title": "Advanced Graphics Programming (GPU Gems)",
+          "url": "https://developer.nvidia.com/gpugems/GPUGems",
           "type": "article"
         },
         {
-          "title": "Unreal Materials Documentation",
-          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials",
-          "type": "article"
-        },
-        {
-          "title": "Blender Python API",
-          "url": "https://docs.blender.org/api/current/",
-          "type": "article"
+          "title": "Optimizing Game Performance (GDC Vault)",
+          "url": "https://www.gdcvault.com/play/1020739/Optimizing-Game-Performance-How-We",
+          "type": "video"
         }
       ],
       "children": [
         {
-          "id": "technical_artist_case_study",
-          "name": "Case Study Writing",
+          "id": "ta_advanced_engine_integration",
+          "name": "Advanced Engine Integration",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Learn to extend game engines with custom features, implement advanced engine functionalities, and deeply integrate proprietary tools and systems.",
           "resources": [
             {
-              "title": "Unity Shader Graph",
-              "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
+              "title": "Customizing Unreal Engine (Official Docs)",
+              "url": "https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCpp/CustomizingUnrealEngine/",
+              "type": "article"
+            },
+            {
+              "title": "Unity Scriptable Render Pipelines (SRP)",
+              "url": "https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "technical_artist_project_capstone",
-          "name": "Project: Technical Artist Portfolio Capstone",
+          "id": "ta_custom_render_pipelines",
+          "name": "Custom Render Pipelines & Shading Models",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Technical Artist project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Implement and customize rendering pipelines (e.g., Unity URP/HDRP, Unreal custom RPP) to achieve unique visual styles and optimize rendering for specific platforms or hardware.",
           "resources": [
             {
-              "title": "Blender Python API",
-              "url": "https://docs.blender.org/api/current/",
+              "title": "Building a Custom Render Pipeline (Unity)",
+              "url": "https://docs.unity3d.com/Packages/com.unity.render-pipelines.core@latest/manual/CustomRenderPipeline.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Custom Shading Models",
+              "url": "https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ShadingModels/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "ta_build_automation_ci_cd",
+          "name": "Build Automation & CI/CD for Games",
+          "tag": "advanced",
+          "description": "Implement automated asset build systems, continuous integration (CI) and continuous deployment (CD) pipelines to streamline production and ensure consistent quality.",
+          "resources": [
+            {
+              "title": "Setting up a CI/CD Pipeline for Game Dev",
+              "url": "https://www.perforce.com/blog/vcs/ci-cd-gaming-perforce",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins for Game Development",
+              "url": "https://www.jenkins.io/doc/book/pipeline/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_realtime_perf_debugging",
+          "name": "Real-time Performance & Debugging",
+          "tag": "advanced",
+          "description": "Master advanced profiling tools like RenderDoc, PIX, and engine profilers to identify and resolve complex performance bottlenecks, and debug graphics API issues on various platforms.",
+          "resources": [
+            {
+              "title": "Introduction to RenderDoc",
+              "url": "https://renderdoc.org/docs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Debugging Graphics with PIX (Microsoft)",
+              "url": "https://devblogs.microsoft.com/directx/pix/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_gpu_architecture_basics",
+          "name": "GPU Architecture & Optimization",
+          "tag": "advanced",
+          "description": "Gain a deep understanding of GPU architecture, how modern graphics pipelines work, common GPU bottlenecks (fill rate, bandwidth, instruction count), and advanced optimization strategies.",
+          "resources": [
+            {
+              "title": "A trip through the Graphics Pipeline",
+              "url": "https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding GPU Workloads",
+              "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/understanding-gpu-workloads.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "ta_advanced_procedural_gen",
+          "name": "Advanced Procedural World Generation",
+          "tag": "advanced",
+          "description": "Explore complex node-based procedural systems for large-scale world generation, advanced geometry nodes, and procedural asset creation using tools like Houdini for sophisticated environments.",
+          "resources": [
+            {
+              "title": "Houdini Procedural Environments",
+              "url": "https://www.artstation.com/learning/series/V3y/houdini-procedural-environments",
+              "type": "course"
+            },
+            {
+              "title": "Blender Geometry Nodes for Advanced Use",
+              "url": "https://www.youtube.com/watch?v=Xh0y_h5P5k0",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_ml_content_generation_overview",
+          "name": "ML for Content Generation (Overview)",
+          "tag": "advanced",
+          "description": "Gain a conceptual understanding of how machine learning and AI are being applied to procedural content generation, asset creation, and optimization in modern game development pipelines.",
+          "resources": [
+            {
+              "title": "AI in Game Development: An Overview",
+              "url": "https://www.gamedeveloper.com/business/ai-in-game-development-an-overview",
+              "type": "article"
+            },
+            {
+              "title": "Generating Assets with AI (GDC Talk)",
+              "url": "https://www.gdcvault.com/play/1027150/Procedural-Asset-Generation-with-Machine",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_production_workflows_collaboration",
+          "name": "Production Workflows & Collaboration",
+          "tag": "advanced",
+          "description": "Understand agile methodologies in game development, master documentation and handoff best practices, and excel in cross-disciplinary communication to drive successful project delivery.",
+          "resources": [
+            {
+              "title": "Agile Development for Games",
+              "url": "https://www.gamedeveloper.com/business/agile-development-in-game-development",
+              "type": "article"
+            },
+            {
+              "title": "Effective Communication for Technical Artists",
+              "url": "https://www.youtube.com/watch?v=your-video-link",
+              "type": "video"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ta_portfolio_career_readiness",
+      "name": "Portfolio & Career Readiness",
+      "tag": "advanced",
+      "description": "Transform your technical art skills into tangible proof through compelling case studies, portfolio projects, and effective interview preparation, positioning yourself for industry success.",
+      "resources": [
+        {
+          "title": "Building a Technical Art Portfolio",
+          "url": "https://80.lv/articles/how-to-build-a-technical-art-portfolio/",
+          "type": "article"
+        },
+        {
+          "title": "Technical Artist Job Search Guide",
+          "url": "https://www.youtube.com/watch?v=hS3uMpMOpa0",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_portfolio_development",
+          "name": "Portfolio Development",
+          "tag": "advanced",
+          "description": "Learn to effectively showcase your technical art projects with detailed breakdowns, video demonstrations, and build a professional online presence that highlights your unique skillset.",
+          "resources": [
+            {
+              "title": "ArtStation Portfolio Best Practices",
+              "url": "https://www.artstation.com/blogs/tips-for-your-portfolio",
+              "type": "article"
+            },
+            {
+              "title": "Creating an Effective Demo Reel",
+              "url": "https://www.youtube.com/watch?v=demo-reel-tips",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_interview_preparation",
+          "name": "Interview Preparation",
+          "tag": "advanced",
+          "description": "Prepare for technical art-specific interviews, including whiteboarding challenges, coding tests, and practice articulating your technical decisions and problem-solving process effectively.",
+          "resources": [
+            {
+              "title": "Technical Art Interview Questions",
+              "url": "https://www.techartaid.com/interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "Mock Technical Interview Examples",
+              "url": "https://www.youtube.com/watch?v=mock-interview",
+              "type": "video"
+            }
+          ]
+        },
+        {
+          "id": "ta_capstone_project",
+          "name": "Capstone Project: Technical Art Portfolio Showcase",
+          "tag": "advanced",
+          "description": "Undertake a comprehensive, portfolio-grade technical art project, demonstrating an end-to-end understanding of the pipeline, from asset creation and tool development to engine integration and optimization, culminating in a polished showcase.",
+          "resources": [
+            {
+              "title": "Project-Based Learning for Technical Artists",
+              "url": "https://www.gamedev.net/articles/project-based-learning-r1029/",
+              "type": "article"
+            },
+            {
+              "title": "Documenting Your Portfolio Projects",
+              "url": "https://www.artstation.com/blogs/how-to-document-projects",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

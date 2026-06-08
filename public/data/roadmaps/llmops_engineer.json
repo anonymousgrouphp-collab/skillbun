@@ -6,118 +6,232 @@
   "tree": [
     {
       "id": "llmops_engineer_foundations",
-      "name": "Foundations and Role Context",
+      "name": "Foundations: LLMs, MLOps, and the LLMOps Landscape",
       "tag": "essential",
-      "description": "Understand what LLMOps Engineer work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong baseline in Large Language Models, MLOps principles, and the specific challenges and solutions within LLMOps.",
       "resources": [
         {
-          "title": "17. RAG Evaluation Deep Dive: Measuring AI Quality in Production LLM Ops (Analytics Vidhya)",
-          "url": "https://www.youtube.com/watch?v=zweLzitaqhA",
-          "type": "video"
+          "title": "The Rise of LLMOps: From Research to Production with Large Language Models (Databricks Blog)",
+          "url": "https://www.databricks.com/blog/rise-llmops-from-research-production-large-language-models",
+          "type": "article"
         },
         {
-          "title": "LangSmith Documentation",
-          "url": "https://docs.smith.langchain.com/",
-          "type": "article"
+          "title": "MLOps Specialization (Coursera - DeepLearning.AI)",
+          "url": "https://www.coursera.org/specializations/machine-learning-engineering-for-production-mlops",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "llmops_engineer_domain_basics",
-          "name": "Domain Basics",
+          "id": "llmops_engineer_mlops_fundamentals",
+          "name": "MLOps Fundamentals for LLMs",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Understand core MLOps concepts like data management, model lifecycle, CI/CD, and monitoring, and how they adapt for LLM-based systems.",
           "resources": [
+            {
+              "title": "Machine Learning Engineering for Production (MLOps) Course 1 (DeepLearning.AI)",
+              "url": "https://www.deeplearning.ai/courses/machine-learning-engineering-for-production-mlops/",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_llm_basics",
+          "name": "Core LLM Concepts & Architectures",
+          "tag": "essential",
+          "description": "Grasp the architectural overview of LLMs (Transformers), different model types (encoder-decoder, decoder-only, instruction-tuned, chat-tuned, code models), tokenization, embeddings, and prompt structures. Understand the distinction between open-source and proprietary models.",
+          "resources": [
+            {
+              "title": "The Illustrated Transformer (Jay Alammar)",
+              "url": "https://jalammar.github.io/illustrated-transformer/",
+              "type": "article"
+            },
+            {
+              "title": "What are Embeddings? (Google Developers)",
+              "url": "https://developers.google.com/machine-learning/glossary/embedding",
+              "type": "article"
+            },
+            {
+              "title": "Hugging Face Transformers Course",
+              "url": "https://huggingface.co/course/chapter1/1",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_llmops_lifecycle",
+          "name": "LLMOps Lifecycle & Role Context",
+          "tag": "essential",
+          "description": "Define the distinct phases of an LLM application lifecycle (experimentation, development, deployment, monitoring) and the LLMOps Engineer's role in each, emphasizing iteration and continuous improvement.",
+          "resources": [
+            {
+              "title": "LLMOps: The Key to Taking LLMs to Production (Weights & Biases)",
+              "url": "https://wandb.ai/site/articles/llmops-the-key-to-taking-llms-to-production",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_environment_setup",
+          "name": "Development Environment & Core LLM Tooling",
+          "tag": "essential",
+          "description": "Set up the local development environment, establish robust version control (Git), manage API keys securely, and explore foundational LLMOps tools like LangChain, LlamaIndex, Hugging Face Transformers library, and containerization with Docker.",
+          "resources": [
+            {
+              "title": "LangChain Documentation",
+              "url": "https://www.langchain.com/docs/",
+              "type": "article"
+            },
             {
               "title": "LlamaIndex Documentation",
               "url": "https://docs.llamaindex.ai/",
               "type": "article"
+            },
+            {
+              "title": "Docker Crash Course for Developers",
+              "url": "https://www.youtube.com/watch?v=fqMOX6JJhkg",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "llmops_engineer_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "llmops_engineer_llm_ecosystem_overview",
+          "name": "LLM Ecosystem Overview: Models & Providers",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Understand the landscape of prominent proprietary LLMs (e.g., OpenAI GPT series, Anthropic Claude, Google Gemini) and popular open-source models (e.g., Llama, Mistral, Gemma). Explore their capabilities, limitations, and access methods (APIs, self-hosting).",
           "resources": [
             {
-              "title": "Ragas Documentation",
-              "url": "https://docs.ragas.io/",
+              "title": "Overview of Large Language Models (LLMs) (IBM)",
+              "url": "https://www.ibm.com/topics/large-language-models",
+              "type": "article"
+            },
+            {
+              "title": "Hugging Face Hub: Discover & Share Models",
+              "url": "https://huggingface.co/models",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "llmops_engineer_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "llmops_engineer_llm_app_development",
+      "name": "LLM Application Development & Prompt Engineering",
       "tag": "essential",
-      "description": "Build the practical skill stack for LLMOps Engineer through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Master the art of prompt engineering and build robust, intelligent LLM applications using orchestration frameworks and advanced techniques like RAG and agentic systems.",
       "resources": [
         {
-          "title": "Langsmith LLMOPS Platform By Langchain-Debug ,Monitor And Build Production Grade LLM Application (Krish Naik)",
-          "url": "https://www.youtube.com/watch?v=3Gcm27l-uyQ",
-          "type": "video"
-        },
-        {
-          "title": "LlamaIndex Documentation",
-          "url": "https://docs.llamaindex.ai/",
+          "title": "Prompt Engineering Guide",
+          "url": "https://www.promptingguide.ai/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "llmops_engineer_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "llmops_engineer_prompt_engineering_advanced",
+          "name": "Prompt Engineering: Techniques & Best Practices",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Learn to design effective system prompts, few-shot prompting, chain-of-thought, self-consistency, tree-of-thought, and other advanced prompting strategies for better LLM outputs. Emphasize iterative refinement and structured prompt design.",
           "resources": [
             {
-              "title": "LangSmith Documentation",
-              "url": "https://docs.smith.langchain.com/",
+              "title": "OpenAI Prompt Engineering Best Practices",
+              "url": "https://platform.openai.com/docs/guides/prompt-engineering",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "llmops_engineer_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "llmops_engineer_orchestration_frameworks",
+          "name": "LLM Application Orchestration & Frameworks",
+          "tag": "essential",
+          "description": "Deep dive into using frameworks like LangChain and LlamaIndex to build complex LLM applications, including managing chains, agents, memory, state, and integrating external tools and APIs for robust workflow construction.",
           "resources": [
             {
-              "title": "Ragas Documentation",
-              "url": "https://docs.ragas.io/",
-              "type": "article"
+              "title": "LangChain Crash Course for LLM Application Development (Giga ML)",
+              "url": "https://www.youtube.com/playlist?list=PLqzoL9-eJTNC_bMffQfR91tP-z-i6H7B_",
+              "type": "video"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "llmops_engineer_practice_lab",
-          "name": "Practice: Focused Skill Drill",
+          "id": "llmops_engineer_retrieval_augmented_generation",
+          "name": "Retrieval Augmented Generation (RAG) Systems",
+          "tag": "essential",
+          "description": "Understand the architecture of RAG, including vector databases (e.g., Pinecone, ChromaDB, Weaviate), indexing strategies (chunking, metadata), various retrieval techniques (similarity search, keyword search, hybrid), and synthesis methods to generate grounded responses.",
+          "resources": [
+            {
+              "title": "RAG: How to Build a Production-Ready LLM Application (Towards Data Science)",
+              "url": "https://towardsdatascience.com/rag-how-to-build-a-production-ready-llm-application-f2322304918e",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with Pinecone",
+              "url": "https://www.pinecone.io/learn/series/rag/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_advanced_rag_techniques",
+          "name": "Advanced RAG Techniques & Optimization",
           "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
+          "description": "Explore sophisticated RAG patterns such as query rewriting/expansion, re-ranking strategies, HyDE, multi-hop RAG, fusion retrievers, knowledge graph integration, and optimizing retrieval for diverse data types (e.g., tabular data, multi-modal content).",
+          "resources": [
+            {
+              "title": "Advanced RAG Techniques: A Comprehensive Guide",
+              "url": "https://www.ml6.eu/blog/advanced-rag-techniques",
+              "type": "article"
+            },
+            {
+              "title": "LlamaIndex RAG Cookbook",
+              "url": "https://docs.llamaindex.ai/en/stable/optimizing/rag_cookbook.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_guardrails_safety_dev",
+          "name": "Application-Level Guardrails & Content Moderation (Development)",
+          "tag": "essential",
+          "description": "Implement programmatic guardrails within LLM applications to enforce output format, manage PII, prevent basic prompt injection, and integrate content moderation APIs (e.g., OpenAI Moderation API, internal rule-based systems) for responsible AI development.",
+          "resources": [
+            {
+              "title": "NVIDIA NeMo Guardrails",
+              "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_agentic_systems_tool_use",
+          "name": "Agentic LLM Systems & Tool Use",
+          "tag": "advanced",
+          "description": "Build LLM-powered agents capable of complex reasoning, planning, and executing actions using external tools and APIs. Understand concepts like memory, observation, reflection, and self-correction in agent design and development.",
+          "resources": [
+            {
+              "title": "LangChain Agents Documentation",
+              "url": "https://python.langchain.com/docs/modules/agents/",
+              "type": "article"
+            },
+            {
+              "title": "Hugging Face Blog: Understanding LLM Agents",
+              "url": "https://huggingface.co/blog/llm-agents",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "llmops_engineer_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
+      "id": "llmops_engineer_model_experimentation_evaluation",
+      "name": "LLM Experimentation, Evaluation & Versioning",
+      "tag": "essential",
+      "description": "Learn to rigorously evaluate LLM applications, manage prompt and model versions, and track experiments to ensure consistent quality, performance, and reproducibility.",
       "resources": [
         {
-          "title": "Integrate Streamlit , RAG with Langsmith to trace LLM calls.Monitor and evaluate LLM with Langsmith (TechKnow_WithMe)",
-          "url": "https://www.youtube.com/watch?v=TFV_U5mOEhg",
-          "type": "video"
+          "title": "LangSmith Documentation",
+          "url": "https://docs.smith.langchain.com/",
+          "type": "article"
         },
         {
           "title": "Ragas Documentation",
@@ -127,32 +241,333 @@
       ],
       "children": [
         {
-          "id": "llmops_engineer_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "llmops_engineer_prompt_model_versioning",
+          "name": "Prompt, Model & Configuration Version Control",
+          "tag": "essential",
+          "description": "Implement robust strategies for versioning prompts, model configurations, evaluation datasets, and application code. Utilize tools like DVC, MLflow Model Registry, Git, and explore dedicated prompt management platforms/hubs.",
           "resources": [
             {
-              "title": "LlamaIndex Documentation",
-              "url": "https://docs.llamaindex.ai/",
+              "title": "Version Control for LLM Prompts (DVC)",
+              "url": "https://dvc.org/blog/version-control-for-llm-prompts",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "llmops_engineer_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
+          "id": "llmops_engineer_experiment_tracking",
+          "name": "LLM Experiment Tracking & Management",
+          "tag": "essential",
+          "description": "Utilize platforms like LangSmith, MLflow Tracking, or Weights & Biases to log prompts, model outputs, intermediate steps, metrics, and metadata for each experiment. Enable reproducibility, comparison, and analysis of different LLM runs.",
           "resources": [
             {
-              "title": "LangSmith Documentation",
-              "url": "https://docs.smith.langchain.com/",
+              "title": "MLflow Tracking Quickstart",
+              "url": "https://www.mlflow.org/docs/latest/llms/llm-evaluate/tutorials/evaluate-rag/index.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "llmops_engineer_llm_evaluation_metrics",
+          "name": "LLM & RAG Evaluation: Metrics, Benchmarks & Automated Tools",
+          "tag": "essential",
+          "description": "Understand and apply quantitative (e.g., perplexity, Rouge, BERTScore, cosine similarity) and qualitative evaluation metrics for LLMs and RAG systems (e.g., faithfulness, relevancy, answer correctness, context recall/precision). Explore model-graded evaluation, specific LLM benchmarks (e.g., HELM), and automated evaluation frameworks like Ragas, TruLens, or OpenAI Evals.",
+          "resources": [
+            {
+              "title": "17. RAG Evaluation Deep Dive: Measuring AI Quality in Production LLM Ops (Analytics Vidhya)",
+              "url": "https://www.youtube.com/watch?v=zweLzitaqhA",
+              "type": "video"
+            },
+            {
+              "title": "Evaluating LLM Applications: A Comprehensive Guide (Weights & Biases)",
+              "url": "https://wandb.ai/site/blog/evaluating-llm-applications",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_human_in_loop_evaluation",
+          "name": "Human-in-the-Loop Evaluation",
+          "tag": "advanced",
+          "description": "Design and implement human feedback loops for subjective evaluation, preference ranking, side-by-side comparisons, and data annotation to refine LLM performance, identify biases, and uncover limitations. Understand crowd-sourcing and internal labeling strategies.",
+          "resources": [
+            {
+              "title": "Human-in-the-loop ML with MLflow",
+              "url": "https://mlflow.org/docs/latest/llms/llm-evaluate/human-in-the-loop-ml/index.html",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_data_curation_annotation",
+          "name": "Data Curation & Annotation for LLMs",
+          "tag": "essential",
+          "description": "Learn techniques for collecting, cleaning, transforming, and annotating high-quality datasets for various LLM tasks, including prompt engineering (few-shot examples), RAG (document chunks, query-response pairs), and fine-tuning (instruction-following datasets).",
+          "resources": [
+            {
+              "title": "Data for LLMs: Acquisition, Curation, and Governance (MIT)",
+              "url": "https://llm.mit.edu/blog/data-for-llms-acquisition-curation-and-governance",
+              "type": "article"
+            },
+            {
+              "title": "Best Practices for Labeling Data for LLMs",
+              "url": "https://labelbox.com/blog/best-practices-for-labeling-data-for-llms/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "llmops_engineer_model_deployment_serving",
+      "name": "LLM Model Deployment & Serving",
+      "tag": "advanced",
+      "description": "Learn to deploy and serve LLMs efficiently, reliably, and cost-effectively in production, considering various deployment strategies, performance optimization, and architectural implications.",
+      "resources": [
+        {
+          "title": "Serving LLMs: A Guide to Optimizing LLM Inference (Towards Data Science)",
+          "url": "https://towardsdatascience.com/serving-llms-a-guide-to-optimizing-llm-inference-2c0919530514",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "llmops_engineer_model_selection_optimization",
+          "name": "LLM Selection & Inference Optimization",
+          "tag": "essential",
+          "description": "Evaluate open-source vs. proprietary models for specific use cases. Understand and apply techniques like quantization (e.g., INT8, FP16), distillation, pruning, and efficient inference libraries (e.g., vLLM, Hugging Face Optimum, TensorRT-LLM, ONNX Runtime) to optimize LLMs for inference speed, memory, and cost.",
+          "resources": [
+            {
+              "title": "Quantization Explained (Hugging Face)",
+              "url": "https://huggingface.co/docs/transformers/main/quantization",
+              "type": "article"
+            },
+            {
+              "title": "Optimizing LLM inference speed for cost-effectiveness (Weights & Biases)",
+              "url": "https://wandb.ai/site/blog/optimizing-llm-inference-speed",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_fine_tuning_adaptation",
+          "name": "Customizing LLMs: Fine-tuning & Adaptation (PEFT)",
+          "tag": "advanced",
+          "description": "Explore various parameter-efficient fine-tuning (PEFT) techniques like LoRA, QLoRA, and full fine-tuning. Understand data preparation for fine-tuning, training methodologies, and evaluation for adapting LLMs to specific tasks, domains, or styles, and when to use fine-tuning over advanced prompting.",
+          "resources": [
+            {
+              "title": "Fine-tuning Large Language Models (LLMs) (Hugging Face)",
+              "url": "https://huggingface.co/docs/peft/en/conceptual_guides/lora",
+              "type": "article"
+            },
+            {
+              "title": "Fine-tuning GPT-3 (OpenAI)",
+              "url": "https://platform.openai.com/docs/guides/fine-tuning",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_llm_serving_apis",
+          "name": "LLM Serving Infrastructure & API Gateways",
+          "tag": "essential",
+          "description": "Learn to deploy and serve LLMs using specialized serving frameworks (e.g., vLLM, Ray Serve, Triton Inference Server) or cloud provider services (e.g., Azure ML, AWS SageMaker, GCP Vertex AI). Understand container orchestration (Kubernetes) and manage API gateways, load balancing, and rate limiting for LLM endpoints.",
+          "resources": [
+            {
+              "title": "vLLM: A High-Throughput LLM Serving Engine",
+              "url": "https://vllm.ai/",
+              "type": "article"
+            },
+            {
+              "title": "Deploying LLMs with Kubernetes (Google Cloud)",
+              "url": "https://cloud.google.com/blog/products/ai-ml/deploying-llms-with-kubernetes-on-gke-part-1",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_model_routing_traffic",
+          "name": "Dynamic Model Routing & Traffic Management",
+          "tag": "advanced",
+          "description": "Implement strategies for intelligently routing requests to different LLMs or model versions based on factors like cost, performance, capability, user segment, and context. Manage traffic for A/B testing, canary deployments, and graceful degradation with fallback models.",
+          "resources": [
+            {
+              "title": "Why Model Routing is Important in Production LLM Applications (Scale AI)",
+              "url": "https://scale.com/blog/model-routing-production-llm-applications",
+              "type": "article"
+            },
+            {
+              "title": "Model Gateways for LLMs (Lightbend)",
+              "url": "https://www.lightbend.com/blog/model-gateways-for-llms",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "llmops_engineer_production_observability_monitoring",
+      "name": "Production Monitoring, Observability & A/B Testing",
+      "tag": "advanced",
+      "description": "Ensure the reliability, performance, and ethical operation of LLM applications in production through robust monitoring, observability, continuous experimentation, and effective cost control.",
+      "resources": [
+        {
+          "title": "Integrate Streamlit, RAG with Langsmith to trace LLM calls. Monitor and evaluate LLM with Langsmith (TechKnow_WithMe)",
+          "url": "https://www.youtube.com/watch?v=TFV_U5mOEhg",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "llmops_engineer_observability_tracing",
+          "name": "LLM Observability: Tracing, Logging & Metrics",
+          "tag": "essential",
+          "description": "Set up comprehensive structured logging, distributed tracing (e.g., LangSmith, OpenTelemetry), and detailed metrics collection for LLM interactions. Monitor prompt inputs, model outputs, intermediate steps, latency, token usage, cost, and API call statuses.",
+          "resources": [
+            {
+              "title": "OpenTelemetry for LLMs (Lightstep)",
+              "url": "https://lightstep.com/blog/opentelemetry-for-llms",
+              "type": "article"
+            },
+            {
+              "title": "Building Observability for LLMs with LangSmith (LangChain)",
+              "url": "https://blog.langchain.dev/building-observability-for-llms-with-langsmith/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_performance_monitoring_alerting",
+          "name": "Performance Monitoring & Alerting",
+          "tag": "essential",
+          "description": "Monitor key performance indicators (KPIs) like API latency, throughput, error rates, resource utilization (GPU, CPU, memory), and queue sizes. Configure proactive alerting systems for anomalies, service degradation, or unexpected behavior.",
+          "resources": [
+            {
+              "title": "Monitoring LLM Applications (WhyLabs)",
+              "url": "https://whylabs.ai/blog/monitoring-llm-applications",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_model_data_drift",
+          "name": "LLM Data & Performance Drift Detection",
+          "tag": "advanced",
+          "description": "Implement mechanisms to detect shifts in input data distributions, prompt patterns, or model output quality (model drift) that can degrade performance over time. This includes monitoring for semantic drift in embeddings, changes in user query intent, or shifts in response sentiment/toxicity.",
+          "resources": [
+            {
+              "title": "Model Drift in LLMs (Arize AI)",
+              "url": "https://arize.com/blog/model-drift-in-llms-what-it-is-how-to-detect-it-and-why-it-matters/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_cost_optimization",
+          "name": "Cost Optimization & Resource Management",
+          "tag": "essential",
+          "description": "Track token usage, API costs, and infrastructure spend meticulously. Implement strategies for cost reduction through model routing, response caching, prompt compression, efficient batching, dynamic model switching based on request complexity, and intelligent GPU resource allocation.",
+          "resources": [
+            {
+              "title": "How to Reduce Costs and Increase Performance of Your LLM Application (Genspark)",
+              "url": "https://genspark.ai/blog/how-to-reduce-costs-and-increase-performance-of-your-llm-application",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_ab_testing_canary_deployments",
+          "name": "A/B Testing, Canary Releases & Rollbacks",
+          "tag": "advanced",
+          "description": "Conduct controlled experiments (A/B tests) on different prompts, models, RAG configurations, or agentic workflows to measure impact on key metrics. Implement canary deployments for gradual rollout of new features/models and establish robust rollback strategies to mitigate risks in production.",
+          "resources": [
+            {
+              "title": "A/B Testing for LLM Applications (Explorium)",
+              "url": "https://explorium.ai/blog/ab-testing-for-llm-applications/",
+              "type": "article"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "llmops_engineer_security_compliance_advanced",
+      "name": "Advanced LLM Security, Privacy & Compliance",
+      "tag": "advanced",
+      "description": "Address critical security vulnerabilities, privacy concerns, and compliance requirements specific to Large Language Models in production environments to ensure trustworthy AI systems.",
+      "resources": [
+        {
+          "title": "OWASP Top 10 for Large Language Model Applications",
+          "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+          "type": "article"
+        }
+      ],
+      "children": [
+        {
+          "id": "llmops_engineer_prompt_injection_defense",
+          "name": "Prompt Injection, Data Exfiltration & Jailbreak Defenses",
+          "tag": "advanced",
+          "description": "Implement robust, layered defenses against prompt injection attacks, data exfiltration, and jailbreaking techniques. This includes input validation, output sanitization, sandboxing, specialized detection models, and user role-based access controls to protect LLM integrity and sensitive information.",
+          "resources": [
+            {
+              "title": "Prompt Injection Explained (Giskard)",
+              "url": "https://giskard.ai/blog/prompt-injection-llms/",
+              "type": "article"
+            },
+            {
+              "title": "Detecting Prompt Injections in LLMs",
+              "url": "https://www.assemblyai.com/blog/detecting-prompt-injections-in-llms/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_data_privacy_redaction",
+          "name": "Data Privacy, PII Handling & Compliance",
+          "tag": "advanced",
+          "description": "Ensure compliance with data privacy regulations (e.g., GDPR, HIPAA, CCPA) by implementing PII detection, redaction, anonymization techniques, and secure handling of sensitive data within LLM workflows. Develop clear data governance and retention policies.",
+          "resources": [
+            {
+              "title": "Anonymizing and Redacting Sensitive Data from LLM Prompts (Cognoscent)",
+              "url": "https://cognoscent.ai/blog/anonymizing-and-redacting-sensitive-data-from-llm-prompts/",
+              "type": "article"
+            },
+            {
+              "title": "Data Privacy and LLMs (VectorShift)",
+              "url": "https://www.vectorshift.ai/blog/data-privacy-and-llms",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_adversarial_testing_redteaming",
+          "name": "Adversarial Testing & Red-Teaming LLMs",
+          "tag": "advanced",
+          "description": "Learn to proactively test LLM applications for vulnerabilities through adversarial attacks and red-teaming exercises. Uncover potential misuse, toxic outputs, security flaws, and failure modes by simulating malicious user behavior to improve system robustness.",
+          "resources": [
+            {
+              "title": "Red Teaming LLMs (Hugging Face)",
+              "url": "https://huggingface.co/blog/red-teaming-llama",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "llmops_engineer_model_bias_fairness_mitigation",
+          "name": "LLM Bias, Fairness & Ethical AI Mitigation",
+          "tag": "advanced",
+          "description": "Understand sources of bias (e.g., data, model, societal) in LLMs, evaluate for fairness issues, and implement techniques for bias detection and mitigation throughout the LLM lifecycle. Explore ethical considerations in LLM deployment, including transparency and accountability.",
+          "resources": [
+            {
+              "title": "Responsible AI with LLMs (Microsoft Azure)",
+              "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/responsible-ai",
+              "type": "article"
+            },
+            {
+              "title": "Fairness in AI: An Introduction (IBM)",
+              "url": "https://www.ibm.com/topics/fairness-in-ai",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
@@ -160,52 +575,47 @@
       "id": "llmops_engineer_portfolio_career",
       "name": "Portfolio and Career Readiness",
       "tag": "advanced",
-      "description": "Turn your LLMOps Engineer learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
-      "resources": [
-        {
-          "title": "LangSmith Documentation",
-          "url": "https://docs.smith.langchain.com/",
-          "type": "article"
-        },
-        {
-          "title": "LlamaIndex Documentation",
-          "url": "https://docs.llamaindex.ai/",
-          "type": "article"
-        },
-        {
-          "title": "Ragas Documentation",
-          "url": "https://docs.ragas.io/",
-          "type": "article"
-        }
-      ],
+      "description": "Consolidate your LLMOps learning into compelling proof points, develop a strong professional presence, and prepare for career opportunities in the LLM space by demonstrating practical, industry-relevant skills.",
+      "resources": [],
       "children": [
         {
-          "id": "llmops_engineer_case_study",
-          "name": "Case Study Writing",
+          "id": "llmops_engineer_project_capstone",
+          "name": "LLMOps Engineer Portfolio Capstone Project",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Design and implement an end-to-end LLM application with robust LLMOps practices. This should include prompt versioning, RAG, automated evaluation, efficient deployment, comprehensive monitoring, and guardrails. Document the entire process with a professional README, architecture diagrams, and a lessons-learned section, hosted on a public repository.",
           "resources": [
             {
-              "title": "LangSmith Documentation",
-              "url": "https://docs.smith.langchain.com/",
+              "title": "Building a Production-Ready RAG System (Weights & Biases)",
+              "url": "https://wandb.ai/site/blog/building-production-ready-rag-system",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "llmops_engineer_project_capstone",
-          "name": "Project: LLMOps Engineer Portfolio Capstone",
+          "id": "llmops_engineer_case_study_writing",
+          "name": "Crafting LLMOps Case Studies",
           "tag": "advanced",
-          "description": "Build a portfolio-grade LLMOps Engineer project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Write concise and impactful case studies for your LLM projects. Highlight the business problem, LLMOps challenges encountered, your technical decisions, implemented solutions, and measurable outcomes (e.g., cost reduction, performance improvement, safety enhancements, user engagement).",
           "resources": [
             {
-              "title": "Ragas Documentation",
-              "url": "https://docs.ragas.io/",
+              "title": "How to Write a Technical Case Study",
+              "url": "https://careerfoundry.com/en/blog/ux-design/how-to-write-a-ux-case-study/",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "llmops_engineer_interview_prep",
+          "name": "Interview Preparation & Role Positioning",
+          "tag": "advanced",
+          "description": "Prepare for LLMOps Engineer interviews by practicing common technical questions related to LLMs, MLOps, system design, and distributed systems. Develop strong narratives for behavioral questions using the STAR method, focusing on architectural trade-offs, problem-solving in LLMOps scenarios, and articulating your contributions.",
+          "resources": [
+            {
+              "title": "Preparing for Machine Learning Engineer Interviews",
+              "url": "https://www.freecodecamp.org/news/machine-learning-engineer-interview-prep/",
+              "type": "article"
+            }
+          ]
         }
       ]
     }

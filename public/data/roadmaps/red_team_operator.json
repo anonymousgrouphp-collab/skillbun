@@ -5,10 +5,10 @@
   "format": "tree",
   "tree": [
     {
-      "id": "red_team_operator_foundations",
-      "name": "Foundations and Role Context",
+      "id": "red_team_operator_fundamentals",
+      "name": "Foundational Knowledge & Environment Setup",
       "tag": "essential",
-      "description": "Understand what Red Team Operator work looks like, which problems it solves, and the baseline concepts needed before building.",
+      "description": "Establish a strong baseline with essential technical skills, cybersecurity principles, and the setup of a dedicated Red Team lab environment for practical learning.",
       "resources": [
         {
           "title": "Ethical Hacking Course: Red Teaming For Beginners (q0phi80)",
@@ -16,50 +16,119 @@
           "type": "video"
         },
         {
-          "title": "MITRE ATT&CK Enterprise",
-          "url": "https://attack.mitre.org/matrices/enterprise/",
-          "type": "article"
+          "title": "Introduction to Cybersecurity Fundamentals",
+          "url": "https://www.coursera.org/courses?query=cybersecurity%20fundamentals",
+          "type": "course"
         }
       ],
       "children": [
         {
-          "id": "red_team_operator_domain_basics",
-          "name": "Domain Basics",
+          "id": "rt_intro_concepts",
+          "name": "Introduction to Red Teaming & Core Concepts",
           "tag": "essential",
-          "description": "Learn the vocabulary, workflows, constraints, and decision-making patterns used by practitioners in this role.",
+          "description": "Understand the Red Team operator role, its objectives, legal and ethical considerations, and the adversary emulation lifecycle. Differentiate between Red Team, Pen Testing, and Bug Bounty, and get introduced to the MITRE ATT&CK Framework.",
           "resources": [
             {
-              "title": "Atomic Red Team",
-              "url": "https://atomicredteam.io/",
-              "type": "course"
+              "title": "RED TEAMING explained in 8 Minutes (Mad Hat)",
+              "url": "https://www.youtube.com/watch?v=-X1vf69CxCA",
+              "type": "video"
+            },
+            {
+              "title": "Red Team vs. Penetration Test: What's the Difference?",
+              "url": "https://www.redscan.com/news/red-team-vs-penetration-test/",
+              "type": "article"
+            },
+            {
+              "title": "MITRE ATT&CK Enterprise",
+              "url": "https://attack.mitre.org/matrices/enterprise/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "red_team_operator_tooling_workflow",
-          "name": "Tooling and Daily Workflow",
+          "id": "rt_technical_basics",
+          "name": "Essential Technical Fundamentals (OS, Networking, Scripting)",
           "tag": "essential",
-          "description": "Set up the core tools, local environment, version control habits, debugging workflow, and documentation style.",
+          "description": "Gain proficiency in operating systems (Linux, Windows, Windows Server), networking protocols (TCP/IP stack, common services), and scripting for automation using Python, Bash, and PowerShell. Understand command-line interfaces and fundamental data structures.",
+          "resources": [
+            {
+              "title": "Linux Command Line Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=R5gP_zCg-2Q",
+              "type": "video"
+            },
+            {
+              "title": "Networking Basics for Hackers - Full Course",
+              "url": "https://www.youtube.com/watch?v=P4P4B0oO974",
+              "type": "video"
+            },
+            {
+              "title": "Python for Everybody Specialization",
+              "url": "https://www.coursera.org/specializations/python",
+              "type": "course"
+            },
+            {
+              "title": "PowerShell for Beginners",
+              "url": "https://docs.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.2",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_security_principles",
+          "name": "Core Security Principles & Threat Intelligence",
+          "tag": "essential",
+          "description": "Understand common attack vectors, vulnerabilities (OWASP Top 10), and various defensive mechanisms (AV, EDR, SIEM, Firewalls). Learn threat modeling methodologies and how to integrate threat intelligence into Red Team planning.",
+          "resources": [
+            {
+              "title": "OWASP Top 10",
+              "url": "https://owasp.org/www-project-top-ten/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Cyber Threat Intelligence",
+              "url": "https://www.sans.org/blog/what-is-cyber-threat-intelligence/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_lab_setup_tooling",
+          "name": "Red Team Lab Setup & Essential Tooling",
+          "tag": "essential",
+          "description": "Set up a virtualized lab environment (e.g., VMWare, VirtualBox, Proxmox) with diverse target machines (Windows 10/11, Windows Server, various Linux distributions) and attacker machines (Kali Linux, Parrot OS). Build a small Active Directory environment for practice and gain proficiency with foundational Red Team tools and version control (Git).",
           "resources": [
             {
               "title": "Metasploit Documentation",
               "url": "https://docs.metasploit.com/",
               "type": "article"
+            },
+            {
+              "title": "Kali Linux Official Documentation",
+              "url": "https://www.kali.org/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Setting up an Ethical Hacking Lab (VirtualBox)",
+              "url": "https://www.youtube.com/watch?v=J_j8S7k1tWw",
+              "type": "video"
+            },
+            {
+              "title": "Building a Windows Domain Lab for Security Testing",
+              "url": "https://www.hackingarticles.in/build-windows-domain-lab-for-pentesting/",
+              "type": "article"
             }
-          ],
-          "children": []
+          ]
         }
       ]
     },
     {
-      "id": "red_team_operator_core_skills",
-      "name": "Core Skills and Implementation",
+      "id": "red_team_engagement_lifecycle",
+      "name": "Red Team Engagement Lifecycle",
       "tag": "essential",
-      "description": "Build the practical skill stack for Red Team Operator through small exercises, realistic constraints, and repeatable workflows.",
+      "description": "Master the complete phases of a Red Team operation, from meticulous planning and reconnaissance to achieving initial access, execution, sophisticated post-exploitation, and objective completion.",
       "resources": [
         {
-          "title": "Offensive Red Team Training: Live Adversary Attack Emulation | Hacker Associate (Hacker Associate)",
+          "title": "Offensive Red Team Training: Live Adversary Attack Emulation | Hacker Associate",
           "url": "https://www.youtube.com/watch?v=liLTEp_SQOk",
           "type": "video"
         },
@@ -71,141 +140,336 @@
       ],
       "children": [
         {
-          "id": "red_team_operator_implementation_patterns",
-          "name": "Implementation Patterns",
+          "id": "rt_engagement_planning",
+          "name": "Engagement Planning & Rules of Engagement",
           "tag": "essential",
-          "description": "Practice common patterns, tradeoffs, reusable structures, naming, configuration, and problem decomposition.",
+          "description": "Learn to define clear engagement objectives, scope, and rules of engagement (RoE). Understand legal and ethical boundaries, client communication, and expectation management for successful adversary simulations.",
           "resources": [
             {
-              "title": "MITRE ATT&CK Enterprise",
-              "url": "https://attack.mitre.org/matrices/enterprise/",
+              "title": "The Art of Reconnaissance - OSINT Techniques",
+              "url": "https://www.sans.org/webcasts/art-reconnaissance-osint-techniques-97775",
+              "type": "video"
+            },
+            {
+              "title": "Creating Effective Rules of Engagement for Security Testing",
+              "url": "https://www.csoonline.com/article/3238644/how-to-create-effective-rules-of-engagement-for-security-testing.html",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "red_team_operator_quality_testing",
-          "name": "Quality, Testing, and Review",
-          "tag": "advanced",
-          "description": "Add checks, test cases, review criteria, failure handling, accessibility/security considerations, and regression prevention.",
+          "id": "rt_advanced_recon_osint",
+          "name": "Advanced Reconnaissance & OSINT",
+          "tag": "essential",
+          "description": "Master open-source intelligence (OSINT) techniques for passive reconnaissance and conduct targeted active reconnaissance using tools like Nmap, Shodan, Censys, and DNS/Subdomain enumeration for effective target profiling and vulnerability identification.",
           "resources": [
             {
-              "title": "Metasploit Documentation",
-              "url": "https://docs.metasploit.com/",
+              "title": "Nmap: The Network Mapper",
+              "url": "https://nmap.org/book/man.html",
+              "type": "article"
+            },
+            {
+              "title": "OSINT Framework",
+              "url": "https://osintframework.com/",
+              "type": "article"
+            },
+            {
+              "title": "Shodan - The Search Engine for the Internet of Things",
+              "url": "https://www.shodan.io/about",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "red_team_operator_practice_lab",
-          "name": "Practice: Focused Skill Drill",
-          "tag": "advanced",
-          "description": "Take one realistic scenario, complete it under constraints, document assumptions, compare alternatives, and write a short retrospective.",
-          "resources": [],
-          "children": []
-        }
-      ]
-    },
-    {
-      "id": "red_team_operator_production_collaboration",
-      "name": "Production, Collaboration, and Operations",
-      "tag": "advanced",
-      "description": "Move beyond tutorials into maintainable work: reliability, handoff, monitoring, security, stakeholder communication, and lifecycle ownership.",
-      "resources": [
-        {
-          "title": "RED TEAMING explained in 8 Minutes (Mad Hat)",
-          "url": "https://www.youtube.com/watch?v=-X1vf69CxCA",
-          "type": "video"
-        },
-        {
-          "title": "Metasploit Documentation",
-          "url": "https://docs.metasploit.com/",
-          "type": "article"
-        }
-      ],
-      "children": [
-        {
-          "id": "red_team_operator_security_reliability",
-          "name": "Security, Reliability, and Risk",
-          "tag": "advanced",
-          "description": "Identify likely failure modes, protect sensitive data, define safe defaults, and make operational risks visible.",
+          "id": "rt_initial_access",
+          "name": "Initial Access Vectors & Exploitation",
+          "tag": "essential",
+          "description": "Develop skills in gaining the initial foothold into a target environment. Explore various attack vectors including sophisticated social engineering (phishing, vishing), client-side exploits, public-facing application exploitation (web apps, APIs), and understanding basic vulnerability research concepts.",
           "resources": [
             {
-              "title": "Atomic Red Team",
-              "url": "https://atomicredteam.io/",
+              "title": "Phishing Attacks and Social Engineering",
+              "url": "https://www.youtube.com/watch?v=oV8p3m0mR2g",
+              "type": "video"
+            },
+            {
+              "title": "Web Application Penetration Testing Course",
+              "url": "https://portswigger.net/web-security/academy",
               "type": "course"
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "red_team_operator_team_delivery",
-          "name": "Team Delivery Workflow",
-          "tag": "advanced",
-          "description": "Work with issues, pull requests, release notes, stakeholder demos, decision records, and measurable acceptance criteria.",
-          "resources": [
+            },
             {
-              "title": "MITRE ATT&CK Enterprise",
-              "url": "https://attack.mitre.org/matrices/enterprise/",
+              "title": "Client-Side Attacks Explained",
+              "url": "https://owasp.org/www-community/attacks/Client-side_attacks",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rt_execution_c2",
+          "name": "Execution & Command and Control (C2) Operations",
+          "tag": "essential",
+          "description": "Learn to establish and maintain resilient command and control channels. Understand various C2 frameworks (e.g., Cobalt Strike, Metasploit, Covenant), their operational security, custom payload development, and techniques for C2 evasion over diverse protocols (HTTP, DNS, SMB, ICMP).",
+          "resources": [
+            {
+              "title": "Cobalt Strike Documentation",
+              "url": "https://www.cobaltstrike.com/help-documentation",
+              "type": "article"
+            },
+            {
+              "title": "Understanding C2 Frameworks for Red Teams",
+              "url": "https://www.blackhillsinfosec.com/understanding-c2-frameworks-for-red-teams/",
+              "type": "article"
+            },
+            {
+              "title": "Covenant C2 Framework",
+              "url": "https://github.com/cobbr/Covenant",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_post_exploitation",
+          "name": "Post-Exploitation & Internal Operations",
+          "tag": "essential",
+          "description": "Execute comprehensive post-exploitation actions: credential dumping (Mimikatz, LSASS), establishing persistence mechanisms (scheduled tasks, WMI, run keys), privilege escalation (kernel exploits, misconfigurations), lateral movement (PsExec, WMI, RDP, Pass-the-Hash), and advanced defense evasion tactics.",
+          "resources": [
+            {
+              "title": "Windows Privilege Escalation Guide",
+              "url": "https://book.hacktricks.xyz/windows-hardening/windows-privilege-escalation",
+              "type": "article"
+            },
+            {
+              "title": "Linux Privilege Escalation Guide",
+              "url": "https://book.hacktricks.xyz/linux-unix/privilege-escalation",
+              "type": "article"
+            },
+            {
+              "title": "Lateral Movement in Red Teaming",
+              "url": "https://www.ired.team/offensive-security/lateral-movement",
+              "type": "article"
+            },
+            {
+              "title": "Defense Evasion Techniques (MITRE ATT&CK)",
+              "url": "https://attack.mitre.org/tactics/TA0005/",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_data_exfil_impact",
+          "name": "Data Exfiltration & Objective Completion",
+          "tag": "essential",
+          "description": "Focus on techniques for sensitive data exfiltration, achieving specific objectives (e.g., domain administrator, critical system access, intellectual property theft), and understanding the overall impact of the simulated breach from a business perspective.",
+          "resources": [
+            {
+              "title": "Data Exfiltration Techniques Explained",
+              "url": "https://www.varonis.com/blog/data-exfiltration",
+              "type": "article"
+            },
+            {
+              "title": "Simulating Impact in Red Team Engagements",
+              "url": "https://medium.com/@malwaresoup/red-team-simulation-impact-analysis-c26d8a39a9c4",
+              "type": "article"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "red_team_operator_portfolio_career",
-      "name": "Portfolio and Career Readiness",
+      "id": "red_team_advanced_topics_collaboration",
+      "name": "Advanced Topics, Reporting & Collaboration",
       "tag": "advanced",
-      "description": "Turn your Red Team Operator learning into proof: case studies, GitHub artifacts, demos, interview stories, and clear role positioning.",
+      "description": "Dive into specialized Red Team operations, master effective reporting, and learn to collaborate with blue teams for enhanced security posture through Purple Teaming.",
       "resources": [
         {
-          "title": "MITRE ATT&CK Enterprise",
-          "url": "https://attack.mitre.org/matrices/enterprise/",
-          "type": "article"
-        },
-        {
-          "title": "Atomic Red Team",
-          "url": "https://atomicredteam.io/",
+          "title": "Red Team Operations: A Practical Guide (Book)",
+          "url": "https://www.amazon.com/Red-Team-Operations-Practical-Guide/dp/B08V8R3F5X",
           "type": "course"
         },
         {
-          "title": "Metasploit Documentation",
-          "url": "https://docs.metasploit.com/",
+          "title": "Purple Teaming: Bridging the Gap Between Offense and Defense",
+          "url": "https://www.sans.org/blog/purple-teaming-bridging-the-gap-between-offense-and-defense/",
           "type": "article"
         }
       ],
       "children": [
         {
-          "id": "red_team_operator_case_study",
-          "name": "Case Study Writing",
+          "id": "rt_active_directory_exploitation",
+          "name": "Active Directory & Enterprise Environment Exploitation",
           "tag": "advanced",
-          "description": "Write a concise case study with problem, constraints, decisions, implementation, validation, outcomes, and next improvements.",
+          "description": "Deep dive into Active Directory concepts, enumeration, common vulnerabilities, and advanced attack techniques like Kerberoasting, AS-REP Roasting, Golden Ticket, Silver Ticket, DCsync, DCshadow, and BloodHound analysis for complex enterprise environments.",
           "resources": [
             {
-              "title": "MITRE ATT&CK Enterprise",
-              "url": "https://attack.mitre.org/matrices/enterprise/",
+              "title": "Adversary Simulation Red Team Operations with BloodHound",
+              "url": "https://www.youtube.com/watch?v=JmU2j8-yYgs",
+              "type": "video"
+            },
+            {
+              "title": "Attack and Defend Active Directory",
+              "url": "https://tryhackme.com/module/attacking-and-defending-active-directory",
+              "type": "course"
+            },
+            {
+              "title": "Active Directory Exploitation Cheat Sheet",
+              "url": "https://book.hacktricks.xyz/windows-hardening/active-directory-methodology",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
         },
         {
-          "id": "red_team_operator_project_capstone",
-          "name": "Project: Red Team Operator Portfolio Capstone",
+          "id": "rt_cloud_red_teaming",
+          "name": "Cloud Security Red Teaming",
           "tag": "advanced",
-          "description": "Build a portfolio-grade Red Team Operator project with a README, diagrams or screenshots, tests/checks, deployment or demo notes, and a lessons-learned section.",
+          "description": "Explore Red Team operations in various cloud environments (AWS, Azure, GCP). Understand common cloud misconfigurations, cloud-specific IAM attacks, serverless function exploitation, container escapes, and abusing cloud service misconfigurations and native tools for persistence and privilege escalation.",
           "resources": [
             {
-              "title": "Metasploit Documentation",
-              "url": "https://docs.metasploit.com/",
+              "title": "AWS Cloud Pentesting Course",
+              "url": "https://cloudsecurityalliance.org/education/cloud-security-training/",
+              "type": "course"
+            },
+            {
+              "title": "Azure Red Teaming: Attacking Azure AD and Cloud Services",
+              "url": "https://www.youtube.com/watch?v=1F2bF2hJ5xQ",
+              "type": "video"
+            },
+            {
+              "title": "Awesome Cloud Security - Red Team",
+              "url": "https://github.com/ramir3z/awesome-cloud-security#red-team",
               "type": "article"
             }
-          ],
-          "children": []
+          ]
+        },
+        {
+          "id": "rt_opsec_tradecraft",
+          "name": "Operational Security (OpSec) & Advanced Tradecraft",
+          "tag": "advanced",
+          "description": "Learn to manage and protect your Red Team infrastructure (C2 infrastructure design, redirectors, domain fronting), maintain stealth, and implement sophisticated evasion techniques to avoid detection by advanced defensive mechanisms (EDR, SIEM). Focus on custom payload development, anti-virus/EDR evasion, anti-forensics, and intelligence-driven emulation.",
+          "resources": [
+            {
+              "title": "Red Team Infrastructure: Essential OpSec Considerations",
+              "url": "https://posts.specterops.io/red-team-infrastructure-essential-opsec-considerations-8d6551691a56",
+              "type": "article"
+            },
+            {
+              "title": "Evasion Techniques for Red Teams",
+              "url": "https://www.blackhillsinfosec.com/evasion-techniques-red-teams/",
+              "type": "video"
+            },
+            {
+              "title": "Adversary Simulation Red Team Operations",
+              "url": "https://www.specterops.io/what-we-do/adversary-simulation-and-red-teaming",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_reporting_debriefing",
+          "name": "Red Team Reporting & Debriefing",
+          "tag": "advanced",
+          "description": "Develop skills in writing clear, concise, and impactful Red Team reports. Learn to effectively communicate findings, risk assessments, actionable recommendations, and executive summaries to various stakeholders during debriefings, demonstrating strong presentation skills.",
+          "resources": [
+            {
+              "title": "Effective Red Team Report Writing",
+              "url": "https://www.sans.org/blog/effective-red-team-report-writing/",
+              "type": "article"
+            },
+            {
+              "title": "Red Team Report Template Example",
+              "url": "https://assets.sans.org/webcasts/summaries/121705_RED_TEAM_REPORT.pdf",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_purple_teaming",
+          "name": "Purple Teaming & Remediation Strategies",
+          "tag": "advanced",
+          "description": "Understand the principles of purple teaming, how to effectively collaborate with blue teams to improve detection and response capabilities, and assist in developing effective, prioritized remediation strategies based on identified TTPs and attack paths. Integrate threat hunting and TTP emulation.",
+          "resources": [
+            {
+              "title": "The Ultimate Guide to Purple Teaming",
+              "url": "https://www.attackiq.com/blog/ultimate-guide-purple-teaming/",
+              "type": "article"
+            },
+            {
+              "title": "Atomic Red Team - Getting Started",
+              "url": "https://atomicredteam.io/",
+              "type": "course"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "red_team_career_capstone",
+      "name": "Capstone Project & Professional Development",
+      "tag": "advanced",
+      "description": "Apply all learned skills in a comprehensive capstone project, build a strong professional portfolio, and prepare for career advancement as a Red Team Operator, fostering continuous learning.",
+      "resources": [
+        {
+          "title": "Building a Cybersecurity Portfolio (Certifications and Projects)",
+          "url": "https://www.youtube.com/watch?v=F_f-M-5Jj4g",
+          "type": "video"
+        }
+      ],
+      "children": [
+        {
+          "id": "rt_capstone_project",
+          "name": "Full-Scope Red Team Engagement Capstone",
+          "tag": "advanced",
+          "description": "Plan and execute a simulated end-to-end Red Team engagement, emulating real-world threat actors and their TTPs, from initial reconnaissance to objective completion and reporting, on a realistic target environment. Document the entire process, including TTPs, lessons learned, and defensive counteractions.",
+          "resources": [
+            {
+              "title": "Red Team Exercise Playbook Example",
+              "url": "https://github.com/redcanaryco/atomic-red-team/blob/master/red-team-exercise-playbook/README.md",
+              "type": "article"
+            },
+            {
+              "title": "Practical Red Team Labs",
+              "url": "https://www.zeropointsecurity.co.uk/red-team-ops/courses",
+              "type": "course"
+            }
+          ]
+        },
+        {
+          "id": "rt_portfolio_showcase",
+          "name": "Portfolio Development & Case Study Writing",
+          "tag": "advanced",
+          "description": "Curate a professional portfolio showcasing your Red Team skills through documented projects, detailed case studies (including TTPs and impact), CTF write-ups, blog posts, and contributions to the security community. Learn to articulate your experience effectively for interviews.",
+          "resources": [
+            {
+              "title": "How to Build a Cybersecurity Portfolio",
+              "url": "https://www.comparitech.com/blog/information-security/cybersecurity-portfolio/",
+              "type": "article"
+            },
+            {
+              "title": "Writing Effective Case Studies for Your Portfolio",
+              "url": "https://www.interaction-design.org/literature/article/how-to-write-a-case-study-for-your-ux-portfolio-with-examples",
+              "type": "article"
+            }
+          ]
+        },
+        {
+          "id": "rt_career_advancement",
+          "name": "Career Paths, Certifications & Interview Prep",
+          "tag": "advanced",
+          "description": "Explore different career trajectories within Red Teaming and offensive security. Understand industry-recognized certifications (e.g., OSCP, OSWE, OSEP, CRTP, CRT) and prepare for technical interviews. Focus on continuous learning and staying current with emerging threats and technologies.",
+          "resources": [
+            {
+              "title": "OSCP - Offensive Security Certified Professional",
+              "url": "https://www.offensive-security.com/pwk-oscp/",
+              "type": "course"
+            },
+            {
+              "title": "Red Team Certifications Guide",
+              "url": "https://www.hackthebox.com/blog/red-team-certifications-guide",
+              "type": "article"
+            },
+            {
+              "title": "Red Team Interview Questions and Answers",
+              "url": "https://www.linkedin.com/advice/0/what-are-some-common-red-team-interview-questions-answers",
+              "type": "article"
+            }
+          ]
         }
       ]
     }
