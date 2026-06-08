@@ -118,6 +118,20 @@ export default function GameMap({ roadmap, slug }) {
   const [confetti, setConfetti] = useState(null);
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
+  const [verifiedVideos, setVerifiedVideos] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/verified_videos.json')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setVerifiedVideos(data);
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load verified videos:', err);
+      });
+  }, []);
 
   const roadmapTree = useMemo(() => normalizeRoadmapTree(roadmap), [roadmap]);
   const allNodes = flattenTree(roadmapTree);
@@ -391,6 +405,7 @@ export default function GameMap({ roadmap, slug }) {
       {selectedDocNode && (
         <StudyGuideDrawer
           node={selectedDocNode}
+          verifiedVideos={verifiedVideos}
           onClose={() => setSelectedDocNode(null)}
           onToggleComplete={() => {
             toggle(selectedDocNode.nodeId);
@@ -404,7 +419,7 @@ export default function GameMap({ roadmap, slug }) {
 }
 
 // Slide-out Study Guide Drawer Component
-function StudyGuideDrawer({ node, onClose, onToggleComplete, authLoading }) {
+function StudyGuideDrawer({ node, verifiedVideos, onClose, onToggleComplete, authLoading }) {
   const [docHtml, setDocHtml] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -446,13 +461,23 @@ function StudyGuideDrawer({ node, onClose, onToggleComplete, authLoading }) {
 
   const getEmbedUrl = (url) => {
     try {
-      const u = new URL(url);
-      let videoId = '';
-      if (u.hostname === 'youtu.be') {
-        videoId = u.pathname.substring(1);
-      } else {
-        videoId = u.searchParams.get('v');
+      if (!verifiedVideos.includes(url)) {
+        return null;
       }
+      const u = new URL(url);
+      if (u.hostname === 'youtu.be') {
+        const videoId = u.pathname.substring(1);
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+      }
+      
+      // Handle playlist URLs
+      if (u.pathname.includes('/playlist')) {
+        const listId = u.searchParams.get('list');
+        return listId ? `https://www.youtube.com/embed/videoseries?list=${listId}` : null;
+      }
+      
+      // Handle standard watch URLs
+      const videoId = u.searchParams.get('v');
       return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
     } catch {
       return null;

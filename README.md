@@ -18,7 +18,7 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Provides a public certificate registry lookup search page at `/certificate` with client-side network offline state detection, a dedicated verified certificate dynamic page at `/certificate/[id]`, and integrated entry points across the homepage and navbar dropdown for easy student access.
 - Corrects user menu navigation flow by removing the redundant "Learning Progress" button and routing the "Saved Paths" button directly to `/roadmap?view=saved` instead of duplicate `/dashboard` links, with full URL query parameters support on the Roadmap Hub to seamlessly load the appropriate tab (saved vs explore).
 - Features an interactive, responsive Slide-out Study Guide Drawer with support for dark/light themes, completion indicators, and direct AI counsellor integration, whitelisting YouTube in the Content Security Policy to prevent iframe blocking.
-- Allows students to read all 1,304 generated study guides by correcting URL validation to support relative paths (`/data/docs/...`) and adding support for YouTube playlist embeds in the drawer.
+- Allows students to read all 1,304 generated study guides by correcting URL validation to support relative paths (`/data/docs/...`), adding support for YouTube playlist embeds in the drawer, and whitelisting only verified, active YouTube URLs (via a scanned `verified_videos.json` list of 188 URLs) to prevent rendering broken "This video isn't available anymore" iframes.
 
 ## Tech Stack
 
