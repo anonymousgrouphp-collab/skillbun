@@ -535,14 +535,9 @@ Format your response strictly using the provided JSON schema.`;
 
 // Sourcing pipeline variables
 let phase1Queue = [];
-let phase2Queue = [];
-let activePhase1Workers = 0;
-
-// Mutex-like index trackers
 let p1Index = 0;
-let p2Index = 0;
 
-async function phase1Loop(apiKey, workerId) {
+async function workerLoop(apiKey, workerId) {
   while (true) {
     let file = null;
     if (p1Index < phase1Queue.length) {
@@ -556,40 +551,10 @@ async function phase1Loop(apiKey, workerId) {
     const result = await processPhase1(file, apiKey, workerId);
     if (result) {
       if (result.skipPhase2) {
-        // Already fully enriched, no need to put in phase 2 queue
         continue;
       }
-      phase2Queue.push(result);
+      await processPhase2(result, apiKey, workerId);
     }
-  }
-
-  // This worker is finished with Phase 1. Decrement active counter.
-  activePhase1Workers--;
-  console.log(`[Worker ${workerId}] Phase 1 complete. Helping with Phase 2...`);
-  
-  // Transition to Phase 2 loop
-  await phase2Loop(apiKey, workerId);
-}
-
-async function phase2Loop(apiKey, workerId) {
-  while (true) {
-    let item = null;
-    if (p2Index < phase2Queue.length) {
-      item = phase2Queue[p2Index++];
-    }
-
-    if (!item) {
-      // If there are still active Phase 1 workers, more items might be added to phase2Queue
-      if (activePhase1Workers > 0) {
-        await sleep(1000);
-        continue;
-      } else {
-        // No more items, and Phase 1 is fully finished. Exit.
-        break;
-      }
-    }
-
-    await processPhase2(item, apiKey, workerId);
   }
   console.log(`[Worker ${workerId}] Terminated. No more work remaining.`);
 }
@@ -627,21 +592,12 @@ async function main() {
     console.log(`Found ${phase1Queue.length} roadmaps to process.`);
 
     // Initialize pipeline
-    // Workers 1 to 4 do Phase 1 first, then help with Phase 2.
-    // Remaining workers (worker 5 onwards) start on Phase 2 immediately.
+    // Spawns workers that execute Phase 1 followed immediately by Phase 2 for each file
     const numWorkers = apiKeys.length;
-    activePhase1Workers = Math.min(4, numWorkers);
-
     const workers = [];
 
-    // Spawn workers 1 to 4 (Phase 1 first)
-    for (let i = 0; i < Math.min(4, numWorkers); i++) {
-      workers.push(phase1Loop(apiKeys[i], i + 1));
-    }
-
-    // Spawn remaining workers starting from worker 5 (starts on Phase 2 immediately)
-    for (let i = 4; i < numWorkers; i++) {
-      workers.push(phase2Loop(apiKeys[i], i + 1));
+    for (let i = 0; i < numWorkers; i++) {
+      workers.push(workerLoop(apiKeys[i], i + 1));
     }
 
     await Promise.all(workers);
