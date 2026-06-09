@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "A \"lessons learned\" section that critically analyzes design trade-offs, discusses alternative approaches, and evaluates their pros and cons demonstrates a deep understanding of the problem space, critical thinking, and the ability to make informed architectural and implementation decisions, which is a hallmark of advanced analytical skills and project maturity.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary objective of a Cyber Threat Intelligence (CTI) Analyst?",
+    "options": [
+      "To write antivirus scanner codes",
+      "To collect, analyze, and disseminate intelligence about cyber adversaries and threats to support proactive security decisions",
+      "To configure database server users",
+      "To compile software code packages"
+    ],
+    "correctIndex": 1,
+    "explanation": "CTI analysts analyze adversary capability, infrastructure, and intent, providing actionable intelligence to defense and management teams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the acronym 'IOC' stand for in threat intelligence contexts?",
+    "options": [
+      "Indicator of Compromise",
+      "Index of Connection",
+      "Interface Operation Control",
+      "Internet Origin Controller"
+    ],
+    "correctIndex": 0,
+    "explanation": "An IOC (Indicator of Compromise) is forensic evidence (like a hash or IP) indicating a system has been breached.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following represents a technical Indicator of Compromise (IOC)?",
+    "options": [
+      "The spelling formatting of user documentation",
+      "Malicious IP addresses, domain names, or file hashes associated with a threat campaign",
+      "The daily budget sheets of support teams",
+      "The compilation warning counts of software builds"
+    ],
+    "correctIndex": 1,
+    "explanation": "IOCs are atomic signatures. Firewalls or EDRs scan logs for these indicators to flag compromised systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is OSINT in intelligence pipelines?",
+    "options": [
+      "Operating System Integration Network Tool",
+      "Open Source Intelligence; data collected from publicly available resources",
+      "Oracle SQL Indexing Name Template",
+      "Outbound Socket Integration Network Tunnel"
+    ],
+    "correctIndex": 1,
+    "explanation": "OSINT stands for Open Source Intelligence, using search engines, domain registries, and public feeds to gather threat details.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Compare Tactical Threat Intelligence and Strategic Threat Intelligence.",
+    "options": [
+      "Tactical is for databases; Strategic is for web layouts",
+      "Tactical intel comprises technical indicators (IOCs) for security systems; Strategic intel comprises long-term reports on adversary trends and motivations for business leaders",
+      "Strategic intel is fully automated; Tactical is manual",
+      "They are duplicate terms for firewall rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tactical is operational (firewall IPs). Strategic looks at business risks (e.g. which APT groups target our sector and what is their geopolitical motive).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is an Advanced Persistent Threat (APT) group?",
+    "options": [
+      "A group of novice hackers launching automated scans",
+      "A state-sponsored or highly organized adversary group that conducts prolonged, covert cyber espionage campaigns against specific targets",
+      "A database engine clustering database tables",
+      "A coding compiler running parallel threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "APTs are sophisticated, nation-state sponsored groups. They target defense, government, and infrastructure sectors, maintaining stealthy access.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the MITRE ATT&CK framework?",
+    "options": [
+      "A security firewall tool blocking port attacks",
+      "A globally-accessible knowledge base of adversary tactics, techniques, and procedures (TTPs) based on real-world observations",
+      "A database backup schedule config",
+      "A software compiling guide"
+    ],
+    "correctIndex": 1,
+    "explanation": "MITRE ATT&CK catalogs attacker behaviors (TTPs). It maps how attackers gain entry, move laterally, and dump credentials, helping defenders map coverage.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'TTP' stand for in threat intelligence, and why is it more valuable than static IOCs?",
+    "options": [
+      "Traffic Transfer Protocol; valuable because it encrypts data",
+      "Tactics, Techniques, and Procedures; valuable because TTPs describe adversary behaviors, which are far harder for attackers to change than file hashes or IPs",
+      "Transaction Type Parameter; valuable because it structures SQL data",
+      "Threat Triage Program; valuable because it assigns tickets"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a hash is blocked, attackers change 1 byte to bypass it. If their procedure (TTP) is dumping LSASS memory via LSASS credential harvesting, blocking the behavior halts the attack.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Describe David Bianco's 'Pyramid of Pain' model.",
+    "options": [
+      "A model charting the financial cost of server upgrades",
+      "A model categorizing IOC types by the difficulty they cause to attackers when blocked, ranging from Hashes (trivial) to TTPs (tough)",
+      "A database index ranking query speeds",
+      "A security model listing firewall rules by port numbers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Pyramid of Pain guides detection priorities. Blocking TTPs (top of pyramid) inflicts maximum pain (cost/time) on adversaries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Cyber Kill Chain model developed by Lockheed Martin?",
+    "options": [
+      "A model tracking CPU cycles during system crashes",
+      "A framework mapping the phases of a cyberattack: Reconnaissance, Weaponization, Delivery, Exploitation, Installation, Command & Control, Actions on Objectives",
+      "A network switch routing protocol",
+      "A database clustering design schema"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Kill Chain outlines attack phases. Breaking the chain at any phase (e.g. blocking delivery emails) stops the attack from succeeding.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the four core vertices mapped in the Diamond Model of Intrusion Analysis?",
+    "options": [
+      "CPU, Memory, Disk, Network",
+      "Adversary, Infrastructure, Capability, Victim",
+      "IP address, Port, Protocol, Payload",
+      "Recon, Access, Exploitation, Exit"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Diamond Model maps relationships: an Adversary uses a Capability (malware) over an Infrastructure (IP/C2) against a Victim.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are STIX and TAXII in cyber threat sharing?",
+    "options": [
+      "Database query engines; STIX is for SQL, TAXII for NoSQL",
+      "STIX is a structured XML/JSON language for describing threat data; TAXII is the secure transport protocol used to exchange STIX data",
+      "Encryption algorithms securing cloud backups",
+      "Coding linters verifying config formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "STIX/TAXII enables automated threat sharing. Organizations receive threat feeds in STIX formats via TAXII connections, updating firewalls automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Traffic Light Protocol (TLP) govern CTI sharing?",
+    "options": [
+      "It routes network packets based on priority flags",
+      "A set of designations (TLP:RED, AMBER, GREEN, CLEAR/WHITE) that control how widely intelligence data can be distributed",
+      "It controls the speed of data sync in databases",
+      "It manages user access limits on corporate portals"
+    ],
+    "correctIndex": 1,
+    "explanation": "TLP restricts data. TLP:RED is restricted to participants only. TLP:AMBER is shared within the organization. TLP:GREEN is shared with partners; TLP:CLEAR is public.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the relationship between a Threat, a Vulnerability, and a Risk.",
+    "options": [
+      "They are duplicate terms in security compliance audits",
+      "A vulnerability is a system flaw; a threat is an adversary exploiting it; risk is the potential loss if the threat succeeds",
+      "Risk is the exploit code; vulnerability is the firewall configuration",
+      "Threats are always internal; vulnerabilities are external"
+    ],
+    "correctIndex": 1,
+    "explanation": "Risk requires both threat and vulnerability. A severe vulnerability in an offline server has low risk because there is no threat path to exploit it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why should organizations filter and enrich threat intelligence feeds before integrating them into SIEM alerts?",
+    "options": [
+      "To speed up local network download rates",
+      "To eliminate false positives that block legitimate business traffic and reduce alert fatigue on defense teams",
+      "To encrypt connection packets over secure sockets",
+      "Threat feeds cannot be integrated into SIEM alerts directly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unfiltered feeds contain outdated or generic IOCs (like shared hosting IPs), which generate noise, leading to alert fatigue.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What tools are commonly used by threat analysts to audit domain registration and passive DNS historical records?",
+    "options": [
+      "Wireshark and Nmap port scanners",
+      "WHOIS lookup tools, Passive DNS records engines, and Shodan scanning engines",
+      "Git repositories and local code debuggers",
+      "SQL database administration panels"
+    ],
+    "correctIndex": 1,
+    "explanation": "Passive DNS (pDNS) tracks what IPs a domain mapped to historically. WHOIS tracks registration details, mapping infrastructure owners.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an 'Adversary Profile' in threat intelligence?",
+    "options": [
+      "A list of database user permission parameters",
+      "A structured dossier detailing a threat group's targets, preferred malware, infrastructure setups, and geopolitical motivations",
+      "A marketing article describing security tools",
+      "A system setup script configuring firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adversary profiles help organizations prepare. Knowing a group targets banks via PDF attachments lets security teams harden PDF configurations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare Operational Threat Intelligence and Tactical Threat Intelligence.",
+    "options": [
+      "Operational is for managers; Tactical is for developers only",
+      "Tactical intel comprises atomic technical indicators (IOCs); Operational CTI provides context on incoming campaigns (malware families, phishing templates)",
+      "Operational intel is always public; Tactical is private",
+      "They are identical concepts managed in different databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Operational intel answers 'how' and 'when'. It details the threat group's current campaigns, enabling security teams to adjust defense rules.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Threat Hunting, and how does threat intelligence initiate it?",
+    "options": [
+      "Searching for virus files on disk; initiated by running antivirus",
+      "Proactively searching for undetected breaches in networks; CTI initiates it by providing lists of new adversary behaviors (TTPs) or indicators to hunt for",
+      "Scanning network ports; initiated by ping tests",
+      "Updating firewall settings; initiated by vendor releases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Threat hunting assumes a breach occurred. Intel provides hypotheses (e.g. 'APT-29 is using DLL sideloading in this system'), guiding analysts where to hunt.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is YARA, and how is it utilized by CTI analysts?",
+    "options": [
+      "An API protocol routing request packets",
+      "A rule-based tool used to identify and classify malware samples based on textual or binary pattern signatures",
+      "A database engine indexing file structures",
+      "A code linter formatting configuration files"
+    ],
+    "correctIndex": 1,
+    "explanation": "YARA rules define patterns (strings/hex). Analysts write YARA rules to scan files, identifying malware variants that share code structures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do CTI analysts track APT infrastructures using passive DNS (pDNS) and SSL/TLS certificate metadata?",
+    "options": [
+      "By hosting remote servers in multiple locations",
+      "By tracking historical IP mappings, domain registrations, and unique SSL fields (like serial numbers or JA3 hashes) to cluster adversary C2 servers",
+      "By analyzing local network cards settings",
+      "Infrastructure tracking is not possible once encryption is active"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adversaries reuse setups. Even if they change domains, reusing SSL certificates with identical metadata fields allows analysts to cluster and identify their C2 nodes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why is attribution in cyber threat intelligence highly complex?",
+    "options": [
+      "Because nation-state servers run on different OS versions",
+      "Because adversaries use false flags, share codebase repositories, copy TTPs, and route traffic through compromised domestic hosts",
+      "Because attribution is illegal under international laws",
+      "Because network logs delete attacker details instantly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attribution is never certain. A Russian group can use Chinese malware signatures (false flags) to confuse analysts, making solid attribution difficult.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is JA3 hashing, and how does it detect encrypted malware communication over TLS?",
+    "options": [
+      "A file hash algorithm replacing SHA-256 in virus logs",
+      "An algorithm that hashes TLS Client Hello parameters, producing a fingerprint of the client application that identifies specific malware loaders",
+      "A database encryption protocol securing user accounts",
+      "An network protocol compressing TLS headers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Different browsers/applications build SSL Client Hello packets differently. JA3 hashes these specific parameter orders. If malware uses a specific loader, its JA3 is constant regardless of target domain changes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does the Diamond Model facilitate infrastructure pivoting during a security investigation?",
+    "options": [
+      "By sorting files alphabetically in folders",
+      "By connecting Capability (malware) to Infrastructure (IP); analyzing the IP pivots to find other Victim domains targeted with the same capability",
+      "By running database updates on primary tables",
+      "The model is theoretical and does not assist in active pivots"
+    ],
+    "correctIndex": 1,
+    "explanation": "The model exposes connections. Finding a C2 IP (infrastructure) links it to a malware file (capability). Searching for that IP in firewall logs pivots to expose other target systems (victims).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how an analyst uses the MITRE ATT&CK Navigator to identify gaps in an organization's security monitoring.",
+    "options": [
+      "Navigator deletes obsolete alert rules from firewalls",
+      "Analysts map an adversary's known techniques in Navigator, overlaying local detection coverage (EDR, logs) to pinpoint unmonitored techniques that require alerts",
+      "Navigator scans system ports to find open connections",
+      "They use it to compile package builds in repositories"
+    ],
+    "correctIndex": 1,
+    "explanation": "ATT&CK Navigator maps coverage. Coloring techniques green (monitored) vs red (unmonitored) highlights gaps where attackers could execute commands silently, guiding security engineering priorities.",
+    "difficulty": "hard"
   }
 ]

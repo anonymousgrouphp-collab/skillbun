@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "A primary benefit of a Monorepo for this scenario is simplified dependency management. Shared UI components or utility functions can be developed and versioned together, ensuring that all parts of the application using them are on the same, compatible version without needing to publish and manage separate packages in a registry. It doesn't eliminate version control, doesn't guarantee faster build times (can sometimes be slower due to larger scope), and doesn't automatically handle all deployment/CI/CD (though it can streamline it).",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Vue.js?",
+    "options": [
+      "A progressive JavaScript framework for building user interfaces using a component-based model",
+      "A database software package hosting cloud databases",
+      "A network gateway routing API requests",
+      "A compiler converting JavaScript to Python files"
+    ],
+    "correctIndex": 0,
+    "explanation": "Vue.js is a frontend framework. It handles UI rendering, reactivity, and components, scaling from library inserts to SPAs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Vue 3, what are the two main API styles used to write components?",
+    "options": [
+      "Functional API and Class API",
+      "Options API and Composition API",
+      "REST API and GraphQL API",
+      "Legacy API and Modern API"
+    ],
+    "correctIndex": 1,
+    "explanation": "Options API organizes code by properties (data, methods). Composition API uses importable functions (setup, ref), simplifying code sharing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Vue directive is used to bind HTML attributes dynamically to reactive data?",
+    "options": [
+      "v-bind (or the : prefix)",
+      "v-model",
+      "v-on (or the @ prefix)",
+      "v-text"
+    ],
+    "correctIndex": 0,
+    "explanation": "`v-bind` links variables to properties (e.g. `<img :src='imagePath' />`), updating elements when paths change.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Vue directive is used for two-way data binding on form input elements?",
+    "options": [
+      "v-bind",
+      "v-model",
+      "v-show",
+      "v-if"
+    ],
+    "correctIndex": 1,
+    "explanation": "`v-model` binds inputs. If users edit text, data changes. If code edits data, text updates, standardizing input sync.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'v-for' directive in Vue templates?",
+    "options": [
+      "To search database tables for matching entries",
+      "To iterate over arrays or objects, rendering list elements dynamically",
+      "To execute background loops in script files",
+      "To import component templates from folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "`v-for` loops arrays (e.g. `<li v-for='item in items' :key='item.id'>`), rendering DOM elements for each array item.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the Vue 3 Composition API, what function is used to declare a reactive primitive variable?",
+    "options": [
+      "reactive()",
+      "ref()",
+      "state()",
+      "computed()"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ref` wraps values in reactive objects. In JS, values are read/written via `.value` (e.g. `count.value++`); templates read them unwrapped.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Vue directive is used to listen to DOM events (like clicks) and execute methods?",
+    "options": [
+      "v-bind",
+      "v-on (or the @ prefix)",
+      "v-model",
+      "v-if"
+    ],
+    "correctIndex": 1,
+    "explanation": "`v-on` listens to events (e.g. `@click='submit'`). It captures event bubbles, routing calls to methods.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Vue 3, what is the core difference between using 'ref' versus 'reactive' to define state?",
+    "options": [
+      "ref is for mobile; reactive is for desktop layouts",
+      "ref defines reactive values of any type (accessed via .value in JS); reactive defines reactive objects only, without needing .value",
+      "reactive is older and deprecated in modern Vue releases",
+      "They are duplicate functions executing identical OS calls"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ref` holds primitives or objects. `reactive` holds objects directly (no `.value` needed). However, reassigning a `reactive` object breaks reactivity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are computed properties in Vue, and how do they optimize performance?",
+    "options": [
+      "Variables storing file size data; optimize local storage",
+      "Calculated reactive properties that cache values, re-evaluating only when their reactive dependencies change",
+      "Database query results cached on server memory layers",
+      "Stylesheets compiling CSS formats dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Computed properties are lazy. If dependencies don't change, calling them returns cached values, avoiding duplicate calculations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you emit custom events from a child component to its parent in Vue?",
+    "options": [
+      "Using standard window.postMessage API calls",
+      "By calling the emit function (defined via defineEmits) in the child, and listening using @eventName in the parent",
+      "By modifying parent prop variables directly in children",
+      "Custom events are not supported; props must be used"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vue uses one-way data flow (props down, events up). The child calls `emit('submit', data)`. The parent catches it: `<Child @submit='handle' />`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Pinia in the Vue ecosystem?",
+    "options": [
+      "A styling framework replacing tailwindcss layouts",
+      "The official, lightweight state management library for Vue, offering Composition API support and TypeScript type safety",
+      "A deployment tool wrapping packages into docker containers",
+      "A database engine running on server nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pinia replaces Vuex. It stores global state, provides devtools integration, and omits complex mutations, streamlining state management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Single File Components (SFCs), what are the three standard root tags in a .vue file?",
+    "options": [
+      "<htmlSetup>, <cssLayout>, <jsLogic>",
+      "<script>, <template>, and <style>",
+      "<header>, <body>, and <footer>",
+      "<options>, <composition>, and <render>"
+    ],
+    "correctIndex": 1,
+    "explanation": "`.vue` files bundle concerns. `<script>` holds C#/JS code, `<template>` holds HTML layouts, and `<style>` holds scoped CSS styles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the 'v-if' and 'v-show' directives in Vue templates.",
+    "options": [
+      "v-if is for numbers; v-show is for string variables",
+      "v-if compiles and mounts/unmounts elements dynamically; v-show toggles display style (display: none), keeping elements in the DOM",
+      "v-show is faster on initial page loads than v-if",
+      "They are duplicate directives executing identical rendering passes"
+    ],
+    "correctIndex": 1,
+    "explanation": "`v-if` is lazy: if false, it does nothing. `v-show` renders elements anyway, toggling CSS. Use `v-show` for elements that toggle frequently.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'key' attribute when using v-for inside lists?",
+    "options": [
+      "To encrypt list items from browser console logs",
+      "To provide a unique identity to nodes, helping the Virtual DOM track and update elements efficiently during re-renders",
+      "To define database primary keys",
+      "To assign keyboard shortcuts to list elements"
+    ],
+    "correctIndex": 1,
+    "explanation": "Without keys, Vue uses 'in-place patch' algorithm. If list items shift, Vue re-renders everything. Keys enable Vue to move elements in the DOM.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Vue Router Navigation Guards used for?",
+    "options": [
+      "To secure network ports against DDoS attacks",
+      "To intercept routing changes (e.g. checking auth) before navigating users to target page templates",
+      "To manage database transaction logs on servers",
+      "To compile routing files during builds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Guards protect routes. A global `beforeEach` guard inspects target routes. If a page requires auth and the user is guest, it redirects to Login.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the benefit of the '<script setup>' syntax in Vue 3?",
+    "options": [
+      "It compiles javascript code to execute on GPUs",
+      "It is compiler sugar that simplifies using the Composition API, exposing imports and variables to the template automatically",
+      "It allows writing server-side SQL queries inside templates",
+      "It speeds up page load times on older mobile devices"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<script setup>` reduces boilerplate. You import components and declare refs; Svelte/Vue makes them visible in templates without `return` blocks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'watch' function do in Vue 3?",
+    "options": [
+      "It monitors system clock shifts on servers",
+      "It executes a callback function asynchronously whenever specific reactive source variables change",
+      "It displays logs in developer consoles on clicks",
+      "It schedules database backups daily"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike computed properties, `watch` handles side effects. If a prop ID changes, `watch` triggers an API request to fetch new data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Slots in Vue, and how do Named Slots function?",
+    "options": [
+      "Slots define database columns; named slots are index keys",
+      "Slots are layout placeholders; named slots use slot names (v-slot:name) to pass distinct template blocks from parent to child",
+      "Slots are arrays storing user permissions",
+      "They are deprecated features replaced by props"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slots inject HTML. Standard slots take default content. Named slots (e.g. `v-slot:header`) allow injecting distinct code blocks into target spots.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the 'onMounted' and 'onUnmounted' lifecycle hooks in Vue 3.",
+    "options": [
+      "onMounted is for desktop; onUnmounted is for mobile",
+      "onMounted runs after the component is rendered in the DOM; onUnmounted runs after the component is destroyed and unmounted",
+      "onUnmounted runs on server side during SSR compiles",
+      "They are duplicate hooks executed in one pass"
+    ],
+    "correctIndex": 1,
+    "explanation": "`onMounted` initializes DOM events or fetches data. `onUnmounted` cleans up resources (like intervals or event listeners) to prevent memory leaks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Server-Side Rendering (SSR) support in Vue frameworks (like Nuxt.js)?",
+    "options": [
+      "Running database queries on local client browsers",
+      "Compiling component templates into HTML on the server first, improving SEO and reducing initial page load times",
+      "Encrypting application files before hosting",
+      "Deploying Vue apps on dedicated database servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard Vue builds SPAs (empty HTML + JS). SSR pre-renders pages on servers, returning populated HTML, which is crawlable by search bots.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how Vue 3's Proxy-based reactivity system differs from Vue 2's Object.defineProperty system.",
+    "options": [
+      "Vue 3 reactivity runs on background threads; Vue 2 on main",
+      "Vue 3 uses ES6 Proxies to intercept reads/writes dynamically, supporting property additions/deletions; Vue 2 required helper methods",
+      "Vue 2 system is faster and consumes less memory than Vue 3",
+      "They are identical reactivity architectures written in C++"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vue 2 defineProperty required knowing properties beforehand. Adding new fields (e.g. `this.obj.newKey = 1`) wasn't reactive. Vue 3 Proxies catch all changes natively.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Detail the compiler optimization 'Patch Flags' introduced in Vue 3's Virtual DOM.",
+    "options": [
+      "Patch flags encrypt variable names in builds; optimizes security",
+      "The compiler analyzes templates to flag dynamic elements with patch flags, letting the runtime diff only dynamic nodes, skipping static ones",
+      "Patch flags compile code to execute on server databases directly",
+      "They are configuration settings routing URL paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vue 3 optimizes diffing. During compile, it flags nodes (e.g., node 1 has dynamic text). At runtime, diffing only checks flagged nodes, speeding up renders.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the danger of mutating a reactive Prop directly inside a child component, and how is it resolved?",
+    "options": [
+      "It corrupts database files; resolved by restoring backups",
+      "It violates one-way data flow, throwing console warnings; resolved by emitting events to let the parent change variables",
+      "It crashes the user's browser; resolved by adding RAM",
+      "Props are immutable and cannot be mutated under any code syntax"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a child alters a prop, the parent state is bypasses, causing sync bugs. Children must emit events (e.g., `emit('update:prop', value)`) to request parent updates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you write a custom Directive in Vue 3, and what lifecycle hooks does it support?",
+    "options": [
+      "Write as database tables; supports SQL triggers",
+      "Write as objects containing hooks (beforeMount, mounted, updated, unmounted) that manipulate the target DOM node directly",
+      "Write as CSS styling classes; supports media queries",
+      "Custom directives are deprecated and replaced by components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Directives hook into DOM elements. Writing a `v-focus` directive defines a `mounted(el) { el.focus() }` hook, executing directly on DOM mounts.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the '<Teleport>' component in Vue 3, and how does it affect event bubbling?",
+    "options": [
+      "Teleports data over API channels; blocks event bubbling",
+      "It mounts template fragments (like modals) to target DOM elements outside the parent app, while preserving component state and event bubbling",
+      "It compiles CSS layouts into JavaScript files; ignores bubbling",
+      "It is a database routing wrapper mapping tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<Teleport to='body'>` renders overlays directly under `<body>` to avoid parent CSS clipping (`overflow: hidden`). Since it is in Svelte/Vue tree, events still bubble up.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Demonstrating lifecycle ownership involves taking responsibility for reported issues. The crucial immediate step is to replicate the bug to understand its behavior, then investigate to identify the root cause, and finally, plan and execute a fix (e.g., a hotfix or a patch release) to resolve the issue for users. Blaming others, ignoring the bug, or abandoning the application are not actions of a responsible developer.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "Which programming language is most commonly used alongside XAML to build Windows desktop applications?",
+    "options": [
+      "C++",
+      "C#",
+      "Python",
+      "Java"
+    ],
+    "correctIndex": 1,
+    "explanation": "C# is the primary backend language for Windows desktop development, using .NET runtimes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is XAML in Windows application development?",
+    "options": [
+      "A database query format storing system keys",
+      "An XML-based markup language used to design layouts and visual interfaces for applications",
+      "A compiled binary code executing physics calculations",
+      "An authentication key managing user access logins"
+    ],
+    "correctIndex": 1,
+    "explanation": "XAML (Extensible Application Markup Language) defines UI hierarchies, controls, and bindings declaratively, compiled by MSBuild.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the MVVM architectural pattern stand for?",
+    "options": [
+      "Model-View-ViewModel",
+      "Microsoft-Virtual-Volume-Manager",
+      "Method-Variable-Value-Model",
+      "Module-Verify-Validator-Manifest"
+    ],
+    "correctIndex": 0,
+    "explanation": "MVVM organizes desktop apps. View (UI), Model (Data), and ViewModel (Bridge) decouple layouts from business logic.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the Windows Registry?",
+    "options": [
+      "A file directory storing temporary installer logs",
+      "A hierarchical database that stores configuration settings, options, and preferences for the OS and applications",
+      "A security firewall monitoring network ports",
+      "A remote server backing up cloud account details"
+    ],
+    "correctIndex": 1,
+    "explanation": "The registry stores OS and app settings. Apps write keys to registry paths to persist preferences across boots.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which UI framework is the modern standard for building native Windows 11 desktop applications?",
+    "options": [
+      "WinForms",
+      "WPF",
+      "WinUI 3 (Windows App SDK)",
+      "UWP"
+    ],
+    "correctIndex": 2,
+    "explanation": "WinUI 3 is the native UX platform. It separates UI from OS updates, providing Fluent Design controls for Windows 11.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary thread restriction regarding UI updates in Windows desktop applications?",
+    "options": [
+      "UI elements can only be modified by background threads",
+      "Only the main UI thread can access or modify visual UI elements; background threads must delegate updates",
+      "All application threads can access UI elements concurrently",
+      "UI elements cannot be modified after initial page loads"
+    ],
+    "correctIndex": 1,
+    "explanation": "The UI thread owns controls. Background threads (fetching files/APIs) attempting to write UI properties directly throw thread access exceptions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What modern packaging format is the standard for deploying Windows applications with secure sandbox installations?",
+    "options": [
+      "MSI",
+      "EXE",
+      "MSIX",
+      "ZIP"
+    ],
+    "correctIndex": 2,
+    "explanation": "MSIX is Microsoft's packaging format. It containerizes app files, ensuring clean installs, differential updates, and clean uninstalls.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In XAML styling, compare the resources DynamicResource and StaticResource.",
+    "options": [
+      "StaticResource is for mobile; DynamicResource is for desktop layouts",
+      "StaticResource resolves resources once at load time; DynamicResource resolves resources at runtime, reacting to system shifts (like theme changes)",
+      "DynamicResource is older and deprecated in modern WinUI releases",
+      "They are duplicate bindings executing identical rendering passes"
+    ],
+    "correctIndex": 1,
+    "explanation": "`StaticResource` is faster (constant lookup). `DynamicResource` checks values dynamically, useful for system brush colors matching dark/light mode toggles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Model-View-ViewModel (MVVM) pattern organize code separation?",
+    "options": [
+      "View manages databases; Model manages layouts; ViewModel bridges them",
+      "View manages layouts; Model manages business logic data; ViewModel exposes data and actions using bindings, keeping View free of code",
+      "ViewModel is written in HTML; View in C# code scripts",
+      "They are duplicate classes performing identical actions"
+    ],
+    "correctIndex": 1,
+    "explanation": "MVVM decouples concerns. Since the View only holds UI controls that bind to properties in the ViewModel, ViewModels can be unit-tested without launching UIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Dependency Properties in Windows XAML development?",
+    "options": [
+      "Properties that depend on external database tables",
+      "Properties registered with the framework property system that support data binding, styling, and animation notifications",
+      "Local private variables defined inside C# constructors",
+      "Configuration variables declared in manifest files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard C# properties lack binding features. Dependency Properties extend properties, registering change hooks that notify binding engines of value changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the INotifyPropertyChanged interface in ViewModels?",
+    "options": [
+      "To encrypt properties before saving them to disk files",
+      "To define a PropertyChanged event that notifies bound Views to update UI controls when data values change",
+      "To check configuration syntax errors in XAML files",
+      "To route network connection events to server gateways"
+    ],
+    "correctIndex": 1,
+    "explanation": "ViewModels implement `INotifyPropertyChanged`. When a property setter is called, it fires `OnPropertyChanged('PropName')`, alerting the XAML UI to refresh the display.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you safely update UI elements from a background thread in a WinUI 3 application?",
+    "options": [
+      "Call the UI property directly inside the thread execution task",
+      "Using the DispatcherQueue.TryEnqueue method to route the UI update callback onto the main UI thread",
+      "By restarting the application process dynamically",
+      "UI elements cannot be updated after background tasks start"
+    ],
+    "correctIndex": 1,
+    "explanation": "Background threads delegate tasks. Calling `DispatcherQueue.TryEnqueue(() => { text.Text = 'Done'; })` pushes the action onto the UI thread queue safely.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In C# desktop development, what is P/Invoke (Platform Invoke) used for?",
+    "options": [
+      "To invoke remote API endpoints on cloud databases",
+      "To declare and call unmanaged Win32 API functions from dynamic link libraries (DLLs) in managed C# code",
+      "To compile XAML files into binary structures",
+      "To debug memory usage in local environments"
+    ],
+    "correctIndex": 1,
+    "explanation": "P/Invoke bridges managed/unmanaged code. Declaring `[DllImport('user32.dll')]` lets C# code call native Windows OS methods directly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key difference between a packaged app (using MSIX) and an unpackaged app in the Windows App SDK?",
+    "options": [
+      "Packaged apps only run on Windows Server; unpackaged on Windows 11",
+      "Packaged apps run in lightweight containers with identity and clean uninstall; unpackaged apps run as standard Win32 executables without sandboxing",
+      "Unpackaged apps cannot access local files under any permission",
+      "There is no difference in their runtime security models"
+    ],
+    "correctIndex": 1,
+    "explanation": "Packaged apps have system identities (supporting notifications, store publishing). Unpackaged apps run with full user rights like classic `.exe` files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the App.xaml file in Windows application directories?",
+    "options": [
+      "To write database query commands",
+      "To define global application settings, styles, and startup lifecycle event handlers",
+      "To store log files of server connections",
+      "To configure local network card settings"
+    ],
+    "correctIndex": 1,
+    "explanation": "`App.xaml` is the app configuration. It declares global resource dictionaries (e.g. shared colors, control templates) accessible by all page files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare layout rendering in XAML using Grid versus StackPanel.",
+    "options": [
+      "Grid is for mobile; StackPanel is for desktop layouts only",
+      "Grid positions elements in defined rows and columns; StackPanel stacks elements sequentially either horizontally or vertically",
+      "StackPanel is slower and consumes more memory than Grid",
+      "They are duplicate layout controls managing identical visual alignments"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Grid` supports overlaps and complex, responsive layouts. `StackPanel` is simple: it stacks child controls in a row or column, ideal for menu rows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In XAML data binding, compare the 'OneWay' and 'TwoWay' binding modes.",
+    "options": [
+      "OneWay is for integers; TwoWay is for string variables",
+      "OneWay updates the View when ViewModel properties change; TwoWay updates both View and ViewModel when changes occur in either",
+      "TwoWay is faster and consumes less processor time than OneWay",
+      "They behave identically on data synchronization"
+    ],
+    "correctIndex": 1,
+    "explanation": "`OneWay` is default for labels (read-only data). `TwoWay` is mandatory for inputs (e.g. `<TextBox Text='{x:Bind InputProp, Mode=TwoWay}' />`), syncing edits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Visual States in XAML templates, and why are they used?",
+    "options": [
+      "To save database transaction states on runs",
+      "A set of styling overrides applied to controls dynamically based on their state (e.g. Hover, Pressed) to customize visual appearances",
+      "To store configuration variables in manifest files",
+      "To track user screen tap counts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Visual States manage control looks. A button template defines visual states: if state is 'PointerOver', animates background colors to hover highlights.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In WPF, what is the difference between Bubbling and Tunneling routed events?",
+    "options": [
+      "Bubbling is for mobile; Tunneling is for desktop layouts",
+      "Bubbling travels up the visual tree to parent elements; Tunneling travels down to the source element (prefixed with Preview)",
+      "Tunneling is always faster than Bubbling",
+      "They are duplicate event routing behaviors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Routed events traverse trees. Tunneling events start at root and fire downwards. Bubbling events start at source (e.g. button click) and bubble up to layouts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the AppxManifest.xml configuration file in MSIX packages?",
+    "options": [
+      "To store application source code files",
+      "To declare application identity, visual assets, entry points, capabilities (like internet, camera), and OS associations",
+      "To configure local database table fields",
+      "To route network connections over routers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The manifest informs Windows. It lists app capabilities, target OS versions, file associations, and visual icons needed for Start menus.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you prevent UI freezes when executing heavy file I/O operations in Windows desktop apps using async/await keywords?",
+    "options": [
+      "By upgrading CPU hardware speeds; run code synchronously",
+      "Offload I/O operations to thread pools using Task.Run(), and await the task to return control to the UI thread, keeping the GUI responsive",
+      "By executing calculations in separate command prompt windows",
+      "Heavy I/O operations must be run on separate physical servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Running long synchronous I/O on the UI thread blocks messages, causing Windows to mark the window as 'Not Responding'. `await Task.Run` offloads it.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the security sandboxing model of packaged MSIX applications, particularly regarding file system access (Capabilities like broadFileSystemAccess).",
+    "options": [
+      "Packaged apps have unlimited read/write access to all system drives",
+      "Packaged apps are restricted to local app folders; broadFileSystemAccess requests user permissions to access broader files, audited by Microsoft Store",
+      "Unpackaged apps cannot access local files under any permission",
+      "Security sandboxing is disabled when running in development modes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Packaged apps are isolated to protect OS files. To access paths (like C:/Users), apps must declare the `broadFileSystemAccess` capability in manifests.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In custom XAML control development, compare the Logical Tree and Visual Tree hierarchies.",
+    "options": [
+      "Logical tree is for WPF; Visual tree is for WinUI only",
+      "Logical tree represents elements declared in XAML markup; Visual tree contains all internal render nodes (borders, scrolls) used to draw controls on screen",
+      "Visual tree is simpler and has fewer nodes than logical tree",
+      "They are duplicate syntaxes for inheritance rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Logical Tree is what developers declare (e.g. `Button`). The Visual Tree is what WPF/WinUI constructs to render it (e.g. `Button > Border > ContentPresenter > TextBlock`).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do memory leaks occur in Windows desktop applications due to event handler subscriptions, and how do you resolve them?",
+    "options": [
+      "They leak database connection sockets; resolved by closing DB pools",
+      "Strong references in subscriptions prevent the Garbage Collector from freeing unmounted UI components; resolved by unsubscribing or using WeakEvent patterns",
+      "They cause stack overflows; resolved by adding try-catch blocks",
+      "They cache variables on local disk folders; resolved by clearing temp files"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a long-lived manager subscribes to a short-lived page event, the manager holds a reference to the page, blocking GC cleanup. Unsubscribing on page exits fixes it.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe how to implement high-speed Inter-Process Communication (IPC) between a packaged app and a classic desktop extension using Memory-Mapped Files.",
+    "options": [
+      "By writing JSON logs to local temp folders; read logs in loops",
+      "Both processes map the same named memory segment using CreateFileMapping and MapViewOfFile, reading/writing bytes directly without serialization delays",
+      "By hosting local HTTP servers inside both application processes",
+      "Packaged apps cannot establish IPC with classic desktop extensions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Packaged apps are isolated but can bridge to extensions. Named memory-mapped files bypass network stack overhead, sharing data at RAM speeds safely.",
+    "difficulty": "hard"
   }
 ]

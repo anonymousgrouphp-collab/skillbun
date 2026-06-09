@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "A portfolio-grade project requires comprehensive documentation. A well-structured README that articulates the problem, illustrates the solution architecture (diagrams), presents clear validation metrics, explains design choices and trade-offs, and discusses future improvements demonstrates critical thinking and project ownership.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Reinforcement Learning (RL)?",
+    "options": [
+      "A supervised learning method where computers learn from labeled datasets",
+      "A machine learning paradigm where an agent learns to make decisions by performing actions in an environment to maximize cumulative reward",
+      "A database sorting algorithm",
+      "A styling sheet standard for visual layouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "RL focuses on learning from interaction. The agent receives states and rewards, adjusting its policy based on trial-and-error.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In RL, what is the role of the 'Agent'?",
+    "options": [
+      "A developer who manages deployment setups",
+      "The decision-maker entity that interacts with the environment, taking actions and learning from feedback",
+      "A background task that clean cache directories",
+      "A database query scheduler"
+    ],
+    "correctIndex": 1,
+    "explanation": "The agent is the system/algorithm being trained (e.g., a virtual robot or game player) to choose actions based on observations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the 'Environment' in reinforcement learning?",
+    "options": [
+      "The server operating system hosting the code",
+      "The external system or world that the agent interacts with, returning states and rewards in response to actions",
+      "A virtual machine running container files",
+      "A folder containing training datasets"
+    ],
+    "correctIndex": 1,
+    "explanation": "The environment defines the world dynamics, physics, and rules (e.g., chess board state, video game frame engine, or stock market fluctuations).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'State' in reinforcement learning?",
+    "options": [
+      "The geographical location of the server",
+      "The current representation or configuration of the environment at a specific time step",
+      "A variable tracking database connection states",
+      "The compile status of application code"
+    ],
+    "correctIndex": 1,
+    "explanation": "States describe the environment layout (e.g., coordinates of a robot or pixel values of a screen), helping the agent decide its next move.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the 'Reward Signal' in RL?",
+    "options": [
+      "A financial bonus paid to developers",
+      "A scalar feedback value returned by the environment to evaluate the quality of the agent's last action, which the agent seeks to maximize",
+      "A text log description of successful executions",
+      "A metric counting database query operations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rewards steer the agent's behavior. Positive rewards reinforce good actions; negative rewards penalize bad ones.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a 'Policy' ($\\pi$) represent in reinforcement learning?",
+    "options": [
+      "A legal document outlining usage guidelines",
+      "The mapping or strategy that the agent uses to determine its actions based on the current state",
+      "A security policy blocking unauthorized IP logins",
+      "A script scheduling server downtime hours"
+    ],
+    "correctIndex": 1,
+    "explanation": "The policy is the agent's brain, mapping states to actions. It can be deterministic (always choosing action X) or stochastic (choosing actions with probabilities).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a value function and a policy?",
+    "options": [
+      "Value functions are for GPUs; policies are for CPUs",
+      "A policy defines the actions to take; a value function estimates the expected long-term cumulative reward from a state (or state-action pair)",
+      "Value functions are only used in supervised learning models",
+      "They are identical terms in neural network training"
+    ],
+    "correctIndex": 1,
+    "explanation": "Policy is the behavior (what to do). Value functions judge how good the current state is (expected future reward), helping refine the policy.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Model-Free and Model-Based reinforcement learning?",
+    "options": [
+      "Model-Free does not use neural networks; Model-Based does",
+      "Model-Free learns directly from trial-and-error interactions without building a model of environment transitions; Model-Based builds a transition model to plan and simulate future states",
+      "Model-Based RL is always faster to train than Model-Free",
+      "Model-Free is for games; Model-Based is for databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Model-Free (DQN, PPO) maps actions directly. Model-Based (MuZero) learns environment rules ($S \times A \to S'$), allowing it to plan internally using trees before acting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Q-Learning?",
+    "options": [
+      "A database search method",
+      "A model-free, off-policy temporal difference learning algorithm that learns the value of state-action pairs (Q-values) to find optimal policies",
+      "An API routing protocol",
+      "A data compression method"
+    ],
+    "correctIndex": 1,
+    "explanation": "Q-Learning estimates the quality of actions. It iteratively updates Q-values using the Bellman equation, aiming to maximize expected cumulative rewards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'discount factor' ($\\gamma$) in RL equations?",
+    "options": [
+      "To reduce developer license costs",
+      "To determine the present value of future rewards, balancing short-term gains (low gamma) against long-term outcomes (high gamma)",
+      "To compress neural network files",
+      "To limit the speed of training steps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gamma ranges 0 to 1. If $\\gamma = 0$, the agent is short-sighted (only cares about immediate reward). If $\\gamma \to 1$, it values future rewards highly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'Exploration vs. Exploitation' dilemma in reinforcement learning?",
+    "options": [
+      "Choosing between local and cloud training servers",
+      "Choosing whether to execute actions that currently yield the best reward (exploit) or try new, unknown actions to discover better strategies (explore)",
+      "Choosing whether to use Python or Go for coding scripts",
+      "There is no dilemma; agents always exploit"
+    ],
+    "correctIndex": 1,
+    "explanation": "If the agent only exploits, it gets stuck in sub-optimal habits. Exploring (e.g. via $\\epsilon$-greedy, choosing random actions occasionally) helps discover better strategies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Deep Q-Networks (DQN)?",
+    "options": [
+      "A database structure indexing query files",
+      "An algorithm combining Q-learning with deep neural networks to approximate Q-values for high-dimensional state spaces (like raw game pixels)",
+      "A network switch setup protocol",
+      "A method of compressing neural layers"
+    ],
+    "correctIndex": 1,
+    "explanation": "DQN (Mnih et al., 2013) replaced lookup Q-tables with neural networks, enabling agents to play Atari games using raw screen pixels.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the two key mechanisms introduced in DQN to stabilize neural network training?",
+    "options": [
+      "Quantization and Layer Normalization",
+      "Experience Replay and Target Networks",
+      "Dropout and Batch Normalization",
+      "Adam Optimization and Learning Rate Decay"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard RL suffers from data correlation. Experience Replay breaks correlations by sampling random transitions. Target Networks stabilize updates by keeping target values static temporarily.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Policy Gradient methods?",
+    "options": [
+      "Sorting database records based on values",
+      "Algorithms that optimize the policy parameters directly (using gradients) without necessarily calculating value functions (e.g., REINFORCE)",
+      "A style sheet layout format",
+      "A system security policy check"
+    ],
+    "correctIndex": 1,
+    "explanation": "Instead of predicting Q-values and choosing the highest, Policy Gradient methods parameterize the policy directly, updating probabilities of actions based on resulting rewards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Actor-Critic architecture in reinforcement learning?",
+    "options": [
+      "A layout design separating images and text",
+      "A framework combining policy-based (Actor, choosing actions) and value-based (Critic, evaluating actions) methods to reduce gradient variance",
+      "A server-client database model",
+      "A compiler pipeline checking code syntax"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Actor proposes moves. The Critic evaluates how good the move was relative to baseline expectations, updating the Actor's policy parameters using this critique.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between On-Policy and Off-Policy learning?",
+    "options": [
+      "On-Policy runs on GPUs; Off-Policy on CPUs",
+      "On-Policy evaluates and improves the policy used to collect data; Off-Policy learns an optimal policy while executing actions based on a different behavior policy",
+      "Off-Policy is only possible in simulated environments",
+      "There is no difference in their sample efficiency"
+    ],
+    "correctIndex": 1,
+    "explanation": "SARSA (On-Policy) updates values based on actual actions taken. Q-Learning (Off-Policy) updates values based on the absolute best action possible, regardless of what the active policy chose.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Reward Shaping'?",
+    "options": [
+      "Modifying reward values to look clean on graphs",
+      "Designing auxiliary intermediate rewards to guide the agent towards goals in environments with sparse reward signals",
+      "Encrypting reward data inside databases",
+      "A method of scaling model layers"
+    ],
+    "correctIndex": 1,
+    "explanation": "In sparse environments (e.g. maze navigation), agents get 0 reward until exiting (hard to learn). Shaping adds small rewards (e.g. getting closer to the exit), guiding learning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which algorithm, widely used in MLOps and LLM alignment (RLHF), uses clipping to prevent policy updates from shifting too far from the old policy?",
+    "options": [
+      "DQN",
+      "PPO (Proximal Policy Optimization)",
+      "DDPG",
+      "REINFORCE"
+    ],
+    "correctIndex": 1,
+    "explanation": "PPO uses a clipped surrogate objective, limiting policy ratio changes. This guarantees stable updates, preventing catastrophic policy collapse during training.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'credit assignment problem' in reinforcement learning?",
+    "options": [
+      "Assigning financial budgets to cloud servers",
+      "The difficulty in determining which specific action in a long sequence of actions was responsible for a delayed reward",
+      "Tracking developer code contributions on git",
+      "A database database locking error"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a robot gets $+10$ at the end of a maze, did it win because of its last turn or a choice made 50 steps ago? Value functions and eligibility traces solve this credit mapping.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Markov Decision Process (MDP)?",
+    "options": [
+      "A programming framework replacing Python",
+      "A mathematical framework for modeling decision-making where outcomes are partly random and partly under control, satisfying the Markov property",
+      "A database transaction log protocol",
+      "A style sheet organization standard"
+    ],
+    "correctIndex": 1,
+    "explanation": "MDPs define RL mathematically: a tuple of $(S, A, P, R, \\gamma)$ where state transitions depend only on the current state and action (Markov property).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In policy gradient methods, what is the 'Baseline' subtraction, and why is it mathematically used to reduce variance?",
+    "options": [
+      "Subtracting database entries; used to clean datasets",
+      "Subtracting a state value estimate $V(s)$ from the return $G_t$ to compute advantage; reduces gradient variance without introducing bias",
+      "A method of deleting old model parameters",
+      "A tool scaling server loads dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Raw returns vary widely (e.g., $100$ vs $105$). By subtracting the expected state value $V(s)$, the policy update scales only with the 'advantage' (doing better than expected), stabilizing gradient updates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the difference between Value Iteration and Policy Iteration in Dynamic Programming.",
+    "options": [
+      "Value Iteration is for Model-Free RL; Policy Iteration is for Model-Based RL",
+      "Value Iteration updates state values directly using the Bellman optimality equation in loops; Policy Iteration alternates between policy evaluation (solving equations) and policy improvement (greedy updates)",
+      "Policy Iteration is faster but less accurate than Value Iteration",
+      "They are identical algorithms under different names"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dynamic Programming solves known MDPs. Policy Iteration loops: evaluate current policy to convergence, update policy greedily, repeat. Value Iteration updates values directly, extracting the policy only once at the end.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the 'deadly triad' in reinforcement learning, and list the three components that cause training divergence.",
+    "options": [
+      "High CPU, low RAM, and slow network speeds",
+      "Function approximation (deep learning), Bootstrapping (temporal difference learning), and Off-policy training",
+      "Symmetric keys, public keys, and databases",
+      "Policy gradients, reward shaping, and sparse environments"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sutton's RL book outlines that combining these three (Function Approx, Bootstrapping, and Off-Policy) exposes training algorithms to instability and divergence (Q-values running to infinity).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does SAC (Soft Actor-Critic) incorporate entropy regularization, and how does it balance exploration?",
+    "options": [
+      "By setting constant learning rates; balances via dropout",
+      "By adding an entropy term to the reward function, encouraging the policy to act as randomly as possible while still maximizing cumulative rewards",
+      "By training in virtual reality simulators",
+      "By blocking sub-optimal actions statically in code loops"
+    ],
+    "correctIndex": 1,
+    "explanation": "SAC maximizes expected return *plus* policy entropy: $J(\\pi) = \\sum [R(s,a) + \\alpha H(\\pi(\\cdot|s))]$. The entropy coefficient $\\alpha$ forces the agent to explore different paths, avoiding pre-mature convergence.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the function of the 'Generalized Advantage Estimation' (GAE) algorithm, and how does its parameter $\\lambda$ balance bias and variance?",
+    "options": [
+      "It generates dummy data; $\\lambda$ controls dataset sizes",
+      "An advantage estimator for policy gradients; $\\lambda$ blends temporal difference errors (low variance, high bias when $\\lambda=0$) and Monte Carlo returns (high variance, low bias when $\\lambda=1$)",
+      "It compiles model layers; $\\lambda$ controls weight precisions",
+      "It routes cloud network traffic; $\\lambda$ controls server weights"
+    ],
+    "correctIndex": 1,
+    "explanation": "GAE computes exponentially weighted advantages. Setting $\\lambda$ lets developers tune the bias-variance trade-off, where intermediate values (e.g. 0.95) yield optimal policy gradient learning.",
+    "difficulty": "hard"
   }
 ]

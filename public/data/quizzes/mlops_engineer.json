@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "For effective experiment tracking and comparison, it's essential to easily access and compare logged metrics (e.g., accuracy, F1-score), hyperparameters used, and clear references to the specific dataset and code version that produced each model. This comprehensive information allows teams to understand, reproduce, and compare different experiments effectively. The full dataset is too large to display for comparison, the model binary alone lacks context, and a screenshot is not programmatic or auditable.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary role of an MLOps Engineer?",
+    "options": [
+      "Designing machine learning model architectures",
+      "Standardizing and automating the deployment, scaling, monitoring, and management of machine learning models in production",
+      "Writing data visualization charts for reports",
+      "Maintaining database server connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "MLOps (Machine Learning Operations) applies DevOps principles to ML, focusing on CI/CD, model versioning, testing, and production hosting.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does MLOps stand for?",
+    "options": [
+      "Machine Learning Operations",
+      "Multi Layer Optimization System",
+      "Model Lifecycle Object",
+      "Main Loop Optimization"
+    ],
+    "correctIndex": 0,
+    "explanation": "MLOps stands for Machine Learning Operations, bridging machine learning, software engineering, and operations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a key component of an MLOps pipeline?",
+    "options": [
+      "Creating corporate slideshows",
+      "Model training automation, model registry, deployment pipelines, and model monitoring",
+      "Designing application icons",
+      "Writing user onboarding pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "The core stages of MLOps are: automated ingestion/training, registering versioned models, deploying artifacts to production, and monitoring predictions for drift.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of a Model Registry?",
+    "options": [
+      "A database listing software developer employees",
+      "A central repository to store, version, and manage trained machine learning model artifacts and their metadata",
+      "An installer package that boots model servers",
+      "A system tracking GPU temperature logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "A model registry (like MLflow Model Registry, Triton) stores versioned models, tracking who trained them, metrics (e.g. accuracy), and their deployment status (Staging/Production).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a major difference between traditional DevOps and MLOps?",
+    "options": [
+      "MLOps is only for Python projects; DevOps is for Java",
+      "DevOps manages code and deployment versioning; MLOps must manage code, data versioning, and machine learning model artifacts dynamically",
+      "DevOps does not support cloud deployments",
+      "MLOps does not use CI/CD automated pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "ML systems are dynamic. Code might be unchanged, but new data requires retraining, introducing challenges like data versioning and model decay monitoring.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which tool is commonly used for tracking machine learning experiments, logging parameters, and serving as a model registry?",
+    "options": [
+      "Docker",
+      "MLflow",
+      "Jenkins",
+      "Kubernetes"
+    ],
+    "correctIndex": 1,
+    "explanation": "MLflow is an open-source platform designed to manage the ML lifecycle, including experimentation, reproducibility, deployment, and a central model registry.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of a 'Feature Store' in MLOps architectures?",
+    "options": [
+      "A retail store selling AI applications",
+      "A centralized repository that stores, versions, and serves curated features for training models and low-latency real-time inference",
+      "A database that caches user login accounts",
+      "A configuration file that lists model hyperparameter variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Feature stores (like Feast) prevent training-serving skew by providing a unified pipeline to calculate and serve features consistently for offline training and online APIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between data drift and concept drift?",
+    "options": [
+      "Data drift happens on GPUs; concept drift on CPUs",
+      "Data drift refers to changes in the statistical properties of the input features over time; concept drift refers to changes in the relationship between input features and target predictions",
+      "Concept drift is temporary; data drift is permanent",
+      "There is no difference between them"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data drift: inputs change (e.g., users get younger). Concept drift: real-world patterns change (e.g. purchasing habits change due to economic shifts, rendering old models inaccurate).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of DVC (Data Version Control) in MLOps?",
+    "options": [
+      "To encrypt source code files",
+      "A version control system specifically designed for data science projects, tracking large datasets and models by committing lightweight pointer files to Git",
+      "To manage database backup schedules",
+      "To compile machine learning code into executables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Git is bad at handling large binary files (datasets, model weights). DVC tracks files in external stores (S3, GCS) while maintaining small `.dvc` files in Git to version them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'training-serving skew' mean, and why is it a problem in ML systems?",
+    "options": [
+      "The difference in speed between GPUs and CPUs",
+      "A mismatch in model performance or data processing logic between the training pipeline and the production serving pipeline, causing production prediction errors",
+      "The model training time being longer than expected",
+      "A difference in server time zones"
+    ],
+    "correctIndex": 1,
+    "explanation": "Skew occurs when features are calculated differently at runtime than during training (e.g. computing average user rating over 30 days in training, but 7 days in production), degrading model accuracy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Triton Inference Server (developed by NVIDIA)?",
+    "options": [
+      "A cloud database server hosting client accounts",
+      "An open-source multi-framework inference serving software optimized for hosting deep learning models on GPUs and CPUs at scale",
+      "A compiler package for Python code",
+      "A framework for versioning datasets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Triton serves models (PyTorch, TensorFlow, TensorRT) concurrently, optimizing GPU utilization with dynamic batching, concurrent execution, and model pipelining.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of 'Kubeflow' in MLOps?",
+    "options": [
+      "A database replication service",
+      "An open-source platform dedicated to making deployments of machine learning workflows on Kubernetes simple, portable, and scalable",
+      "A Python package that visualizes neural networks",
+      "A tool for creating training labels"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kubeflow manages ML pipelines on Kubernetes, automating ingestion, processing, training, and deployment steps as orchestrated container workflows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is dynamic batching in ML inference optimization, and why is it used?",
+    "options": [
+      "Splitting training datasets into batches dynamically",
+      "Grouping individual incoming inference requests on the server into a single batch to maximize GPU parallel compute utilization and throughput",
+      "Running multiple containers at the same time on host servers",
+      "Managing database queries in batches"
+    ],
+    "correctIndex": 1,
+    "explanation": "GPUs are optimized for parallel operations. Instead of running inference on single requests sequentially (slow), dynamic batching groups requests over a small window (e.g. 5ms) to process them together.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of model monitoring and alerting in MLOps?",
+    "options": [
+      "To check the CPU usage of server instances only",
+      "To track performance metrics (latency, accuracy, drift) in production, alerting engineers if predictions decay or system health fails",
+      "To send automated feedback forms to users",
+      "To log user database queries"
+    ],
+    "correctIndex": 1,
+    "explanation": "ML models decay over time. Monitoring inputs for drift and outputs for anomalies notifies teams when retraining is needed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is CI/CD/CT in MLOps pipelines?",
+    "options": [
+      "Continuous Integration, Continuous Delivery, and Continuous Testing",
+      "Continuous Integration, Continuous Delivery, and Continuous Training",
+      "Continuous Integration, Continuous Database, and Continuous Tracking",
+      "Control Integration, Control Delivery, and Control Testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "CT (Continuous Training) is unique to MLOps. It automates model retraining when data drift is detected or new datasets are loaded.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'TensorRT' optimization?",
+    "options": [
+      "A database tool that manages dataset queries",
+      "NVIDIA's SDK for high-performance deep learning inference, optimizing neural network layers for GPU execution",
+      "A package that draws model layouts in vector editors",
+      "A framework for managing training parameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "TensorRT optimizes weights, fuses layers, and calibrates models to lower precision (INT8) to maximize throughput and minimize latency on NVIDIA hardware.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In model serving, what is 'shadow deployment' (or dark launching)?",
+    "options": [
+      "Deploying the model during nighttime hours to avoid users",
+      "Routing a copy of live traffic to the new model in parallel without returning its predictions to users, allowing validation under production loads safely",
+      "Deploying the model in an encrypted sandbox with limited permissions",
+      "Creating a backup copy of the model on disk"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shadow deployments validate performance. By duplicating live traffic to the new model, you verify latency and behavior on real data without risking user impact.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of ONNX (Open Neural Network Exchange)?",
+    "options": [
+      "A network framework connecting GPUs over cloud nodes",
+      "An open format built to represent machine learning models, allowing models to be trained in one framework and run in another",
+      "A package that compiles Python code into C++ binaries",
+      "A database storing training logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "ONNX provides an open format for ML models. A model trained in PyTorch can be exported to ONNX, then run in a TensorFlow serving pipeline or optimized by TensorRT.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of Prometheus and Grafana in MLOps architectures?",
+    "options": [
+      "Prometheus is for model versioning; Grafana is for dataset scaling",
+      "Prometheus scrapes and stores performance metrics; Grafana provides dashboards to visualize those metrics in real-time",
+      "They are database engines used for data transformations",
+      "They are testing libraries that check prompt instructions"
+    ],
+    "correctIndex": 1,
+    "explanation": "They monitor system health (latency, RAM, GPU utilization) and operational stats (prediction counts, drift alerts) in production environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a model 'inference pipeline' typically do?",
+    "options": [
+      "Compiles model weights into lighter file formats",
+      "The end-to-end flow that accepts raw user input, transforms it into features, feeds it to the model, and formats the output prediction",
+      "A pipeline that trains multiple models sequentially",
+      "A script that deletes temporary database records"
+    ],
+    "correctIndex": 1,
+    "explanation": "Raw requests (e.g. text logs) can't go straight to a model. The inference pipeline handles scaling, tokenization, or vector calculations before model execution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does 'A/B Testing' in MLOps differ from 'Multi-Armed Bandit' testing for model deployment?",
+    "options": [
+      "A/B testing is for deep learning; Multi-Armed Bandit is for traditional ML only",
+      "A/B testing routes a static split of traffic (e.g. 50/50) to model versions for a fixed period; Multi-Armed Bandits dynamically allocate traffic over time to the best-performing model, reducing traffic loss",
+      "Multi-Armed Bandit testing requires manual adjustments daily",
+      "A/B testing does not require a production server"
+    ],
+    "correctIndex": 1,
+    "explanation": "Bandit testing (using algorithms like Thompson Sampling) treats model routing as a optimization problem, shifting traffic to the winning model dynamically to minimize conversion loss.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In deep learning deployment, what is GPU sharing (e.g., NVIDIA MIG or vGPU), and why is it valuable for MLOps?",
+    "options": [
+      "Sharing GPUs across developers over local networks; valuable for collaboration",
+      "Partitioning a physical GPU into multiple isolated virtual GPU instances, allowing multiple models or workloads to share hardware resources safely with guaranteed Quality of Service",
+      "Connecting multiple physical GPUs together to act as one large card",
+      "A method of copying model parameters between GPU clusters"
+    ],
+    "correctIndex": 1,
+    "explanation": "NVIDIA Multi-Instance GPU (MIG) partitions a GPU. Instead of allocating a full, expensive A100 GPU to a small model that uses 5% capacity, MIG splits it into 7 instances, maximizing hardware utilization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary technical cause of 'Covariate Shift' in machine learning, and how is it detected statistically?",
+    "options": [
+      "A compiler bug changing variable values; detected by syntax checks",
+      "A change in the probability distribution of input features P(X) while the conditional probability P(Y|X) remains constant; detected using statistical tests like Kolmogorov-Smirnov (KS) or Population Stability Index (PSI)",
+      "A crash in the database server; detected by network pings",
+      "A decrease in training accuracy due to overfitting; detected by validation tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Covariate shift means input data distribution changes over time. MLOps systems run tests like KS test or calculate PSI between reference baseline training data and production inference data to trigger alerts.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the concept of 'Model Lineage' in MLOps governance, and list the key metadata tracked.",
+    "options": [
+      "The hierarchy of models in a company organization tree; tracks manager names",
+      "The end-to-end audit trail tracking how a model was created, linking the final model artifact to the exact training code version, input datasets, hyperparameters, and test results",
+      "A calendar logging when models are scheduled for replacement",
+      "An encrypted file containing model licensing details"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lineage provides auditability and reproducibility. In regulated fields, organizations must prove exactly which dataset version, code commit, and hyperparameters produced a specific production model.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why is 'dynamic quantization' during inference preferred for RNNs and Transformers, whereas 'quantization-aware training' (QAT) is preferred for CNNs?",
+    "options": [
+      "Dynamic quantization is only supported on Intel CPUs",
+      "RNNs/Transformers are dominated by memory bandwidth bottlenecking (where weights are loaded on the fly); CNNs are compute-bound and sensitive to precision loss in activation maps, requiring QAT to retain accuracy",
+      "Transformers cannot be optimized with QAT",
+      "Dynamic quantization is a manual process; QAT is automated"
+    ],
+    "correctIndex": 1,
+    "explanation": "QAT simulates quantization errors during training backpropagation, helping CNNs adapt to lower precision. Transformers' bottleneck is memory bandwidth (loading weights to cache). Dynamic quantization converts weights offline and activations on the fly, saving bandwidth.",
+    "difficulty": "hard"
   }
 ]

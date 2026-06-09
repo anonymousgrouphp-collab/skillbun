@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Terraform's `precondition` block allows you to define assertions that must be true for a resource or module to be created or updated. You can use it within a resource block to validate the computed name against a regex pattern, effectively enforcing naming conventions directly within your Terraform configuration.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is HashiCorp Terraform?",
+    "options": [
+      "A database software package hosting cloud tables",
+      "An open-source Infrastructure as Code (IaC) tool used to provision and manage cloud infrastructure using declarative configurations",
+      "A web hosting dashboard portal managing deployments",
+      "A programming compiler replacing Javascript"
+    ],
+    "correctIndex": 1,
+    "explanation": "Terraform is a tool for provisioning infrastructure. It allows developers to define cloud resources in code, versioning and automating cloud deployments.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which configuration language is used to write Terraform files?",
+    "options": [
+      "YAML",
+      "JSON",
+      "HCL (HashiCorp Configuration Language)",
+      "Python"
+    ],
+    "correctIndex": 2,
+    "explanation": "Terraform configuration files use HCL. It is designed to be human-readable, supporting blocks, attributes, and expressions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'terraform init' command?",
+    "options": [
+      "To delete all local configuration files",
+      "To initialize the directory, download required provider plugins, and configure the state backend",
+      "To deploy resources to cloud accounts directly",
+      "To generate syntax layouts for HCL files"
+    ],
+    "correctIndex": 1,
+    "explanation": "`terraform init` must be run first. It scans configurations, downloads provider plugins (like AWS, Azure), and initializes state directories.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the function of the 'terraform plan' command?",
+    "options": [
+      "To purchase cloud server subscriptions automatically",
+      "To generate and display an execution plan, showing what resources will be created, updated, or destroyed without modifying infrastructure",
+      "To compile HCL code into Java files",
+      "To clean up local folder caches"
+    ],
+    "correctIndex": 1,
+    "explanation": "`terraform plan` performs a dry run. It compares local HCL against state files and cloud APIs, showing planned modifications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the Terraform State file (terraform.tfstate) used for?",
+    "options": [
+      "To store administrator login credentials",
+      "To map configuration files to real-world cloud resources, tracking metadata and resource dependencies",
+      "To log error reports of server crashes",
+      "To configure domain name routers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The state file is Terraform's source of truth. It records resource mappings, IDs, and attributes to manage modifications accurately.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command executes the planned changes and provisions infrastructure in the target cloud provider?",
+    "options": [
+      "terraform apply",
+      "terraform run",
+      "terraform deploy",
+      "terraform push"
+    ],
+    "correctIndex": 0,
+    "explanation": "`terraform apply` executes HCL actions, calling cloud APIs to create resources and updating the state file once completed.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Terraform Provider?",
+    "options": [
+      "A web hosting provider company",
+      "A plugin that translates Terraform configurations into target cloud provider API calls",
+      "A tool that compiles HCL code files",
+      "A security credential manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "Providers (e.g. `hashicorp/aws`, `hashicorp/kubernetes`) abstract APIs. They know how to parse HCL resources and call corresponding target endpoints.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a 'Resource' block and a 'Data Source' block in Terraform?",
+    "options": [
+      "Resource is for local environments; Data Source is for cloud",
+      "Resource defines infrastructure to be created and managed by Terraform; Data Source queries and reads attributes of existing resources managed outside Terraform",
+      "Data Source is mutable; Resource is read-only",
+      "They behave identically on infrastructure deployments"
+    ],
+    "correctIndex": 1,
+    "explanation": "Resources manage lifecycles. Data sources only fetch data (e.g. looking up a base AMI ID in AWS) to use in other resources.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is a remote state backend (e.g. S3 or GCS) preferred over local state files in team projects?",
+    "options": [
+      "Remote backends speed up local compilation times",
+      "Remote backends support state sharing, central access controls, and state locking to prevent concurrent executions from corrupting the state",
+      "Local state files are automatically deleted by compilers",
+      "Remote backends bypass the need for provider plugins"
+    ],
+    "correctIndex": 1,
+    "explanation": "Local states cause override issues. Remote backends share a single state, and locks prevent two developers from applying changes simultaneously.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Terraform Module, and what is its primary benefit?",
+    "options": [
+      "An installer package manager similar to npm",
+      "A container for multiple resources used together, enabling reusable, standardized infrastructure templates",
+      "A plugin routing network connections",
+      "A database layout editor"
+    ],
+    "correctIndex": 1,
+    "explanation": "Modules group resources (e.g. wrapping VPC, subnets, and routing rules). This encapsulates configuration patterns, standardizing setups.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'terraform destroy' command?",
+    "options": [
+      "To delete local Terraform cache files",
+      "To tear down and delete all infrastructure resources managed by the current configuration files",
+      "To format server disk drives",
+      "To cancel an active cloud subscription"
+    ],
+    "correctIndex": 1,
+    "explanation": "`terraform destroy` checks the state file, calls deletion APIs for all managed resources in reverse dependency order, and updates state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Terraform HCL, what are Output Values used for?",
+    "options": [
+      "Displaying compiler diagnostic warnings",
+      "Exposing specific resource attributes to the CLI console or to other parent/child modules",
+      "Logging error reports to disk files",
+      "Routing network packets to gateways"
+    ],
+    "correctIndex": 1,
+    "explanation": "Outputs act as return values. A database module outputs its connection string so an application module can consume it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does State Locking function in Terraform, and what is a common AWS service combination used to support it?",
+    "options": [
+      "Locks HCL file editing; supported by AWS IAM",
+      "Prevents concurrent writes by locking the state during apply runs; supported by Amazon S3 (storage) and DynamoDB (locking)",
+      "Locks cloud logins; supported by AWS Cognito",
+      "State locking is not supported in cloud deployments"
+    ],
+    "correctIndex": 1,
+    "explanation": "During apply runs, Terraform writes a lock ID to DynamoDB. Other runs check DynamoDB, blocking executions until the lock is released.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Terraform Workspaces, and when are they used?",
+    "options": [
+      "Desktop interfaces designed for coding HCL",
+      "Separate state instances managed under the same configuration files, used to isolate environments like Dev, Staging, and Production",
+      "Database tables partition settings",
+      "Security zones blocking port connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Workspaces reuse HCL files. Switching workspaces (e.g. `terraform workspace select dev`) targets distinct state files, isolating deployments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you secure sensitive variable values (like API keys) in Terraform HCL configurations?",
+    "options": [
+      "Hardcode them as comments in configuration files",
+      "Declare variables with the 'sensitive = true' attribute to mask values in CLI outputs, and pass them via secure env variables",
+      "Save them as plain text variables in local states",
+      "Environment variables are secure by default in HCL"
+    ],
+    "correctIndex": 1,
+    "explanation": "Marking `sensitive = true` hides values from logs and console outputs. However, values are still plain text in `tfstate` files, requiring backend encryption.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'terraform import' do, and what is its main limitation?",
+    "options": [
+      "Imports code libraries; limited to JavaScript",
+      "Associates existing cloud resources with your Terraform state; it does not write the corresponding HCL code blocks automatically",
+      "Imports database tables; limited to SQL databases",
+      "Imports user profiles; limited to admin accounts"
+    ],
+    "correctIndex": 1,
+    "explanation": "`terraform import` maps pre-existing resources into the state. Developers must manually write matching HCL resource blocks to make subsequent runs clean.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '.terraform.lock.hcl' file in configuration directories?",
+    "options": [
+      "To encrypt state files",
+      "To lock the specific provider plugin versions used, ensuring identical provider packages are installed across developer environments",
+      "To lock variables from modification",
+      "To block concurrent runs locally"
+    ],
+    "correctIndex": 1,
+    "explanation": "The lock file records hash sums of providers. When teams run init, the compiler checks hashes, ensuring everyone uses identical provider versions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the resource meta-arguments 'count' and 'for_each' in Terraform.",
+    "options": [
+      "count is for arrays; for_each is for key-value maps only",
+      "count creates resources based on an integer index list; for_each creates resources based on sets or maps, preventing index-shifting deletion bugs",
+      "for_each is slower and deprecated in HCL",
+      "They behave identically on resource configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using `count` with lists (e.g. list of names) is risky: deleting index 1 shifts all subsequent items, causing recreate bugs. `for_each` maps to keys, avoiding this.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the 'terraform refresh' command?",
+    "options": [
+      "Reboots server instances in the cloud",
+      "Queries cloud provider APIs to update the state file with manual changes made outside Terraform, without applying code modifications",
+      "Clears provider plugin download caches",
+      "Resets database table indexes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Refresh updates the state file to match reality. It detects if a resource was manually deleted or changed in the cloud console.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Local Value' (local) in Terraform configurations?",
+    "options": [
+      "Variables stored on local client disks only",
+      "Internal variables calculated once using expressions, used to simplify configurations and avoid repeating calculations",
+      "Variables defined inside provider plugins",
+      "Variables mapping database connection paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Locals act like private constants. Defining `locals { common_tags = { env = var.env } }` lets you reuse `{local.common_tags}` across resources easily.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between explicit dependencies (depends_on) and implicit dependencies in Terraform resource graphs.",
+    "options": [
+      "Explicit dependencies are resolved automatically by compilers",
+      "Explicit dependencies use depends_on to force ordering; implicit dependencies are built automatically by referencing other resource attributes, which is preferred",
+      "Implicit dependencies are slower and consume more bandwidth",
+      "Explicit dependencies are only used for database resources"
+    ],
+    "correctIndex": 1,
+    "explanation": "Terraform parses attributes to build dependency maps. Referencing `aws_security_group.sg.id` inside an instance block creates an implicit dependency. `depends_on` is a fallback for non-attribute boundaries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you recover from a locked state file when a pipeline crash or abort leaves the state backend locked in Terraform?",
+    "options": [
+      "Delete the remote backend storage bucket completely",
+      "Verify no active processes are running, and execute 'terraform force-unlock <lock_id>' to manually release the lock",
+      "Re-run terraform init with the -reconfigure flag",
+      "State files cannot be unlocked; they must be recreated"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a deployment is aborted, the lock token persists in DynamoDB. Running `force-unlock` with the lock ID (provided in the error output) releases the lock safely.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Terraform custom provider development, how do HCL blocks map to CRUD actions?",
+    "options": [
+      "HCL compiles to SQL queries executing CRUD commands",
+      "Resource definitions map to schema structures that call developer-written Go functions executing Create, Read, Update, and Delete cloud API calls",
+      "HCL directly calls OS-level system drivers",
+      "CRUD actions are managed by cloud console browsers directly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Providers are compiled Go binaries. When Terraform applies changes, the plugin calls the Go SDK methods mapped to resources (e.g. `CreateContext` calling AWS APIs).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the security risk of marking variables as 'sensitive = true' in Terraform, and how is it mitigated?",
+    "options": [
+      "It blocks team deployment plans; mitigated by disabling auth",
+      "Sensitive variables are hidden in console output but stored as plain text inside the state file; mitigated by encrypting the state backend at rest and restricting access",
+      "It slows down API calls; mitigated by using compression",
+      "Sensitive variables are deleted on runs; mitigated by duplicate files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Terraform must store variables in state files to track changes. Since sensitive strings reside in `terraform.tfstate`, securing the backend S3/GCS bucket with encryption and IAM policies is mandatory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you refactor HCL resource blocks (e.g. renaming a resource or moving it to a module) without causing Terraform to destroy and recreate the cloud assets?",
+    "options": [
+      "By modifying resource names in cloud provider consoles first",
+      "By declaring 'moved' blocks in configuration code, or running 'terraform state mv <source> <target>' to update the state references",
+      "By editing the local terraform cache folders manually",
+      "Refactoring HCL names always causes resource recreation"
+    ],
+    "correctIndex": 1,
+    "explanation": "If you rename a block, Terraform thinks you deleted it and added a new one. `moved` blocks (introduced in 1.1) tell the compiler to update the state reference, preserving cloud assets.",
+    "difficulty": "hard"
   }
 ]

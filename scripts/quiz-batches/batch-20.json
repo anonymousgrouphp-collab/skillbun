@@ -1,0 +1,294 @@
+{
+  "unreal_engine_developer": [
+    {
+      "question": "What is Unreal Engine?",
+      "options": [
+        "A database software package hosting cloud accounts",
+        "A powerful 3D computer graphics game engine developed by Epic Games, used to build games and real-time simulations",
+        "A programming compiler replacing C++",
+        "A web hosting dashboard portal"
+      ],
+      "correctIndex": 1,
+      "explanation": "Unreal Engine is a leading game engine, supporting high-fidelity graphics, physics, and gameplay scripting.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language is the primary choice for writing native gameplay code in Unreal Engine?",
+      "options": ["C#", "C++", "Python", "Java"],
+      "correctIndex": 1,
+      "explanation": "C++ is the native programming language of Unreal Engine. Visual scripting is handled via Blueprints.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What are Blueprints in Unreal Engine?",
+      "options": [
+        "A visual scripting system based on node graphs, letting developers build gameplay logic without writing raw code",
+        "Blueprint drawings for building physical server rooms",
+        "Database schema layouts mapping tables",
+        "Web page layout templates"
+      ],
+      "correctIndex": 0,
+      "explanation": "Blueprints are Unreal's visual scripting system, compiling node graphs into execution pathways that run alongside C++.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an 'Actor' in Unreal Engine?",
+      "options": [
+        "A developer who tests gameplay mechanics",
+        "The base class for any object that can be placed or spawned in an Unreal Engine level (world)",
+        "A background task that deletes temporary cache files",
+        "A database index structure"
+      ],
+      "correctIndex": 1,
+      "explanation": "Actors are the building blocks of levels (e.g. mesh lights, characters, cameras). They can contain components (static meshes, audio, scripts).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which component manages the visual look, materials, and textures of a 3D model in Unreal Engine?",
+      "options": ["Audio Component", "Static Mesh Component", "Physics Constraint", "Camera Component"],
+      "correctIndex": 1,
+      "explanation": "Static Mesh Components render 3D geometry and handle collision settings in Levels.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the role of a 'Pawn' in Unreal Engine?",
+      "options": [
+        "A minor character with no gameplay logic",
+        "An Actor that can be possessed and receive input from a controller (human player or AI)",
+        "A backup file directory",
+        "A network socket mapping port connections"
+      ],
+      "correctIndex": 1,
+      "explanation": "Pawns represent physical entities in worlds (e.g. vehicles or characters) controlled by players or AI scripts.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a 'Material' define in Unreal Engine rendering?",
+      "options": [
+        "The physical weight of 3D models",
+        "An asset that defines the visual surface properties (color, roughness, metallic, normal mapping) of 3D meshes",
+        "A list of package dependencies",
+        "A configuration file setting up keybindings"
+      ],
+      "correctIndex": 1,
+      "explanation": "Materials determine how light interacts with surfaces, calculated using pixel shaders mapped to mesh attributes.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a Pawn and a Character in Unreal Engine?",
+      "options": [
+        "Pawn is for mobile; Character is for PC games",
+        "A Character is a specialized type of Pawn that includes a character movement component, skeleton mesh, and collision setups for walking/jumping",
+        "Characters are written in C++; Pawns in Blueprints",
+        "There is no difference in their capabilities"
+      ],
+      "correctIndex": 1,
+      "explanation": "Character extends Pawn, adding default walking/jumping physics and skeletal systems, ideal for humanoid players.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Tick' function (Event Tick) in Unreal Engine scripting?",
+      "options": [
+        "A countdown timer scheduled for daily runs",
+        "An execution event called on every frame of the game, used to update logic continuously",
+        "A method that checks database connections",
+        "A tool minifying code files"
+      ],
+      "correctIndex": 1,
+      "explanation": "Event Tick executes frame-by-frame. Running heavy calculations here drops frame rates, so developers prefer timers or event-driven triggers.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of the 'GameMode' class in Unreal Engine?",
+      "options": [
+        "To save gameplay progress on disk",
+        "To define the game rules, win/loss conditions, default classes (Pawn, Controller), and coordinate match states",
+        "To switch graphics card settings",
+        "To host multiplayer server connections"
+      ],
+      "correctIndex": 1,
+      "explanation": "GameMode runs only on servers in multiplayer, enforcing rules (e.g., player spawn points or score limits).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Level Blueprint'?",
+      "options": [
+        "A map showing level layouts in vector editors",
+        "A specialized Blueprint class unique to a specific level, managing level-wide events, cinematics, and environmental triggers",
+        "A template script creating new levels",
+        "A database index mapping level assets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Level Blueprints handle level-specific logic (e.g., opening a specific door when a player steps on a trigger volume in that level).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Lumen' do in Unreal Engine 5?",
+      "options": [
+        "Measures light bulb lumens in developer offices",
+        "Unreal's fully dynamic global illumination and reflections system, updating lighting in real-time as environments change",
+        "A compiler package converting C++ to binary",
+        "A tool managing database backups"
+      ],
+      "correctIndex": 1,
+      "explanation": "Lumen calculates bounce light and reflections dynamically. It eliminates baking lightmaps, accelerating level design pipelines.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Nanite' in Unreal Engine 5?",
+      "options": [
+        "A small robot toy Epic Games sells",
+        "A virtualized geometry system that allows rendering billions of polygons in real-time without manual LOD (Level of Detail) setups",
+        "An encryption module securing asset files",
+        "A tool scaling server connection queues"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nanite imports film-quality source assets directly. It draws only visible pixels, optimizing mesh polygons dynamically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'UObjects' in Unreal C++ programming?",
+      "options": [
+        "A visual menu element in user interfaces",
+        "The base class for all metadata-aware objects in Unreal, enabling garbage collection, serialization, and reflection",
+        "An external database link module",
+        "A tool compiling shader materials"
+      ],
+      "correctIndex": 1,
+      "explanation": "UObjects are the foundation. Marking classes with `UCLASS()` hooks them to Unreal's memory manager, automating garbage collection.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between casting and interfaces in Blueprint scripting?",
+      "options": [
+        "Casting is for mobile; interfaces are for PC",
+        "Casting checks if an object belongs to a specific class to access its data; Interfaces allow calling functions on different classes without rigid class dependencies",
+        "Interfaces are slower and use more memory than casting",
+        "They are identical mechanisms under different nodes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Casting creates hard references (loading the target class into memory). Interfaces decouple systems, allowing communications without loading target classes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of 'Behavior Trees' in Unreal Engine AI?",
+      "options": [
+        "A file directory managing asset folders",
+        "An execution graph used to define decision-making logic, tasks, and state transitions for AI-controlled characters",
+        "A script that runs loop tests on server performance",
+        "A layout grid structuring UI templates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Behavior Trees split AI logic into selectors and sequences. They query Blackboard keys to determine AI actions (e.g. patrol or attack).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the Blackboard in Unreal Engine AI systems?",
+      "options": [
+        "A coding documentation board in developer offices",
+        "A dedicated data key-value store used by Behavior Trees to read and write state variables (like target location or player target)",
+        "A database table storing character accounts",
+        "A style sheet setting screen graphics"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Blackboard acts as the AI's memory. Tasks write keys (e.g., `bHasSeenPlayer = true`), which decorators read to switch tree branches.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'UFUNCTION(BlueprintCallable)' used for in Unreal C++?",
+      "options": [
+        "Encrypting a C++ method to protect from hackers",
+        "Exposing a C++ class method to be called directly inside Blueprint graphs",
+        "Specifying that the method is deprecated",
+        "Running code in master server threads only"
+      ],
+      "correctIndex": 1,
+      "explanation": "The macro registers methods with the reflection system, generating node pins so Blueprint scripts can trigger C++ code.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the 'NavMesh' (Navigation Mesh) in levels?",
+      "options": [
+        "To render 3D ocean wave graphics",
+        "A collision-mapped path boundary defining where AI characters are allowed to walk and navigate within a level",
+        "To load balance server workloads",
+        "To configure keyboard keybindings"
+      ],
+      "correctIndex": 1,
+      "explanation": "NavMesh volumes calculate walkability. AI pathfinding queries this mesh to navigate around walls and obstacles.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Widget Blueprint' do?",
+      "options": [
+        "To construct physical layout models",
+        "A specialized Blueprint class used to design and script User Interfaces (menus, HUDs, buttons) using UMG (Unreal Motion Graphics)",
+        "To write database query templates",
+        "To configure network routing switches"
+      ],
+      "correctIndex": 1,
+      "explanation": "Widget Blueprints use UMG. They combine layout designers (canvas) and event graphs (handling clicks and binding player stats).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain how Unreal Engine's replication model handles multiplayer state synchronization between server and clients, and what 'NetMulticast' does.",
+      "options": [
+        "It runs duplicate game engines; NetMulticast is for backup logs",
+        "Server acts as authority, duplicating variables marked for replication. NetMulticast is a remote procedure call (RPC) sent from server to execute on all clients",
+        "Clients coordinate states directly; NetMulticast is a local connection",
+        "It compiles shaders in background threads; NetMulticast is a compiler flag"
+      ],
+      "correctIndex": 1,
+      "explanation": "Multiplayer uses client-server models. Servers replicate variables (e.g. health) to clients. RPCs direct actions: `Server` RPC calls server; `Client` calls owner; `NetMulticast` runs on all connected players.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Unreal C++, what is the difference between 'UPROPERTY(EditAnywhere)' and 'UPROPERTY(VisibleDefaultsOnly)', and how does 'Category' metadata organize details?",
+      "options": [
+        "EditAnywhere is for mobile; VisibleDefaultsOnly is for desktop",
+        "EditAnywhere allows editing the property in both archetypes and levels; VisibleDefaultsOnly restricts edits to default panels. Category organizes settings under folders in editors",
+        "They are duplicate macros used in Blueprint structures",
+        "They are database access levels managing table security"
+      ],
+      "correctIndex": 1,
+      "explanation": "EditAnywhere is flexible but can cause per-instance drift. VisibleDefaultsOnly enforces defaults, preventing level designers from altering values on specific level instances. Category groups them in properties panels.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does the Unreal Engine garbage collector track UObject references, and what happens to pointers not marked with the UPROPERTY() macro?",
+      "options": [
+        "Deallocates memory daily; unmarked pointers cause code syntax errors",
+        "Tracks references via a reflection graph. Unmarked pointers are invisible to GC, causing them to be garbage collected unexpectedly, leaving dangling references",
+        "Deallocates memory when system RAM hits 95%; unmarked pointers are ignored",
+        "CPython does not support automatic garbage collection"
+      ],
+      "correctIndex": 1,
+      "explanation": "Unreal GC walks the UObject graph. If a UObject pointer is not a `UPROPERTY()`, GC doesn't register the reference. The object can be deleted from memory, leaving the raw pointer dangling (causing crashes on read).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of 'Enhanced Input System' in Unreal Engine, and how do Input Actions map to Input Mapping Contexts?",
+      "options": [
+        "It compiles keyboard codes; maps to database tables",
+        "A modular input system. Input Actions represent logical actions (like Jump); Input Mapping Contexts map physical keys (like Spacebar) to those actions based on active states",
+        "It accelerates graphics rendering; maps to shader matrices",
+        "It routes cloud server requests; maps to server weights"
+      ],
+      "correctIndex": 1,
+      "explanation": "Enhanced Input separates definition from mapping. You define 'Move' action. Mapping Contexts define keys (WASD for keyboard, sticks for gamepad). Swapping contexts dynamically switches controls (e.g., when walking vs driving).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of 'AnimNotify' and 'AnimNotifyState' in Unreal Engine animation blueprints?",
+      "options": [
+        "To notify users via emails; AnimNotifyState checks notifications",
+        "AnimNotify triggers a one-off event at a specific frame (e.g. playing footstep sound); AnimNotifyState triggers events over a duration (e.g. enabling weapon collision)",
+        "To manage database transaction logs; AnimNotifyState checks locks",
+        "To debug C++ memory leaks; AnimNotifyState checks heaps"
+      ],
+      "correctIndex": 1,
+      "explanation": "They bridge animations and logic. When a sword swing animation runs, an AnimNotifyState triggers `NotifyBegin` to turn on weapon damage boxes, and `NotifyEnd` to turn them off when the swing completes.",
+      "difficulty": "hard"
+    }
+  ]
+}

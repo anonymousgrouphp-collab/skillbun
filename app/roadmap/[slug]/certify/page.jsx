@@ -19,6 +19,72 @@ function shuffleArray(array) {
   return arr;
 }
 
+/* Flatten tree nodes for progress counting */
+function flattenTree(nodes) {
+  const result = [];
+  function walk(list) {
+    list.forEach(n => {
+      if (n.countInProgress !== false) result.push(n);
+      if (n.children?.length) walk(n.children);
+    });
+  }
+  walk(nodes);
+  return result;
+}
+
+function normalizeTopicNode(topic) {
+  return {
+    ...topic,
+    tag: topic.tag || 'essential',
+    resources: Array.isArray(topic.resources) ? topic.resources : [],
+    children: Array.isArray(topic.children) ? topic.children.map(normalizeTopicNode) : [],
+  };
+}
+
+function normalizeProjectNode(project, roadmapId, stage, index) {
+  if (!project) return null;
+
+  return {
+    id: `${roadmapId}_stage_${stage.step || index + 1}_project`,
+    name: `Project: ${project.title}`,
+    icon: '🏆',
+    tag: 'advanced',
+    description: project.description || 'Build a portfolio-ready project for this stage.',
+    resources: project.url ? [{ title: project.title, url: project.url, type: 'article' }] : [],
+    children: [],
+  };
+}
+
+function normalizeStageNode(stage, roadmapId, index) {
+  const topics = Array.isArray(stage.topics) ? stage.topics.map(normalizeTopicNode) : [];
+  const project = normalizeProjectNode(stage.project, roadmapId, stage, index);
+
+  return {
+    id: `${roadmapId}_stage_${stage.step || index + 1}`,
+    name: stage.title,
+    icon: stage.icon || '🎯',
+    tag: 'essential',
+    description: stage.description || `Complete the ${stage.title} branches before moving ahead.`,
+    resources: [],
+    children: project ? [...topics, project] : topics,
+    countInProgress: false,
+    unlockChildren: 'always',
+  };
+}
+
+function normalizeRoadmapTree(roadmap) {
+  if (roadmap.format === 'tree' && Array.isArray(roadmap.tree)) {
+    return roadmap.tree.map(normalizeTopicNode);
+  }
+
+  if (Array.isArray(roadmap.stages)) {
+    const roadmapId = roadmap.id || 'roadmap';
+    return roadmap.stages.map((stage, index) => normalizeStageNode(stage, roadmapId, index));
+  }
+
+  return [];
+}
+
 export default function CertifyPage() {
   const router = useRouter();
   const params = useParams();
@@ -195,24 +261,15 @@ export default function CertifyPage() {
         const roadmapData = await roadmapRes.json();
         setRoadmapTitle(roadmapData.title);
 
-        // 1b. Verify 100% progress before allowing quiz access
+        // 1b. Verify 60% progress before allowing quiz access
         if (process.env.NODE_ENV !== 'development') {
           const storedProgress = readStoredRoadmapProgress(slug);
-          // Count leaf/trackable nodes from roadmap data
-          function countNodes(nodes) {
-            let count = 0;
-            (nodes || []).forEach(n => {
-              if (n.countInProgress !== false && n.id) count++;
-              if (n.children?.length) count += countNodes(n.children);
-              if (n.topics?.length) {
-                n.topics.forEach(t => { count++; if (t.children?.length) count += countNodes(t.children); });
-              }
-            });
-            return count;
-          }
-          const tree = roadmapData.format === 'tree' && Array.isArray(roadmapData.tree) ? roadmapData.tree : (roadmapData.stages || []);
-          const totalNodes = countNodes(tree);
-          if (totalNodes > 0 && storedProgress.length < totalNodes) {
+          const tree = normalizeRoadmapTree(roadmapData);
+          const allNodes = flattenTree(tree);
+          const totalNodes = allNodes.length;
+          const doneCount = allNodes.filter(n => storedProgress.includes(n.id)).length;
+          const donePercent = totalNodes === 0 ? 0 : Math.round((doneCount / totalNodes) * 100);
+          if (totalNodes > 0 && donePercent < 60) {
             setProgressInsufficient(true);
             setLoading(false);
             return;
@@ -568,8 +625,8 @@ export default function CertifyPage() {
     return (
       <div className={styles.lockedScreen}>
         <div className={styles.lockBadge}>🔒 Progress Required</div>
-        <h2>Roadmap Not Completed</h2>
-        <p>You need to complete <strong>100%</strong> of the <strong>{roadmapTitle}</strong> roadmap before you can attempt the certification quiz. Head back and finish all remaining skill nodes.</p>
+        <h2>Roadmap Progress Insufficient</h2>
+        <p>You need to complete at least <strong>60%</strong> of the <strong>{roadmapTitle}</strong> roadmap before you can attempt the certification quiz. Head back and finish all remaining skill nodes.</p>
         <button onClick={() => router.push(`/roadmap/${slug}`)} className={styles.primaryButton}>
           Back to Roadmap
         </button>

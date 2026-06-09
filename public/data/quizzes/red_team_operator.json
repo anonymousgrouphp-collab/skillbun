@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Modifying or creating system services (like systemd unit files) is a common and more stealthy persistence mechanism on Linux compared to simple user-level startup scripts, as they run with higher privileges and are often less scrutinized by basic monitoring. Embedding into kernel source is overly complex and not a practical operational technique.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary objective of a Red Team Operator?",
+    "options": [
+      "To write database query code scripts",
+      "To simulate realistic adversarial attacks against an organization's people, processes, and technology to test detection and response (Blue Team) capabilities",
+      "To configure physical network switches",
+      "To design page templates in web editors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Red teaming goes beyond standard pentesting. It tests security operations holistically, often with little to no warning, to verify if the organization's Blue Team can detect and contain active attacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary difference between a Red Team and a Penetration Tester?",
+    "options": [
+      "Red Team is only for cloud environments; Pentester is for local networks",
+      "Pentesters focus on finding as many vulnerabilities as possible; Red Teams focus on simulating specific adversary tactics to test security operations stealthily",
+      "Red Team operations are always public; Pentesting is confidential",
+      "They are duplicate terms for database scanning"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pentesters audit systems, listing bugs. Red Teams test detection/response, pursuing a specific goal (e.g. exfiltrating data) while evading detection.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does TTP stand for in cyber threat intelligence?",
+    "options": [
+      "Tactics, Techniques, and Procedures",
+      "Threat Testing Protocols",
+      "Targeted Transition Paths",
+      "Transfer Transmission Ports"
+    ],
+    "correctIndex": 0,
+    "explanation": "TTP describes the behavior, methods, and patterns of cyber adversaries, cataloged in frameworks like MITRE ATT&CK.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'watering hole' attack in red team operations?",
+    "options": [
+      "A physical attack targeting water cooling systems in server rooms",
+      "Compromising a website frequently visited by targets within an organization to infect their systems",
+      "Flooding a database with dummy data",
+      "Routing network queries through multiple proxies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Watering hole attacks exploit trust. Instead of sending emails directly (phishing), attackers compromise sites the target team visits (e.g. local restaurant site), waiting for them to visit.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of the 'Blue Team' in security simulations?",
+    "options": [
+      "To compile application source code",
+      "To defend organization systems, detect active threats, and respond to security incidents",
+      "To manage employee credentials",
+      "To run backup scripts on server nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Blue Team represents the internal defenders (SOC analysts, incident responders) who monitor alerts and neutralize attacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Command and Control' (C2) refer to in red teaming?",
+    "options": [
+      "The primary database administration panel",
+      "The infrastructure (servers, protocols) used by operators to send commands and receive data from compromised target endpoints",
+      "The team managers coordinating tests",
+      "A network switch setup configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "C2 infrastructure (like Cobalt Strike, Mythic) enables persistent control over implants deployed inside target networks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'social engineering' in red team operations?",
+    "options": [
+      "Writing code that runs on social media sites",
+      "Manipulating people into performing actions or divulging confidential information (e.g., pretexting, phishing)",
+      "Configuring server load balancing configurations",
+      "Designing user interfaces"
+    ],
+    "correctIndex": 1,
+    "explanation": "Social engineering targets the human element, exploiting trust, authority, or curiosity to bypass physical or digital locks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'lateral movement' in a red team campaign?",
+    "options": [
+      "Moving database columns to different tables",
+      "Navigating from a compromised system to other systems within the internal network to locate and access target assets",
+      "Moving servers to another physical rack",
+      "Translating code pages to other languages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Once inside (foothold), operators harvest credentials or exploit internal trusts to jump from the initial system to other network nodes (lateral movement).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Credential Dumping'?",
+    "options": [
+      "Deleting user passwords from databases",
+      "Extracting passwords, hashes, or cleartext credentials from a system's memory or storage (e.g. from LSASS process on Windows)",
+      "Backing up database credentials to a secure folder",
+      "A network port scanning method"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dumping credentials (using tools like Mimikatz) allows attackers to harvest active hashes or tickets to masquerade as other domain users.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the MITRE ATT&CK framework?",
+    "options": [
+      "A database security compliance certificate",
+      "A globally-accessible knowledge base of adversary tactics, techniques, and procedures based on real-world observations",
+      "A list of antivirus software packages",
+      "A web router setup guide"
+    ],
+    "correctIndex": 1,
+    "explanation": "MITRE ATT&CK catalog techniques into matrices (e.g. Initial Access, Persistence, Exfiltration), mapping how hackers execute phases of an attack.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a 'Purple Team' exercise?",
+    "options": [
+      "A team dedicated to visual design audits",
+      "A collaborative security exercise where Red and Blue teams work together in real-time to test and improve specific detection rules",
+      "A backup server setup schedule",
+      "A code validation compilation pipeline"
+    ],
+    "correctIndex": 1,
+    "explanation": "Purple teaming removes adversarial barriers. Red demonstrates an exploit, and Blue checks their logs. Together, they verify if the attack was logged and adjust rules.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'persistence' in adversary simulations, and what is a common technique for it on Windows?",
+    "options": [
+      "Keeping database connection sockets open; technique is SQL pooling",
+      "The ability of an implant to survive system restarts; a common technique is creating scheduled tasks or registry run keys",
+      "Keeping server CPU load averages high; technique is multithreading",
+      "Writing logs to disk hourly; technique is cron jobs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Initial access can be lost (user logs off/reboots). Persistence guarantees access by registering the payload to execute automatically (e.g., via Startup folders, Registry run keys, or services).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Defense Evasion' in the context of TTPs?",
+    "options": [
+      "Bypassing company HR legal policies",
+      "Tactics used by operators to avoid detection by security products (e.g. obfuscating code, disabling logging, or masquerading processes)",
+      "Blocking external ports at local switches",
+      "Validating SQL queries before database entries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Defense evasion bypasses tools like EDR/Antivirus. Operators encrypt payloads, use DLL sideloading, or clear event logs to remain undetected.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is DLL Sideloading, and how is it exploited?",
+    "options": [
+      "Copying DLL files to backup hard drives",
+      "Placing a malicious DLL next to a legitimate executable that searches for it, tricking the OS into loading the malicious code instead of the real library",
+      "Compiling multiple DLL files in parallel threads",
+      "Deleting registry keys linked to DLL files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Windows looks in the local directory before checking system folders (DLL search order). Sideloading places a custom DLL named after a system library next to a signed, trusted app, executing malicious payload inside a trusted process.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'exfiltration' in security operations?",
+    "options": [
+      "Filtering database rows to remove duplicates",
+      "The unauthorized transfer of sensitive data from a target network back to the attacker's systems",
+      "Restoring database backup files to the server",
+      "A network scan checking switch connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Exfiltration is the culmination of data theft. Attackers compress files, encrypt them, and transfer them out (often over DNS tunnels, HTTP, or cloud storage APIs) to avoid detection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'phishing payload' typically consist of in initial access attempts?",
+    "options": [
+      "A database login script",
+      "A malicious link or document attachment (like macro-enabled documents or LNK files) designed to execute shellcode on the target host",
+      "A stylesheet setting graphic layouts",
+      "A speed test script checking host ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Payloads download implants. Opening a document macro runs PowerShell scripts in memory, connecting back to the operator's C2.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Pass-the-Hash' (PtH) attack?",
+    "options": [
+      "Sharing user passwords over messaging apps",
+      "An authentication exploit where an attacker uses a captured NT/LM password hash to authenticate directly to a remote server, without needing the cleartext password",
+      "Moving database columns to duplicate tables",
+      "Resolving local domain names using ARP"
+    ],
+    "correctIndex": 1,
+    "explanation": "Windows NTLM auth uses hashes, not passwords. If an attacker dumps an administrator hash from memory, they can pass this hash directly to authenticate over SMB/WMI, bypassing the need to crack it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'OSINT' (Open Source Intelligence) in early operation stages?",
+    "options": [
+      "Configuring local server operating systems",
+      "Gathering publicly available information (employees, email addresses, technologies) about the target organization to plan phishing or exploitation",
+      "Compiling source code packages",
+      "Managing server domain name setups"
+    ],
+    "correctIndex": 1,
+    "explanation": "OSINT uses public data (LinkedIn, DNS records, public repositories) to identify target spear-phishing contacts or discover vulnerable outward-facing servers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'living off the land' (LotL) mean in cybersecurity?",
+    "options": [
+      "Using physical tools to access servers in rural areas",
+      "Using pre-installed, legitimate operating system tools (like PowerShell, WMI, or Certutil) to execute attacks, minimizing custom code detection",
+      "Hosting server systems on local networks",
+      "Running security scans on backup servers only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using pre-installed binaries (Lolbins) evades detection because security tools see valid system commands executing, rather than third-party malware binaries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Process Injection' and why is it used?",
+    "options": [
+      "Adding more memory units to physical servers",
+      "Injecting malicious code into the memory space of a running, legitimate process to execute payloads under the host process context and mask activity",
+      "Importing database records into running applications",
+      "Running code compilers in multiple threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Process injection (e.g. into explorer.exe) hides implants. If a network hook checks connections, traffic appears to come from explorer.exe rather than a suspicious binary, evading simple detection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'lsass.exe' credential dumping and Active Directory 'DCSync' attacks, and what permissions are required for DCSync?",
+    "options": [
+      "LSASS dumping is for domain controllers; DCSync is for local users",
+      "LSASS dumping extracts credentials from local machine memory; DCSync replicates database hashes from Domain Controllers by simulating replication requests. DCSync requires Domain Admin or replication permissions",
+      "DCSync requires local admin rights on a standard workstation only",
+      "They are identical attacks targeting workstation memory pools"
+    ],
+    "correctIndex": 1,
+    "explanation": "DCSync abuses AD replication protocols (DRSUAPI). Instead of running code on Domain Controllers (dangerous), a compromised domain admin account requests replication updates, dumping all domain hashes remotely.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how DLL Search Order Hijacking works on Windows, and list the directories searched by default.",
+    "options": [
+      "It hijacks web router routes; directories are internet IP addresses",
+      "Exploiting apps that don't specify absolute paths for DLLs; the OS searches the application directory, system directories (System32, System), and PATH directories, loading the first match",
+      "It compiles DLLs in temporary folders; directories are local user caches",
+      "It deletes system libraries; directories are system backup folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "When an app calls `LoadLibrary('foo.dll')`, Windows checks: 1. Application directory; 2. System directories; 3. Windows directory; 4. Current working directory; 5. PATH environment variables. Placing a custom `foo.dll` in directory 1 intercepts execution.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'golden ticket' attack in Active Directory, and how does it differ from a 'silver ticket'?",
+    "options": [
+      "Golden ticket is for SQL; Silver is for NoSQL",
+      "Golden ticket is a forged Ticket Granting Ticket (TGT) signed with the KRBTGT hash, granting domain-wide access; Silver ticket is a forged Ticket Granting Service (TGS) ticket, granting access to a specific service only",
+      "Silver ticket is more powerful and lasts longer than golden ticket",
+      "They are hardware security keys used to login to servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Golden tickets are forged using the KRBTGT hash (Kerberos service account), allowing attackers to generate TGTs for any user (even non-existent ones) that last for years. Silver tickets target specific SPNs (e.g. CIFS) using the host service hash.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do EDR (Endpoint Detection and Response) agents use API Hooking (e.g., in ntdll.dll) to detect user-mode injection, and how do operators bypass it using Direct Syscalls?",
+    "options": [
+      "EDRs block compiler runs; bypass by writing scripts in python",
+      "EDRs inject hooks into system DLLs to monitor API calls (e.g., VirtualAllocEx); operators bypass by reading raw assembly syscall instructions directly, bypassing DLL functions",
+      "EDRs write network logs; bypass by running firewalls",
+      "EDRs encrypt memory blocks; bypass by caching files"
+    ],
+    "correctIndex": 1,
+    "explanation": "EDRs hook `ntdll.dll` to inspect API arguments in user-land. Direct Syscalls (e.g., using Syswhispers) write the syscall assembly instructions directly in the code, calling the kernel transition directly and bypassing the hooked DLL.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'HTML Smuggling' and how does it bypass perimeter email gateways during phishing delivery?",
+    "options": [
+      "Smuggling physical hard drives; bypasses border security",
+      "A technique using HTML5 features (like Blobs and anchor download attributes) to construct malicious payloads dynamically in JavaScript inside the browser, bypassing email file attachment scans",
+      "Encrypting HTML tags; bypasses firewall port filters",
+      "Hosting web assets on hidden FTP servers; bypasses DNS controls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Perimeter gateways check email attachments for EXE/LNK/ZIP files. HTML Smuggling sends a benign HTML page. When the user opens it in their browser, local JavaScript assembles the binary bytes into a file blob and prompts a download locally, evading email scanners.",
+    "difficulty": "hard"
   }
 ]

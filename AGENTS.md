@@ -237,13 +237,22 @@ To facilitate local testing and automated browser checks when `TURNSTILE_ENABLED
 3. **Backend Validation**: The endpoint `/api/human/verify` will automatically bypass Cloudflare verification and issue a valid `humanToken` if it receives the `bypass-captcha-dev` token (in request body or header `x-skillbun-bypass`) when running in development mode.
 4. **External Tests (including Production/Staging)**: In non-development environments, automated tests can pass the `x-skillbun-bypass` header set to `bypass-captcha-dev` (or set `localStorage.setItem('sb_bypass_captcha', 'bypass-captcha-dev')` to make the client automatically include the header) to bypass the verification check.
 
+## Gemini API Usage Restriction
+
+The `GEMINI_API_KEY` environment variable is strictly reserved for **production runtime use only** — powering the adaptive career quiz (`/api/gemini`) and the Bun-Bot counsellor chat.
+
+- **Do not** use `GEMINI_API_KEY` in offline scripts, one-off generators, data enrichment pipelines, or any non-production tooling.
+- **Do not** create scripts that call the Gemini API for batch content generation (e.g., quiz questions, study guides, roadmap data).
+- If bulk content generation is needed, the agent must generate the content itself using its own capabilities, not by proxying through the Gemini API key.
+- This restriction exists to protect API quota, prevent unexpected billing, and keep the key's usage auditable to production traffic only.
+
 ## Roadmap Certification System Contract
 
-The Roadmap Certification System allows users to earn certificates upon reaching 100% progress on any career roadmap. Maintain the following specifications:
-1. **Quiz Sourcing**: All quiz questions must be stored under `public/data/quizzes/[slug].json`. Each file contains a list of exactly 25 questions, categorized into `easy` (7 questions), `moderate` (13 questions), and `hard` (5 questions).
-2. **Question Generation**: Questions are pre-generated using Gemini once and cached locally. Do not invoke Gemini dynamically at runtime when a user starts the quiz.
+The Roadmap Certification System allows users to earn certificates upon reaching 60% progress on any career roadmap. Maintain the following specifications:
+1. **Quiz Sourcing**: All quiz questions must be stored under `public/data/quizzes/[slug].json`. Each file contains a list of exactly 50 questions, categorized into `easy` (14 questions), `moderate` (26 questions), and `hard` (10 questions).
+2. **Question Generation**: Questions are pre-generated offline and cached locally as static JSON. Do not invoke any API dynamically at runtime when a user starts the quiz.
 3. **Quiz Delivery**:
-   - The interface must randomly select exactly **3 Easy**, **5 Moderate**, and **2 Hard** questions from the 25-question bank.
+   - The interface must randomly select exactly **3 Easy**, **5 Moderate**, and **2 Hard** questions from the 50-question bank.
    - Questions and options must be shuffled dynamically for every attempt.
    - Time limit: **45 seconds per question**. If the time expires, that question is marked incorrect.
    - Passing threshold: **70% or more (at least 7 out of 10 correct answers)**.

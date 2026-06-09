@@ -298,5 +298,305 @@
     "correctIndex": 0,
     "explanation": "Intermittent 'Authentication failed' errors in network automation often indicate connection stability issues, rather than consistently incorrect credentials. Network devices can sometimes be slow or temporarily unresponsive. Using 'connection: network_cli' (standard for network devices) with 'persistent_connection_timeout' (or 'ansible_network_cli_persistent_connection_timeout') helps Ansible maintain the SSH connection for longer, reducing the need for re-authentication during task execution and improving resilience against brief network glitches.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary function of a router in a computer network?",
+    "options": [
+      "To connect physical computer screens together",
+      "To forward data packets between different computer networks, operating at the Network Layer (Layer 3)",
+      "To store website database records",
+      "To display graphics on a local computer"
+    ],
+    "correctIndex": 1,
+    "explanation": "Routers connect networks and determine the best path for data packets to travel from source to destination using IP addresses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does IP stand for in network protocols?",
+    "options": [
+      "Internet Protocol",
+      "Internal Port",
+      "Intranet Pathway",
+      "Interface Point"
+    ],
+    "correctIndex": 0,
+    "explanation": "IP stands for Internet Protocol, which is the principal communications protocol in the Internet protocol suite for routing packets across network boundaries.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which protocol is responsible for resolving a domain name (e.g. google.com) to an IP address?",
+    "options": [
+      "DHCP",
+      "DNS",
+      "FTP",
+      "HTTP"
+    ],
+    "correctIndex": 1,
+    "explanation": "DNS (Domain Name System) translates human-readable domain names into machine-readable IP addresses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the loopback IP address for IPv4?",
+    "options": [
+      "192.168.1.1",
+      "127.0.0.1",
+      "10.0.0.1",
+      "8.8.8.8"
+    ],
+    "correctIndex": 1,
+    "explanation": "`127.0.0.1` is the standard loopback address, referring to the local computer host itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which layer of the OSI model does a network switch typically operate at?",
+    "options": [
+      "Physical Layer (Layer 1)",
+      "Data Link Layer (Layer 2)",
+      "Network Layer (Layer 3)",
+      "Transport Layer (Layer 4)"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard network switches operate at Layer 2 (Data Link), using MAC addresses to forward data frames to specific devices. (Layer 3 switches also exist but traditional switches are Layer 2).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the Ping utility?",
+    "options": [
+      "To test network reachability and measure round-trip latency to a host using ICMP echo requests",
+      "To display the contents of a webpage",
+      "To configure IP addresses on local network interfaces",
+      "To encrypt file transfers"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ping sends ICMP Echo Request packets to a target host and listens for Echo Replies, confirming connection and measuring latency.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does DHCP stand for, and what is its role?",
+    "options": [
+      "Domain Host Connection Protocol; encrypts websites",
+      "Dynamic Host Configuration Protocol; automatically assigns IP addresses and network configurations to host devices",
+      "Data Handling Control Protocol; manages database storage",
+      "Direct Host Communication Protocol; routes physical cables"
+    ],
+    "correctIndex": 1,
+    "explanation": "DHCP automates network configuration, dynamically leasing IP addresses, subnet masks, default gateways, and DNS servers to client nodes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between TCP and UDP protocols?",
+    "options": [
+      "TCP is only for wireless networks; UDP is for wired",
+      "TCP is connection-oriented, guaranteeing ordered and reliable data delivery; UDP is connectionless and faster, but does not guarantee delivery or packet order",
+      "UDP is more secure than TCP",
+      "TCP is older and deprecated; UDP replaces it"
+    ],
+    "correctIndex": 1,
+    "explanation": "TCP uses handshakes, acknowledgments, and flow control. UDP sends packets directly without handshakes (best-effort), ideal for streaming or gaming where speed is preferred over reliability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Subnet Mask used for in IP networking?",
+    "options": [
+      "To hide the IP address of a user from hackers",
+      "To distinguish between the network portion and host portion of an IP address",
+      "To limit the speed of data transfers",
+      "To encrypt connection packets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Subnet masks (like `255.255.255.0`) tell routers which part of the IP address defines the specific network segment and which part identifies the unique device on that segment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does NAT (Network Address Translation) do?",
+    "options": [
+      "Translates code languages into machine code",
+      "Modifies IP address information in packet headers while in transit, typically to map multiple private IPs to a single public IP",
+      "Converts domain names to server names",
+      "Compresses network packets to save bandwidth"
+    ],
+    "correctIndex": 1,
+    "explanation": "NAT allows multiple devices in a local private network to share one public IP address for internet communication, conserving the limited pool of IPv4 addresses.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of VLANs (Virtual Local Area Networks)?",
+    "options": [
+      "To connect physical servers in different cities",
+      "To segment a physical network switch into multiple logical, isolated broadcast domains to improve security and performance",
+      "To encrypt network traffic between switches",
+      "To host virtual machines on a local server"
+    ],
+    "correctIndex": 1,
+    "explanation": "VLANs isolate network traffic. Devices on different VLANs cannot communicate directly without a router, isolating broadcast traffic and increasing security.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which protocol is a link-state routing protocol used to find the shortest path for routing packets within an Autonomous System (AS)?",
+    "options": [
+      "RIP",
+      "BGP",
+      "OSPF",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "OSPF (Open Shortest Path First) is a link-state interior gateway protocol (IGP) that calculates paths using Dijkstra's algorithm. RIP is distance-vector, BGP is path-vector (exterior).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does BGP (Border Gateway Protocol) do?",
+    "options": [
+      "Configures local network card drivers",
+      "The routing protocol of the internet, exchanging routing information between different Autonomous Systems (AS)",
+      "Blocks security threats at a firewall",
+      "Resolves local domain names"
+    ],
+    "correctIndex": 1,
+    "explanation": "BGP acts as the routing backbone of the internet, sharing routing paths between ISPs and large organizations to determine paths across global networks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a MAC address and an IP address?",
+    "options": [
+      "MAC addresses are changes dynamically; IP addresses are hardcoded",
+      "MAC addresses are physical identifiers assigned by manufacturers (Layer 2); IP addresses are logical identifiers assigned by network administrators (Layer 3)",
+      "MAC addresses are used for public web pages; IP addresses for local devices",
+      "IP addresses are written in hexadecimal; MAC in binary"
+    ],
+    "correctIndex": 1,
+    "explanation": "MAC addresses (e.g., `00:0a:95:9d:68:16`) are burned into network interfaces. IP addresses are assigned logically based on network location.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of ARP (Address Resolution Protocol)?",
+    "options": [
+      "To resolve IP addresses to domain names",
+      "To resolve a known IPv4 address to its corresponding physical MAC address on a local network segment",
+      "To route packets to external networks",
+      "To encrypt local network ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "ARP bridges Layer 2 and Layer 3. Before sending an IP packet on a local segment, a host broadcasts an ARP request to find which MAC address owns that IP.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of ICMP (Internet Control Message Protocol)?",
+    "options": [
+      "To transfer files between clients and servers",
+      "Used by network devices to send error messages and operational information (like destination unreachable or ping echoes)",
+      "To host database queries",
+      "To resolve domain name routing paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "ICMP does not carry user application data. It reports errors in packet processing, helping network diagnostics (e.g. traceroute).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In subnetting, what is CIDR notation?",
+    "options": [
+      "An encryption format for passwords",
+      "A compact representation of an IP address and its associated routing prefix (subnet mask) using a slash followed by the count of leading 1-bits",
+      "A database protocol used to route queries",
+      "A speed test standard for network cables"
+    ],
+    "correctIndex": 1,
+    "explanation": "CIDR (Classless Inter-Domain Routing) simplifies subnets (e.g., `192.168.1.0/24`, where `/24` represents a subnet mask of 24 ones: `255.255.255.0`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which port number is standard for secure shell (SSH) traffic?",
+    "options": [
+      "80",
+      "443",
+      "22",
+      "21"
+    ],
+    "correctIndex": 2,
+    "explanation": "Port 22 is the standard port designated for SSH. Port 80 is HTTP, 443 is HTTPS, and 21 is FTP.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a firewall 'Stateful Inspection' check?",
+    "options": [
+      "Checks the state of server hardware only",
+      "Monitors the state of active network connections (e.g., TCP handshakes) and permits packets only if they match a known, valid connection state",
+      "Verifies user passport credentials",
+      "Checks code syntax errors on incoming files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stateful firewalls track connections. If a local client requests a webpage, the firewall remembers the request and allows the incoming response through, blocking unsolicited packets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of QoS (Quality of Service) in network configuration?",
+    "options": [
+      "To check the manufacturing quality of routers",
+      "To prioritize specific network traffic (like voice or video streams) to guarantee bandwidth and minimize latency/jitter for critical apps",
+      "To compile application source code",
+      "To schedule database backup downloads"
+    ],
+    "correctIndex": 1,
+    "explanation": "QoS classifies packets. For example, VoIP (Voice over IP) packets are prioritized over file downloads to prevent voice calls from dropping or breaking up during heavy network use.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how MTU (Maximum Transmission Unit) size impacts fragmentation, and what PMTUD (Path MTU Discovery) does.",
+    "options": [
+      "MTU splits databases; PMTUD checks network speed",
+      "MTU defines the largest packet size allowed on a link. PMTUD uses ICMP messages to determine the minimum MTU along a path, preventing fragmentation",
+      "MTU is for local networks only; PMTUD is for WANs",
+      "MTU increases network packet sizes; PMTUD decreases them"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a packet exceeds a link's MTU, routers must fragment it (slowing transmission). PMTUD sends packets with the 'Don't Fragment' (DF) bit set. If a router cannot forward it, it sends an ICMP packet back, letting the sender adapt size.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the role of Spanning Tree Protocol (STP) in Ethernet switches, and what happens during a broadcast storm?",
+    "options": [
+      "STP encrypts connections; broadcast storm is a firewall alert",
+      "STP prevents loops in Layer 2 networks by disabling redundant paths; a broadcast storm occurs when loops cause packets to circulate endlessly, consuming all bandwidth",
+      "STP routes packets to other subnets; broadcast storm is a weather alert",
+      "STP counts physical switch ports; broadcast storm is a cable error"
+    ],
+    "correctIndex": 1,
+    "explanation": "Switches flood broadcasts. Without STP, redundant loops circulate packets forever, creating a broadcast storm that disables the entire local network segment.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In BGP routing, what is the 'MED' (Multi-Exit Discriminator) attribute used for, and how does it differ from Local Preference?",
+    "options": [
+      "MED is for internal routing only; Local Preference is for external",
+      "MED is advertised to external neighbors to influence how traffic enters your AS; Local Preference is kept internal to influence how traffic leaves your AS",
+      "MED is a distance metric; Local Preference is a cost metric",
+      "MED has a higher priority than Local Preference in routing decisions"
+    ],
+    "correctIndex": 1,
+    "explanation": "BGP uses attributes to choose paths. Local Pref is distributed inside the AS (highest wins, choosing exit paths). MED is sent to external ASs to suggest which of your gateways they should use (lowest wins, choosing entry paths).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the difference between Anycast routing and Multicast routing.",
+    "options": [
+      "Anycast is for IPv4; Multicast is for IPv6 only",
+      "Anycast routes traffic to the single nearest node out of a group of identical servers; Multicast sends traffic to a defined group of interested hosts simultaneously",
+      "Anycast sends packets to all servers globally; Multicast sends to one",
+      "Anycast is a physical connection; Multicast is a logical path"
+    ],
+    "correctIndex": 1,
+    "explanation": "Anycast routes to the closest node (typically used in global DNS or CDNs like Cloudflare). Multicast sends one stream to multiple endpoints (used in IPTV, routing updates).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does the TCP congestion control algorithm handle congestion window changes during 'Slow Start' versus 'Congestion Avoidance'?",
+    "options": [
+      "Slow Start decreases the window; Congestion Avoidance increases it",
+      "Slow Start doubles the congestion window size with every ACK received (exponential growth); Congestion Avoidance increases it by 1 MSS per RTT (linear growth) once the ssthresh threshold is met",
+      "Slow Start is for local networks; Congestion Avoidance is for WANs",
+      "They use identical calculation rates in modern kernels"
+    ],
+    "correctIndex": 1,
+    "explanation": "TCP limits inflight data. During Slow Start, it expands window exponentially. When the window reaches the slow start threshold (ssthresh), it switches to Congestion Avoidance, raising window size linearly to carefully probe bandwidth limits.",
+    "difficulty": "hard"
   }
 ]

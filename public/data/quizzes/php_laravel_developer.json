@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Cross-Site Scripting (XSS) occurs when an attacker injects malicious client-side scripts into web pages viewed by other users. Proper escaping of user input (e.g., using `htmlspecialchars` in raw PHP or Blade's `{{ $var }}` syntax) is crucial to prevent XSS.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is PHP?",
+    "options": [
+      "A database software standard",
+      "A popular open-source, server-side scripting language designed for web development",
+      "A styling language for building page layouts",
+      "A browser extension that runs client code"
+    ],
+    "correctIndex": 1,
+    "explanation": "PHP (Hypertext Preprocessor) executes on the server, generating HTML sent to the client.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Laravel?",
+    "options": [
+      "A package manager for compiling PHP",
+      "A popular open-source PHP web framework utilizing the MVC architectural pattern",
+      "A NoSQL database engine",
+      "A styling library for responsive design"
+    ],
+    "correctIndex": 1,
+    "explanation": "Laravel provides pre-built structures, routing, ORM, authentication, and migrations, simplifying PHP web application development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default package manager used in PHP to manage library dependencies?",
+    "options": [
+      "npm",
+      "Composer",
+      "pip",
+      "NuGet"
+    ],
+    "correctIndex": 1,
+    "explanation": "Composer is the standard package manager for PHP, managing libraries defined in `composer.json`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which template engine is built natively into the Laravel framework?",
+    "options": [
+      "Twig",
+      "Blade",
+      "Jade/Pug",
+      "EJS"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blade is Laravel's lightweight template engine, compiling views into plain PHP code and using `.blade.php` file extensions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Eloquent in the Laravel framework?",
+    "options": [
+      "A styling system for form validation",
+      "The object-relational mapper (ORM) providing an ActiveRecord implementation to interact with databases using models",
+      "A tool that compiles assets",
+      "A framework for writing unit tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Eloquent represents database tables as classes (models), allowing query commands (e.g. `User::all()`) without writing raw SQL.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which directory contains the route definitions in a standard Laravel project?",
+    "options": [
+      "app/routes/",
+      "routes/",
+      "config/routes/",
+      "resources/routes/"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `routes/` directory in the project root holds web routes (`web.php`), api routes (`api.php`), and console routes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What command-line tool is shipped with Laravel to run common management tasks and scaffold files?",
+    "options": [
+      "Composer",
+      "Artisan",
+      "npm",
+      "Gulp"
+    ],
+    "correctIndex": 1,
+    "explanation": "Artisan is the command-line interface for Laravel. Commands are run via `php artisan` (e.g. `php artisan migrate`).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What are database migrations in Laravel?",
+    "options": [
+      "Moving databases files between physical servers",
+      "Version control for databases, allowing teams to define, modify, and share database schemas in PHP code",
+      "Exporting tables to spreadsheet formats",
+      "Replicating tables to backup cloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Migrations act as blueprints. They allow developers to create, modify, and drop tables using PHP classes, syncable across team environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Laravel Middleware?",
+    "options": [
+      "To connect local network cards together",
+      "To inspect and filter incoming HTTP requests entering the application (e.g. verifying authentication or CSRF tokens)",
+      "To write database query commands",
+      "To format CSS layout sheets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Middleware intercepts requests. If a route requires authentication, the auth middleware checks user sessions, redirecting them to login if unauthenticated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Laravel prevent CSRF (Cross-Site Request Forgery) attacks on form submissions?",
+    "options": [
+      "By requiring captcha tests on all forms",
+      "By automatically verifying a unique CSRF token included in the request headers or form parameters via the @csrf directive",
+      "By encrypting the database table names",
+      "By disabling POST requests entirely"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `@csrf` Blade directive outputs a hidden input token. The VerifyCsrfToken middleware validates that this token matches the user session.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Laravel Eloquent 'Eager Loading' and why is it used?",
+    "options": [
+      "Loading database drivers immediately at boot",
+      "Querying relationship records (using the 'with' method) alongside parent models to solve the N+1 database query problem",
+      "Downloading files in the background",
+      "Caching database schemas on the server"
+    ],
+    "correctIndex": 1,
+    "explanation": "N+1 happens when loading 10 books, then running 10 separate queries to get their authors. Eager loading combines this into two queries: one for books, one for authors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which configuration file is used to store environment-specific settings (like database passwords) in Laravel?",
+    "options": [
+      "config/app.php",
+      ".env",
+      "composer.json",
+      "artisan.config"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `.env` file in the root directory holds environment variables, read by config files under the `config/` directory.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Tinker' shell in Laravel?",
+    "options": [
+      "A visual debugger tool",
+      "An interactive REPL (Read-Eval-Print Loop) allowing developers to execute arbitrary PHP code and interact with their database and Eloquent models directly in the console",
+      "A tool that compiles assets",
+      "A system tracking server speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "`php artisan tinker` opens a terminal console where you can query databases, test model events, or run commands dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the MVC architecture stand for in Laravel?",
+    "options": [
+      "Model-View-Controller",
+      "Middleware-Validation-Connection",
+      "Migration-Variable-Class",
+      "Model-Variable-Controller"
+    ],
+    "correctIndex": 0,
+    "explanation": "MVC separates concerns: Model manages database data/logic; View handles layout displays; Controller processes user inputs and coordinates models and views.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Laravel 'Seeders' and 'Factories' used for?",
+    "options": [
+      "To compile application assets",
+      "To populate databases tables with dummy or sample testing data automatically",
+      "To manage server deployment builds",
+      "To configure database indexing keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Factories define mock data templates (using Faker). Seeders execute these factories to fill databases with test records (e.g. 50 user records).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Laravel's 'hasOne' and 'belongsTo' Eloquent relations?",
+    "options": [
+      "hasOne is for SQL; belongsTo is for NoSQL",
+      "hasOne is declared on the parent model (which does not have the foreign key); belongsTo is declared on the child model (which holds the foreign key)",
+      "belongsTo is only for many-to-many relationships",
+      "They behave identically in database execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a User has a Profile, the profile table contains `user_id`. Thus, User uses `hasOne(Profile::class)` and Profile uses `belongsTo(User::class)`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Service Container' in Laravel?",
+    "options": [
+      "To run application containers like Docker",
+      "A tool for managing class dependencies and performing dependency injection dynamically",
+      "A database storage cache",
+      "A web server routing configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Service Container is the engine of Laravel. It registers bindings for interfaces, resolving class instances automatically when injected in constructors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Laravel handle queue operations?",
+    "options": [
+      "It runs background tasks in database loops synchronously",
+      "It offloads time-consuming tasks (like sending emails) to a background queue worker (database, Redis, SQS) to speed up web requests",
+      "It stores user routes in a queue list",
+      "Queues are not natively supported in Laravel"
+    ],
+    "correctIndex": 1,
+    "explanation": "Queues improve user experience. Tasks are serialized into a queue store, and background processes (`php artisan queue:work`) run them asynchronously.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Laravel 'validation' on request inputs, and how is it typically handled?",
+    "options": [
+      "To verify server credentials; handled by database files",
+      "To assert input requirements (required, email, unique) before processing data, often handled in controllers or custom FormRequest classes",
+      "To style error pages; handled by Blade templates",
+      "To compress request sizes; handled by middleware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Validation ensures data integrity. If rules fail, Laravel automatically redirects back with error messages (or returns JSON for API requests).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Laravel Horizon?",
+    "options": [
+      "A hosting server provider",
+      "A beautiful dashboard and configuration system for Redis-powered Laravel queues",
+      "A compilation tool for asset files",
+      "A code linter plugin"
+    ],
+    "correctIndex": 1,
+    "explanation": "Horizon provides real-time monitoring of Redis queue metrics: wait times, throughput, job failures, and worker allocations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Laravel's Service Provider class bootstrap the application, and what is the difference between the 'register' and 'boot' methods?",
+    "options": [
+      "Register is for databases; boot is for CSS assets",
+      "Register binds dependencies into the Service Container; boot executes code after all bindings are resolved, allowing access to services and event listeners",
+      "Boot runs on local environments; register runs in production",
+      "They are duplicate methods executing at identical times"
+    ],
+    "correctIndex": 1,
+    "explanation": "In `register`, you only configure bindings. Do not call other services here, as they might not be registered yet. In `boot`, all container bindings are resolved, making it safe to register route macros, event listeners, or view composers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Laravel Eloquent handles database transaction rollbacks when wrapping queries.",
+    "options": [
+      "By saving backup SQL files to disk",
+      "By using the 'DB::transaction' closure or manually calling 'DB::beginTransaction' and 'DB::rollBack' when catching exceptions, reversing changes on failure",
+      "Laravel rollbacks database changes automatically on any page reload",
+      "Rollbacks are managed by database server engines, not Laravel code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transactions ensure data consistency. Wrapping queries in a try-catch, calling `DB::rollBack()` on exception, and `DB::commit()` on success guarantees either all updates apply or none do (atomicity).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the 'signed routes' feature in Laravel, and how does it prevent tampering?",
+    "options": [
+      "It encrypts URL paths completely",
+      "It appends a cryptographic hash signature to URL paths, letting Laravel verify the URL has not been modified since creation (e.g. for email unsubscribes)",
+      "It requires users to write digital signatures in browser forms",
+      "It blocks route access to selected browser devices"
+    ],
+    "correctIndex": 1,
+    "explanation": "Signed URLs (using `URL::signedRoute`) append a signature hash computed using the application key. If a user tries to alter parameters (e.g. changing `user_id=1` to `user_id=2`), the hash verification fails.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does Laravel Octane accelerate application execution speeds?",
+    "options": [
+      "By compiling PHP files to machine binaries",
+      "By booting the application once in memory using high-performance application servers (Swoole or RoadRunner) and keeping it alive to handle subsequent requests, bypassing the bootstrap overhead",
+      "By hosting databases in GPU memory stores",
+      "By disabling all middleware and database models"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard PHP bootstraps the framework from scratch on every request (slow). Octane boots Laravel once (creating container and bindings in memory) and handles requests via workers, speeding up responses.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between Laravel's API token authentication systems: Sanctum versus Passport?",
+    "options": [
+      "Sanctum is for desktop; Passport is for mobile applications",
+      "Sanctum provides a lightweight token authentication system for SPAs, mobile apps, and simple APIs; Passport is a full OAuth2 server implementation, suitable for third-party client integrations",
+      "Passport is written in Python; Sanctum in PHP",
+      "Sanctum does not support cookie authentication"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sanctum is simple, using cookies for SPAs and basic tokens for mobile. Passport is complex, supporting full OAuth2 flows (authorization codes, client credentials), required when external services authenticate against your API.",
+    "difficulty": "hard"
   }
 ]

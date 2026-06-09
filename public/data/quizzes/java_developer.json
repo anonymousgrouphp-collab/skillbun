@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Maven profiles (<profiles> section in pom.xml) are designed to allow you to customize a build for different environments. You can define properties within profiles that override default settings or include/exclude specific resources, which can then be activated during the build (e.g., mvn clean install -Pproduction). While environment variables are also good for externalization, Maven profiles specifically manage build-time variations.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is Java?",
+    "options": [
+      "A database engine developed by Oracle",
+      "A high-level, class-based, object-oriented programming language designed to have as few implementation dependencies as possible (Write Once, Run Anywhere)",
+      "A browser extension for testing APIs",
+      "A styling stylesheet framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "Java compiles to bytecode that runs on any platform hosting a Java Virtual Machine (JVM), making it highly portable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which component is responsible for executing Java bytecode on the user's machine?",
+    "options": [
+      "JDK",
+      "JVM",
+      "JRE",
+      "IDE"
+    ],
+    "correctIndex": 1,
+    "explanation": "The JVM (Java Virtual Machine) is the runtime engine that loads, verifies, and executes compiled Java bytecode.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which programming paradigm is Java primarily based on?",
+    "options": [
+      "Functional Programming",
+      "Object-Oriented Programming (OOP)",
+      "Procedural Programming",
+      "Logical Programming"
+    ],
+    "correctIndex": 1,
+    "explanation": "Java is a class-based OOP language. Except for primitive types, everything in Java behaves as an object.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between JRE and JDK?",
+    "options": [
+      "JRE is for Windows; JDK is for Linux",
+      "JRE is the runtime environment to run Java applications; JDK is the development kit containing JRE plus compilers and debuggers to build them",
+      "JDK is free; JRE requires corporate licenses",
+      "They are identical Java components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Users only need the JRE (Java Runtime Environment) to run apps. Developers need the JDK (Java Development Kit) to compile Java code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which keyword is used to inherit a class in Java?",
+    "options": [
+      "implements",
+      "extends",
+      "inherits",
+      "import"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `extends` keyword is used in class declarations to establish subclass inheritance from a parent class.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'garbage collector' in Java?",
+    "options": [
+      "To delete unused files in the project directory",
+      "An automatic memory management system that reclaims heap memory occupied by unreachable objects",
+      "To format code styling automatically",
+      "A script that clears database log files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Developers do not manually free memory in Java. The Garbage Collector runs in the background, identifying objects that lack active references and reclaiming their heap space.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'NullPointerException' (NPE) in Java?",
+    "options": [
+      "A syntax compiler error",
+      "A runtime error occurring when an application attempts to use null where an object reference is required",
+      "A database connection leak",
+      "A network routing timeout"
+    ],
+    "correctIndex": 1,
+    "explanation": "NPEs happen when you attempt to invoke methods or read fields on an object variable that currently holds a `null` reference.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between `String`, `StringBuilder`, and `StringBuffer` in Java?",
+    "options": [
+      "String is only for numbers; others for text",
+      "String is immutable; StringBuilder is mutable and non-thread-safe (fast); StringBuffer is mutable and synchronized (thread-safe, slower)",
+      "StringBuilder is always allocated on the stack",
+      "They behave identically in memory compile"
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifying a `String` creates new objects in memory. For heavy string manipulation, `StringBuilder` is preferred. If multiple threads access the builder, `StringBuffer` provides safe synchronization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between abstract classes and interfaces in Java?",
+    "options": [
+      "Abstract classes are for databases; interfaces for UIs",
+      "Abstract classes can have state (member variables) and constructors; Interfaces define behavior contracts (interfaces support multiple inheritance, while classes only extend one abstract class)",
+      "Interfaces cannot have default method implementations in modern Java",
+      "Abstract classes do not support OOP inheritance"
+    ],
+    "correctIndex": 1,
+    "explanation": "Subclasses can only extend one class (abstract or concrete). However, a class can implement multiple interfaces, allowing flexible behavior composition.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Java Collections Framework (JCF) and what are its core interfaces?",
+    "options": [
+      "A framework for organizing files on disk",
+      "A unified architecture for representing and manipulating collections (List, Set, Map, Queue)",
+      "A compiler utility that formats code",
+      "A security standard for user access keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "JCF provides standard data structures (ArrayList, HashSet, HashMap) that optimize data storage and manipulation operations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Method Overloading' vs 'Method Overriding' in Java?",
+    "options": [
+      "Overloading is for values; Overriding is for types",
+      "Overloading defines methods with identical names but different parameter signatures in a class; Overriding redefines a base class method in a subclass",
+      "Overloading happens at runtime; Overriding at compile-time",
+      "They are identical polymorphism techniques"
+    ],
+    "correctIndex": 1,
+    "explanation": "Overloading is compile-time polymorphism (signature matching). Overriding is runtime polymorphism (dynamic binding based on object type).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the `final` keyword do when applied to a variable, method, and class in Java?",
+    "options": [
+      "Final variables are deleted; final methods cannot return; final classes cannot be loaded",
+      "Final variable values cannot be changed; final methods cannot be overridden; final classes cannot be subclassed (inherited)",
+      "Final makes the code run faster on servers",
+      "Final forces the compiler to allocate memory on the stack"
+    ],
+    "correctIndex": 1,
+    "explanation": "`final` prevents modification. A final class (like `String`) blocks inheritance to prevent security overrides.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between checked and unchecked exceptions in Java?",
+    "options": [
+      "Checked exceptions are checked by database engines",
+      "Checked exceptions are checked at compile-time (forces try-catch or throws); Unchecked exceptions (RuntimeExceptions) are checked at runtime only",
+      "Unchecked exceptions are fatal and cannot be caught",
+      "Checked exceptions are only for file I/O operations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Checked exceptions (e.g. `IOException`) represent anticipated failures outside app control. Unchecked exceptions (e.g. `NullPointerException`) represent programming bugs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the `static` keyword in Java?",
+    "options": [
+      "To declare that a variable does not use memory",
+      "To declare members (variables/methods) that belong to the class itself rather than to instances of the class",
+      "To prevent a class from being compiled",
+      "To load dynamic libraries at runtime"
+    ],
+    "correctIndex": 1,
+    "explanation": "Static members are shared. A static method (like `Math.sqrt()`) can be called directly without instantiating the class.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between `equals()` and `==` in Java?",
+    "options": [
+      "equals() is for numbers; == is for objects",
+      "== compares memory references (addresses); equals() compares the actual values/content inside objects",
+      "equals() is a syntax error in modern Java",
+      "== is slower than equals()"
+    ],
+    "correctIndex": 1,
+    "explanation": "Comparing objects (like two Strings) with `==` checks if they are the exact same memory instance. Using `.equals()` checks if the character strings match.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Generics' in Java and why is it useful?",
+    "options": [
+      "A framework for writing general code without structures",
+      "A feature allowing types (classes/methods) to be parameterized, providing compile-time type safety for collections and eliminating runtime casts",
+      "A styling template for dashboard interfaces",
+      "A compiler flag that optimizes file size"
+    ],
+    "correctIndex": 1,
+    "explanation": "Generics (e.g. `List<String>`) ensure you can't insert integers into a string list, catching type errors during compilation rather than crashing at runtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the JVM 'Garbage Collection' generational hypothesis?",
+    "options": [
+      "Old objects are collected faster than young ones",
+      "The observation that most objects die young; memory is split into Young Generation (Eden, Survivor) and Old Generation to optimize GC sweep speeds",
+      "That garbage collection should be scheduled on weekends",
+      "All classes must have destructors to free memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since new objects are transient, the JVM sweeps the Young Gen frequently (Minor GC), which is fast. Surviving objects migrate to the Old Gen, swept less often (Major GC).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Spring Boot in the Java ecosystem?",
+    "options": [
+      "To design website animations",
+      "A popular framework that simplifies Java enterprise application development by providing auto-configuration, starter packages, and embedded servers",
+      "A database engine software",
+      "A deployment scripting utility"
+    ],
+    "correctIndex": 1,
+    "explanation": "Spring Boot eliminates complex XML boilerplate, pre-configuring tomcat servers and database beans to let developers run enterprise APIs instantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Maven or Gradle file manage in Java projects?",
+    "options": [
+      "The project's billing budget",
+      "Build automation, packaging, and third-party library dependencies (downloading jars from Maven Central)",
+      "The layout coordinates of dashboards",
+      "The network ports of hosting servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Maven (`pom.xml`) and Gradle (`build.gradle`) define dependency trees, downloading and building jar outputs automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Java Lambda expressions (introduced in Java 8)?",
+    "options": [
+      "To write mathematical equations in comments",
+      "To provide a clear and concise way to represent functional interfaces using expressions, supporting functional programming patterns",
+      "To encrypt string variables",
+      "To compile code faster on multicore CPUs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lambdas (e.g. `list.forEach(x -> System.out.println(x))`) enable functional idioms, allowing behavior to be passed as arguments to methods.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'JDK-level compilation' and 'JIT compilation' in the JVM execution lifecycle?",
+    "options": [
+      "JDK compilation is for numbers; JIT for text",
+      "JDK compiler (`javac`) translates Java source code to intermediate bytecode (.class files) statically; JIT compiler compiles bytecode to native machine code dynamically at runtime based on execution hot-spots",
+      "JIT compilation is done before JDK compilation",
+      "JIT is manual; JDK is automated"
+    ],
+    "correctIndex": 1,
+    "explanation": "`javac` compiles code statically. At runtime, the JVM interprets bytecode. If a method is executed frequently ('hotspot'), the JIT (Just-In-Time) compiler compiles it to native CPU machine code, optimizing execution speeds.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Memory Leak' in a Java application and how does it happen if garbage collection is automatic?",
+    "options": [
+      "Data leaking to database logs; happens via bad firewalls",
+      "Objects remaining reachable in the reference tree (e.g., static maps or unclosed streams) despite no longer being needed, preventing the GC from reclaiming them",
+      "A compiler bug that deletes class files",
+      "RAM running out of sectors on local hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "GC only collects unreachable objects. If an object is still referenced by a active root (like a static collection or unclosed thread), it remains on the heap, leaking memory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the Java Memory Model (JMM) 'happens-before' relationship, and what does the `volatile` keyword guarantee?",
+    "options": [
+      "A rule ordering database queries; volatile guarantees query speeds",
+      "A set of rules defining memory visibility in multithreading; `volatile` guarantees that writes to a variable are immediately visible to all other threads, preventing local CPU caching",
+      "A garbage collection order; volatile guarantees fast sweeps",
+      "A synchronization lock; volatile guarantees no deadlocks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Without `volatile`, threads might read cached values of variables in CPU registers. `volatile` forces reads/writes directly to main memory, establishing visibility boundaries in multithreaded apps.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between 'Synchronization' and lock-free concurrency (e.g. AtomicInteger) in Java multi-threaded applications?",
+    "options": [
+      "Synchronization is only for files; lock-free is for databases",
+      "Synchronization uses thread-blocking monitor locks (reentrant locks); Lock-free concurrency uses CPU-level Compare-And-Swap (CAS) instructions to update values without blocking threads",
+      "Lock-free concurrency is always slower than synchronization",
+      "Synchronization does not support integer variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Synchronization blocks threads (thread switching overhead). Atomic classes use low-level CPU loops (CAS) to verify and swap values. If mismatch occurs, the thread retries instantly without entering blocked states.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Java Reflection' API and what are its main drawbacks?",
+    "options": [
+      "To mirror databases across regions; drawback is synchronization latency",
+      "An API allowing inspection and modification of classes, fields, and methods at runtime; drawbacks are performance overhead (bypassing JIT optimization) and security risks",
+      "To style application layouts; drawback is browser compatibility",
+      "A testing framework; drawback is slow test runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reflection allows dynamic code operations (like instantiating classes by name). Since checks occur at runtime and JIT optimization is bypassed, it is slow and can bypass private access modifiers, risking security.",
+    "difficulty": "hard"
   }
 ]

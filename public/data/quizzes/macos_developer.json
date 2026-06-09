@@ -298,5 +298,305 @@
     "correctIndex": 3,
     "explanation": "In AppKit, `intrinsicContentSize` is key for custom `NSView` subclasses to tell auto layout their natural size. In SwiftUI, various sizing modifiers (like `fixedSize`, `frame`, `aspectRatio`) serve a similar purpose, enabling views to declare their preferred dimensions to layout containers. `frame` and `bounds` define actual size, `translatesAutoresizingMaskIntoConstraints` relates to constraint generation.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "Which IDE is the official tool provided by Apple for macOS and iOS application development?",
+    "options": [
+      "Android Studio",
+      "Xcode",
+      "Visual Studio",
+      "CLion"
+    ],
+    "correctIndex": 1,
+    "explanation": "Xcode is Apple's proprietary integrated development environment used to build apps for macOS, iOS, watchOS, and tvOS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary modern programming language recommended by Apple for macOS development?",
+    "options": [
+      "C#",
+      "Swift",
+      "Java",
+      "Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "Swift is Apple's modern, safe, and fast compiled language launched in 2014 to replace Objective-C.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which framework is Apple's modern declarative UI framework for building user interfaces across all Apple platforms?",
+    "options": [
+      "AppKit",
+      "SwiftUI",
+      "UIKit",
+      "Cocoa Touch"
+    ],
+    "correctIndex": 1,
+    "explanation": "SwiftUI is the modern declarative framework introduced in 2019. AppKit is the legacy imperative framework specifically for macOS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What package manager is widely used by macOS developers to install command-line tools and applications?",
+    "options": [
+      "npm",
+      "Homebrew",
+      "apt",
+      "pip"
+    ],
+    "correctIndex": 1,
+    "explanation": "Homebrew ('the missing package manager for macOS') is the standard community tool for installing command-line utilities and GUI apps.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What file extension is used for compiled, installable macOS application bundles?",
+    "options": [
+      ".exe",
+      ".dmg",
+      ".app",
+      ".pkg"
+    ],
+    "correctIndex": 2,
+    "explanation": "`.app` folders are directory bundles containing the application binary and resource files, represented as a single executable icon.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the name of Apple's developer program platform used to distribute apps on the Mac App Store?",
+    "options": [
+      "Apple Developer Connection",
+      "App Store Connect",
+      "TestFlight",
+      "Mac Developer Hub"
+    ],
+    "correctIndex": 1,
+    "explanation": "App Store Connect is the web portal used to manage agreements, upload builds, set up app metadata, and submit to the App Store.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default command-line shell used in macOS Terminal starting from macOS Catalina?",
+    "options": [
+      "bash",
+      "zsh",
+      "fish",
+      "tcsh"
+    ],
+    "correctIndex": 1,
+    "explanation": "macOS switched its default shell from Bash to Zsh (Z shell) in 2019 due to licensing changes in newer Bash versions (GPLv3).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is AppKit in macOS development, and how does it differ from UIKit?",
+    "options": [
+      "AppKit is for mobile screens; UIKit is for desktop screens",
+      "AppKit is the legacy application framework specifically for macOS desktop; UIKit is the framework designed for iOS/iPadOS mobile apps",
+      "AppKit is written in Java; UIKit is in Swift",
+      "There is no difference; they are identical frameworks"
+    ],
+    "correctIndex": 1,
+    "explanation": "AppKit manages windows, menus, events, and desktop widgets (like status items). UIKit manages touch-based mobile UI controls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Apple's Gatekeeper security technology on macOS?",
+    "options": [
+      "To encrypt user hard drives automatically",
+      "To verify that downloaded apps are signed by identified developers and notarized by Apple before letting users open them",
+      "To block incoming network connections like a firewall",
+      "To manage user account logins and passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gatekeeper validates the code signatures and notarization status of applications downloaded from outside the Mac App Store to protect users from malware.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of Cocoa in the macOS developer ecosystem?",
+    "options": [
+      "A database engine standard",
+      "Apple's native object-oriented API framework stack (consisting of Foundation and AppKit) for macOS",
+      "A package manager for Swift libraries",
+      "A tool that converts iOS apps to Android format"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cocoa refers to the suite of frameworks (Foundation, AppKit, Core Data) used to develop native software on macOS. The iOS equivalent is Cocoa Touch.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Core Data in Apple frameworks?",
+    "options": [
+      "To query external database servers via SQL",
+      "An object-graph and persistence framework provided by Apple to manage local model layer objects",
+      "To accelerate graphics rendering calculations",
+      "To configure network routing sockets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Core Data is not a database itself but an object-oriented mapper that can persist data locally, typically using SQLite as its backend database store.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is GCD (Grand Central Dispatch) in Swift/Objective-C programming?",
+    "options": [
+      "A tool for coordinating global developers",
+      "Apple's technology for managing concurrent operations and dispatching tasks to system CPU queues",
+      "A graphics accelerator API",
+      "An installer packing framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCD (libdispatch) manages system-level concurrent tasks. It abstracts thread management, executing closures on serial or concurrent dispatch queues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does App Notarization involve for macOS applications?",
+    "options": [
+      "Getting a legal stamp from a public notary",
+      "Uploading the compiled application to Apple's automated malware scan service to receive a ticket certifying it safe",
+      "Verifying the application's developer is an active Apple member",
+      "Publishing the code open-source on GitHub"
+    ],
+    "correctIndex": 1,
+    "explanation": "Notarization scans signed apps for security issues. The output is a ticket attached to the binary, which Gatekeeper verifies when users open the app offline.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Property List (plist) file in macOS?",
+    "options": [
+      "A file listing physical attributes of computers",
+      "An XML-structured file used to store serialization key-value settings and application configurations (e.g. Info.plist)",
+      "A database indexing table",
+      "A stylesheet setting graphic styles"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Info.plist` defines metadata like app name, bundle identifier, version, permissions, and document associations in every macOS app bundle.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between macOS Catalyst and Mac Catalyst?",
+    "options": [
+      "They are the same thing: Apple's technology allowing developers to bring their iPadOS applications to macOS",
+      "Catalyst is a database tool; Mac Catalyst is a GUI design tool",
+      "Catalyst is for Intel Macs; Mac Catalyst is for Apple Silicon Macs",
+      "One is written in C++; the other is in Objective-C"
+    ],
+    "correctIndex": 0,
+    "explanation": "Mac Catalyst enables sharing code between iPad and Mac apps, letting developers run UIKit iPad apps as native macOS apps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does sandboxing restrict for a macOS application?",
+    "options": [
+      "Limiting the application to run only on laptops",
+      "Restricting the app's access to files, network, camera, and microphones, allowing access only through explicitly declared entitlements",
+      "Making the application free on the App Store",
+      "Preventing the application from using memory swaps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sandboxing is required for App Store submission. It limits apps to a container, requiring entitlements (like file dialog access) to touch system resources.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'XPC' service architecture on macOS?",
+    "options": [
+      "An encryption module for remote networks",
+      "A mechanism for inter-process communication that allows developers to split apps into multiple helper tools running in separate helper sandboxes",
+      "A tool that compiles code into binary formats",
+      "A framework for managing file sync on iCloud"
+    ],
+    "correctIndex": 1,
+    "explanation": "XPC allows running subprocesses safely. For example, a web browser might run its renderer in an XPC service so that a crash there doesn't take down the main window.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of Apple Silicon (M1/M2/M3 chips) architecture compatibility in macOS development?",
+    "options": [
+      "It forces all applications to be hosted in the cloud",
+      "It requires compiling apps to ARM64 architecture natively or running Intel (x86_64) binaries via Rosetta 2 translation",
+      "It disables all command-line operations",
+      "It replaces the need for Xcode compilers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Apple Silicon uses ARM64 architecture. Universal binaries compile for both x86_64 and ARM64 so apps run natively on both Intel and Apple Silicon Macs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Apple technology is used for low-level, high-performance graphics rendering on macOS, replacing OpenGL?",
+    "options": [
+      "SwiftUI",
+      "Metal",
+      "CoreGraphics",
+      "Quartz"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metal is Apple's proprietary graphics API, providing low-overhead access to the GPU for games, vector rendering, and ML processing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Bundle Identifier' in macOS apps?",
+    "options": [
+      "A identifier tracking packaging sizes",
+      "A unique reverse-DNS formatted string (e.g. com.company.app) that identifies the application across the operating system",
+      "A password used to encrypt app folders",
+      "A file listing code dependencies"
+    ],
+    "correctIndex": 1,
+    "explanation": "The bundle ID must be unique. The OS uses it to track settings, sync credentials in Keychain, and route notifications to the specific app.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do Autorelease Pools ('autoreleasepool') work in Swift/Objective-C, and when must a developer manually declare one?",
+    "options": [
+      "They automate database garbage collection; required in database backups",
+      "They defer object release calls until the pool context exits; manually declared in loops that allocate massive numbers of temporary object instances to prevent memory spikes",
+      "They cache network sockets; required in remote apps",
+      "They handle UI view updates in main threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Under ARC (Automatic Reference Counting), autoreleasepool tracks temporary objects. Manually defining `autoreleasepool { ... }` inside a tight loop forces the system to deallocate objects immediately at the end of each iteration instead of waiting for the thread's main runloop to cycle, avoiding memory starvation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Apple's security model, what is the difference between 'Entitlements' and 'App Sandboxing', and how does provisioning profiles tie them together?",
+    "options": [
+      "Entitlements are user permissions; Sandboxing is file encryption",
+      "Sandboxing limits app access; Entitlements are key-value pairs granting specific exceptions (e.g. camera access). Provisioning profiles are cryptographic proofs signed by Apple authorizing those entitlements for the app",
+      "Provisioning profiles are only for beta testers",
+      "They are identical terms managed under different configurations in App Store Connect"
+    ],
+    "correctIndex": 1,
+    "explanation": "Entitlements grant capabilities (like iCloud or network servers). When building, Xcode bundles these into the binary. A provisioning profile validates that the developer certificate and device IDs match these entitlements, satisfying macOS kernel checks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the 'Mach ports' kernel abstraction on macOS, and how is it used in low-level system development?",
+    "options": [
+      "They configure physical computer ports like USB-C",
+      "They are the core IPC mechanism in the Darwin kernel, providing message-based communication channels between tasks with capability-based security",
+      "They schedule cron background tasks",
+      "They are network sockets for HTTP traffic"
+    ],
+    "correctIndex": 1,
+    "explanation": "macOS's XNU kernel is based on Mach. Mach ports manage messages between tasks. High-level abstractions like Core Foundation sockets and NSConnection are built on top of Mach ports.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does Swift's 'actors' model protect against data races in concurrent macOS applications?",
+    "options": [
+      "By compiling code to single-threaded processes",
+      "By enforcing mutually exclusive access to their mutable state, ensuring only one task can execute on the actor at a time with compiler-enforced await points",
+      "By encrypting memory blocks in CPU cache",
+      "By disabling background thread queues entirely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Actors are reference types that isolate their state. The compiler ensures that any calls to an actor's properties or methods from outside must use the `await` keyword, serializing access to prevent race conditions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In macOS development, what is a 'Daemon' versus an 'Agent' (in launchd contexts), and how are they installed?",
+    "options": [
+      "Daemons are for iOS; Agents are for macOS",
+      "Daemons run system-wide in root space; Agents run in user space on behalf of a logged-in user. Daemons are in /Library/LaunchDaemons, Agents in /Library/LaunchAgents",
+      "Agents have UI interfaces; Daemons are background only",
+      "Daemons are created in Swift; Agents in Bash scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "launchd manages startup. Daemons run without user interaction (e.g., system logging, web servers). Agents launch when a user logs in, interacting with the graphical session (e.g., status bar controllers).",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "A canary release involves gradually rolling out a new version of the system to a small percentage of users, monitoring its performance, and then progressively increasing the rollout if it's stable. This minimizes the blast radius of potential issues.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary goal of a Recommendation Systems Engineer?",
+    "options": [
+      "To write database query search code",
+      "To design and implement algorithms that predict user preferences and recommend relevant items to users",
+      "To design page layout templates in web editors",
+      "To run backup scripts on server nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Recommendation engineers build systems (collaborative filtering, content-based, deep learning) that suggest items (movies, products) users are likely to engage with.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Collaborative Filtering and Content-Based Filtering?",
+    "options": [
+      "Collaborative is for cloud; Content-Based is for local systems",
+      "Collaborative filtering recommends items based on similar users' behaviors; Content-Based filtering recommends items similar to those the user liked before, based on item attributes",
+      "Content-Based filtering is always more accurate than Collaborative",
+      "They are duplicate terms for search algorithms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Collaborative: 'Users who bought X also bought Y' (relies on user interaction matrices). Content-Based: 'Because you liked movie X (genre: Action), you might like movie Y (genre: Action)' (relies on item metadata).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the 'Cold Start' problem refer to in recommendation systems?",
+    "options": [
+      "The server booting slowly in winter temperatures",
+      "The difficulty in recommending items when new users or new items enter the system with zero interaction history",
+      "The database indexing queries failing on startup",
+      "A system crash due to empty cache stores"
+    ],
+    "correctIndex": 1,
+    "explanation": "Without interactions, collaborative filtering fails. Mitigations include asking new users for preferences during onboarding or recommending popular items initially.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Matrix Factorization in recommendation systems?",
+    "options": [
+      "Formatting database tables into matrices",
+      "Decomposing the sparse user-item interaction matrix into lower-dimensional matrices representing latent user and item features",
+      "A encryption process that secures user data",
+      "A search algorithm finding database duplicates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Matrix factorization (SVD/ALS) maps users and items to a shared latent space (e.g. 50 dimensions), predicting rating values by taking the dot product of user and item vectors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Sparsity' mean in the context of user-item interaction matrices?",
+    "options": [
+      "The database size being too small",
+      "The fact that users interact with only a tiny fraction of the total available items, leaving most matrix cells empty",
+      "The database server running out of memory cache",
+      "The search results being inaccurate"
+    ],
+    "correctIndex": 1,
+    "explanation": "In large catalogs (e.g., Amazon), a user rates 10-20 items out of millions, meaning the interaction matrix is >99.9% empty, posing scaling challenges.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Content-Based Filtering, and what is a primary item vector used in it?",
+    "options": [
+      "Recommending items based on user age; uses demographic vectors",
+      "Recommending items based on their features (e.g. text similarity, tags); uses TF-IDF or text embeddings as item vectors",
+      "Recommending items based on purchase prices; uses cost vectors",
+      "Recommending items based on review ratings; uses score vectors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Content-Based profiles items. If a document profile matches a user profile (calculated using TF-IDF keywords or dense neural text embeddings), it is recommended.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between explicit feedback and implicit feedback?",
+    "options": [
+      "Explicit feedback is for cloud databases; implicit is for local",
+      "Explicit feedback is direct input from users (e.g., star ratings, thumbs up); implicit feedback is inferred from user behavior (e.g., clicks, watch time, purchases)",
+      "Explicit feedback is much easier to collect than implicit",
+      "Implicit feedback is more accurate than explicit"
+    ],
+    "correctIndex": 1,
+    "explanation": "Explicit feedback is rich but rare (few users rate movies). Implicit feedback is noisy but abundant (clicks, view duration), requiring conversion to preference scores.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Alternating Least Squares (ALS) algorithm in collaborative filtering?",
+    "options": [
+      "A sorting method used to display menu items",
+      "An optimization algorithm used for matrix factorization, alternating between fixing user profiles and item profiles to solve least-squares equations, suited for implicit datasets",
+      "An API routing protocol",
+      "A tool that cleans database tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "ALS factorizes large matrices. By updating user vectors while keeping item vectors fixed, and vice versa, the optimization steps can be run in parallel.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'Filter Bubble' phenomenon in recommendations?",
+    "options": [
+      "A visual UI element highlighting items",
+      "A state of isolation where recommendations reinforce a user's existing beliefs or preferences, limiting exposure to diverse content",
+      "A database cache memory allocation limit",
+      "A routing block protecting user privacy"
+    ],
+    "correctIndex": 1,
+    "explanation": "If systems only suggest content users clicked in the past, users get stuck in bubbles. Mitigations include injecting diversity or exploration metrics into algorithms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Precision@K and Recall@K in evaluation?",
+    "options": [
+      "Precision is for movies; Recall is for products",
+      "Precision@K measures the proportion of recommended items in top K that are relevant; Recall@K measures the proportion of all relevant items captured in top K",
+      "Recall@K is always higher than Precision@K",
+      "They are duplicate metrics in recommendation analytics"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a user likes 10 items, and you suggest 5 items where 4 are liked: Precision@5 is 80% (4/5). Recall@5 is 40% (4/10).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Two-Tower' neural network architecture (Query/User Tower and Candidate/Item Tower)?",
+    "options": [
+      "To host databases on two separate physical server towers",
+      "To learn separate embedding representations for users and items, allowing fast similarity calculations (dot product) at scale during retrieval",
+      "To run model pipelines on CPU and GPU towers",
+      "To encrypt user profiles for security compliance"
+    ],
+    "correctIndex": 1,
+    "explanation": "Two-Tower architectures scale retrieval. The User Tower computes user state embeddings, and the Item Tower computes item embeddings, enabling fast cosine lookups (e.g. via HNSW) at runtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'retrieval' (candidate generation) stage versus the 'ranking' stage in a two-stage recommendation pipeline?",
+    "options": [
+      "Retrieval is manual; ranking is automated",
+      "Retrieval filters millions of items down to hundreds of candidates quickly; Ranking uses complex models to score and order these candidates for the final UI display",
+      "Ranking is faster and handles more items than retrieval",
+      "They are identical stages in model pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "Evaluating millions of items with a complex model is too slow. Two-stage systems use cheap vector searches to retrieve 100-200 items (retrieval), then score them with deep models (ranking).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does NDG (Normalized Discounted Cumulative Gain) measure in rankings?",
+    "options": [
+      "The count of items purchased by users",
+      "The quality of a ranked list of recommendations, taking into account the position of relevant items (relevant items placed higher score better)",
+      "The latency of search query calculations",
+      "The storage footprint of item indexes"
+    ],
+    "correctIndex": 1,
+    "explanation": "NDCG discounts items placed low on lists, penalizing systems if highly relevant items are placed at position 10 instead of position 1.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Serendipity' in recommendation metrics?",
+    "options": [
+      "To increase model training speeds",
+      "To recommend items that are both unexpected (surprising to the user) and highly relevant, improving long-term engagement",
+      "To calculate database storage limits",
+      "To check spelling errors in item tags"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serendipity avoids recommending obvious items (e.g. if you buy Harry Potter 1, recommending Harry Potter 2 is accurate but expected). Serendipity suggests unexpected gems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do graph neural networks (GNNs) model recommendation data?",
+    "options": [
+      "By converting user tables to images",
+      "By representing users and items as nodes in a bipartite graph, learning embeddings by propagating information across interaction edges",
+      "By running database queries on network ports",
+      "By encrypting user profiles in network trees"
+    ],
+    "correctIndex": 1,
+    "explanation": "GNNs (like PinSage or LightGCN) capture high-order relationships. If User A buys Item 1, and User B also buys Item 1 and Item 2, the GNN embeds this connectivity context.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Exploration vs. Exploitation' trade-off mean in recommendation algorithms?",
+    "options": [
+      "Exploration is for mobile; Exploitation is for web",
+      "Exploitation recommends items based on known user preferences; Exploration recommends new, diverse, or random items to gather preferences and learn",
+      "Exploration is always preferred over exploitation",
+      "They are database search commands"
+    ],
+    "correctIndex": 1,
+    "explanation": "Exploiting maximizes short-term clicks. Exploring gathers info. If a system only exploits, it misses changes in user interests or fails to learn about new items.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which metric evaluates the percentage of items in the catalog that are recommended to at least one user?",
+    "options": [
+      "Recall",
+      "Catalog Coverage",
+      "Precision",
+      "NDCG"
+    ],
+    "correctIndex": 1,
+    "explanation": "Catalog Coverage checks diversity. If a system has a million items but suggests only 1,000 popular ones, coverage is 0.1%, indicating a long-tail discovery issue.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of context-aware recommendation systems (CARS)?",
+    "options": [
+      "To check context sizes in prompts",
+      "To incorporate contextual metadata (such as time of day, device type, location, or current weather) into the prediction model",
+      "To translate item descriptions dynamically",
+      "To schedule database backup downloads"
+    ],
+    "correctIndex": 1,
+    "explanation": "CARS understand that user preference varies. A user wants fast food at lunch on mobile (context), but a fancy dinner reservation on desktop on weekends.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Content-Based' user profile represent?",
+    "options": [
+      "A list of user demographic attributes",
+      "An aggregation of the feature vectors of the items the user has interacted with, representing their interests in a vector format",
+      "A database login record",
+      "A history of user payment transactions"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a user reads 5 sports articles (sports vector = [1,0]) and 1 business article ([0,1]), their profile vector is weighted towards sports ([0.8, 0.2]).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the 'popular items' baseline in recommendation benchmarks?",
+    "options": [
+      "To encrypt catalog files",
+      "A simple baseline recommending the most frequently clicked/purchased items, used to verify if complex models offer real improvements",
+      "To host item listings on server databases",
+      "To scale search queries dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Popularity is a strong baseline. If a complex deep learning model performs worse than or equal to a simple popularity sort, the model is not worth deploying.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the 'Wide & Deep' learning model (Cheng et al., 2016) combine memorization and generalization in recommendations?",
+    "options": [
+      "Wide is for images; Deep is for text data",
+      "Wide component is a linear model memorizing historical feature co-occurrences; Deep component is a feed-forward neural network generalizing to unseen feature combinations",
+      "Wide component runs on CPU; Deep on GPU units",
+      "They are sequential training steps in neural pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "memorization ('Wide') learns specific rules (e.g. 'User liked item A and B'). Generalization ('Deep') learns abstract relationships via embeddings, suggesting items that are similar but not directly linked in history.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In session-based recommendation systems, explain how GRU4Rec utilizes Recurrent Neural Networks to model user actions.",
+    "options": [
+      "By compiling session logs into database queries",
+      "By taking the sequence of user interactions within an active session as input, updating a hidden GRU state to predict the next item click in real-time",
+      "By tracking user scroll events via JavaScript",
+      "By caching session files in CDN memory layers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard collaborative filtering assumes static profiles. Session-based systems (like GRU4Rec) look at immediate click paths (e.g. viewing shirt, then belt, then shoes) to predict the next action within that single session.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Negative Sampling' in training recommendation models with implicit feedback datasets?",
+    "options": [
+      "Deleting negative reviews from database tables",
+      "Selecting unobserved user-item pairs (non-clicked items) to serve as negative training examples, preventing the model from predicting 1 for all inputs",
+      "Running model tests with bad input values",
+      "A system security scan blocking bad IPs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Implicit data only has positives (clicks). If you only train the model on positives, it learns to predict high scores for everything. Negative sampling injects unclicked items as 0s to teach the model decision boundaries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does the 'Factorization Machines' (FM) algorithm model feature interactions compared to standard linear regression models?",
+    "options": [
+      "FMs ignore feature interactions entirely",
+      "FMs estimate feature interactions by factorizing them into lower-dimensional latent vectors, handling high-dimensional, sparse datasets efficiently",
+      "FMs run queries on relational databases directly",
+      "FMs require dense matrices without missing cells"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard linear models use separate weights for every feature pair interaction (x_i * x_j), failing on sparse data. FMs assign a latent factor vector v_i to each feature, approximating interactions as the dot product of v_i and v_j, scaling linearly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In real-time recommendation serving, explain how vector search indexes (like Faiss, Annoy, or HNSW) achieve sub-millisecond similarity lookups.",
+    "options": [
+      "By caching all query results in RAM memory",
+      "By utilizing Approximate Nearest Neighbor (ANN) search algorithms to build graph or cluster indexes, avoiding full O(N) distance scans across all vectors",
+      "By running calculations on physical GPU clusters",
+      "By sorting database tables by primary keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Doing a dot product against millions of item vectors is too slow. ANN indexes build proximity graphs (like Hierarchical Navigable Small World - HNSW) to traverse vectors quickly, returning the top K items in microseconds with high accuracy.",
+    "difficulty": "hard"
   }
 ]

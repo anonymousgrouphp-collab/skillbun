@@ -298,5 +298,305 @@
     "correctIndex": 3,
     "explanation": "A FOREIGN KEY constraint is used to establish and enforce a link between two tables, ensuring that values in the referencing column(s) (`author_id`) match existing values in the referenced primary key or unique key column(s) (`id` in Authors table). This maintains referential integrity. NOT NULL ensures the column isn't empty, UNIQUE ensures uniqueness within the column, and PRIMARY KEY uniquely identifies rows in its own table.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary role of a Database Administrator (DBA)?",
+    "options": [
+      "Designing the front-end layout of websites",
+      "Managing, securing, maintaining, and backing up database systems to ensure availability",
+      "Writing raw application business logic code",
+      "Managing corporate social media pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "A DBA's primary responsibility is database operations, ensuring that the database runs efficiently, is backed up, remains secure, and is available when needed.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is SQL?",
+    "options": [
+      "Structured Query Language",
+      "Sequential Query Library",
+      "Simple Query Logic",
+      "Server Queue Link"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQL (Structured Query Language) is the standard programming language used to manage and query relational databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of database backups?",
+    "options": [
+      "To double the storage capacity of the server",
+      "To prevent permanent data loss in the event of hardware failures, corruption, or cyberattacks",
+      "To speed up select query performance",
+      "To compress active database tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Backups create copies of data that can be restored if the primary database is damaged, deleted, or compromised.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is used to delete a table and all its data permanently from a database?",
+    "options": [
+      "DELETE",
+      "DROP TABLE",
+      "REMOVE",
+      "TRUNCATE"
+    ],
+    "correctIndex": 1,
+    "explanation": "DROP TABLE deletes the entire table structure, columns, indexes, and rows permanently. DELETE removes rows but keeps the table structure.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Primary Key?",
+    "options": [
+      "A key used to encrypt the database server physically",
+      "A column or combination of columns that uniquely identifies each row in a database table",
+      "The first column of a query result",
+      "A key that connects to external cloud networks"
+    ],
+    "correctIndex": 1,
+    "explanation": "A primary key enforces entity integrity. No two rows can have the same primary key, and it cannot contain NULL values.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of a Database Index?",
+    "options": [
+      "To encrypt columns for safety",
+      "To speed up data retrieval queries, acting like an index in a book",
+      "To automatically clean duplicate records",
+      "To split database files onto different drives"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indexes allow the database engine to find specific rows quickly without scanning the entire table (full table scan), improving query speeds.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does NoSQL stand for?",
+    "options": [
+      "No SQL allowed at all",
+      "Not Only SQL (non-relational database systems)",
+      "Network Object SQL",
+      "New Online SQL standard"
+    ],
+    "correctIndex": 1,
+    "explanation": "NoSQL refers to non-relational database systems that support unstructured or semi-structured data models (e.g. documents, key-values, graphs).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between DELETE and TRUNCATE commands in SQL?",
+    "options": [
+      "TRUNCATE is only for NoSQL; DELETE is for SQL",
+      "DELETE removes specific rows based on a WHERE clause and logs each deletion; TRUNCATE removes all rows from a table quickly by deallocating data pages, logging minimal details",
+      "DELETE removes the table structure; TRUNCATE does not",
+      "They are identical in speed and execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "DELETE is a DML command that can be rolled back and triggers row locks. TRUNCATE is a DDL command that clears all rows, cannot use a WHERE clause, and is much faster.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does database 'ACID' properties guarantee?",
+    "options": [
+      "Accuracy, Consistency, Isolation, Durability",
+      "Atomicity, Consistency, Isolation, Durability",
+      "Automation, Compression, Integrity, Delivery",
+      "Algorithm, Compatibility, Indexing, Decryption"
+    ],
+    "correctIndex": 1,
+    "explanation": "ACID properties ensure reliable database transactions: Atomicity (all or nothing), Consistency (valid state transitions), Isolation (independent concurrent transactions), and Durability (survives crashes).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Foreign Key'?",
+    "options": [
+      "An encryption key for external file transfers",
+      "A column in one table that links to the primary key in another table, enforcing referential integrity",
+      "A database login password for external users",
+      "An index that is not stored on the local database server"
+    ],
+    "correctIndex": 1,
+    "explanation": "Foreign keys represent relationships between tables, preventing orphaned records by ensuring data in child tables matches valid rows in parent tables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of database 'Replication'?",
+    "options": [
+      "To copy database files to zip folders manually",
+      "Copying database data from one server (primary) to another (replica) to improve availability, load balance reads, and provide backup redundancy",
+      "Converting tables to NoSQL format automatically",
+      "Creating duplicate rows inside the same table for safety"
+    ],
+    "correctIndex": 1,
+    "explanation": "Replication distributes database reads across multiple servers (slaves/replicas), ensuring the system remains online if the primary database server fails.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a full backup and an incremental backup?",
+    "options": [
+      "Full backup is for SQL; Incremental is for NoSQL",
+      "Full backup copies the entire database; Incremental backup copies only the changes made since the last backup (full or incremental)",
+      "Incremental backup takes longer than a full backup",
+      "Full backup is encrypted; Incremental is not"
+    ],
+    "correctIndex": 1,
+    "explanation": "Full backups copy all data but take time and space. Incremental backups are faster and smaller because they only copy modifications made since the previous backup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Database Normalization'?",
+    "options": [
+      "Running clean updates on the database engine software",
+      "Structuring database tables to reduce data redundancy and improve data integrity, following normal forms (1NF, 2NF, 3NF)",
+      "Converting all text data to uppercase format",
+      "Securing database ports from hacker scans"
+    ],
+    "correctIndex": 1,
+    "explanation": "Normalization organizes tables to prevent duplicate records (e.g., storing customer name once in a customer table rather than on every order record).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does database clustering do?",
+    "options": [
+      "Groups files into folders based on file size",
+      "Connects multiple database servers to act as a single system, providing high availability and load balancing",
+      "Creates multiple schemas inside one database",
+      "Compresses index files on disk"
+    ],
+    "correctIndex": 1,
+    "explanation": "Clustering groups multiple instances to share workloads and storage. If one node in the cluster fails, other nodes pick up the traffic with minimal downtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a clustered and a non-clustered index?",
+    "options": [
+      "Clustered indexes are only for databases in a cluster",
+      "A clustered index determines the physical order of data rows in the table; a non-clustered index is a separate structure containing pointers to data rows",
+      "A table can have multiple clustered indexes, but only one non-clustered index",
+      "Clustered indexes are slower than non-clustered indexes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since a clustered index physicalizes how rows are stored on disk, there can only be one clustered index per table (typically the primary key). Non-clustered indexes create separate lookup tables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Deadlock' in database systems?",
+    "options": [
+      "A server that has completely lost power",
+      "A situation where two or more transactions are blocked indefinitely, each waiting for locks held by the other",
+      "A corrupted database file that cannot be opened",
+      "A query that has run out of memory cache"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deadlocks occur when Transaction A locks Row 1 and wants Row 2, while Transaction B locks Row 2 and wants Row 1. The database must detect this and abort one transaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a database transaction log (or Write-Ahead Log - WAL)?",
+    "options": [
+      "A diary written by the database administrator",
+      "A history file recording all modifications to the database before they are written to data files, ensuring durability and recovery",
+      "A log of user login timestamps",
+      "A list of slow queries generated by the system"
+    ],
+    "correctIndex": 1,
+    "explanation": "The transaction log is critical for crash recovery. If power fails, the engine reads the WAL to roll forward committed transactions and roll back incomplete ones.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is SQL injection, and what is the primary DBA defense against it?",
+    "options": [
+      "Injecting databases with compression scripts; defense is indexing",
+      "An attack exploiting insecure input fields to execute arbitrary SQL; defense is using parameterized queries/prepared statements and enforcing least privilege permissions",
+      "A database server crash; defense is adding RAM",
+      "A hardware firewall breach; defense is port blocking"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prepared statements prevent input from being executed as SQL command code. DBAs also enforce least privilege (e.g., app user accounts cannot drop tables).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'View' in databases?",
+    "options": [
+      "A graphical interface for building queries",
+      "A virtual table based on the result-set of a stored SELECT query, computed dynamically",
+      "A backup image of the database server",
+      "An operating system window showing server stats"
+    ],
+    "correctIndex": 1,
+    "explanation": "Views do not store data physically (unless materialized). They act as saved queries that present data in a structured, restricted format to users for convenience or security.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of database 'Sharding'?",
+    "options": [
+      "Backing up the database in multiple regions",
+      "Horizontally partitioning a database across multiple physical servers based on a key to handle massive read/write traffic at scale",
+      "Compressing database logs to save storage space",
+      "Converting table relationships into NoSQL graph formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sharding distributes rows of a table across isolated database engines, separating computational and disk limits to scale systems horizontally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Optimistic and Pessimistic concurrency control (locking)?",
+    "options": [
+      "Optimistic locking always allows updates; Pessimistic locking never allows updates",
+      "Optimistic locking checks for changes at commit time (using versions) and fails if a collision occurred; Pessimistic locking locks rows immediately upon reading to block modifications by others",
+      "Pessimistic locking is faster than optimistic locking",
+      "Optimistic locking only works in NoSQL databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pessimistic locking prevents conflicts by blocking others, suitable for high-collision systems. Optimistic locking assumes collisions are rare and verifies record integrity at save time, saving locking overhead.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In database systems, what is the role of a Query Optimizer?",
+    "options": [
+      "To write code reviews for SQL developers",
+      "A component of the database engine that analyzes SQL queries and plans the most efficient execution path (using statistics, indexes, join types)",
+      "A tool that compresses tables dynamically",
+      "A security checker that blocks unauthorized users"
+    ],
+    "correctIndex": 1,
+    "explanation": "Optimizers review query syntax and table statistics (size, index selectivity) to generate execution plans, choosing between index scans, table scans, and join strategies (nested loops, hash joins).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does the transaction isolation level 'Serializable' guarantee, and what is its performance cost?",
+    "options": [
+      "It guarantees database files are saved in order; cost is minimal",
+      "It provides the highest level of isolation, executing transactions as if they were run sequentially, preventing dirty reads, non-repeatable reads, and phantom reads; cost is high locking overhead and low concurrency",
+      "It guarantees all transactions are saved to disk immediately; cost is zero",
+      "It is only supported in NoSQL databases; cost is high memory use"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serializable isolation eliminates concurrency anomalies by locking ranges or tables. However, it slows down databases because concurrent operations must wait in queues.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Point-in-Time Recovery' (PITR) database restore?",
+    "options": [
+      "Restoring only the database timestamps",
+      "Restoring a database to a specific, exact timestamp in the past by combining a full database backup with transaction log backups",
+      "Restoring the database files in under one second",
+      "Restoring database access permissions to a previous state"
+    ],
+    "correctIndex": 1,
+    "explanation": "PITR combines base backups with sequential transaction log rollforwards, allowing DBAs to restore the database to the exact second *before* a catastrophic error or manual deletion occurred.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the CAP Theorem in distributed databases and how does it affect database system choices?",
+    "options": [
+      "Distributed systems can achieve all of Consistency, Availability, and Partition Tolerance simultaneously",
+      "A distributed system can guarantee at most two of: Consistency, Availability, and Partition Tolerance (and during network partitions, you must choose C or A)",
+      "Consistency is always preferred over availability in cloud systems",
+      "Distributed databases must run on identical physical hardware configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "During a network partition (P) where nodes cannot communicate, CP systems choose Consistency (refusing writes on split nodes to keep data identical). AP systems choose Availability (accepting writes, leaving nodes temporarily out of sync).",
+    "difficulty": "hard"
   }
 ]

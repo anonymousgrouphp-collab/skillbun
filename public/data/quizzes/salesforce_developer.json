@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Standard fields are predefined fields that come with Salesforce out-of-the-box for standard objects (e.g., Name, Phone on Account). Custom fields are fields that an administrator or developer creates to store unique information specific to their organization's needs.",
     "difficulty": "easy"
+  },
+  {
+    "question": "What is Salesforce?",
+    "options": [
+      "A database software package used only by financial companies",
+      "A cloud-based Customer Relationship Management (CRM) platform providing enterprise software solutions",
+      "A programming compiler replacing Java",
+      "A web hosting provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salesforce is the leading CRM platform, providing cloud services for sales, service, marketing, and custom app development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which proprietary programming language is used to write server-side controller logic on the Salesforce platform?",
+    "options": [
+      "Apex",
+      "Python",
+      "Swift",
+      "C#"
+    ],
+    "correctIndex": 0,
+    "explanation": "Apex is Salesforce's strongly typed, object-oriented programming language, with syntax similar to Java.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is SOQL in Salesforce development?",
+    "options": [
+      "An encryption module securing user data",
+      "Salesforce Object Query Language, used to search and retrieve data from the Salesforce database",
+      "A styling sheet standard for layouts",
+      "A package manager compiling apps"
+    ],
+    "correctIndex": 1,
+    "explanation": "SOQL is used to query Salesforce records (e.g. `SELECT Name FROM Account`), similar to SQL but without support for JOIN commands (uses relationship queries instead).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which framework is Salesforce's modern, standards-based UI framework for building web components?",
+    "options": [
+      "Aura Components",
+      "Lightning Web Components (LWC)",
+      "Visualforce",
+      "React Native"
+    ],
+    "correctIndex": 1,
+    "explanation": "LWC is the modern framework built on Web Standards (custom elements, templates, shadow DOM), replacing legacy Aura and Visualforce frameworks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of a Sandbox in Salesforce development?",
+    "options": [
+      "A repository for storing user image assets",
+      "An isolated copy of a production organization used for developing, testing, and training without risk to live data",
+      "A database server configuration panel",
+      "A security firewall blocking ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sandboxes provide safe development environments. Variations include Developer, Developer Pro, Partial Copy, and Full sandboxes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Custom Object' in Salesforce?",
+    "options": [
+      "A custom graphic style used in page menus",
+      "A user-defined database table storing data unique to the organization's business requirements",
+      "A variable type inside Apex programming",
+      "An external API connection portal"
+    ],
+    "correctIndex": 1,
+    "explanation": "Custom Objects represent custom tables (indicated by `__c` suffix, e.g., `Job_Application__c`), whereas Standard Objects are built-in (e.g. `Account`, `Contact`).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Trigger and an Apex Class?",
+    "options": [
+      "Triggers are for layouts; Apex Classes for databases",
+      "A Trigger is code that executes before or after specific DML events (insert, update) on database records; an Apex Class is a reusable template containing methods and variables called by triggers or components",
+      "Apex Classes run on mobile; Triggers run on desktop",
+      "They are identical code files in Salesforce"
+    ],
+    "correctIndex": 1,
+    "explanation": "Triggers are event-driven hooks (e.g. updating an account when contact details change). Apex classes encapsulate reusable business logic to keep triggers clean.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Governor Limits' in Salesforce, and why do they exist?",
+    "options": [
+      "Limits set by local government compliance laws; exist for legal licensing",
+      "Runtime execution limits enforced by the multi-tenant architecture to prevent single organizations from monopolizing shared server resources",
+      "Hard drive storage limits on local computers; exist to save space",
+      "Network bandwidth caps set on cloud gateways; exist to prevent attacks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salesforce runs on multi-tenant servers. Governor limits (e.g. max 100 SOQL queries per transaction) force developers to write optimized, bulk-safe code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Master-Detail relationship and a Lookup relationship?",
+    "options": [
+      "Master-Detail is for standard objects; Lookup is for custom objects",
+      "Master-Detail creates tight parent-child coupling where child deletion and security inherit from the parent; Lookup creates loose coupling where child records can exist independently",
+      "Lookup relationships do not support reports or dashboards",
+      "They are identical relationship models"
+    ],
+    "correctIndex": 1,
+    "explanation": "Master-Detail links records tightly (deleting parent deletes child, and parent controls child permissions). Lookup is a soft reference, keeping records independent.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Process Builder' and 'Flow' tools in Salesforce?",
+    "options": [
+      "To compile Apex code into binary files",
+      "Visual automation tools allowing administrators to build complex business logic, record updates, and screen interactions without writing code",
+      "To configure cloud server virtual machines",
+      "To backup database tables to local folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salesforce Flow is the primary visual builder, replacing legacy Workflows and Process Builder, enabling complex screen wizards and database automation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is SOSL in Salesforce, and how does it differ from SOQL?",
+    "options": [
+      "SOSL is for encryption; SOQL is for indexing",
+      "SOSL (Salesforce Object Search Language) is used to perform text-based searches across multiple objects simultaneously; SOQL queries specific fields within a single object",
+      "SOQL is faster than SOSL in all scenarios",
+      "SOSL is only written inside JavaScript components"
+    ],
+    "correctIndex": 1,
+    "explanation": "SOQL queries structured records (e.g. finding contacts by name). SOSL searches text indexes across multiple tables (e.g. `FIND 'Acme' IN ALL FIELDS RETURNING Account, Contact`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an Apex Test Class, and what is the minimum deployment requirement?",
+    "options": [
+      "Tests server connection speeds; minimum requirement is 100%",
+      "Validates Apex code behavior; Salesforce requires a minimum of 75% code coverage to deploy code to production",
+      "Tests visual component styles; minimum requirement is 50%",
+      "A class tracking user logins; minimum requirement is zero"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salesforce enforces unit testing. Code cannot be deployed to production unless test classes cover at least 75% of Apex lines and all triggers have some coverage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Future' annotation (@future) do in Apex?",
+    "options": [
+      "Schedules the class to run next week",
+      "Executes the annotated method asynchronously in the background when resources are available, bypassing transaction limits",
+      "Specifies deprecated code sections",
+      "Encrypts variables for database security"
+    ],
+    "correctIndex": 1,
+    "explanation": "@future methods offload heavy calculations or external callouts, executing them in separate threads to avoid blocking the main transaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between standard controller and custom controller in Visualforce pages?",
+    "options": [
+      "Standard controllers are for Aura components only",
+      "Standard controllers implement built-in object behaviors (save, edit) automatically; Custom controllers are Apex classes written to define completely custom page logic",
+      "Custom controllers cannot query database records",
+      "They are identical terms in Visualforce development"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard controllers mimic Salesforce UI behavior. Custom controllers use Apex to implement specialized logic, required when standard operations aren't enough.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Custom Metadata Types' in Salesforce?",
+    "options": [
+      "To store user contact directories",
+      "Customizable records that are treated as metadata rather than data, allowing configurations to be deployed easily across sandboxes without data migrations",
+      "To style web component layouts",
+      "To manage database backup schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike custom objects (which store customer records), custom metadata stores configurations (e.g., API endpoints, mapping rules) deployable via change sets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the 'Database' class methods (e.g., Database.insert) in Apex DML operations?",
+    "options": [
+      "They connect to external SQL databases",
+      "They provide database operations with optional partial success parameters (allOrNone=false), allowing valid records to save even if some fail",
+      "They delete database tables permanently",
+      "They format CSS stylesheets dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard DML (e.g., `insert accounts;`) rolls back the entire batch if one record fails. `Database.insert(accounts, false)` saves successful records and returns error logs for failed ones.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Apex Batch' (Database.Batchable), and when should you use it?",
+    "options": [
+      "To compile code files in batches; use for deployment packaging",
+      "An interface to process large volumes of records (up to 50 million) asynchronously in small batches (chunks), avoiding governor limits",
+      "A tool scaling server nodes dynamically; use during traffic spikes",
+      "A system scheduling database backups hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Batch Apex splits large datasets into manageable chunks (default 200). It executes them in separate transactions, bypassing limits for bulk tasks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Custom Settings' in Salesforce, and what are the two types?",
+    "options": [
+      "User profile configurations; types are Admin and standard",
+      "Custom data caches; List settings (variable configurations) and Hierarchy settings (settings based on user profiles or roles)",
+      "Database encryption settings; types are Symmetric and Asymmetric",
+      "Web page layouts; types are Grid and Flexbox"
+    ],
+    "correctIndex": 1,
+    "explanation": "Custom settings store configuration data. Hierarchy settings are useful for customizing app behavior dynamically by user profile or role hierarchy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the '@AuraEnabled' annotation do in Apex classes?",
+    "options": [
+      "Encrypts the method to protect from hackers",
+      "Exposes the Apex method to Lightning components (Aura and LWC), allowing JavaScript to call it dynamically",
+      "Specifies that the method is deprecated",
+      "Registers the class with the database index"
+    ],
+    "correctIndex": 1,
+    "explanation": "`@AuraEnabled` makes server-side methods callable from LWC/Aura JavaScript controllers, often marked `(cacheable=true)` to optimize performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Change Set' in Salesforce deployment operations?",
+    "options": [
+      "A git command tracking modifications",
+      "A tool used to send customization changes (metadata) from one Salesforce organization (sandbox) to another (production) directly",
+      "A script that resets database passwords",
+      "A visual dashboard displaying system health metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "Change sets package configurations (fields, classes, pages) in sandboxes and push them to target orgs, requiring admin approval to deploy.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how the 'Trigger.new' and 'Trigger.old' context variables behave, and why developers must never perform DML or SOQL queries inside loop blocks.",
+    "options": [
+      "They track server CPU averages; loops cause memory leaks",
+      "Trigger.new holds the new version of records; Trigger.old holds the old version. Performing DML/SOQL in loops exhausts governor limits; queries must be bulkified outside loops",
+      "They are variables managing database passwords; loops cause encryption locks",
+      "They behave identically on delete triggers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Governor limits cap queries (100 SOQL/150 DML per transaction). If a trigger loops through 200 records and executes a query inside, it crashes. Code must 'bulkify' data, querying once outside loops.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the difference between 'without sharing', 'with sharing', and 'inherited sharing' keywords in Apex classes, and how they impact security.",
+    "options": [
+      "without sharing is for standard objects only; with sharing is for custom objects",
+      "with sharing enforces the sharing rules of the current user; without sharing bypasses sharing rules; inherited sharing adopts the sharing context of the class calling it",
+      "inherited sharing is deprecated and replaced by without sharing",
+      "They are encryption settings managing data transfer safety"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, Apex runs in system mode (ignoring user permissions). Using `with sharing` ensures Apex respects user sharing rules (who can view records). `inherited sharing` is secure default, adopting calling class behavior.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Apex Queueable' (System.Queueable), and how does it offer advantages over legacy '@future' methods?",
+    "options": [
+      "A class scheduling database backups; advantages are automatic rollbacks",
+      "An asynchronous interface allowing job chaining, passing complex variable types (objects/lists), and obtaining job IDs to monitor progress",
+      "A network gateway tool; advantages are faster packet routing",
+      "A compiler script; advantages are smaller file compilation sizes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Queueable is modern. Unlike `@future` which only accepts primitive arguments (strings, IDs), Queueable accepts complex structures, returns job tracking IDs, and supports chaining (job A starts job B).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does 'LWC Shadow DOM' encapsulation impact CSS styling and DOM querying, and how do developers bypass it using 'light DOM'?",
+    "options": [
+      "Shadow DOM blocks javascript execution; bypass by disabling scripts",
+      "It prevents global page CSS from leaking into components and queries from accessing internal templates; developers bypass it by setting 'renderMode = light' in LWC configurations",
+      "It encrypts visual components; bypass by using vector images",
+      "It restricts styling to dark modes; bypass by custom variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shadow DOM enforces boundary isolation. Queries like `document.querySelector` cannot read LWC internals. Light DOM disables this isolation, letting external libraries/styles target the component directly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Apex Callout' timeouts and how do you implement a mock callout in test classes to satisfy coverage requirements?",
+    "options": [
+      "Timeouts check server memory limits; mock by local database query scripts",
+      "Timeouts cap external API wait times; test mocks are implemented by creating classes that implement the HttpCalloutMock interface, returning fake responses without making real network calls",
+      "Timeouts disable API gateways; mock by writing test code in text files",
+      "They are database connection limits; mock by copying tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salesforce blocks real network calls during tests. Developers mock APIs using `HttpCalloutMock`, returning custom HTTP responses so test classes can evaluate parse logic and coverage safely.",
+    "difficulty": "hard"
   }
 ]

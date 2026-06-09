@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "The core challenge is the subjective, non-rule-based decision-making. RPA struggles with human discretion. In the process map, this step should be explicitly identified as a bottleneck for full automation, requiring either human intervention (human-in-the-loop) or a prior effort to define clear, quantifiable business rules that the bot can follow.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does RPA stand for in software engineering?",
+    "options": [
+      "Robotic Process Automation",
+      "Rapid Protocol Assembly",
+      "Routing Port Allocation",
+      "Registry Process Audit"
+    ],
+    "correctIndex": 0,
+    "explanation": "RPA stands for Robotic Process Automation, which uses software bots to automate repetitive, rule-based digital tasks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main operational difference between Attended and Unattended bots in RPA?",
+    "options": [
+      "Attended bots work only on cloud servers; Unattended on local systems",
+      "Attended bots run on user machines triggered by human actions; Unattended bots run autonomously on schedules or triggers without human presence",
+      "Unattended bots do not require licenses; Attended bots do",
+      "Attended bots are written in Java; Unattended in Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attended bots collaborate with humans (e.g. call centers). Unattended bots run in back offices, processing workloads from queues automatically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Selector' in RPA platform design (e.g. UiPath)?",
+    "options": [
+      "A database query language select statement",
+      "An XML fragment containing tag attributes that uniquely identifies a specific GUI element on a screen",
+      "A configuration tool that chooses which robot to run",
+      "A styling sheet file formatting bot dashboards"
+    ],
+    "correctIndex": 1,
+    "explanation": "Selectors act as coordinates. They store application and window attributes (like ID or Name) so the bot can locate buttons and inputs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a primary benefit of implementing RPA inside business operations?",
+    "options": [
+      "Bypassing all network firewall systems",
+      "Automating repetitive, manual, rule-based processes to speed up execution and eliminate human transcription errors",
+      "Replacing database storage server hardware",
+      "Allowing applications to run without compilers"
+    ],
+    "correctIndex": 1,
+    "explanation": "RPA mimics human clicks. It automates high-volume tasks quickly, freeing employees for higher-value analytical work.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of 'Orchestrator' in RPA deployments?",
+    "options": [
+      "A code compiler tool converting scripts to binaries",
+      "A central web platform used to manage, schedule, monitor, and deploy robot workgroups and packages securely",
+      "A database engine storing customer transactions",
+      "A local editor used to design selectors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Orchestrator manages the bot fleet, distributing packages, logging runs, and tracking licenses in real-time.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In workflow design, what is a Try-Catch block primarily used for?",
+    "options": [
+      "Speeding up execution times",
+      "Catching runtime exceptions and errors to execute fallback routines rather than letting the bot crash",
+      "Writing debug statements into log files",
+      "Looping through datatable rows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Try-Catch handles failures. If an application fails to load, the Catch block logs the error and shuts down safely.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which automation approach is best suited for integrating legacy desktop systems that lack APIs or database access?",
+    "options": [
+      "REST API scripting",
+      "UI-based automation (screen scraping, click actions)",
+      "Database SQL triggers",
+      "Operating system driver updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since legacy apps lack APIs, bots interact via UI automation, typing into inputs and reading labels like human operators.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In UiPath, what is the difference between 'Excel Application Scope' and 'Workbook' activities?",
+    "options": [
+      "Excel Scope is only for mobile layouts; Workbook is for server environments",
+      "Excel Scope runs Excel in the background (requires Excel installed); Workbook activities read/write files directly without requiring Excel installed",
+      "Workbook activities are deprecated and replaced by Excel Scope",
+      "Excel Scope only reads CSV files"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Excel Application Scope` launches the actual Excel process, supporting macros. `Workbook` reads files directly in memory, which is faster and cleaner for unattended VMs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Dynamic Selector in RPA, and when is it required?",
+    "options": [
+      "A selector that updates its XML structures dynamically using variables or wildcards, required when element attributes change at runtime",
+      "A selector that runs click animations dynamically",
+      "A selector used only for web browser menus",
+      "A selector that deletes itself after execution runs"
+    ],
+    "correctIndex": 0,
+    "explanation": "If a web page generates dynamic IDs (e.g. `row_101` next run is `row_102`), static selectors fail. Dynamic selectors use variables (e.g. `row_{{counter}}`) to match variables dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In RPA enterprise design, what is the purpose of 'Assets' in the Orchestrator?",
+    "options": [
+      "Storing media files for layout designs",
+      "Securing global variables, settings, or credentials in a central database to share them across multiple robots",
+      "Storing backup logs of server operations",
+      "Storing licenses for developer accounts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Assets decouple configs from code. Changing a database path asset updates all running bots instantly without redeploying code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do Orchestrator Queues facilitate parallel processing in RPA?",
+    "options": [
+      "By replicating application windows on multiple screens",
+      "By storing transactional items in a queue, allowing multiple robots to query, lock, and process items concurrently without collision",
+      "By compiling robot packages in parallel threads",
+      "By caching web page layouts in local memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Queues divide work. If an app receives 1,000 orders, 5 bots can retrieve and process items concurrently, scaling throughput.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In UiPath, what is the key difference between the 'Classic' and 'Modern' design experiences?",
+    "options": [
+      "Classic only works with older Windows versions",
+      "Classic uses separate target activities (Click, Type Into); Modern uses a unified target method combining selectors, fuzzy logic, and image anchors",
+      "Modern experience requires web API integrations; Classic uses UI only",
+      "There is no difference in workflow activities"
+    ],
+    "correctIndex": 1,
+    "explanation": "Modern experience consolidates UI automation. It uses multi-technology targeting (anchors + selectors + image) in a single action, making target detection resilient.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Robotic Enterprise (RE) Framework handle transaction execution flows?",
+    "options": [
+      "Through linear step-by-step scripts that restart on errors",
+      "Using a state machine structure divided into Initialization, Get Transaction, Process Transaction, and End Process states",
+      "Using parallel loops executing on separate processor threads",
+      "Using database SQL triggers routing process steps"
+    ],
+    "correctIndex": 1,
+    "explanation": "REFramework is a template. It handles settings, initializes apps, catches errors, retries failed transactions, and exits cleanly, standardizing RPA project architecture.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is OCR (Optical Character Recognition) used for in RPA workflows?",
+    "options": [
+      "Configuring security permissions on local folders",
+      "Extracting text content from images, PDF scans, or remote virtual desktops where native UI selectors are inaccessible",
+      "Minifying javascript files before deployment",
+      "Routing connection packets to server ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "When bots run on virtualized environments (like Citrix), native selectors are hidden. OCR reads screen pixels to extract text characters dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Fuzzy Selector' in modern RPA platform target matching?",
+    "options": [
+      "A selector that uses approximate string matching algorithms to locate UI elements even if title or text attributes vary slightly",
+      "A selector that matches elements based on visual layouts only",
+      "A selector that selects multiple elements randomly",
+      "A selector that is deprecated and replaced by regex selectors"
+    ],
+    "correctIndex": 0,
+    "explanation": "Fuzzy selectors evaluate similarity scores (e.g. matching 'Billing Details' even if it changes to 'Billing Detail'). This tolerates minor UI label updates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you secure customer database credentials in an RPA workflow?",
+    "options": [
+      "Write them in hardcoded variables in the source files",
+      "Retrieve credentials from Orchestrator Assets or key vaults as SecureString variables, decryption happening in memory only",
+      "Save them as plain text files in local folders",
+      "Save them as environment variables on developer laptops"
+    ],
+    "correctIndex": 1,
+    "explanation": "Credentials should never be plain text. SecureStrings wrap credentials in encrypted format, preventing them from leaking in logs or variable watch screens.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Delay' activity in RPA?",
+    "options": [
+      "To pause execution until a user clicks a button manually",
+      "To temporarily suspend workflow execution for a specified duration, letting application pages or operations load fully",
+      "To restrict bot execution speeds to save licenses",
+      "To schedule bot runs daily"
+    ],
+    "correctIndex": 1,
+    "explanation": "Delays pause execution (e.g. 5 seconds). However, dynamic waits (like Wait Element Exist) are preferred to avoid wasting idle time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the 'Simulate Click' and 'Send Window Messages' click options in RPA UI automation.",
+    "options": [
+      "Simulate Click is slower because it launches emulator environments",
+      "Simulate Click operates in the background by triggering the element's event handler (fastest); Send Window Messages sends OS-level keystrokes to the active window",
+      "Send Window Messages does not support background execution",
+      "They are duplicate settings executing identical OS calls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Simulate Click interacts directly with the application APIs, allowing the target window to be minimized or hidden while the bot executes clicks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an 'Anchor' in UI element identification?",
+    "options": [
+      "To block user clicks on webpage menus",
+      "Using a stable, easily identifiable UI element near a volatile target element to calculate its relative position and locate it reliably",
+      "To link webpages to external portals",
+      "To store database index coordinates"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a text field lacks a unique selector, the bot anchors on its stable label (e.g. 'First Name:'), searching for the input box relative to that label.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Business Rule Exception and a System Exception in RPA?",
+    "options": [
+      "Business Exceptions are handled by IT teams; System by managers",
+      "Business Exceptions occur when transaction data fails business logic (e.g., negative balance); System Exceptions occur when applications crash or time out",
+      "System Exceptions do not trigger retries; Business Exceptions do",
+      "They are identical errors managed under different classes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Business exceptions (e.g. invalid invoices) mean the bot skips the item and proceeds. System exceptions (e.g. browser crash) trigger app restarts and retries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the REFramework manage transaction retries differently for Queue items versus linear input files?",
+    "options": [
+      "Linear files support automatic retries; queues do not",
+      "Queue items rely on Orchestrator configuration settings to trigger retries and reset application states automatically; linear input files require custom loops in the code",
+      "Queues only retry on Business Rule Exceptions",
+      "There is no retry mechanism in REFramework for linear files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Orchestrator manages queue retries. If a bot throws a System Exception, Orchestrator marks the item as Retriable and re-queues it. Linear files need manual index tracking code.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the function of the 'Remote Runtime' component in Citrix or RDP environment automations?",
+    "options": [
+      "To record screen video recordings for auditing",
+      "An agent installed on the remote machine that communicates UI element properties directly to the local robot, enabling native selector detection",
+      "To encrypt connection packets over remote protocols",
+      "To host database tables on remote servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Without Remote Runtime, Citrix is just an image (requiring slow OCR). Remote Runtime bridges properties across sessions, allowing the bot to interact with native XML elements.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In high-density robot configurations on Windows Server virtual machines, how are concurrent bots executed?",
+    "options": [
+      "By splitting processor cores using virtualization tools",
+      "By configuring Remote Desktop Services (RDS) to run multiple concurrent user sessions, where each session executes an independent robot instance",
+      "By replicating database engines inside container memory spaces",
+      "Multiple bots cannot execute concurrently on a single VM"
+    ],
+    "correctIndex": 1,
+    "explanation": "High-density robots reduce infrastructure costs. Multiple user accounts log into a single Server VM via RDS, allowing multiple robots to run concurrently in their own desktops.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you handle selector stability for elements in web applications that generate dynamic class names or IDs on every compilation (e.g., React/Webpack builds)?",
+    "options": [
+      "By editing the target web app code to disable compilation bundling",
+      "By ignoring the dynamic attributes and utilizing stable parent containers, tag indices, innertext properties, or wildcard attributes",
+      "By executing page refreshes in loops until IDs match selectors",
+      "By using image automation for all click targets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Webpack creates IDs like `button-a8f3b`. Developers must omit IDs from selectors, using wildcard tags (e.g. `id='button-*'`) or relative anchors (e.g. matching by class or inner text).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the performance drawback of using local Datatable Join activities on huge datasets compared to executing database queries?",
+    "options": [
+      "Datatable joins are restricted to 100 rows",
+      "Datatable joins execute in robot RAM memory, which degrades performance and consumes CPU; database queries leverage optimized indexes and filters",
+      "Database queries are always slower due to connection costs",
+      "Datatable joins are written in SQL, which is slow"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sorting or joining tables with thousands of rows inside a bot workflow exhausts memory. Delegating these tasks to database engines (via SQL JOINs) returns filtered results instantly.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Using a message queue like Redis with a task queue framework like Celery is the standard and robust pattern for handling long-running background tasks asynchronously. The API endpoint can quickly enqueue a task, returning an immediate response to the client, while a separate worker process picks up and executes the task. Direct execution (`asyncio.sleep` blocks), spawning threads (can block GIL, resource limits), or polling temporary files are less scalable, less reliable, and generally not recommended for production-grade async task processing.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Python?",
+    "options": [
+      "A database software standard",
+      "A high-level, interpreted, general-purpose programming language known for readability",
+      "A browser layout styling stylesheet",
+      "A web hosting provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python is designed for readability, clean syntax, and supports multiple paradigms (OOP, functional, procedural).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following data types is immutable in Python?",
+    "options": [
+      "list",
+      "dict",
+      "tuple",
+      "set"
+    ],
+    "correctIndex": 2,
+    "explanation": "Tuples cannot be modified after creation. Lists, dictionaries, and sets are mutable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you start a single-line comment in Python?",
+    "options": [
+      "//",
+      "/*",
+      "#",
+      "--"
+    ],
+    "correctIndex": 2,
+    "explanation": "The hash symbol (`#`) is used for single-line comments in Python. `//` is for C/JS, `--` is for SQL.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the standard package manager used to install Python libraries?",
+    "options": [
+      "npm",
+      "pip",
+      "Composer",
+      "apt"
+    ],
+    "correctIndex": 1,
+    "explanation": "`pip` (pip installs packages) downloads and manages libraries from PyPI (Python Package Index).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which keyword is used to define a function in Python?",
+    "options": [
+      "function",
+      "def",
+      "func",
+      "define"
+    ],
+    "correctIndex": 1,
+    "explanation": "Functions are declared using the `def` keyword followed by the function name and parentheses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which built-in Python function returns the number of items in an object (like a list or string)?",
+    "options": [
+      "count()",
+      "len()",
+      "size()",
+      "length()"
+    ],
+    "correctIndex": 1,
+    "explanation": "`len()` returns the length (element count) of sequences or collections in Python.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of virtual environments (like venv) in Python?",
+    "options": [
+      "To host virtual machine servers",
+      "To create isolated environments to manage project-specific dependencies and avoid package version conflicts",
+      "To run Python code faster on GPUs",
+      "To encrypt code files on disk"
+    ],
+    "correctIndex": 1,
+    "explanation": "Virtual environments isolate project packages, preventing version clashes between different projects sharing the same global system Python.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between list.append() and list.extend() in Python?",
+    "options": [
+      "Append is only for integers; extend is for strings",
+      "append() adds its argument as a single element to the end of the list; extend() iterates over its argument, adding each item to the list",
+      "extend() creates a new list; append() modifies the list in-place",
+      "They are identical methods"
+    ],
+    "correctIndex": 1,
+    "explanation": "`lst.append([1,2])` yields `[..., [1,2]]` (adds the list as one item). `lst.extend([1,2])` yields `[..., 1, 2]` (merges elements).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are list comprehensions in Python?",
+    "options": [
+      "Diagnostic tools measuring list memory sizes",
+      "A concise way to create lists using a single line of code containing a loop and optional conditions",
+      "A method of sorting list items alphabetically",
+      "A configuration file defining list structures"
+    ],
+    "correctIndex": 1,
+    "explanation": "List comprehensions (e.g. `[x*2 for x in items if x > 0]`) provide a clean, readable alternative to traditional multiline for-loops.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Python dictionary access, how does dict.get('key') differ from dict['key']?",
+    "options": [
+      "dict.get() returns a default value or None if the key is missing; dict['key'] raises a KeyError",
+      "dict['key'] is only for numeric keys",
+      "dict.get() is slower because it writes to databases",
+      "They behave identically in all scenarios"
+    ],
+    "correctIndex": 0,
+    "explanation": "`dict['key']` throws an exception if missing. `dict.get('key', default)` allows safe fallbacks, preventing runtime crashes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'yield' keyword do inside a Python function?",
+    "options": [
+      "Terminates the function and returns a list",
+      "Suspends the function's execution and returns a generator object, producing values one at a time on demand",
+      "Imports external packages dynamically",
+      "Raises a runtime exception"
+    ],
+    "correctIndex": 1,
+    "explanation": "Functions using `yield` are generators. They don't store the full list in memory, yielding items on iteration, saving memory for huge streams.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '__init__' method in Python classes?",
+    "options": [
+      "To delete class instances from memory",
+      "A constructor method called automatically when a new object instance of the class is created, initializing attributes",
+      "To import packages inside class scopes",
+      "To check configuration syntax rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "`__init__` sets initial values on object creation, binding parameters to the `self` instance reference.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you handle runtime exceptions in Python?",
+    "options": [
+      "Using if/else logic on error variables",
+      "Wrapping code in try/except blocks, with optional else and finally blocks",
+      "By compiling code in debugging modes",
+      "Python does not support runtime exception handling"
+    ],
+    "correctIndex": 1,
+    "explanation": "`try` wraps code. `except Exception as e` catches errors. `finally` runs cleanup code regardless of success or failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'is' and '==' in Python?",
+    "options": [
+      "is checks value equality; == checks object identity",
+      "is checks object identity (if they point to the same memory address); == checks value equality (if they contain identical data)",
+      "== is only for comparing numbers",
+      "They are identical operators"
+    ],
+    "correctIndex": 1,
+    "explanation": "`a = [1]` and `b = [1]` have identical values (`a == b` is true). But they are separate objects in memory (`a is b` is false).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Python decorator do?",
+    "options": [
+      "Applies styling sheets to code scripts",
+      "A design pattern allowing developers to modify or extend the behavior of a function or class wrapper without changing its source code",
+      "Generates documentation for classes",
+      "Decrypts file contents at runtime"
+    ],
+    "correctIndex": 1,
+    "explanation": "Decorators (indicated by `@decorator_name` above functions) wrap target functions, running code before or after target execution (e.g. for logging/auth).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '*args' and '**kwargs' parameters in function definitions?",
+    "options": [
+      "To define database connection addresses",
+      "*args accepts an arbitrary number of positional arguments as a tuple; **kwargs accepts arbitrary keyword arguments as a dictionary",
+      "To define compile flags for processors",
+      "They are required parameters in all Python classes"
+    ],
+    "correctIndex": 1,
+    "explanation": "They support variable-length arguments. `*args` packs remaining positional inputs; `**kwargs` packs named parameters.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the global interpreter lock (GIL) in Python and how does it impact multi-threading?",
+    "options": [
+      "A lock protecting database files; prevents local file edits",
+      "A mutex preventing multiple threads from executing Python bytecodes at once, restricting CPU-bound multi-threaded scripts to a single CPU core",
+      "A security check blocking unauthorized logins",
+      "A licensing key restricting compiler usage"
+    ],
+    "correctIndex": 1,
+    "explanation": "The GIL ensures thread safety in CPython memory management. However, it limits CPU-bound multi-threading. Developers use `multiprocessing` to scale across cores.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'with' statement do in Python (e.g., when opening files)?",
+    "options": [
+      "Opens files in write-only modes",
+      "Enables context managers to handle setup and teardown actions automatically, guaranteeing resource release (e.g. closing files) even if exceptions occur",
+      "Speeds up file read operations from SSDs",
+      "Imports multiple packages inside a single line"
+    ],
+    "correctIndex": 1,
+    "explanation": "Context managers define `__enter__` and `__exit__`. `with open('file.txt') as f` ensures the file closes automatically when exiting the block context.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Python library is standard for parsing JSON strings and files?",
+    "options": [
+      "xml",
+      "json",
+      "yaml",
+      "csv"
+    ],
+    "correctIndex": 1,
+    "explanation": "The built-in `json` module provides `json.loads` (to parse strings) and `json.dumps` (to serialize dictionaries).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a generator and a list in Python memory usage?",
+    "options": [
+      "Generators use more memory than lists",
+      "Lists store all elements in memory at once; generators compute elements dynamically on the fly, consuming minimal memory regardless of sequence size",
+      "Generators cannot be iterated in loops",
+      "Lists are immutable; generators are mutable"
+    ],
+    "correctIndex": 1,
+    "explanation": "A list of a million numbers allocates megabytes. A generator of the same size holds only step parameters, streaming items one by one.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between deepcopy and shallow copy in Python's 'copy' module.",
+    "options": [
+      "Shallow copy is for tuples; deepcopy is for lists",
+      "Shallow copy constructs a new object but inserts references to objects in the original; deepcopy recursively copies all nested objects, creating completely independent data structures",
+      "Deepcopy is faster and uses less memory than shallow copy",
+      "They behave identically on nested dictionary structures"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a list contains a nested list `[[1,2]]`, a shallow copy duplicates the parent list but shares the inner list. Modifying `copy_lst[0][0]` changes the original. Deepcopy duplicates both layers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does method resolution order (MRO) resolve inheritance conflicts in Python multiple inheritance, and what algorithm does it use?",
+    "options": [
+      "Resolves conflicts alphabetically; uses binary search",
+      "Determines class hierarchy lookup sequence; uses the C3 Linearization algorithm to maintain monotonicity and local precedence",
+      "Resolves conflicts based on compile orders; uses Dijkstra's algorithm",
+      "MRO is not supported; multiple inheritance throws runtime syntax errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python classes resolve attributes based on `__mro__`. C3 Linearization ensures parent classes are evaluated only after their child classes, avoiding circular lookup anomalies.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What are metaclasses in Python, and how do they differ from standard classes?",
+    "options": [
+      "Metaclasses are classes that cannot contain methods",
+      "Metaclasses are classes of classes; standard classes define how object instances behave, while metaclasses define how class structures themselves are created and validated",
+      "Metaclasses are deprecated legacy structures replaced by decorators",
+      "Metaclasses are written in C; standard classes in Python code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Classes are objects. Thus, a class has a class (metaclass, default `type`). Writing a custom metaclass inherits `type`, allowing developers to modify or register classes during import compilation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Python's garbage collection manages reference counting and how it resolves cyclic references.",
+    "options": [
+      "By deallocating memory weekly; resolves cycles by restarting",
+      "Uses reference counting for immediate cleanup when references hit zero, and a cyclic garbage collector running generational tri-color algorithms to detect and break isolated reference cycles",
+      "Deallocates memory when system RAM usage hits 90%",
+      "CPython does not support automatic garbage collection"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reference counts decrement when variables exit scope. Cyclic references (Object A points to B, and B points to A) never hit zero. Python's cyclic collector periodically scans objects, isolating unreachable reference rings.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement custom asynchronous context managers in Python, and what special methods must the class define?",
+    "options": [
+      "By using async functions; must define __enter__ and __exit__",
+      "By defining an async class; must implement async methods __aenter__ and __aexit__ that return coroutines",
+      "By wrapping classes in decorators; must define __init__",
+      "Asynchronous context managers are not supported in Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "Asynchronous context managers support `async with`. The class must define `async def __aenter__(self)` and `async def __aexit__(self, exc_type, exc_val, exc_tb)` to manage lock or socket connections asynchronously.",
+    "difficulty": "hard"
   }
 ]

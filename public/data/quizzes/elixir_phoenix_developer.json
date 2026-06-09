@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Synchronous calls like `GenServer.call` or `Phoenix.PubSub.broadcast_sync` can block indefinitely if the target process doesn't respond. Specifying a `timeout` (e.g., `GenServer.call(pid, :message, 5000)`) is essential for building resilient systems, allowing the calling process to recover or retry after a specified duration rather than hanging indefinitely.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Elixir?",
+    "options": [
+      "A database management system",
+      "A dynamic, functional programming language designed for building scalable and maintainable applications, running on the Erlang VM (BEAM)",
+      "A web browser developed by Google",
+      "A styling stylesheet framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "Elixir is a modern functional language built on top of Erlang's VM (BEAM), inherited for concurrency, fault tolerance, and low latency.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Phoenix in the Elixir ecosystem?",
+    "options": [
+      "A tool for compressing image files",
+      "A high-performance web development framework built on Elixir, supporting real-time communication",
+      "A server operating system database",
+      "A compiler utility for formatting code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Phoenix is the flagship web framework for Elixir, offering productive MVC architecture alongside real-time features like Channels and LiveView.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the BEAM?",
+    "options": [
+      "A type of high-speed network router",
+      "The Erlang Virtual Machine that executes compiled Elixir and Erlang code, optimized for concurrent processes",
+      "A layout grid system in CSS",
+      "A security standard for user login keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "BEAM is the virtual machine at the core of Erlang/Elixir, running light-weight concurrent processes with private heaps and preemptive scheduling.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary programming paradigm of Elixir?",
+    "options": [
+      "Object-Oriented Programming (OOP)",
+      "Functional Programming",
+      "Procedural Programming",
+      "Logical Programming"
+    ],
+    "correctIndex": 1,
+    "explanation": "Elixir is a functional language. Variables are immutable, functions are pure, and code is structured around data transformation using pattern matching and pipes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the pipe operator `|>` do in Elixir?",
+    "options": [
+      "Creates a network socket channel",
+      "Passes the result of the left expression as the first argument to the right function call, improving code readability",
+      "Encrypts variables dynamically",
+      "Deletes temporary values"
+    ],
+    "correctIndex": 1,
+    "explanation": "The pipe operator allows chaining functions together (e.g. `data |> clean() |> format()`) instead of nesting calls, matching standard data transformation flows.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Pattern Matching' in Elixir?",
+    "options": [
+      "A design pattern for styling web layouts",
+      "A powerful control-flow mechanism (using the match operator `=`) that matches structures and binds variables simultaneously",
+      "A database search query index",
+      "A security checker for password hashing"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `=` symbol in Elixir is the match operator, not an assignment. It asserts value equivalence and destructures data (e.g., `{:ok, result} = fetch()`).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What package manager is native to the Elixir ecosystem?",
+    "options": [
+      "npm",
+      "Hex",
+      "pip",
+      "NuGet"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hex is the package manager for Elixir and Erlang ecosystems, hosting dependency packages and libraries.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Immutability' in Elixir and how does it affect coding?",
+    "options": [
+      "Variables cannot be referenced; it makes code slow",
+      "Data values cannot be modified in-place; modifying data creates a new data copy, preventing side effects and thread collisions",
+      "Functions cannot return values; it requires global variables",
+      "Code files are locked after compilation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Immutability means variables never change state. This simplifies concurrency: multiple processes can read the same data without locks since no thread can write over it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Elixir, what is an 'Actor Model' process?",
+    "options": [
+      "A process representing actors in game engines",
+      "An isolated, lightweight thread of execution (not an OS thread) that communicates with other processes only by sending and receiving asynchronous messages",
+      "A database record mapping user accounts",
+      "A network routing path in servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Elixir concurrency is based on actors (processes). Processes share no memory; they run in isolation with their own GC, interacting strictly via mailbox messages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Phoenix 'LiveView'?",
+    "options": [
+      "A camera stream monitoring tool",
+      "A technology enabling rich, real-time, interactive user experiences with server-rendered HTML, reducing the need for client-side JavaScript frameworks",
+      "A database backup scheduler",
+      "A style guide dashboard template"
+    ],
+    "correctIndex": 1,
+    "explanation": "LiveView allows developers to write real-time, stateful frontend logic in Elixir. The server pushes HTML changes over a WebSocket connection, updating the browser DOM instantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Ecto' in Elixir applications?",
+    "options": [
+      "A caching middleware for web assets",
+      "A database wrapper and query generator library for Elixir, serving as the standard ORM/database layer",
+      "A deployment scripting utility",
+      "A compiler check for styling rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ecto is the standard library for data validation and SQL mapping, split into four components: Repo, Query, Schema, and Changeset.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Changeset' in Ecto?",
+    "options": [
+      "A list of git commits made to the database files",
+      "A struct that handles data filtering, validation, and tracking changes before saving data to the database",
+      "A database query indexing command",
+      "A deployment script configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "Changesets define validation rules (e.g. required columns, string length, format) and aggregate errors, ensuring only valid data transitions are executed on the database.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the philosophy of 'Let It Crash' in Elixir/Erlang system design?",
+    "options": [
+      "Encouraging developers to write poor code",
+      "The design pattern where individual processes are allowed to fail because supervisors will detect the failure and restart them in a clean state",
+      "A database transaction rollback strategy",
+      "An automated script that crashes slow servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "'Let it crash' shifts error recovery to Supervisors. Instead of writing verbose defensive error-catching around every line of code, processes crash on failure, and supervisors restore them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Supervisor' in Elixir OTP?",
+    "options": [
+      "A team lead developer who reviews pull requests",
+      "A specialized process whose sole purpose is to monitor child processes and automatically restart them when they terminate unexpectedly",
+      "A database administration console",
+      "A server load balancing firewall"
+    ],
+    "correctIndex": 1,
+    "explanation": "Supervisors implement fault tolerance. They manage child lifecycle policies (e.g. `:one_for_one` restart strategies), shielding the overall system from cascading failures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does OTP stand for in Erlang/Elixir?",
+    "options": [
+      "One-Time Password",
+      "Open Telecom Platform (a set of libraries and design patterns for building fault-tolerant applications)",
+      "Optimal Transaction Protocol",
+      "Operating Thread Process"
+    ],
+    "correctIndex": 1,
+    "explanation": "OTP is the standard library of Erlang, providing structural frameworks (like GenServer, Supervisor, Application) that simplify building concurrent, distributed systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'GenServer' in Elixir?",
+    "options": [
+      "A general-purpose web server hosting pages",
+      "A behavior module for implementing client-server relation structures, managing state persistently, and executing code asynchronously",
+      "A database model schema definition",
+      "A security standard for user login keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "GenServer abstracts stateful loops. It runs as a process, maintaining private state and reacting to synchronous calls (`call`) or asynchronous casts (`cast`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Phoenix 'Channels' enable?",
+    "options": [
+      "Multiplexing video streams across regions",
+      "Real-time, two-way message broadcasting between web clients and the server over a single connection (WebSockets)",
+      "Creating database partitions",
+      "Setting up local network cabling routes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Channels allow developers to broadcast updates (e.g. chat messages, notifications) to thousands of connected clients instantly with low memory footprints.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Mix' in Elixir development?",
+    "options": [
+      "To mix different programming languages in one file",
+      "A build tool that provides tasks for creating, compiling, testing, managing dependencies, and running Elixir projects",
+      "A design tool for UI wireframes",
+      "An API for database caching"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mix is the project manager CLI in Elixir, handling tasks like `mix new`, `mix compile`, `mix test`, and `mix deps.get`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Guard Clauses' in Elixir function definitions?",
+    "options": [
+      "Security firewalls that protect API routes",
+      "Additional validation assertions (like `when is_integer(x)`) appended to function definitions to restrict function matching based on types",
+      "Try-catch blocks that capture compile errors",
+      "Database integrity constraints on columns"
+    ],
+    "correctIndex": 1,
+    "explanation": "Guards extend pattern matching. They run in compile-time optimized checks to determine which function clause should execute based on argument characteristics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Macro' in Elixir metaprogramming?",
+    "options": [
+      "A key combination shortcut in editors",
+      "Code that writes code, executed at compile time to abstract common code patterns and extend the language syntax",
+      "A large database file containing tables",
+      "A styling template for HTML elements"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metaprogramming in Elixir uses macros (using `quote` and `unquote`) to manipulate Abstract Syntax Trees (AST), generating boilerplate code during the compilation phase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does BEAM preemptive scheduling prevent individual Elixir processes from hogging system CPU resources?",
+    "options": [
+      "By shutting down processes that run for more than 5 seconds",
+      "By assigning a reduction budget (typically 2000 function calls/operations) to each process; once exhausted, the process is paused to let others run",
+      "By running all processes on a single CPU core sequentially",
+      "By requiring developers to manually write yield statements in loops"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike cooperative schedulers where loops can block execution, BEAM measures work in 'reductions'. Schedulers switch processes when the budget is spent, ensuring fair CPU distribution.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between Ecto changesets: validation errors vs constraint errors (e.g., unique_constraint)?",
+    "options": [
+      "Validation errors are for databases; constraints are for code",
+      "Validation errors are caught locally in Elixir code before querying the database; Constraint errors are thrown by the database itself (e.g., unique index violation) and converted into changeset errors by Ecto",
+      "Constraint errors are always fatal and cannot be converted",
+      "Validation errors do not prevent database writes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ecto separates checks. Local validation (like format matches) runs immediately. Unique checks require a roundtrip. `unique_constraint` catches the database error safely and appends it to changesets instead of crashing.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the role of 'Distributed Elixir' (Node communication) and how do nodes sync state across different physical servers?",
+    "options": [
+      "Distributed Elixir is only for file transfers; nodes sync via FTP",
+      "Elixir nodes connect over a network (using Erlang distribution), allowing processes on different machines to spawn, monitor, and send messages to each other natively",
+      "Nodes require a centralized database to communicate",
+      "Nodes must be placed in the same cloud subnetwork and run identical database instances"
+    ],
+    "correctIndex": 1,
+    "explanation": "Erlang is built for clustering. Spawning a process on a remote node is as simple as `Node.spawn(node, module, fun, args)`. Processes communicate identically whether local or clustered.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between `Task.async/1` and `Task.start/1` in Elixir process execution?",
+    "options": [
+      "Task.async is for databases; Task.start is for files",
+      "Task.async spawns a process and links it to the caller, expecting a reply via Task.yield/await; Task.start spawns an unlinked firewall task ('fire and forget') with no return expected",
+      "Task.start is always faster than Task.async",
+      "Task.async runs sequentially; Task.start runs in parallel"
+    ],
+    "correctIndex": 1,
+    "explanation": "`async` links the process, meaning if the task crashes, the caller crashes too (unless trapped). It returns a struct that `Task.await` blocks on to fetch the result. `start` runs fire-and-forget tasks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Telemetry' in Elixir and how is it used to monitor production Phoenix applications?",
+    "options": [
+      "A tool for monitoring weather metrics in offices",
+      "A dynamic dispatch library for metrics and instrumentation, allowing applications to emit events that monitoring tools (like PromEx or Grafana) handle",
+      "A script that monitors developer keystrokes",
+      "An API that backups database tables automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Telemetry is the unified metrics standard in Erlang/Elixir. Libraries (like Phoenix or Ecto) emit standard events (e.g., `[:phoenix, :endpoint, :stop]`) that monitoring tools handle to track response times and queries.",
+    "difficulty": "hard"
   }
 ]

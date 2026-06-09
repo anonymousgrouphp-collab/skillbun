@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "The `distanceInterval` option (e.g., in `expo-location`'s `watchPositionAsync`) specifies the minimum distance in meters that the device needs to move before a new location update is triggered. Setting this to a non-zero value like 100 meters helps conserve battery by reducing the frequency of location updates when the user is stationary or moving slowly. `timeInterval` is for time-based updates, and `accuracy` settings affect precision, not update frequency based on movement.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is React Native?",
+    "options": [
+      "A database management system for mobile devices",
+      "An open-source UI software framework created by Meta to build natively rendered mobile apps for iOS and Android using React",
+      "A coding compiler that converts JavaScript to Python",
+      "A web hosting provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "React Native wraps native platform views, allowing developers to write JavaScript/React while rendering native UI elements.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which component is the basic container equivalent to HTML 'div' in React Native?",
+    "options": [
+      "<Container>",
+      "<View>",
+      "<Div>",
+      "<Section>"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<View>` is the fundamental UI building block in React Native, mapping directly to native views (`UIView` on iOS, `android.view` on Android).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which component is used to display text in React Native?",
+    "options": [
+      "<p>",
+      "<span>",
+      "<Text>",
+      "<Label>"
+    ],
+    "correctIndex": 2,
+    "explanation": "In React Native, all text must be wrapped inside a `<Text>` component. Placing raw text inside `<View>` causes a compilation error.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you handle user click actions on components in React Native?",
+    "options": [
+      "Using standard onClick event handlers",
+      "Using Touchable components (like TouchableOpacity or Pressable) and their onPress event handlers",
+      "Adding href attributes to components",
+      "Writing custom touch events in native code"
+    ],
+    "correctIndex": 1,
+    "explanation": "React Native uses touch handlers. Components like `<TouchableOpacity>` or `<Pressable>` capture taps and trigger `onPress` callbacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Metro in a React Native project?",
+    "options": [
+      "A database engine standard",
+      "The JavaScript bundler for React Native, compiling code into a single bundle for mobile devices",
+      "A styling library for UI components",
+      "An installer package manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metro is the development bundler. It compiles, packages, and serves JavaScript code to the emulator or device during development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of Expo in the React Native ecosystem?",
+    "options": [
+      "To host backend servers in the cloud",
+      "A framework and platform offering tools and libraries that simplify building, deploying, and testing React Native apps without setting up Xcode/Android Studio initially",
+      "To version datasets for training models",
+      "To encrypt mobile application binaries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Expo abstracts native iOS/Android configs. It lets developers test apps on devices via the Expo Go app and access native modules easily.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default layout engine used in React Native?",
+    "options": [
+      "CSS Grid",
+      "Flexbox",
+      "Float layouts",
+      "Block layouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "React Native uses Yoga (a C++ implementation of Flexbox). By default, flex directions are set to `column` (unlike web, which defaults to `row`).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between React Native and standard React for the web?",
+    "options": [
+      "React Native uses HTML elements like div and p; React uses custom tags",
+      "React compiles virtual DOM to browser HTML; React Native maps components directly to native mobile UI views (UIView, android.view)",
+      "React Native does not support hooks (like useState)",
+      "React Native is written in Python; React in JavaScript"
+    ],
+    "correctIndex": 1,
+    "explanation": "They share React logic (props, state, components). The difference lies in the rendering target: React targets the browser DOM; React Native targets mobile native platforms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you apply styling to components in React Native?",
+    "options": [
+      "By writing CSS classes in separate stylesheet files",
+      "Using the StyleSheet.create() API to define inline-like style objects in JavaScript",
+      "Using HTML style attributes directly on tags",
+      "Styling is managed by native Xcode/Android files"
+    ],
+    "correctIndex": 1,
+    "explanation": "`StyleSheet.create` parses style objects, sending them to the native bridge efficiently. Styles use camelCase properties (e.g. `backgroundColor`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'ScrollView' component and how does it differ from 'FlatList'?",
+    "options": [
+      "ScrollView is only for horizontal scrollable layouts",
+      "ScrollView renders all its child components at once (suitable for small content); FlatList renders items lazily as they appear on the screen, optimizing memory usage for large lists",
+      "FlatList is only compatible with Android platforms",
+      "There is no difference in memory usage between them"
+    ],
+    "correctIndex": 1,
+    "explanation": "`FlatList` is highly optimized. It recycles views and releases memory for off-screen items, preventing memory crashes when displaying thousands of items.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'bridge' in React Native architecture?",
+    "options": [
+      "A physical connector linking mobile devices to computers",
+      "The asynchronous communication channel that serialized and passes JSON messages between the JavaScript thread and the Native threads",
+      "A tool that connects local database tables",
+      "A router config mapping network sockets"
+    ],
+    "correctIndex": 1,
+    "explanation": "The bridge allows JS and native code to talk. Since calls are asynchronous and batched, keeping bridge traffic minimal is key to performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which component is used to capture user text input in React Native?",
+    "options": [
+      "<input type=\"text\">",
+      "<TextInput>",
+      "<TextField>",
+      "<TextArea>"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<TextInput>` is the basic element for text entry, supporting props like `onChangeText`, `keyboardType`, and `secureTextEntry`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'ActivityIndicator' component?",
+    "options": [
+      "To trace process activity logs on servers",
+      "To display a circular loading spinner indicating background operations are loading",
+      "To count user screen tap counts",
+      "To display battery status warnings"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<ActivityIndicator>` displays a standard native spinner (`UIActivityIndicatorView` on iOS, `ProgressBar` on Android).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Fast Refresh' do in React Native?",
+    "options": [
+      "Speeds up device battery charging times",
+      "A developer feature that applies code changes instantly to the running app on emulator/device while preserving component state",
+      "Clears database caches on the server",
+      "Refreshes the device network connection"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fast Refresh combines hot reloading and live reloading, updating modified files instantly without resetting the app state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you access device features (like camera or location) in React Native?",
+    "options": [
+      "By writing raw C++ code scripts",
+      "Using Expo SDK modules or linking native packages (like react-native-camera) and declaring system permissions in Info.plist / AndroidManifest.xml",
+      "Device features are not accessible from JavaScript",
+      "By querying database API endpoints"
+    ],
+    "correctIndex": 1,
+    "explanation": "Accessing hardware requires native modules. Libraries expose native APIs to JS, but developers must request runtime permissions first.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'react-navigation' in React Native applications?",
+    "options": [
+      "To route API requests on the backend server",
+      "The standard routing and navigation library for React Native, managing screens, stacks, tabs, and drawer navigation visually",
+      "To map GPS routes on map views",
+      "To optimize database query indices"
+    ],
+    "correctIndex": 1,
+    "explanation": "`react-navigation` manages screen stacks. It handles transition animations and screen history natively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Linking' in React Native used for?",
+    "options": [
+      "Linking library packages together",
+      "A general interface to interact with both incoming and outgoing app links, supporting deep linking to open pages inside the app",
+      "Connecting database tables",
+      "Linking web stylesheets to components"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Linking.openURL('https://...')` triggers external browser apps. Deep linking handles schemas (e.g. `myapp://profile`) to navigate users within the app.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Platform' module do in React Native?",
+    "options": [
+      "Scales backend database clusters dynamically",
+      "Provides utilities to detect the active operating system (iOS or Android) and write platform-specific code or styles",
+      "Renders virtual reality layouts",
+      "Handles device rotation events"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Platform.OS` returns `ios` or `android`. `Platform.select` lets developers define distinct style or logic dictionaries by OS.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the 'SafeAreaView' component in iOS app layouts?",
+    "options": [
+      "To encrypt client data storage blocks",
+      "To render content nested within the safe boundaries of a device (avoiding notches, status bars, and home indicators)",
+      "To block user touch events during loading",
+      "To manage device network security"
+    ],
+    "correctIndex": 1,
+    "explanation": "`SafeAreaView` adds padding dynamically, preventing content from being covered by notches on devices like the iPhone X or newer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does it mean to 'eject' an Expo application?",
+    "options": [
+      "To delete the application from the device",
+      "Converting an Expo project into a bare React Native project, exposing the native ios/ and android/ directories to write custom native code",
+      "Publishing the application bundle to the App Store",
+      "Clearing local storage cache files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ejecting (now `npx expo prebuild`) is done when Expo's built-in APIs are insufficient, requiring custom native libraries or Xcode/Android Studio configurations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the 'Hermes' JavaScript engine improve React Native application performance compared to JavaScriptCore?",
+    "options": [
+      "By running JavaScript code on separate backend cloud servers",
+      "By compiling JavaScript into bytecode ahead-of-time (AOT) during the build process, reducing start-up times, memory usage, and bundle sizes",
+      "By converting JavaScript directly to Swift code files",
+      "By disabling all garbage collection routines inside the app process"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hermes is optimized for mobile. Instead of parsing JS at startup (slow), it compiles code to bytecode during build, lowering TTID (Time to Interactive).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In the context of React Native's new architecture (0.70+), explain the roles of 'Fabric' and 'TurboModules'.",
+    "options": [
+      "Fabric is for database security; TurboModules is for asset builds",
+      "Fabric is the new concurrent rendering system replacing the legacy UI manager; TurboModules are the new native modules system allowing direct synchronous JSI access between JS and native code",
+      "Fabric is a stylesheet compiler; TurboModules is an emulator tool",
+      "They are legacy systems deprecated in modern React Native releases"
+    ],
+    "correctIndex": 1,
+    "explanation": "The new architecture replaces the JSON-based bridge. Fabric renders UI synchronously. TurboModules utilize JSI (JavaScript Interface), exposing native methods directly to JS as callable objects.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'JSI' (JavaScript Interface) in React Native, and how does it eliminate the performance bottlenecks of the JSON-based bridge?",
+    "options": [
+      "A network protocol; eliminates latency by caching routes",
+      "A C++ abstraction layer allowing the JavaScript engine to hold direct references to host C++ objects, enabling synchronous method calls without JSON serialization",
+      "A database driver; eliminates query latency by prepared indexes",
+      "A tool that minifies JS files during compile runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "JSI replaces bridge-serialization overhead. Rather than converting args to JSON strings, sending them across queues, and parsing them on the native thread, JS calls C++ functions directly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement native UI components (Custom Native Views) in React Native, and how does component styling map to the layout?",
+    "options": [
+      "By writing CSS layouts inside native files",
+      "By creating view managers in Java/Kotlin (Android) and Objective-C/Swift (iOS) that register with React Native, mapping layout props via Yoga layout metrics",
+      "By converting web HTML divs to mobile views using plugins",
+      "Custom native views are not supported; developers must use built-in views"
+    ],
+    "correctIndex": 1,
+    "explanation": "Developers create custom Views (e.g. specialized map views) and register `ViewManager` classes. Props (width/height) map to Yoga, which calculates layout sizes before native view placement.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the cause of 'Thread Starvation' in React Native applications, and how does offloading tasks to the InteractionManager or Worklets mitigate it?",
+    "options": [
+      "The device running out of battery; offload to system settings",
+      "Heavy synchronous JavaScript execution blocking the single JS thread, stalling UI frames; mitigated by scheduling tasks after animations finish or using Worklets to run code on UI threads",
+      "Multiple users logging in; offload to database replicas",
+      "Too many network requests; offload to cache servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since JS runs on one thread, complex operations (like database sorting or heavy string parsing) freeze animations. Worklets (used in Reanimated) execute code on the UI thread directly, avoiding frame drops.",
+    "difficulty": "hard"
   }
 ]

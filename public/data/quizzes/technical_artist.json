@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "For a complex technical project like an engine plugin, comprehensive deployment/demo notes are essential. They demonstrate professional readiness by showing attention to detail, usability, and an understanding of operational concerns for someone else to use, evaluate, or even integrate the project, highlighting real-world applicability.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary role of a Technical Artist in game development?",
+    "options": [
+      "Writing core C++ game physics engine modules",
+      "Bridging the gap between artists and programmers, optimizing art assets, setting up pipelines, and writing shaders",
+      "Designing character outfits and drafting concept art",
+      "Marketing the game to digital publishing platforms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tech Artists act as translators, ensuring art looks stunning while maintaining performance limits through optimization and tools creation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Shader' in computer graphics?",
+    "options": [
+      "A script that backs up art directory files",
+      "A program executed on the GPU that calculates vertex coordinates and pixel colors to render visual effects on screen",
+      "A database query retrieving mesh values",
+      "A physical cooling system in game console processors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shaders are GPU programs (written in HLSL/GLSL) that calculate mesh rendering, lighting, shadows, and material features.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In modern rendering engines, what does PBR stand for?",
+    "options": [
+      "Physically Based Rendering",
+      "Pixel Based Rasterization",
+      "Point Buffer Reconstruction",
+      "Process Boundary Registry"
+    ],
+    "correctIndex": 0,
+    "explanation": "PBR (Physically Based Rendering) simulates real-world light behavior, using physical inputs (roughness, metalness) to calculate reflections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Rigging' mean in 3D animation pipelines?",
+    "options": [
+      "Designing the lighting setups of game scenes",
+      "The process of creating a bone skeleton structure and control joints for a 3D mesh so animators can animate it",
+      "Optimizing texture files to reduce GPU memory usage",
+      "Merging code branches in git repositories"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rigging builds the skeletal structure. Weight skinning links mesh vertices to bones, allowing joints to bend character meshes naturally.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is UV Mapping in 3D modeling?",
+    "options": [
+      "Mapping coordinate routes on map views",
+      "The process of projecting a 2D image texture map onto a 3D model's surface coordinates (U and V axes)",
+      "Configuring security permissions on virtual servers",
+      "Tracing compiler dependencies in script folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "UV mapping unwraps 3D meshes into flat 2D coordinate shells, allowing texture files to align correctly with mesh faces.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does LOD stand for in game asset optimization?",
+    "options": [
+      "Level of Detail",
+      "Log of Diagnostics",
+      "Load On Demand",
+      "Layout Optimization Design"
+    ],
+    "correctIndex": 0,
+    "explanation": "LOD (Level of Detail) swaps meshes based on camera distance. Faraway objects load low-poly meshes, saving GPU processing power.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a standard industry software tool for 3D modeling, rigging, and animation?",
+    "options": [
+      "Adobe Photoshop",
+      "Autodesk Maya",
+      "Visual Studio Code",
+      "Docker Desktop"
+    ],
+    "correctIndex": 1,
+    "explanation": "Autodesk Maya (and Blender) are standard 3D DCC tools, widely used by tech artists to script pipelines and rigs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What visual behavior is simulated by Subsurface Scattering (SSS) in shader materials?",
+    "options": [
+      "Mirror reflections on polished metal sheets",
+      "Light penetrating a translucent surface, scattering inside, and exiting at different angles (like skin, wax, or milk)",
+      "Camera lens flares looking at bright lights",
+      "Background elements being blurred by fog"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSS simulates light absorption in translucent materials. Light travels under skins/wax surfaces before scattering out, adding flesh-like glows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In shader programming, compare the roles of a Vertex Shader and a Pixel (Fragment) Shader.",
+    "options": [
+      "Vertex shader is for colors; Pixel shader is for vectors",
+      "Vertex shader calculates vertex positions and transformations; Pixel shader calculates the final color of each screen pixel",
+      "Pixel shader is executed on CPU; Vertex on GPU units",
+      "They are duplicate stages executed in one compile run"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vertex shader modifies geometry coordinates (e.g. wind sway). Pixel shader processes color outputs, applying lighting, textures, and normal mapping.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is 'Draw Call' optimization crucial for maintaining stable game frame rates?",
+    "options": [
+      "Draw calls consume database storage allocations",
+      "Each draw call sends mesh instructions from CPU to GPU; too many draw calls bottleneck the CPU, reducing performance",
+      "Draw calls increase network latency rates",
+      "They download game asset updates from servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "GPU is fast, but CPU driver bottlenecks occur if too many independent mesh draw commands are sent. Batching or instancing meshes solves this.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do Metallic and Roughness maps control material reflections in a PBR shader?",
+    "options": [
+      "Metallic defines mesh thicknesses; Roughness defines mesh weight",
+      "Metallic defines if a surface is a metal conductor; Roughness defines micro-surface details that scatter reflections (matte vs glossy)",
+      "Roughness maps are only compatible with transparent glass objects",
+      "They control the speed of rendering animations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metals reflect colored specular highlights. Roughness diffuses reflections: rough surfaces spread light (blurry), smooth surfaces reflect sharply.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Forward Rendering and Deferred Rendering pipeline paths?",
+    "options": [
+      "Forward is for mobile; Deferred is for web applications",
+      "Forward rendering calculates lighting per object in geometry passes; Deferred rendering caches geometry in a G-Buffer, calculating lighting later in screen-space",
+      "Deferred rendering is slower when there are hundreds of dynamic lights",
+      "They use identical buffer sizes during rendering passes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Forward rendering re-draws meshes for every light. Deferred rendering draws geometry once, computing light calculations in 2D space, ideal for complex lighting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In game animation systems, what is a 'Blend Space'?",
+    "options": [
+      "A color palette editor blending textures",
+      "An asset blending multiple animations (like idle, walk, run) dynamically based on input parameters (like speed or direction)",
+      "A database index sorting animation files",
+      "A tool scaling resolution values in games"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blend spaces blend animations. Inputting speed (0 to 600) smoothly blends walk cycles into run cycles without abrupt visual jumps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does a Normal Map simulate surface detail without increasing polygon counts?",
+    "options": [
+      "By duplicating mesh geometry in background threads",
+      "By storing high-resolution surface normal vectors in texture RGB channels, altering pixel lighting calculations to look bumpy",
+      "By running database queries tracking light angles",
+      "By compressing texture dimensions using zip codecs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Normal maps trick lighting calculations. RGB values correspond to XYZ offsets of normals, simulating cracks/bumps on flat low-poly meshes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between Forward Kinematics (FK) and Inverse Kinematics (IK) in rigging.",
+    "options": [
+      "FK is for wheels; IK is for arm joints only",
+      "FK rotates joints hierarchically down the skeleton chain; IK uses target coords to calculate parent bone rotations automatically",
+      "IK is simpler to compute and requires less processing than FK",
+      "They are duplicate terms for keyframe interpolation"
+    ],
+    "correctIndex": 1,
+    "explanation": "With FK, moving a hand requires rotating shoulder, elbow, then wrist. With IK, the hand target is moved, and the arm bones resolve joint bends.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of texture Mipmapping in game development?",
+    "options": [
+      "Creating backup files in case of server crashes",
+      "Generating lower-resolution copies of textures at build time, loading smaller maps when models are far from cameras to save bandwidth and prevent aliasing",
+      "Encrypting textures to avoid asset theft",
+      "Minifying texture files to save disk spaces"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mipmaps optimize RAM. Far objects don't need 4K maps. Mipmaps load smaller maps matching screen sizes, preventing graininess (aliasing).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Weight Painting' refer to in character rigging?",
+    "options": [
+      "Choosing color values for character costumes",
+      "Assigning influence values (weights) of skeleton bones over specific vertices of the character mesh, controlling skin stretching",
+      "Measuring the file size weight of asset packages",
+      "Applying normal mapping to base textures"
+    ],
+    "correctIndex": 1,
+    "explanation": "Weight painting defines mesh bindings. A vertex on the elbow is weighted 50% to forearm and 50% to upper arm to bend smoothly on joint folds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Occlusion Culling in rendering optimizations?",
+    "options": [
+      "Deleting shadow variables to speed up frames",
+      "An optimization that prevents rendering meshes that are completely hidden behind other opaque meshes from the camera view",
+      "A database clean task deleting empty tables",
+      "A network filter blocking duplicate packets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frustum culling drops objects behind the camera. Occlusion culling drops objects blocked by walls in front of the camera, saving GPU vertex costs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of rigging constraints in 3D character setups?",
+    "options": [
+      "To limit the file size of skeleton files on disk",
+      "To limit bone rotations or translations to prevent joints from bending in physically impossible or unnatural directions",
+      "To restrict animation editing to administrative users",
+      "To lock database tables during rendering runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Constraints restrict bones (e.g. limiting elbow rotation to one axis and 150 degrees), helping animators animate characters easily without breaking rigs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is Python widely integrated into 3D DCC tools (Maya, Blender, Unreal Engine)?",
+    "options": [
+      "Python compiles code to execute on GPU processors directly",
+      "It acts as the standard scripting language to automate pipeline tasks, asset exporting, validation checks, and tool configurations",
+      "Python writes web landing pages for games",
+      "Python is the only language compatible with SQL databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python is DCC glue. Tech artists write scripts to export models, rename assets, set up auto-rigs, or interface with version control systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Detail the composition of a G-Buffer in deferred rendering, and what its primary hardware performance limitation is.",
+    "options": [
+      "G-Buffer stores physics coordinates; limited by CPU cores count",
+      "G-Buffer caches normals, depth, albedo in separate render targets; limited by high GPU memory bandwidth requirements writing multiple high-res buffers",
+      "G-Buffer stores texture folders; limited by local disk speeds",
+      "Deferred rendering does not utilize G-Buffers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deferred rendering splits geometry. Writing normals/depth/albedo targets per pixel in the first pass consumes vast memory bandwidth, a limit on mobile devices.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement a wind vertex displacement shader for foliage assets (like grass or trees) in vertex shaders?",
+    "options": [
+      "By duplicating foliage meshes in background threads",
+      "By applying sine wave offset calculations to vertex coordinates over time, using vertex color weights to restrict motion at the mesh base",
+      "By writing database update queries tracking wind speed variables",
+      "Foliage wind motion cannot be calculated on vertex shaders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vertex shaders modify mesh vertices. Using sine waves creates sway. Vertex color masks (painted by artists) set weights: 0 at roots (static), 1 at tips (maximum sway).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe how Dual-Quaternion Skinning improves character mesh deformation compared to Linear Blend Skinning during extreme joint rotations.",
+    "options": [
+      "By running calculation tasks on separate CPU threads",
+      "Linear blend skinning averages matrices causing volume loss ('candy-wrapper' joints); dual quaternions interpolate rotations on spheres, preserving joint volumes",
+      "Dual-quaternion skinning requires double the bone counts of linear skinning",
+      "It eliminates normal mapping calculations entirely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Linear blending collapses joints on 180-degree rotations. Dual-quaternion skinning interpolates using dual quaternions, keeping wrist and elbow volumes intact during twists.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Static Lightmaps and dynamic Cascade Shadow Maps (CSM) are blended in game environments to optimize performance.",
+    "options": [
+      "Lightmaps are for skybox graphics; CSM is for models only",
+      "Lightmaps bake static object shadows on textures (zero cost); CSM renders dynamic shadows near the camera, blending into baked lightmaps at distance bounds",
+      "Cascade shadow maps are baked into database tables during compile runs",
+      "They cannot be blended due to resolution incompatibilities"
+    ],
+    "correctIndex": 1,
+    "explanation": "Static lighting saves GPU power. Moving characters need shadows, so CSM renders dynamic maps nearby. Blending CSM bounds into static lightmaps at distance limits saves shadow map draws.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does a Technical Artist resolve GPU performance bottlenecks caused by alpha 'Overdraw' in transparency rendering (e.g. particles or dense foliage)?",
+    "options": [
+      "By increasing the GPU processor speed limits",
+      "By reducing overlapping transparent planes, replacing transparent materials with masked (binary alpha) templates, and cutting tight meshes around alpha textures",
+      "By disabling anti-aliasing configurations",
+      "By exporting texture files in low-precision formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "Overdraw happens when pixels are colored multiple times. Flat card particles draw huge transparent regions. Cutting tight polygons around the visual textures reduces transparent pixel counts, easing GPU fill rates.",
+    "difficulty": "hard"
   }
 ]

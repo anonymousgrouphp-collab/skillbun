@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Distributed tracing tools are specifically designed to visualize and track the flow of requests as they traverse multiple services in a distributed system. This helps in understanding service dependencies, identifying performance bottlenecks, and pinpointing the exact location of failures that might not be obvious from individual service logs.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary objective of a Platform Engineer?",
+    "options": [
+      "To write business product code for web forms",
+      "To build and maintain an Internal Developer Platform (IDP) that provides self-service capabilities and automates infrastructure operations for developer teams",
+      "To design visual mockups in vector editors",
+      "To manage marketing schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Platform engineering focuses on reducing developer cognitive load, providing paved roads (templates, self-service portals) to deploy code safely.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is an IDP (Internal Developer Platform) in Platform Engineering?",
+    "options": [
+      "An identity portal tracking employee ID cards",
+      "A set of self-service tools, APIs, and templates that developers use to deploy and manage applications independently",
+      "A software package that compiles code",
+      "A database that backups user directories"
+    ],
+    "correctIndex": 1,
+    "explanation": "An IDP consolidates configurations, lets developers spin up resources (like databases or environments) via portals (e.g., Backstage) without waiting for ops teams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which open-source project is widely used as a developer portal builder in platform engineering (originally created by Spotify)?",
+    "options": [
+      "Docker",
+      "Backstage",
+      "Kubernetes",
+      "Ansible"
+    ],
+    "correctIndex": 1,
+    "explanation": "Backstage is an open-source framework for building developer portals, organizing catalogs, docs, and templates in one place.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of 'Self-Service' infrastructure in software development?",
+    "options": [
+      "It reduces the cost of server hardware",
+      "It eliminates bottlenecks by letting developers provision resources safely within guidelines without manual approvals",
+      "It allows users to write SQL tables without database drivers",
+      "It replaces the need for QA testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Self-service speeds up shipping cycles. Instead of opening tickets for a database setup, developers run automated portal commands.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does GitOps involve in platform operations?",
+    "options": [
+      "Managing developer git credentials only",
+      "Using Git repositories as the single source of truth for declarative infrastructure and application configurations, synced automatically by agents",
+      "Compiling code using git branches",
+      "Tracking developer coding tasks using git logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "GitOps (using tools like ArgoCD or Flux) ensures the live cluster matches the configuration declared in Git. Changes are applied via git pull requests.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of 'Golden Paths' (or Paved Roads) in platform design?",
+    "options": [
+      "A layout pattern in graphic design editors",
+      "A recommended, fully supported path with pre-built templates and configurations to build and deploy applications quickly and safely",
+      "A network routing path between server centers",
+      "A database schema organization rule"
+    ],
+    "correctIndex": 1,
+    "explanation": "Golden Paths provide templates. If developers follow the paved road, they get built-in CI/CD, logging, and security compliance automatically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does IAC stand for in platform configuration?",
+    "options": [
+      "Infrastructure as Code",
+      "Interface Access Control",
+      "Internal Application Connection",
+      "Automated Index Command"
+    ],
+    "correctIndex": 0,
+    "explanation": "IAC stands for Infrastructure as Code, representing the practice of defining server and network configurations in code files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Platform Engineering and DevOps?",
+    "options": [
+      "DevOps is only for startups; Platform Engineering is for enterprise",
+      "DevOps is a cultural philosophy emphasizing collaboration; Platform Engineering is the product-oriented discipline that builds the platform to enable DevOps at scale",
+      "Platform Engineering replaces the need for CI/CD pipelines",
+      "DevOps is written in Python; Platform Engineering in Go"
+    ],
+    "correctIndex": 1,
+    "explanation": "Platform engineering productizes operations. Instead of every developer managing complex Kubernetes configs (DevOps), the platform team packages these configs into IDPs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Crossplane in Kubernetes configurations?",
+    "options": [
+      "A network tool routing traffic between regions",
+      "An open-source control plane that extends Kubernetes to provision and manage cloud services (like RDS or S3) using standard Kubernetes manifests",
+      "A tool that compiles code container images",
+      "A database index structure"
+    ],
+    "correctIndex": 1,
+    "explanation": "Crossplane turns Kubernetes into an infrastructure control plane, allowing developers to define resources (like databases) using custom resource definitions (CRDs).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Helm' in Kubernetes environments?",
+    "options": [
+      "To monitor node CPU temperatures",
+      "A package manager for Kubernetes that packages files into 'charts' to configure and deploy applications simply",
+      "A load balancing proxy server",
+      "A tool that registers domain names"
+    ],
+    "correctIndex": 1,
+    "explanation": "Helm packages manifests. Helm charts parameterize configurations, allowing versioned releases and simple updates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Developer Portal Catalog' organize?",
+    "options": [
+      "Developer employee contact directories",
+      "A centralized directory metadata of all microservices, APIs, resources, ownership, and documentation in the organization",
+      "A shopping list for buying server hardware",
+      "A list of database table schemas"
+    ],
+    "correctIndex": 1,
+    "explanation": "The catalog (e.g. in Backstage) maps service relationships, showing who owns a service, where its docs are, and its current health.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is policy-as-code and which tool is popular for implementing it (like OPA)?",
+    "options": [
+      "A text file listing legal policies; tool is Microsoft Word",
+      "Defining compliance, security, and governance policies in code files; popular tool is Open Policy Agent (OPA) using Rego",
+      "A script that auto-renews domain licenses; tool is Certbot",
+      "A firewall script configuration; tool is iptables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Policy-as-code evaluates rules (e.g., 'Containers cannot run as root' or 'Terraform must use specific regions') programmatically before deployment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of ArgoCD in a Kubernetes cluster?",
+    "options": [
+      "To compile container source codes",
+      "A declarative, GitOps continuous delivery tool for Kubernetes that monitors Git repositories and syncs resources to target clusters",
+      "To manage database backup logs",
+      "To configure physical router ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "ArgoCD monitors git commits. If the cluster drifts from git declarations, ArgoCD flags it as 'OutOfSync' and applies updates to match.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Developer Experience' (DevEx) and why does platform engineering focus on it?",
+    "options": [
+      "The number of years a developer has coded; dictates salary",
+      "The friction, ease, and efficiency developers feel when building and releasing code; prioritizing it increases velocity and reduces burnout",
+      "The visual design of code editors",
+      "A testing suite evaluating code formatting"
+    ],
+    "correctIndex": 1,
+    "explanation": "DevEx targets friction. Good DevEx means fast onboarding, quick feedback loops, and automated deployments, letting developers focus on shipping value.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which tool is commonly used to automate infrastructure builds and configurations alongside Terraform?",
+    "options": [
+      "Ansible",
+      "Kubernetes",
+      "Docker",
+      "Git"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ansible handles configuration management (setting up packages, files on servers), whereas Terraform manages resource provisioning (spinning up VMs, VPCs).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an API Gateway (like Kong or Apisix) in platform architecture?",
+    "options": [
+      "To compile API code files",
+      "A proxy entry point routing client requests, managing authentication, rate limiting, and SSL termination across microservices",
+      "To host databases schemas",
+      "To backup server files to cloud storage"
+    ],
+    "correctIndex": 1,
+    "explanation": "API Gateways centralize ingress control. Instead of every microservice handling rate limits or token checks, the gateway resolves them at the perimeter.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Observability-by-default' mean in platform templates?",
+    "options": [
+      "Requiring developers to write logging scripts manually",
+      "Ensuring every new microservice template built on the platform has pre-configured metrics, tracing, and logging instrumentation out of the box",
+      "Making dashboards visible to all team members",
+      "Logging all developer keystrokes on servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Observability-by-default integrates telemetry (e.g. OTel collectors) directly into base templates, ensuring new services publish metrics automatically without extra setup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'control plane' versus a 'data plane' in systems engineering?",
+    "options": [
+      "Control plane is for databases; data plane is for web layers",
+      "Control plane manages the configuration, routing rules, and orchestration states; data plane actually processes and forwards the user data traffic",
+      "Control plane runs on local host; data plane on remote servers",
+      "They are identical terms in server virtualization"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Kubernetes, the control plane (API server, scheduler) coordinates nodes. The data plane (worker nodes) runs the container processes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'secrets management' in platform engineering, and what is a popular tool for it?",
+    "options": [
+      "Encrypting email communications; tool is PGP",
+      "Storing and distributing sensitive keys, tokens, and credentials securely; popular tool is HashiCorp Vault",
+      "Locking down source code access; tool is Git",
+      "Restricting server room entry; tool is biometric cards"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vault manages secrets. Instead of committing keys to git, applications fetch tokens dynamically at runtime using IAM roles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Software Template' (Software Skeleton) in developer portals?",
+    "options": [
+      "A layout draft in web editors",
+      "A pre-packaged starting repository containing base configurations, CI/CD pipelines, and security setups to bootstrap new microservices instantly",
+      "A documentation draft in text files",
+      "A database configuration script"
+    ],
+    "correctIndex": 1,
+    "explanation": "Software templates enable Golden Paths. Clicking 'New Service' scaffolds a repo with standard libraries and deployment pipelines, saving setup time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary role of a 'Custom Controller' (or Operator pattern) in Kubernetes-native platforms?",
+    "options": [
+      "To manage GUI menus in web portals",
+      "To implement custom control loops that monitor and reconcile the state of Custom Resource Definitions (CRDs) to automate complex application operations",
+      "To compile source codes on cloud server clusters",
+      "To schedule database backup schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Operators extend Kubernetes. By packaging human operational knowledge (like how to backup database clusters or resize disks) into code, the controller maintains the desired state automatically.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In GitOps pipelines, explain how the 'pull model' (ArgoCD) differs from the 'push model' (Jenkins/GitHub Actions) for cluster updates, and why the pull model is considered more secure.",
+    "options": [
+      "Pull model is faster; push model is for local runs only",
+      "The pull model runs an agent inside the cluster that pulls configurations from Git; the push model requires external pipelines to have credentials to access the cluster. The pull model is more secure because it does not expose cluster API credentials externally",
+      "Push model is only supported on Google Cloud TPU instances",
+      "The pull model runs without using Git branches"
+    ],
+    "correctIndex": 1,
+    "explanation": "Push pipelines need admin credentials to execute commands (e.g. `kubectl apply`) in the cluster, posing a breach risk. Pull agents (ArgoCD) check Git from inside, requiring no inbound ports or external keys.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Platform Engineers implement 'Resource Quotas' and 'LimitRanges' in Kubernetes to prevent resource starvation (noisy neighbor problems).",
+    "options": [
+      "By restricting developer logins; prevents CPU overuse",
+      "ResourceQuotas limit total cluster resources a namespace can consume; LimitRanges enforce minimum and maximum CPU/Memory requests and limits on individual pods",
+      "By setting limits on network speeds; prevents database failures",
+      "By deleting idle pods; prevents container crashes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Without limits, a runaway pod can hog a node's CPU/RAM, crashing other services on the node. LimitRanges force container definitions to declare resource bounds, ensuring fair CPU scheduling.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Configuration Drift' in infrastructure operations, and how does GitOps mitigate it automatically?",
+    "options": [
+      "Modifying code variables dynamically; mitigated by code tests",
+      "When the state of live infrastructure deviates from the declared code configurations; GitOps agents detect this mismatch and auto-heal the cluster back to the Git state",
+      "A change in server network speed; mitigated by hardware upgrades",
+      "A change in database schemas; mitigated by sql migrations"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a developer manually edits a security group in a console (drift), GitOps agents detect that it differs from the declared state in Git. The agent automatically reverts the manual changes, maintaining the Git source of truth.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In the context of Internal Developer Platforms, explain the role of 'Platform Orchestrators' (like Humanitec or Kratix).",
+    "options": [
+      "They compile application code into binary files",
+      "They take developer-declared logical resource requirements and dynamically generate the specific cloud-provider configuration files at deployment time",
+      "They manage developer authentication permissions",
+      "They schedule database backups across systems"
+    ],
+    "correctIndex": 1,
+    "explanation": "Orchestrators abstract environments. The developer declares: 'I need a database'. The orchestrator intercepts this and creates an RDS database in AWS (for production) or a local container (for staging), appending credentials safely.",
+    "difficulty": "hard"
   }
 ]

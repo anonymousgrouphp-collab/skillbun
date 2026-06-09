@@ -1,0 +1,887 @@
+{
+  "backend": [
+    {
+      "question": "What is the primary function of a web server in backend development?",
+      "options": ["To render client-side CSS styles", "To handle HTTP requests and serve responses", "To store user passwords in plaintext", "To compile client-side React code"],
+      "correctIndex": 1,
+      "explanation": "A web server's core job is to listen for incoming client HTTP requests, process them (often by contacting an application server or database), and return HTTP responses.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a widely used backend programming language?",
+      "options": ["HTML", "CSS", "Python (Django/FastAPI)", "Markdown"],
+      "correctIndex": 2,
+      "explanation": "Python is a popular backend programming language with powerful frameworks like Django, Flask, and FastAPI. HTML, CSS, and Markdown are not programming languages.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a primary key in a database table?",
+      "options": ["A key used to encrypt the database server", "A column that uniquely identifies each row in a table", "The first column of a query result", "A key that links to another table's primary key"],
+      "correctIndex": 1,
+      "explanation": "A primary key is a column or set of columns that uniquely identifies each record in a table, ensuring no duplicates and no null values.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does SQL stand for?",
+      "options": ["Structured Query Language", "Sequential Query Loop", "Server Query Link", "Simple Query Logic"],
+      "correctIndex": 0,
+      "explanation": "SQL stands for Structured Query Language, the standard language for managing and querying relational databases.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of caching in backend applications?",
+      "options": ["To permanently archive old records", "To temporarily store copy of data in memory for faster subsequent retrieval", "To encrypt user network sessions", "To reduce the physical size of the database"],
+      "correctIndex": 1,
+      "explanation": "Caching stores frequently accessed data in high-speed memory (like RAM) so subsequent requests can be served much faster, reducing database load.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTTP status code indicates that the requested resource was not found?",
+      "options": ["200 OK", "400 Bad Request", "404 Not Found", "500 Internal Server Error"],
+      "correctIndex": 2,
+      "explanation": "The 404 Not Found status code indicates that the server cannot find the requested resource path.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a relational database?",
+      "options": ["A database that stores data in files randomly", "A database that organizes data into tables with predefined relationships using keys", "A database that only stores JSON documents", "A database that runs entirely in the user's browser"],
+      "correctIndex": 1,
+      "explanation": "Relational databases (like PostgreSQL, MySQL) store data in tables with columns and rows, and use foreign keys to represent relationships between different tables.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a SQL and a NoSQL database?",
+      "options": ["SQL is only for web apps; NoSQL is for desktop apps", "SQL databases are relational and table-based; NoSQL databases are non-relational and can be document, key-value, or graph-based", "SQL databases are free; NoSQL databases are always paid", "SQL is faster for all query types"],
+      "correctIndex": 1,
+      "explanation": "SQL databases use structured tables and schemas (relational). NoSQL databases support flexible data structures (like documents, key-values, columns) and scale horizontally more easily.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an ORM (Object-Relational Mapping)?",
+      "options": ["A tool for designing database diagrams", "A programming technique/library that lets you interact with a database using objects in your code instead of raw SQL queries", "A protocol for encrypting database backups", "A type of database index"],
+      "correctIndex": 1,
+      "explanation": "ORMs (like Hibernate, Sequelize, or Prisma) map database tables to classes and objects in programming languages, allowing developers to write database queries in their native language.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is database normalization?",
+      "options": ["Backing up the database daily", "The process of organizing data to reduce redundancy and improve data integrity by dividing tables logically", "Enforcing strict firewall rules on the database port", "Converting all text columns to uppercase"],
+      "correctIndex": 1,
+      "explanation": "Normalization involves structuring relational database tables to minimize duplicate data and dependency issues, typically through standard normal forms (1NF, 2NF, 3NF).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In backend architecture, what does load balancing do?",
+      "options": ["It scales down server storage dynamically", "It distributes incoming network traffic across multiple backend servers to prevent overload and ensure high availability", "It compresses database tables in real-time", "It monitors developer coding speed"],
+      "correctIndex": 1,
+      "explanation": "A load balancer distributes requests across a group of servers, optimizing resource utilization, maximizing throughput, minimizing response time, and avoiding single points of failure.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a message broker (e.g., RabbitMQ, Apache Kafka) used for?",
+      "options": ["To send marketing emails to users", "To facilitate asynchronous communication and decoupling between microservices by routing messages", "To cache SQL query results", "To store static files like images"],
+      "correctIndex": 1,
+      "explanation": "Message brokers enable asynchronous message exchange between different services, allowing them to communicate reliably without waiting for immediate responses.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a database index do, and what is its main drawback?",
+      "options": ["It encrypts data; drawback is it is hard to decrypt", "It speeds up read queries; drawback is it slows down write operations and uses extra storage", "It automatically deletes duplicate rows; drawback is it can delete valid data", "It connects tables together; drawback is it requires complex code"],
+      "correctIndex": 1,
+      "explanation": "Indexes speed up data retrieval by creating lookup structures. However, since indexes must be updated whenever rows are inserted, updated, or deleted, they slow down writes and occupy additional storage.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is connection pooling in database management?",
+      "options": ["Combining multiple databases into one database instance", "Maintaining a cache of database connections that can be reused for subsequent requests instead of opening new connections each time", "Encrypting database connections using SSL/TLS", "Restricting database access to a specific pool of users"],
+      "correctIndex": 1,
+      "explanation": "Opening database connections is computationally expensive. Connection pooling keeps a set of active connections open, allocating them to queries as needed and reclaiming them afterward.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between monolithic and microservices architecture?",
+      "options": ["Monoliths run on Linux; microservices run on Windows", "A monolith builds the entire application as a single deployable unit; microservices split it into small, independent, specialized services", "Monoliths are always slower than microservices", "Microservices do not use databases"],
+      "correctIndex": 1,
+      "explanation": "Monolithic architectures bundle all features and services into a single codebase/deployment. Microservices break the app into loosely coupled, independently deployable services communicating via APIs/messages.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In REST APIs, what does statelessness mean?",
+      "options": ["The server does not run in any country state", "Each client request must contain all the information needed to understand and process the request, with no session context stored on the server", "The client cannot store any data locally", "The API has no database behind it"],
+      "correctIndex": 1,
+      "explanation": "Statelessness means the server does not store any session state about the client. Every request is treated as independent and must contain necessary authorization and parameters.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is MVC (Model-View-Controller) pattern in backend frameworks?",
+      "options": ["A methodology for testing database performance", "An architectural pattern separating application logic into three main components: data (Model), interface (View), and control logic (Controller)", "A database query syntax standard", "A server deployment strategy"],
+      "correctIndex": 1,
+      "explanation": "MVC is a design pattern that separates concern: Model manages data and database logic, View manages user interface layout, and Controller acts as intermediary, routing requests and handling business logic.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of CORS (Cross-Origin Resource Sharing) headers?",
+      "options": ["To accelerate resource loading speeds", "To allow servers to specify who is allowed to access their API resources from a browser client origin", "To validate JSON request bodies", "To authenticate user sessions automatically"],
+      "correctIndex": 1,
+      "explanation": "CORS headers (like Access-Control-Allow-Origin) are security controls sent by the server instructing the browser whether to allow frontend code from another domain to read the API responses.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'race condition' in concurrent backend programming?",
+      "options": ["A contest between developers to write code faster", "A situation where the output of a process depends on the non-deterministic timing or sequence of other uncontrollable events", "A database query running out of memory", "An infinite loop in a recursive function"],
+      "correctIndex": 1,
+      "explanation": "Race conditions occur in multi-threaded/concurrent systems when multiple execution paths attempt to modify shared resources at the same time without proper locking, causing unpredictable bugs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between horizontal and vertical scaling?",
+      "options": ["Horizontal scaling adds more CPU power to one machine; vertical scaling adds more machines", "Horizontal scaling adds more machines/nodes to the pool; vertical scaling adds more resources (CPU/RAM) to an existing machine", "Horizontal scaling is only for databases; vertical scaling is for web servers", "Vertical scaling is always cheaper than horizontal scaling"],
+      "correctIndex": 1,
+      "explanation": "Vertical scaling (scale up) increases the specs of a single server. Horizontal scaling (scale out) adds more servers to distribute the workload, which is key for elastic cloud computing.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does database ACID transaction properties stand for?",
+      "options": ["Accuracy, Consistency, Isolation, Durability", "Atomicity, Consistency, Isolation, Durability", "Automation, Compatibility, Integrity, Delivery", "Algorithm, Compression, Indexing, Decryption"],
+      "correctIndex": 1,
+      "explanation": "ACID properties ensure reliable database transactions: Atomicity (all or nothing), Consistency (valid state transitions), Isolation (concurrent execution results match sequential), and Durability (survives crashes).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between optimistic and pessimistic locking in database concurrency control?",
+      "options": ["Optimistic locking always allows writes; pessimistic locking never allows writes", "Optimistic locking checks for conflicts before committing (e.g., version columns) and fails if a collision occurred; pessimistic locking locks rows immediately upon reading to prevent others from modifying them", "Optimistic locking is faster but less secure than pessimistic locking", "Pessimistic locking is only supported in NoSQL databases"],
+      "correctIndex": 1,
+      "explanation": "Pessimistic locking assumes conflicts are frequent and locks records early. Optimistic locking assumes conflicts are rare, checking for record changes (typically via a version number) at commit time, failing the transaction if updated elsewhere.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does token bucket rate limiting algorithm handle bursts of traffic differently from leaky bucket algorithm?",
+      "options": ["Token bucket drops all bursty traffic, while leaky bucket allows it", "Token bucket allows sudden bursts of traffic up to the bucket capacity, while leaky bucket smooths out traffic flow, processing requests at a constant, steady rate", "Leaky bucket is faster than token bucket", "Token bucket only works with database queues"],
+      "correctIndex": 1,
+      "explanation": "Token bucket accumulates tokens, allowing immediate processing of bursts up to capacity. Leaky bucket releases requests at a steady rate, smoothing traffic but causing latency for bursts.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of database 'Sharding'?",
+      "options": ["To replicate the database in different geographical regions for backup", "To horizontally partition data across multiple physical database instances based on a shard key, separating rows to handle massive scale", "To compress old tables into read-only files", "To convert relation tables into NoSQL graphs"],
+      "correctIndex": 1,
+      "explanation": "Sharding breaks a database into smaller, faster, more manageable chunks (shards) across multiple machines, distributing read/write loads and bypassing the capacity limits of a single server.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In distributed systems, what does the CAP theorem state?",
+      "options": ["A system can achieve all of Consistency, Availability, and Partition Tolerance simultaneously", "A distributed data store can simultaneously provide at most two of three guarantees: Consistency, Availability, and Partition Tolerance (and partition tolerance is mandatory during network partitions)", "Consistency is more important than availability in all applications", "All servers must be placed in the same physical datacenter to avoid latency"],
+      "correctIndex": 1,
+      "explanation": "The CAP theorem states that in the event of a network partition (P), a distributed system must choose between either Consistency (C - all nodes see the same data) or Availability (A - every request receives a non-error response).",
+      "difficulty": "hard"
+    }
+  ],
+  "bi_developer": [
+    {
+      "question": "What does BI stand for?",
+      "options": ["Binary Integration", "Business Intelligence", "Basic Information", "Business Infrastructure"],
+      "correctIndex": 1,
+      "explanation": "BI stands for Business Intelligence, which involves analyzing data to provide actionable insights for business decisions.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a leading Business Intelligence tool used for creating interactive reports and dashboards?",
+      "options": ["Visual Studio Code", "Power BI / Tableau", "Docker", "MongoDB"],
+      "correctIndex": 1,
+      "explanation": "Power BI and Tableau are industry-leading business intelligence platforms used to visualize data and build dashboards.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary goal of data visualization in BI?",
+      "options": ["To make datasets larger", "To present complex data in a graphical format that is easy to understand and analyze", "To encrypt financial database columns", "To run machine learning algorithms in the browser"],
+      "correctIndex": 1,
+      "explanation": "Data visualization translates complex raw data into graphical forms (charts, graphs, maps) to help stakeholders identify trends, outliers, and patterns.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a dashboard in BI?",
+      "options": ["A command line interface for developers", "An interactive visual interface displaying key performance indicators (KPIs) and metrics in one view", "A type of database indexing tool", "A script that extracts data from web pages"],
+      "correctIndex": 1,
+      "explanation": "A BI dashboard aggregates and displays metrics, KPIs, and charts in a single, interactive interface to monitor business health in real-time or periodically.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does ETL stand for in data warehousing?",
+      "options": ["Extract, Transform, Load", "Evaluate, Transfer, Link", "Encryption, Testing, Launch", "Enterprise Table Layout"],
+      "correctIndex": 0,
+      "explanation": "ETL stands for Extract, Transform, Load. It is the process of pulling data from source systems, cleaning/formatting it, and loading it into a target data warehouse.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is SQL primarily used for by a BI developer?",
+      "options": ["Styling dashboard buttons", "Querying and extracting data from databases to feed reports and data models", "Writing web server routers", "Compiling local scripts"],
+      "correctIndex": 1,
+      "explanation": "BI developers use SQL extensively to query, join, aggregate, and retrieve data from relational databases and data warehouses.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a Key Performance Indicator (KPI)?",
+      "options": ["A password used to access BI tools", "A quantifiable measure used to evaluate the success of an organization or activity in meeting performance targets", "A type of database primary key", "A software performance metric for servers"],
+      "correctIndex": 1,
+      "explanation": "KPIs are critical, quantifiable metrics that track progress toward strategic and operational goals (e.g., Net Profit Margin, Customer Retention Rate).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a Data Warehouse and a Data Lake?",
+      "options": ["A Data Warehouse is only for text files; a Data Lake stores binary files", "A Data Warehouse stores structured, modeled data for reporting; a Data Lake stores raw, unstructured, or semi-structured data at scale", "A Data Lake is always faster than a Data Warehouse", "A Data Warehouse is on-premises; a Data Lake is always in the cloud"],
+      "correctIndex": 1,
+      "explanation": "Data Warehouses store highly processed, structured data optimized for fast SQL analytics. Data Lakes store raw, unprocessed data (structured, semi-structured, unstructured) for flexible, exploratory purposes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In BI data modeling, what is a Star Schema?",
+      "options": ["A schema layout that has no foreign key relationships", "A modeling design consisting of one central fact table referenced by multiple surrounding dimension tables, resembling a star", "A database system built by NASA", "A type of network network cabling"],
+      "correctIndex": 1,
+      "explanation": "The star schema is a simple data modeling structure. The center holds a fact table (metrics), radiating out to dimension tables (context like customer, product, date) linked via simple keys.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Snowflake Schema?",
+      "options": ["A schema that only supports cold storage data", "An extension of a Star Schema where dimension tables are normalized into additional related tables", "A database structure that melts/deletes data after a month", "A visual styling template for dashboards"],
+      "correctIndex": 1,
+      "explanation": "A snowflake schema normalizes dimensions of a star schema (e.g., splitting a 'product' dimension into 'product' and 'category' tables), reducing redundancy at the cost of more complex SQL joins.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Fact tables and Dimension tables?",
+      "options": ["Fact tables store business metrics/measurements; Dimension tables store descriptive context", "Fact tables store text; Dimension tables store numbers", "Fact tables are small lookup tables; Dimension tables are massive transactional logs", "They are identical in purpose"],
+      "correctIndex": 0,
+      "explanation": "Fact tables store measurable quantitative data (e.g., units sold, price) and foreign keys. Dimension tables store descriptive attributes (e.g., customer name, store location, date details).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a Date Dimension (Calendar Table) in BI modeling?",
+      "options": ["To schedule dashboard deployment dates", "To enable advanced time-intelligence calculations (YoY growth, YTD totals) and uniform date filtering across sources", "To automatically update server timestamps", "To count how many days a user has been logged in"],
+      "correctIndex": 1,
+      "explanation": "A date dimension is a dedicated lookup table containing date attributes (quarter, month name, fiscal year, weekend flag). It is critical for uniform date grouping and time-intelligence queries in BI tools.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is DAX (Data Analysis Expressions) in Power BI?",
+      "options": ["A tool for migrating databases to the cloud", "A formula language used to create custom calculations, measures, and calculated columns in Power BI models", "A style sheet language for formatting dashboards", "An API library for fetching data"],
+      "correctIndex": 1,
+      "explanation": "DAX is the native formula language for Power BI, Analysis Services, and Power Pivot in Excel. It provides rich functions for relational data manipulation and aggregation.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a calculated column and a measure in Power BI?",
+      "options": ["Calculated columns are free; measures cost resources", "Calculated columns are computed row-by-row during data refresh and stored in memory; measures are calculated on-the-fly based on report filters (context) and not stored", "Measures can only be created with SQL; calculated columns with DAX", "Calculated columns only display text; measures only display numbers"],
+      "correctIndex": 1,
+      "explanation": "Calculated columns are pre-calculated and increase model size. Measures are dynamic, consuming CPU at report interaction time based on the active visual filter context, which is highly efficient.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In data integration, what does a 'Delta Load' (Incremental Load) mean?",
+      "options": ["Deleting all old records and reloading everything", "Loading only the new or modified records since the last successful execution, saving time and resources", "Encrypting database transactions", "Sorting data in descending order before loading"],
+      "correctIndex": 1,
+      "explanation": "Unlike full loads which reload the entire dataset, a delta/incremental load checks for modified/new records (typically using a timestamp) and inserts/updates only those records.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is data profiling?",
+      "options": ["Creating user accounts in the BI platform", "Analyzing source data to understand its structure, content, quality, and patterns before ingestion", "Designing vector icons for reports", "Compressing database backups"],
+      "correctIndex": 1,
+      "explanation": "Data profiling examines raw source data to identify data types, formats, null counts, duplicate distributions, and potential anomalies, ensuring input data quality.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Slicing and Dicing' data mean in BI?",
+      "options": ["Deleting unused columns in a dataset", "Breaking down data into smaller groups and viewing it from different dimensional angles (filtering and sorting)", "Encrypting data for different user roles", "Merging two separate databases into a new one"],
+      "correctIndex": 1,
+      "explanation": "Slicing filters the dataset to a specific focus (e.g., Sales in 2023). Dicing selects multiple dimensions to view the filtered data (e.g., Sales in 2023 by Product Category and Region).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Data Governance in Business Intelligence?",
+      "options": ["To host dashboards on government servers", "To define policies, roles, and standards ensuring data security, accuracy, consistency, and proper usage across the enterprise", "To write SQL queries automatically", "To limit database access to directors only"],
+      "correctIndex": 1,
+      "explanation": "Data governance establishes the rules, ownership, and processes surrounding data assets, ensuring security (complying with GDPR/HIPAA), data quality, and trustworthiness.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In BI dashboard design, what is the 'Z-pattern' or 'F-pattern' reading layout?",
+      "options": ["A method for indexing database queries", "A design layout based on eye-tracking studies, placing the most critical KPIs and charts at the top and left where readers look first", "A mathematical equation for plotting line charts", "A sorting algorithm for table visuals"],
+      "correctIndex": 1,
+      "explanation": "Eye-tracking studies show Western readers scan screens in 'F' or 'Z' patterns (starting top-left, moving right, then down). Good dashboards place critical high-level summary KPIs at the top-left.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does RLS (Row-Level Security) do in BI reports?",
+      "options": ["It encrypts the entire SQL database file on the server", "It restricts data access for physical users to specific rows in the tables based on their user roles or attributes (e.g., managers only see their region's sales)", "It limits the number of rows a report can display to 100", "It forces users to change passwords regularly"],
+      "correctIndex": 1,
+      "explanation": "Row-Level Security filters the underlying dataset dynamically depending on who is logged in. A sales representative in the USA will only see USA rows, while a global director sees all.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an OLAP Cube (Online Analytical Processing) and how does it optimize queries?",
+      "options": ["A 3D graphical chart in a dashboard", "A multi-dimensional database structure optimized for analytical queries, storing pre-aggregated data for fast slice-and-dice operations", "A compression format for database log files", "A database encryption mechanism"],
+      "correctIndex": 1,
+      "explanation": "OLAP cubes pre-calculate and pre-aggregate values across various dimension combinations (e.g., sum sales by year, region, product). This makes queries instantaneous compared to computing aggregates on raw rows.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In dimensional modeling, what is a 'Conformed Dimension'?",
+      "options": ["A dimension that is locked to a single database schema", "A dimension table that is designed to be shared across multiple fact tables in a data warehouse, ensuring consistent master data reporting", "A temporary dimension created in SQL CTEs", "A dimension that automatically formats text columns"],
+      "correctIndex": 1,
+      "explanation": "Conformed dimensions (e.g., a shared 'Customer' or 'Date' dimension) have identical structure and keys across different data marts, preventing data silos and ensuring different business units query matching attributes.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Junk Dimension' in data warehousing?",
+      "options": ["A table containing corrupt or invalid rows to be deleted", "A single dimension table created by grouping multiple small, unrelated, low-cardinality flags or indicators (like yes/no attributes) to simplify fact table schema", "An index table that is no longer used", "A dimension containing historical backups"],
+      "correctIndex": 1,
+      "explanation": "Instead of creating 10 separate tables for 10 individual boolean flags (which would clutter the fact table with foreign keys), a Junk Dimension combines all flag combinations into one lookup table.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between standard DAX context: Row Context and Filter Context?",
+      "options": ["Row Context is only for SQL; Filter Context is for DAX", "Row Context is the active row during iteration (e.g., in a calculated column or SUMX); Filter Context is the set of active filters applied to the data model by visuals, slicers, and rows/columns in a report", "Filter Context is static; Row Context is dynamic", "They are identical and interchangeable"],
+      "correctIndex": 1,
+      "explanation": "Row Context represents the 'current row' loop. Filter Context represents the filters active on the visual (e.g. year=2023, category=electronics). The DAX function `CALCULATE` is the only way to convert Row Context into Filter Context.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In BI architecture, what is 'DirectQuery' mode vs 'Import' mode, and when should you choose DirectQuery?",
+      "options": ["DirectQuery is free; Import mode is paid", "Import mode loads data into the BI tool's memory for fast queries; DirectQuery queries the source database directly in real-time, chosen when data volume is too large for memory or real-time data is required", "DirectQuery is always faster than Import mode", "Import mode is only for NoSQL databases"],
+      "correctIndex": 1,
+      "explanation": "Import mode caches data in RAM (very fast queries but requires refreshes). DirectQuery sends queries directly to the source database in real-time upon visual interaction, suitable for multi-billion row systems or live streaming requirements.",
+      "difficulty": "hard"
+    }
+  ],
+  "blockchain_web3": [
+    {
+      "question": "What is a blockchain?",
+      "options": ["A type of relational database owned by Microsoft", "A decentralized, distributed ledger that securely records transactions across a network of computers", "A software tool for linking multiple local networks", "An encryption tool for browser passwords"],
+      "correctIndex": 1,
+      "explanation": "A blockchain is a shared, immutable ledger that facilitates the process of recording transactions and tracking assets in a business network without central authorities.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a smart contract?",
+      "options": ["A legal agreement signed by lawyers digitally", "Self-executing code stored on a blockchain that automatically runs when predetermined conditions are met", "A security protocol for local firewalls", "A database query optimizing script"],
+      "correctIndex": 1,
+      "explanation": "Smart contracts are programs stored on a blockchain that run when triggered, automating the execution of an agreement so that all participants can be certain of the outcome immediately.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which cryptocurrency introduced smart contracts and decentralized applications (dApps)?",
+      "options": ["Bitcoin", "Ethereum", "Litecoin", "Ripple"],
+      "correctIndex": 1,
+      "explanation": "Ethereum, launched in 2015, was the first blockchain to support custom, Turing-complete smart contracts, introducing Web3 development.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'decentralization' mean in Web3?",
+      "options": ["Splitting server data across different hard drives in a datacenter", "The transfer of control and decision-making from a centralized entity (individual or corporation) to a distributed network", "Making the application code closed-source", "Running the web app only on mobile phones"],
+      "correctIndex": 1,
+      "explanation": "Decentralization shifts power away from central intermediaries (like banks or tech giants), placing control in the hands of network participants running consensus protocols.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a cryptocurrency wallet (e.g., MetaMask) primarily used for?",
+      "options": ["Storing cash currencies physically", "Managing private keys, signing blockchain transactions, and interacting with dApps", "Hosting web application servers", "Creating local database backups"],
+      "correctIndex": 1,
+      "explanation": "Web3 wallets store the private keys that prove ownership of assets on the blockchain, enabling users to sign transactions and log into decentralized applications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does NFT stand for?",
+      "options": ["Network File Transfer", "Non-Fungible Token", "New Financial Technology", "Node Filter Tool"],
+      "correctIndex": 1,
+      "explanation": "NFT stands for Non-Fungible Token, a unique cryptographic token representing ownership of a specific item (like digital art) that cannot be replicated.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary role of a consensus mechanism in a blockchain?",
+      "options": ["To compile smart contract code", "To enable all nodes in a distributed network to agree on the valid state of the ledger without trusting a central party", "To encrypt user chats", "To speed up website page loads"],
+      "correctIndex": 1,
+      "explanation": "Consensus mechanisms (like Proof of Work or Proof of Stake) ensure that all nodes agree on the ordering and validity of transactions added to the ledger, preventing double-spending.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between Proof of Work (PoW) and Proof of Stake (PoS)?",
+      "options": ["PoW uses staking; PoS uses physical mining", "PoW requires miners to solve complex mathematical puzzles using computing power; PoS selects validators based on the number of coins they lock up (stake) in the network", "PoW is faster and more environmentally friendly than PoS", "PoS is only used for private blockchains"],
+      "correctIndex": 1,
+      "explanation": "PoW relies on computing power (energy-intensive mining). PoS replaces mining with staking, where validators lock up native tokens to secure the network, dramatically reducing energy consumption.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What language is most commonly used to write smart contracts on the Ethereum blockchain?",
+      "options": ["Python", "Solidity", "JavaScript", "C++"],
+      "correctIndex": 1,
+      "explanation": "Solidity is an object-oriented, high-level language specifically designed for developing smart contracts on the Ethereum Virtual Machine (EVM) and compatible chains.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the EVM (Ethereum Virtual Machine)?",
+      "options": ["A physical server located in Switzerland", "The decentralized sandboxed runtime environment that executes smart contract bytecode across all Ethereum nodes", "A software tool for creating Ethereum wallets", "An operating system for mining rigs"],
+      "correctIndex": 1,
+      "explanation": "The EVM is the virtual machine that executes smart contract instructions. Every node on the network runs an EVM instance to maintain consensus on state changes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Gas' in Ethereum transactions?",
+      "options": ["A digital token used to buy physical fuel", "The unit measuring the computational effort required to execute transactions or smart contracts on the network, paid in Ether (ETH)", "A security code required to open wallets", "The network speed of the blockchain"],
+      "correctIndex": 1,
+      "explanation": "Gas fees prevent spam and compensate validators for the computing resource required to execute smart contract operations on the EVM.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a DAO?",
+      "options": ["Digital Asset Organization", "Decentralized Autonomous Organization", "Distributed Application Operator", "Direct Access Option"],
+      "correctIndex": 1,
+      "explanation": "A DAO is an organization represented by rules encoded as a computer program (smart contracts), controlled by organization members and not influenced by a central government.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a public key vs a private key in blockchain cryptography?",
+      "options": ["Public keys encrypt messages; private keys delete them", "Public key acts like an email address (shareable destination); private key acts like a password (must be kept secret to sign transactions and access funds)", "Private keys are public; public keys are secret", "They are identical and interchangeable"],
+      "correctIndex": 1,
+      "explanation": "Your public key (or address derived from it) can be shared with anyone to receive transactions. Your private key must never be shared, as it grants full authority to move funds.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Layer 1 and Layer 2 blockchain solutions?",
+      "options": ["Layer 1 is for databases; Layer 2 is for interfaces", "Layer 1 is the base blockchain architecture (e.g., Ethereum mainnet); Layer 2 is a secondary protocol built on top of it to increase transaction throughput and lower gas fees", "Layer 2 is older and slower than Layer 1", "Layer 1 is private; Layer 2 is public"],
+      "correctIndex": 1,
+      "explanation": "Layer 1 handles security and decentralization directly on the base chain. Layer 2 (like rollups or state channels) offloads transaction execution from the base layer to achieve faster speeds and lower costs, anchoring back to Layer 1 for security.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does IPFS stand for and what is its role in Web3?",
+      "options": ["Internet Protocol Firewall System; blocks malicious nodes", "InterPlanetary File System; a peer-to-peer decentralized storage protocol used to store dApp assets and NFT media off-chain", "Internal Page Formatting Standard; structures HTML", "International Payments Federation; handles fiat transfers"],
+      "correctIndex": 1,
+      "explanation": "IPFS is a decentralized content-addressed file storage network. Since storing large files directly on a blockchain is prohibitively expensive, Web3 developers store media on IPFS and save the IPFS hash (URI) on-chain.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a block header in a blockchain?",
+      "options": ["The name of the validator who mined the block", "A metadata section of a block containing hash of the previous block, merkle root of transactions, timestamp, nonce, and difficulty target", "The title of a smart contract file", "A network packet header for WebSockets"],
+      "correctIndex": 1,
+      "explanation": "The block header contains metadata that uniquely identifies the block. Hashing the block header connects it to the next block, forming the cryptographic chain.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the ERC-20 standard?",
+      "options": ["A standard for creating NFTs on Ethereum", "A technical standard defining a set of rules and interface for creating fungible tokens on the Ethereum blockchain", "A security policy for smart contract access keys", "A protocol for connecting nodes together"],
+      "correctIndex": 1,
+      "explanation": "ERC-20 is the industry standard for fungible tokens (tokens where every unit is identical, like USDC or UNI) on Ethereum, specifying functions like transfer and balanceOf.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the ERC-721 standard?",
+      "options": ["A standard for fungible utility tokens", "A technical standard for representing non-fungible tokens (NFTs) on the Ethereum blockchain, where each token is unique", "A standard for decentralized governance voting", "A routing standard for Layer 2 transactions"],
+      "correctIndex": 1,
+      "explanation": "ERC-721 is the standard for Non-Fungible Tokens (NFTs), enabling unique asset tracking (e.g., digital collectibles, domain names, real-estate tokens) on EVM networks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the term '51% Attack' mean?",
+      "options": ["A crash in cryptocurrency price by 51%", "An attack where a single entity controls more than half of the network's hash rate or stake, allowing them to block transactions or double-spend", "An error when a smart contract function takes more than 51 seconds to execute", "A database firewall breach"],
+      "correctIndex": 1,
+      "explanation": "A 51% attack occurs when a malicious actor gains control of the majority of network consensus resources, compromising the decentralized state trust of that blockchain.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Cold Wallet' in crypto security?",
+      "options": ["A wallet stored in a cold server room", "An offline hardware device (like a Ledger or Trezor) that stores private keys disconnected from the internet, protecting against hacking", "A wallet that has zero balance", "A wallet whose transactions are blocked by regulators"],
+      "correctIndex": 1,
+      "explanation": "Cold wallets (hardware wallets) are offline storage devices, providing the highest security because the private keys never touch an internet-connected computer where malware could steal them.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Zero-Knowledge Proof' (ZKP) in Web3?",
+      "options": ["A proof that a developer has zero knowledge of coding", "A cryptographic method allowing one party to prove to another that a statement is true without revealing any information beyond the statement's validity itself", "A method for deleting transaction history from the blockchain", "A way to guess wallet private keys"],
+      "correctIndex": 1,
+      "explanation": "Zero-Knowledge Proofs (like zk-SNARKs) enable privacy-preserving transactions and highly scalable Rollups (zk-Rollups) by proving computations are correct without sharing the raw inputs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In EVM smart contract development, what is the 'Reentrancy Attack' and how is it mitigated?",
+      "options": ["An attacker hacking the hosting server; mitigated by firewalls", "An exploit where a contract sends funds to an untrusted contract, which recursively calls the withdraw function again before the victim contract updates its balance state; mitigated by using the Checks-Effects-Interactions pattern or reentrancy guards", "An attacker sending 51% of transactions to the network; mitigated by increasing gas fees", "An infinite loop in a solidity modifier"],
+      "correctIndex": 1,
+      "explanation": "Reentrancy occurs when a contract makes an external call to an untrusted contract before updating its state variables (like balances). The receiver recursively invokes the withdrawal function, draining funds. Mitigation involves updating state variables *before* making the external transfer (Checks-Effects-Interactions).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Blockchain Oracle' (e.g., Chainlink) and why is it needed?",
+      "options": ["A database administrator who maintains nodes", "A third-party service that feeds external, real-world data (like stock prices, weather) into smart contracts, since blockchains cannot access off-chain data natively", "A compiler that converts solidity to bytecode", "A protocol for encrypting public keys"],
+      "correctIndex": 1,
+      "explanation": "Blockchains are isolated networks that cannot make HTTP requests. Oracles query external APIs and post the data to the blockchain, allowing smart contracts to interact with external events.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Optimistic Rollups and ZK-Rollups?",
+      "options": ["Optimistic rollups are private; ZK-rollups are public", "Optimistic Rollups assume transactions are valid by default and use fraud proofs during a challenge period; ZK-Rollups generate cryptographic validity proofs (ZKPs) for every batch, confirming correctness instantly", "ZK-rollups are slower and more expensive than Optimistic rollups in all scenarios", "Optimistic rollups do not connect to Layer 1"],
+      "correctIndex": 1,
+      "explanation": "Optimistic rollups post raw transaction data and wait 7 days for challenges (fraud proofs). ZK-rollups use mathematical proofs (validity proofs) computed off-chain to instantly prove state validity to the base Layer 1.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Solidity, what is the difference between memory, storage, and calldata keywords?",
+      "options": ["storage is free; memory is paid", "storage represents persistent state variables on-chain; memory is temporary mutable memory allocated during function execution; calldata is temporary, non-modifiable execution data", "calldata is stored permanently; storage is deleted after the transaction", "They are synonyms in Solidity compilation"],
+      "correctIndex": 1,
+      "explanation": "Storage writes data to the blockchain state (expensive gas). Memory allocates volatile memory inside the transaction execution (cheaper, mutable). Calldata is read-only memory holding function arguments (cheapest).",
+      "difficulty": "hard"
+    }
+  ],
+  "business_analyst": [
+    {
+      "question": "What is the primary role of a Business Analyst (BA)?",
+      "options": ["To write application source code", "To analyze an organization, document business processes/systems, and bridge the gap between business needs and IT solutions", "To configure network firewalls", "To design UI graphics"],
+      "correctIndex": 1,
+      "explanation": "A BA works with stakeholders to identify business problems, gather and document requirements, and translate them into specifications that technical teams can implement.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a SWOT analysis evaluate?",
+      "options": ["System Weight, Operation, Testing", "Strengths, Weaknesses, Opportunities, Threats", "Standard Work, Output, Timeframe", "Software Warranties, Operations, Training"],
+      "correctIndex": 1,
+      "explanation": "SWOT is a strategic planning tool used to evaluate an organization's internal Strengths and Weaknesses, alongside external Opportunities and Threats.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of gathering 'requirements' in a project?",
+      "options": ["To calculate developer salaries", "To define exactly what a software system or business process must do to solve a stakeholder problem", "To select the programming languages", "To write the user guides"],
+      "correctIndex": 1,
+      "explanation": "Requirements define the scope, functions, and constraints of a project, serving as the blueprint for development and testing.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does BRD stand for in business analysis?",
+      "options": ["Business Requirements Document", "Basic Resource Descriptor", "Budget Allocation Register", "Business Relationship Diagram"],
+      "correctIndex": 0,
+      "explanation": "A Business Requirements Document (BRD) details the business objectives, user needs, and high-level requirements for a project.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a stakeholder in project management?",
+      "options": ["Only the company's shareholders", "Any individual, group, or organization who can affect or be affected by a project's outcome", "The chief technology officer only", "The development team members only"],
+      "correctIndex": 1,
+      "explanation": "Stakeholders include users, sponsors, managers, customers, developers, and regulators — anyone with an interest or stake in the project.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Use Case'?",
+      "options": ["A legal contract between developers and clients", "A description of how a user interacts with a system to achieve a specific goal", "A test script to check database speed", "A folder structure in a codebase"],
+      "correctIndex": 1,
+      "explanation": "A use case describes a sequence of interactions between an actor (user/system) and the target system, showing how the system responds to deliver a goal.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'Scope Creep' mean in project management?",
+      "options": ["Moving the server physically to a new building", "The uncontrolled expansion of project scope without adjustments to time, cost, and resources", "The speed at which developers write code", "The deletion of old database tables"],
+      "correctIndex": 1,
+      "explanation": "Scope creep happens when new features or requirements are added to a project without proper change control, often leading to budget overruns and delays.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between functional and non-functional requirements?",
+      "options": ["Functional requirements are for developers; non-functional are for users", "Functional requirements describe what the system must DO; non-functional requirements describe HOW the system must perform (security, speed, reliability)", "Functional requirements are code files; non-functional are documentation files", "They are identical in purpose"],
+      "correctIndex": 1,
+      "explanation": "Functional requirements define specific behaviors/features (e.g., 'User can log in'). Non-functional requirements (NFRs) define system constraints and quality attributes (e.g., 'Page loads under 2s').",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the acronym SMART stand for in goal setting?",
+      "options": ["Systematic, Manageable, Aligned, Resourceful, Timely", "Specific, Measurable, Achievable, Relevant, Time-bound", "Software, Metric, Agile, Requirements, Testing", "Speed, Measurement, Analysis, Reporting, Technology"],
+      "correctIndex": 1,
+      "explanation": "SMART objectives are: Specific (clear goals), Measurable (trackable), Achievable (realistic), Relevant (aligned with business), and Time-bound (target date).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'User Story' in agile methodologies?",
+      "options": ["A biography of a typical customer", "An informal, general explanation of a software feature written from the perspective of the end-user (As a..., I want..., So that...)", "A bug report submitted by a user", "A feedback questionnaire sent to customers"],
+      "correctIndex": 1,
+      "explanation": "User stories are brief descriptions of functionality from a user's perspective, structured as: 'As a [user role], I want [goal] so that [reason/benefit]'.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Gap Analysis?",
+      "options": ["Analyzing empty spaces on a webpage", "Comparing a business's current state of performance against its desired target state to identify missing capabilities", "A performance review for developers", "Checking database tables for empty columns"],
+      "correctIndex": 1,
+      "explanation": "Gap analysis identifies the steps and additions needed to transition from the current 'As-Is' state to the future 'To-Be' state.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does RACI stand for in a responsibility assignment matrix?",
+      "options": ["Resource, Activity, Control, Integration", "Responsible, Accountable, Consulted, Informed", "Routing, Access, Encryption, Authentication", "Report, Analyze, Create, Implement"],
+      "correctIndex": 1,
+      "explanation": "RACI clarifies roles: Responsible (does the work), Accountable (approves/owns the work), Consulted (provides input), and Informed (updated on progress).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a wireframe in business analysis?",
+      "options": ["A physical copper wiring diagram for servers", "A simple, low-fidelity visual guide that outlines the skeletal structure and layout of a user interface", "A type of database data model", "A network routing path map"],
+      "correctIndex": 1,
+      "explanation": "Wireframes represent the structural layout of a page or interface, focusing on content placement, navigation, and user flow rather than visual design elements.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a Change Control Board (CCB)?",
+      "options": ["To manage keyboard key assignments", "To review, evaluate, and approve or reject proposed changes to a project's baselined scope, schedule, or budget", "To hire new developers", "To audit financial reports"],
+      "correctIndex": 1,
+      "explanation": "The CCB ensures that no changes are made to a project without assessing the impact on cost, timeline, and risk, maintaining project alignment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is BPMN (Business Process Model and Notation)?",
+      "options": ["A programming language for server logic", "A standardized graphical notation language for drawing and documenting business process workflows", "A set of guidelines for formatting spreadsheets", "An API documentation format"],
+      "correctIndex": 1,
+      "explanation": "BPMN provides a visual representation of business processes, using standardized icons (tasks, gateways, events) that both business users and developers can understand.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is User Acceptance Testing (UAT)?",
+      "options": ["Unit testing written by developers", "The final phase of testing where actual business users verify that the system meets business requirements before release", "Testing server bandwidth under heavy load", "Testing database security permissions"],
+      "correctIndex": 1,
+      "explanation": "UAT is performed by business users to ensure the software functions correctly in real-world scenarios and matches the agreed business requirements.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Agile and Waterfall methodologies?",
+      "options": ["Agile is sequential; Waterfall is iterative", "Waterfall is a linear, sequential approach where phases must complete in order; Agile is an iterative, flexible approach focusing on continuous delivery", "Agile is only for startups; Waterfall is only for government projects", "Waterfall does not document requirements"],
+      "correctIndex": 1,
+      "explanation": "Waterfall divides projects into structured, sequential phases. Agile delivers software incrementally in short cycles (sprints), allowing requirements to evolve in response to feedback.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Acceptance Criteria' in a user story?",
+      "options": ["The price the business is willing to pay for the feature", "A formal set of conditions that must be met for a user story to be considered complete and working correctly", "The user feedback rating out of 5 stars", "The programming coding standards"],
+      "correctIndex": 1,
+      "explanation": "Acceptance criteria define the boundaries and details of a user story, ensuring developers know when a feature is done and testers know what cases to verify.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Root Cause Analysis' (RCA) and what is a common tool for it?",
+      "options": ["Deleting old code files; using git clean", "Identifying the fundamental origin of a problem to prevent it from recurring; using the Five Whys or Fishbone (Ishikawa) diagram", "Writing a system database backup script; using SQL backup commands", "Running performance tests on servers; using load testing tools"],
+      "correctIndex": 1,
+      "explanation": "RCA seeks the true source of an issue rather than just treating symptoms. Common tools include the Fishbone Diagram (analyzing causes) and the Five Whys (asking why repeatedly to drill down).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a Business Case?",
+      "options": ["A lawsuit filed by a business", "A document that justifies the investment in a project by analyzing costs, benefits, risks, and alignment with strategic goals", "A folder structure on the server", "A user guide for dashboards"],
+      "correctIndex": 1,
+      "explanation": "A business case outlines why a project should be initiated, presenting financial estimates (ROI, payback period) and strategic reasoning to obtain funding approval.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between BABOK and PMBOK?",
+      "options": ["BABOK is for databases; PMBOK is for networking", "BABOK is the Business Analysis Body of Knowledge (BA standards); PMBOK is the Project Management Body of Knowledge (PM standards)", "BABOK is older than PMBOK", "They are identical books from the same publisher"],
+      "correctIndex": 1,
+      "explanation": "BABOK, published by the IIBA, defines business analysis standards and practices. PMBOK, published by the PMI, defines project management standards and methodologies.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the MoSCoW method used for in business analysis?",
+      "options": ["Encrypting data files", "Prioritizing requirements into: Must have, Should have, Could have, and Won't have (this time)", "Designing flowcharts for server routers", "Estimating project cost budgets"],
+      "correctIndex": 1,
+      "explanation": "MoSCoW is a prioritization technique to align stakeholders on scope. It categorizes requirements by urgency: Must have (critical), Should have (important but not vital), Could have (desirable), and Won't have (out of scope for now).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In process modeling, what is the difference between a Swimlane and a Pool in a flowchart?",
+      "options": ["Swimlanes are for databases; Pools are for tables", "Pools represent separate organizations/processes; Swimlanes represent different roles, departments, or actors within that organization", "Pools are horizontal; Swimlanes are always vertical", "They are identical and interchangeable terms"],
+      "correctIndex": 1,
+      "explanation": "In BPMN, a Pool represents a participant or business entity (e.g. 'Customer' vs 'Supplier'). Swimlanes partition a Pool to show which specific department or role (e.g. 'Billing', 'Shipping') performs each activity.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'JAD' (Joint Application Design/Development) session?",
+      "options": ["Developers writing code together in pairs", "A structured workshop where stakeholders, users, business analysts, and developers collaborate intensively to define requirements and design system solutions", "A system database backup scheduler", "A programming framework for Java applications"],
+      "correctIndex": 1,
+      "explanation": "JAD sessions bypass slow, back-and-forth email requirement reviews by bringing all key stakeholders together in facilitated workshops to make decisions and define system requirements on the spot.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between an 'Epics' and a 'Feature' in Agile product hierarchies?",
+      "options": ["Epics are code files; Features are documentation", "An Epic is a large, high-level body of work that can be broken down into multiple smaller Features (and further into User Stories), spanning multiple sprints", "Features are bugs; Epics are completed tasks", "Epics are written in SQL; Features in JavaScript"],
+      "correctIndex": 1,
+      "explanation": "Epics represent broad user goals or initiatives (e.g., 'Rebuild checkout system'). Features are components of that epic (e.g., 'Add shopping cart', 'Credit card payments'). User stories are the granular tasks within features.",
+      "difficulty": "hard"
+    }
+  ],
+  "c_cpp_systems_developer": [
+    {
+      "question": "What is a pointer in C/C++?",
+      "options": ["A graphical cursor on the screen", "A variable that stores the memory address of another variable", "A loop index variable", "A function return statement"],
+      "correctIndex": 1,
+      "explanation": "A pointer is a fundamental concept in C/C++ representing a variable that holds a direct memory address as its value, allowing direct memory manipulation.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which operator is used in C to get the address of a variable?",
+      "options": ["*", "&", "->", "."],
+      "correctIndex": 1,
+      "explanation": "The address-of operator (&) returns the memory address of a variable. The dereference operator (*) is used to access the value at a pointer's address.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you allocate dynamic memory in C?",
+      "options": ["Using the 'new' keyword", "Using malloc() or calloc() functions", "Using the 'alloc' command", "Dynamic memory is allocated automatically"],
+      "correctIndex": 1,
+      "explanation": "In C, dynamic memory (allocated on the heap) is requested using the standard library functions malloc() or calloc() from <stdlib.h>. In C++, the 'new' keyword is typically used.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a segmentation fault (segfault)?",
+      "options": ["A compiler syntax error", "An error caused by a program attempting to access a memory area it is not authorized to access", "A logic error inside a switch-case statement", "A network connection timeout"],
+      "correctIndex": 1,
+      "explanation": "A segmentation fault occurs when a program tries to read or write to an invalid memory location, such as dereferencing a NULL pointer or writing past array boundaries, causing the OS to terminate it.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of the 'free()' function in C?",
+      "options": ["To release a variable name for reuse", "To deallocate dynamic memory previously allocated with malloc/calloc/realloc, preventing memory leaks", "To uninstall a library from the system", "To clear the terminal screen"],
+      "correctIndex": 1,
+      "explanation": "free() returns dynamic memory allocated on the heap back to the operating system. Neglecting to free memory results in a memory leak.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which C++ standard library class represents dynamic string objects?",
+      "options": ["char[]", "std::string", "std::vector<char>", "String class"],
+      "correctIndex": 1,
+      "explanation": "std::string is the standard C++ class representing strings of characters, managing memory allocation and string manipulation operations automatically.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary extension for C++ source files?",
+      "options": [".c", ".h", ".cpp", ".py"],
+      "correctIndex": 2,
+      "explanation": ".cpp is the standard file extension for C++ source files. C source files use .c, and header files use .h or .hpp.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between the stack and the heap in C/C++ memory management?",
+      "options": ["The stack is larger than the heap", "Stack memory is managed automatically by the compiler for local variables; heap memory must be manually allocated and deallocated by the developer", "Heap memory is faster than stack memory", "Stack memory survives after function return"],
+      "correctIndex": 1,
+      "explanation": "Stack allocation is fast, automatic, and cleaned up when a function exits. Heap allocation is dynamic, manual, slower, and persists until explicitly freed (or the process terminates).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'memory leak'?",
+      "options": ["Data leaking to hackers over the network", "Allocated heap memory that is no longer referenced but has not been deallocated, reducing available system memory over time", "A compiler bug that deletes code", "An unhandled divide-by-zero error"],
+      "correctIndex": 1,
+      "explanation": "Memory leaks occur when dynamic memory is allocated on the heap but the developer fails to call free() or delete when it is no longer needed, permanently consuming RAM during program execution.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'const' keyword do when applied to a variable in C/C++?",
+      "options": ["Makes the variable accessible in all files", "Prevents the value of the variable from being modified after initialization", "Forces the compiler to optimize the variable's speed", "Allocates the variable on the heap"],
+      "correctIndex": 1,
+      "explanation": "The 'const' keyword defines a read-only variable. Any attempt to modify a const variable after definition will trigger a compiler error.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between 'std::cout' and 'std::cerr' in C++?",
+      "options": ["std::cout is for errors; std::cerr is for normal output", "std::cout is buffered standard output; std::cerr is unbuffered standard error output", "std::cout is only for numbers; std::cerr is only for strings", "They are identical and write to the same stream buffer"],
+      "correctIndex": 1,
+      "explanation": "std::cout outputs to stdout and is buffered (data is held in a buffer before writing, which is faster). std::cerr outputs to stderr and is unbuffered, ensuring error messages are displayed immediately even if the program crashes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a header guard (e.g., #ifndef / #define / #endif) used for in C/C++?",
+      "options": ["To encrypt header files", "To prevent a header file from being included multiple times in the same translation unit, avoiding duplicate definition errors", "To check if a file exists on disk", "To compile code faster"],
+      "correctIndex": 1,
+      "explanation": "Header guards ensure that the declarations in a header file are only processed once by the preprocessor during compilation, preventing duplicate declaration errors.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a struct and a class in C++?",
+      "options": ["Structs cannot have member functions; classes can", "Struct members are public by default; class members are private by default", "Structs are allocated on the stack; classes on the heap", "Structs do not support inheritance"],
+      "correctIndex": 1,
+      "explanation": "In C++, the *only* difference between a struct and a class is default access specification: structs default to public access for members and base classes, whereas classes default to private.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Buffer Overflow' and why is it dangerous?",
+      "options": ["The screen buffer running out of pixel space", "A program writing more data to a buffer than it can hold, overwriting adjacent memory space, potentially causing crashes or security exploits", "A network socket buffer filling up", "A CPU running out of cache memory"],
+      "correctIndex": 1,
+      "explanation": "Buffer overflows overwrite adjacent memory. Attackers exploit this to overwrite return addresses on the stack, diverting execution flow to malicious code (Remote Code Execution).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'virtual' keyword in C++ member function declarations?",
+      "options": ["To compile functions on virtual machines", "To enable dynamic dispatch / polymorphism, ensuring the derived class implementation is called at runtime when accessed via a base class pointer", "To make the function run in parallel threads", "To define a function that has no body"],
+      "correctIndex": 1,
+      "explanation": "Declaring a base class function as virtual ensures that calls through pointers/references are resolved at runtime (dynamic binding) based on the actual object type, supporting OOP polymorphism.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a dangling pointer?",
+      "options": ["A pointer that has not been initialized", "A pointer pointing to a memory location that has already been deallocated or freed, leading to undefined behavior if dereferenced", "A pointer that points to another pointer", "A pointer that resides inside a loop"],
+      "correctIndex": 1,
+      "explanation": "A dangling pointer points to freed memory. Accessing it is a major bug because that memory might be reallocated for something else, corrupting data or causing crashes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In C++, what is RAII (Resource Acquisition Is Initialization)?",
+      "options": ["A naming convention for variables", "An architectural programming paradigm where resource lifetime (memory, file handles, locks) is tied to the lifetime of local object scopes", "A compiler flag that checks code speed", "An API for allocating memory"],
+      "correctIndex": 1,
+      "explanation": "RAII manages resources by acquiring them in an object's constructor and releasing them in its destructor. When the object goes out of scope, the destructor runs automatically, preventing leaks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between pass-by-value, pass-by-reference, and pass-by-pointer in C++ function parameters?",
+      "options": ["Pass-by-value is always faster than pass-by-reference", "Pass-by-value copies the argument; pass-by-reference passes an alias (no copying); pass-by-pointer passes the address of the argument", "Pass-by-reference is only for objects; pass-by-pointer only for primitives", "They behave identically in memory compilation"],
+      "correctIndex": 1,
+      "explanation": "Pass-by-value creates a copy of the variable (overhead for large objects). Pass-by-reference/pointer avoids copying, allowing modifications to the original variable, but references cannot be null or rebound.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a namespace in C++?",
+      "options": ["The file folder path containing code files", "A declarative region that provides a scope to identifiers (names of types, functions, variables) to prevent name collisions", "A variable type used for text strings", "A memory region reserved for compiler variables"],
+      "correctIndex": 1,
+      "explanation": "Namespaces (e.g. `std::`) organize code into logical groups, preventing name conflicts when using libraries that define classes/functions with identical names.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the linker in the C/C++ compilation process?",
+      "options": ["To translate source code into assembly code", "To combine multiple object files and library binaries into a single executable file, resolving external references", "To compile headers into precompiled headers", "To check syntax and style rules"],
+      "correctIndex": 1,
+      "explanation": "The preprocessor handles macros and includes, the compiler outputs machine-level object files (.o/.obj), and the linker binds these objects and library files together, resolving function calls.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'undefined behavior' (UB) in C/C++?",
+      "options": ["A syntax error that halts compilation", "Code execution behavior that is not defined by the language standard, allowing the compiler to output any behavior, often resulting in silent corruption", "A function that has no return type", "An error code returned by the main function"],
+      "correctIndex": 1,
+      "explanation": "Undefined behavior (e.g., dividing by zero, dereferencing null, out-of-bounds array access) means the compiler makes no guarantees. The program may crash, corrupt memory, or run fine temporarily, making UB bugs extremely hard to find.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In C++, what are smart pointers (std::unique_ptr, std::shared_ptr, std::weak_ptr) and how do they work?",
+      "options": ["Pointers that run faster by using CPU registers", "Objects that wrap raw pointers, managing lifetime and automatic deallocation based on ownership scope or reference counting", "Pointers that cannot be null", "Pointers that do not use heap memory"],
+      "correctIndex": 1,
+      "explanation": "Smart pointers implement RAII. `std::unique_ptr` has sole ownership of a resource. `std::shared_ptr` manages a reference count, freeing the resource when the count hits zero. `std::weak_ptr` holds non-owning references to break reference cycles.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the 'Rule of Three' (and 'Rule of Five') in C++ class design?",
+      "options": ["A class can only have three member variables", "If a class defines any of: destructor, copy constructor, or copy assignment operator, it should define all three (five adds move constructor and move assignment operator)", "A class should be refactored if it has more than three virtual functions", "Classes must have three public, three private, and three protected members"],
+      "correctIndex": 1,
+      "explanation": "If a class manages resources manually, it needs custom copy controls. If you write a destructor (to free resources), you must write copy constructor/assignment to handle copy states properly, preventing double-frees.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'vtable' (virtual method table) in C++ and how is it used?",
+      "options": ["A visual debugger window in IDEs", "A lookup table compiled for classes with virtual functions, used to resolve dynamic function dispatch at runtime via a vptr in the object", "A table in memory containing variable address allocations", "A layout mapping threads to processors"],
+      "correctIndex": 1,
+      "explanation": "Each class with virtual functions has a vtable listing function pointers. Objects of that class contain a virtual pointer (vptr) to the vtable. Calling a virtual function dereferences this pointer to resolve the correct function at runtime.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between 'std::move' and a standard copy operation in C++11?",
+      "options": ["std::move deletes the code files after compilation", "std::move casts an lvalue to an rvalue reference, enabling resources to be transferred ('moved') from one object to another without deep copying", "std::move moves variables from stack to heap memory", "std::move makes the thread run on a different core"],
+      "correctIndex": 1,
+      "explanation": "std::move doesn't move data at runtime; it changes value category to rvalue, allowing move constructors/assignment operators to transfer ownership of resources (like raw pointers) cheaply, bypassing copy overhead.",
+      "difficulty": "hard"
+    }
+  ]
+}

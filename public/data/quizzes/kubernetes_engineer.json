@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Helm allows for environmental customization using multiple values files. You can have a base `values.yaml` and then provide environment-specific overrides (e.g., `helm upgrade -f values.yaml -f values-prod.yaml my-app .`) which will merge the values. Creating separate charts or editing templates manually is inefficient, and baking configs into images makes them less flexible.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Kubernetes (K8s)?",
+    "options": [
+      "A database engine software",
+      "An open-source container orchestration platform for automating deployment, scaling, and management of containerized applications",
+      "A cloud virtual machine provider",
+      "A compiler utility for formatting code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Originally designed by Google and now maintained by the CNCF, Kubernetes automates the lifecycle of containerized workloads.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Pod in Kubernetes?",
+    "options": [
+      "The server hardware rack",
+      "The smallest deployable unit in Kubernetes, containing one or more containers sharing storage and network resources",
+      "A virtual private cloud",
+      "A database index table"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pods encapsulate one or more containers (e.g., an app container and a helper sidecar container) that run with shared storage and network spaces on a node.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which CLI tool is used to run commands and interact with Kubernetes clusters?",
+    "options": [
+      "docker-compose",
+      "kubectl",
+      "git",
+      "helm"
+    ],
+    "correctIndex": 1,
+    "explanation": "`kubectl` is the standard command-line interface tool used to query, inspect, and manage resources inside Kubernetes clusters.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary function of the Kubernetes Control Plane?",
+    "options": [
+      "Executing application business logic inside containers",
+      "Managing the overall state, scheduling, and configuration of the cluster, directing worker nodes",
+      "Storing large user media files",
+      "Validating client-side CSS files"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Control Plane (Master Node) manages cluster state, schedules Pods to run on nodes, monitors cluster health, and processes API requests.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a ReplicaSet in Kubernetes?",
+    "options": [
+      "A set of backup database files",
+      "A controller that ensures a specified number of identical Pod replicas are running at any given time",
+      "A set of duplicate server nodes",
+      "A security credential group"
+    ],
+    "correctIndex": 1,
+    "explanation": "ReplicaSets maintain pod availability. If a pod crashes or a node fails, the ReplicaSet controller automatically spawns a replacement pod to meet the desired count.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Namespace in Kubernetes?",
+    "options": [
+      "The website domain name",
+      "A logical partition or division of cluster resources, allowing multi-tenant isolation within a single physical cluster",
+      "A folder structure of code repositories",
+      "A database schema table prefix"
+    ],
+    "correctIndex": 1,
+    "explanation": "Namespaces allow virtual isolation. Multiple teams or environments (Dev, Test, Prod) can share the same cluster without naming collisions or resource conflicts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a Service do in Kubernetes?",
+    "options": [
+      "Saves files persistently on disk",
+      "Defines a logical set of Pods and an abstract policy/network endpoint to access them, enabling stable networking",
+      "Updates the server OS automatically",
+      "Monitors CPU usage metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pods are ephemeral and get new IPs when replaced. A Service provides a stable, persistent IP and DNS name to route traffic to active Pod replicas.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Deployment and a StatefulSet in Kubernetes?",
+    "options": [
+      "Deployments are for databases; StatefulSets are for web applications",
+      "Deployments are for stateless applications (pods are identical and interchangeable); StatefulSets are for stateful applications requiring unique network IDs and persistent storage",
+      "StatefulSets are always faster to deploy than Deployments",
+      "Deployments do not support rolling updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "StatefulSets (used for databases like Postgres or Redis) guarantee stable, unique network identifiers (e.g. `db-0`, `db-1`) and bind specific persistent volumes to matching pods across restarts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a ConfigMap and a Secret?",
+    "options": [
+      "ConfigMaps are for numbers; Secrets are for text",
+      "ConfigMaps store non-sensitive configuration data in plaintext; Secrets store sensitive data (like passwords, keys, tokens) encoded in Base64",
+      "Secrets are automatically encrypted in all storage systems by default",
+      "ConfigMaps are only accessible by administrators"
+    ],
+    "correctIndex": 1,
+    "explanation": "Secrets manage credentials. While both inject values into containers, Secrets are handled carefully by the system (often using memory mounts) to prevent exposure in logs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an Ingress Controller in Kubernetes?",
+    "options": [
+      "A tool that controls CPU speeds",
+      "An API object that manages external access to services in a cluster, typically providing HTTP/HTTPS routing, load balancing, and SSL termination",
+      "An internal database query coordinator",
+      "A security standard for user passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ingress acts as the entrance gate to the cluster, routing external URL paths (e.g., `api.mysite.com/users`) to target internal Services.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Kubelet?",
+    "options": [
+      "A small Kubernetes cluster for testing",
+      "An agent running on each worker node in the cluster, responsible for ensuring containers are running in Pods as described in specs",
+      "A database server administration console",
+      "An automated deployment scripting framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Kubelet receives pod configurations from the API server and instructs the container runtime (e.g., containerd/Docker) to launch and monitor the containers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Kube-proxy?",
+    "options": [
+      "A tool for downloading packages",
+      "A network agent running on each node that maintains network rules, facilitating packet forwarding and service communication inside the cluster",
+      "An external load balancer firewall",
+      "A secure gateway for developer logins"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kube-proxy manages iptables or IPVS rules on the node, ensuring traffic sent to a Service IP is routed to the correct backend Pod target.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is ETCD in the Kubernetes Control Plane?",
+    "options": [
+      "A programming language library",
+      "A consistent, highly available, key-value store used as Kubernetes' backing store for all cluster state data",
+      "A tool for compressing log files",
+      "An operating system file manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "etcd is the single source of truth for the cluster. If etcd is lost or corrupted without backups, the cluster configuration and state are gone.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a DaemonSet?",
+    "options": [
+      "A background demon process running in the compiler",
+      "A controller that ensures all (or some) nodes run a copy of a specific Pod, commonly used for log collection or monitoring agents",
+      "A database backup scheduler",
+      "A network routing protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "DaemonSets automatically deploy one pod to every node (e.g., fluentd for log collection, node-exporter for monitoring), adding pods automatically when new nodes join.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Helm in the Kubernetes ecosystem?",
+    "options": [
+      "A safety helmet worn in server rooms",
+      "A package manager for Kubernetes that packages resources into reusable structures called Charts",
+      "A database migration utility",
+      "A security firewall wrapper"
+    ],
+    "correctIndex": 1,
+    "explanation": "Helm simplifies app deployment by templating YAML manifests (Charts), allowing developers to install complex stacks (like Prometheus) in a single command.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a PersistentVolume (PV) and a PersistentVolumeClaim (PVC)?",
+    "options": [
+      "PV is for cloud; PVC is for local drives",
+      "A PV is a storage resource provisioned by the cluster administrator; a PVC is a request for storage by a developer for their Pod",
+      "PVC is always larger than PV",
+      "PVs are automatically deleted when PVCs are created"
+    ],
+    "correctIndex": 1,
+    "explanation": "PV represents the actual storage volume (e.g., a 100GB SSD on AWS). PVC is the ticket a developer writes (e.g. 'I need a 20GB ReadWriteOnce volume'), which the cluster binds to an available matching PV.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'RollingUpdate' and 'Recreate' deployment strategies?",
+    "options": [
+      "RollingUpdate is manual; Recreate is automated",
+      "RollingUpdate replaces old pods with new ones gradually to ensure zero downtime; Recreate kills all old pods simultaneously before launching new ones",
+      "Recreate is always preferred for web APIs",
+      "RollingUpdate does not support rollback"
+    ],
+    "correctIndex": 1,
+    "explanation": "RollingUpdate updates apps without downtime by maintaining active replicas. Recreate causes brief downtime but avoids running mismatched database schema versions simultaneously.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the Horizontal Pod Autoscaler (HPA) do?",
+    "options": [
+      "It scales the physical servers in datacenters",
+      "It dynamically adjusts the number of Pod replicas in a deployment based on metrics like CPU utilization or custom traffic metrics",
+      "It resizes container image file sizes",
+      "It allocates RAM memory to nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "HPA monitors metrics from the Metrics Server. If CPU load rises above target thresholds (e.g., 70%), it instructs the deployment to scale up replicas to share load.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Liveness Probe and a Readiness Probe in Kubernetes?",
+    "options": [
+      "Liveness is for CPU; Readiness is for RAM",
+      "Liveness probe checks if a container is running (if it fails, K8s restarts it); Readiness probe checks if a container is ready to accept network traffic (if it fails, K8s stops routing traffic to it)",
+      "Readiness probes are only run once during pod creation",
+      "Liveness probes require writing Python code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Liveness probes detect deadlocks or hangs, triggering restarts. Readiness probes ensure pods aren't sent traffic while loading large assets or initializing database connections during startup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In container specs, what is the difference between Resource Requests and Resource Limits?",
+    "options": [
+      "Requests are for storage; Limits are for CPU",
+      "Requests define the minimum resources the node guarantees to the container for scheduling; Limits define the absolute maximum resources the container is allowed to consume before being throttled or terminated",
+      "Limits are always smaller than Requests",
+      "Requests only apply to memory; Limits only to CPU"
+    ],
+    "correctIndex": 1,
+    "explanation": "Requests guide scheduling (finding a node with enough space). Limits protect nodes; if a container exceeds its memory limit, the OS terminates it (Out Of Memory - OOMKilled).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between NodePort, ClusterIP, and LoadBalancer service types in Kubernetes?",
+    "options": [
+      "NodePort is only for local nodes; ClusterIP is global; LoadBalancer is virtual",
+      "ClusterIP exposes the service internally within the cluster; NodePort exposes the service on a static port on each Node IP; LoadBalancer creates an external load balancer in the cloud pointing to the service",
+      "LoadBalancer is free; ClusterIP is paid",
+      "NodePort does not support TCP routing"
+    ],
+    "correctIndex": 1,
+    "explanation": "ClusterIP is the default (internal communication only). NodePort opens ports (e.g. 30000-32767) on all node hosts. LoadBalancer automates provisioning of cloud providers' load balancers (AWS ELB, GCP LB) to expose apps publicly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does the Kubernetes scheduling process work (Predicates and Priorities)?",
+    "options": [
+      "By selecting nodes randomly or alphabetically",
+      "A two-stage process: first filtering out nodes that do not meet pod constraints (Predicates), then scoring the remaining nodes (Priorities) to select the best fit",
+      "By assigning the pod to the node with the highest CPU clock speed directly",
+      "By placing the pod in a queue until the administrator assigns a node manually"
+    ],
+    "correctIndex": 1,
+    "explanation": "The scheduler filters nodes first (checking constraints like port collisions, resource requests, node selectors). It then scores matching nodes based on factors like balanced resource usage or affinity rules to place the pod.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What are Taints and Tolerations in Kubernetes scheduling?",
+    "options": [
+      "Taints are bugs; Tolerations are code overrides",
+      "Taints are properties assigned to Nodes to repel Pods; Tolerations are properties assigned to Pods allowing them to schedule on matching tainted Nodes",
+      "Taints are only for databases; Tolerations for web pages",
+      "Taints are security firewalls; Tolerations are user tokens"
+    ],
+    "correctIndex": 1,
+    "explanation": "Taints prevent pods from running on specific nodes (e.g., tainting GPU nodes so regular web pods don't waste GPU resources). Only pods with matching tolerations can schedule on those nodes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the Container Network Interface (CNI) in Kubernetes?",
+    "options": [
+      "A physical ethernet port on node servers",
+      "A standard specification and set of libraries that manages network interface provisioning and IP allocations for containers",
+      "A security standard for encrypting cluster traffic",
+      "A tool for managing domain sitemaps"
+    ],
+    "correctIndex": 1,
+    "explanation": "CNI plugins (like Calico, Flannel, or Cilium) establish the overlay network, enabling pods across different physical nodes to communicate with each other directly using unique IPs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does an Ingress Controller routing mechanism work at the network level?",
+    "options": [
+      "By intercepting DNS queries locally",
+      "By running a reverse proxy (like NGINX or Envoy) inside the cluster that reads Ingress resources to dynamically configure routing rules for incoming HTTP/HTTPS traffic",
+      "By changing the public IP of the cluster nodes dynamically",
+      "By writing custom routing scripts in the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Ingress controller watches the API server. When an Ingress resource is created, the controller parses it to update its proxy configuration, routing external HTTP requests to internal Service endpoints directly.",
+    "difficulty": "hard"
   }
 ]

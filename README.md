@@ -12,7 +12,7 @@ SkillBun is a Next.js career-guidance app for Indian tech students. It combines 
 - Includes a responsive, multi-theme system (Dark/Light mode) powered by CSS variables.
 - Uses optional Cloudflare Turnstile plus short-lived signed human-proof tokens before Gemini API calls.
 - Stores profile and roadmap progress in Cloud Firestore, with localStorage used as a browser cache for runtime compatibility.
-- Allows students to take a 10-question MCQ quiz (3 Easy, 5 Moderate, 2 Hard) upon reaching 100% progress on any career roadmap to earn a verifiable digital certification.
+- Allows students to take a 10-question MCQ exam (3 Easy, 5 Moderate, 2 Hard selected dynamically from a 50-question pool) upon reaching 60% progress on any career roadmap to earn a verifiable digital certification.
 - Enforces strict anti-cheating measures (no text selection, right-click, or copy/paste, question timer, user info watermark, light/dark-optimized LLM-refusal watermarks, immediate content masking & background blurring on focus loss, and automatic exam disqualification after 5 focus-switch violations).
 - Sends password reset emails via Zoho SMTP (limited to 1/min and 3/hr per email, 10/hr per IP, only incremented on successful send/user-not-found), featuring automatic fallback to Vercel's URL configurations for link generation in serverless environments.
 - Provides a public certificate registry lookup search page at `/certificate` with client-side network offline state detection, a dedicated verified certificate dynamic page at `/certificate/[id]`, and integrated entry points across the homepage and navbar dropdown for easy student access.
@@ -131,6 +131,40 @@ Removed dead code, unused CSS, and stale configuration across the codebase:
 - Removed 5 unused CSS classes from `app/dashboard/dashboard.module.css` (`.glowBadge`, `.navItem`, `.navItemActive`, `.sidebarTitle`, `.sideNav`, `.sidebar`) — leftovers from before `WorkspaceSidebar` was introduced.
 - Removed 8 unused CSS classes from `app/roadmap/roadmap-hub.module.css` (`.catalogTools`, `.categoryCard`, `.categoryCardActive`, `.categoryChip`, `.categoryChipActive`, `.categoryGrid`, `.categoryRail`, `.featuredStrip`) — leftovers from an older category-based layout.
 - Removed dead SiliconFlow enrichment env vars (`API_PROVIDER`, `SILICONFLOW_API_KEY`, `SILICONFLOW_MODEL`, `SILICONFLOW_BASE_URL`) from `.env.example`.
+
+### v2.3.30 — Windows Auto-Startup Setup
+
+Added a headless background auto-startup configuration for Windows local development environments:
+
+- Created `SkillBunStart.vbs` in the Windows Startup directory (`shell:startup`) to run the server headlessly and quietly on user login.
+- Created `SkillBunStart.bat` in the repository root (added to `.gitignore`) containing the directory navigation and Next.js dev server initiation commands, executed automatically by the VBScript.
+- Created a `Stop-SkillBun.bat` utility directly on the user's Desktop that queries active processes on port `3000` (the default dev port) and terminates them on demand.
+
+### v2.3.31 — Windows Auto-Startup Cleanup
+
+Removed the background auto-startup setup and all corresponding utility scripts:
+
+- Deleted `SkillBunStart.vbs` from the Windows Startup folder.
+- Deleted `SkillBunStart.bat` and `startup_log.log` from the project directory.
+- Deleted the `Stop-SkillBun.bat` helper script from the Desktop.
+- Cleaned up the `.gitignore` configuration.
+
+### v2.3.32 — Lower Certification Threshold
+
+Lowered the progress requirement to attempt the certification quiz and earn a verifiable digital certification:
+
+- Updated the certification button unlocking logic on `GameMap.jsx` to check for `>= 60%` progress instead of `100%`.
+- Updated eligibility verification and UI warning pages on `/roadmap/[slug]/certify/page.jsx` to align with the new 60% threshold.
+
+### v2.3.33 — Expanded Certification Quiz Bank
+
+Expanded the certification exam question pools to improve diversity and shuffle quality:
+
+- Doubled the quiz question bank size from 25 to 50 questions per roadmap across all 100 career roadmaps (generating 2,500 total questions).
+- Maintained difficulty-specific selection logic (pulling 3 Easy, 5 Moderate, 2 Hard questions dynamically for each 10-question exam attempt).
+- Updated difficulty distributions in every quiz file to 14 Easy, 26 Moderate, and 10 Hard questions.
+
+
 
 
 ## API Routes

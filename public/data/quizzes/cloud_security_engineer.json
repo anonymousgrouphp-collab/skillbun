@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "The primary goal of a Security Operations Center (SOC) is to protect an organization's assets by continuously monitoring security events, detecting threats, analyzing incidents, and orchestrating responses to mitigate risks. Developing applications, managing billing, or provisioning infrastructure are not core SOC functions.",
     "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary goal of Cloud Security?",
+    "options": [
+      "To speed up internet connections",
+      "To protect data, applications, and infrastructure associated with cloud computing from threats and unauthorized access",
+      "To write clean program code",
+      "To configure operating system updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud security encompasses policies, technologies, and controls deployed to protect cloud-based systems, data, and networks from cyber attacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does IAM stand for in cloud security?",
+    "options": [
+      "Information Asset Management",
+      "Identity and Access Management",
+      "Intrusion Alert Monitor",
+      "Internet Access Method"
+    ],
+    "correctIndex": 1,
+    "explanation": "IAM (Identity and Access Management) is the security framework that manages digital identities and access rights, ensuring the right people access the right resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the 'Principle of Least Privilege' (PoLP)?",
+    "options": [
+      "Giving all users admin access to save time",
+      "Providing users or processes only the minimum access levels necessary to complete their job functions",
+      "Using the cheapest cloud servers available",
+      "Restricting database columns to text data only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Least privilege limits user permissions to only what is required, minimizing the blast radius if an account is compromised.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does Multi-Factor Authentication (MFA) require?",
+    "options": [
+      "Multiple passwords for one account",
+      "Two or more independent verification factors to validate a user's identity (something you know, something you have, or something you are)",
+      "A password longer than 20 characters",
+      "Logging in from two different devices at the same time"
+    ],
+    "correctIndex": 1,
+    "explanation": "MFA adds extra layers of security beyond a password, typically combining knowledge (password), possession (OTP token/phone app), and inherence (biometrics).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is data encryption?",
+    "options": [
+      "Deleting old data permanently",
+      "The process of converting data into an unreadable scrambled format (ciphertext) that can only be read with a decryption key",
+      "Compressing files into zip folders",
+      "Translating programming languages into machine code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Encryption protects data confidentiality. Even if an attacker gains access to encrypted storage or intercepts network traffic, the data is useless without the key.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP status code represents 'Forbidden' access?",
+    "options": [
+      "400 Bad Request",
+      "401 Unauthorized",
+      "403 Forbidden",
+      "404 Not Found"
+    ],
+    "correctIndex": 2,
+    "explanation": "403 Forbidden indicates that the client is authenticated but does not have authorization permissions to access the requested resource. 401 indicates authentication is missing or invalid.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a security group in cloud networking?",
+    "options": [
+      "A team of security analysts",
+      "A virtual firewall that controls inbound and outbound network traffic to virtual instances",
+      "An encryption key pair",
+      "A database authentication profile"
+    ],
+    "correctIndex": 1,
+    "explanation": "Security groups act as firewalls at the instance/resource level, defining rules that permit or deny traffic based on IP, port, and protocol.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between encryption 'at rest' and encryption 'in transit'?",
+    "options": [
+      "At rest is for physical files; in transit is for web code",
+      "At rest encrypts data stored on disks/storage; in transit encrypts data as it moves across networks",
+      "At rest uses public keys; in transit uses private keys",
+      "At rest is manual; in transit is automatic"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data at rest (stored on SSDs, S3 buckets, databases) is encrypted to prevent physical or local disk compromise. Data in transit (moving over the internet or internal networks) is encrypted (via SSL/TLS) to block interception (sniffing).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the cloud Shared Responsibility Model dictate regarding security?",
+    "options": [
+      "The cloud provider is responsible for all security aspects",
+      "The provider is responsible for security 'of' the cloud (hardware, physical host, facilities); the customer is responsible for security 'in' the cloud (data, OS, configs, app code)",
+      "The customer is responsible for hardware replacements",
+      "Security costs are shared equally between the provider and customer"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Shared Responsibility Model outlines boundaries. The cloud provider protects the physical infrastructure and hypervisors. The customer protects their own operating systems, configurations, IAM policies, and data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a DDoS attack and what does it target?",
+    "options": [
+      "A database crash; targets table indexes",
+      "Distributed Denial of Service; targets application or network availability by overwhelming servers with a flood of traffic from multiple sources",
+      "A password guessing script; targets login pages",
+      "A malware file; targets server hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "DDoS attacks aim to make web services unavailable to legitimate users by consuming network bandwidth, CPU, or memory using a botnet of compromised devices.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Web Application Firewall (WAF) do?",
+    "options": [
+      "It blocks all incoming internet traffic",
+      "It monitors and filters HTTP/HTTPS traffic to block attacks targeting common web vulnerabilities (like SQLi, XSS)",
+      "It runs antivirus scans on the server hard drive",
+      "It automatically backs up web server files"
+    ],
+    "correctIndex": 1,
+    "explanation": "WAFs operate at the application layer (Layer 7), inspecting HTTP request payloads to block exploits before they reach the web server application logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of a NAT Gateway in a private subnet?",
+    "options": [
+      "To route incoming public traffic directly to private servers",
+      "To allow private resources (without public IPs) to make outbound connections to the internet for updates, while blocking the internet from initiating inbound connections",
+      "To encrypt VPC routing tables",
+      "To balance load between regions"
+    ],
+    "correctIndex": 1,
+    "explanation": "NAT Gateways translate private IPs to a public IP for outbound requests, shielding private servers from direct inbound external scanning and attack.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Symmetric Encryption' mean?",
+    "options": [
+      "Using different keys for encryption and decryption",
+      "Using the same single secret key for both encrypting and decrypting data",
+      "Encrypting only text data",
+      "Encrypting data in two regions simultaneously"
+    ],
+    "correctIndex": 1,
+    "explanation": "Symmetric algorithms (like AES) use a single shared key. It is faster than asymmetric encryption but requires secure key sharing methods.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Asymmetric Encryption' mean?",
+    "options": [
+      "Using the same key for all tasks",
+      "Using a pair of mathematically linked keys: a public key for encryption and a private key for decryption",
+      "Encryption that is only done on weekends",
+      "A format that does not use algorithms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Asymmetric encryption (like RSA, ECC) uses a public key (shareable) to encrypt and a private key (kept secret) to decrypt. It is key for digital signatures and secure connection handshakes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Cloud Access Security Broker (CASB)?",
+    "options": [
+      "A broker who sells cloud licenses",
+      "A security policy enforcement point placed between cloud users and cloud service providers to combine and inject security policies",
+      "A hardware firewall placed in data centers",
+      "A software tool for tracking cloud budgets"
+    ],
+    "correctIndex": 1,
+    "explanation": "CASBs enforce security policies (like threat prevention, data loss prevention, credential monitoring) for an organization's cloud use, especially for third-party SaaS apps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Configuration Drift' and why is it a security risk?",
+    "options": [
+      "Servers physically shifting in server racks",
+      "The accumulation of ad-hoc changes to cloud configurations over time, leading to differences from the original secure baseline and introducing vulnerabilities",
+      "Virtual machines moving between physical hosts",
+      "Domain names changing addresses periodically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drift happens when changes are made manually instead of via IaC. These manual tweaks can introduce security holes (like open ports or weak permissions) that go untracked.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is SSL/TLS termination?",
+    "options": [
+      "Deleting security certificates from a website",
+      "The process of decrypting encrypted SSL/TLS traffic at an intermediary device (like a load balancer or gateway) before forwarding it to backend servers in plaintext",
+      "A security attack that disables website HTTPS",
+      "A method for generating encryption keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSL/TLS termination offloads CPU-intensive decryption from backend app servers to a load balancer or reverse proxy, simplifying key management and speeding up backend processing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Secrets Management' refer to in cloud security?",
+    "options": [
+      "Keeping business strategies confidential",
+      "Securely storing, rotating, and controlling access to sensitive credentials (API keys, passwords, certificates) using dedicated tools (like HashiCorp Vault, AWS Secrets Manager)",
+      "Writing code without comments",
+      "Encrypting user profile pictures in databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Secrets management tools avoid hardcoding credentials in source code. They secure access using IAM permissions and support automated rotation of keys and passwords.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an Identity Provider (IdP) in Single Sign-On (SSO)?",
+    "options": [
+      "To store billing profiles",
+      "A system that creates, maintains, and manages identity information and authenticates users on behalf of service applications",
+      "A router that forwards login traffic",
+      "An antivirus scanner for user accounts"
+    ],
+    "correctIndex": 1,
+    "explanation": "The IdP (like Okta, Azure AD, Ping) authenticates the user's credentials once and issues a secure assertion token (like SAML or OIDC) that external applications trust.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a Security Information and Event Management (SIEM) system?",
+    "options": [
+      "To write code test cases",
+      "To aggregate, analyze, and correlate log data from various infrastructure sources to detect security threats in real-time",
+      "To build network firewalls automatically",
+      "To encrypt database backups"
+    ],
+    "correctIndex": 1,
+    "explanation": "SIEM systems (like Splunk, Sentinel) ingest event logs from servers, firewalls, and networks, using correlation rules to alert security teams to potential attacks or compliance violations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In cloud IAM, what is the key difference between a Resource-Based Policy and an Identity-Based Policy?",
+    "options": [
+      "Resource policies are free; identity policies cost money",
+      "Identity-based policies are attached to users/roles specifying what they can access; Resource-based policies are attached directly to a resource (like an S3 bucket) defining who can access it",
+      "Resource-based policies only support read actions; identity-based support write actions",
+      "They are identical and cannot be used together"
+    ],
+    "correctIndex": 1,
+    "explanation": "Identity policies specify actions a user/role can take (e.g. 'This role can read S3'). Resource policies specify who (principals) can access the resource (e.g. 'Allow only IP 1.1.1.1 to read this S3 bucket').",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does 'Zero Trust Architecture' (ZTA) dictate?",
+    "options": [
+      "Never trust developers to write secure code",
+      "A security framework based on the premise 'never trust, always verify', requiring continuous authentication and authorization of every request regardless of origin",
+      "Using zero encryption keys to avoid key leaks",
+      "Restricting application access to zero users during updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Zero Trust eliminates implicit trust based on network location (like being inside a corporate VPN). Every access request is authenticated, authorized, encrypted, and micro-segmented.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the vulnerability called SSRF (Server-Side Request Forgery) in cloud environments?",
+    "options": [
+      "An attacker modifying web page CSS",
+      "An exploit where an attacker forces a server to make arbitrary HTTP requests on its behalf, often targeting internal metadata services (like AWS IMDS) to extract credentials",
+      "A network database connection leak",
+      "A script that crashes web browsers"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSRF allows attackers to abuse server access. In cloud environments, SSRF is often used to query the Instance Metadata Service (e.g. `http://169.254.169.254/latest/meta-data/`) to steal IAM credentials.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the security risk of 'Hardcoded Secrets' and how is it mitigated in CI/CD pipelines?",
+    "options": [
+      "Secrets becoming too long; mitigated by truncation",
+      "Secrets committed to code repositories, risking exposure; mitigated by using environment variables, secrets managers, and git secret scanners (like GitGuardian)",
+      "Keys becoming corrupt; mitigated by re-downloading",
+      "Secrets using standard text characters; mitigated by converting to binary"
+    ],
+    "correctIndex": 1,
+    "explanation": "Committed API keys or passwords can be leaked if a repo becomes public or compromised. CI/CD pipelines use secret scanners to block commits containing secrets, injecting them dynamically from secure environment variables at runtime.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Certificate Pinning' (HPKP) and what is its main drawback?",
+    "options": [
+      "Pinning certificates to a dashboard; drawback is it blocks user logins",
+      "Associating a host with its expected cryptographic public key directly in the client application; drawback is it can brick the client app if the server certificate changes and cannot be updated",
+      "Encrypting SSL handshakes; drawback is it slows connections",
+      "Creating auto-renewing certificates; drawback is it requires complex code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Certificate pinning protects against Man-in-the-Middle (MitM) attacks by hardcoding the server's public key in the client app. If the server certificate is rotated (e.g., due to compromise or expiration) without updating the client, the client app will fail to connect.",
+    "difficulty": "hard"
   }
 ]

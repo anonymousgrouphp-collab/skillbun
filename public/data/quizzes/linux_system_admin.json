@@ -298,5 +298,305 @@
     "correctIndex": 0,
     "explanation": "To merge a snapshot back into its origin, the origin logical volume (`lvprod`) must be unmounted. `lvconvert --merge` is the command to perform this operation. The snapshot volume itself is merged *into* the origin. Option (b) attempts to merge while mounted which will fail. Option (c) `dd` is risky and not the standard LVM way. Option (d) renames, not merges, and would discard the original LV data.",
     "difficulty": "hard"
+  },
+  {
+    "question": "Which Linux command is used to change the permissions of a file or directory?",
+    "options": [
+      "chown",
+      "chmod",
+      "chgrp",
+      "attrib"
+    ],
+    "correctIndex": 1,
+    "explanation": "`chmod` (change mode) is used to change file/directory permissions (e.g., read, write, execute). `chown` changes ownership.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default home directory of the root user in most Linux distributions?",
+    "options": [
+      "/home/root",
+      "/root",
+      "/",
+      "/var/root"
+    ],
+    "correctIndex": 1,
+    "explanation": "The superuser (root) home directory is `/root`, separated from regular users whose home directories are under `/home`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command-line utility is used to view running processes in real-time in Linux?",
+    "options": [
+      "ps",
+      "top",
+      "df",
+      "free"
+    ],
+    "correctIndex": 1,
+    "explanation": "`top` displays a dynamic, real-time list of running processes and system resources. `ps` is static.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which file contains the list of local users and their basic account details (excluding passwords)?",
+    "options": [
+      "/etc/shadow",
+      "/etc/passwd",
+      "/etc/group",
+      "/etc/users"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/passwd` stores user account details like UID, GID, home directory, and default shell. Passwords are in `/etc/shadow`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the command 'df -h' do?",
+    "options": [
+      "Shows directory files in alphabetical order",
+      "Displays disk space usage on mounted filesystems in human-readable format",
+      "Downloads files from a remote hosting site",
+      "Deletes temporary folders recursively"
+    ],
+    "correctIndex": 1,
+    "explanation": "`df` reports file system disk space usage, and `-h` prints sizes in human-readable format (e.g., GB, MB).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which directory contains system configuration files in a standard Linux system?",
+    "options": [
+      "/bin",
+      "/etc",
+      "/var",
+      "/usr"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `/etc` directory is dedicated to system-wide configuration files and startup scripts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which symbol is used in Linux shells to redirect the output of one command as input to another?",
+    "options": [
+      ">",
+      ">>",
+      "|",
+      "<"
+    ],
+    "correctIndex": 2,
+    "explanation": "The pipe symbol (`|`) routes stdout of the left command to stdin of the right command.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How does the 'kill' command with signal 9 (-9 or -SIGKILL) differ from signal 15 (-15 or -SIGTERM)?",
+    "options": [
+      "Signal 9 is for stopping background processes only; 15 is for foreground",
+      "Signal 15 requests clean termination (allowing processes to save state and clean up); Signal 9 forces immediate termination, bypassing process cleanup",
+      "Signal 9 restarts the process; Signal 15 stops it permanently",
+      "There is no difference between these signals"
+    ],
+    "correctIndex": 1,
+    "explanation": "SIGTERM (15) is polite, allowing processes to clean up descriptors. SIGKILL (9) is handled directly by the kernel to terminate the process immediately without cleanup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '/proc' virtual filesystem in Linux?",
+    "options": [
+      "Storing backup files for installation packages",
+      "Providing an interface to kernel data structures and runtime process statistics on a running system",
+      "Containing bootloader scripts for system startup",
+      "Serving as a temporary caching directory"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/proc` is a virtual (in-memory) filesystem. Reading files inside `/proc` queries live kernel parameters and hardware or process info dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to configure and view network interface addresses and status in modern Linux distros (replacing ifconfig)?",
+    "options": [
+      "netstat",
+      "ip addr",
+      "route",
+      "nslookup"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `ip` command (part of iproute2 package) replaces the deprecated `ifconfig` for network management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of systemd in modern Linux distributions?",
+    "options": [
+      "A package manager for compiling applications",
+      "An init system and system manager that bootstraps user space and manages system services/daemons",
+      "A desktop GUI interface manager",
+      "A firewall service that blocks network ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "systemd is the first process (PID 1) started by the kernel, responsible for launching and managing services, sockets, mount points, and device units.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a hard link and a soft (symbolic) link?",
+    "options": [
+      "Soft links can only point to directories; hard links can only point to files",
+      "Hard links point to the same inode directly and share file data; soft links point to the path of another file and break if the source is moved",
+      "Hard links are created with 'ln -s'; soft links are created with 'ln'",
+      "Soft links use more disk space than hard links"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hard links are directory entries pointing to the same inode (cannot cross filesystems). Soft links are pointer files containing paths, functioning like shortcuts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which configuration file is used to configure static mount points that are mounted automatically at boot time?",
+    "options": [
+      "/etc/mtab",
+      "/etc/fstab",
+      "/etc/exports",
+      "/etc/resolve.conf"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/fstab` (file system table) lists all disks, partitions, and remote filesystems that should be mounted automatically or on demand.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a load average of '2.00, 1.50, 0.50' in uptime indicate on a system with exactly one CPU core?",
+    "options": [
+      "The system has 50% idle CPU capacity over the last 15 minutes",
+      "The system has been overloaded over the last 1 and 5 minutes (processes queued/waiting for CPU), but was underloaded over the last 15 minutes",
+      "The system has been 100% idle over all timeframes",
+      "The system is running out of disk space"
+    ],
+    "correctIndex": 1,
+    "explanation": "On a single-core CPU, load average > 1.0 means processes are queued. A load of 2.00 over the last 1 minute means the CPU was 100% over-subscribed, while 0.50 over 15 minutes means it was underutilized.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'sticky bit' permission flag do when set on a directory in Linux?",
+    "options": [
+      "It prevents anyone from creating new files in the directory",
+      "It ensures that only the file owner, directory owner, or root can delete or rename files within that directory",
+      "It forces all subdirectories to inherit group permissions",
+      "It makes all files executable by default"
+    ],
+    "correctIndex": 1,
+    "explanation": "The sticky bit (indicated by 't' in permissions, e.g., `/tmp`) prevents users from deleting or renaming files owned by other users within that folder.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to display block devices (like hard drives and partitions) and their sizes?",
+    "options": [
+      "lsblk",
+      "fdisk -l",
+      "df",
+      "blkid"
+    ],
+    "correctIndex": 0,
+    "explanation": "`lsblk` lists block devices in a tree structure. `fdisk -l` is also valid but requires root privileges and lists partition tables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'journalctl' command in systemd-based Linux systems?",
+    "options": [
+      "To write scripts in a system journal",
+      "To query and view logs generated by systemd's journaling service",
+      "To schedules cron jobs on a calendar",
+      "To check configuration syntax errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "`journalctl` queries logs collected by systemd-journald. Filters like `-u service_name` view logs for specific units.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to change user password aging and expiration details in Linux?",
+    "options": [
+      "passwd",
+      "chage",
+      "usermod",
+      "useradd"
+    ],
+    "correctIndex": 1,
+    "explanation": "`chage` (change age) edits password expiry, warning periods, and account inactivity limits. `passwd` can do basic updates, but `chage` is designed for policy management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which file controls the DNS servers that the Linux local resolver queries to resolve domain names?",
+    "options": [
+      "/etc/hosts",
+      "/etc/resolv.conf",
+      "/etc/networks",
+      "/etc/hostname"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/resolv.conf` defines nameservers, search domains, and resolver options. `/etc/hosts` provides static name mappings.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the 'rsync' command in Linux?",
+    "options": [
+      "To encrypt file streams over a network",
+      "To copy and synchronize files and directories locally or remotely, using delta-transfer algorithms to copy only changes",
+      "To restart system services remotely",
+      "To scan directories for syntax errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "`rsync` synchronizes directories efficiently by calculating differences (deltas) and sending only modified parts of files, saving bandwidth.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Linux memory management, what is 'OOM Killer' (Out of Memory Killer) and how does it select target processes?",
+    "options": [
+      "A backup tool that kills idle processes; selects targets randomly",
+      "A kernel mechanism that terminates processes to free memory when system RAM is exhausted; selects targets based on badness score computed from memory consumption and oom_score_adj",
+      "A software package that stops background services during updates; selects by CPU usage",
+      "A disk clean tool that deletes cache files"
+    ],
+    "correctIndex": 1,
+    "explanation": "The OOM Killer recovers systems from kernel panics due to out-of-memory. It computes a 'badness score' based on RAM usage and kills the process with the highest score.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between PAM (Pluggable Authentication Modules) and nsswitch (Name Service Switch) in Linux security?",
+    "options": [
+      "PAM is for network routing; nsswitch is for database lookups",
+      "PAM handles user authentication, password policies, and session setup; nsswitch configures the sources from which database information (like passwords, hosts, groups) is retrieved",
+      "Nsswitch is older and completely replaced by PAM modules",
+      "PAM handles file encryption; nsswitch handles shell permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "PAM is the authentication gatekeeper (verifying passwords, tokens). NSS defines where system APIs (like getpwuid) look to retrieve user details (e.g., local files, LDAP, or NIS).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does a filesystem inode store, and what critical item is NOT stored in an inode?",
+    "options": [
+      "Stores the file name; does not store the file contents",
+      "Stores file metadata (owner, size, permissions, block locations); does not store the file name",
+      "Stores the file contents; does not store the owner UID",
+      "Stores local directory links; does not store timestamps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Inodes store all file metadata and locations of data blocks on disk. However, the file name is stored inside the directory file database pointing to that inode number, not in the inode itself.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which Linux kernel feature allows isolating resources (like CPU, Memory, Network) for groups of processes, serving as a foundation for container systems?",
+    "options": [
+      "Namespaces",
+      "Cgroups (Control Groups)",
+      "SELinux",
+      "Sysctl"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cgroups limit, account for, and isolate resource usage (CPU, memory, disk I/O) of processes. Namespaces isolate visibility (PID, Network, Mounts). Both enable containers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the 'sysctl' utility in Linux system administration?",
+    "options": [
+      "To control running system processes under init",
+      "To configure kernel parameters at runtime by reading and writing files under /proc/sys/",
+      "To manage virtual file systems dynamically",
+      "To configure display outputs on desktop servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "`sysctl` queries and modifies kernel settings (like TCP window sizes, IP forwarding, swapiness) during runtime without rebooting.",
+    "difficulty": "hard"
   }
 ]

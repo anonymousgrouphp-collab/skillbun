@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The `build` method is where a widget describes its UI, returning a widget tree that Flutter then renders. It should be a \"pure\" function of its inputs (properties and state), meaning it rebuilds the UI based on the current state and configuration.",
     "difficulty": "easy"
+  },
+  {
+    "question": "What is Flutter?",
+    "options": [
+      "A database management system",
+      "Google's open-source UI software development kit for building cross-platform applications from a single codebase",
+      "A web browser designed for mobile devices",
+      "A programming language similar to HTML"
+    ],
+    "correctIndex": 1,
+    "explanation": "Flutter allows developers to build native-compiled applications for mobile (iOS, Android), web, desktop, and embedded devices from one codebase.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which programming language is used to write Flutter applications?",
+    "options": [
+      "Java",
+      "Swift",
+      "Dart",
+      "Kotlin"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dart is the client-optimized programming language developed by Google that powers Flutter applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the core building block of a Flutter user interface?",
+    "options": [
+      "A Widget",
+      "A Component",
+      "A Tag",
+      "An Element"
+    ],
+    "correctIndex": 0,
+    "explanation": "In Flutter, almost everything is a widget. Widgets describe what their view should look like given their configuration and state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a StatelessWidget and a StatefulWidget in Flutter?",
+    "options": [
+      "StatelessWidget is for iOS; StatefulWidget is for Android",
+      "StatelessWidget has no internal state that can change; StatefulWidget maintains state that can trigger rebuilds on change",
+      "StatefulWidget is faster than StatelessWidget",
+      "StatelessWidget is only used for text; StatefulWidget is only for buttons"
+    ],
+    "correctIndex": 1,
+    "explanation": "StatelessWidgets are immutable. StatefulWidgets maintain mutable state, calling `setState()` to request redrawing the widget when values update.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the 'pubspec.yaml' file do in a Flutter project?",
+    "options": [
+      "Stores user passwords",
+      "Manages the project's dependencies, assets, fonts, and version settings",
+      "Configures database schemas",
+      "Compiles Dart code into binary format"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `pubspec.yaml` file defines metadata and package dependencies (from pub.dev) for Flutter applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is used to download dependencies specified in pubspec.yaml?",
+    "options": [
+      "npm install",
+      "flutter pub get",
+      "pip install",
+      "dotnet restore"
+    ],
+    "correctIndex": 1,
+    "explanation": "`flutter pub get` is the CLI command that retrieves packages and libraries for the Flutter project.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Hot Reload' in Flutter development?",
+    "options": [
+      "Restarting the emulator computer",
+      "Injecting updated source code files directly into the running Dart VM, showing UI changes in seconds without losing application state",
+      "Overheating the developer laptop",
+      "Rebuilding the production binary from scratch"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hot Reload speeds up development by rendering code changes in the UI almost instantly while preserving the active app state (e.g. text inputs, navigation stacks).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Dart's 'Sound Null Safety' feature?",
+    "options": [
+      "A security protocol that prevents databases from storing nulls",
+      "A compiler feature ensuring that variables cannot contain null values unless explicitly declared as nullable, eliminating null-pointer runtime errors",
+      "A method for checking code syntax in IDEs",
+      "A protocol for hashing user passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "Null safety separates nullable types (e.g. `String?`) from non-nullable types (e.g. `String`). The compiler guarantees that non-nullable values will never be null at runtime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the `setState()` method do in a StatefulWidget?",
+    "options": [
+      "Saves the application data to the database",
+      "Notifies the Flutter framework that the internal state of the widget has changed, triggering a rebuild of the widget's UI",
+      "Changes the device volume settings",
+      "Terminates the application process"
+    ],
+    "correctIndex": 1,
+    "explanation": "Calling `setState()` schedules the widget's `build()` method to run, updating the screen with new state values.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the 'BuildContext' argument in a widget's build method?",
+    "options": [
+      "To compile code to machine language",
+      "A handle to the location of the widget in the widget tree, used to look up themes, media queries, and parent widgets",
+      "To direct server routing paths",
+      "To manage user database connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "BuildContext provides access to the widget tree structure, allowing widgets to fetch styling from parent themes or locate ancestors (e.g., Navigator).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between `Navigator.push()` and `Navigator.pushReplacement()` in Flutter routing?",
+    "options": [
+      "push is for iOS; pushReplacement is for Android",
+      "push adds a new route to the top of the history stack; pushReplacement replaces the current route on the stack with a new one",
+      "pushReplacement is faster than push",
+      "They behave identically in routing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using `push()` allows users to press the back button to return. `pushReplacement()` drops the previous screen (e.g. moving from a Splash screen to Onboarding, where you don't want the user going back to Splash).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Keys' (ValueKey, UniqueKey, GlobalKey) used for in Flutter?",
+    "options": [
+      "Encrypting local storage files",
+      "Preserving the state of widgets when they move around the widget tree, or uniquely identifying widgets",
+      "Accessing third-party API services",
+      "Configuring database relations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Keys help Flutter associate widgets with their underlying elements during tree diffing, which is vital when modifying list items or accessing child widget states (GlobalKey).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'InheritedWidget' in Flutter?",
+    "options": [
+      "To inherit styling from HTML pages",
+      "A base class that allows data to propagate down the widget tree efficiently, serving as the basis for state management tools like Provider",
+      "To inherit database schemas",
+      "To run tasks in background threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "InheritedWidget allows child widgets to access parent data (using `of(context)` lookups) without manually passing constructors through dozens of intermediate layers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following is a widely used state management library in the Flutter community?",
+    "options": [
+      "Redux only",
+      "Provider / BLoC / Riverpod",
+      "Django",
+      "Spring Boot"
+    ],
+    "correctIndex": 1,
+    "explanation": "Provider, BLoC, and Riverpod are the most popular libraries used to separate business logic from UI widgets and manage application state.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'Hot Reload' and 'Hot Restart' in Flutter?",
+    "options": [
+      "Hot Reload is free; Hot Restart is paid",
+      "Hot Reload updates code while preserving app state; Hot Restart updates code and resets the app state back to initialization, restarting the Dart VM",
+      "Hot Restart is faster than Hot Reload",
+      "Hot Reload is only for Android; Hot Restart for iOS"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hot Reload compiles code modifications and injects them without wiping variable states. Hot Restart destroys the state structure, rebuilding the widget tree from scratch (takes slightly longer).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'FutureBuilder' widget used for in Flutter?",
+    "options": [
+      "To schedule database backups",
+      "To build a widget that depends on the latest snapshot of interaction with an asynchronous task (Future)",
+      "To predict future user actions using AI models",
+      "To animate widgets on screen"
+    ],
+    "correctIndex": 1,
+    "explanation": "FutureBuilder listens to a Future (e.g. an API fetch). It lets developers render loading spinners during wait states, error messages on failure, or data lists on success.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'StreamBuilder' widget?",
+    "options": [
+      "To stream video content in the app UI",
+      "A widget that builds itself based on the latest snapshot of interaction with an asynchronous data stream (continuous updates)",
+      "To monitor network bandwidth speeds",
+      "To connect to database servers in real-time"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike FutureBuilder which handles single async values, StreamBuilder handles continuous data feeds (e.g., chat messages or sensor inputs), rebuilding whenever new data arrives.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'MaterialApp' widget provide to a Flutter application?",
+    "options": [
+      "A tool for downloading design assets",
+      "A wrapper widget that configures navigation, themes, and localization matching Google's Material Design standards",
+      "An interface for database connections",
+      "A compiler flag that optimizes code size"
+    ],
+    "correctIndex": 1,
+    "explanation": "MaterialApp sets up the core foundation for a Material-styled app, incorporating standard navigators, text themes, and scroll behaviors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Scaffold' widget do in Flutter?",
+    "options": [
+      "Creates a database backup schedule",
+      "Provides a default visual layout structure for a screen, including slots for AppBar, body, FloatingActionButton, and Drawer",
+      "Enforces strict coding style rules",
+      "Compresses image files in the assets folder"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scaffold implements basic Material design screen structures, handles layout bounds, and adapts pages to account for keyboard overlays automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Platform Channels' used for in Flutter?",
+    "options": [
+      "To switch between Android and iOS modes on the emulator",
+      "To send messages and invoke code between Dart and the host native platform (Java/Kotlin on Android, Swift/Obj-C on iOS)",
+      "To stream television channels inside the app",
+      "To manage network database ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Platform Channels (MethodChannel) allow Flutter apps to communicate with native APIs when a feature (like battery status or custom bluetooth integrations) lacks a Dart package.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Dart's concurrency model work and what is an 'Isolate'?",
+    "options": [
+      "Dart is multi-threaded by default; isolates share memory spaces",
+      "Dart is single-threaded running an event loop; Isolates are separate execution threads that do not share memory, communicating strictly via message passing (ports)",
+      "Isolates are server nodes in cloud networks",
+      "Isolates are database indexes that run in parallel"
+    ],
+    "correctIndex": 1,
+    "explanation": "To prevent UI jank, Dart runs in single-threaded event loops. For heavy CPU computations, developers spawn 'Isolates' which run in isolated memory heaps to avoid blocking the main UI thread.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between a widget, an element, and a render object in Flutter's rendering pipeline?",
+    "options": [
+      "They are identical terms for UI components",
+      "A Widget is a configuration blueprint; an Element manages the lifecycle and links widgets to RenderObjects; a RenderObject handles the actual drawing and layout constraints",
+      "RenderObject is only for iOS; Widget is only for Android",
+      "Elements are stored in databases; Widgets on local disks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Flutter has three trees: Widget tree (declarative blueprints rebuilt often), Element tree (persistent logical structure), and RenderObject tree (handles painting and sizing, updated efficiently).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between `main()` and `runApp()` in a Flutter app startup?",
+    "options": [
+      "main() is for iOS; runApp() is for Android",
+      "main() is the entry point of the Dart program; runApp() takes the root widget and attaches it to the screen, inflating the widget tree",
+      "runApp() is called before main()",
+      "They behave identically and can be merged"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dart execution begins at `main()`. Inside `main()`, you can run initialization tasks (like setting up databases or checking auth). Calling `runApp()` hands control to the Flutter rendering engine.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Flutter, what are 'Slivers' and when should you use them?",
+    "options": [
+      "Slivers are small files containing code helpers",
+      "Special portions of scrollable areas that can change their behavior dynamically (e.g. collapsing headers), used to build custom scrolling effects",
+      "Slivers are buttons that slide on hover",
+      "Slivers are database triggers for audit logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slivers (e.g., `SliverAppBar`, `SliverList`) allow detailed scroll layouts. They compile scroll offsets to render only visible items, supporting effects like sticky headers and elastic lists.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does Flutter's 'Navigator 2.0' (Declarative Routing) differ from Navigator 1.0 (Imperative Routing)?",
+    "options": [
+      "Navigator 2.0 is only for mobile apps; 1.0 is for web",
+      "Navigator 1.0 uses a push/pop stack imperatively; Navigator 2.0 uses a declarative Page API, syncing the routing stack with the application state",
+      "Navigator 2.0 is slower than Navigator 1.0",
+      "Navigator 1.0 is deprecated and removed from modern Flutter SDKs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Navigator 2.0 (Router API) provides state-driven routing. Changes to state variables trigger updates to the navigation page list, making deep linking and web URL syncing much cleaner.",
+    "difficulty": "hard"
   }
 ]

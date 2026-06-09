@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Comprehensive lifecycle ownership for a data product involves much more than initial development. It requires defining the product, implementing automated testing and monitoring for reliability, setting Service Level Agreements (SLAs), having a versioning strategy for changes, and robust documentation for handoff and future maintenance. Solely efficient SQL, outsourcing everything, or reactive issue management are insufficient for long-term product health.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary role of an analytics engineer?",
+    "options": [
+      "Building machine learning models",
+      "Transforming raw data into clean, modeled datasets that analysts and data scientists can use",
+      "Managing network infrastructure",
+      "Designing user interfaces"
+    ],
+    "correctIndex": 1,
+    "explanation": "Analytics engineers sit between data engineering and data analysis, focusing on transforming raw data into well-organized, documented, and tested datasets (often in a data warehouse) that are ready for analysis. They own the data modeling and transformation layer.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the acronym 'ELT' stand for in modern data pipelines?",
+    "options": [
+      "Evaluate, Learn, Test",
+      "Extract, Load, Transform",
+      "Encrypt, Label, Transfer",
+      "Edit, Link, Tabulate"
+    ],
+    "correctIndex": 1,
+    "explanation": "ELT stands for Extract, Load, Transform. Unlike traditional ETL (Extract, Transform, Load), ELT loads raw data into the warehouse first, then transforms it in-place using the warehouse's compute power. This approach is preferred in modern cloud data warehouses like BigQuery and Snowflake.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which tool is most commonly associated with analytics engineering for building data transformation pipelines using SQL?",
+    "options": [
+      "Apache Spark",
+      "dbt (data build tool)",
+      "Tableau",
+      "Microsoft Excel"
+    ],
+    "correctIndex": 1,
+    "explanation": "dbt (data build tool) is the industry-standard tool for analytics engineering. It allows data teams to write modular SQL transformations, test data quality, generate documentation, and manage version-controlled data models within a data warehouse.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'data warehouse'?",
+    "options": [
+      "A physical building that stores servers",
+      "A centralized repository optimized for storing and querying structured, analytical data",
+      "A tool for real-time data streaming",
+      "A type of NoSQL database"
+    ],
+    "correctIndex": 1,
+    "explanation": "A data warehouse is a centralized data store optimized for analytical queries and reporting. It consolidates data from multiple sources into a structured format, typically using columnar storage and SQL access, enabling efficient analysis across the organization.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a primary key in a database table?",
+    "options": [
+      "A column that stores encrypted data",
+      "A column (or combination of columns) that uniquely identifies each row in a table",
+      "The first column of any table",
+      "A key used to encrypt the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "A primary key is a column or set of columns that uniquely identifies every row in a table. No two rows can have the same primary key value, and it cannot contain NULL values. Primary keys are fundamental for data integrity and for joining tables together.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In SQL, what does a JOIN operation do?",
+    "options": [
+      "Deletes duplicate rows from a table",
+      "Combines rows from two or more tables based on a related column",
+      "Creates a new database",
+      "Sorts the results in ascending order"
+    ],
+    "correctIndex": 1,
+    "explanation": "A JOIN combines rows from two or more tables based on a related column (typically a foreign key relationship). Types include INNER JOIN (matching rows only), LEFT JOIN (all rows from left table), RIGHT JOIN, and FULL OUTER JOIN.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'version control' mean in the context of analytics engineering?",
+    "options": [
+      "Keeping track of database software versions",
+      "Using tools like Git to track changes to data models, transformations, and SQL code over time",
+      "Numbering each row in a table",
+      "Maintaining multiple copies of the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control (via Git) allows analytics engineers to track changes to their SQL models, review code through pull requests, collaborate with team members, and roll back to previous versions if needed. It brings software engineering best practices to data transformation work.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In dimensional modeling, what is the difference between a fact table and a dimension table?",
+    "options": [
+      "Fact tables are always smaller than dimension tables",
+      "Fact tables store quantitative measurements/events; dimension tables store descriptive context about those events",
+      "There is no difference; they are interchangeable terms",
+      "Dimension tables contain only numeric data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fact tables contain quantitative, measurable data about business events (e.g., sales amounts, click counts) and foreign keys to dimension tables. Dimension tables provide descriptive context (e.g., customer names, product categories, dates) that gives meaning to the facts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In dbt, what is a 'model'?",
+    "options": [
+      "A machine learning algorithm",
+      "A SQL SELECT statement saved as a .sql file that defines a transformation, which dbt materializes as a table or view",
+      "A database schema diagram",
+      "A Python script for data ingestion"
+    ],
+    "correctIndex": 1,
+    "explanation": "In dbt, a model is a SQL file containing a SELECT statement that defines a data transformation. When dbt runs, it executes these SQL statements and materializes the results as tables or views in the data warehouse, following the dependency order defined by references between models.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'staging model' in a dbt project's typical layered architecture?",
+    "options": [
+      "The final presentation layer for dashboards",
+      "A lightweight cleaning layer that renames, casts types, and applies basic transformations to raw source data",
+      "A model used only in production environments",
+      "A temporary model that is deleted after each run"
+    ],
+    "correctIndex": 1,
+    "explanation": "Staging models sit at the base of a dbt project and perform initial cleaning of raw source data — renaming columns to consistent conventions, casting data types, filtering out invalid records, and providing a clean interface for downstream models. They are typically materialized as views.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'surrogate key' and why might an analytics engineer create one?",
+    "options": [
+      "An encryption key for data security",
+      "A synthetic, auto-generated unique identifier created when natural keys are unreliable or composite keys are too complex",
+      "A foreign key that references another table",
+      "A temporary variable used in SQL scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "A surrogate key is an artificially generated unique identifier (often a hash or auto-increment) used as a primary key when natural keys from source systems are unreliable, subject to change, or consist of multiple columns. They simplify joins and ensure stable row identification.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In dbt, what are 'tests' used for?",
+    "options": [
+      "Performance benchmarking of SQL queries",
+      "Asserting data quality expectations (e.g., uniqueness, not null, referential integrity) on models",
+      "Unit testing Python code",
+      "Load testing the data warehouse"
+    ],
+    "correctIndex": 1,
+    "explanation": "dbt tests are assertions about data quality applied to models. Built-in tests include unique, not_null, accepted_values, and relationships (referential integrity). Custom tests can be written as SQL queries. Failed tests alert the team to data quality issues before they reach dashboards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a 'table' and a 'view' materialization in dbt?",
+    "options": [
+      "There is no difference",
+      "A table physically stores the query results in the warehouse; a view stores only the SQL definition and computes results on query",
+      "Views are always faster than tables",
+      "Tables cannot be used in downstream models"
+    ],
+    "correctIndex": 1,
+    "explanation": "A table materialization runs the SQL and stores the results physically in the warehouse, making queries fast but requiring storage and rebuild time. A view stores only the SQL definition — results are computed each time the view is queried, using no extra storage but potentially slower for complex queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'slowly changing dimension' (SCD) and which type is most commonly implemented?",
+    "options": [
+      "A dimension that never changes",
+      "A dimension whose attributes change over time; Type 2 (tracking history with valid_from/valid_to dates) is most common",
+      "A fact table that changes slowly",
+      "A dimension with a slowly increasing primary key"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slowly changing dimensions track how dimensional attributes (e.g., customer address, product category) change over time. Type 1 overwrites old values, Type 2 creates new rows with validity date ranges to preserve full history, and Type 3 adds columns for current and previous values. Type 2 is most commonly implemented.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Common Table Expression (CTE) in SQL, and why do analytics engineers use them extensively?",
+    "options": [
+      "A permanent table stored in the database",
+      "A temporary named result set defined within a query using WITH clause, improving readability and modularity",
+      "A type of database index",
+      "A stored procedure for data transformation"
+    ],
+    "correctIndex": 1,
+    "explanation": "CTEs (defined with the WITH clause) create temporary, named result sets that exist only for the duration of a single query. Analytics engineers use them extensively to break complex transformations into readable, logical steps — each CTE handling one transformation stage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of a data warehouse, what is a 'data mart'?",
+    "options": [
+      "A raw data storage layer",
+      "A focused subset of a data warehouse tailored for a specific business area or team",
+      "An online retail data store",
+      "A tool for data visualization"
+    ],
+    "correctIndex": 1,
+    "explanation": "A data mart is a subject-oriented subset of a data warehouse that serves the needs of a specific business unit or use case (e.g., marketing analytics, finance reporting). It contains pre-aggregated, curated data that is optimized for the specific analytical needs of its users.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'data lineage' and why is it important for analytics engineering?",
+    "options": [
+      "The physical location of data servers",
+      "The documented trail of data from its origin through all transformations to its final form, enabling impact analysis and debugging",
+      "The order in which users query data",
+      "The version history of the database software"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data lineage tracks how data flows from source systems through transformations to final output tables. It enables analytics engineers to understand dependencies, perform impact analysis when upstream data changes, debug data quality issues, and maintain trust in data assets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does an 'incremental' materialization strategy in dbt do differently from a full table rebuild?",
+    "options": [
+      "It builds the table in multiple databases",
+      "It processes only new or changed records since the last run, rather than rebuilding the entire table each time",
+      "It creates an incremental backup of the database",
+      "It gradually increases the number of columns over time"
+    ],
+    "correctIndex": 1,
+    "explanation": "Incremental materialization processes only new or updated records (identified by a timestamp or unique key) instead of reprocessing the entire dataset. This dramatically reduces compute costs and run times for large tables, though it requires careful logic to handle late-arriving or updated records.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a 'YAML schema file' in a dbt project?",
+    "options": [
+      "To store raw data in YAML format",
+      "To define metadata, column descriptions, tests, and documentation for dbt models",
+      "To configure the data warehouse connection",
+      "To write SQL transformation logic"
+    ],
+    "correctIndex": 1,
+    "explanation": "YAML schema files (typically schema.yml) in dbt define metadata for models and sources: column descriptions, data tests (uniqueness, not null, etc.), documentation, and source freshness checks. They serve as the single source of truth for data documentation and quality expectations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'star schema' pattern in dimensional modeling?",
+    "options": [
+      "A schema with no relationships between tables",
+      "A central fact table connected to multiple dimension tables in a star-like topology, optimized for analytical queries",
+      "A schema that stores data as JSON documents",
+      "A fully normalized 3NF schema"
+    ],
+    "correctIndex": 1,
+    "explanation": "The star schema arranges data with a central fact table surrounded by denormalized dimension tables, resembling a star shape. This structure simplifies queries (fewer joins), improves query performance for analytical workloads, and is the most common dimensional modeling pattern in data warehouses.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An analytics engineer discovers that a critical mart model references a source table that occasionally has duplicate records due to upstream system bugs. How should they handle this in dbt while maintaining data integrity?",
+    "options": [
+      "Ignore duplicates as they are rare",
+      "Add a deduplication step in the staging model using ROW_NUMBER() window function, and add a unique test on the primary key",
+      "Delete duplicates directly from the source system",
+      "Add a filter to remove all records from the affected days"
+    ],
+    "correctIndex": 1,
+    "explanation": "The proper approach is defensive: add deduplication logic in the staging layer (using ROW_NUMBER() partitioned by the natural key, ordered by a timestamp) to select only the latest version of each record. Adding a unique test on the primary key ensures the deduplication is working and alerts the team if new duplicate patterns emerge.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a dbt project for a fast-growing company with 500+ models, what architectural pattern helps manage complexity and enforce data contracts between teams?",
+    "options": [
+      "Putting all models in a single directory",
+      "A multi-layered project structure (staging → intermediate → marts) with exposure definitions and cross-project references via dbt Mesh",
+      "Using only views for all materializations",
+      "Writing all transformations in a single SQL file"
+    ],
+    "correctIndex": 1,
+    "explanation": "Large dbt projects benefit from a layered architecture: staging models clean raw data, intermediate models handle complex business logic, and marts serve final analytical tables. dbt Mesh extends this with cross-project references and data contracts, allowing teams to publish versioned, contractually-guaranteed interfaces.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An analytics engineer needs to calculate a rolling 7-day average of daily revenue in SQL. Which approach is most efficient and correct?",
+    "options": [
+      "Using seven self-joins",
+      "Using the AVG() window function with ROWS BETWEEN 6 PRECEDING AND CURRENT ROW ordered by date",
+      "Creating seven separate CTEs and unioning them",
+      "Using a recursive CTE"
+    ],
+    "correctIndex": 1,
+    "explanation": "The window function approach AVG(revenue) OVER (ORDER BY date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) is the most efficient and readable method. It calculates a sliding average across the current row and the previous 6 rows (7 days total) without requiring self-joins or complex subqueries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a data warehouse environment, what is 'query pushdown' and why do analytics engineers care about it?",
+    "options": [
+      "Pushing queries to a queue for later execution",
+      "Delegating transformation logic to the warehouse engine rather than extracting data and processing it externally, maximizing performance",
+      "Automatically lowering query priority during peak hours",
+      "Pushing queries down to the application layer"
+    ],
+    "correctIndex": 1,
+    "explanation": "Query pushdown means keeping transformation logic within the data warehouse engine (using SQL) rather than extracting data to external systems for processing. This leverages the warehouse's optimized compute infrastructure, columnar storage, and parallel processing, resulting in dramatically better performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An analytics engineer is building a model tracking subscription revenue. Some subscriptions have retroactive price adjustments that arrive days later, updating historical records. What modeling strategy handles this 'late-arriving fact' problem?",
+    "options": [
+      "Only processing data that is more than 30 days old",
+      "Using incremental models with a lookback window that reprocesses a configurable number of past days on each run",
+      "Ignoring late-arriving adjustments",
+      "Rebuilding the entire table daily regardless of cost"
+    ],
+    "correctIndex": 1,
+    "explanation": "A lookback window in incremental models reprocesses not just new records, but also records from a configurable recent period (e.g., last 7 days). This catches late-arriving facts and retroactive adjustments while still being much more efficient than full table rebuilds.",
+    "difficulty": "hard"
   }
 ]

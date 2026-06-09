@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The RUN npm install instruction executes the npm install command inside the container during the build process, installing all project dependencies. CMD npm start defines the command to run when the container starts. EXPOSE 3000 informs Docker that the container listens on the specified network ports at runtime. COPY . . copies files from the build context to the container, but doesn't install anything.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Fullstack Developer?",
+    "options": [
+      "A developer who only manages server hardware racks",
+      "A developer who works on both the front-end (user interface) and back-end (server, database) of web applications",
+      "A developer who writes code using twelve programming languages",
+      "An accountant who audits cloud billing budgets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fullstack developers have skills spanning user interface design, client scripting, API development, server routing, and database management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a front-end framework?",
+    "options": [
+      "A framework for running databases",
+      "A software library providing structured blueprints for building user interfaces (e.g. React, Angular, Vue)",
+      "A security firewall for servers",
+      "A tool for compressing images"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frontend frameworks help developers structure client-side rendering, component trees, and UI state management efficiently.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a back-end database?",
+    "options": [
+      "A folder containing local text files",
+      "A system for storing, managing, and retrieving application data persistently (e.g., PostgreSQL, MongoDB)",
+      "A web server routing script",
+      "A styling template for web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Databases store application state (user accounts, logs, posts) on persistent disk storage, accessed by the backend code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does API stand for?",
+    "options": [
+      "Application Programming Interface",
+      "Advanced Program Integration",
+      "Automated Protocol Interface",
+      "Application Process Integration"
+    ],
+    "correctIndex": 0,
+    "explanation": "APIs allow different software systems (like a frontend browser app and a backend database server) to communicate.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP method is typically used to submit new data to a server?",
+    "options": [
+      "GET",
+      "POST",
+      "DELETE",
+      "PUT"
+    ],
+    "correctIndex": 1,
+    "explanation": "POST is the standard method used to send payloads (like form submissions or new posts) to servers to create new resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is git?",
+    "options": [
+      "A web framework developed by Google",
+      "A distributed version control system used to track changes in source code during software development",
+      "A cloud server provider similar to AWS",
+      "A database engine software"
+    ],
+    "correctIndex": 1,
+    "explanation": "Git tracks revisions, manages code branches, and enables collaborative coding across developer teams.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a 500 HTTP status code indicate?",
+    "options": [
+      "The page was found and loaded successfully",
+      "An Internal Server Error, meaning the server crashed or encountered an unexpected condition",
+      "The requested page does not exist",
+      "The user is not authenticated"
+    ],
+    "correctIndex": 1,
+    "explanation": "500-level codes indicate backend server-side errors, while 400-level codes indicate client-side errors (like missing parameters or bad auth).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between client-side rendering (CSR) and server-side rendering (SSR)?",
+    "options": [
+      "CSR runs on Windows; SSR runs on Linux",
+      "CSR downloads an empty HTML page and compiles UI in the browser using JavaScript; SSR generates the complete HTML page on the server per request and returns it",
+      "CSR is always faster to load first paint than SSR",
+      "SSR does not support JavaScript execution in the browser"
+    ],
+    "correctIndex": 1,
+    "explanation": "CSR (standard React) shifts rendering load to the browser. SSR (Next.js) pre-renders HTML on the server, improving SEO and reducing Time to First Paint.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an ORM (Object-Relational Mapping) library?",
+    "options": [
+      "A tool for designing database diagrams",
+      "A library that lets you query and manipulate data from a database using objects in your code instead of raw SQL queries",
+      "A protocol for encrypting files during transit",
+      "An API for caching data"
+    ],
+    "correctIndex": 1,
+    "explanation": "ORMs (like Prisma or Sequelize) map relational rows to language objects (e.g. JavaScript classes), making database operations type-safe and readable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is JWT (JSON Web Token) and what is it commonly used for?",
+    "options": [
+      "A tool for compressing data arrays",
+      "A compact, URL-safe means of representing claims to be transferred between two parties, commonly used for stateless user authentication",
+      "A database query programming language",
+      "A style guide dashboard template"
+    ],
+    "correctIndex": 1,
+    "explanation": "JWTs contain cryptographically signed JSON payloads. When a user logs in, the server returns a JWT which the client sends in subsequent request headers to prove authorization statelessly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between relational (SQL) and non-relational (NoSQL) databases?",
+    "options": [
+      "SQL is only for web apps; NoSQL is for desktop apps",
+      "SQL databases are relational and table-based with fixed schemas; NoSQL databases are non-relational and support flexible document, key-value, or graph structures",
+      "SQL databases are free; NoSQL databases are always paid",
+      "They are identical in scaling mechanisms"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQL (Postgres, MySQL) excels at complex joins and strict transactions. NoSQL (MongoDB, DynamoDB) excels at horizontal scaling and flexible, evolving schemas.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the Model-View-Controller (MVC) pattern separate?",
+    "options": [
+      "HTML, CSS, and JavaScript files",
+      "The data model (Model), user interface layouts (View), and the application routing control logic (Controller)",
+      "Symmetric and asymmetric encryption keys",
+      "Different servers in a cluster"
+    ],
+    "correctIndex": 1,
+    "explanation": "MVC isolates responsibilities: Model manages data, View handles UI layout, and Controller routes requests, updates models, and updates views.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of CORS (Cross-Origin Resource Sharing) headers?",
+    "options": [
+      "To speed up website loading times",
+      "To instruct browsers whether to allow frontend client code from one domain to read API responses from another domain",
+      "To encrypt request payloads",
+      "To track user sessions across tabs"
+    ],
+    "correctIndex": 1,
+    "explanation": "CORS is a browser security guard. Servers send CORS headers (like `Access-Control-Allow-Origin`) to authorize specific frontend origins to query their APIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Session Management' in web applications?",
+    "options": [
+      "Managing corporate developer meetings",
+      "The process of securely keeping track of a user's logged-in state across multiple HTTP requests",
+      "Restricting database tables to a single session",
+      "Timing compile processes in the CI/CD pipeline"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since HTTP is stateless, session management maps requests to users using either cookie-stored Session IDs (stateful) or client-stored JWT tokens (stateless).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a message queue (e.g. RabbitMQ, BullMQ) do in backend architecture?",
+    "options": [
+      "Styles console log outputs",
+      "Manages a list of background tasks to be processed asynchronously, decoupling heavy tasks from the main API thread",
+      "Caches SQL queries locally",
+      "Ingests video files to compress them"
+    ],
+    "correctIndex": 1,
+    "explanation": "Message queues handle offloaded tasks. Instead of keeping a user waiting while generating a PDF report, the API queues the job and returns immediately; workers process the queue in the background.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a table join and a subquery in SQL?",
+    "options": [
+      "Joins are for numbers; subqueries for text",
+      "A join combines columns from multiple tables based on relations; a subquery is a nested query executed inside a larger primary query",
+      "Subqueries are always faster than Joins",
+      "They are identical database operations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Joins combine matching rows. Subqueries (nested SELECTs) calculate values or list filters used in the outer query, often serving different optimization paths.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Environment Variables' (.env) used for in web applications?",
+    "options": [
+      "To style application layouts",
+      "To store configuration settings, API keys, and secrets outside the codebase, ensuring they do not get committed to git repositories",
+      "To manage user profile files",
+      "To compile CSS styles"
+    ],
+    "correctIndex": 1,
+    "explanation": "Env variables keep secrets secure. The code reads `process.env.DB_PASSWORD` at runtime, keeping raw passwords out of public repositories.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Virtual DOM' and what problem does it solve?",
+    "options": [
+      "A virtual machine hosted in the cloud; solves storage limits",
+      "A representation of the HTML DOM kept in memory; solves slow performance by calculating UI changes in memory and batching real DOM writes",
+      "An encrypted database schema; solves key leaks",
+      "An API for loading images; solves slow loading speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Writing directly to the browser DOM triggers slow layout recalculations. Virtual DOMs compare UI states (diffing) and apply only the necessary changes in a single batch write.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Docker and why is it useful for fullstack developers?",
+    "options": [
+      "A web framework replacing React",
+      "A containerization platform that packages an application and its dependencies into an isolated container, ensuring it runs identically across dev, test, and production",
+      "A database engine software",
+      "A cloud server hosting provider"
+    ],
+    "correctIndex": 1,
+    "explanation": "Docker eliminates 'works on my machine' bugs by containerizing the entire OS runtime, node version, and databases, matching local dev environments to production servers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Build' step do in frontend development?",
+    "options": [
+      "Creates database tables",
+      "Compiles, minifies, and bundles source files (React, CSS, images) into static HTML/CSS/JS assets ready for production deployment",
+      "Starts the local development server",
+      "Configures firewall rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Building transpiles modern JS (ES6/React) to browser-compatible code, minifies file sizes, strips comments, and splits bundles to optimize page load speeds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'N+1 Query Problem' in ORMs, and how is it resolved?",
+    "options": [
+      "A bug where databases run out of connections; resolved by pooling",
+      "A performance bug where an application executes 1 query to fetch parent records, followed by N separate queries to fetch related child records; resolved by eager loading (joining) data",
+      "A compilation error in SQL scripts; resolved by refactoring",
+      "A network routing loop; resolved by firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "If you load 50 posts and fetch comments for each post in a loop, you run 1 query for posts + 50 queries for comments (N+1 queries). Resolving this involves using JOINs (e.g. `include` in Prisma) to fetch all comments in a single query.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between OAuth 2.0 and OpenID Connect (OIDC) protocols?",
+    "options": [
+      "OAuth is for encryption; OIDC is for decryption",
+      "OAuth 2.0 is an authorization framework delegating access to APIs; OIDC is an identity layer built on top of it to authenticate users (identifying who they are)",
+      "OIDC is older and replaced by OAuth 2.0",
+      "OAuth uses XML; OIDC uses JSON only"
+    ],
+    "correctIndex": 1,
+    "explanation": "OAuth 2.0 returns an Access Token (permissions to read resources). OIDC extends this by returning an ID Token (JWT containing user profile claims), unifying authentication and authorization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Hydration' error in server-side rendered (SSR) React applications (like Next.js)?",
+    "options": [
+      "The server running out of memory",
+      "A mismatch occurring when the server-rendered HTML does not match the initial DOM structure calculated by the client browser during hydration",
+      "An error when loading dynamic images",
+      "A database sync timeout"
+    ],
+    "correctIndex": 1,
+    "explanation": "React SSR pre-renders HTML on the server. In the browser, React 'hydrates' the page (binding JS events). If the HTML differs (e.g., due to rendering local browser timestamps or window width checks on server), React throws hydration errors.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is database 'Sharding' vs 'Partitioning'?",
+    "options": [
+      "Sharding is for text columns; Partitioning is for numbers",
+      "Partitioning divides a table into segments within a single database instance; Sharding distributes rows of a table across multiple completely separate database engines/servers",
+      "Sharding is manual; Partitioning is automatic in all databases",
+      "They are identical database scaling terms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Partitioning (e.g., splitting a table by month) stays on one machine. Sharding distributes data (e.g., odd customer IDs to Server 1, even to Server 2) horizontally across multiple database instances to scale CPU and I/O.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does the CAP theorem state regarding distributed data systems, and how does it guide architectural choices?",
+    "options": [
+      "A system can achieve all of Consistency, Availability, and Partition Tolerance simultaneously",
+      "A distributed data store can simultaneously provide at most two of: Consistency, Availability, and Partition Tolerance (and during network partitions, you must choose C or A)",
+      "Consistency is always preferred over availability in all databases",
+      "All nodes must run on identical physical hardware configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a network split occurs, you must choose: either reject writes on partition nodes to keep data identical (Consistency/CP) or accept writes on split nodes to keep the service running (Availability/AP), syncing databases later (Eventual Consistency).",
+    "difficulty": "hard"
   }
 ]

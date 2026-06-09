@@ -1,0 +1,710 @@
+{
+  "database_admin": [
+    {
+      "question": "What is the primary role of a Database Administrator (DBA)?",
+      "options": ["Designing the front-end layout of websites", "Managing, securing, maintaining, and backing up database systems to ensure availability", "Writing raw application business logic code", "Managing corporate social media pages"],
+      "correctIndex": 1,
+      "explanation": "A DBA's primary responsibility is database operations, ensuring that the database runs efficiently, is backed up, remains secure, and is available when needed.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is SQL?",
+      "options": ["Structured Query Language", "Sequential Query Library", "Simple Query Logic", "Server Queue Link"],
+      "correctIndex": 0,
+      "explanation": "SQL (Structured Query Language) is the standard programming language used to manage and query relational databases.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of database backups?",
+      "options": ["To double the storage capacity of the server", "To prevent permanent data loss in the event of hardware failures, corruption, or cyberattacks", "To speed up select query performance", "To compress active database tables"],
+      "correctIndex": 1,
+      "explanation": "Backups create copies of data that can be restored if the primary database is damaged, deleted, or compromised.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which command is used to delete a table and all its data permanently from a database?",
+      "options": ["DELETE", "DROP TABLE", "REMOVE", "TRUNCATE"],
+      "correctIndex": 1,
+      "explanation": "DROP TABLE deletes the entire table structure, columns, indexes, and rows permanently. DELETE removes rows but keeps the table structure.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a Primary Key?",
+      "options": ["A key used to encrypt the database server physically", "A column or combination of columns that uniquely identifies each row in a database table", "The first column of a query result", "A key that connects to external cloud networks"],
+      "correctIndex": 1,
+      "explanation": "A primary key enforces entity integrity. No two rows can have the same primary key, and it cannot contain NULL values.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of a Database Index?",
+      "options": ["To encrypt columns for safety", "To speed up data retrieval queries, acting like an index in a book", "To automatically clean duplicate records", "To split database files onto different drives"],
+      "correctIndex": 1,
+      "explanation": "Indexes allow the database engine to find specific rows quickly without scanning the entire table (full table scan), improving query speeds.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does NoSQL stand for?",
+      "options": ["No SQL allowed at all", "Not Only SQL (non-relational database systems)", "Network Object SQL", "New Online SQL standard"],
+      "correctIndex": 1,
+      "explanation": "NoSQL refers to non-relational database systems that support unstructured or semi-structured data models (e.g. documents, key-values, graphs).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between DELETE and TRUNCATE commands in SQL?",
+      "options": ["TRUNCATE is only for NoSQL; DELETE is for SQL", "DELETE removes specific rows based on a WHERE clause and logs each deletion; TRUNCATE removes all rows from a table quickly by deallocating data pages, logging minimal details", "DELETE removes the table structure; TRUNCATE does not", "They are identical in speed and execution"],
+      "correctIndex": 1,
+      "explanation": "DELETE is a DML command that can be rolled back and triggers row locks. TRUNCATE is a DDL command that clears all rows, cannot use a WHERE clause, and is much faster.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does database 'ACID' properties guarantee?",
+      "options": ["Accuracy, Consistency, Isolation, Durability", "Atomicity, Consistency, Isolation, Durability", "Automation, Compression, Integrity, Delivery", "Algorithm, Compatibility, Indexing, Decryption"],
+      "correctIndex": 1,
+      "explanation": "ACID properties ensure reliable database transactions: Atomicity (all or nothing), Consistency (valid state transitions), Isolation (independent concurrent transactions), and Durability (survives crashes).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Foreign Key'?",
+      "options": ["An encryption key for external file transfers", "A column in one table that links to the primary key in another table, enforcing referential integrity", "A database login password for external users", "An index that is not stored on the local database server"],
+      "correctIndex": 1,
+      "explanation": "Foreign keys represent relationships between tables, preventing orphaned records by ensuring data in child tables matches valid rows in parent tables.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of database 'Replication'?",
+      "options": ["To copy database files to zip folders manually", "Copying database data from one server (primary) to another (replica) to improve availability, load balance reads, and provide backup redundancy", "Converting tables to NoSQL format automatically", "Creating duplicate rows inside the same table for safety"],
+      "correctIndex": 1,
+      "explanation": "Replication distributes database reads across multiple servers (slaves/replicas), ensuring the system remains online if the primary database server fails.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a full backup and an incremental backup?",
+      "options": ["Full backup is for SQL; Incremental is for NoSQL", "Full backup copies the entire database; Incremental backup copies only the changes made since the last backup (full or incremental)", "Incremental backup takes longer than a full backup", "Full backup is encrypted; Incremental is not"],
+      "correctIndex": 1,
+      "explanation": "Full backups copy all data but take time and space. Incremental backups are faster and smaller because they only copy modifications made since the previous backup.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Database Normalization'?",
+      "options": ["Running clean updates on the database engine software", "Structuring database tables to reduce data redundancy and improve data integrity, following normal forms (1NF, 2NF, 3NF)", "Converting all text data to uppercase format", "Securing database ports from hacker scans"],
+      "correctIndex": 1,
+      "explanation": "Normalization organizes tables to prevent duplicate records (e.g., storing customer name once in a customer table rather than on every order record).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does database clustering do?",
+      "options": ["Groups files into folders based on file size", "Connects multiple database servers to act as a single system, providing high availability and load balancing", "Creates multiple schemas inside one database", "Compresses index files on disk"],
+      "correctIndex": 1,
+      "explanation": "Clustering groups multiple instances to share workloads and storage. If one node in the cluster fails, other nodes pick up the traffic with minimal downtime.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a clustered and a non-clustered index?",
+      "options": ["Clustered indexes are only for databases in a cluster", "A clustered index determines the physical order of data rows in the table; a non-clustered index is a separate structure containing pointers to data rows", "A table can have multiple clustered indexes, but only one non-clustered index", "Clustered indexes are slower than non-clustered indexes"],
+      "correctIndex": 1,
+      "explanation": "Since a clustered index physicalizes how rows are stored on disk, there can only be one clustered index per table (typically the primary key). Non-clustered indexes create separate lookup tables.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Deadlock' in database systems?",
+      "options": ["A server that has completely lost power", "A situation where two or more transactions are blocked indefinitely, each waiting for locks held by the other", "A corrupted database file that cannot be opened", "A query that has run out of memory cache"],
+      "correctIndex": 1,
+      "explanation": "Deadlocks occur when Transaction A locks Row 1 and wants Row 2, while Transaction B locks Row 2 and wants Row 1. The database must detect this and abort one transaction.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a database transaction log (or Write-Ahead Log - WAL)?",
+      "options": ["A diary written by the database administrator", "A history file recording all modifications to the database before they are written to data files, ensuring durability and recovery", "A log of user login timestamps", "A list of slow queries generated by the system"],
+      "correctIndex": 1,
+      "explanation": "The transaction log is critical for crash recovery. If power fails, the engine reads the WAL to roll forward committed transactions and roll back incomplete ones.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is SQL injection, and what is the primary DBA defense against it?",
+      "options": ["Injecting databases with compression scripts; defense is indexing", "An attack exploiting insecure input fields to execute arbitrary SQL; defense is using parameterized queries/prepared statements and enforcing least privilege permissions", "A database server crash; defense is adding RAM", "A hardware firewall breach; defense is port blocking"],
+      "correctIndex": 1,
+      "explanation": "Prepared statements prevent input from being executed as SQL command code. DBAs also enforce least privilege (e.g., app user accounts cannot drop tables).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'View' in databases?",
+      "options": ["A graphical interface for building queries", "A virtual table based on the result-set of a stored SELECT query, computed dynamically", "A backup image of the database server", "An operating system window showing server stats"],
+      "correctIndex": 1,
+      "explanation": "Views do not store data physically (unless materialized). They act as saved queries that present data in a structured, restricted format to users for convenience or security.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of database 'Sharding'?",
+      "options": ["Backing up the database in multiple regions", "Horizontally partitioning a database across multiple physical servers based on a key to handle massive read/write traffic at scale", "Compressing database logs to save storage space", "Converting table relationships into NoSQL graph formats"],
+      "correctIndex": 1,
+      "explanation": "Sharding distributes rows of a table across isolated database engines, separating computational and disk limits to scale systems horizontally.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Optimistic and Pessimistic concurrency control (locking)?",
+      "options": ["Optimistic locking always allows updates; Pessimistic locking never allows updates", "Optimistic locking checks for changes at commit time (using versions) and fails if a collision occurred; Pessimistic locking locks rows immediately upon reading to block modifications by others", "Pessimistic locking is faster than optimistic locking", "Optimistic locking only works in NoSQL databases"],
+      "correctIndex": 1,
+      "explanation": "Pessimistic locking prevents conflicts by blocking others, suitable for high-collision systems. Optimistic locking assumes collisions are rare and verifies record integrity at save time, saving locking overhead.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In database systems, what is the role of a Query Optimizer?",
+      "options": ["To write code reviews for SQL developers", "A component of the database engine that analyzes SQL queries and plans the most efficient execution path (using statistics, indexes, join types)", "A tool that compresses tables dynamically", "A security checker that blocks unauthorized users"],
+      "correctIndex": 1,
+      "explanation": "Optimizers review query syntax and table statistics (size, index selectivity) to generate execution plans, choosing between index scans, table scans, and join strategies (nested loops, hash joins).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does the transaction isolation level 'Serializable' guarantee, and what is its performance cost?",
+      "options": ["It guarantees database files are saved in order; cost is minimal", "It provides the highest level of isolation, executing transactions as if they were run sequentially, preventing dirty reads, non-repeatable reads, and phantom reads; cost is high locking overhead and low concurrency", "It guarantees all transactions are saved to disk immediately; cost is zero", "It is only supported in NoSQL databases; cost is high memory use"],
+      "correctIndex": 1,
+      "explanation": "Serializable isolation eliminates concurrency anomalies by locking ranges or tables. However, it slows down databases because concurrent operations must wait in queues.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Point-in-Time Recovery' (PITR) database restore?",
+      "options": ["Restoring only the database timestamps", "Restoring a database to a specific, exact timestamp in the past by combining a full database backup with transaction log backups", "Restoring the database files in under one second", "Restoring database access permissions to a previous state"],
+      "correctIndex": 1,
+      "explanation": "PITR combines base backups with sequential transaction log rollforwards, allowing DBAs to restore the database to the exact second *before* a catastrophic error or manual deletion occurred.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the CAP Theorem in distributed databases and how does it affect database system choices?",
+      "options": ["Distributed systems can achieve all of Consistency, Availability, and Partition Tolerance simultaneously", "A distributed system can guarantee at most two of: Consistency, Availability, and Partition Tolerance (and during network partitions, you must choose C or A)", "Consistency is always preferred over availability in cloud systems", "Distributed databases must run on identical physical hardware configurations"],
+      "correctIndex": 1,
+      "explanation": "During a network partition (P) where nodes cannot communicate, CP systems choose Consistency (refusing writes on split nodes to keep data identical). AP systems choose Availability (accepting writes, leaving nodes temporarily out of sync).",
+      "difficulty": "hard"
+    }
+  ],
+  "design_systems_engineer": [
+    {
+      "question": "What is a Design System?",
+      "options": ["A collection of website logos", "A complete library of reusable components, guided by clear standards, that can be assembled together to build any number of applications consistently", "A software tool for designing graphics", "A database system for storing UI images"],
+      "correctIndex": 1,
+      "explanation": "A design system consolidates UI tokens, visual styles, patterns, code components, and usage guidelines to ensure product consistency across platforms.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What are 'Design Tokens'?",
+      "options": ["Digital coins used to buy design files", "The visual design atoms of a brand (colors, spacing, typography, borders) stored as key-value pairs to maintain consistency across platforms", "Special symbols used in vector graphics", "Tokens used to log into design tools like Figma"],
+      "correctIndex": 1,
+      "explanation": "Design tokens abstract hardcoded values (e.g. mapping `#007BFF` to `color-primary`). These are exported to JSON, CSS variables, or iOS/Android configs, keeping styles synced.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which styling technology uses CSS variables (Custom Properties) to define theme values?",
+      "options": ["Raw SQL", "Vanilla CSS", "Markdown", "Git"],
+      "correctIndex": 1,
+      "explanation": "CSS variables (e.g., `--color-bg: #fff`) define visual tokens in stylesheets, supporting runtime changes like theme toggles.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary benefit of reusable components in a design system?",
+      "options": ["They decrease the size of database queries", "They ensure visual consistency, reduce code duplication, and speed up development timelines", "They encrypt client-side assets automatically", "They replace the need for QA testing"],
+      "correctIndex": 1,
+      "explanation": "By building UI elements (buttons, inputs, alerts) once and reusing them, changes are applied in one central place, saving time and preventing drift.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does UI stand for?",
+      "options": ["User Integration", "User Interface", "Universal Icon", "Unique Identity"],
+      "correctIndex": 1,
+      "explanation": "UI stands for User Interface, referring to the visual and interactive elements of a digital application that users engage with.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does UX stand for?",
+      "options": ["User Experience", "User XML", "Universal Exchange", "Unit eXecution"],
+      "correctIndex": 0,
+      "explanation": "UX stands for User Experience, focusing on how a user feels when interacting with a digital product or service, optimizing efficiency and ease of use.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of Figma in modern design workflows?",
+      "options": ["A compiler for writing JavaScript", "A collaborative vector graphics editor and prototyping tool used to design user interfaces and wireframes", "A database server administration dashboard", "An automated deployment scripting framework"],
+      "correctIndex": 1,
+      "explanation": "Figma is the standard tool for UI designers to create layouts, mockups, design tokens, and prototypes, serving as the source of truth for engineering teams.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a component library and a design system?",
+      "options": ["A component library has no code; a design system is code only", "A component library is a set of UI code elements (e.g. React buttons); a design system includes those components plus design tokens, brand guidelines, UX patterns, and documentation", "Component libraries are paid; design systems are free", "They are identical terms in frontend development"],
+      "correctIndex": 1,
+      "explanation": "Component libraries are subsets of design systems. A design system spans across disciplines, containing the brand philosophy, writing guidelines, and designs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Accessibility' (a11y) in UI components?",
+      "options": ["Ensuring the component files load fast on the server", "Designing components to be usable by everyone, including people with sensory, motor, or cognitive disabilities (e.g. supporting screen readers and keyboard navigation)", "Restricting code files to selected developers", "Making components free to download"],
+      "correctIndex": 1,
+      "explanation": "Accessible components adhere to standards like WCAG. This includes having high color contrast, focus states for keyboards, and ARIA attributes for screen readers.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Semantic HTML' and why is it important for design systems?",
+      "options": ["HTML that is styled using inline CSS scripts", "Using HTML tags that describe their meaning (like <button>, <nav>, <header>) rather than generic divs/spans, improving accessibility and SEO", "HTML code written in a specific programming language", "HTML files compiled into binary formats"],
+      "correctIndex": 1,
+      "explanation": "Semantic HTML tags tell browser engines and screen readers what the content represents, ensuring default keyboard behaviors (like space/enter activating a button) work natively.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Theme' in a design system?",
+      "options": ["A database backup schedule", "A set of design tokens (colors, backgrounds) that can be swapped dynamically (e.g. Dark Mode vs. Light Mode) to change visual appearance", "A company logo style guidelines", "A folder structure of code files"],
+      "correctIndex": 1,
+      "explanation": "Themes map specific visual values to design tokens. Toggling themes changes the values assigned to CSS variables dynamically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are 'Interactive States' in UI design?",
+      "options": ["The server states during database queries", "The visual changes of a component during user interactions, such as hover, focus, active, disabled, and error states", "The navigation routes of an application", "The load balanced server nodes in a cluster"],
+      "correctIndex": 1,
+      "explanation": "UI components must signal feedback. Buttons change style on hover, input fields outline on focus, and forms highlight in red on error.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Component Composition'?",
+      "options": ["Compressing component file sizes", "A design pattern where complex components are built by combining smaller, simpler components together (e.g., a Card component containing a Button)", "Writing components in different programming languages", "Designing components in vector editors only"],
+      "correctIndex": 1,
+      "explanation": "Composition keeps code clean and modular. Instead of creating massive, monolithic components with dozens of configuration flags, developers nest focused sub-components.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Storybook' tool do in design systems engineering?",
+      "options": ["An interface for writing user novels", "An open-source tool used for developing, testing, and documenting UI components in isolation outside application business logic", "An automated script that generates database diagrams", "A security checker for user login tokens"],
+      "correctIndex": 1,
+      "explanation": "Storybook provides an isolated sandbox where developers can view all variations and states (stories) of UI components without launching the main application.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a CSS 'Reset' or 'Normalize' file?",
+      "options": ["To reset the server's network configuration", "To establish baseline styles by removing default browser styling inconsistencies, ensuring components render identically across all browsers", "To delete all unused CSS classes", "To compress stylesheets into minified files"],
+      "correctIndex": 1,
+      "explanation": "Browsers (Chrome, Safari, Firefox) have differing default margins, paddings, and font rendering rules. Resetting/normalizing levels the playing field.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In typography, what is the difference between 'em' and 'rem' units in CSS?",
+      "options": ["em is for mobile; rem is for desktop", "em is relative to the font-size of its direct parent element; rem is relative to the font-size of the root (html) element", "rem is a legacy unit that should be replaced by pixels", "They are identical in pixel measurements"],
+      "correctIndex": 1,
+      "explanation": "rem (root em) units are highly recommended for accessibility. If a user increases their browser's default font size, rem-based layouts scale proportionally, preventing layout breakage.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Color Contrast Ratio' and what is the WCAG 2.1 AA requirement for normal text?",
+      "options": ["The resolution ratio of monitor screens; requirement is 1080p", "The contrast difference between foreground text and background color; WCAG AA requires a ratio of at least 4.5:1 for normal text", "The brightness level of displays; requirement is 500 nits", "The count of colors used in a dashboard; requirement is 3 colors"],
+      "correctIndex": 1,
+      "explanation": "Ensuring text contrast meets or exceeds 4.5:1 (and 3:1 for large text) is critical for visually impaired or color-blind users to read content comfortably.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a grid system and a flexbox layout in CSS?",
+      "options": ["Grid is for images; Flexbox is for text", "Grid is a two-dimensional layout system (handles columns and rows); Flexbox is a one-dimensional layout system (handles columns OR rows)", "Flexbox is older and deprecated; Grid replaces it", "Grid is only for mobile layouts; Flexbox is for desktop"],
+      "correctIndex": 1,
+      "explanation": "Flexbox is ideal for aligning linear items (like menus, button groups). Grid is ideal for designing structured multi-dimensional layouts (like card galleries, dashboard splits).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are 'Utility Classes' in CSS styling?",
+      "options": ["Classes used to debug database connections", "Single-purpose CSS classes designed to apply a specific style property (e.g. `flex`, `m-4`, `text-center`) directly in HTML", "Classes that handle server routing paths", "Classes used to compress image assets"],
+      "correctIndex": 1,
+      "explanation": "Utility classes (popularized by frameworks like Tailwind) allow rapid styling by combining small helper classes directly on HTML elements without writing custom CSS selectors.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of linting tools (like Stylelint or ESLint) in a design system?",
+      "options": ["To verify server database speeds", "To automatically analyze code to enforce styling rules, syntax standards, and prevent formatting inconsistencies in component code", "To build production bundles", "To compress file sizes on disk"],
+      "correctIndex": 1,
+      "explanation": "Linters enforce uniform coding conventions (e.g. preventing invalid color codes or forcing alphabetically sorted properties), improving code quality across developer teams.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'CSS-in-JS' (e.g. styled-components) and what is a primary trade-off?",
+      "options": ["Writing CSS files using raw SQL queries; trade-off is database speed", "A styling approach where CSS is written directly inside JavaScript files; trade-off is runtime execution overhead and lack of static CSS caching", "A method for converting CSS to HTML; trade-off is visual quality", "A styling format that does not support media queries; trade-off is mobile layout compatibility"],
+      "correctIndex": 1,
+      "explanation": "CSS-in-JS bundles styling with component logic, allowing dynamic props-based styling. The trade-off is performance: styles are generated at runtime, increasing CPU load compared to static CSS sheets.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In component design, what is 'CSS Cascade Layers' (@layer) used for?",
+      "options": ["Layering images in a web editor", "A CSS feature that allows developers to control the specificity and order of CSS rule evaluations, preventing specificity wars between base, framework, and custom styles", "Creating 3D depth animations in buttons", "Splitting stylesheets across server nodes"],
+      "correctIndex": 1,
+      "explanation": "Cascade Layers give developers control over which styles take precedence, preventing issues where utility classes or custom styles are overridden by framework selectors due to specificity quirks.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'FOUC' (Flash of Unstyled Content) and how does it happen in design system integration?",
+      "options": ["A visual effect used to highlight error text", "A browser glitch where web pages are rendered temporarily with default browser styles before the CSS stylesheets load fully", "A memory leak in the graphics buffer", "A crash in the client browser due to too many fonts"],
+      "correctIndex": 1,
+      "explanation": "FOUC happens when HTML renders before style sheets are loaded and parsed, often caused by placing script tags that block rendering or loading styles asynchronously via JavaScript.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does WCAG 2.1 'Keyboard Navigable' requirement (2.1.1) impact custom UI components (like modal dialogs)?",
+      "options": ["It requires modal dialogs to be designed using vector graphics", "It requires all interactive elements to be operable using a keyboard (tab keys, space, enter) and forces modals to trap focus inside the dialog while open", "It mandates using specific keyboard models for developers", "It disables keyboard shortcuts on the webpage"],
+      "correctIndex": 1,
+      "explanation": "Custom modals must manage focus. Opening a modal should move focus inside it; tabbing should loop within the modal only (focus trap); pressing Escape must close the modal and return focus to the trigger button.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of 'Design System Versioning' (SemVer) and how do major, minor, and patch changes apply?",
+      "options": ["To number database tables; major changes table names, minor adds columns, patch edits cells", "Semantic versioning to manage package updates: Major increments on breaking visual/functional changes; Minor on new components/features; Patch on bug/style fixes", "A way to schedule dashboard updates weekly", "A protocol for routing network traffic in cloud repositories"],
+      "correctIndex": 1,
+      "explanation": "SemVer (e.g., 2.1.3) protects applications using the design system. A Major bump (e.g. changing token names) alerts developers that code must be updated to avoid application breakage.",
+      "difficulty": "hard"
+    }
+  ],
+  "desktop_app_developer": [
+    {
+      "question": "What does a Desktop Application Developer build?",
+      "options": ["Web pages optimized only for mobile browsers", "Software programs designed to run locally on desktop operating systems (Windows, macOS, Linux)", "Network database server hardware", "Cloud storage configurations"],
+      "correctIndex": 1,
+      "explanation": "Desktop developers write native or cross-platform applications that install and execute directly on user computers.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which framework is widely used to build cross-platform desktop applications using web technologies (HTML, CSS, JavaScript)?",
+      "options": ["React Native", "Electron", "Django", "Unity"],
+      "correctIndex": 1,
+      "explanation": "Electron (which powers VS Code, Slack, and Discord) wraps Chromium and Node.js to run web apps as desktop applications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a major advantage of desktop applications over standard web applications?",
+      "options": ["They do not require memory or CPU to run", "They have direct access to local system resources, file systems, and hardware features", "They are always free to develop", "They do not require coding compiled binaries"],
+      "correctIndex": 1,
+      "explanation": "Desktop apps can access system APIs, handle offline workloads efficiently, and interact directly with hardware like scanners or USB devices.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language is the primary choice for native Windows desktop applications using Microsoft's .NET framework?",
+      "options": ["C#", "Python", "Swift", "PHP"],
+      "correctIndex": 0,
+      "explanation": "C# is the standard language for Windows desktop development, supporting frameworks like WinForms, WPF, and MAUI.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language and framework are used to build native macOS desktop applications?",
+      "options": ["Java / Android Studio", "Swift / Cocoa (Xcode)", "C# / Visual Studio", "JavaScript / Node.js"],
+      "correctIndex": 1,
+      "explanation": "Native macOS apps are written in Swift (or Objective-C) using Apple's Xcode IDE and AppKit/SwiftUI frameworks.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an installer in desktop application distribution?",
+      "options": ["A developer who installs hardware in server rooms", "A program that package-installs the application, libraries, and shortcuts on a user's local operating system", "A cloud server configuration profile", "A database query optimizer script"],
+      "correctIndex": 1,
+      "explanation": "Installers (MSI, DMG, PKG) unpack application binaries, configure registry keys, copy assets to system folders, and create shortcuts.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a DLL (Dynamic Link Library) file in Windows?",
+      "options": ["An encrypted database file", "A shared library file containing code and data that multiple Windows applications can use simultaneously", "A desktop shortcut icon", "A network routing protocol"],
+      "correctIndex": 1,
+      "explanation": "DLLs allow code sharing. Instead of compiling identical functions in every app, programs link to shared DLLs, saving disk space and RAM.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between native and cross-platform desktop development?",
+      "options": ["Native is only for Windows; cross-platform is only for Linux", "Native apps are built specifically for one OS using native SDKs (fast, system-integrated); cross-platform apps use a single codebase (like Electron or Flutter) to deploy to multiple OSs", "Cross-platform apps are always faster and smaller than native apps", "Native apps do not use compilers"],
+      "correctIndex": 1,
+      "explanation": "Native development offers the best performance and UI integration but requires separate codebases. Cross-platform saves development cost by sharing code across platforms.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Electron's architecture model?",
+      "options": ["A single thread handling all databases and interfaces", "A multi-process model consisting of a Main Process (running Node.js) and one or more Renderer Processes (running Chromium web pages)", "A server-client model where the server is in the cloud", "A flat file system that does not run processes"],
+      "correctIndex": 1,
+      "explanation": "Electron isolates UI from system access. The Main Process controls application lifecycle and system APIs. Renderer Processes display HTML interfaces, communicating via IPC (Inter-Process Communication).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is WPF (Windows Presentation Foundation) in .NET?",
+      "options": ["A database management system", "A UI framework for building Windows desktop applications, separating UI design using XAML from business logic in C#", "A web server routing protocol", "An encryption standard for text files"],
+      "correctIndex": 1,
+      "explanation": "WPF is a mature Windows framework. It uses XAML (XML-based language) to describe layouts and supports rich data binding, templates, and graphics hardware acceleration.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'IPC' (Inter-Process Communication) and why is it needed in desktop apps?",
+      "options": ["An internet protocol configuration; needed for cloud sync", "A mechanism allowing isolated processes within the application to exchange data and coordinates safely (e.g. between UI page and system file access)", "A database backup scheduler; needed for data recovery", "A tool for compressing image file sizes"],
+      "correctIndex": 1,
+      "explanation": "Security designs (like Electron's sandbox) isolate UI processes from the system. IPC channels allow safe, structured communication between these processes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does code signing do for desktop applications?",
+      "options": ["Translates code into machine language", "Digitally signs the application binary to verify the publisher's identity and prove the code has not been tampered with since creation", "Formats code styling rules automatically", "Encrypts database query results"],
+      "correctIndex": 1,
+      "explanation": "Code signing prevents operating systems (like Windows SmartScreen or macOS Gatekeeper) from showing warnings that block users from launching the application.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of a garbage collector in desktop programming languages (like C# or Java)?",
+      "options": ["To delete unused files in the recycle bin", "An automatic memory management system that reclaims heap memory occupied by objects that are no longer referenced by the program", "A developer who cleans up legacy code repositories", "A database optimization script"],
+      "correctIndex": 1,
+      "explanation": "Garbage collection prevents memory leaks by tracking references. When an object is unreachable, the GC automatically deallocates its heap space.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'System Tray' (Notification Area) integration?",
+      "options": ["An hardware tray holding CD-ROMs", "Running the application in the background represented as a small icon in the OS taskbar/menu bar, allowing quick actions", "A database cache folder", "A tool for minifying code"],
+      "correctIndex": 1,
+      "explanation": "System tray integration (e.g. menu bar apps on macOS) keeps background apps running (like VPNs or music players) without cluttering the screen or dock.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'App Sandboxing' in modern desktop OS configurations?",
+      "options": ["A folder where developers play games", "A security mechanism that restricts the application's access to user files, network, and hardware, preventing compromised apps from damaging the system", "A virtual machine used to train models", "A method for compressing code files"],
+      "correctIndex": 1,
+      "explanation": "Sandboxed apps (like those in Mac App Store or Windows Store) must request explicit entitlements to access folders, camera, or microphones, protecting system files.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between static linking and dynamic linking of libraries?",
+      "options": ["Static linking is only for SQL; dynamic is for NoSQL", "Static linking compiles library code directly into the executable binary; dynamic linking loads shared libraries (.dll/.so) at runtime when the application starts", "Dynamic linking makes the executable file size larger than static linking", "They are identical compilation methods"],
+      "correctIndex": 1,
+      "explanation": "Static linking makes the binary standalone but large. Dynamic linking keeps binaries small but relies on the presence of shared libraries on the host system.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Resource Leak' in desktop development?",
+      "options": ["Data leaking to hackers", "A bug where a program fails to release system resources (like file handles, database connections, or graphics contexts) after use, exhausting system limits", "A code file that is deleted by mistake", "An unhandled divide-by-zero error"],
+      "correctIndex": 1,
+      "explanation": "Like memory leaks, resource leaks exhaust OS handles. For example, leaving file streams open eventually prevents the app (or other apps) from opening any files.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In C# desktop development, what does the MVVM (Model-View-ViewModel) pattern do?",
+      "options": ["A framework for testing database speeds", "An architectural pattern that separates GUI development (View) from business logic (Model) using a data binder (ViewModel)", "A database indexing structure", "A server deployment strategy"],
+      "correctIndex": 1,
+      "explanation": "MVVM decouples UI design from C# code. The View binds to properties exposed by the ViewModel. Modifying the ViewModel properties updates the interface automatically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Qt and Electron?",
+      "options": ["Qt is only for mobile apps; Electron is only for web pages", "Qt is a C++ based framework that compiles to native binary interfaces; Electron runs a Chromium web page wrapper in JavaScript", "Electron apps are always faster and consume less RAM than Qt apps", "Qt does not support cross-platform builds"],
+      "correctIndex": 1,
+      "explanation": "Qt apps are highly performant and use minimal RAM because they compile to native code. Electron apps consume substantial resources (often 100MB+ RAM) due to hosting Chromium.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Auto-Update' integration and why is it complex in desktop apps?",
+      "options": ["Updating database tables automatically; complex due to schemas", "Downloading and applying application patches in the background, complex due to handling system write permissions and different OS architectures", "Updating coding guidelines; complex due to developer habits", "Changing server hosting configurations dynamically"],
+      "correctIndex": 1,
+      "explanation": "Unlike web apps where updates are applied on refresh, desktop updates require downloading binaries, closing the app, launching an installer, replacing files (often needing admin privileges), and restarting.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the security risk of using Node.js integration inside Electron's Renderer Process, and how is it mitigated?",
+      "options": ["It makes the UI load slowly; mitigated by minification", "It allows any compromised website running in the renderer to execute arbitrary system commands via Node APIs; mitigated by disabling nodeIntegration and enabling contextIsolation", "It exposes database keys to users; mitigated by encryption", "It limits the application to run only on Linux; mitigated by virtual machines"],
+      "correctIndex": 1,
+      "explanation": "If `nodeIntegration` is true, an XSS exploit on the page can execute Node code (e.g. `require('child_process').exec('rm -rf /')`). Mitigating this involves disabling Node access in UI and using a `preload.js` script with `contextBridge` to expose only safe APIs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between synchronous and asynchronous file I/O operations, and why should desktop UIs avoid synchronous I/O?",
+      "options": ["Synchronous I/O is faster; asynchronous I/O is for web code only", "Synchronous I/O blocks the execution thread until the file operation finishes; asynchronous I/O runs in the background. Synchronous I/O in the UI thread freezes the user interface", "Synchronous I/O is only for databases; asynchronous I/O is for files", "They behave identically in modern compilers"],
+      "correctIndex": 1,
+      "explanation": "The main UI thread handles frame rendering and user inputs. Executing a synchronous file write (which takes time) blocks this thread, causing the application to freeze, stop responding, or trigger OS 'Not Responding' warnings.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Native Addon' (e.g., Node-API/NAN in Node.js/Electron)?",
+      "options": ["A browser extension installed by users", "A C/C++ library compiled into binary format that can be loaded and executed directly from JavaScript code, enabling high-performance calculations", "A theme plugin for code editors", "A database server configuration tool"],
+      "correctIndex": 1,
+      "explanation": "Native addons bridge JavaScript and C/C++. When JavaScript performance is insufficient (e.g., for video processing or heavy cryptography), developers write C++ code and expose it to the JS runtime.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Memory Leak' diagnostics using heap dumps, and how do you locate a leak in desktop processes?",
+      "options": ["Checking local database logs; locate by SQL queries", "Capturing snapshots of memory allocations over time and comparing them (diffing) to identify objects that are growing in number but not being freed", "Running antivirus scans on the server; locate by system alerts", "Defragmenting the hard drive; locate by disk tools"],
+      "correctIndex": 1,
+      "explanation": "Diagnostic tools snapshot memory. If memory rises, taking a second snapshot and comparing allocations reveals which specific classes or variables are accumulating without being garbage collected.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of the 'Main Loop' (Event Loop) in desktop GUI frameworks?",
+      "options": ["A coding loop that checks for database errors", "A continuous loop that processes operating system events (mouse clicks, key presses, paint requests) and dispatches them to UI components", "A loop that handles server load balancing", "A programming cycle that deletes temp files"],
+      "correctIndex": 1,
+      "explanation": "All desktop GUIs are event-driven, sitting in an infinite loop listening for messages from the OS queue. When a user clicks a button, the loop intercepts the event and triggers the registered callback function.",
+      "difficulty": "hard"
+    }
+  ],
+  "dfir_analyst": [
+    {
+      "question": "What does DFIR stand for in cybersecurity?",
+      "options": ["Digital Forensics and Incident Response", "Data Firewall and Internet Routing", "Digital File Inspection and Recovery", "Database Forensic Inspection Report"],
+      "correctIndex": 0,
+      "explanation": "DFIR stands for Digital Forensics and Incident Response, a field focused on investigating cyberattacks and recovering from security incidents.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary goal of Incident Response?",
+      "options": ["To build websites for stakeholders", "To detect, contain, and recover from a security breach as quickly and efficiently as possible, minimizing damage", "To write application code features", "To set up database server schemas"],
+      "correctIndex": 1,
+      "explanation": "Incident response focuses on managing active attacks, containing the spread of malware/hacks, and restoring business services securely.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Digital Forensics'?",
+      "options": ["The legal department of a software company", "The collection, preservation, and analysis of digital evidence from computer systems to reconstruct security events", "Writing encrypted code libraries", "Auditing the financial cost of server hardware"],
+      "correctIndex": 1,
+      "explanation": "Digital Forensics uses scientific methods to recover evidence (like deleted files, registry changes, or log trails) in a way that is legally admissible in court.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Write Blocker' in digital forensics?",
+      "options": ["A software tool that prevents users from typing passwords", "A hardware or software tool that prevents any modification to a target storage drive during investigation, ensuring evidence integrity", "A network firewall that blocks outbound emails", "A database rule that prevents table updates"],
+      "correctIndex": 1,
+      "explanation": "When connecting an evidence drive to a forensic workstation, the OS may write metadata. Write blockers intercept write commands, ensuring the drive remains completely untouched.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of 'Evidence Chain of Custody'?",
+      "options": ["To lock server room doors physically", "A chronological documentation paper trail showing the collection, control, transfer, and analysis of physical or digital evidence", "A backup schedule for system databases", "A security verification check for user logins"],
+      "correctIndex": 1,
+      "explanation": "Chain of Custody proves that evidence was not tampered with, lost, or swapped during the investigation, which is vital for legal admissibility.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which phase of Incident Response involves stopping the attack from spreading further?",
+      "options": ["Preparation", "Containment", "Eradication", "Lessons Learned"],
+      "correctIndex": 1,
+      "explanation": "Containment limits the damage. Examples include isolating infected servers from the network, disabling compromised accounts, or updating firewall rules.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Memory Dump' (RAM Capture)?",
+      "options": ["Deleting the memory cache to free RAM space", "A copy of the physical RAM contents at a specific moment, capturing active volatile data (processes, connections, passwords)", "A database backup file", "A code compile error printout"],
+      "correctIndex": 1,
+      "explanation": "RAM holds volatile evidence (active processes, network sockets, decrypt keys) that disappears when the computer is powered down. Capturing it is a top priority.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between volatile and non-volatile evidence?",
+      "options": ["Volatile is for SQL; Non-volatile is for NoSQL", "Volatile evidence (like RAM contents) is lost when power is disconnected; Non-volatile evidence (like hard drive data) persists when powered down", "Non-volatile evidence is always encrypted", "Volatile evidence is collected last in investigations"],
+      "correctIndex": 1,
+      "explanation": "Forensic analysts collect evidence in order of volatility: RAM first, then network states, temp files, and finally physical hard drives.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an IOC in cybersecurity indicators?",
+      "options": ["Input Output Control", "Indicator of Compromise (evidence showing a system has been breached, like a file hash or malicious IP)", "Intrusion Option Configuration", "Internal Operation Code"],
+      "correctIndex": 1,
+      "explanation": "Indicators of Compromise (IOCs) are digital clues (e.g. specific registry paths, MD5 hashes of malware, domain names) that indicate a system compromise.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Eradication' in incident response?",
+      "options": ["Backing up database tables safely", "Removing the root cause of the incident, deleting malware, and patching vulnerabilities before restoring systems", "A legal process for suing threat actors", "Deleting all user accounts on the server"],
+      "correctIndex": 1,
+      "explanation": "Eradication occurs after containment. It ensures that all traces of the threat (backdoors, malicious files, hijacked keys) are completely removed from the environment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Log Correlation' and why is it important?",
+      "options": ["Matching code files with layout mockups", "Analyzing and linking log events from multiple sources (firewalls, servers, databases) to construct a timeline of the attack", "Sorting database rows alphabetically", "Analyzing code compile times across versions"],
+      "correctIndex": 1,
+      "explanation": "Attackers move laterally. Correlation (often using a SIEM) connects a login on one server with a file download on another, revealing the full compromise path.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Golden Ticket' attack?",
+      "options": ["A voucher for a free security training course", "A Kerberos exploit where an attacker creates a forged Ticket Granting Ticket (TGT), obtaining permanent domain administrator access", "A script that speeds up database queries", "A backup encryption key"],
+      "correctIndex": 1,
+      "explanation": "By stealing the Active Directory Kerberos ticket-granting service account key (KRBTGT), attackers can forge tickets for any user, bypassing authentication controls indefinitely.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Timeline Analysis' in forensics?",
+      "options": ["Checking project scheduling timelines in spreadsheets", "Reconstructing the chronological order of system events (file edits, logins, execution) surrounding the security incident", "An audit of developer work hours", "A chart showing CPU usage spikes over time"],
+      "correctIndex": 1,
+      "explanation": "Timeline analysis parses system files (like MACB times: Modified, Accessed, Created, Born) to show exactly what actions the attacker performed and when.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'MACB' timestamp represent in file forensics?",
+      "options": ["Memory, Address, Code, Byte", "Modified, Accessed, Created, Born (birth/creation of file entry)", "Master, Agent, Client, Backup", "Monitor, Alert, Capture, Block"],
+      "correctIndex": 1,
+      "explanation": "MACB timestamps track file metadata changes. Understanding how the OS updates these times helps investigators detect if files were modified, run, or anti-forensics was applied.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Anti-Forensics'?",
+      "options": ["A tool that speeds up forensics investigations", "Techniques used by attackers to delete evidence, corrupt logs, and hide their activities to hinder investigations", "A legal defense strategy in court", "A type of network database encryption"],
+      "correctIndex": 1,
+      "explanation": "Anti-forensics includes log wiping, file shredding, time-stomping (forging MACB times), and using memory-only malware to leave no traces on disk.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Web Shell'?",
+      "options": ["A browser extension that styles layouts", "A malicious script uploaded to a web server that grants attackers a remote terminal command-line interface to execute commands", "A database server administration interface", "A secure protocol for transferring domain names"],
+      "correctIndex": 1,
+      "explanation": "Web shells (often written in PHP, ASP, or JSP) exploit upload vulnerabilities. Once uploaded, they allow attackers to run OS commands via the web browser.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'Registry' in Windows forensics?",
+      "options": ["A list of registered developers", "A database storing configuration settings and system history, containing traces of executed programs, connected USBs, and user settings", "A folder containing temporary downloads", "A log of networking IP routers"],
+      "correctIndex": 1,
+      "explanation": "The registry is a goldmine for Windows investigators. Artifacts (like UserAssist or ShellBags) reveal what programs the user/attacker launched and what folders they browsed.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Process Injection' and why is it used by malware?",
+      "options": ["A programming method for writing loops; used to speed up code", "A technique where malware injects malicious code into a legitimate running process (e.g. svchost.exe) to hide from antivirus detection", "A database insert statement; used to add records", "A network routing protocol; used to bypass firewalls"],
+      "correctIndex": 1,
+      "explanation": "By executing code inside the memory space of a trusted system process, malware bypasses security monitors and evades process-level termination.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Triage Image' in digital forensics?",
+      "options": ["A low-resolution screenshot of the desktop", "A quick collection of high-value forensic artifacts (logs, registry, config files) rather than a full bit-by-bit disk image, saving time during investigations", "A backup copy of the database schema", "A temporary image file created by cameras"],
+      "correctIndex": 1,
+      "explanation": "Full disk imaging takes hours. Triage tools (like KAPE) collect critical artifacts in minutes, allowing rapid analysis and containment during active incidents.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a 'Post-Mortem / Lessons Learned' phase in incident response?",
+      "options": ["To deploy the final code to servers", "A review meeting and report analyzing the incident to improve defenses, update policies, and prevent similar attacks from recurring", "An audit of the security team's billing hours", "A process for deleting all incident logs"],
+      "correctIndex": 1,
+      "explanation": "This final phase ensures the organization learns from the breach, identifying gaps in monitoring or patches and implementing improvements to harden systems.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'DLL Search Order Hijacking' and how is it investigated?",
+      "options": ["Hijacking website domain names; investigated by DNS lookups", "Exploiting Windows application directory search priority to place a malicious DLL where an application will load it instead of the system DLL; investigated by checking folder files and process loads", "Deleting DLL files from the system; investigated by disk utility check", "A database query loop; investigated by SQL logs"],
+      "correctIndex": 1,
+      "explanation": "Windows apps search for DLLs in their own directory first. If a system DLL load is unchecked, placing a fake DLL in the app folder executes malicious code when the app runs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Windows forensics, what are 'Prefetch Files' (.pf) used to determine?",
+      "options": ["The network configuration of the host", "Traces of program execution, indicating when a specific application was run, how many times, and what files it loaded during startup", "The list of users registered on the computer", "The password history of user accounts"],
+      "correctIndex": 1,
+      "explanation": "Prefetch files optimize application startup. For forensic analysts, they prove that a program was run (e.g., a malware builder or script tool) and document the execution timestamp.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Shimcache' (Application Compatibility Cache) forensics?",
+      "options": ["Analyzing browser cache folder contents", "A Windows registry artifact tracking application executions to resolve compatibility; used by investigators to identify executed malware even if deleted from disk", "A database indexing backup utility", "A memory cleanup script for servers"],
+      "correctIndex": 1,
+      "explanation": "Shimcache tracks binary file paths, file sizes, and last modification dates of executed files, helping analysts prove a program existed on the system even if deleted.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Kerberoasting and AS-REP Roasting Active Directory attacks?",
+      "options": ["Kerberoasting is for Linux; AS-REP is for Windows", "Kerberoasting targets service account tickets (TGS) requesting them and cracking hashes offline; AS-REP Roasting targets users without pre-authentication enabled, extracting ticket responses to crack passwords", "Kerberoasting requires administrator permissions; AS-REP Roasting is done without network connections", "They are identical Kerberos authentication protocols"],
+      "correctIndex": 1,
+      "explanation": "Kerberoasting requests SPN tickets that are encrypted with service account hashes, crackable offline. AS-REP Roasting exploits accounts with 'Do not require Kerberos preauthentication' set, retrieving encrypt data directly to crack passwords offline.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Memory Injection' analysis using tools like Volatility, and what is 'malfind' detecting?",
+      "options": ["An antivirus scan that checks files on hard drives; malfind detects bad files", "A forensic analysis of RAM dumps; malfind detects hidden or injected code in running process memory (checking for PAGE_EXECUTE_READWRITE permissions and MZ headers)", "A database query review; malfind detects SQL injection patterns", "A network bandwidth test; malfind detects packet sizes"],
+      "correctIndex": 1,
+      "explanation": "Volatility's `malfind` plugin scans process memory to locate injected DLLs or shellcode. It flags memory pages that are both writable and executable (WX/RXW) and display executable headers (like MZ), indicating code injection.",
+      "difficulty": "hard"
+    }
+  ]
+}

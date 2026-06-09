@@ -298,5 +298,305 @@
     "correctIndex": 3,
     "explanation": "Increasing `page.waitForTimeout()` durations indefinitely is an anti-pattern and a poor long-term solution. It masks the underlying flakiness, slows down the test suite significantly, and doesn't guarantee stability. Better approaches involve addressing the root cause: improving selectors, isolating data, and actively debugging and stabilizing flaky tests, possibly in a quarantined environment.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary goal of QA Automation?",
+    "options": [
+      "To write application business logic code",
+      "To automate repetitive manual tests using software tools to improve testing efficiency, coverage, and speed up releases",
+      "To design user interface graphics",
+      "To configure cloud server virtual machines"
+    ],
+    "correctIndex": 1,
+    "explanation": "QA Automation builds test scripts checking if software behaves correctly, reducing regression test duration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Unit Test'?",
+    "options": [
+      "Testing the entire application end-to-end with simulated users",
+      "Testing individual components or functions of code in isolation to verify they work correctly",
+      "Testing physical server hard drives",
+      "Testing network firewall ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests focus on small code blocks (like single functions) using mocks to isolate dependencies (like databases).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Regression Testing?",
+    "options": [
+      "Testing database speed drops over time",
+      "Re-running tests on a system to verify that recent code changes or fixes haven't broken existing, working features",
+      "Writing code comments inside files",
+      "Testing system security vulnerabilities"
+    ],
+    "correctIndex": 1,
+    "explanation": "Regression testing ensures code updates don't introduce side-effects, verifying old features remain stable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Python testing framework is widely used and supports writing tests as simple functions?",
+    "options": [
+      "unittest",
+      "pytest",
+      "Junit",
+      "Selenium"
+    ],
+    "correctIndex": 1,
+    "explanation": "`pytest` simplifies writing tests. Unlike standard `unittest` classes, pytest runs simple `test_` prefixed functions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does CI/CD stand for in QA and DevOps workflows?",
+    "options": [
+      "Continuous Integration / Continuous Delivery or Deployment",
+      "Code Inspection / Code Development",
+      "Connection Interface / database Control",
+      "Continuous Database / database Customization"
+    ],
+    "correctIndex": 0,
+    "explanation": "CI/CD automates integration (building/testing code on commit) and delivery (deploying packages to environments).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'bug' in software testing contexts?",
+    "options": [
+      "A physical hardware malfunction in server rooms",
+      "An error, flaw, or fault in a software program that causes it to produce incorrect or unexpected results",
+      "An unauthorized user login alert",
+      "A slow database query warning"
+    ],
+    "correctIndex": 1,
+    "explanation": "Bugs represent gaps between actual and expected software behavior, documented by QA teams for developers to fix.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of Test-Driven Development (TDD)?",
+    "options": [
+      "Writing application code first, then writing test scripts afterwards",
+      "Writing test cases *before* writing the actual application code, driving development based on passing tests",
+      "Testing software speed limits in production",
+      "Automating deployment scripts using git pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "TDD follows a cycle: Red (write failing test), Green (write minimum code to pass), Refactor (clean code structure).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between black-box testing and white-box testing?",
+    "options": [
+      "Black-box is only for mobile screens; white-box is for desktop screens",
+      "Black-box testing tests functionality without knowing the internal code structure; white-box testing tests internal logic and code paths directly",
+      "White-box testing is illegal; black-box is legal",
+      "They are duplicate terms in software testing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Black-box checks inputs and outputs (user view). White-box checks loops, branches, and statements (developer view).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Selenium and what is it primarily used for?",
+    "options": [
+      "A programming language replacing JavaScript",
+      "An open-source automation framework used to automate web browsers for testing web applications",
+      "A database security firewall",
+      "A tool that compiles compiled binaries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Selenium simulates browser events (clicking, typing, navigation), automating user interactions across browsers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In test automation, what is the Page Object Model (POM) design pattern?",
+    "options": [
+      "A layout grid stylesheet standard",
+      "A design pattern creating repository classes for web pages, encapsulating page selectors and actions to reduce code duplication and ease maintenance",
+      "A database schema layout linking tables",
+      "A deployment template configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "POM isolates page elements from test logic. If a login button ID changes, you update it once in the Page class, rather than in dozens of test files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an 'assertion' in automated test scripts?",
+    "options": [
+      "A comment line describing tests",
+      "A logical check that compares the actual outcome of a test step against the expected outcome, determining if the test passes or fails",
+      "A command that runs database backups",
+      "An API call fetching data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Assertions assert conditions (e.g. `assert title == 'Dashboard'`). If the assertion evaluates to false, the test runner logs a failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Integration Testing and System Testing?",
+    "options": [
+      "Integration is for databases; System is for CSS assets",
+      "Integration testing verifies communication between combined components/services; System testing evaluates the complete, integrated application end-to-end against requirements",
+      "System testing is always manual; Integration is automated",
+      "They behave identically in code pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "Integration tests check if Service A and Database B talk correctly. System tests review the full user flow (login -> purchase -> logout) on staging.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'API Testing' and why is it faster than UI Testing?",
+    "options": [
+      "Testing local database tables; faster because SQL is fast",
+      "Testing backend endpoints (JSON/XML) directly without rendering the graphical interface; faster because it bypasses browser load and render times",
+      "Testing compiler code; faster because it uses binary files",
+      "API testing does not require network connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "UI tests wait for page rendering, animations, and elements to load. API tests verify payloads directly (taking milliseconds vs seconds/minutes for UI).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'flaky test' mean in automation, and how does it impact pipelines?",
+    "options": [
+      "A test that fails due to syntax errors in code",
+      "A test that displays unstable behavior, passing and failing randomly without changes to the code, causing pipeline untrustworthiness",
+      "A test that executes too fast",
+      "A test that is written in multiple languages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Flakiness is often caused by timing issues (e.g. not waiting for elements to load) or shared test states, leading developers to ignore build failures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'mocking' or 'stubbing' in unit tests?",
+    "options": [
+      "To mock other developers' code styles",
+      "To replace real database or network dependencies with fake objects returning predefined data, ensuring tests are fast, isolated, and reliable",
+      "To compress test files to save disk spaces",
+      "To run tests in production environments"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mocks isolate the code. A unit test checking user login shouldn't query the real DB; it mocks the DB return payload to test login logic only.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Smoke Testing and Sanity Testing?",
+    "options": [
+      "Smoke is for cloud; Sanity is for local environments",
+      "Smoke testing verifies the critical basic functions of a build work (is it bootable?); Sanity testing is a quick run after minor changes to verify specific features behave as intended",
+      "Sanity testing is more thorough than smoke testing",
+      "They are duplicate terms for unit tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Smoke tests check core stability (e.g., does the login page load?). Sanity tests check if bug fixes work without regression.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which modern automation framework, developed by Microsoft, supports fast cross-browser testing with built-in auto-waiting?",
+    "options": [
+      "Selenium",
+      "Playwright",
+      "Cypress",
+      "Appium"
+    ],
+    "correctIndex": 1,
+    "explanation": "Playwright is a modern framework. It runs on browser engines natively, supports multi-page scenarios, and auto-waits for elements before actions, reducing flakiness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Test Coverage' (code coverage) measure?",
+    "options": [
+      "The number of test files in a project",
+      "The percentage of application source code lines, branches, or statements executed during test runs",
+      "The time taken to run tests in pipelines",
+      "The amount of data stored in database tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Coverage tools (like coverage.py or Istanbul) identify untested code branches, though high coverage doesn't guarantee test quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Load Testing' in performance evaluation?",
+    "options": [
+      "Testing the physical weight of server racks",
+      "Testing the application's behavior under expected real-world user load volumes to measure response times and identify bottlenecks",
+      "Checking database file sizes on disk",
+      "Validating user authentication tokens"
+    ],
+    "correctIndex": 1,
+    "explanation": "Load testing (using tools like JMeter or Locust) verifies systems handle expected concurrent traffic loads without performance degradation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Clean Up' phases in test lifecycle hooks?",
+    "options": [
+      "To delete old git branches from GitHub",
+      "To reset databases or delete files created during tests, ensuring a clean slate for subsequent test runs (avoiding state contamination)",
+      "To minify code files before production builds",
+      "To restart server instances hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hooks like `teardown` or `afterAll` clean up database records or close open sockets, keeping tests isolated and independent.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between dynamic waiting (Explicit/Implicit Wait) and static sleep (e.g. sleep(5)) in browser automation, and why should static sleep be avoided?",
+    "options": [
+      "Static sleep is faster; dynamic waits are for mobile only",
+      "Dynamic waits pause execution only until the target condition is met (resuming instantly); static sleep blocks thread execution for the full duration, slowing down tests unnecessarily",
+      "Static sleep is more reliable than dynamic waits",
+      "Dynamic waits require database connections; static sleep does not"
+    ],
+    "correctIndex": 1,
+    "explanation": "Explicit waits poll (e.g. checking every 100ms for a button). If a button loads in 200ms, it clicks immediately. `sleep(5)` forces waiting the full 5 seconds, bloating test suite runtime.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In automated API testing, explain the difference between verifying contract schema validity versus stateful functional testing.",
+    "options": [
+      "Contract testing is manual; stateful is automated",
+      "Contract testing validates the response structure, types, and keys (schema) match specifications; stateful testing verifies the business logic and side-effects of operations (e.g., verifying database entries match inputs)",
+      "Contract testing is for SQL; stateful is for NoSQL",
+      "They verify identical aspects of API endpoints"
+    ],
+    "correctIndex": 1,
+    "explanation": "Contract tests verify that the JSON schema remains unchanged (e.g., using JSON Schema Validation). Stateful tests verify flow logic, checking if a `POST /user` actually creates a record queryable via `GET /user`.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how the 'Testing Pyramid' model guides automated test allocation across Unit, Integration, and End-to-End (UI) layers, and why E2E tests are capped.",
+    "options": [
+      "It suggests having mostly E2E tests; unit tests are capped due to database costs",
+      "It advises having a broad base of fast, cheap unit tests, fewer integration tests, and a minimal top layer of E2E tests because E2E tests are slow, expensive, and flake-prone",
+      "It suggests equal distribution of tests across all layers",
+      "The model is legacy and replaced by unit-only testing pipelines"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests take milliseconds. E2E tests require launching full platforms and browser engines, taking seconds/minutes. If E2E dominates, test runs block CI pipelines, and flakiness stalls deployments.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Mutation Testing' and how does it evaluate the quality of test suites?",
+    "options": [
+      "Testing applications in virtual machines that change hardware",
+      "Modifying application code variables slightly (injecting bugs or mutants) and running the test suite to verify if tests fail (kill the mutant), measuring test sensitivity",
+      "A database optimization test checking schema changes",
+      "Writing tests in multiple languages to check compiler limits"
+    ],
+    "correctIndex": 1,
+    "explanation": "Code coverage only checks if lines run, not if they are checked. Mutation testing edits code (e.g., changing `x > 0` to `x >= 0`). If tests still pass, it indicates the test suite has gaps, as it failed to catch the code modification.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you handle authentication caching in browser automation frameworks like Playwright to speed up multi-role test runs?",
+    "options": [
+      "By logging in manually before each test file runs",
+      "By logging in once, saving the browser storage state (cookies, local storage) to a JSON file, and loading that state in subsequent contexts to bypass the login UI flow",
+      "By disabling authentication settings on the test server instances",
+      "Authentication caching is not supported in modern frameworks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Logging in takes seconds. By utilizing Playwright's `storageState`, tests reuse session files to load pages already logged in, cutting minutes off test runs.",
+    "difficulty": "hard"
   }
 ]

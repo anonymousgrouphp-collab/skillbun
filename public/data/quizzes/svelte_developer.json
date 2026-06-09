@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Svelte's `transition` directive (e.g., `transition:fade`, `transition:slide`) provides built-in, performant animations for elements entering and exiting the DOM. It automatically handles the timing and CSS changes, making it the idiomatic solution for such effects.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is Svelte?",
+    "options": [
+      "A database engine running queries on browsers",
+      "A modern JavaScript framework that compiles components at build time to surgical DOM updates, eliminating the Virtual DOM",
+      "A stylesheet extension replacing Sass and Less formats",
+      "A secure routing protocol managing API calls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte compiles code to tiny vanilla JS during build. Unlike React or Vue, there is no Virtual DOM overhead at runtime.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you declare a reactive state variable in Svelte?",
+    "options": [
+      "Using the useState hook in functions",
+      "Using standard JavaScript variable assignment (let count = 0), as Svelte compiles assignments as reactive triggers",
+      "By wrapping variables in the reactive() method",
+      "By saving values in local browser storage configs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte's compiler instruments assignments. Writing `count += 1` triggers Svelte to update the DOM elements bound to `count` automatically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Svelte's syntax for reactive statements (code blocks that re-run whenever their dependencies update)?",
+    "options": [
+      "$: console.log(count);",
+      "react: console.log(count);",
+      "effect(() => { console.log(count); });",
+      "watch: count => { console.log(count); }"
+    ],
+    "correctIndex": 0,
+    "explanation": "Svelte repurposes the JS label syntax (`$:`). The compiler tracks variables inside the statement and triggers updates on modifications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you pass data props from a parent component to a child component in Svelte?",
+    "options": [
+      "By receiving them as arguments in child constructors",
+      "By declaring a variable inside the child script with 'export let propName'",
+      "By importing the parent script into the child template",
+      "Using context variables mapped in layout files"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Svelte, `export let` denotes a component prop. The parent passes it as an attribute: `<Child propName={value} />`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is SvelteKit?",
+    "options": [
+      "A graphical layout design editor for Svelte",
+      "The official full-stack framework for Svelte, providing routing, SSR, layouts, and deployment adapters",
+      "A package manager installer for Svelte apps",
+      "A database driver connecting Svelte to SQL servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "SvelteKit is the application framework. It handles server-side rendering (SSR), file-based routing, layout systems, and static/server builds.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Svelte Store?",
+    "options": [
+      "An app store where you download Svelte components",
+      "An object that holds a value and allows components to subscribe to changes, enabling shared state across files",
+      "A database table caching user preferences",
+      "A package manager caching npm modules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte stores hold states outside components. They have a `.subscribe` method, facilitating state sharing across components.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you render dynamic variable values in Svelte HTML templates?",
+    "options": [
+      "Using double curly braces {{variable}}",
+      "Using single curly braces {variable}",
+      "Using tag attributes like s-text='variable'",
+      "Writing script tags directly inside HTML body blocks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte uses single curly braces `{}` to interpolate variables, write expressions, or bind attributes in templates.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Svelte, what is the auto-subscription syntax for Svelte stores?",
+    "options": [
+      "Prefixing the store variable with a hash sign (#storeName)",
+      "Prefixing the store variable with a dollar sign ($storeName)",
+      "Wrapping the store variable in subscribe(storeName)",
+      "Using the import storeName from stores directive"
+    ],
+    "correctIndex": 1,
+    "explanation": "The dollar sign (`$`) tells the compiler to auto-subscribe. Svelte handles reading the value and unsubscribing when the component is destroyed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between Svelte 'writable', 'readable', and 'derived' stores.",
+    "options": [
+      "Writable is for strings; Readable is for numbers; Derived is for lists",
+      "Writable allows reading/writing; Readable updates internally via callbacks and is read-only; Derived computes values based on other stores",
+      "Derived stores are mutable; Writable is immutable",
+      "They behave identically on client-side routing setups"
+    ],
+    "correctIndex": 1,
+    "explanation": "`writable` has set/update. `readable` wraps data feeds (e.g. geolocation). `derived` acts like computed variables (e.g., doubling a count store).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you configure two-way data binding on form inputs in Svelte?",
+    "options": [
+      "Using the bind:value={variable} directive",
+      "Using standard value={variable} attributes",
+      "Adding on:change event handlers updating variables",
+      "Using the model={variable} setting"
+    ],
+    "correctIndex": 0,
+    "explanation": "`bind:value` synchronizes input changes with variables. If the user types, the variable updates. If code changes the variable, the input updates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is SvelteKit's '+page.js' load function used for?",
+    "options": [
+      "To load CSS stylesheet files dynamically",
+      "To fetch page-specific data before rendering, running on both client and server during server-side rendering (SSR)",
+      "To initialize database connections on servers",
+      "To import Svelte component files into pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "SvelteKit's `load` runs before navigation. It returns data as props to the matching `+page.svelte` component, enabling pre-rendered views.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Svelte's 'onMount' lifecycle function?",
+    "options": [
+      "To compile components during build runs",
+      "To execute code on the client side only immediately after the component is first rendered in the DOM",
+      "To handle server database connection pools",
+      "To monitor screen size changes dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "`onMount` is ideal for client-side setups (like initializing maps, fetching dynamic APIs, or focusing inputs) that require the DOM to exist.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you pass parent template content into child components in Svelte?",
+    "options": [
+      "Using component iframe elements",
+      "Using the <slot /> component inside the child layout",
+      "Importing the parent component in child templates",
+      "Using props containing HTML strings"
+    ],
+    "correctIndex": 1,
+    "explanation": "`<slot />` acts as a placeholder. Svelte renders any HTML nested inside the component tags: `<Child><h1>Hello</h1></Child>`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the 'adapter' in SvelteKit application builds?",
+    "options": [
+      "A plugin mapping database tables",
+      "A plugin that compiles the app code to run on specific target hosting platforms (like Vercel, Node, or Cloudflare)",
+      "A styling compiler formatting layout dimensions",
+      "A security gateway authenticating API requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adapters package SvelteKit apps. `@sveltejs/adapter-node` creates a Node server. `@sveltejs/adapter-static` builds a static SSG site.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you send custom events from child components to parent components in Svelte?",
+    "options": [
+      "Using standard window.postMessage API calls",
+      "Using the createEventDispatcher function to dispatch events, caught by the parent using the 'on:eventName' attribute",
+      "By modifying parent prop variables directly in children",
+      "Custom events are not supported; props must be used"
+    ],
+    "correctIndex": 1,
+    "explanation": "`createEventDispatcher` creates a dispatcher. The child dispatches `dispatch('click', data)`. The parent catches it: `<Child on:click={handler} />`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Svelte's '{#key expression}' block?",
+    "options": [
+      "To encrypt template contents from source maps",
+      "To destroy and recreate its contents whenever the expression value changes, re-running transition animations",
+      "To declare database primary keys",
+      "To block user keyboard inputs"
+    ],
+    "correctIndex": 1,
+    "explanation": "`{#key}` forces a remount. If you want an entrance transition to run every time an ID changes (e.g. changing users), wrap the component in `{#key userId}`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'tick' function in Svelte return, and why is it used?",
+    "options": [
+      "Returns CPU clock ticks; used to profile speed",
+      "Returns a promise resolving after pending DOM state updates are applied, allowing developers to query updated layouts synchronously",
+      "Returns active timers list; used to cancel delays",
+      "Returns database connection statuses"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte batches updates. If you change a variable and read the DOM instantly, you get old values. Awaiting `tick()` ensures the DOM is updated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Svelte ensure that styles declared inside '<style>' blocks are scoped locally?",
+    "options": [
+      "By running separate stylesheet files for every component",
+      "By appending unique generated hashes (e.g. svelte-1a8f3b) to classes and DOM elements at compile time",
+      "By executing CSS styles inside iframe sandboxes",
+      "Styles are global by default in Svelte components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte scopes by default. It appends class hashes to selectors (e.g. `p.svelte-hash`). This prevents styles leaking and polluting other components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In SvelteKit routing, what is the difference between '+page.js' and '+page.server.js' files?",
+    "options": [
+      "+page.js is for mobile layouts; +page.server.js is for desktop",
+      "+page.js runs on both client and server; +page.server.js runs exclusively on the server, secure for database queries and API keys",
+      "+page.server.js is deprecated and replaced by +page.js",
+      "+page.js is written in JavaScript; +page.server.js in Node.js"
+    ],
+    "correctIndex": 1,
+    "explanation": "`+page.server.js` load functions run only on the server, permitting direct database requests or usage of private environment variables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which template block is used in Svelte to handle asynchronous promises directly in the HTML markup?",
+    "options": [
+      "{#async promise}",
+      "{#await promise}",
+      "{#then promise}",
+      "{#promise await}"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `{#await}` block displays placeholders during promise pending, rendering results in the `:then` block, or errors in the `:catch` block.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Svelte 5, describe the transition from compiler-based reactivity label ($:) to Svelte Runes.",
+    "options": [
+      "Runes replace Svelte templates with React JSX configurations",
+      "Runes ($state, $derived, $effect) introduce fine-grained signal-based reactivity, replacing compiler label heuristics and export props",
+      "Runes compile Svelte code to python executables",
+      "Runes are optional plugin engines managed under nextconfig files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte 5 runes replace compiler-tricked assignments. By using signals (`$state`), reactivity works inside normal JS files, streamlining code architecture.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Svelte's compile-time design updates the DOM without using a Virtual DOM.",
+    "options": [
+      "Svelte runs database triggers that update browsers directly",
+      "Svelte compiles templates into precise, surgical vanilla JavaScript statements that update target DOM elements directly on variable assignments",
+      "Svelte hosts application files on separate CDN server nodes",
+      "Svelte converts HTML files to vector image graphics at runtime"
+    ],
+    "correctIndex": 1,
+    "explanation": "React diffs Virtual DOMs to locate changes. Svelte compiles bindings directly: changing `x` calls `anchor.data = x` directly, saving runtime memory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the memory leak risk of manual '.subscribe' calls on Svelte stores, and how is it resolved?",
+    "options": [
+      "They leak database connection sockets; resolved by closing DB pools",
+      "Manual subscriptions return unsubscribe functions; if not called inside onDestroy lifecycle hooks, they leak memory. Resolved by auto-subscription ($)",
+      "They cause stack overflows; resolved by adding try-catch blocks",
+      "They cache variables on local disk folders; resolved by clearing temp files"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a component subscribes manually and is destroyed, the store reference remains, leaking memory. Using `$storeName` automates lifecycle cleanup.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In SvelteKit navigation, explain the difference between the initial page load lifecycle and subsequent client-side routing.",
+    "options": [
+      "Initial load is manual; client-side is automated",
+      "First load uses SSR (Server-Side Rendering) compiling page HTML on servers; subsequent clicks hijack anchors, running local load functions and updating pages on client side",
+      "Initial load uses adapters; routing uses static assets",
+      "There is no operational difference in loading sequences"
+    ],
+    "correctIndex": 1,
+    "explanation": "First visit returns full HTML from the server for SEO. Clicking navigation buttons intercepts default actions, fetching JSON data and rendering layouts locally.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do Svelte transition directives (like transition:fade) coordinate with the reactive rendering engine on list items deletion?",
+    "options": [
+      "Svelte deletes items immediately and runs animations in parallel threads",
+      "Svelte delays deleting the target DOM node until the out-transition animation completes, managing animation timelines internally",
+      "Transitions bypass Svelte rendering and run via web CSS templates",
+      "Transitions throw compilation warnings if applied to list loops"
+    ],
+    "correctIndex": 1,
+    "explanation": "Svelte manages transition lifecycles. When an item is removed, Svelte executes the out-transition, detaching the DOM element only once animations end.",
+    "difficulty": "hard"
   }
 ]
