@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Labels and resource tags are key-value pairs that you can attach to GCP resources (like Compute Engine instances, Cloud Storage buckets, etc.). They are designed to help categorize and organize resources, and critically, they allow you to filter and group your billing reports by these categories, enabling detailed cost analysis for different departments or environments. Cloud Logging, IAM, and Cloud Monitoring serve different purposes.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What does GCP stand for?",
+    "options": [
+      "Google Cloud Platform",
+      "Global Computing Protocol",
+      "General Cloud Portal",
+      "Giant Cloud Platform"
+    ],
+    "correctIndex": 0,
+    "explanation": "GCP stands for Google Cloud Platform, a suite of cloud computing services offered by Google.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which GCP service provides resizable virtual machines?",
+    "options": [
+      "Google Kubernetes Engine (GKE)",
+      "Compute Engine",
+      "App Engine",
+      "Cloud Functions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Compute Engine provides virtual machines (VM instances) hosted on Google's infrastructure.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which GCP service is designed for storing files and unstructured objects?",
+    "options": [
+      "BigQuery",
+      "Cloud SQL",
+      "Cloud Storage",
+      "Cloud Spanner"
+    ],
+    "correctIndex": 2,
+    "explanation": "Cloud Storage is GCP's unified object storage service, providing high availability and durability for files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is IAM used for in GCP?",
+    "options": [
+      "Tracking server memory parameters",
+      "Identity and Access Management, controlling who has what access permissions to resources",
+      "Creating automated backups",
+      "Configuring virtual network firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCP IAM allows administrators to secure and control access to GCP resources by assigning permissions and roles.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which GCP serverless service runs containerized applications automatically on demand?",
+    "options": [
+      "Compute Engine",
+      "Cloud Run",
+      "Cloud SQL",
+      "Bigtable"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud Run is a fully managed containerized serverless platform that automatically scales containers up and down (to zero) based on traffic.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a GCP Project?",
+    "options": [
+      "A code repository hosted on GitHub",
+      "A logical container used to group, manage, and bill related GCP resources",
+      "A physical datacenter facility",
+      "A user account login profile"
+    ],
+    "correctIndex": 1,
+    "explanation": "Projects form the basis for creating, enabling, and using all Google Cloud services, managing billing and access permissions individually.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which service manages relational databases like MySQL and PostgreSQL in GCP?",
+    "options": [
+      "Cloud Bigtable",
+      "Cloud SQL",
+      "BigQuery",
+      "Firestore"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud SQL is a fully managed relational database service that makes it easy to set up, maintain, and scale MySQL, PostgreSQL, and SQL Server databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Cloud Storage classes: Standard, Nearline, Coldline, and Archive?",
+    "options": [
+      "Standard is free; others are paid",
+      "Standard is for frequently accessed data; Nearline is for monthly access; Coldline is for quarterly access; Archive is for yearly backups (lower storage cost, higher retrieval fees)",
+      "Archive uses magnetic tapes; Standard uses SSDs",
+      "Nearline only supports Windows files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Storage classes optimize costs based on access frequency. Standard has the highest storage rate but free retrieval. Archive has the lowest storage rate but high retrieval costs and minimum storage durations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Google Cloud BigQuery?",
+    "options": [
+      "A tool for naming database columns",
+      "A fully managed, serverless enterprise data warehouse optimized for running fast SQL queries over petabytes of data",
+      "A database for real-time transactions",
+      "A cloud server hosting system"
+    ],
+    "correctIndex": 1,
+    "explanation": "BigQuery is a columnar, serverless data warehouse that executes analytical SQL queries rapidly using Google's infrastructure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Google Kubernetes Engine (GKE)?",
+    "options": [
+      "An automated code compiler",
+      "A managed production-ready environment for deploying, managing, and scaling containerized applications using Kubernetes",
+      "A cloud storage bucket system",
+      "A virtual network routing firewall"
+    ],
+    "correctIndex": 1,
+    "explanation": "GKE is Google's managed Kubernetes service, handling cluster orchestration, scaling, updates, and monitoring in the cloud.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Google Cloud Pub/Sub?",
+    "options": [
+      "To publish marketing newsletters to subscribers",
+      "A real-time, asynchronous messaging service that decouples senders and receivers, enabling event-driven architectures",
+      "A database caching tool",
+      "A DNS routing manager"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pub/Sub handles high-throughput message ingestion and distribution, serving as middleware for event streams and data integration pipelines.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a VPC (Virtual Private Cloud) do in GCP?",
+    "options": [
+      "Connects databases to search engines",
+      "Provides networking functionality to GCP resources, allowing secure, isolated communication in a global private network",
+      "Manages user passwords and logins",
+      "Compresses file sizes on server disks"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCP VPCs are global resources (not regional). Subnets are created within regions, allowing instances in different zones to communicate over a secure Google backbone privately.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Cloud Functions in GCP?",
+    "options": [
+      "Mathematical calculations inside SQL scripts",
+      "A serverless execution environment that runs single-purpose code snippets in response to cloud events",
+      "A style guide dashboard template",
+      "A tool for backup scheduling"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud Functions runs code blocks statelessly (FaaS), scaling automatically from zero when events (like S3 uploads or HTTP requests) occur.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Google Cloud Load Balancing?",
+    "options": [
+      "Balancing the financial budget of the project",
+      "A fully managed, global service that distributes user traffic across multiple backend instances in one or more regions",
+      "Scaling down VM instance cores dynamically",
+      "Compressing database backups on disk"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCP Load Balancing routes traffic globally to backend instances closest to users, providing automatic failover and high availability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the GCP Shared Responsibility Model state regarding security?",
+    "options": [
+      "Google handles all security requirements, including user configs",
+      "Google is responsible for security OF the cloud (infrastructure, hardware, facility); the customer is responsible for security IN the cloud (configurations, data, access, code)",
+      "The customer is responsible for hardware replacement",
+      "Google and the customer share the cloud costs equally"
+    ],
+    "correctIndex": 1,
+    "explanation": "Google secures physical servers and the virtualization layer. Customers secure their own virtual machines, configurations, database security rules, and IAM assignments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Compute Engine, what is the difference between external and internal IP addresses?",
+    "options": [
+      "External is paid; internal is free",
+      "External IPs are reachable from the internet; Internal IPs are private, used for secure communication inside the VPC",
+      "Internal IPs are encrypted; external are not",
+      "They are identical in routing capability"
+    ],
+    "correctIndex": 1,
+    "explanation": "Internal IPs route traffic within the VPC network. External IPs route traffic over the public internet, requiring security configurations to prevent access exploits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Cloud Deployment Manager in GCP?",
+    "options": [
+      "An interface for uploading code",
+      "An infrastructure deployment service that allows developers to automate GCP resource provisioning using YAML or Python declarations (IaC)",
+      "An administrator role for managing developers",
+      "A database query optimization console"
+    ],
+    "correctIndex": 1,
+    "explanation": "Deployment Manager allows teams to define and repeat infrastructure deployments, managing cloud resources as code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Google Cloud Logging (formerly Stackdriver Logging)?",
+    "options": [
+      "A tool for writing code comments",
+      "A fully managed service that allows you to store, search, analyze, monitor, and alert on log data and events from GCP",
+      "An index database for transactions",
+      "An antivirus utility for servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud Logging aggregates log data from Google services, applications, and VMs, supporting real-time alerts and search queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Primitive, Predefined, and Custom Roles in GCP IAM?",
+    "options": [
+      "Primitive roles are only for NoSQL; predefined for SQL",
+      "Primitive roles (Owner, Editor, Viewer) apply project-wide; Predefined roles give granular access to specific services; Custom roles allow developers to define precise permissions",
+      "Custom roles are managed and updated by Google automatically",
+      "Primitive roles are deprecated and removed"
+    ],
+    "correctIndex": 1,
+    "explanation": "Owner/Editor/Viewer are broad and legacy. Predefined roles (e.g. Storage Object Viewer) enforce least privilege. Custom roles allow absolute control over allowed API calls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Service Account in GCP?",
+    "options": [
+      "A premium billing account for businesses",
+      "A special type of Google account representing a non-human user (like an application or VM) that can be authorized to make API calls",
+      "A helpline support account for cloud issues",
+      "A database storage directory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Service accounts use key files or metadata authentication to make API requests, allowing servers (like Compute Engine) to read/write resources securely without using human user logins.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Google Cloud Spanner and what makes it unique?",
+    "options": [
+      "A tool for tightening virtual server racks; unique due to design",
+      "A fully managed, mission-critical relational database service that combines ACID transactions with horizontal NoSQL scalability and global consistency",
+      "A search engine for GCP files; unique due to speed",
+      "A database that does not require schemas; unique due to flexibility"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud Spanner uses atomic clocks and GPS receivers in its datacenters (TrueTime API) to guarantee external consistency globally while scaling horizontally to thousands of nodes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does GCP VPC Network Peering differ from Shared VPC?",
+    "options": [
+      "Peering is for different companies; Shared is for one team",
+      "VPC Peering connects two completely independent VPC networks; Shared VPC allows multiple projects to share a centralized, common VPC network managed by a host project",
+      "Shared VPC only works in a single region",
+      "Peering requires public IP routing; Shared does not"
+    ],
+    "correctIndex": 1,
+    "explanation": "Peering links distinct networks (each maintaining its own admin rules). Shared VPC allows organizations to delegate subnet access to separate projects, keeping network administration centralized in a single host project.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the evaluation order for IAM policies in Google Cloud resource hierarchies?",
+    "options": [
+      "Policies are evaluated alphabetically",
+      "Policies are inherited down the hierarchy (Organization -> Folder -> Project -> Resource), and permissions are additive; an allow at a higher level cannot be blocked at a lower level",
+      "Lower level deny rules override higher level allow rules",
+      "Policies are evaluated based on creation date"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCP IAM policies are hierarchical and additive. If a user is granted Owner at the Folder level, they have Owner access on all projects within that folder, which cannot be restricted by project-level policies.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is Google Cloud Armor?",
+    "options": [
+      "A physical case protecting server racks",
+      "A security service providing DDoS protection and a Web Application Firewall (WAF) to defend GCP workloads against web attacks",
+      "A hardware encryption module for databases",
+      "An antivirus agent for Compute Engine"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cloud Armor integrates with HTTP(S) Load Balancing, providing Layer 7 WAF protection, rate limiting, and blocking SQLi or XSS attacks based on OWASP rules.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between Dedicated Interconnect and Partner Interconnect in GCP?",
+    "options": [
+      "Dedicated Interconnect is wireless; Partner uses cables",
+      "Dedicated Interconnect provides a direct physical network link between your on-premises network and Google's network; Partner Interconnect connects your network through a third-party service provider",
+      "Partner Interconnect is faster than Dedicated Interconnect in all scenarios",
+      "Dedicated Interconnect does not require network routers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dedicated Interconnect is for high-bandwidth needs (10G/100G lines directly to a Google co-location facility). Partner Interconnect is for lower bandwidths (50M to 10G) routing through partner ISPs (like Equinix).",
+    "difficulty": "hard"
   }
 ]

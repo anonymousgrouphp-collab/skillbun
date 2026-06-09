@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The GraphQL community generally advocates against explicit URI-based versioning because GraphQL's flexible nature inherently supports schema evolution. The recommended approach is to introduce changes in a non-breaking way (adding new fields, new types, making optional fields non-nullable to nullable). Deprecate old fields gradually, giving clients time to migrate, and use tools like schema diffing to monitor for unintentional breaking changes. This ensures a single endpoint remains stable while evolving the API.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is GraphQL?",
+    "options": [
+      "A database engine developed by Facebook",
+      "A query language for APIs and a runtime for fulfilling those queries with your existing data",
+      "A tool for compressing image file formats",
+      "A front-end visual grid system"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL provides a complete and understandable description of the data in your API, giving clients the power to ask for exactly what they need and nothing more.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Who originally created and open-sourced GraphQL?",
+    "options": [
+      "Google",
+      "Facebook",
+      "Microsoft",
+      "Amazon"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL was developed internally by Facebook in 2012 before being publicly open-sourced in 2015.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the single-endpoint benefit of GraphQL compared to REST?",
+    "options": [
+      "It does not require hosting servers",
+      "All queries, mutations, and requests are sent to a single HTTP endpoint (usually /graphql) instead of multiple resource URLs",
+      "It guarantees 100% server uptime",
+      "It encrypts all data automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike REST which uses separate URLs for resources (e.g., /users, /posts), GraphQL routes all operations through a single endpoint, interpreting query payloads to fetch data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In GraphQL, what is the difference between a Query and a Mutation?",
+    "options": [
+      "Query is for writing data; Mutation is for reading",
+      "Query is used to fetch (read) data; Mutation is used to modify (write/update/delete) data on the server",
+      "Mutations are only run on mobile clients",
+      "Queries do not use parameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Queries are read-only operations. Mutations are write operations that change server state, similar to POST/PUT/DELETE in REST.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Under-fetching' mean in API communications?",
+    "options": [
+      "Not receiving any response from the server",
+      "An endpoint returning insufficient data, requiring the client to make multiple sequential API calls to fetch related resources",
+      "Downloading file assets too slowly",
+      "Using the wrong HTTP status codes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Under-fetching occurs when a client fetches a resource (e.g., a post) but must run additional calls to fetch child resources (e.g., comments for that post). GraphQL solves this by allowing nested query requests.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Over-fetching' mean in API communications?",
+    "options": [
+      "Exceeding the rate limit of the API",
+      "An endpoint returning more data fields than the client actually needs for its display",
+      "Uploading too many files in a single request",
+      "Running out of memory on the server"
+    ],
+    "correctIndex": 1,
+    "explanation": "Over-fetching wastes bandwidth. A REST endpoint might return 30 fields for a user profile, when the client only needs the username. GraphQL lets the client specify exactly which fields to return.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a GraphQL Schema?",
+    "options": [
+      "A diagram showing database server hardware",
+      "A contract written in Schema Definition Language (SDL) defining the available data types, queries, mutations, and relationship rules of the API",
+      "A security policy restricting logins",
+      "A style guide for UI components"
+    ],
+    "correctIndex": 1,
+    "explanation": "The schema defines the capabilities of the API. It acts as the type-safety contract between frontend clients and backend services.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the GraphQL Schema Definition Language (SDL)?",
+    "options": [
+      "A stylesheet formatting language",
+      "The syntax used to write GraphQL schemas, describing types, fields, and operations in a language-agnostic format",
+      "A database query syntax standard",
+      "An automated deployment script"
+    ],
+    "correctIndex": 1,
+    "explanation": "SDL provides a clean syntax to define types (e.g., `type User { id: ID!, name: String! }`) that compile into API schemas regardless of the programming language used on the backend.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Resolvers' in a GraphQL server?",
+    "options": [
+      "Tools that fix bugs in code scripts automatically",
+      "Functions that gather the actual data for a specific field in the schema from databases, REST APIs, or other sources",
+      "Security routers that check user permission keys",
+      "Middleware that compiles JSON payloads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Every field in a GraphQL query maps to a resolver function. The resolver fetches the data for that field from the database or external APIs and returns it.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Subscription' in GraphQL?",
+    "options": [
+      "A monthly payment plan for using the API",
+      "An operation that allows clients to receive real-time, push-based updates from the server, typically implemented over WebSockets",
+      "A list of email addresses subscribed to logs",
+      "A method for caching queries in the browser"
+    ],
+    "correctIndex": 1,
+    "explanation": "Subscriptions enable real-time streams (like chat updates or live scores). When an event occurs on the server, it pushes updates to listening clients.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the exclamation mark (!) represent in a GraphQL type definition?",
+    "options": [
+      "An error state warning",
+      "A non-nullable field, indicating the field will never return null when queried",
+      "An encrypted field value",
+      "A deprecated field to be removed"
+    ],
+    "correctIndex": 1,
+    "explanation": "In SDL, `String!` means the field is required and the server guarantees it will always return a string value, never null.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the default Scalar types in GraphQL?",
+    "options": [
+      "Number, Text, Boolean, Date, Array",
+      "Int, Float, String, Boolean, ID",
+      "Object, List, Enum, Union, Interface",
+      "Byte, Word, Long, Double, Char"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scalars represent leaf nodes in query trees, representing primitive values that do not contain sub-fields.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Fragment' in GraphQL queries?",
+    "options": [
+      "A broken part of a database file",
+      "A reusable set of fields that can be shared across multiple queries to avoid duplicate selections",
+      "A lightweight container process",
+      "A small section of database schema"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fragments (e.g. `fragment UserDetails on User { name, email }`) allow developers to write clean, DRY queries by referencing shared fields in different queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'DataLoader' in GraphQL servers?",
+    "options": [
+      "To upload CSV data into database tables",
+      "A utility used to batch and cache database load requests, resolving the N+1 query problem in resolver execution",
+      "To format JSON payloads on frontend client",
+      "To load API documentation templates"
+    ],
+    "correctIndex": 1,
+    "explanation": "DataLoader collects database IDs across resolvers in a single execution tick, coalescing them into one batch query (e.g. `SELECT * WHERE id IN (...)`) and caching results, optimizing DB traffic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Schema Federation' (e.g., Apollo Federation)?",
+    "options": [
+      "Connecting databases in different countries",
+      "An architectural pattern that combines multiple microservice schemas (subgraphs) into a single, unified gateway API (supergraph)",
+      "A security framework for authenticating users",
+      "A tool for minifying code files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Federation allows different teams to own and deploy separate subgraphs (e.g. billing API, product API) which the gateway merges into a single, seamless schema for clients.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a GraphQL 'Query' operation look like in client requests?",
+    "options": [
+      "SELECT name FROM users;",
+      "{ users { name } }",
+      "POST /users?fields=name",
+      "fetch('/users/name')"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL queries use a nested JSON-like selector structure representing the fields requested (e.g. `{ users { name } }`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an Abstract Syntax Tree (AST) in GraphQL execution?",
+    "options": [
+      "To design website navigation trees",
+      "The parsed representation of the client's query string, used by the server to validate, analyze, and execute the request",
+      "A backup database folder layout",
+      "An optimization algorithm for server CPU cores"
+    ],
+    "correctIndex": 1,
+    "explanation": "The GraphQL parser converts the raw query string into an AST. The server validates this AST against the schema structure before executing resolvers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Enums' in GraphQL?",
+    "options": [
+      "Numbers representing database IDs",
+      "A special scalar type restricted to a predefined set of allowed values (e.g. Status: ACTIVE, INACTIVE)",
+      "Encryption keys used to sign tokens",
+      "CSS styles used to color text"
+    ],
+    "correctIndex": 1,
+    "explanation": "Enums (Enumerated Types) enforce input safety by validating that fields only receive one of the explicitly declared options.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Union Type' in GraphQL schemas?",
+    "options": [
+      "Combining two databases into one",
+      "A type representing an object that can be one of several completely different object types (e.g. SearchResult = User | Post)",
+      "A database join operation",
+      "An array containing different scalar types"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unions allow fields to return different object structures. Clients query unions using inline fragments (e.g., `... on User`, `... on Post`) to specify fields for each possible type.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Input Types' in GraphQL?",
+    "options": [
+      "HTML form input elements",
+      "Special object types used specifically as arguments in queries and mutations to pass structured datasets to resolvers",
+      "Keyboard event variables in JS",
+      "Database configuration tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Input types (defined with `input` keyword) group parameters together (e.g., `input CreateUserInput { name: String!, age: Int }`), simplifying mutation signatures.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does GraphQL handle error formatting and HTTP status codes compared to REST?",
+    "options": [
+      "GraphQL uses standard 400/500 codes for all errors; REST does not",
+      "GraphQL typically returns a 200 OK status code even if errors occur, returning errors in a top-level 'errors' array inside the JSON payload",
+      "GraphQL does not support error details",
+      "GraphQL redirects error requests to fallback pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since a GraphQL query can be partially successful (e.g. fetching user succeeds, but fetching comments fails), the server returns a 200 status with both partial `data` and an `errors` array detailing failures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What are GraphQL Directives (like `@include`, `@skip`) and how do they work?",
+    "options": [
+      "Directives are server firewalls that block IPs",
+      "Special annotations placed on fields or fragments to dynamically alter query execution behavior based on variables (e.g., conditional field inclusion)",
+      "CSS styling tags applied to HTML elements",
+      "Database query indexes that speed up reads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Directives (like `@include(if: $showEmail)`) let clients customize query payloads dynamically by passing variables, avoiding writing separate queries for different UI states.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'N+1 Query Problem' in GraphQL resolvers and how is it investigated and resolved?",
+    "options": [
+      "A database lock bug; investigated by checking logs, resolved by index updates",
+      "Spawning N database queries to fetch relations for list items (1 query for list + N queries for children); investigated by SQL trace logs, resolved using DataLoader batching",
+      "A compiler crash; investigated by error stacks, resolved by upgrading Node",
+      "A memory leak; investigated by heap dumps, resolved by garbage collection"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a query requests 10 users and their posts, the user resolver runs once, but the nested post resolver runs 10 times (1 + 10 queries). Investigated by tracing DB query logs. Resolved by DataLoader, which bundles the 10 requests into a single SQL `IN` query.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement query depth limiting and query complexity analysis in GraphQL APIs?",
+    "options": [
+      "By adding more CPU cores to the hosting server",
+      "By parsing the query AST before execution to calculate the depth or total resource cost of the request, blocking queries that exceed thresholds to prevent DoS attacks",
+      "By encrypting query payloads with public keys",
+      "By limiting database tables to 100 rows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Malicious clients can exploit GraphQL by requesting deep recursive queries (e.g., user -> posts -> author -> posts -> ...). Depth/complexity analyzers parse the query tree before running resolvers, rejecting nested queries that would crash the database.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Schema Introspection' in GraphQL, and what is the security best practice regarding it in production environments?",
+    "options": [
+      "A method for database tables to replicate; best practice is to enable it in all regions",
+      "A feature allowing clients to query the schema details to learn types and operations; best practice is to disable introspection in production to prevent schema leakage",
+      "An automated test pipeline; best practice is to run it on every commit",
+      "An encryption standard; best practice is to use 2048-bit keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Introspection powers tools like GraphiQL/Playgrounds. In production, letting public users query `__schema` exposes your entire API structure, types, and mutations to hackers, making exploits easier. Disabling it blocks this discovery vector.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Database migration systems (like Alembic for Python, Flyway/Liquibase for Java) provide a version-controlled way to manage and apply changes to the database schema. This ensures that all environments have the correct and consistent database structure, preventing discrepancies and simplifying deployment and rollback processes. It doesn't automatically back up, prevent SQL injection (that's parameterized queries), or optimize query performance (that's indexing/query tuning).",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary function of a web server in backend development?",
+    "options": [
+      "To render client-side CSS styles",
+      "To handle HTTP requests and serve responses",
+      "To store user passwords in plaintext",
+      "To compile client-side React code"
+    ],
+    "correctIndex": 1,
+    "explanation": "A web server's core job is to listen for incoming client HTTP requests, process them (often by contacting an application server or database), and return HTTP responses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a widely used backend programming language?",
+    "options": [
+      "HTML",
+      "CSS",
+      "Python (Django/FastAPI)",
+      "Markdown"
+    ],
+    "correctIndex": 2,
+    "explanation": "Python is a popular backend programming language with powerful frameworks like Django, Flask, and FastAPI. HTML, CSS, and Markdown are not programming languages.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a primary key in a database table?",
+    "options": [
+      "A key used to encrypt the database server",
+      "A column that uniquely identifies each row in a table",
+      "The first column of a query result",
+      "A key that links to another table's primary key"
+    ],
+    "correctIndex": 1,
+    "explanation": "A primary key is a column or set of columns that uniquely identifies each record in a table, ensuring no duplicates and no null values.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does SQL stand for?",
+    "options": [
+      "Structured Query Language",
+      "Sequential Query Loop",
+      "Server Query Link",
+      "Simple Query Logic"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQL stands for Structured Query Language, the standard language for managing and querying relational databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of caching in backend applications?",
+    "options": [
+      "To permanently archive old records",
+      "To temporarily store copy of data in memory for faster subsequent retrieval",
+      "To encrypt user network sessions",
+      "To reduce the physical size of the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "Caching stores frequently accessed data in high-speed memory (like RAM) so subsequent requests can be served much faster, reducing database load.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP status code indicates that the requested resource was not found?",
+    "options": [
+      "200 OK",
+      "400 Bad Request",
+      "404 Not Found",
+      "500 Internal Server Error"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 404 Not Found status code indicates that the server cannot find the requested resource path.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a relational database?",
+    "options": [
+      "A database that stores data in files randomly",
+      "A database that organizes data into tables with predefined relationships using keys",
+      "A database that only stores JSON documents",
+      "A database that runs entirely in the user's browser"
+    ],
+    "correctIndex": 1,
+    "explanation": "Relational databases (like PostgreSQL, MySQL) store data in tables with columns and rows, and use foreign keys to represent relationships between different tables.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a SQL and a NoSQL database?",
+    "options": [
+      "SQL is only for web apps; NoSQL is for desktop apps",
+      "SQL databases are relational and table-based; NoSQL databases are non-relational and can be document, key-value, or graph-based",
+      "SQL databases are free; NoSQL databases are always paid",
+      "SQL is faster for all query types"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQL databases use structured tables and schemas (relational). NoSQL databases support flexible data structures (like documents, key-values, columns) and scale horizontally more easily.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an ORM (Object-Relational Mapping)?",
+    "options": [
+      "A tool for designing database diagrams",
+      "A programming technique/library that lets you interact with a database using objects in your code instead of raw SQL queries",
+      "A protocol for encrypting database backups",
+      "A type of database index"
+    ],
+    "correctIndex": 1,
+    "explanation": "ORMs (like Hibernate, Sequelize, or Prisma) map database tables to classes and objects in programming languages, allowing developers to write database queries in their native language.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is database normalization?",
+    "options": [
+      "Backing up the database daily",
+      "The process of organizing data to reduce redundancy and improve data integrity by dividing tables logically",
+      "Enforcing strict firewall rules on the database port",
+      "Converting all text columns to uppercase"
+    ],
+    "correctIndex": 1,
+    "explanation": "Normalization involves structuring relational database tables to minimize duplicate data and dependency issues, typically through standard normal forms (1NF, 2NF, 3NF).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In backend architecture, what does load balancing do?",
+    "options": [
+      "It scales down server storage dynamically",
+      "It distributes incoming network traffic across multiple backend servers to prevent overload and ensure high availability",
+      "It compresses database tables in real-time",
+      "It monitors developer coding speed"
+    ],
+    "correctIndex": 1,
+    "explanation": "A load balancer distributes requests across a group of servers, optimizing resource utilization, maximizing throughput, minimizing response time, and avoiding single points of failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a message broker (e.g., RabbitMQ, Apache Kafka) used for?",
+    "options": [
+      "To send marketing emails to users",
+      "To facilitate asynchronous communication and decoupling between microservices by routing messages",
+      "To cache SQL query results",
+      "To store static files like images"
+    ],
+    "correctIndex": 1,
+    "explanation": "Message brokers enable asynchronous message exchange between different services, allowing them to communicate reliably without waiting for immediate responses.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a database index do, and what is its main drawback?",
+    "options": [
+      "It encrypts data; drawback is it is hard to decrypt",
+      "It speeds up read queries; drawback is it slows down write operations and uses extra storage",
+      "It automatically deletes duplicate rows; drawback is it can delete valid data",
+      "It connects tables together; drawback is it requires complex code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indexes speed up data retrieval by creating lookup structures. However, since indexes must be updated whenever rows are inserted, updated, or deleted, they slow down writes and occupy additional storage.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is connection pooling in database management?",
+    "options": [
+      "Combining multiple databases into one database instance",
+      "Maintaining a cache of database connections that can be reused for subsequent requests instead of opening new connections each time",
+      "Encrypting database connections using SSL/TLS",
+      "Restricting database access to a specific pool of users"
+    ],
+    "correctIndex": 1,
+    "explanation": "Opening database connections is computationally expensive. Connection pooling keeps a set of active connections open, allocating them to queries as needed and reclaiming them afterward.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between monolithic and microservices architecture?",
+    "options": [
+      "Monoliths run on Linux; microservices run on Windows",
+      "A monolith builds the entire application as a single deployable unit; microservices split it into small, independent, specialized services",
+      "Monoliths are always slower than microservices",
+      "Microservices do not use databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Monolithic architectures bundle all features and services into a single codebase/deployment. Microservices break the app into loosely coupled, independently deployable services communicating via APIs/messages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In REST APIs, what does statelessness mean?",
+    "options": [
+      "The server does not run in any country state",
+      "Each client request must contain all the information needed to understand and process the request, with no session context stored on the server",
+      "The client cannot store any data locally",
+      "The API has no database behind it"
+    ],
+    "correctIndex": 1,
+    "explanation": "Statelessness means the server does not store any session state about the client. Every request is treated as independent and must contain necessary authorization and parameters.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is MVC (Model-View-Controller) pattern in backend frameworks?",
+    "options": [
+      "A methodology for testing database performance",
+      "An architectural pattern separating application logic into three main components: data (Model), interface (View), and control logic (Controller)",
+      "A database query syntax standard",
+      "A server deployment strategy"
+    ],
+    "correctIndex": 1,
+    "explanation": "MVC is a design pattern that separates concern: Model manages data and database logic, View manages user interface layout, and Controller acts as intermediary, routing requests and handling business logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of CORS (Cross-Origin Resource Sharing) headers?",
+    "options": [
+      "To accelerate resource loading speeds",
+      "To allow servers to specify who is allowed to access their API resources from a browser client origin",
+      "To validate JSON request bodies",
+      "To authenticate user sessions automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "CORS headers (like Access-Control-Allow-Origin) are security controls sent by the server instructing the browser whether to allow frontend code from another domain to read the API responses.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'race condition' in concurrent backend programming?",
+    "options": [
+      "A contest between developers to write code faster",
+      "A situation where the output of a process depends on the non-deterministic timing or sequence of other uncontrollable events",
+      "A database query running out of memory",
+      "An infinite loop in a recursive function"
+    ],
+    "correctIndex": 1,
+    "explanation": "Race conditions occur in multi-threaded/concurrent systems when multiple execution paths attempt to modify shared resources at the same time without proper locking, causing unpredictable bugs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between horizontal and vertical scaling?",
+    "options": [
+      "Horizontal scaling adds more CPU power to one machine; vertical scaling adds more machines",
+      "Horizontal scaling adds more machines/nodes to the pool; vertical scaling adds more resources (CPU/RAM) to an existing machine",
+      "Horizontal scaling is only for databases; vertical scaling is for web servers",
+      "Vertical scaling is always cheaper than horizontal scaling"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vertical scaling (scale up) increases the specs of a single server. Horizontal scaling (scale out) adds more servers to distribute the workload, which is key for elastic cloud computing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does database ACID transaction properties stand for?",
+    "options": [
+      "Accuracy, Consistency, Isolation, Durability",
+      "Atomicity, Consistency, Isolation, Durability",
+      "Automation, Compatibility, Integrity, Delivery",
+      "Algorithm, Compression, Indexing, Decryption"
+    ],
+    "correctIndex": 1,
+    "explanation": "ACID properties ensure reliable database transactions: Atomicity (all or nothing), Consistency (valid state transitions), Isolation (concurrent execution results match sequential), and Durability (survives crashes).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between optimistic and pessimistic locking in database concurrency control?",
+    "options": [
+      "Optimistic locking always allows writes; pessimistic locking never allows writes",
+      "Optimistic locking checks for conflicts before committing (e.g., version columns) and fails if a collision occurred; pessimistic locking locks rows immediately upon reading to prevent others from modifying them",
+      "Optimistic locking is faster but less secure than pessimistic locking",
+      "Pessimistic locking is only supported in NoSQL databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pessimistic locking assumes conflicts are frequent and locks records early. Optimistic locking assumes conflicts are rare, checking for record changes (typically via a version number) at commit time, failing the transaction if updated elsewhere.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does token bucket rate limiting algorithm handle bursts of traffic differently from leaky bucket algorithm?",
+    "options": [
+      "Token bucket drops all bursty traffic, while leaky bucket allows it",
+      "Token bucket allows sudden bursts of traffic up to the bucket capacity, while leaky bucket smooths out traffic flow, processing requests at a constant, steady rate",
+      "Leaky bucket is faster than token bucket",
+      "Token bucket only works with database queues"
+    ],
+    "correctIndex": 1,
+    "explanation": "Token bucket accumulates tokens, allowing immediate processing of bursts up to capacity. Leaky bucket releases requests at a steady rate, smoothing traffic but causing latency for bursts.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of database 'Sharding'?",
+    "options": [
+      "To replicate the database in different geographical regions for backup",
+      "To horizontally partition data across multiple physical database instances based on a shard key, separating rows to handle massive scale",
+      "To compress old tables into read-only files",
+      "To convert relation tables into NoSQL graphs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sharding breaks a database into smaller, faster, more manageable chunks (shards) across multiple machines, distributing read/write loads and bypassing the capacity limits of a single server.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In distributed systems, what does the CAP theorem state?",
+    "options": [
+      "A system can achieve all of Consistency, Availability, and Partition Tolerance simultaneously",
+      "A distributed data store can simultaneously provide at most two of three guarantees: Consistency, Availability, and Partition Tolerance (and partition tolerance is mandatory during network partitions)",
+      "Consistency is more important than availability in all applications",
+      "All servers must be placed in the same physical datacenter to avoid latency"
+    ],
+    "correctIndex": 1,
+    "explanation": "The CAP theorem states that in the event of a network partition (P), a distributed system must choose between either Consistency (C - all nodes see the same data) or Availability (A - every request receives a non-error response).",
+    "difficulty": "hard"
   }
 ]

@@ -354,7 +354,7 @@ export default function GameMap({ roadmap, slug }) {
             </div>
             {progressNotice && <p className="sk-sync-note">{progressNotice}</p>}
             <div className="sk-cert-btn-container">
-              {pct === 100 ? (
+              {pct >= 60 ? (
                 <button
                   className="sk-cert-btn unlocked"
                   onClick={() => router.push(`/roadmap/${slug}/certify`)}
@@ -365,7 +365,7 @@ export default function GameMap({ roadmap, slug }) {
                 <button
                   className="sk-cert-btn locked"
                   disabled
-                  title="Complete 100% of this roadmap to unlock the certification quiz!"
+                  title="Complete at least 60% of this roadmap to unlock the certification quiz!"
                 >
                   🔒 Get Certified ({pct}%)
                 </button>
@@ -433,8 +433,12 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
     // Extract slug and topicId from docUrl like "/data/docs/slug/topicId.md"
     const match = node.docUrl?.match(/\/data\/docs\/([^/]+)\/([^/]+)\.md$/);
     if (!match) {
-      setError(true);
-      setLoading(false);
+      Promise.resolve().then(() => {
+        if (active) {
+          setError(true);
+          setLoading(false);
+        }
+      });
       return;
     }
 
@@ -442,8 +446,12 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
 
     // If user is not logged in, show login prompt
     if (!user) {
-      setNeedsLogin(true);
-      setLoading(false);
+      Promise.resolve().then(() => {
+        if (active) {
+          setNeedsLogin(true);
+          setLoading(false);
+        }
+      });
       return;
     }
 

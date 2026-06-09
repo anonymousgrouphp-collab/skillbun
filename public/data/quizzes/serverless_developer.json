@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "To access resources within a private VPC, a Lambda function must be configured to execute within that VPC. This involves specifying subnets and security groups for the Lambda function, allowing it to communicate with other resources within the VPC using private IP addresses. Accessing public endpoints might be an option if the database is public, but for private resources, it's VPC configuration. VPC peering is for connecting two separate VPCs, not for a Lambda inside a VPC.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary philosophy of Serverless Computing?",
+    "options": [
+      "Running code on computers that don't have operating systems",
+      "An execution model where the cloud provider dynamically manages the provisioning, scaling, and allocation of server resources, billing only for actual execution time",
+      "Deploying applications without using internet connections",
+      "Hosting databases strictly in browser memory caches"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serverless (FaaS) abstracts server management. Developers upload code, and the provider handles scaling and OS updates, charging only when functions execute.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a widely used FaaS (Function-as-a-Service) product?",
+    "options": [
+      "AWS Lambda",
+      "Docker Desktop",
+      "Jenkins",
+      "Kubernetes"
+    ],
+    "correctIndex": 0,
+    "explanation": "AWS Lambda is the pioneer serverless function service. Others include Google Cloud Functions and Azure Functions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'Cold Start' mean in serverless architectures?",
+    "options": [
+      "The physical server being located in cold regions",
+      "The latency delay that occurs when a serverless function is invoked after being idle, as the provider spins up a new container instance",
+      "The function failing to compile due to syntax errors",
+      "A database query taking longer to return results on startup"
+    ],
+    "correctIndex": 1,
+    "explanation": "Idle functions have their containers torn down. When called, the provider must boot a new container and load the runtime, causing latency (cold start).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How are serverless applications typically billed?",
+    "options": [
+      "A flat monthly subscription fee per server instance",
+      "Based on the number of executions, memory allocated, and the duration of execution in milliseconds",
+      "Based on the count of developers in the team",
+      "Based on the size of the code repository files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serverless charges only for execution. If a function is never called, the cost is zero, saving costs for variable workloads.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the maximum execution duration (timeout) limit for AWS Lambda functions by default?",
+    "options": [
+      "1 minute",
+      "15 minutes",
+      "1 hour",
+      "Unlimited"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Lambda limits execution to 15 minutes. Long-running tasks (like video rendering or model training) are not suited for standard serverless functions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which service acts as the API entry gateway, routing HTTP requests to serverless functions in AWS?",
+    "options": [
+      "AWS EC2",
+      "Amazon API Gateway",
+      "Amazon S3",
+      "AWS IAM"
+    ],
+    "correctIndex": 1,
+    "explanation": "API Gateway receives external HTTP requests and maps them to trigger serverless functions, handling routing and auth.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'stateless' function in serverless development?",
+    "options": [
+      "A function that cannot execute code logic",
+      "A function that does not store user data or session state locally, relying on external databases for persistence",
+      "A function that is only deployed in development environments",
+      "A function that runs without network connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serverless containers are ephemeral. Since instances spin up and down dynamically, functions must be stateless, writing data to external stores (DynamoDB, S3) to persist state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between monolithic hosting (VMs) and serverless hosting?",
+    "options": [
+      "Monolithic is only for databases; serverless is for APIs",
+      "Monoliths run continuously on provisioned servers regardless of traffic; serverless scales dynamically down to zero and up to handle spikes automatically",
+      "Monolithic hosting is always cheaper than serverless",
+      "Serverless hosting does not support JavaScript applications"
+    ],
+    "correctIndex": 1,
+    "explanation": "Monolithic servers cost money even when idle. Serverless automates scaling and matches cost directly to user traffic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Serverless Framework (serverless.yml)?",
+    "options": [
+      "A database layout design editor",
+      "An open-source CLI tool that simplifies deploying serverless applications and resources across multiple cloud providers using configuration templates",
+      "A virtual machine running container engines",
+      "A web styling stylesheet format"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Serverless Framework abstracts cloud configs, translating YAML configurations into CloudFormation templates to provision functions and gateways easily.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'warm start' in serverless execution?",
+    "options": [
+      "Running functions on servers with active cooling systems",
+      "An execution where a function is invoked shortly after a previous run, reusing an active container instance to skip initialization delay",
+      "Initializing database tables at boot",
+      "A script that runs loop requests to test latency"
+    ],
+    "correctIndex": 1,
+    "explanation": "Providers keep containers active for a short idle period (e.g. 5-10 mins). Subsequent calls hit this warm instance, executing instantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you store persistent data (like user profiles) in a serverless application?",
+    "options": [
+      "Save files to the local container disk store (/tmp)",
+      "Use external serverless-friendly databases (like DynamoDB, Aurora Serverless, or Firebase)",
+      "Store data as environment variables in the config",
+      "Local variables inside the function scope are persistent"
+    ],
+    "correctIndex": 1,
+    "explanation": "Local storage (/tmp) is ephemeral. Persistent data must reside in external, scalable databases that support high-concurrency connections.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an 'Event Source Mapping' in serverless setups?",
+    "options": [
+      "Mapping user mouse clicks in layouts",
+      "A configuration that links event generators (like S3 uploads, DynamoDB streams, or SQS queues) to trigger your serverless function automatically",
+      "A router config mapping domains",
+      "An encryption key mapping file paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Event mappings drive serverless. For example, uploading an image to S3 triggers a lambda function to generate thumbnails automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'provisioned concurrency' in AWS Lambda?",
+    "options": [
+      "To limit the speed of database updates",
+      "A setting that keeps a specified number of container instances pre-warmed and ready to respond instantly, eliminating cold starts",
+      "To encrypt code files before compile runs",
+      "To allocate more physical servers to the account"
+    ],
+    "correctIndex": 1,
+    "explanation": "Provisioned concurrency pre-warms containers. It eliminates cold starts for critical, latency-sensitive endpoints, but charges for keeping containers active.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which serverless service is popular for running serverless functions at CDN edge locations, closer to users?",
+    "options": [
+      "AWS Lambda@Edge or Cloudflare Workers",
+      "Amazon EC2",
+      "AWS ECS",
+      "Amazon S3"
+    ],
+    "correctIndex": 0,
+    "explanation": "Edge functions run at CDN POPs (Points of Presence). They process requests/responses with near-zero latency, ideal for localized redirects or page rewrites.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '/tmp' directory in AWS Lambda functions?",
+    "options": [
+      "To store permanent user profiles",
+      "An ephemeral local disk storage space (default 512MB up to 10GB) available for the function to write temporary files during execution",
+      "A backup folder for server logs",
+      "A directory containing source code dependencies"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/tmp` is local scratch space. It is deleted when the container terminates, but can be reused across warm starts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'concurrency limit' mean for AWS Lambda, and what happens when it is exceeded?",
+    "options": [
+      "The number of code lines a function can compile; raises errors",
+      "The maximum number of concurrent executions allowed across all functions in a region; exceeding it throttles requests, returning 429 error codes",
+      "The daily budget cap; shuts down the account",
+      "The number of users logged in; redirects to queues"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS sets default limits (e.g. 1000 concurrent runs). If traffic spikes exceed it, Lambda throttles requests, requiring limit increases or queue buffers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of AWS Step Functions in serverless architectures?",
+    "options": [
+      "To compile code files step-by-step",
+      "An orchestration service that allows you to coordinate multiple serverless functions and services into visual, stateful workflows",
+      "To check SQL syntax errors",
+      "To manage database transactions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Step Functions manage complex workflows, handling loops, parallel execution, and retries/error states without writing complex orchestrator lambdas.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Dead Letter Queues' (DLQ) in serverless event processing?",
+    "options": [
+      "A queue tracking deleted user emails",
+      "A queue (SQS/SNS) where failed event payloads are sent after a function exhausts its retry limits, allowing manual inspection and debug",
+      "A backup log for server crashes",
+      "A tool scaling server nodes dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a lambda processing SQS fails repeatedly (e.g. due to bad data), DLQ catches the message, preventing it from looping forever or getting lost.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between an API Gateway 'HTTP API' and a 'REST API' in AWS?",
+    "options": [
+      "HTTP APIs are older and deprecated",
+      "HTTP APIs are faster, cheaper, and designed for basic routing; REST APIs offer advanced features like request transformation, API keys, and caching",
+      "REST APIs do not support serverless functions",
+      "HTTP APIs are written in JSON; REST in XML"
+    ],
+    "correctIndex": 1,
+    "explanation": "HTTP APIs are modern, lightweight, and up to 70% cheaper, ideal for simple backend triggers. REST APIs provide advanced proxy features.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you secure serverless function environment variables?",
+    "options": [
+      "Write them in public code comments",
+      "Encrypt them using AWS KMS keys and manage access using IAM execution roles",
+      "Store them in local container files (/tmp)",
+      "Environment variables are secure by default and cannot be read"
+    ],
+    "correctIndex": 1,
+    "explanation": "KMS (Key Management Service) encrypts variables at rest. IAM roles restrict decryption rights to authorized function executions only.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how database connection pooling (like RDS Proxy) solves connection exhaustion issues in serverless applications.",
+    "options": [
+      "By restricting connection speeds; prevents database locks",
+      "By sitting between functions and databases, maintaining a pool of established connections and sharing them across ephemeral function instances dynamically",
+      "By hosting databases in container memory spaces",
+      "By converting SQL tables to NoSQL collections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard databases have connection limits (e.g., 500 connections). A serverless app scaling to 1,000 concurrent lambdas will crash the DB. RDS Proxy manages a pool, sharing active connections efficiently.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Double Billing' problem in serverless orchestration, and how does using EventBridge or Step Functions mitigate it?",
+    "options": [
+      "Paying two cloud providers; mitigate by contract cancellation",
+      "When one Lambda function sits idle waiting for another Lambda to finish, paying for both; mitigated by using Step Functions to orchestrate execution asynchronously",
+      "A database transaction billing error; mitigate by SQL locks",
+      "A network routing billing surcharge; mitigate by local proxies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Functions should never wait. If Lambda A awaits Lambda B synchronously, both run timers increment. Step Functions decouple tasks: Lambda A returns instantly, and the state machine handles triggering B.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe how 'Cold Starts' can be optimized at the code level, particularly regarding bundle size, dependency imports, and runtime choices.",
+    "options": [
+      "By using larger server containers; compile code in development folders",
+      "By selecting compiled runtimes (Go/Rust) or optimizing NodeJS bundles (tree-shaking, minifying) and initializing database clients outside the handler function scope",
+      "By adding more environment variables; imports should be dynamic in loops",
+      "By running cron tasks to ping functions hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Runtimes like Java/Dotnet have slow startup. Node/Python are fast, but bloated dependencies (e.g. importing the whole AWS SDK instead of clients) slow execution. Initializing DB clients outside handlers reuse connections across warm runs, saving setup times.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'API Gateway Custom Authorizers' (Lambda Authorizers), and how do they cache authorization tokens?",
+    "options": [
+      "To style login page menus; cache via cookie structures",
+      "Serverless functions validating incoming tokens (JWT/OAuth) before routing requests; they return IAM policies cached by API Gateway based on token keys to speed up subsequent requests",
+      "To manage database password backups; cache via SQL indexing",
+      "To register domain routing paths; cache via DNS servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Before routing, API Gateway invokes the Authorizer Lambda to validate tokens. The authorizer returns an IAM policy (allow/deny). API Gateway caches this policy (up to 1 hour) to avoid invoking the authorizer on every single call.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement local integration testing for a serverless application, and what is the role of tools like LocalStack?",
+    "options": [
+      "By running tests on production cloud servers directly",
+      "LocalStack emulates cloud services (Lambda, S3, DynamoDB) locally, allowing developers to run integration tests offline without making cloud calls",
+      "By copying database tables to text files on disk",
+      "Local testing is not supported in serverless architectures"
+    ],
+    "correctIndex": 1,
+    "explanation": "LocalStack spins up emulated APIs in Docker containers. Developers run tests locally, testing IAM permissions, S3 event triggers, and DB queries offline.",
+    "difficulty": "hard"
   }
 ]

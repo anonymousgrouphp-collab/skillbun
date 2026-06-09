@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The \"curse of dimensionality\" refers to phenomena that arise when analyzing data in high-dimensional spaces, where the data points become increasingly sparse, making concepts like distance and density less meaningful. In multi-spectral imagery, having many spectral bands can exacerbate this, making clustering algorithms (unsupervised classification) less effective. Dimensionality reduction techniques like Principal Component Analysis (PCA) are commonly used to transform the data into a lower-dimensional space while retaining most of the variance, mitigating this effect.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Geospatial Data?",
+    "options": [
+      "Data stored on space satellites",
+      "Data that has a spatial or geographic component, representing objects, events, or phenomena associated with physical locations on Earth",
+      "A database schema index",
+      "A graphics format for styling charts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Geospatial data maps coordinates (latitude/longitude, elevations) to physical features or measurements on Earth.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does GIS stand for?",
+    "options": [
+      "Geographic Information System",
+      "Global Index Standard",
+      "Geospatial Integration Server",
+      "Graphical Interface Sheet"
+    ],
+    "correctIndex": 0,
+    "explanation": "GIS refers to the framework and software systems used to capture, store, manipulate, analyze, and map spatial data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the coordinate representation for locations on Earth?",
+    "options": [
+      "Pixels [X, Y]",
+      "Latitude and Longitude (coordinates)",
+      "Hexadecimal addresses",
+      "Zip codes only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Latitude (distance north/south of the equator) and Longitude (distance east/west of the prime meridian) pinpoint points on the globe.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a shapefile?",
+    "options": [
+      "A file defining visual shapes in Photoshop",
+      "A popular geospatial vector data format storing geometry, coordinates, and attributes of geographic features",
+      "A database index table format",
+      "A compression format for 3D meshes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Developed by Esri, shapefiles store vector geometries (points, lines, polygons) alongside attribute data tables, widely used in GIS.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Raster and Vector spatial data?",
+    "options": [
+      "Raster is for text; Vector is for numbers",
+      "Raster data represents spatial features as grid cells/pixels (e.g. satellite images); Vector data represents features using points, lines, and polygons",
+      "Vector data is always larger than Raster data in file size",
+      "They are identical spatial formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vector data uses coordinates to describe shapes (like roads or borders). Raster data uses grid cells (like elevation models or temperature maps).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the standard GPS coordinate system (datum) used globally?",
+    "options": [
+      "NAD83",
+      "WGS 84",
+      "ED50",
+      "WGS 72"
+    ],
+    "correctIndex": 1,
+    "explanation": "WGS 84 (World Geodetic System 1984) is the standard geodetic reference frame used by global positioning systems (GPS) and web maps (like Google Maps).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Python library is the standard tool for working with vector geospatial data, extending Pandas?",
+    "options": [
+      "NumPy",
+      "GeoPandas",
+      "Django",
+      "Flask"
+    ],
+    "correctIndex": 1,
+    "explanation": "GeoPandas extends Pandas data structures to support spatial operations on geometric objects, enabling GIS operations in Python scripts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Coordinate Reference System (CRS)?",
+    "options": [
+      "A routing protocol for cloud networks",
+      "A system specifying how 3D coordinates on the curved Earth are projected and mapped onto a 2D flat plane",
+      "A database query indexing command",
+      "A layout grid template for UI design"
+    ],
+    "correctIndex": 1,
+    "explanation": "CRS projects geographic points. Projecting a 3D sphere onto a 2D map introduces distortions (in size, shape, or distance), managed by CRSs (like UTM or Web Mercator).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Projected and Geographic Coordinate Systems?",
+    "options": [
+      "Projected is for GPS; Geographic for maps",
+      "Geographic systems use 3D spherical coordinates (latitude/longitude in degrees); Projected systems project coordinates onto a 2D flat surface using linear units (meters/feet)",
+      "Projected systems are always distortion-free",
+      "Geographic systems are only for mobile apps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Geographic Coordinate Systems (GCS) define points on a 3D globe. Projected Coordinate Systems (PCS) flatten coordinates for local analysis, allowing accurate distance measurements in meters.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Spatial Buffering'?",
+    "options": [
+      "Caching database queries locally",
+      "Creating a zone or boundary of a specified distance around a geographic feature (point, line, or polygon)",
+      "Compressing geographic file sizes",
+      "A network bandwidth optimization technique"
+    ],
+    "correctIndex": 1,
+    "explanation": "Buffering calculates zones of proximity (e.g. drawing a 100-meter buffer zone around a river to analyze flood zones or environmental impacts).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Spatial Join'?",
+    "options": [
+      "Merging two database files over a network",
+      "Combining columns from two spatial datasets based on their geographic relationship (e.g. intersection or containment) instead of matching keys",
+      "Connecting two coordinate systems",
+      "A flowchart representing server routing paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "A spatial join matches features geographically (e.g., joining point coordinates of retail stores with polygon boundaries of neighborhoods to count stores per zip code).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Remote Sensing' refer to?",
+    "options": [
+      "Controlling server configurations remotely",
+      "Acquiring information about the Earth's surface from a distance, typically using sensors on satellites, aircraft, or drones",
+      "A database backup scheduler",
+      "Writing code from home offices"
+    ],
+    "correctIndex": 1,
+    "explanation": "Remote sensing uses electromagnetic radiation (like optical, radar, or lidar) to monitor vegetation, ocean temperatures, or urban expansion globally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Kriging' in spatial analysis?",
+    "options": [
+      "A database compression algorithm",
+      "A geostatistical interpolation method that estimates values at unmeasured locations based on spatial correlation models",
+      "An encryption standard for GPS data",
+      "A sorting algorithm for coordinate tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kriging is a advanced interpolation technique, calculating weight estimates based on distance and spatial variance to predict attributes (like soil pollution or temperature) across surfaces.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Choropleth Map' display?",
+    "options": [
+      "The elevation levels of terrain using lines",
+      "Geographic regions (like countries or zip codes) shaded or colored in proportion to a numeric variable (e.g. population density)",
+      "A 3D mesh of a city layout",
+      "The movement of traffic using arrows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Choropleths are standard GIS visual tools, mapping variables to color scales to show geographic distributions of metrics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Lidar' and what is its output?",
+    "options": [
+      "A database backup software; output is a zip file",
+      "Light Detection and Ranging; a laser scanning technology that generates dense 3D point clouds representing physical surfaces",
+      "A satellite imagery camera; output is a JPEG",
+      "A network routing protocol; output is logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lidar sweeps lasers to calculate distances. The resulting 'Point Cloud' maps elevations with high precision, used to build digital elevation models and forestry maps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Spatial Autocorrelation' and what does 'Tobler's First Law of Geography' state?",
+    "options": [
+      "Spatial data is always correlated to database sizes",
+      "The correlation of a variable with itself in space; Tobler's law states that 'everything is related to everything else, but near things are more related than distant things'",
+      "The speed of coordinate calculations; Tobler's law states that maps must be flat",
+      "A database indexing structure; Tobler's law states that tables must have keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tobler's law is the foundation of spatial analysis. It implies spatial autocorrelation (e.g., houses close together share similar prices, weather in adjacent towns is similar).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Geocoding'?",
+    "options": [
+      "Translating programming languages into coordinates",
+      "The process of converting alphanumeric addresses or place names into physical geographic coordinates (latitude/longitude)",
+      "Encrypting coordinate data on disks",
+      "Converting vector maps to raster images"
+    ],
+    "correctIndex": 1,
+    "explanation": "Geocoding maps text (e.g. '1600 Amphitheatre Pkwy, Mountain View, CA') to coordinates (e.g. `37.422, -122.084`) so they can be plotted on maps. 'Reverse Geocoding' does the opposite.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Digital Elevation Models' (DEM)?",
+    "options": [
+      "To model developer team hierarchies",
+      "A raster grid representation of the continuous elevation values of the Earth's terrain surface",
+      "A 3D visual mockup of a building website",
+      "A database transaction log"
+    ],
+    "correctIndex": 1,
+    "explanation": "DEMs map topographic heights. They are critical for calculating slope, aspect, runoff flow paths, and planning construction projects.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'GDAL/OGR' in geospatial development?",
+    "options": [
+      "A cloud server hosting company",
+      "A powerful translator library for raster and vector geospatial data formats, serving as the engine under most GIS software",
+      "A database query programming language",
+      "A style guide UI framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "GDAL (Geospatial Data Abstraction Library) handles raster reading/writing. OGR handles vector files. It is the core library under QGIS, GeoPandas, and ArcGIS.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Sliver Polygon' in GIS data cleaning?",
+    "options": [
+      "A button that slides on hover in GIS dashboards",
+      "Small, thin, unwanted polygon gaps or overlaps generated along boundaries during dataset overlay operations, requiring cleanup",
+      "An encrypted database file",
+      "A coordinate system projection error"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slivers occur when combining boundaries from different sources that do not align perfectly, generating tiny error shapes that must be resolved to clean data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Web Mercator' (EPSG:3857) and why is it preferred for web maps despite severe area distortion near the poles?",
+    "options": [
+      "It is free; other coordinate systems are paid",
+      "It simplifies coordinate math on web screens, preserving angles (conformality) so that street grids intersect at right angles on display",
+      "It has zero distortion globally",
+      "It is the only coordinate system supported by HTML"
+    ],
+    "correctIndex": 1,
+    "explanation": "Web Mercator is the standard for Google Maps and Bing Maps. While it inflates size near the poles (making Greenland look as big as Africa), it preserves local shapes and angles, keeping street views square.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Spatial Indexing' (e.g. R-Tree, Quadtree, H3) and why is it crucial for querying spatial databases?",
+    "options": [
+      "Indexing databases alphabetically by country name",
+      "A data structure indexing geometry boundaries to allow fast bounding-box queries, avoiding slow calculations across every coordinate row in a database",
+      "An image compression algorithm",
+      "A multithreading scheduler for coordinate processing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard B-Tree indexes sort 1D numbers. Spatial databases use bounding boxes. An R-Tree indexes overlapping rectangles. Querying a point only checks coordinate geometries in matching branch rectangles, bypassing millions of other records.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does 'MODIS' vs 'Landsat' satellite imagery data compare in terms of spatial and temporal resolution?",
+    "options": [
+      "MODIS has higher spatial resolution than Landsat",
+      "MODIS has high temporal resolution (daily revisits) but low spatial resolution (250m-1km); Landsat has high spatial resolution (30m) but lower temporal resolution (16-day revisits)",
+      "Landsat is only for weather; MODIS for land mapping",
+      "Landsat data is paid; MODIS is free"
+    ],
+    "correctIndex": 1,
+    "explanation": "MODIS captures global changes daily, good for monitoring fires or ocean blooms. Landsat captures high-detail snapshots every two weeks, good for analyzing city growth or crop yields.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between 'GWR' (Geographically Weighted Regression) and standard OLS linear regression?",
+    "options": [
+      "GWR is for SQL databases; OLS is for Python",
+      "OLS assumes relationships are constant across space; GWR allows parameters to vary geographically, fitting local regressions for different coordinate zones",
+      "OLS is only for time-series data",
+      "GWR requires 3D elevation models only"
+    ],
+    "correctIndex": 1,
+    "explanation": "OLS assumes spatial homogeneity (one equation fits the whole map). GWR accounts for spatial non-stationarity, adjusting coefficient weights based on local neighbors to model geographical differences.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Map Algebra' and what are the differences between Local, Focal, Zonal, and Global raster operations?",
+    "options": [
+      "Solving math problems using map drawings",
+      "A cell-by-cell calculations framework: Local (cell-by-cell); Focal (neighborhood window cells); Zonal (cells within matching zones); Global (all raster cells)",
+      "An algebraic equation for calculating coordinate projects",
+      "A script that formats map scales automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Map Algebra operates on grids. Local adds matching cells across layers. Focal averages cells inside a sliding window (smoothing). Zonal summarizes values within specific areas (e.g., mean elevation per county). Global calculates statistics across the entire raster.",
+    "difficulty": "hard"
   }
 ]

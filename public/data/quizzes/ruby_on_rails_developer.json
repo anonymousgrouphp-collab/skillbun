@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Rails Credentials (`config/credentials.yml.enc`) provide a secure, encrypted way to store sensitive environment variables directly within the application's repository. The decryption key (`config/master.key`) is kept out of version control, making it a robust solution for managing secrets in different environments.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Ruby on Rails?",
+    "options": [
+      "A database optimization tool for Ruby scripts",
+      "An open-source server-side web application framework written in Ruby under the MIT License",
+      "A programming language replacing JavaScript",
+      "A styling library for building web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ruby on Rails (often called Rails) is a model-view-controller (MVC) web framework designed for rapid database-backed web application development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the core philosophy of Ruby on Rails regarding configuration and naming conventions?",
+    "options": [
+      "Configuration Over Convention",
+      "Convention over Configuration (CoC)",
+      "Write Everything From Scratch",
+      "Compile Everything To Binary"
+    ],
+    "correctIndex": 1,
+    "explanation": "Convention over Configuration (CoC) means Rails assumes sensible defaults (e.g. table names are plurals of model names), saving developers from writing excessive config files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default package manager used in Ruby to manage libraries (gems)?",
+    "options": [
+      "npm",
+      "RubyGems / Bundler",
+      "pip",
+      "Composer"
+    ],
+    "correctIndex": 1,
+    "explanation": "RubyGems manages individual libraries (gems). Bundler manages project-specific gem dependencies defined in the `Gemfile`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Active Record in Ruby on Rails?",
+    "options": [
+      "An animation class for frontends",
+      "The object-relational mapping (ORM) layer representing database tables as classes and handling queries",
+      "A tool that compiles assets",
+      "A security scanner blocking web ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Active Record provides database mapping. It implements the ActiveRecord pattern where classes represent tables and instances represent rows.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What command-line tool is used in Rails to run migrations, generate files, and start servers?",
+    "options": [
+      "composer",
+      "rails",
+      "npm",
+      "rake only"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `rails` CLI tool handles configurations, generations (e.g. `rails generate model`), migrations (`rails db:migrate`), and server starts (`rails server`).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which directory contains route definitions in a standard Rails application?",
+    "options": [
+      "app/routes.rb",
+      "config/routes.rb",
+      "config/environments/",
+      "routes/"
+    ],
+    "correctIndex": 1,
+    "explanation": "`config/routes.rb` maps incoming web requests to specific controller actions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the DRY principle in Rails development?",
+    "options": [
+      "Don't Repeat Yourself",
+      "Database Relations Yield",
+      "Developer Run Yield",
+      "Design Responsive Yield"
+    ],
+    "correctIndex": 0,
+    "explanation": "DRY stands for Don't Repeat Yourself, advising developers to write clean, reusable code instead of duplicating logic.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of database migrations in Rails?",
+    "options": [
+      "Moving database files to cloud servers",
+      "A way to define and modify database schemas using Ruby code, maintaining version control for schemas",
+      "Backing up database tables daily",
+      "Translating SQL tables into NoSQL databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Migrations are version-controlled database schema changes, written in Ruby, making schema syncing across development teams simple.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Rails Controller do in the MVC architecture?",
+    "options": [
+      "Translates visual layouts into styles",
+      "Processes incoming requests, interacts with models, and renders views or returns data",
+      "Defines database schema tables",
+      "Manages network firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Controllers act as intermediaries, extracting params, querying models, and preparing variables for templates (Views) to display.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the default template engine used to write views in Rails?",
+    "options": [
+      "Haml",
+      "ERB (Embedded Ruby)",
+      "Slim",
+      "Liquid"
+    ],
+    "correctIndex": 1,
+    "explanation": "ERB is Rails' default engine. It allows embedding Ruby code directly in HTML templates using `<% %>` and `<%= %>` tags.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Rails protect against SQL Injection natively in Active Record queries?",
+    "options": [
+      "By disabling SQL parameters entirely",
+      "By automatically escaping arguments when using parameterized query conditions (e.g. array/hash conditions)",
+      "By encrypting database table names",
+      "By converting SQL queries to static text files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Active Record parameterizes inputs (e.g. `User.where('name = ?', name)` or `User.where(name: name)`), avoiding raw string concatenation which is prone to SQL injection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Gemfile' in a Rails application?",
+    "options": [
+      "To store database passwords",
+      "To list all gem dependencies required to run the application, managed by Bundler",
+      "To store visual page templates",
+      "To schedule background cron tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Gemfile` defines dependencies. Running `bundle install` parses it, installing gems and pinning specific versions in `Gemfile.lock`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of 'Action Controller Filters' (callbacks) in Rails?",
+    "options": [
+      "To filter out invalid database records",
+      "Methods that run before, after, or around controller actions (e.g. before_action :require_login)",
+      "To compile CSS styles dynamically",
+      "To route API requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Callbacks share setup or auth code. A common filter is `before_action :authenticate_user!`, protecting routes from unauthenticated access.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Asset Pipeline' (Sprockets/Webpacker) in Rails?",
+    "options": [
+      "A pipeline that backups image assets to cloud servers",
+      "A framework to concatenate, compile, and minify JavaScript, CSS, and image assets for production optimization",
+      "A database migration pipeline",
+      "A tool managing local network switches"
+    ],
+    "correctIndex": 1,
+    "explanation": "The asset pipeline compiles assets. It compresses files and appends digests to filenames (cache busting), optimizing page loading speeds.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Rails model 'validation' do, and when does it run?",
+    "options": [
+      "Validates server configurations at boot",
+      "Ensures only valid data is saved into the database; runs automatically before active record objects are saved or updated",
+      "Validates routes paths; runs during page navigation",
+      "Validates email inputs using external APIs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Validations check constraints (e.g. `validates :email, presence: true`). They run before `save` or `create`, preventing invalid database writes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'has_many :through' and 'has_and_belongs_to_many' (HABTM) relations in Rails?",
+    "options": [
+      "has_many :through is only for NoSQL; HABTM is for SQL",
+      "has_many :through uses a join model, allowing custom attributes and validations on the join table; HABTM connects tables directly using a simple join table with no model",
+      "HABTM is more scalable and customizable than has_many :through",
+      "They are duplicate terms for one-to-many relationships"
+    ],
+    "correctIndex": 1,
+    "explanation": "`has_many :through` is preferred. Since the join table has a model, developers can track metadata on relationships (e.g. relationship creation date).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of 'Rails Credentials' (credentials.yml.enc)?",
+    "options": [
+      "Storing developer employee portfolios",
+      "Encrypted credential storage allowing teams to commit production keys to git safely, unlocked using a master key file",
+      "Configuring database primary keys",
+      "Logging user authentication attempts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Credentials are encrypted on disk. The decryption key (`master.key`) is gitignored, keeping secrets safe while letting configuration files reside in git.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Action Mailer' in Rails?",
+    "options": [
+      "To route API request messages",
+      "A framework to design and send emails from applications using templates and mailer models",
+      "To schedule database backups",
+      "To check spelling errors in page text"
+    ],
+    "correctIndex": 1,
+    "explanation": "Action Mailer inherits from ActionMailer::Base. Mailers work like controllers, using views to render email templates dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Active Job' in Rails?",
+    "options": [
+      "A system that tracks developer work tasks",
+      "A standard interface for declaring queuing jobs and running them on various queuing backends (like Sidekiq, Resque, or Delayed Job)",
+      "To manage database transactions",
+      "To compile assets in background threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Active Job abstracts background queues. It integrates with backends, allowing developers to enqueue jobs easily (e.g. `SendWelcomeEmailJob.perform_later(user)`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'flash' messages in Rails controllers?",
+    "options": [
+      "A fast database connection protocol",
+      "A special session hash displaying temporary status messages (like 'Post created successfully') that are cleared after the next request",
+      "An animation stylesheet configuration",
+      "A security warning popup"
+    ],
+    "correctIndex": 1,
+    "explanation": "`flash[:notice]` or `flash[:alert]` store notices. They display alerts on redirect pages and delete automatically on subsequent page transitions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Rails 'N+1 queries' problem manifest, and how does 'includes' solve it?",
+    "options": [
+      "It happens when server CPU loads double; includes compiles assets",
+      "It happens when loading a record and its associations sequentially in loops, triggering N separate queries; 'includes' eager-loads associations in a single query",
+      "It happens when database tables have too many columns; includes deletes columns",
+      "It is a memory leak error resolved by restarting the rails server"
+    ],
+    "correctIndex": 1,
+    "explanation": "If loading 10 posts and displaying their comments in a loop, Rails queries comments for each post (1 query for posts + 10 queries for comments). Adding `.includes(:comments)` eager-loads them in two clean queries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'CSRF Token Authenticity' verification in Rails, and what happens when a request fails this validation?",
+    "options": [
+      "Validating user passport credentials; fails by lockouts",
+      "Verifying a unique authenticity_token in POST/PUT requests; failing raises an ActionController::InvalidAuthenticityToken exception or resets the session",
+      "Verifying database primary keys; fails by SQL syntax errors",
+      "A firewall check; fails by port blocking"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rails adds authenticity tokens to forms and sessions. The `protect_from_forgery` filter compares them on POST requests. Mismatches indicate cross-site attacks, terminating sessions.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Active Record, explain the difference between 'dependent: :destroy' and 'dependent: :delete_all' on has_many associations.",
+    "options": [
+      "dependent: :destroy is for SQL; delete_all is for NoSQL",
+      "dependent: :destroy loads associated objects and executes their callbacks individually; dependent: :delete_all runs a single SQL DELETE command directly, bypassing callbacks",
+      "dependent: :delete_all is safer and preferred for all relationships",
+      "They behave identically in database execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "`dependent: :destroy` instantiates child objects, running `before_destroy` callbacks (good for cascading deletes with dependencies). `delete_all` is much faster but bypasses all callbacks and hooks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Rack Middleware' in Rails applications, and how does Rails use it to process requests?",
+    "options": [
+      "A tool configuring server memory units",
+      "A modular pipeline of objects that intercept and process HTTP requests and responses before they reach the Rails routing layer",
+      "A compilation compiler converting Ruby to HTML",
+      "A database backup replication protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rails is built on Rack. Incoming requests flow through a stack of middleware (handling sessions, cookie parsing, logging, SSL enforcement) before hitting the Rails routing engine.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how 'Optimistic Locking' is implemented in Rails Active Record models, and what exception is raised on collision.",
+    "options": [
+      "By setting database locks manually; raises ActiveRecord::Deadlock",
+      "By adding a 'lock_version' integer column to the table; Rails increments this version on save and raises an ActiveRecord::StaleObjectError if another process updated the record in the meantime",
+      "By restricting edit permissions to one user; raises ActiveRecord::ReadOnly",
+      "By running query transactions recursively; raises ActiveRecord::Rollback"
+    ],
+    "correctIndex": 1,
+    "explanation": "Optimistic locking assumes collisions are rare. If User A and B read a record (version 1), A saves first (updating it to version 2). When B tries to save (still sending version 1), Rails detects the mismatch and aborts, raising a StaleObjectError.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Safety limits on joint positions, velocities, and forces are critical engineering practices to prevent the robot from entering dangerous configurations, damaging itself, its environment, or injuring humans working in its vicinity.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What does ROS stand for in the context of robotics development?",
+    "options": [
+      "Robotic Operating System",
+      "Router Connection Service",
+      "Robotic Optimization Script",
+      "Registry Operation Standard"
+    ],
+    "correctIndex": 0,
+    "explanation": "ROS stands for Robot Operating System. It is an open-source middleware suite containing libraries and tools designed to build robot software.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary function of an actuator in a robotic system?",
+    "options": [
+      "To gather environment visual data",
+      "To compile source code programs",
+      "To convert electrical, hydraulic, or pneumatic energy into physical motion",
+      "To store log files on server directories"
+    ],
+    "correctIndex": 2,
+    "explanation": "Actuators are the muscles of a robot. They convert power (like electricity) into mechanical action (rotation, translation) to move the robot.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which coordinate system uses a distance and an angle to specify points in a 2D plane?",
+    "options": [
+      "Cartesian coordinate system",
+      "Polar coordinate system",
+      "Cylindrical coordinate system",
+      "Spherical coordinate system"
+    ],
+    "correctIndex": 1,
+    "explanation": "Polar coordinates represent points using distance from origin (r) and rotation angle (theta), which is highly useful in sensor ranges like LiDAR.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What type of sensor is primarily used to measure the angular velocity of a robot?",
+    "options": [
+      "Accelerometer",
+      "Magnetometer",
+      "Gyroscope",
+      "Barometer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Gyroscopes measure rate of rotation (angular velocity) around axes, which is crucial for balancing and navigation algorithms.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does LiDAR stand for, and how does it gather spatial data?",
+    "options": [
+      "Light Detection and Ranging; measures distance using pulsed laser light reflections",
+      "Line Integration and Device Routing; measures network packet speeds",
+      "Light Indicator and Digital Access Router; detects remote server connections",
+      "Link Indexing and Data Archive Recovery; logs database backups"
+    ],
+    "correctIndex": 0,
+    "explanation": "LiDAR sends laser pulses and measures the time they take to bounce back, creating 3D point cloud maps of surrounding environments.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a widely used open-source 3D robotics simulator that integrates with ROS?",
+    "options": [
+      "Blender",
+      "Unity",
+      "Gazebo",
+      "Docker"
+    ],
+    "correctIndex": 2,
+    "explanation": "Gazebo simulates physical environments, gravity, sensor feeds, and rigid-body dynamics, making it ideal for testing robot control loops before hardware deployments.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In robotics kinematics, what is the role of an end-effector?",
+    "options": [
+      "The base motor anchoring the arm",
+      "The interface that compiles compiler commands",
+      "The device at the end of a robotic arm designed to interact with the environment (like a gripper or welding tool)",
+      "The controller regulating power supplies"
+    ],
+    "correctIndex": 2,
+    "explanation": "An end-effector is the active tool at the tip of a robotic manipulator (e.g. gripper, suction cup, drill) that performs the target task.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In robot kinematics, what is the purpose of the Denavit-Hartenberg (DH) convention?",
+    "options": [
+      "To compress data sent to cloud servers",
+      "A standard coordinate system convention for defining the relative position and orientation of robot joints and links using four parameters",
+      "To encrypt connection packets on switches",
+      "To schedule database backups on cloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The DH convention uses four parameters (theta, d, a, alpha) to map coordinate frames of serial link manipulators, simplifying kinematic equation setups.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key difference between Forward Kinematics (FK) and Inverse Kinematics (IK)?",
+    "options": [
+      "FK is for mobile robots; IK is for arm joints only",
+      "FK calculates end-effector position/orientation from joint angles; IK calculates required joint angles to reach a desired end-effector position",
+      "IK is simpler and faster to compute than FK",
+      "They are duplicate terms in physics formulas"
+    ],
+    "correctIndex": 1,
+    "explanation": "FK has a unique analytical solution. IK is complex and may yield multiple joint configurations (or zero solutions) for a desired target coordinate.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which ROS communication mechanism is best suited for synchronous, request-reply transactions?",
+    "options": [
+      "ROS Topics",
+      "ROS Services",
+      "ROS Actions",
+      "ROS Parameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "ROS Services use client-server communication. A client sends a request and blocks/waits until the server returns a response, suitable for quick queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In ROS 2, what architecture replaces the legacy ROS 1 Master node for automatic node discovery?",
+    "options": [
+      "DDS (Data Distribution Service)",
+      "JSON REST API gateways",
+      "Apache Kafka broker servers",
+      "DNS server routers"
+    ],
+    "correctIndex": 0,
+    "explanation": "ROS 2 adopts DDS, an industry-standard middleware providing decentralized node discovery and customizable Quality of Service (QoS) settings.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a PID controller, and what is the specific role of the derivative (D) term?",
+    "options": [
+      "Process Index Database; D term tracks delete histories",
+      "Proportional-Integral-Derivative; D term predicts future error based on its rate of change to damp system oscillations",
+      "Proportional-Integral-Derivative; D term increases system speed to maximum limits",
+      "Port Integration Driver; D term routes network connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "The D term dampens response. By checking the rate of error change, it anticipates overshoot and applies braking forces to smooth corrections.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of an Inertial Measurement Unit (IMU) sensor in a mobile robot?",
+    "options": [
+      "To measure camera focal distances",
+      "To measure linear acceleration and angular velocity for tracking robot orientation and changes in position",
+      "To measure ambient room temperatures",
+      "To track battery charge percentages"
+    ],
+    "correctIndex": 1,
+    "explanation": "IMUs contain accelerometers and gyroscopes. They provide high-frequency raw inertial data used in dead-reckoning and sensor fusion pipelines.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In robotic path planning, how does the RRT (Rapidly-exploring Random Tree) algorithm construct its search tree?",
+    "options": [
+      "By analyzing all pixel values in grids sequentially",
+      "By incrementally building a tree from random coordinate samples in the workspace, steering the tree towards empty zones",
+      "By query parameters matching database indexes",
+      "By sorting path arrays using binary search"
+    ],
+    "correctIndex": 1,
+    "explanation": "RRT is a sample-based planner. It expands a tree towards random coordinate nodes, making it efficient for high-dimensional configuration spaces.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a wheel encoder in a mobile robot's odometry calculations?",
+    "options": [
+      "To encrypt wireless remote controls",
+      "To measure wheel rotations, which are integrated over time to compute change in robot position (dead reckoning)",
+      "To check tire pressure levels",
+      "To balance motor voltage inputs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Encoders count wheel ticks. This data translates to distance traveled, forming the baseline of wheel odometry (susceptible to slippage drift).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which algorithm is commonly used in LiDAR scan matching to align consecutive scans and track robot displacement?",
+    "options": [
+      "A* (A-Star)",
+      "ICP (Iterative Closest Point)",
+      "Dijkstra's algorithm",
+      "QuickSort"
+    ],
+    "correctIndex": 1,
+    "explanation": "ICP minimizes distance errors between two overlapping point clouds, aligning scans iteratively to estimate robot motion.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In robotics manipulator control, what does the Jacobian matrix map?",
+    "options": [
+      "Maps joint coordinate space to motor voltage units",
+      "Maps joint velocities to Cartesian end-effector velocities",
+      "Maps database queries to layout templates",
+      "Maps network socket connections to router IP keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Jacobian is a matrix of partial derivatives that defines how changes in joint angles relate to end-effector movement in 3D space.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the goal of SLAM in mobile robotics?",
+    "options": [
+      "To verify code syntax errors automatically",
+      "To simultaneously build a map of an unknown environment and estimate the robot's location within that map",
+      "To compile binary files on local disks",
+      "To secure network portals against DDoS attacks"
+    ],
+    "correctIndex": 1,
+    "explanation": "SLAM (Simultaneous Localization and Mapping) is a fundamental problem where a robot has no map and must build one while tracking its own coordinates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In robot arm control, what does gravity compensation mean?",
+    "options": [
+      "Reducing physical link weights using carbon materials",
+      "Applying feed-forward motor torques to counteract the force of gravity acting on the arm links, keeping it static without active feedback error",
+      "Increasing amplifier voltages on crashes",
+      "Running PID loops at higher loop frequencies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gravity compensation calculates the torque gravity exerts on each joint based on arm orientation, applying offsetting motor efforts so the arm 'floats'.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why are brushless DC (BLDC) motors generally preferred over brushed DC motors in robotic joints?",
+    "options": [
+      "BLDC motors do not require electronic controllers",
+      "BLDC motors offer higher efficiency, reliability, heat dissipation, and longevity due to the absence of mechanical brushes",
+      "BLDC motors are significantly cheaper and simpler to wire",
+      "BLDC motors only rotate in one direction"
+    ],
+    "correctIndex": 1,
+    "explanation": "BLDC motors replace mechanical brushes with electronic commutation. They reduce friction, noise, and wear, making them ideal for precise joint controls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between Holonomic and Non-Holonomic robots.",
+    "options": [
+      "Holonomic is for arms; Non-Holonomic is for wheels",
+      "Holonomic robots can move in any direction instantly because controllable degrees of freedom equal total degrees of freedom; Non-holonomic robots have motion constraints",
+      "Non-Holonomic robots are faster and always use omnidirectional wheels",
+      "They are identical kinematics concepts"
+    ],
+    "correctIndex": 1,
+    "explanation": "A car is non-holonomic (cannot move sideways without turning). A holonomic robot (e.g. using mecanum wheels) can translate laterally immediately.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the Extended Kalman Filter (EKF) in robot localization, and how does it handle non-linearity?",
+    "options": [
+      "It speeds up database queries; handles non-linearity by indexing files",
+      "It estimates system state by linearizing non-linear process and measurement models using first-order Taylor series expansions (Jacobian matrices)",
+      "It blocks unauthorized ports; handles non-linearity by firewalls",
+      "It compresses video frames; handles non-linearity by codecs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard KF requires linear formulas. Since robot motion/sensor metrics are non-linear, EKF calculates Jacobians at each step to approximate linear models locally.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In optimal control theory, how does the Linear Quadratic Regulator (LQR) determine control gains?",
+    "options": [
+      "By manually tuning gains on trial-and-error loops",
+      "By optimizing a quadratic cost function that balances state deviation errors against control input effort energy",
+      "By compiling code structures through logic trees",
+      "By querying database records for target matching metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "LQR solves algebraic Riccati equations to find gain matrices. It optimizes the trade-off between keeping errors small and using minimal actuator power.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe how Singular Value Decomposition (SVD) of the Jacobian matrix is used in robot arm singularity analysis.",
+    "options": [
+      "SVD formats coordinate numbers into binary structures",
+      "A singular value of zero in SVD indicates the Jacobian has lost rank, meaning the arm has hit a singularity and lost a Cartesian degree of freedom",
+      "SVD is only used to compute motor currents",
+      "SVD speeds up controller loop frequencies on microchips"
+    ],
+    "correctIndex": 1,
+    "explanation": "When arm joints align, rank drops. SVD isolates the singular values. A zero value shows the direction in Cartesian space where movement is kinematically impossible.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the performance advantage of using Component Composition (Nodelet-style) in ROS 2 compared to separate node processes?",
+    "options": [
+      "It makes nodes run on separate physical computer systems",
+      "It allows nodes to share the same execution process, enabling zero-copy message passing using shared pointers and bypassing serialization overhead",
+      "It increases security by isolating memory spaces completely",
+      "It enables nodes to be compiled in different languages"
+    ],
+    "correctIndex": 1,
+    "explanation": "In ROS 1, nodes communicate via TCP loopback (serialization overhead). ROS 2 component composition hosts nodes in one container, sharing memory pointers for instant communications.",
+    "difficulty": "hard"
   }
 ]

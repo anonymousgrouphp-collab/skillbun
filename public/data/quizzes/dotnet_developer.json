@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "A robust observability strategy involves three pillars: structured logging (for detailed events), metrics (for aggregated performance data), and distributed tracing (for following requests across service boundaries). Tools like Serilog, Prometheus/Grafana, and OpenTelemetry enable this comprehensive visibility.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is .NET?",
+    "options": [
+      "A domain extension for websites",
+      "A free, open-source, developer platform developed by Microsoft for building many types of applications",
+      "An operating system for cloud servers",
+      "A programming language similar to HTML"
+    ],
+    "correctIndex": 1,
+    "explanation": ".NET is a managed framework that compiles and runs applications written in languages like C#, F#, or VB.NET.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which programming language is the primary choice for building applications on the .NET platform?",
+    "options": [
+      "Python",
+      "C#",
+      "JavaScript",
+      "Ruby"
+    ],
+    "correctIndex": 1,
+    "explanation": "C# (C-Sharp) is the flagship, modern object-oriented language designed by Microsoft for the .NET platform.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is ASP.NET Core used for?",
+    "options": [
+      "Designing graphic layouts",
+      "Building high-performance web applications, APIs, and microservices in .NET",
+      "Setting up local server network cables",
+      "Managing SQL database backups directly"
+    ],
+    "correctIndex": 1,
+    "explanation": "ASP.NET Core is the open-source, cross-platform web framework in .NET for building web applications and web APIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does CLI stand for in .NET development?",
+    "options": [
+      "Common Language Infrastructure",
+      "Command Line Interface (e.g. dotnet CLI)",
+      "Client Link Integration",
+      "Core Logic Interface"
+    ],
+    "correctIndex": 1,
+    "explanation": "The dotnet CLI is the command line interface tool used to create, build, run, and publish .NET applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Entity Framework (EF) Core?",
+    "options": [
+      "A framework for designing UI wireframes",
+      "An open-source Object-Relational Mapper (ORM) for .NET, allowing developers to query databases using C# objects",
+      "A security standard for user authentication",
+      "A compression library for file transfers"
+    ],
+    "correctIndex": 1,
+    "explanation": "EF Core is Microsoft's official ORM, mapping database tables to C# classes and converting LINQ queries to raw SQL queries.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does NuGet manage in .NET projects?",
+    "options": [
+      "Server hardware configurations",
+      "Third-party libraries and packages (dependencies) in .NET applications",
+      "User login credentials",
+      "Database table schemas"
+    ],
+    "correctIndex": 1,
+    "explanation": "NuGet is the package manager for .NET, enabling developers to search, download, and update dependencies easily.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the output format of a compiled .NET application?",
+    "options": [
+      "Raw Python scripts",
+      "Common Intermediate Language (CIL) bytecode packaged in DLL or EXE files",
+      "Compiled HTML files",
+      "Uncompressed ZIP folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "When .NET code is compiled, it compiles to CIL (Intermediate Language). At runtime, the JIT compiler compiles CIL to native machine code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of the CLR (Common Language Runtime) in .NET?",
+    "options": [
+      "To compile C# to python scripts",
+      "The runtime environment that manages execution of .NET programs, handling memory (garbage collection), safety, and JIT compilation",
+      "A database server administration tool",
+      "A networking routing firewall"
+    ],
+    "correctIndex": 1,
+    "explanation": "The CLR is the engine of .NET. It runs compiled CIL bytecode, handles memory allocation/deallocation, manages security boundaries, and handles exceptions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is LINQ (Language Integrated Query) in C#?",
+    "options": [
+      "A compiler command that links libraries",
+      "A set of technologies based on the integration of query capabilities directly into the C# language, allowing data queries across objects, SQL, and XML uniformally",
+      "A database engine software developed by Microsoft",
+      "A style sheet language for formatting UIs"
+    ],
+    "correctIndex": 1,
+    "explanation": "LINQ integrates query syntax directly into C# (e.g. `var query = users.Where(u => u.Age > 18)`), enabling compile-time type-safety checks for data queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between .NET Framework and .NET Core (and modern .NET 5+)?",
+    "options": [
+      "Core is paid; Framework is free",
+      ".NET Framework is legacy, Windows-only; .NET Core (and .NET 5+) is open-source, cross-platform, and optimized for cloud architectures",
+      "Framework is faster and smaller than Core",
+      "Core does not support C# programming"
+    ],
+    "correctIndex": 1,
+    "explanation": "Microsoft rebuilt the platform with .NET Core to support cross-platform (Linux, macOS) and microservices containers. Modern .NET (5, 6, 7, 8) continues this unified open-source track.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Dependency Injection (DI) and how is it integrated into ASP.NET Core?",
+    "options": [
+      "Injecting viruses into code; mitigated by scanners",
+      "A design pattern for achieving loose coupling, integrated natively into ASP.NET Core via a built-in IoC container to manage service lifetimes",
+      "Injecting database tables into models directly",
+      "A network routing protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "ASP.NET Core has built-in DI. Services are registered in startup code and injected into controller constructors automatically, promoting modularity and testability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the three service lifetimes in .NET Dependency Injection?",
+    "options": [
+      "Short, Medium, Long",
+      "Transient (created each time requested), Scoped (created once per request), and Singleton (created once, shared globally)",
+      "Public, Private, Protected",
+      "Static, Dynamic, Volatile"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transient services are lightweight and stateless. Scoped services persist across a single HTTP request. Singleton services stay in memory for the app lifecycle.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Kestrel do in ASP.NET Core?",
+    "options": [
+      "It scales down CPU speeds",
+      "A lightweight, cross-platform, high-performance web server engine used to host ASP.NET Core apps by default",
+      "It encrypts database backups",
+      "It compiles C# source files into DLLs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kestrel is the default web server that listens for HTTP requests. It is often placed behind a reverse proxy (like IIS or Nginx) in production environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'appsettings.json' and 'Secrets Manager' (dotnet user-secrets)?",
+    "options": [
+      "appsettings.json is only for databases; user-secrets is for web pages",
+      "appsettings.json stores non-sensitive configuration committed to git; user-secrets stores local development credentials off-disk outside the project folder to prevent key leaks",
+      "user-secrets is used in production environments",
+      "appsettings.json is encrypted; user-secrets is not"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Secrets Manager tool is specifically for local development to keep sensitive connection strings or API keys out of code repos. Production uses env vars or Azure Key Vault.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Middleware' in ASP.NET Core?",
+    "options": [
+      "Software placed physically in datacenter middle racks",
+      "Software components assembled into an application pipeline to handle HTTP requests and responses (e.g. authentication, routing, CORS)",
+      "A database query optimizer",
+      "A compiler utility that formats code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Middleware components run sequentially. When a request arrives, it travels through middleware classes (e.g., Logging -> Auth -> Routing -> Endpoints) and returns along the same path.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of asynchronous programming (async/await) in C#?",
+    "options": [
+      "To make code compile faster",
+      "To release threads back to the thread pool during I/O-bound tasks, preventing thread exhaustion and improving application scalability",
+      "To run code in different programming languages",
+      "To write database backups in background"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using async/await ensures threads do not block waiting for database or network tasks, allowing the thread pool to handle other incoming requests in high-scale web APIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does JIT stand for in .NET compilation?",
+    "options": [
+      "Java Integration Tool",
+      "Just-In-Time (compiler that compiles CIL bytecode to native machine code at runtime)",
+      "Join Index Table",
+      "Job Integration Task"
+    ],
+    "correctIndex": 1,
+    "explanation": "The JIT compiler is part of the CLR, translating intermediate CIL instructions into CPU-specific instructions just before execution, optimizing for the target processor.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Value Types and Reference Types in C#?",
+    "options": [
+      "Value types are stored on the heap; reference types on the stack",
+      "Value types (like structs, int, bool) store actual data and are allocated on the stack; Reference types (like classes, string) store pointers to data and are allocated on the heap",
+      "Reference types are always faster than value types",
+      "Value types cannot be modified"
+    ],
+    "correctIndex": 1,
+    "explanation": "Value types copy their data on assignment. Reference types copy their pointer, meaning two variables can point to and modify the same heap-allocated object.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Garbage Collection' in .NET and how is it structured?",
+    "options": [
+      "Deleting old files from directories; structured by chron dates",
+      "An automatic memory manager using a generational system (Gen 0, Gen 1, Gen 2) to optimize memory cleanup on the heap based on object lifetimes",
+      "A developer cleanup meeting; structured by team ranks",
+      "An index optimization process; structured by tables"
+    ],
+    "correctIndex": 1,
+    "explanation": ".NET GC divides the heap into three generations. Gen 0 has new short-lived objects. Gen 1 is a buffer. Gen 2 has long-lived objects. Collecting Gen 0 is fast, while Gen 2 requires full sweeps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Entity Framework Core 'Migrations' do?",
+    "options": [
+      "Migrates the codebase to a different programming language",
+      "A feature that allows developers to sync their database schema with their C# EF Core data model code, generating SQL scripts automatically",
+      "Moves servers to a different cloud provider",
+      "Imports CSV data into tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Migrations track changes to model classes (e.g. adding a property) and generate C# code representing database schema updates, keeping database and code structures synced.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'IL' (Intermediate Language) viewing, and how do tools like ILDasm or ILSpy assist .NET developers?",
+    "options": [
+      "A tool for editing UI layout elements",
+      "Viewing the compiled bytecode output of .NET compilers to understand compiler optimizations, reverse-engineer assemblies, or debug low-level issues",
+      "A database query planner tool",
+      "A compiler utility that translates C# to Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "ILDasm/ILSpy decompile compiled DLLs back to CIL bytecode or reconstructed C# code, which is vital for security audits, checking optimization behaviors, or analyzing third-party libraries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Memory Leak' in a managed .NET application, and how does it happen if garbage collection is automatic?",
+    "options": [
+      "Data leaking to hackers; happens via bad firewalls",
+      "Objects remaining reachable in the reference tree (e.g., static lists, event handlers not unsubscribed), preventing the Garbage Collector from releasing their memory",
+      "A bug in the compiler; happens during build",
+      "RAM running out of physical sectors; happens on old hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Managed leaks occur when objects that are no longer needed are still referenced by long-lived roots (like static variables or event subscriptions). Since a path to the root exists, the GC cannot free them.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In C#, what is the difference between Task.Run and using async/await for I/O operations?",
+    "options": [
+      "Task.Run is only for file writes; async/await is for networks",
+      "Task.Run queues work on the Thread Pool (ideal for CPU-bound tasks); async/await uses non-blocking hardware interrupts without blocking any thread pool threads (ideal for I/O-bound tasks)",
+      "Task.Run is serverless; async/await is server-based",
+      "They are identical in thread allocation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using `Task.Run` for database calls consumes a thread just to wait for the database, defeating the scalability benefits of async I/O. True async/await releases the thread during hardware waits.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Reflection' API in .NET and what is its main performance drawback?",
+    "options": [
+      "An API for displaying screen layout reflections; drawback is screen glare",
+      "An API allowing code to inspect metadata and dynamically instantiate types/invoke methods at runtime; drawback is high CPU overhead compared to static calls",
+      "An API for mirroring databases; drawback is sync lag",
+      "A testing framework; drawback is it is slow to run tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reflection allows inspecting assemblies, reading attributes, and creating objects dynamically. However, since type validation and lookups happen at runtime (bypassing JIT optimizations), it is slow.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'SPAN<T>' and 'Memory<T>' introduced in modern .NET, and how do they optimize performance?",
+    "options": [
+      "Special classes for storing network passwords securely",
+      "Contiguous representations of arbitrary memory (stack, heap, native) that allow slicing and manipulation without allocating memory copies, reducing garbage collection pressure",
+      "A database index type that speeds up write queries",
+      "A multithreading library that replaces standard tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Span<T>` provides type-safe access to memory. Slicing a span (e.g., getting a substring) does not allocate a new string object on the heap; it creates a reference to the existing buffer, saving memory allocation.",
+    "difficulty": "hard"
   }
 ]

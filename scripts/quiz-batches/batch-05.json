@@ -1,0 +1,887 @@
+{
+  "data_analyst": [
+    {
+      "question": "What is the primary goal of data analysis?",
+      "options": ["To write application source code", "To clean, inspect, transform, and model data to discover useful information and support decision-making", "To configure network database servers", "To design graphical user interfaces"],
+      "correctIndex": 1,
+      "explanation": "Data analysis helps organizations make informed decisions by turning raw data into structured insights, trends, and reports.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which SQL statement is used to retrieve data from a database?",
+      "options": ["UPDATE", "INSERT", "SELECT", "DELETE"],
+      "correctIndex": 2,
+      "explanation": "SELECT is the fundamental SQL query command used to extract data from tables in a database.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In a dataset, what does the 'Mean' represent?",
+      "options": ["The middle value when sorted", "The most frequently occurring value", "The mathematical average (sum of values divided by the count)", "The difference between the highest and lowest values"],
+      "correctIndex": 2,
+      "explanation": "The mean is the average of a numeric dataset, calculated by adding all numbers and dividing by the total count.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In a dataset, what does the 'Median' represent?",
+      "options": ["The average of all values", "The middle value in a sorted list of numbers", "The most common value in the dataset", "The standard deviation limit"],
+      "correctIndex": 1,
+      "explanation": "The median is the middle value in a data distribution when ordered from lowest to highest. If the count is even, it is the average of the two middle numbers.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Null' value in a database?",
+      "options": ["A value of zero", "An empty text string", "A marker indicating missing or unknown data", "A column deletion command"],
+      "correctIndex": 2,
+      "explanation": "Null is a special marker in SQL indicating the absence of a value (blank or missing data), different from zero or empty strings.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a popular BI tool used by analysts to build interactive reports?",
+      "options": ["Visual Studio", "Docker", "Power BI / Tableau", "Node.js"],
+      "correctIndex": 2,
+      "explanation": "Power BI and Tableau are leading business intelligence platforms used to connect to data sources and build visual dashboards.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a pie chart display?",
+      "options": ["Data trends over time", "The relationship between two numeric variables", "Proportions of a whole (parts of a percentage breakdown)", "A distribution histogram"],
+      "correctIndex": 2,
+      "explanation": "Pie charts represent categorical data as slices of a circle, where each slice is proportional to the category's size relative to the whole.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In SQL, what is the difference between WHERE and HAVING clauses?",
+      "options": ["WHERE is for tables; HAVING is for columns", "WHERE filters rows before aggregation; HAVING filters aggregated groups created by GROUP BY", "HAVING is faster than WHERE", "They are identical in purpose"],
+      "correctIndex": 1,
+      "explanation": "WHERE acts on individual table rows before groups are summarized. HAVING filters the summarized groups output (e.g. `HAVING SUM(sales) > 1000`) after aggregation.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a correlation coefficient of -0.9 indicate?",
+      "options": ["No relationship between the variables", "A strong positive relationship", "A strong negative (inverse) relationship", "An invalid mathematical calculation"],
+      "correctIndex": 2,
+      "explanation": "Correlation coefficients range from -1 to 1. A score of -0.9 shows a very strong negative correlation, meaning as one variable increases, the other decreases consistently.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In data cleaning, what is an 'outlier'?",
+      "options": ["A column that is not linked to other tables", "A data point that differs significantly from other observations in the dataset (extremely high or low value)", "A row containing duplicate values", "A system variable defined outside code blocks"],
+      "correctIndex": 1,
+      "explanation": "Outliers are anomalies or extreme values in data that can skew statistical calculations (like the mean) and require investigation during data cleaning.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a JOIN operation in SQL?",
+      "options": ["To merge two database files together", "To combine columns from two or more tables based on a related common column", "To sort the query output", "To calculate the sum of a column"],
+      "correctIndex": 1,
+      "explanation": "JOIN combines fields from multiple tables by matching keys (e.g., matching a Customer ID in a Sales table with a Customer ID in a Customers table).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which Python library is the standard tool for data manipulation and analysis using DataFrame objects?",
+      "options": ["Matplotlib", "Pandas", "Scikit-learn", "Flask"],
+      "correctIndex": 1,
+      "explanation": "Pandas provides high-performance data structures (Series and DataFrames) and data analysis tools, making it the primary choice for data manipulation in Python.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between qualitative and quantitative data?",
+      "options": ["Qualitative is for SQL; Quantitative is for NoSQL", "Qualitative data is descriptive and non-numeric (e.g., categories, text); Quantitative data is numeric and measurable (e.g., heights, sales counts)", "Qualitative is always structured; Quantitative is always unstructured", "They are synonyms in data science"],
+      "correctIndex": 1,
+      "explanation": "Quantitative data represents counts or measurements that can be calculated mathematically. Qualitative data represents descriptive labels or attributes that group data.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In statistics, what does 'Standard Deviation' measure?",
+      "options": ["The average value of the dataset", "The dispersion or spread of data points relative to their mean value", "The count of rows in a table", "The difference between median and mode"],
+      "correctIndex": 1,
+      "explanation": "Standard deviation quantifies variation. A low standard deviation means data points cluster close to the mean. A high standard deviation shows data is spread widely.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Pivot Table' used for in Excel or data tools?",
+      "options": ["To encrypt columns for safety", "To dynamically summarize, aggregate, sort, and group large datasets to analyze patterns", "To delete empty rows automatically", "To draw sitemaps for website layouts"],
+      "correctIndex": 1,
+      "explanation": "Pivot tables allow users to quickly slice, dice, and summarize raw records (e.g., sum sales by region and month) without writing complex formulas.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of A/B testing?",
+      "options": ["To test database backup performance", "To compare two versions of a variable (A and B) to determine which performs better based on statistical metrics", "To teach developers coding standards", "To evaluate server hardware speeds"],
+      "correctIndex": 1,
+      "explanation": "A/B testing (split testing) divides user traffic between two design/content options to gather statistical evidence on which version drives higher conversions or engagement.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In databases, what is a 'Foreign Key'?",
+      "options": ["A key used to access remote cloud servers", "A column or group of columns in one table that provides a link to the primary key in another table", "A password used by external users", "An index that is not stored locally"],
+      "correctIndex": 1,
+      "explanation": "Foreign keys enforce referential integrity between tables, linking records (e.g., linking a transaction record to a specific product ID in the product directory).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Cohort Analysis'?",
+      "options": ["An audit of developer coding speeds", "Analyzing the behavior of a specific group of users who share a common characteristic or experience within a defined time span", "A database table query benchmark", "A study of CPU clock speeds"],
+      "correctIndex": 1,
+      "explanation": "Cohort analysis groups users based on signup dates or attributes (e.g., 'Users who signed up in January') to track retention and lifetime behavior over time.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Histogram' show?",
+      "options": ["Trends of variables over time", "The frequency distribution of a continuous numerical variable across different intervals (bins)", "The relationship between two numeric categories", "A breakdown of percentages in a circle shape"],
+      "correctIndex": 1,
+      "explanation": "Histograms show how continuous data is distributed. The X-axis represents ranges (bins) and the Y-axis shows the count of data points falling in each range.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Data Wrangling' (Data Munging)?",
+      "options": ["Encrypting data files for security purposes", "The process of cleaning, transforming, and mapping raw data into a usable format for analysis and modeling", "Running automated software updates on servers", "Connecting servers physically in database centers"],
+      "correctIndex": 1,
+      "explanation": "Raw data is often incomplete, messy, or formatted poorly. Wrangling cleans duplicates, handles nulls, and structures the data so it can be queried reliably.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'Simpson's Paradox' in data analysis?",
+      "options": ["A database index crashing due to high load", "A trend that appears in different groups of data but disappears or reverses when these groups are combined", "A coding loop that runs infinitely without throwing errors", "An error caused by using invalid characters in data columns"],
+      "correctIndex": 1,
+      "explanation": "Simpson's Paradox occurs when aggregated data hides or reverses underlying relationships present in sub-categories, emphasizing the need to analyze subgroup distributions closely.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does a Left Join differ from an Inner Join in SQL?",
+      "options": ["Left Join is only used for text columns; Inner Join is for numbers", "Inner Join returns only matching rows from both tables; Left Join returns all rows from the left table, plus matching rows from the right table (filling mismatch with NULLs)", "Inner Join is always faster and should replace Left Join in all queries", "Left Join only queries the left database file"],
+      "correctIndex": 1,
+      "explanation": "Inner Join filters out non-matching records. Left Join preserves all records from the primary (left) table, appending matching fields from the secondary table where they exist.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Statistical Power' in hypothesis testing?",
+      "options": ["The speed at which statistics are calculated on a server", "The probability that a test correctly rejects a false null hypothesis (detects an effect that actually exists)", "The accuracy rating of the database server", "The size of the data sample collected"],
+      "correctIndex": 1,
+      "explanation": "Statistical power (1 - Beta) represents the likelihood of detecting a true effect. High power reduces the risk of Type II errors (false negatives).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Type I and Type II errors in statistical testing?",
+      "options": ["Type I is a database write error; Type II is a read error", "Type I error is a false positive (rejecting a true null hypothesis); Type II error is a false negative (failing to reject a false null hypothesis)", "Type I is a compiler bug; Type II is a user typo", "They are synonyms in statistical hypotheses"],
+      "correctIndex": 1,
+      "explanation": "Type I error occurs when you detect an effect that is not there (claiming a design is better when it is not). Type II occurs when you miss a real effect (claiming no change when there actually is one).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does a SQL window function (e.g. `SUM(sales) OVER(PARTITION BY region)`) do?",
+      "options": ["It opens a window in the browser UI to input data", "It performs calculations across a set of table rows related to the current row, without collapsing the rows into a single summary row", "It partitions the database file onto different physical drives", "It executes a query inside a popup window"],
+      "correctIndex": 1,
+      "explanation": "Unlike GROUP BY which aggregates and collapses rows, window functions compute aggregate values over partitions while maintaining the identity and detail of individual rows in the output.",
+      "difficulty": "hard"
+    }
+  ],
+  "data_engineering": [
+    {
+      "question": "What is the primary goal of Data Engineering?",
+      "options": ["Building front-end charts for dashboards", "Designing, building, and maintaining pipelines and architectures that transport and prepare data for analysis", "Writing machine learning algorithms", "Managing social media data sharing campaigns"],
+      "correctIndex": 1,
+      "explanation": "Data engineers construct the plumbing of data systems, building ETL pipelines and warehouses to deliver reliable, clean datasets to analysts and scientists.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does ETL stand for?",
+      "options": ["Encrypt, Transform, Load", "Extract, Transform, Load", "Evaluate, Transfer, Link", "Enter, Test, Launch"],
+      "correctIndex": 1,
+      "explanation": "ETL stands for Extract (pull raw data), Transform (clean and structure it), and Load (save to target database/warehouse).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Data Lake'?",
+      "options": ["A physical cooling system for servers", "A centralized repository that stores raw, unstructured, semi-structured, or structured data at scale", "A database index table", "A networking router for cloud files"],
+      "correctIndex": 1,
+      "explanation": "Data Lakes hold raw data in its native format (JSONs, logs, images, CSVs) without pre-defined schemas, providing flexibility for data exploration.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which SQL database engine is widely used for data engineering due to its robust relational features?",
+      "options": ["HTML", "PostgreSQL", "CSS", "Python"],
+      "correctIndex": 1,
+      "explanation": "PostgreSQL is an advanced, open-source relational database widely used for structured data storage and staging layers.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a data pipeline?",
+      "options": ["A physical pipe routing coolant through servers", "A series of data processing steps that moves data from a source system to a target destination, transforming it along the way", "A software tool for compressing files", "An API framework for styling dashboards"],
+      "correctIndex": 1,
+      "explanation": "Data pipelines automate the movement and transformation of data from operational systems to analytical databases.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a 'Schema' define in a database?",
+      "options": ["The pricing cost of the database engine", "The logical structure, organization, columns, data types, and relationships of tables in the database", "The network port settings", "The encryption algorithm used"],
+      "correctIndex": 1,
+      "explanation": "A schema acts as the blueprint of a database, defining tables, column types (integer, text, date), and integrity constraints.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is columnar storage?",
+      "options": ["Storing files in vertical rows on disk", "A database storage layout that stores data blocks column-by-column rather than row-by-row, optimizing analytical query speeds", "A method for naming tables in database systems", "A security standard for user access control"],
+      "correctIndex": 1,
+      "explanation": "Columnar databases (like Snowflake, Redshift) store values of the same column together. This makes queries retrieving specific columns across millions of rows highly efficient.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between ETL and ELT?",
+      "options": ["ETL is only for NoSQL; ELT is for SQL", "ETL transforms data before loading it into the warehouse; ELT loads raw data into the warehouse first and transforms it there using the warehouse's compute power", "ELT is older and deprecated; ETL replaces it", "ETL is manual; ELT is automated"],
+      "correctIndex": 1,
+      "explanation": "ELT (Extract, Load, Transform) leverages the massive scale and computing power of modern cloud data warehouses to transform data *after* loading, simplifying pipelines.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which of the following is a distributed computing framework widely used to process big data workloads in parallel?",
+      "options": ["React.js", "Apache Spark", "Tableau", "Git"],
+      "correctIndex": 1,
+      "explanation": "Apache Spark is an open-source, distributed processing system designed for big data workloads, executing computations in-memory across a cluster of nodes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a message broker (e.g. Apache Kafka, RabbitMQ) used for in data engineering?",
+      "options": ["To send marketing emails to customers", "To ingest and process high-throughput real-time data streams asynchronously", "To store static website assets", "To manage user roles and permissions"],
+      "correctIndex": 1,
+      "explanation": "Message brokers enable real-time event streaming and queuing, allowing ingest pipelines to capture continuous telemetry or logs reliably.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of database indexes, and what is the trade-off?",
+      "options": ["They encrypt data; trade-off is they slow down reads", "They speed up data retrieval (reads); trade-off is they slow down inserts/updates (writes) and consume extra storage", "They automatically clean duplicates; trade-off is they require Python code", "They connect different databases; trade-off is they require firewalls"],
+      "correctIndex": 1,
+      "explanation": "Indexes create lookup structures for columns. While they make SELECT queries fast, the database must rebuild index trees during INSERT, UPDATE, or DELETE operations.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a workflow orchestrator (e.g. Apache Airflow, Prefect) do?",
+      "options": ["Styles visual layouts of dashboards", "Schedules, orchestrates, and monitors complex data pipelines, managing dependencies between tasks", "Runs database queries automatically in the browser", "Maintains server CPU speeds"],
+      "correctIndex": 1,
+      "explanation": "Orchestrators run pipelines as Directed Acyclic Graphs (DAGs), ensuring tasks execute in the correct order, handling retries on failure, and providing operational monitoring.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Slowly Changing Dimension' (SCD) Type 2?",
+      "options": ["A database index that updates slowly", "A data modeling technique that tracks historical changes by creating a new row for each change, using validity dates (start_date, end_date)", "A table that deletes old data automatically", "A dimension that only allows text columns"],
+      "correctIndex": 1,
+      "explanation": "SCD Type 2 preserves full history in dimension tables. When a customer changes their address, the old row is marked inactive, and a new active row is inserted.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Data Lineage'?",
+      "options": ["To list database server locations", "Tracking the origin, movement, and transformations of data as it flows through pipelines from source to target", "Predicting future data growth using ML models", "Restricting data access permissions"],
+      "correctIndex": 1,
+      "explanation": "Data lineage provides transparency, showing how metrics are computed and where they originated, making troubleshooting and auditing simple.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In big data, what does 'Partitioning' a table do?",
+      "options": ["Encrypting the table blocks", "Splitting a large table into smaller, manageable segments based on a column (like date or region) to improve query performance", "Converting a relational table into NoSQL format", "Deallocating unused memory columns"],
+      "correctIndex": 1,
+      "explanation": "Partitioning narrows down data scans. For example, querying sales for a specific date only scans that date's partition rather than scanning the entire multi-billion row table.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between structured, semi-structured, and unstructured data?",
+      "options": ["Structured is for text; Unstructured is for numbers", "Structured data follows a strict schema (relational tables); Semi-structured data has some structure (JSON, XML); Unstructured data has no predefined model (video, PDF, audio)", "Semi-structured data is always encrypted", "They are identical database formats"],
+      "correctIndex": 1,
+      "explanation": "Structured data fits rows/columns (SQL). Semi-structured uses tags or keys (NoSQL/JSON). Unstructured is raw binary files requiring special processing to extract features.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Data Warehouse' optimized for, compared to a transactional database (OLTP)?",
+      "options": ["OLTP is for analytics; Warehouse is for fast writes", "Data Warehouses are optimized for complex read queries and analytical aggregations (OLAP); OLTP databases are optimized for fast row-level writes and transactions", "Warehouses are always free; OLTP is paid", "Warehouses do not support SQL queries"],
+      "correctIndex": 1,
+      "explanation": "Transactional systems (OLTP) handle day-to-day operations (like inserting a sale). Analytical warehouses (OLAP) aggregate massive histories to run reports.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'CDC' (Change Data Capture)?",
+      "options": ["Control Data Compression", "Change Data Capture; a technique that monitors and captures database insert/update/delete events in real-time to sync downstream systems", "Central Database Compiler", "Columnar Data Comparison"],
+      "correctIndex": 1,
+      "explanation": "CDC reads transaction logs of operational databases to stream updates to data lakes or warehouses immediately, ensuring near real-time sync without heavy querying.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of a schema registry in streaming pipelines (like Kafka)?",
+      "options": ["To register domain names for streaming hosts", "To store and enforce schemas for message payloads, ensuring serialization compatibility between producers and consumers", "To cache SQL queries locally", "To encrypt message payloads"],
+      "correctIndex": 1,
+      "explanation": "A schema registry prevents data corruption by validating that messages sent by producers conform to schemas that consumers expect (e.g. using Avro or Protobuf).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Idempotency' in data pipeline tasks?",
+      "options": ["A task that always fails on the first run", "A property where executing a task multiple times produces the same final state as running it once, preventing duplicate records on retry", "A task that compiles code automatically", "A task that runs in parallel across regions"],
+      "correctIndex": 1,
+      "explanation": "Idempotent pipelines handle failures safely. If a load step crashes midway and restarts, it won't insert duplicate rows, typically by overwriting or checking for existing keys.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the CAP theorem state regarding distributed data systems?",
+      "options": ["Distributed systems can achieve all of Consistency, Availability, and Partition Tolerance simultaneously", "A distributed system can guarantee at most two of: Consistency, Availability, and Partition Tolerance (and during network partition, you must choose between C or A)", "Consistency is always more important than availability in all databases", "All nodes must run on identical physical hardware"],
+      "correctIndex": 1,
+      "explanation": "During a network partition (P) where nodes cannot communicate, a distributed database must choose to either reject requests to keep data consistent (Consistency) or accept writes on isolated nodes (Availability), resulting in out-of-sync data.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Star Schema' in dimensional modeling, and how does it optimize queries?",
+      "options": ["A schema layout that has no primary keys", "Consists of a central fact table containing quantitative metrics, surrounded by denormalized dimension tables, reducing joins for analytical queries", "A database system designed by Google", "A network routing protocol for big data"],
+      "correctIndex": 1,
+      "explanation": "The star schema denormalizes dimensions. This simplifies SQL queries and reduces the number of tables joined, matching the optimal query patterns of OLAP engines.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does 'Compaction' work in log-structured merge-tree (LSM Tree) databases (e.g. Cassandra, Bigtable)?",
+      "options": ["By deleting the oldest database tables", "By merging and sorting immutable files (SSTables) in the background to remove deleted or duplicate records, reclaiming space and speeding up reads", "By compressing the database files into zip format", "By clearing the CPU memory cache"],
+      "correctIndex": 1,
+      "explanation": "LSM-tree databases write updates as immutable files. Compaction consolidates these files, removing overwritten values and tombstoned (deleted) records to optimize read operations.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Apache Spark, what is the difference between a 'Narrow Dependency' and a 'Wide Dependency' in execution plans?",
+      "options": ["Narrow dependencies require network transfer; Wide dependencies do not", "Narrow dependencies have each partition of the parent RDD used by at most one child partition (no shuffle); Wide dependencies require data shuffles across the network (e.g. groupBy)", "Wide dependencies are always faster than narrow dependencies", "Narrow dependencies are only for small datasets"],
+      "correctIndex": 1,
+      "explanation": "Narrow transformations (like map, filter) run in parallel on local partitions. Wide transformations (like join, groupBy) require reshuffling partitions across nodes over the network, causing a performance bottleneck.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Backpressure' in stream processing engines (e.g. Apache Flink, Spark Streaming)?",
+      "options": ["The physical heat pressure inside server cases", "A safety mechanism that signals upstream producers to slow down ingestion rate when downstream consumers are overwhelmed, preventing memory crashes", "A network encryption protocol", "A database query queue block"],
+      "correctIndex": 1,
+      "explanation": "When consumer threads cannot process messages as fast as they arrive, backpressure propagates upstream to limit ingest rates, maintaining system stability under high load.",
+      "difficulty": "hard"
+    }
+  ],
+  "data_governance_specialist": [
+    {
+      "question": "What is the primary objective of Data Governance?",
+      "options": ["Writing raw database queries", "Establishing policies, roles, and standards to ensure data security, accuracy, consistency, and proper usage across an organization", "Designing user interfaces", "Configuring server hardware"],
+      "correctIndex": 1,
+      "explanation": "Data Governance focuses on managing the availability, usability, integrity, and security of corporate data assets.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does GDPR stand for in data privacy?",
+      "options": ["Global Database Protection Rule", "General Data Protection Regulation", "Government Data Privacy Register", "General Document Privacy Rights"],
+      "correctIndex": 1,
+      "explanation": "GDPR is a comprehensive European Union regulation governing data protection and privacy for all individuals within the EU.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'PII' in information security?",
+      "options": ["Private Internet Protocol", "Personally Identifiable Information", "Public Index Interface", "Process Integration Index"],
+      "correctIndex": 1,
+      "explanation": "PII refers to any information that can be used to distinguish or trace an individual's identity (e.g., Social Security Number, email, phone number).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Data Steward' responsible for?",
+      "options": ["Buying server hardware", "Managing the day-to-day quality, definition, and business rules of specific data assets within their department", "Writing the backend application code", "Designing corporate logo branding"],
+      "correctIndex": 1,
+      "explanation": "Data Stewards act as caretakers of data, ensuring it is documented correctly, complies with standards, and meets quality goals.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Data Dictionary'?",
+      "options": ["A book explaining computer terms", "A centralized metadata document defining the columns, data types, meanings, and source origins of database tables", "A software tool for translating SQL queries", "A backup storage system for files"],
+      "correctIndex": 1,
+      "explanation": "A data dictionary provides metadata about database elements, ensuring all teams share a common understanding of data fields.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Metadata'?",
+      "options": ["A type of encrypted database backup", "Data that provides information about other data (data describing data)", "A programming language library", "A tool for compression"],
+      "correctIndex": 1,
+      "explanation": "Metadata describes properties of data assets (e.g., creation date, file size, table owner, data lineage), facilitating search and organization.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary benefit of data classification?",
+      "options": ["To speed up server processor speeds", "To categorize data based on its sensitivity (e.g. public, confidential) to apply appropriate security controls", "To automate database backups", "To visual style dashboard buttons"],
+      "correctIndex": 1,
+      "explanation": "Classification tags data by risk level, ensuring highly sensitive details (like medical or financial records) receive stronger encryption and access controls.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between data privacy and data security?",
+      "options": ["Data privacy is for files; data security is for databases", "Data privacy defines who has authorized access and how data is handled legally; Data security covers the technical controls used to protect data from unauthorized access", "Data security is always free; data privacy is paid", "They are identical terms"],
+      "correctIndex": 1,
+      "explanation": "Privacy concerns rights, compliance (GDPR/CCPA), and user consent. Security concerns technical defenses (firewalls, encryption, MFA) against breaches.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Lineage' and why is it important?",
+      "options": ["The historical ancestry of database companies", "The visualization of data's journey, showing its origin, transformations, and final destinations across systems", "A method for checking code syntax errors", "A technique for backing up tables"],
+      "correctIndex": 1,
+      "explanation": "Lineage helps governance teams audit data flows, ensuring reports match sources and aiding impact analysis before changing schemas.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of a Data Owner?",
+      "options": ["The CEO who owns the company's stocks", "An individual accountable for the classification, access authorization, and lifecycle policy of specific data assets", "The data engineer who writes the ETL pipelines", "The server admin who manages database hosting"],
+      "correctIndex": 1,
+      "explanation": "Data Owners are business leaders who hold accountability for their data domains, approving access requests and defining security classification levels.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Cataloging'?",
+      "options": ["Printing a catalog of database vendors", "Creating a centralized inventory of an organization's data assets, enabling users to search, discover, and understand available datasets", "A security firewall configuration", "A database compression tool"],
+      "correctIndex": 1,
+      "explanation": "A data catalog uses metadata to index datasets across the enterprise, serving as a portal for analysts to locate reliable sources and avoid redundant work.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Masking' (Obfuscation) and when is it used?",
+      "options": ["Hiding database folders from view in file explorers", "Hiding original data values with modified characters (e.g., masking credit cards as XXXX-XXXX-1234) to protect privacy in test environments", "Encrypting database tables on the production server", "Deleting old rows from the database"],
+      "correctIndex": 1,
+      "explanation": "Masking allows developers or analysts to test systems using realistic data shapes without exposing sensitive customer PII or PCI information.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Integrity'?",
+      "options": ["The honesty of the database administrators", "The accuracy, completeness, and consistency of data throughout its lifecycle", "The speed at which data is written to disk", "The encryption standard used for file transfers"],
+      "correctIndex": 1,
+      "explanation": "Data integrity guarantees data remains untampered with and accurate, enforced through primary keys, foreign keys, and validation rules.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Retention Policy' define in data governance?",
+      "options": ["How much salary the data team retains", "How long specific data assets must be stored (for legal or business reasons) and how they should be securely deleted when that period ends", "The number of users allowed to access the database", "The frequency of server backup schedules"],
+      "correctIndex": 1,
+      "explanation": "Retention policies manage data lifecycle. Keeping data indefinitely exposes organizations to storage costs and legal liabilities during audits or data breaches.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Anonymization'?",
+      "options": ["Using fake usernames on corporate Slack", "The irreversible removal or alteration of PII so that the individual cannot be identified, removing the data from privacy regulation scopes", "Encrypting files using public keys", "Storing data on anonymous cloud servers"],
+      "correctIndex": 1,
+      "explanation": "Anonymization strips direct/indirect identifiers permanently, allowing researchers to study datasets without violating privacy compliance rules.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Business Glossary' and how does it differ from a Data Dictionary?",
+      "options": ["A business glossary is for programmers; a data dictionary is for executives", "A Business Glossary defines business terms and concepts in plain language; a Data Dictionary defines technical database columns and schemas", "They are identical books", "A business glossary is only used in marketing"],
+      "correctIndex": 1,
+      "explanation": "A glossary ensures vocabulary alignment (e.g. defining what 'Active Customer' means to the business). A dictionary outlines where that is stored technically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Sovereignty'?",
+      "options": ["The absolute power of a database administrator", "The legal concept that digital data is subject to the laws and regulations of the country in which it is physically located", "Running databases on sovereign government clouds only", "Encrypting data using country-specific keys"],
+      "correctIndex": 1,
+      "explanation": "Sovereignty mandates where data must reside. For example, some countries require their citizens' personal data to be stored physically inside national borders.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Stewardship'?",
+      "options": ["Managing corporate budgets", "The operational execution of data governance policies, focusing on data quality, formatting, and classification compliance", "Deploying database servers to cloud environments", "Writing frontend dashboards"],
+      "correctIndex": 1,
+      "explanation": "Stewardship is governance in action. Stewards write data definitions, clean duplicates, and audit systems to ensure policy compliance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Data Protection Officer' (DPO) and when is one required under GDPR?",
+      "options": ["A security guard at datacenters; required in all facilities", "A mandatory leadership role for organizations that conduct large-scale monitoring or process sensitive data, responsible for overseeing privacy compliance", "An IT administrator who schedules backups", "A developer who writes encryption libraries"],
+      "correctIndex": 1,
+      "explanation": "A DPO is an independent officer who advises on data privacy obligations and acts as a point of contact for data protection regulators.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a 'Data Quality Framework'?",
+      "options": ["To test code syntax in visual IDEs", "To measure, monitor, and improve data quality across key dimensions like accuracy, completeness, consistency, timeliness, and uniqueness", "To speed up database search queries", "To backup data tables automatically"],
+      "correctIndex": 1,
+      "explanation": "A quality framework defines rules (e.g., 'Email must contain @') to flag and repair incomplete or corrupt data before it breaks dashboards or algorithms.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Differential Privacy'?",
+      "options": ["Encrypting data using different keys", "A mathematical framework that allows querying a database to extract aggregate trends while proving that individual records cannot be identified", "Allowing only directors to view database files", "Deleting user identification columns dynamically"],
+      "correctIndex": 1,
+      "explanation": "Differential privacy adds controlled mathematical noise to query results, preventing attackers from identifying specific individual records through clever query correlation.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the 'Right to Be Forgotten' under GDPR?",
+      "options": ["Allowing developers to forget old programming languages", "The right of individuals to request that an organization delete all their personal data without undue delay", "The automatic expiration of passwords after 90 days", "An option to delete old database backups"],
+      "correctIndex": 1,
+      "explanation": "Also known as the Right to Erasure, this requires organizations to clear user personal data from all production databases and backups when requested, posing complex engineering challenges.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Data Siloing' and why is it a governance problem?",
+      "options": ["Storing data in physical silos in data centers", "The isolation of data within individual departments, leading to inconsistent definitions, duplicate efforts, and lack of enterprise transparency", "Compressing database tables into archive formats", "Restricting database logins to specific office locations"],
+      "correctIndex": 1,
+      "explanation": "Silos lead to conflicting metrics (e.g., Marketing and Finance defining 'Revenue' differently). Governance breaks down silos to establish a single source of truth.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Data Processing Agreement' (DPA) and who signs it?",
+      "options": ["An agreement signed by database servers to exchange data", "A legally binding contract required by privacy laws between a Data Controller (data owner) and a Data Processor (third-party service) defining data handling rules", "A software license signed by developers", "A billing contract between cloud providers"],
+      "correctIndex": 1,
+      "explanation": "DPAs ensure that third-party vendors (like CRM tools or analytics services) process personal data in compliance with the controller's instructions and privacy laws.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does 'Master Data Management' (MDM) aim to achieve?",
+      "options": ["To make all developers masters of SQL", "To create a single, authoritative, consolidated master record (golden record) for key business entities (like Customer or Product) across all systems", "To backup the master server disk daily", "To host all applications on a single server"],
+      "correctIndex": 1,
+      "explanation": "MDM consolidates fragmented records from CRM, billing, and shipping systems into a single verified 'Golden Record' for each customer, avoiding duplicate and out-of-sync identities.",
+      "difficulty": "hard"
+    }
+  ],
+  "data_science": [
+    {
+      "question": "What is the primary objective of Data Science?",
+      "options": ["Writing raw HTML markup files", "Applying scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data", "Configuring network server firewalls", "Designing vector icons for mobile apps"],
+      "correctIndex": 1,
+      "explanation": "Data science combines statistics, machine learning, and domain expertise to solve complex predictive and exploratory problems using data.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a supervised learning task?",
+      "options": ["K-Means Clustering", "Dimensionality Reduction", "Predicting housing prices (Regression)", "Market Basket Analysis"],
+      "correctIndex": 2,
+      "explanation": "Supervised learning uses labeled training data. Regression (predicting a continuous value) and Classification (predicting categories) are supervised tasks.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Overfitting' in machine learning?",
+      "options": ["The model is too simple to learn the data", "The model learns the noise and details of the training data too well, failing to generalize to new, unseen data", "The model training takes zero seconds", "The model dataset is too large"],
+      "correctIndex": 1,
+      "explanation": "Overfitting happens when a model fits the training set too closely. It shows high training accuracy but poor test/validation accuracy.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Python library is the standard toolkit for traditional machine learning algorithms (like SVM, Random Forest)?",
+      "options": ["Django", "Scikit-Learn", "Flask", "Matplotlib"],
+      "correctIndex": 1,
+      "explanation": "Scikit-Learn is the premier library for machine learning in Python, providing simple and efficient tools for classification, regression, and clustering.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an 'Independent Variable' in a regression model?",
+      "options": ["The outcome variable you want to predict", "The predictor or input variable used to explain changes in the target variable", "A variable that has no values", "A constant number in code scripts"],
+      "correctIndex": 1,
+      "explanation": "Independent variables (features, represented as X) are inputs used to predict the dependent variable (target, represented as Y).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Feature Engineering'?",
+      "options": ["Building physical CPU processors", "The process of selecting, transforming, and combining raw data columns to create informative features for machine learning models", "Writing database backup scripts", "Designing website CSS layouts"],
+      "correctIndex": 1,
+      "explanation": "Feature engineering uses domain knowledge to convert raw fields into formats that help ML models learn patterns (e.g. converting a date into a 'is_weekend' flag).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In classification, what is a 'False Positive'?",
+      "options": ["A model prediction that is correct and positive", "A model incorrectly predicting that an instance belongs to the positive class when it actually belongs to the negative class", "A database server failure", "A syntax error in python scripts"],
+      "correctIndex": 1,
+      "explanation": "A False Positive (Type I error) occurs when the model flags a negative case as positive (e.g., flagging a legitimate email as spam).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "options": ["Supervised is done on servers; Unsupervised on desktops", "Supervised learning uses labeled training data (input-output pairs); Unsupervised learning works with unlabeled data to find hidden patterns", "Unsupervised learning is always more accurate", "Supervised learning does not use algorithms"],
+      "correctIndex": 1,
+      "explanation": "Supervised models learn from examples with answers (labels). Unsupervised models analyze data structure (like clustering similar customers) without pre-existing labels.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'Bias-Variance Trade-off'?",
+      "options": ["Choosing between database storage size and query speed", "Balancing error from erroneous assumptions (Bias) with error from sensitivity to training data fluctuations (Variance) to build generalizing models", "Balancing developer hours and project budgets", "Choosing between Python and R languages"],
+      "correctIndex": 1,
+      "explanation": "High bias models underfit (too simple). High variance models overfit (too complex). Finding the sweet spot minimizes total expected error on unseen data.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Cross-Validation (e.g., K-fold)?",
+      "options": ["To increase the training set size", "To estimate how well a model generalizes to unseen data by repeatedly training and testing on different splits", "To compile Python code into C++ code", "To visualize data correlations"],
+      "correctIndex": 1,
+      "explanation": "Cross-validation splits the data into K parts. It trains on K-1 parts and tests on the remaining part, repeating K times to get an unbiased estimate of performance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of a 'Loss Function' (Cost Function)?",
+      "options": ["To calculate financial losses of cloud hosting", "To measure how far the model's predictions are from the actual values during training, providing a signal for optimization", "To delete old models from disk", "To format output text data"],
+      "correctIndex": 1,
+      "explanation": "Loss functions quantify model error. Optimizers (like gradient descent) adjust model weights to minimize this loss, improving accuracy.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Dimensionality Reduction' and what is a classic algorithm for it?",
+      "options": ["Reducing database file compression; using ZIP", "Reducing the number of input features in a dataset while retaining important information; using Principal Component Analysis (PCA)", "Deleting rows containing null values; using SQL drop", "Converting images to grayscale; using OpenCV"],
+      "correctIndex": 1,
+      "explanation": "PCA projects high-dimensional data into a lower-dimensional space of orthogonal features (principal components), reducing model complexity and training time.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In a confusion matrix, what is the definition of 'Precision'?",
+      "options": ["The speed of the model predictions", "The ratio of correctly predicted positive observations to the total predicted positives (TP / (TP + FP))", "The overall percentage of correct predictions", "The ratio of positive predictions to total actual positives"],
+      "correctIndex": 1,
+      "explanation": "Precision answers: 'Out of all cases the model flagged as positive, how many were actually positive?' It is key when false positives are costly (e.g., credit card fraud).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In a confusion matrix, what is the definition of 'Recall' (Sensitivity)?",
+      "options": ["How fast the model can load from memory", "The ratio of correctly predicted positive observations to all actual positive observations (TP / (TP + FN))", "The difference between true positives and true negatives", "The ratio of true negatives to total actual negatives"],
+      "correctIndex": 1,
+      "explanation": "Recall answers: 'Out of all actual positive cases, how many did the model find?' It is critical when false negatives are dangerous (e.g., medical diagnoses).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'F1 Score' represent?",
+      "options": ["The fastest score in a racing video game", "The harmonic mean of Precision and Recall, providing a single metric for classification performance (especially on imbalanced data)", "The training loss calculated on the first epoch", "The accuracy of the model on the test dataset"],
+      "correctIndex": 1,
+      "explanation": "F1 Score balances precision and recall. It is more informative than simple accuracy when dealing with highly imbalanced classes (e.g., 99% negative, 1% positive).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Regularization' (L1 Lasso, L2 Ridge) in machine learning?",
+      "options": ["Setting regular working hours for developers", "Adding a penalty term to the loss function to constrain model weights and prevent overfitting", "Enforcing database constraints on text columns", "Updating software packages weekly"],
+      "correctIndex": 1,
+      "explanation": "Regularization discourages complex models by penalizing large coefficients. L1 (Lasso) promotes sparsity by driving some weights to zero. L2 (Ridge) shrinks all weights towards zero.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between L1 (Lasso) and L2 (Ridge) regularization?",
+      "options": ["L1 is for SQL; L2 is for NoSQL", "L1 adds a penalty proportional to the absolute values of the weights (encouraging sparsity); L2 adds a penalty proportional to the squared values of the weights", "L2 is always faster than L1", "L1 is only used in neural networks"],
+      "correctIndex": 1,
+      "explanation": "L1 (Lasso) performs feature selection by driving irrelevant feature weights to exactly zero. L2 (Ridge) keeps all features but minimizes their weights, reducing overall variance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the term 'Epoch' mean in training neural networks?",
+      "options": ["A time measurement equal to one hour", "One complete forward and backward pass of the entire training dataset through the neural network", "The initialization of weights in a network", "The compilation time of the network model"],
+      "correctIndex": 1,
+      "explanation": "An epoch represents the network seeing every data point in the training set once. Training usually takes tens or hundreds of epochs to converge.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Gradient Descent'?",
+      "options": ["An algorithm for sorting files on disk", "An optimization algorithm used to minimize a loss function by iteratively moving in the direction of steepest descent (negative gradient)", "A method for compressing image file sizes", "A technique for routing network traffic"],
+      "correctIndex": 1,
+      "explanation": "Gradient descent updates model parameters (weights) based on derivative slopes of the loss function, taking steps controlled by the learning rate to reach the minimum error.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of an 'Activation Function' (e.g. ReLU, Sigmoid) in neural networks?",
+      "options": ["To activate the server power source", "To introduce non-linearity into the network, allowing it to learn complex, non-linear relationships in data", "To initialize weights randomly", "To scale down input data ranges"],
+      "correctIndex": 1,
+      "explanation": "Without activation functions, neural networks would behave like simple linear regression models regardless of how many hidden layers are added.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'Curse of Dimensionality' in data science?",
+      "options": ["A software bug that limits data dimensions to 3D", "The phenomenon where data becomes sparse in high-dimensional spaces, increasing computational complexity and the risk of overfitting", "An error caused by using too many database servers", "A mathematical proof that datasets cannot have more than 100 columns"],
+      "correctIndex": 1,
+      "explanation": "As the number of features (dimensions) grows, the volume of space grows exponentially, requiring exponentially more data to prevent data sparsity and model overfitting.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Random Forest' and how does it introduce diversity among its trees?",
+      "options": ["A database indexing system; introduces diversity by indexing tables randomly", "An ensemble method that trains multiple decision trees using bootstrap aggregating (bagging) on data samples and random feature selection at each split point", "A set of decision trees trained on the exact same data and features", "A neural network architecture that mimics forest ecosystems"],
+      "correctIndex": 1,
+      "explanation": "Random Forest builds diverse trees by sampling rows with replacement (bagging) and selecting a random subset of features for split points, reducing model correlation and variance.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In the context of gradient descent optimization, what is 'Stochastic Gradient Descent' (SGD) vs Batch Gradient Descent?",
+      "options": ["SGD is manual; Batch is automated", "Batch gradient descent calculates gradients on the entire dataset per step; SGD calculates gradients on a single random sample (or mini-batch) per step, updating weights faster", "Batch gradient descent is always faster than SGD", "SGD only works on NoSQL databases"],
+      "correctIndex": 1,
+      "explanation": "Batch descent is computationally slow on big datasets as it averages gradients across all data points. SGD calculates gradients on single samples or small batches, making noisy but rapid progress.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'ROC AUC' (Receiver Operating Characteristic - Area Under Curve) and what does a score of 0.5 represent?",
+      "options": ["A benchmark for server compute speed; 0.5 represents normal speed", "A metric evaluating classification threshold performance; 0.5 represents a model with no predictive capability (equivalent to random guessing)", "A database query speed rating; 0.5 is fast", "An image resolution score; 0.5 represents low contrast"],
+      "correctIndex": 1,
+      "explanation": "ROC plots True Positive Rate vs False Positive Rate. AUC is the area under this curve. A score of 1 is a perfect classifier. A score of 0.5 represents a random guessing classifier.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between K-Means Clustering and KNN (K-Nearest Neighbors)?",
+      "options": ["K-Means is supervised; KNN is unsupervised", "K-Means is an unsupervised clustering algorithm that groups unlabeled data into K clusters; KNN is a supervised classification/regression algorithm that labels data based on nearest neighbors", "K-Means is only for text data; KNN is for images", "They are identical mathematical algorithms"],
+      "correctIndex": 1,
+      "explanation": "K-Means clusters data by iteratively updating centroid positions. KNN classifies new points by checking the labels of the K closest training points in the feature space.",
+      "difficulty": "hard"
+    }
+  ],
+  "data_visualization_specialist": [
+    {
+      "question": "What is the primary goal of data visualization?",
+      "options": ["To compress data file formats", "To translate complex data structures into clear, graphical representations to facilitate understanding and analysis", "To encrypt financial database entries", "To write server routing scripts"],
+      "correctIndex": 1,
+      "explanation": "Data visualization communicates complex insights simply using charts, graphs, and maps, allowing users to identify trends and outliers quickly.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following chart types is best suited for showing trends over a continuous time period?",
+      "options": ["Pie Chart", "Line Chart", "Scatter Plot", "Treemap"],
+      "correctIndex": 1,
+      "explanation": "Line charts connect data points chronologically, making them the standard choice for visualizing changes and trends over time.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a pie chart represent?",
+      "options": ["The relationship between two numeric variables", "The proportion or percentage contribution of categories to a single total (parts of a whole)", "Data distributions using standard deviations", "Geographical mapping values"],
+      "correctIndex": 1,
+      "explanation": "Pie charts divide a circle into proportional slices, representing how a total metric is distributed among different categories.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a dashboard?",
+      "options": ["A server hardware monitor interface", "An interactive, visual layout combining multiple charts and KPIs to monitor key metrics in one view", "A database table storage profile", "A command line tool for compiling scripts"],
+      "correctIndex": 1,
+      "explanation": "Dashboards aggregate related visual components (charts, KPIs, tables), enabling business users to monitor performance at a glance.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which visual element represents the 'Legend' in a chart?",
+      "options": ["The main title of the chart", "A key that explains the colors, markers, or patterns used to represent different categories in the chart", "The labels on the X-axis", "The gridlines behind the bars"],
+      "correctIndex": 1,
+      "explanation": "The legend acts as a guide, decoding what different lines, bar colors, or symbol sizes mean in the visualization.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of an axis label?",
+      "options": ["To encrypt the chart data", "To identify the variable and unit represented by the axis (e.g., 'Revenue (USD)')", "To change the background color of the chart", "To limit the query count on the database"],
+      "correctIndex": 1,
+      "explanation": "Axis labels provide crucial context, telling the viewer what measurement is plotted and what units are being used.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which color palette type is best for representing ordered numeric values (e.g., population density)?",
+      "options": ["Categorical (distinct random colors)", "Sequential (shades of a single color changing from light to dark)", "Diverging (two contrasting colors splitting at a midpoint)", "Monochrome (only solid black)"],
+      "correctIndex": 1,
+      "explanation": "Sequential palettes use value variations (light to dark) to represent numeric scale, mapping lower values to lighter shades and higher values to darker shades.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a bar chart and a histogram?",
+      "options": ["Bar charts are only vertical; Histograms are only horizontal", "Bar charts compare categorical groups; Histograms show the frequency distribution of a continuous numerical variable divided into ranges (bins)", "Histograms are always free; Bar charts require licenses", "They are identical visuals"],
+      "correctIndex": 1,
+      "explanation": "Bar charts use spaces between bars to represent distinct categories. Histograms have continuous touching bars representing frequency counts of numeric data ranges.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Scatter Plot' primarily used to visualize?",
+      "options": ["Percentages of a marketing budget", "The relationship, distribution, and correlation between two continuous numerical variables using dots", "Server processor load schedules", "Sitemaps of complex websites"],
+      "correctIndex": 1,
+      "explanation": "Scatter plots map variables to X and Y coordinates. The resulting pattern of dots reveals the correlation direction (positive, negative, none) and strength.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Heatmap' represent?",
+      "options": ["The physical temperature of server CPUs", "Data values represented as colors in a 2D grid/table, useful for showing density or correlation matrices", "A line chart showing summer sales trends", "A map displaying server locations"],
+      "correctIndex": 1,
+      "explanation": "Heatmaps use color intensity to convey magnitude, making it easy to identify hotspots or correlations in large matrices (e.g., user click activity on a page).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Treemap' and when should you use it?",
+      "options": ["A diagram showing hierarchical folders in database disks", "A visualization that displays hierarchical data as nested rectangles, where size represents quantity, useful for comparing relative sizes of categories", "A chart showing agricultural tree growth", "A flowchart representing server routing paths"],
+      "correctIndex": 1,
+      "explanation": "Treemaps display nested categories. The area of each rectangle is proportional to its value, allowing viewers to compare proportions within hierarchies (e.g. market share of sectors and companies).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the hazard of using a 'Diverging' color palette for standard non-midpoint numeric ranges?",
+      "options": ["It crashes the visualization tool", "It suggests a meaningful midpoint or threshold (like zero or an average) when none exists, misleading the reader's interpretation", "It forces the visual to render in black and white", "It limits the maximum value that can be displayed"],
+      "correctIndex": 1,
+      "explanation": "Diverging palettes (e.g. red to blue with white in the middle) highlight critical deviation from a neutral midpoint (e.g., budget variance, temperature). Using them for basic ranges confuses the reader.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Visual Hierarchy' mean in dashboard design?",
+      "options": ["Structuring the database access keys in order of rank", "The arrangement of visual elements in a way that implies import, guiding the viewer's eye to the most critical information first", "A flowchart of developer roles in a team", "The rendering speed of charts"],
+      "correctIndex": 1,
+      "explanation": "Hierarchy uses size, color contrast, and positioning (like placing big KPI blocks at the top-left) to signal what information stakeholders should read first.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Chartjunk' in visualization design?",
+      "options": ["Deleted files in the recycle bin", "Unnecessary or distracting visual elements (like 3D effects, heavy gridlines, decorative pictures) that do not add information and make charts harder to read", "A chart showing database error rates", "A script that formats Excel files"],
+      "correctIndex": 1,
+      "explanation": "Coined by Edward Tufte, Chartjunk refers to decorative clutter. Maximizing the 'Data-Ink Ratio' means removing elements that do not display active data.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a 'Box Plot' (Box-and-Whisker Plot)?",
+      "options": ["To design box containers for shipping physical products", "To visualize the distribution of a dataset showing the minimum, first quartile (Q1), median, third quartile (Q3), and maximum, highlighting outliers", "To draw rectangular buttons in UI layouts", "To represent network packet sizes in tables"],
+      "correctIndex": 1,
+      "explanation": "Box plots provide a five-number summary of data, displaying the range, interquartile range (IQR, the box), median (middle line), and outliers (dots beyond whiskers).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which visual encoding is most accurately interpreted by the human eye for comparing quantitative values?",
+      "options": ["Color Saturation", "Angle (as in pie charts)", "Position along a common scale (as in bar charts)", "Area (as in bubble charts)"],
+      "correctIndex": 2,
+      "explanation": "Research shows humans are much better at judging length and position along a aligned scale (e.g., comparing heights of bars) than judging angles or areas.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Data Storytelling'?",
+      "options": ["Writing fictional books about data science", "Combining data visualization with narrative and context to explain what happened, why it matters, and what action to take", "A style of coding without documentation", "A script that automatically writes report summaries"],
+      "correctIndex": 1,
+      "explanation": "Data storytelling bridges the gap between numbers and decisions. It structures visualizations in a logical narrative flow to guide stakeholders to clear insights.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Stacked Bar Chart' and when is it preferred over a grouped bar chart?",
+      "options": ["A bar chart that is stacked horizontally; preferred for all visuals", "A chart where bars are placed on top of each other to show total category size and subcategory breakdown; preferred when the total category sum is the primary focus", "A chart that does not use color", "A chart displaying database indexes"],
+      "correctIndex": 1,
+      "explanation": "Stacked bar charts excel at showing cumulative totals. If comparing individual subcategories across groups is more important, grouped (side-by-side) bar charts are preferred.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Color Blindness Accessibility' (CVD) in visualization?",
+      "options": ["Making charts load in grayscale by default", "Designing charts using color palettes (like blue/orange) that remain distinguishable for viewers with color vision deficiencies (like red-green color blindness)", "Disabling colors entirely in application UI", "Using only text labels instead of graphics"],
+      "correctIndex": 1,
+      "explanation": "Around 8% of men have red-green color blindness. Visualization specialists avoid red/green encoding (or add textures/shapes) to ensure charts are accessible to everyone.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Tooltip' interactions in dashboards?",
+      "options": ["To run automated code checks", "To display detailed context or precise data values in a hover popup box when a user points at a specific data element in a chart", "To edit chart values directly", "To download database backups"],
+      "correctIndex": 1,
+      "explanation": "Tooltips keep charts clean by hiding precise numbers or extra metadata, showing them dynamically when the user engages with a specific visual element.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Lie Factor' in data visualization?",
+      "options": ["The percentage of false records in a database", "A measure of the discrepancy between the size of a graphic effect and the size of the actual effect in the data (ideal Lie Factor is 1)", "A statistical error coefficient", "A developer rating for code honesty"],
+      "correctIndex": 1,
+      "explanation": "If a chart element represents a value increase of 10% but is drawn 100% larger (e.g., by starting the Y-axis at a non-zero value), the Lie Factor is 10, indicating a highly distorted visualization.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In map visualizations, what is the difference between a Choropleth Map and a Cartogram?",
+      "options": ["Choropleths are only for cities; Cartograms are for countries", "A Choropleth colors geographic regions based on a variable; a Cartogram distorts the physical geometry/area of regions proportional to the variable's value", "Choropleths do not support colors", "Cartograms are only used in weather reporting"],
+      "correctIndex": 1,
+      "explanation": "Choropleths are standard maps with shaded regions. Cartograms distort geographic boundaries (e.g., resizing countries based on their population) to combine spatial and quantitative data.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does the visual concept 'Data-Ink Ratio' dictate?",
+      "options": ["The amount of ink cartridge printed reports use", "The proportion of ink (or pixels) used to display actual data compared to the total ink used in the graphic; should be maximized", "The ratio of text columns to charts", "The memory size of chart files"],
+      "correctIndex": 1,
+      "explanation": "Data-Ink Ratio = (Data-Ink / Total Ink). Maximizing it means stripping away decorative non-data elements (like heavy borders, background gradients, redundant labels) to focus on the data itself.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Visual Encoding' and what are the two main types of visual variables used in visualization theory?",
+      "options": ["Visual encoding is for encryption; types are public and private", "Mapping data attributes to visual features; variables are classified into Spatial (position, size) and Retinal (color, shape, texture)", "Writing code for chart libraries; types are 2D and 3D", "Styling visual dashboard buttons; types are hover and active"],
+      "correctIndex": 1,
+      "explanation": "Visual encoding converts data columns into visual variables (e.g., mapping category to color, and sales to height). Selecting the correct variable for the data type is the core of visualization science.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Sankey Diagram' and when is it best utilized?",
+      "options": ["A chart showing database index tables", "A flow diagram where the width of the arrows/paths is proportional to the flow quantity, best utilized for visualizing resource, energy, or customer path flows", "A 3D line chart displaying stock market growth", "A flowchart representing server rack configurations"],
+      "correctIndex": 1,
+      "explanation": "Sankey diagrams excel at showing transfers or journeys. The path thickness represents volume, making it easy to track how quantities split and combine (e.g., user traffic from homepage to checkout, or cost distributions).",
+      "difficulty": "hard"
+    }
+  ]
+}

@@ -1,0 +1,1457 @@
+{
+  "network_engineer": [
+    {
+      "question": "What is the primary function of a router in a computer network?",
+      "options": [
+        "To connect physical computer screens together",
+        "To forward data packets between different computer networks, operating at the Network Layer (Layer 3)",
+        "To store website database records",
+        "To display graphics on a local computer"
+      ],
+      "correctIndex": 1,
+      "explanation": "Routers connect networks and determine the best path for data packets to travel from source to destination using IP addresses.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does IP stand for in network protocols?",
+      "options": [
+        "Internet Protocol",
+        "Internal Port",
+        "Intranet Pathway",
+        "Interface Point"
+      ],
+      "correctIndex": 0,
+      "explanation": "IP stands for Internet Protocol, which is the principal communications protocol in the Internet protocol suite for routing packets across network boundaries.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which protocol is responsible for resolving a domain name (e.g. google.com) to an IP address?",
+      "options": ["DHCP", "DNS", "FTP", "HTTP"],
+      "correctIndex": 1,
+      "explanation": "DNS (Domain Name System) translates human-readable domain names into machine-readable IP addresses.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the loopback IP address for IPv4?",
+      "options": ["192.168.1.1", "127.0.0.1", "10.0.0.1", "8.8.8.8"],
+      "correctIndex": 1,
+      "explanation": "`127.0.0.1` is the standard loopback address, referring to the local computer host itself.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which layer of the OSI model does a network switch typically operate at?",
+      "options": [
+        "Physical Layer (Layer 1)",
+        "Data Link Layer (Layer 2)",
+        "Network Layer (Layer 3)",
+        "Transport Layer (Layer 4)"
+      ],
+      "correctIndex": 1,
+      "explanation": "Standard network switches operate at Layer 2 (Data Link), using MAC addresses to forward data frames to specific devices. (Layer 3 switches also exist but traditional switches are Layer 2).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of the Ping utility?",
+      "options": [
+        "To test network reachability and measure round-trip latency to a host using ICMP echo requests",
+        "To display the contents of a webpage",
+        "To configure IP addresses on local network interfaces",
+        "To encrypt file transfers"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ping sends ICMP Echo Request packets to a target host and listens for Echo Replies, confirming connection and measuring latency.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does DHCP stand for, and what is its role?",
+      "options": [
+        "Domain Host Connection Protocol; encrypts websites",
+        "Dynamic Host Configuration Protocol; automatically assigns IP addresses and network configurations to host devices",
+        "Data Handling Control Protocol; manages database storage",
+        "Direct Host Communication Protocol; routes physical cables"
+      ],
+      "correctIndex": 1,
+      "explanation": "DHCP automates network configuration, dynamically leasing IP addresses, subnet masks, default gateways, and DNS servers to client nodes.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between TCP and UDP protocols?",
+      "options": [
+        "TCP is only for wireless networks; UDP is for wired",
+        "TCP is connection-oriented, guaranteeing ordered and reliable data delivery; UDP is connectionless and faster, but does not guarantee delivery or packet order",
+        "UDP is more secure than TCP",
+        "TCP is older and deprecated; UDP replaces it"
+      ],
+      "correctIndex": 1,
+      "explanation": "TCP uses handshakes, acknowledgments, and flow control. UDP sends packets directly without handshakes (best-effort), ideal for streaming or gaming where speed is preferred over reliability.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Subnet Mask used for in IP networking?",
+      "options": [
+        "To hide the IP address of a user from hackers",
+        "To distinguish between the network portion and host portion of an IP address",
+        "To limit the speed of data transfers",
+        "To encrypt connection packets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Subnet masks (like `255.255.255.0`) tell routers which part of the IP address defines the specific network segment and which part identifies the unique device on that segment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does NAT (Network Address Translation) do?",
+      "options": [
+        "Translates code languages into machine code",
+        "Modifies IP address information in packet headers while in transit, typically to map multiple private IPs to a single public IP",
+        "Converts domain names to server names",
+        "Compresses network packets to save bandwidth"
+      ],
+      "correctIndex": 1,
+      "explanation": "NAT allows multiple devices in a local private network to share one public IP address for internet communication, conserving the limited pool of IPv4 addresses.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of VLANs (Virtual Local Area Networks)?",
+      "options": [
+        "To connect physical servers in different cities",
+        "To segment a physical network switch into multiple logical, isolated broadcast domains to improve security and performance",
+        "To encrypt network traffic between switches",
+        "To host virtual machines on a local server"
+      ],
+      "correctIndex": 1,
+      "explanation": "VLANs isolate network traffic. Devices on different VLANs cannot communicate directly without a router, isolating broadcast traffic and increasing security.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which protocol is a link-state routing protocol used to find the shortest path for routing packets within an Autonomous System (AS)?",
+      "options": ["RIP", "BGP", "OSPF", "SMTP"],
+      "correctIndex": 2,
+      "explanation": "OSPF (Open Shortest Path First) is a link-state interior gateway protocol (IGP) that calculates paths using Dijkstra's algorithm. RIP is distance-vector, BGP is path-vector (exterior).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does BGP (Border Gateway Protocol) do?",
+      "options": [
+        "Configures local network card drivers",
+        "The routing protocol of the internet, exchanging routing information between different Autonomous Systems (AS)",
+        "Blocks security threats at a firewall",
+        "Resolves local domain names"
+      ],
+      "correctIndex": 1,
+      "explanation": "BGP acts as the routing backbone of the internet, sharing routing paths between ISPs and large organizations to determine paths across global networks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a MAC address and an IP address?",
+      "options": [
+        "MAC addresses are changes dynamically; IP addresses are hardcoded",
+        "MAC addresses are physical identifiers assigned by manufacturers (Layer 2); IP addresses are logical identifiers assigned by network administrators (Layer 3)",
+        "MAC addresses are used for public web pages; IP addresses for local devices",
+        "IP addresses are written in hexadecimal; MAC in binary"
+      ],
+      "correctIndex": 1,
+      "explanation": "MAC addresses (e.g., `00:0a:95:9d:68:16`) are burned into network interfaces. IP addresses are assigned logically based on network location.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of ARP (Address Resolution Protocol)?",
+      "options": [
+        "To resolve IP addresses to domain names",
+        "To resolve a known IPv4 address to its corresponding physical MAC address on a local network segment",
+        "To route packets to external networks",
+        "To encrypt local network ports"
+      ],
+      "correctIndex": 1,
+      "explanation": "ARP bridges Layer 2 and Layer 3. Before sending an IP packet on a local segment, a host broadcasts an ARP request to find which MAC address owns that IP.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of ICMP (Internet Control Message Protocol)?",
+      "options": [
+        "To transfer files between clients and servers",
+        "Used by network devices to send error messages and operational information (like destination unreachable or ping echoes)",
+        "To host database queries",
+        "To resolve domain name routing paths"
+      ],
+      "correctIndex": 1,
+      "explanation": "ICMP does not carry user application data. It reports errors in packet processing, helping network diagnostics (e.g. traceroute).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In subnetting, what is CIDR notation?",
+      "options": [
+        "An encryption format for passwords",
+        "A compact representation of an IP address and its associated routing prefix (subnet mask) using a slash followed by the count of leading 1-bits",
+        "A database protocol used to route queries",
+        "A speed test standard for network cables"
+      ],
+      "correctIndex": 1,
+      "explanation": "CIDR (Classless Inter-Domain Routing) simplifies subnets (e.g., `192.168.1.0/24`, where `/24` represents a subnet mask of 24 ones: `255.255.255.0`).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which port number is standard for secure shell (SSH) traffic?",
+      "options": ["80", "443", "22", "21"],
+      "correctIndex": 2,
+      "explanation": "Port 22 is the standard port designated for SSH. Port 80 is HTTP, 443 is HTTPS, and 21 is FTP.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a firewall 'Stateful Inspection' check?",
+      "options": [
+        "Checks the state of server hardware only",
+        "Monitors the state of active network connections (e.g., TCP handshakes) and permits packets only if they match a known, valid connection state",
+        "Verifies user passport credentials",
+        "Checks code syntax errors on incoming files"
+      ],
+      "correctIndex": 1,
+      "explanation": "Stateful firewalls track connections. If a local client requests a webpage, the firewall remembers the request and allows the incoming response through, blocking unsolicited packets.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of QoS (Quality of Service) in network configuration?",
+      "options": [
+        "To check the manufacturing quality of routers",
+        "To prioritize specific network traffic (like voice or video streams) to guarantee bandwidth and minimize latency/jitter for critical apps",
+        "To compile application source code",
+        "To schedule database backup downloads"
+      ],
+      "correctIndex": 1,
+      "explanation": "QoS classifies packets. For example, VoIP (Voice over IP) packets are prioritized over file downloads to prevent voice calls from dropping or breaking up during heavy network use.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain how MTU (Maximum Transmission Unit) size impacts fragmentation, and what PMTUD (Path MTU Discovery) does.",
+      "options": [
+        "MTU splits databases; PMTUD checks network speed",
+        "MTU defines the largest packet size allowed on a link. PMTUD uses ICMP messages to determine the minimum MTU along a path, preventing fragmentation",
+        "MTU is for local networks only; PMTUD is for WANs",
+        "MTU increases network packet sizes; PMTUD decreases them"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a packet exceeds a link's MTU, routers must fragment it (slowing transmission). PMTUD sends packets with the 'Don't Fragment' (DF) bit set. If a router cannot forward it, it sends an ICMP packet back, letting the sender adapt size.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the role of Spanning Tree Protocol (STP) in Ethernet switches, and what happens during a broadcast storm?",
+      "options": [
+        "STP encrypts connections; broadcast storm is a firewall alert",
+        "STP prevents loops in Layer 2 networks by disabling redundant paths; a broadcast storm occurs when loops cause packets to circulate endlessly, consuming all bandwidth",
+        "STP routes packets to other subnets; broadcast storm is a weather alert",
+        "STP counts physical switch ports; broadcast storm is a cable error"
+      ],
+      "correctIndex": 1,
+      "explanation": "Switches flood broadcasts. Without STP, redundant loops circulate packets forever, creating a broadcast storm that disables the entire local network segment.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In BGP routing, what is the 'MED' (Multi-Exit Discriminator) attribute used for, and how does it differ from Local Preference?",
+      "options": [
+        "MED is for internal routing only; Local Preference is for external",
+        "MED is advertised to external neighbors to influence how traffic enters your AS; Local Preference is kept internal to influence how traffic leaves your AS",
+        "MED is a distance metric; Local Preference is a cost metric",
+        "MED has a higher priority than Local Preference in routing decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": "BGP uses attributes to choose paths. Local Pref is distributed inside the AS (highest wins, choosing exit paths). MED is sent to external ASs to suggest which of your gateways they should use (lowest wins, choosing entry paths).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain the difference between Anycast routing and Multicast routing.",
+      "options": [
+        "Anycast is for IPv4; Multicast is for IPv6 only",
+        "Anycast routes traffic to the single nearest node out of a group of identical servers; Multicast sends traffic to a defined group of interested hosts simultaneously",
+        "Anycast sends packets to all servers globally; Multicast sends to one",
+        "Anycast is a physical connection; Multicast is a logical path"
+      ],
+      "correctIndex": 1,
+      "explanation": "Anycast routes to the closest node (typically used in global DNS or CDNs like Cloudflare). Multicast sends one stream to multiple endpoints (used in IPTV, routing updates).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does the TCP congestion control algorithm handle congestion window changes during 'Slow Start' versus 'Congestion Avoidance'?",
+      "options": [
+        "Slow Start decreases the window; Congestion Avoidance increases it",
+        "Slow Start doubles the congestion window size with every ACK received (exponential growth); Congestion Avoidance increases it by 1 MSS per RTT (linear growth) once the ssthresh threshold is met",
+        "Slow Start is for local networks; Congestion Avoidance is for WANs",
+        "They use identical calculation rates in modern kernels"
+      ],
+      "correctIndex": 1,
+      "explanation": "TCP limits inflight data. During Slow Start, it expands window exponentially. When the window reaches the slow start threshold (ssthresh), it switches to Congestion Avoidance, raising window size linearly to carefully probe bandwidth limits.",
+      "difficulty": "hard"
+    }
+  ],
+  "nextjs_developer": [
+    {
+      "question": "What is Next.js?",
+      "options": [
+        "A database management system for web applications",
+        "A React-based framework that enables server-side rendering, static site generation, and routing for web applications",
+        "A programming language that replaces JavaScript",
+        "A styling library for building layouts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Next.js is a meta-framework built on React, providing structure, server features, optimized bundle builds, and routing out of the box.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In the Next.js App Router, which folder structure represents a route `/about`?",
+      "options": [
+        "about.js in root",
+        "app/about/page.jsx",
+        "pages/about.jsx only",
+        "components/about.js"
+      ],
+      "correctIndex": 1,
+      "explanation": "In Next.js 13+ App Router, routes are defined by directories. A directory `app/about` containing a `page.jsx` handles the `/about` route.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary benefit of Server-Side Rendering (SSR) in Next.js?",
+      "options": [
+        "It eliminates the need for database storage",
+        "It generates HTML dynamically on the server for each request, improving initial page load time and SEO",
+        "It runs React code on local databases",
+        "It compresses code files into zip formats"
+      ],
+      "correctIndex": 1,
+      "explanation": "SSR compiles React pages to HTML on the server per request. Search engines receive pre-rendered HTML, which boosts indexing, and users see content faster.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you declare a client-side component in the Next.js App Router?",
+      "options": [
+        "By naming it component.client.js",
+        "Adding the directive 'use client' at the very top of the file",
+        "Importing it from 'next/client'",
+        "Wrapping the component in a <ClientOnly> tag"
+      ],
+      "correctIndex": 1,
+      "explanation": "By default, App Router components are Server Components. Adding `'use client'` tells Next.js to package the component for hydration in the browser, enabling state and hooks.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Next.js component is recommended for optimized image rendering, lazy loading, and layout shift prevention?",
+      "options": ["<img>", "<NextImage>", "import Image from 'next/image'", "<Picture>"],
+      "correctIndex": 2,
+      "explanation": "`next/image` extends HTML `<img>`. It auto-optimizes formats (like WebP), scales sizes by viewport, lazy loads, and reserves space to prevent layout shifts.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Next.js file is used to define a custom, shared layout across multiple pages in the App Router?",
+      "options": ["layout.jsx", "page.jsx", "template.jsx", "root.jsx"],
+      "correctIndex": 0,
+      "explanation": "`layout.jsx` wraps nested child pages or sub-layouts, preserving state and preventing rerenders during navigation.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you define a dynamic route segment in Next.js (e.g. `/post/[id]`) using the App Router?",
+      "options": [
+        "Naming the directory app/post/:id/page.jsx",
+        "Naming the directory app/post/[id]/page.jsx",
+        "Defining dynamic segments in next.config.js",
+        "Creating a file named app/post/page-[id].jsx"
+      ],
+      "correctIndex": 1,
+      "explanation": "Next.js uses bracket notation (e.g. `[id]`) in directory names to define dynamic path segments, passed as params to the page component.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between Server Components and Client Components in Next.js App Router?",
+      "options": [
+        "Server Components only run on databases; Client Components run on servers",
+        "Server Components render strictly on the server and do not ship JS to the client; Client Components are pre-rendered on the server and hydrated in the browser, enabling interactivity",
+        "Server Components cannot fetch data",
+        "Client Components are more secure than Server Components"
+      ],
+      "correctIndex": 1,
+      "explanation": "Server Components reduce client bundle size by keeping heavy dependencies on the server. Client Components support React hooks (like useState, useEffect) and event listeners.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Static Site Generation (SSG) in Next.js?",
+      "options": [
+        "To compile dynamic pages into binary files",
+        "To pre-render pages to static HTML files at build time, offering fast load times and cheap hosting",
+        "To generate static images from code",
+        "To build APIs without route handlers"
+      ],
+      "correctIndex": 1,
+      "explanation": "SSG builds HTML once. Rerunning fetches data only at build time, meaning files are cached on a CDN and served instantly.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you fetch data on the server in a Next.js Server Component?",
+      "options": [
+        "By using useEffect and fetch hooks",
+        "By making the component an async function and directly using await fetch() inside it",
+        "By writing a separate API route handler for every component",
+        "Data fetching is not supported in Server Components"
+      ],
+      "correctIndex": 1,
+      "explanation": "Server Components can be async, allowing direct data fetching (e.g. database queries, REST API calls) directly inside the component render logic.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is ISR (Incremental Static Regeneration) in Next.js?",
+      "options": [
+        "Recompiling the entire site after every git commit",
+        "A feature that allows you to update static pages in the background after they have been built, without rebuilding the entire site",
+        "A database tool that updates tables",
+        "A style rendering method for mobile browsers"
+      ],
+      "correctIndex": 1,
+      "explanation": "ISR regenerates specific pages. Setting a revalidate time (e.g. `export const revalidate = 60`) updates pages in the background when requests come in after that period.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you define a custom backend API route in the Next.js App Router?",
+      "options": [
+        "By creating an api.js file in the root directory",
+        "Creating a route.js (or route.ts) file inside a directory under app/api/",
+        "Writing server code inside components/api.jsx",
+        "Configuring custom headers in next.config.js"
+      ],
+      "correctIndex": 1,
+      "explanation": "In App Router, `route.js` files handle API requests. They export standard HTTP functions like `GET`, `POST`, `PUT`, `DELETE`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which Next.js API is used to programmatically navigate between routes in a Client Component?",
+      "options": [
+        "import { useRouter } from 'next/navigation'",
+        "import { useRouter } from 'next/router'",
+        "window.location.href",
+        "import Link from 'next/link'"
+      ],
+      "correctIndex": 0,
+      "explanation": "In App Router, `useRouter` is imported from `next/navigation`. `next/router` is the legacy import for the Pages Router.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is next.config.js used for in a Next.js project?",
+      "options": [
+        "To write CSS layout styles",
+        "To configure custom Next.js build settings, headers, redirects, rewrites, and environment variable fallbacks",
+        "To write database query commands",
+        "To manage git branches"
+      ],
+      "correctIndex": 1,
+      "explanation": "`next.config.js` is the configuration file for the compiler, allowing customization of webp optimizations, images domains, and experimental features.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Next.js handle code-splitting automatically?",
+      "options": [
+        "By requiring developers to split files manually",
+        "By splitting code into page-based bundles, meaning users only download JavaScript required for the page they visit",
+        "By compiling all code into one large script file",
+        "By hosting JavaScript code on separate servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Next.js automatically code-splits apps by route. Pages don't load JS of other pages, reducing initial bundle sizes significantly.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'middleware.js' file in Next.js?",
+      "options": [
+        "To configure databases connections",
+        "To run code on the server before a request is completed, allowing redirects, rewrites, and cookie validation",
+        "To style components dynamically",
+        "To write unit tests for React hooks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Middleware runs before routing, letting developers intercept requests to check authentication, redirect users, or add headers.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does next/font do in a Next.js project?",
+      "options": [
+        "Downloads fonts dynamically from Google Fonts at runtime",
+        "Automatically optimizes and self-hosts fonts at build time, eliminating layout shifts and external requests",
+        "Converts text to vector graphics",
+        "Changes font styles based on system settings"
+      ],
+      "correctIndex": 1,
+      "explanation": "`next/font` fetches fonts during build and bundles them locally, preventing layout shifts (CLS) and optimizing page performance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In App Router, what is the difference between 'layout.js' and 'template.js'?",
+      "options": [
+        "Templates are only for Server Components",
+        "Layouts persist state and do not remount their children on navigation; Templates create a fresh instance for each child page, running effects on navigation",
+        "Layouts are written in HTML; templates in JSON",
+        "There is no difference"
+      ],
+      "correctIndex": 1,
+      "explanation": "Layouts preserve state (like input fields). Templates remount, useful for entrance animations or logging page views on route changes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you handle loading and error states declaratively in the App Router?",
+      "options": [
+        "By writing custom try/catch loops in every component",
+        "By creating loading.js and error.js files in the routing directory; Next.js wraps routes in Suspense and Error Boundaries automatically",
+        "By configuring fallback paths in next.config.js",
+        "Next.js does not support declarative loading states"
+      ],
+      "correctIndex": 1,
+      "explanation": "Creating `loading.js` wraps pages in React Suspense. `error.js` wraps pages in an Error Boundary, catching runtime errors cleanly.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Parallel Routes' (@folder) allow you to do in Next.js App Router?",
+      "options": [
+        "Build routes in parallel threads for faster compile",
+        "Render multiple pages in the same layout dynamically (like dashboards or split screens)",
+        "Define duplicate routes with different languages",
+        "Deploy route handlers to multiple regions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parallel routes (defined using `@` directories, like `@analytics`) act as slots in layouts, allowing dashboards to load sections independently.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does the 'revalidatePath' function work in Next.js Server Actions?",
+      "options": [
+        "It cleans database tables",
+        "It purges the cached data for a specific path, forcing Next.js to regenerate the page in the background on the next request",
+        "It redirects the client to a different route",
+        "It reloads the user's browser window"
+      ],
+      "correctIndex": 1,
+      "explanation": "`revalidatePath` allows developers to clear the cache of a path on-demand (e.g. after a form submission creates a post), updating the UI instantly.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how Next.js handles route prefetching when using the '<Link>' component.",
+      "options": [
+        "It fetches the entire page HTML from the server",
+        "It automatically prefetches the code/JS bundle for the linked page in the background as it enters the viewport, enabling near-instant transition",
+        "It queries the database for all link paths on page load",
+        "It opens a network connection to the remote route"
+      ],
+      "correctIndex": 1,
+      "explanation": "Next.js watches viewports. When a `<Link>` appears, it pre-fetches the Server Component payload of that page, making client routing instantaneous.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the role of 'generateStaticParams' in Next.js dynamic routing?",
+      "options": [
+        "To generate random query parameters",
+        "It replaces getStaticPaths, allowing developers to define the list of route parameter paths that will be statically generated at build time",
+        "It compiles routing parameters to binary files",
+        "It sets up redirects in next.config.js"
+      ],
+      "correctIndex": 1,
+      "explanation": "In App Router, `generateStaticParams` compiles dynamic pages (like `/blog/[slug]`) at build time. It runs during build to fetch IDs/slugs and pre-render the pages.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Partial Prerendering' (PPR) in Next.js and how does it combine static and dynamic rendering?",
+      "options": [
+        "It compiles half of the CSS files dynamically",
+        "An experimental feature that pre-renders static shells of a page while streaming dynamic parts inside Suspense boundaries in the same request",
+        "It hosts static files on different servers than dynamic files",
+        "It converts dynamic components to static pages during server crashes"
+      ],
+      "correctIndex": 1,
+      "explanation": "PPR combines the speed of static sites with the capabilities of dynamic sites. The static layout shells serve immediately, while dynamic components load inside Suspense frames.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do Server Actions handle CSRF (Cross-Site Request Forgery) protection natively in Next.js?",
+      "options": [
+        "By requiring custom captcha tests in forms",
+        "By comparing the Origin header of incoming POST requests to the host domain to verify requests originated from the host site",
+        "By encrypting the entire form data on the client side",
+        "Server Actions do not protect against CSRF"
+      ],
+      "correctIndex": 1,
+      "explanation": "Next.js Server Actions automatically validate the `Origin` header. If it doesn't match the host header, the action is rejected, preventing external sites from submitting actions.",
+      "difficulty": "hard"
+    }
+  ],
+  "nlp_engineer": [
+    {
+      "question": "What is the primary goal of Natural Language Processing (NLP)?",
+      "options": [
+        "To write articles for websites",
+        "To enable computers to understand, interpret, and generate human language",
+        "To build database server architectures",
+        "To optimize CPU compile times"
+      ],
+      "correctIndex": 1,
+      "explanation": "NLP combines linguistics and computer science to help machines process and understand human language patterns.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In NLP, what is 'stemming'?",
+      "options": [
+        "Deleting punctuation from sentences",
+        "Reducing words to their base or root form by stripping suffixes (e.g. running -> run)",
+        "Splitting text into sentences",
+        "Translating words to another language"
+      ],
+      "correctIndex": 1,
+      "explanation": "Stemming is a crude heuristic process that chops off the ends of words, often resulting in non-words (e.g., 'arguing' -> 'argu'). Lemmatization is the morphologically accurate equivalent.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is tokenization in text preprocessing?",
+      "options": [
+        "Encrypting text files for security",
+        "Breaking a stream of text into individual units like words, phrases, or symbols (tokens)",
+        "Checking database logins",
+        "Translating text to speech"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tokenization breaks continuous text into tokens, serving as the first step for all NLP algorithms.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'stop words' mean in text processing?",
+      "options": [
+        "Words that halt model execution",
+        "Commonly used words (like 'the', 'is', 'and') that are often filtered out to focus on meaningful words",
+        "Words that indicate spelling errors",
+        "Special commands inside scripts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Stop words are frequent words carrying little semantic weight, typically removed in bag-of-words or TF-IDF pipelines to reduce noise.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is POS (Part-of-Speech) tagging?",
+      "options": [
+        "Labeling database columns",
+        "Labeling words in a text with their grammatical category (noun, verb, adjective, etc.) based on context",
+        "Deleting duplicate sentences",
+        "Adding timestamps to text files"
+      ],
+      "correctIndex": 1,
+      "explanation": "POS tagging parses grammar. Knowing if 'run' is a verb or noun in a sentence helps downstream tasks like translation or parsing.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Named Entity Recognition (NER)?",
+      "options": [
+        "Resolving database table names",
+        "Locating and classifying entities in text into predefined categories (such as names of persons, organizations, locations, dates)",
+        "Converting code comments to documentation",
+        "Splitting compound words into roots"
+      ],
+      "correctIndex": 1,
+      "explanation": "NER extracts info from text, identifying names (e.g., 'Google' as Organization, 'Paris' as Location) for database entry or intent parsing.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does TF-IDF measure in text analysis?",
+      "options": [
+        "The speed of text search algorithms",
+        "The importance of a word to a document relative to a collection of documents (corpus)",
+        "The count of typos in a file",
+        "The similarity of word translations"
+      ],
+      "correctIndex": 1,
+      "explanation": "TF-IDF (Term Frequency-Inverse Document Frequency) balances word frequency in a document against how common the word is across all documents, highlighting distinctive keywords.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Lemmatization, and how does it differ from Stemming?",
+      "options": [
+        "Lemmatization is for speech; stemming is for text",
+        "Lemmatization resolves words to their dictionary base form (lemma) using vocabulary and morphological analysis, whereas stemming just chops suffixes",
+        "Stemming is more accurate than lemmatization",
+        "Lemmatization deletes words from a dictionary"
+      ],
+      "correctIndex": 1,
+      "explanation": "Lemmatization uses linguistic context (e.g., converting 'better' to 'good'). Stemming uses simple rule-based truncation (e.g., converting 'argued' to 'argu').",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the Bag-of-Words (BoW) model?",
+      "options": [
+        "A database table storing vocabulary dictionaries",
+        "A simplified text representation where document text is represented as a multiset (bag) of its words, ignoring grammar and word order",
+        "An algorithm that translates sentences",
+        "A method of formatting coding files"
+      ],
+      "correctIndex": 1,
+      "explanation": "BoW counts word occurrences in a document, creating a frequency vector. It ignores grammar and word order but is useful for basic classification.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an n-gram in NLP?",
+      "options": [
+        "A measure of file size in text processing",
+        "A contiguous sequence of n items (words or characters) from a given sample of text",
+        "A database index structure",
+        "A weight parameter in neural networks"
+      ],
+      "correctIndex": 1,
+      "explanation": "N-grams capture local context. A 1-gram is a word; 2-gram (bigram) groups word pairs (e.g., 'not good'); 3-gram (trigram) groups word triplets.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which neural network architecture introduced recurrent loops to process sequential data like text?",
+      "options": ["CNN", "RNN", "GAN", "MLP"],
+      "correctIndex": 1,
+      "explanation": "RNNs (Recurrent Neural Networks) process sequences token by token, maintaining a hidden state to remember previous context.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What problem does the LSTM (Long Short-Term Memory) network solve in traditional RNNs?",
+      "options": [
+        "Reducing model parameter size",
+        "Vanishing and exploding gradient problems during backpropagation, allowing models to learn long-term dependencies",
+        "Allowing models to process images",
+        "Speeding up training times on CPU"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traditional RNNs suffer from vanishing gradients over long sequences. LSTMs introduce gates (input, forget, output) that control memory flow, maintaining gradients.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of the 'attention mechanism' in seq2seq models?",
+      "options": [
+        "To speed up compilation times",
+        "To allow the decoder to look at different parts of the input sequence at each step, instead of relying on a single context vector",
+        "To reduce the count of layers in a model",
+        "To format input text templates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Attention solves the bottleneck of compressing sentences into one fixed-length vector, letting decoders weigh input tokens dynamically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Word2Vec and one-hot encoding for word representation?",
+      "options": [
+        "One-hot encoding is dense; Word2Vec is sparse",
+        "One-hot encoding represents words as sparse, high-dimensional vectors with no semantic relationships; Word2Vec learns dense, lower-dimensional vectors capturing semantic similarity",
+        "Word2Vec is older than one-hot encoding",
+        "One-hot encoding requires deep neural networks"
+      ],
+      "correctIndex": 1,
+      "explanation": "One-hot vectors are orthogonal (no similarity can be computed). Word2Vec embeds words in a continuous vector space where distance represents semantic meaning.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the key idea behind the BERT (Bidirectional Encoder Representations from Transformers) model?",
+      "options": [
+        "Generating text one word at a time from left to right",
+        "Pre-training deep bidirectional representations from unlabeled text by conditioning on both left and right context in all layers",
+        "Translating text using encoder-decoder networks",
+        "Compressing model parameters using quantization"
+      ],
+      "correctIndex": 1,
+      "explanation": "BERT uses a Masked Language Model (MLM) pre-training task, learning context from both sides of a word, which is ideal for classification or QA.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is perplexity in language model evaluation?",
+      "options": [
+        "A metric measuring training duration",
+        "An evaluation metric representing how confused a model is, computed as the exponentiated cross-entropy (lower is better)",
+        "The count of parameters in the model",
+        "The speed of inference calculations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Perplexity measures prediction uncertainty. A perplexity of $N$ means the model is as confused as choosing among $N$ options at each token.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'sentiment analysis' in NLP pipelines?",
+      "options": [
+        "To check spelling errors in sentences",
+        "To identify and extract subjective information (like positive, negative, or neutral tones) from text",
+        "To translate text into speech",
+        "To format database records"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sentiment analysis gauges opinion (e.g. classifying product reviews as positive or negative) for customer service or marketing intelligence.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is dependency parsing in computational linguistics?",
+      "options": [
+        "Parsing code package dependencies",
+        "Analyzing the grammatical structure of a sentence to identify relationships between words (like subject, object, modifier)",
+        "Resolving references between tables",
+        "Translating documents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dependency parsing maps sentences to tree graphs where edges represent grammatical relationships (e.g. showing which noun a verb acts on).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is cosine similarity used for in NLP?",
+      "options": [
+        "To calculate trigonometric angles in neural layers",
+        "To measure the similarity between two vector embeddings by calculating the cosine of the angle between them",
+        "To calculate database index sizes",
+        "To test training loss convergence"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cosine similarity calculates the inner product of normalized vectors, evaluating directional similarity independent of vector magnitude.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain how byte-pair encoding (BPE) tokenization handles out-of-vocabulary (OOV) words.",
+      "options": [
+        "By replacing OOV words with a special UNK token",
+        "By breaking OOV words down into subword units or characters that exist in its vocabulary, preventing OOV errors",
+        "By adding OOV words to the dictionary at runtime",
+        "By ignoring OOV words in the sentence"
+      ],
+      "correctIndex": 1,
+      "explanation": "BPE starts with characters and merges frequent pairs. If a word is unseen (e.g., 'unhelpful'), BPE splits it into known subwords (e.g., 'un' and 'helpful').",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between causal (autoregressive) attention and masked bidirectional attention?",
+      "options": [
+        "Causal attention is for image models; masked is for text",
+        "Causal attention prevents tokens from attending to future positions (used in GPT generation); masked bidirectional attention allows tokens to attend to all positions (used in BERT encoding)",
+        "Masked attention is slower than causal attention",
+        "Causal attention does not use queries and keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "Causal attention uses an upper-triangular mask (setting future positions to -infinity in logits) so generating token T only attends to tokens 0 to T-1, enforcing chronology.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In the context of language model pre-training, explain the 'Chinchilla scaling laws' (Hoffmann et al., 2022) regarding model parameters and tokens.",
+      "options": [
+        "Model parameters should scale twice as fast as tokens",
+        "For compute-optimal training, model size and training dataset size (tokens) should be scaled in equal proportion (1:1)",
+        "Dataset size should be kept static while parameters increase",
+        "TPU memory limits scale quadratically with dataset sizes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Before Chinchilla, models were parameter-heavy but under-trained. The paper showed that for every double of compute, parameters and tokens should scale equally (1:1), leading to smaller, better-trained models (like Llama).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does the 'ROUGE-L' metric evaluate in text summarization, and how is it calculated?",
+      "options": [
+        "Accuracy of keyword searches; calculated by database queries",
+        "Summary quality; calculated using the Longest Common Subsequence (LCS) between the generated summary and reference summaries",
+        "Model parameter counts; calculated by layer dimensions",
+        "Inference latency; calculated by millisecond timers"
+      ],
+      "correctIndex": 1,
+      "explanation": "ROUGE-L uses LCS to measure similarity. Because it matches longest shared word sequences, it captures structure and word order similarity better than simple unigram overlap.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Describe the difference between hard parameter sharing and soft parameter sharing in multi-task learning for NLP.",
+      "options": [
+        "Hard sharing is for GPUs; soft sharing is for CPUs",
+        "Hard sharing shares the exact same hidden layers among all tasks while keeping task-specific output heads; soft sharing keeps separate models for each task but regularizes parameters to stay close",
+        "Soft sharing is faster to train than hard sharing",
+        "Hard sharing is only used in translation models"
+      ],
+      "correctIndex": 1,
+      "explanation": "Hard sharing reduces overfitting by forcing the shared layers to learn features useful for all tasks. Soft sharing (e.g. using L2 distance penalty between weights of Task A and B) offers more flexibility but requires more memory.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In modern Transformer architectures (like Llama), how do Rotary Position Embeddings (RoPE) incorporate positional information compared to absolute sinusoidal embeddings?",
+      "options": [
+        "By adding fixed positional vectors directly to the token embeddings at the input layer",
+        "By applying a rotation matrix to the query and key vectors in the self-attention mechanism, representing relative distance through the rotation angle",
+        "By dynamically scaling the attention logits based on sequence length",
+        "By training a separate feed-forward network to predict token indices"
+      ],
+      "correctIndex": 1,
+      "explanation": "RoPE is a relative position embedding method. Instead of adding positional vectors to token embeddings, it rotates the query and key vectors in the 2D planes, meaning the dot product of queries and keys naturally incorporates relative distance via the angle difference.",
+      "difficulty": "hard"
+    }
+  ],
+  "no_code_low_code_developer": [
+    {
+      "question": "What is the primary value of No-Code/Low-Code platforms?",
+      "options": [
+        "To replace physical server hardware completely",
+        "To enable non-developers and developers to build applications rapidly using visual interfaces rather than writing extensive code",
+        "To write database query code automatically",
+        "To compile desktop executables"
+      ],
+      "correctIndex": 1,
+      "explanation": "No-Code/Low-Code platforms use drag-and-drop elements and visual workflows to build websites, workflows, and database applications quickly.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a popular visual website builder platform?",
+      "options": ["Docker", "Webflow", "Kubernetes", "Git"],
+      "correctIndex": 1,
+      "explanation": "Webflow is a popular no-code website design and CMS platform. Docker and Kubernetes are DevOps tools.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Zapier used for in no-code ecosystems?",
+      "options": [
+        "Compiling binary source codes",
+        "Automating workflows by connecting different applications and trigger actions between them visually",
+        "Hosting database servers",
+        "Designing vector icons"
+      ],
+      "correctIndex": 1,
+      "explanation": "Zapier is an integration tool that lets users build automated workflows (Zaps) (e.g. saving email attachments to Google Drive) without writing API code.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'WYSIWYG' stand for in visual editor interfaces?",
+      "options": [
+        "What You See Is What You Get",
+        "Write Your Source In Web Yields",
+        "Web Yields System Integration With Graphics",
+        "Word Yields Standard Index With Groups"
+      ],
+      "correctIndex": 0,
+      "explanation": "WYSIWYG means the visual editor matches the final published page, allowing designers to style pages without previewing code.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which platform is a popular no-code database and spreadsheet tool?",
+      "options": ["Node.js", "Airtable", "Snowflake", "Express"],
+      "correctIndex": 1,
+      "explanation": "Airtable combines database capabilities (relational link fields, attachments) with spreadsheet interfaces.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Bubble.io primarily used to build?",
+      "options": [
+        "Simple blogs and portfolios only",
+        "Full-stack web applications with visual logic, database structures, and responsive designs without coding",
+        "Mobile games for Android",
+        "Local command-line scripts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Bubble is a powerful no-code platform that lets users design interfaces, configure databases, and build backend workflows.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'API' stand for in integration contexts?",
+      "options": [
+        "Application Programming Interface",
+        "Automated Pathway Integration",
+        "Application Port Index",
+        "Asset Process Indicator"
+      ],
+      "correctIndex": 0,
+      "explanation": "APIs allow different applications to communicate. No-code platforms use API connectors to link to external services.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between No-Code and Low-Code development?",
+      "options": [
+        "No-Code is for databases; Low-Code is for layouts",
+        "No-Code requires zero programming knowledge; Low-Code allows writing snippets of code (like JavaScript or SQL) to customize features",
+        "Low-Code is only for mobile applications",
+        "There is no difference in their capabilities"
+      ],
+      "correctIndex": 1,
+      "explanation": "No-code platforms hide all code behind GUI elements. Low-code platforms allow developers to insert code for custom logic or complex integrations.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a webhook in no-code integrations?",
+      "options": [
+        "A script that deletes temporary database rows",
+        "An automated message sent from an application when an event happens, containing data payload to trigger workflows in other apps",
+        "A physical port connection on switches",
+        "A graphics styling class in visual editors"
+      ],
+      "correctIndex": 1,
+      "explanation": "Webhooks are push notifications for APIs. When an event occurs (e.g. new form submission), the source app sends an HTTP POST request to a target URL in real-time.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do database relationships work in Airtable or Bubble?",
+      "options": [
+        "They require writing SQL foreign keys manually",
+        "They use visual link fields (relationships) to connect records in one table to records in another table",
+        "Relationships are not supported in no-code databases",
+        "They connect physical computer systems together"
+      ],
+      "correctIndex": 1,
+      "explanation": "No-code databases support 1-to-many or many-to-many relations using link fields, allowing users to reference records without writing JOIN queries.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'trigger' in workflow automation (e.g. Zapier or Make)?",
+      "options": [
+        "A database backup schedule",
+        "The starting event that kicks off an automated workflow (e.g., 'New Email Received')",
+        "The action that ends a script run",
+        "An error logging function in servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Workflows require a trigger (input event) to start, which then executes a sequence of actions (steps).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'vendor lock-in' regarding no-code platforms?",
+      "options": [
+        "Locked license agreements that cannot be canceled",
+        "The difficulty or impossibility of exporting your application's source code or database to host it independently outside the vendor's platform",
+        "IP blocks on developer accounts",
+        "Encrypting application files on local disks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vendor lock-in is a major risk. Since platforms like Bubble compile apps on proprietary engines, you cannot easily copy the code to host it elsewhere.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of an API Connector plugin in platforms like Bubble?",
+      "options": [
+        "To connect local network cards together",
+        "To make custom HTTP requests (GET, POST) to external services and process their JSON responses visually",
+        "To compile database tables into static files",
+        "To manage user accounts on the server"
+      ],
+      "correctIndex": 1,
+      "explanation": "API Connectors allow no-code apps to fetch data from or send data to any public API, extending platform capabilities.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'citizen development' in corporate IT?",
+      "options": [
+        "Developing apps for municipal governments",
+        "Non-technical business employees building applications using IT-approved no-code/low-code tools to solve operational problems",
+        "Hiring external developers from other countries",
+        "Using public open-source software libraries only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Citizen development empowers business analysts or managers to automate tasks directly, reducing the backlog of corporate IT departments.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which platform is popular for creating automated workflows visually, competing with Zapier but offering advanced routing and loops?",
+      "options": ["Docker", "Make (formerly Integromat)", "Kubernetes", "Webflow"],
+      "correctIndex": 1,
+      "explanation": "Make (Integromat) is a visual integration editor. It allows building complex logic, routers, filters, and loops within workflows.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of a Custom Domain configuration in web builders?",
+      "options": [
+        "To change the local database system configuration",
+        "To map your visual app to your own domain name (e.g., mybusiness.com) instead of the platform's subdomain (e.g., mybusiness.bubbleapps.io)",
+        "To host application files on local servers",
+        "To restrict page access to selected IP ranges"
+      ],
+      "correctIndex": 1,
+      "explanation": "Custom domains route web traffic. It maps the DNS records (A/CNAME) of a domain to the no-code provider's servers, maintaining branding.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'responsive layout' do in visual editors (like Webflow)?",
+      "options": [
+        "Speeds up response times from backend databases",
+        "Adjusts the layout and sizing of visual elements dynamically based on the user's screen size (desktop, tablet, mobile)",
+        "Sends automated responses to emails",
+        "Blocks unauthorized browser devices"
+      ],
+      "correctIndex": 1,
+      "explanation": "Responsive layout design uses flexbox, grid, and media breakpoints to ensure web pages fit various device displays.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a major limitation of no-code databases compared to enterprise SQL databases?",
+      "options": [
+        "They cannot store numbers or text values",
+        "They are typically slower for massive datasets (millions of rows) and lack advanced query optimizations and database locking controls",
+        "They are only compatible with Windows operating systems",
+        "They cannot be connected to external APIs"
+      ],
+      "correctIndex": 1,
+      "explanation": "No-code databases (like Airtable) prioritize ease of use. They hit limits at thousands of rows and do not support complex SQL index optimizations.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of CSS classes in Webflow design?",
+      "options": [
+        "They define backend database schemas",
+        "They store styling properties that can be applied to multiple elements, keeping design systems consistent and code clean",
+        "They configure web routing paths",
+        "They handle local click animations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Using classes in Webflow ensures changes cascade. Modifying a class updates all elements inheriting that class, mimicking CSS styling code.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Formula' calculation in tools like Airtable or Glide?",
+      "options": [
+        "Writing math formulas in code scripts",
+        "Computing dynamic cell values based on other fields in the same record (similar to Excel formulas but operating on database rows)",
+        "Creating new database tables dynamically",
+        "Scheduling backup tasks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Formulas compute row fields (e.g. concatenating first and last names or calculating date intervals) using built-in functions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain how no-code developers bypass platform database limits using 'external backends' (e.g., connecting Bubble to Xano or Supabase).",
+      "options": [
+        "By hosting the visual app on local server hardware",
+        "By separating the frontend UI (Bubble) from the database layer, using API connectors to query a dedicated, scalable backend (like Xano)",
+        "By writing raw SQL code directly inside visual components",
+        "By duplicating database tables on multiple no-code platforms"
+      ],
+      "correctIndex": 1,
+      "explanation": "To bypass scale/speed limits, developers use Bubble strictly for layout (frontend) and query a backend (Xano/Supabase) via REST or GraphQL APIs, combining visual design with scalable databases.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the security risk of configuring API requests in a no-code client-side builder without a proxy, and how is it mitigated?",
+      "options": [
+        "It slows down page load times; mitigated by compression",
+        "It exposes private API keys to the browser console; mitigated by running API calls server-side (using backend workflows/proxies)",
+        "It crashes the user's browser; mitigated by adding RAM",
+        "It exposes database schemas; mitigated by renaming columns"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a client app calls an API directly, keys are visible in network logs. Mitigating this involves routing requests through a server-side proxy (backend workflow) that appends keys securely on the server.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In FlutterFlow (a low-code app builder), what is the difference between App State and Component State?",
+      "options": [
+        "App State is for databases; Component State is for UI",
+        "App State persists across all screens and components of the application; Component State is local to a specific UI widget instance and destroyed when the widget is unmounted",
+        "Component State is stored in the cloud; App State is local",
+        "They are identical states managed under different panels"
+      ],
+      "correctIndex": 1,
+      "explanation": "App State holds global data (user settings, auth status). Component State holds transient UI values (whether a specific dropdown is open or text entered in a local field).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do you handle pagination and lazy loading in visual lists (like Bubble repeating groups) to optimize load speed?",
+      "options": [
+        "By loading all database records at once on page load",
+        "By querying database pages incrementally (e.g., loading 10 items first) and loading more as the user scrolls or clicks page numbers",
+        "By compressing database columns into zip files",
+        "By rendering the list in vector graphics formats"
+      ],
+      "correctIndex": 1,
+      "explanation": "Loading huge datasets freezes pages. Pagination limits query returns. Lazy loading detects when a user scrolls to the list bottom, executing a query for the next page segment dynamically.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the technical purpose of 'custom code widgets' or SDK integrations in low-code builders?",
+      "options": [
+        "To write documentation inside the builder",
+        "To embed custom JavaScript, HTML, or CSS code to build features or UI elements not natively supported by the drag-and-drop editor",
+        "To block user access to developer tools",
+        "To configure cloud server virtual machine instances"
+      ],
+      "correctIndex": 1,
+      "explanation": "When platforms hit bounds (e.g. custom signature pads or special charts), code widgets allow writing custom JS/CSS inside iframe sandboxes or native code blocks (like Dart in FlutterFlow), extending platform capabilities.",
+      "difficulty": "hard"
+    }
+  ],
+  "observability_engineer": [
+    {
+      "question": "What is the primary goal of an Observability Engineer?",
+      "options": [
+        "To watch security cameras in server rooms",
+        "To design, implement, and maintain monitoring and instrumentation systems that provide insights into system health, performance, and behavior",
+        "To write application user interfaces",
+        "To schedule database backups on cloud servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Observability engineers build pipelines for telemetry (metrics, logs, traces), helping teams detect and debug issues in complex systems.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What are the 'Three Pillars of Observability'?",
+      "options": [
+        "Security, Databases, and Routing",
+        "Metrics, Logs, and Traces",
+        "CPU, Memory, and Disk space",
+        "Alerting, Dashboards, and Reports"
+      ],
+      "correctIndex": 1,
+      "explanation": "Telemetry revolves around: Metrics (numeric data), Logs (structured text timestamps), and Traces (request journeys across systems).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Log' in system monitoring?",
+      "options": [
+        "A database table record",
+        "A structured or unstructured text record of an event that occurred in the system at a specific timestamp",
+        "A graph displaying CPU usage over time",
+        "A command line script"
+      ],
+      "correctIndex": 1,
+      "explanation": "Logs record discrete events (e.g., 'User logged in', 'Database connection timeout') containing context to help debug errors.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Metric' in observability?",
+      "options": [
+        "A text log description of system errors",
+        "A numeric measurement (e.g. CPU %, request count) representing system behavior measured over intervals of time",
+        "A list of running processes",
+        "An authentication token string"
+      ],
+      "correctIndex": 1,
+      "explanation": "Metrics are numerical telemetry values (gauges, counters, histograms) optimized for aggregation and graphing.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the role of a Dashboard in system monitoring?",
+      "options": [
+        "To store application source code files",
+        "To visualize metrics, logs, and system health indicators in real-time on a single interface",
+        "To automate code deployments",
+        "To encrypt connection packets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dashboards (e.g., Grafana) aggregate telemetry in charts, providing operators visual checks on system state.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the function of the OpenTelemetry (OTel) project?",
+      "options": [
+        "A cloud database server hosting tool",
+        "An open-source observability framework providing APIs, SDKs, and tools to generate, collect, and export telemetry data",
+        "A security scanner that blocks ports",
+        "A compiler package for Java applications"
+      ],
+      "correctIndex": 1,
+      "explanation": "OTel standardizes telemetry collection, offering vendor-agnostic APIs to collect metrics, logs, and traces without vendor lock-in.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Trace' in distributed tracing?",
+      "options": [
+        "A history file recording git branch changes",
+        "The end-to-end representation of a request's journey as it flows through various services and databases in a distributed system",
+        "A list of installed package dependencies",
+        "A diagnostic scan checking disk drive sectors"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traces map requests. A trace consists of nested spans, each representing work done by a specific service during the transaction.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between monitoring and observability?",
+      "options": [
+        "Monitoring is for hardware; Observability is for software",
+        "Monitoring tells you *when* a system is broken (using predefined alerts); Observability allows you to understand *why* it is broken by querying its internal states",
+        "Monitoring is older and completely replaced by observability tools",
+        "They are identical terms with different names"
+      ],
+      "correctIndex": 1,
+      "explanation": "Monitoring alerts on known failure modes (e.g. CPU > 90%). Observability instrument systems so you can debug 'unknown unknowns' by drilling into tracing spans and logs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are the 'Golden Signals' of monitoring in SRE practices?",
+      "options": [
+        "CPU, Memory, Disk, and Network bandwidth",
+        "Latency, Traffic, Errors, and Saturation",
+        "Alerting, Logging, Tracing, and Dashboarding",
+        "Authentication, Encryption, Permissions, and Audits"
+      ],
+      "correctIndex": 1,
+      "explanation": "The SRE book defines four golden signals: Latency (response time), Traffic (demand/requests), Errors (rate of failure), and Saturation (resource limits/fullness).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between structured logging and unstructured logging?",
+      "options": [
+        "Structured logging is only for database logs",
+        "Structured logging writes logs in a standardized machine-readable format (like JSON), allowing easy parsing and querying; unstructured logging writes logs as plain text strings",
+        "Unstructured logging is faster to search than structured",
+        "Structured logging does not contain timestamps"
+      ],
+      "correctIndex": 1,
+      "explanation": "JSON logs (e.g., `{\"level\":\"error\",\"msg\":\"timeout\",\"db_id\":12}`) allow log indexes (Elastic/Loki) to filter and query specific fields, whereas plain text requires regex.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the Prometheus Alertmanager?",
+      "options": [
+        "To visualize metrics on graphs",
+        "To handle alerts sent by client applications or Prometheus servers, deduplicating, grouping, and routing them to email, Slack, or PagerDuty",
+        "To compile alerts code into binary files",
+        "To check configuration syntax errors in SQL"
+      ],
+      "correctIndex": 1,
+      "explanation": "Alertmanager manages alerts. It prevents alert fatigue by silencing alerts during maintenance or grouping similar alerts together.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Span' in distributed tracing?",
+      "options": [
+        "A database column length setting",
+        "The basic building block of a trace, representing a contiguous segment of work (time interval) within a service",
+        "A tool that checks compiler memory limits",
+        "The width of a dashboard chart view"
+      ],
+      "correctIndex": 1,
+      "explanation": "Spans track operations (e.g. database query, API fetch). A span has a start time, duration, parent span ID, and metadata (attributes/logs).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Trace Context Propagation'?",
+      "options": [
+        "To copy trace files between servers",
+        "Passing tracing metadata (like trace ID and parent span ID) across network boundaries (HTTP headers) to link spans together in a trace",
+        "To encrypt network traffic",
+        "To configure database backup schedules"
+      ],
+      "correctIndex": 1,
+      "explanation": "When Service A calls Service B, it injects trace headers (e.g., `traceparent`). Service B extracts them to start its child spans, maintaining the trace chain.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which open-source tool is widely used to visualize metrics and build dashboards from databases like Prometheus or InfluxDB?",
+      "options": ["Docker", "Grafana", "Kubernetes", "Logstash"],
+      "correctIndex": 1,
+      "explanation": "Grafana is the standard visualization tool. It connects to multiple data sources to build interactive dashboards.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Saturation' measure in the Golden Signals of monitoring?",
+      "options": [
+        "The speed of network packets",
+        "How 'full' a system resource is, indicating the bottleneck point of a system (e.g., memory utilization or database queue depth)",
+        "The number of errors per second",
+        "The latency of request responses"
+      ],
+      "correctIndex": 1,
+      "explanation": "Saturation measures capacity limits (e.g., 98% RAM utilization or thread pool exhaustion), predicting system failure before crashes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of Logstash or Fluentd in an ELK stack?",
+      "options": [
+        "To store log files on disk",
+        "Log shippers/collectors that ingest, parse, filter, and transform logs before sending them to a storage backend like Elasticsearch",
+        "To visualize logs on graphs",
+        "To encrypt communication channels"
+      ],
+      "correctIndex": 1,
+      "explanation": "They process raw text logs, extracting IPs, cleaning strings, and parsing JSON before indexing.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Prometheus PromQL?",
+      "options": [
+        "A programming language for database design",
+        "The query language for Prometheus, used to filter and aggregate time-series metric data in real-time",
+        "A style sheet syntax for dashboards",
+        "A tool that checks network latency"
+      ],
+      "correctIndex": 1,
+      "explanation": "PromQL selects and aggregates time-series data. It computes values like rate of requests: `rate(http_requests_total[5m])`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an SLA (Service Level Agreement) in service level monitoring?",
+      "options": [
+        "A coding contract between developers",
+        "A formal commitment between a service provider and a client regarding service reliability and performance metrics",
+        "A database authentication security protocol",
+        "An installer packing script"
+      ],
+      "correctIndex": 1,
+      "explanation": "SLA is the legal agreement. SLO (Objective) is the target (e.g. 99.9% uptime). SLI (Indicator) is the real-time measurement (e.g. actual uptime).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Histogram' metric represent in Prometheus?",
+      "options": [
+        "A log history list",
+        "A metric that samples observations (usually request durations or sizes) and counts them in configurable buckets, allowing calculation of percentiles",
+        "A count of current running services",
+        "A database table indexing key"
+      ],
+      "correctIndex": 1,
+      "explanation": "Histograms track distribution. For latency, buckets count how many requests took <10ms, <50ms, <100ms, allowing p99 calculation.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Synthetic Monitoring' (Active Monitoring)?",
+      "options": [
+        "Analyzing computer graphics frames",
+        "Proactively simulating user actions (like logging in or searching) at regular intervals to test application availability and performance",
+        "Monitoring virtual machine CPU temperatures",
+        "Logging database query schedules"
+      ],
+      "correctIndex": 1,
+      "explanation": "Synthetics test workflows from different regions. It alerts engineers of outages even when real user traffic is zero (e.g., at night).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Cardinality' in metrics databases, and why does high cardinality pose a major challenge for observability systems?",
+      "options": [
+        "The count of database tables; causes disk failures",
+        "The number of unique time-series combinations generated by metric labels; high cardinality (e.g. user_id or IP labels) causes database memory and CPU exhaustion",
+        "The speed of network packets; causes latency spikes",
+        "The size of dashboard layouts; causes UI rendering lags"
+      ],
+      "correctIndex": 1,
+      "explanation": "Prometheus indexes metrics by labels. If a label has infinite values (like `user_id`), it generates millions of time-series combinations, overloading memory and slowing down queries.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In OpenTelemetry, what is the role of the Collector, and how does its architecture separate receivers, processors, and exporters?",
+      "options": [
+        "To collect physical server units; architecture handles power usage",
+        "A proxy component that processes telemetry: Receivers ingest data in various formats; Processors filter, batch, or scrub data; Exporters translate and send it to backends",
+        "To execute database queries; architecture handles locks",
+        "To compile code binaries; architecture manages thread runs"
+      ],
+      "correctIndex": 1,
+      "explanation": "The OTel Collector decouples apps from backends. The app sends data to the local collector. The collector can filter secrets (processor), batch data, and send it to Datadog or Prometheus (exporters).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do you calculate the 'Error Budget' of a service, and how does it guide deployment decisions?",
+      "options": [
+        "By dividing budget by developer counts; guides hiring choices",
+        "Calculated as 100% minus the SLO target; if the budget is exhausted due to outages, deployments are frozen to focus on reliability",
+        "Calculated by database server costs; guides hosting configurations",
+        "Calculated as total errors divided by CPU cycles; guides compiler optimization"
+      ],
+      "correctIndex": 1,
+      "explanation": "An SLO of 99.9% uptime permits 0.1% downtime (error budget). If outages consume this 0.1% budget, SRE policies block new feature rollouts, prioritizing stability work.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Head-based Sampling' versus 'Tail-based Sampling' in distributed tracing, and what is the key benefit of tail-based sampling?",
+      "options": [
+        "Head-based is for cloud; Tail-based is for local sandboxes",
+        "Head-based samples at the start of a trace randomly; Tail-based samples at the end of a trace, allowing it to keep all error or high-latency traces",
+        "Head-based is slower than tail-based sampling",
+        "Tail-based sampling requires more network bandwidth than head-based"
+      ],
+      "correctIndex": 1,
+      "explanation": "Head-based sampling discards traces early to save memory, potentially missing rare errors. Tail-based caches trace spans in collector memory and evaluates the whole trace at the end, saving all traces with errors or slow spans.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain the concept of 'Log-to-Metric' conversion, and why it is useful for reducing observability costs.",
+      "options": [
+        "Converting code comments to database columns",
+        "Extracting values or counting matching patterns from text logs to create numeric metrics, allowing teams to discard expensive text logs while retaining long-term trends",
+        "Encrypting log files to compress disk storage sizes",
+        "A diagnostic process checking code syntax compiler errors"
+      ],
+      "correctIndex": 1,
+      "explanation": "Text logs are expensive to store. If you only care about request counts or 404 rates, you parse logs at ingestion, increment a counter metric, and delete the raw text log, reducing storage costs by 90% or more.",
+      "difficulty": "hard"
+    }
+  ]
+}

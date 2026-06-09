@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "This option encapsulates a holistic, \"shift-left\" SRE approach. Integrating reliability from day one, starting with SLOs and comprehensive observability, proactive alerting, and performance testing, is crucial for building a reliable service efficiently. Delaying reliability work or delegating it entirely undermines core SRE tenets.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does SRE stand for in system operations?",
+    "options": [
+      "Site Reliability Engineering",
+      "Server Resource Encryption",
+      "Software Recovery Engine",
+      "Secure Routing Execution"
+    ],
+    "correctIndex": 0,
+    "explanation": "SRE stands for Site Reliability Engineering, a discipline that applies software engineering principles to operations and infrastructure problems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the key difference between a Service Level Objective (SLO) and a Service Level Agreement (SLA)?",
+    "options": [
+      "SLOs are designed for database files; SLAs are for networks",
+      "SLO is the internal reliability target; SLA is the external agreement with customers containing legal/financial penalties for breach",
+      "SLAs are always stricter than SLOs",
+      "There is no difference between SLO and SLA target metrics"
+    ],
+    "correctIndex": 1,
+    "explanation": "An SLO is an internal goal. An SLA is a formal contract. SREs aim to keep system performance well within SLO targets to prevent SLA breaches.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How is an 'Error Budget' calculated in SRE?",
+    "options": [
+      "By totaling the cost of server hardware instances",
+      "As the remaining allowable unreliability of a service (100% minus the SLO percentage)",
+      "By subtracting the developer salaries from operations budgets",
+      "By counting the total number of bug tickets in tracker databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "If your SLO is 99.9% uptime, your error budget is 0.1%. This budget represents the maximum time the service can be down for deployments or errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does SLI stand for in reliability monitoring?",
+    "options": [
+      "Service Level Indicator",
+      "System Log Integration",
+      "Server Load Index",
+      "Secure Login Interface"
+    ],
+    "correctIndex": 0,
+    "explanation": "An SLI (Service Level Indicator) is a quantifiable metric of service performance, such as request latency or error rate.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary focus of a 'Blameless Post-Mortem' in SRE?",
+    "options": [
+      "To assign administrative penalties to responsible engineers",
+      "To identify the root cause of an incident and write preventative actions without blaming individuals",
+      "To delete error logs to save server disk spaces",
+      "To rewrite application source code in other languages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blameless post-mortems assume engineers acted in good faith with the info they had. Focus is placed on fixing systemic faults, not human errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In SRE, what is the definition of 'Toil'?",
+    "options": [
+      "Writing new application feature codes",
+      "Repetitive, manual, automatable work that has no long-term value and scales linearly with service size",
+      "Configuring security firewalls on routers",
+      "Attending weekly team refinement meetings"
+    ],
+    "correctIndex": 1,
+    "explanation": "Toil is operational overhead (e.g. manual database restarts). SREs aim to automate toil to allow engineering efforts to scale.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a load balancer in high-availability web applications?",
+    "options": [
+      "To encrypt user credentials stored on database tables",
+      "To distribute incoming network traffic across multiple backend servers to prevent overload and ensure availability",
+      "To test compiler speed rates in local environments",
+      "To automate git branch merges on repository servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Load balancers (like HAProxy, Nginx) distribute requests, ensuring no single server is overloaded and providing failover capacity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following metrics are known as the 'Four Golden Signals' of monitoring?",
+    "options": [
+      "CPU, Memory, Disk space, Network bandwidth",
+      "Latency, Traffic, Errors, Saturation",
+      "Uptime, Connection counts, SSL keys, Cache sizes",
+      "Errors, Warnings, Logs, Traces"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Four Golden Signals monitor systems: Latency (speed), Traffic (demand), Errors (failures), and Saturation (how full resource queues are).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Circuit Breaker pattern protect microservices from cascading failures?",
+    "options": [
+      "By shutting down server instances completely on power spikes",
+      "By intercepting calls to slow services, returning immediate failures if errors exceed a threshold to prevent thread pool exhaustion",
+      "By duplicating database tables on secondary nodes",
+      "By encrypting API connection keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a downstream service is slow, circuit breakers trip. Upstream calls fail fast, avoiding thread blockages that cause cascading site outages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Chaos Engineering (e.g. Netflix Chaos Monkey)?",
+    "options": [
+      "Developing code without writing unit tests",
+      "The practice of intentionally injecting failures into production systems to test resilience and verify self-healing mechanisms",
+      "Running beta code directly in production databases",
+      "Attacking competitor servers to test security firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Chaos engineering proactively tests systems. By killing VM instances randomly, it verifies that failover and healing systems run smoothly in real-world scenarios.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Describe the operational difference between Active-Passive and Active-Active failover setups.",
+    "options": [
+      "Active-Passive is only for database replication setups",
+      "Active-Passive routes traffic to backup systems only when the primary fails; Active-Active distributes traffic across all active systems concurrently",
+      "Active-Active is significantly cheaper than Active-Passive",
+      "There is no difference in their network routing structures"
+    ],
+    "correctIndex": 1,
+    "explanation": "Active-Active utilizes all server capacity and provides instant failover. Active-Passive leaves resources idle, waiting for primary failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a 'Counter' metric and a 'Gauge' metric in system telemetry?",
+    "options": [
+      "Counter is for integers; Gauge is for float values",
+      "Counter is monotonically increasing (like total requests); Gauge represents a value that fluctuates up and down (like memory usage)",
+      "Gauge metrics are only compatible with SQL server databases",
+      "They are identical metric types measuring resource counts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Counters only go up. Telemetry engines (like Prometheus) use counters to compute rate of change. Gauges check instantaneous values.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Runbook (Playbook) in SRE?",
+    "options": [
+      "A directory containing application code packages",
+      "A documented step-by-step procedure guiding operators on how to diagnose and recover from specific alerts or failures",
+      "A schedule coordinating developer vacation times",
+      "A database schema layout linking tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Runbooks ensure consistent operations, listing exact commands to run and APIs to check when an alert triggers, reducing MTTR.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In disaster recovery, compare Recovery Time Objective (RTO) and Recovery Point Objective (RPO).",
+    "options": [
+      "RTO is for databases; RPO is for frontend web applications",
+      "RTO is the maximum allowable downtime duration; RPO is the maximum allowable data loss duration from backup states",
+      "RPO is always measured in megabytes; RTO in minutes",
+      "They are duplicate metrics in backup auditing"
+    ],
+    "correctIndex": 1,
+    "explanation": "RTO is 'how fast can we boot?'. RPO is 'how much data did we lose?'. If a backup is taken daily, the RPO is 24 hours.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Canary Deployment in progressive code delivery?",
+    "options": [
+      "Running application builds on virtual machines in remote locations",
+      "Deploying new code changes to a small fraction of servers/users first to verify stability before rolling out to the entire fleet",
+      "Encrypting application files before production deployment",
+      "A testing suite running automated UI tests in development"
+    ],
+    "correctIndex": 1,
+    "explanation": "Canary rolls out updates incrementally. If the canary group throws high error rates, SREs rollback the build before all users are impacted.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the significance of the Error Budget Burn Rate in alert engineering?",
+    "options": [
+      "It measures the database cost increases per month",
+      "It measures how fast the error budget is depleting, allowing SREs to alert on fast depletion rather than transient warnings",
+      "It tracks the number of CPU cycles consumed by scripts",
+      "It tracks code compiler errors in repository branches"
+    ],
+    "correctIndex": 1,
+    "explanation": "Alerting on raw error spikes causes fatigue. Alerting on burn rates (e.g. 'we will exhaust the budget in 1 hour') flags critical issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which metrics are typically used as threshold triggers for server autoscaling?",
+    "options": [
+      "Code file count and directory sizes",
+      "CPU utilization, memory usage, or incoming HTTP request rates",
+      "SQL query syntax limits and table columns count",
+      "Active user profiles count in databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Autoscale engines monitor metrics. When CPU exceeds thresholds (e.g., 70%), they boot up more VM instances to split the load.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a reverse proxy (like Nginx), and what is its role?",
+    "options": [
+      "A script that deletes temporary database rows",
+      "An intermediary server hosting frontend assets that handles TLS termination, load caching, and routes requests to backend servers",
+      "A network switch configuring physical routing protocols",
+      "An security firewall blocking database user profiles"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reverse proxies sit at perimeters. They decrypt HTTPS (TLS termination) and cache resources, reducing backend server workload.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "According to Google SRE principles, what is the recommended maximum percentage of time an SRE should spend on operational toil?",
+    "options": [
+      "10%",
+      "50%",
+      "90%",
+      "100%"
+    ],
+    "correctIndex": 1,
+    "explanation": "Google SRE limits toil to 50%. The remaining time must be engineering tasks (automation, design) to keep systems reliable as they scale.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is MTTR in incident management, and how do SREs seek to minimize it?",
+    "options": [
+      "Maximum Time to Rebuild; minimized by using faster compilers",
+      "Mean Time to Resolution; minimized by clear runbooks, dashboards, and automated alert mitigations",
+      "Minimum Time to Route; minimized by caching DNS records",
+      "Memory Transfer Time Rate; minimized by adding RAM"
+    ],
+    "correctIndex": 1,
+    "explanation": "MTTR measures repair speeds. SREs reduce MTTR through alert runbooks, auto-escalations, and post-mortems checking failure root causes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how a cascading failure occurs in distributed microservice architectures.",
+    "options": [
+      "When an update is pushed to all servers simultaneously",
+      "When a failure in a single service causes upstream queues to fill and exhaust threads, propagating timeouts and crashing all upstream services",
+      "When database files get corrupted during backup runs",
+      "When multiple users execute SQL statements concurrently"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cascading failures propagate. If Service A slows down, Service B's threads block waiting for B's API, crashing B, and eventually crashing the frontend.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you design a distributed rate limiter using a Token Bucket algorithm backed by Redis?",
+    "options": [
+      "By saving rate limits in local text files; reload daily",
+      "Redis tracks token counts with TTL; requests decrement counts, blocking if zero, and Redis updates tokens based on time intervals",
+      "By duplicating database tables on secondary nodes",
+      "By running cron tasks to restart Redis hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using Redis ensures rate limits are globally respected. The atomic decrement (`DECR`) prevents race conditions across application instances.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Split-Brain' scenario in high-availability clustering, and how do consensus algorithms prevent it?",
+    "options": [
+      "A compiler error building duplicate packages; prevented by linters",
+      "When network partition splits a cluster into two parts, and both parts elect leaders and write conflicting data; prevented by Quorum majority requirements (>50%)",
+      "A database index crash; prevented by prepared statements",
+      "A security attack overloading routing tables; prevented by firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Split-brain corrupts databases. Raft/Paxos prevent this: a partitioned sub-cluster cannot reach a majority quorum (>50%) and refuses to write data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the difference between Horizontal Pod Autoscaler (HPA) and Vertical Pod Autoscaler (VPA) in Kubernetes, and why they should not run on the same metrics.",
+    "options": [
+      "HPA is for containers; VPA is for virtual machines",
+      "HPA adds/removes pod instances; VPA increases/decreases CPU/RAM allocations of existing pods. Running both on CPU metrics causes conflicting scaling fights",
+      "VPA is faster and always preferred over HPA",
+      "They are duplicate controllers managing identical resource scaling"
+    ],
+    "correctIndex": 1,
+    "explanation": "HPA scales out; VPA scales up. If both monitor CPU, one tries to add instances while the other resizes CPU, causing scheduling conflicts and container crashes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a Blue-Green deployment, and how does it guarantee zero-downtime during major releases?",
+    "options": [
+      "Running half the app in dark mode (Blue) and half in light mode (Green)",
+      "Maintaining two identical production environments; new code is deployed to the idle Green environment, and routers shift traffic instantly from Blue to Green once verified",
+      "Deploying database schemas to separate cloud regions",
+      "Running code inside virtual emulators first"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blue-Green keeps Blue online while Green is updated. Shifting traffic at the router level is instantaneous. If issues arise, traffic is routed back to Blue immediately.",
+    "difficulty": "hard"
   }
 ]

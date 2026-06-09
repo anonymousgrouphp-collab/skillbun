@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "The 'lessons-learned' section demonstrates critical thinking, self-reflection, and a growth mindset. It shows that the analyst can identify areas for improvement, acknowledge challenges, and apply those insights to future work, which is highly valued in a professional setting. It's not just about listing challenges, but showing what was learned from them.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does DFIR stand for in cybersecurity?",
+    "options": [
+      "Digital Forensics and Incident Response",
+      "Data Firewall and Internet Routing",
+      "Digital File Inspection and Recovery",
+      "Database Forensic Inspection Report"
+    ],
+    "correctIndex": 0,
+    "explanation": "DFIR stands for Digital Forensics and Incident Response, a field focused on investigating cyberattacks and recovering from security incidents.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary goal of Incident Response?",
+    "options": [
+      "To build websites for stakeholders",
+      "To detect, contain, and recover from a security breach as quickly and efficiently as possible, minimizing damage",
+      "To write application code features",
+      "To set up database server schemas"
+    ],
+    "correctIndex": 1,
+    "explanation": "Incident response focuses on managing active attacks, containing the spread of malware/hacks, and restoring business services securely.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Digital Forensics'?",
+    "options": [
+      "The legal department of a software company",
+      "The collection, preservation, and analysis of digital evidence from computer systems to reconstruct security events",
+      "Writing encrypted code libraries",
+      "Auditing the financial cost of server hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Digital Forensics uses scientific methods to recover evidence (like deleted files, registry changes, or log trails) in a way that is legally admissible in court.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Write Blocker' in digital forensics?",
+    "options": [
+      "A software tool that prevents users from typing passwords",
+      "A hardware or software tool that prevents any modification to a target storage drive during investigation, ensuring evidence integrity",
+      "A network firewall that blocks outbound emails",
+      "A database rule that prevents table updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "When connecting an evidence drive to a forensic workstation, the OS may write metadata. Write blockers intercept write commands, ensuring the drive remains completely untouched.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of 'Evidence Chain of Custody'?",
+    "options": [
+      "To lock server room doors physically",
+      "A chronological documentation paper trail showing the collection, control, transfer, and analysis of physical or digital evidence",
+      "A backup schedule for system databases",
+      "A security verification check for user logins"
+    ],
+    "correctIndex": 1,
+    "explanation": "Chain of Custody proves that evidence was not tampered with, lost, or swapped during the investigation, which is vital for legal admissibility.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which phase of Incident Response involves stopping the attack from spreading further?",
+    "options": [
+      "Preparation",
+      "Containment",
+      "Eradication",
+      "Lessons Learned"
+    ],
+    "correctIndex": 1,
+    "explanation": "Containment limits the damage. Examples include isolating infected servers from the network, disabling compromised accounts, or updating firewall rules.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Memory Dump' (RAM Capture)?",
+    "options": [
+      "Deleting the memory cache to free RAM space",
+      "A copy of the physical RAM contents at a specific moment, capturing active volatile data (processes, connections, passwords)",
+      "A database backup file",
+      "A code compile error printout"
+    ],
+    "correctIndex": 1,
+    "explanation": "RAM holds volatile evidence (active processes, network sockets, decrypt keys) that disappears when the computer is powered down. Capturing it is a top priority.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between volatile and non-volatile evidence?",
+    "options": [
+      "Volatile is for SQL; Non-volatile is for NoSQL",
+      "Volatile evidence (like RAM contents) is lost when power is disconnected; Non-volatile evidence (like hard drive data) persists when powered down",
+      "Non-volatile evidence is always encrypted",
+      "Volatile evidence is collected last in investigations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Forensic analysts collect evidence in order of volatility: RAM first, then network states, temp files, and finally physical hard drives.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an IOC in cybersecurity indicators?",
+    "options": [
+      "Input Output Control",
+      "Indicator of Compromise (evidence showing a system has been breached, like a file hash or malicious IP)",
+      "Intrusion Option Configuration",
+      "Internal Operation Code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indicators of Compromise (IOCs) are digital clues (e.g. specific registry paths, MD5 hashes of malware, domain names) that indicate a system compromise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Eradication' in incident response?",
+    "options": [
+      "Backing up database tables safely",
+      "Removing the root cause of the incident, deleting malware, and patching vulnerabilities before restoring systems",
+      "A legal process for suing threat actors",
+      "Deleting all user accounts on the server"
+    ],
+    "correctIndex": 1,
+    "explanation": "Eradication occurs after containment. It ensures that all traces of the threat (backdoors, malicious files, hijacked keys) are completely removed from the environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Log Correlation' and why is it important?",
+    "options": [
+      "Matching code files with layout mockups",
+      "Analyzing and linking log events from multiple sources (firewalls, servers, databases) to construct a timeline of the attack",
+      "Sorting database rows alphabetically",
+      "Analyzing code compile times across versions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attackers move laterally. Correlation (often using a SIEM) connects a login on one server with a file download on another, revealing the full compromise path.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Golden Ticket' attack?",
+    "options": [
+      "A voucher for a free security training course",
+      "A Kerberos exploit where an attacker creates a forged Ticket Granting Ticket (TGT), obtaining permanent domain administrator access",
+      "A script that speeds up database queries",
+      "A backup encryption key"
+    ],
+    "correctIndex": 1,
+    "explanation": "By stealing the Active Directory Kerberos ticket-granting service account key (KRBTGT), attackers can forge tickets for any user, bypassing authentication controls indefinitely.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Timeline Analysis' in forensics?",
+    "options": [
+      "Checking project scheduling timelines in spreadsheets",
+      "Reconstructing the chronological order of system events (file edits, logins, execution) surrounding the security incident",
+      "An audit of developer work hours",
+      "A chart showing CPU usage spikes over time"
+    ],
+    "correctIndex": 1,
+    "explanation": "Timeline analysis parses system files (like MACB times: Modified, Accessed, Created, Born) to show exactly what actions the attacker performed and when.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'MACB' timestamp represent in file forensics?",
+    "options": [
+      "Memory, Address, Code, Byte",
+      "Modified, Accessed, Created, Born (birth/creation of file entry)",
+      "Master, Agent, Client, Backup",
+      "Monitor, Alert, Capture, Block"
+    ],
+    "correctIndex": 1,
+    "explanation": "MACB timestamps track file metadata changes. Understanding how the OS updates these times helps investigators detect if files were modified, run, or anti-forensics was applied.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Anti-Forensics'?",
+    "options": [
+      "A tool that speeds up forensics investigations",
+      "Techniques used by attackers to delete evidence, corrupt logs, and hide their activities to hinder investigations",
+      "A legal defense strategy in court",
+      "A type of network database encryption"
+    ],
+    "correctIndex": 1,
+    "explanation": "Anti-forensics includes log wiping, file shredding, time-stomping (forging MACB times), and using memory-only malware to leave no traces on disk.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Web Shell'?",
+    "options": [
+      "A browser extension that styles layouts",
+      "A malicious script uploaded to a web server that grants attackers a remote terminal command-line interface to execute commands",
+      "A database server administration interface",
+      "A secure protocol for transferring domain names"
+    ],
+    "correctIndex": 1,
+    "explanation": "Web shells (often written in PHP, ASP, or JSP) exploit upload vulnerabilities. Once uploaded, they allow attackers to run OS commands via the web browser.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'Registry' in Windows forensics?",
+    "options": [
+      "A list of registered developers",
+      "A database storing configuration settings and system history, containing traces of executed programs, connected USBs, and user settings",
+      "A folder containing temporary downloads",
+      "A log of networking IP routers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The registry is a goldmine for Windows investigators. Artifacts (like UserAssist or ShellBags) reveal what programs the user/attacker launched and what folders they browsed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Process Injection' and why is it used by malware?",
+    "options": [
+      "A programming method for writing loops; used to speed up code",
+      "A technique where malware injects malicious code into a legitimate running process (e.g. svchost.exe) to hide from antivirus detection",
+      "A database insert statement; used to add records",
+      "A network routing protocol; used to bypass firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "By executing code inside the memory space of a trusted system process, malware bypasses security monitors and evades process-level termination.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Triage Image' in digital forensics?",
+    "options": [
+      "A low-resolution screenshot of the desktop",
+      "A quick collection of high-value forensic artifacts (logs, registry, config files) rather than a full bit-by-bit disk image, saving time during investigations",
+      "A backup copy of the database schema",
+      "A temporary image file created by cameras"
+    ],
+    "correctIndex": 1,
+    "explanation": "Full disk imaging takes hours. Triage tools (like KAPE) collect critical artifacts in minutes, allowing rapid analysis and containment during active incidents.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a 'Post-Mortem / Lessons Learned' phase in incident response?",
+    "options": [
+      "To deploy the final code to servers",
+      "A review meeting and report analyzing the incident to improve defenses, update policies, and prevent similar attacks from recurring",
+      "An audit of the security team's billing hours",
+      "A process for deleting all incident logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "This final phase ensures the organization learns from the breach, identifying gaps in monitoring or patches and implementing improvements to harden systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'DLL Search Order Hijacking' and how is it investigated?",
+    "options": [
+      "Hijacking website domain names; investigated by DNS lookups",
+      "Exploiting Windows application directory search priority to place a malicious DLL where an application will load it instead of the system DLL; investigated by checking folder files and process loads",
+      "Deleting DLL files from the system; investigated by disk utility check",
+      "A database query loop; investigated by SQL logs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Windows apps search for DLLs in their own directory first. If a system DLL load is unchecked, placing a fake DLL in the app folder executes malicious code when the app runs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Windows forensics, what are 'Prefetch Files' (.pf) used to determine?",
+    "options": [
+      "The network configuration of the host",
+      "Traces of program execution, indicating when a specific application was run, how many times, and what files it loaded during startup",
+      "The list of users registered on the computer",
+      "The password history of user accounts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prefetch files optimize application startup. For forensic analysts, they prove that a program was run (e.g., a malware builder or script tool) and document the execution timestamp.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Shimcache' (Application Compatibility Cache) forensics?",
+    "options": [
+      "Analyzing browser cache folder contents",
+      "A Windows registry artifact tracking application executions to resolve compatibility; used by investigators to identify executed malware even if deleted from disk",
+      "A database indexing backup utility",
+      "A memory cleanup script for servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shimcache tracks binary file paths, file sizes, and last modification dates of executed files, helping analysts prove a program existed on the system even if deleted.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between Kerberoasting and AS-REP Roasting Active Directory attacks?",
+    "options": [
+      "Kerberoasting is for Linux; AS-REP is for Windows",
+      "Kerberoasting targets service account tickets (TGS) requesting them and cracking hashes offline; AS-REP Roasting targets users without pre-authentication enabled, extracting ticket responses to crack passwords",
+      "Kerberoasting requires administrator permissions; AS-REP Roasting is done without network connections",
+      "They are identical Kerberos authentication protocols"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kerberoasting requests SPN tickets that are encrypted with service account hashes, crackable offline. AS-REP Roasting exploits accounts with 'Do not require Kerberos preauthentication' set, retrieving encrypt data directly to crack passwords offline.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Memory Injection' analysis using tools like Volatility, and what is 'malfind' detecting?",
+    "options": [
+      "An antivirus scan that checks files on hard drives; malfind detects bad files",
+      "A forensic analysis of RAM dumps; malfind detects hidden or injected code in running process memory (checking for PAGE_EXECUTE_READWRITE permissions and MZ headers)",
+      "A database query review; malfind detects SQL injection patterns",
+      "A network bandwidth test; malfind detects packet sizes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Volatility's `malfind` plugin scans process memory to locate injected DLLs or shellcode. It flags memory pages that are both writable and executable (WX/RXW) and display executable headers (like MZ), indicating code injection.",
+    "difficulty": "hard"
   }
 ]

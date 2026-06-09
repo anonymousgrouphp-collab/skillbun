@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The query plan (obtained via `EXPLAIN` or similar commands) shows the execution strategy chosen by the database optimizer. For slow queries on large tables with joins and aggregations, critical areas to investigate include full table scans (indicating missing/ineffective indexes), inefficient join algorithms (like nested loops on large datasets), and suboptimal filter pushdowns. The number of rows returned, execution timestamp, or client application are less direct indicators of the internal performance bottlenecks.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary goal of Data Engineering?",
+    "options": [
+      "Building front-end charts for dashboards",
+      "Designing, building, and maintaining pipelines and architectures that transport and prepare data for analysis",
+      "Writing machine learning algorithms",
+      "Managing social media data sharing campaigns"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data engineers construct the plumbing of data systems, building ETL pipelines and warehouses to deliver reliable, clean datasets to analysts and scientists.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does ETL stand for?",
+    "options": [
+      "Encrypt, Transform, Load",
+      "Extract, Transform, Load",
+      "Evaluate, Transfer, Link",
+      "Enter, Test, Launch"
+    ],
+    "correctIndex": 1,
+    "explanation": "ETL stands for Extract (pull raw data), Transform (clean and structure it), and Load (save to target database/warehouse).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Data Lake'?",
+    "options": [
+      "A physical cooling system for servers",
+      "A centralized repository that stores raw, unstructured, semi-structured, or structured data at scale",
+      "A database index table",
+      "A networking router for cloud files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Lakes hold raw data in its native format (JSONs, logs, images, CSVs) without pre-defined schemas, providing flexibility for data exploration.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which SQL database engine is widely used for data engineering due to its robust relational features?",
+    "options": [
+      "HTML",
+      "PostgreSQL",
+      "CSS",
+      "Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "PostgreSQL is an advanced, open-source relational database widely used for structured data storage and staging layers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a data pipeline?",
+    "options": [
+      "A physical pipe routing coolant through servers",
+      "A series of data processing steps that moves data from a source system to a target destination, transforming it along the way",
+      "A software tool for compressing files",
+      "An API framework for styling dashboards"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data pipelines automate the movement and transformation of data from operational systems to analytical databases.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a 'Schema' define in a database?",
+    "options": [
+      "The pricing cost of the database engine",
+      "The logical structure, organization, columns, data types, and relationships of tables in the database",
+      "The network port settings",
+      "The encryption algorithm used"
+    ],
+    "correctIndex": 1,
+    "explanation": "A schema acts as the blueprint of a database, defining tables, column types (integer, text, date), and integrity constraints.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is columnar storage?",
+    "options": [
+      "Storing files in vertical rows on disk",
+      "A database storage layout that stores data blocks column-by-column rather than row-by-row, optimizing analytical query speeds",
+      "A method for naming tables in database systems",
+      "A security standard for user access control"
+    ],
+    "correctIndex": 1,
+    "explanation": "Columnar databases (like Snowflake, Redshift) store values of the same column together. This makes queries retrieving specific columns across millions of rows highly efficient.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between ETL and ELT?",
+    "options": [
+      "ETL is only for NoSQL; ELT is for SQL",
+      "ETL transforms data before loading it into the warehouse; ELT loads raw data into the warehouse first and transforms it there using the warehouse's compute power",
+      "ELT is older and deprecated; ETL replaces it",
+      "ETL is manual; ELT is automated"
+    ],
+    "correctIndex": 1,
+    "explanation": "ELT (Extract, Load, Transform) leverages the massive scale and computing power of modern cloud data warehouses to transform data *after* loading, simplifying pipelines.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following is a distributed computing framework widely used to process big data workloads in parallel?",
+    "options": [
+      "React.js",
+      "Apache Spark",
+      "Tableau",
+      "Git"
+    ],
+    "correctIndex": 1,
+    "explanation": "Apache Spark is an open-source, distributed processing system designed for big data workloads, executing computations in-memory across a cluster of nodes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a message broker (e.g. Apache Kafka, RabbitMQ) used for in data engineering?",
+    "options": [
+      "To send marketing emails to customers",
+      "To ingest and process high-throughput real-time data streams asynchronously",
+      "To store static website assets",
+      "To manage user roles and permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Message brokers enable real-time event streaming and queuing, allowing ingest pipelines to capture continuous telemetry or logs reliably.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of database indexes, and what is the trade-off?",
+    "options": [
+      "They encrypt data; trade-off is they slow down reads",
+      "They speed up data retrieval (reads); trade-off is they slow down inserts/updates (writes) and consume extra storage",
+      "They automatically clean duplicates; trade-off is they require Python code",
+      "They connect different databases; trade-off is they require firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indexes create lookup structures for columns. While they make SELECT queries fast, the database must rebuild index trees during INSERT, UPDATE, or DELETE operations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a workflow orchestrator (e.g. Apache Airflow, Prefect) do?",
+    "options": [
+      "Styles visual layouts of dashboards",
+      "Schedules, orchestrates, and monitors complex data pipelines, managing dependencies between tasks",
+      "Runs database queries automatically in the browser",
+      "Maintains server CPU speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Orchestrators run pipelines as Directed Acyclic Graphs (DAGs), ensuring tasks execute in the correct order, handling retries on failure, and providing operational monitoring.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Slowly Changing Dimension' (SCD) Type 2?",
+    "options": [
+      "A database index that updates slowly",
+      "A data modeling technique that tracks historical changes by creating a new row for each change, using validity dates (start_date, end_date)",
+      "A table that deletes old data automatically",
+      "A dimension that only allows text columns"
+    ],
+    "correctIndex": 1,
+    "explanation": "SCD Type 2 preserves full history in dimension tables. When a customer changes their address, the old row is marked inactive, and a new active row is inserted.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Data Lineage'?",
+    "options": [
+      "To list database server locations",
+      "Tracking the origin, movement, and transformations of data as it flows through pipelines from source to target",
+      "Predicting future data growth using ML models",
+      "Restricting data access permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data lineage provides transparency, showing how metrics are computed and where they originated, making troubleshooting and auditing simple.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In big data, what does 'Partitioning' a table do?",
+    "options": [
+      "Encrypting the table blocks",
+      "Splitting a large table into smaller, manageable segments based on a column (like date or region) to improve query performance",
+      "Converting a relational table into NoSQL format",
+      "Deallocating unused memory columns"
+    ],
+    "correctIndex": 1,
+    "explanation": "Partitioning narrows down data scans. For example, querying sales for a specific date only scans that date's partition rather than scanning the entire multi-billion row table.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between structured, semi-structured, and unstructured data?",
+    "options": [
+      "Structured is for text; Unstructured is for numbers",
+      "Structured data follows a strict schema (relational tables); Semi-structured data has some structure (JSON, XML); Unstructured data has no predefined model (video, PDF, audio)",
+      "Semi-structured data is always encrypted",
+      "They are identical database formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "Structured data fits rows/columns (SQL). Semi-structured uses tags or keys (NoSQL/JSON). Unstructured is raw binary files requiring special processing to extract features.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Data Warehouse' optimized for, compared to a transactional database (OLTP)?",
+    "options": [
+      "OLTP is for analytics; Warehouse is for fast writes",
+      "Data Warehouses are optimized for complex read queries and analytical aggregations (OLAP); OLTP databases are optimized for fast row-level writes and transactions",
+      "Warehouses are always free; OLTP is paid",
+      "Warehouses do not support SQL queries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transactional systems (OLTP) handle day-to-day operations (like inserting a sale). Analytical warehouses (OLAP) aggregate massive histories to run reports.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'CDC' (Change Data Capture)?",
+    "options": [
+      "Control Data Compression",
+      "Change Data Capture; a technique that monitors and captures database insert/update/delete events in real-time to sync downstream systems",
+      "Central Database Compiler",
+      "Columnar Data Comparison"
+    ],
+    "correctIndex": 1,
+    "explanation": "CDC reads transaction logs of operational databases to stream updates to data lakes or warehouses immediately, ensuring near real-time sync without heavy querying.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a schema registry in streaming pipelines (like Kafka)?",
+    "options": [
+      "To register domain names for streaming hosts",
+      "To store and enforce schemas for message payloads, ensuring serialization compatibility between producers and consumers",
+      "To cache SQL queries locally",
+      "To encrypt message payloads"
+    ],
+    "correctIndex": 1,
+    "explanation": "A schema registry prevents data corruption by validating that messages sent by producers conform to schemas that consumers expect (e.g. using Avro or Protobuf).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Idempotency' in data pipeline tasks?",
+    "options": [
+      "A task that always fails on the first run",
+      "A property where executing a task multiple times produces the same final state as running it once, preventing duplicate records on retry",
+      "A task that compiles code automatically",
+      "A task that runs in parallel across regions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Idempotent pipelines handle failures safely. If a load step crashes midway and restarts, it won't insert duplicate rows, typically by overwriting or checking for existing keys.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the CAP theorem state regarding distributed data systems?",
+    "options": [
+      "Distributed systems can achieve all of Consistency, Availability, and Partition Tolerance simultaneously",
+      "A distributed system can guarantee at most two of: Consistency, Availability, and Partition Tolerance (and during network partition, you must choose between C or A)",
+      "Consistency is always more important than availability in all databases",
+      "All nodes must run on identical physical hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "During a network partition (P) where nodes cannot communicate, a distributed database must choose to either reject requests to keep data consistent (Consistency) or accept writes on isolated nodes (Availability), resulting in out-of-sync data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Star Schema' in dimensional modeling, and how does it optimize queries?",
+    "options": [
+      "A schema layout that has no primary keys",
+      "Consists of a central fact table containing quantitative metrics, surrounded by denormalized dimension tables, reducing joins for analytical queries",
+      "A database system designed by Google",
+      "A network routing protocol for big data"
+    ],
+    "correctIndex": 1,
+    "explanation": "The star schema denormalizes dimensions. This simplifies SQL queries and reduces the number of tables joined, matching the optimal query patterns of OLAP engines.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does 'Compaction' work in log-structured merge-tree (LSM Tree) databases (e.g. Cassandra, Bigtable)?",
+    "options": [
+      "By deleting the oldest database tables",
+      "By merging and sorting immutable files (SSTables) in the background to remove deleted or duplicate records, reclaiming space and speeding up reads",
+      "By compressing the database files into zip format",
+      "By clearing the CPU memory cache"
+    ],
+    "correctIndex": 1,
+    "explanation": "LSM-tree databases write updates as immutable files. Compaction consolidates these files, removing overwritten values and tombstoned (deleted) records to optimize read operations.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Apache Spark, what is the difference between a 'Narrow Dependency' and a 'Wide Dependency' in execution plans?",
+    "options": [
+      "Narrow dependencies require network transfer; Wide dependencies do not",
+      "Narrow dependencies have each partition of the parent RDD used by at most one child partition (no shuffle); Wide dependencies require data shuffles across the network (e.g. groupBy)",
+      "Wide dependencies are always faster than narrow dependencies",
+      "Narrow dependencies are only for small datasets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Narrow transformations (like map, filter) run in parallel on local partitions. Wide transformations (like join, groupBy) require reshuffling partitions across nodes over the network, causing a performance bottleneck.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Backpressure' in stream processing engines (e.g. Apache Flink, Spark Streaming)?",
+    "options": [
+      "The physical heat pressure inside server cases",
+      "A safety mechanism that signals upstream producers to slow down ingestion rate when downstream consumers are overwhelmed, preventing memory crashes",
+      "A network encryption protocol",
+      "A database query queue block"
+    ],
+    "correctIndex": 1,
+    "explanation": "When consumer threads cannot process messages as fast as they arrive, backpressure propagates upstream to limit ingest rates, maintaining system stability under high load.",
+    "difficulty": "hard"
   }
 ]

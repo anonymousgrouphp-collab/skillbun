@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "A postmortem (or blameless post-mortem) aims to understand the full timeline and contributing factors of an incident, identify its root cause, document lessons learned, and establish actionable items to improve systems and processes, thereby preventing similar incidents in the future. It explicitly avoids blaming individuals and focuses on systemic improvements.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary goal of Infrastructure as Code (IaC)?",
+    "options": [
+      "To write documentation for physical servers manually",
+      "To manage and provision computing infrastructure through machine-readable definition files rather than physical hardware configuration",
+      "To compile application source code into container images",
+      "To monitor server room temperatures automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Infrastructure as Code (IaC) allows teams to automatically manage, provision, and configure infrastructure resources using configuration files (like Terraform or CloudFormation), ensuring consistency and repeatability.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Git command is used to display the state of the working directory and the staging area?",
+    "options": [
+      "git log",
+      "git status",
+      "git diff",
+      "git show"
+    ],
+    "correctIndex": 1,
+    "explanation": "`git status` shows which changes have been staged, which haven't, and which files aren't being tracked by Git.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the term 'CI/CD', what does 'CD' commonly stand for?",
+    "options": [
+      "Continuous Database",
+      "Continuous Delivery or Continuous Deployment",
+      "Computer Design",
+      "Control Delivery"
+    ],
+    "correctIndex": 1,
+    "explanation": "CD stands for Continuous Delivery or Continuous Deployment, representing the automated release of code changes to staging or production environments.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Dockerfile?",
+    "options": [
+      "A script containing commands to build a Docker container image",
+      "A spreadsheet tracking container registry pricing",
+      "A zip archive containing running container logs",
+      "A configuration file for database users"
+    ],
+    "correctIndex": 0,
+    "explanation": "A Dockerfile is a text document that contains all the instructions and commands a user could call on the command line to assemble a Docker image.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default port number used for standard unencrypted HTTP traffic?",
+    "options": [
+      "443",
+      "80",
+      "22",
+      "8080"
+    ],
+    "correctIndex": 1,
+    "explanation": "Port 80 is the default port for HTTP traffic. Port 443 is for HTTPS (secure), Port 22 is for SSH, and Port 8080 is often used for local development servers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command-line utility is typically used in Linux to print the absolute path of the current working directory?",
+    "options": [
+      "ls",
+      "pwd",
+      "cd",
+      "dir"
+    ],
+    "correctIndex": 1,
+    "explanation": "`pwd` stands for 'print working directory'. It outputs the absolute path of the current directory to the terminal.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a Git branch?",
+    "options": [
+      "To duplicate the entire repository on the remote server",
+      "To allow developers to work on features or fixes in isolation without affecting the main codebase",
+      "To compress the repository files into a smaller size",
+      "To encrypt the codebase for security reasons"
+    ],
+    "correctIndex": 1,
+    "explanation": "Branches allow parallel development, letting engineers build and test code in isolation before merging it into a main branch.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the key difference between a Blue-Green deployment and a Canary deployment?",
+    "options": [
+      "Blue-Green deployment is only for cloud environments; Canary is for on-premise hardware",
+      "Blue-Green runs two identical environments side-by-side and cuts traffic over instantly; Canary rolls out the update to a small subset of users first before updating the rest",
+      "Blue-Green is fully manual; Canary is completely automated",
+      "There is no difference; they are different terms for rolling updates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blue-Green switches all traffic from one environment (Blue) to the new environment (Green) at once. Canary routes a tiny percentage of live traffic to the new version first to test stability in production.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary function of a Kubernetes Ingress resource?",
+    "options": [
+      "To manage storage claims of running pods",
+      "To manage external access to services in a cluster, typically HTTP/HTTPS traffic, providing routing rules and TLS termination",
+      "To check the health of containers inside a pod",
+      "To configure cluster database connections"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ingress acts as an entry point that routes external web traffic (HTTP/HTTPS) to internal cluster services based on path or host rules, often managing SSL certificates as well.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does 'git rebase' differ from 'git merge'?",
+    "options": [
+      "Rebase creates a merge commit; merge does not",
+      "Rebase moves the entire branch commits to the tip of the target branch, rewriting commit history; merge combines branches by adding a new merge commit, preserving history",
+      "Merge deletes the branch; rebase keeps it",
+      "Rebase only works on remote repositories"
+    ],
+    "correctIndex": 1,
+    "explanation": "Git rebase rewrites history by applying commits on top of another branch tip, keeping a linear commit log. Git merge preserves chronological commit order by creating a distinct merge commit.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a primary benefit of using multi-stage builds in a Dockerfile?",
+    "options": [
+      "It speeds up container runtime CPU usage",
+      "It significantly reduces the final container image size by separating build-time dependencies from the runtime image",
+      "It allows containers to run multiple operating systems concurrently",
+      "It makes container configurations public on Docker Hub automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Multi-stage builds allow you to use intermediate images for building/compiling (containing SDKs, compilers) and copy only the final artifacts to a minimal runtime image (like alpine), reducing image sizes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the state file (terraform.tfstate) in Terraform?",
+    "options": [
+      "To store remote credentials securely",
+      "To map real-world infrastructure resources to your configuration, allowing Terraform to calculate changes and manage drift",
+      "To list available cloud provider APIs",
+      "To keep a log of all command line outputs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Terraform uses the state file as a database to track metadata and resources mapped to the config. Rerunning Terraform checks this state against live resources to determine additions, deletions, or modifications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary role of Prometheus in a modern observability stack?",
+    "options": [
+      "To aggregate and search through text application logs",
+      "An open-source monitoring and alerting toolkit designed for scraping and storing time-series metric data",
+      "To trace transaction spans across microservices",
+      "To configure load balancing for Kubernetes clusters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prometheus is a metrics collector that scrapes endpoints at regular intervals and stores numerical data as time-series, queried using PromQL. Tools like Grafana visualize this data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In configuration management with Ansible, what is a Playbook?",
+    "options": [
+      "A manual containing developer guidelines",
+      "A YAML file containing a set of plays and tasks that define configuration states to be applied to remote hosts",
+      "A database script that boots server nodes",
+      "A log of executed commands on host servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ansible Playbooks are configuration, deployment, and orchestration templates written in YAML. They declare the desired state of remote machines.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does an HTTP '504 Gateway Timeout' error response code indicate?",
+    "options": [
+      "The request URL is invalid or malformed",
+      "The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access",
+      "The client has sent too many requests in a short time",
+      "The server lacks the necessary authentication credentials"
+    ],
+    "correctIndex": 1,
+    "explanation": "A 504 error means a gateway or proxy server (like Nginx, Cloudflare) timed out waiting for the actual backend server (like Node, Python, Java) to respond.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a primary use case of a reverse proxy like Nginx or HAProxy?",
+    "options": [
+      "To cache client-side database connections directly",
+      "To sit in front of backend servers, directing client requests to optimize resource utilization, terminate SSL, and improve security",
+      "To compile source code into machine language",
+      "To block all outbound internet traffic from a local network"
+    ],
+    "correctIndex": 1,
+    "explanation": "A reverse proxy acts as an intermediary for client requests, directing them to appropriate backend servers. It handles load balancing, SSL/TLS termination, and request routing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the term 'Immutable Infrastructure' mean in DevOps practices?",
+    "options": [
+      "Servers are configured once and never rebooted",
+      "Infrastructure components are replaced rather than modified; changes require building new images/servers and replacing old ones",
+      "Servers are locked down so developers cannot log in",
+      "Infrastructure configurations are hardcoded into database schemas"
+    ],
+    "correctIndex": 1,
+    "explanation": "Immutable infrastructure avoids configuration drift. Instead of SSHing into a live server to update packages (mutable), you spin up a fresh, updated server image and tear down the old one.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the Horizontal Pod Autoscaler (HPA) in Kubernetes?",
+    "options": [
+      "To allocate more physical servers to the cluster",
+      "To scale the number of pod replicas in a deployment or replica set automatically based on observed CPU utilization or custom metrics",
+      "To restart crashing pods automatically",
+      "To load balance external traffic across pods"
+    ],
+    "correctIndex": 1,
+    "explanation": "HPA scales the number of pods up or down dynamically depending on resource demand (like CPU/Memory percentage thresholds), helping handle traffic spikes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In container security, what is considered a best practice regarding the container runtime user?",
+    "options": [
+      "Running the container processes as root for maximum permission compatibility",
+      "Configuring the container to run as a non-root user (least privilege) to minimize impact if the container is compromised",
+      "Giving the container administrator privileges on the host kernel",
+      "Disabling all user accounts inside the container configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "Running containers as non-root prevents container breakout exploits from obtaining root privileges on the host system, reinforcing security boundary isolation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of practicing Chaos Engineering?",
+    "options": [
+      "To deploy code updates in a randomized order",
+      "To proactively inject failures (like shut down instances, network lag) into production systems to test resilience and build confidence in the system's recovery capabilities",
+      "To write deliberately confusing code to test developers' skills",
+      "To automate server crashes during off-work hours"
+    ],
+    "correctIndex": 1,
+    "explanation": "Chaos Engineering (popularized by tools like Netflix's Chaos Monkey) tests system resilience by intentionally inducing failures in a controlled environment, helping identify weaknesses before real outages occur.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Kubernetes Deployment, what is the fundamental difference between the 'RollingUpdate' and 'Recreate' update strategies?",
+    "options": [
+      "RollingUpdate is only for web apps; Recreate is for database systems",
+      "RollingUpdate gradually replaces old pods with new ones (zero downtime); Recreate terminates all existing pods before creating new ones (introduces temporary downtime)",
+      "Recreate preserves pod IP addresses; RollingUpdate changes them",
+      "RollingUpdate is a manual process; Recreate is automated"
+    ],
+    "correctIndex": 1,
+    "explanation": "RollingUpdate guarantees availability by keeping a minimum number of old pods running while new ones spin up. Recreate is useful when running two versions of an application simultaneously is not supported (e.g., database schema incompatibility).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Git, how does using submodules differ from subtrees for managing nested repositories?",
+    "options": [
+      "Submodules copy all code files directly; subtrees only keep references",
+      "Submodules keep external repositories as pointers to specific commits (requiring separate updates); subtrees merge the external repository's files directly into your repository's commit history",
+      "Submodules are only for public repos; subtrees are for private repos",
+      "They are identical mechanisms under different commands"
+    ],
+    "correctIndex": 1,
+    "explanation": "Submodules store a reference (commit hash) to another repository. The parent repo doesn't contain the submodule files in its own index. Subtrees copy the third-party repository's files directly into the host repository, making cloning and history management simpler for collaborators.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Terraform, if a resource is marked as 'tainted', what action does Terraform take during the subsequent 'terraform apply'?",
+    "options": [
+      "It flags the resource in console logs but does not change it",
+      "It destroys and recreates the resource to restore it to a clean state",
+      "It stops execution and throws an authentication error",
+      "It rolls back the entire state to the previous backup"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tainting manually (or automatically when provisioners fail) indicates a resource is degraded. During the next apply, Terraform will plan to delete that resource and create a new instance, ensuring clean configuration compliance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary difference between a Kubernetes Deployment and a StatefulSet resource?",
+    "options": [
+      "Deployments cannot run containerized applications",
+      "Deployments manage stateless pods with random names and identical shares; StatefulSets manage stateful pods with stable network IDs, persistent storage mapping, and ordinal startup/shutdown sequences",
+      "StatefulSets are only for Docker containers; Deployments are for containerd",
+      "Deployments run on master nodes; StatefulSets run on worker nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "StatefulSets are used for database clusters or distributed queues (like Kafka, Elasticsearch) because pods require persistent identifiers (e.g., pod-0, pod-1) and dedicated volumes that stay attached when pods restart or reschedule.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does a Service Mesh (like Istio or Linkerd) implement mutual TLS (mTLS) between microservices?",
+    "options": [
+      "By requiring microservice applications to write custom SSL socket encryption code",
+      "By deploying sidecar proxies next to each application container that intercept traffic and manage secure TLS handshakes and certificate verification transparently",
+      "By routing all traffic through a centralized encryption gateway server",
+      "By encrypting the physical network cables between servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Service meshes use sidecar proxies (like Envoy) running in the same pod. The proxy intercepts all inbound and outbound TCP traffic, handles mutual TLS handshakes and key rotation, allowing applications to communicate over plain HTTP locally while enforcing encryption over the wire.",
+    "difficulty": "hard"
   }
 ]

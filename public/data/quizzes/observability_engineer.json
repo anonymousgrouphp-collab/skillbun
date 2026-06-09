@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "A major challenge in heterogeneous systems is ensuring consistent context propagation (trace IDs, span IDs) and data schemas across different languages, frameworks, and third-party services. OpenTelemetry addresses this by providing vendor-neutral, standardized APIs and SDKs for instrumentation and a common protocol (OTLP) for data exchange, simplifying context propagation and data consistency across diverse environments.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary goal of an Observability Engineer?",
+    "options": [
+      "To watch security cameras in server rooms",
+      "To design, implement, and maintain monitoring and instrumentation systems that provide insights into system health, performance, and behavior",
+      "To write application user interfaces",
+      "To schedule database backups on cloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Observability engineers build pipelines for telemetry (metrics, logs, traces), helping teams detect and debug issues in complex systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What are the 'Three Pillars of Observability'?",
+    "options": [
+      "Security, Databases, and Routing",
+      "Metrics, Logs, and Traces",
+      "CPU, Memory, and Disk space",
+      "Alerting, Dashboards, and Reports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Telemetry revolves around: Metrics (numeric data), Logs (structured text timestamps), and Traces (request journeys across systems).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Log' in system monitoring?",
+    "options": [
+      "A database table record",
+      "A structured or unstructured text record of an event that occurred in the system at a specific timestamp",
+      "A graph displaying CPU usage over time",
+      "A command line script"
+    ],
+    "correctIndex": 1,
+    "explanation": "Logs record discrete events (e.g., 'User logged in', 'Database connection timeout') containing context to help debug errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Metric' in observability?",
+    "options": [
+      "A text log description of system errors",
+      "A numeric measurement (e.g. CPU %, request count) representing system behavior measured over intervals of time",
+      "A list of running processes",
+      "An authentication token string"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metrics are numerical telemetry values (gauges, counters, histograms) optimized for aggregation and graphing.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of a Dashboard in system monitoring?",
+    "options": [
+      "To store application source code files",
+      "To visualize metrics, logs, and system health indicators in real-time on a single interface",
+      "To automate code deployments",
+      "To encrypt connection packets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dashboards (e.g., Grafana) aggregate telemetry in charts, providing operators visual checks on system state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the function of the OpenTelemetry (OTel) project?",
+    "options": [
+      "A cloud database server hosting tool",
+      "An open-source observability framework providing APIs, SDKs, and tools to generate, collect, and export telemetry data",
+      "A security scanner that blocks ports",
+      "A compiler package for Java applications"
+    ],
+    "correctIndex": 1,
+    "explanation": "OTel standardizes telemetry collection, offering vendor-agnostic APIs to collect metrics, logs, and traces without vendor lock-in.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Trace' in distributed tracing?",
+    "options": [
+      "A history file recording git branch changes",
+      "The end-to-end representation of a request's journey as it flows through various services and databases in a distributed system",
+      "A list of installed package dependencies",
+      "A diagnostic scan checking disk drive sectors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Traces map requests. A trace consists of nested spans, each representing work done by a specific service during the transaction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between monitoring and observability?",
+    "options": [
+      "Monitoring is for hardware; Observability is for software",
+      "Monitoring tells you *when* a system is broken (using predefined alerts); Observability allows you to understand *why* it is broken by querying its internal states",
+      "Monitoring is older and completely replaced by observability tools",
+      "They are identical terms with different names"
+    ],
+    "correctIndex": 1,
+    "explanation": "Monitoring alerts on known failure modes (e.g. CPU > 90%). Observability instrument systems so you can debug 'unknown unknowns' by drilling into tracing spans and logs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the 'Golden Signals' of monitoring in SRE practices?",
+    "options": [
+      "CPU, Memory, Disk, and Network bandwidth",
+      "Latency, Traffic, Errors, and Saturation",
+      "Alerting, Logging, Tracing, and Dashboarding",
+      "Authentication, Encryption, Permissions, and Audits"
+    ],
+    "correctIndex": 1,
+    "explanation": "The SRE book defines four golden signals: Latency (response time), Traffic (demand/requests), Errors (rate of failure), and Saturation (resource limits/fullness).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between structured logging and unstructured logging?",
+    "options": [
+      "Structured logging is only for database logs",
+      "Structured logging writes logs in a standardized machine-readable format (like JSON), allowing easy parsing and querying; unstructured logging writes logs as plain text strings",
+      "Unstructured logging is faster to search than structured",
+      "Structured logging does not contain timestamps"
+    ],
+    "correctIndex": 1,
+    "explanation": "JSON logs (e.g., `{\"level\":\"error\",\"msg\":\"timeout\",\"db_id\":12}`) allow log indexes (Elastic/Loki) to filter and query specific fields, whereas plain text requires regex.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Prometheus Alertmanager?",
+    "options": [
+      "To visualize metrics on graphs",
+      "To handle alerts sent by client applications or Prometheus servers, deduplicating, grouping, and routing them to email, Slack, or PagerDuty",
+      "To compile alerts code into binary files",
+      "To check configuration syntax errors in SQL"
+    ],
+    "correctIndex": 1,
+    "explanation": "Alertmanager manages alerts. It prevents alert fatigue by silencing alerts during maintenance or grouping similar alerts together.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Span' in distributed tracing?",
+    "options": [
+      "A database column length setting",
+      "The basic building block of a trace, representing a contiguous segment of work (time interval) within a service",
+      "A tool that checks compiler memory limits",
+      "The width of a dashboard chart view"
+    ],
+    "correctIndex": 1,
+    "explanation": "Spans track operations (e.g. database query, API fetch). A span has a start time, duration, parent span ID, and metadata (attributes/logs).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Trace Context Propagation'?",
+    "options": [
+      "To copy trace files between servers",
+      "Passing tracing metadata (like trace ID and parent span ID) across network boundaries (HTTP headers) to link spans together in a trace",
+      "To encrypt network traffic",
+      "To configure database backup schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "When Service A calls Service B, it injects trace headers (e.g., `traceparent`). Service B extracts them to start its child spans, maintaining the trace chain.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which open-source tool is widely used to visualize metrics and build dashboards from databases like Prometheus or InfluxDB?",
+    "options": [
+      "Docker",
+      "Grafana",
+      "Kubernetes",
+      "Logstash"
+    ],
+    "correctIndex": 1,
+    "explanation": "Grafana is the standard visualization tool. It connects to multiple data sources to build interactive dashboards.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Saturation' measure in the Golden Signals of monitoring?",
+    "options": [
+      "The speed of network packets",
+      "How 'full' a system resource is, indicating the bottleneck point of a system (e.g., memory utilization or database queue depth)",
+      "The number of errors per second",
+      "The latency of request responses"
+    ],
+    "correctIndex": 1,
+    "explanation": "Saturation measures capacity limits (e.g., 98% RAM utilization or thread pool exhaustion), predicting system failure before crashes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of Logstash or Fluentd in an ELK stack?",
+    "options": [
+      "To store log files on disk",
+      "Log shippers/collectors that ingest, parse, filter, and transform logs before sending them to a storage backend like Elasticsearch",
+      "To visualize logs on graphs",
+      "To encrypt communication channels"
+    ],
+    "correctIndex": 1,
+    "explanation": "They process raw text logs, extracting IPs, cleaning strings, and parsing JSON before indexing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Prometheus PromQL?",
+    "options": [
+      "A programming language for database design",
+      "The query language for Prometheus, used to filter and aggregate time-series metric data in real-time",
+      "A style sheet syntax for dashboards",
+      "A tool that checks network latency"
+    ],
+    "correctIndex": 1,
+    "explanation": "PromQL selects and aggregates time-series data. It computes values like rate of requests: `rate(http_requests_total[5m])`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an SLA (Service Level Agreement) in service level monitoring?",
+    "options": [
+      "A coding contract between developers",
+      "A formal commitment between a service provider and a client regarding service reliability and performance metrics",
+      "A database authentication security protocol",
+      "An installer packing script"
+    ],
+    "correctIndex": 1,
+    "explanation": "SLA is the legal agreement. SLO (Objective) is the target (e.g. 99.9% uptime). SLI (Indicator) is the real-time measurement (e.g. actual uptime).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Histogram' metric represent in Prometheus?",
+    "options": [
+      "A log history list",
+      "A metric that samples observations (usually request durations or sizes) and counts them in configurable buckets, allowing calculation of percentiles",
+      "A count of current running services",
+      "A database table indexing key"
+    ],
+    "correctIndex": 1,
+    "explanation": "Histograms track distribution. For latency, buckets count how many requests took <10ms, <50ms, <100ms, allowing p99 calculation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Synthetic Monitoring' (Active Monitoring)?",
+    "options": [
+      "Analyzing computer graphics frames",
+      "Proactively simulating user actions (like logging in or searching) at regular intervals to test application availability and performance",
+      "Monitoring virtual machine CPU temperatures",
+      "Logging database query schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Synthetics test workflows from different regions. It alerts engineers of outages even when real user traffic is zero (e.g., at night).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Cardinality' in metrics databases, and why does high cardinality pose a major challenge for observability systems?",
+    "options": [
+      "The count of database tables; causes disk failures",
+      "The number of unique time-series combinations generated by metric labels; high cardinality (e.g. user_id or IP labels) causes database memory and CPU exhaustion",
+      "The speed of network packets; causes latency spikes",
+      "The size of dashboard layouts; causes UI rendering lags"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prometheus indexes metrics by labels. If a label has infinite values (like `user_id`), it generates millions of time-series combinations, overloading memory and slowing down queries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In OpenTelemetry, what is the role of the Collector, and how does its architecture separate receivers, processors, and exporters?",
+    "options": [
+      "To collect physical server units; architecture handles power usage",
+      "A proxy component that processes telemetry: Receivers ingest data in various formats; Processors filter, batch, or scrub data; Exporters translate and send it to backends",
+      "To execute database queries; architecture handles locks",
+      "To compile code binaries; architecture manages thread runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "The OTel Collector decouples apps from backends. The app sends data to the local collector. The collector can filter secrets (processor), batch data, and send it to Datadog or Prometheus (exporters).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you calculate the 'Error Budget' of a service, and how does it guide deployment decisions?",
+    "options": [
+      "By dividing budget by developer counts; guides hiring choices",
+      "Calculated as 100% minus the SLO target; if the budget is exhausted due to outages, deployments are frozen to focus on reliability",
+      "Calculated by database server costs; guides hosting configurations",
+      "Calculated as total errors divided by CPU cycles; guides compiler optimization"
+    ],
+    "correctIndex": 1,
+    "explanation": "An SLO of 99.9% uptime permits 0.1% downtime (error budget). If outages consume this 0.1% budget, SRE policies block new feature rollouts, prioritizing stability work.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Head-based Sampling' versus 'Tail-based Sampling' in distributed tracing, and what is the key benefit of tail-based sampling?",
+    "options": [
+      "Head-based is for cloud; Tail-based is for local sandboxes",
+      "Head-based samples at the start of a trace randomly; Tail-based samples at the end of a trace, allowing it to keep all error or high-latency traces",
+      "Head-based is slower than tail-based sampling",
+      "Tail-based sampling requires more network bandwidth than head-based"
+    ],
+    "correctIndex": 1,
+    "explanation": "Head-based sampling discards traces early to save memory, potentially missing rare errors. Tail-based caches trace spans in collector memory and evaluates the whole trace at the end, saving all traces with errors or slow spans.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain the concept of 'Log-to-Metric' conversion, and why it is useful for reducing observability costs.",
+    "options": [
+      "Converting code comments to database columns",
+      "Extracting values or counting matching patterns from text logs to create numeric metrics, allowing teams to discard expensive text logs while retaining long-term trends",
+      "Encrypting log files to compress disk storage sizes",
+      "A diagnostic process checking code syntax compiler errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Text logs are expensive to store. If you only care about request counts or 404 rates, you parse logs at ingestion, increment a counter metric, and delete the raw text log, reducing storage costs by 90% or more.",
+    "difficulty": "hard"
   }
 ]

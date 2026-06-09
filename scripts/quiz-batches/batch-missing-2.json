@@ -1,0 +1,1210 @@
+{
+  "site_reliability_engineer": [
+    {
+      "question": "What does SRE stand for in system operations?",
+      "options": [
+        "Site Reliability Engineering",
+        "Server Resource Encryption",
+        "Software Recovery Engine",
+        "Secure Routing Execution"
+      ],
+      "correctIndex": 0,
+      "explanation": "SRE stands for Site Reliability Engineering, a discipline that applies software engineering principles to operations and infrastructure problems.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the key difference between a Service Level Objective (SLO) and a Service Level Agreement (SLA)?",
+      "options": [
+        "SLOs are designed for database files; SLAs are for networks",
+        "SLO is the internal reliability target; SLA is the external agreement with customers containing legal/financial penalties for breach",
+        "SLAs are always stricter than SLOs",
+        "There is no difference between SLO and SLA target metrics"
+      ],
+      "correctIndex": 1,
+      "explanation": "An SLO is an internal goal. An SLA is a formal contract. SREs aim to keep system performance well within SLO targets to prevent SLA breaches.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How is an 'Error Budget' calculated in SRE?",
+      "options": [
+        "By totaling the cost of server hardware instances",
+        "As the remaining allowable unreliability of a service (100% minus the SLO percentage)",
+        "By subtracting the developer salaries from operations budgets",
+        "By counting the total number of bug tickets in tracker databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "If your SLO is 99.9% uptime, your error budget is 0.1%. This budget represents the maximum time the service can be down for deployments or errors.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does SLI stand for in reliability monitoring?",
+      "options": [
+        "Service Level Indicator",
+        "System Log Integration",
+        "Server Load Index",
+        "Secure Login Interface"
+      ],
+      "correctIndex": 0,
+      "explanation": "An SLI (Service Level Indicator) is a quantifiable metric of service performance, such as request latency or error rate.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary focus of a 'Blameless Post-Mortem' in SRE?",
+      "options": [
+        "To assign administrative penalties to responsible engineers",
+        "To identify the root cause of an incident and write preventative actions without blaming individuals",
+        "To delete error logs to save server disk spaces",
+        "To rewrite application source code in other languages"
+      ],
+      "correctIndex": 1,
+      "explanation": "Blameless post-mortems assume engineers acted in good faith with the info they had. Focus is placed on fixing systemic faults, not human errors.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In SRE, what is the definition of 'Toil'?",
+      "options": [
+        "Writing new application feature codes",
+        "Repetitive, manual, automatable work that has no long-term value and scales linearly with service size",
+        "Configuring security firewalls on routers",
+        "Attending weekly team refinement meetings"
+      ],
+      "correctIndex": 1,
+      "explanation": "Toil is operational overhead (e.g. manual database restarts). SREs aim to automate toil to allow engineering efforts to scale.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary purpose of a load balancer in high-availability web applications?",
+      "options": [
+        "To encrypt user credentials stored on database tables",
+        "To distribute incoming network traffic across multiple backend servers to prevent overload and ensure availability",
+        "To test compiler speed rates in local environments",
+        "To automate git branch merges on repository servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Load balancers (like HAProxy, Nginx) distribute requests, ensuring no single server is overloaded and providing failover capacity.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following metrics are known as the 'Four Golden Signals' of monitoring?",
+      "options": [
+        "CPU, Memory, Disk space, Network bandwidth",
+        "Latency, Traffic, Errors, Saturation",
+        "Uptime, Connection counts, SSL keys, Cache sizes",
+        "Errors, Warnings, Logs, Traces"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Four Golden Signals monitor systems: Latency (speed), Traffic (demand), Errors (failures), and Saturation (how full resource queues are).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does the Circuit Breaker pattern protect microservices from cascading failures?",
+      "options": [
+        "By shutting down server instances completely on power spikes",
+        "By intercepting calls to slow services, returning immediate failures if errors exceed a threshold to prevent thread pool exhaustion",
+        "By duplicating database tables on secondary nodes",
+        "By encrypting API connection keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a downstream service is slow, circuit breakers trip. Upstream calls fail fast, avoiding thread blockages that cause cascading site outages.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Chaos Engineering (e.g. Netflix Chaos Monkey)?",
+      "options": [
+        "Developing code without writing unit tests",
+        "The practice of intentionally injecting failures into production systems to test resilience and verify self-healing mechanisms",
+        "Running beta code directly in production databases",
+        "Attacking competitor servers to test security firewalls"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chaos engineering proactively tests systems. By killing VM instances randomly, it verifies that failover and healing systems run smoothly in real-world scenarios.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Describe the operational difference between Active-Passive and Active-Active failover setups.",
+      "options": [
+        "Active-Passive is only for database replication setups",
+        "Active-Passive routes traffic to backup systems only when the primary fails; Active-Active distributes traffic across all active systems concurrently",
+        "Active-Active is significantly cheaper than Active-Passive",
+        "There is no difference in their network routing structures"
+      ],
+      "correctIndex": 1,
+      "explanation": "Active-Active utilizes all server capacity and provides instant failover. Active-Passive leaves resources idle, waiting for primary failure.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a 'Counter' metric and a 'Gauge' metric in system telemetry?",
+      "options": [
+        "Counter is for integers; Gauge is for float values",
+        "Counter is monotonically increasing (like total requests); Gauge represents a value that fluctuates up and down (like memory usage)",
+        "Gauge metrics are only compatible with SQL server databases",
+        "They are identical metric types measuring resource counts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Counters only go up. Telemetry engines (like Prometheus) use counters to compute rate of change. Gauges check instantaneous values.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Runbook (Playbook) in SRE?",
+      "options": [
+        "A directory containing application code packages",
+        "A documented step-by-step procedure guiding operators on how to diagnose and recover from specific alerts or failures",
+        "A schedule coordinating developer vacation times",
+        "A database schema layout linking tables"
+      ],
+      "correctIndex": 1,
+      "explanation": "Runbooks ensure consistent operations, listing exact commands to run and APIs to check when an alert triggers, reducing MTTR.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In disaster recovery, compare Recovery Time Objective (RTO) and Recovery Point Objective (RPO).",
+      "options": [
+        "RTO is for databases; RPO is for frontend web applications",
+        "RTO is the maximum allowable downtime duration; RPO is the maximum allowable data loss duration from backup states",
+        "RPO is always measured in megabytes; RTO in minutes",
+        "They are duplicate metrics in backup auditing"
+      ],
+      "correctIndex": 1,
+      "explanation": "RTO is 'how fast can we boot?'. RPO is 'how much data did we lose?'. If a backup is taken daily, the RPO is 24 hours.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Canary Deployment in progressive code delivery?",
+      "options": [
+        "Running application builds on virtual machines in remote locations",
+        "Deploying new code changes to a small fraction of servers/users first to verify stability before rolling out to the entire fleet",
+        "Encrypting application files before production deployment",
+        "A testing suite running automated UI tests in development"
+      ],
+      "correctIndex": 1,
+      "explanation": "Canary rolls out updates incrementally. If the canary group throws high error rates, SREs rollback the build before all users are impacted.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the significance of the Error Budget Burn Rate in alert engineering?",
+      "options": [
+        "It measures the database cost increases per month",
+        "It measures how fast the error budget is depleting, allowing SREs to alert on fast depletion rather than transient warnings",
+        "It tracks the number of CPU cycles consumed by scripts",
+        "It tracks code compiler errors in repository branches"
+      ],
+      "correctIndex": 1,
+      "explanation": "Alerting on raw error spikes causes fatigue. Alerting on burn rates (e.g. 'we will exhaust the budget in 1 hour') flags critical issues.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which metrics are typically used as threshold triggers for server autoscaling?",
+      "options": [
+        "Code file count and directory sizes",
+        "CPU utilization, memory usage, or incoming HTTP request rates",
+        "SQL query syntax limits and table columns count",
+        "Active user profiles count in databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "Autoscale engines monitor metrics. When CPU exceeds thresholds (e.g., 70%), they boot up more VM instances to split the load.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a reverse proxy (like Nginx), and what is its role?",
+      "options": [
+        "A script that deletes temporary database rows",
+        "An intermediary server hosting frontend assets that handles TLS termination, load caching, and routes requests to backend servers",
+        "A network switch configuring physical routing protocols",
+        "An security firewall blocking database user profiles"
+      ],
+      "correctIndex": 1,
+      "explanation": "Reverse proxies sit at perimeters. They decrypt HTTPS (TLS termination) and cache resources, reducing backend server workload.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "According to Google SRE principles, what is the recommended maximum percentage of time an SRE should spend on operational toil?",
+      "options": [
+        "10%",
+        "50%",
+        "90%",
+        "100%"
+      ],
+      "correctIndex": 1,
+      "explanation": "Google SRE limits toil to 50%. The remaining time must be engineering tasks (automation, design) to keep systems reliable as they scale.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is MTTR in incident management, and how do SREs seek to minimize it?",
+      "options": [
+        "Maximum Time to Rebuild; minimized by using faster compilers",
+        "Mean Time to Resolution; minimized by clear runbooks, dashboards, and automated alert mitigations",
+        "Minimum Time to Route; minimized by caching DNS records",
+        "Memory Transfer Time Rate; minimized by adding RAM"
+      ],
+      "correctIndex": 1,
+      "explanation": "MTTR measures repair speeds. SREs reduce MTTR through alert runbooks, auto-escalations, and post-mortems checking failure root causes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain how a cascading failure occurs in distributed microservice architectures.",
+      "options": [
+        "When an update is pushed to all servers simultaneously",
+        "When a failure in a single service causes upstream queues to fill and exhaust threads, propagating timeouts and crashing all upstream services",
+        "When database files get corrupted during backup runs",
+        "When multiple users execute SQL statements concurrently"
+      ],
+      "correctIndex": 1,
+      "explanation": "Cascading failures propagate. If Service A slows down, Service B's threads block waiting for B's API, crashing B, and eventually crashing the frontend.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do you design a distributed rate limiter using a Token Bucket algorithm backed by Redis?",
+      "options": [
+        "By saving rate limits in local text files; reload daily",
+        "Redis tracks token counts with TTL; requests decrement counts, blocking if zero, and Redis updates tokens based on time intervals",
+        "By duplicating database tables on secondary nodes",
+        "By running cron tasks to restart Redis hourly"
+      ],
+      "correctIndex": 1,
+      "explanation": "Using Redis ensures rate limits are globally respected. The atomic decrement (`DECR`) prevents race conditions across application instances.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the 'Split-Brain' scenario in high-availability clustering, and how do consensus algorithms prevent it?",
+      "options": [
+        "A compiler error building duplicate packages; prevented by linters",
+        "When network partition splits a cluster into two parts, and both parts elect leaders and write conflicting data; prevented by Quorum majority requirements (>50%)",
+        "A database index crash; prevented by prepared statements",
+        "A security attack overloading routing tables; prevented by firewalls"
+      ],
+      "correctIndex": 1,
+      "explanation": "Split-brain corrupts databases. Raft/Paxos prevent this: a partitioned sub-cluster cannot reach a majority quorum (>50%) and refuses to write data.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain the difference between Horizontal Pod Autoscaler (HPA) and Vertical Pod Autoscaler (VPA) in Kubernetes, and why they should not run on the same metrics.",
+      "options": [
+        "HPA is for containers; VPA is for virtual machines",
+        "HPA adds/removes pod instances; VPA increases/decreases CPU/RAM allocations of existing pods. Running both on CPU metrics causes conflicting scaling fights",
+        "VPA is faster and always preferred over HPA",
+        "They are duplicate controllers managing identical resource scaling"
+      ],
+      "correctIndex": 1,
+      "explanation": "HPA scales out; VPA scales up. If both monitor CPU, one tries to add instances while the other resizes CPU, causing scheduling conflicts and container crashes.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a Blue-Green deployment, and how does it guarantee zero-downtime during major releases?",
+      "options": [
+        "Running half the app in dark mode (Blue) and half in light mode (Green)",
+        "Maintaining two identical production environments; new code is deployed to the idle Green environment, and routers shift traffic instantly from Blue to Green once verified",
+        "Deploying database schemas to separate cloud regions",
+        "Running code inside virtual emulators first"
+      ],
+      "correctIndex": 1,
+      "explanation": "Blue-Green keeps Blue online while Green is updated. Shifting traffic at the router level is instantaneous. If issues arise, traffic is routed back to Blue immediately.",
+      "difficulty": "hard"
+    }
+  ],
+  "speech_ai_engineer": [
+    {
+      "question": "What is the primary task of Automatic Speech Recognition (ASR)?",
+      "options": [
+        "Converting spoken audio signals into written text",
+        "Converting written text into artificial human speech audio",
+        "Translating languages between documents",
+        "Compressing audio file sizes"
+      ],
+      "correctIndex": 0,
+      "explanation": "ASR (speech-to-text) translates audio speech waveforms into readable text strings, acting as the front-end for voice assistants.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary task of Text-to-Speech (TTS) systems?",
+      "options": [
+        "Converting spoken audio signals into written text",
+        "Converting written text into artificial human speech audio",
+        "Formatting text paragraphs in documents",
+        "Matching speaker voice prints for authentication"
+      ],
+      "correctIndex": 1,
+      "explanation": "TTS (speech synthesis) takes text strings and outputs synthesized audio waves that sound like human speech.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In digital audio processing, what does the 'sampling rate' (e.g. 16kHz) represent?",
+      "options": [
+        "The file compression percentage",
+        "The number of audio amplitude samples recorded per second",
+        "The speed of sound travel in audio frames",
+        "The frequency volume in decibels"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sampling rate is the temporal resolution. 16kHz means 16,000 samples of amplitude are captured per second, the standard for speech models.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'phoneme' in linguistics and speech processing?",
+      "options": [
+        "A device recording sound waves",
+        "The smallest unit of sound in a language that distinguishes one word from another",
+        "A word containing duplicate meanings",
+        "A styling sheet configuring audio displays"
+      ],
+      "correctIndex": 1,
+      "explanation": "Phonemes are phonetic primitives. Words are translated to phoneme lists (e.g. 'cat' to /k/, /ae/, /t/) inside TTS models.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a Spectrogram in audio analysis?",
+      "options": [
+        "A chart displaying audio file metadata details",
+        "A visual representation of the spectrum of frequencies of a signal as it varies with time",
+        "A database indexing search speeds",
+        "An amplifier setting decibel limits"
+      ],
+      "correctIndex": 1,
+      "explanation": "Spectrograms plot frequency (y-axis) against time (x-axis), with color intensity representing amplitude, serving as input images for speech models.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does ASR stand for in speech technology?",
+      "options": [
+        "Automatic Speech Recognition",
+        "Audio Signal Router",
+        "Acoustic Sound Recorder",
+        "Abstract Synthesis Registry"
+      ],
+      "correctIndex": 0,
+      "explanation": "ASR is the industry acronym for Automatic Speech Recognition.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a Waveform graph represent?",
+      "options": [
+        "Audio frequency spectra over time",
+        "Audio signal amplitude values plotted over time",
+        "The file size variations of audio compression",
+        "The speaker voice identity parameters"
+      ],
+      "correctIndex": 1,
+      "explanation": "Waveforms display raw pressure deviations. A microphone outputs waveforms, which must be digitized for model input.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the role of a 'Vocoder' in Text-to-Speech (TTS) systems?",
+      "options": [
+        "To write transcript texts",
+        "To convert intermediate acoustic features (like mel-spectrograms) into audible waveform audio samples",
+        "To index database audio files",
+        "To translate languages in text strings"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vocoders synthesize the final sound waves. Mel-spectrograms are blurry summaries; vocoders fill in phase information to produce clean audio.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are Mel-Frequency Cepstral Coefficients (MFCCs) in speech processing?",
+      "options": [
+        "File compression keys; encrypt audio data",
+        "Feature extraction coefficients representing the power spectrum of audio signals, adjusted to match human hearing pitch perception",
+        "Acoustic sensors recording sound waves",
+        "Data metrics tracking speaker volumes"
+      ],
+      "correctIndex": 1,
+      "explanation": "MFCCs represent the spectral envelope of speech. They use the Mel scale to prioritize frequency bands humans are sensitive to, a standard feature for speech classification.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between lossy and lossless audio formats (e.g. MP3 vs WAV)?",
+      "options": [
+        "Lossy formats are only for speech; lossless is for music",
+        "Lossy formats compress audio by discarding imperceptible sound data; lossless formats preserve the exact original audio waveforms",
+        "Lossless compression is always faster to decode",
+        "There is no difference in audio quality output"
+      ],
+      "correctIndex": 1,
+      "explanation": "WAV (lossless) stores raw samples. MP3 (lossy) uses psychoacoustic models to remove sounds humans can't hear, shrinking files to ~1/10th size.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Why is the Mel Scale used in speech audio feature engineering?",
+      "options": [
+        "To speed up file download rates",
+        "To model human pitch perception, which is more sensitive to changes at lower frequencies than higher frequencies",
+        "To filter out background noise in real-time",
+        "To encrypt speaker voice prints"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Mel scale is logarithmic. Pitch steps sound equal to humans if frequencies scale logarithmically. Mel-spectrograms model this, optimizing inputs for speech ML models.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In ASR, how is Word Error Rate (WER) calculated?",
+      "options": [
+        "By totaling the count of spelling errors in word files",
+        "As (Substitutions + Deletions + Insertions) divided by the total number of words in the reference transcript",
+        "As the percentage of audio files failed to compile",
+        "As the latency in milliseconds per word processed"
+      ],
+      "correctIndex": 1,
+      "explanation": "WER is the standard accuracy metric. Lower is better. It aligns transcripts and reference texts, counting insertions, deletions, and swaps.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the Acoustic Model in traditional hybrid ASR systems?",
+      "options": [
+        "It designs the physical audio speakers specifications",
+        "It maps raw acoustic features (audio frames) to phonetic units (phonemes)",
+        "It maps words to grammar dictionaries",
+        "It compresses audio bytes for cloud storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "In traditional systems (Kaldi), the Acoustic Model (HMM-DNN) calculates probability distributions of phonemes for every 10ms frame of audio.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the Language Model in ASR systems?",
+      "options": [
+        "To convert audio bytes into phoneme codes",
+        "To model the probability of word sequences, helping choose the correct spellings (e.g. write vs right) based on grammatical context",
+        "To translate spoken words to other languages",
+        "To track speaker database indices"
+      ],
+      "correctIndex": 1,
+      "explanation": "Language models score text candidates. Acoustic models suggest sounds; language models ensure the output is a grammatically valid sentence.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does Speaker Diarization refer to in audio transcriptions?",
+      "options": [
+        "A diary recording log files of speech outputs",
+        "The process of partitioning an audio stream into segments based on speaker identities ('who spoke when')",
+        "Translating speech to text in real-time",
+        "Removing background noise from audio tracks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Diarization isolates speakers. It extracts voice embeddings (d-vectors) and clusters them to assign labels like 'Speaker 1' and 'Speaker 2'.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the Tacotron model architecture in neural TTS?",
+      "options": [
+        "To compile audio waveforms from text directories",
+        "An end-to-end model that translates text sequences directly into mel-spectrogram outputs",
+        "To filter out room reverb sounds",
+        "To authenticate user voices using database records"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tacotron is a sequence-to-sequence model. It reads text characters and generates corresponding mel-spectrogram arrays, which are then fed to vocoders.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Voice Activity Detection (VAD) in audio preprocessing?",
+      "options": [
+        "To identify the speaker's language dynamically",
+        "To detect the presence or absence of human speech in an audio signal, trimming silences to save processing time",
+        "To monitor voice pitch levels for tuning",
+        "To compress files on disk"
+      ],
+      "correctIndex": 1,
+      "explanation": "VAD identifies speech frames. Trimming silent buffers before sending audio to heavy ASR models saves substantial GPU/CPU time.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Connectionist Temporal Classification (CTC) loss used for in neural ASR?",
+      "options": [
+        "To calculate database search latency rates",
+        "To align input audio frames of length T to target label sequences of length U (where T > U) without requiring pre-aligned data",
+        "To compress audio waveforms to MP3 files",
+        "To detect background noise levels"
+      ],
+      "correctIndex": 1,
+      "explanation": "CTC introduces a 'blank' token. It allows networks to predict output labels at any frame, collapsing duplicate characters and blanks into the final text.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain the role of a Pronunciation Dictionary (like CMUdict) in ASR/TTS pipelines.",
+      "options": [
+        "Translating slang terms to formal words",
+        "Mapping written words to their corresponding sequences of phonemes (e.g. apple to AE P AH L)",
+        "Checking spellings of transcribed texts",
+        "Caching audio files on server nodes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Pronunciation dictionaries are lexical lookup maps, bridging written text representation with phonetic targets for models.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is digital audio clipping (overdrive), and what is its visual effect on waveforms?",
+      "options": [
+        "Reducing file volumes; visual waves get smaller",
+        "Distortion occurring when audio signals exceed bit depth limits; peaks of waves are flattened/squared off",
+        "Compressing file ranges; visual waves get smoothed",
+        "Adding reverb echo; visual waves double up"
+      ],
+      "correctIndex": 1,
+      "explanation": "Clipping chops wave peaks. If inputs exceed limits, the analog-to-digital converter caps values, resulting in harsh, squared waves and audio distortion.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Describe how the WaveNet architecture (van den Oord et al.) generates high-fidelity raw audio waveforms.",
+      "options": [
+        "By converting text directly to WAV files using dictionary lookups",
+        "An autoregressive neural network using dilated causal convolutions, generating raw audio samples token-by-token at high sampling rates",
+        "By running FFT transforms on GPU clusters in parallel",
+        "By blending recordings of real speakers dynamically"
+      ],
+      "correctIndex": 1,
+      "explanation": "WaveNet processes raw audio. Dilated convolutions increase receptive fields, allowing the model to capture context over thousands of audio samples.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Why does OpenAI's Whisper model show high robustness across diverse accents and noisy environments compared to traditional models?",
+      "options": [
+        "It uses a local database of audio templates; matches signatures",
+        "It was trained on 680,000 hours of weakly-supervised, diverse multilingual web audio, learning general speech features rather than overfitting to specific lab conditions",
+        "It runs exclusively on local high-performance GPU processors",
+        "It removes all noise elements using physical hardware filters"
+      ],
+      "correctIndex": 1,
+      "explanation": "Whisper leverages massive scaling. Rather than using small clean datasets, training on diverse, noisy web audio forces the model to ignore noise and generalize.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do GAN-based neural vocoders (like HiFi-GAN) achieve faster-than-real-time audio synthesis compared to autoregressive models?",
+      "options": [
+        "By utilizing database caches of pre-recorded waves",
+        "By using generator networks trained against multi-scale/multi-period discriminators, generating all audio samples in a single parallel forward pass",
+        "By running low-precision 8-bit conversions on CPU chips",
+        "They bypass mel-spectrogram conversions entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "Autoregressive models (WaveNet) generate 1 sample at a time (slow). HiFi-GAN generates the entire wave in one pass, utilizing GPU parallelism.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Compare CTC decoding and Attention-based Encoder-Decoder (AED) decoding in end-to-end ASR systems.",
+      "options": [
+        "CTC is manual; AED is fully automated",
+        "CTC assumes conditional independence between output tokens at each step; AED uses autoregressive decoders that model token-to-token dependencies",
+        "AED is always faster and uses less memory than CTC",
+        "CTC does not use acoustic features during decoding"
+      ],
+      "correctIndex": 1,
+      "explanation": "CTC is fast but lacks language modeling (can output typos). AED decoders act as language models but can struggle with deletion errors on long inputs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do speech engineers mitigate 'hallucination' or 'looping' errors in Transformer-based ASR models on long, silent audio files?",
+      "options": [
+        "By deleting empty files from the input directory",
+        "By segmenting audio using VAD beforehand, applying logit thresholds for blank tokens, or using temperature decoding fallbacks",
+        "By converting WAV files to MP3 format before ASR processing",
+        "By increasing model parameter weights dynamically"
+      ],
+      "correctIndex": 1,
+      "explanation": "Transformers struggle with silence. Lacking context, attention maps can drift, causing repetitive word outputs. VAD pre-segmentation is the standard cure.",
+      "difficulty": "hard"
+    }
+  ],
+  "svelte_developer": [
+    {
+      "question": "What is Svelte?",
+      "options": [
+        "A database engine running queries on browsers",
+        "A modern JavaScript framework that compiles components at build time to surgical DOM updates, eliminating the Virtual DOM",
+        "A stylesheet extension replacing Sass and Less formats",
+        "A secure routing protocol managing API calls"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte compiles code to tiny vanilla JS during build. Unlike React or Vue, there is no Virtual DOM overhead at runtime.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you declare a reactive state variable in Svelte?",
+      "options": [
+        "Using the useState hook in functions",
+        "Using standard JavaScript variable assignment (let count = 0), as Svelte compiles assignments as reactive triggers",
+        "By wrapping variables in the reactive() method",
+        "By saving values in local browser storage configs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte's compiler instruments assignments. Writing `count += 1` triggers Svelte to update the DOM elements bound to `count` automatically.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Svelte's syntax for reactive statements (code blocks that re-run whenever their dependencies update)?",
+      "options": [
+        "$: console.log(count);",
+        "react: console.log(count);",
+        "effect(() => { console.log(count); });",
+        "watch: count => { console.log(count); }"
+      ],
+      "correctIndex": 0,
+      "explanation": "Svelte repurposes the JS label syntax (`$:`). The compiler tracks variables inside the statement and triggers updates on modifications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you pass data props from a parent component to a child component in Svelte?",
+      "options": [
+        "By receiving them as arguments in child constructors",
+        "By declaring a variable inside the child script with 'export let propName'",
+        "By importing the parent script into the child template",
+        "Using context variables mapped in layout files"
+      ],
+      "correctIndex": 1,
+      "explanation": "In Svelte, `export let` denotes a component prop. The parent passes it as an attribute: `<Child propName={value} />`.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is SvelteKit?",
+      "options": [
+        "A graphical layout design editor for Svelte",
+        "The official full-stack framework for Svelte, providing routing, SSR, layouts, and deployment adapters",
+        "A package manager installer for Svelte apps",
+        "A database driver connecting Svelte to SQL servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "SvelteKit is the application framework. It handles server-side rendering (SSR), file-based routing, layout systems, and static/server builds.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a Svelte Store?",
+      "options": [
+        "An app store where you download Svelte components",
+        "An object that holds a value and allows components to subscribe to changes, enabling shared state across files",
+        "A database table caching user preferences",
+        "A package manager caching npm modules"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte stores hold states outside components. They have a `.subscribe` method, facilitating state sharing across components.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "How do you render dynamic variable values in Svelte HTML templates?",
+      "options": [
+        "Using double curly braces {{variable}}",
+        "Using single curly braces {variable}",
+        "Using tag attributes like s-text='variable'",
+        "Writing script tags directly inside HTML body blocks"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte uses single curly braces `{}` to interpolate variables, write expressions, or bind attributes in templates.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In Svelte, what is the auto-subscription syntax for Svelte stores?",
+      "options": [
+        "Prefixing the store variable with a hash sign (#storeName)",
+        "Prefixing the store variable with a dollar sign ($storeName)",
+        "Wrapping the store variable in subscribe(storeName)",
+        "Using the import storeName from stores directive"
+      ],
+      "correctIndex": 1,
+      "explanation": "The dollar sign (`$`) tells the compiler to auto-subscribe. Svelte handles reading the value and unsubscribing when the component is destroyed.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain the difference between Svelte 'writable', 'readable', and 'derived' stores.",
+      "options": [
+        "Writable is for strings; Readable is for numbers; Derived is for lists",
+        "Writable allows reading/writing; Readable updates internally via callbacks and is read-only; Derived computes values based on other stores",
+        "Derived stores are mutable; Writable is immutable",
+        "They behave identically on client-side routing setups"
+      ],
+      "correctIndex": 1,
+      "explanation": "`writable` has set/update. `readable` wraps data feeds (e.g. geolocation). `derived` acts like computed variables (e.g., doubling a count store).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you configure two-way data binding on form inputs in Svelte?",
+      "options": [
+        "Using the bind:value={variable} directive",
+        "Using standard value={variable} attributes",
+        "Adding on:change event handlers updating variables",
+        "Using the model={variable} setting"
+      ],
+      "correctIndex": 0,
+      "explanation": "`bind:value` synchronizes input changes with variables. If the user types, the variable updates. If code changes the variable, the input updates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is SvelteKit's '+page.js' load function used for?",
+      "options": [
+        "To load CSS stylesheet files dynamically",
+        "To fetch page-specific data before rendering, running on both client and server during server-side rendering (SSR)",
+        "To initialize database connections on servers",
+        "To import Svelte component files into pages"
+      ],
+      "correctIndex": 1,
+      "explanation": "SvelteKit's `load` runs before navigation. It returns data as props to the matching `+page.svelte` component, enabling pre-rendered views.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Svelte's 'onMount' lifecycle function?",
+      "options": [
+        "To compile components during build runs",
+        "To execute code on the client side only immediately after the component is first rendered in the DOM",
+        "To handle server database connection pools",
+        "To monitor screen size changes dynamically"
+      ],
+      "correctIndex": 1,
+      "explanation": "`onMount` is ideal for client-side setups (like initializing maps, fetching dynamic APIs, or focusing inputs) that require the DOM to exist.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you pass parent template content into child components in Svelte?",
+      "options": [
+        "Using component iframe elements",
+        "Using the <slot /> component inside the child layout",
+        "Importing the parent component in child templates",
+        "Using props containing HTML strings"
+      ],
+      "correctIndex": 1,
+      "explanation": "`<slot />` acts as a placeholder. Svelte renders any HTML nested inside the component tags: `<Child><h1>Hello</h1></Child>`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the 'adapter' in SvelteKit application builds?",
+      "options": [
+        "A plugin mapping database tables",
+        "A plugin that compiles the app code to run on specific target hosting platforms (like Vercel, Node, or Cloudflare)",
+        "A styling compiler formatting layout dimensions",
+        "A security gateway authenticating API requests"
+      ],
+      "correctIndex": 1,
+      "explanation": "Adapters package SvelteKit apps. `@sveltejs/adapter-node` creates a Node server. `@sveltejs/adapter-static` builds a static SSG site.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do you send custom events from child components to parent components in Svelte?",
+      "options": [
+        "Using standard window.postMessage API calls",
+        "Using the createEventDispatcher function to dispatch events, caught by the parent using the 'on:eventName' attribute",
+        "By modifying parent prop variables directly in children",
+        "Custom events are not supported; props must be used"
+      ],
+      "correctIndex": 1,
+      "explanation": "`createEventDispatcher` creates a dispatcher. The child dispatches `dispatch('click', data)`. The parent catches it: `<Child on:click={handler} />`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Svelte's '{#key expression}' block?",
+      "options": [
+        "To encrypt template contents from source maps",
+        "To destroy and recreate its contents whenever the expression value changes, re-running transition animations",
+        "To declare database primary keys",
+        "To block user keyboard inputs"
+      ],
+      "correctIndex": 1,
+      "explanation": "`{#key}` forces a remount. If you want an entrance transition to run every time an ID changes (e.g. changing users), wrap the component in `{#key userId}`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'tick' function in Svelte return, and why is it used?",
+      "options": [
+        "Returns CPU clock ticks; used to profile speed",
+        "Returns a promise resolving after pending DOM state updates are applied, allowing developers to query updated layouts synchronously",
+        "Returns active timers list; used to cancel delays",
+        "Returns database connection statuses"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte batches updates. If you change a variable and read the DOM instantly, you get old values. Awaiting `tick()` ensures the DOM is updated.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Svelte ensure that styles declared inside '<style>' blocks are scoped locally?",
+      "options": [
+        "By running separate stylesheet files for every component",
+        "By appending unique generated hashes (e.g. svelte-1a8f3b) to classes and DOM elements at compile time",
+        "By executing CSS styles inside iframe sandboxes",
+        "Styles are global by default in Svelte components"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte scopes by default. It appends class hashes to selectors (e.g. `p.svelte-hash`). This prevents styles leaking and polluting other components.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In SvelteKit routing, what is the difference between '+page.js' and '+page.server.js' files?",
+      "options": [
+        "+page.js is for mobile layouts; +page.server.js is for desktop",
+        "+page.js runs on both client and server; +page.server.js runs exclusively on the server, secure for database queries and API keys",
+        "+page.server.js is deprecated and replaced by +page.js",
+        "+page.js is written in JavaScript; +page.server.js in Node.js"
+      ],
+      "correctIndex": 1,
+      "explanation": "`+page.server.js` load functions run only on the server, permitting direct database requests or usage of private environment variables.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which template block is used in Svelte to handle asynchronous promises directly in the HTML markup?",
+      "options": [
+        "{#async promise}",
+        "{#await promise}",
+        "{#then promise}",
+        "{#promise await}"
+      ],
+      "correctIndex": 1,
+      "explanation": "The `{#await}` block displays placeholders during promise pending, rendering results in the `:then` block, or errors in the `:catch` block.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In Svelte 5, describe the transition from compiler-based reactivity label ($:) to Svelte Runes.",
+      "options": [
+        "Runes replace Svelte templates with React JSX configurations",
+        "Runes ($state, $derived, $effect) introduce fine-grained signal-based reactivity, replacing compiler label heuristics and export props",
+        "Runes compile Svelte code to python executables",
+        "Runes are optional plugin engines managed under nextconfig files"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte 5 runes replace compiler-tricked assignments. By using signals (`$state`), reactivity works inside normal JS files, streamlining code architecture.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how Svelte's compile-time design updates the DOM without using a Virtual DOM.",
+      "options": [
+        "Svelte runs database triggers that update browsers directly",
+        "Svelte compiles templates into precise, surgical vanilla JavaScript statements that update target DOM elements directly on variable assignments",
+        "Svelte hosts application files on separate CDN server nodes",
+        "Svelte converts HTML files to vector image graphics at runtime"
+      ],
+      "correctIndex": 1,
+      "explanation": "React diffs Virtual DOMs to locate changes. Svelte compiles bindings directly: changing `x` calls `anchor.data = x` directly, saving runtime memory.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the memory leak risk of manual '.subscribe' calls on Svelte stores, and how is it resolved?",
+      "options": [
+        "They leak database connection sockets; resolved by closing DB pools",
+        "Manual subscriptions return unsubscribe functions; if not called inside onDestroy lifecycle hooks, they leak memory. Resolved by auto-subscription ($)",
+        "They cause stack overflows; resolved by adding try-catch blocks",
+        "They cache variables on local disk folders; resolved by clearing temp files"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a component subscribes manually and is destroyed, the store reference remains, leaking memory. Using `$storeName` automates lifecycle cleanup.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In SvelteKit navigation, explain the difference between the initial page load lifecycle and subsequent client-side routing.",
+      "options": [
+        "Initial load is manual; client-side is automated",
+        "First load uses SSR (Server-Side Rendering) compiling page HTML on servers; subsequent clicks hijack anchors, running local load functions and updating pages on client side",
+        "Initial load uses adapters; routing uses static assets",
+        "There is no operational difference in loading sequences"
+      ],
+      "correctIndex": 1,
+      "explanation": "First visit returns full HTML from the server for SEO. Clicking navigation buttons intercepts default actions, fetching JSON data and rendering layouts locally.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do Svelte transition directives (like transition:fade) coordinate with the reactive rendering engine on list items deletion?",
+      "options": [
+        "Svelte deletes items immediately and runs animations in parallel threads",
+        "Svelte delays deleting the target DOM node until the out-transition animation completes, managing animation timelines internally",
+        "Transitions bypass Svelte rendering and run via web CSS templates",
+        "Transitions throw compilation warnings if applied to list loops"
+      ],
+      "correctIndex": 1,
+      "explanation": "Svelte manages transition lifecycles. When an item is removed, Svelte executes the out-transition, detaching the DOM element only once animations end.",
+      "difficulty": "hard"
+    }
+  ],
+  "technical_artist": [
+    {
+      "question": "What is the primary role of a Technical Artist in game development?",
+      "options": [
+        "Writing core C++ game physics engine modules",
+        "Bridging the gap between artists and programmers, optimizing art assets, setting up pipelines, and writing shaders",
+        "Designing character outfits and drafting concept art",
+        "Marketing the game to digital publishing platforms"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tech Artists act as translators, ensuring art looks stunning while maintaining performance limits through optimization and tools creation.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Shader' in computer graphics?",
+      "options": [
+        "A script that backs up art directory files",
+        "A program executed on the GPU that calculates vertex coordinates and pixel colors to render visual effects on screen",
+        "A database query retrieving mesh values",
+        "A physical cooling system in game console processors"
+      ],
+      "correctIndex": 1,
+      "explanation": "Shaders are GPU programs (written in HLSL/GLSL) that calculate mesh rendering, lighting, shadows, and material features.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "In modern rendering engines, what does PBR stand for?",
+      "options": [
+        "Physically Based Rendering",
+        "Pixel Based Rasterization",
+        "Point Buffer Reconstruction",
+        "Process Boundary Registry"
+      ],
+      "correctIndex": 0,
+      "explanation": "PBR (Physically Based Rendering) simulates real-world light behavior, using physical inputs (roughness, metalness) to calculate reflections.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'Rigging' mean in 3D animation pipelines?",
+      "options": [
+        "Designing the lighting setups of game scenes",
+        "The process of creating a bone skeleton structure and control joints for a 3D mesh so animators can animate it",
+        "Optimizing texture files to reduce GPU memory usage",
+        "Merging code branches in git repositories"
+      ],
+      "correctIndex": 1,
+      "explanation": "Rigging builds the skeletal structure. Weight skinning links mesh vertices to bones, allowing joints to bend character meshes naturally.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is UV Mapping in 3D modeling?",
+      "options": [
+        "Mapping coordinate routes on map views",
+        "The process of projecting a 2D image texture map onto a 3D model's surface coordinates (U and V axes)",
+        "Configuring security permissions on virtual servers",
+        "Tracing compiler dependencies in script folders"
+      ],
+      "correctIndex": 1,
+      "explanation": "UV mapping unwraps 3D meshes into flat 2D coordinate shells, allowing texture files to align correctly with mesh faces.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does LOD stand for in game asset optimization?",
+      "options": [
+        "Level of Detail",
+        "Log of Diagnostics",
+        "Load On Demand",
+        "Layout Optimization Design"
+      ],
+      "correctIndex": 0,
+      "explanation": "LOD (Level of Detail) swaps meshes based on camera distance. Faraway objects load low-poly meshes, saving GPU processing power.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a standard industry software tool for 3D modeling, rigging, and animation?",
+      "options": [
+        "Adobe Photoshop",
+        "Autodesk Maya",
+        "Visual Studio Code",
+        "Docker Desktop"
+      ],
+      "correctIndex": 1,
+      "explanation": "Autodesk Maya (and Blender) are standard 3D DCC tools, widely used by tech artists to script pipelines and rigs.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What visual behavior is simulated by Subsurface Scattering (SSS) in shader materials?",
+      "options": [
+        "Mirror reflections on polished metal sheets",
+        "Light penetrating a translucent surface, scattering inside, and exiting at different angles (like skin, wax, or milk)",
+        "Camera lens flares looking at bright lights",
+        "Background elements being blurred by fog"
+      ],
+      "correctIndex": 1,
+      "explanation": "SSS simulates light absorption in translucent materials. Light travels under skins/wax surfaces before scattering out, adding flesh-like glows.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In shader programming, compare the roles of a Vertex Shader and a Pixel (Fragment) Shader.",
+      "options": [
+        "Vertex shader is for colors; Pixel shader is for vectors",
+        "Vertex shader calculates vertex positions and transformations; Pixel shader calculates the final color of each screen pixel",
+        "Pixel shader is executed on CPU; Vertex on GPU units",
+        "They are duplicate stages executed in one compile run"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vertex shader modifies geometry coordinates (e.g. wind sway). Pixel shader processes color outputs, applying lighting, textures, and normal mapping.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Why is 'Draw Call' optimization crucial for maintaining stable game frame rates?",
+      "options": [
+        "Draw calls consume database storage allocations",
+        "Each draw call sends mesh instructions from CPU to GPU; too many draw calls bottleneck the CPU, reducing performance",
+        "Draw calls increase network latency rates",
+        "They download game asset updates from servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "GPU is fast, but CPU driver bottlenecks occur if too many independent mesh draw commands are sent. Batching or instancing meshes solves this.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How do Metallic and Roughness maps control material reflections in a PBR shader?",
+      "options": [
+        "Metallic defines mesh thicknesses; Roughness defines mesh weight",
+        "Metallic defines if a surface is a metal conductor; Roughness defines micro-surface details that scatter reflections (matte vs glossy)",
+        "Roughness maps are only compatible with transparent glass objects",
+        "They control the speed of rendering animations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Metals reflect colored specular highlights. Roughness diffuses reflections: rough surfaces spread light (blurry), smooth surfaces reflect sharply.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Forward Rendering and Deferred Rendering pipeline paths?",
+      "options": [
+        "Forward is for mobile; Deferred is for web applications",
+        "Forward rendering calculates lighting per object in geometry passes; Deferred rendering caches geometry in a G-Buffer, calculating lighting later in screen-space",
+        "Deferred rendering is slower when there are hundreds of dynamic lights",
+        "They use identical buffer sizes during rendering passes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Forward rendering re-draws meshes for every light. Deferred rendering draws geometry once, computing light calculations in 2D space, ideal for complex lighting.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In game animation systems, what is a 'Blend Space'?",
+      "options": [
+        "A color palette editor blending textures",
+        "An asset blending multiple animations (like idle, walk, run) dynamically based on input parameters (like speed or direction)",
+        "A database index sorting animation files",
+        "A tool scaling resolution values in games"
+      ],
+      "correctIndex": 1,
+      "explanation": "Blend spaces blend animations. Inputting speed (0 to 600) smoothly blends walk cycles into run cycles without abrupt visual jumps.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does a Normal Map simulate surface detail without increasing polygon counts?",
+      "options": [
+        "By duplicating mesh geometry in background threads",
+        "By storing high-resolution surface normal vectors in texture RGB channels, altering pixel lighting calculations to look bumpy",
+        "By running database queries tracking light angles",
+        "By compressing texture dimensions using zip codecs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Normal maps trick lighting calculations. RGB values correspond to XYZ offsets of normals, simulating cracks/bumps on flat low-poly meshes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Explain the difference between Forward Kinematics (FK) and Inverse Kinematics (IK) in rigging.",
+      "options": [
+        "FK is for wheels; IK is for arm joints only",
+        "FK rotates joints hierarchically down the skeleton chain; IK uses target coords to calculate parent bone rotations automatically",
+        "IK is simpler to compute and requires less processing than FK",
+        "They are duplicate terms for keyframe interpolation"
+      ],
+      "correctIndex": 1,
+      "explanation": "With FK, moving a hand requires rotating shoulder, elbow, then wrist. With IK, the hand target is moved, and the arm bones resolve joint bends.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of texture Mipmapping in game development?",
+      "options": [
+        "Creating backup files in case of server crashes",
+        "Generating lower-resolution copies of textures at build time, loading smaller maps when models are far from cameras to save bandwidth and prevent aliasing",
+        "Encrypting textures to avoid asset theft",
+        "Minifying texture files to save disk spaces"
+      ],
+      "correctIndex": 1,
+      "explanation": "Mipmaps optimize RAM. Far objects don't need 4K maps. Mipmaps load smaller maps matching screen sizes, preventing graininess (aliasing).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Weight Painting' refer to in character rigging?",
+      "options": [
+        "Choosing color values for character costumes",
+        "Assigning influence values (weights) of skeleton bones over specific vertices of the character mesh, controlling skin stretching",
+        "Measuring the file size weight of asset packages",
+        "Applying normal mapping to base textures"
+      ],
+      "correctIndex": 1,
+      "explanation": "Weight painting defines mesh bindings. A vertex on the elbow is weighted 50% to forearm and 50% to upper arm to bend smoothly on joint folds.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Occlusion Culling in rendering optimizations?",
+      "options": [
+        "Deleting shadow variables to speed up frames",
+        "An optimization that prevents rendering meshes that are completely hidden behind other opaque meshes from the camera view",
+        "A database clean task deleting empty tables",
+        "A network filter blocking duplicate packets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Frustum culling drops objects behind the camera. Occlusion culling drops objects blocked by walls in front of the camera, saving GPU vertex costs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of rigging constraints in 3D character setups?",
+      "options": [
+        "To limit the file size of skeleton files on disk",
+        "To limit bone rotations or translations to prevent joints from bending in physically impossible or unnatural directions",
+        "To restrict animation editing to administrative users",
+        "To lock database tables during rendering runs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Constraints restrict bones (e.g. limiting elbow rotation to one axis and 150 degrees), helping animators animate characters easily without breaking rigs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Why is Python widely integrated into 3D DCC tools (Maya, Blender, Unreal Engine)?",
+      "options": [
+        "Python compiles code to execute on GPU processors directly",
+        "It acts as the standard scripting language to automate pipeline tasks, asset exporting, validation checks, and tool configurations",
+        "Python writes web landing pages for games",
+        "Python is the only language compatible with SQL databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "Python is DCC glue. Tech artists write scripts to export models, rename assets, set up auto-rigs, or interface with version control systems.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Detail the composition of a G-Buffer in deferred rendering, and what its primary hardware performance limitation is.",
+      "options": [
+        "G-Buffer stores physics coordinates; limited by CPU cores count",
+        "G-Buffer caches normals, depth, albedo in separate render targets; limited by high GPU memory bandwidth requirements writing multiple high-res buffers",
+        "G-Buffer stores texture folders; limited by local disk speeds",
+        "Deferred rendering does not utilize G-Buffers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Deferred rendering splits geometry. Writing normals/depth/albedo targets per pixel in the first pass consumes vast memory bandwidth, a limit on mobile devices.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do you implement a wind vertex displacement shader for foliage assets (like grass or trees) in vertex shaders?",
+      "options": [
+        "By duplicating foliage meshes in background threads",
+        "By applying sine wave offset calculations to vertex coordinates over time, using vertex color weights to restrict motion at the mesh base",
+        "By writing database update queries tracking wind speed variables",
+        "Foliage wind motion cannot be calculated on vertex shaders"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vertex shaders modify mesh vertices. Using sine waves creates sway. Vertex color masks (painted by artists) set weights: 0 at roots (static), 1 at tips (maximum sway).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Describe how Dual-Quaternion Skinning improves character mesh deformation compared to Linear Blend Skinning during extreme joint rotations.",
+      "options": [
+        "By running calculation tasks on separate CPU threads",
+        "Linear blend skinning averages matrices causing volume loss ('candy-wrapper' joints); dual quaternions interpolate rotations on spheres, preserving joint volumes",
+        "Dual-quaternion skinning requires double the bone counts of linear skinning",
+        "It eliminates normal mapping calculations entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "Linear blending collapses joints on 180-degree rotations. Dual-quaternion skinning interpolates using dual quaternions, keeping wrist and elbow volumes intact during twists.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how Static Lightmaps and dynamic Cascade Shadow Maps (CSM) are blended in game environments to optimize performance.",
+      "options": [
+        "Lightmaps are for skybox graphics; CSM is for models only",
+        "Lightmaps bake static object shadows on textures (zero cost); CSM renders dynamic shadows near the camera, blending into baked lightmaps at distance bounds",
+        "Cascade shadow maps are baked into database tables during compile runs",
+        "They cannot be blended due to resolution incompatibilities"
+      ],
+      "correctIndex": 1,
+      "explanation": "Static lighting saves GPU power. Moving characters need shadows, so CSM renders dynamic maps nearby. Blending CSM bounds into static lightmaps at distance limits saves shadow map draws.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does a Technical Artist resolve GPU performance bottlenecks caused by alpha 'Overdraw' in transparency rendering (e.g. particles or dense foliage)?",
+      "options": [
+        "By increasing the GPU processor speed limits",
+        "By reducing overlapping transparent planes, replacing transparent materials with masked (binary alpha) templates, and cutting tight meshes around alpha textures",
+        "By disabling anti-aliasing configurations",
+        "By exporting texture files in low-precision formats"
+      ],
+      "correctIndex": 1,
+      "explanation": "Overdraw happens when pixels are colored multiple times. Flat card particles draw huge transparent regions. Cutting tight polygons around the visual textures reduces transparent pixel counts, easing GPU fill rates.",
+      "difficulty": "hard"
+    }
+  ]
+}

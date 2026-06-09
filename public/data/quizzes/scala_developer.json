@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "`case class`es are special classes in Scala designed for modeling immutable data. The compiler automatically generates useful methods like `equals`, `hashCode`, `toString`, and a `copy` method. Crucially, they also provide built-in support for pattern matching, which is essential for working with algebraic data types in functional programming.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What is Scala?",
+    "options": [
+      "A database query engine compiling SQL tables",
+      "A high-level programming language that integrates functional and object-oriented programming, running on the JVM",
+      "A stylesheet extension replacing CSS styling sheets",
+      "A network gateway routing connection requests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scala is a statically-typed language designed to express common programming patterns in a concise, elegant, and type-safe manner.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between declaring a variable with 'val' versus 'var' in Scala?",
+    "options": [
+      "val defines mutable variables; var defines immutable constants",
+      "val defines immutable values (constants); var defines mutable variables",
+      "val variables are only processed in development environments",
+      "There is no operational difference between val and var"
+    ],
+    "correctIndex": 1,
+    "explanation": "`val` variables are immutable (cannot be reassigned). `var` variables are mutable. Functional programming practices prefer `val` to avoid side effects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which keyword is used to define functions in Scala?",
+    "options": [
+      "function",
+      "def",
+      "func",
+      "void"
+    ],
+    "correctIndex": 1,
+    "explanation": "Functions are declared using the `def` keyword, followed by parameter lists, return types, and the assignment operator `=`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Case Class in Scala?",
+    "options": [
+      "A class used only for database migration records",
+      "An immutable class that automatically provides companion object methods, pattern matching support, and value-based comparison",
+      "A class containing static variables only",
+      "A class designed to run unit test scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Case classes are ideal for data transfer objects. The compiler automatically creates `equals`, `hashCode`, `toString`, and `apply`/`unapply` methods.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the 'Option' type represent in Scala?",
+    "options": [
+      "A configurations setting menu",
+      "A container holding either Some(value) or None, representing the presence or absence of a value safely",
+      "A code compiler option setting flags",
+      "A connection protocol key"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Option` replaces null values. By forcing developers to unpack values using pattern matching or map/getOrElse, it avoids NullPointerExceptions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Trait' in Scala?",
+    "options": [
+      "A compiler log file entry",
+      "An interface-like structure that can contain both abstract and concrete methods, supporting multiple inheritance via mixins",
+      "A private variable inside companion classes",
+      "A packaging directory configuration"
+    ],
+    "correctIndex": 1,
+    "explanation": "Traits are similar to Java interfaces but more powerful. Classes can inherit from multiple traits, mixing in behavior dynamically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you perform pattern matching in Scala?",
+    "options": [
+      "Using switch-case statements inside blocks",
+      "Using the 'match' keyword followed by 'case' blocks",
+      "By writing regular expression scripts",
+      "By comparing string values inside if-else blocks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pattern matching in Scala evaluates expressions against case patterns. It supports destructuring case classes and matching by type.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Companion Object in Scala?",
+    "options": [
+      "An object defined inside another class's method scope",
+      "An object with the same name as a class, defined in the same file, which can access the class's private members and holds static-like methods",
+      "A backup object instantiated during system crashes",
+      "A tool that compiles package dependencies"
+    ],
+    "correctIndex": 1,
+    "explanation": "A companion class and companion object share access rights. The object is instantiated once (singleton) and holds factory or static methods.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'map' and 'flatMap' on Scala collections?",
+    "options": [
+      "map is for lists; flatMap is for map structures only",
+      "map applies a function to each element; flatMap applies a function that returns a collection and flattens the resulting collections into one",
+      "flatMap is slower and deprecated in modern Scala releases",
+      "They are duplicate operations performing identical functions"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a function returns a list, `map` yields a list of lists. `flatMap` executes the map and then flattens it into a single flat list.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an Implicit Parameter in Scala?",
+    "options": [
+      "A parameter that must be passed manually in parentheses",
+      "A parameter marked 'implicit' that the compiler automatically resolves from implicit values in the current scope",
+      "A parameter containing encrypted values",
+      "A parameter that defaults to null if omitted"
+    ],
+    "correctIndex": 1,
+    "explanation": "Implicits reduce boilerplate (e.g. passing database connections or thread execution context parameters automatically to functions).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'lazy val' modifier in Scala?",
+    "options": [
+      "It defines variables that compile slower than standard variables",
+      "It delays the evaluation of a value until it is first accessed, caching the result for subsequent evaluations",
+      "It sets a timeout delay on thread execution runs",
+      "It defines variables that can only be accessed by background threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "`lazy val` is evaluated once on first read. It is useful for defining expensive computations or resolving circular initialization issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Scala, what is a Future, and how does it execute asynchronous operations?",
+    "options": [
+      "A design pattern used to track product releases",
+      "A representation of a value that will become available asynchronously, running tasks on an implicit ExecutionContext thread pool",
+      "A database transaction trigger locking tables",
+      "A thread scheduling daemon running hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Futures start execution as soon as they are defined. They register callbacks (onComplete, map) to process results once completed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the 'List' and 'Vector' collection performance in Scala.",
+    "options": [
+      "List is faster for random index access operations",
+      "List is a singly-linked list with O(1) head access but O(N) random access; Vector is a trie-based structure with O(log32 N) near-constant access for all operations",
+      "Vector is a mutable collection; List is immutable",
+      "There is no difference in memory allocations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Use `List` for recursive algorithms (head/tail). Use `Vector` when you need fast random access, updates, or appending at the end.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Currying and Partial Function Application in Scala?",
+    "options": [
+      "They are database indexing models; Currying filters keys",
+      "Currying splits a function with multiple parameters into a chain of functions taking one parameter each; Partial Application fixes a subset of arguments to create a new function",
+      "They are caching mechanisms in actors",
+      "They compile Scala source code into web JavaScript"
+    ],
+    "correctIndex": 1,
+    "explanation": "Currying turns `(Int, Int) => Int` into `Int => Int => Int`. Partial application fixes parameters, e.g. `add(_, 5)`, yielding a new single-parameter function.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Sealed Trait' and how does it benefit pattern matching?",
+    "options": [
+      "A trait that cannot be inherited; blocks compile runs",
+      "A trait that can only be extended in the same file, allowing the compiler to verify if pattern match cases are exhaustive (warning if cases are missing)",
+      "A trait that restricts access to private database fields",
+      "A trait that encrypts child classes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sealed traits guarantee that all subclasses are known at compile time. This allows compilers to flag missing `case` statements in match blocks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an Implicit Conversion in Scala, and why is it used with caution?",
+    "options": [
+      "Converting files to text; used with caution because files get corrupted",
+      "Automatically casting one type to another to resolve missing methods; used with caution because it can cause obscure compilation and debugging issues",
+      "An actor state update; used with caution to avoid thread crashes",
+      "An authentication protocol converting keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Implicit conversions allow 'extension methods' (adding methods to library classes). However, excess conversions make code paths hard to trace.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between a Call-by-Value and a Call-by-Name parameter in Scala.",
+    "options": [
+      "Call-by-Value is for integers; Call-by-Name is for strings",
+      "Call-by-Value evaluates the argument once before passing; Call-by-Name (=> Type) evaluates the argument expression every time it is accessed inside the function",
+      "Call-by-Name is faster and consumes less memory",
+      "They behave identically on compiler execution runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Call-by-Name is useful for lazy evaluations (e.g. logging: if debug mode is off, the string concatenation expression is never evaluated).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the core idea of the Actor Model (Akka/Pekko) in Scala?",
+    "options": [
+      "A database replication system utilizing primary nodes",
+      "A concurrency model where independent actors communicate solely by passing asynchronous messages, eliminating shared mutable state",
+      "A stylesheet system rendering UI interfaces",
+      "A router mapping network sockets dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Actors isolate state. Since they only communicate via messages, there are no thread lock issues, making it highly scalable for concurrent apps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'yield' keyword do inside a Scala 'for' comprehension?",
+    "options": [
+      "It yields thread execution execution rights to other threads",
+      "It yields a new collection containing the results of each loop iteration, acting as syntactic sugar for map/flatMap operations",
+      "It exits loops immediately returning boolean indicators",
+      "It flushes database connection pools"
+    ],
+    "correctIndex": 1,
+    "explanation": "A `for` comprehension with `yield` returns a collection of the same type as the input. Without `yield`, it acts as a side-effecting `foreach` loop.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Type Class in Scala?",
+    "options": [
+      "A category grouping source code files",
+      "A design pattern providing ad-hoc polymorphism by defining a trait with behavior and providing implicit instances of that trait for specific types",
+      "A class representing system primitive variables",
+      "A database structure indexing rows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Type classes allow extending libraries without inheritance. You define a trait (like Serializer[T]) and inject implicit instances to serialize custom types.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the concept of Covariance (+T) and Contravariance (-T) in Scala generics.",
+    "options": [
+      "Covariance is for integers; Contravariance is for strings",
+      "Covariance allows using a subtype where a supertype is expected; Contravariance allows using a supertype where a subtype is expected (crucial for function inputs)",
+      "Covariance is mutable; Contravariance is immutable",
+      "They are deprecated terms replaced by type boundaries"
+    ],
+    "correctIndex": 1,
+    "explanation": "If `List[+T]` is covariant, `List[Dog]` is a subtype of `List[Animal]`. If a class is contravariant `[-T]`, `Output[Animal]` is a subtype of `Output[Dog]`.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a Value Class (extends AnyVal) in Scala, and what is its primary optimization benefit?",
+    "options": [
+      "A class used to check integer ranges; optimizes compilation speeds",
+      "A class wrapping a single value that compiles to a primitive type at runtime, avoiding heap allocation overhead",
+      "A class storing configuration keys; optimizes database queries",
+      "A class representing actor mailboxes; optimizes thread pools"
+    ],
+    "correctIndex": 1,
+    "explanation": "Value classes wrap types (e.g. wrapper for IDs) for type safety. Since the compiler removes the wrapper at runtime, there is zero heap allocation overhead.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does the Scala compiler search and resolve Implicits?",
+    "options": [
+      "It queries database indexes for matching keys",
+      "It searches local scope (imports, definitions), then companion objects of the target type, its parameters, or inherited traits, flagging errors if ambiguous",
+      "It scans local folder directories alphabetically",
+      "It connects to online maven repositories at compile time"
+    ],
+    "correctIndex": 1,
+    "explanation": "Implicit resolution follows strict priority rules. If multiple matching implicit instances are found in the priority scope, the compiler raises an ambiguity error.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe the restriction placed on Auxiliary Constructors in Scala classes.",
+    "options": [
+      "They must be declared inside companion objects only",
+      "Their first statement must call the primary constructor or another auxiliary constructor of the class using the 'this' keyword",
+      "They cannot accept parameters or return values",
+      "They cannot access private variables of the class"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Scala, the primary constructor is the class body. All auxiliary constructors must ultimately delegate to the primary constructor first to guarantee initialization.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Compare Type Projection (Outer#Inner) and Path-Dependent Types (outer.Inner) in Scala.",
+    "options": [
+      "Type projection is faster than path-dependent types",
+      "Path-dependent types bind the inner type to a specific instance of the outer class; Type projection references the inner class independent of any outer instance",
+      "Type projection is for actor models only",
+      "They are duplicate syntaxes for inheritance rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "With `outer.Inner`, `x.Inner` and `y.Inner` are distinct types. With `Outer#Inner`, we refer to the inner type generally, allowing variables to accept any instance's inner class.",
+    "difficulty": "hard"
   }
 ]

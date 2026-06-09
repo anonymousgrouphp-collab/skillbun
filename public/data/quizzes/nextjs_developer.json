@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "E2E tests should simulate a real user. For Next.js applications, especially with Server Components, this means allowing the server to render the page and fetch data. The test runner (e.g., Playwright, Cypress) should be configured to explicitly wait for elements to become visible or for network requests related to data fetching to complete, rather than relying on arbitrary delays or mocking server-side logic in the E2E layer.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Next.js?",
+    "options": [
+      "A database management system for web applications",
+      "A React-based framework that enables server-side rendering, static site generation, and routing for web applications",
+      "A programming language that replaces JavaScript",
+      "A styling library for building layouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Next.js is a meta-framework built on React, providing structure, server features, optimized bundle builds, and routing out of the box.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the Next.js App Router, which folder structure represents a route `/about`?",
+    "options": [
+      "about.js in root",
+      "app/about/page.jsx",
+      "pages/about.jsx only",
+      "components/about.js"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Next.js 13+ App Router, routes are defined by directories. A directory `app/about` containing a `page.jsx` handles the `/about` route.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of Server-Side Rendering (SSR) in Next.js?",
+    "options": [
+      "It eliminates the need for database storage",
+      "It generates HTML dynamically on the server for each request, improving initial page load time and SEO",
+      "It runs React code on local databases",
+      "It compresses code files into zip formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSR compiles React pages to HTML on the server per request. Search engines receive pre-rendered HTML, which boosts indexing, and users see content faster.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you declare a client-side component in the Next.js App Router?",
+    "options": [
+      "By naming it component.client.js",
+      "Adding the directive 'use client' at the very top of the file",
+      "Importing it from 'next/client'",
+      "Wrapping the component in a <ClientOnly> tag"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, App Router components are Server Components. Adding `'use client'` tells Next.js to package the component for hydration in the browser, enabling state and hooks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Next.js component is recommended for optimized image rendering, lazy loading, and layout shift prevention?",
+    "options": [
+      "<img>",
+      "<NextImage>",
+      "import Image from 'next/image'",
+      "<Picture>"
+    ],
+    "correctIndex": 2,
+    "explanation": "`next/image` extends HTML `<img>`. It auto-optimizes formats (like WebP), scales sizes by viewport, lazy loads, and reserves space to prevent layout shifts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Next.js file is used to define a custom, shared layout across multiple pages in the App Router?",
+    "options": [
+      "layout.jsx",
+      "page.jsx",
+      "template.jsx",
+      "root.jsx"
+    ],
+    "correctIndex": 0,
+    "explanation": "`layout.jsx` wraps nested child pages or sub-layouts, preserving state and preventing rerenders during navigation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you define a dynamic route segment in Next.js (e.g. `/post/[id]`) using the App Router?",
+    "options": [
+      "Naming the directory app/post/:id/page.jsx",
+      "Naming the directory app/post/[id]/page.jsx",
+      "Defining dynamic segments in next.config.js",
+      "Creating a file named app/post/page-[id].jsx"
+    ],
+    "correctIndex": 1,
+    "explanation": "Next.js uses bracket notation (e.g. `[id]`) in directory names to define dynamic path segments, passed as params to the page component.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Server Components and Client Components in Next.js App Router?",
+    "options": [
+      "Server Components only run on databases; Client Components run on servers",
+      "Server Components render strictly on the server and do not ship JS to the client; Client Components are pre-rendered on the server and hydrated in the browser, enabling interactivity",
+      "Server Components cannot fetch data",
+      "Client Components are more secure than Server Components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Server Components reduce client bundle size by keeping heavy dependencies on the server. Client Components support React hooks (like useState, useEffect) and event listeners.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Static Site Generation (SSG) in Next.js?",
+    "options": [
+      "To compile dynamic pages into binary files",
+      "To pre-render pages to static HTML files at build time, offering fast load times and cheap hosting",
+      "To generate static images from code",
+      "To build APIs without route handlers"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSG builds HTML once. Rerunning fetches data only at build time, meaning files are cached on a CDN and served instantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you fetch data on the server in a Next.js Server Component?",
+    "options": [
+      "By using useEffect and fetch hooks",
+      "By making the component an async function and directly using await fetch() inside it",
+      "By writing a separate API route handler for every component",
+      "Data fetching is not supported in Server Components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Server Components can be async, allowing direct data fetching (e.g. database queries, REST API calls) directly inside the component render logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is ISR (Incremental Static Regeneration) in Next.js?",
+    "options": [
+      "Recompiling the entire site after every git commit",
+      "A feature that allows you to update static pages in the background after they have been built, without rebuilding the entire site",
+      "A database tool that updates tables",
+      "A style rendering method for mobile browsers"
+    ],
+    "correctIndex": 1,
+    "explanation": "ISR regenerates specific pages. Setting a revalidate time (e.g. `export const revalidate = 60`) updates pages in the background when requests come in after that period.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you define a custom backend API route in the Next.js App Router?",
+    "options": [
+      "By creating an api.js file in the root directory",
+      "Creating a route.js (or route.ts) file inside a directory under app/api/",
+      "Writing server code inside components/api.jsx",
+      "Configuring custom headers in next.config.js"
+    ],
+    "correctIndex": 1,
+    "explanation": "In App Router, `route.js` files handle API requests. They export standard HTTP functions like `GET`, `POST`, `PUT`, `DELETE`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Next.js API is used to programmatically navigate between routes in a Client Component?",
+    "options": [
+      "import { useRouter } from 'next/navigation'",
+      "import { useRouter } from 'next/router'",
+      "window.location.href",
+      "import Link from 'next/link'"
+    ],
+    "correctIndex": 0,
+    "explanation": "In App Router, `useRouter` is imported from `next/navigation`. `next/router` is the legacy import for the Pages Router.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is next.config.js used for in a Next.js project?",
+    "options": [
+      "To write CSS layout styles",
+      "To configure custom Next.js build settings, headers, redirects, rewrites, and environment variable fallbacks",
+      "To write database query commands",
+      "To manage git branches"
+    ],
+    "correctIndex": 1,
+    "explanation": "`next.config.js` is the configuration file for the compiler, allowing customization of webp optimizations, images domains, and experimental features.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Next.js handle code-splitting automatically?",
+    "options": [
+      "By requiring developers to split files manually",
+      "By splitting code into page-based bundles, meaning users only download JavaScript required for the page they visit",
+      "By compiling all code into one large script file",
+      "By hosting JavaScript code on separate servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Next.js automatically code-splits apps by route. Pages don't load JS of other pages, reducing initial bundle sizes significantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'middleware.js' file in Next.js?",
+    "options": [
+      "To configure databases connections",
+      "To run code on the server before a request is completed, allowing redirects, rewrites, and cookie validation",
+      "To style components dynamically",
+      "To write unit tests for React hooks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Middleware runs before routing, letting developers intercept requests to check authentication, redirect users, or add headers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does next/font do in a Next.js project?",
+    "options": [
+      "Downloads fonts dynamically from Google Fonts at runtime",
+      "Automatically optimizes and self-hosts fonts at build time, eliminating layout shifts and external requests",
+      "Converts text to vector graphics",
+      "Changes font styles based on system settings"
+    ],
+    "correctIndex": 1,
+    "explanation": "`next/font` fetches fonts during build and bundles them locally, preventing layout shifts (CLS) and optimizing page performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In App Router, what is the difference between 'layout.js' and 'template.js'?",
+    "options": [
+      "Templates are only for Server Components",
+      "Layouts persist state and do not remount their children on navigation; Templates create a fresh instance for each child page, running effects on navigation",
+      "Layouts are written in HTML; templates in JSON",
+      "There is no difference"
+    ],
+    "correctIndex": 1,
+    "explanation": "Layouts preserve state (like input fields). Templates remount, useful for entrance animations or logging page views on route changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you handle loading and error states declaratively in the App Router?",
+    "options": [
+      "By writing custom try/catch loops in every component",
+      "By creating loading.js and error.js files in the routing directory; Next.js wraps routes in Suspense and Error Boundaries automatically",
+      "By configuring fallback paths in next.config.js",
+      "Next.js does not support declarative loading states"
+    ],
+    "correctIndex": 1,
+    "explanation": "Creating `loading.js` wraps pages in React Suspense. `error.js` wraps pages in an Error Boundary, catching runtime errors cleanly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Parallel Routes' (@folder) allow you to do in Next.js App Router?",
+    "options": [
+      "Build routes in parallel threads for faster compile",
+      "Render multiple pages in the same layout dynamically (like dashboards or split screens)",
+      "Define duplicate routes with different languages",
+      "Deploy route handlers to multiple regions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Parallel routes (defined using `@` directories, like `@analytics`) act as slots in layouts, allowing dashboards to load sections independently.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the 'revalidatePath' function work in Next.js Server Actions?",
+    "options": [
+      "It cleans database tables",
+      "It purges the cached data for a specific path, forcing Next.js to regenerate the page in the background on the next request",
+      "It redirects the client to a different route",
+      "It reloads the user's browser window"
+    ],
+    "correctIndex": 1,
+    "explanation": "`revalidatePath` allows developers to clear the cache of a path on-demand (e.g. after a form submission creates a post), updating the UI instantly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Next.js handles route prefetching when using the '<Link>' component.",
+    "options": [
+      "It fetches the entire page HTML from the server",
+      "It automatically prefetches the code/JS bundle for the linked page in the background as it enters the viewport, enabling near-instant transition",
+      "It queries the database for all link paths on page load",
+      "It opens a network connection to the remote route"
+    ],
+    "correctIndex": 1,
+    "explanation": "Next.js watches viewports. When a `<Link>` appears, it pre-fetches the Server Component payload of that page, making client routing instantaneous.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the role of 'generateStaticParams' in Next.js dynamic routing?",
+    "options": [
+      "To generate random query parameters",
+      "It replaces getStaticPaths, allowing developers to define the list of route parameter paths that will be statically generated at build time",
+      "It compiles routing parameters to binary files",
+      "It sets up redirects in next.config.js"
+    ],
+    "correctIndex": 1,
+    "explanation": "In App Router, `generateStaticParams` compiles dynamic pages (like `/blog/[slug]`) at build time. It runs during build to fetch IDs/slugs and pre-render the pages.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Partial Prerendering' (PPR) in Next.js and how does it combine static and dynamic rendering?",
+    "options": [
+      "It compiles half of the CSS files dynamically",
+      "An experimental feature that pre-renders static shells of a page while streaming dynamic parts inside Suspense boundaries in the same request",
+      "It hosts static files on different servers than dynamic files",
+      "It converts dynamic components to static pages during server crashes"
+    ],
+    "correctIndex": 1,
+    "explanation": "PPR combines the speed of static sites with the capabilities of dynamic sites. The static layout shells serve immediately, while dynamic components load inside Suspense frames.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do Server Actions handle CSRF (Cross-Site Request Forgery) protection natively in Next.js?",
+    "options": [
+      "By requiring custom captcha tests in forms",
+      "By comparing the Origin header of incoming POST requests to the host domain to verify requests originated from the host site",
+      "By encrypting the entire form data on the client side",
+      "Server Actions do not protect against CSRF"
+    ],
+    "correctIndex": 1,
+    "explanation": "Next.js Server Actions automatically validate the `Origin` header. If it doesn't match the host header, the action is rejected, preventing external sites from submitting actions.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "A repository pattern is highly effective for abstracting multiple data sources (e.g., network, local persistence). The repository acts as a single source of truth, managing fetching, caching, and merging data from different origins, and resolving any conflicts or prioritizing network data, providing a unified interface to the rest of the application.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary programming language used to build modern iOS applications?",
+    "options": [
+      "Objective-C",
+      "Swift",
+      "Java",
+      "Kotlin"
+    ],
+    "correctIndex": 1,
+    "explanation": "Swift is Apple's modern, safe, and fast programming language, introduced in 2014 to replace Objective-C for iOS, macOS, watchOS, and tvOS development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which IDE is the official tool developed by Apple to build iOS applications?",
+    "options": [
+      "Android Studio",
+      "Xcode",
+      "Visual Studio",
+      "IntelliJ IDEA"
+    ],
+    "correctIndex": 1,
+    "explanation": "Xcode is Apple's integrated development environment (IDE) for macOS, containing code editors, compilers, and simulator tools for iOS development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is SwiftUI?",
+    "options": [
+      "A database engine developed by Apple",
+      "Apple's modern declarative UI framework for building user interfaces across all Apple platforms",
+      "A tool for compressing image file assets",
+      "A programming language replacing Swift"
+    ],
+    "correctIndex": 1,
+    "explanation": "SwiftUI allows developers to describe user interfaces declaratively using simple Swift code, replacing legacy Storyboard layouts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of legacy UIKit in iOS development?",
+    "options": [
+      "An encryption standard for iOS databases",
+      "Apple's classic imperative UI framework using views and view controllers to construct interfaces",
+      "A package manager replacing CocoaPods",
+      "A network routing protocol for Apple servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "UIKit is the older, imperative framework. While modern apps target SwiftUI, many existing apps and complex components still rely on UIKit code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a ViewController do in UIKit architectures?",
+    "options": [
+      "Controls the physical hardware buttons of the iPhone",
+      "Acts as the glue between the data model and the user interface view, managing screen lifecycles and interactions",
+      "Controls the compiler settings in Xcode",
+      "Manages database sync operations"
+    ],
+    "correctIndex": 1,
+    "explanation": "In MVC architectures, the UIViewController manages view loading, user input events, and coordinates updates between data and the UI layout.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'CocoaPods' or 'Swift Package Manager' (SPM) manage in iOS projects?",
+    "options": [
+      "The compilation timeline of binaries",
+      "Third-party libraries and code dependencies imported into the project",
+      "User login credentials securely",
+      "Database schemas on server disks"
+    ],
+    "correctIndex": 1,
+    "explanation": "CocoaPods and SPM are dependency managers, helping iOS developers download and update external packages (like Alamofire or Kingfisher).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is an IPA file in iOS distribution?",
+    "options": [
+      "An internet protocol address",
+      "The compiled application package file that installs the app on iOS devices",
+      "An image asset folder format",
+      "A database backup file"
+    ],
+    "correctIndex": 1,
+    "explanation": "An .ipa file is the final binary package containing the compiled app, assets, and provision profiles, uploaded to App Store Connect.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between value types (structs) and reference types (classes) in Swift?",
+    "options": [
+      "Structs are stored on the heap; classes on the stack",
+      "Structs are copied when assigned or passed (value semantics); Classes are referenced, sharing the same instance when passed (reference semantics)",
+      "Classes are always faster than Structs",
+      "Structs do not support defining methods"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Swift, structs are lightweight value types (allocated on the stack). Classes are reference types (allocated on the heap), supporting inheritance and deinitializers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is ARC (Automatic Reference Counting) in iOS memory management?",
+    "options": [
+      "A tool that counts the number of pages in the app",
+      "Apple's compile-time memory management system that automatically tracks and manages class instance references to free heap memory",
+      "A database cleanup scheduler",
+      "A multithreading library in Swift"
+    ],
+    "correctIndex": 1,
+    "explanation": "ARC inserts retain and release calls during compilation. When a class instance's reference count drops to zero, the runtime deallocates its memory.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Retain Cycle' (Strong Reference Cycle) and how is it resolved in Swift?",
+    "options": [
+      "A loop that reloads a screen repeatedly; resolved by navigation resets",
+      "A memory leak occurring when two class instances hold strong references to each other, preventing ARC from releasing them; resolved by using weak or unowned references",
+      "A database sync deadlock; resolved by locking tables",
+      "A compiler bug; resolved by cleaning build folder"
+    ],
+    "correctIndex": 1,
+    "explanation": "If Class A references Class B strongly, and Class B references Class A strongly, neither count hits zero. Resolving this requires using `weak` or `unowned` markers to break the cycle.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is GCD (Grand Central Dispatch) in iOS?",
+    "options": [
+      "Apple's main retail store headquarters",
+      "A low-level API managing concurrent operations and dispatching tasks to system queue pools",
+      "A database synchronization service",
+      "A security standard for user authentication"
+    ],
+    "correctIndex": 1,
+    "explanation": "GCD (using `DispatchQueue`) allows developers to offload tasks to background threads (e.g. download data on a background queue) and return to the main thread to update the UI.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why must all user interface updates occur on the Main Thread (Main Queue) in iOS?",
+    "options": [
+      "Because the main thread is the only thread that can access databases",
+      "Because UIKit/SwiftUI is not thread-safe; updating UI from background threads causes glitches, lag, or application crashes",
+      "Because background threads are disabled on iPhones",
+      "Because the main thread has more CPU power than background threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rendering and window events run sequentially on the main thread. Accessing UI elements from parallel threads triggers race conditions in graphics buffers, causing crashes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Closure' in Swift?",
+    "options": [
+      "A class destructor function",
+      "A self-contained block of functionality that can be passed around and used in your code, capturing variables from its enclosing scope",
+      "A tag that closes code blocks in Swift compilation",
+      "An encryption algorithm for local files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Swift closures are equivalent to lambdas in other languages, commonly used as completion handlers for asynchronous operations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Auto Layout' in UIKit?",
+    "options": [
+      "An editor setting that auto-saves code files",
+      "A constraint-based layout system that dynamically calculates the size and position of all views based on relationships, adapting to screen orientations",
+      "An automated script that generates sitemaps",
+      "A template for styling UI colors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Auto Layout uses mathematical constraints (e.g., 'Button center matches Screen center') to size and position elements across diverse device sizes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'App Delegate' (or Scene Delegate) do in iOS architectures?",
+    "options": [
+      "Manages the developer's Apple Developer account portal",
+      "Acts as the orchestrator of application-level events, managing startup, background states, and scene windows",
+      "Compiles Swift files into binaries",
+      "Tracks app purchases and bills users"
+    ],
+    "correctIndex": 1,
+    "explanation": "The App/Scene Delegate intercepts lifecycle events, notifying the app when it is launched, entering the background, or terminated by the OS.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Core Data' in iOS development?",
+    "options": [
+      "Apple's cloud database storage engine",
+      "A powerful object graph and persistence framework used to store data locally on iOS devices (acting as a local database wrapper)",
+      "The main CPU processor of the iPhone",
+      "An API for formatting JSON data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Core Data manages model objects, tracking relationships, undo actions, and persisting data locally (often backed by SQLite databases).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the `@State` property wrapper do in SwiftUI?",
+    "options": [
+      "Saves data persistently to the cloud",
+      "Declares a local source of truth for value types, causing SwiftUI to redraw the widget view whenever the value changes",
+      "Checks the network connection status",
+      "Encrypts local variable values"
+    ],
+    "correctIndex": 1,
+    "explanation": "SwiftUI views are immutable structs. Marking a variable with `@State` tells the runtime to manage the value memory outside the struct, enabling updates and triggering redraws.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between `@ObservedObject`, `@StateObject`, and `@EnvironmentObject` in SwiftUI state management?",
+    "options": [
+      "ObservedObject is for mobile; EnvironmentObject is for web",
+      "StateObject creates and owns the object instance (surviving view updates); ObservedObject references an existing object; EnvironmentObject retrieves shared objects from the environment",
+      "EnvironmentObject is only used for databases",
+      "They are identical in memory lifecycle"
+    ],
+    "correctIndex": 1,
+    "explanation": "`@StateObject` instantiates a reference model (persistent). `@ObservedObject` is used when the model is passed down from a parent. `@EnvironmentObject` avoids manual prop drilling, accessing data injected at the root.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'Keychain' in iOS, and when should it be used instead of UserDefaults?",
+    "options": [
+      "A key folder in file manager; used for layout assets",
+      "A secure database for storing sensitive data (like passwords, keys, tokens); used instead of UserDefaults (which stores plaintext plist configurations)",
+      "A cloud storage drive; used for backing up photos",
+      "An encryption key generator; used to lock code files"
+    ],
+    "correctIndex": 1,
+    "explanation": "UserDefaults stores basic settings in plaintext files easily read on jailbroken devices. Keychain encrypts data using hardware security modules, making it mandatory for API keys or user passwords.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Provisioning Profile' do in iOS development?",
+    "options": [
+      "Allocates CPU power to the application",
+      "A profile containing certificates, app identifiers, and device IDs that authorizes the iOS device to run the compiled application during development",
+      "Schedules updates on the App Store Connect portal",
+      "Manages database schemas on iCloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Provisioning profiles link development certificates to target devices (UUIDs), ensuring only authorized apps signed by certified developers install on test iPhones.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Concurrency' using Swift's async/await (introduced in Swift 5.5) and how does it compare to GCD?",
+    "options": [
+      "Async/await is for databases; GCD is for files",
+      "Swift Concurrency provides structured concurrency built natively into the language (using async/await, Tasks, and Actors), improving readability over GCD closure callbacks",
+      "GCD is always faster and replaces async/await",
+      "They are identical in thread allocation methods"
+    ],
+    "correctIndex": 1,
+    "explanation": "Legacy GCD relies on nested closures (callback hell) prone to retain cycles. Swift's structured concurrency uses compiler checks, async/await code style, and Actors to prevent data races.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What are 'Actors' in Swift, and how do they resolve data race conditions in concurrent code?",
+    "options": [
+      "Objects representing game characters; resolve by checking animations",
+      "Reference types that isolate their state and ensure only one thread can access their mutable properties at a time, protecting against data races",
+      "Server nodes in Apple clusters; resolve by load balancing",
+      "Database entities; resolve by primary keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Actors isolate mutable state. The compiler enforces that any calls to read/write properties on an actor from the outside must be asynchronous (using `await`), synchronizing access to prevent concurrent mutations.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between `weak` and `unowned` references in Swift, and when is `unowned` preferred?",
+    "options": [
+      "weak is for variables; unowned is for constants",
+      "weak is optional and becomes nil when the instance is deallocated; unowned assumes the instance will never be nil during its lifetime, preferred when lifecycles are identical",
+      "unowned is garbage collected faster than weak",
+      "weak is only for structs; unowned for classes"
+    ],
+    "correctIndex": 1,
+    "explanation": "`weak` variables are optional types (`weak var`). `unowned` is non-optional. Accessing an `unowned` reference after its target is deallocated triggers a runtime crash (equivalent to a null pointer exception), so it must be used with caution.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In iOS development, what is 'Method Dispatch' (Static, Table, Message) and how does Swift choose between them?",
+    "options": [
+      "Routing network traffic; Swift chooses by checking domain names",
+      "The mechanism the program uses to locate executable code for a method call: Static (fastest, compile-time), Table (virtual dispatch), Message (slowest dynamic Cocoa dispatch)",
+      "Method dispatch is configured in the App Store Connect portal",
+      "Swift always uses Table dispatch for all classes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Swift optimizes. Value types (structs) use Static dispatch. Class methods use Table dispatch (vtable). Classes inheriting from NSObject or marked `@objc` support Message dispatch (dynamic lookup, required for KVO/CoreData).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'App Thinning' (Slicing, Bitcode, On-Demand Resources) in iOS app distribution?",
+    "options": [
+      "Minifying the code lines inside Xcode projects",
+      "Optimizations where Apple delivers only the asset resolution and executable architecture matching the user's specific iPhone model, reducing download sizes",
+      "A style guide that keeps the UI layout slim",
+      "A database compression algorithm"
+    ],
+    "correctIndex": 1,
+    "explanation": "App thinning reduces download footprints. Slicing ensures an iPhone 13 doesn't download 3x image assets meant for iPad screens. On-Demand Resources load game levels dynamically as the user progresses.",
+    "difficulty": "hard"
   }
 ]

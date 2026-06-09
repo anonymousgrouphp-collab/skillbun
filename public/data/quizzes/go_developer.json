@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "`http.Server.Shutdown()` is the idiomatic way to achieve graceful shutdown for `net/http` servers in Go. It stops the listener, waits for active connections to finish (or times out via the provided `context`), and then returns, allowing the application to clean up resources before exiting.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Go (Golang)?",
+    "options": [
+      "A database engine developed by Google",
+      "An open-source, compiled programming language designed at Google for simplicity, efficiency, and concurrency",
+      "A browser extension for testing APIs",
+      "A styling template for web layouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Go is a statically typed, compiled language with clean syntax, widely used for backend servers, cloud infrastructure, and microservices.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is used to run a Go program file directly without manually saving a compiled binary?",
+    "options": [
+      "go compile",
+      "go run",
+      "go build",
+      "go start"
+    ],
+    "correctIndex": 1,
+    "explanation": "`go run main.go` compiles the code to a temporary directory and executes the program immediately, ideal for development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the entry point function name of any Go executable program?",
+    "options": [
+      "start()",
+      "main()",
+      "init()",
+      "go()"
+    ],
+    "correctIndex": 1,
+    "explanation": "Every executable Go program must have a `package main` containing a `func main()` which serves as the startup entry point.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a Goroutine represent?",
+    "options": [
+      "A database index table",
+      "A lightweight thread of execution managed by the Go runtime, running concurrently with other code",
+      "A folder structure of packages",
+      "A compiler warning file"
+    ],
+    "correctIndex": 1,
+    "explanation": "Goroutines are multiplexed onto OS threads by the Go runtime. They are extremely lightweight, requiring only a few kilobytes of stack memory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which keyword is used to start a Goroutine?",
+    "options": [
+      "thread",
+      "go",
+      "async",
+      "run"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prepending `go` to a function call (e.g. `go calculate()`) tells the runtime to execute that function concurrently in a new goroutine.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What are Channels in Go?",
+    "options": [
+      "Multiplexing video streams in UI screens",
+      "Typed conduits that allow Goroutines to send and receive values, coordinating communication and syncing execution without locks",
+      "A network routing protocol for cloud servers",
+      "A database schema index table"
+    ],
+    "correctIndex": 1,
+    "explanation": "Channels implement Go's concurrency motto: 'Do not communicate by sharing memory; instead, share memory by communicating.'",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'go.mod' file?",
+    "options": [
+      "To store user login credentials",
+      "To define the module path and manage package dependencies and versions in Go projects",
+      "To configure database connection pools",
+      "To list compiled binaries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Introduced in Go modules, `go.mod` acts as the dependency manifest, tracking imported packages and their exact versions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Slice and an Array in Go?",
+    "options": [
+      "Slices are only for numbers; Arrays are for strings",
+      "Arrays have a fixed size defined at compile-time; Slices are dynamic, resizable wrappers built on top of arrays",
+      "Arrays are always allocated on the heap; Slices on the stack",
+      "They are identical in Go compilers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Arrays (e.g. `[5]int`) cannot change size. Slices (e.g. `[]int`) have dynamic lengths and caps, growing automatically using the `append` function.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Go handle error reporting instead of using try/catch exceptions?",
+    "options": [
+      "Go ignores errors by default",
+      "Functions return multiple values, typically returning the result alongside an error object (which must be checked explicitly)",
+      "Go crashes immediately on any error",
+      "Go uses global exception handlers in other packages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Go handles errors explicitly (e.g. `val, err := fetch(); if err != nil { return err }`). This makes error paths transparent and easy to trace.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between value receivers and pointer receivers in Go struct methods?",
+    "options": [
+      "Value receivers are for numbers; pointer receivers are for structs",
+      "Value receivers operate on a copy of the struct; Pointer receivers operate on the original struct, allowing modifications to its fields",
+      "Pointer receivers are always slower than value receivers",
+      "Pointer receivers do not support interfaces"
+    ],
+    "correctIndex": 1,
+    "explanation": "A method with a value receiver cannot modify the caller's fields. A pointer receiver (e.g. `func (u *User) UpdateName(n string)`) modifies the struct directly, avoiding copy overhead.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the `defer` keyword in Go?",
+    "options": [
+      "To postpone compilation until off-peak hours",
+      "To schedule a function call to execute immediately after the surrounding function exits, commonly used for cleanup",
+      "To delay network requests to prevent server lag",
+      "To pause goroutines temporarily"
+    ],
+    "correctIndex": 1,
+    "explanation": "`defer` is ideal for resource cleanup (e.g. `file.Close()` or `mutex.Unlock()`). It guarantees the deferred call runs even if the function panics or returns early.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a `nil` channel do when you try to read or write to it?",
+    "options": [
+      "It throws a panic immediately",
+      "It blocks indefinitely, causing goroutines to hang",
+      "It returns zero values immediately",
+      "It closes the channel automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reading from or writing to a `nil` channel blocks forever. Closing a `nil` channel throws a panic. Understanding this is key for select loops.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'select' statement used for in Go concurrency?",
+    "options": [
+      "To select data from a database table",
+      "To let a Goroutine wait on multiple channel operations concurrently, executing the first channel block that is ready",
+      "To choose the best database configuration",
+      "To route user requests to different servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `select` statement blocks until one of its cases is ready (e.g., waiting for data on channel A or a timeout tick on channel B), executing that case.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Go Interfaces' and how are they implemented?",
+    "options": [
+      "To design website layouts; implemented in HTML",
+      "To define sets of method signatures; implemented implicitly (types implement interfaces simply by defining matching methods without explicit declaration)",
+      "To connect databases; implemented by drivers",
+      "To manage user roles; implemented by tokens"
+    ],
+    "correctIndex": 1,
+    "explanation": "Go uses structural typing (implicit interfaces). There is no `implements` keyword. If a struct defines a `Read(p []byte)` method, it implicitly satisfies `io.Reader`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the `panic` and `recover` mechanism do in Go?",
+    "options": [
+      "Calculates mathematical recoveries of data",
+      "`panic` stops normal execution flow, walking up the stack; `recover` intercepts panics inside deferred functions to prevent program crashes",
+      "Panics are compile errors; recovers are compiler warnings",
+      "They are identical to standard try-catch blocks"
+    ],
+    "correctIndex": 1,
+    "explanation": "`panic` is for unrecoverable errors (e.g. out of bounds). Deferred functions run as the stack unwinds. If a deferred function calls `recover()`, execution halts the panic, saving the process.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between buffered and unbuffered channels?",
+    "options": [
+      "Buffered channels are only for databases; unbuffered for files",
+      "Unbuffered channels block the sender until the receiver reads the value (handshake); Buffered channels have a capacity, allowing the sender to write values without blocking until the buffer is full",
+      "Unbuffered channels are faster than buffered channels in all scenarios",
+      "Buffered channels cannot be closed"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unbuffered channels guarantee synchronization. Buffered channels decouple send/receive tempos, allowing queue storage up to capacity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a `sync.WaitGroup`?",
+    "options": [
+      "To coordinate database groups",
+      "To wait for a collection of concurrent Goroutines to finish executing before resuming the main execution thread",
+      "To limit network traffic bandwidth",
+      "To allocate memory blocks to threads"
+    ],
+    "correctIndex": 1,
+    "explanation": "A WaitGroup increments a counter (`Add`) when spawning goroutines, decrements it (`Done`) inside goroutines, and blocks the main thread (`Wait`) until the counter hits zero.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a `sync.Mutex` do?",
+    "options": [
+      "Encrypts database columns",
+      "Enforces mutual exclusion, locking shared memory variables to prevent race conditions during concurrent read/write operations",
+      "Compresses file sizes on disk",
+      "Translates Go code to C++"
+    ],
+    "correctIndex": 1,
+    "explanation": "Mutexes coordinate memory access. A goroutine calls `Lock()` to gain sole access to a variable, blocking other threads until it calls `Unlock()`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the `init()` function in Go packages?",
+    "options": [
+      "To compile the package to machine code",
+      "A function that runs automatically when the package is initialized, before main() executes, used to set up package states",
+      "To start user login sessions",
+      "To initialize database query templates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Each package file can have an `init()` function. They execute in dependency order, ideal for registering drivers or loading configs before `main` runs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between `new()` and `make()` built-in functions in Go?",
+    "options": [
+      "new is for SQL; make is for NoSQL",
+      "new(T) allocates zeroed memory for type T and returns a pointer (*T); make(T) initializes slices, maps, and channels, returning an initialized value of type T",
+      "make is older and deprecated; new replaces it",
+      "They are identical memory allocation methods"
+    ],
+    "correctIndex": 1,
+    "explanation": "`new` only clears memory blocks. `make` is specifically for slices, maps, and channels, setting up internal headers (like capacity pointers) required for those types to operate.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the Go runtime scheduler (GMP model) manage Goroutines on top of OS threads?",
+    "options": [
+      "By assigning one OS thread per Goroutine sequentially",
+      "By mapping N Goroutines (G) onto M OS threads (M) across P logical processors (P), using work-stealing algorithms to distribute workloads",
+      "By running all Goroutines on a single processor core",
+      "By requiring developers to manually write yield calls in code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Go maps M goroutines to N threads. If an OS thread blocks on I/O, the scheduler detaches the logical processor P to run other goroutines on a different thread, maximizing concurrency efficiency.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Data Race' in Go, and how does the built-in race detector help locate it?",
+    "options": [
+      "A contest between developers; detected by editor linters",
+      "A situation where two Goroutines access the same memory concurrently, and at least one is a write; located by compiling with the `-race` flag to trace memory collisions",
+      "A database index failure; located by SQL logs",
+      "A network routing loop; located by packet scans"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data races cause undefined memory states. Compiling with `go test -race` or `go run -race` injects instrumentation that logs conflicting concurrent memory writes, highlighting code coordinates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does a memory leak look like in Go, and how do you profile it using pprof?",
+    "options": [
+      "Data leaking to logs; profiled by scanning logs",
+      "Unused objects remaining referenced (e.g. hanging goroutines or growing maps), preventing GC; profiled by analyzing heap graphs generated via `runtime/pprof`",
+      "A compile error; profiled by build timelines",
+      "CPU running hot; profiled by checking core temperatures"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hanging goroutines (e.g. waiting on a channel that never sends) leak their stacks and referenced variables. Using pprof, developers can query `/debug/pprof/heap` to locate growing allocations.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Go, what is the difference between a raw pointer and unsafe.Pointer, and when is unsafe.Pointer utilized?",
+    "options": [
+      "Raw pointers are for numbers; unsafe.Pointer is for text",
+      "Raw pointers (*T) are type-safe and checked by the compiler; unsafe.Pointer bypasses Go's type safety, allowing arbitrary memory casting, utilized in low-level system bindings or performance critical conversions",
+      "unsafe.Pointer is garbage collected faster than raw pointers",
+      "They are identical in compile execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "Go forbids pointer math and casting between incompatible types (e.g. *int to *float). `unsafe` allows breaking these rules for system calls or direct memory hacks, but can trigger memory corruption.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does the `context.Context` package do, and how does context propagation cancel operations downstream?",
+    "options": [
+      "It manages user login sessions on database servers",
+      "It carries deadlines, cancellation signals, and request-scoped values across API boundaries; calling cancel() closes the context's Done channel, signaling goroutines to abort tasks",
+      "It styles error messages inside console logs",
+      "It partitions database tables dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "In web requests, if a client disconnects, propagating `ctx.Done()` tells database queries or downstream API calls to abort immediately, freeing up server resources.",
+    "difficulty": "hard"
   }
 ]

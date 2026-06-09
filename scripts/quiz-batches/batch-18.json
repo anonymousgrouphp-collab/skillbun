@@ -1,0 +1,304 @@
+{
+  "soc_analyst": [
+    {
+      "question": "What is the primary role of a SOC (Security Operations Center) Analyst?",
+      "options": [
+        "To compile software code packages",
+        "To monitor, detect, analyze, and respond to security alerts and incidents to protect organizational assets",
+        "To configure physical switches and routers",
+        "To design landing pages in visual web editors"
+      ],
+      "correctIndex": 1,
+      "explanation": "SOC analysts act as the first line of defense, triaging alerts from security systems (SIEM) to detect and contain cyber threats.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does SIEM stand for in security operations?",
+      "options": [
+        "Security Information and Event Management",
+        "System Integration and Encryption Module",
+        "Secure Interface for Email Messages",
+        "Standard Index of Employee Management"
+      ],
+      "correctIndex": 0,
+      "explanation": "SIEM systems aggregate and correlate logs from multiple sources (servers, firewalls, endpoints) to detect security anomalies.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'False Positive' in security monitoring?",
+      "options": [
+        "A real security breach that was not detected",
+        "An alert that triggers on benign, legitimate activity and does not represent a real threat",
+        "A database query returning empty rows",
+        "A server restart completed successfully"
+      ],
+      "correctIndex": 1,
+      "explanation": "False positives happen when normal behaviors (like a system administrator running a script) match alert signatures, requiring rules tuning.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is phishing?",
+      "options": [
+        "Searching for duplicate files on disk",
+        "A social engineering attack where attackers trick victims into sharing sensitive info or downloading malware, often via deceptive emails",
+        "A database query optimization technique",
+        "A network speed test protocol"
+      ],
+      "correctIndex": 1,
+      "explanation": "Phishing targets humans, spoofing email addresses or login portals to harvest credentials or infect systems.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a firewall do?",
+      "options": [
+        "Cools server processors physically",
+        "Monitors and controls incoming and outgoing network traffic based on predefined security rules",
+        "Compiles application source code",
+        "Generates marketing dashboards"
+      ],
+      "correctIndex": 1,
+      "explanation": "Firewalls block unauthorized traffic, acting as a perimeter gate between local networks and the internet.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is malware?",
+      "options": [
+        "Incomplete software containing bugs",
+        "Malicious software (viruses, ransomware, spyware) designed to disrupt, damage, or gain unauthorized access to computer systems",
+        "A database management application",
+        "A stylesheet setting visual formats"
+      ],
+      "correctIndex": 1,
+      "explanation": "Malware is any code created to cause harm, exfiltrate data, or hijack system resources.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'triage' mean for a SOC analyst?",
+      "options": [
+        "Writing code reviews for developers",
+        "The process of reviewing, sorting, and prioritizing security alerts to separate real threats from false positives",
+        "Configuring server network interfaces",
+        "Encrypting database table files"
+      ],
+      "correctIndex": 1,
+      "explanation": "Triage is the initial filter phase, verifying alerts and determining their severity to escalate critical threats for incident response.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a True Positive and a False Negative?",
+      "options": [
+        "True Positive is for databases; False Negative for networks",
+        "A True Positive is a real threat that triggered an alert; a False Negative is a real threat that was missed by security systems and did not trigger an alert",
+        "False Negatives are easier to detect than True Positives",
+        "They are duplicate terms in alert auditing"
+      ],
+      "correctIndex": 1,
+      "explanation": "False Negatives are dangerous because they represent silent breaches. True Positives are alerts on actual malicious activity.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of an EDR (Endpoint Detection and Response) system?",
+      "options": [
+        "To route network traffic between servers",
+        "To continuously monitor endpoints (laptops, servers) for suspicious activity, providing deep visibility and automated threat containment",
+        "To configure domain names on registrars",
+        "To compile asset directories"
+      ],
+      "correctIndex": 1,
+      "explanation": "EDR agents (like CrowdStrike, Defender) record host events (file writes, process starts, API calls), allowing remote containment (e.g. isolating hosts).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'brute force' login attack look like in security logs?",
+      "options": [
+        "A single successful login attempt from a local IP",
+        "A large number of rapid failed login attempts using different passwords for a single account or multiple accounts from one or more IPs",
+        "A user resetting their password via email",
+        "A slow database query warning log"
+      ],
+      "correctIndex": 1,
+      "explanation": "Brute forcing generates numerous `Event ID 4625` (Failed Logon) entries on Windows logs in a short duration.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'incident response' and what is the first step when a breach is confirmed?",
+      "options": [
+        "Deleting all server databases; first step is backup",
+        "A structured process to manage security breaches; the first step is Containment to prevent the threat from spreading",
+        "Writing a press release; first step is public alerts",
+        "Rewriting application code; first step is bug fixing"
+      ],
+      "correctIndex": 1,
+      "explanation": "Once verified, containment is critical (e.g., disconnecting the infected workstation from the network) to prevent malware spread.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Threat Intelligence in a SOC?",
+      "options": [
+        "To automate developer coding tasks",
+        "To gather and analyze data about active cyber adversaries and their methods to help SOCs proactively defend against incoming attacks",
+        "To check SQL syntax errors",
+        "To manage employee schedule calendars"
+      ],
+      "correctIndex": 1,
+      "explanation": "Threat Intel feeds lists of known bad IPs, hashes, or domain names (IOCs) into SIEMs to match against local network logs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'DDoS' (Distributed Denial of Service) attack?",
+      "options": [
+        "Injecting malicious SQL scripts into database fields",
+        "Overloading a target server or network with a massive flood of traffic from multiple compromised systems (botnets) to make it unavailable",
+        "Stealing user passwords using keyloggers",
+        "A network switch hardware crash"
+      ],
+      "correctIndex": 1,
+      "explanation": "DDoS aims to exhaust bandwidth or server CPU resources, using distributed botnets to saturate targets.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between vulnerability management and threat hunting?",
+      "options": [
+        "Vulnerability management is for cloud; threat hunting is local only",
+        "Vulnerability management identifies and patches known flaws; Threat Hunting is a proactive search across networks to detect hidden, undetected threats",
+        "Threat Hunting is fully automated; vulnerability management is manual",
+        "They are duplicate terms for firewall configuration"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vulnerability management is reactive hygiene (patching CVEs). Threat hunting is proactive (assuming systems are already breached, looking for hidden implants).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'privilege escalation' event look like in logs?",
+      "options": [
+        "A user upgrading their display stylesheet settings",
+        "A standard user account executing commands or gaining access rights typically reserved for administrative accounts (e.g. sudo or System)",
+        "A database query returning large tables",
+        "A user logging in from a new browser device"
+      ],
+      "correctIndex": 1,
+      "explanation": "Escalation events show standard accounts executing administrator-level functions or binary exploits to elevate shell rights.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the 'Playbook' in security operations?",
+      "options": [
+        "A manual instructing developers on code styles",
+        "A documented step-by-step procedure guiding analysts on how to investigate and respond to specific alert types (e.g. phishing, malware)",
+        "A database schema organization template",
+        "A system setup script configuring servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Playbooks ensure consistent incident handling, detailing what logs to check, who to notify, and how to contain specific threat types.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'SOAR' in security engineering?",
+      "options": [
+        "An API protocol routing request messages",
+        "Security Orchestration, Automation, and Response, combining tools to automate alert triages and execute containment actions",
+        "A tool compiling code binary packages",
+        "A data compression method"
+      ],
+      "correctIndex": 1,
+      "explanation": "SOAR platforms (like Splunk Phantom) automate responses (e.g., automatically isolating an endpoint if an EDR detects ransomware, before an analyst reviews it).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Port Scan' attempt to discover, and how is it detected?",
+      "options": [
+        "Checks host disk space; detected by local warning logs",
+        "Discovers active ports and services on a target; detected by firewalls logging numerous connections to blocked ports from a single source IP",
+        "Checks compiler memory; detected by code syntax errors",
+        "Checks network cable speeds; detected by connection delays"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nmap scans connect to various ports. Firewalls detect this by flagging one external IP attempting connections to hundreds of ports in a short span.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'SSL/TLS Decryption' in security gateways?",
+      "options": [
+        "To speed up webpage load times",
+        "Decrypting encrypted web traffic at the firewall to inspect payloads for malware and threats before re-encrypting and forwarding it",
+        "To secure database server logins",
+        "To validate user passport credentials"
+      ],
+      "correctIndex": 1,
+      "explanation": "Because most web traffic is encrypted (HTTPS), malware uses SSL to hide C2 calls. Security gateways decrypt traffic at the perimeter to inspect payloads.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'lateral movement' in adversary behavior?",
+      "options": [
+        "A database transaction rolling back changes",
+        "An attacker navigating through internal networks, logging into other workstations to locate sensitive databases or servers",
+        "A server being moved to another physical rack",
+        "Translating code pages to other languages"
+      ],
+      "correctIndex": 1,
+      "explanation": "Lateral movement occurs after initial compromise, using harvested hashes or internal trusts to pivot to other machines.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In Windows event logs, explain the difference between Event ID 4624 and Event ID 4625, and why Logon Type 3 (Network) is critical for detecting lateral movement.",
+      "options": [
+        "4624 tracks deleted files; 4625 tracks modified files",
+        "4624 logs successful logons, 4625 logs failed logons. Logon Type 3 indicates network access (like SMB/WMI connections), crucial for finding remote access jumps",
+        "4625 is for local users only; 4624 is for domain admins",
+        "They are duplicate event IDs generated by antivirus updates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Event 4624 logs successes. If Logon Type is 3 (Network) rather than 2 (Interactive local), it means a remote system connected to this workstation (e.g. via `psexec` or SMB), suggesting lateral movement.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does DNS Tunneling allow attackers to exfiltrate data undetected, and what log anomalies should a SOC analyst check to identify it?",
+      "options": [
+        "Tunneling routes traffic through VPNs; check database login logs",
+        "Bypassing firewalls by encoding payloads inside DNS queries to external nameservers; check for unusually high volumes of queries, long subdomains, or high TXT/CNAME records",
+        "Tunneling blocks network ports; check firewall routing tables",
+        "Tunneling duplicates packets; check network cable connection speeds"
+      ],
+      "correctIndex": 1,
+      "explanation": "Firewalls block web traffic but allow DNS queries (port 53). Attackers encode data in subdomains (e.g. `secretdata.attacker.com`). DNS queries pass through resolvers, exfiltrating data. Analysts check query volumes or high entropy in DNS subdomains.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Pass-the-Ticket' (PtT) Kerberos attack, and what event logs indicate ticket reuse (e.g., ticket lifetimes)?",
+      "options": [
+        "Passing password hashes over SMB; event logs track account lockouts",
+        "An exploit where attackers dump Kerberos tickets (TGTs) from memory and inject them into their session to authenticate; look for Event 4768 (TGT request) discrepancies",
+        "Bypassing DNS controls; event logs track packet sizes",
+        "Generating fake user accounts; event logs track database entries"
+      ],
+      "correctIndex": 1,
+      "explanation": "PtT dumps memory tickets. Attackers use these tickets to masquerade as domain users without knowing hashes. Event logs (4768/4769) track ticket requests. A ticket reuse shows up if a ticket is presented without a matching request log.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how a SOC analyst detects DLL Sideloading in Windows process logs (checking process spawn structures).",
+      "options": [
+        "By verifying if the executable is compiled in C++; check compiler tags",
+        "By looking for legitimate, signed executables launching from unusual, non-system folders (like Temp) alongside newly created DLL files in the same directory",
+        "By checking if the process runs in dark mode; check visual variables",
+        "By monitoring server CPU averages; check process memory limits"
+      ],
+      "correctIndex": 1,
+      "explanation": "Since sideloading forces a signed app (like `calc.exe`) to load a malicious DLL locally, analysts look for signed system binaries running from directories like /Downloads or /Temp rather than /System32.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Signature-based detection and Heuristic/Behavioral detection in modern EDR/SIEM rules?",
+      "options": [
+        "Signature detection is for cloud; Behavioral is for local networks",
+        "Signature detection matches known bad file hashes or strings; Behavioral detection monitors process actions (e.g., LSASS memory reads) to identify suspicious patterns independent of file hashes",
+        "Behavioral detection is less accurate and generates more false negatives",
+        "They are identical mechanisms managed under different databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "Signatures are bypassed by editing 1 byte (changing hashes). Behavioral detection checks actions. If a process attempts process hollowing or LSASS dumping, the EDR blocks it regardless of file hash.",
+      "difficulty": "hard"
+    }
+  ]
+}

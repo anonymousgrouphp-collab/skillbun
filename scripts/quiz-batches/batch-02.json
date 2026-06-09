@@ -1,0 +1,887 @@
+{
+  "api_platform_engineer": [
+    {
+      "question": "What does API stand for?",
+      "options": ["Application Programming Interface", "Advanced Program Integration", "Automated Protocol Interface", "Application Process Integration"],
+      "correctIndex": 0,
+      "explanation": "API stands for Application Programming Interface, which allows different software applications to communicate with each other.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTTP method is typically used to retrieve data from a server?",
+      "options": ["POST", "GET", "PUT", "DELETE"],
+      "correctIndex": 1,
+      "explanation": "GET is the standard HTTP method used to retrieve resources from a server without modifying them.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the standard port used for HTTPS traffic?",
+      "options": ["80", "443", "8080", "22"],
+      "correctIndex": 1,
+      "explanation": "HTTPS traffic uses port 443 by default, whereas unencrypted HTTP uses port 80.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTTP status code represents 'Internal Server Error'?",
+      "options": ["400", "404", "500", "503"],
+      "correctIndex": 2,
+      "explanation": "The 500 status code represents a generic Internal Server Error, indicating that the server encountered an unexpected condition.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What format is most commonly used for modern API communication?",
+      "options": ["XML", "CSV", "JSON", "YAML"],
+      "correctIndex": 2,
+      "explanation": "JSON (JavaScript Object Notation) is the most widely used format for modern web APIs due to its lightweight and human-readable nature.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a 401 Unauthorized status code mean?",
+      "options": ["The server is down", "The requested resource does not exist", "The request requires user authentication details", "The client is forbidden from accessing the resource even with credentials"],
+      "correctIndex": 2,
+      "explanation": "A 401 status code indicates that the request lacks valid authentication credentials for the target resource.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is REST in the context of web APIs?",
+      "options": ["A programming language", "An architectural style that uses HTTP protocols", "A database management system", "A security framework"],
+      "correctIndex": 1,
+      "explanation": "REST (Representational State Transfer) is an architectural style for designing networked applications, leveraging standard HTTP methods.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary difference between PUT and PATCH methods?",
+      "options": ["PUT creates a resource, PATCH deletes it", "PUT replaces the entire resource, while PATCH applies partial updates", "PATCH is faster than PUT", "PUT requires authentication, PATCH does not"],
+      "correctIndex": 1,
+      "explanation": "According to HTTP specifications, PUT is used to replace an entire resource with the payload, whereas PATCH is used to apply partial modifications to a resource.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which of the following is an API Gateway's primary responsibility?",
+      "options": ["Executing raw SQL queries", "Rendering HTML/CSS on the client", "Request routing, rate limiting, and authentication", "Storing user profile images"],
+      "correctIndex": 2,
+      "explanation": "An API Gateway acts as a reverse proxy to route requests, enforce rate limits, perform authentication/authorization, and handle load balancing.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is OAuth 2.0 primarily used for?",
+      "options": ["Data encryption at rest", "API documentation generation", "Token-based authorization", "Database indexing"],
+      "correctIndex": 2,
+      "explanation": "OAuth 2.0 is an industry-standard protocol for authorization, allowing applications to secure access to resources on behalf of a user.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of CORS (Cross-Origin Resource Sharing)?",
+      "options": ["To speed up API response times", "To allow web applications running at one origin to access resources from a different origin safely", "To compress HTTP request payloads", "To format JSON responses"],
+      "correctIndex": 1,
+      "explanation": "CORS is a browser security mechanism that uses HTTP headers to determine whether to allow cross-origin requests to be read by the frontend application.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In GraphQL, what is a schema?",
+      "options": ["A type of database index", "A document defining the capabilities, queries, mutations, and types available in the API", "A security policy for API keys", "A middleware for rate limiting"],
+      "correctIndex": 1,
+      "explanation": "In GraphQL, the schema defines the structure of data that clients can query, representing the contract between the client and the server.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is rate limiting?",
+      "options": ["Limiting the size of files uploaded to the server", "Controlling the rate of traffic sent or received by a network interface or API client", "Speeding up database queries", "Restricting the number of columns in a database table"],
+      "correctIndex": 1,
+      "explanation": "Rate limiting is a strategy for limiting network traffic. It puts a cap on how often a sender can repeat an action (e.g., making API requests) within a certain timeframe.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Webhooks in API development?",
+      "options": ["To poll the server continuously", "To allow a server to send real-time data or notifications to another application when an event occurs", "To design UI wireframes", "To test database performance"],
+      "correctIndex": 1,
+      "explanation": "Webhooks are user-defined HTTP callbacks that are triggered by specific events. They allow servers to push real-time event updates to clients without constant polling.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which of the following describes idempotency in APIs?",
+      "options": ["An API call that always returns a 200 OK status", "An operation that produces the same server state regardless of whether it is executed once or multiple times", "A request that is processed faster than others", "An API that only accepts JSON input"],
+      "correctIndex": 1,
+      "explanation": "An API method is idempotent if making multiple identical requests has the same effect on the server state as making a single request (e.g., GET, PUT, DELETE).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is gRPC?",
+      "options": ["A graphical interface for testing APIs", "A high-performance Remote Procedure Call framework developed by Google using Protocol Buffers", "A legacy protocol based on XML schema validation", "A database indexing engine"],
+      "correctIndex": 1,
+      "explanation": "gRPC is a modern, open-source, high-performance RPC framework that can run in any environment. It uses Protocol Buffers as its interface definition language.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between OAuth 2.0 and OpenID Connect (OIDC)?",
+      "options": ["OAuth is for encryption, OIDC is for decryption", "OAuth 2.0 is for authorization, while OIDC builds on top of it to add identity authentication", "OAuth is older and deprecated; OIDC replaces it entirely", "OAuth uses XML, OIDC uses JSON"],
+      "correctIndex": 1,
+      "explanation": "OAuth 2.0 is designed for authorization (delegating access to APIs), whereas OpenID Connect (OIDC) is an identity layer built on top of OAuth 2.0 to handle authentication (who the user is).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the primary function of a reverse proxy in API architecture?",
+      "options": ["To generate client SDK code", "To intercept client requests and forward them to one or more backend servers, enhancing security and load balancing", "To cache SQL queries locally in the browser", "To validate UI styling rules"],
+      "correctIndex": 1,
+      "explanation": "A reverse proxy acts as an intermediary for requests from clients directed to servers, providing load balancing, SSL termination, and security isolation.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which specification is widely used to describe and document RESTful APIs in a machine-readable format?",
+      "options": ["GraphQL SDL", "OpenAPI Specification (formerly Swagger)", "WSDL", "JSON Schema Only"],
+      "correctIndex": 1,
+      "explanation": "The OpenAPI Specification (OAS) is a standard, language-agnostic interface description for RESTful APIs, allowing humans and computers to understand capabilities without source code access.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 409 Conflict status code indicate?",
+      "options": ["The server is down for maintenance", "The request could not be processed due to a conflict in the current state of the resource", "The user is unauthorized", "The request payload size exceeds the limit"],
+      "correctIndex": 1,
+      "explanation": "A 409 status code indicates that the request could not be completed because it conflicts with the current state of the resource (e.g., trying to register an email that already exists).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does token bucket algorithm work in rate limiting?",
+      "options": ["It drops requests if the database queue size is full", "Tokens are added to a bucket at a fixed rate; each request consumes a token, and requests are blocked if the bucket is empty", "It locks the user account for 24 hours", "It splits requests across multiple servers using round-robin"],
+      "correctIndex": 1,
+      "explanation": "The token bucket algorithm accumulates tokens up to a maximum capacity. When a request arrives, the system attempts to draw a token; if successful, the request proceeds. If the bucket is empty, the request is rejected or delayed.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is JWT (JSON Web Token) security vulnerability 'None Algorithm'?",
+      "options": ["A vulnerability where the payload is completely empty", "A vulnerability where an attacker modifies the token header to use alg: 'none', bypassing signature verification", "A vulnerability where the secret key is public", "A vulnerability where tokens cannot be expired"],
+      "correctIndex": 1,
+      "explanation": "The 'None' algorithm vulnerability occurs when a JWT library accepts tokens with the 'alg' header set to 'none' without verifying the signature, allowing attackers to forge arbitrary payloads.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In API gateways, what is 'BFF' (Backend For Frontend) pattern?",
+      "options": ["A pattern where backend and frontend developers work in pairs", "A design pattern where a dedicated backend service is created for each specific frontend client type", "A protocol for encrypting websocket connections", "An architectural style that enforces relational database constraints"],
+      "correctIndex": 1,
+      "explanation": "The BFF (Backend For Frontend) pattern involves creating separate backend gateways tailored to the specific needs of different user interfaces (e.g., mobile app vs. web browser), optimizing data payloads and request counts.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the primary benefit of HTTP/2 multiplexing in API communication?",
+      "options": ["It encrypts the payload twice", "It allows multiple request and response messages to be active concurrently on a single TCP connection", "It replaces the need for DNS lookups", "It forces all API responses to use XML format"],
+      "correctIndex": 1,
+      "explanation": "HTTP/2 multiplexing allows multiple requests and responses to be interleaved over a single TCP connection, avoiding head-of-line blocking and reducing connection overhead.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does the HTTP header 'Vary' do?",
+      "options": ["It indicates that the request body is variable", "It tells caching proxies which request headers to use when determining if a cached response can be served", "It randomly redirects requests to fallback servers", "It changes the API version dynamically"],
+      "correctIndex": 1,
+      "explanation": "The 'Vary' HTTP response header determines how to match future request headers to decide whether a cached response can be used, or if a fresh one must be requested from the origin server.",
+      "difficulty": "hard"
+    }
+  ],
+  "application_security_engineer": [
+    {
+      "question": "What does SQL injection (SQLi) target?",
+      "options": ["Web page stylesheets", "Relational database queries", "Network firewall settings", "Client-side routing engines"],
+      "correctIndex": 1,
+      "explanation": "SQL injection is a vulnerability where malicious SQL statements are inserted into entry fields for execution (e.g., to bypass authentication or extract database contents).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does XSS stand for?",
+      "options": ["XML Security Standard", "Cross-Site Scripting", "Extended Security Scripting", "Cross-Server Synchronization"],
+      "correctIndex": 1,
+      "explanation": "XSS stands for Cross-Site Scripting, a vulnerability that allows attackers to inject malicious client-side scripts into web pages viewed by other users.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is the best way to securely store passwords in a database?",
+      "options": ["Encrypt them using AES-256", "Hash them using a strong cryptographic hashing algorithm with a unique salt (e.g., bcrypt)", "Store them in plaintext", "Encode them using Base64"],
+      "correctIndex": 1,
+      "explanation": "Passwords should never be encrypted (reversible) or stored in plaintext. They should be hashed using slow, salted hashing algorithms like bcrypt, Argon2, or PBKDF2 to resist brute-force attacks.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does the OWASP Top 10 represent?",
+      "options": ["The top 10 security software vendors", "A standard awareness document representing the most critical security risks to web applications", "Ten commandments for writing JavaScript", "The top 10 networking protocols"],
+      "correctIndex": 1,
+      "explanation": "The OWASP Top 10 is a widely recognized document that describes the ten most critical security vulnerabilities found in web applications, updated periodically.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary purpose of a Web Application Firewall (WAF)?",
+      "options": ["To block all incoming internet traffic", "To monitor and filter HTTP traffic to and from a web application, protecting against common vulnerabilities", "To compile source code into machine code", "To back up database tables automatically"],
+      "correctIndex": 1,
+      "explanation": "A WAF inspects HTTP/HTTPS traffic to filter out malicious requests (like SQLi or XSS attacks) before they reach the web application.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTTP header is used to prevent the browser from loading resources not explicitly allowed in the policy?",
+      "options": ["Access-Control-Allow-Origin", "Content-Security-Policy", "X-Frame-Options", "Strict-Transport-Security"],
+      "correctIndex": 1,
+      "explanation": "Content-Security-Policy (CSP) is an HTTP header that allows site administrators to declare approved sources of content that the browser is allowed to load.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does MFA stand for in authentication?",
+      "options": ["Maximum File Access", "Multi-Factor Authentication", "Mobile Firewall Authorization", "Multi-Frame Architecture"],
+      "correctIndex": 1,
+      "explanation": "Multi-Factor Authentication (MFA) requires users to provide two or more verification factors to gain access to a resource.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Cross-Site Request Forgery (CSRF)?",
+      "options": ["An attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated", "An attack that overrides CSS styles on a server", "A method for sniffing passwords on a local Wi-Fi network", "An unauthorized database backup download"],
+      "correctIndex": 0,
+      "explanation": "CSRF forces a logged-in user's browser to send a forged HTTP request, including session cookies, to a vulnerable web application, performing malicious actions on the user's behalf.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the key mitigation for SQL Injection?",
+      "options": ["Using raw SQL concatenations", "Using parameterized queries (Prepared Statements)", "Minifying JavaScript files", "Encrypting database tables using symmetric keys"],
+      "correctIndex": 1,
+      "explanation": "Prepared statements ensure the database treats user input strictly as data, not executable code, which neutralizes SQL injection attempts.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does SAST stand for in security testing?",
+      "options": ["Server-side Application Security Testing", "Static Application Security Testing", "Source Code Automated Security Trial", "Standard Access Security Tooling"],
+      "correctIndex": 1,
+      "explanation": "Static Application Security Testing (SAST) analyzes application source code, byte code, or binaries for security vulnerabilities without executing the code.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between SAST and DAST?",
+      "options": ["SAST is manual testing; DAST is automated", "SAST analyzes code statically (white-box); DAST tests the running application from the outside (black-box)", "SAST tests databases; DAST tests web pages", "SAST is only for mobile apps; DAST is only for APIs"],
+      "correctIndex": 1,
+      "explanation": "SAST is a static, white-box analysis of code structure. DAST (Dynamic Application Security Testing) is a dynamic, black-box approach that analyzes a running application to find security issues through active simulation.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does the 'HttpOnly' flag on a cookie protect web applications?",
+      "options": ["It prevents the cookie from being sent over HTTPS", "It prevents client-side scripts (like JavaScript) from accessing the cookie, mitigating session hijacking via XSS", "It deletes the cookie when the browser is closed", "It encrypts the cookie values automatically"],
+      "correctIndex": 1,
+      "explanation": "The 'HttpOnly' flag prevents client-side scripts (e.g., `document.cookie`) from reading the cookie, which helps prevent session token theft via Cross-Site Scripting (XSS).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Dependency Vulnerability (Software Composition Analysis)?",
+      "options": ["A bug in local network cables", "A security flaw in third-party libraries or packages used by the application", "A database configuration mismatch", "A memory leak in the frontend framework"],
+      "correctIndex": 1,
+      "explanation": "Software Composition Analysis (SCA) identifies vulnerabilities in open-source third-party libraries incorporated into the software stack.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'SameSite' cookie attribute?",
+      "options": ["To restrict the cookie to the current tab only", "To control whether cookies are sent with cross-site requests, providing protection against CSRF attacks", "To ensure the cookie is only sent to APIs", "To limit cookie sizes to 1KB"],
+      "correctIndex": 1,
+      "explanation": "The SameSite attribute (Lax, Strict, or None) controls whether cookies are attached to cross-site requests, which blocks unauthorized cross-site requests from carrying user session cookies (CSRF mitigation).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does SSRF stand for?",
+      "options": ["Server-Side Request Forgery", "Secure Socket Routing Framework", "Single Sign-On Routing Format", "Static Server Response Filtering"],
+      "correctIndex": 0,
+      "explanation": "SSRF (Server-Side Request Forgery) is a vulnerability where an attacker can abuse functionality on the server to make it send crafted requests to unintended internal or external resources.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which of the following describes the 'Principle of Least Privilege'?",
+      "options": ["Giving all users administrator rights to avoid configuration errors", "Providing users and processes only the minimum access levels necessary to perform their functions", "Allowing developers to write code without authorization checks", "Using the smallest possible encryption key size"],
+      "correctIndex": 1,
+      "explanation": "The Principle of Least Privilege states that any subject (user, process, program) should operate using the bare minimum set of privileges required to complete its job, limiting potential damage from compromise.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Broken Object Level Authorization (BOLA/IDOR)?",
+      "options": ["A compiler error during file execution", "A vulnerability where an application fails to check if a user has permission to access a specific resource object by its ID", "A network routing protocol failure", "An unhandled null pointer exception in OOP"],
+      "correctIndex": 1,
+      "explanation": "BOLA (or IDOR - Insecure Direct Object Reference) happens when a user can manipulate a resource ID in a request (like an API endpoint `/api/user/100`) to access or modify data they shouldn't have access to, due to missing authorization checks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of threat modeling in the secure software development lifecycle?",
+      "options": ["To debug syntax errors in the IDE", "To identify potential security threats and mitigation strategies early in the design phase", "To test server hardware under heavy load", "To automatically generate test coverage reports"],
+      "correctIndex": 1,
+      "explanation": "Threat modeling is a structured process to identify, analyze, and mitigate potential security threats to an application during its architecture and design phase.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Salt' in cryptography?",
+      "options": ["A secret key used in symmetric encryption", "Random data added to a password input before hashing to defend against dictionary and precomputed rainbow table attacks", "A method for compressing hashed strings", "A digital signature format"],
+      "correctIndex": 1,
+      "explanation": "Salting adds unique random bytes to each password before hashing, ensuring that identical passwords produce completely different hashes, neutralizing precomputed rainbow tables.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'X-Content-Type-Options: nosniff' header do?",
+      "options": ["It prevents images from being cached", "It forces the browser to adhere to the MIME type sent by the server instead of sniffing it", "It encrypts the response body in the browser", "It disables JavaScript execution globally"],
+      "correctIndex": 1,
+      "explanation": "The 'nosniff' header prevents browsers from sniffing (guessing) the MIME type of a file, protecting against attacks like MIME-sniffing which could execute uploaded files as scripts.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is XML External Entity (XXE) injection?",
+      "options": ["Injecting malicious CSS code into an XML file", "An attack against an application that parses XML input, allowing the attacker to reference external entities to read local files or execute SSRF", "A database denial of service attack", "A form of hardware memory corruption"],
+      "correctIndex": 1,
+      "explanation": "XXE injection occurs when an XML parser processes external entity references in a weakly configured XML parser, leading to sensitive file exposure, SSRF, or port scanning.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does JWT 'alg: HS256' vs 'alg: RS256' impact key management security?",
+      "options": ["HS256 is public-key, RS256 is secret-key", "HS256 uses a symmetric shared secret (both parties must know it), while RS256 uses asymmetric public/private keys (only the issuer knows the private key)", "HS256 is completely insecure and deprecated, whereas RS256 is secure", "RS256 is symmetric and faster than HS256"],
+      "correctIndex": 1,
+      "explanation": "HS256 is symmetric (both token generator and validator share the same secret key, posing a leak risk if shared), while RS256 is asymmetric (only the signer needs the private key, while verifiers only need the public key).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Deserialization Vulnerability'?",
+      "options": ["Converting database tables into raw CSV text incorrectly", "An application reconstructing serialized binary/text objects from untrusted sources without validation, leading to remote code execution", "A mismatch in API documentation formatting", "An error when loading JSON data in the client browser"],
+      "correctIndex": 1,
+      "explanation": "Insecure deserialization occurs when untrusted data is used to abuse the logic of an application, leading to arbitrary object instantiations or Remote Code Execution (RCE).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In cryptographic implementations, what is a 'Timing Attack' and how is it mitigated?",
+      "options": ["An attack that times out the connection; mitigated by increasing server timeouts", "An attacker analyzing the time it takes to execute cryptographic algorithms or string comparisons to extract secrets; mitigated by constant-time comparisons", "An attack targeting system clock synchronization; mitigated by NTP validation", "An exploit targeting CPU clock cycles; mitigated by using slower processors"],
+      "correctIndex": 1,
+      "explanation": "Timing attacks exploit small variations in response times (e.g., password comparison failing early on character mismatch). Mitigating this requires using constant-time comparison algorithms that take the same time regardless of input correctness.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Subdomain Takeover' and how does it occur?",
+      "options": ["An attacker buying a domain name that looks similar to a target domain", "A DNS record pointing to a decommissioned external provider service, allowing an attacker to claim that service space and serve malicious content", "A DNS denial-of-service attack targeting registrar systems", "An attacker spoofing the DNS server of a local network"],
+      "correctIndex": 1,
+      "explanation": "Subdomain takeover happens when a subdomain DNS record (like a CNAME) points to a third-party service (e.g., Github Pages, S3 bucket) that is no longer active. An attacker can register on that service with the same bucket name to control the subdomain.",
+      "difficulty": "hard"
+    }
+  ],
+  "ar_vr_developer": [
+    {
+      "question": "What does AR stand for?",
+      "options": ["Artificial Reality", "Augmented Reality", "Automated Robot", "Applied Reality"],
+      "correctIndex": 1,
+      "explanation": "AR stands for Augmented Reality, which overlays digital content onto the physical world.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does VR stand for?",
+      "options": ["Virtual Reality", "Vibrant Reality", "Visual Reality", "Vector Reality"],
+      "correctIndex": 0,
+      "explanation": "VR stands for Virtual Reality, which creates an immersive, completely digital environment.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a major game engine widely used to build AR and VR experiences?",
+      "options": ["Photoshop", "Unity", "Excel", "Node.js"],
+      "correctIndex": 1,
+      "explanation": "Unity (along with Unreal Engine) is one of the premier engines used for creating interactive 3D, AR, and VR applications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does HMD stand for in Virtual Reality?",
+      "options": ["High Motion Detector", "Head-Mounted Display", "Holographic Media Device", "Human Motion Descriptor"],
+      "correctIndex": 1,
+      "explanation": "HMD stands for Head-Mounted Display, which refers to the headset worn by users to view virtual environments.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary role of a gyroscope in a VR headset?",
+      "options": ["To adjust audio volume", "To track the rotational movement/orientation of the user's head", "To connect to external Wi-Fi networks", "To compute lighting shaders in real-time"],
+      "correctIndex": 1,
+      "explanation": "A gyroscope measures rotation and orientation, enabling the headset to track where the user is looking.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a prominent VR hardware system?",
+      "options": ["PlayStation VR / Meta Quest", "Nvidia RTX GPU", "Google Chrome", "Raspberry Pi"],
+      "correctIndex": 0,
+      "explanation": "Meta Quest, PlayStation VR, and HTC Vive are common VR hardware systems that deliver virtual reality experiences.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'latency' represent in VR, and why is low latency important?",
+      "options": ["The resolution of the screen; high latency creates clearer images", "The delay between a user's head movement and the corresponding update on the screen; low latency prevents motion sickness", "The weight of the VR headset; low latency makes it lighter", "The volume of the spatial audio system; high latency increases loudness"],
+      "correctIndex": 1,
+      "explanation": "Latency is the delay in rendering the virtual world following movement. High latency breaks immersion and causes motion sickness, so keeping it sub-20ms is crucial.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'Degrees of Freedom' (DoF) represent in XR tracking?",
+      "options": ["The price of the VR application", "The number of directions/axes of movement that a tracking system can detect (e.g., 3 DoF vs 6 DoF)", "The number of frame rates per second", "The storage capacity of the HMD"],
+      "correctIndex": 1,
+      "explanation": "Degrees of Freedom (DoF) refers to the axes of motion tracked. 3 DoF tracks only rotation (yaw, pitch, roll), whereas 6 DoF tracks rotation plus translation (movement through space: X, Y, Z).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between 3 DoF and 6 DoF tracking?",
+      "options": ["3 DoF is faster than 6 DoF", "3 DoF tracks only rotation; 6 DoF tracks both rotation and position in space", "3 DoF requires external base stations; 6 DoF does not", "3 DoF is only for AR; 6 DoF is only for VR"],
+      "correctIndex": 1,
+      "explanation": "3 DoF allows the user to look around from a fixed point (rotational tracking). 6 DoF allows the user to both look around and walk around in the physical/virtual space (positional tracking).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In AR development, what is 'spatial mapping'?",
+      "options": ["Formatting database columns", "The process of creating a 3D digital mesh representation of the physical environment using depth sensors", "Creating a 2D map for GPS navigation", "Drawing UI button layouts"],
+      "correctIndex": 1,
+      "explanation": "Spatial mapping enables AR devices to scan, reconstruct, and understand physical geometry (walls, floors, tables) in real-time, allowing virtual objects to interact realistically with the room.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Spatial Audio' in virtual reality?",
+      "options": ["Sound that has very high bass levels", "Audio engineered to simulate real-world acoustics, changing based on the sound source's position relative to the user's head", "A method for transmitting audio over radio signals", "A protocol for storing MP3 files"],
+      "correctIndex": 1,
+      "explanation": "Spatial audio simulates 3D soundscapes, adjusting the volume, direction, and delay between the left and right ears based on user orientation and distance from sound sources.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of WebXR?",
+      "options": ["A framework for designing standard web graphics", "An open web standard API enabling virtual and augmented reality experiences to be run directly in modern web browsers", "A security standard for database firewalls", "A network routing protocol for cloud storage"],
+      "correctIndex": 1,
+      "explanation": "WebXR is a Web API that provides access to VR and AR devices (displays, controllers, sensors) directly from web browsers, allowing users to access XR experiences without standalone apps.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Occlusion' in an AR context?",
+      "options": ["The resolution limit of the AR camera lens", "A phenomenon where a physical object blocks the view of a virtual object positioned behind it, or vice versa", "The battery drain of the AR device", "A method for encrypting AR camera streams"],
+      "correctIndex": 1,
+      "explanation": "Occlusion occurs when a real-world object stands in front of a virtual object (or vice versa), hiding the obstructed part. This is critical for making virtual items appear truly integrated into the environment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Draw Call Batching' and why is it crucial for VR performance?",
+      "options": ["Generating multiple image files at once to save disk space", "Combining multiple rendering commands into a single command to reduce CPU overhead and maintain high frame rates (e.g., 90+ FPS)", "Loading all textures in low resolution first", "Deleting old 3D models from memory automatically"],
+      "correctIndex": 1,
+      "explanation": "Draw calls are expensive CPU-to-GPU instructions. Batching groups static/dynamic objects sharing the same materials, minimizing overhead to help VR applications sustain critical high framerates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'SLAM' stand for in AR tracking?",
+      "options": ["System Localization And Model", "Simultaneous Localization And Mapping", "Spatial Location And Measurement", "Standard Light Alignment Model"],
+      "correctIndex": 1,
+      "explanation": "SLAM (Simultaneous Localization and Mapping) is an algorithm that constructs a map of an unknown physical environment while simultaneously tracking the position of the device within it.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Passthrough' in VR headsets?",
+      "options": ["A feature allowing users to view the real world through the headset's external cameras", "A protocol for streaming games from a PC to the headset", "A way to charge the battery while playing", "A security verification check"],
+      "correctIndex": 0,
+      "explanation": "Passthrough uses external cameras on a VR headset to stream a live view of the physical surroundings onto the internal displays, creating a mixed reality (MR) experience.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Anchor' nodes in AR frameworks (like ARKit or ARCore)?",
+      "options": ["To lock the framerate of the application", "To bind a virtual object to a specific physical coordinate and orientation, ensuring it stays in place as the camera moves", "To anchor the UI buttons to the corners of the screen", "To secure network sockets"],
+      "correctIndex": 1,
+      "explanation": "Anchors keep virtual objects fixed in physical space by correcting for tracking drift as the SLAM system continually refines its understanding of the surrounding environment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the main advantage of using 'LOD' (Level of Detail) in 3D modeling for XR?",
+      "options": ["It increases texture color range", "It reduces the polygon count of 3D models as they move further away from the camera, saving rendering budget", "It automates the rigging process for characters", "It increases rendering resolution for UI text"],
+      "correctIndex": 1,
+      "explanation": "LOD systems swap out complex 3D meshes with lower-polygon alternatives when the object is far from the viewer, optimizing performance without a noticeable drop in visual quality.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'IPD' (Interpupillary Distance) adjustment in VR headsets?",
+      "options": ["To increase the wireless signal strength of the headset", "To adjust the physical distance between the lenses to align with the distance between the user's eyes, maximizing clarity and comfort", "To adjust the refresh rate of the displays", "To configure the height tracking offset"],
+      "correctIndex": 1,
+      "explanation": "IPD matches the headset lens spacing with the user's pupils, aligning the focal point correctly to prevent eye strain, headaches, and blurry visuals.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'shader' do in a 3D/XR application?",
+      "options": ["It shadows the application files from unauthorized changes", "It is a program that runs on the GPU to calculate color, lighting, and rendering effects for vertices and pixels", "It is a compression format for audio files", "It tracks controller battery levels"],
+      "correctIndex": 1,
+      "explanation": "Shaders are small programs running on the GPU that determine how vertices are positioned and how pixels are colored, defining the appearance of lighting, shadows, and textures.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Foveated Rendering' and how does it optimize VR performance?",
+      "options": ["It renders images in grayscale to save memory", "It uses eye tracking to render the area where the user is looking at high resolution, while rendering peripheral areas at lower resolution", "It limits the frame rate to 30 FPS", "It reduces the size of the camera viewport"],
+      "correctIndex": 1,
+      "explanation": "Foveated rendering significantly cuts GPU workload by concentrating rendering power on the fovea (the center of the eye's gaze) and reducing quality in the periphery where human vision is less sharp.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does 'Inside-Out Tracking' differ from 'Outside-In Tracking' in VR?",
+      "options": ["Inside-Out tracking is only used for audio; Outside-In is for visuals", "Inside-Out uses cameras and sensors on the headset itself to track position; Outside-In relies on external base stations or cameras", "Inside-Out requires a wired connection to a PC; Outside-In is wireless", "Inside-Out tracks only the eyes; Outside-In tracks the full body"],
+      "correctIndex": 1,
+      "explanation": "Inside-Out tracking uses onboard cameras and IMUs to calculate movement relative to the environment (no external setup needed). Outside-In relies on stationary external sensors tracking markers on the headset.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of 'Time Warp / Space Warp' (reprojection) techniques in VR runtimes?",
+      "options": ["To fast-forward the game timeline", "To generate synthetic frames when the application fails to meet native framerate, preventing stuttering and judder", "To simulate time travel mechanics in gameplay", "To warp spatial audio directions dynamically"],
+      "correctIndex": 1,
+      "explanation": "Reprojection takes the last fully rendered frame and shifts/warps it using the newest tracking data to fill in missed frames, keeping the visual orientation smooth and reducing discomfort when framerate dips.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In shader programming, what is the difference between a Vertex Shader and a Fragment Shader?",
+      "options": ["Vertex Shaders are written in C++; Fragment Shaders are written in GLSL", "Vertex Shaders process 3D vertex positions and attributes; Fragment Shaders compute the final color and properties of individual pixels", "Vertex Shaders render shadows; Fragment Shaders render colors", "Vertex Shaders run on the CPU; Fragment Shaders run on the GPU"],
+      "correctIndex": 1,
+      "explanation": "Vertex shaders operate on individual vertex data (manipulating 3D coordinates, normals, and texture coordinates). Fragment (pixel) shaders operate on rasterized fragments to determine the final color of each screen pixel.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Z-Fighting' in 3D/XR environments and how is it resolved?",
+      "options": ["A battle between two players in a multiplayer VR space", "A visual glitch where two overlapping polygons share similar depth values, causing them to flicker; resolved by adjusting Z-bias or depth buffer precision", "A memory collision in the CPU's memory stack", "An error caused by incompatible camera frames"],
+      "correctIndex": 1,
+      "explanation": "Z-Fighting occurs when the GPU cannot determine which of two closely aligned polygons is closer to the viewer. Resolving it involves separating the meshes slightly or increasing the depth buffer bit-depth (e.g., from 16-bit to 24-bit).",
+      "difficulty": "hard"
+    }
+  ],
+  "aws_cloud_engineer": [
+    {
+      "question": "What does AWS stand for?",
+      "options": ["Advanced Web Services", "Amazon Web Services", "Allied Web Systems", "Automated Web Storage"],
+      "correctIndex": 1,
+      "explanation": "AWS stands for Amazon Web Services, a comprehensive cloud computing platform provided by Amazon.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which AWS service provides resizable virtual servers in the cloud?",
+      "options": ["Amazon S3", "Amazon EC2", "Amazon RDS", "AWS Lambda"],
+      "correctIndex": 1,
+      "explanation": "EC2 (Elastic Compute Cloud) provides virtual machines, called EC2 instances, allowing scalable compute capacity.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which AWS service is used for storing files and objects?",
+      "options": ["Amazon S3", "Amazon DynamoDB", "Amazon VPC", "AWS IAM"],
+      "correctIndex": 0,
+      "explanation": "Amazon S3 (Simple Storage Service) is an object storage service offering industry-leading scalability, data availability, and security.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is AWS IAM used for?",
+      "options": ["Monitoring server performance", "Managing users, groups, roles, and access permissions safely", "Caching database queries", "Hosting domains and DNS records"],
+      "correctIndex": 1,
+      "explanation": "IAM (Identity and Access Management) allows you to securely control access to AWS services and resources.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which service is a serverless compute service that runs code in response to events?",
+      "options": ["Amazon EC2", "AWS Lambda", "Amazon RDS", "Amazon ECS"],
+      "correctIndex": 1,
+      "explanation": "AWS Lambda is a serverless, event-driven compute service that lets you run code without provisioning or managing servers.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an AWS Region?",
+      "options": ["A specific office building owned by Amazon", "A physical geographical location containing multiple isolated Availability Zones", "A virtual private network connection", "A software configuration profile"],
+      "correctIndex": 1,
+      "explanation": "An AWS Region is a physical location in the world where AWS clusters data centers. Each Region consists of multiple, isolated, and physically separate Availability Zones (AZs).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which database service is optimized for relational databases, supporting engines like MySQL and PostgreSQL?",
+      "options": ["Amazon DynamoDB", "Amazon RDS", "Amazon Redshift", "Amazon ElastiCache"],
+      "correctIndex": 1,
+      "explanation": "Amazon RDS (Relational Database Service) makes it easy to set up, operate, and scale a relational database in the cloud.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the function of Amazon VPC?",
+      "options": ["To encrypt S3 buckets", "To provision a logically isolated section of the AWS Cloud where you can launch resources in a virtual network", "To register domain names", "To speed up DNS queries"],
+      "correctIndex": 1,
+      "explanation": "VPC (Virtual Private Cloud) gives you control over your virtual networking environment, including subnets, IP ranges, route tables, and network gateways.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an Availability Zone (AZ) in AWS?",
+      "options": ["A country where AWS is available", "One or more discrete data centers with redundant power, networking, and connectivity in an AWS Region", "A specific server rack inside Amazon's warehouses", "A range of IP addresses assigned to public subnets"],
+      "correctIndex": 1,
+      "explanation": "An AZ is a physical location with isolated power and cooling. Placing resources in multiple AZs provides high availability and fault tolerance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is AWS CloudFormation used for?",
+      "options": ["Creating automated database backups", "Provisioning and managing infrastructure as code (IaC)", "Monitoring application logs", "Accelerating content delivery through CDN"],
+      "correctIndex": 1,
+      "explanation": "CloudFormation allows you to model, provision, and manage AWS and third-party resources by writing JSON or YAML templates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which AWS service acts as a Content Delivery Network (CDN) to cache and serve content with low latency?",
+      "options": ["Amazon Route 53", "Amazon CloudFront", "AWS API Gateway", "Amazon S3 Glacier"],
+      "correctIndex": 1,
+      "explanation": "Amazon CloudFront is a fast content delivery network service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the AWS Shared Responsibility Model state?",
+      "options": ["AWS is responsible for everything, including client-side application security", "AWS is responsible for security 'of' the cloud (infrastructure), while the customer is responsible for security 'in' the cloud (data, configuration)", "The customer is responsible for hardware maintenance", "AWS and the customer share the cost of server resources equally"],
+      "correctIndex": 1,
+      "explanation": "AWS manages security OF the cloud (physical security, virtualization, hypervisor). Customers manage security IN the cloud (guest OS, firewalls, IAM, network security, application code).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the primary difference between a public subnet and a private subnet in a VPC?",
+      "options": ["Public subnets cost money; private subnets are free", "Public subnets have a route to an Internet Gateway, allowing direct external access; private subnets do not", "Private subnets are encrypted; public subnets are not", "Private subnets only support Windows instances"],
+      "correctIndex": 1,
+      "explanation": "Public subnets contain a route in their route table pointing to an Internet Gateway (IGW), enabling resources inside to receive public internet traffic. Private subnets route outbound traffic via a NAT gateway.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Amazon DynamoDB?",
+      "options": ["To store large media files", "To provide a fully managed, serverless, key-value NoSQL database offering single-digit millisecond performance at any scale", "To host virtual servers", "To route DNS traffic globally"],
+      "correctIndex": 1,
+      "explanation": "DynamoDB is a fully managed NoSQL database service that supports key-value and document data structures, widely used for high-performance serverless apps.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does AWS Auto Scaling do?",
+      "options": ["It scales the pricing of AWS resources automatically", "It dynamically monitors applications and adjusts capacity to maintain steady, predictable performance at the lowest possible cost", "It changes code logic during peak traffic", "It switches Regions automatically if a failure occurs"],
+      "correctIndex": 1,
+      "explanation": "Auto Scaling monitors your applications and automatically adjusts resources (like EC2 instances or ECS tasks) to maintain optimal capacity and performance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which service is a managed DNS service in AWS?",
+      "options": ["Amazon Route 53", "AWS Direct Connect", "Amazon CloudFront", "Amazon VPC"],
+      "correctIndex": 0,
+      "explanation": "Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service, also handling domain registration and health checks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of an IAM Role?",
+      "options": ["To define the billing department of an AWS account", "To grant temporary, secure credentials to AWS services or external entities without sharing long-term access keys", "To assign a hardware server to a user", "To cache database reads"],
+      "correctIndex": 1,
+      "explanation": "IAM Roles are used to grant access to AWS services or resources without using static credentials. They issue temporary security credentials that rotate automatically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of an Application Load Balancer (ALB) in AWS?",
+      "options": ["To store static website assets", "To automatically distribute incoming HTTP/HTTPS traffic across multiple targets, such as EC2 instances or containers", "To throttle network bandwidth", "To generate SSL certificates"],
+      "correctIndex": 1,
+      "explanation": "An ALB operates at the application layer (Layer 7), routing traffic based on content characteristics (like path or host headers) to targets like target groups.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which service helps you monitor application metrics, collect log files, and set alarms for resource usage in AWS?",
+      "options": ["AWS CloudTrail", "Amazon CloudWatch", "AWS Config", "Amazon Inspector"],
+      "correctIndex": 1,
+      "explanation": "Amazon CloudWatch is a monitoring and observability service that provides data and actionable insights for AWS resources and applications.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between AWS CloudWatch and AWS CloudTrail?",
+      "options": ["CloudWatch is for logs; CloudTrail is for networking", "CloudWatch monitors resource metrics and logs; CloudTrail records API calls and user activity history in your AWS account", "CloudWatch is serverless; CloudTrail is server-based", "CloudWatch is free; CloudTrail is paid only"],
+      "correctIndex": 1,
+      "explanation": "CloudWatch tracks performance and operational metrics/logs. CloudTrail focuses on governance, compliance, and auditing by logging who did what (API actions) in your AWS account.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a NAT Gateway used for in an AWS VPC?",
+      "options": ["To route incoming internet traffic directly to private servers", "To allow instances in a private subnet to connect to the internet, while preventing the internet from initiating connections with those instances", "To translate IP ranges between different VPCs", "To accelerate file uploads to S3"],
+      "correctIndex": 1,
+      "explanation": "A NAT (Network Address Translation) Gateway translates private IP addresses to a public IP address, allowing outbound traffic to the internet from private subnet instances while blocking inbound connections.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In AWS IAM, what is the evaluation logic when checking policy permissions?",
+      "options": ["Allow takes precedence over Deny", "An explicit Deny always overrides any explicit Allows", "The default stance is to Allow access unless a Deny exists", "Permissions are checked in alphabetical order"],
+      "correctIndex": 1,
+      "explanation": "By default, all requests are denied. An explicit allow overrides this default. However, an explicit deny in any policy (resource-based, identity-based, boundary, etc.) overrides any allow statement.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is AWS Transit Gateway?",
+      "options": ["A network connection between AWS and Azure", "A network transit hub that connects VPCs and on-premises networks, simplifying network routing topology", "A hardware router inside an Availability Zone", "A service that accelerates S3 file replication"],
+      "correctIndex": 1,
+      "explanation": "Transit Gateway acts as a cloud router. It simplifies network topology by eliminating the need to manage complex peering relationships between multiple VPCs and VPNs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does Amazon EC2 Auto Scaling use to determine when to add or remove instances dynamically?",
+      "options": ["A database query loop", "Scaling policies based on metrics like CPU utilization or target tracking, triggered by CloudWatch alarms", "A cron job running on the server OS", "A manual ticket submittal process"],
+      "correctIndex": 1,
+      "explanation": "Auto Scaling integrates with CloudWatch. You define alarms (e.g., CPU > 70% for 3 minutes) which trigger scaling policies to adjust capacity.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the primary benefit of VPC Peering?",
+      "options": ["It connects two VPCs using public IP addresses", "It connects two VPCs, allowing routing of traffic between them using private IP addresses as if they were in the same network", "It enables automatic load balancing across regions", "It bypasses IAM authorization completely"],
+      "correctIndex": 1,
+      "explanation": "VPC Peering establishes a direct connection between VPCs. Traffic stays on the private AWS network (does not traverse the public internet), improving security and reducing latency.",
+      "difficulty": "hard"
+    }
+  ],
+  "azure_cloud_engineer": [
+    {
+      "question": "What is Microsoft Azure?",
+      "options": ["A web browser", "Microsoft's cloud computing platform", "A database engine", "An operating system"],
+      "correctIndex": 1,
+      "explanation": "Microsoft Azure is a public cloud computing platform providing a wide range of services including compute, analytics, storage, and networking.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Azure service provides virtual machines in the cloud?",
+      "options": ["Azure Functions", "Azure Virtual Machines (VMs)", "Azure Blob Storage", "Azure SQL Database"],
+      "correctIndex": 1,
+      "explanation": "Azure Virtual Machines (VMs) provide on-demand, resizable compute resources, similar to virtual servers.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Azure service is optimized for storing unstructured data like files, images, and videos?",
+      "options": ["Azure Cosmos DB", "Azure Blob Storage", "Azure Active Directory", "Azure App Service"],
+      "correctIndex": 1,
+      "explanation": "Azure Blob Storage is Microsoft's object storage solution for the cloud, optimized for storing massive amounts of unstructured data.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Azure Active Directory (Azure AD / Microsoft Entra ID) used for?",
+      "options": ["Monitoring VM cpu performance", "Identity and access management", "Hosting web applications", "Managing relational databases"],
+      "correctIndex": 1,
+      "explanation": "Microsoft Entra ID (formerly Azure Active Directory) is the cloud-based identity and access management service used to authenticate and authorize users and resources.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Azure service is a serverless compute service that runs code in response to events?",
+      "options": ["Azure App Service", "Azure Functions", "Azure Cosmos DB", "Azure Synapse Analytics"],
+      "correctIndex": 1,
+      "explanation": "Azure Functions is an event-driven serverless compute service that enables running code without managing server infrastructure.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an Azure Resource Group?",
+      "options": ["A collection of users with the same role", "A logical container for grouping and managing related Azure resources as a single unit", "A physical data center location", "A virtual network routing table"],
+      "correctIndex": 1,
+      "explanation": "Resource Groups help organize Azure resources. They allow deploying, updating, or deleting all grouped resources in a single action.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which Azure service provides a fully managed, scalable relational database based on SQL Server?",
+      "options": ["Azure Table Storage", "Azure SQL Database", "Azure Cosmos DB", "Azure Cache for Redis"],
+      "correctIndex": 1,
+      "explanation": "Azure SQL Database is a fully managed relational database-as-a-service (DBaaS) that handles upgrade, patching, backups, and monitoring.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Azure Virtual Network (VNet)?",
+      "options": ["A tool for managing user passwords", "A fundamental building block that enables Azure resources to securely communicate with each other, the internet, and on-premises networks", "A content delivery network", "An automated database backup scheduler"],
+      "correctIndex": 1,
+      "explanation": "Azure VNet is a representation of a private network in the cloud, allowing isolation, subnetting, route tables, and firewall control.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an Azure Availability Zone?",
+      "options": ["A subscription tier in Azure", "Physically separate locations within an Azure region, each equipped with independent power, cooling, and networking", "An IP address range", "A network routing protocol"],
+      "correctIndex": 1,
+      "explanation": "Availability Zones protect applications and data from datacenter failures. Each zone is composed of one or more datacenters.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Azure Resource Manager (ARM)?",
+      "options": ["A tool for monitoring network traffic", "The deployment and management service for Azure, allowing resources to be managed using declarative templates", "A hardware server administrator role", "A billing monitoring dashboard"],
+      "correctIndex": 1,
+      "explanation": "ARM is the management layer that enables creating, updating, and deleting resources. It processes requests and supports deployment templates (ARM Templates or Bicep).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which Azure service is a globally distributed, multi-model NoSQL database service?",
+      "options": ["Azure SQL Database", "Azure Cosmos DB", "Azure Files", "Azure SQL Managed Instance"],
+      "correctIndex": 1,
+      "explanation": "Azure Cosmos DB is a fully managed NoSQL database service with single-digit millisecond latency, automatic scaling, and global distribution.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In Azure Role-Based Access Control (RBAC), what are the three main components of a role assignment?",
+      "options": ["Subscription, Resource Group, Resource", "Security Principal (user/group), Role Definition (permissions), and Scope (target resource level)", "Username, Password, MFA token", "Client ID, Tenant ID, Secret Key"],
+      "correctIndex": 1,
+      "explanation": "Azure RBAC assigns permissions by binding a Security Principal (who gets access) to a Role Definition (what they can do) at a specific Scope (where it applies).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Azure App Service?",
+      "options": ["To run virtual machine command prompts", "To host web applications, REST APIs, and mobile backends without managing underlying servers", "To route DNS queries globally", "To manage directory security groups"],
+      "correctIndex": 1,
+      "explanation": "Azure App Service is a HTTP-based service for hosting web applications. It supports multiple languages (Node, Java, PHP, Python, C#) and offers auto-scaling and CI/CD integration.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does Azure Policy do?",
+      "options": ["It determines billing cycles", "It helps enforce organizational standards and assess compliance at scale through governance policies", "It acts as a network firewall", "It schedules VM maintenance windows"],
+      "correctIndex": 1,
+      "explanation": "Azure Policy evaluates resources in Azure, comparing them against rules defined in policy definitions to block non-compliant deployments or flag them.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which service helps you monitor applications, track performance, and diagnose issues in Azure?",
+      "options": ["Azure Advisor", "Azure Monitor (including Application Insights)", "Azure Sentinel", "Azure Security Center"],
+      "correctIndex": 1,
+      "explanation": "Azure Monitor maximizes availability and performance by collecting, analyzing, and acting on telemetry from cloud and on-premises environments.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of an Azure Network Security Group (NSG)?",
+      "options": ["To encrypt virtual machine hard drives", "To filter network traffic to and from Azure resources in an Azure virtual network (acting as a basic firewall)", "To manage user logins", "To load balance application requests"],
+      "correctIndex": 1,
+      "explanation": "An NSG contains security rules that allow or deny inbound and outbound network traffic based on source/destination IP, port, and protocol.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Azure Key Vault?",
+      "options": ["To store database backup files", "To securely store and access secrets, encryption keys, and certificates", "To store local VM files", "To manage user access permissions"],
+      "correctIndex": 1,
+      "explanation": "Azure Key Vault is a cloud service that safeguards cryptographic keys, secrets (like API keys/passwords), and certificates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Azure Blob Storage tiers: Hot, Cool, and Archive?",
+      "options": ["Hot is for high-performance servers; Cool is for desktop computers", "Hot is for frequently accessed data (lowest access cost, highest storage cost); Cool is for infrequently accessed data; Archive is for rare access (lowest storage cost, highest access latency)", "Hot is free; Cool is paid; Archive is deprecated", "Hot uses SSDs; Cool uses HDDs; Archive uses tape drives"],
+      "correctIndex": 1,
+      "explanation": "Access frequency determines the tier. Hot has high storage costs but low retrieval fees. Cool is for data stored for ≥30 days. Archive is for offsite backups stored for ≥180 days with multi-hour retrieval times.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does Azure Advisor do?",
+      "options": ["It schedules database backups", "It analyzes resource configuration and telemetry to provide recommendations on high availability, security, performance, and cost", "It routes support tickets to engineers", "It handles automatic VM resizing"],
+      "correctIndex": 1,
+      "explanation": "Azure Advisor acts as a personalized cloud consultant, recommending best practices to optimize Azure deployments across cost, security, reliability, operational excellence, and performance.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the Azure SLA (Service Level Agreement) concept?",
+      "options": ["A contract detailing pricing changes", "Microsoft's commitments for uptime and connectivity of Azure services", "A license for using Windows Server in Azure", "A policy outlining user support hours"],
+      "correctIndex": 1,
+      "explanation": "Azure SLAs describe Microsoft's commitments for uptime and connectivity of individual services. If service availability falls below SLA limits, customers may receive service credits.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Azure ExpressRoute?",
+      "options": ["A high-speed VM instance type", "A service that lets you create private connections between Microsoft datacenters and infrastructure on-premises (bypassing the public internet)", "An automated deployment script", "A fast file compression utility"],
+      "correctIndex": 1,
+      "explanation": "ExpressRoute connections do not go over the public internet, offering higher security, reliability, faster speeds, and lower latencies than typical VPNs.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How do Azure Management Groups help organize subscriptions?",
+      "options": ["They allow users to log in with a single password", "They provide a level of organization above subscriptions, allowing governance conditions (policies, RBAC) to be applied and inherited", "They combine billing accounts across different companies", "They manage physical datacenters in a Region"],
+      "correctIndex": 1,
+      "explanation": "Management groups provide a hierarchical grouping structure. You can apply policies or role assignments to a management group, and all subscriptions underneath inherit those rules.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Azure, what is 'User-Defined Routing' (UDR)?",
+      "options": ["A method for configuring client-side application routers", "Custom routes created in Azure to override default routing, directing traffic through custom paths (like a Network Virtual Appliance)", "A way for users to choose their preferred data center", "A policy for managing API endpoints"],
+      "correctIndex": 1,
+      "explanation": "UDR allows administrators to control routing tables in VNets, overriding Azure's system routes to force traffic through firewalls or gateway subnets.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Azure Load Balancer and Azure Application Gateway?",
+      "options": ["Load Balancer is for Linux VMs; Application Gateway is for Windows VMs", "Azure Load Balancer operates at Layer 4 (TCP/UDP) routing traffic; Azure Application Gateway operates at Layer 7 (HTTP/HTTPS) supporting path-based routing and SSL offloading", "Load Balancer is free; Application Gateway is a premium service", "Application Gateway does not support SSL certificates"],
+      "correctIndex": 1,
+      "explanation": "Azure Load Balancer is a Layer 4 load balancer. Azure Application Gateway is a Layer 7 load balancer (web traffic manager) that offers URL-path routing, cookie-based affinity, and web application firewall integration.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is Azure Bicep?",
+      "options": ["A command-line tool for starting virtual machines", "A domain-specific language (DSL) that uses declarative syntax to deploy Azure resources, acting as a cleaner alternative to JSON ARM templates", "A hardware cooling system for Azure datacenters", "A software testing framework"],
+      "correctIndex": 1,
+      "explanation": "Azure Bicep is a declarative language for provisioning Azure resources. It compiles to JSON ARM templates, simplifying infrastructure-as-code authoring with better readability and modularity.",
+      "difficulty": "hard"
+    }
+  ]
+}

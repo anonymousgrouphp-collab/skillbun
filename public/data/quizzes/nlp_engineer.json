@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "For career readiness, demonstrating a project's real-world relevance and your ability to reflect critically is key. A detailed README with diagrams, screenshots, deployment notes (showing consideration for operationalization), and a 'lessons learned' section (showing self-reflection and growth) effectively showcases your understanding beyond just coding. A list of libraries is insufficient, raw code lacks context, and a brief summary provides no insight into your capabilities.",
     "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary goal of Natural Language Processing (NLP)?",
+    "options": [
+      "To write articles for websites",
+      "To enable computers to understand, interpret, and generate human language",
+      "To build database server architectures",
+      "To optimize CPU compile times"
+    ],
+    "correctIndex": 1,
+    "explanation": "NLP combines linguistics and computer science to help machines process and understand human language patterns.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In NLP, what is 'stemming'?",
+    "options": [
+      "Deleting punctuation from sentences",
+      "Reducing words to their base or root form by stripping suffixes (e.g. running -> run)",
+      "Splitting text into sentences",
+      "Translating words to another language"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stemming is a crude heuristic process that chops off the ends of words, often resulting in non-words (e.g., 'arguing' -> 'argu'). Lemmatization is the morphologically accurate equivalent.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is tokenization in text preprocessing?",
+    "options": [
+      "Encrypting text files for security",
+      "Breaking a stream of text into individual units like words, phrases, or symbols (tokens)",
+      "Checking database logins",
+      "Translating text to speech"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tokenization breaks continuous text into tokens, serving as the first step for all NLP algorithms.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'stop words' mean in text processing?",
+    "options": [
+      "Words that halt model execution",
+      "Commonly used words (like 'the', 'is', 'and') that are often filtered out to focus on meaningful words",
+      "Words that indicate spelling errors",
+      "Special commands inside scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stop words are frequent words carrying little semantic weight, typically removed in bag-of-words or TF-IDF pipelines to reduce noise.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is POS (Part-of-Speech) tagging?",
+    "options": [
+      "Labeling database columns",
+      "Labeling words in a text with their grammatical category (noun, verb, adjective, etc.) based on context",
+      "Deleting duplicate sentences",
+      "Adding timestamps to text files"
+    ],
+    "correctIndex": 1,
+    "explanation": "POS tagging parses grammar. Knowing if 'run' is a verb or noun in a sentence helps downstream tasks like translation or parsing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Named Entity Recognition (NER)?",
+    "options": [
+      "Resolving database table names",
+      "Locating and classifying entities in text into predefined categories (such as names of persons, organizations, locations, dates)",
+      "Converting code comments to documentation",
+      "Splitting compound words into roots"
+    ],
+    "correctIndex": 1,
+    "explanation": "NER extracts info from text, identifying names (e.g., 'Google' as Organization, 'Paris' as Location) for database entry or intent parsing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does TF-IDF measure in text analysis?",
+    "options": [
+      "The speed of text search algorithms",
+      "The importance of a word to a document relative to a collection of documents (corpus)",
+      "The count of typos in a file",
+      "The similarity of word translations"
+    ],
+    "correctIndex": 1,
+    "explanation": "TF-IDF (Term Frequency-Inverse Document Frequency) balances word frequency in a document against how common the word is across all documents, highlighting distinctive keywords.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Lemmatization, and how does it differ from Stemming?",
+    "options": [
+      "Lemmatization is for speech; stemming is for text",
+      "Lemmatization resolves words to their dictionary base form (lemma) using vocabulary and morphological analysis, whereas stemming just chops suffixes",
+      "Stemming is more accurate than lemmatization",
+      "Lemmatization deletes words from a dictionary"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lemmatization uses linguistic context (e.g., converting 'better' to 'good'). Stemming uses simple rule-based truncation (e.g., converting 'argued' to 'argu').",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the Bag-of-Words (BoW) model?",
+    "options": [
+      "A database table storing vocabulary dictionaries",
+      "A simplified text representation where document text is represented as a multiset (bag) of its words, ignoring grammar and word order",
+      "An algorithm that translates sentences",
+      "A method of formatting coding files"
+    ],
+    "correctIndex": 1,
+    "explanation": "BoW counts word occurrences in a document, creating a frequency vector. It ignores grammar and word order but is useful for basic classification.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an n-gram in NLP?",
+    "options": [
+      "A measure of file size in text processing",
+      "A contiguous sequence of n items (words or characters) from a given sample of text",
+      "A database index structure",
+      "A weight parameter in neural networks"
+    ],
+    "correctIndex": 1,
+    "explanation": "N-grams capture local context. A 1-gram is a word; 2-gram (bigram) groups word pairs (e.g., 'not good'); 3-gram (trigram) groups word triplets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which neural network architecture introduced recurrent loops to process sequential data like text?",
+    "options": [
+      "CNN",
+      "RNN",
+      "GAN",
+      "MLP"
+    ],
+    "correctIndex": 1,
+    "explanation": "RNNs (Recurrent Neural Networks) process sequences token by token, maintaining a hidden state to remember previous context.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What problem does the LSTM (Long Short-Term Memory) network solve in traditional RNNs?",
+    "options": [
+      "Reducing model parameter size",
+      "Vanishing and exploding gradient problems during backpropagation, allowing models to learn long-term dependencies",
+      "Allowing models to process images",
+      "Speeding up training times on CPU"
+    ],
+    "correctIndex": 1,
+    "explanation": "Traditional RNNs suffer from vanishing gradients over long sequences. LSTMs introduce gates (input, forget, output) that control memory flow, maintaining gradients.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the 'attention mechanism' in seq2seq models?",
+    "options": [
+      "To speed up compilation times",
+      "To allow the decoder to look at different parts of the input sequence at each step, instead of relying on a single context vector",
+      "To reduce the count of layers in a model",
+      "To format input text templates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attention solves the bottleneck of compressing sentences into one fixed-length vector, letting decoders weigh input tokens dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Word2Vec and one-hot encoding for word representation?",
+    "options": [
+      "One-hot encoding is dense; Word2Vec is sparse",
+      "One-hot encoding represents words as sparse, high-dimensional vectors with no semantic relationships; Word2Vec learns dense, lower-dimensional vectors capturing semantic similarity",
+      "Word2Vec is older than one-hot encoding",
+      "One-hot encoding requires deep neural networks"
+    ],
+    "correctIndex": 1,
+    "explanation": "One-hot vectors are orthogonal (no similarity can be computed). Word2Vec embeds words in a continuous vector space where distance represents semantic meaning.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key idea behind the BERT (Bidirectional Encoder Representations from Transformers) model?",
+    "options": [
+      "Generating text one word at a time from left to right",
+      "Pre-training deep bidirectional representations from unlabeled text by conditioning on both left and right context in all layers",
+      "Translating text using encoder-decoder networks",
+      "Compressing model parameters using quantization"
+    ],
+    "correctIndex": 1,
+    "explanation": "BERT uses a Masked Language Model (MLM) pre-training task, learning context from both sides of a word, which is ideal for classification or QA.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is perplexity in language model evaluation?",
+    "options": [
+      "A metric measuring training duration",
+      "An evaluation metric representing how confused a model is, computed as the exponentiated cross-entropy (lower is better)",
+      "The count of parameters in the model",
+      "The speed of inference calculations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Perplexity measures prediction uncertainty. A perplexity of $N$ means the model is as confused as choosing among $N$ options at each token.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'sentiment analysis' in NLP pipelines?",
+    "options": [
+      "To check spelling errors in sentences",
+      "To identify and extract subjective information (like positive, negative, or neutral tones) from text",
+      "To translate text into speech",
+      "To format database records"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sentiment analysis gauges opinion (e.g. classifying product reviews as positive or negative) for customer service or marketing intelligence.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is dependency parsing in computational linguistics?",
+    "options": [
+      "Parsing code package dependencies",
+      "Analyzing the grammatical structure of a sentence to identify relationships between words (like subject, object, modifier)",
+      "Resolving references between tables",
+      "Translating documents"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dependency parsing maps sentences to tree graphs where edges represent grammatical relationships (e.g. showing which noun a verb acts on).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is cosine similarity used for in NLP?",
+    "options": [
+      "To calculate trigonometric angles in neural layers",
+      "To measure the similarity between two vector embeddings by calculating the cosine of the angle between them",
+      "To calculate database index sizes",
+      "To test training loss convergence"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cosine similarity calculates the inner product of normalized vectors, evaluating directional similarity independent of vector magnitude.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain how byte-pair encoding (BPE) tokenization handles out-of-vocabulary (OOV) words.",
+    "options": [
+      "By replacing OOV words with a special UNK token",
+      "By breaking OOV words down into subword units or characters that exist in its vocabulary, preventing OOV errors",
+      "By adding OOV words to the dictionary at runtime",
+      "By ignoring OOV words in the sentence"
+    ],
+    "correctIndex": 1,
+    "explanation": "BPE starts with characters and merges frequent pairs. If a word is unseen (e.g., 'unhelpful'), BPE splits it into known subwords (e.g., 'un' and 'helpful').",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between causal (autoregressive) attention and masked bidirectional attention?",
+    "options": [
+      "Causal attention is for image models; masked is for text",
+      "Causal attention prevents tokens from attending to future positions (used in GPT generation); masked bidirectional attention allows tokens to attend to all positions (used in BERT encoding)",
+      "Masked attention is slower than causal attention",
+      "Causal attention does not use queries and keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Causal attention uses an upper-triangular mask (setting future positions to -infinity in logits) so generating token T only attends to tokens 0 to T-1, enforcing chronology.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In the context of language model pre-training, explain the 'Chinchilla scaling laws' (Hoffmann et al., 2022) regarding model parameters and tokens.",
+    "options": [
+      "Model parameters should scale twice as fast as tokens",
+      "For compute-optimal training, model size and training dataset size (tokens) should be scaled in equal proportion (1:1)",
+      "Dataset size should be kept static while parameters increase",
+      "TPU memory limits scale quadratically with dataset sizes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Before Chinchilla, models were parameter-heavy but under-trained. The paper showed that for every double of compute, parameters and tokens should scale equally (1:1), leading to smaller, better-trained models (like Llama).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does the 'ROUGE-L' metric evaluate in text summarization, and how is it calculated?",
+    "options": [
+      "Accuracy of keyword searches; calculated by database queries",
+      "Summary quality; calculated using the Longest Common Subsequence (LCS) between the generated summary and reference summaries",
+      "Model parameter counts; calculated by layer dimensions",
+      "Inference latency; calculated by millisecond timers"
+    ],
+    "correctIndex": 1,
+    "explanation": "ROUGE-L uses LCS to measure similarity. Because it matches longest shared word sequences, it captures structure and word order similarity better than simple unigram overlap.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Describe the difference between hard parameter sharing and soft parameter sharing in multi-task learning for NLP.",
+    "options": [
+      "Hard sharing is for GPUs; soft sharing is for CPUs",
+      "Hard sharing shares the exact same hidden layers among all tasks while keeping task-specific output heads; soft sharing keeps separate models for each task but regularizes parameters to stay close",
+      "Soft sharing is faster to train than hard sharing",
+      "Hard sharing is only used in translation models"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hard sharing reduces overfitting by forcing the shared layers to learn features useful for all tasks. Soft sharing (e.g. using L2 distance penalty between weights of Task A and B) offers more flexibility but requires more memory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In modern Transformer architectures (like Llama), how do Rotary Position Embeddings (RoPE) incorporate positional information compared to absolute sinusoidal embeddings?",
+    "options": [
+      "By adding fixed positional vectors directly to the token embeddings at the input layer",
+      "By applying a rotation matrix to the query and key vectors in the self-attention mechanism, representing relative distance through the rotation angle",
+      "By dynamically scaling the attention logits based on sequence length",
+      "By training a separate feed-forward network to predict token indices"
+    ],
+    "correctIndex": 1,
+    "explanation": "RoPE is a relative position embedding method. Instead of adding positional vectors to token embeddings, it rotates the query and key vectors in the 2D planes, meaning the dot product of queries and keys naturally incorporates relative distance via the angle difference.",
+    "difficulty": "hard"
   }
 ]

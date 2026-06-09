@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Speaker overlap (when two or more people speak simultaneously) and rapid speaker turns are the most significant technical challenges for diarization systems in complex, multi-speaker environments like parliamentary debates. These conditions make it difficult to accurately segment speech by speaker and maintain precise attribution. While low audio quality is a general challenge, overlap is specific and harder for diarization.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary task of Automatic Speech Recognition (ASR)?",
+    "options": [
+      "Converting spoken audio signals into written text",
+      "Converting written text into artificial human speech audio",
+      "Translating languages between documents",
+      "Compressing audio file sizes"
+    ],
+    "correctIndex": 0,
+    "explanation": "ASR (speech-to-text) translates audio speech waveforms into readable text strings, acting as the front-end for voice assistants.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary task of Text-to-Speech (TTS) systems?",
+    "options": [
+      "Converting spoken audio signals into written text",
+      "Converting written text into artificial human speech audio",
+      "Formatting text paragraphs in documents",
+      "Matching speaker voice prints for authentication"
+    ],
+    "correctIndex": 1,
+    "explanation": "TTS (speech synthesis) takes text strings and outputs synthesized audio waves that sound like human speech.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In digital audio processing, what does the 'sampling rate' (e.g. 16kHz) represent?",
+    "options": [
+      "The file compression percentage",
+      "The number of audio amplitude samples recorded per second",
+      "The speed of sound travel in audio frames",
+      "The frequency volume in decibels"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sampling rate is the temporal resolution. 16kHz means 16,000 samples of amplitude are captured per second, the standard for speech models.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'phoneme' in linguistics and speech processing?",
+    "options": [
+      "A device recording sound waves",
+      "The smallest unit of sound in a language that distinguishes one word from another",
+      "A word containing duplicate meanings",
+      "A styling sheet configuring audio displays"
+    ],
+    "correctIndex": 1,
+    "explanation": "Phonemes are phonetic primitives. Words are translated to phoneme lists (e.g. 'cat' to /k/, /ae/, /t/) inside TTS models.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Spectrogram in audio analysis?",
+    "options": [
+      "A chart displaying audio file metadata details",
+      "A visual representation of the spectrum of frequencies of a signal as it varies with time",
+      "A database indexing search speeds",
+      "An amplifier setting decibel limits"
+    ],
+    "correctIndex": 1,
+    "explanation": "Spectrograms plot frequency (y-axis) against time (x-axis), with color intensity representing amplitude, serving as input images for speech models.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does ASR stand for in speech technology?",
+    "options": [
+      "Automatic Speech Recognition",
+      "Audio Signal Router",
+      "Acoustic Sound Recorder",
+      "Abstract Synthesis Registry"
+    ],
+    "correctIndex": 0,
+    "explanation": "ASR is the industry acronym for Automatic Speech Recognition.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a Waveform graph represent?",
+    "options": [
+      "Audio frequency spectra over time",
+      "Audio signal amplitude values plotted over time",
+      "The file size variations of audio compression",
+      "The speaker voice identity parameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Waveforms display raw pressure deviations. A microphone outputs waveforms, which must be digitized for model input.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of a 'Vocoder' in Text-to-Speech (TTS) systems?",
+    "options": [
+      "To write transcript texts",
+      "To convert intermediate acoustic features (like mel-spectrograms) into audible waveform audio samples",
+      "To index database audio files",
+      "To translate languages in text strings"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vocoders synthesize the final sound waves. Mel-spectrograms are blurry summaries; vocoders fill in phase information to produce clean audio.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Mel-Frequency Cepstral Coefficients (MFCCs) in speech processing?",
+    "options": [
+      "File compression keys; encrypt audio data",
+      "Feature extraction coefficients representing the power spectrum of audio signals, adjusted to match human hearing pitch perception",
+      "Acoustic sensors recording sound waves",
+      "Data metrics tracking speaker volumes"
+    ],
+    "correctIndex": 1,
+    "explanation": "MFCCs represent the spectral envelope of speech. They use the Mel scale to prioritize frequency bands humans are sensitive to, a standard feature for speech classification.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between lossy and lossless audio formats (e.g. MP3 vs WAV)?",
+    "options": [
+      "Lossy formats are only for speech; lossless is for music",
+      "Lossy formats compress audio by discarding imperceptible sound data; lossless formats preserve the exact original audio waveforms",
+      "Lossless compression is always faster to decode",
+      "There is no difference in audio quality output"
+    ],
+    "correctIndex": 1,
+    "explanation": "WAV (lossless) stores raw samples. MP3 (lossy) uses psychoacoustic models to remove sounds humans can't hear, shrinking files to ~1/10th size.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is the Mel Scale used in speech audio feature engineering?",
+    "options": [
+      "To speed up file download rates",
+      "To model human pitch perception, which is more sensitive to changes at lower frequencies than higher frequencies",
+      "To filter out background noise in real-time",
+      "To encrypt speaker voice prints"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Mel scale is logarithmic. Pitch steps sound equal to humans if frequencies scale logarithmically. Mel-spectrograms model this, optimizing inputs for speech ML models.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In ASR, how is Word Error Rate (WER) calculated?",
+    "options": [
+      "By totaling the count of spelling errors in word files",
+      "As (Substitutions + Deletions + Insertions) divided by the total number of words in the reference transcript",
+      "As the percentage of audio files failed to compile",
+      "As the latency in milliseconds per word processed"
+    ],
+    "correctIndex": 1,
+    "explanation": "WER is the standard accuracy metric. Lower is better. It aligns transcripts and reference texts, counting insertions, deletions, and swaps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Acoustic Model in traditional hybrid ASR systems?",
+    "options": [
+      "It designs the physical audio speakers specifications",
+      "It maps raw acoustic features (audio frames) to phonetic units (phonemes)",
+      "It maps words to grammar dictionaries",
+      "It compresses audio bytes for cloud storage"
+    ],
+    "correctIndex": 1,
+    "explanation": "In traditional systems (Kaldi), the Acoustic Model (HMM-DNN) calculates probability distributions of phonemes for every 10ms frame of audio.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Language Model in ASR systems?",
+    "options": [
+      "To convert audio bytes into phoneme codes",
+      "To model the probability of word sequences, helping choose the correct spellings (e.g. write vs right) based on grammatical context",
+      "To translate spoken words to other languages",
+      "To track speaker database indices"
+    ],
+    "correctIndex": 1,
+    "explanation": "Language models score text candidates. Acoustic models suggest sounds; language models ensure the output is a grammatically valid sentence.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Speaker Diarization refer to in audio transcriptions?",
+    "options": [
+      "A diary recording log files of speech outputs",
+      "The process of partitioning an audio stream into segments based on speaker identities ('who spoke when')",
+      "Translating speech to text in real-time",
+      "Removing background noise from audio tracks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Diarization isolates speakers. It extracts voice embeddings (d-vectors) and clusters them to assign labels like 'Speaker 1' and 'Speaker 2'.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Tacotron model architecture in neural TTS?",
+    "options": [
+      "To compile audio waveforms from text directories",
+      "An end-to-end model that translates text sequences directly into mel-spectrogram outputs",
+      "To filter out room reverb sounds",
+      "To authenticate user voices using database records"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tacotron is a sequence-to-sequence model. It reads text characters and generates corresponding mel-spectrogram arrays, which are then fed to vocoders.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Voice Activity Detection (VAD) in audio preprocessing?",
+    "options": [
+      "To identify the speaker's language dynamically",
+      "To detect the presence or absence of human speech in an audio signal, trimming silences to save processing time",
+      "To monitor voice pitch levels for tuning",
+      "To compress files on disk"
+    ],
+    "correctIndex": 1,
+    "explanation": "VAD identifies speech frames. Trimming silent buffers before sending audio to heavy ASR models saves substantial GPU/CPU time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Connectionist Temporal Classification (CTC) loss used for in neural ASR?",
+    "options": [
+      "To calculate database search latency rates",
+      "To align input audio frames of length T to target label sequences of length U (where T > U) without requiring pre-aligned data",
+      "To compress audio waveforms to MP3 files",
+      "To detect background noise levels"
+    ],
+    "correctIndex": 1,
+    "explanation": "CTC introduces a 'blank' token. It allows networks to predict output labels at any frame, collapsing duplicate characters and blanks into the final text.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the role of a Pronunciation Dictionary (like CMUdict) in ASR/TTS pipelines.",
+    "options": [
+      "Translating slang terms to formal words",
+      "Mapping written words to their corresponding sequences of phonemes (e.g. apple to AE P AH L)",
+      "Checking spellings of transcribed texts",
+      "Caching audio files on server nodes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pronunciation dictionaries are lexical lookup maps, bridging written text representation with phonetic targets for models.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is digital audio clipping (overdrive), and what is its visual effect on waveforms?",
+    "options": [
+      "Reducing file volumes; visual waves get smaller",
+      "Distortion occurring when audio signals exceed bit depth limits; peaks of waves are flattened/squared off",
+      "Compressing file ranges; visual waves get smoothed",
+      "Adding reverb echo; visual waves double up"
+    ],
+    "correctIndex": 1,
+    "explanation": "Clipping chops wave peaks. If inputs exceed limits, the analog-to-digital converter caps values, resulting in harsh, squared waves and audio distortion.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Describe how the WaveNet architecture (van den Oord et al.) generates high-fidelity raw audio waveforms.",
+    "options": [
+      "By converting text directly to WAV files using dictionary lookups",
+      "An autoregressive neural network using dilated causal convolutions, generating raw audio samples token-by-token at high sampling rates",
+      "By running FFT transforms on GPU clusters in parallel",
+      "By blending recordings of real speakers dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "WaveNet processes raw audio. Dilated convolutions increase receptive fields, allowing the model to capture context over thousands of audio samples.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Why does OpenAI's Whisper model show high robustness across diverse accents and noisy environments compared to traditional models?",
+    "options": [
+      "It uses a local database of audio templates; matches signatures",
+      "It was trained on 680,000 hours of weakly-supervised, diverse multilingual web audio, learning general speech features rather than overfitting to specific lab conditions",
+      "It runs exclusively on local high-performance GPU processors",
+      "It removes all noise elements using physical hardware filters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Whisper leverages massive scaling. Rather than using small clean datasets, training on diverse, noisy web audio forces the model to ignore noise and generalize.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do GAN-based neural vocoders (like HiFi-GAN) achieve faster-than-real-time audio synthesis compared to autoregressive models?",
+    "options": [
+      "By utilizing database caches of pre-recorded waves",
+      "By using generator networks trained against multi-scale/multi-period discriminators, generating all audio samples in a single parallel forward pass",
+      "By running low-precision 8-bit conversions on CPU chips",
+      "They bypass mel-spectrogram conversions entirely"
+    ],
+    "correctIndex": 1,
+    "explanation": "Autoregressive models (WaveNet) generate 1 sample at a time (slow). HiFi-GAN generates the entire wave in one pass, utilizing GPU parallelism.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Compare CTC decoding and Attention-based Encoder-Decoder (AED) decoding in end-to-end ASR systems.",
+    "options": [
+      "CTC is manual; AED is fully automated",
+      "CTC assumes conditional independence between output tokens at each step; AED uses autoregressive decoders that model token-to-token dependencies",
+      "AED is always faster and uses less memory than CTC",
+      "CTC does not use acoustic features during decoding"
+    ],
+    "correctIndex": 1,
+    "explanation": "CTC is fast but lacks language modeling (can output typos). AED decoders act as language models but can struggle with deletion errors on long inputs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do speech engineers mitigate 'hallucination' or 'looping' errors in Transformer-based ASR models on long, silent audio files?",
+    "options": [
+      "By deleting empty files from the input directory",
+      "By segmenting audio using VAD beforehand, applying logit thresholds for blank tokens, or using temperature decoding fallbacks",
+      "By converting WAV files to MP3 format before ASR processing",
+      "By increasing model parameter weights dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transformers struggle with silence. Lacking context, attention maps can drift, causing repetitive word outputs. VAD pre-segmentation is the standard cure.",
+    "difficulty": "hard"
   }
 ]

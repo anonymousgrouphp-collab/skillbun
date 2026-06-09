@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "This approach combines standard WordPress practices with custom content for maintainability and client usability. A dedicated Google Analytics plugin provides easy integration. A Core Web Vitals plugin offers performance monitoring. A custom post type for the client guide ensures it's easily editable and viewable within the familiar WordPress admin, and linking it in the admin menu makes it discoverable. Option A lacks integration. Option B's custom widgets for detailed reports might be complex to build and maintain compared to existing plugins. Option D is generally bad practice for security, maintainability, and user experience.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What programming language forms the core of WordPress backend logic?",
+    "options": [
+      "Python",
+      "JavaScript",
+      "PHP",
+      "Ruby"
+    ],
+    "correctIndex": 2,
+    "explanation": "WordPress is built on PHP. It runs PHP code on servers to fetch data and compile HTML pages.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Compare WordPress Actions and WordPress Filters.",
+    "options": [
+      "Actions are for mobile layouts; Filters are for desktop templates",
+      "Actions execute custom code at specific event points; Filters intercept and modify data (returning modified values) before outputting or saving",
+      "Filters never return values; Actions must return boolean indicators",
+      "They are duplicate hook types performing identical PHP executions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Actions (`add_action`) trigger side effects (e.g. sending emails). Filters (`add_filter`) modify content (e.g. formatting post titles, returning strings).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which database engine is the default choice for WordPress installations?",
+    "options": [
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL / MariaDB",
+      "SQLite"
+    ],
+    "correctIndex": 2,
+    "explanation": "WordPress uses relational databases. MySQL or MariaDB stores posts, user logins, meta fields, and configurations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a WordPress Plugin?",
+    "options": [
+      "A theme that changes visual layouts of pages",
+      "A folder containing custom PHP files that extends the features and functionalities of a WordPress site",
+      "A database backup schedule task",
+      "A local editor designed for coding styles"
+    ],
+    "correctIndex": 1,
+    "explanation": "Plugins extend WordPress. They hook into the core code, allowing developers to add custom dashboards, SEO tools, or e-commerce features.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which file is the mandatory stylesheet that contains theme metadata headers in a WordPress theme?",
+    "options": [
+      "index.css",
+      "style.css",
+      "theme.css",
+      "custom.css"
+    ],
+    "correctIndex": 1,
+    "explanation": "`style.css` is mandatory. WordPress reads header comments (Theme Name, Author, Version) to register the theme in the admin panel.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the abbreviation 'CPT' stand for in WordPress content modeling?",
+    "options": [
+      "Custom Post Type",
+      "Core Process Template",
+      "Cache Path Template",
+      "Client Port Transfer"
+    ],
+    "correctIndex": 0,
+    "explanation": "CPTs (Custom Post Types) allow extending content. Beyond standard 'Posts' and 'Pages', developers register CPTs like 'Books' or 'Reviews'.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which PHP configuration file contains the database connection credentials in a WordPress site?",
+    "options": [
+      "config.php",
+      "wp-config.php",
+      "wp-settings.php",
+      "database.php"
+    ],
+    "correctIndex": 1,
+    "explanation": "`wp-config.php` holds credentials (`DB_NAME`, `DB_USER`, `DB_PASSWORD`), security keys (salts), and debug constants.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How does the WordPress Loop function in theme templates, and what is its basic PHP syntax?",
+    "options": [
+      "A loop iterating through local folders; syntax: for file in files",
+      "A PHP while loop (while(have_posts()) : the_post();) that queries and iterates through database posts to load post content",
+      "A database transaction trigger; syntax: BEGIN TRANSACTION",
+      "They are duplicate loops executing array iterations"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Loop fetches data. `the_post()` assigns post variables (title, author). Methods like `the_title()` output data contextually.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Identify three of the primary core tables in a standard WordPress database schema.",
+    "options": [
+      "wp_users, wp_posts, wp_postmeta",
+      "wp_database, wp_tables, wp_indexes",
+      "wp_sessions, wp_profiles, wp_payments",
+      "wp_config, wp_themes, wp_plugins"
+    ],
+    "correctIndex": 0,
+    "explanation": "WordPress creates 12 tables. `wp_posts` stores post content. `wp_postmeta` stores key-value pairs (metafields). `wp_users` stores logins.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the benefit of using 'wp_enqueue_script' instead of hardcoding script tags in 'header.php'?",
+    "options": [
+      "It compiles javascript files to PHP code",
+      "It manages script dependencies, specifies versions, and prevents duplicate imports across plugins",
+      "It automatically minifies code files in local folders",
+      "Enqueued scripts do not require network calls to load"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hardcoding scripts leads to conflicts. Enqueuing lets plugins declare dependencies (e.g. requiring jQuery). WordPress loads dependencies first and avoids duplicate loads.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do Custom Post Types (CPTs) and Custom Taxonomies extend WordPress CMS capabilities?",
+    "options": [
+      "They change visual theme stylesheets dynamically",
+      "They define custom structured content (like Portfolio) and custom category groups (like Project Type), making WordPress a full CMS",
+      "They host database files on separate servers",
+      "They compress theme directories into ZIP packages"
+    ],
+    "correctIndex": 1,
+    "explanation": "By combining CPTs (custom data entries) and Custom Taxonomies (custom tagging), developers model complex relational schemas (e.g. real estate listings).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'WP_Query' in WordPress development, and why is it preferred over raw SQL queries?",
+    "options": [
+      "A remote API endpoint querying web data; preferred because it is faster",
+      "A PHP class providing secure methods to query posts, leveraging built-in caching, hooks, and SQL injection protections",
+      "A local editor designed to debug databases",
+      "A routing framework managing permalink structures"
+    ],
+    "correctIndex": 1,
+    "explanation": "`WP_Query` handles database math. It translates arguments (like category or date) into clean SQL, running checks to prevent exploits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How are custom Gutenberg blocks developed in modern WordPress?",
+    "options": [
+      "By writing PHP loops inside local stylesheets",
+      "Using React-based JavaScript with the Block Editor API (registerBlockType) defining edit and save render modules",
+      "By modifying database schemas in admin panels",
+      "Gutenberg blocks are only created via visual plugins without code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gutenberg is React-driven. Blocks define `edit` (editor view) and `save` (renders HTML to database) properties in JS compile runs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Why is it critical to use escaping functions like 'esc_html()' and 'wp_kses()' when outputting user data?",
+    "options": [
+      "To speed up page load speeds; filters out empty strings",
+      "To prevent Cross-Site Scripting (XSS) attacks by sanitizing and escaping HTML tag characters before rendering",
+      "To compress text files before saving",
+      "To validate user email formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "XSS injects script tags. Escaping converts `<script>` to HTML entities (`&lt;script&gt;`), rendering tags as text instead of executing them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the functions.php file in WordPress themes?",
+    "options": [
+      "It stores user profile logins for the site database",
+      "It acts as a theme-specific plugin, used to declare support features, enqueue styles, and register custom hooks",
+      "It schedules database backups daily",
+      "It configures apache server rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "`functions.php` is the theme's brain. It hooks into setups, declaring menu locations, custom widget zones, and registering CPTs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Child Theme in WordPress, and why is it recommended for theme customizations?",
+    "options": [
+      "A theme that only runs on mobile resolutions",
+      "A theme inheriting layouts from parent themes, preventing parent updates from overwriting custom edits",
+      "A theme with limited features; free version of paid themes",
+      "A backup copy of theme files stored in temp folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Modifying parent themes directly is bad: updates wipe edits. Child themes override parent templates cleanly, keeping updates safe.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the WordPress Template Hierarchy resolve category archives displays?",
+    "options": [
+      "It searches files alphabetically in theme directories",
+      "It checks category-slug.php, category-id.php, category.php, archive.php, and finally falls back to index.php",
+      "It routes queries to database tables directly",
+      "It redirects users to home page templates on error"
+    ],
+    "correctIndex": 1,
+    "explanation": "WordPress maps templates. If a user visits `/category/news`, WP checks `category-news.php`. If missing, it cascades down to `index.php`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Nonce' in WordPress forms security?",
+    "options": [
+      "A user role classification managing database profiles",
+      "A cryptographic token once-used ('number used once') to verify form requests originated from the host site, preventing CSRF attacks",
+      "A database index key accelerating searches",
+      "An authentication key managing administrator logins"
+    ],
+    "correctIndex": 1,
+    "explanation": "Nonces prevent hijackings. Forms embed nonces. When submitted, the backend verifies it using `wp_verify_nonce`, rejecting external scripts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you register a custom shortcode in WordPress PHP?",
+    "options": [
+      "By declaring values inside style.css header tags",
+      "Using the add_shortcode('tag', 'callback_function') API to return dynamic HTML strings in post contents",
+      "By creating a database table named wp_shortcodes",
+      "Shortcodes are registered in wp-config.php files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shortcodes (e.g. `[my_gallery]`) map tags. `add_shortcode` registers the callback, replacing tags with dynamic HTML on render.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the '.htaccess' file in a WordPress Apache web server installation?",
+    "options": [
+      "To store administrator password hashes",
+      "To configure directory-level rules, routing all clean URLs to index.php for permalink structures",
+      "To compile PHP files to static HTML pages",
+      "To manage email server configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "`.htaccess` handles rewrites. It intercepts clean paths (e.g. `/my-post`) and routes them to `index.php?name=my-post` internally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do you optimize a WordPress database experiencing high CPU load due to wp_options table bloat?",
+    "options": [
+      "By duplicating database tables to secondary servers",
+      "Audit the wp_options table, delete orphaned transients, and change the 'autoload' flag to 'no' for options not needed on every page",
+      "By increasing local server memory storage capacities",
+      "By running database repairs hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Autoloaded options load on every single page. If plugins leave behind megabytes of data marked `autoload = yes`, RAM gets exhausted. Disabling autoload fixes it.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you securely validate and authorize a custom REST API endpoint route in WordPress?",
+    "options": [
+      "By bypassing validation rules to speed up connections",
+      "Define a 'permission_callback' in register_rest_route executing capabilities checks, and sanitize input arguments in schema configs",
+      "By encrypting the REST endpoint URLs",
+      "Endpoint authorization is managed by server firewalls automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "REST routes must block unauthorized calls. A `permission_callback` checking `current_user_can('edit_posts')` prevents public exploits.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Compare Gutenberg 'Dynamic Blocks' (PHP rendering) and 'Static Blocks' (HTML rendering).",
+    "options": [
+      "Dynamic blocks are for mobile layouts; static for desktop",
+      "Static blocks save compiled HTML markup directly inside database post content; Dynamic blocks save block attributes only, rendering HTML dynamically on page loads via PHP",
+      "Dynamic blocks are faster to render than Static blocks",
+      "They use identical database formats to store markup"
+    ],
+    "correctIndex": 1,
+    "explanation": "Static blocks compile JS to HTML at save time. If themes change, static blocks look old. Dynamic blocks use PHP, rendering new designs instantly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the security hazard of using direct SQL interpolation in $wpdb queries, and what is the standard mitigation?",
+    "options": [
+      "It corrupts database table columns; mitigated by formatting disks",
+      "SQL injection exploits; mitigated by preparing queries using the $wpdb->prepare() method to sanitize dynamic arguments",
+      "It causes page timeout errors; mitigated by database caching",
+      "Interpolation is secure by default in WordPress PHP"
+    ],
+    "correctIndex": 1,
+    "explanation": "Direct variables inside queries allow attackers to append SQL commands. `$wpdb->prepare` uses placeholders (e.g. `%d`), parameterizing variables safely.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does a developer implement Object Caching in WordPress using Redis or Memcached, and what core file is added?",
+    "options": [
+      "By replicating databases; adds db-replica.php to theme folders",
+      "Install a caching service on the server and add an 'object-cache.php' drop-in file to the wp-content directory, routing query requests to memory",
+      "By adding caches to local browser cookies; adds cookie-cache.js",
+      "Object caching is built-in and does not require adding files"
+    ],
+    "correctIndex": 1,
+    "explanation": "WordPress queries DBs repeatedly. Object caching intercepts. `object-cache.php` replaces the database queries class, caching structures in Redis memory, saving SQL loads.",
+    "difficulty": "hard"
   }
 ]

@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "Long build times due to uncompressed and unused assets indicate a need for project optimization. Identifying and removing unused assets (e.g., using Asset Cleaner tools or manual inspection) and ensuring proper asset compression settings (e.g., crunch compression for textures, compressed audio formats) will significantly reduce the project's size and, consequently, build times. Upgrading hardware might help but doesn't solve the underlying project inefficiency. Switching engines or increasing scenes won't help this specific problem.",
     "difficulty": "moderate"
+  },
+  {
+    "question": "What programming language is the primary scripting standard in Unity?",
+    "options": [
+      "C++",
+      "Python",
+      "C#",
+      "JavaScript"
+    ],
+    "correctIndex": 2,
+    "explanation": "Unity uses C# as its primary language, running scripts on Mono or IL2CPP runtimes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the Unity MonoBehaviour lifecycle, what is the difference between Awake() and Start()?",
+    "options": [
+      "Start runs on background threads; Awake on the UI thread",
+      "Awake runs immediately when the script instance is loaded; Start runs before the first frame update only if the script is enabled",
+      "Awake is only used in editor scripts; Start runs in builds",
+      "There is no difference in their execution timings"
+    ],
+    "correctIndex": 1,
+    "explanation": "Awake initializes state even if components are disabled. Start runs later, just before the first Update call.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Prefab in Unity?",
+    "options": [
+      "A pre-compiled shader asset",
+      "A reusable GameObject template stored as an asset that can be instantiated dynamically in scenes",
+      "A backup file copy of scenes",
+      "A configuration settings menu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prefabs act as templates. Modifying a Prefab asset updates all its instances across scenes, simplifying asset management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary role of a Rigidbody component in Unity?",
+    "options": [
+      "To compile script files during builds",
+      "To enable a GameObject to react to physical forces, gravity, and collisions in the physics engine",
+      "To display user interface button layouts",
+      "To route network connections to server ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rigidbodies put GameObjects under physics control. Without a Rigidbody, objects collide statically but do not react to gravity or impulses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the execution timing difference between Update() and FixedUpdate()?",
+    "options": [
+      "Update is for physics calculations; FixedUpdate for UI updates",
+      "Update runs once per frame (variable rate); FixedUpdate runs on a fixed physics timestep, used for physics calculations",
+      "FixedUpdate only runs in editor modes",
+      "They run on separate CPU processor cores"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frame rates fluctuate. Since physics math (like velocity) requires constant time steps, FixedUpdate runs at fixed intervals (default 50Hz) to prevent glitches.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does URP stand for in Unity's rendering pipelines?",
+    "options": [
+      "Universal Render Pipeline",
+      "Unreal Rendering Protocol",
+      "Unity Resource Packager",
+      "User Registry Pathway"
+    ],
+    "correctIndex": 0,
+    "explanation": "URP is a scriptable render pipeline. It is optimized for cross-platform performance, scaling well from mobile to PC.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which C# function is used to instantiate a Prefab dynamic clone at runtime?",
+    "options": [
+      "CreateInstance()",
+      "Instantiate()",
+      "new GameObject()",
+      "SpawnObject()"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Instantiate` duplicates GameObjects, components, or prefabs, placing clones into the active scene.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a ScriptableObject in Unity, and how does it optimize memory usage?",
+    "options": [
+      "A class rendering UI layouts; optimizes RAM by caching images",
+      "A data container used to save large amounts of shared static data independently of GameObjects, reducing duplicate allocations",
+      "A compiled dll library folder; optimizes disk spaces",
+      "A script executing SQL queries"
+    ],
+    "correctIndex": 1,
+    "explanation": "MonoBehaviours duplicate data per instance. ScriptableObjects store data once as assets, letting thousands of instances reference the same data block, saving RAM.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How do Coroutines function in Unity, and how do they differ from multi-threading?",
+    "options": [
+      "Coroutines run on separate hardware threads in parallel",
+      "Coroutines yield control back to Unity, resuming in subsequent frames on the main thread, avoiding multi-threading complexity",
+      "Coroutines are only used to load scenes in background",
+      "There is no difference in their threading behaviors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Coroutines are cooperative. They use `yield` to spread execution across frames, preventing long loops from freezing the main UI thread.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Unity physics, compare a Collider Trigger with a standard Collision.",
+    "options": [
+      "Triggers are only compatible with 2D physics engines",
+      "Triggers detect overlaps without applying physical force (OnTriggerEnter); Collisions calculate physical forces and bounces (OnCollisionEnter)",
+      "Collisions do not support callback events in code scripts",
+      "They behave identically on collision events"
+    ],
+    "correctIndex": 1,
+    "explanation": "Checking `Is Trigger` disables physical reactions. The object passes through others, firing trigger events, ideal for checkpoints or pickup zones.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the Canvas component in Unity UI (UGUI) systems?",
+    "options": [
+      "To draw 3D model meshes in scenes",
+      "To govern how UI elements are positioned, scaled, and rendered on the screen",
+      "To load network connection sockets",
+      "To store configuration variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Canvas is the UI root. All UI elements (Text, Buttons) must be child nodes of a Canvas to render, managing scaling modes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Unity C# scripting, how do developers minimize Garbage Collection (GC) spikes?",
+    "options": [
+      "By disabling garbage collection in project settings",
+      "By avoiding memory allocations (like string joins, new allocations) inside Update loops, reusing collections instead",
+      "By running application builds on virtual machines only",
+      "By adding try-catch blocks to all loop scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Allocating memory inside Update (running 60+ times/sec) fills the heap. This forces GC to run, causing noticeable frame drops ('garbage spikes').",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Occlusion Culling optimize camera rendering performance in complex scenes?",
+    "options": [
+      "By reducing the resolution of far textures",
+      "By disabling rendering of GameObjects that are completely blocked from the camera's view by other opaque geometry",
+      "By merging meshes sharing materials",
+      "By disabling lights when the player is moving"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frustum culling drops objects outside the camera view. Occlusion culling checks lines of sight, dropping objects hidden behind walls, saving GPU draw costs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In game optimization, what is a Draw Call and how does Static Batching reduce it?",
+    "options": [
+      "A database query call; static batching indexes tables",
+      "A CPU instruction sending mesh data to the GPU; static batching combines stationary meshes sharing materials into one draw command, saving CPU driver time",
+      "A network route check; static batching caches IPs",
+      "An animation trigger; static batching blends frames"
+    ],
+    "correctIndex": 1,
+    "explanation": "Each draw call has driver overhead. If 100 boxes share a material, static batching combines them into a single mesh, rendering them in one command.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the AssetBundle system in Unity builds?",
+    "options": [
+      "To secure C# scripts from reverse engineering",
+      "To package assets into archive files that can be loaded dynamically over networks, reducing initial application download sizes",
+      "To backup scene files automatically to cloud buckets",
+      "To configure project build settings"
+    ],
+    "correctIndex": 1,
+    "explanation": "AssetBundles allow streaming assets. Games load new levels or outfits dynamically from servers, keeping app sizes under store limits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare the New Input System package with the legacy Input Manager in Unity.",
+    "options": [
+      "New system is written in C++; legacy in C#",
+      "New system uses Action Maps and event-based callbacks; legacy relies on polling Input.GetKeyDown inside Update loops",
+      "Legacy system is faster and supports more controller devices",
+      "They are duplicate APIs managing identical code loops"
+    ],
+    "correctIndex": 1,
+    "explanation": "The new system is asset-driven. Action maps bind keys to actions (e.g. 'Jump'). Scripts subscribe to events (e.g. `onJump`), decoupling keys from logic.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Universal Render Pipeline (URP) and High Definition Render Pipeline (HDRP)?",
+    "options": [
+      "URP is for 2D games; HDRP is for 3D only",
+      "URP is optimized for wide compatibility and mobile performance; HDRP targets high-fidelity, photorealistic graphics on PC and console systems",
+      "HDRP is older and deprecated in modern Unity releases",
+      "There is no difference in their lighting capabilities"
+    ],
+    "correctIndex": 1,
+    "explanation": "URP focuses on performance and mobile/Web builds. HDRP uses physical lighting, volumetric clouds, and raytracing, targeting high-end consoles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the NavMeshAgent component in Unity AI?",
+    "options": [
+      "To manage network player accounts in multiplayer games",
+      "To enable pathfinding and steering for AI characters, allowing them to navigate around obstacles on baked navigation meshes",
+      "To load scenes asynchronously in background threads",
+      "To control camera rotation scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "NavMeshAgent handles pathfinding. Once a destination is set, the agent calculates paths on the baked navigation mesh and moves the character.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does Draw Call Batching optimize GPU rendering in Unity?",
+    "options": [
+      "By compressing texture resolutions during compiles",
+      "By combining multiple draw calls that share the same material into a single batch, reducing CPU state changes",
+      "By running rendering loops on background threads",
+      "By deleting shadow data on far distances"
+    ],
+    "correctIndex": 1,
+    "explanation": "Batching consolidates rendering. If objects share materials, Unity batches them (dynamically or statically), submitting them in one GPU draw call.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does calling DontDestroyOnLoad(gameObject) accomplish in Unity scripting?",
+    "options": [
+      "It locks variables from being edited in the editor inspector",
+      "It prevents the GameObject from being destroyed when loading new scenes, preserving states across levels",
+      "It backups object data to local configuration files",
+      "It disables physics collisions on scene transitions"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, loading scenes deletes all active objects. `DontDestroyOnLoad` flags objects (like game managers or audio players) to persist.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Compare asset loading using Addressables with loading from the traditional 'Resources' folder, and why Resources is discouraged.",
+    "options": [
+      "Resources is for mobile; Addressables is for desktop platforms",
+      "Resources loads all assets at startup, bloating memory and install sizes; Addressables loads assets asynchronously via keys, managing memory dynamically",
+      "Resources is faster and supports automatic garbage collection",
+      "They behave identically on compiler execution runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Assets in `Resources` are packed in the main build, increasing app size. Addressables isolates assets, loading/unloading them via handles dynamically.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the performance drawback of calling GetComponent() inside Update() loops, and what is the standard fix?",
+    "options": [
+      "It causes compilation warnings; fixed by renaming scripts",
+      "It queries the GameObject's components list, causing CPU overhead; fixed by caching references in Awake() or Start() member variables",
+      "It leaks memory; fixed by calling GC.Collect() hourly",
+      "GetComponent cannot be run inside Update loops"
+    ],
+    "correctIndex": 1,
+    "explanation": "`GetComponent` searches components. In loops, this wastes CPU cycles. Caching references in class variables at start avoids repeated searches.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Compare the roles of a Vertex Shader and a Fragment (Pixel) Shader in custom shaders.",
+    "options": [
+      "Vertex shader is for UI; Fragment shader is for 3D meshes",
+      "Vertex shader processes vertex properties and coordinates; Fragment shader runs per pixel to calculate final colors, textures, and shading",
+      "Fragment shader is executed on CPU; Vertex on GPU units",
+      "They are duplicate operations performing identical functions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Vertex shaders transform geometry (e.g. projection, offset waves). Fragment shaders render pixels, computing light models and maps.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how Garbage Collection Allocations occur in C# scripting (like boxing or lambdas), and how to audit them.",
+    "options": [
+      "Occur on database query runs; audit using SQL logs",
+      "Occur when casting values (boxing) or compiling captures, allocating heap memory; audit using the Unity Profiler CPU Usage module",
+      "Occur on file writes; audit using command line tools",
+      "Allocations only occur when using the 'new' keyword"
+    ],
+    "correctIndex": 1,
+    "explanation": "Boxing casts value types (like `struct`) to objects, creating heap allocations. Capturing variables in lambdas also allocates. Profilers flag these as GC Alloc.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement Object Pooling in Unity to optimize spawning high-frequency projectiles?",
+    "options": [
+      "By duplicating resources folders to local drives",
+      "Pre-instantiate a list of objects at start, disabling them, and enabling/disabling them dynamically to avoid Instantiate/Destroy GC overhead",
+      "By calling GC.Collect() immediately after destroying objects",
+      "By hosting projectile scripts on remote cloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Instantiate`/`Destroy` trigger garbage collection, causing micro-stutters. Pools reuse deactivated objects, maintaining flat memory pools.",
+    "difficulty": "hard"
   }
 ]

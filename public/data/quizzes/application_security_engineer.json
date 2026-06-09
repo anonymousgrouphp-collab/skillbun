@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "In a zero-day scenario, an immediate and coordinated incident response is crucial. This involves not only identifying affected assets and assessing impact but also proactive, transparent communication with all relevant stakeholders (development, operations, legal, public relations) to manage expectations, coordinate efforts, and ensure a phased, tracked remediation strategy is implemented and followed through to closure. Working in isolation, delaying communication, or focusing on only one aspect are ineffective and risky.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does SQL injection (SQLi) target?",
+    "options": [
+      "Web page stylesheets",
+      "Relational database queries",
+      "Network firewall settings",
+      "Client-side routing engines"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQL injection is a vulnerability where malicious SQL statements are inserted into entry fields for execution (e.g., to bypass authentication or extract database contents).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does XSS stand for?",
+    "options": [
+      "XML Security Standard",
+      "Cross-Site Scripting",
+      "Extended Security Scripting",
+      "Cross-Server Synchronization"
+    ],
+    "correctIndex": 1,
+    "explanation": "XSS stands for Cross-Site Scripting, a vulnerability that allows attackers to inject malicious client-side scripts into web pages viewed by other users.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is the best way to securely store passwords in a database?",
+    "options": [
+      "Encrypt them using AES-256",
+      "Hash them using a strong cryptographic hashing algorithm with a unique salt (e.g., bcrypt)",
+      "Store them in plaintext",
+      "Encode them using Base64"
+    ],
+    "correctIndex": 1,
+    "explanation": "Passwords should never be encrypted (reversible) or stored in plaintext. They should be hashed using slow, salted hashing algorithms like bcrypt, Argon2, or PBKDF2 to resist brute-force attacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the OWASP Top 10 represent?",
+    "options": [
+      "The top 10 security software vendors",
+      "A standard awareness document representing the most critical security risks to web applications",
+      "Ten commandments for writing JavaScript",
+      "The top 10 networking protocols"
+    ],
+    "correctIndex": 1,
+    "explanation": "The OWASP Top 10 is a widely recognized document that describes the ten most critical security vulnerabilities found in web applications, updated periodically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of a Web Application Firewall (WAF)?",
+    "options": [
+      "To block all incoming internet traffic",
+      "To monitor and filter HTTP traffic to and from a web application, protecting against common vulnerabilities",
+      "To compile source code into machine code",
+      "To back up database tables automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "A WAF inspects HTTP/HTTPS traffic to filter out malicious requests (like SQLi or XSS attacks) before they reach the web application.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which HTTP header is used to prevent the browser from loading resources not explicitly allowed in the policy?",
+    "options": [
+      "Access-Control-Allow-Origin",
+      "Content-Security-Policy",
+      "X-Frame-Options",
+      "Strict-Transport-Security"
+    ],
+    "correctIndex": 1,
+    "explanation": "Content-Security-Policy (CSP) is an HTTP header that allows site administrators to declare approved sources of content that the browser is allowed to load.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does MFA stand for in authentication?",
+    "options": [
+      "Maximum File Access",
+      "Multi-Factor Authentication",
+      "Mobile Firewall Authorization",
+      "Multi-Frame Architecture"
+    ],
+    "correctIndex": 1,
+    "explanation": "Multi-Factor Authentication (MFA) requires users to provide two or more verification factors to gain access to a resource.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Cross-Site Request Forgery (CSRF)?",
+    "options": [
+      "An attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated",
+      "An attack that overrides CSS styles on a server",
+      "A method for sniffing passwords on a local Wi-Fi network",
+      "An unauthorized database backup download"
+    ],
+    "correctIndex": 0,
+    "explanation": "CSRF forces a logged-in user's browser to send a forged HTTP request, including session cookies, to a vulnerable web application, performing malicious actions on the user's behalf.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key mitigation for SQL Injection?",
+    "options": [
+      "Using raw SQL concatenations",
+      "Using parameterized queries (Prepared Statements)",
+      "Minifying JavaScript files",
+      "Encrypting database tables using symmetric keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prepared statements ensure the database treats user input strictly as data, not executable code, which neutralizes SQL injection attempts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does SAST stand for in security testing?",
+    "options": [
+      "Server-side Application Security Testing",
+      "Static Application Security Testing",
+      "Source Code Automated Security Trial",
+      "Standard Access Security Tooling"
+    ],
+    "correctIndex": 1,
+    "explanation": "Static Application Security Testing (SAST) analyzes application source code, byte code, or binaries for security vulnerabilities without executing the code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between SAST and DAST?",
+    "options": [
+      "SAST is manual testing; DAST is automated",
+      "SAST analyzes code statically (white-box); DAST tests the running application from the outside (black-box)",
+      "SAST tests databases; DAST tests web pages",
+      "SAST is only for mobile apps; DAST is only for APIs"
+    ],
+    "correctIndex": 1,
+    "explanation": "SAST is a static, white-box analysis of code structure. DAST (Dynamic Application Security Testing) is a dynamic, black-box approach that analyzes a running application to find security issues through active simulation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How does the 'HttpOnly' flag on a cookie protect web applications?",
+    "options": [
+      "It prevents the cookie from being sent over HTTPS",
+      "It prevents client-side scripts (like JavaScript) from accessing the cookie, mitigating session hijacking via XSS",
+      "It deletes the cookie when the browser is closed",
+      "It encrypts the cookie values automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'HttpOnly' flag prevents client-side scripts (e.g., `document.cookie`) from reading the cookie, which helps prevent session token theft via Cross-Site Scripting (XSS).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Dependency Vulnerability (Software Composition Analysis)?",
+    "options": [
+      "A bug in local network cables",
+      "A security flaw in third-party libraries or packages used by the application",
+      "A database configuration mismatch",
+      "A memory leak in the frontend framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "Software Composition Analysis (SCA) identifies vulnerabilities in open-source third-party libraries incorporated into the software stack.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'SameSite' cookie attribute?",
+    "options": [
+      "To restrict the cookie to the current tab only",
+      "To control whether cookies are sent with cross-site requests, providing protection against CSRF attacks",
+      "To ensure the cookie is only sent to APIs",
+      "To limit cookie sizes to 1KB"
+    ],
+    "correctIndex": 1,
+    "explanation": "The SameSite attribute (Lax, Strict, or None) controls whether cookies are attached to cross-site requests, which blocks unauthorized cross-site requests from carrying user session cookies (CSRF mitigation).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does SSRF stand for?",
+    "options": [
+      "Server-Side Request Forgery",
+      "Secure Socket Routing Framework",
+      "Single Sign-On Routing Format",
+      "Static Server Response Filtering"
+    ],
+    "correctIndex": 0,
+    "explanation": "SSRF (Server-Side Request Forgery) is a vulnerability where an attacker can abuse functionality on the server to make it send crafted requests to unintended internal or external resources.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which of the following describes the 'Principle of Least Privilege'?",
+    "options": [
+      "Giving all users administrator rights to avoid configuration errors",
+      "Providing users and processes only the minimum access levels necessary to perform their functions",
+      "Allowing developers to write code without authorization checks",
+      "Using the smallest possible encryption key size"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Principle of Least Privilege states that any subject (user, process, program) should operate using the bare minimum set of privileges required to complete its job, limiting potential damage from compromise.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Broken Object Level Authorization (BOLA/IDOR)?",
+    "options": [
+      "A compiler error during file execution",
+      "A vulnerability where an application fails to check if a user has permission to access a specific resource object by its ID",
+      "A network routing protocol failure",
+      "An unhandled null pointer exception in OOP"
+    ],
+    "correctIndex": 1,
+    "explanation": "BOLA (or IDOR - Insecure Direct Object Reference) happens when a user can manipulate a resource ID in a request (like an API endpoint `/api/user/100`) to access or modify data they shouldn't have access to, due to missing authorization checks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of threat modeling in the secure software development lifecycle?",
+    "options": [
+      "To debug syntax errors in the IDE",
+      "To identify potential security threats and mitigation strategies early in the design phase",
+      "To test server hardware under heavy load",
+      "To automatically generate test coverage reports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Threat modeling is a structured process to identify, analyze, and mitigate potential security threats to an application during its architecture and design phase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Salt' in cryptography?",
+    "options": [
+      "A secret key used in symmetric encryption",
+      "Random data added to a password input before hashing to defend against dictionary and precomputed rainbow table attacks",
+      "A method for compressing hashed strings",
+      "A digital signature format"
+    ],
+    "correctIndex": 1,
+    "explanation": "Salting adds unique random bytes to each password before hashing, ensuring that identical passwords produce completely different hashes, neutralizing precomputed rainbow tables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'X-Content-Type-Options: nosniff' header do?",
+    "options": [
+      "It prevents images from being cached",
+      "It forces the browser to adhere to the MIME type sent by the server instead of sniffing it",
+      "It encrypts the response body in the browser",
+      "It disables JavaScript execution globally"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'nosniff' header prevents browsers from sniffing (guessing) the MIME type of a file, protecting against attacks like MIME-sniffing which could execute uploaded files as scripts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is XML External Entity (XXE) injection?",
+    "options": [
+      "Injecting malicious CSS code into an XML file",
+      "An attack against an application that parses XML input, allowing the attacker to reference external entities to read local files or execute SSRF",
+      "A database denial of service attack",
+      "A form of hardware memory corruption"
+    ],
+    "correctIndex": 1,
+    "explanation": "XXE injection occurs when an XML parser processes external entity references in a weakly configured XML parser, leading to sensitive file exposure, SSRF, or port scanning.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does JWT 'alg: HS256' vs 'alg: RS256' impact key management security?",
+    "options": [
+      "HS256 is public-key, RS256 is secret-key",
+      "HS256 uses a symmetric shared secret (both parties must know it), while RS256 uses asymmetric public/private keys (only the issuer knows the private key)",
+      "HS256 is completely insecure and deprecated, whereas RS256 is secure",
+      "RS256 is symmetric and faster than HS256"
+    ],
+    "correctIndex": 1,
+    "explanation": "HS256 is symmetric (both token generator and validator share the same secret key, posing a leak risk if shared), while RS256 is asymmetric (only the signer needs the private key, while verifiers only need the public key).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Deserialization Vulnerability'?",
+    "options": [
+      "Converting database tables into raw CSV text incorrectly",
+      "An application reconstructing serialized binary/text objects from untrusted sources without validation, leading to remote code execution",
+      "A mismatch in API documentation formatting",
+      "An error when loading JSON data in the client browser"
+    ],
+    "correctIndex": 1,
+    "explanation": "Insecure deserialization occurs when untrusted data is used to abuse the logic of an application, leading to arbitrary object instantiations or Remote Code Execution (RCE).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In cryptographic implementations, what is a 'Timing Attack' and how is it mitigated?",
+    "options": [
+      "An attack that times out the connection; mitigated by increasing server timeouts",
+      "An attacker analyzing the time it takes to execute cryptographic algorithms or string comparisons to extract secrets; mitigated by constant-time comparisons",
+      "An attack targeting system clock synchronization; mitigated by NTP validation",
+      "An exploit targeting CPU clock cycles; mitigated by using slower processors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Timing attacks exploit small variations in response times (e.g., password comparison failing early on character mismatch). Mitigating this requires using constant-time comparison algorithms that take the same time regardless of input correctness.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Subdomain Takeover' and how does it occur?",
+    "options": [
+      "An attacker buying a domain name that looks similar to a target domain",
+      "A DNS record pointing to a decommissioned external provider service, allowing an attacker to claim that service space and serve malicious content",
+      "A DNS denial-of-service attack targeting registrar systems",
+      "An attacker spoofing the DNS server of a local network"
+    ],
+    "correctIndex": 1,
+    "explanation": "Subdomain takeover happens when a subdomain DNS record (like a CNAME) points to a third-party service (e.g., Github Pages, S3 bucket) that is no longer active. An attacker can register on that service with the same bucket name to control the subdomain.",
+    "difficulty": "hard"
   }
 ]

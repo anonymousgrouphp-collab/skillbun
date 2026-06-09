@@ -298,5 +298,305 @@
     "correctIndex": 0,
     "explanation": "Route Guards (like `CanActivate`) are the primary Angular mechanism for implementing authorization at the routing level, preventing users from accessing certain routes unless specific conditions (e.g., being logged in, having a specific role) are met. For dynamic UI element visibility based on roles, `*ngIf` combined with a service that provides user role information is a very common and effective approach.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What language is primarily used for Angular development?",
+    "options": [
+      "JavaScript",
+      "TypeScript",
+      "CoffeeScript",
+      "Dart"
+    ],
+    "correctIndex": 1,
+    "explanation": "Angular is built with and primarily uses TypeScript, a superset of JavaScript that adds static typing. TypeScript provides features like type checking, interfaces, decorators, and better tooling support that are essential to Angular's architecture.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'component' in Angular?",
+    "options": [
+      "A database connection",
+      "A reusable building block of the UI that combines a TypeScript class, HTML template, and CSS styles",
+      "A server-side script",
+      "A testing utility"
+    ],
+    "correctIndex": 1,
+    "explanation": "An Angular component is the fundamental building block of the UI. It consists of a TypeScript class (with a @Component decorator) containing logic, an HTML template defining the view, and optional CSS styles. Components are composable and reusable throughout the application.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What command is used to create a new Angular project using the Angular CLI?",
+    "options": [
+      "npm create angular",
+      "ng new project-name",
+      "angular init project-name",
+      "create-angular-app project-name"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Angular CLI command 'ng new project-name' scaffolds a new Angular project with a default configuration, including necessary files, dependencies, and build tooling. The CLI provides commands for generating components, services, modules, and more.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Angular's 'NgModule' used for?",
+    "options": [
+      "To style components",
+      "To organize the application into cohesive blocks of functionality by declaring components, directives, pipes, and importing other modules",
+      "To make HTTP requests",
+      "To handle routing exclusively"
+    ],
+    "correctIndex": 1,
+    "explanation": "NgModule (decorated with @NgModule) is an organizational unit in Angular that groups related components, directives, pipes, and services. It declares what belongs to the module, imports other modules it depends on, and exports items for use by other modules.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'data binding' mean in Angular?",
+    "options": [
+      "Connecting the database to the UI",
+      "The mechanism that synchronizes data between the component's TypeScript class and its HTML template",
+      "Binding CSS styles to elements",
+      "Connecting two Angular applications together"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data binding in Angular synchronizes data between the component class and its template. Angular supports four types: interpolation ({{ }}), property binding ([property]), event binding ((event)), and two-way binding ([(ngModel)]), enabling dynamic and interactive UIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'service' in Angular?",
+    "options": [
+      "A web server that hosts the Angular app",
+      "A class decorated with @Injectable that encapsulates reusable business logic, data access, or shared functionality",
+      "A type of Angular component",
+      "A CSS styling module"
+    ],
+    "correctIndex": 1,
+    "explanation": "An Angular service is a class with the @Injectable decorator that provides reusable functionality separate from components — such as data fetching, logging, or business logic. Services are typically injected into components via Angular's dependency injection system.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the Angular CLI command to generate a new component?",
+    "options": [
+      "ng create component name",
+      "ng generate component name",
+      "ng add component name",
+      "ng build component name"
+    ],
+    "correctIndex": 1,
+    "explanation": "The command 'ng generate component name' (or shorthand 'ng g c name') creates a new component with its TypeScript class, HTML template, CSS styles, and test file. It also automatically declares the component in the nearest module.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Angular's 'dependency injection' system, and what advantage does it provide?",
+    "options": [
+      "A way to inject CSS into components",
+      "A design pattern where the framework provides (injects) class dependencies instead of the class creating them, enabling loose coupling and testability",
+      "A mechanism for injecting JavaScript into HTML",
+      "A security feature that prevents code injection attacks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Angular's DI system creates and manages instances of services and provides them to components or other services that declare them as dependencies. This promotes loose coupling (components don't create their own dependencies), facilitates testing (mock dependencies can be injected), and enables singleton service patterns.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Angular, what is an 'Observable' and which library provides it?",
+    "options": [
+      "A synchronous data structure from lodash",
+      "An asynchronous data stream from the RxJS library that emits values over time and supports operators for transformation",
+      "A simple callback function from jQuery",
+      "A static data type from TypeScript"
+    ],
+    "correctIndex": 1,
+    "explanation": "Observables from RxJS (Reactive Extensions for JavaScript) represent asynchronous data streams that emit values over time. Angular uses Observables extensively for HTTP requests, form value changes, route changes, and event handling. They support powerful operators like map, filter, switchMap, and debounceTime.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'ngOnInit' and the 'constructor' in an Angular component?",
+    "options": [
+      "They are identical in purpose",
+      "The constructor is for simple dependency injection; ngOnInit is for initialization logic that depends on input properties or requires DOM readiness",
+      "ngOnInit runs before the constructor",
+      "The constructor is deprecated"
+    ],
+    "correctIndex": 1,
+    "explanation": "The constructor should only be used for dependency injection. ngOnInit (from the OnInit lifecycle hook) runs after Angular has set up the component's input properties, making it the appropriate place for initialization logic like fetching data, setting up subscriptions, or processing @Input values.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Angular's 'Router' used for?",
+    "options": [
+      "Routing HTTP requests to a backend server",
+      "Mapping URL paths to components, enabling single-page application navigation without full page reloads",
+      "Routing data between services",
+      "Managing network traffic"
+    ],
+    "correctIndex": 1,
+    "explanation": "Angular Router enables client-side navigation in SPAs by mapping URL paths to specific components. It supports features like lazy loading, route guards, route parameters, child routes, and browser history management — all without full page reloads.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Angular 'Pipes' used for?",
+    "options": [
+      "Connecting components together",
+      "Transforming displayed data in templates without modifying the underlying data (e.g., formatting dates, currency, text)",
+      "Creating data pipelines between services",
+      "Managing state in the application"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pipes transform data for display in templates. Built-in pipes include DatePipe, CurrencyPipe, UpperCasePipe, AsyncPipe, etc. Custom pipes can be created for domain-specific transformations. They use the syntax {{ value | pipeName:arg }} and don't modify the original data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Directive' in Angular, and what are the two main types?",
+    "options": [
+      "A type of component; structural and attribute",
+      "An instruction that modifies the DOM; structural directives (*ngIf, *ngFor) change DOM structure, attribute directives (ngClass, ngStyle) change element appearance/behavior",
+      "A database query; read and write",
+      "A routing instruction; forward and redirect"
+    ],
+    "correctIndex": 1,
+    "explanation": "Directives are instructions that modify the DOM. Structural directives (prefixed with *, like *ngIf and *ngFor) add/remove DOM elements. Attribute directives (like ngClass, ngStyle, or custom ones) change the appearance or behavior of existing elements without altering the DOM structure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'lazy loading' in Angular routing, and why is it beneficial?",
+    "options": [
+      "Loading images slowly for visual effect",
+      "Loading feature modules only when the user navigates to their route, reducing the initial bundle size and improving startup time",
+      "Delaying all API calls until needed",
+      "A debugging technique that slows execution"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lazy loading defers loading of feature modules until the user navigates to their associated routes. This splits the application into smaller bundles, reducing the initial download size and improving startup time. It's configured using loadChildren in route definitions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Angular, what is the purpose of 'Route Guards'?",
+    "options": [
+      "To protect routes from XSS attacks",
+      "To control navigation to and from routes based on conditions like authentication status or unsaved changes",
+      "To guard against CSS style conflicts",
+      "To prevent multiple users from accessing the same route"
+    ],
+    "correctIndex": 1,
+    "explanation": "Route Guards are interfaces (CanActivate, CanDeactivate, CanLoad, etc.) that implement logic to control navigation. For example, CanActivate can redirect unauthenticated users to a login page, and CanDeactivate can prompt users about unsaved changes before leaving a form.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Angular's 'HttpClient' module used for?",
+    "options": [
+      "Creating HTTP servers",
+      "Making HTTP requests to backend APIs with features like typed responses, interceptors, and Observable-based responses",
+      "Serving static files",
+      "Managing WebSocket connections exclusively"
+    ],
+    "correctIndex": 1,
+    "explanation": "HttpClient (from @angular/common/http) provides a simplified API for making HTTP requests. It returns Observables, supports typed responses (generics), enables request/response interception via HttpInterceptors, and provides built-in error handling and retry capabilities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Reactive Forms' in Angular compared to Template-Driven Forms?",
+    "options": [
+      "Reactive Forms are slower but simpler",
+      "Reactive Forms define form structure programmatically in the component class using FormGroup/FormControl, offering more control, testability, and scalability",
+      "They are identical in functionality",
+      "Template-Driven Forms are always preferred"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reactive Forms define form structure in the component class using FormGroup, FormControl, and FormArray. They provide synchronous access to the form model, easier unit testing, dynamic form creation, and custom validators. Template-Driven Forms use directives in the template and are simpler but less flexible.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an 'HttpInterceptor' in Angular?",
+    "options": [
+      "A firewall for the application",
+      "A middleware that intercepts outgoing HTTP requests and incoming responses to modify them globally (e.g., adding auth headers, logging, error handling)",
+      "A component that displays HTTP errors",
+      "A tool for intercepting user clicks"
+    ],
+    "correctIndex": 1,
+    "explanation": "HttpInterceptors are classes implementing the HttpInterceptor interface that sit between the application and the HttpClient. They can modify requests (e.g., adding authentication tokens), handle responses (e.g., refreshing tokens on 401 errors), and perform cross-cutting concerns like logging.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Angular's change detection, what is the difference between 'Default' and 'OnPush' strategies?",
+    "options": [
+      "There is no difference",
+      "Default checks the entire component tree on every event; OnPush only checks a component when its @Input references change, an event is emitted within it, or change detection is manually triggered",
+      "OnPush is slower than Default",
+      "Default is deprecated in favor of OnPush"
+    ],
+    "correctIndex": 1,
+    "explanation": "Default change detection runs on every browser event (click, timer, HTTP response) and checks the entire component subtree. OnPush optimizes performance by only running change detection when @Input object references change, an event originates within the component, or detectChanges() is called manually.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Angular 'Signals' introduced in Angular 16+?",
+    "options": [
+      "A messaging system between microservices",
+      "A reactive primitive that wraps a value and notifies consumers when that value changes, enabling fine-grained reactivity",
+      "A logging system for debugging",
+      "A replacement for TypeScript"
+    ],
+    "correctIndex": 1,
+    "explanation": "Angular Signals provide a fine-grained reactive primitive. A signal wraps a value and tracks which parts of the application depend on it. When the signal's value changes, only the dependent views update, enabling more efficient change detection compared to zone.js-based detection.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An Angular application has a complex form with dynamic fields, cross-field validation, and conditional sections. How should this be architected for maintainability and testability?",
+    "options": [
+      "Using Template-Driven Forms with ngModel for each field",
+      "Using Reactive Forms with FormGroup, dynamic FormArray for repeated sections, custom validators for cross-field rules, and separate form-builder services for testability",
+      "Handling all validation with HTML5 attributes",
+      "Using plain JavaScript DOM manipulation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reactive Forms provide the programmatic control needed: FormGroup for the overall form, FormArray for dynamic repeated sections, custom ValidatorFn for cross-field validation rules, and the form model can be constructed in a testable service. This approach is fully unit-testable without any DOM dependency.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a large Angular enterprise application, what is the recommended approach for managing global state across multiple feature modules?",
+    "options": [
+      "Using local component state everywhere",
+      "Implementing a centralized state management pattern using NgRx (Redux pattern) with Store, Actions, Reducers, Effects, and Selectors",
+      "Passing data through deeply nested @Input/@Output chains",
+      "Storing all state in localStorage"
+    ],
+    "correctIndex": 1,
+    "explanation": "NgRx implements the Redux pattern for Angular: a single Store holds application state, Actions describe state changes, Reducers specify how state transitions occur, Effects handle side effects (API calls), and Selectors efficiently derive computed state. This provides predictable state management, powerful debugging (time-travel), and testability.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An Angular application's bundle size is 2MB and initial load time exceeds 5 seconds. Which combination of techniques would most effectively reduce this?",
+    "options": [
+      "Adding more polyfills",
+      "Lazy loading feature modules, enabling tree-shaking and Ahead-of-Time (AOT) compilation, and using the Angular build optimizer",
+      "Adding more components to the AppModule",
+      "Disabling TypeScript compilation"
+    ],
+    "correctIndex": 1,
+    "explanation": "The combined approach addresses bundle size from multiple angles: lazy loading splits the bundle so only essential code loads initially; tree-shaking removes unused code; AOT compilation eliminates the template compiler from the runtime bundle; and the build optimizer further reduces code through advanced minification and dead code elimination.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When using RxJS in Angular, a developer subscribes to an Observable in a component but forgets to unsubscribe. What is the consequence, and what is the recommended pattern to prevent it?",
+    "options": [
+      "Nothing happens; Angular handles cleanup automatically",
+      "Memory leaks and potential runtime errors after component destruction; use the async pipe in templates, takeUntilDestroyed(), or explicit unsubscribe in ngOnDestroy",
+      "The application crashes immediately",
+      "The subscription automatically stops after 30 seconds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unsubscribed Observables continue to exist after component destruction, causing memory leaks and potentially triggering logic on destroyed components. Best practices include: using the async pipe (auto-unsubscribes), takeUntilDestroyed() from @angular/core, or manually unsubscribing in ngOnDestroy via a Subject/takeUntil pattern.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Angular supports standalone components (introduced in Angular 14+). How do standalone components differ from traditional NgModule-declared components, and what architectural advantage do they provide?",
+    "options": [
+      "Standalone components cannot use services",
+      "Standalone components declare their own imports directly in the @Component decorator, eliminating the need for NgModules and simplifying the dependency graph",
+      "Standalone components are slower than NgModule components",
+      "They are only usable in test environments"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standalone components (standalone: true in @Component) manage their own dependencies by importing other components, directives, and pipes directly in their decorator — no NgModule required. This simplifies the application architecture, reduces boilerplate, enables easier tree-shaking, and makes lazy loading at the component level straightforward.",
+    "difficulty": "hard"
   }
 ]

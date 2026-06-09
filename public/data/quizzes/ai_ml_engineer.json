@@ -298,5 +298,305 @@
     "correctIndex": 3,
     "explanation": "A Python list is an ordered and mutable collection that can store items of different data types. Tuples are ordered but immutable. Sets are unordered collections of unique items. Dictionaries store key-value pairs.",
     "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of an activation function in a neural network?",
+    "options": [
+      "To initialize weights",
+      "To introduce non-linearity into the model",
+      "To reduce the learning rate",
+      "To normalize input data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Activation functions introduce non-linearity into neural networks, allowing them to learn complex patterns. Without activation functions, a neural network would behave like a simple linear regression model regardless of the number of layers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a supervised learning algorithm?",
+    "options": [
+      "K-Means Clustering",
+      "Principal Component Analysis",
+      "Linear Regression",
+      "DBSCAN"
+    ],
+    "correctIndex": 2,
+    "explanation": "Linear Regression is a supervised learning algorithm because it requires labeled training data (input-output pairs) to learn. K-Means, PCA, and DBSCAN are all unsupervised learning methods that work with unlabeled data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'overfitting' mean in the context of machine learning?",
+    "options": [
+      "The model performs poorly on both training and test data",
+      "The model memorizes training data and fails to generalize to unseen data",
+      "The model is too simple to capture patterns in the data",
+      "The model takes too long to train"
+    ],
+    "correctIndex": 1,
+    "explanation": "Overfitting occurs when a model learns the noise and specific details of the training data too well, resulting in excellent training performance but poor generalization to new, unseen data. This is the opposite of underfitting, where the model is too simple.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a confusion matrix for binary classification, what does 'True Positive' represent?",
+    "options": [
+      "The model incorrectly predicts the positive class",
+      "The model correctly predicts the negative class",
+      "The model correctly predicts the positive class",
+      "The model incorrectly predicts the negative class"
+    ],
+    "correctIndex": 2,
+    "explanation": "A True Positive (TP) occurs when the model correctly predicts that an instance belongs to the positive class. In a confusion matrix, TP, TN, FP, and FN represent the four possible outcomes of a binary classification prediction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Python library is most widely used for building and training deep learning models?",
+    "options": [
+      "Pandas",
+      "Matplotlib",
+      "TensorFlow/PyTorch",
+      "Scikit-learn"
+    ],
+    "correctIndex": 2,
+    "explanation": "TensorFlow and PyTorch are the two most widely used deep learning frameworks. They provide tools for building, training, and deploying neural networks. Pandas is for data manipulation, Matplotlib for visualization, and Scikit-learn is primarily for traditional ML algorithms.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of a loss function in training a machine learning model?",
+    "options": [
+      "To visualize the data distribution",
+      "To measure how far the model's predictions are from the actual values",
+      "To split data into training and test sets",
+      "To select the best features from the dataset"
+    ],
+    "correctIndex": 1,
+    "explanation": "A loss function (also called cost or objective function) quantifies the difference between the model's predictions and the actual target values. During training, the optimizer works to minimize this loss function, thereby improving the model's accuracy.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the term 'epoch' refer to in neural network training?",
+    "options": [
+      "A single forward pass through one data sample",
+      "One complete pass through the entire training dataset",
+      "The time taken to train the model",
+      "The number of layers in the network"
+    ],
+    "correctIndex": 1,
+    "explanation": "An epoch represents one complete pass through the entire training dataset during the training process. Training typically involves multiple epochs, allowing the model to see all data points multiple times and progressively improve its weights.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A data scientist notices that adding more polynomial features improves training accuracy but decreases validation accuracy. Which regularization technique adds a penalty proportional to the absolute value of the model weights to combat this?",
+    "options": [
+      "L2 Regularization (Ridge)",
+      "L1 Regularization (Lasso)",
+      "Dropout",
+      "Batch Normalization"
+    ],
+    "correctIndex": 1,
+    "explanation": "L1 Regularization (Lasso) adds a penalty equal to the absolute value of the magnitude of coefficients to the loss function. This encourages sparsity by driving some weights to exactly zero, effectively performing feature selection. L2 (Ridge) uses squared magnitudes instead.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In gradient descent optimization, what is the effect of using a learning rate that is too large?",
+    "options": [
+      "The model converges very slowly but accurately",
+      "The model may overshoot the optimal solution and fail to converge",
+      "The model always reaches the global minimum",
+      "The model automatically switches to a smaller learning rate"
+    ],
+    "correctIndex": 1,
+    "explanation": "A learning rate that is too large causes the optimizer to take excessively big steps during weight updates, potentially overshooting the minimum of the loss function. This can lead to oscillation around the minimum or even divergence where the loss increases over time.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which technique involves training multiple models and combining their predictions to achieve better performance than any single model?",
+    "options": [
+      "Transfer Learning",
+      "Ensemble Learning",
+      "Curriculum Learning",
+      "Active Learning"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ensemble Learning combines predictions from multiple models (e.g., through bagging, boosting, or stacking) to produce a more robust and accurate result. Popular ensemble methods include Random Forest (bagging) and XGBoost (boosting).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary advantage of using batch normalization in deep neural networks?",
+    "options": [
+      "It eliminates the need for activation functions",
+      "It stabilizes training by normalizing layer inputs, allowing higher learning rates",
+      "It reduces the number of trainable parameters",
+      "It replaces the need for dropout regularization"
+    ],
+    "correctIndex": 1,
+    "explanation": "Batch normalization normalizes the inputs of each layer to have zero mean and unit variance within each mini-batch. This stabilizes and accelerates training by reducing internal covariate shift, often allowing the use of higher learning rates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Convolutional Neural Network (CNN), what is the purpose of a pooling layer?",
+    "options": [
+      "To increase the spatial dimensions of the feature maps",
+      "To add non-linearity to the network",
+      "To reduce the spatial dimensions and computational complexity while retaining important features",
+      "To connect every neuron to every neuron in the next layer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pooling layers (e.g., max pooling, average pooling) reduce the spatial dimensions of feature maps, which decreases computational load and the number of parameters. They also provide a form of translation invariance by summarizing features over local regions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What distinguishes Recurrent Neural Networks (RNNs) from standard feedforward neural networks?",
+    "options": [
+      "RNNs use convolutional filters",
+      "RNNs have connections that loop back, allowing them to maintain a hidden state across time steps",
+      "RNNs can only process fixed-size inputs",
+      "RNNs do not use backpropagation for training"
+    ],
+    "correctIndex": 1,
+    "explanation": "RNNs have recurrent connections that create loops in the network, enabling them to maintain a hidden state that captures information from previous time steps. This makes them suitable for sequential data like text, time series, and speech.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When dealing with a highly imbalanced dataset (e.g., 95% negative, 5% positive), which evaluation metric is generally more informative than simple accuracy?",
+    "options": [
+      "Training loss",
+      "F1 Score",
+      "Number of epochs",
+      "Batch size"
+    ],
+    "correctIndex": 1,
+    "explanation": "The F1 Score is the harmonic mean of precision and recall, making it particularly useful for imbalanced datasets. Simple accuracy can be misleading because a model that always predicts the majority class would achieve 95% accuracy despite being useless for detecting the minority class.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'softmax' function in the output layer of a multi-class classification neural network?",
+    "options": [
+      "To apply dropout to the output",
+      "To convert raw output scores into a probability distribution across all classes",
+      "To reduce the number of output neurons",
+      "To add regularization to the final layer"
+    ],
+    "correctIndex": 1,
+    "explanation": "The softmax function takes a vector of raw scores (logits) and normalizes them into a probability distribution, where each value is between 0 and 1 and all values sum to 1. This allows the network to output the predicted probability for each class.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of natural language processing, what does a word embedding (such as Word2Vec) represent?",
+    "options": [
+      "A one-hot encoded vector for each word",
+      "A dense, lower-dimensional vector capturing semantic relationships between words",
+      "A frequency count of words in a document",
+      "A binary indicator of whether a word appears in a sentence"
+    ],
+    "correctIndex": 1,
+    "explanation": "Word embeddings map words to dense, continuous vectors in a lower-dimensional space where semantically similar words are positioned closer together. Unlike one-hot encoding, embeddings capture relationships like 'king - man + woman ≈ queen'.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key difference between a generative model and a discriminative model?",
+    "options": [
+      "Generative models are always more accurate",
+      "Generative models learn the joint probability distribution P(X,Y), while discriminative models learn the conditional P(Y|X)",
+      "Discriminative models cannot be used for classification",
+      "Generative models do not require training data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Generative models (e.g., Naive Bayes, GANs) learn the joint probability distribution P(X,Y) and can generate new data samples. Discriminative models (e.g., Logistic Regression, SVMs) learn the decision boundary P(Y|X) directly, focusing on distinguishing between classes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which optimization algorithm adapts the learning rate for each parameter individually based on historical gradients, making it popular for training deep networks?",
+    "options": [
+      "Stochastic Gradient Descent (SGD)",
+      "Adam",
+      "Newton's Method",
+      "Grid Search"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adam (Adaptive Moment Estimation) combines the benefits of AdaGrad and RMSProp by maintaining per-parameter adaptive learning rates using first and second moment estimates of the gradients. It is widely used for training deep learning models due to its efficiency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is cross-validation primarily used for in machine learning?",
+    "options": [
+      "To increase the size of the training dataset",
+      "To estimate how well a model will generalize to unseen data",
+      "To speed up model training",
+      "To select the programming language for implementation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cross-validation (e.g., k-fold) is used to estimate a model's generalization performance by repeatedly splitting the data into training and validation subsets, training and evaluating the model on each split, and averaging the results.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a Random Forest algorithm, what technique is used to introduce diversity among the individual decision trees?",
+    "options": [
+      "Using the exact same data and features for every tree",
+      "Bagging (bootstrap aggregating) for data sampling and random feature subsets at each split",
+      "Training all trees sequentially on the errors of previous trees",
+      "Using a single deep decision tree"
+    ],
+    "correctIndex": 1,
+    "explanation": "Random Forest uses bagging to create bootstrap samples of the training data for each tree and randomly selects a subset of features at each split point. This introduces diversity among trees, reducing overfitting and variance compared to a single decision tree.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the Transformer architecture, what is the purpose of the 'self-attention' mechanism?",
+    "options": [
+      "To reduce the number of model parameters",
+      "To allow each position in a sequence to attend to all other positions, capturing contextual relationships",
+      "To perform dimensionality reduction on the input",
+      "To replace the need for an optimizer during training"
+    ],
+    "correctIndex": 1,
+    "explanation": "Self-attention (scaled dot-product attention) computes a weighted sum of all positions in the input sequence for each position, where weights are determined by the compatibility (similarity) between positions. This allows the model to capture long-range dependencies without relying on recurrence.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A machine learning engineer is deploying a model that must serve predictions with sub-10ms latency. The current PyTorch model takes 50ms per inference. Which technique would most directly reduce inference latency without significant accuracy loss?",
+    "options": [
+      "Increasing the training data size",
+      "Model quantization (e.g., converting FP32 weights to INT8)",
+      "Adding more layers to the model",
+      "Using a larger batch size during inference"
+    ],
+    "correctIndex": 1,
+    "explanation": "Model quantization reduces the precision of model weights and activations (e.g., from 32-bit floating point to 8-bit integer), significantly decreasing model size and inference time. Combined with hardware-optimized kernels, this can achieve substantial speedups with minimal accuracy degradation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When training a Generative Adversarial Network (GAN), the training process involves two competing networks. What specific problem occurs when the discriminator becomes too powerful too quickly relative to the generator?",
+    "options": [
+      "The generator produces perfect images immediately",
+      "Mode collapse, where the generator produces limited variety",
+      "Vanishing gradients for the generator, halting its learning",
+      "The discriminator's loss increases uncontrollably"
+    ],
+    "correctIndex": 2,
+    "explanation": "When the discriminator becomes too strong, it can classify generator outputs as fake with near-perfect confidence, producing gradients very close to zero for the generator. This vanishing gradient problem prevents the generator from learning and improving, effectively stalling GAN training.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In transfer learning for computer vision, why is it common practice to freeze the early convolutional layers of a pre-trained model and only fine-tune the later layers?",
+    "options": [
+      "Early layers are computationally more expensive to train",
+      "Early layers learn generic low-level features (edges, textures) that are transferable, while later layers learn task-specific high-level features",
+      "Freezing layers prevents the model from overfitting on any dataset",
+      "Early layers contain no learnable parameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Research has shown that early CNN layers learn universal, low-level visual features (edges, corners, textures) that are useful across many tasks. Later layers learn increasingly task-specific features. By freezing early layers, we preserve these transferable features while adapting the task-specific layers to the new dataset.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A team is building a recommendation system and decides to use collaborative filtering. Their user-item interaction matrix is extremely sparse (less than 0.1% filled). Which specific approach best addresses this sparsity problem?",
+    "options": [
+      "Using simple nearest-neighbor collaborative filtering",
+      "Matrix factorization techniques like SVD or ALS that learn latent factor representations",
+      "Removing all users with fewer than 100 interactions",
+      "Switching to a rule-based recommendation system"
+    ],
+    "correctIndex": 1,
+    "explanation": "Matrix factorization methods decompose the sparse user-item matrix into lower-dimensional latent factor matrices, effectively learning compressed representations of user preferences and item characteristics. This handles sparsity well because predictions are made from the learned latent factors rather than requiring direct overlap between users.",
+    "difficulty": "hard"
   }
 ]

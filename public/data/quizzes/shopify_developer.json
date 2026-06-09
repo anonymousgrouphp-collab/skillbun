@@ -298,5 +298,305 @@
     "correctIndex": 3,
     "explanation": "The issue is likely due to the dynamic data fetching mechanism being overwhelmed under high traffic. Refactoring to fetch data less frequently (e.g., every 5-10 seconds instead of every second) or using a dedicated, scalable endpoint (if the data isn't directly from Shopify's primary API, which has rate limits) can alleviate pressure. Option A is removing functionality. Option B (`localStorage`) helps only on repeat visits for static data, not live updates. Option C (Shopify Functions) is for backend logic, not directly for frontend fetching performance of existing elements. The core problem is the *efficiency and resilience* of the data retrieval for these specific dynamic elements during peak load.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is Shopify?",
+    "options": [
+      "A database software package hosting cloud accounts",
+      "A leading cloud-based e-commerce platform allowing businesses to build online stores and sell products",
+      "A programming compiler replacing JavaScript",
+      "A web hosting dashboard portal"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify is a SaaS e-commerce platform that manages inventory, checkouts, shipping, and storefronts out of the box.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which template language is developed by Shopify and used to load dynamic content on store pages?",
+    "options": [
+      "Twig",
+      "Liquid",
+      "Blade",
+      "EJS"
+    ],
+    "correctIndex": 1,
+    "explanation": "Liquid is Shopify's open-source template language, used to render database attributes (like product names, prices) in HTML layouts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What tool is the official CLI provided by Shopify to develop themes locally?",
+    "options": [
+      "Shopify CLI",
+      "ThemeKit",
+      "npm",
+      "Composer"
+    ],
+    "correctIndex": 0,
+    "explanation": "Shopify CLI is the modern command-line tool used to create, preview, test, and deploy themes and apps locally.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of 'metafields' in Shopify?",
+    "options": [
+      "To write database query commands",
+      "To store custom, extra data fields (like washing instructions or size guides) on resources like products or orders",
+      "To style page header fonts",
+      "To schedule database backups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metafields extend Shopify's default database schema, letting merchants save custom data fields for products, customers, or collections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which Shopify API is recommended for building headless e-commerce storefronts using frontend frameworks like Next.js?",
+    "options": [
+      "REST Admin API",
+      "Storefront API (GraphQL)",
+      "Partner API",
+      "Theme API"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Storefront API (GraphQL-based) provides read-only access to products, checkout, and customer accounts, optimized for headless frontends.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the name of Shopify's default theme framework, designed for performance and custom sections?",
+    "options": [
+      "Dawn",
+      "Debut",
+      "Minimal",
+      "Simple"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dawn is Shopify's reference theme built on Online Store 2.0 architectures, optimized for speed and visual custom sections.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'config/settings_schema.json' file in Shopify themes?",
+    "options": [
+      "To store customer login accounts",
+      "To define the customization settings (colors, fonts, input fields) visible to merchants in the Shopify Theme Editor",
+      "To route API request handlers",
+      "To manage git branch configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "`settings_schema.json` controls the Theme Editor. It defines settings input boxes, allowing merchants to customize colors without editing CSS files.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Shopify Theme and a Shopify App?",
+    "options": [
+      "Themes are for mobile; Apps are for desktop layouts",
+      "Themes control the visual layout and frontend design of the online store; Apps extend functionalities and integrate backend features via APIs",
+      "Apps are always free; Themes are paid",
+      "They are identical configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Themes are CSS/HTML/Liquid layouts. Apps run on external servers, calling Shopify APIs (REST/GraphQL) to automate backend workflows.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Sections' and 'Blocks' in Shopify Online Store 2.0?",
+    "options": [
+      "Database table dividers; sections are columns, blocks are rows",
+      "Reusable, customizable visual layout components that merchants can drag, drop, and configure on any page of their store",
+      "Redirection links returning to homepages",
+      "VPN connection configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sections define page rows (e.g. image banners). Blocks define elements inside sections (e.g. headers, buttons), configurable via theme editors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'App Proxies' in Shopify app development?",
+    "options": [
+      "To route administrator logins",
+      "To fetch data from your app's external server and render it directly inside the Shopify storefront under the store's domain, avoiding CORS issues",
+      "To scale search queries dynamically",
+      "To backup database tables to local folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "App Proxies map proxy paths (e.g., `/apps/myproxy`). When a user visits, Shopify proxies the request to the app's server, returning data securely.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are webhooks in Shopify app development, and why are they important?",
+    "options": [
+      "To check local network cable connections",
+      "HTTP notifications sent from Shopify when events occur (e.g., 'Order Created'), letting apps execute real-time backend workflows",
+      "To compile theme source codes",
+      "To encrypt connection packets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Webhooks alert app servers (e.g., processing delivery details when an order is paid), avoiding inefficient API polling loops.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which file is the entry point for custom CSS styles in modern Shopify themes?",
+    "options": [
+      "theme.css or base.css",
+      "style.scss",
+      "custom.css.liquid",
+      "index.css"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dawn uses `base.css` or `theme.css`. Shopify has deprecated `.scss` compiler support on its servers, advising static CSS instead.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'GraphQL Admin API' offer compared to the REST Admin API?",
+    "options": [
+      "It runs queries on local browser databases only",
+      "It allows fetching only the specific fields required in a single request, reducing payload sizes and avoiding rest rate limits",
+      "It does not require authentication tokens",
+      "It is written in Python; REST in PHP"
+    ],
+    "correctIndex": 1,
+    "explanation": "GraphQL avoids over-fetching. A query can fetch a product name and its metafields in one call, consuming fewer rate-limit points.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Shopify Flow'?",
+    "options": [
+      "A layout grid builder on storefronts",
+      "An automation app letting merchants build workflows (like tagging customers or emailing alerts) using triggers and actions without code",
+      "A code compiler tool",
+      "A system tracking server speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify Flow automates admin tasks (e.g., 'If inventory is low, email team'), integrating with Shopify Apps natively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'App Embed Blocks' in Online Store 2.0 themes?",
+    "options": [
+      "To store customer credentials",
+      "To inject app scripts and components into themes dynamically without modifying the theme's core Liquid code files",
+      "To write database query commands",
+      "To manage git branch configurations"
+    ],
+    "correctIndex": 1,
+    "explanation": "App embeds keep code clean. Uninstalling the app disables the block, preventing leftover ghost scripts from slowing the site.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which Liquid tag is used to loop through a collection of products?",
+    "options": [
+      "{% loop %}",
+      "{% for product in collection.products %}",
+      "{% foreach product %}",
+      "{% each %}"
+    ],
+    "correctIndex": 1,
+    "explanation": "Liquid uses standard `for` loops to iterate over arrays or collections, completed with `{% endfor %}`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'layout/theme.liquid' file?",
+    "options": [
+      "To write styling sheets for layouts",
+      "The master template wrapping all pages, containing head metadata, navigation menus, header, footer, and the content_for_layout block",
+      "To configure database connections",
+      "To schedule background cron tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "`theme.liquid` is the parent layout. It holds headers/scripts, rendering page-specific views inside `{{ content_for_layout }}`.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Shopify Markets' used for?",
+    "options": [
+      "To list developer applications on the app store",
+      "A cross-border management tool helping merchants localize their store, pricing, currencies, and languages for different global regions",
+      "To host database servers",
+      "To compile theme styles"
+    ],
+    "correctIndex": 1,
+    "explanation": "Markets automates localization, routing domains/pricing rules to match visiting users' locales.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Liquid filter' (like {{ product.price | money }}) do?",
+    "options": [
+      "Filters out products by price ranges",
+      "Modifies the output of a variable, converting it to a formatted format (e.g., formatting raw cents integers as money strings)",
+      "Checks user login credentials",
+      "Deletes temporary cache records"
+    ],
+    "correctIndex": 1,
+    "explanation": "Filters use pipe symbols (`|`). They format strings, manipulate arrays, or perform math (e.g. converting `1000` cents to `$10.00`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Shopify Functions' in checkout customizations?",
+    "options": [
+      "To write javascript functions on user browsers",
+      "Custom code modules compiled to WebAssembly (Wasm) running on Shopify servers, allowing developers to customize checkout discount, shipping, or payment rules dynamically",
+      "To schedule database backups",
+      "To check spelling errors in checkout pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify Functions replace legacy Ruby scripts. Running WebAssembly modules directly on Shopify's core checkout pipeline guarantees sub-millisecond execution even during sales spikes (like Black Friday).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Shopify API integrations, explain the difference between OAuth 'Offline access' tokens versus 'Online access' tokens.",
+    "options": [
+      "Offline tokens are for local sandboxes; Online are for production",
+      "Offline tokens are long-lived and access the store's APIs independently of user sessions; Online tokens are short-lived and tied to a specific logged-in admin user session",
+      "Online tokens never expire; Offline tokens expire hourly",
+      "They behave identically on background webhook runs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Apps running background scripts (e.g. sync inventory) require Offline tokens, stored in the database. Apps responding to active dashboard interactions use Online tokens, verifying user scopes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Shopify App Bridge' library, and how does it enable embedded apps to communicate with the host Shopify Admin shell?",
+    "options": [
+      "A network gateway routing database queries",
+      "A JavaScript library enabling embedded iframe apps to communicate with the Shopify Admin shell, controlling menus, modales, toast alerts, and navigation",
+      "A compiler converting JavaScript to HTML",
+      "A security firewall blocking cross-site cookies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Embedded apps run in iframes (separate domains). App Bridge uses `postMessage` APIs behind the scenes, letting the iframe app trigger actions in the parent Admin frame (like opening modals or navigation updates).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how the 'GraphQL Cost-based Rate Limiting' works in Shopify's Admin API, and how developers handle throttling.",
+    "options": [
+      "Throttling is handled by upgrading cloud servers; cost counts total page files",
+      "GraphQL limits calls using a query complexity cost pool (budget); complex queries consume more points, and developers handle throttling by using retry headers and parsing query costs",
+      "Throttling is blocked by firewalls; cost counts query byte sizes",
+      "GraphQL limits calls by IP addresses; developers handle by proxy routing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shopify uses a leaky-bucket algorithm (default 50 points/second budget). A simple query costs 1 point. A nested query (products + variants + images) costs 50 points. Apps check response headers (`extensions.cost`) to adjust query delay.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How do you implement international pricing, tax calculations, and localized checkouts in Shopify headless storefronts using the Cart API?",
+    "options": [
+      "By duplicating the entire store for each country",
+      "By passing context parameters (country codes, currencies) to the GraphQL Cart mutation headers, letting Shopify manage tax and localization calculations dynamically in the cart object",
+      "By writing custom javascript tax calculations in frontend forms",
+      "Headless storefronts do not support international checkouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Headless checkouts leverage Shopify's multi-currency backends. By passing country codes (e.g. country: CA) in header context, the Storefront API handles local pricing, custom duties, and tax rules natively.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Shopify theme development, what is the purpose of the 'assets/' directory?",
+    "options": [
+      "To store dynamic product images uploaded by customers",
+      "To store static files used in the theme, such as images, stylesheets (CSS), and JavaScript files",
+      "To store customer transaction records",
+      "To store theme layout templates"
+    ],
+    "correctIndex": 1,
+    "explanation": "The assets/ directory in a Shopify theme contains all static resources like images, CSS files, JavaScript, and fonts that are loaded by the theme's templates using the asset_url filter.",
+    "difficulty": "moderate"
   }
 ]

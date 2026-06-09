@@ -1,0 +1,887 @@
+{
+  "flutter_developer": [
+    {
+      "question": "What is Flutter?",
+      "options": ["A database management system", "Google's open-source UI software development kit for building cross-platform applications from a single codebase", "A web browser designed for mobile devices", "A programming language similar to HTML"],
+      "correctIndex": 1,
+      "explanation": "Flutter allows developers to build native-compiled applications for mobile (iOS, Android), web, desktop, and embedded devices from one codebase.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language is used to write Flutter applications?",
+      "options": ["Java", "Swift", "Dart", "Kotlin"],
+      "correctIndex": 2,
+      "explanation": "Dart is the client-optimized programming language developed by Google that powers Flutter applications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the core building block of a Flutter user interface?",
+      "options": ["A Widget", "A Component", "A Tag", "An Element"],
+      "correctIndex": 0,
+      "explanation": "In Flutter, almost everything is a widget. Widgets describe what their view should look like given their configuration and state.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between a StatelessWidget and a StatefulWidget in Flutter?",
+      "options": ["StatelessWidget is for iOS; StatefulWidget is for Android", "StatelessWidget has no internal state that can change; StatefulWidget maintains state that can trigger rebuilds on change", "StatefulWidget is faster than StatelessWidget", "StatelessWidget is only used for text; StatefulWidget is only for buttons"],
+      "correctIndex": 1,
+      "explanation": "StatelessWidgets are immutable. StatefulWidgets maintain mutable state, calling `setState()` to request redrawing the widget when values update.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does the 'pubspec.yaml' file do in a Flutter project?",
+      "options": ["Stores user passwords", "Manages the project's dependencies, assets, fonts, and version settings", "Configures database schemas", "Compiles Dart code into binary format"],
+      "correctIndex": 1,
+      "explanation": "The `pubspec.yaml` file defines metadata and package dependencies (from pub.dev) for Flutter applications.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which command is used to download dependencies specified in pubspec.yaml?",
+      "options": ["npm install", "flutter pub get", "pip install", "dotnet restore"],
+      "correctIndex": 1,
+      "explanation": "`flutter pub get` is the CLI command that retrieves packages and libraries for the Flutter project.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Hot Reload' in Flutter development?",
+      "options": ["Restarting the emulator computer", "Injecting updated source code files directly into the running Dart VM, showing UI changes in seconds without losing application state", "Overheating the developer laptop", "Rebuilding the production binary from scratch"],
+      "correctIndex": 1,
+      "explanation": "Hot Reload speeds up development by rendering code changes in the UI almost instantly while preserving the active app state (e.g. text inputs, navigation stacks).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Dart's 'Sound Null Safety' feature?",
+      "options": ["A security protocol that prevents databases from storing nulls", "A compiler feature ensuring that variables cannot contain null values unless explicitly declared as nullable, eliminating null-pointer runtime errors", "A method for checking code syntax in IDEs", "A protocol for hashing user passwords"],
+      "correctIndex": 1,
+      "explanation": "Null safety separates nullable types (e.g. `String?`) from non-nullable types (e.g. `String`). The compiler guarantees that non-nullable values will never be null at runtime.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the `setState()` method do in a StatefulWidget?",
+      "options": ["Saves the application data to the database", "Notifies the Flutter framework that the internal state of the widget has changed, triggering a rebuild of the widget's UI", "Changes the device volume settings", "Terminates the application process"],
+      "correctIndex": 1,
+      "explanation": "Calling `setState()` schedules the widget's `build()` method to run, updating the screen with new state values.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of the 'BuildContext' argument in a widget's build method?",
+      "options": ["To compile code to machine language", "A handle to the location of the widget in the widget tree, used to look up themes, media queries, and parent widgets", "To direct server routing paths", "To manage user database connections"],
+      "correctIndex": 1,
+      "explanation": "BuildContext provides access to the widget tree structure, allowing widgets to fetch styling from parent themes or locate ancestors (e.g., Navigator).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between `Navigator.push()` and `Navigator.pushReplacement()` in Flutter routing?",
+      "options": ["push is for iOS; pushReplacement is for Android", "push adds a new route to the top of the history stack; pushReplacement replaces the current route on the stack with a new one", "pushReplacement is faster than push", "They behave identically in routing"],
+      "correctIndex": 1,
+      "explanation": "Using `push()` allows users to press the back button to return. `pushReplacement()` drops the previous screen (e.g. moving from a Splash screen to Onboarding, where you don't want the user going back to Splash).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are 'Keys' (ValueKey, UniqueKey, GlobalKey) used for in Flutter?",
+      "options": ["Encrypting local storage files", "Preserving the state of widgets when they move around the widget tree, or uniquely identifying widgets", "Accessing third-party API services", "Configuring database relations"],
+      "correctIndex": 1,
+      "explanation": "Keys help Flutter associate widgets with their underlying elements during tree diffing, which is vital when modifying list items or accessing child widget states (GlobalKey).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'InheritedWidget' in Flutter?",
+      "options": ["To inherit styling from HTML pages", "A base class that allows data to propagate down the widget tree efficiently, serving as the basis for state management tools like Provider", "To inherit database schemas", "To run tasks in background threads"],
+      "correctIndex": 1,
+      "explanation": "InheritedWidget allows child widgets to access parent data (using `of(context)` lookups) without manually passing constructors through dozens of intermediate layers.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which of the following is a widely used state management library in the Flutter community?",
+      "options": ["Redux only", "Provider / BLoC / Riverpod", "Django", "Spring Boot"],
+      "correctIndex": 1,
+      "explanation": "Provider, BLoC, and Riverpod are the most popular libraries used to separate business logic from UI widgets and manage application state.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between 'Hot Reload' and 'Hot Restart' in Flutter?",
+      "options": ["Hot Reload is free; Hot Restart is paid", "Hot Reload updates code while preserving app state; Hot Restart updates code and resets the app state back to initialization, restarting the Dart VM", "Hot Restart is faster than Hot Reload", "Hot Reload is only for Android; Hot Restart for iOS"],
+      "correctIndex": 1,
+      "explanation": "Hot Reload compiles code modifications and injects them without wiping variable states. Hot Restart destroys the state structure, rebuilding the widget tree from scratch (takes slightly longer).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'FutureBuilder' widget used for in Flutter?",
+      "options": ["To schedule database backups", "To build a widget that depends on the latest snapshot of interaction with an asynchronous task (Future)", "To predict future user actions using AI models", "To animate widgets on screen"],
+      "correctIndex": 1,
+      "explanation": "FutureBuilder listens to a Future (e.g. an API fetch). It lets developers render loading spinners during wait states, error messages on failure, or data lists on success.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'StreamBuilder' widget?",
+      "options": ["To stream video content in the app UI", "A widget that builds itself based on the latest snapshot of interaction with an asynchronous data stream (continuous updates)", "To monitor network bandwidth speeds", "To connect to database servers in real-time"],
+      "correctIndex": 1,
+      "explanation": "Unlike FutureBuilder which handles single async values, StreamBuilder handles continuous data feeds (e.g., chat messages or sensor inputs), rebuilding whenever new data arrives.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'MaterialApp' widget provide to a Flutter application?",
+      "options": ["A tool for downloading design assets", "A wrapper widget that configures navigation, themes, and localization matching Google's Material Design standards", "An interface for database connections", "A compiler flag that optimizes code size"],
+      "correctIndex": 1,
+      "explanation": "MaterialApp sets up the core foundation for a Material-styled app, incorporating standard navigators, text themes, and scroll behaviors.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'Scaffold' widget do in Flutter?",
+      "options": ["Creates a database backup schedule", "Provides a default visual layout structure for a screen, including slots for AppBar, body, FloatingActionButton, and Drawer", "Enforces strict coding style rules", "Compresses image files in the assets folder"],
+      "correctIndex": 1,
+      "explanation": "Scaffold implements basic Material design screen structures, handles layout bounds, and adapts pages to account for keyboard overlays automatically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Platform Channels' used for in Flutter?",
+      "options": ["To switch between Android and iOS modes on the emulator", "To send messages and invoke code between Dart and the host native platform (Java/Kotlin on Android, Swift/Obj-C on iOS)", "To stream television channels inside the app", "To manage network database ports"],
+      "correctIndex": 1,
+      "explanation": "Platform Channels (MethodChannel) allow Flutter apps to communicate with native APIs when a feature (like battery status or custom bluetooth integrations) lacks a Dart package.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Dart's concurrency model work and what is an 'Isolate'?",
+      "options": ["Dart is multi-threaded by default; isolates share memory spaces", "Dart is single-threaded running an event loop; Isolates are separate execution threads that do not share memory, communicating strictly via message passing (ports)", "Isolates are server nodes in cloud networks", "Isolates are database indexes that run in parallel"],
+      "correctIndex": 1,
+      "explanation": "To prevent UI jank, Dart runs in single-threaded event loops. For heavy CPU computations, developers spawn 'Isolates' which run in isolated memory heaps to avoid blocking the main UI thread.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between a widget, an element, and a render object in Flutter's rendering pipeline?",
+      "options": ["They are identical terms for UI components", "A Widget is a configuration blueprint; an Element manages the lifecycle and links widgets to RenderObjects; a RenderObject handles the actual drawing and layout constraints", "RenderObject is only for iOS; Widget is only for Android", "Elements are stored in databases; Widgets on local disks"],
+      "correctIndex": 1,
+      "explanation": "Flutter has three trees: Widget tree (declarative blueprints rebuilt often), Element tree (persistent logical structure), and RenderObject tree (handles painting and sizing, updated efficiently).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between `main()` and `runApp()` in a Flutter app startup?",
+      "options": ["main() is for iOS; runApp() is for Android", "main() is the entry point of the Dart program; runApp() takes the root widget and attaches it to the screen, inflating the widget tree", "runApp() is called before main()", "They behave identically and can be merged"],
+      "correctIndex": 1,
+      "explanation": "Dart execution begins at `main()`. Inside `main()`, you can run initialization tasks (like setting up databases or checking auth). Calling `runApp()` hands control to the Flutter rendering engine.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Flutter, what are 'Slivers' and when should you use them?",
+      "options": ["Slivers are small files containing code helpers", "Special portions of scrollable areas that can change their behavior dynamically (e.g. collapsing headers), used to build custom scrolling effects", "Slivers are buttons that slide on hover", "Slivers are database triggers for audit logs"],
+      "correctIndex": 1,
+      "explanation": "Slivers (e.g., `SliverAppBar`, `SliverList`) allow detailed scroll layouts. They compile scroll offsets to render only visible items, supporting effects like sticky headers and elastic lists.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does Flutter's 'Navigator 2.0' (Declarative Routing) differ from Navigator 1.0 (Imperative Routing)?",
+      "options": ["Navigator 2.0 is only for mobile apps; 1.0 is for web", "Navigator 1.0 uses a push/pop stack imperatively; Navigator 2.0 uses a declarative Page API, syncing the routing stack with the application state", "Navigator 2.0 is slower than Navigator 1.0", "Navigator 1.0 is deprecated and removed from modern Flutter SDKs"],
+      "correctIndex": 1,
+      "explanation": "Navigator 2.0 (Router API) provides state-driven routing. Changes to state variables trigger updates to the navigation page list, making deep linking and web URL syncing much cleaner.",
+      "difficulty": "hard"
+    }
+  ],
+  "frontend": [
+    {
+      "question": "What does HTML stand for?",
+      "options": ["Hyper Text Markup Language", "High Tech Multi Language", "Hyperlink Text Management Loop", "Home Tool Markup Layout"],
+      "correctIndex": 0,
+      "explanation": "HTML is the standard markup language used to structure content on the web.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does CSS stand for?",
+      "options": ["Cascading Style Sheets", "Computer Style Standard", "Creative Style System", "Complex Styling Sheet"],
+      "correctIndex": 0,
+      "explanation": "CSS is the stylesheet language used to describe the presentation and styling of a document written in HTML.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language is natively supported by web browsers to run interactive client-side logic?",
+      "options": ["Python", "C++", "JavaScript", "SQL"],
+      "correctIndex": 2,
+      "explanation": "JavaScript is the native programming language of the web, executing code directly in browsers to make pages interactive.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does DOM stand for in web development?",
+      "options": ["Data Object Management", "Document Object Model", "Digital Operations Monitor", "Domain Object Mapping"],
+      "correctIndex": 1,
+      "explanation": "The Document Object Model (DOM) is a programming interface representing HTML/XML documents as trees of objects, allowing JavaScript to modify structure and content.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTML tag is used to create a hyperlink?",
+      "options": ["<link>", "<a>", "<href>", "<button>"],
+      "correctIndex": 1,
+      "explanation": "The anchor tag `<a>` along with the `href` attribute is used to define links to other pages or resources.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of the 'alt' attribute on an `<img>` tag?",
+      "options": ["To provide an alternative high-resolution image source", "To specify a text description of the image for accessibility and screen readers", "To change the visual style of the image borders", "To align the image on the screen"],
+      "correctIndex": 1,
+      "explanation": "The `alt` attribute provides accessibility descriptions. If the image fails to load or if a blind user is using a screen reader, this text is used.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which CSS property is used to change the background color of an element?",
+      "options": ["color", "font-weight", "background-color", "border-color"],
+      "correctIndex": 2,
+      "explanation": "`background-color` sets the background color of an HTML element. The `color` property sets the text color.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between `let`, `const`, and `var` in JavaScript?",
+      "options": ["let is for numbers; const for strings; var for booleans", "var is function-scoped; let and const are block-scoped. const variables cannot be reassigned after initialization", "const is only for global variables", "var is newer and replaces let"],
+      "correctIndex": 1,
+      "explanation": "`var` is legacy and lacks block scoping. Modern JS uses `let` for reassignable variables and `const` for read-only variables within scopes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the CSS Box Model?",
+      "options": ["A layout grid system in Bootstrap", "A container representing every HTML element, consisting of: content, padding, border, and margin", "A visual styling template for UI boxes", "A tool for rendering 3D graphics"],
+      "correctIndex": 1,
+      "explanation": "The box model dictates how element sizes are calculated. Margin is outermost spacing, then Border, Padding, and Content.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Semantic HTML'?",
+      "options": ["HTML code styled with inline styles", "Using HTML tags that describe their meaning (like <article>, <header>, <nav>) rather than generic divs/spans, improving accessibility and SEO", "HTML compiled into binary scripts", "HTML code written in different languages"],
+      "correctIndex": 1,
+      "explanation": "Semantic tags allow screen readers and search engine crawlers to understand page structure and document hierarchy natively.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of media queries in CSS?",
+      "options": ["To stream audio and video content", "To apply different CSS styles depending on device characteristics like screen width, enabling responsive design", "To compress image files", "To query database entries"],
+      "correctIndex": 1,
+      "explanation": "Media queries (e.g. `@media (max-width: 768px)`) allow layouts to adapt gracefully from wide desktop monitors to narrow mobile screens.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Closure in JavaScript?",
+      "options": ["A function that shuts down the application", "A function that has access to the outer enclosing function's variables even after the outer function has finished executing", "A syntax rule that closes HTML tags", "A method for encrypting scripts"],
+      "correctIndex": 1,
+      "explanation": "Closures occur natively in JS. A nested function preserves references to its birth environment variables, locking them in scope.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a Promise represent in JavaScript?",
+      "options": ["A commitment that code contains no bugs", "An object representing the eventual completion or failure of an asynchronous operation and its resulting value", "A database query indexing command", "A styling template for buttons"],
+      "correctIndex": 1,
+      "explanation": "Promises manage asynchronous operations (like API requests). They sit in pending states, transitioning to either fulfilled (success) or rejected (failure).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between `==` and `===` operators in JavaScript?",
+      "options": ["== is for assignment; === is for comparison", "== compares values after performing type coercion; === compares both values and types (strict comparison) without coercion", "=== is a syntax error in modern JS", "== is faster than ==="],
+      "correctIndex": 1,
+      "explanation": "Using `==` can lead to unexpected conversions (e.g. `5 == '5'` is true). Using `===` requires matching types, preventing subtle bugs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between `LocalStorage`, `SessionStorage`, and `Cookies`?",
+      "options": ["LocalStorage is stored on the server; Cookies on the client", "LocalStorage persists indefinitely; SessionStorage is cleared when the tab closes; Cookies are smaller, have expiry dates, and are sent with HTTP requests to the server", "Cookies can store up to 50MB of data", "SessionStorage is only for mobile apps"],
+      "correctIndex": 1,
+      "explanation": "LocalStorage (5-10MB limit) is for persistent client data. SessionStorage is for temporary tab states. Cookies (4KB limit) are primarily for user auth sessions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Single Page Application (SPA)?",
+      "options": ["A website containing only one page with no other links", "A web application that loads a single HTML page and dynamically updates content as the user interacts, without full page reloads", "A web page designed only for mobile phones", "A server configuration profile"],
+      "correctIndex": 1,
+      "explanation": "SPAs (built with React, Vue, Angular) intercept link clicks, using JS routing to fetch data and update the DOM in-place for a smooth app-like feel.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a CSS variable (Custom Property) look like in code?",
+      "options": ["$color-bg: #fff", "var color-bg = #fff", "--color-bg: #fff", "@color-bg = #fff"],
+      "correctIndex": 2,
+      "explanation": "CSS custom properties are declared with double dashes (e.g., `--color-bg: #fff`) and accessed using the `var()` function.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Event Bubbling' mean in JavaScript event handling?",
+      "options": ["Events popping up in alerts", "The phenomenon where an event triggered on a child element propagates (bubbles up) through its parent elements in the DOM tree", "Events crashing the event loop", "Events only triggering once"],
+      "correctIndex": 1,
+      "explanation": "Bubbling means clicking a nested button triggers click listeners on the button first, then its container div, and upwards, unless `event.stopPropagation()` is called.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'API' fetching using `fetch()` or `Axios` in frontend development?",
+      "options": ["To compile JavaScript code", "To request and retrieve data from a backend server asynchronously to update the web page dynamically", "To style website buttons", "To back up database tables locally"],
+      "correctIndex": 1,
+      "explanation": "Frontend apps use fetch or Axios to make HTTP requests (like GET/POST), exchanging JSON data with servers without reloading pages.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does responsive web design achieve?",
+      "options": ["Web pages that load in under 1 second", "Layouts that adapt gracefully to different screen sizes and device viewports, ensuring a good user experience", "Web servers that respond quickly to requests", "Automated code compiling speeds"],
+      "correctIndex": 1,
+      "explanation": "Responsive design uses fluid grids, flexible images, and CSS media queries to ensure websites are legible and usable on phones, tablets, and desktops.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'Virtual DOM' in frameworks like React?",
+      "options": ["An encrypted copy of the DOM stored on the server", "A lightweight javascript representation of the real DOM in memory, used to calculate UI diffs and batch updates to the real DOM efficiently", "A virtual machine running a browser", "A tool for rendering 3D graphics in HTML"],
+      "correctIndex": 1,
+      "explanation": "Direct DOM manipulation is slow. React updates a virtual DOM tree first, compares it with the previous state (reconciliation), and writes only the differences to the real DOM (batch updates).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'CORS' (Cross-Origin Resource Sharing) error and why does it occur on the frontend?",
+      "options": ["A database connection error caused by slow queries", "A browser security block occurring when frontend code attempts to make an API request to a different domain, and the server has not authorized that origin in its response headers", "A syntax error in JavaScript files during build", "A network routing protocol failure"],
+      "correctIndex": 1,
+      "explanation": "CORS is a browser-enforced security policy (Same-Origin Policy). The browser blocks frontend code from reading responses from other origins unless the server returns the `Access-Control-Allow-Origin` header permitting it.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Critical Rendering Path' optimization in web performance?",
+      "options": ["Optimizing the path where data travels through database tables", "The sequence of steps the browser takes to convert HTML, CSS, and JS into pixels on screen; optimized to reduce time to first paint (FCP)", "A testing pipeline for checking build bugs", "A network routing protocol between servers"],
+      "correctIndex": 1,
+      "explanation": "FCP is optimized by minimizing render-blocking resources (CSS/JS), deferring unused JS (`defer` or `async`), minifying files, and inlining critical CSS styles.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the 'difference between `debounce` and `throttle` in JavaScript optimization?",
+      "options": ["Debounce is for databases; Throttle is for files", "Debounce groups multiple rapid calls and fires only after a period of inactivity; Throttle limits execution to a maximum of once per defined time interval", "Throttle is always faster than Debounce", "Debounce is a compiler flag; Throttle is a network control"],
+      "correctIndex": 1,
+      "explanation": "Debounce is ideal for search inputs (waiting until the user stops typing). Throttle is ideal for scroll/resize listeners (firing at most once every 100ms during continuous action).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does CSS specificity calculate which style rules apply to an element?",
+      "options": ["By checking which rule is written first in the file alphabetically", "By scoring selectors: inline styles have highest score (1000), then IDs (100), classes/attributes (10), and elements/pseudo-elements (1)", "By checking the file size of the stylesheets", "By checking which rules use more color variables"],
+      "correctIndex": 1,
+      "explanation": "If selector scores clash, the higher specificity wins. If specificity scores are identical, the rule declared latest in the stylesheet order applies.",
+      "difficulty": "hard"
+    }
+  ],
+  "fullstack": [
+    {
+      "question": "What is a Fullstack Developer?",
+      "options": ["A developer who only manages server hardware racks", "A developer who works on both the front-end (user interface) and back-end (server, database) of web applications", "A developer who writes code using twelve programming languages", "An accountant who audits cloud billing budgets"],
+      "correctIndex": 1,
+      "explanation": "Fullstack developers have skills spanning user interface design, client scripting, API development, server routing, and database management.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a front-end framework?",
+      "options": ["A framework for running databases", "A software library providing structured blueprints for building user interfaces (e.g. React, Angular, Vue)", "A security firewall for servers", "A tool for compressing images"],
+      "correctIndex": 1,
+      "explanation": "Frontend frameworks help developers structure client-side rendering, component trees, and UI state management efficiently.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a back-end database?",
+      "options": ["A folder containing local text files", "A system for storing, managing, and retrieving application data persistently (e.g., PostgreSQL, MongoDB)", "A web server routing script", "A styling template for web pages"],
+      "correctIndex": 1,
+      "explanation": "Databases store application state (user accounts, logs, posts) on persistent disk storage, accessed by the backend code.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does API stand for?",
+      "options": ["Application Programming Interface", "Advanced Program Integration", "Automated Protocol Interface", "Application Process Integration"],
+      "correctIndex": 0,
+      "explanation": "APIs allow different software systems (like a frontend browser app and a backend database server) to communicate.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which HTTP method is typically used to submit new data to a server?",
+      "options": ["GET", "POST", "DELETE", "PUT"],
+      "correctIndex": 1,
+      "explanation": "POST is the standard method used to send payloads (like form submissions or new posts) to servers to create new resources.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is git?",
+      "options": ["A web framework developed by Google", "A distributed version control system used to track changes in source code during software development", "A cloud server provider similar to AWS", "A database engine software"],
+      "correctIndex": 1,
+      "explanation": "Git tracks revisions, manages code branches, and enables collaborative coding across developer teams.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a 500 HTTP status code indicate?",
+      "options": ["The page was found and loaded successfully", "An Internal Server Error, meaning the server crashed or encountered an unexpected condition", "The requested page does not exist", "The user is not authenticated"],
+      "correctIndex": 1,
+      "explanation": "500-level codes indicate backend server-side errors, while 400-level codes indicate client-side errors (like missing parameters or bad auth).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between client-side rendering (CSR) and server-side rendering (SSR)?",
+      "options": ["CSR runs on Windows; SSR runs on Linux", "CSR downloads an empty HTML page and compiles UI in the browser using JavaScript; SSR generates the complete HTML page on the server per request and returns it", "CSR is always faster to load first paint than SSR", "SSR does not support JavaScript execution in the browser"],
+      "correctIndex": 1,
+      "explanation": "CSR (standard React) shifts rendering load to the browser. SSR (Next.js) pre-renders HTML on the server, improving SEO and reducing Time to First Paint.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is an ORM (Object-Relational Mapping) library?",
+      "options": ["A tool for designing database diagrams", "A library that lets you query and manipulate data from a database using objects in your code instead of raw SQL queries", "A protocol for encrypting files during transit", "An API for caching data"],
+      "correctIndex": 1,
+      "explanation": "ORMs (like Prisma or Sequelize) map relational rows to language objects (e.g. JavaScript classes), making database operations type-safe and readable.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is JWT (JSON Web Token) and what is it commonly used for?",
+      "options": ["A tool for compressing data arrays", "A compact, URL-safe means of representing claims to be transferred between two parties, commonly used for stateless user authentication", "A database query programming language", "A style guide dashboard template"],
+      "correctIndex": 1,
+      "explanation": "JWTs contain cryptographically signed JSON payloads. When a user logs in, the server returns a JWT which the client sends in subsequent request headers to prove authorization statelessly.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between relational (SQL) and non-relational (NoSQL) databases?",
+      "options": ["SQL is only for web apps; NoSQL is for desktop apps", "SQL databases are relational and table-based with fixed schemas; NoSQL databases are non-relational and support flexible document, key-value, or graph structures", "SQL databases are free; NoSQL databases are always paid", "They are identical in scaling mechanisms"],
+      "correctIndex": 1,
+      "explanation": "SQL (Postgres, MySQL) excels at complex joins and strict transactions. NoSQL (MongoDB, DynamoDB) excels at horizontal scaling and flexible, evolving schemas.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the Model-View-Controller (MVC) pattern separate?",
+      "options": ["HTML, CSS, and JavaScript files", "The data model (Model), user interface layouts (View), and the application routing control logic (Controller)", "Symmetric and asymmetric encryption keys", "Different servers in a cluster"],
+      "correctIndex": 1,
+      "explanation": "MVC isolates responsibilities: Model manages data, View handles UI layout, and Controller routes requests, updates models, and updates views.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of CORS (Cross-Origin Resource Sharing) headers?",
+      "options": ["To speed up website loading times", "To instruct browsers whether to allow frontend client code from one domain to read API responses from another domain", "To encrypt request payloads", "To track user sessions across tabs"],
+      "correctIndex": 1,
+      "explanation": "CORS is a browser security guard. Servers send CORS headers (like `Access-Control-Allow-Origin`) to authorize specific frontend origins to query their APIs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Session Management' in web applications?",
+      "options": ["Managing corporate developer meetings", "The process of securely keeping track of a user's logged-in state across multiple HTTP requests", "Restricting database tables to a single session", "Timing compile processes in the CI/CD pipeline"],
+      "correctIndex": 1,
+      "explanation": "Since HTTP is stateless, session management maps requests to users using either cookie-stored Session IDs (stateful) or client-stored JWT tokens (stateless).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a message queue (e.g. RabbitMQ, BullMQ) do in backend architecture?",
+      "options": ["Styles console log outputs", "Manages a list of background tasks to be processed asynchronously, decoupling heavy tasks from the main API thread", "Caches SQL queries locally", "Ingests video files to compress them"],
+      "correctIndex": 1,
+      "explanation": "Message queues handle offloaded tasks. Instead of keeping a user waiting while generating a PDF report, the API queues the job and returns immediately; workers process the queue in the background.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a table join and a subquery in SQL?",
+      "options": ["Joins are for numbers; subqueries for text", "A join combines columns from multiple tables based on relations; a subquery is a nested query executed inside a larger primary query", "Subqueries are always faster than Joins", "They are identical database operations"],
+      "correctIndex": 1,
+      "explanation": "Joins combine matching rows. Subqueries (nested SELECTs) calculate values or list filters used in the outer query, often serving different optimization paths.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Environment Variables' (.env) used for in web applications?",
+      "options": ["To style application layouts", "To store configuration settings, API keys, and secrets outside the codebase, ensuring they do not get committed to git repositories", "To manage user profile files", "To compile CSS styles"],
+      "correctIndex": 1,
+      "explanation": "Env variables keep secrets secure. The code reads `process.env.DB_PASSWORD` at runtime, keeping raw passwords out of public repositories.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Virtual DOM' and what problem does it solve?",
+      "options": ["A virtual machine hosted in the cloud; solves storage limits", "A representation of the HTML DOM kept in memory; solves slow performance by calculating UI changes in memory and batching real DOM writes", "An encrypted database schema; solves key leaks", "An API for loading images; solves slow loading speeds"],
+      "correctIndex": 1,
+      "explanation": "Writing directly to the browser DOM triggers slow layout recalculations. Virtual DOMs compare UI states (diffing) and apply only the necessary changes in a single batch write.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Docker and why is it useful for fullstack developers?",
+      "options": ["A web framework replacing React", "A containerization platform that packages an application and its dependencies into an isolated container, ensuring it runs identically across dev, test, and production", "A database engine software", "A cloud server hosting provider"],
+      "correctIndex": 1,
+      "explanation": "Docker eliminates 'works on my machine' bugs by containerizing the entire OS runtime, node version, and databases, matching local dev environments to production servers.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'Build' step do in frontend development?",
+      "options": ["Creates database tables", "Compiles, minifies, and bundles source files (React, CSS, images) into static HTML/CSS/JS assets ready for production deployment", "Starts the local development server", "Configures firewall rules"],
+      "correctIndex": 1,
+      "explanation": "Building transpiles modern JS (ES6/React) to browser-compatible code, minifies file sizes, strips comments, and splits bundles to optimize page load speeds.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'N+1 Query Problem' in ORMs, and how is it resolved?",
+      "options": ["A bug where databases run out of connections; resolved by pooling", "A performance bug where an application executes 1 query to fetch parent records, followed by N separate queries to fetch related child records; resolved by eager loading (joining) data", "A compilation error in SQL scripts; resolved by refactoring", "A network routing loop; resolved by firewalls"],
+      "correctIndex": 1,
+      "explanation": "If you load 50 posts and fetch comments for each post in a loop, you run 1 query for posts + 50 queries for comments (N+1 queries). Resolving this involves using JOINs (e.g. `include` in Prisma) to fetch all comments in a single query.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between OAuth 2.0 and OpenID Connect (OIDC) protocols?",
+      "options": ["OAuth is for encryption; OIDC is for decryption", "OAuth 2.0 is an authorization framework delegating access to APIs; OIDC is an identity layer built on top of it to authenticate users (identifying who they are)", "OIDC is older and replaced by OAuth 2.0", "OAuth uses XML; OIDC uses JSON only"],
+      "correctIndex": 1,
+      "explanation": "OAuth 2.0 returns an Access Token (permissions to read resources). OIDC extends this by returning an ID Token (JWT containing user profile claims), unifying authentication and authorization.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'Hydration' error in server-side rendered (SSR) React applications (like Next.js)?",
+      "options": ["The server running out of memory", "A mismatch occurring when the server-rendered HTML does not match the initial DOM structure calculated by the client browser during hydration", "An error when loading dynamic images", "A database sync timeout"],
+      "correctIndex": 1,
+      "explanation": "React SSR pre-renders HTML on the server. In the browser, React 'hydrates' the page (binding JS events). If the HTML differs (e.g., due to rendering local browser timestamps or window width checks on server), React throws hydration errors.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is database 'Sharding' vs 'Partitioning'?",
+      "options": ["Sharding is for text columns; Partitioning is for numbers", "Partitioning divides a table into segments within a single database instance; Sharding distributes rows of a table across multiple completely separate database engines/servers", "Sharding is manual; Partitioning is automatic in all databases", "They are identical database scaling terms"],
+      "correctIndex": 1,
+      "explanation": "Partitioning (e.g., splitting a table by month) stays on one machine. Sharding distributes data (e.g., odd customer IDs to Server 1, even to Server 2) horizontally across multiple database instances to scale CPU and I/O.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What does the CAP theorem state regarding distributed data systems, and how does it guide architectural choices?",
+      "options": ["A system can achieve all of Consistency, Availability, and Partition Tolerance simultaneously", "A distributed data store can simultaneously provide at most two of: Consistency, Availability, and Partition Tolerance (and during network partitions, you must choose C or A)", "Consistency is always preferred over availability in all databases", "All nodes must run on identical physical hardware configurations"],
+      "correctIndex": 1,
+      "explanation": "If a network split occurs, you must choose: either reject writes on partition nodes to keep data identical (Consistency/CP) or accept writes on split nodes to keep the service running (Availability/AP), syncing databases later (Eventual Consistency).",
+      "difficulty": "hard"
+    }
+  ],
+  "game_development": [
+    {
+      "question": "What is a Game Engine?",
+      "options": ["A physical engine inside console hardware", "A software framework providing game developers with core functionalities like rendering, physics, collision, and scripting to build games", "A database server administration console", "An automated script that tests code"],
+      "correctIndex": 1,
+      "explanation": "Game engines (like Unity, Unreal, Godot) abstract complex low-level tasks (like graphics pipelines and sound management), letting developers focus on gameplay logic and art.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which of the following is a leading game engine widely used for both 2D and 3D games?",
+      "options": ["Photoshop", "Unity", "Excel", "Node.js"],
+      "correctIndex": 1,
+      "explanation": "Unity is a premier cross-platform game engine, utilizing C# for scripting and supporting deployment to mobile, PC, and consoles.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Sprite' in 2D game development?",
+      "options": ["A carbonated drink visual item", "A 2D bitmap image or animation that represents an object (like a character or obstacle) in a game scene", "A script that controls player inputs", "A layout grid system"],
+      "correctIndex": 1,
+      "explanation": "Sprites are the 2D graphic assets drawn on screen, often packed into 'Sprite Sheets' to optimize memory loads.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'Collision Detection' in games?",
+      "options": ["Managing database table key clashes", "The computational task of detecting when two or more game objects intersect or touch each other", "A compiler error that halts builds", "A network routing protocol"],
+      "correctIndex": 1,
+      "explanation": "Collision detection triggers gameplay events (e.g. player picking up a coin or hitting a wall) using hitboxes (colliders).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does FPS stand for in game performance?",
+      "options": ["File Processing System", "Frames Per Second", "First Person Shooter", "Force Position Scale"],
+      "correctIndex": 1,
+      "explanation": "Frames Per Second (FPS) measures how many individual images the game engine renders per second. High, stable FPS (e.g., 60+) ensures smooth gameplay.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which programming language is the primary scripting language for Unreal Engine?",
+      "options": ["C#", "C++ / Blueprints", "Python", "JavaScript"],
+      "correctIndex": 1,
+      "explanation": "Unreal Engine uses C++ for core, high-performance logic and Blueprints (a visual scripting system) for rapid prototyping and gameplay design.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary role of a 'Rig' in 3D character animation?",
+      "options": ["To run mining rigs for graphics power", "A digital skeleton structure mapped to a 3D mesh, allowing animators to control character joints and movements", "A server configuration profile", "A database index table"],
+      "correctIndex": 1,
+      "explanation": "Rigging binds a 3D model (mesh) to a skeleton. Manipulating the skeleton bones deforms the mesh, producing realistic animations.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of the 'Game Loop' in game architectures?",
+      "options": ["A loop that checks for database errors", "A continuous loop that processes user inputs, updates game states (physics, logic), and renders the scene on screen per frame", "A loop that plays background music repeatedly", "A compiler loop that generates binaries"],
+      "correctIndex": 1,
+      "explanation": "The event loop is the heartbeat of a game. It runs indefinitely (firing 60+ times/sec), processing inputs, moving objects, checking physics, and drawing the new frame.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Prefab' (or Blueprint/Scene Template) in game engines?",
+      "options": ["A pre-installed server hardware configuration", "A reusable template of a game object (combining mesh, colliders, and scripts) that can be instantiated dynamically in game scenes", "A draft version of a game script", "A folder structure of code assets"],
+      "correctIndex": 1,
+      "explanation": "Prefabs allow developers to define an object once (e.g. an enemy or a coin) and spawn duplicates dynamically. Changes to the prefab template update all instances automatically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Raycasting'?",
+      "options": ["Broadcasting videos over the internet", "A technique that projects a line (ray) from a point in 3D/2D space in a direction, checking if it intersects with colliders, used for aiming or visibility checks", "Compressing 3D files to save memory", "A method for caching database queries"],
+      "correctIndex": 1,
+      "explanation": "Raycasting is used to check line-of-sight (can an enemy see the player?), detect where a player clicked in 3D space, or register weapon hits (hitscan).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a Mesh and a Material in 3D graphics?",
+      "options": ["Mesh is for colors; Material is for shapes", "A Mesh defines the physical 3D shape/geometry (vertices, edges); a Material defines the visual surface properties (color, texture, reflectivity) of that shape", "Materials are always free; Meshes require licenses", "They are identical 3D graphics terms"],
+      "correctIndex": 1,
+      "explanation": "A mesh is the wireframe structure of a 3D model. The material is the skin wrapped around it, using shaders to calculate how it reacts to light.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'RigidBody' component in physics engines?",
+      "options": ["A coding constraint that prevents variables from changing", "A component that applies physical forces (gravity, friction, velocity) to a game object, enabling realistic movement", "A physical layout grid in dashboards", "A security standard for user passwords"],
+      "correctIndex": 1,
+      "explanation": "Attaching a RigidBody tells the physics engine to calculate mass, velocity, drag, and gravity for the object, reacting dynamically during collisions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Delta Time' (dt/deltaTime) in game loops and why is it important?",
+      "options": ["The time difference between local and server clocks", "The elapsed time between the current frame and the previous frame, used to make game movement speed independent of the frame rate", "The time taken to compile game scripts", "The latency of network multiplayer packages"],
+      "correctIndex": 1,
+      "explanation": "If an object moves `10 pixels` per frame, it runs twice as fast at 60 FPS compared to 30 FPS. Multiplying movement by `deltaTime` ensures the object moves at a constant speed per *second* regardless of framerate.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'LOD' (Level of Detail) in 3D games?",
+      "options": ["The resolution limit of the monitor", "A technique that reduces the complexity/polygon count of 3D meshes as they move further away from the camera, optimizing rendering performance", "The volume level of audio files", "The difficulty setting of a game level"],
+      "correctIndex": 1,
+      "explanation": "LOD systems swap high-res models for low-res models at a distance where detail isn't noticeable, saving GPU rendering budget.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Draw Call Batching' and why is it crucial for game performance?",
+      "options": ["Combining database queries into a single transaction", "Grouping multiple static or dynamic objects sharing the same material to render them in a single draw call, reducing CPU overhead", "Loading all textures in low resolution first", "Deleting unneeded variables from RAM"],
+      "correctIndex": 1,
+      "explanation": "Draw calls are CPU instructions telling the GPU to draw a mesh. Since CPU-to-GPU overhead is slow, batching objects together minimizes draw calls, preventing CPU bottlenecks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Occlusion Culling'?",
+      "options": ["Hiding game files from users", "The process of disabling the rendering of objects that are completely hidden from the camera's view behind other objects, saving rendering power", "A method for compressing textures", "An algorithm that deletes duplicate game code"],
+      "correctIndex": 1,
+      "explanation": "While 'Frustum Culling' hides objects outside the camera's field of view, 'Occlusion Culling' hides objects blocked by walls or structures, optimizing GPU workload in complex levels.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Shader' in game graphics?",
+      "options": ["A program that shadows files from hackers", "A program running on the GPU that calculates the color, lighting, and visual effects of vertices and pixels rendered on screen", "A compression format for sound assets", "A tool for mapping joystick inputs"],
+      "correctIndex": 1,
+      "explanation": "Shaders are core to modern graphics, calculating reflections, shadows, water ripple effects, or post-processing styles (like bloom or cell-shading).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Kinematic and Dynamic physics objects?",
+      "options": ["Kinematic objects are only for 2D; Dynamic for 3D", "Dynamic objects react to forces and collisions automatically; Kinematic objects do not react to forces and are moved only programmatically via scripts", "Kinematic objects are always faster than Dynamic ones", "Kinematic objects do not support collision detection"],
+      "correctIndex": 1,
+      "explanation": "Dynamic objects bounce, fall, and roll on impact. Kinematic objects (like moving platforms or heavy doors) ignore external forces (like gravity or players pushing them), moving strictly along scripted paths.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'NavMesh' (Navigation Mesh) do?",
+      "options": ["A map showing network server locations", "A 2D/3D mesh outlining the walkable surfaces in a game level, allowing AI characters to calculate paths and navigate around obstacles", "A visual layout for menu screens", "A database schema index"],
+      "correctIndex": 1,
+      "explanation": "NavMeshes define pathfinding boundaries. AI characters query pathfinding algorithms (like A*) over the NavMesh to walk around walls and reach targets.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Sprite Atlas' (or Sprite Sheet) and how does it optimize 2D game memory?",
+      "options": ["An atlas containing world maps; optimizes download size", "Combining multiple individual sprite images into a single large image file, reducing texture binding operations and draw calls", "A database index mapping character files", "A tool for compressing audio tracks"],
+      "correctIndex": 1,
+      "explanation": "Loading dozens of individual textures causes high GPU switching overhead. A Sprite Atlas binds one large texture once, drawing parts of it as needed, maximizing rendering efficiency.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Forward Rendering and Deferred Shading pipelines?",
+      "options": ["Forward rendering is for 2D; Deferred for 3D", "Forward rendering draws each object one by one calculating lighting per pixel; Deferred shading defers lighting calculations by rendering geometry info to G-buffers first, calculating lighting in a final screen-space pass", "Deferred shading is slower when rendering many lights", "Forward rendering does not support shadows"],
+      "correctIndex": 1,
+      "explanation": "Forward rendering struggles with many lights because it calculates light impact for every mesh pixel (complexity: lights * pixels). Deferred shading decouples geometry from lighting, handling hundreds of real-time lights efficiently.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is a 'State Machine' (FSM) and why is it popular for AI character behaviors and animations?",
+      "options": ["A database backup scheduler; popular for data safety", "A design pattern where an object can exist in one of several defined states (e.g. Idle, Patrol, Chase, Attack) transitioning based on conditions", "A compiler utility that formats code; popular for cleanup", "A multithreading manager; popular for CPU speed"],
+      "correctIndex": 1,
+      "explanation": "FSMs organize behavior. An enemy AI stays in 'Patrol' state until `player_in_sight` triggers a transition to 'Chase' state. This keeps AI logic modular and easy to debug.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Object Pooling' in game optimization and when should it replace dynamic instantiation?",
+      "options": ["A database connection pool; should replace queries", "Pre-instantiating a pool of game objects (like bullets) and activating/deactivating them instead of instantiating/destroying them dynamically, preventing memory fragmentation and GC spikes", "Compressing texture files; should replace manual asset loads", "A multithreading scheduler; should replace tasks"],
+      "correctIndex": 1,
+      "explanation": "Calling `Instantiate` and `Destroy` repeatedly (e.g., in a fast-firing shooting game) creates heap allocation spikes, triggering the Garbage Collector which causes micro-stutters. Pooling reuses inactive objects instead.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'A* Pathfinding' algorithm and how does it calculate the shortest path?",
+      "options": ["A database search query; calculates by index scans", "A graph search algorithm that calculates paths by combining the actual cost from the start node (g) with a heuristic estimate to the goal node (h) to minimize total cost (f = g + h)", "An image rendering algorithm; calculates by pixel contrast", "A physics collision check; calculates by vector intersection"],
+      "correctIndex": 1,
+      "explanation": "A* evaluates nodes based on `f(n) = g(n) + h(n)`. By using a heuristic (like straight-line distance), it avoids scanning irrelevant directions, finding the shortest path faster than Dijkstra's algorithm.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does 'Network Client-Side Prediction' and 'Reconciliation' resolve lag in multiplayer games?",
+      "options": ["By stopping the game until all packets arrive", "The client predicts movement inputs locally immediately (prediction) and adjusts/snaps position when the server sends authorized updates (reconciliation), preventing input lag", "By running the game on local networks only", "By converting multiplayer connections to peer-to-peer web pages"],
+      "correctIndex": 1,
+      "explanation": "Waiting for server roundtrips makes inputs feel laggy. Prediction moves the player instantly. When server updates arrive, the client replays inputs made since the update timestamp to reconcile discrepancies smoothly.",
+      "difficulty": "hard"
+    }
+  ],
+  "gcp_cloud_engineer": [
+    {
+      "question": "What does GCP stand for?",
+      "options": ["Google Cloud Platform", "Global Computing Protocol", "General Cloud Portal", "Giant Cloud Platform"],
+      "correctIndex": 0,
+      "explanation": "GCP stands for Google Cloud Platform, a suite of cloud computing services offered by Google.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which GCP service provides resizable virtual machines?",
+      "options": ["Google Kubernetes Engine (GKE)", "Compute Engine", "App Engine", "Cloud Functions"],
+      "correctIndex": 1,
+      "explanation": "Compute Engine provides virtual machines (VM instances) hosted on Google's infrastructure.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which GCP service is designed for storing files and unstructured objects?",
+      "options": ["BigQuery", "Cloud SQL", "Cloud Storage", "Cloud Spanner"],
+      "correctIndex": 2,
+      "explanation": "Cloud Storage is GCP's unified object storage service, providing high availability and durability for files.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is IAM used for in GCP?",
+      "options": ["Tracking server memory parameters", "Identity and Access Management, controlling who has what access permissions to resources", "Creating automated backups", "Configuring virtual network firewalls"],
+      "correctIndex": 1,
+      "explanation": "GCP IAM allows administrators to secure and control access to GCP resources by assigning permissions and roles.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which GCP serverless service runs containerized applications automatically on demand?",
+      "options": ["Compute Engine", "Cloud Run", "Cloud SQL", "Bigtable"],
+      "correctIndex": 1,
+      "explanation": "Cloud Run is a fully managed containerized serverless platform that automatically scales containers up and down (to zero) based on traffic.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a GCP Project?",
+      "options": ["A code repository hosted on GitHub", "A logical container used to group, manage, and bill related GCP resources", "A physical datacenter facility", "A user account login profile"],
+      "correctIndex": 1,
+      "explanation": "Projects form the basis for creating, enabling, and using all Google Cloud services, managing billing and access permissions individually.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which service manages relational databases like MySQL and PostgreSQL in GCP?",
+      "options": ["Cloud Bigtable", "Cloud SQL", "BigQuery", "Firestore"],
+      "correctIndex": 1,
+      "explanation": "Cloud SQL is a fully managed relational database service that makes it easy to set up, maintain, and scale MySQL, PostgreSQL, and SQL Server databases.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between Cloud Storage classes: Standard, Nearline, Coldline, and Archive?",
+      "options": ["Standard is free; others are paid", "Standard is for frequently accessed data; Nearline is for monthly access; Coldline is for quarterly access; Archive is for yearly backups (lower storage cost, higher retrieval fees)", "Archive uses magnetic tapes; Standard uses SSDs", "Nearline only supports Windows files"],
+      "correctIndex": 1,
+      "explanation": "Storage classes optimize costs based on access frequency. Standard has the highest storage rate but free retrieval. Archive has the lowest storage rate but high retrieval costs and minimum storage durations.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Google Cloud BigQuery?",
+      "options": ["A tool for naming database columns", "A fully managed, serverless enterprise data warehouse optimized for running fast SQL queries over petabytes of data", "A database for real-time transactions", "A cloud server hosting system"],
+      "correctIndex": 1,
+      "explanation": "BigQuery is a columnar, serverless data warehouse that executes analytical SQL queries rapidly using Google's infrastructure.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Google Kubernetes Engine (GKE)?",
+      "options": ["An automated code compiler", "A managed production-ready environment for deploying, managing, and scaling containerized applications using Kubernetes", "A cloud storage bucket system", "A virtual network routing firewall"],
+      "correctIndex": 1,
+      "explanation": "GKE is Google's managed Kubernetes service, handling cluster orchestration, scaling, updates, and monitoring in the cloud.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Google Cloud Pub/Sub?",
+      "options": ["To publish marketing newsletters to subscribers", "A real-time, asynchronous messaging service that decouples senders and receivers, enabling event-driven architectures", "A database caching tool", "A DNS routing manager"],
+      "correctIndex": 1,
+      "explanation": "Pub/Sub handles high-throughput message ingestion and distribution, serving as middleware for event streams and data integration pipelines.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a VPC (Virtual Private Cloud) do in GCP?",
+      "options": ["Connects databases to search engines", "Provides networking functionality to GCP resources, allowing secure, isolated communication in a global private network", "Manages user passwords and logins", "Compresses file sizes on server disks"],
+      "correctIndex": 1,
+      "explanation": "GCP VPCs are global resources (not regional). Subnets are created within regions, allowing instances in different zones to communicate over a secure Google backbone privately.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Cloud Functions in GCP?",
+      "options": ["Mathematical calculations inside SQL scripts", "A serverless execution environment that runs single-purpose code snippets in response to cloud events", "A style guide dashboard template", "A tool for backup scheduling"],
+      "correctIndex": 1,
+      "explanation": "Cloud Functions runs code blocks statelessly (FaaS), scaling automatically from zero when events (like S3 uploads or HTTP requests) occur.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Google Cloud Load Balancing?",
+      "options": ["Balancing the financial budget of the project", "A fully managed, global service that distributes user traffic across multiple backend instances in one or more regions", "Scaling down VM instance cores dynamically", "Compressing database backups on disk"],
+      "correctIndex": 1,
+      "explanation": "GCP Load Balancing routes traffic globally to backend instances closest to users, providing automatic failover and high availability.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the GCP Shared Responsibility Model state regarding security?",
+      "options": ["Google handles all security requirements, including user configs", "Google is responsible for security OF the cloud (infrastructure, hardware, facility); the customer is responsible for security IN the cloud (configurations, data, access, code)", "The customer is responsible for hardware replacement", "Google and the customer share the cloud costs equally"],
+      "correctIndex": 1,
+      "explanation": "Google secures physical servers and the virtualization layer. Customers secure their own virtual machines, configurations, database security rules, and IAM assignments.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In Compute Engine, what is the difference between external and internal IP addresses?",
+      "options": ["External is paid; internal is free", "External IPs are reachable from the internet; Internal IPs are private, used for secure communication inside the VPC", "Internal IPs are encrypted; external are not", "They are identical in routing capability"],
+      "correctIndex": 1,
+      "explanation": "Internal IPs route traffic within the VPC network. External IPs route traffic over the public internet, requiring security configurations to prevent access exploits.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Cloud Deployment Manager in GCP?",
+      "options": ["An interface for uploading code", "An infrastructure deployment service that allows developers to automate GCP resource provisioning using YAML or Python declarations (IaC)", "An administrator role for managing developers", "A database query optimization console"],
+      "correctIndex": 1,
+      "explanation": "Deployment Manager allows teams to define and repeat infrastructure deployments, managing cloud resources as code.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Google Cloud Logging (formerly Stackdriver Logging)?",
+      "options": ["A tool for writing code comments", "A fully managed service that allows you to store, search, analyze, monitor, and alert on log data and events from GCP", "An index database for transactions", "An antivirus utility for servers"],
+      "correctIndex": 1,
+      "explanation": "Cloud Logging aggregates log data from Google services, applications, and VMs, supporting real-time alerts and search queries.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Primitive, Predefined, and Custom Roles in GCP IAM?",
+      "options": ["Primitive roles are only for NoSQL; predefined for SQL", "Primitive roles (Owner, Editor, Viewer) apply project-wide; Predefined roles give granular access to specific services; Custom roles allow developers to define precise permissions", "Custom roles are managed and updated by Google automatically", "Primitive roles are deprecated and removed"],
+      "correctIndex": 1,
+      "explanation": "Owner/Editor/Viewer are broad and legacy. Predefined roles (e.g. Storage Object Viewer) enforce least privilege. Custom roles allow absolute control over allowed API calls.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a Service Account in GCP?",
+      "options": ["A premium billing account for businesses", "A special type of Google account representing a non-human user (like an application or VM) that can be authorized to make API calls", "A helpline support account for cloud issues", "A database storage directory"],
+      "correctIndex": 1,
+      "explanation": "Service accounts use key files or metadata authentication to make API requests, allowing servers (like Compute Engine) to read/write resources securely without using human user logins.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Google Cloud Spanner and what makes it unique?",
+      "options": ["A tool for tightening virtual server racks; unique due to design", "A fully managed, mission-critical relational database service that combines ACID transactions with horizontal NoSQL scalability and global consistency", "A search engine for GCP files; unique due to speed", "A database that does not require schemas; unique due to flexibility"],
+      "correctIndex": 1,
+      "explanation": "Cloud Spanner uses atomic clocks and GPS receivers in its datacenters (TrueTime API) to guarantee external consistency globally while scaling horizontally to thousands of nodes.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does GCP VPC Network Peering differ from Shared VPC?",
+      "options": ["Peering is for different companies; Shared is for one team", "VPC Peering connects two completely independent VPC networks; Shared VPC allows multiple projects to share a centralized, common VPC network managed by a host project", "Shared VPC only works in a single region", "Peering requires public IP routing; Shared does not"],
+      "correctIndex": 1,
+      "explanation": "Peering links distinct networks (each maintaining its own admin rules). Shared VPC allows organizations to delegate subnet access to separate projects, keeping network administration centralized in a single host project.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the evaluation order for IAM policies in Google Cloud resource hierarchies?",
+      "options": ["Policies are evaluated alphabetically", "Policies are inherited down the hierarchy (Organization -> Folder -> Project -> Resource), and permissions are additive; an allow at a higher level cannot be blocked at a lower level", "Lower level deny rules override higher level allow rules", "Policies are evaluated based on creation date"],
+      "correctIndex": 1,
+      "explanation": "GCP IAM policies are hierarchical and additive. If a user is granted Owner at the Folder level, they have Owner access on all projects within that folder, which cannot be restricted by project-level policies.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is Google Cloud Armor?",
+      "options": ["A physical case protecting server racks", "A security service providing DDoS protection and a Web Application Firewall (WAF) to defend GCP workloads against web attacks", "A hardware encryption module for databases", "An antivirus agent for Compute Engine"],
+      "correctIndex": 1,
+      "explanation": "Cloud Armor integrates with HTTP(S) Load Balancing, providing Layer 7 WAF protection, rate limiting, and blocking SQLi or XSS attacks based on OWASP rules.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Dedicated Interconnect and Partner Interconnect in GCP?",
+      "options": ["Dedicated Interconnect is wireless; Partner uses cables", "Dedicated Interconnect provides a direct physical network link between your on-premises network and Google's network; Partner Interconnect connects your network through a third-party service provider", "Partner Interconnect is faster than Dedicated Interconnect in all scenarios", "Dedicated Interconnect does not require network routers"],
+      "correctIndex": 1,
+      "explanation": "Dedicated Interconnect is for high-bandwidth needs (10G/100G lines directly to a Google co-location facility). Partner Interconnect is for lower bandwidths (50M to 10G) routing through partner ISPs (like Equinix).",
+      "difficulty": "hard"
+    }
+  ]
+}

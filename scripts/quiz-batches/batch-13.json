@@ -1,0 +1,1467 @@
+{
+  "penetration_tester": [
+    {
+      "question": "What is the primary goal of a penetration tester?",
+      "options": [
+        "To build database server architectures",
+        "To proactively identify and exploit security vulnerabilities in a system with permission to evaluate its security posture",
+        "To write marketing documentation for software",
+        "To configure physical switches and routers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Penetration testers (ethical hackers) mimic real-world attacks to find security flaws before malicious hackers can exploit them.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between Black Box, Grey Box, and White Box testing?",
+      "options": [
+        "Black Box is only for terminal commands; White Box is for GUIs",
+        "Black Box testers have no prior knowledge of the target; White Box testers have full access to source code and diagrams; Grey Box is a combination of both",
+        "White Box testing is illegal; Black Box is legal",
+        "They are different names for network port scans"
+      ],
+      "correctIndex": 1,
+      "explanation": "Black Box simulates external hacker perspectives. White Box simulates insider views or deep audits. Grey Box simulates partial knowledge (e.g. standard user logins).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which tool is standard in security for capturing and analyzing network packets in real-time?",
+      "options": ["Ghidra", "Wireshark", "Burp Suite", "Nmap"],
+      "correctIndex": 1,
+      "explanation": "Wireshark is a popular network protocol analyzer, used to sniff packets and inspect protocol details.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does SQL Injection (SQLi) exploit?",
+      "options": [
+        "Poor styling formats on websites",
+        "Insecure input fields that allow attackers to execute arbitrary SQL commands on a database",
+        "Weak user passwords on login forms",
+        "Missing network routing protocols"
+      ],
+      "correctIndex": 1,
+      "explanation": "SQLi occurs when user inputs are concatenated directly into SQL queries, letting attackers manipulate query logic.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a network port scanner (like Nmap) primarily do?",
+      "options": [
+        "Checks hard drive space on remote servers",
+        "Discovers active hosts and identifies open network ports and services running on a target system",
+        "Encrypts files for transfer",
+        "Automates browser actions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Nmap scans IP ranges to discover which ports are open (listening), identifying services and operating system versions.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Phishing?",
+      "options": [
+        "Searching for files on local systems",
+        "A social engineering attack where attackers trick victims into sharing sensitive info or downloading malware, often via deceptive emails",
+        "A method of scaling database workloads",
+        "Testing network cable speeds"
+      ],
+      "correctIndex": 1,
+      "explanation": "Phishing exploits human trust, masquerading as legitimate entities to harvest credentials or distribute payloads.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary difference between a vulnerability scan and a penetration test?",
+      "options": [
+        "Vulnerability scans are manual; pen tests are automated",
+        "Vulnerability scans identify known security flaws automatically; penetration tests exploit those flaws to evaluate real-world impact and depth",
+        "Vulnerability scans are illegal; pen tests are legal",
+        "There is no difference between them"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scans are automated reviews that list potential vulnerabilities. Pen tests go a step further, actively exploiting flaws to verify if they are real risks.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'reverse shell' and why is it preferred over a bind shell in firewall environments?",
+      "options": [
+        "Reverse shell is for databases; bind shell is for web pages",
+        "A reverse shell forces the target host to initiate an outbound connection back to the attacker's listener, which bypasses inbound firewall blocks",
+        "Bind shell is faster to compile",
+        "Reverse shell is fully encrypted; bind shell is plain text"
+      ],
+      "correctIndex": 1,
+      "explanation": "Firewalls block inbound connections (bind shells fail). However, they often allow outbound traffic (e.g. web surfing). A reverse shell leverages this by calling back to the attacker.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Cross-Site Scripting (XSS) and what is the difference between Stored and Reflected XSS?",
+      "options": [
+        "XSS is a database exploit; Stored XSS deletes database files",
+        "XSS injects scripts into trusted websites; Stored XSS saves the payload in a database to execute for all visiting users; Reflected XSS returns the payload immediately via request parameters",
+        "Reflected XSS is permanent; Stored is temporary",
+        "XSS only targets backend web servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Stored XSS (persistent) infects database pages (e.g. forum posts). Reflected XSS (non-persistent) relies on a victim clicking a link containing the payload (e.g. search fields).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Burp Suite and how is it used in web application pentesting?",
+      "options": [
+        "An IDE used to compile web pages",
+        "An intercepting proxy that acts as a middleman between the browser and target website, letting testers capture, analyze, and modify HTTP requests",
+        "A database security firewall",
+        "An automated code compiler tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "Burp Suite intercepts traffic, allowing pen testers to modify parameters, repeat requests (Repeater), or run payload dictionaries (Intruder) to test web forms.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of privilege escalation during a penetration test?",
+      "options": [
+        "To increase network bandwidth speeds",
+        "To elevate permissions from a low-privilege user account to a higher-privilege account (like root or Administrator)",
+        "To speed up database query responses",
+        "To encrypt file systems"
+      ],
+      "correctIndex": 1,
+      "explanation": "Once initial access is gained (often as a low-level service user), testers exploit local kernel bugs or misconfigurations to gain admin/system rights.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the OWASP Top 10?",
+      "options": [
+        "A list of top security companies",
+        "A regularly updated report representing consensus on the ten most critical web application security risks",
+        "A list of hacking tools",
+        "A list of database configuration guides"
+      ],
+      "correctIndex": 1,
+      "explanation": "OWASP lists critical risks (like broken access control, cryptographic failures, injection) to guide developers in writing secure code.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Cross-Site Request Forgery (CSRF)?",
+      "options": [
+        "Injecting malicious SQL scripts into forms",
+        "An attack that tricks a victim's authenticated browser into executing unwanted actions on a web application they are logged into",
+        "Stealing user passwords using keyloggers",
+        "Blocking user logins by overloading servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "CSRF exploits browser cookie behavior. If a user is logged into their bank, clicking a malicious link on another site can trigger hidden forms that transfer money.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Symmetric and Asymmetric encryption?",
+      "options": [
+        "Symmetric uses two keys; Asymmetric uses one key",
+        "Symmetric encryption uses the same key for both encryption and decryption; Asymmetric uses a public key to encrypt and a private key to decrypt",
+        "Symmetric encryption is only for web pages",
+        "Asymmetric encryption is faster than symmetric"
+      ],
+      "correctIndex": 1,
+      "explanation": "Symmetric (AES) is fast and ideal for data. Asymmetric (RSA/ECC) solves key exchange: public keys are distributed, private keys are kept secret.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Brute Force' attack, and how is it mitigated?",
+      "options": [
+        "Overloading servers with network packets; mitigated by firewalls",
+        "Systematically guessing passwords or keys until the correct one is found; mitigated by account lockouts, rate limiting, and CAPTCHAs",
+        "Using physical tools to break server doors; mitigated by locks",
+        "Injecting code into databases; mitigated by prepared statements"
+      ],
+      "correctIndex": 1,
+      "explanation": "Brute forcing tries dictionary words or combinations. Defense includes account lockouts after failed attempts, rate-limiting, and 2FA.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Man-in-the-Middle' (MitM) attack?",
+      "options": [
+        "A developer who coordinates team coding tasks",
+        "An attack where the attacker secretly intercepts and alters communication between two parties who believe they are communicating directly",
+        "An SQL database query failure",
+        "A hardware router failure"
+      ],
+      "correctIndex": 1,
+      "explanation": "MitM intercepts traffic (e.g. on public Wi-Fi). Attackers sniff credentials or inject scripts. Mitigations include HTTPS and HSTS.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'hashcat' tool in security?",
+      "options": [
+        "To check file download integrity logs",
+        "A fast password recovery (cracking) tool that supports CPU and GPU acceleration for various hash types",
+        "To encrypt hard drive sectors",
+        "To scan web applications for open ports"
+      ],
+      "correctIndex": 1,
+      "explanation": "Hashcat cracks password hashes offline. It leverages GPU power to compute millions of hashes per second using dictionaries or brute-force masks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Local File Inclusion (LFI) in web applications?",
+      "options": [
+        "Saving web pages to local disk folders",
+        "An exploit allowing attackers to read sensitive files on the server (like /etc/passwd) by manipulating file path input parameters",
+        "Injecting DLL files into browser applications",
+        "Hosting web assets on local servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "LFI happens when input parameters (e.g. `?file=about`) are passed directly to file-system functions, enabling directory traversal (e.g. `../../etc/passwd`).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Metasploit Framework?",
+      "options": [
+        "A database used to store client records",
+        "A widely used penetration testing platform providing database exploits, payloads, and post-exploitation modules",
+        "A compiler script for Python",
+        "A network switch setup tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "Metasploit contains pre-coded exploits and payloads, simplifying the process of exploiting known vulnerabilities and managing sessions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'robots.txt' file in reconnaissance?",
+      "options": [
+        "To block hacker scripts from accessing servers",
+        "To guide search engine web crawlers, often revealing hidden directory paths (like /admin) to security testers",
+        "To configure database users",
+        "To style web components"
+      ],
+      "correctIndex": 1,
+      "explanation": "Robots.txt tells crawlers which directories not to index. Pentesters read it to discover hidden directory names or sensitive paths.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Server-Side Request Forgery (SSRF), and how does it allow an attacker to pivot into internal networks?",
+      "options": [
+        "Tricking users into submitting bank details; pivot by emailing links",
+        "An exploit where a web application fetches a URL supplied by an attacker, allowing them to abuse the server's credentials to query internal resources",
+        "Overloading routing switches; pivot by duplicate packets",
+        "Modifying cookie fields; pivot by hijacking sessions"
+      ],
+      "correctIndex": 1,
+      "explanation": "SSRF makes the backend server the attacker. If the server is in a cloud network, the attacker can query the local metadata API (e.g., `http://169.254.169.254/`) or scan internal ports that are closed to the public.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how a Buffer Overflow vulnerability works, and what security mechanisms like DEP (Data Execution Prevention) and ASLR (Address Space Layout Randomization) do to prevent exploitation.",
+      "options": [
+        "Buffer overflow fills database tables; DEP blocks SQL commands; ASLR speeds up indexing",
+        "A bug writing data beyond allocated memory bounds, overwriting return addresses. DEP prevents executing code in data segments; ASLR randomizes memory addresses to make landing addresses unpredictable",
+        "Buffer overflow is a network crash; DEP is a firewall; ASLR is DNS routing",
+        "They are legacy concepts that do not apply to compiled systems"
+      ],
+      "correctIndex": 1,
+      "explanation": "Overflows corrupt the stack, aiming to overwrite the instruction pointer (EIP/RIP) to point to shellcode. DEP blocks execution on the stack. ASLR randomizes stack/heap locations, so hardcoded jump addresses in exploits fail.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In Active Directory pentesting, what is the 'Kerberoasting' attack and what is its technical goal?",
+      "options": [
+        "An attack that burns AD servers physically; goal is server destruction",
+        "Extracting service ticket (TGS) hashes from Active Directory for accounts associated with Service Principal Names (SPNs), aiming to crack their passwords offline",
+        "Generating fake user accounts; goal is database entry",
+        "Bypassing DNS controls; goal is network pivot"
+      ],
+      "correctIndex": 1,
+      "explanation": "Any domain user can request service tickets (TGS) for any service (SPN). Since TGS tickets are encrypted with the service account's password hash, attackers request them, dump them, and run offline brute-force cracking.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between a Blind SQL Injection and an Error-based SQL Injection, and how does Boolean-based blind differ from Time-based blind?",
+      "options": [
+        "Blind SQLi is for NoSQL databases; Error-based is for SQL",
+        "Error-based returns database errors in the response; Blind does not. Boolean-based blind infers data by checking if queries return true/false responses; Time-based infers data by injecting delays (sleep commands)",
+        "Time-based is faster than Boolean-based blind injection",
+        "Blind SQLi is only possible on Windows servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "When app pages hide error outputs, testers use blind methods. Boolean checks if content changes when adding `AND 1=1` vs `AND 1=2`. Time checks if the page takes 5 seconds to load when executing a conditional sleep query.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does dynamic binary instrumentation (DBI) frameworks (like Frida) assist in mobile application penetration testing?",
+      "options": [
+        "By compiling mobile apps into web formats",
+        "By injecting custom scripts (JavaScript) into a running application's process memory, allowing testers to hook functions, modify variables, and bypass SSL pinning at runtime",
+        "By scanning the mobile device for malware applications",
+        "By creating backup configurations of mobile databases"
+      ],
+      "correctIndex": 1,
+      "explanation": "Frida injects code into target processes. In mobile testing, security checks (like SSL pinning or root detection) can be bypassed by hooking the check functions and forcing them to return true/false.",
+      "difficulty": "hard"
+    }
+  ],
+  "php_laravel_developer": [
+    {
+      "question": "What is PHP?",
+      "options": [
+        "A database software standard",
+        "A popular open-source, server-side scripting language designed for web development",
+        "A styling language for building page layouts",
+        "A browser extension that runs client code"
+      ],
+      "correctIndex": 1,
+      "explanation": "PHP (Hypertext Preprocessor) executes on the server, generating HTML sent to the client.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Laravel?",
+      "options": [
+        "A package manager for compiling PHP",
+        "A popular open-source PHP web framework utilizing the MVC architectural pattern",
+        "A NoSQL database engine",
+        "A styling library for responsive design"
+      ],
+      "correctIndex": 1,
+      "explanation": "Laravel provides pre-built structures, routing, ORM, authentication, and migrations, simplifying PHP web application development.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the default package manager used in PHP to manage library dependencies?",
+      "options": ["npm", "Composer", "pip", "NuGet"],
+      "correctIndex": 1,
+      "explanation": "Composer is the standard package manager for PHP, managing libraries defined in `composer.json`.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which template engine is built natively into the Laravel framework?",
+      "options": ["Twig", "Blade", "Jade/Pug", "EJS"],
+      "correctIndex": 1,
+      "explanation": "Blade is Laravel's lightweight template engine, compiling views into plain PHP code and using `.blade.php` file extensions.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is Eloquent in the Laravel framework?",
+      "options": [
+        "A styling system for form validation",
+        "The object-relational mapper (ORM) providing an ActiveRecord implementation to interact with databases using models",
+        "A tool that compiles assets",
+        "A framework for writing unit tests"
+      ],
+      "correctIndex": 1,
+      "explanation": "Eloquent represents database tables as classes (models), allowing query commands (e.g. `User::all()`) without writing raw SQL.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which directory contains the route definitions in a standard Laravel project?",
+      "options": ["app/routes/", "routes/", "config/routes/", "resources/routes/"],
+      "correctIndex": 1,
+      "explanation": "The `routes/` directory in the project root holds web routes (`web.php`), api routes (`api.php`), and console routes.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What command-line tool is shipped with Laravel to run common management tasks and scaffold files?",
+      "options": ["Composer", "Artisan", "npm", "Gulp"],
+      "correctIndex": 1,
+      "explanation": "Artisan is the command-line interface for Laravel. Commands are run via `php artisan` (e.g. `php artisan migrate`).",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What are database migrations in Laravel?",
+      "options": [
+        "Moving databases files between physical servers",
+        "Version control for databases, allowing teams to define, modify, and share database schemas in PHP code",
+        "Exporting tables to spreadsheet formats",
+        "Replicating tables to backup cloud servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Migrations act as blueprints. They allow developers to create, modify, and drop tables using PHP classes, syncable across team environments.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Laravel Middleware?",
+      "options": [
+        "To connect local network cards together",
+        "To inspect and filter incoming HTTP requests entering the application (e.g. verifying authentication or CSRF tokens)",
+        "To write database query commands",
+        "To format CSS layout sheets"
+      ],
+      "correctIndex": 1,
+      "explanation": "Middleware intercepts requests. If a route requires authentication, the auth middleware checks user sessions, redirecting them to login if unauthenticated.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Laravel prevent CSRF (Cross-Site Request Forgery) attacks on form submissions?",
+      "options": [
+        "By requiring captcha tests on all forms",
+        "By automatically verifying a unique CSRF token included in the request headers or form parameters via the @csrf directive",
+        "By encrypting the database table names",
+        "By disabling POST requests entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": "The `@csrf` Blade directive outputs a hidden input token. The VerifyCsrfToken middleware validates that this token matches the user session.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Laravel Eloquent 'Eager Loading' and why is it used?",
+      "options": [
+        "Loading database drivers immediately at boot",
+        "Querying relationship records (using the 'with' method) alongside parent models to solve the N+1 database query problem",
+        "Downloading files in the background",
+        "Caching database schemas on the server"
+      ],
+      "correctIndex": 1,
+      "explanation": "N+1 happens when loading 10 books, then running 10 separate queries to get their authors. Eager loading combines this into two queries: one for books, one for authors.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which configuration file is used to store environment-specific settings (like database passwords) in Laravel?",
+      "options": ["config/app.php", ".env", "composer.json", "artisan.config"],
+      "correctIndex": 1,
+      "explanation": "The `.env` file in the root directory holds environment variables, read by config files under the `config/` directory.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'Tinker' shell in Laravel?",
+      "options": [
+        "A visual debugger tool",
+        "An interactive REPL (Read-Eval-Print Loop) allowing developers to execute arbitrary PHP code and interact with their database and Eloquent models directly in the console",
+        "A tool that compiles assets",
+        "A system tracking server speeds"
+      ],
+      "correctIndex": 1,
+      "explanation": "`php artisan tinker` opens a terminal console where you can query databases, test model events, or run commands dynamically.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the MVC architecture stand for in Laravel?",
+      "options": [
+        "Model-View-Controller",
+        "Middleware-Validation-Connection",
+        "Migration-Variable-Class",
+        "Model-Variable-Controller"
+      ],
+      "correctIndex": 0,
+      "explanation": "MVC separates concerns: Model manages database data/logic; View handles layout displays; Controller processes user inputs and coordinates models and views.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What are Laravel 'Seeders' and 'Factories' used for?",
+      "options": [
+        "To compile application assets",
+        "To populate databases tables with dummy or sample testing data automatically",
+        "To manage server deployment builds",
+        "To configure database indexing keys"
+      ],
+      "correctIndex": 1,
+      "explanation": "Factories define mock data templates (using Faker). Seeders execute these factories to fill databases with test records (e.g. 50 user records).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between Laravel's 'hasOne' and 'belongsTo' Eloquent relations?",
+      "options": [
+        "hasOne is for SQL; belongsTo is for NoSQL",
+        "hasOne is declared on the parent model (which does not have the foreign key); belongsTo is declared on the child model (which holds the foreign key)",
+        "belongsTo is only for many-to-many relationships",
+        "They behave identically in database execution"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a User has a Profile, the profile table contains `user_id`. Thus, User uses `hasOne(Profile::class)` and Profile uses `belongsTo(User::class)`.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of the 'Service Container' in Laravel?",
+      "options": [
+        "To run application containers like Docker",
+        "A tool for managing class dependencies and performing dependency injection dynamically",
+        "A database storage cache",
+        "A web server routing configuration"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Service Container is the engine of Laravel. It registers bindings for interfaces, resolving class instances automatically when injected in constructors.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Laravel handle queue operations?",
+      "options": [
+        "It runs background tasks in database loops synchronously",
+        "It offloads time-consuming tasks (like sending emails) to a background queue worker (database, Redis, SQS) to speed up web requests",
+        "It stores user routes in a queue list",
+        "Queues are not natively supported in Laravel"
+      ],
+      "correctIndex": 1,
+      "explanation": "Queues improve user experience. Tasks are serialized into a queue store, and background processes (`php artisan queue:work`) run them asynchronously.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of Laravel 'validation' on request inputs, and how is it typically handled?",
+      "options": [
+        "To verify server credentials; handled by database files",
+        "To assert input requirements (required, email, unique) before processing data, often handled in controllers or custom FormRequest classes",
+        "To style error pages; handled by Blade templates",
+        "To compress request sizes; handled by middleware"
+      ],
+      "correctIndex": 1,
+      "explanation": "Validation ensures data integrity. If rules fail, Laravel automatically redirects back with error messages (or returns JSON for API requests).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Laravel Horizon?",
+      "options": [
+        "A hosting server provider",
+        "A beautiful dashboard and configuration system for Redis-powered Laravel queues",
+        "A compilation tool for asset files",
+        "A code linter plugin"
+      ],
+      "correctIndex": 1,
+      "explanation": "Horizon provides real-time monitoring of Redis queue metrics: wait times, throughput, job failures, and worker allocations.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does Laravel's Service Provider class bootstrap the application, and what is the difference between the 'register' and 'boot' methods?",
+      "options": [
+        "Register is for databases; boot is for CSS assets",
+        "Register binds dependencies into the Service Container; boot executes code after all bindings are resolved, allowing access to services and event listeners",
+        "Boot runs on local environments; register runs in production",
+        "They are duplicate methods executing at identical times"
+      ],
+      "correctIndex": 1,
+      "explanation": "In `register`, you only configure bindings. Do not call other services here, as they might not be registered yet. In `boot`, all container bindings are resolved, making it safe to register route macros, event listeners, or view composers.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how Laravel Eloquent handles database transaction rollbacks when wrapping queries.",
+      "options": [
+        "By saving backup SQL files to disk",
+        "By using the 'DB::transaction' closure or manually calling 'DB::beginTransaction' and 'DB::rollBack' when catching exceptions, reversing changes on failure",
+        "Laravel rollbacks database changes automatically on any page reload",
+        "Rollbacks are managed by database server engines, not Laravel code"
+      ],
+      "correctIndex": 1,
+      "explanation": "Transactions ensure data consistency. Wrapping queries in a try-catch, calling `DB::rollBack()` on exception, and `DB::commit()` on success guarantees either all updates apply or none do (atomicity).",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the purpose of the 'signed routes' feature in Laravel, and how does it prevent tampering?",
+      "options": [
+        "It encrypts URL paths completely",
+        "It appends a cryptographic hash signature to URL paths, letting Laravel verify the URL has not been modified since creation (e.g. for email unsubscribes)",
+        "It requires users to write digital signatures in browser forms",
+        "It blocks route access to selected browser devices"
+      ],
+      "correctIndex": 1,
+      "explanation": "Signed URLs (using `URL::signedRoute`) append a signature hash computed using the application key. If a user tries to alter parameters (e.g. changing `user_id=1` to `user_id=2`), the hash verification fails.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "How does Laravel Octane accelerate application execution speeds?",
+      "options": [
+        "By compiling PHP files to machine binaries",
+        "By booting the application once in memory using high-performance application servers (Swoole or RoadRunner) and keeping it alive to handle subsequent requests, bypassing the bootstrap overhead",
+        "By hosting databases in GPU memory stores",
+        "By disabling all middleware and database models"
+      ],
+      "correctIndex": 1,
+      "explanation": "Standard PHP bootstraps the framework from scratch on every request (slow). Octane boots Laravel once (creating container and bindings in memory) and handles requests via workers, speeding up responses.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is the difference between Laravel's API token authentication systems: Sanctum versus Passport?",
+      "options": [
+        "Sanctum is for desktop; Passport is for mobile applications",
+        "Sanctum provides a lightweight token authentication system for SPAs, mobile apps, and simple APIs; Passport is a full OAuth2 server implementation, suitable for third-party client integrations",
+        "Passport is written in Python; Sanctum in PHP",
+        "Sanctum does not support cookie authentication"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sanctum is simple, using cookies for SPAs and basic tokens for mobile. Passport is complex, supporting full OAuth2 flows (authorization codes, client credentials), required when external services authenticate against your API.",
+      "difficulty": "hard"
+    }
+  ],
+  "platform_engineer": [
+    {
+      "question": "What is the primary objective of a Platform Engineer?",
+      "options": [
+        "To write business product code for web forms",
+        "To build and maintain an Internal Developer Platform (IDP) that provides self-service capabilities and automates infrastructure operations for developer teams",
+        "To design visual mockups in vector editors",
+        "To manage marketing schedules"
+      ],
+      "correctIndex": 1,
+      "explanation": "Platform engineering focuses on reducing developer cognitive load, providing paved roads (templates, self-service portals) to deploy code safely.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an IDP (Internal Developer Platform) in Platform Engineering?",
+      "options": [
+        "An identity portal tracking employee ID cards",
+        "A set of self-service tools, APIs, and templates that developers use to deploy and manage applications independently",
+        "A software package that compiles code",
+        "A database that backups user directories"
+      ],
+      "correctIndex": 1,
+      "explanation": "An IDP consolidates configurations, lets developers spin up resources (like databases or environments) via portals (e.g., Backstage) without waiting for ops teams.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which open-source project is widely used as a developer portal builder in platform engineering (originally created by Spotify)?",
+      "options": ["Docker", "Backstage", "Kubernetes", "Ansible"],
+      "correctIndex": 1,
+      "explanation": "Backstage is an open-source framework for building developer portals, organizing catalogs, docs, and templates in one place.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary benefit of 'Self-Service' infrastructure in software development?",
+      "options": [
+        "It reduces the cost of server hardware",
+        "It eliminates bottlenecks by letting developers provision resources safely within guidelines without manual approvals",
+        "It allows users to write SQL tables without database drivers",
+        "It replaces the need for QA testing"
+      ],
+      "correctIndex": 1,
+      "explanation": "Self-service speeds up shipping cycles. Instead of opening tickets for a database setup, developers run automated portal commands.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does GitOps involve in platform operations?",
+      "options": [
+        "Managing developer git credentials only",
+        "Using Git repositories as the single source of truth for declarative infrastructure and application configurations, synced automatically by agents",
+        "Compiling code using git branches",
+        "Tracking developer coding tasks using git logs"
+      ],
+      "correctIndex": 1,
+      "explanation": "GitOps (using tools like ArgoCD or Flux) ensures the live cluster matches the configuration declared in Git. Changes are applied via git pull requests.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the purpose of 'Golden Paths' (or Paved Roads) in platform design?",
+      "options": [
+        "A layout pattern in graphic design editors",
+        "A recommended, fully supported path with pre-built templates and configurations to build and deploy applications quickly and safely",
+        "A network routing path between server centers",
+        "A database schema organization rule"
+      ],
+      "correctIndex": 1,
+      "explanation": "Golden Paths provide templates. If developers follow the paved road, they get built-in CI/CD, logging, and security compliance automatically.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does IAC stand for in platform configuration?",
+      "options": [
+        "Infrastructure as Code",
+        "Interface Access Control",
+        "Internal Application Connection",
+        "Automated Index Command"
+      ],
+      "correctIndex": 0,
+      "explanation": "IAC stands for Infrastructure as Code, representing the practice of defining server and network configurations in code files.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the difference between Platform Engineering and DevOps?",
+      "options": [
+        "DevOps is only for startups; Platform Engineering is for enterprise",
+        "DevOps is a cultural philosophy emphasizing collaboration; Platform Engineering is the product-oriented discipline that builds the platform to enable DevOps at scale",
+        "Platform Engineering replaces the need for CI/CD pipelines",
+        "DevOps is written in Python; Platform Engineering in Go"
+      ],
+      "correctIndex": 1,
+      "explanation": "Platform engineering productizes operations. Instead of every developer managing complex Kubernetes configs (DevOps), the platform team packages these configs into IDPs.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is Crossplane in Kubernetes configurations?",
+      "options": [
+        "A network tool routing traffic between regions",
+        "An open-source control plane that extends Kubernetes to provision and manage cloud services (like RDS or S3) using standard Kubernetes manifests",
+        "A tool that compiles code container images",
+        "A database index structure"
+      ],
+      "correctIndex": 1,
+      "explanation": "Crossplane turns Kubernetes into an infrastructure control plane, allowing developers to define resources (like databases) using custom resource definitions (CRDs).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Helm' in Kubernetes environments?",
+      "options": [
+        "To monitor node CPU temperatures",
+        "A package manager for Kubernetes that packages files into 'charts' to configure and deploy applications simply",
+        "A load balancing proxy server",
+        "A tool that registers domain names"
+      ],
+      "correctIndex": 1,
+      "explanation": "Helm packages manifests. Helm charts parameterize configurations, allowing versioned releases and simple updates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does a 'Developer Portal Catalog' organize?",
+      "options": [
+        "Developer employee contact directories",
+        "A centralized directory metadata of all microservices, APIs, resources, ownership, and documentation in the organization",
+        "A shopping list for buying server hardware",
+        "A list of database table schemas"
+      ],
+      "correctIndex": 1,
+      "explanation": "The catalog (e.g. in Backstage) maps service relationships, showing who owns a service, where its docs are, and its current health.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is policy-as-code and which tool is popular for implementing it (like OPA)?",
+      "options": [
+        "A text file listing legal policies; tool is Microsoft Word",
+        "Defining compliance, security, and governance policies in code files; popular tool is Open Policy Agent (OPA) using Rego",
+        "A script that auto-renews domain licenses; tool is Certbot",
+        "A firewall script configuration; tool is iptables"
+      ],
+      "correctIndex": 1,
+      "explanation": "Policy-as-code evaluates rules (e.g., 'Containers cannot run as root' or 'Terraform must use specific regions') programmatically before deployment.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the function of ArgoCD in a Kubernetes cluster?",
+      "options": [
+        "To compile container source codes",
+        "A declarative, GitOps continuous delivery tool for Kubernetes that monitors Git repositories and syncs resources to target clusters",
+        "To manage database backup logs",
+        "To configure physical router ports"
+      ],
+      "correctIndex": 1,
+      "explanation": "ArgoCD monitors git commits. If the cluster drifts from git declarations, ArgoCD flags it as 'OutOfSync' and applies updates to match.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Developer Experience' (DevEx) and why does platform engineering focus on it?",
+      "options": [
+        "The number of years a developer has coded; dictates salary",
+        "The friction, ease, and efficiency developers feel when building and releasing code; prioritizing it increases velocity and reduces burnout",
+        "The visual design of code editors",
+        "A testing suite evaluating code formatting"
+      ],
+      "correctIndex": 1,
+      "explanation": "DevEx targets friction. Good DevEx means fast onboarding, quick feedback loops, and automated deployments, letting developers focus on shipping value.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "Which tool is commonly used to automate infrastructure builds and configurations alongside Terraform?",
+      "options": ["Ansible", "Kubernetes", "Docker", "Git"],
+      "correctIndex": 0,
+      "explanation": "Ansible handles configuration management (setting up packages, files on servers), whereas Terraform manages resource provisioning (spinning up VMs, VPCs).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of an API Gateway (like Kong or Apisix) in platform architecture?",
+      "options": [
+        "To compile API code files",
+        "A proxy entry point routing client requests, managing authentication, rate limiting, and SSL termination across microservices",
+        "To host databases schemas",
+        "To backup server files to cloud storage"
+      ],
+      "correctIndex": 1,
+      "explanation": "API Gateways centralize ingress control. Instead of every microservice handling rate limits or token checks, the gateway resolves them at the perimeter.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Observability-by-default' mean in platform templates?",
+      "options": [
+        "Requiring developers to write logging scripts manually",
+        "Ensuring every new microservice template built on the platform has pre-configured metrics, tracing, and logging instrumentation out of the box",
+        "Making dashboards visible to all team members",
+        "Logging all developer keystrokes on servers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Observability-by-default integrates telemetry (e.g. OTel collectors) directly into base templates, ensuring new services publish metrics automatically without extra setup.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'control plane' versus a 'data plane' in systems engineering?",
+      "options": [
+        "Control plane is for databases; data plane is for web layers",
+        "Control plane manages the configuration, routing rules, and orchestration states; data plane actually processes and forwards the user data traffic",
+        "Control plane runs on local host; data plane on remote servers",
+        "They are identical terms in server virtualization"
+      ],
+      "correctIndex": 1,
+      "explanation": "In Kubernetes, the control plane (API server, scheduler) coordinates nodes. The data plane (worker nodes) runs the container processes.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'secrets management' in platform engineering, and what is a popular tool for it?",
+      "options": [
+        "Encrypting email communications; tool is PGP",
+        "Storing and distributing sensitive keys, tokens, and credentials securely; popular tool is HashiCorp Vault",
+        "Locking down source code access; tool is Git",
+        "Restricting server room entry; tool is biometric cards"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vault manages secrets. Instead of committing keys to git, applications fetch tokens dynamically at runtime using IAM roles.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Software Template' (Software Skeleton) in developer portals?",
+      "options": [
+        "A layout draft in web editors",
+        "A pre-packaged starting repository containing base configurations, CI/CD pipelines, and security setups to bootstrap new microservices instantly",
+        "A documentation draft in text files",
+        "A database configuration script"
+      ],
+      "correctIndex": 1,
+      "explanation": "Software templates enable Golden Paths. Clicking 'New Service' scaffolds a repo with standard libraries and deployment pipelines, saving setup time.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the primary role of a 'Custom Controller' (or Operator pattern) in Kubernetes-native platforms?",
+      "options": [
+        "To manage GUI menus in web portals",
+        "To implement custom control loops that monitor and reconcile the state of Custom Resource Definitions (CRDs) to automate complex application operations",
+        "To compile source codes on cloud server clusters",
+        "To schedule database backup schedules"
+      ],
+      "correctIndex": 1,
+      "explanation": "Operators extend Kubernetes. By packaging human operational knowledge (like how to backup database clusters or resize disks) into code, the controller maintains the desired state automatically.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In GitOps pipelines, explain how the 'pull model' (ArgoCD) differs from the 'push model' (Jenkins/GitHub Actions) for cluster updates, and why the pull model is considered more secure.",
+      "options": [
+        "Pull model is faster; push model is for local runs only",
+        "The pull model runs an agent inside the cluster that pulls configurations from Git; the push model requires external pipelines to have credentials to access the cluster. The pull model is more secure because it does not expose cluster API credentials externally",
+        "Push model is only supported on Google Cloud TPU instances",
+        "The pull model runs without using Git branches"
+      ],
+      "correctIndex": 1,
+      "explanation": "Push pipelines need admin credentials to execute commands (e.g. `kubectl apply`) in the cluster, posing a breach risk. Pull agents (ArgoCD) check Git from inside, requiring no inbound ports or external keys.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain how Platform Engineers implement 'Resource Quotas' and 'LimitRanges' in Kubernetes to prevent resource starvation (noisy neighbor problems).",
+      "options": [
+        "By restricting developer logins; prevents CPU overuse",
+        "ResourceQuotas limit total cluster resources a namespace can consume; LimitRanges enforce minimum and maximum CPU/Memory requests and limits on individual pods",
+        "By setting limits on network speeds; prevents database failures",
+        "By deleting idle pods; prevents container crashes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Without limits, a runaway pod can hog a node's CPU/RAM, crashing other services on the node. LimitRanges force container definitions to declare resource bounds, ensuring fair CPU scheduling.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Configuration Drift' in infrastructure operations, and how does GitOps mitigate it automatically?",
+      "options": [
+        "Modifying code variables dynamically; mitigated by code tests",
+        "When the state of live infrastructure deviates from the declared code configurations; GitOps agents detect this mismatch and auto-heal the cluster back to the Git state",
+        "A change in server network speed; mitigated by hardware upgrades",
+        "A change in database schemas; mitigated by sql migrations"
+      ],
+      "correctIndex": 1,
+      "explanation": "If a developer manually edits a security group in a console (drift), GitOps agents detect that it differs from the declared state in Git. The agent automatically reverts the manual changes, maintaining the Git source of truth.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In the context of Internal Developer Platforms, explain the role of 'Platform Orchestrators' (like Humanitec or Kratix).",
+      "options": [
+        "They compile application code into binary files",
+        "They take developer-declared logical resource requirements and dynamically generate the specific cloud-provider configuration files at deployment time",
+        "They manage developer authentication permissions",
+        "They schedule database backups across systems"
+      ],
+      "correctIndex": 1,
+      "explanation": "Orchestrators abstract environments. The developer declares: 'I need a database'. The orchestrator intercepts this and creates an RDS database in AWS (for production) or a local container (for staging), appending credentials safely.",
+      "difficulty": "hard"
+    }
+  ],
+  "product_designer": [
+    {
+      "question": "What is the primary role of a Product Designer?",
+      "options": [
+        "To write backend application logic code",
+        "To oversee the end-to-end user experience and visual design of a product, balancing user needs with business goals",
+        "To manage database backup schedules",
+        "To write technical documentation manuals"
+      ],
+      "correctIndex": 1,
+      "explanation": "Product designers work across UX (interaction, research) and UI (visuals, component systems) to design functional, user-centric interfaces.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a wireframe in product design?",
+      "options": [
+        "A 3D modeling wire outline for graphics",
+        "A low-fidelity visual guide representing the skeletal framework and layout of a user interface page",
+        "A compiled prototype with working database links",
+        "A code block outlining component functions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Wireframes focus on content placement and layout structure, intentionally excluding colors or typography to align teams on UI hierarchy.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Which design tool is currently the industry standard for collaborative UI/UX design and prototyping?",
+      "options": ["Adobe Photoshop", "Figma", "Xcode", "Visual Studio"],
+      "correctIndex": 1,
+      "explanation": "Figma is the leading browser-based collaborative tool used by designers to build UI mockups, prototypes, and design systems.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'user journey map' describe?",
+      "options": [
+        "A network route diagram between server nodes",
+        "A visualization of the steps a user takes to achieve a goal within a product, tracking their actions, thoughts, and emotions",
+        "A calendar planning product launch dates",
+        "A table listing database query paths"
+      ],
+      "correctIndex": 1,
+      "explanation": "User journeys map experience timelines, helping identify pain points and design opportunities across touchpoints.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary focus of UI (User Interface) design?",
+      "options": [
+        "Setting up server database tables",
+        "The visual styling, look, and interactive feel of a product (typography, colors, layouts, animations)",
+        "Writing server API route handlers",
+        "Managing project budget costs"
+      ],
+      "correctIndex": 1,
+      "explanation": "UI design targets the aesthetic elements users interact with directly, ensuring the interface is clear, polished, and on-brand.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary focus of UX (User Experience) design?",
+      "options": [
+        "Compiling source code files",
+        "Optimizing the overall ease of use, utility, and satisfaction a user feels when interacting with a product",
+        "Configuring load balancing servers",
+        "Writing SEO marketing articles"
+      ],
+      "correctIndex": 1,
+      "explanation": "UX design targets how the product works. It focuses on usability, user research, workflow structures, and layout efficiency.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does a 'Design System' consolidate?",
+      "options": [
+        "A server directory containing database files",
+        "A centralized library of reusable components, tokens, styles, and guidelines that ensure design consistency across applications",
+        "A spreadsheet tracking project milestones",
+        "A package of code testing libraries"
+      ],
+      "correctIndex": 1,
+      "explanation": "Design systems unify design and engineering. They define tokens (colors, margins) and components, ensuring consistent branding across all screens.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Prototype' in product design?",
+      "options": [
+        "The final compiled codebase deployed to production",
+        "An interactive simulation or model of a product used to test and validate designs with users before writing production code",
+        "A low-fidelity wireframe sketch",
+        "A database schema structure diagram"
+      ],
+      "correctIndex": 1,
+      "explanation": "Prototypes simulate user flows. Testers click buttons and navigate screens, helping validate interaction logic without coding backend dependencies.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Information Architecture' (IA) refer to in design?",
+      "options": [
+        "The hardware design of cloud database clusters",
+        "The structural organization and labeling of content within an application, ensuring users can find information and navigate intuitively",
+        "The directory file structure in code repositories",
+        "The security permissions of server accounts"
+      ],
+      "correctIndex": 1,
+      "explanation": "IA maps navigation, categories, and paths, serving as the blueprint for menus and content categorization.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between qualitative and quantitative user research?",
+      "options": [
+        "Qualitative is for web layouts; quantitative is for database tables",
+        "Qualitative research seeks to understand the 'why' behind behaviors (interviews, usability tests); quantitative seeks to measure the 'what' (analytics, survey metrics)",
+        "Quantitative research is always more accurate than qualitative",
+        "Qualitative research requires larger sample sizes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Qualitative research studies small groups deeply to understand frustrations. Quantitative research studies large datasets to verify trends or conversion rates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does the 'Fitts's Law' state in UI/UX design?",
+      "options": [
+        "Layouts should use exactly three font styles",
+        "The time to acquire a target is a function of the distance to and size of the target (targets should be large and close to users)",
+        "Web pages must load in under 2 seconds",
+        "Contrast ratios must exceed 4.5:1"
+      ],
+      "correctIndex": 1,
+      "explanation": "Fitts's Law explains that interactive elements (like primary CTA buttons) should be large and placed in easily accessible locations (e.g. thumb zones on mobile).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the purpose of 'Design Tokens' in design system engineering?",
+      "options": [
+        "Digital currencies used to purchase graphics assets",
+        "Visual style variables (like colors, spacing, fonts) stored as key-value pairs to maintain branding across platforms (web, iOS, Android) dynamically",
+        "Special badges awarded to top designers",
+        "A way to secure login access to design tools"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tokens abstract values. Changing a token (e.g. `--color-primary` from blue to green) updates the style system across web, iOS, and Android applications.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Accessibility' (a11y) in digital product design?",
+      "options": [
+        "Ensuring the app is cheap to download",
+        "Designing products so they are usable by everyone, including people with visual, auditory, physical, or cognitive impairments",
+        "Making the application code public on GitHub",
+        "Allowing login access to multiple team users"
+      ],
+      "correctIndex": 1,
+      "explanation": "Accessible designs ensure text has high contrast, inputs support screen readers, and layouts are navigable via keyboard keys.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Gestalt Principles' in visual design?",
+      "options": [
+        "A set of coding guidelines for database integrity",
+        "Laws of visual perception describing how the human brain organizes individual visual elements into groups or unified wholes (e.g. similarity, proximity)",
+        "A system that calculates font sizes automatically",
+        "An animation style used on mobile transitions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Gestalt laws (proximity, similarity, continuity) explain how users group UI items. For example, placing a label close to an input field signals they are related.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'cognitive load' mean in user experience?",
+      "options": [
+        "The memory usage of the server processors",
+        "The amount of mental effort required by a user to complete a task on an interface (designs should minimize it)",
+        "The speed at which a user types passwords",
+        "The count of page views on a dashboard"
+      ],
+      "correctIndex": 1,
+      "explanation": "High cognitive load causes frustration. Clean hierarchy, familiar patterns, and clear language reduce user thinking time, easing interactions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Double Diamond' design process?",
+      "options": [
+        "A coding framework for twin databases setup",
+        "A structured design methodology split into four phases: Discover, Define, Develop, and Deliver (alternating between divergent and convergent thinking)",
+        "A layout grid utilizing diagonal lines",
+        "A licensing model for enterprise design software"
+      ],
+      "correctIndex": 1,
+      "explanation": "The Double Diamond emphasizes exploring problems deeply (divergent) before defining focus (convergent), then ideating solutions (divergent) before delivering (convergent).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of a 'Hero Section' on a homepage landing page?",
+      "options": [
+        "A section displaying customer testimonials",
+        "The prominent primary visual block at the top of a page, introducing the core value proposition and primary Call to Action (CTA)",
+        "The footer area containing platform credentials",
+        "A layout grid displaying product catalog cards"
+      ],
+      "correctIndex": 1,
+      "explanation": "The hero section is the user's first impression. It must convey what the product is and guide users to the next step (e.g., signing up).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'Heuristic Evaluation' in design audits?",
+      "options": [
+        "A performance speed test of web servers",
+        "A usability inspection method where experts evaluate an interface against established design principles (e.g. Nielsen's 10 Usability Heuristics)",
+        "A security scan checking database vulnerability",
+        "A code review checking styling compliance"
+      ],
+      "correctIndex": 1,
+      "explanation": "Evaluators check issues like visibility of system status, matching the real world, and user control (e.g. providing an 'undo' button).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'Visual Hierarchy' refer to in layouts?",
+      "options": [
+        "The directory folder tree in file systems",
+        "The arrangement of elements to imply importance, guiding the user's eye across the page in a specific sequence (using size, contrast, spacing)",
+        "The company hierarchy of design managers",
+        "The list of database fields sorted by type"
+      ],
+      "correctIndex": 1,
+      "explanation": "Hierarchy uses size (large headers), weights (bold keywords), and space to structure layouts, letting users scan pages in seconds.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Call to Action' (CTA) and what is its primary design rule?",
+      "options": [
+        "A phone number link in footer blocks; must be small",
+        "An interactive element (like a button) guiding users to a target action; must be visually prominent, clear, and stand out from other content",
+        "An error alert modal; must be red",
+        "A database save command; must be automated"
+      ],
+      "correctIndex": 1,
+      "explanation": "CTAs guide users (e.g. 'Start Free Trial'). They use high-contrast accent colors and clear action verbs to encourage clicks.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "How does the 'Jakob's Law' impact design decisions for new products?",
+      "options": [
+        "It mandates using specific graphic libraries",
+        "It states that users spend most of their time on other sites, meaning they prefer your site to work the same way as sites they already know",
+        "It requires all web pages to have dark themes",
+        "It requires database links to load under 1 second"
+      ],
+      "correctIndex": 1,
+      "explanation": "Jakob's Law warns against over-innovating basic patterns. Users expect shopping carts at the top right and standard search bars; breaking these expectations causes confusion.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Mental Model' in user interface design, and how does a mismatch with the system model cause usability issues?",
+      "options": [
+        "An AI algorithm simulating user thinking; mismatch causes memory leaks",
+        "A user's internal understanding of how a product works based on past experiences; a mismatch causes errors, confusion, and interface friction",
+        "A database schema layout; mismatch causes SQL query failures",
+        "A style template draft; mismatch causes visual layout overlap"
+      ],
+      "correctIndex": 1,
+      "explanation": "If users expect a swipe gesture to delete items (mental model) but the app uses it to archive (system model), they will delete data accidentally, violating design predictability.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In typography design, explain the difference between 'line-height' (leading), 'letter-spacing' (tracking), and 'kerning', and how they affect readability.",
+      "options": [
+        "They are identical terms in CSS styling sheets",
+        "Line-height is the vertical space between lines of text; Letter-spacing adjusts spacing uniformly across a range of characters; Kerning adjusts spacing between specific pairs of letters for visual balance",
+        "Kerning is for paragraphs; tracking is for headings only",
+        "Leading is only used on mobile displays; tracking on desktop layouts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct line-height (typically 1.4-1.6 for body copy) prevents lines from overlapping, making scanning comfortable. Letter-spacing and kerning prevent letters from merging, crucial for readability at small sizes.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Hick's Law' and how does it guide dashboard menu design?",
+      "options": [
+        "Menus should load in under 1 second; guides database structures",
+        "The time it takes to make a decision increases logarithmically with the number and complexity of choices; guides menus to limit options or use categorization",
+        "Dashboards must display all details on one screen; guides layout grids",
+        "Contrast ratios must scale with element sizes; guides color palettes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Providing 50 links in a single menu overwhelms users. Hick's Law advises grouping links into categories (progressive disclosure), reducing decision time.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "In accessibility standards, what is the difference between WCAG 2.1 Level A, AA, and AAA compliance, and which is the standard target for corporate digital products?",
+      "options": [
+        "Level A is for mobile; Level AA is for tablets; Level AAA is for desktop",
+        "Level A represents basic accessibility (critical barriers); Level AA is the standard legal target (handling common issues); Level AAA is the highest, most stringent standard (specialized sites)",
+        "Level AAA is the standard legal target for all websites",
+        "They are database encryption levels rather than visual standards"
+      ],
+      "correctIndex": 1,
+      "explanation": "Level AA is the globally accepted standard for most commercial and government apps. It requires contrast ratios of 4.5:1, keyboard nav support, and clean screen-reader labeling.",
+      "difficulty": "hard"
+    }
+  ],
+  "product_manager": [
+    {
+      "question": "What is the primary role of a Product Manager?",
+      "options": [
+        "Writing code bugs resolutions",
+        "Defining the product strategy, roadmap, and features, acting as the bridge between business, technology, and user experience",
+        "Designing graphics in vector editors",
+        "Maintaining database server hardware"
+      ],
+      "correctIndex": 1,
+      "explanation": "Product Managers (PMs) own the 'why' and 'what' of a product, guiding cross-functional teams to build the right solutions.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is an MVP (Minimum Viable Product)?",
+      "options": [
+        "The most expensive and complete version of a product",
+        "A version of a new product with just enough features to satisfy early adopters and gather validated feedback for future development",
+        "A design prototype without database links",
+        "A code draft written in assembly language"
+      ],
+      "correctIndex": 1,
+      "explanation": "MVPs focus on learning. By releasing a core set of features quickly, teams test market assumptions with minimal development cost.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'Product Roadmap'?",
+      "options": [
+        "A physical map showing developer office locations",
+        "A high-level visual plan that outlines the vision, direction, priorities, and progress of a product over time",
+        "A folder tree in codebase directories",
+        "A table listing database schemas"
+      ],
+      "correctIndex": 1,
+      "explanation": "Roadmaps align teams and stakeholders, outlining which initiatives will be built (short, medium, long term) to meet business goals.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does 'product-market fit' mean?",
+      "options": [
+        "The application files fitting on the server storage",
+        "Being in a good market with a product that can satisfy that market, indicated by strong customer demand and retention",
+        "The design system matching the company logo styling",
+        "The code compiling without errors"
+      ],
+      "correctIndex": 1,
+      "explanation": "Product-market fit is reached when customers buy, use, and recommend the product spontaneously, proving the product solves a real problem at scale.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is a 'User Story' in agile product management?",
+      "options": [
+        "A biography of a product user",
+        "An informal, general explanation of a software feature written from the perspective of the end user (e.g. As a [user], I want to [action] so that [benefit])",
+        "A marketing article describing the product launch",
+        "A code comment describing API routes"
+      ],
+      "correctIndex": 1,
+      "explanation": "User stories focus on value. They structure requirements around who the feature is for, what they want to do, and why it matters to them.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the primary difference between a Product Manager and a Project Manager?",
+      "options": [
+        "Product Managers manage budgets; Project Managers manage code",
+        "Product Managers focus on the 'what' and 'why' of the product (strategy, value); Project Managers focus on the 'how' and 'when' (timeline, execution, resource allocation)",
+        "Project Managers are only for startups",
+        "There is no difference; they are identical roles"
+      ],
+      "correctIndex": 1,
+      "explanation": "Product Managers own the product lifecycle and market success. Project Managers own delivery execution, ensuring tasks are completed on time and within budget.",
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is 'customer discovery' in product management?",
+      "options": [
+        "Finding customers' email addresses in databases",
+        "The process of interviewing and observing users to understand their problems, workflows, and needs before designing features",
+        "Running marketing ads to get website traffic",
+        "Testing application load speeds"
+      ],
+      "correctIndex": 1,
+      "explanation": "Customer discovery validates assumptions. PMs interview users to ensure they are solving real pain points rather than building unwanted features.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'RICE' prioritization framework, and what do the letters stand for?",
+      "options": [
+        "Readiness, Integration, Connection, Efficiency",
+        "Reach, Impact, Confidence, and Effort",
+        "Review, Index, Compile, Execute",
+        "Requirements, Interaction, Cost, Evaluation"
+      ],
+      "correctIndex": 1,
+      "explanation": "RICE calculates scores: $(Reach \times Impact \times Confidence) / Effort$. This helps compare initiatives objectively based on projected users, value, trust, and development cost.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'churn rate' in product metrics?",
+      "options": [
+        "The speed of database page updates",
+        "The percentage of customers who stop using or subscribing to a product over a given time period",
+        "The number of new users signing up daily",
+        "The CPU load average of server instances"
+      ],
+      "correctIndex": 1,
+      "explanation": "Churn is the enemy of growth. A high churn rate means users are leaving, indicating issues with product value, onboarding, or quality.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Product Backlog'?",
+      "options": [
+        "A history log of server crashes",
+        "An ordered list of everything that might be needed in the product, serving as the single source of requirements for any changes",
+        "A directory containing code backup files",
+        "A list of developer employee accounts"
+      ],
+      "correctIndex": 1,
+      "explanation": "The backlog holds user stories, bugs, and technical debt. The PM prioritizes it continuously to prepare for upcoming development cycles.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does 'LTV' (Lifetime Value) measure?",
+      "options": [
+        "The duration of server hard drive lifespans",
+        "The total revenue a business can expect to earn from a single customer account throughout their relationship with the company",
+        "The count of lines of code in the final release",
+        "The speed of network routing paths"
+      ],
+      "correctIndex": 1,
+      "explanation": "LTV helps determine how much can be spent to acquire a customer. A healthy SaaS business needs LTV to be significantly higher than CAC (Customer Acquisition Cost).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What does CAC stand for, and how does it relate to LTV?",
+      "options": [
+        "Customer Acquisition Cost; it represents the average cost to acquire a customer, and should be lower than LTV for a business to be profitable",
+        "Compiler Asset Connection; it connects code files",
+        "Cloud Access Configuration; it sets server permissions",
+        "Customer Action Count; it measures page clicks"
+      ],
+      "correctIndex": 0,
+      "explanation": "CAC calculates total marketing/sales spend divided by customers acquired. A standard guideline is an LTV:CAC ratio of 3:1 or higher for sustainable growth.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the role of a Product Requirements Document (PRD)?",
+      "options": [
+        "To list server hardware specs",
+        "A document defining a feature's purpose, features, functionality, and behavior, aligning design and engineering teams before development starts",
+        "To write code comments inside API directories",
+        "To log user database queries"
+      ],
+      "correctIndex": 1,
+      "explanation": "A PRD details the problem, scope, user stories, success metrics, and release phases, serving as the source of truth for the development team.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'feature creep' (scope creep) and how can PMs prevent it?",
+      "options": [
+        "Database tables growing too large; prevent by archiving",
+        "The tendency for a product's scope to expand continuously with unnecessary features, preventing timely releases; prevent by defining strict MVP bounds and PRD scopes",
+        "Developers writing slow code; prevent by linting",
+        "Application files duplicating on disk; prevent by cleanup scripts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Feature creep delays launches. PMs prevent it by validating requirements against goals and pushing extra ideas to future versions in the backlog.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the difference between a leading metric and a lagging metric?",
+      "options": [
+        "Leading metrics are for marketing; lagging are for engineers",
+        "Leading metrics predict future outcomes (e.g. daily active users); lagging metrics report historical results after events occur (e.g. monthly revenue)",
+        "Lagging metrics are always more useful than leading metrics",
+        "Leading metrics do not contain numeric values"
+      ],
+      "correctIndex": 1,
+      "explanation": "Leading metrics show indicators (e.g. users completing onboarding predicts retention). Lagging metrics show final outcomes (e.g., quarterly churn shows if the onboarding changes worked).",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is the 'North Star Metric' in product management?",
+      "options": [
+        "The server latency metric; must be kept low",
+        "The key measure of success that best captures the core value your product delivers to its customers, aligning all team goals",
+        "The total count of code commits on GitHub",
+        "The revenue of the top competitor company"
+      ],
+      "correctIndex": 1,
+      "explanation": "The North Star Metric should represent customer value (e.g. Spotify: 'Time spent listening'; Airbnb: 'Nights booked'), guiding product decisions.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is A/B testing in product optimization?",
+      "options": [
+        "Testing applications on Windows (A) and macOS (B)",
+        "Comparing two versions of a webpage or feature (A and B) against each other with live users to measure which version performs better on a target metric",
+        "Testing code compilers on different processors",
+        "Writing two separate code versions for backends"
+      ],
+      "correctIndex": 1,
+      "explanation": "A/B tests validate changes (e.g. button colors or layouts). Split traffic evaluates if the change significantly shifts conversion rates.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'agile' methodology in product development?",
+      "options": [
+        "A process requiring developers to work standing up",
+        "An iterative approach to software development and project management that helps teams deliver value to customers faster through small, incremental releases",
+        "A coding framework that compiles code faster",
+        "A database backup schedule system"
+      ],
+      "correctIndex": 1,
+      "explanation": "Agile prioritizes collaboration and adapting to feedback. Teams work in short cycles (sprints), shipping increments and reviewing goals regularly.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is a 'Sprint Retro' (Retrospective) in Scrum frameworks?",
+      "options": [
+        "A meeting where developers review code scripts",
+        "A meeting at the end of a sprint where the team discusses what went well, what went poorly, and defines actions to improve the next sprint",
+        "A presentation showing the final product to users",
+        "A database cleanup process"
+      ],
+      "correctIndex": 1,
+      "explanation": "Retrospectives focus on team process. The team identifies bottlenecks and sets actionable improvements for the next iteration.",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "What is 'OKR' stand for, and how are they structured?",
+      "options": [
+        "Objectives and Key Results; structured as a qualitative goal (Objective) followed by 3-5 quantitative metrics to measure achievement (Key Results)",
+        "Operations and Key Routing; structured as network paths",
+        "Organization and Key Registration; structured as employee trees",
+        "Object and Key Relations; structured as database schemas"
+      ],
+      "correctIndex": 0,
+      "explanation": "OKRs align goals. The Objective defines direction (e.g., 'Deliver excellent customer onboarding'). Key Results track progress (e.g., 'Increase onboarding completion rate from 60% to 80%').",
+      "difficulty": "moderate"
+    },
+    {
+      "question": "In product economics, explain the difference between 'cohort analysis' and simple aggregate user analytics.",
+      "options": [
+        "Cohort analysis is for mobile apps; aggregate is for web only",
+        "Cohort analysis breaks users into related groups based on share characteristics (e.g. signup date) to track behaviors over time; aggregate analytics combines all users into a single average metric",
+        "Aggregate analytics is more detailed than cohort analysis",
+        "Cohort analysis does not track user retention rates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Aggregate data hides shifts. If signups surge but immediately leave, aggregate active users looks stable. Cohort analysis reveals that the January signup group has a 90% drop-off by week 2, highlighting retention issues.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Kano Model' categorization, and how does it classify product features to guide development priority?",
+      "options": [
+        "Classifies features by database indexing speeds",
+        "Classifies features based on customer preference into: Must-be (Basics), Performance (One-dimensional), and Attractive (Delighters) to balance roadmaps",
+        "Classifies features by code compile complexity",
+        "Classifies features by marketing launch costs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Basics are required (e.g. user login). Performance features scale satisfaction linearly (e.g. faster load times). Delighters are unexpected bonuses (e.g., automated report generators) that drive customer delight.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain the concept of 'product led growth' (PLG) and how it differs from sales-led growth models.",
+      "options": [
+        "PLG relies on physical stores; sales-led on online sites",
+        "PLG uses the product itself as the primary driver of customer acquisition, retention, and expansion (e.g. freemium self-serve model); sales-led relies on outbound sales teams to close deals",
+        "PLG requires higher marketing budgets than sales-led growth",
+        "PLG is only possible in hardware companies"
+      ],
+      "correctIndex": 1,
+      "explanation": "PLG products (like Zoom, Slack) let users experience value immediately via free tiers. Expansion is driven by user referrals or viral features within the product itself, decreasing CAC.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "What is 'Opportunity Solution Tree' (developed by Teresa Torres) and how does it help PMs avoid building features that don't drive business outcomes?",
+      "options": [
+        "A folder tree configuration inside code repositories",
+        "A visual mapping tool that starts with a clear outcome, maps opportunities (customer pain points), and branches into multiple solution ideas and experiment tests",
+        "A database schema diagram linking tables",
+        "A timeline roadmap displaying task assignments"
+      ],
+      "correctIndex": 1,
+      "explanation": "Opportunity trees keep teams outcome-focused. Instead of jumping straight to a feature solution, the tree links solutions to validated customer pain points (opportunities) that directly support a target business outcome.",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Explain the difference between 'Product Discovery' and 'Product Delivery' in dual-track agile, and why they should run in parallel.",
+      "options": [
+        "Discovery is for marketing teams; Delivery is for coding teams",
+        "Discovery focuses on learning what to build (validating value, usability, viability); Delivery focuses on building it securely at scale. Running them in parallel ensures developers always build validated ideas",
+        "Delivery must finish completely before Discovery starts",
+        "They are identical tracks managed by different project tools"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dual-track agile prevents building useless features. The product manager and designer discover (validate prototypes, interview users) in Track 1, while engineers deliver (code stable features) in Track 2, feeding validated items into the sprint backlog.",
+      "difficulty": "hard"
+    }
+  ]
+}

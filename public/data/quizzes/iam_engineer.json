@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "For a global enterprise IAM system with complex regulatory and integration requirements, establishing a robust governance framework is paramount for long-term ownership. This includes defining roles, responsibilities, clear policy management processes, regular audits, and a strategic roadmap to address evolving compliance, technology, and business needs. Technical implementation is one aspect, but governance ensures its ongoing effectiveness, compliance, and maintainability.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does IAM stand for in cybersecurity?",
+    "options": [
+      "Information Asset Management",
+      "Identity and Access Management",
+      "Intrusion Alert Monitor",
+      "Internet Access Method"
+    ],
+    "correctIndex": 1,
+    "explanation": "Identity and Access Management (IAM) is the security framework managing identities, credentials, and access rules for users and systems.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary goal of IAM?",
+    "options": [
+      "To speed up internet connections",
+      "To ensure that the right individuals access the right resources at the right times for the right reasons",
+      "To write application backend source code",
+      "To design vector graphics for dashboards"
+    ],
+    "correctIndex": 1,
+    "explanation": "IAM secures access boundaries, preventing data breaches by verifying identity (authentication) and enforcing permissions (authorization).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Authentication (AuthN) and Authorization (AuthZ)?",
+    "options": [
+      "AuthN is for files; AuthZ is for databases",
+      "Authentication verifies who you are (e.g., login credentials); Authorization verifies what you have permission to do",
+      "Authorization is checked before Authentication",
+      "They are identical processes"
+    ],
+    "correctIndex": 1,
+    "explanation": "Authentication checks your identity (password, OTP). Authorization checks if your identity has permissions to access the resource (e.g., read an S3 bucket).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Multi-Factor Authentication (MFA)?",
+    "options": [
+      "Using multiple passwords for one account",
+      "An authentication method requiring two or more independent factors (something you know, have, or are) to verify identity",
+      "A password longer than 20 characters",
+      "Logging in from two different browser windows"
+    ],
+    "correctIndex": 1,
+    "explanation": "MFA combines validation factors (e.g. password + phone SMS token + fingerprint) to protect accounts from credential leaks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Single Sign-On' (SSO)?",
+    "options": [
+      "A website that only allows one user to log in at a time",
+      "A session/user authentication service that permits a user to log in once with one set of credentials to access multiple applications",
+      "A password that can only be used once (OTP)",
+      "A server database configuration profile"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSO improves user experience and security by centralizing authentication. Logging into the corporate portal grants access to Slack, Salesforce, and email seamlessly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following represents a non-human identity in IAM systems?",
+    "options": [
+      "A business analyst user",
+      "A Service Account or API Client",
+      "A corporate logo brand",
+      "A developer desktop computer"
+    ],
+    "correctIndex": 1,
+    "explanation": "Non-human identities (service accounts, machine-to-machine clients) require credentials (API keys, certificates) to authenticate server-to-server operations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the 'Principle of Least Privilege'?",
+    "options": [
+      "Giving all users administrator rights to prevent access blocks",
+      "Granting users and service accounts only the minimum permissions necessary to complete their specific job tasks",
+      "Using the smallest possible encryption key size",
+      "Restricting database table columns to 10 rows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Least privilege limits exposure. A support analyst doesn't need database deletion privileges; restricting their account minimizes damage if hijacked.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Role-Based Access Control (RBAC) and Attribute-Based Access Control (ABAC)?",
+    "options": [
+      "RBAC is for SQL; ABAC is for NoSQL",
+      "RBAC grants permissions based on defined user roles (e.g., Manager); ABAC grants permissions based on attributes of the user, resource, and environment (e.g., location, time)",
+      "ABAC is older and legacy compared to RBAC",
+      "They are identical access controls"
+    ],
+    "correctIndex": 1,
+    "explanation": "RBAC assigns permissions to roles. ABAC is more granular, evaluating conditions (e.g. 'Allow user if Role is HR AND department is Billing AND access time is between 9am-5pm').",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Directory Service' (e.g., Active Directory, LDAP)?",
+    "options": [
+      "A folder list in file managers",
+      "A database that stores and organizes information about user accounts, computer resources, and access policies in a network hierarchy",
+      "To compress code files",
+      "A routing firewall for cloud domains"
+    ],
+    "correctIndex": 1,
+    "explanation": "Directory services act as the source of truth for user identities, organizing users into groups and enforcing group policies (GPOs) across networks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does SAML stand for and what is it used for?",
+    "options": [
+      "Security Assertion Markup Language; used to exchange authentication and authorization data in SSO",
+      "Secure Access Method Link; used to encrypt databases",
+      "Single Account Monitor Log; used to track user audits",
+      "Standard API Mapping Layout; used to format JSON"
+    ],
+    "correctIndex": 0,
+    "explanation": "SAML (Security Assertion Markup Language) is an XML-based open standard used to pass authentication credentials between an Identity Provider (IdP) and a Service Provider (SP).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is OpenID Connect (OIDC)?",
+    "options": [
+      "An open-source database engine",
+      "An identity layer built on top of the OAuth 2.0 framework, allowing clients to verify the identity of the end-user based on authentication",
+      "A wireless protocol replacing Bluetooth",
+      "A security standard for encrypting hard drives"
+    ],
+    "correctIndex": 1,
+    "explanation": "OIDC extends OAuth 2.0 (which handles authorization). By introducing an 'ID Token' (JWT containing user profiles), OIDC handles modern SSO authentication.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of an Identity Provider (IdP) in access management?",
+    "options": [
+      "A service that registers domain names",
+      "A system that creates, maintains, and manages identity information and authenticates users on behalf of service applications",
+      "A router that directs login traffic",
+      "An antivirus utility for user files"
+    ],
+    "correctIndex": 1,
+    "explanation": "The IdP (e.g., Okta, Entra ID, Ping) owns the user credentials, authenticates logins, and issues security tokens that external applications trust.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Identity Lifecycle Management' refer to?",
+    "options": [
+      "The lifecycle of a database server hardware",
+      "The process of managing a user's digital identity from creation (joining), modification (moving), to deletion (leaving) in systems",
+      "The speed at which passwords expire",
+      "Creating backup copies of user data"
+    ],
+    "correctIndex": 1,
+    "explanation": "Often called Joiner-Mover-Leaver (JML), lifecycle management automates provisioning (granting access when hired) and deprovisioning (revoking access immediately when terminated to prevent backdoors).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Privileged Access Management' (PAM) and who is it designed for?",
+    "options": [
+      "Managing VIP guest access in physical offices",
+      "A cybersecurity system designed to secure, control, and audit access to highly sensitive accounts (like root or admin) by users like IT administrators",
+      "A billing monitoring dashboard for directors",
+      "A software tool that limits database access to managers"
+    ],
+    "correctIndex": 1,
+    "explanation": "PAM tools (like CyberArk or BeyondTrust) isolate administrative access, forcing admins to check out credentials dynamically and logging all actions for audits.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Federated Identity'?",
+    "options": [
+      "A user account controlled by a government agency",
+      "A system linking a user's identity across distinct identity management systems (different companies/domains), allowing single sign-on",
+      "An encrypted database table containing keys",
+      "A network routing path between clouds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Federation allows you to log into external services using your corporate credentials (e.g. 'Log in with Google' or 'Log in with Okta'), linking identities securely across domains.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an 'Access Review' (User Access Attestation)?",
+    "options": [
+      "A software review left by users on app stores",
+      "The periodic audit process where managers review and certify that employees still require their assigned access permissions",
+      "Testing server bandwidth under high load",
+      "A database query optimization process"
+    ],
+    "correctIndex": 1,
+    "explanation": "Access reviews comply with security frameworks, catching 'Privilege Creep' (employees keeping access rights from old departments that they no longer need).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between active and inactive accounts (ghost accounts) in IAM governance?",
+    "options": [
+      "Active accounts are paid; inactive are free",
+      "Active accounts are in use; Inactive/ghost accounts are abandoned or legacy accounts that remain enabled, posing a major security backdoor risk",
+      "Ghost accounts do not have usernames",
+      "Active accounts are stored on database servers; ghost accounts on local disks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ghost accounts (e.g. left behind by former employees) are prime targets for hackers because their lack of activity means compromised logins go unnoticed.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Policy' define in cloud IAM (like AWS IAM or Azure RBAC)?",
+    "options": [
+      "A document outlining corporate code styling rules",
+      "A declarative JSON or YAML statement defining allowed or denied actions (Read/Write) for a list of resources under specific conditions",
+      "A contract signed by database servers",
+      "A list of IP ranges assigned to subnets"
+    ],
+    "correctIndex": 1,
+    "explanation": "IAM policies map actions (e.g., `s3:GetObject`) to target resources, serving as the programmatic rules the access controller checks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'OAuth 2.0' and what is its primary token type?",
+    "options": [
+      "An encryption standard; token is a public key",
+      "An industry-standard protocol for authorization; token is an Access Token (often a bearer token) used to access APIs on behalf of a user",
+      "A database query standard; token is an index key",
+      "A login framework; token is an ID Token"
+    ],
+    "correctIndex": 1,
+    "explanation": "OAuth 2.0 enables delegation. It grants applications limited access to user accounts (via Access Tokens) without exposing user passwords.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'JIT Provisioning' (Just-In-Time) in IAM?",
+    "options": [
+      "Provisioning server hardware in under 1 second",
+      "Automatically creating or updating user accounts on-the-fly when they first log in via SSO/SAML, using claims passed by the Identity Provider",
+      "Writing code test cases during build",
+      "Deallocating unused memory columns dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "JIT provisioning saves admin time. Instead of pre-creating user profiles in downstream SaaS tools, the account is generated dynamically upon the user's first federated login.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'MFA Fatigue' (MFA Bombing / Prompt Bombing) and how is it mitigated?",
+    "options": [
+      "Users getting tired of typing passwords; mitigated by biometric logins",
+      "An attack where hackers flood a user's phone with MFA push requests, hoping the user clicks Approve to stop the notifications; mitigated by number matching prompts",
+      "A server crashing due to too many MFA keys; mitigated by scaling databases",
+      "An infinite loop in auth code; mitigated by timeouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prompt bombing exploits human error. Mitigation involves 'Number Matching', where the login screen displays a 2-digit number that the user must type into their phone app to authorize the push.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In cloud IAM, what is 'Privilege Escalation' and how does an attacker exploit path relationships?",
+    "options": [
+      "Upgrading a server processor; exploited by adding RAM",
+      "The act of exploiting a bug or configuration permission flaw (like `iam:CreatePolicyVersion`) to elevate access privileges to admin level",
+      "A database sync timeout; exploited by overloading queries",
+      "A script compiling code; exploited by hacking compiler paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attakers exploit weak IAM configs. If a non-admin role has the permission to create new policies or update policy versions, they can assign themselves admin rights, compromising the system.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between SAML XML signature validation and OAuth JWT signature validation?",
+    "options": [
+      "SAML is symmetric; OAuth is asymmetric",
+      "SAML validates XML assertions using public key certificates embedded in metadata XML; OAuth validates JSON Web Tokens using public keys fetched from JWKS endpoints",
+      "OAuth signatures are checked by database engines; SAML by web browsers",
+      "They use identical coding library syntax"
+    ],
+    "correctIndex": 1,
+    "explanation": "SAML verifiers look up the IdP's certificate to validate the XML signature block. OAuth verifiers fetch keys dynamically from the authorization server's JWKS (JSON Web Key Set) URI (e.g. `/.well-known/jwks.json`) to verify JWT signatures.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Credential Stuffing' and how does it differ from a brute-force attack?",
+    "options": [
+      "A server memory leak; brute-force is a network error",
+      "Credential stuffing uses automated scripts to test lists of leaked usernames/passwords from past third-party breaches across other sites; brute-force generates passwords randomly or alphabetically",
+      "Brute-force attacks are only done on mobile apps",
+      "They are identical password exploits"
+    ],
+    "correctIndex": 1,
+    "explanation": "Credential stuffing exploits password reuse. Attackers assume users reuse identical logins on Slack, Gmail, and banking apps, using automation to test leaked credentials rapidly.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the security risk of 'Access Token Leakage' in single-page applications (SPAs), and what is the 'BFF' (Backend For Frontend) mitigation pattern?",
+    "options": [
+      "Tokens slowing down page loads; BFF redirects to homepages",
+      "Tokens stored in client memory/localStorage are vulnerable to theft via XSS; BFF moves token storage and API calls to a secure backend session cookie, shielding tokens from JavaScript",
+      "Tokens expiring too fast; BFF increases token lifespans",
+      "Tokens using unencrypted values; BFF converts them to binary"
+    ],
+    "correctIndex": 1,
+    "explanation": "If an SPA holds access tokens in local storage, an XSS script can read and exfiltrate them. The BFF pattern keeps tokens on the server, using secure, httpOnly, encrypted session cookies to authorize client requests.",
+    "difficulty": "hard"
   }
 ]

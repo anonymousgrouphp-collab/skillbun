@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "Network Security Configuration allows for custom trust rules. The debug-overrides section specifically enables changes (like trusting user-added CAs or specific domains) only when the app is running in debug mode, providing a secure way to manage development-specific certificate trust without affecting release builds. usesCleartextTraffic disables HTTPS entirely, a custom TrustManager that always trusts is a severe security vulnerability, and embedding self-signed certs is less flexible and still applies to release builds unless carefully managed.",
     "difficulty": "hard"
+  },
+  {
+    "question": "Which programming language is now officially recommended by Google for Android development?",
+    "options": [
+      "Java",
+      "C++",
+      "Kotlin",
+      "Swift"
+    ],
+    "correctIndex": 2,
+    "explanation": "Google officially announced Kotlin as the preferred language for Android development in 2019. While Java is still supported, Kotlin offers features like null safety, coroutines, and more concise syntax that make it the recommended choice for new Android projects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is an 'Activity' in Android development?",
+    "options": [
+      "A background service",
+      "A single screen with a user interface that the user can interact with",
+      "A database table",
+      "A network request handler"
+    ],
+    "correctIndex": 1,
+    "explanation": "An Activity represents a single screen in an Android application with its associated user interface. It serves as an entry point for user interaction and manages the lifecycle of the screen's UI components.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What file is used to declare an Android app's components, permissions, and metadata?",
+    "options": [
+      "build.gradle",
+      "AndroidManifest.xml",
+      "activity_main.xml",
+      "strings.xml"
+    ],
+    "correctIndex": 1,
+    "explanation": "AndroidManifest.xml is a mandatory file in every Android app that declares all app components (activities, services, receivers, providers), required permissions, hardware/software features, and other app metadata that the Android system needs before running the app.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Jetpack Compose in Android development?",
+    "options": [
+      "A database library",
+      "Android's modern declarative UI toolkit for building native interfaces using Kotlin",
+      "A networking library",
+      "A testing framework"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jetpack Compose is Android's modern toolkit for building native UI. It uses a declarative approach where you describe the UI in Kotlin functions (composables), and the framework handles rendering and updates when state changes, replacing the traditional XML-based layout system.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'Gradle' build system in Android development?",
+    "options": [
+      "To design UI layouts",
+      "To automate building, testing, and packaging the Android application",
+      "To manage user authentication",
+      "To handle push notifications"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gradle is the build automation system used by Android Studio. It manages dependencies, compiles source code, packages the APK/AAB, runs tests, and handles build variants (debug/release). Build configuration is defined in build.gradle files using Groovy or Kotlin DSL.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'APK' stand for in Android?",
+    "options": [
+      "Android Programming Kit",
+      "Application Package Kit",
+      "Android Package",
+      "Application Process Kernel"
+    ],
+    "correctIndex": 2,
+    "explanation": "APK stands for Android Package (sometimes referred to as Android Package Kit). It is the file format used to distribute and install applications on the Android operating system, containing all of the app's compiled code, resources, assets, and manifest file.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of RecyclerView in Android?",
+    "options": [
+      "To recycle unused memory",
+      "To efficiently display large scrollable lists by recycling and reusing view holders",
+      "To manage app permissions",
+      "To handle database operations"
+    ],
+    "correctIndex": 1,
+    "explanation": "RecyclerView is a flexible, efficient widget for displaying large datasets in scrollable lists or grids. It recycles view holders (individual item views) as items scroll off-screen, creating new items by rebinding data to recycled views rather than inflating new layouts, saving memory and improving performance.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the Android Activity lifecycle, which callback method is called when the activity becomes visible to the user but is not yet in the foreground?",
+    "options": [
+      "onCreate()",
+      "onStart()",
+      "onResume()",
+      "onPause()"
+    ],
+    "correctIndex": 1,
+    "explanation": "onStart() is called when the activity becomes visible to the user. It follows onCreate() and precedes onResume(). At this point, the activity is visible but may not yet be in the foreground and interactive. onResume() is called when the activity enters the foreground.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of ViewModel in Android's Architecture Components?",
+    "options": [
+      "To define the visual layout of a screen",
+      "To store and manage UI-related data in a lifecycle-aware way, surviving configuration changes like screen rotation",
+      "To handle network requests",
+      "To manage database migrations"
+    ],
+    "correctIndex": 1,
+    "explanation": "ViewModel stores UI-related data that survives configuration changes (like screen rotations) which would otherwise destroy and recreate the Activity. It separates UI data handling from the Activity/Fragment lifecycle, preventing data loss and reducing boilerplate code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are Kotlin Coroutines primarily used for in Android development?",
+    "options": [
+      "Building UI layouts",
+      "Managing asynchronous operations like network calls and database queries without blocking the main thread",
+      "Compiling Kotlin code to bytecode",
+      "Creating animations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kotlin Coroutines provide a way to write asynchronous, non-blocking code in a sequential style. In Android, they're used to perform long-running operations (network requests, database queries, file I/O) off the main thread, preventing UI freezes while keeping code readable.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Jetpack Compose, what does the 'remember' function do?",
+    "options": [
+      "Saves data to persistent storage",
+      "Stores a value in the composition so it survives recompositions but not configuration changes",
+      "Caches network responses",
+      "Records user interactions for analytics"
+    ],
+    "correctIndex": 1,
+    "explanation": "remember stores a value across recompositions of a composable function. When the composable recomposes (re-executes due to state changes), remembered values are preserved rather than being reinitialized. However, they do not survive configuration changes — rememberSaveable should be used for that.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Room in Android's Jetpack library?",
+    "options": [
+      "To manage UI navigation",
+      "To provide an abstraction layer over SQLite for type-safe database access with compile-time SQL verification",
+      "To handle image loading",
+      "To implement push notifications"
+    ],
+    "correctIndex": 1,
+    "explanation": "Room is a persistence library that provides an abstraction layer over SQLite. It uses annotations to generate boilerplate code, verifies SQL queries at compile time, supports LiveData/Flow for observable queries, and integrates seamlessly with other Architecture Components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Fragment' in Android, and when would you use one?",
+    "options": [
+      "A complete standalone application",
+      "A reusable portion of UI with its own lifecycle that can be embedded within an Activity",
+      "A type of Android notification",
+      "A background process"
+    ],
+    "correctIndex": 1,
+    "explanation": "A Fragment represents a modular, reusable portion of a UI with its own lifecycle. Fragments are used to build multi-pane layouts (e.g., on tablets), implement navigation patterns, and create reusable UI components that can be combined within different Activities.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'Navigation Component' in Android Jetpack help accomplish?",
+    "options": [
+      "GPS-based location tracking",
+      "Managing app navigation flow between screens/destinations with support for deep links, arguments, and back stack",
+      "Navigating through files in the file system",
+      "Managing network routing"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Navigation Component simplifies implementing navigation in Android apps. It provides a visual navigation graph, handles fragment transactions, manages the back stack, supports deep linking, enables safe argument passing between destinations, and follows Android navigation principles.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Retrofit commonly used for in Android development?",
+    "options": [
+      "Building database schemas",
+      "Making HTTP network requests to REST APIs with type-safe request/response handling",
+      "Creating UI animations",
+      "Managing app permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Retrofit is a type-safe HTTP client library for Android that simplifies making REST API calls. It uses annotations to define API endpoints, handles serialization/deserialization (with converters like Gson/Moshi), and integrates with coroutines and RxJava for asynchronous execution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of 'Data Binding' in Android?",
+    "options": [
+      "Binding data to a remote server",
+      "Binding UI components in layouts directly to data sources, reducing boilerplate findViewById() calls",
+      "Binding two applications together",
+      "Binding data to a blockchain"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Binding is a Jetpack library that allows you to bind UI components in XML layouts directly to data sources (ViewModels, data classes) using a declarative format. It eliminates manual view lookups, reduces boilerplate, and enables observable data patterns in the UI layer.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Android, what is the difference between 'dp' and 'sp' units?",
+    "options": [
+      "They are exactly the same",
+      "dp (density-independent pixels) is for general layouts; sp (scale-independent pixels) is like dp but also scales with the user's font size preference",
+      "dp is for text; sp is for layouts",
+      "sp is always larger than dp"
+    ],
+    "correctIndex": 1,
+    "explanation": "dp (density-independent pixels) scales based on screen density to ensure consistent sizing across devices. sp (scale-independent pixels) behaves like dp but additionally scales with the user's preferred font size setting. Use dp for layouts/spacing and sp for text sizes to respect accessibility preferences.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'ProGuard' (or R8) used for in Android release builds?",
+    "options": [
+      "Protecting the app with a firewall",
+      "Shrinking, obfuscating, and optimizing the app code to reduce APK size and make reverse engineering harder",
+      "Managing app permissions",
+      "Compiling Kotlin to Java"
+    ],
+    "correctIndex": 1,
+    "explanation": "R8 (which replaced ProGuard) is used in release builds to shrink (remove unused code/resources), obfuscate (rename classes/methods to short, meaningless names), and optimize the compiled code. This reduces APK size and makes reverse engineering more difficult.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are 'Intents' used for in Android?",
+    "options": [
+      "Defining the app's visual theme",
+      "Messaging objects used to request actions from other app components, such as starting activities, services, or sending broadcasts",
+      "Managing database transactions",
+      "Creating notification channels"
+    ],
+    "correctIndex": 1,
+    "explanation": "Intents are messaging objects that request an action from another component. Explicit intents target a specific component (e.g., starting a particular Activity). Implicit intents declare a general action (e.g., 'share this text'), allowing the system to find suitable components.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Jetpack Compose, what is the difference between 'State' and 'MutableState'?",
+    "options": [
+      "State is for integers; MutableState is for strings",
+      "State is a read-only interface; MutableState allows reading and writing, triggering recomposition when the value changes",
+      "There is no difference",
+      "MutableState is deprecated"
+    ],
+    "correctIndex": 1,
+    "explanation": "State<T> is a read-only interface for observing a value. MutableState<T> extends State and allows writing (updating) the value. When a MutableState value changes, Compose automatically triggers recomposition of any composables that read that state, updating the UI.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When building a complex Android app with Jetpack Compose, how should you architect the relationship between UI state, business logic, and side effects to ensure testability and separation of concerns?",
+    "options": [
+      "Put all logic directly in composable functions",
+      "Use a unidirectional data flow pattern: ViewModel holds state, exposes it via StateFlow, composables observe state and send events back to ViewModel",
+      "Use global variables for shared state",
+      "Store all state in SharedPreferences"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unidirectional data flow (UDF) with ViewModel provides clear separation: the ViewModel owns and exposes UI state via StateFlow/LiveData, composable functions observe this state and render accordingly, and user actions are sent as events back to the ViewModel. This makes the logic testable independently of the UI.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An Android app experiences frequent 'Application Not Responding' (ANR) dialogs. The main thread is blocked for more than 5 seconds. What architectural pattern best prevents this systematically?",
+    "options": [
+      "Increasing the ANR timeout threshold",
+      "Moving all I/O, network, and computation-heavy operations to background threads using Coroutines with appropriate dispatchers (Dispatchers.IO, Dispatchers.Default)",
+      "Disabling the ANR detection system",
+      "Using more powerful hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "ANRs occur when the main/UI thread is blocked. The systematic solution is using Kotlin Coroutines with appropriate dispatchers: Dispatchers.IO for disk/network I/O, Dispatchers.Default for CPU-intensive work, keeping only UI updates on Dispatchers.Main. This ensures the main thread remains responsive.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Android, what is the purpose of 'WorkManager' and when should it be used instead of Coroutines?",
+    "options": [
+      "WorkManager is a replacement for Coroutines",
+      "WorkManager guarantees execution of deferrable, persistent background work even if the app exits or the device restarts, unlike Coroutines which are lifecycle-bound",
+      "WorkManager is only for foreground tasks",
+      "WorkManager is deprecated in favor of Coroutines"
+    ],
+    "correctIndex": 1,
+    "explanation": "WorkManager handles background work that needs guaranteed execution — such as syncing data to a server or periodic database cleanup. Unlike Coroutines (which are cancelled when their scope is destroyed), WorkManager persists work across app restarts and device reboots, making it suitable for reliable, deferrable tasks.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Hilt' in Android development, and what problem does it solve?",
+    "options": [
+      "A UI testing framework",
+      "A dependency injection library built on top of Dagger that provides a standard way to manage object creation and lifecycle scoping in Android apps",
+      "A database migration tool",
+      "A network security library"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hilt is Google's recommended dependency injection (DI) library for Android. Built on Dagger, it simplifies DI setup by providing predefined components and scopes aligned with Android lifecycle (Application, Activity, ViewModel, etc.). It reduces boilerplate and ensures proper dependency scoping and testability.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An Android developer needs to handle deep links that open specific screens in the app. The app uses single-Activity architecture with Jetpack Navigation. What is the correct approach to handle deep links that arrive when the app is already in the foreground?",
+    "options": [
+      "Create a new Activity for each deep link",
+      "Handle the deep link in onNewIntent() of the Activity and pass the intent to the NavController, which matches the deep link URI to a navigation destination",
+      "Ignore deep links when the app is in the foreground",
+      "Use a BroadcastReceiver to intercept all deep links"
+    ],
+    "correctIndex": 1,
+    "explanation": "In single-Activity architecture, deep links arriving while the app is running trigger onNewIntent(). The Activity should pass this new intent to the NavController via handleDeepLink(intent), which matches the URI against declared deep link patterns in the navigation graph and navigates to the appropriate destination.",
+    "difficulty": "hard"
   }
 ]

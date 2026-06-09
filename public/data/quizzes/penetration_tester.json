@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "For C-suite and immediate risk assessment, the Executive Summary is paramount. It provides a high-level, non-technical overview of the most critical findings, their business impact, and the overall security posture, enabling executives to quickly grasp the situation and make informed decisions without needing to delve into technical specifics.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary goal of a penetration tester?",
+    "options": [
+      "To build database server architectures",
+      "To proactively identify and exploit security vulnerabilities in a system with permission to evaluate its security posture",
+      "To write marketing documentation for software",
+      "To configure physical switches and routers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Penetration testers (ethical hackers) mimic real-world attacks to find security flaws before malicious hackers can exploit them.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Black Box, Grey Box, and White Box testing?",
+    "options": [
+      "Black Box is only for terminal commands; White Box is for GUIs",
+      "Black Box testers have no prior knowledge of the target; White Box testers have full access to source code and diagrams; Grey Box is a combination of both",
+      "White Box testing is illegal; Black Box is legal",
+      "They are different names for network port scans"
+    ],
+    "correctIndex": 1,
+    "explanation": "Black Box simulates external hacker perspectives. White Box simulates insider views or deep audits. Grey Box simulates partial knowledge (e.g. standard user logins).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which tool is standard in security for capturing and analyzing network packets in real-time?",
+    "options": [
+      "Ghidra",
+      "Wireshark",
+      "Burp Suite",
+      "Nmap"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wireshark is a popular network protocol analyzer, used to sniff packets and inspect protocol details.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does SQL Injection (SQLi) exploit?",
+    "options": [
+      "Poor styling formats on websites",
+      "Insecure input fields that allow attackers to execute arbitrary SQL commands on a database",
+      "Weak user passwords on login forms",
+      "Missing network routing protocols"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQLi occurs when user inputs are concatenated directly into SQL queries, letting attackers manipulate query logic.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does a network port scanner (like Nmap) primarily do?",
+    "options": [
+      "Checks hard drive space on remote servers",
+      "Discovers active hosts and identifies open network ports and services running on a target system",
+      "Encrypts files for transfer",
+      "Automates browser actions"
+    ],
+    "correctIndex": 1,
+    "explanation": "Nmap scans IP ranges to discover which ports are open (listening), identifying services and operating system versions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Phishing?",
+    "options": [
+      "Searching for files on local systems",
+      "A social engineering attack where attackers trick victims into sharing sensitive info or downloading malware, often via deceptive emails",
+      "A method of scaling database workloads",
+      "Testing network cable speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Phishing exploits human trust, masquerading as legitimate entities to harvest credentials or distribute payloads.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary difference between a vulnerability scan and a penetration test?",
+    "options": [
+      "Vulnerability scans are manual; pen tests are automated",
+      "Vulnerability scans identify known security flaws automatically; penetration tests exploit those flaws to evaluate real-world impact and depth",
+      "Vulnerability scans are illegal; pen tests are legal",
+      "There is no difference between them"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scans are automated reviews that list potential vulnerabilities. Pen tests go a step further, actively exploiting flaws to verify if they are real risks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'reverse shell' and why is it preferred over a bind shell in firewall environments?",
+    "options": [
+      "Reverse shell is for databases; bind shell is for web pages",
+      "A reverse shell forces the target host to initiate an outbound connection back to the attacker's listener, which bypasses inbound firewall blocks",
+      "Bind shell is faster to compile",
+      "Reverse shell is fully encrypted; bind shell is plain text"
+    ],
+    "correctIndex": 1,
+    "explanation": "Firewalls block inbound connections (bind shells fail). However, they often allow outbound traffic (e.g. web surfing). A reverse shell leverages this by calling back to the attacker.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Cross-Site Scripting (XSS) and what is the difference between Stored and Reflected XSS?",
+    "options": [
+      "XSS is a database exploit; Stored XSS deletes database files",
+      "XSS injects scripts into trusted websites; Stored XSS saves the payload in a database to execute for all visiting users; Reflected XSS returns the payload immediately via request parameters",
+      "Reflected XSS is permanent; Stored is temporary",
+      "XSS only targets backend web servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stored XSS (persistent) infects database pages (e.g. forum posts). Reflected XSS (non-persistent) relies on a victim clicking a link containing the payload (e.g. search fields).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Burp Suite and how is it used in web application pentesting?",
+    "options": [
+      "An IDE used to compile web pages",
+      "An intercepting proxy that acts as a middleman between the browser and target website, letting testers capture, analyze, and modify HTTP requests",
+      "A database security firewall",
+      "An automated code compiler tool"
+    ],
+    "correctIndex": 1,
+    "explanation": "Burp Suite intercepts traffic, allowing pen testers to modify parameters, repeat requests (Repeater), or run payload dictionaries (Intruder) to test web forms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of privilege escalation during a penetration test?",
+    "options": [
+      "To increase network bandwidth speeds",
+      "To elevate permissions from a low-privilege user account to a higher-privilege account (like root or Administrator)",
+      "To speed up database query responses",
+      "To encrypt file systems"
+    ],
+    "correctIndex": 1,
+    "explanation": "Once initial access is gained (often as a low-level service user), testers exploit local kernel bugs or misconfigurations to gain admin/system rights.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the OWASP Top 10?",
+    "options": [
+      "A list of top security companies",
+      "A regularly updated report representing consensus on the ten most critical web application security risks",
+      "A list of hacking tools",
+      "A list of database configuration guides"
+    ],
+    "correctIndex": 1,
+    "explanation": "OWASP lists critical risks (like broken access control, cryptographic failures, injection) to guide developers in writing secure code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Cross-Site Request Forgery (CSRF)?",
+    "options": [
+      "Injecting malicious SQL scripts into forms",
+      "An attack that tricks a victim's authenticated browser into executing unwanted actions on a web application they are logged into",
+      "Stealing user passwords using keyloggers",
+      "Blocking user logins by overloading servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "CSRF exploits browser cookie behavior. If a user is logged into their bank, clicking a malicious link on another site can trigger hidden forms that transfer money.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Symmetric and Asymmetric encryption?",
+    "options": [
+      "Symmetric uses two keys; Asymmetric uses one key",
+      "Symmetric encryption uses the same key for both encryption and decryption; Asymmetric uses a public key to encrypt and a private key to decrypt",
+      "Symmetric encryption is only for web pages",
+      "Asymmetric encryption is faster than symmetric"
+    ],
+    "correctIndex": 1,
+    "explanation": "Symmetric (AES) is fast and ideal for data. Asymmetric (RSA/ECC) solves key exchange: public keys are distributed, private keys are kept secret.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Brute Force' attack, and how is it mitigated?",
+    "options": [
+      "Overloading servers with network packets; mitigated by firewalls",
+      "Systematically guessing passwords or keys until the correct one is found; mitigated by account lockouts, rate limiting, and CAPTCHAs",
+      "Using physical tools to break server doors; mitigated by locks",
+      "Injecting code into databases; mitigated by prepared statements"
+    ],
+    "correctIndex": 1,
+    "explanation": "Brute forcing tries dictionary words or combinations. Defense includes account lockouts after failed attempts, rate-limiting, and 2FA.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Man-in-the-Middle' (MitM) attack?",
+    "options": [
+      "A developer who coordinates team coding tasks",
+      "An attack where the attacker secretly intercepts and alters communication between two parties who believe they are communicating directly",
+      "An SQL database query failure",
+      "A hardware router failure"
+    ],
+    "correctIndex": 1,
+    "explanation": "MitM intercepts traffic (e.g. on public Wi-Fi). Attackers sniff credentials or inject scripts. Mitigations include HTTPS and HSTS.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'hashcat' tool in security?",
+    "options": [
+      "To check file download integrity logs",
+      "A fast password recovery (cracking) tool that supports CPU and GPU acceleration for various hash types",
+      "To encrypt hard drive sectors",
+      "To scan web applications for open ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hashcat cracks password hashes offline. It leverages GPU power to compute millions of hashes per second using dictionaries or brute-force masks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Local File Inclusion (LFI) in web applications?",
+    "options": [
+      "Saving web pages to local disk folders",
+      "An exploit allowing attackers to read sensitive files on the server (like /etc/passwd) by manipulating file path input parameters",
+      "Injecting DLL files into browser applications",
+      "Hosting web assets on local servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "LFI happens when input parameters (e.g. `?file=about`) are passed directly to file-system functions, enabling directory traversal (e.g. `../../etc/passwd`).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Metasploit Framework?",
+    "options": [
+      "A database used to store client records",
+      "A widely used penetration testing platform providing database exploits, payloads, and post-exploitation modules",
+      "A compiler script for Python",
+      "A network switch setup tool"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metasploit contains pre-coded exploits and payloads, simplifying the process of exploiting known vulnerabilities and managing sessions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'robots.txt' file in reconnaissance?",
+    "options": [
+      "To block hacker scripts from accessing servers",
+      "To guide search engine web crawlers, often revealing hidden directory paths (like /admin) to security testers",
+      "To configure database users",
+      "To style web components"
+    ],
+    "correctIndex": 1,
+    "explanation": "Robots.txt tells crawlers which directories not to index. Pentesters read it to discover hidden directory names or sensitive paths.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Server-Side Request Forgery (SSRF), and how does it allow an attacker to pivot into internal networks?",
+    "options": [
+      "Tricking users into submitting bank details; pivot by emailing links",
+      "An exploit where a web application fetches a URL supplied by an attacker, allowing them to abuse the server's credentials to query internal resources",
+      "Overloading routing switches; pivot by duplicate packets",
+      "Modifying cookie fields; pivot by hijacking sessions"
+    ],
+    "correctIndex": 1,
+    "explanation": "SSRF makes the backend server the attacker. If the server is in a cloud network, the attacker can query the local metadata API (e.g., `http://169.254.169.254/`) or scan internal ports that are closed to the public.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how a Buffer Overflow vulnerability works, and what security mechanisms like DEP (Data Execution Prevention) and ASLR (Address Space Layout Randomization) do to prevent exploitation.",
+    "options": [
+      "Buffer overflow fills database tables; DEP blocks SQL commands; ASLR speeds up indexing",
+      "A bug writing data beyond allocated memory bounds, overwriting return addresses. DEP prevents executing code in data segments; ASLR randomizes memory addresses to make landing addresses unpredictable",
+      "Buffer overflow is a network crash; DEP is a firewall; ASLR is DNS routing",
+      "They are legacy concepts that do not apply to compiled systems"
+    ],
+    "correctIndex": 1,
+    "explanation": "Overflows corrupt the stack, aiming to overwrite the instruction pointer (EIP/RIP) to point to shellcode. DEP blocks execution on the stack. ASLR randomizes stack/heap locations, so hardcoded jump addresses in exploits fail.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Active Directory pentesting, what is the 'Kerberoasting' attack and what is its technical goal?",
+    "options": [
+      "An attack that burns AD servers physically; goal is server destruction",
+      "Extracting service ticket (TGS) hashes from Active Directory for accounts associated with Service Principal Names (SPNs), aiming to crack their passwords offline",
+      "Generating fake user accounts; goal is database entry",
+      "Bypassing DNS controls; goal is network pivot"
+    ],
+    "correctIndex": 1,
+    "explanation": "Any domain user can request service tickets (TGS) for any service (SPN). Since TGS tickets are encrypted with the service account's password hash, attackers request them, dump them, and run offline brute-force cracking.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between a Blind SQL Injection and an Error-based SQL Injection, and how does Boolean-based blind differ from Time-based blind?",
+    "options": [
+      "Blind SQLi is for NoSQL databases; Error-based is for SQL",
+      "Error-based returns database errors in the response; Blind does not. Boolean-based blind infers data by checking if queries return true/false responses; Time-based infers data by injecting delays (sleep commands)",
+      "Time-based is faster than Boolean-based blind injection",
+      "Blind SQLi is only possible on Windows servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "When app pages hide error outputs, testers use blind methods. Boolean checks if content changes when adding `AND 1=1` vs `AND 1=2`. Time checks if the page takes 5 seconds to load when executing a conditional sleep query.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does dynamic binary instrumentation (DBI) frameworks (like Frida) assist in mobile application penetration testing?",
+    "options": [
+      "By compiling mobile apps into web formats",
+      "By injecting custom scripts (JavaScript) into a running application's process memory, allowing testers to hook functions, modify variables, and bypass SSL pinning at runtime",
+      "By scanning the mobile device for malware applications",
+      "By creating backup configurations of mobile databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frida injects code into target processes. In mobile testing, security checks (like SSL pinning or root detection) can be bypassed by hooking the check functions and forcing them to return true/false.",
+    "difficulty": "hard"
   }
 ]

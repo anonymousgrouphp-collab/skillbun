@@ -298,5 +298,305 @@
     "correctIndex": 2,
     "explanation": "This scenario highlights a crucial gap between technical output and business understanding. A BI developer needs strong domain knowledge to translate business objectives into measurable metrics and excellent communication skills to align with stakeholders, ensuring the BI solution truly addresses the strategic goals. SQL optimization or tool switching wouldn't solve the fundamental miscalibration of metrics.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does BI stand for?",
+    "options": [
+      "Binary Integration",
+      "Business Intelligence",
+      "Basic Information",
+      "Business Infrastructure"
+    ],
+    "correctIndex": 1,
+    "explanation": "BI stands for Business Intelligence, which involves analyzing data to provide actionable insights for business decisions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a leading Business Intelligence tool used for creating interactive reports and dashboards?",
+    "options": [
+      "Visual Studio Code",
+      "Power BI / Tableau",
+      "Docker",
+      "MongoDB"
+    ],
+    "correctIndex": 1,
+    "explanation": "Power BI and Tableau are industry-leading business intelligence platforms used to visualize data and build dashboards.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary goal of data visualization in BI?",
+    "options": [
+      "To make datasets larger",
+      "To present complex data in a graphical format that is easy to understand and analyze",
+      "To encrypt financial database columns",
+      "To run machine learning algorithms in the browser"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data visualization translates complex raw data into graphical forms (charts, graphs, maps) to help stakeholders identify trends, outliers, and patterns.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a dashboard in BI?",
+    "options": [
+      "A command line interface for developers",
+      "An interactive visual interface displaying key performance indicators (KPIs) and metrics in one view",
+      "A type of database indexing tool",
+      "A script that extracts data from web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "A BI dashboard aggregates and displays metrics, KPIs, and charts in a single, interactive interface to monitor business health in real-time or periodically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does ETL stand for in data warehousing?",
+    "options": [
+      "Extract, Transform, Load",
+      "Evaluate, Transfer, Link",
+      "Encryption, Testing, Launch",
+      "Enterprise Table Layout"
+    ],
+    "correctIndex": 0,
+    "explanation": "ETL stands for Extract, Transform, Load. It is the process of pulling data from source systems, cleaning/formatting it, and loading it into a target data warehouse.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is SQL primarily used for by a BI developer?",
+    "options": [
+      "Styling dashboard buttons",
+      "Querying and extracting data from databases to feed reports and data models",
+      "Writing web server routers",
+      "Compiling local scripts"
+    ],
+    "correctIndex": 1,
+    "explanation": "BI developers use SQL extensively to query, join, aggregate, and retrieve data from relational databases and data warehouses.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a Key Performance Indicator (KPI)?",
+    "options": [
+      "A password used to access BI tools",
+      "A quantifiable measure used to evaluate the success of an organization or activity in meeting performance targets",
+      "A type of database primary key",
+      "A software performance metric for servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "KPIs are critical, quantifiable metrics that track progress toward strategic and operational goals (e.g., Net Profit Margin, Customer Retention Rate).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Data Warehouse and a Data Lake?",
+    "options": [
+      "A Data Warehouse is only for text files; a Data Lake stores binary files",
+      "A Data Warehouse stores structured, modeled data for reporting; a Data Lake stores raw, unstructured, or semi-structured data at scale",
+      "A Data Lake is always faster than a Data Warehouse",
+      "A Data Warehouse is on-premises; a Data Lake is always in the cloud"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Warehouses store highly processed, structured data optimized for fast SQL analytics. Data Lakes store raw, unprocessed data (structured, semi-structured, unstructured) for flexible, exploratory purposes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In BI data modeling, what is a Star Schema?",
+    "options": [
+      "A schema layout that has no foreign key relationships",
+      "A modeling design consisting of one central fact table referenced by multiple surrounding dimension tables, resembling a star",
+      "A database system built by NASA",
+      "A type of network network cabling"
+    ],
+    "correctIndex": 1,
+    "explanation": "The star schema is a simple data modeling structure. The center holds a fact table (metrics), radiating out to dimension tables (context like customer, product, date) linked via simple keys.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Snowflake Schema?",
+    "options": [
+      "A schema that only supports cold storage data",
+      "An extension of a Star Schema where dimension tables are normalized into additional related tables",
+      "A database structure that melts/deletes data after a month",
+      "A visual styling template for dashboards"
+    ],
+    "correctIndex": 1,
+    "explanation": "A snowflake schema normalizes dimensions of a star schema (e.g., splitting a 'product' dimension into 'product' and 'category' tables), reducing redundancy at the cost of more complex SQL joins.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Fact tables and Dimension tables?",
+    "options": [
+      "Fact tables store business metrics/measurements; Dimension tables store descriptive context",
+      "Fact tables store text; Dimension tables store numbers",
+      "Fact tables are small lookup tables; Dimension tables are massive transactional logs",
+      "They are identical in purpose"
+    ],
+    "correctIndex": 0,
+    "explanation": "Fact tables store measurable quantitative data (e.g., units sold, price) and foreign keys. Dimension tables store descriptive attributes (e.g., customer name, store location, date details).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a Date Dimension (Calendar Table) in BI modeling?",
+    "options": [
+      "To schedule dashboard deployment dates",
+      "To enable advanced time-intelligence calculations (YoY growth, YTD totals) and uniform date filtering across sources",
+      "To automatically update server timestamps",
+      "To count how many days a user has been logged in"
+    ],
+    "correctIndex": 1,
+    "explanation": "A date dimension is a dedicated lookup table containing date attributes (quarter, month name, fiscal year, weekend flag). It is critical for uniform date grouping and time-intelligence queries in BI tools.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is DAX (Data Analysis Expressions) in Power BI?",
+    "options": [
+      "A tool for migrating databases to the cloud",
+      "A formula language used to create custom calculations, measures, and calculated columns in Power BI models",
+      "A style sheet language for formatting dashboards",
+      "An API library for fetching data"
+    ],
+    "correctIndex": 1,
+    "explanation": "DAX is the native formula language for Power BI, Analysis Services, and Power Pivot in Excel. It provides rich functions for relational data manipulation and aggregation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a calculated column and a measure in Power BI?",
+    "options": [
+      "Calculated columns are free; measures cost resources",
+      "Calculated columns are computed row-by-row during data refresh and stored in memory; measures are calculated on-the-fly based on report filters (context) and not stored",
+      "Measures can only be created with SQL; calculated columns with DAX",
+      "Calculated columns only display text; measures only display numbers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Calculated columns are pre-calculated and increase model size. Measures are dynamic, consuming CPU at report interaction time based on the active visual filter context, which is highly efficient.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In data integration, what does a 'Delta Load' (Incremental Load) mean?",
+    "options": [
+      "Deleting all old records and reloading everything",
+      "Loading only the new or modified records since the last successful execution, saving time and resources",
+      "Encrypting database transactions",
+      "Sorting data in descending order before loading"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unlike full loads which reload the entire dataset, a delta/incremental load checks for modified/new records (typically using a timestamp) and inserts/updates only those records.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is data profiling?",
+    "options": [
+      "Creating user accounts in the BI platform",
+      "Analyzing source data to understand its structure, content, quality, and patterns before ingestion",
+      "Designing vector icons for reports",
+      "Compressing database backups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data profiling examines raw source data to identify data types, formats, null counts, duplicate distributions, and potential anomalies, ensuring input data quality.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'Slicing and Dicing' data mean in BI?",
+    "options": [
+      "Deleting unused columns in a dataset",
+      "Breaking down data into smaller groups and viewing it from different dimensional angles (filtering and sorting)",
+      "Encrypting data for different user roles",
+      "Merging two separate databases into a new one"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slicing filters the dataset to a specific focus (e.g., Sales in 2023). Dicing selects multiple dimensions to view the filtered data (e.g., Sales in 2023 by Product Category and Region).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Data Governance in Business Intelligence?",
+    "options": [
+      "To host dashboards on government servers",
+      "To define policies, roles, and standards ensuring data security, accuracy, consistency, and proper usage across the enterprise",
+      "To write SQL queries automatically",
+      "To limit database access to directors only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data governance establishes the rules, ownership, and processes surrounding data assets, ensuring security (complying with GDPR/HIPAA), data quality, and trustworthiness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In BI dashboard design, what is the 'Z-pattern' or 'F-pattern' reading layout?",
+    "options": [
+      "A method for indexing database queries",
+      "A design layout based on eye-tracking studies, placing the most critical KPIs and charts at the top and left where readers look first",
+      "A mathematical equation for plotting line charts",
+      "A sorting algorithm for table visuals"
+    ],
+    "correctIndex": 1,
+    "explanation": "Eye-tracking studies show Western readers scan screens in 'F' or 'Z' patterns (starting top-left, moving right, then down). Good dashboards place critical high-level summary KPIs at the top-left.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does RLS (Row-Level Security) do in BI reports?",
+    "options": [
+      "It encrypts the entire SQL database file on the server",
+      "It restricts data access for physical users to specific rows in the tables based on their user roles or attributes (e.g., managers only see their region's sales)",
+      "It limits the number of rows a report can display to 100",
+      "It forces users to change passwords regularly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Row-Level Security filters the underlying dataset dynamically depending on who is logged in. A sales representative in the USA will only see USA rows, while a global director sees all.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an OLAP Cube (Online Analytical Processing) and how does it optimize queries?",
+    "options": [
+      "A 3D graphical chart in a dashboard",
+      "A multi-dimensional database structure optimized for analytical queries, storing pre-aggregated data for fast slice-and-dice operations",
+      "A compression format for database log files",
+      "A database encryption mechanism"
+    ],
+    "correctIndex": 1,
+    "explanation": "OLAP cubes pre-calculate and pre-aggregate values across various dimension combinations (e.g., sum sales by year, region, product). This makes queries instantaneous compared to computing aggregates on raw rows.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In dimensional modeling, what is a 'Conformed Dimension'?",
+    "options": [
+      "A dimension that is locked to a single database schema",
+      "A dimension table that is designed to be shared across multiple fact tables in a data warehouse, ensuring consistent master data reporting",
+      "A temporary dimension created in SQL CTEs",
+      "A dimension that automatically formats text columns"
+    ],
+    "correctIndex": 1,
+    "explanation": "Conformed dimensions (e.g., a shared 'Customer' or 'Date' dimension) have identical structure and keys across different data marts, preventing data silos and ensuring different business units query matching attributes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Junk Dimension' in data warehousing?",
+    "options": [
+      "A table containing corrupt or invalid rows to be deleted",
+      "A single dimension table created by grouping multiple small, unrelated, low-cardinality flags or indicators (like yes/no attributes) to simplify fact table schema",
+      "An index table that is no longer used",
+      "A dimension containing historical backups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Instead of creating 10 separate tables for 10 individual boolean flags (which would clutter the fact table with foreign keys), a Junk Dimension combines all flag combinations into one lookup table.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between standard DAX context: Row Context and Filter Context?",
+    "options": [
+      "Row Context is only for SQL; Filter Context is for DAX",
+      "Row Context is the active row during iteration (e.g., in a calculated column or SUMX); Filter Context is the set of active filters applied to the data model by visuals, slicers, and rows/columns in a report",
+      "Filter Context is static; Row Context is dynamic",
+      "They are identical and interchangeable"
+    ],
+    "correctIndex": 1,
+    "explanation": "Row Context represents the 'current row' loop. Filter Context represents the filters active on the visual (e.g. year=2023, category=electronics). The DAX function `CALCULATE` is the only way to convert Row Context into Filter Context.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In BI architecture, what is 'DirectQuery' mode vs 'Import' mode, and when should you choose DirectQuery?",
+    "options": [
+      "DirectQuery is free; Import mode is paid",
+      "Import mode loads data into the BI tool's memory for fast queries; DirectQuery queries the source database directly in real-time, chosen when data volume is too large for memory or real-time data is required",
+      "DirectQuery is always faster than Import mode",
+      "Import mode is only for NoSQL databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Import mode caches data in RAM (very fast queries but requires refreshes). DirectQuery sends queries directly to the source database in real-time upon visual interaction, suitable for multi-billion row systems or live streaming requirements.",
+    "difficulty": "hard"
   }
 ]

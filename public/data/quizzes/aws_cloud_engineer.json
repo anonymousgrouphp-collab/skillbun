@@ -298,5 +298,305 @@
     "correctIndex": 1,
     "explanation": "The most effective and secure way to achieve strict network isolation between environments and prevent accidental cross-communication is by using separate AWS accounts for each environment. This provides a hard boundary, simplifying security and access control, and minimizing the blast radius of misconfigurations. While Security Groups and Network ACLs can provide isolation within a VPC, they rely on complex configurations and increase the risk of misconfiguration leading to unintended access. A single Transit Gateway is for routing, not for inherent isolation within a single VPC.",
     "difficulty": "hard"
+  },
+  {
+    "question": "What does AWS stand for?",
+    "options": [
+      "Advanced Web Services",
+      "Amazon Web Services",
+      "Allied Web Systems",
+      "Automated Web Storage"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS stands for Amazon Web Services, a comprehensive cloud computing platform provided by Amazon.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which AWS service provides resizable virtual servers in the cloud?",
+    "options": [
+      "Amazon S3",
+      "Amazon EC2",
+      "Amazon RDS",
+      "AWS Lambda"
+    ],
+    "correctIndex": 1,
+    "explanation": "EC2 (Elastic Compute Cloud) provides virtual machines, called EC2 instances, allowing scalable compute capacity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which AWS service is used for storing files and objects?",
+    "options": [
+      "Amazon S3",
+      "Amazon DynamoDB",
+      "Amazon VPC",
+      "AWS IAM"
+    ],
+    "correctIndex": 0,
+    "explanation": "Amazon S3 (Simple Storage Service) is an object storage service offering industry-leading scalability, data availability, and security.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is AWS IAM used for?",
+    "options": [
+      "Monitoring server performance",
+      "Managing users, groups, roles, and access permissions safely",
+      "Caching database queries",
+      "Hosting domains and DNS records"
+    ],
+    "correctIndex": 1,
+    "explanation": "IAM (Identity and Access Management) allows you to securely control access to AWS services and resources.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which service is a serverless compute service that runs code in response to events?",
+    "options": [
+      "Amazon EC2",
+      "AWS Lambda",
+      "Amazon RDS",
+      "Amazon ECS"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS Lambda is a serverless, event-driven compute service that lets you run code without provisioning or managing servers.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is an AWS Region?",
+    "options": [
+      "A specific office building owned by Amazon",
+      "A physical geographical location containing multiple isolated Availability Zones",
+      "A virtual private network connection",
+      "A software configuration profile"
+    ],
+    "correctIndex": 1,
+    "explanation": "An AWS Region is a physical location in the world where AWS clusters data centers. Each Region consists of multiple, isolated, and physically separate Availability Zones (AZs).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which database service is optimized for relational databases, supporting engines like MySQL and PostgreSQL?",
+    "options": [
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "Amazon Redshift",
+      "Amazon ElastiCache"
+    ],
+    "correctIndex": 1,
+    "explanation": "Amazon RDS (Relational Database Service) makes it easy to set up, operate, and scale a relational database in the cloud.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the function of Amazon VPC?",
+    "options": [
+      "To encrypt S3 buckets",
+      "To provision a logically isolated section of the AWS Cloud where you can launch resources in a virtual network",
+      "To register domain names",
+      "To speed up DNS queries"
+    ],
+    "correctIndex": 1,
+    "explanation": "VPC (Virtual Private Cloud) gives you control over your virtual networking environment, including subnets, IP ranges, route tables, and network gateways.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is an Availability Zone (AZ) in AWS?",
+    "options": [
+      "A country where AWS is available",
+      "One or more discrete data centers with redundant power, networking, and connectivity in an AWS Region",
+      "A specific server rack inside Amazon's warehouses",
+      "A range of IP addresses assigned to public subnets"
+    ],
+    "correctIndex": 1,
+    "explanation": "An AZ is a physical location with isolated power and cooling. Placing resources in multiple AZs provides high availability and fault tolerance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is AWS CloudFormation used for?",
+    "options": [
+      "Creating automated database backups",
+      "Provisioning and managing infrastructure as code (IaC)",
+      "Monitoring application logs",
+      "Accelerating content delivery through CDN"
+    ],
+    "correctIndex": 1,
+    "explanation": "CloudFormation allows you to model, provision, and manage AWS and third-party resources by writing JSON or YAML templates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which AWS service acts as a Content Delivery Network (CDN) to cache and serve content with low latency?",
+    "options": [
+      "Amazon Route 53",
+      "Amazon CloudFront",
+      "AWS API Gateway",
+      "Amazon S3 Glacier"
+    ],
+    "correctIndex": 1,
+    "explanation": "Amazon CloudFront is a fast content delivery network service that securely delivers data, videos, applications, and APIs to customers globally with low latency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the AWS Shared Responsibility Model state?",
+    "options": [
+      "AWS is responsible for everything, including client-side application security",
+      "AWS is responsible for security 'of' the cloud (infrastructure), while the customer is responsible for security 'in' the cloud (data, configuration)",
+      "The customer is responsible for hardware maintenance",
+      "AWS and the customer share the cost of server resources equally"
+    ],
+    "correctIndex": 1,
+    "explanation": "AWS manages security OF the cloud (physical security, virtualization, hypervisor). Customers manage security IN the cloud (guest OS, firewalls, IAM, network security, application code).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary difference between a public subnet and a private subnet in a VPC?",
+    "options": [
+      "Public subnets cost money; private subnets are free",
+      "Public subnets have a route to an Internet Gateway, allowing direct external access; private subnets do not",
+      "Private subnets are encrypted; public subnets are not",
+      "Private subnets only support Windows instances"
+    ],
+    "correctIndex": 1,
+    "explanation": "Public subnets contain a route in their route table pointing to an Internet Gateway (IGW), enabling resources inside to receive public internet traffic. Private subnets route outbound traffic via a NAT gateway.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of Amazon DynamoDB?",
+    "options": [
+      "To store large media files",
+      "To provide a fully managed, serverless, key-value NoSQL database offering single-digit millisecond performance at any scale",
+      "To host virtual servers",
+      "To route DNS traffic globally"
+    ],
+    "correctIndex": 1,
+    "explanation": "DynamoDB is a fully managed NoSQL database service that supports key-value and document data structures, widely used for high-performance serverless apps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does AWS Auto Scaling do?",
+    "options": [
+      "It scales the pricing of AWS resources automatically",
+      "It dynamically monitors applications and adjusts capacity to maintain steady, predictable performance at the lowest possible cost",
+      "It changes code logic during peak traffic",
+      "It switches Regions automatically if a failure occurs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Auto Scaling monitors your applications and automatically adjusts resources (like EC2 instances or ECS tasks) to maintain optimal capacity and performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which service is a managed DNS service in AWS?",
+    "options": [
+      "Amazon Route 53",
+      "AWS Direct Connect",
+      "Amazon CloudFront",
+      "Amazon VPC"
+    ],
+    "correctIndex": 0,
+    "explanation": "Amazon Route 53 is a highly available and scalable cloud Domain Name System (DNS) web service, also handling domain registration and health checks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of an IAM Role?",
+    "options": [
+      "To define the billing department of an AWS account",
+      "To grant temporary, secure credentials to AWS services or external entities without sharing long-term access keys",
+      "To assign a hardware server to a user",
+      "To cache database reads"
+    ],
+    "correctIndex": 1,
+    "explanation": "IAM Roles are used to grant access to AWS services or resources without using static credentials. They issue temporary security credentials that rotate automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of an Application Load Balancer (ALB) in AWS?",
+    "options": [
+      "To store static website assets",
+      "To automatically distribute incoming HTTP/HTTPS traffic across multiple targets, such as EC2 instances or containers",
+      "To throttle network bandwidth",
+      "To generate SSL certificates"
+    ],
+    "correctIndex": 1,
+    "explanation": "An ALB operates at the application layer (Layer 7), routing traffic based on content characteristics (like path or host headers) to targets like target groups.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which service helps you monitor application metrics, collect log files, and set alarms for resource usage in AWS?",
+    "options": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "AWS Config",
+      "Amazon Inspector"
+    ],
+    "correctIndex": 1,
+    "explanation": "Amazon CloudWatch is a monitoring and observability service that provides data and actionable insights for AWS resources and applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between AWS CloudWatch and AWS CloudTrail?",
+    "options": [
+      "CloudWatch is for logs; CloudTrail is for networking",
+      "CloudWatch monitors resource metrics and logs; CloudTrail records API calls and user activity history in your AWS account",
+      "CloudWatch is serverless; CloudTrail is server-based",
+      "CloudWatch is free; CloudTrail is paid only"
+    ],
+    "correctIndex": 1,
+    "explanation": "CloudWatch tracks performance and operational metrics/logs. CloudTrail focuses on governance, compliance, and auditing by logging who did what (API actions) in your AWS account.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a NAT Gateway used for in an AWS VPC?",
+    "options": [
+      "To route incoming internet traffic directly to private servers",
+      "To allow instances in a private subnet to connect to the internet, while preventing the internet from initiating connections with those instances",
+      "To translate IP ranges between different VPCs",
+      "To accelerate file uploads to S3"
+    ],
+    "correctIndex": 1,
+    "explanation": "A NAT (Network Address Translation) Gateway translates private IP addresses to a public IP address, allowing outbound traffic to the internet from private subnet instances while blocking inbound connections.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In AWS IAM, what is the evaluation logic when checking policy permissions?",
+    "options": [
+      "Allow takes precedence over Deny",
+      "An explicit Deny always overrides any explicit Allows",
+      "The default stance is to Allow access unless a Deny exists",
+      "Permissions are checked in alphabetical order"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, all requests are denied. An explicit allow overrides this default. However, an explicit deny in any policy (resource-based, identity-based, boundary, etc.) overrides any allow statement.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is AWS Transit Gateway?",
+    "options": [
+      "A network connection between AWS and Azure",
+      "A network transit hub that connects VPCs and on-premises networks, simplifying network routing topology",
+      "A hardware router inside an Availability Zone",
+      "A service that accelerates S3 file replication"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transit Gateway acts as a cloud router. It simplifies network topology by eliminating the need to manage complex peering relationships between multiple VPCs and VPNs.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does Amazon EC2 Auto Scaling use to determine when to add or remove instances dynamically?",
+    "options": [
+      "A database query loop",
+      "Scaling policies based on metrics like CPU utilization or target tracking, triggered by CloudWatch alarms",
+      "A cron job running on the server OS",
+      "A manual ticket submittal process"
+    ],
+    "correctIndex": 1,
+    "explanation": "Auto Scaling integrates with CloudWatch. You define alarms (e.g., CPU > 70% for 3 minutes) which trigger scaling policies to adjust capacity.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary benefit of VPC Peering?",
+    "options": [
+      "It connects two VPCs using public IP addresses",
+      "It connects two VPCs, allowing routing of traffic between them using private IP addresses as if they were in the same network",
+      "It enables automatic load balancing across regions",
+      "It bypasses IAM authorization completely"
+    ],
+    "correctIndex": 1,
+    "explanation": "VPC Peering establishes a direct connection between VPCs. Traffic stays on the private AWS network (does not traverse the public internet), improving security and reducing latency.",
+    "difficulty": "hard"
   }
 ]
