@@ -1,6 +1,7 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getAuth } from 'firebase-admin/auth'
 import { getFirestore } from 'firebase-admin/firestore'
+import { getStorage } from 'firebase-admin/storage'
 
 import {
   getFirebaseAdminClientEmail,
@@ -30,6 +31,7 @@ function getAdminApp() {
       clientEmail,
       privateKey,
     }),
+    storageBucket: `${projectId}.firebasestorage.app`,
   }, ADMIN_APP_NAME)
 }
 
@@ -39,4 +41,8 @@ export function getFirebaseAdminAuth() {
 
 export function getFirebaseAdminFirestore() {
   return getFirestore(getAdminApp())
+}
+
+export function getFirebaseAdminStorage() {
+  return getStorage(getAdminApp())
 }

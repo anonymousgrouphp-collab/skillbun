@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Study guide docs — read only for authenticated users
+    match /docs/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only Admin SDK can write
+    }
+  }
+}
