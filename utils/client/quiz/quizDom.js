@@ -892,44 +892,6 @@ export function normalizeQuestionOptions(options) {
     .slice(0, 4);
 }
 
-export function parseGeminiJSON(text) {
-  try {
-    return JSON.parse(text.trim());
-  } catch (e) {
-    // try strips
-  }
-
-  let cleaned = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-  try {
-    return JSON.parse(cleaned);
-  } catch (e) {
-    // try matches
-  }
-
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
-  if (jsonMatch) {
-    try {
-      return JSON.parse(jsonMatch[0]);
-    } catch (e) {
-      // try index
-    }
-  }
-
-  const firstBrace = text.indexOf('{');
-  const lastBrace = text.lastIndexOf('}');
-  if (firstBrace !== -1 && lastBrace > firstBrace) {
-    try {
-      return JSON.parse(text.substring(firstBrace, lastBrace + 1));
-    } catch (e) {
-      // try error
-    }
-  }
-
-  const parseError = new Error('Could not parse Gemini response as JSON');
-  parseError.code = 'AI_JSON_PARSE';
-  throw parseError;
-}
-
 export function showResults(state, data) {
   state.retryCount = 0;
   state.quizResults = data;

@@ -109,40 +109,28 @@ certificates/{certId}
 
 Deploy `firestore.rules` so each signed-in user can read and write only their own profile and progress, while certificates are publicly readable.
 
-## Sourcing and Enrichment Pipeline
+## Changelog
 
-To enrich all 100 career roadmaps with in-depth study documentation and verified resources, an offline generator script is provided:
+### v2.3.28 — Project Cleanup
 
-```bash
-node scripts/enrich-roadmaps.js
-```
+Removed unused files, prototype pages, and development artifacts that were not part of the production application:
 
-### LLM Providers & Configurations
+- Deleted `app/dashboard-concept/` (unused prototype dashboard with its module CSS).
+- Deleted one-time offline scripts: `complete-ds.js`, `complete-remaining.js`, `enrich-roadmaps.js`, `generate-status.js`, `generate-quizzes.js`, and `test_sf_real.js` from `scripts/`. Only `encrypt-docs.js` remains.
+- Deleted generated status reports: `public/data/roadmaps_status.json` and `public/data/roadmaps_status.md`.
+- Deleted generated Playwright artifacts from `output/` and `test-results/`.
+- Deleted root-level `.editorconfig` and Firebase Admin SDK service account JSON file.
+- Removed `@playwright/test` and `playwright` from devDependencies (no test files existed).
 
-The script supports Google Gemini and SiliconFlow (DeepSeek/Qwen). Configure the following in your `.env` file:
+### v2.3.29 — Code-Level Cleanup
 
-- **Gemini (Default)**:
-  ```env
-  API_PROVIDER=gemini
-  GEMINI_API_KEY=your_key_here
-  ```
-- **SiliconFlow (DeepSeek / Qwen)**:
-  ```env
-  API_PROVIDER=siliconflow
-  SILICONFLOW_API_KEY=your_siliconflow_key_here
-  SILICONFLOW_MODEL=deepseek-ai/DeepSeek-V3
-  SILICONFLOW_BASE_URL=https://api.siliconflow.cn/v1
-  ```
+Removed dead code, unused CSS, and stale configuration across the codebase:
 
-### Script Capabilities:
-1. **Multi-Provider LLM Integration**: Dynamically routes API calls through Gemini or SiliconFlow. Supports indexed keys (e.g. `SILICONFLOW_API_KEY_2`) for concurrent execution.
-2. **Pipeline Architecture**: Processes roadmaps in two stages using a dynamic task queue. Workers 1 to 4 optimize the structure and add/update nodes, while remaining workers validate resources, correct irrelevant YouTube videos, and generate study guides.
-3. **Dynamic Scaling & Load Balancing**: Uses parallel workers matching the number of API keys defined in `.env`. Workers 1 to 4 automatically transition to help with Phase 2 once Phase 1 is finished, ensuring maximum speed.
-4. **Resumable Runs & Local Disk Cache Skipping**: Automatically checks if a topic's Markdown study guide already exists on disk (under `public/data/docs/`). If the file exists, it skips the LLM API call entirely, updates the JSON structure in memory, and moves on, saving API quota and preventing duplicate costs.
-5. **Outage Resilience**: Implemented a 6-attempt retry strategy with exponential backoff (10s, 20s, 30s, etc.) to gracefully handle LLM API 500 (Internal Server Error) and 503 (Unavailable) codes.
-6. **Options**:
-   - `--file <filename.json>`: Runs only on the specified roadmap file for testing.
-   - `--limit <number>`: Processes only the first N roadmaps.
+- Removed dead `parseGeminiJSON()` function from `utils/client/quiz/quizDom.js` (exported but never called).
+- Removed dead `useStoredProfile()` export, its `useSyncExternalStore` import, and the internal `subscribeToProfile()` function from `utils/shared/profileStore.js`.
+- Removed 5 unused CSS classes from `app/dashboard/dashboard.module.css` (`.glowBadge`, `.navItem`, `.navItemActive`, `.sidebarTitle`, `.sideNav`, `.sidebar`) — leftovers from before `WorkspaceSidebar` was introduced.
+- Removed 8 unused CSS classes from `app/roadmap/roadmap-hub.module.css` (`.catalogTools`, `.categoryCard`, `.categoryCardActive`, `.categoryChip`, `.categoryChipActive`, `.categoryGrid`, `.categoryRail`, `.featuredStrip`) — leftovers from an older category-based layout.
+- Removed dead SiliconFlow enrichment env vars (`API_PROVIDER`, `SILICONFLOW_API_KEY`, `SILICONFLOW_MODEL`, `SILICONFLOW_BASE_URL`) from `.env.example`.
 
 
 ## API Routes

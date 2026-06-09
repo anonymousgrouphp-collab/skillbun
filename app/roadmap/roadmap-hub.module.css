@@ -730,9 +730,7 @@
 }
 
 .myRoadmapGrid,
-.catalogGrid,
-.featuredStrip,
-.categoryGrid {
+.catalogGrid {
   display: grid;
   gap: 0.85rem;
 }
@@ -741,24 +739,13 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.featuredStrip {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  margin-bottom: 1rem;
-}
-
 .catalogGrid {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
-.categoryGrid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin: 0 0 1rem;
-}
-
 .progressCard,
 .roadmapCard,
-.emptyState,
-.categoryCard {
+.emptyState {
   min-width: 0;
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -768,14 +755,12 @@
 
 :global([data-theme='dark']) .progressCard,
 :global([data-theme='dark']) .roadmapCard,
-:global([data-theme='dark']) .emptyState,
-:global([data-theme='dark']) .categoryCard {
+:global([data-theme='dark']) .emptyState {
   background: color-mix(in srgb, var(--surface) 84%, transparent);
 }
 
 .progressCard,
-.roadmapCard,
-.categoryCard {
+.roadmapCard {
   display: flex;
   flex-direction: column;
   padding: clamp(0.9rem, 1.2vw, 1.05rem);
@@ -786,9 +771,7 @@
 }
 
 .progressCard:hover,
-.roadmapCard:hover,
-.categoryCard:hover,
-.categoryCardActive {
+.roadmapCard:hover {
   border-color: color-mix(in srgb, var(--green) 36%, var(--border));
   box-shadow: var(--accent-shadow-hover);
   transform: translateY(-2px);
@@ -860,54 +843,6 @@
   color: var(--muted);
 }
 
-.categoryCard {
-  min-height: 132px;
-  align-items: flex-start;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.categoryCard span {
-  color: var(--green);
-  font-family: monospace;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.categoryCard strong {
-  margin-top: 0.4rem;
-  color: var(--text);
-  font-size: 1rem;
-  font-weight: 900;
-}
-
-.categoryCard small {
-  display: -webkit-box;
-  margin-top: 0.42rem;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 800;
-  line-height: 1.35;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.categoryCardActive {
-  background:
-    radial-gradient(circle at 16% 0%, var(--green-subtle), transparent 50%),
-    color-mix(in srgb, var(--surface-raised) 86%, transparent);
-}
-
-:global([data-theme='dark']) .categoryCardActive {
-  background:
-    radial-gradient(circle at 16% 0%, var(--green-subtle), transparent 50%),
-    color-mix(in srgb, var(--surface) 86%, transparent);
-}
 
 .featuredCard {
   border-color: color-mix(in srgb, var(--green) 28%, var(--border));
@@ -1141,11 +1076,6 @@
   transform: translateY(-2px);
 }
 
-.catalogTools {
-  display: grid;
-  gap: 0.8rem;
-  margin: 0 0 1rem;
-}
 
 .categoryHeader {
   display: flex;
@@ -1232,49 +1162,6 @@
   opacity: 0.94;
 }
 
-.categoryRail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
-
-.categoryChip {
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.48rem;
-  padding: 0.42rem 0.68rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
-  color: var(--text);
-  font: inherit;
-  font-size: 0.82rem;
-  font-weight: 900;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.categoryChip strong {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-
-.categoryChip:hover,
-.categoryChipActive {
-  border-color: var(--green);
-  background: var(--green-subtle);
-  color: var(--green);
-  transform: translateY(-1px);
-}
-
-.categoryChipActive strong {
-  color: var(--green);
-}
 
 .emptyState {
   display: grid;
@@ -1410,9 +1297,7 @@
 .ghostButton:focus-visible,
 .viewSwitcher button:focus-visible,
 .categorySwitcher button:focus-visible,
-.categoryCard:focus-visible,
-.searchBox:focus-within,
-.categoryChip:focus-visible {
+.searchBox:focus-within {
   outline: 3px solid var(--green);
   outline-offset: 3px;
 }
@@ -1519,8 +1404,6 @@
   }
 
   .myRoadmapGrid,
-  .featuredStrip,
-  .categoryGrid,
   .catalogGrid {
     grid-template-columns: 1fr;
   }
@@ -1781,20 +1664,6 @@
     width: 100%;
   }
 
-  .categoryRail {
-    flex-wrap: nowrap;
-    margin-inline: -0.2rem;
-    padding: 0.1rem 0.2rem 0.45rem;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-color: var(--green-subtle-strong) transparent;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .categoryChip {
-    flex: 0 0 auto;
-  }
 }
 
 @media (max-width: 430px) {
@@ -1939,26 +1808,22 @@
   .panel,
   .progressCard,
   .roadmapCard,
-  .categoryCard,
   .primaryButton,
   .secondaryButton,
   .ghostButton,
   .viewSwitcher button,
-  .categorySwitcher button,
-  .categoryChip {
+  .categorySwitcher button {
     transition: none;
   }
 
   .panel:hover,
   .progressCard:hover,
   .roadmapCard:hover,
-  .categoryCard:hover,
   .primaryButton:hover,
   .secondaryButton:hover,
   .ghostButton:hover,
   .viewSwitcher button:hover,
-  .categorySwitcher button:hover,
-  .categoryChip:hover {
+  .categorySwitcher button:hover {
     transform: none;
   }
 }
