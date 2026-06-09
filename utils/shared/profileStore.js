@@ -1,6 +1,6 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
+
 
 const PROFILE_CHANGE_EVENT = 'sb_profile_change';
 const DEFAULT_PROFILE = Object.freeze({
@@ -57,29 +57,6 @@ export function readProfileSnapshot() {
   return lastSnapshot;
 }
 
-function subscribeToProfile(onStoreChange) {
-  if (typeof window === 'undefined') {
-    return () => {};
-  }
-
-  const handleStorage = (event) => {
-    if (!event.key || event.key.startsWith('sb_')) {
-      onStoreChange();
-    }
-  };
-
-  window.addEventListener('storage', handleStorage);
-  window.addEventListener(PROFILE_CHANGE_EVENT, onStoreChange);
-
-  return () => {
-    window.removeEventListener('storage', handleStorage);
-    window.removeEventListener(PROFILE_CHANGE_EVENT, onStoreChange);
-  };
-}
-
-export function useStoredProfile() {
-  return useSyncExternalStore(subscribeToProfile, readProfileSnapshot, () => DEFAULT_PROFILE);
-}
 
 function setOrRemove(key, value) {
   if (value) {
