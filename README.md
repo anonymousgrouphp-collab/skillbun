@@ -164,6 +164,52 @@ Expanded the certification exam question pools to improve diversity and shuffle 
 - Maintained difficulty-specific selection logic (pulling 3 Easy, 5 Moderate, 2 Hard questions dynamically for each 10-question exam attempt).
 - Updated difficulty distributions in every quiz file to 14 Easy, 26 Moderate, and 10 Hard questions.
 
+### v2.3.39 — Revert Roadmap Tree Canvas Viewport
+
+Reverted the interactive, Figma-style canvas layout on the roadmap skill tree page back to the standard horizontal scrollable container view to optimize usability and rendering.
+
+### v2.3.38 — Roadmap Tree Canvas Viewport
+
+Converted the static SkillBun roadmap tree into an interactive, Figma-style canvas (subsequently reverted in v2.3.39):
+
+- Wrapped the tree mapping in a canvas viewport container with custom state for smooth click-and-drag panning, scrollwheel zooming, and touch-gestures (pinch-to-zoom).
+- Implemented a hover-responsive floating overlay toolbar showing Zoom In (+), Zoom Out (-), Reset View (🎯), and the current scale percentage.
+- Restructured layout styles so the wide tree diagram structure remains horizontal and explore-friendly on mobile screens, utilizing touch gestures instead of collapsing to vertical lists.
+- Prevented scroll-trapping by requiring the Ctrl/Cmd key to zoom with the mouse wheel, letting normal wheel scrolling scroll the page.
+
+### v2.3.37 — Study Guide Button Layout Tuning
+
+Tuned the study guide resource button layout to prevent line wrapping:
+
+- Prevented line wrapping inside study guide resource buttons by adding `white-space: nowrap` and reducing the font-size to `0.74rem`.
+- Set tighter character tracking (`letter-spacing: -1.2px`) on the stylized unicode wordmark (`ꌗꀘꀤ꒒꒒ꌃꀎꈤ`) to optimize horizontal footprint.
+- Added custom `.sk-res-doc-btn` padding/gap reduction to maximize available space for text alignment inside skill cards.
+
+### v2.3.36 — Stylized Wordmark in Study Guides
+
+Stylized the brand name wordmark inside study guide resource buttons:
+
+- Updated the "SkillBun" text within study guide resource buttons to display the stylized unicode wordmark: `ꌗꀘꀤ꒒꒒ꌃꀎꈤ`.
+- Removed custom font overrides from the button title so the rest of the text inherits the default button font layout like other buttons.
+- Preserved the linear gradient color styling on the stylized wordmark.
+
+### v2.3.35 — Branded Study Guide Resource Buttons
+
+Renamed and branded all inline study guide resource buttons inside the roadmap skill trees:
+
+- Dynamically renamed the resource button text from generic "Study Guide & Notes" to "Study Guide by SkillBun".
+- Applied the unique brand typography (`Fredoka`) and custom CSS styles to the renamed button.
+- Styled the "SkillBun" text within the button using a vibrant linear gradient matching the app's premium visual branding.
+
+### v2.3.34 — Roadmap Interrelation Connections
+
+Added dynamic next-step roadmap recommendations across all 100 learning paths:
+
+- Created a central relationship database (`public/data/roadmap_connections.json`) mapping every roadmap to a logical next career path milestone.
+- Added a generation builder script (`scripts/build-roadmap-connections.js`) that automatically loads the correct roadmap metadata to construct the lookup.
+- Integrated a premium, interactive "Next Recommended Roadmap" button at the bottom of the skill tree view, enabling seamless user transitions between related skills.
+- Ensured full theme compatibility for both dark and light modes using the shared token-driven design system.
+
 
 
 

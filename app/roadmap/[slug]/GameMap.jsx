@@ -5,6 +5,7 @@ import { useAuth } from '../../components/AuthProvider';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import connections from '../../../public/data/roadmap_connections.json';
 import './roadmap.css';
 
 function isSafeUrl(url) {
@@ -112,6 +113,7 @@ function getTerminalNodes(node) {
 
 export default function GameMap({ roadmap, slug }) {
   const router = useRouter();
+  const nextRoadmap = useMemo(() => connections[slug] || null, [slug]);
   const { user, authLoading, saveRoadmapProgress, progressVersion } = useAuth();
   const [progress, setProgress] = useState(() => readStoredProgress(slug));
   const [expanded, setExpanded] = useState(null);
@@ -119,6 +121,7 @@ export default function GameMap({ roadmap, slug }) {
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
   const [verifiedVideos, setVerifiedVideos] = useState([]);
+
 
   useEffect(() => {
     fetch('/data/verified_videos.json')
@@ -253,7 +256,7 @@ export default function GameMap({ roadmap, slug }) {
                         href={r.url}
                         target={r.type === 'doc' ? undefined : "_blank"}
                         rel="noopener noreferrer"
-                        className="sk-res"
+                        className={`sk-res ${r.type === 'doc' ? 'sk-res-doc-btn' : ''}`}
                         key={i}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -276,7 +279,13 @@ export default function GameMap({ roadmap, slug }) {
                         <span className="sk-res-type">
                           {r.type === 'doc' ? '📖' : r.type === 'video' ? '📺' : '🔗'}
                         </span>
-                        <span>{r.title}</span>
+                        {r.type === 'doc' ? (
+                          <span className="sk-res-doc-title">
+                            Study Guide by <span className="sk-brand-text">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                          </span>
+                        ) : (
+                          <span>{r.title}</span>
+                        )}
                         <span className="sk-res-go">{r.type === 'doc' ? '→' : '↗'}</span>
                       </a>
                     ))}
@@ -400,6 +409,30 @@ export default function GameMap({ roadmap, slug }) {
           })}
         </div>
       </div>
+
+      {/* Next Recommended Roadmap */}
+      {nextRoadmap && (
+        <div className="sk-next-section">
+          <div className="sk-next-label">Next Career Milestone</div>
+          <button 
+            className="sk-next-card"
+            onClick={() => router.push(`/roadmap/${nextRoadmap.next}`)}
+            title={`Go to ${nextRoadmap.title} Roadmap`}
+          >
+            <div className="sk-next-glow"></div>
+            <div className="sk-next-icon">🚀</div>
+            <div className="sk-next-info">
+              <span className="sk-next-tag">Next Step</span>
+              <h3 className="sk-next-title">{nextRoadmap.title}</h3>
+            </div>
+            <div className="sk-next-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      )}
 
       {/* Study Guide Drawer */}
       {selectedDocNode && (
