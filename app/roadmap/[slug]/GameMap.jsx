@@ -407,6 +407,7 @@ export default function GameMap({ roadmap, slug }) {
           key={selectedDocNode.docUrl}
           node={selectedDocNode}
           verifiedVideos={verifiedVideos}
+          user={user}
           onClose={() => setSelectedDocNode(null)}
           onToggleComplete={() => {
             toggle(selectedDocNode.nodeId);
@@ -420,21 +421,48 @@ export default function GameMap({ roadmap, slug }) {
 }
 
 // Slide-out Study Guide Drawer Component
-function StudyGuideDrawer({ node, verifiedVideos, onClose, onToggleComplete, authLoading }) {
+function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplete, authLoading }) {
   const [docHtml, setDocHtml] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [needsLogin, setNeedsLogin] = useState(false);
 
   useEffect(() => {
     let active = true;
 
-    fetch(node.docUrl)
+    // Extract slug and topicId from docUrl like "/data/docs/slug/topicId.md"
+    const match = node.docUrl?.match(/\/data\/docs\/([^/]+)\/([^/]+)\.md$/);
+    if (!match) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
+    const [, slug, topicId] = match;
+
+    // If user is not logged in, show login prompt
+    if (!user) {
+      setNeedsLogin(true);
+      setLoading(false);
+      return;
+    }
+
+    // Fetch from authenticated API route
+    user.getIdToken().then(token => {
+      return fetch(`/api/docs/${slug}/${topicId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+    })
       .then(res => {
+        if (res.status === 401) {
+          if (active) { setNeedsLogin(true); setLoading(false); }
+          return null;
+        }
         if (!res.ok) throw new Error('Failed to load study guide');
         return res.text();
       })
       .then(text => {
-        if (active) {
+        if (text && active) {
           const parsed = marked.parse(text);
           const clean = DOMPurify.sanitize(parsed);
           setDocHtml(clean);
@@ -452,7 +480,7 @@ function StudyGuideDrawer({ node, verifiedVideos, onClose, onToggleComplete, aut
     return () => {
       active = false;
     };
-  }, [node.docUrl]);
+  }, [node.docUrl, user]);
 
   const youtubeVideos = useMemo(() => {
     return (node.resources || []).filter(r => r.type === 'video' && (r.url.includes('youtube.com') || r.url.includes('youtu.be')));
@@ -553,6 +581,11 @@ function StudyGuideDrawer({ node, verifiedVideos, onClose, onToggleComplete, aut
               <div className="sk-drawer-loading">
                 <div className="sk-spinner"></div>
                 <p>Loading study guide...</p>
+              </div>
+            ) : needsLogin ? (
+              <div className="sk-drawer-login-prompt">
+                <p>🔒 Study guides are available for logged-in students.</p>
+                <a href="/auth" className="sk-btn-login">Log in to read this guide</a>
               </div>
             ) : error ? (
               <p className="sk-drawer-error">Could not load the study guide. Please try again or ask Bun-Bot.</p>
