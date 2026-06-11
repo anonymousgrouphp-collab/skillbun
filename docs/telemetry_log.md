@@ -2180,3 +2180,4 @@
 [2026-06-11T15:01:50] feat(career): enhance career pathway matching algorithm
 [2026-06-11T12:16:19] chore(deps): update analytics telemetry adapter
 [2026-06-11T11:41:42] refactor(counseling): streamline multi-step guidance flow
+[2026-06-11T21:11:31] docs(telemetry): record platform assessment metrics
