@@ -2182,3 +2182,4 @@
 [2026-06-11T11:41:42] refactor(counseling): streamline multi-step guidance flow
 [2026-06-11T21:11:31] docs(telemetry): record platform assessment metrics
 [2026-06-11T08:07:48] refactor(counseling): streamline multi-step guidance flow
+[2026-06-11T23:04:38] style(ui): adjust career dashboard card elevation
