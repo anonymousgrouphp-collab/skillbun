@@ -47,6 +47,9 @@ export default function CertificatePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [toast, setToast] = useState('');
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [customPostText, setCustomPostText] = useState('');
+  const [copied, setCopied] = useState(false);
 
   // Auto-dismiss toast notification after 4 seconds
   useEffect(() => {
@@ -81,11 +84,16 @@ export default function CertificatePage() {
           } else if (data.createdAt) {
             date = new Date(data.createdAt);
           }
-          setCert({
+          const loadedCert = {
             id: snapshot.id,
             ...data,
             createdAtDate: date,
-          });
+          };
+          setCert(loadedCert);
+
+          const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://skillbun.tech';
+          const certUrl = `${baseUrl}/certificate/${snapshot.id}`;
+          setCustomPostText(`I'm excited to share that I have completed the ${data.roadmapTitle} Certification on @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`);
         } else {
           setError('Certificate not found. Verify the ID is correct.');
         }
@@ -137,23 +145,28 @@ export default function CertificatePage() {
 
   const handleShareOnFeed = (e) => {
     e.preventDefault();
-    if (!cert) return;
+    setShowShareModal(true);
+    setCopied(false);
+  };
 
-    const certUrl = getCertUrl();
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
-    const copyText = `I'm excited to share that I have completed the ${cert.roadmapTitle} Certification on @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`;
-
+  const handleCopyText = () => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(copyText)
+      navigator.clipboard.writeText(customPostText)
         .then(() => {
-          setToast('📋 Post template copied! Paste (Ctrl+V) on LinkedIn to tag @SkillBun.');
+          setCopied(true);
+          setToast('📋 Post template copied! Paste it on LinkedIn.');
         })
         .catch((err) => {
-          console.error('Failed to copy text to clipboard:', err);
+          console.error('Failed to copy text:', err);
         });
     }
+  };
 
+  const handleOpenLinkedIn = () => {
+    const certUrl = getCertUrl();
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
+    setShowShareModal(false);
   };
 
 
@@ -246,6 +259,54 @@ export default function CertificatePage() {
         <p className={styles.verificationNote}>
           SkillBun credentials are fully secure and backed by cryptographic record IDs in our database. View verification details anytime at: <code>{typeof window !== 'undefined' ? window.location.href : `/certificate/${cert.id}`}</code>.
         </p>
+
+        {showShareModal && (
+          <div className={styles.modalOverlay} onClick={() => setShowShareModal(false)}>
+            <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h3>Share Certificate on LinkedIn</h3>
+                <button className={styles.closeBtn} onClick={() => setShowShareModal(false)}>&times;</button>
+              </div>
+              <div className={styles.modalBody}>
+                <label htmlFor="post-text-area">Customize your post text:</label>
+                <textarea
+                  id="post-text-area"
+                  className={styles.postTextarea}
+                  value={customPostText}
+                  onChange={(e) => setCustomPostText(e.target.value)}
+                />
+                
+                <button className={styles.copyBtn} onClick={handleCopyText}>
+                  {copied ? 'Copied! ✓' : 'Copy Post Text 📋'}
+                </button>
+
+                <ul className={styles.instructionsList}>
+                  <li>
+                    <span className={styles.stepNumber}>1</span>
+                    <span>Click <strong>"Copy Post Text"</strong> to copy the customized template text above.</span>
+                  </li>
+                  <li>
+                    <span className={styles.stepNumber}>2</span>
+                    <span>Click <strong>"Open LinkedIn Share"</strong> below to open the sharing popup.</span>
+                  </li>
+                  <li>
+                    <span className={styles.stepNumber}>3</span>
+                    <span><strong>Paste (Ctrl+V)</strong> the copied text in the LinkedIn share feed box and hit post!</span>
+                  </li>
+                </ul>
+                <p style={{ fontSize: '0.8rem', color: 'var(--accent)', fontWeight: 'bold', margin: '0.2rem 0 0' }}>
+                  💡 Tip: Make sure to select or type <span style={{ textDecoration: 'underline' }}>@SkillBun</span> in the tag popup on LinkedIn so we get notified of your success!
+                </p>
+              </div>
+              <div className={styles.modalFooter}>
+                <button className={styles.secondaryBtn} onClick={() => setShowShareModal(false)}>Cancel</button>
+                <button className={styles.primaryBtn} onClick={handleOpenLinkedIn}>
+                  Open LinkedIn Share &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
