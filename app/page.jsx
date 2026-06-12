@@ -526,19 +526,19 @@ export default function Home() {
               </div>
 
               {/* Overlay: Recipient Name */}
-              <h1 className={`sb-cert-mock-name ${cinzel.className}`}>Gomastgamer101</h1>
+              <h1 className={`sb-cert-mock-name ${cinzel.className}`}>STUDENT NAME</h1>
 
               {/* Overlay: Roadmap Title */}
               <h2
                 className={`sb-cert-mock-title ${pixelify.className}`}
-                style={{ '--char-count': 28 }}
+                style={{ '--char-count': 18 }}
               >
-                Full Stack Developer Roadmap
+                CHOSEN CAREER PATH
               </h2>
 
               {/* Overlay: Certificate ID below QR */}
               <div className="sb-cert-mock-qr-meta">
-                <span className="sb-cert-mock-qr-meta-id">cert_sb_fs_90a1</span>
+                <span className="sb-cert-mock-qr-meta-id">cert_xxxx_xxxx</span>
               </div>
             </div>
             
