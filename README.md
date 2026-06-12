@@ -65,48 +65,6 @@ SkillBun is an advanced, high-performance career guidance and interactive learni
 
 ---
 
-## ⚙️ Environment Configuration
-
-Create a `.env` file in the root directory and define the following variables:
-
-```env
-# Firebase Configuration
-NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_web_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project-id.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_web_app_id
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
-
-# Google Gemini API
-GEMINI_API_KEY=your_gemini_api_key
-GEMINI_TIMEOUT_MS=20000
-GEMINI_RATE_LIMIT_PER_MINUTE=12
-GEMINI_RATE_LIMIT_PER_HOUR=80
-GEMINI_MAX_RETRIES=2
-
-# Bot Protection & Human Verification (Cloudflare Turnstile)
-TURNSTILE_SITE_KEY=your_turnstile_site_key
-TURNSTILE_SECRET_KEY=your_turnstile_secret_key
-TURNSTILE_ENABLED=false
-
-# Human Proof Verification Secrets
-HUMAN_PROOF_SECRET=generate_a_long_random_secret
-HUMAN_PROOF_TTL_MS=1800000
-
-# SkillBun Vault (SBV1) Decryption Key
-DOCS_ENCRYPTION_KEY=your_32_byte_hex_or_passphrase
-
-# Zoho SMTP Settings
-SMTP_HOST=smtp.zoho.in
-SMTP_PORT=465
-SMTP_USER=no-reply@skillbun.com
-SMTP_PASS=your_secure_smtp_password
-```
-
----
-
 ## 🚀 Getting Started
 
 ### 1. Installation
