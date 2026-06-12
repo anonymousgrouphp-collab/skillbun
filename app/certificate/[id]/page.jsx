@@ -5,18 +5,20 @@ import { useParams, useRouter } from 'next/navigation';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
+import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import styles from './certificate.module.css';
 
-function SealIcon() {
-  return (
-    <svg className={styles.sealIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 8v8" />
-      <path d="M8 12h8" />
-      <circle cx="12" cy="12" r="6" />
-    </svg>
-  );
-}
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  display: 'swap',
+});
+
+const pixelify = Pixelify_Sans({
+  subsets: ['latin'],
+  weight: ['700'],
+  display: 'swap',
+});
 
 function LinkedInIcon() {
   return (
@@ -134,67 +136,37 @@ export default function CertificatePage() {
           </a>
         </div>
 
-        {/* Certificate Outer Frame */}
+        {/* Certificate — Canva Template with Dynamic Text Overlays */}
         <section className={styles.certificateFrame}>
-          <div className={styles.certificateBorder}>
-            <div className={styles.certificateCard}>
-              {/* Inner Decorative Corner Lines */}
-              <div className={`${styles.corner} ${styles.topLeft}`}></div>
-              <div className={`${styles.corner} ${styles.topRight}`}></div>
-              <div className={`${styles.corner} ${styles.bottomLeft}`}></div>
-              <div className={`${styles.corner} ${styles.bottomRight}`}></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/certificate-template.png"
+            alt={`SkillBun Certificate of Completion — ${cert.name}`}
+            className={styles.templateImg}
+            draggable={false}
+          />
 
-              {/* Header */}
-              <header className={styles.certHeader}>
-                <div className={styles.logoBlock}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logo.png" alt="SkillBun Logo" className={styles.logo} />
-                  <span className={styles.brandWordmark}>SKILLBUN</span>
-                </div>
-                <div className={styles.certBadge}>VERIFIED CREDENTIAL</div>
-              </header>
-
-              {/* Title & Body */}
-              <div className={styles.certBody}>
-                <span className={styles.certSub}>CERTIFICATE OF COMPLETION</span>
-                <p className={styles.certLead}>This is proudly presented to</p>
-                <h1 className={styles.recipientName}>{cert.name}</h1>
-                <div className={styles.certDivider}></div>
-                <p className={styles.certDescription}>
-                  for successfully mastering all modules, stages, and practical portfolio projects in the
-                  <strong> {cert.roadmapTitle} </strong> curriculum, validating advanced proficiency in this professional discipline.
-                </p>
-              </div>
-
-              {/* Footer Stamp & Signature */}
-              <footer className={styles.certFooter}>
-                <div className={styles.footerCol}>
-                  <p className={styles.metaLabel}>VERIFICATION ID</p>
-                  <p className={styles.metaValue}><code>{cert.id}</code></p>
-                </div>
-
-                <div className={styles.footerColCenter}>
-                  <div className={styles.sealContainer}>
-                    <SealIcon />
-                    <span className={styles.sealText}>SKILLBUN SECURITY SEAL</span>
-                  </div>
-                </div>
-
-                <div className={styles.footerColRight}>
-                  <div className={styles.signatureBlock}>
-                    <span className={styles.sigLine}>Bun-Bot & Team</span>
-                    <p className={styles.metaLabel}>AUTHORIZED ISSUER</p>
-                  </div>
-                </div>
-              </footer>
-
-              {/* Extra Meta Grid */}
-              <div className={styles.metaRow}>
-                <span>Grade Score: <strong>{cert.score}%</strong></span>
-                <span>Issue Date: <strong>{cert.createdAtDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong></span>
-              </div>
-            </div>
+          {/* Overlay: Fix SKILLBUN text (covers NO GLYPH bars in exported template) */}
+          <div className={styles.skillbunOverlay} aria-hidden="true">
+            <span className={styles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
           </div>
+
+          {/* Overlay: Recipient Name */}
+          <h1 className={`${styles.recipientName} ${cinzel.className}`}>{cert.name}</h1>
+
+          {/* Overlay: Roadmap Title */}
+          <h2
+            className={`${styles.roadmapTitle} ${pixelify.className}`}
+            style={{ '--char-count': cert.roadmapTitle.length }}
+          >
+            {cert.roadmapTitle}
+          </h2>
+
+          {/* Overlay: Certificate ID below QR */}
+          <div className={styles.qrMeta}>
+            <span className={styles.qrMetaId}>{cert.id}</span>
+          </div>
+
         </section>
 
         <p className={styles.verificationNote}>
