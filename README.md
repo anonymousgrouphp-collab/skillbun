@@ -111,6 +111,14 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.56 — Homepage Mock Certificate Redesign
+
+Redesigned the mock certificate preview shown on the homepage certifications section (`/`) to match the Canva-template design from the certificate verification page:
+
+- Imported and instantiated `Cinzel` and `Pixelify_Sans` fonts in `app/page.jsx`.
+- Replaced the CSS-drawn mock certificate container with the Canva certificate template background image (`/certificate-template.png`) and matched overlay fields (watermark, recipient name, roadmap title, and certificate ID).
+- Appended responsive container-query-based layout overlay styling rules (`.sb-cert-mock-overlay-skillbun`, `.sb-cert-mock-name`, `.sb-cert-mock-title`, etc.) in `app/globals.css` using `cqi` units for proportional font and coordinate scaling.
+
 ### v2.3.55 — Split LinkedIn Actions & Tagging Automation
 
 Split the "Share on LinkedIn" button on the certificate verification page (`/certificate/[id]`) into two distinct actions and implemented automated clipboard tag templates to enhance student sharing and brand outreach:
