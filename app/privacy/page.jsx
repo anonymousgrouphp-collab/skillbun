@@ -7,56 +7,87 @@ export default function PrivacyPage() {
   return (
     <div className="static-page">
       <h1>Privacy Policy</h1>
-      <p><em>Last updated: May 3, 2026</em></p>
+      <p><em>Last updated: June 12, 2026</em></p>
 
-      <h2>1. Information You Provide & Collection Purpose</h2>
       <p>
-        SkillBun collects structured profile data during your onboarding process to maximize the relevancy of career recommendations. Utilizing Google Sign-In, we receive your name, email address, and profile picture. Direct inputs collect your current academic degree/program and year of study. We do not collect extraneous data that does not serve a direct platform purpose.
+        At SkillBun, accessible from <a href="https://skillbun.tech" target="_blank" rel="noopener noreferrer">skillbun.tech</a> (and its subdomains), one of our main priorities is the privacy of our visitors and users. This Privacy Policy document outlines the types of information collected and recorded by SkillBun, how we use it, and the security measures we employ to keep your personal data safe.
       </p>
 
-      <h2>2. Infrastructure & Authentication</h2>
+      <h2>1. Information We Collect</h2>
       <p>
-        SkillBun leverages Firebase Authentication for Google sign-in and email/password accounts. At no point do we intercept, store, or process your Google password, and email/password credentials are handled by Firebase Authentication rather than by SkillBun application code.
+        We collect information to provide better services and personalized career guidance to our users. The categories of information we collect include:
+      </p>
+      <ul>
+        <li><strong>Account Information:</strong> When you register using Google Sign-In or email/password authentication, we receive your email address, display name, and profile picture URL via Firebase Authentication.</li>
+        <li><strong>User Profile Data:</strong> During onboarding, you provide your academic degree/program, year of study, learning interests, and target tech roles.</li>
+        <li><strong>Progress &amp; Quiz Responses:</strong> We store your answers to the adaptive career quiz, assessment scores, certification progress, and completed roadmap nodes.</li>
+        <li><strong>System &amp; Interaction Logs:</strong> We log queries submitted to the Bun-Bot AI Counsellor, session duration, and standard traffic data for security and performance optimization.</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>
+        SkillBun utilizes the collected data for the following essential purposes:
+      </p>
+      <ul>
+        <li>To personalize your career recommendation outputs and build adaptive learning roadmaps.</li>
+        <li>To power the Bun-Bot Counsellor, providing contextually relevant study suggestions and curriculum breakdowns.</li>
+        <li>To issue, verify, and display public certifications and academic achievements.</li>
+        <li>To detect, prevent, and mitigate fraudulent activity, bot abuse, and scraping attempts.</li>
+        <li>To send transactional emails (e.g., password reset requests) through our secure Zoho SMTP integration.</li>
+      </ul>
+
+      <h2>3. Data Processing &amp; Infrastructure</h2>
+      <p>
+        We leverage industry-leading cloud infrastructure to run our platform securely:
+      </p>
+      <ul>
+        <li><strong>Authentication:</strong> Handled by Firebase Authentication. Your passwords are encrypted and managed directly by Google/Firebase; they are never accessible to SkillBun developers or servers.</li>
+        <li><strong>Database Storage:</strong> Profile and learning progress data is persisted in Cloud Firestore. Security is enforced through granular Firestore Rules, ensuring that only you (the authenticated account holder) can read or modify your personal data.</li>
+        <li><strong>AI Capabilities:</strong> The Adaptive Quiz and Bun-Bot chat utilize server-side calls to the Google Gemini API. While we transmit prompt contexts securely, we use enterprise API layers which, under Google's data privacy policies, do not use submitted payloads to train their base models. However, you are advised not to submit highly sensitive PII in free-text fields.</li>
+      </ul>
+
+      <h2>4. Data Protection &amp; Encryption</h2>
+      <p>
+        We implement robust technical controls to protect your data. All communication is encrypted in transit using standard TLS/HTTPS protocols. For content security and anti-scraping enforcement, study guides are encrypted using the proprietary SkillBun Vault (SBV1) framework, which features multi-layered cryptographic checks (including HKDF key derivation, XOR scrambling, and AES-256-GCM authenticated encryption).
       </p>
 
-      <h2>3. Profile and Progress Persistence</h2>
+      <h2>5. Bot Mitigation &amp; Cloudflare Turnstile</h2>
       <p>
-        User profile information and roadmap progress are stored in Cloud Firestore. Firestore security rules restrict each profile and progress document so only the signed-in Firebase user can read or modify their own data. Local browser storage is used only as a compatibility cache for the quiz, counsellor, and roadmap interfaces.
+        To defend against denial-of-service (DDoS) attacks, spam, and malicious bot activity, SkillBun integrates Cloudflare Turnstile. Turnstile is an invisible captcha/challenge mechanism that gathers browser environment indicators to verify human sessions. Interaction data collected during Turnstile checks is governed by Cloudflare’s privacy policy.
       </p>
 
-      <h2>4. Third-Party AI Data Processing</h2>
+      <h2>6. Cookies &amp; Tracking Protocols</h2>
       <p>
-        SkillBun's AI features—specifically the Adaptive Quiz and the Bun-Bot Counsellor—are powered by server-side connections to the Google Gemini API. Your quiz contexts and conversational inputs are transmitted securely to Google Cloud endpoints. We utilize Google's enterprise API layers which, as per standard enterprise agreements, do not utilize submitted payloads to essentially train their foundational models. However, users are strongly advised never to submit highly sensitive PII in the free-text fields.
+        SkillBun is committed to an ad-free user experience. We strictly enforce the following rules:
+      </p>
+      <ul>
+        <li>We do not sell, rent, or trade your data to third-party ad brokers or marketing networks.</li>
+        <li>We do not integrate tracking pixels or cross-site marketing cookies.</li>
+        <li>We only use necessary cookies or local browser storage to persist your active session, Firebase auth token, theme preferences (light/dark mode via <code>sb_theme</code>), and temporary quiz state.</li>
+      </ul>
+
+      <h2>7. Data Sovereignty &amp; Deletion Rights</h2>
+      <p>
+        You have complete control over your personal data:
+      </p>
+      <ul>
+        <li><strong>Self-Service Deletion:</strong> You can delete your account instantly through your Profile Settings page. This action permanently deletes your Firebase account authentication record, your Firestore profile document, and all associated roadmap progress details.</li>
+        <li><strong>Manual Requests:</strong> If you wish to request manual deletion, verify what data we hold, or ask any privacy-related questions, you may email us at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>.</li>
+      </ul>
+
+      <h2>8. Children's Privacy</h2>
+      <p>
+        SkillBun is designed for university and college technology students. We do not knowingly collect personal identifiable information from children under the age of 13. If you believe your child has provided us with personal information, please contact us immediately so we can take steps to remove it.
       </p>
 
-      <h2>5. Bot Mitigation and Abuse Controls</h2>
+      <h2>9. Revisions to this Privacy Policy</h2>
       <p>
-        To preserve network integrity, SkillBun actively filters out automated scraping or malicious bot behaviors. We implement Cloudflare Turnstile, an invisible challenge framework, to ascertain legitimate human sessions. You may occasionally be subjected to Turnstile verifications or CAPTCHA loops when unusual traffic variations from your IP address are detected.
+        We may update this Privacy Policy periodically to reflect changes in our service offerings, security protocols, or legal requirements. The "Last updated" date at the top of this page will indicate when the latest revisions were made. Your continued use of the platform constitutes agreement to the updated policy.
       </p>
 
-      <h2>6. Ad-Free Tracking Protocol</h2>
+      <h2>10. Contact Us</h2>
       <p>
-        SkillBun utilizes strictly necessary browser storage for session continuity and product functionality, including Firebase Authentication state, theme preference, profile cache, and roadmap progress cache. SkillBun completely rejects integrating ad tracking pixels, cross-site marketing cookies, and unconsented data telemetry trackers. Your data is not sold to advertising platforms or external brokers.
-      </p>
-
-      <h2>7. Data Retention and Account Deletion</h2>
-      <p>
-        We retain your data conditionally based on your continued platform usage. Should you decide to cease utilization of SkillBun's services, you may log out or use the Delete Account action in your account menu. Deleting your account removes your Firebase account data, Firestore profile document, and associated roadmap progress records. You may also request deletion by emailing the address supplied below.
-      </p>
-
-      <h2>8. Technical Security</h2>
-      <p>
-        Protecting your data in transit is handled uniformly using modern TLS/HTTPS encryptions. On the server side, your account interacts through resilient application controls which include algorithmic request size limitations, stringent input sanitization, API rate-limiting thresholds, and mandatory security framing headers (e.g., CSP, HSTS).
-      </p>
-
-      <h2>9. Revisions to the Privacy Policy</h2>
-      <p>
-        As SkillBun evolves its capability stacks, our data-handling mechanics could potentially modulate. Any functional paradigm shifts pertaining to data storage or utilization will be formally documented here. Routine checks of this unified policy page are encouraged.
-      </p>
-
-      <h2>10. Contact Protocol</h2>
-      <p>
-        For inquiries connected to data sovereignty, structural clarification of this policy, or specific data-deletion operations, direct your correspondences to: <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
+        If you have any questions, concerns, or legal inquiries regarding this Privacy Policy, please contact our data protection team at: <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>
       </p>
     </div>
   );
