@@ -111,6 +111,15 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.57 — Generic Placeholders for Homepage Certificate Preview
+
+Updated the homepage mock certificate preview overlays to use generic, descriptive placeholders to prevent hardcoded user data representations:
+
+- Changed name overlay to `'STUDENT NAME'`.
+- Changed roadmap title overlay to `'CHOSEN CAREER PATH'`.
+- Changed certificate verification ID to `'cert_xxxx_xxxx'`.
+- Adjusted `--char-count` properties to match the new placeholder string length for proportional scaling.
+
 ### v2.3.56 — Homepage Mock Certificate Redesign
 
 Redesigned the mock certificate preview shown on the homepage certifications section (`/`) to match the Canva-template design from the certificate verification page:
