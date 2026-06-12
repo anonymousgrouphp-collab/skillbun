@@ -531,9 +531,9 @@ export default function Home() {
               {/* Overlay: Roadmap Title */}
               <h2
                 className={`sb-cert-mock-title ${pixelify.className}`}
-                style={{ '--char-count': 18 }}
+                style={{ '--char-count': 21 }}
               >
-                CHOSEN CAREER PATH
+                YOUR LEARNING ROADMAP
               </h2>
 
               {/* Overlay: Certificate ID below QR */}
