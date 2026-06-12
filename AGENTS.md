@@ -37,6 +37,7 @@ The following are protected surfaces. Agents must not remove, redesign, replace,
 - Footer structure, footer brand area, and footer badges/links
 - Shared nav (now using a central Advanced Search Bar instead of standard text links), shared theme shell, and theme toggle behavior
 - Dark/light theme support, token-driven styling, SkillBun default colors, and the light-mode patterned background treatment
+- The public certificate verification page design at `/certificate/[id]`, including its Canva template overlay alignment for student name, roadmap title, brand watermark, and QR unique ID.
 
 ## Brand identity that must be preserved
 

@@ -111,6 +111,112 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.52 — Perfect Brand Watermark Template Center Offset
+
+Aligned the stylized brand watermark `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` with the template's printed collaboration text on the public certificate page (`/certificate/[id]`):
+
+- Restored the horizontal center offset of `left: 52.75cqi` (with `transform: translateX(-50%)`) to align with the off-center logo position in the Canva template.
+- Set container width to a generous `50.0cqi` to prevent any text wrapping or Flexbox overflow truncation, ensuring the watermark aligns with the printed template content.
+
+### v2.3.51 — Fix Brand Watermark Centering & Alignment
+
+Resolved shifting and misalignment of the stylized brand watermark `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` on the public certificate page (`/certificate/[id]`):
+
+- Replaced the off-center fixed-width container (`width: 35.0cqi`, `left: 52.75cqi`) with a full-width transparent container (`width: 100%`, `left: 0`) and Flexbox centering to guarantee 100% horizontal alignment.
+- Removed the solid white container background since the new template image background is already clean white in the logo area, preventing patch visual overlaps.
+- Removed unused `.skillbunOverlay::before` print rule.
+
+### v2.3.50 — Certificate Watermark Size & Spacing Enhancement
+
+Enlarged the stylized brand watermark `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` and expanded its spacing on the public certificate page (`/certificate/[id]`):
+
+- Increased the font-size of `.skillbunText` from `4.8cqi` to `5.6cqi`.
+- Increased the letter-spacing of `.skillbunText` from `0.22cqi` to `0.36cqi` to make the wordmark more prominent and spacious.
+- Widened the white background container `.skillbunOverlay` to `35.0cqi` and increased its height to `7.5cqi` to ensure the enlarged text renders completely without wrapping or boundary clipping.
+- Repositioned the top coordinate to `9.8cqi` for perfect vertical alignment.
+
+### v2.3.49 — Certificate Unique ID Size Adjustment
+
+Enlarged the unique ID text overlay below the QR code on the public certificate page (`/certificate/[id]`):
+
+- Increased the font-size of `.qrMetaId` from `0.65cqi` to `0.82cqi` to improve legibility and readability.
+- Widened the container `.qrMeta` from `9.0cqi` to `10.0cqi` to support the larger font scaling without excessive line wraps, adjusting `left` from `17.5cqi` to `17.0cqi` to maintain perfect centering.
+
+### v2.3.48 — Certificate Recipient Name Visual Improvements
+
+Enhanced the visual presence of the student's name on the public certificate page (`/certificate/[id]`):
+
+- Replaced the muted gold color with a shiny, high-contrast metallic gold gradient (`#BF953F`, `#FCF6BA`, `#B38728`, `#FBF5B7`, `#AA771C`) reflecting metallic light highlights.
+- Increased `font-weight` to the maximum ultra-bold value `900` to make the Cinzel font stand out clearly.
+- Added a letter-spacing of `0.05em` to improve elegance and readability.
+- Added a subtle drop shadow (`filter: drop-shadow(...)`) to create depth and separate the text from the background image.
+- Updated print media fallback colors to match the new metallic gold tone `#BF953F`.
+
+### v2.3.47 — Fix Certificate Roadmap Title Position & Overlap
+
+Updated vertical alignment and spacing for the roadmap title overlay on the public certificate page (`/certificate/[id]`):
+
+- Centered the `.roadmapTitle` element vertically in the layout gap using `transform: translate(-50%, -50%)` and `top: 39.4cqi` instead of standard `translateX` and baseline top alignment.
+- Reduced `line-height` from `1.3` to `1.1` to reduce the vertical footprint of the heading text and prevent it from overlapping with surrounding template content.
+
+### v2.3.46 — Dynamic Font Sizing for Certificate Roadmap Title
+
+Updated the public certificate page (`/certificate/[id]`) with dynamic sizing for the roadmap title:
+
+- Added a `--char-count` custom property to the roadmap title dynamically calculated based on string length.
+- Replaced the static `3.5cqi` font-size of the `.roadmapTitle` class with a `clamp` dynamic calculation (`clamp(4.0cqi, calc(6.5cqi - 0.061cqi * var(--char-count)), 5.8cqi)`) to scale short and long titles gracefully on a single line.
+- Updated `letter-spacing` to `0.03em` for proportional letter spacing relative to the dynamic font-size.
+
+### v2.3.45 — Increased Roadmap Title Font Size
+
+Updated style properties on the public certificate page (`/certificate/[id]`):
+
+- Increased the `font-size` of the `.roadmapTitle` overlay class from `2.3cqi` to `3.5cqi` to make the pixelated roadmap title larger and more visually balanced as requested.
+
+### v2.3.44 — Pixelated Font and Shadow for Roadmap Title
+
+Styled the roadmap title overlay on the public certificate page (`/certificate/[id]`):
+
+- Imported the pixelated font family `Pixelify_Sans` from `next/font/google` and applied it to the roadmap title header.
+- Added a solid dark offset drop-shadow filter to the roadmap title gradient to give it a retro/arcade blocky outline style that matches the reference template design.
+
+### v2.3.43 — Certificate Design Updates with New Background and Spacing
+
+Integrated design improvements for the public certificate page (`/certificate/[id]`):
+
+- Replaced the template background image (`public/certificate-template.png`) with the new version exported from Canva.
+- Restored the certificate ID overlay (`cert.id`) centered directly under the QR code area, while keeping name and roadmap metadata removed as requested.
+- Made the brand wordmark (`ꌗꀘꀤ꒒꒒ꌃꀎꈤ`) bolder (`font-weight: 900`) and introduced a slight spacing (`letter-spacing: 0.22cqi`) for an enhanced brand presence.
+
+### v2.3.42 — Certificate Stylized Wordmark and QR Metadata Cleanup
+
+Updated certificate display elements on the public certificate page (`/certificate/[id]`):
+
+- Replaced the plain "SKILLBUN" text overlay with the unique, stylized unicode brand wordmark: `ꌗꀘꀤ꒒꒒ꌃꀎꈤ`.
+- Removed font-family and letter-spacing overrides from the wordmark overlay to let browser system fonts render the Yi characters natively.
+- Removed the metadata overlay (unique ID, name, roadmap title) from below the QR code area as requested.
+
+### v2.3.41 — Certificate Position Fine-Tuning
+
+Fine-tuned the absolute overlay coordinates and structural layout on the certificate display page (`/certificate/[id]`):
+
+- Added `padding: 0 !important;` to `.certificateFrame` to override the global CSS section padding, ensuring the template background image fills the frame completely.
+- Refined the SKILLBUN text overlay to use separate container (`.skillbunOverlay`) and text gradient (`.skillbunText`) elements, preventing rendering conflicts and ensuring complete masking of the underlying green "NO GLYPH" bars.
+- Centered the SKILLBUN text overlay exactly at `left: 52.75cqi` with `width: 31.0cqi` based on pixel-level color scanning of the template image.
+- Adjusted the vertical coordinates of all absolute text overlays (recipient name at `top: 25.8cqi`, roadmap title at `top: 38.6cqi`, and QR meta at `top: 63.6cqi`) to prevent any text overlaps.
+
+### v2.3.40 — Certificate Page Redesign (Canva Template)
+
+Redesigned the public certificate display page (`/certificate/[id]`) to use a custom Canva-designed template:
+
+- Replaced the fully-coded certificate layout with the Canva-exported circuit-board themed template PNG as a background image.
+- Dynamic text overlays (recipient name, roadmap title, certificate ID) are positioned over the template using container query units for proportional scaling across screen sizes.
+- Added Cinzel serif font (via `next/font/google`) for premium gold-gradient recipient name and roadmap title styling.
+- Overlays SKILLBUN text to fix NO GLYPH font rendering in the exported template.
+- Displays certificate ID, user name, and roadmap name below the QR code area.
+- Preserved existing actions bar (Print/PDF, LinkedIn sharing), loading/error states, and verification note.
+- Updated print media queries for landscape A4 output with solid gold fallback for gradient text.
+
 ### v2.3.28 — Project Cleanup
 
 Removed unused files, prototype pages, and development artifacts that were not part of the production application:
