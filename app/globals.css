@@ -6817,9 +6817,13 @@ footer {
 
 /* ===== GLOBAL PRINT OVERRIDES ===== */
 @media print {
-  body {
+  html, body {
     background: #ffffff !important;
     color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
   }
 
   header, footer, nav, #splash {
