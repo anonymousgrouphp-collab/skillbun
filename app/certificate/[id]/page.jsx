@@ -46,6 +46,17 @@ export default function CertificatePage() {
   const [cert, setCert] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [toast, setToast] = useState('');
+
+  // Auto-dismiss toast notification after 4 seconds
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => {
+      setToast('');
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
 
   useEffect(() => {
     if (!id) return;
@@ -93,12 +104,58 @@ export default function CertificatePage() {
     window.print();
   };
 
-  const getLinkedInShareUrl = () => {
-    if (!cert) return '#';
+  const getCertUrl = () => {
+    if (!cert) return '';
     const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://skillbun.tech';
-    const certUrl = `${baseUrl}/certificate/${cert.id}`;
-    return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
+    return `${baseUrl}/certificate/${cert.id}`;
   };
+
+  const getLinkedInAddProfileUrl = () => {
+    if (!cert) return '#';
+
+    const certUrl = getCertUrl();
+    const orgId = process.env.NEXT_PUBLIC_LINKEDIN_ORGANIZATION_ID;
+    const name = `${cert.roadmapTitle} Certification`;
+
+    const params = new URLSearchParams({
+      startTask: 'CERTIFICATION_NAME',
+      name: name,
+      issueYear: cert.createdAtDate.getFullYear().toString(),
+      issueMonth: (cert.createdAtDate.getMonth() + 1).toString(),
+      certUrl: certUrl,
+      certId: cert.id,
+    });
+
+    if (orgId) {
+      params.append('organizationId', orgId);
+    } else {
+      params.append('organizationName', 'SkillBun');
+    }
+
+    return `https://www.linkedin.com/profile/add?${params.toString()}`;
+  };
+
+  const handleShareOnFeed = (e) => {
+    e.preventDefault();
+    if (!cert) return;
+
+    const certUrl = getCertUrl();
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
+    const copyText = `I'm excited to share that I have completed the ${cert.roadmapTitle} Certification on @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(copyText)
+        .then(() => {
+          setToast('📋 Post template copied! Paste (Ctrl+V) on LinkedIn to tag @SkillBun.');
+        })
+        .catch((err) => {
+          console.error('Failed to copy text to clipboard:', err);
+        });
+    }
+
+    window.open(shareUrl, '_blank', 'noopener,noreferrer');
+  };
+
 
   if (loading) {
     return (
@@ -127,13 +184,30 @@ export default function CertificatePage() {
       <div className={styles.bgGridOverlay} aria-hidden="true" />
 
       <div className={styles.container}>
+        {toast && (
+          <div className={styles.toast} role="alert">
+            {toast}
+          </div>
+        )}
+
         <div className={styles.actionsBar}>
           <button onClick={handlePrint} className={styles.actionBtn}>
             <PrintIcon /> Print / Save PDF
           </button>
-          <a href={getLinkedInShareUrl()} target="_blank" rel="noopener noreferrer" className={`${styles.actionBtn} ${styles.shareBtn}`}>
-            <LinkedInIcon /> Share on LinkedIn
+          <a
+            href={getLinkedInAddProfileUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.actionBtn} ${styles.shareBtn}`}
+          >
+            <LinkedInIcon /> Add to Profile
           </a>
+          <button
+            onClick={handleShareOnFeed}
+            className={`${styles.actionBtn} ${styles.shareOutlineBtn}`}
+          >
+            <LinkedInIcon /> Share on Feed
+          </button>
         </div>
 
         {/* Certificate — Canva Template with Dynamic Text Overlays */}

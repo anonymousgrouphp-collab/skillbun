@@ -111,6 +111,17 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.55 — Split LinkedIn Actions & Tagging Automation
+
+Split the "Share on LinkedIn" button on the certificate verification page (`/certificate/[id]`) into two distinct actions and implemented automated clipboard tag templates to enhance student sharing and brand outreach:
+
+- Created **Add to Profile** button: Directs students to LinkedIn's Licenses & Certifications form pre-filled with the certification name (formatted as `[Roadmap Title] Certification`), issuing organization (defaults to "SkillBun"), issue year, issue month, unique credential ID, and direct verification link.
+- Created **Share on Feed** button: Shares the verified certificate link to the user's timeline.
+- Automated Tag Copying: Auto-copies a customized post description template containing the `@SkillBun` tag and verification link to the user's clipboard upon clicking "Share on Feed".
+- Added Toast Notification: Displays a themed, animated fade-in confirmation toast ("📋 Post template copied! Paste (Ctrl+V) on LinkedIn to tag @SkillBun.") that auto-dismisses after 4 seconds.
+- Created optional configuration support: Documented `NEXT_PUBLIC_LINKEDIN_ORGANIZATION_ID` in `.env.example` to link certificates to the official organization logo if configured, falling back to the text name "SkillBun" (matching username `skillbun-tech`) if not set.
+- Styled actions bar buttons: Made "Add to Profile" solid LinkedIn blue, and "Share on Feed" a clean, theme-aware outline blue button.
+
 ### v2.3.54 — Enforce Single-Page Print Layout Height Contraints
 
 Guaranteed that the certificate prints strictly on exactly one page, even with custom browser margins:
