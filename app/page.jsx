@@ -2,6 +2,20 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { normalizeInternalPath } from '@/utils/shared/routes';
+import { Cinzel, Pixelify_Sans } from 'next/font/google';
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  display: 'swap',
+});
+
+const pixelify = Pixelify_Sans({
+  subsets: ['latin'],
+  weight: ['700'],
+  display: 'swap',
+});
+
 
 const FLOATER_TEXTS = [
   'console.log("career")', 'import skills', 'git commit -m "future"',
@@ -485,26 +499,46 @@ export default function Home() {
             overflow: 'hidden'
           }}>
             <div className="sb-cert-mock" style={{
-              border: '2px solid var(--green)',
+              position: 'relative',
+              width: '100%',
               borderRadius: '12px',
-              padding: '20px',
-              background: 'var(--surface-raised)',
-              textAlign: 'center',
-              position: 'relative'
+              overflow: 'hidden',
+              boxShadow: 'var(--card-shadow)',
+              containerType: 'inline-size'
             }}>
-              <div style={{ position: 'absolute', top: '10px', right: '10px', display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--green-subtle)', border: '1px solid var(--green)', padding: '4px 8px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--green)' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', display: 'inline-block' }}></span>
-                Verified
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/certificate-template.png"
+                alt="SkillBun Certificate of Completion — Gomastgamer101"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  pointerEvents: 'none',
+                  userSelect: 'none'
+                }}
+                draggable={false}
+              />
+
+              {/* Overlay: Fix SKILLBUN text */}
+              <div className="sb-cert-mock-overlay-skillbun" aria-hidden="true">
+                <span className="sb-cert-mock-text-skillbun">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
               </div>
-              <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🎓</div>
-              <h4 style={{ fontFamily: "var(--font-fredoka), cursive", color: 'var(--green)', fontSize: '1.25rem', marginBottom: '4px', letterSpacing: '1px' }}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h4>
-              <p style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)', margin: '4px 0 12px 0' }}>Certificate of Competency</p>
-              <h5 style={{ fontSize: '1.1rem', margin: '8px 0', color: 'var(--text)' }}>Gomastgamer101</h5>
-              <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '0' }}>has successfully verified proficiency in the</p>
-              <strong style={{ fontSize: '0.95rem', color: 'var(--text)', display: 'block', margin: '4px 0 16px 0' }}>Full Stack Developer Roadmap</strong>
-              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.7rem', color: 'var(--muted)' }}>
-                <span>ID: cert_sb_fs_90a1</span>
-                <span>Date: June 2026</span>
+
+              {/* Overlay: Recipient Name */}
+              <h1 className={`sb-cert-mock-name ${cinzel.className}`}>Gomastgamer101</h1>
+
+              {/* Overlay: Roadmap Title */}
+              <h2
+                className={`sb-cert-mock-title ${pixelify.className}`}
+                style={{ '--char-count': 28 }}
+              >
+                Full Stack Developer Roadmap
+              </h2>
+
+              {/* Overlay: Certificate ID below QR */}
+              <div className="sb-cert-mock-qr-meta">
+                <span className="sb-cert-mock-qr-meta-id">cert_sb_fs_90a1</span>
               </div>
             </div>
             
