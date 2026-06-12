@@ -111,6 +111,13 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.58 — Prevent Weird 'C' Character Rendering in Certificate Preview
+
+Updated the homepage mock certificate roadmap placeholder to avoid using the letter 'C' due to blocky pixel artifacts in the `Pixelify_Sans` font:
+
+- Replaced `'CHOSEN CAREER PATH'` with `'YOUR LEARNING ROADMAP'` (Length: 21).
+- Updated `--char-count` properties to match the new string size.
+
 ### v2.3.57 — Generic Placeholders for Homepage Certificate Preview
 
 Updated the homepage mock certificate preview overlays to use generic, descriptive placeholders to prevent hardcoded user data representations:
