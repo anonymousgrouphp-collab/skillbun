@@ -111,6 +111,21 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.54 — Enforce Single-Page Print Layout Height Contraints
+
+Guaranteed that the certificate prints strictly on exactly one page, even with custom browser margins:
+
+- Added print overrides in `globals.css` to restrict `html, body` to `height: 100%` and `overflow: hidden`.
+- Constrained heights of `.page` and `.container` to `100vh !important` and set `overflow: hidden` in print media.
+- Constrained max-height of `.certificateFrame` and `.templateImg` to `100vh !important` with `object-fit: contain` to scale the template proportionally within the page viewport without overflow spilling.
+
+### v2.3.53 — Fix Certificate Print Layout Spilling (Two Pages)
+
+Resolved print layout issue where the certificate was forced to print across two pages:
+
+- Hidden the main navigation bar (`nav`) globally in print media query using `:global(nav) { display: none !important; }`.
+- Reset document body padding and margins in print media using `:global(body) { margin: 0 !important; padding: 0 !important; }` to maximize printable height and prevent overflow page breaks.
+
 ### v2.3.52 — Perfect Brand Watermark Template Center Offset
 
 Aligned the stylized brand watermark `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` with the template's printed collaboration text on the public certificate page (`/certificate/[id]`):
