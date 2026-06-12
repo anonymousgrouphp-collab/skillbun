@@ -111,6 +111,14 @@ Deploy `firestore.rules` so each signed-in user can read and write only their ow
 
 ## Changelog
 
+### v2.3.59 — Interactive Share Customization Modal
+
+Created an interactive share guidance popup modal for the "Share on Feed" action on the public certificate page (`/certificate/[id]`):
+
+- Added a customizable text editor popup modal when a student clicks the "Share on Feed" button, allowing them to preview and edit their LinkedIn post content before sharing.
+- Integrated a step-by-step guidance list explaining how to copy the post text, launch the LinkedIn sharing tab, paste (Ctrl+V) the content, and tag the official company page `@SkillBun`.
+- Designed the modal using theme-respecting local CSS classes, smooth keyframe transitions, and a blur backdrop.
+
 ### v2.3.58 — Prevent Weird 'C' Character Rendering in Certificate Preview
 
 Updated the homepage mock certificate roadmap placeholder to avoid using the letter 'C' due to blocky pixel artifacts in the `Pixelify_Sans` font:
