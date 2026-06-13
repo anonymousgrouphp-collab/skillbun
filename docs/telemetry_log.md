@@ -1718,3 +1718,4 @@
 [2026-06-13T08:40:49] test(matching): add test suite for recommendation score
 [2026-06-13T09:19:33] feat(career): enhance career pathway matching algorithm
 [2026-06-13T18:34:36] perf(cache): optimize career trajectory data loader
+[2026-06-13T18:32:44] docs(telemetry): record platform assessment metrics
