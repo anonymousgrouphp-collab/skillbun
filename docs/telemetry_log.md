@@ -1717,3 +1717,4 @@
 [2026-06-13T15:47:41] fix(analytics): correct career aptitude score calculation
 [2026-06-13T08:40:49] test(matching): add test suite for recommendation score
 [2026-06-13T09:19:33] feat(career): enhance career pathway matching algorithm
+[2026-06-13T18:34:36] perf(cache): optimize career trajectory data loader
