@@ -2058,3 +2058,4 @@
 [2026-06-17T19:26:00] feat(roadmap): add milestone progress tracking
 [2026-06-17T15:12:07] feat(roadmap): add milestone progress tracking
 [2026-06-17T11:39:23] feat(roadmap): add milestone progress tracking
+[2026-06-17T15:29:49] docs(telemetry): record platform assessment metrics
