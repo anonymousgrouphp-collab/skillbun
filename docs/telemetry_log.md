@@ -717,3 +717,4 @@
 [2026-06-21T23:12:15] refactor(counseling): streamline multi-step guidance flow
 [2026-06-21T17:14:19] refactor(counseling): streamline multi-step guidance flow
 [2026-06-21T14:44:45] chore(deps): update analytics telemetry adapter
+[2026-06-21T18:30:22] feat(roadmap): add milestone progress tracking
