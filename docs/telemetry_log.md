@@ -689,3 +689,4 @@
 [2026-06-21T10:24:32] chore(deps): update analytics telemetry adapter
 [2026-06-21T16:52:39] fix(analytics): correct career aptitude score calculation
 [2026-06-21T11:08:06] test(matching): add test suite for recommendation score
+[2026-06-21T19:50:21] feat(roadmap): add milestone progress tracking
