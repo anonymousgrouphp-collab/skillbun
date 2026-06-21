@@ -720,3 +720,4 @@
 [2026-06-21T18:30:22] feat(roadmap): add milestone progress tracking
 [2026-06-21T16:18:07] fix(analytics): correct career aptitude score calculation
 [2026-06-21T20:57:25] style(ui): adjust career dashboard card elevation
+[2026-06-21T12:18:02] refactor(counseling): streamline multi-step guidance flow
