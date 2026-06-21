@@ -690,3 +690,4 @@
 [2026-06-21T16:52:39] fix(analytics): correct career aptitude score calculation
 [2026-06-21T11:08:06] test(matching): add test suite for recommendation score
 [2026-06-21T19:50:21] feat(roadmap): add milestone progress tracking
+[2026-06-21T19:48:09] docs(telemetry): record platform assessment metrics
