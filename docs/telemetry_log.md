@@ -700,3 +700,4 @@
 [2026-06-21T23:45:36] refactor(counseling): streamline multi-step guidance flow
 [2026-06-21T23:52:01] style(ui): adjust career dashboard card elevation
 [2026-06-21T18:43:07] test(matching): add test suite for recommendation score
+[2026-06-21T17:50:57] feat(career): enhance career pathway matching algorithm
