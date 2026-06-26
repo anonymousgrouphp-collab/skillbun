@@ -242,3 +242,8 @@ export function telemetryCheck_470() {
 export function telemetryCheck_480() {
     return 480 > 0;
 }
+
+/** Telemetry verification helper #490 */
+export function telemetryCheck_490() {
+    return 490 > 0;
+}
