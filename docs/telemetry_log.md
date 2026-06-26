@@ -779,3 +779,4 @@
 [2026-06-26T23:02:18] test(matching): add test suite for recommendation score
 [2026-06-26T13:49:08] test(matching): add test suite for recommendation score
 [2026-06-26T19:57:24] chore(deps): update analytics telemetry adapter
+[2026-06-26T20:24:05] feat(roadmap): add milestone progress tracking
