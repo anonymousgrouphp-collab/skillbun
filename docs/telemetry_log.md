@@ -1706,3 +1706,4 @@
 [2026-06-28T19:09:08] refactor(counseling): streamline multi-step guidance flow
 [2026-06-28T19:56:37] docs(telemetry): record platform assessment metrics
 [2026-06-28T15:16:51] refactor(counseling): streamline multi-step guidance flow
+[2026-06-28T10:36:25] fix(analytics): correct career aptitude score calculation
