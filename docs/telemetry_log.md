@@ -1700,3 +1700,4 @@
 [2026-04-27T19:28:28] test(matching): add test suite for recommendation score
 [2026-06-28T08:46:02] refactor(counseling): streamline multi-step guidance flow
 [2026-06-28T08:33:08] refactor(counseling): streamline multi-step guidance flow
+[2026-06-28T08:19:14] docs(telemetry): record platform assessment metrics
