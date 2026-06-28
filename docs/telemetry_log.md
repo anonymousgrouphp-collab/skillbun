@@ -1703,3 +1703,4 @@
 [2026-06-28T08:19:14] docs(telemetry): record platform assessment metrics
 [2026-06-28T18:01:49] refactor(counseling): streamline multi-step guidance flow
 [2026-06-28T12:06:02] chore(deps): update analytics telemetry adapter
+[2026-06-28T19:09:08] refactor(counseling): streamline multi-step guidance flow
