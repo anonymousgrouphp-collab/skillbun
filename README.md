@@ -189,6 +189,11 @@ service cloud.firestore {
 
 ## 📜 Project Changelog
 
+### v2.6.2 — Harden SBV1 Live Study Guide Loading
+- Matched the Next.js output file tracing include to the exact dynamic `/api/docs/[slug]/[topicId]` route so encrypted SBV1 files are bundled reliably for the deployed API route.
+- Normalized `DOCS_ENCRYPTION_KEY` at runtime to tolerate accidental copied whitespace or wrapping quotes while preserving the required 64-character hex key validation.
+- Incremented project version to 2.6.2.
+
 ### v2.6.1 — SBV1 Study Guide Deployment Fix
 - Included encrypted `content/docs` SBV1 vault files in Next.js server output tracing so deployed API routes can read study guides at runtime.
 - Pinned the authenticated `/api/docs/[slug]/[topicId]` route to the Node.js runtime because it intentionally uses filesystem and crypto APIs for SBV1 decryption.

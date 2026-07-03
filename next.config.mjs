@@ -37,7 +37,7 @@ const nextConfig = {
     root: __dirname,
   },
   outputFileTracingIncludes: {
-    '/api/docs/**/*': ['./content/docs/*.sbv', './content/docs/**/*.sbv'],
+    '/api/docs/[slug]/[topicId]': ['./content/docs/*.sbv', './content/docs/**/*.sbv'],
   },
   async rewrites() {
     return [

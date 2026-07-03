@@ -42,6 +42,10 @@ function obfuscateFilename(slug, topicId) {
     .slice(0, 24)
 }
 
+function normalizeEncryptionKey(value) {
+  return (value || '').trim().replace(/^['"]|['"]$/g, '')
+}
+
 function decryptSBV1(filePath, encryptionKey, fileIdentity) {
   const data = readFileSync(filePath)
 
@@ -112,8 +116,8 @@ export async function GET(request, { params }) {
   }
 
   // Decrypt and serve
-  const encryptionKey = process.env.DOCS_ENCRYPTION_KEY
-  if (!encryptionKey || encryptionKey.length !== 64) {
+  const encryptionKey = normalizeEncryptionKey(process.env.DOCS_ENCRYPTION_KEY)
+  if (!/^[a-fA-F0-9]{64}$/.test(encryptionKey)) {
     console.error('DOCS_ENCRYPTION_KEY is not configured')
     return NextResponse.json({ error: 'Server configuration error' }, { status: 500 })
   }
