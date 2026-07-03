@@ -4,6 +4,8 @@ import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import { createDecipheriv, createHmac, createHash } from 'crypto'
 
+export const runtime = 'nodejs'
+
 /**
  * GET /api/docs/[slug]/[topicId]
  * 
