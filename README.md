@@ -189,6 +189,11 @@ service cloud.firestore {
 
 ## 📜 Project Changelog
 
+### v2.6.1 — SBV1 Study Guide Deployment Fix
+- Included encrypted `content/docs` SBV1 vault files in Next.js server output tracing so deployed API routes can read study guides at runtime.
+- Pinned the authenticated `/api/docs/[slug]/[topicId]` route to the Node.js runtime because it intentionally uses filesystem and crypto APIs for SBV1 decryption.
+- Incremented project version to 2.6.1.
+
 ### v2.6.0 — Legal & Compliance Documentation Renewal
 - Renewed and updated the Terms of Use and Privacy Policy pages to be highly professional, comprehensive, and legally robust.
 - Addressed specific technical and policy details including Firebase authentication, Firestore Firestore Rules, Zoho SMTP, Google Gemini API terms, Cloudflare Turnstile bot protection, and SkillBun Vault (SBV1) encryption guidelines.
