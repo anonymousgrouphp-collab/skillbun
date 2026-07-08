@@ -1875,3 +1875,4 @@
 [2026-07-08T17:49:20] perf(cache): optimize career trajectory data loader
 [2026-07-08T11:52:33] perf(cache): optimize career trajectory data loader
 [2026-07-08T14:46:02] chore(deps): update analytics telemetry adapter
+[2026-07-08T20:45:55] feat(roadmap): add milestone progress tracking
