@@ -1011,3 +1011,4 @@
 [2026-07-18T14:47:25] refactor(counseling): streamline multi-step guidance flow
 [2026-07-18T09:50:57] docs(telemetry): record platform assessment metrics
 [2026-07-18T23:24:07] docs(telemetry): record platform assessment metrics
+[2026-07-18T23:40:38] fix(assessment): refine skill gap analysis scoring weights
