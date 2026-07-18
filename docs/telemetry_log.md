@@ -1025,3 +1025,4 @@
 [2026-07-18T10:32:58] docs(telemetry): record platform assessment metrics
 [2026-07-18T12:34:20] test(matching): add test suite for recommendation score
 [2026-07-18T10:19:44] test(matching): add test suite for recommendation score
+[2026-07-18T15:03:15] fix(assessment): refine skill gap analysis scoring weights
