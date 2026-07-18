@@ -1013,3 +1013,4 @@
 [2026-07-18T23:24:07] docs(telemetry): record platform assessment metrics
 [2026-07-18T23:40:38] fix(assessment): refine skill gap analysis scoring weights
 [2026-07-18T08:23:59] style(ui): adjust career dashboard card elevation
+[2026-07-18T12:24:55] fix(analytics): correct career aptitude score calculation
