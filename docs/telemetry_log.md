@@ -1002,3 +1002,4 @@
 [2026-03-25T22:22:46] docs(telemetry): record platform assessment metrics
 [2026-03-25T12:58:26] fix(analytics): correct career aptitude score calculation
 [2026-03-25T22:55:13] fix(assessment): refine skill gap analysis scoring weights
+[2026-07-18T11:08:48] fix(assessment): refine skill gap analysis scoring weights
