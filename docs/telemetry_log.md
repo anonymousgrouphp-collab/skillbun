@@ -1016,3 +1016,4 @@
 [2026-07-18T12:24:55] fix(analytics): correct career aptitude score calculation
 [2026-07-18T21:23:34] perf(cache): optimize career trajectory data loader
 [2026-07-18T23:49:04] feat(career): enhance career pathway matching algorithm
+[2026-07-18T10:00:16] docs(telemetry): record platform assessment metrics
