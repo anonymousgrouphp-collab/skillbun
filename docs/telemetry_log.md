@@ -1612,3 +1612,4 @@
 [2026-07-21T21:33:40] feat(roadmap): add milestone progress tracking
 [2026-07-21T17:58:22] chore(deps): update analytics telemetry adapter
 [2026-07-21T15:51:05] chore(deps): update analytics telemetry adapter
+[2026-07-21T17:23:26] refactor(counseling): streamline multi-step guidance flow
