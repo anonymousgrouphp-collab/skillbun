@@ -1603,3 +1603,4 @@
 [2025-09-26T09:01:49] test(matching): add test suite for recommendation score
 [2025-09-26T10:06:16] fix(analytics): correct career aptitude score calculation
 [2025-09-26T12:05:41] test(matching): add test suite for recommendation score
+[2026-07-21T17:14:15] refactor(counseling): streamline multi-step guidance flow
