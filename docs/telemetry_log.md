@@ -1605,3 +1605,4 @@
 [2025-09-26T12:05:41] test(matching): add test suite for recommendation score
 [2026-07-21T17:14:15] refactor(counseling): streamline multi-step guidance flow
 [2026-07-21T22:40:08] perf(cache): optimize career trajectory data loader
+[2026-07-21T13:01:02] style(ui): adjust career dashboard card elevation
