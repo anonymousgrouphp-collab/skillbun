@@ -46,7 +46,7 @@ export default function AboutPage() {
 
       <h2>Team</h2>
       <p>
-        Team Cosmic manages this project with the active guidance and contribution of multiple IITians.
+        Reish manages this project with the active guidance and contribution of multiple IITians.
       </p>
       <div style={{ marginTop: '2rem' }}>
         <Link href="/contact" className="cta-button" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', backgroundColor: 'var(--brand-color, #22c55e)', color: '#fff', textDecoration: 'none', borderRadius: '4px', fontWeight: 'bold' }}>
