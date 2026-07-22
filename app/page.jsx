@@ -695,7 +695,7 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Team Cosmic. Made with 🐾 for India's tech students.</p>
+            <p>© 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Reish. Made with 🐾 for India's tech students.</p>
             <div className="badge-bar">
               <span className="badge">BCA Friendly</span>
               <span className="badge">BS/BS-MS (AICS/CSDA)</span>

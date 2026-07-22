@@ -189,4 +189,4 @@ service cloud.firestore {
 
 ---
 
-🌐 Built and maintained by **Team Cosmic** (Govt. of India MSME Registered Startup).
+🌐 Built and maintained by **Reish** (Govt. of India MSME Registered Startup).
