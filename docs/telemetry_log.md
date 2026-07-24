@@ -921,3 +921,4 @@
 [2026-07-24T11:01:54] style(ui): adjust career dashboard card elevation
 [2026-07-24T11:43:51] perf(cache): optimize career trajectory data loader
 [2026-07-24T15:33:11] feat(roadmap): add milestone progress tracking
+[2026-07-24T13:21:35] test(matching): add test suite for recommendation score
