@@ -924,3 +924,4 @@
 [2026-07-24T13:21:35] test(matching): add test suite for recommendation score
 [2026-07-24T22:14:51] test(matching): add test suite for recommendation score
 [2026-07-24T13:11:40] test(matching): add test suite for recommendation score
+[2026-07-24T20:01:47] fix(analytics): correct career aptitude score calculation
