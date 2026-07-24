@@ -931,3 +931,4 @@
 [2026-07-24T11:51:55] feat(roadmap): add milestone progress tracking
 [2026-07-24T13:23:20] docs(telemetry): record platform assessment metrics
 [2026-07-24T22:07:16] chore(deps): update analytics telemetry adapter
+[2026-07-24T18:38:24] fix(analytics): correct career aptitude score calculation
