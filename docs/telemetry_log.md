@@ -1934,3 +1934,4 @@
 [2026-07-25T20:24:27] feat(roadmap): add milestone progress tracking
 [2026-07-25T14:42:11] chore(deps): update analytics telemetry adapter
 [2026-07-25T12:12:35] test(matching): add test suite for recommendation score
+[2026-07-25T19:53:26] perf(cache): optimize career trajectory data loader
