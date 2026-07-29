@@ -1231,3 +1231,4 @@
 [2026-07-29T08:41:31] refactor(counseling): streamline multi-step guidance flow
 [2026-07-29T16:58:26] test(matching): add test suite for recommendation score
 [2026-07-29T20:47:02] fix(analytics): correct career aptitude score calculation
+[2026-07-29T14:21:46] docs(telemetry): record platform assessment metrics
