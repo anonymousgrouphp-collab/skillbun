@@ -1903,3 +1903,4 @@
 [2026-08-03T18:29:31] feat(career): enhance career pathway matching algorithm
 [2026-08-03T10:30:07] style(ui): adjust career dashboard card elevation
 [2026-08-03T23:29:54] perf(cache): optimize career trajectory data loader
+[2026-08-03T17:49:22] fix(analytics): correct career aptitude score calculation
