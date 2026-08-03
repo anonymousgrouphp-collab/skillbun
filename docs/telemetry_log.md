@@ -1904,3 +1904,4 @@
 [2026-08-03T10:30:07] style(ui): adjust career dashboard card elevation
 [2026-08-03T23:29:54] perf(cache): optimize career trajectory data loader
 [2026-08-03T17:49:22] fix(analytics): correct career aptitude score calculation
+[2026-08-03T12:32:06] test(matching): add test suite for recommendation score
