@@ -1907,3 +1907,4 @@
 [2026-08-03T12:32:06] test(matching): add test suite for recommendation score
 [2026-08-03T11:20:35] fix(assessment): refine skill gap analysis scoring weights
 [2026-08-03T17:34:29] test(matching): add test suite for recommendation score
+[2026-08-03T21:15:39] docs(telemetry): record platform assessment metrics
