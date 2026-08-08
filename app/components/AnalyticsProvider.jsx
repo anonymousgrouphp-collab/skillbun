@@ -3,6 +3,8 @@
 import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { trackPageView, identifyUser } from '@/lib/analytics';
 import { useAuth } from './AuthProvider';
 
@@ -43,6 +45,12 @@ export function AnalyticsProvider({ children }) {
       <Suspense fallback={null}>
         <AnalyticsTracker />
       </Suspense>
+
+      {/* Official Vercel Web Analytics Component */}
+      <Analytics />
+
+      {/* Official Vercel Speed Insights Component */}
+      <SpeedInsights />
 
       {/* 1. Google Analytics 4 (GA4) Script */}
       <Script
