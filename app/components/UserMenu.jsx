@@ -6,12 +6,14 @@ import { useAuth } from './AuthProvider';
 import ThemeToggle from './ThemeToggle';
 
 const GUEST_ITEMS = [
+  { href: '/projects', label: 'Projects Hub', icon: 'projects' },
   { href: '/auth?next=/dashboard&mode=login', label: 'Log In', icon: 'login' },
   { href: '/auth?next=/dashboard&mode=signup', label: 'Sign Up', icon: 'signup' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
 ];
 
 const INCOMPLETE_PROFILE_ITEMS = [
+  { href: '/projects', label: 'Projects Hub', icon: 'projects' },
   { href: '/onboarding?next=/dashboard', label: 'Complete Profile', icon: 'profile' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
@@ -19,6 +21,7 @@ const INCOMPLETE_PROFILE_ITEMS = [
 ];
 
 const COMPLETE_PROFILE_ITEMS = [
+  { href: '/projects', label: 'Projects Hub', icon: 'projects' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
   { href: '/roadmap?view=saved', label: 'Saved Paths', icon: 'saved' },
@@ -38,6 +41,7 @@ function MenuIcon({ name }) {
   };
 
   const icons = {
+    projects: <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />,
     dashboard: (
       <>
         <rect x="3" y="3" width="7" height="8" rx="2" />

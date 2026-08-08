@@ -37,6 +37,7 @@ function getRoadmaps() {
 
 const STATIC_PAGES = [
   { title: 'Home', href: '/', type: 'page' },
+  { title: 'Projects Hub', href: '/projects', type: 'page' },
   { title: 'Features', href: '/#features', type: 'page' },
   { title: 'How it Works', href: '/#how', type: 'page' },
   { title: 'Career Paths', href: '/#careers', type: 'page' },
