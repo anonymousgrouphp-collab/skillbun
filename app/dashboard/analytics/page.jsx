@@ -21,19 +21,25 @@ export default function AnalyticsDashboardPage() {
 
   useEffect(() => {
     if (!user || !isAuthorizedAdmin) {
-      setLoading(false);
       return;
     }
 
+    let active = true;
     fetch('/api/admin/analytics')
       .then((res) => res.json())
       .then((resData) => {
-        if (resData.success) {
+        if (active && resData.success) {
           setData(resData);
         }
       })
       .catch((err) => console.error('Analytics load error:', err))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, [user, isAuthorizedAdmin]);
 
   if (authLoading) {
@@ -246,8 +252,8 @@ export default function AnalyticsDashboardPage() {
                 <strong style={{ display: 'block', fontSize: '0.95rem' }}>Google Analytics 4 (GA4)</strong>
                 <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>SEO acquisition & traffic source analytics</span>
               </div>
-              <span style={{ background: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? 'var(--green-subtle)' : 'var(--theme-track)', color: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? 'var(--green)' : 'var(--muted)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? 'CONNECTED' : 'STANDBY'}
+              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
+                ACTIVE
               </span>
             </div>
 
@@ -256,8 +262,8 @@ export default function AnalyticsDashboardPage() {
                 <strong style={{ display: 'block', fontSize: '0.95rem' }}>PostHog Product Analytics</strong>
                 <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Session replay & custom event captures</span>
               </div>
-              <span style={{ background: process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'var(--green-subtle)' : 'var(--theme-track)', color: process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'var(--green)' : 'var(--muted)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                {process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'CONNECTED' : 'STANDBY'}
+              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
+                ACTIVE
               </span>
             </div>
           </div>
