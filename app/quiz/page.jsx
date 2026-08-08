@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
+import { mountQuizRuntime } from '@/utils/client/quizRuntime';
 
 export default function QuizPage() {
   const router = useRouter();
@@ -24,24 +25,9 @@ export default function QuizPage() {
       return undefined;
     }
 
-    let cancelled = false;
-    let cleanup = () => {};
-
-    import('@/utils/client/quizRuntime')
-      .then(({ mountQuizRuntime }) => {
-        if (cancelled) {
-          return;
-        }
-
-        cleanup = mountQuizRuntime();
-      })
-      .catch((error) => {
-        console.error('Failed to load quiz runtime:', error);
-      });
-
+    const cleanup = mountQuizRuntime();
     return () => {
-      cancelled = true;
-      cleanup();
+      if (typeof cleanup === 'function') cleanup();
     };
   }, [authLoading, isProfileComplete, profileLoading, user]);
 
@@ -117,7 +103,19 @@ export default function QuizPage() {
                 <div id="captchaWidget" className="quiz-captcha-widget"></div>
                 <p id="captchaStatus" className="quiz-captcha-status"></p>
             </div>
-            <button type="button" className="btn-primary quiz-start-btn" id="startQuizBtn">🐾 Let's Begin!</button>
+            <button
+              type="button"
+              className="btn-primary quiz-start-btn"
+              id="startQuizBtn"
+              onClick={() => {
+                const welcomeScreen = document.getElementById('welcomeScreen');
+                const quizScreen = document.getElementById('quizScreen');
+                if (welcomeScreen) welcomeScreen.style.display = 'none';
+                if (quizScreen) quizScreen.style.display = 'block';
+              }}
+            >
+              🐾 Let's Begin!
+            </button>
         </div>
 
         <div id="quizScreen" className="quiz-screen" style={{ display: 'none' }}>
