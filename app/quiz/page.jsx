@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
 import { mountQuizRuntime } from '@/utils/client/quizRuntime';
+import { trackEvent } from '@/lib/analytics';
 
 export default function QuizPage() {
   const router = useRouter();
@@ -108,6 +109,7 @@ export default function QuizPage() {
               className="btn-primary quiz-start-btn"
               id="startQuizBtn"
               onClick={(e) => {
+                trackEvent('quiz_started', { degree, year });
                 const btn = e.currentTarget;
                 btn.classList.add('loading');
                 btn.innerHTML = '<span class="quiz-spinner-icon">⏳</span> Launching Quiz...';

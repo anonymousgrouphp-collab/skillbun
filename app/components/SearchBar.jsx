@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { trackEvent } from '@/lib/analytics';
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,6 +60,12 @@ export default function SearchBar() {
         if (res.ok) {
           const data = await res.json();
           setResults(data);
+          if (query.trim().length > 1) {
+            trackEvent('search_query', {
+              query: query.trim(),
+              resultsCount: (data.pages?.length || 0) + (data.roadmaps?.length || 0),
+            });
+          }
         }
       } catch (error) {
         console.error('Search error:', error);

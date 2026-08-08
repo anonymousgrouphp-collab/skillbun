@@ -6,6 +6,7 @@ import { useAuth } from '../../../components/AuthProvider';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import { doc, getDoc, setDoc, collection, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
+import { trackEvent } from '@/lib/analytics';
 import styles from './certify.module.css';
 
 
@@ -592,6 +593,12 @@ export default function CertifyPage() {
     };
   }, [quizState, shuffledQuestions, selectedAnswers]);
 
+  useEffect(() => {
+    if (quizState === 'results') {
+      trackEvent('cert_exam_submitted', { slug, score, passed, correctCount });
+    }
+  }, [quizState, slug, score, passed, correctCount]);
+
   // Save certificate to Firestore if passed
   const handleMintCertificate = async () => {
     if (isMinting) return;
@@ -617,6 +624,7 @@ export default function CertifyPage() {
         createdAt: serverTimestamp(),
       });
 
+      trackEvent('cert_issued', { certId, slug, score, certName: certName.trim() });
       router.push(`/certificate/${certId}`);
     } catch (err) {
       console.error('Failed to mint certificate:', err);

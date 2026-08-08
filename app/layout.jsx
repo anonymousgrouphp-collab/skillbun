@@ -6,6 +6,7 @@ import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
 import { AuthProvider } from './components/AuthProvider';
+import AnalyticsProvider from './components/AnalyticsProvider';
 
 const fredoka = Fredoka({
   subsets: ['latin'],
@@ -50,26 +51,23 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <AuthProvider>
-        <nav>
-          <div className="nav-logo">
-            <Link href="/" className="nav-logo-link">
-              <Image src="/logo.png" alt="SkillBun Logo" width={44} height={44} priority unoptimized />
-              <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-            </Link>
-          </div>
-          <SearchBar />
+          <AnalyticsProvider>
+            <nav>
+              <div className="nav-logo">
+                <Link href="/" className="nav-logo-link">
+                  <Image src="/logo.png" alt="SkillBun Logo" width={44} height={44} priority unoptimized />
+                  <span className="mini-bunny"></span> ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+                </Link>
+              </div>
+              <SearchBar />
 
-
-
-
-
-
-          <div className="nav-cta">
-            <ThemeToggle />
-            <UserMenu />
-          </div>
-        </nav>
-        {children}
+              <div className="nav-cta">
+                <ThemeToggle />
+                <UserMenu />
+              </div>
+            </nav>
+            {children}
+          </AnalyticsProvider>
         </AuthProvider>
       </body>
     </html>
