@@ -107,11 +107,19 @@ export default function QuizPage() {
               type="button"
               className="btn-primary quiz-start-btn"
               id="startQuizBtn"
-              onClick={() => {
-                const welcomeScreen = document.getElementById('welcomeScreen');
-                const quizScreen = document.getElementById('quizScreen');
-                if (welcomeScreen) welcomeScreen.style.display = 'none';
-                if (quizScreen) quizScreen.style.display = 'block';
+              onClick={(e) => {
+                const btn = e.currentTarget;
+                btn.classList.add('loading');
+                btn.innerHTML = '<span class="quiz-spinner-icon">⏳</span> Launching Quiz...';
+                
+                setTimeout(() => {
+                  const welcomeScreen = document.getElementById('welcomeScreen');
+                  const quizScreen = document.getElementById('quizScreen');
+                  if (welcomeScreen) welcomeScreen.style.display = 'none';
+                  if (quizScreen) quizScreen.style.display = 'block';
+                  btn.classList.remove('loading');
+                  btn.textContent = "🐾 Let's Begin!";
+                }, 150);
               }}
             >
               🐾 Let's Begin!
