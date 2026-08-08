@@ -530,6 +530,35 @@ export default function CertifyPage() {
     window.addEventListener('blur', handleBlur);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
+    // 4. Midway exit warning handlers (reload / tab close / link click / back button)
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = 'Are you sure you want to exit the certification exam? Unsaved progress will be lost.';
+      return e.returnValue;
+    };
+
+    const handleInternalClick = (e) => {
+      const link = e.target.closest('a');
+      if (link) {
+        const confirmLeave = window.confirm('Are you sure you want to exit the certification exam? Unsaved progress will be lost.');
+        if (!confirmLeave) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    };
+
+    const handlePopState = () => {
+      const confirmLeave = window.confirm('Are you sure you want to exit the certification exam? Unsaved progress will be lost.');
+      if (!confirmLeave) {
+        window.history.pushState(null, '', window.location.href);
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('click', handleInternalClick, true);
+    window.addEventListener('popstate', handlePopState);
+
     return () => {
       window.removeEventListener('contextmenu', block);
       window.removeEventListener('copy', block);
@@ -538,6 +567,9 @@ export default function CertifyPage() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('blur', handleBlur);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('click', handleInternalClick, true);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, [quizState]);
 

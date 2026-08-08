@@ -45,6 +45,58 @@ export default function QuizPage() {
     };
   }, [authLoading, isProfileComplete, profileLoading, user]);
 
+  useEffect(() => {
+    const isQuizActive = () => {
+      const quizScreen = document.getElementById('quizScreen');
+      const resultScreen = document.getElementById('resultScreen');
+      return Boolean(
+        quizScreen &&
+        quizScreen.style.display !== 'none' &&
+        (!resultScreen || resultScreen.style.display === 'none')
+      );
+    };
+
+    const handleBeforeUnload = (e) => {
+      if (isQuizActive()) {
+        e.preventDefault();
+        e.returnValue = 'Are you sure you want to exit the quiz? Your quiz progress will be lost.';
+        return e.returnValue;
+      }
+    };
+
+    const handleInternalClick = (e) => {
+      if (!isQuizActive()) return;
+
+      const link = e.target.closest('a, button');
+      if (link && !link.closest('#quizScreen') && !link.closest('#resultScreen')) {
+        const confirmLeave = window.confirm('Are you sure you want to exit the quiz? Your quiz progress will be lost.');
+        if (!confirmLeave) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    };
+
+    const handlePopState = () => {
+      if (isQuizActive()) {
+        const confirmLeave = window.confirm('Are you sure you want to exit the quiz? Your quiz progress will be lost.');
+        if (!confirmLeave) {
+          window.history.pushState(null, '', window.location.href);
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('click', handleInternalClick, true);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('click', handleInternalClick, true);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
   if (authLoading || profileLoading || !profile.hydrated || !user || !isProfileComplete) return <div className="quiz-wrapper" style={{ padding: '2rem', textAlign: 'center', color: 'var(--text)' }}>Loading...</div>;
 
   const { name, degree, year } = profile;
