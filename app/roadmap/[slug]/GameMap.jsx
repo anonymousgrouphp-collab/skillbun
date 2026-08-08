@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../components/AuthProvider';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
+import { trackEvent } from '@/lib/analytics';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import connections from '../../../public/data/roadmap_connections.json';
@@ -135,6 +136,12 @@ export default function GameMap({ roadmap, slug }) {
         console.error('Failed to load verified videos:', err);
       });
   }, []);
+
+  useEffect(() => {
+    if (slug) {
+      trackEvent('roadmap_viewed', { slug, title: roadmap?.title || slug });
+    }
+  }, [slug, roadmap?.title]);
 
   const roadmapTree = useMemo(() => normalizeRoadmapTree(roadmap), [roadmap]);
   const allNodes = flattenTree(roadmapTree);
