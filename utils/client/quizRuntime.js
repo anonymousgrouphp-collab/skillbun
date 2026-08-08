@@ -282,10 +282,53 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
     };
   }
 
-  function pickQuestionForStep(qNum) {
-    const questionsObj = state.quizQuestions;
-    if (!questionsObj) return null;
+  const localFallbackQuestions = {
+    phase1: [
+      {
+        id: 101, phase: 1,
+        q: "Your college team is building a major project for an all-India hackathon. Which part of the project do you naturally take charge of, {name}?",
+        options: [
+          { l: "A", t: "Designing and building the core application logic, APIs, and databases so everything runs reliably.", pillar: "systems", tags: ["fullstack", "backend", "frontend"], i: "Solid engineering instinct, {name}! You naturally focus on core application architecture." },
+          { l: "B", t: "Training an intelligent model or analyzing datasets to give your project smart predictive capabilities.", pillar: "data_ai", tags: ["ai_ml_engineer", "data_science"], i: "Analytical mindset, {name}! You look for patterns and intelligence in data." },
+          { l: "C", t: "Crafting a beautiful, intuitive user interface in Figma and ensuring user flow is seamless.", pillar: "design_product", tags: ["ui_ux_design", "product_designer"], i: "Great user empathy, {name}! You prioritize user experience and visual interface design." },
+          { l: "D", t: "Setting up cloud hosting on AWS/GCP, Docker containers, and CI/CD pipelines so deployment never fails.", pillar: "cloud_infra", tags: ["devops_cloud", "cloud_architect"], i: "Infrastructure-first thinking, {name}! You ensure high availability and smooth deployments." }
+        ]
+      },
+      {
+        id: 102, phase: 1,
+        q: "During a major online sale in India, the e-commerce backend experiences severe lag. What is your immediate diagnostic reaction, {name}?",
+        options: [
+          { l: "A", t: "Inspect server-side execution traces, database queries, and async code execution bottlenecks.", pillar: "systems", tags: ["backend", "java_developer", "go_developer"], i: "Deep troubleshooter, {name}! You jump right into code execution performance." },
+          { l: "B", t: "Analyze real-time event telemetry to understand drop-offs, user funnel anomalies, and anomaly alerts.", pillar: "data_ai", tags: ["data_analyst", "analytics_engineer"], i: "Data-driven approach, {name}! You look at system health through metrics and user data." },
+          { l: "C", t: "Redesign the checkout flow to gracefully inform users, queue traffic, and prevent cart abandonment frustration.", pillar: "design_product", tags: ["product_manager", "ux_researcher"], i: "Product-first vision, {name}! You focus on preserving user trust during downtime." },
+          { l: "D", t: "Audit firewall traffic, auto-scaling worker groups, load balancers, and network ingress paths.", pillar: "cloud_infra", tags: ["site_reliability_engineer", "network_engineer"], i: "Resilience expert, {name}! You look at traffic routing, load balancers, and cloud infra capacity." }
+        ]
+      },
+      {
+        id: 103, phase: 1,
+        q: "When exploring a new open-source repository on GitHub, what part of the repository pulls your interest first, {name}?",
+        options: [
+          { l: "A", t: "The clean directory layout, design patterns, object structures, and modular codebase logic.", pillar: "systems", tags: ["python_developer", "rust_developer"], i: "Architecture focused, {name}! Clean modular code is your technical benchmark." },
+          { l: "B", t: "The data pipelines, PyTorch/TensorFlow scripts, data cleanups, and evaluation metrics.", pillar: "data_ai", tags: ["generative_ai_app_developer", "nlp_engineer"], i: "AI-curious mind, {name}! Machine learning and data pipelines catch your eye instantly." },
+          { l: "C", t: "The frontend component library, design tokens, responsive CSS micro-animations, and UI components.", pillar: "design_product", tags: ["frontend", "design_systems_engineer"], i: "Eye for detail, {name}! Clean design tokens and frontend components excite you." },
+          { l: "D", t: "The Dockerfile, Kubernetes helm charts, Terraform infrastructure scripts, and GitHub workflow actions.", pillar: "cloud_infra", tags: ["terraform_iac_engineer", "kubernetes_engineer"], i: "Automation pro, {name}! Infrastructure-as-code and container setups are your playground." }
+        ]
+      },
+      {
+        id: 104, phase: 1,
+        q: "What type of technical problem feels most rewarding for you to solve after hours of effort, {name}?",
+        options: [
+          { l: "A", t: "Optimizing a slow API endpoint or database query from 2.5s down to 40ms.", pillar: "systems", tags: ["backend", "database_admin"], i: "Performance enthusiast, {name}! Speed and efficiency optimization drive your work." },
+          { l: "B", t: "Getting a machine learning model to reach 96% accuracy on a complex, messy real-world dataset.", pillar: "data_ai", tags: ["computer_vision_engineer", "ai_ml_engineer"], i: "Precision seeker, {name}! Extracting high accuracy from noisy datasets is your specialty." },
+          { l: "C", t: "Transforming a confusing 5-step user journey into a single, effortless 1-click action.", pillar: "design_product", tags: ["ui_ux_design", "service_designer"], i: "Simplicity champion, {name}! You turn complex user friction into elegant simple flows." },
+          { l: "D", t: "Automating zero-downtime rolling upgrades across a multi-region cloud cluster.", pillar: "cloud_infra", tags: ["devops_cloud", "aws_cloud_engineer"], i: "Reliability builder, {name}! High availability and seamless upgrades give you peace of mind." }
+        ]
+      }
+    ]
+  };
 
+  function pickQuestionForStep(qNum) {
+    const questionsObj = state.quizQuestions || localFallbackQuestions;
     const used = new Set(state.usedQuestionIds || []);
 
     if (qNum <= 3) {
@@ -297,7 +340,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
           return picked;
         }
       }
-      const p1Pool = (questionsObj.phase1 || []).filter(q => !used.has(q.id));
+      const p1Pool = (questionsObj.phase1 || localFallbackQuestions.phase1).filter(q => !used.has(q.id));
       if (p1Pool.length > 0) {
         const picked = p1Pool[Math.floor(Math.random() * p1Pool.length)];
         state.usedQuestionIds.push(picked.id);
@@ -309,7 +352,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       const dominantPillar = getDominantPillar();
       let pool = (questionsObj.phase2?.[dominantPillar] || []).filter(q => !used.has(q.id));
       if (pool.length === 0) {
-        pool = (questionsObj.phase1 || []).filter(q => !used.has(q.id));
+        pool = (questionsObj.phase1 || localFallbackQuestions.phase1).filter(q => !used.has(q.id));
       }
       if (pool.length > 0) {
         const picked = pool[Math.floor(Math.random() * pool.length)];
@@ -328,7 +371,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
     }
 
     const fallbackAll = [
-      ...(questionsObj.phase1 || []),
+      ...(questionsObj.phase1 || localFallbackQuestions.phase1),
       ...Object.values(questionsObj.phase2 || {}).flat(),
       ...(questionsObj.phase4 || [])
     ].filter(q => !used.has(q.id));
@@ -339,7 +382,10 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       return picked;
     }
 
-    return null;
+    // Absolute fail-safe: return first local fallback question
+    const defaultQ = localFallbackQuestions.phase1[0];
+    state.usedQuestionIds.push(defaultQ.id);
+    return defaultQ;
   }
 
   async function advanceQuestion() {
