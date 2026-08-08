@@ -49,10 +49,10 @@ export default function AnalyticsDashboardPage() {
       <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
         <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔒</div>
         <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0 }}>
-          Admin Google Login Required
+          Admin Authentication Required
         </h1>
         <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
-          This Analytics Console is restricted to <strong>harsh@skillbun.tech</strong> using <strong>Google Sign-In</strong>.
+          This section is restricted to authorized platform administrators. Please sign in with Google to continue.
         </p>
         <Link href="/auth?next=/dashboard/analytics" className="btn-primary" style={{ display: 'inline-block', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
           🌐 Sign in with Google
@@ -66,13 +66,10 @@ export default function AnalyticsDashboardPage() {
       <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
         <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⛔</div>
         <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0, color: 'var(--danger)' }}>
-          Access Denied — Unauthorized Account
+          Access Denied
         </h1>
-        <p style={{ color: 'var(--muted)', marginBottom: '1rem', lineHeight: '1.6' }}>
-          Access is strictly restricted to <strong>harsh@skillbun.tech</strong> authenticated via Google Login.
-        </p>
-        <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.5rem', background: 'var(--surface-raised)', padding: '0.6rem 1rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
-          Signed in as: <strong>{userEmail || 'Anonymous'}</strong> ({isGoogleLogin ? 'Google Login' : 'Email/Password'})
+        <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+          Your current account does not have permission to view internal analytics console.
         </p>
         <Link href="/dashboard" className="btn-primary" style={{ display: 'inline-block', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
           ← Return to Dashboard
