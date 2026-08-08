@@ -42,9 +42,13 @@ function OnboardingForm() {
     setSaving(true);
     setError('');
 
+    // Determine target destination based on button clicked
+    const submitter = e.nativeEvent?.submitter;
+    const targetPath = submitter?.getAttribute('data-destination') || next;
+
     try {
       await saveProfile({ name, degree, year, interest });
-      router.replace(next);
+      router.replace(targetPath);
     } catch (saveError) {
       console.error('Failed to save Firebase profile:', saveError);
       setError('Could not save your profile. Please check Firebase setup and try again.');
@@ -120,9 +124,14 @@ function OnboardingForm() {
           </select>
         </div>
 
-        <button type="submit" className={`btn-form ${styles.btnSubmit}`} disabled={saving}>
-          {saving ? '💾 Saving...' : '🚀 Let\'s Get Started!'}
-        </button>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
+          <button type="submit" data-destination="/quiz" className={`btn-form ${styles.btnSubmit}`} disabled={saving}>
+            {saving ? '💾 Saving...' : '🚀 Take Diagnostic Quiz (Recommended)'}
+          </button>
+          <button type="submit" data-destination="/projects" className="btn-secondary" style={{ width: '100%', padding: '0.75rem', borderRadius: '10px', fontWeight: '700', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', cursor: 'pointer' }} disabled={saving}>
+            🔨 Skip Quiz & Browse Projects Directly
+          </button>
+        </div>
 
         {error && (
           <p className={`auth-message error ${styles.errorMsg}`}>{error}</p>
