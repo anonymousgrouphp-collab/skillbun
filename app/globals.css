@@ -4276,6 +4276,24 @@ footer {
   font-size: 1.1rem;
   padding: 1rem 2.5rem;
   margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.quiz-start-btn.loading {
+  opacity: 0.9;
+  cursor: wait;
+  pointer-events: none;
+}
+
+.quiz-spinner-icon {
+  display: inline-block;
+  animation: spinSlow 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spinSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .quiz-captcha-wrap {
