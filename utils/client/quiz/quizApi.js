@@ -84,7 +84,6 @@ export async function verifyHumanProof(state, renderCaptchaCallback) {
 
   const body = state.securityConfig.captchaEnabled ? { token: state.captchaToken } : {};
   const headers = { 'Content-Type': 'application/json' };
-  const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
   if (state.captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
     headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
   }
