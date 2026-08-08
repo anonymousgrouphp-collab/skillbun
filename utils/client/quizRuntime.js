@@ -190,32 +190,53 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
     return normalizeQuizResponse(state, parsedJSON);
   }
 
-  function getLocalFallbackResults() {
-    const sortedTags = Object.entries(state.tagScores).sort((a, b) => b[1] - a[1]);
-    const topSlug1 = sortedTags[0]?.[0] || 'fullstack';
-    const topSlug2 = sortedTags[1]?.[0] || 'backend';
-    const topSlug3 = sortedTags[2]?.[0] || 'ai_ml_engineer';
+  const fallbackCatalog = {
+    // Systems
+    fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frontend and backend frameworks.', salary: '₹6 - ₹14 LPA', demand: 'High', skills: ['JavaScript', 'React/Next.js', 'Node.js', 'PostgreSQL', 'REST APIs'] },
+    frontend: { title: 'Frontend Developer', desc: 'Craft high-performance, responsive web interfaces and modern UI design systems.', salary: '₹5 - ₹13 LPA', demand: 'High', skills: ['HTML/CSS', 'JavaScript', 'React', 'Tailwind', 'Web Performance'] },
+    backend: { title: 'Backend Systems Engineer', desc: 'Design microservices, high-throughput APIs, data pipelines, and database models.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Node.js/Go/Python', 'System Design', 'Databases', 'Docker', 'API Security'] },
+    nextjs_developer: { title: 'Next.js & React Developer', desc: 'Build modern server-rendered web applications with Next.js & React.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Next.js', 'React', 'TypeScript', 'Server Components', 'GraphQL'] },
+    android: { title: 'Android Mobile Developer', desc: 'Build native Android apps used by millions globally using Kotlin and Jetpack Compose.', salary: '₹5 - ₹14 LPA', demand: 'High', skills: ['Kotlin', 'Android SDK', 'Jetpack Compose', 'REST APIs', 'MVVM'] },
+    ios_developer: { title: 'iOS Mobile Developer', desc: 'Craft sleek, high-end native iOS applications for Apple devices.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Swift', 'SwiftUI', 'Xcode', 'CoreData', 'iOS Design'] },
+    flutter_developer: { title: 'Flutter Developer', desc: 'Build multi-platform mobile apps from a single codebase using Flutter.', salary: '₹5 - ₹13 LPA', demand: 'High', skills: ['Dart', 'Flutter', 'State Management', 'Firebase', 'Mobile UI'] },
+    react_native_developer: { title: 'React Native Developer', desc: 'Build cross-platform iOS and Android apps using React and JavaScript.', salary: '₹6 - ₹14 LPA', demand: 'High', skills: ['React Native', 'JavaScript', 'Redux', 'Native Modules', 'Mobile Optimization'] },
+    python_developer: { title: 'Python Software Engineer', desc: 'Build backend microservices, automation engines, and data applications.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Python', 'Django/FastAPI', 'PostgreSQL', 'Data Structures', 'Async IO'] },
+    java_developer: { title: 'Java Enterprise Engineer', desc: 'Engineer robust enterprise platforms and backend microservices using Java & Spring.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Java', 'Spring Boot', 'Microservices', 'Hibernate', 'SQL'] },
+    go_developer: { title: 'Go Systems Engineer', desc: 'Build ultra-fast, concurrent backend microservices and cloud infrastructure engines.', salary: '₹8 - ₹18 LPA', demand: 'High', skills: ['Go', 'Concurrency', 'gRPC', 'Docker', 'Distributed Systems'] },
 
-    const fallbackCatalog = {
-      fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frameworks.', salary: '₹6 - ₹14 LPA', demand: 'High' },
-      frontend: { title: 'Frontend Developer', desc: 'Craft high-performance, responsive web interfaces and design systems.', salary: '₹5 - ₹13 LPA', demand: 'High' },
-      backend: { title: 'Backend Systems Engineer', desc: 'Design microservices, high-throughput APIs, and database models.', salary: '₹7 - ₹16 LPA', demand: 'High' },
-      nextjs_developer: { title: 'Next.js & React Developer', desc: 'Build modern server-rendered web applications with Next.js & React.', salary: '₹6 - ₹15 LPA', demand: 'High' },
-      ai_ml_engineer: { title: 'AI & Machine Learning Engineer', desc: 'Develop intelligent AI models, neural networks, and LLM applications.', salary: '₹8 - ₹18 LPA', demand: 'High' },
-      data_science: { title: 'Data Scientist', desc: 'Extract strategic insights from massive datasets using statistical modeling.', salary: '₹6 - ₹15 LPA', demand: 'High' },
-      data_engineering: { title: 'Data Engineer', desc: 'Build distributed data pipelines, ETL flows, and data warehouses.', salary: '₹7 - ₹16 LPA', demand: 'High' },
-      devops_cloud: { title: 'DevOps & Cloud Engineer', desc: 'Automate CI/CD pipelines, Docker containers, and cloud infrastructure.', salary: '₹7 - ₹16 LPA', demand: 'High' },
-      cybersecurity: { title: 'Cybersecurity Analyst', desc: 'Protect corporate assets, audit network security, and perform threat analysis.', salary: '₹6 - ₹15 LPA', demand: 'High' },
-      ui_ux_design: { title: 'UI/UX Product Designer', desc: 'Craft delightful, user-centered digital interfaces and design systems.', salary: '₹5 - ₹12 LPA', demand: 'High' },
-      product_manager: { title: 'Technical Product Manager', desc: 'Bridge business strategy, user empathy, and engineering execution.', salary: '₹8 - ₹18 LPA', demand: 'Growing' }
-    };
+    // Data & AI
+    ai_ml_engineer: { title: 'AI & Machine Learning Engineer', desc: 'Develop intelligent AI models, neural networks, and LLM applications.', salary: '₹8 - ₹18 LPA', demand: 'High', skills: ['Python', 'PyTorch/TensorFlow', 'LLMs & RAG', 'Scikit-Learn', 'Math & Stats'] },
+    data_science: { title: 'Data Scientist', desc: 'Extract strategic insights and predictive models from complex corporate datasets.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Python/R', 'Pandas', 'Statistical Modeling', 'Machine Learning', 'SQL'] },
+    data_engineering: { title: 'Data Engineer', desc: 'Build distributed data pipelines, ETL flows, and cloud data warehouses.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Apache Spark', 'SQL', 'Kafka', 'Python/Scala', 'Data Warehouses'] },
+    data_analyst: { title: 'Data Analyst', desc: 'Analyze data trends, build interactive dashboards, and drive business decision-making.', salary: '₹4.5 - ₹10 LPA', demand: 'High', skills: ['SQL', 'Excel', 'Tableau/PowerBI', 'Python', 'Business Metrics'] },
 
-    const getMeta = (slug) => fallbackCatalog[slug] || {
+    // Cloud & Infra & Security
+    devops_cloud: { title: 'DevOps & Cloud Engineer', desc: 'Automate CI/CD pipelines, Docker containers, and cloud infrastructure.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['AWS/Azure', 'Docker & Kubernetes', 'Terraform', 'CI/CD', 'Linux'] },
+    cybersecurity: { title: 'Cybersecurity Specialist', desc: 'Protect corporate networks, perform vulnerability audits, and safeguard data.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Network Security', 'Ethical Hacking', 'SIEM Tools', 'Cryptography', 'Linux'] },
+    penetration_tester: { title: 'Penetration Tester / Red Teamer', desc: 'Simulate real-world cyberattacks to identify vulnerabilities in security posture.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Metasploit', 'Burp Suite', 'Web Security', 'Reverse Engineering', 'OSCP'] },
+    cloud_architect: { title: 'Cloud Solutions Architect', desc: 'Design resilient, cost-effective, and secure enterprise multi-cloud architectures.', salary: '₹10 - ₹22 LPA', demand: 'High', skills: ['AWS/GCP/Azure', 'System Design', 'Cloud Security', 'Cost Optimization', 'Networking'] },
+
+    // Design & Product
+    ui_ux_design: { title: 'UI/UX Product Designer', desc: 'Craft delightful, user-centered digital interfaces and design systems.', salary: '₹5 - ₹12 LPA', demand: 'High', skills: ['Figma', 'User Research', 'Wireframing', 'Prototyping', 'Design Systems'] },
+    product_manager: { title: 'Technical Product Manager', desc: 'Bridge business strategy, user empathy, and engineering execution.', salary: '₹8 - ₹18 LPA', demand: 'Growing', skills: ['Product Roadmap', 'Agile/Scrum', 'User Analytics', 'Feature Specifying', 'Leadership'] },
+    qa_automation: { title: 'QA Automation Engineer', desc: 'Build automated testing suites and ensure software release quality across applications.', salary: '₹5 - ₹12 LPA', demand: 'High', skills: ['Selenium/Cypress', 'Playwright', 'JavaScript/Python', 'API Testing', 'CI/CD'] }
+  };
+
+  function getMeta(slug) {
+    return fallbackCatalog[slug] || {
       title: slug.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
       desc: 'Master the core skills and technology stack for this high-demand career path.',
       salary: '₹6 - ₹14 LPA',
-      demand: 'High'
+      demand: 'High',
+      skills: ['Core Fundamentals', 'Problem Solving', 'Tools & Frameworks', 'Agile Workflows']
     };
+  }
+
+  function getLocalFallbackResults() {
+    const sortedTags = Object.entries(state.tagScores || {}).sort((a, b) => b[1] - a[1]);
+    const topSlug1 = sortedTags[0]?.[0] || 'fullstack';
+    const topSlug2 = sortedTags[1]?.[0] || 'backend';
+    const topSlug3 = sortedTags[2]?.[0] || 'ai_ml_engineer';
 
     const m1 = getMeta(topSlug1);
     const m2 = getMeta(topSlug2);
@@ -227,9 +248,9 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
         {
           rank: 1,
           title: m1.title,
-          matchPercent: 93,
+          matchPercent: 94,
           description: m1.desc,
-          skills: ['Problem Solving', 'Architecture', 'Clean Code', 'Git', 'Agile'],
+          skills: m1.skills || ['Problem Solving', 'Architecture', 'Clean Code', 'Git', 'Agile'],
           salaryRange: m1.salary,
           demand: m1.demand,
           nextSteps: 'Start mastering the core fundamentals on SkillBun roadmap.',
@@ -238,9 +259,9 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
         {
           rank: 2,
           title: m2.title,
-          matchPercent: 87,
+          matchPercent: 88,
           description: m2.desc,
-          skills: ['System Design', 'API Integration', 'Data Structures', 'Testing'],
+          skills: m2.skills || ['System Design', 'API Integration', 'Data Structures', 'Testing'],
           salaryRange: m2.salary,
           demand: m2.demand,
           nextSteps: 'Explore real-world projects in this career domain.',
@@ -251,7 +272,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
           title: m3.title,
           matchPercent: 82,
           description: m3.desc,
-          skills: ['Cloud & Tools', 'Analytics', 'Security', 'Automation'],
+          skills: m3.skills || ['Cloud & Tools', 'Analytics', 'Security', 'Automation'],
           salaryRange: m3.salary,
           demand: m3.demand,
           nextSteps: 'Check out the detailed step-by-step roadmap for your career.',
@@ -333,7 +354,9 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
         if (loadingP) loadingP.textContent = 'SkillBun AI is generating your custom niche scenario...';
 
         try {
-          const aiQuestion = await callGemini(getAiCall1Prompt());
+          const aiQuestionTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('AI Call 1 timeout')), 3000));
+          const aiQuestion = await Promise.race([callGemini(getAiCall1Prompt()), aiQuestionTimeout]);
+
           document.getElementById('quizLoading').style.display = 'none';
           document.getElementById('optionsContainer').style.display = 'grid';
 
@@ -347,36 +370,25 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
           }, selectOption);
           nextInsight = '';
         } catch (err) {
-          console.warn('AI Call 1 failed, using seamless local fallback Q8:', err.message);
+          console.warn('AI Call 1 timeout/failed, using seamless local fallback Q8:', err.message);
           document.getElementById('quizLoading').style.display = 'none';
           document.getElementById('optionsContainer').style.display = 'grid';
 
-          const dominantPillar = getDominantPillar();
-          const fallbackList = state.quizQuestions?.phase3Fallback?.[dominantPillar] || state.quizQuestions?.phase3Fallback?.systems || [];
-          const localQ8 = fallbackList[0] || {
-            q: 'In a real enterprise environment, what aspect of project quality matters most to you?',
-            options: [
-              { l: 'A', t: 'Clean, test-driven codebase that other developers can easily read and extend.', pillar: 'systems', tags: ['backend', 'fullstack'] },
-              { l: 'B', t: 'High accuracy, statistical validity, and reproducible results.', pillar: 'data_ai', tags: ['ai_ml_engineer', 'data_science'] },
-              { l: 'C', t: 'Delighting the user and driving business retention metrics.', pillar: 'design_product', tags: ['product_manager', 'ui_ux_design'] },
-              { l: 'D', t: 'Security compliance, fault tolerance, and zero vulnerabilities.', pillar: 'cloud_infra', tags: ['devops_cloud', 'cybersecurity'] }
-            ]
-          };
-
+          const fallbackQ = pickQuestionForStep(8);
           showQuestion(state, {
             type: 'question',
             phase: 3,
             questionNumber: 8,
-            insight: nextInsight || 'Enterprise quality & engineering trade-off scenario.',
-            question: localQ8.q || localQ8.question,
-            options: localQ8.options
+            insight: nextInsight || 'Tracking your technical DNA preferences.',
+            question: fallbackQ.q || fallbackQ.question,
+            options: fallbackQ.options
           }, selectOption);
           nextInsight = '';
         }
       } else {
         const rawQ = pickQuestionForStep(qNum);
         if (rawQ) {
-          let phaseNum = rawQ.phase || 1;
+          let phaseNum = 1;
           if (qNum >= 4 && qNum <= 7) phaseNum = 2;
           if (qNum >= 9) phaseNum = 3;
 
@@ -398,11 +410,13 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       if (loadingP) loadingP.textContent = 'SkillBun AI is synthesizing your 10-question career matches...';
 
       try {
-        const aiResults = await callGemini(getAiCall2Prompt());
+        const aiTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('AI Call 2 timeout')), 3000));
+        const aiResults = await Promise.race([callGemini(getAiCall2Prompt()), aiTimeout]);
+
         document.getElementById('quizLoading').style.display = 'none';
         showResults(state, aiResults);
       } catch (err) {
-        console.warn('AI Call 2 failed, rendering instant score-based recommendations:', err.message);
+        console.warn('AI Call 2 timeout/failed, rendering instant score-based recommendations:', err.message);
         document.getElementById('quizLoading').style.display = 'none';
         const fallbackResults = getLocalFallbackResults();
         showResults(state, fallbackResults);
@@ -462,43 +476,52 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       const container = document.getElementById('resultCards');
       if (!container) throw new Error('Results container not found');
 
-      const existingTitles = new Set(
-        Array.from(container.querySelectorAll('.result-card h3')).map(el => el.textContent.toLowerCase().trim())
-      );
       const existingSlugs = new Set(
         Array.from(container.querySelectorAll('.result-card'))
           .map(el => el.dataset.roadmapSlug)
           .filter(Boolean)
       );
 
-      const prompt = `Based on our previous quiz results, suggest 3 MORE unique career paths that are DIFFERENT from: ${Array.from(existingSlugs).join(', ')}. Use the exact same JSON format with "type": "result" and "careers" array. Use bare local roadmap slugs for "roadmapUrl".`;
-      const response = await callGemini(prompt);
-      let careers = extractCareers(response);
+      const sortedTags = Object.entries(state.tagScores || {})
+        .sort((a, b) => b[1] - a[1])
+        .map(([slug]) => slug);
 
-      if (careers.length === 0) {
-        throw new Error('No additional career paths returned');
-      }
+      const catalogSlugs = Object.keys(fallbackCatalog);
+      const candidateSlugs = Array.from(new Set([...sortedTags, ...catalogSlugs]));
 
-      const uniqueCareers = careers.filter((career) => {
-        const slug = resolveRoadmapSlug(career);
-        return !existingTitles.has(career.title.toLowerCase().trim()) && (!slug || slug === 'general' || !existingSlugs.has(slug));
-      });
+      const unshownSlugs = candidateSlugs.filter(slug => !existingSlugs.has(slug));
+      const next3Slugs = unshownSlugs.slice(0, 3);
 
-      if (uniqueCareers.length === 0) {
+      if (next3Slugs.length === 0) {
         loadBtn.textContent = '✅ No More Unique Paths';
         loadBtn.disabled = false;
         setTimeout(() => { loadBtn.textContent = '🔍 Load More Career Paths'; }, 2000);
         return;
       }
 
+      const newCareers = next3Slugs.map((slug) => {
+        const meta = getMeta(slug);
+        const matchPct = Math.max(72, 90 - (existingSlugs.size * 3));
+        return {
+          title: meta.title,
+          matchPercent: matchPct,
+          description: meta.desc,
+          skills: meta.skills || ['Core Fundamentals', 'Problem Solving', 'Tools & Frameworks', 'Agile Workflows'],
+          salaryRange: meta.salary || '₹6 - ₹14 LPA',
+          demand: meta.demand || 'High',
+          nextSteps: 'Explore the step-by-step roadmap on SkillBun.',
+          roadmapUrl: slug
+        };
+      });
+
       const existingCount = container.children.length;
-      uniqueCareers.forEach((career, i) => {
+      newCareers.forEach((career, i) => {
         container.insertAdjacentHTML('beforeend', renderCareerCard(career, existingCount + i + 1));
       });
 
       const newCards = container.querySelectorAll('.result-card.new:not(.visible)');
       newCards.forEach((card, i) => {
-        setTimeout(() => card.classList.add('visible'), i * 200);
+        setTimeout(() => card.classList.add('visible'), i * 100);
       });
 
       loadBtn.textContent = '🔍 Load More Career Paths';
