@@ -4,10 +4,10 @@ import { getAllowedAppOrigins, getAppOrigin } from '@/utils/server/env'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { checkServerRateLimit, hashRateLimitSubject } from '@/utils/server/rateLimitStore'
 import { sendSkillBunPasswordResetEmail } from '@/utils/server/zohoMailer'
+import { validateEmail } from '@/utils/shared/emailValidator'
 
 export const runtime = 'nodejs'
 
-const MAX_EMAIL_LENGTH = 254
 const RATE_LIMITS = [
   { name: 'emailMinute', windowMs: 60 * 1000, maxRequests: 1, getSubject: ({ email }) => `email:${email}` },
   { name: 'emailHour', windowMs: 60 * 60 * 1000, maxRequests: 3, getSubject: ({ email }) => `email:${email}` },
@@ -16,10 +16,6 @@ const RATE_LIMITS = [
 
 function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase()
-}
-
-function isValidEmail(email) {
-  return email.length <= MAX_EMAIL_LENGTH && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
 function getClientAddress(request) {
@@ -114,11 +110,13 @@ export async function POST(request) {
 
   try {
     const body = await request.json().catch(() => ({}))
-    email = normalizeEmail(body?.email)
+    const emailCheck = validateEmail(body?.email)
 
-    if (!isValidEmail(email)) {
-      return NextResponse.json({ error: 'Enter a valid email address.' }, { status: 400 })
+    if (!emailCheck.isValid) {
+      return NextResponse.json({ error: emailCheck.error }, { status: 400 })
     }
+
+    email = emailCheck.normalizedEmail
 
     const address = getClientAddress(request)
     // 1. Check rate limit (without incrementing)
