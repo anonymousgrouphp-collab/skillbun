@@ -36,7 +36,7 @@ function AnalyticsTracker() {
 }
 
 export function AnalyticsProvider({ children }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-SKILLBUN2026';
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XTFMS5Q59C';
   const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY || 'phc_skillbun_analytics_v1';
   const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com';
 
