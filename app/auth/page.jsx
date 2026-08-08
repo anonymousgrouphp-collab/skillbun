@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
 import { normalizeInternalPath } from '@/utils/shared/routes';
+import { validateEmail } from '@/utils/shared/emailValidator';
 
 const PASSWORD_RESET_COOLDOWN_MS = 60 * 1000;
 const PASSWORD_RESET_COOLDOWN_KEY = 'sb_password_reset_available_at';
@@ -312,6 +313,12 @@ function AuthForm() {
       return;
     }
 
+    const emailCheck = validateEmail(formEmail);
+    if (!emailCheck.isValid) {
+      setError(emailCheck.error);
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -387,6 +394,12 @@ function AuthForm() {
 
     if (!email.trim()) {
       setError('Enter your email first, then request a reset link.');
+      return;
+    }
+
+    const emailCheck = validateEmail(email);
+    if (!emailCheck.isValid) {
+      setError(emailCheck.error);
       return;
     }
 
