@@ -18,7 +18,29 @@ function sleep(ms) {
 
 export async function getFirebaseIdToken() {
   const services = getFirebaseServices();
-  const currentUser = services.auth?.currentUser;
+  let currentUser = services.auth?.currentUser;
+
+  if (!currentUser && services.auth) {
+    await new Promise((resolve) => {
+      let resolved = false;
+      const timer = setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
+          resolve();
+        }
+      }, 3000);
+
+      const unsubscribe = services.auth.onAuthStateChanged((user) => {
+        if (user && !resolved) {
+          currentUser = user;
+          resolved = true;
+          clearTimeout(timer);
+          if (typeof unsubscribe === 'function') unsubscribe();
+          resolve();
+        }
+      });
+    });
+  }
 
   if (!currentUser) {
     const error = new Error('Login required');
