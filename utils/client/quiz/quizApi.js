@@ -73,20 +73,13 @@ export async function verifyHumanProof(state, renderCaptchaCallback) {
     return true;
   }
 
-  if (state.securityConfig.captchaEnabled && !state.captchaToken) {
-    const isLocalhost = typeof window !== 'undefined' &&
-      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-    const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
+  const isLocalhost = typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
 
-    if (isLocalhost || bypassKey === 'bypass-captcha-dev') {
-      state.captchaToken = 'bypass-captcha-dev';
-    } else if (renderCaptchaCallback) {
-      await renderCaptchaCallback();
-    }
-
-    if (!state.captchaToken) {
-      return false;
-    }
+  if (!state.securityConfig.captchaEnabled || isLocalhost || bypassKey === 'bypass-captcha-dev') {
+    persistHumanProof(state, 'dev-human-proof-token', Date.now() + 3600 * 1000);
+    return true;
   }
 
   const body = state.securityConfig.captchaEnabled ? { token: state.captchaToken } : {};

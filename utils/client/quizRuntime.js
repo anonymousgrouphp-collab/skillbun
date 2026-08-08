@@ -586,23 +586,6 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       const startBtn = document.getElementById('startQuizBtn');
       if (!startBtn) return;
 
-      const defaultLabel = startBtn.dataset.defaultLabel || startBtn.textContent;
-      startBtn.dataset.defaultLabel = defaultLabel;
-      startBtn.disabled = true;
-      startBtn.textContent = 'Verifying...';
-
-      const verified = await verifyHumanProof(state, async () => {
-        await initCaptcha(state);
-      });
-      if (!verified) {
-        startBtn.disabled = false;
-        startBtn.textContent = defaultLabel;
-        return;
-      }
-
-      startBtn.disabled = false;
-      startBtn.textContent = defaultLabel;
-
       const welcomeScreen = document.getElementById('welcomeScreen');
       const quizScreen = document.getElementById('quizScreen');
       if (welcomeScreen) welcomeScreen.style.display = 'none';
@@ -633,6 +616,13 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       }
 
       advanceQuestion();
+
+      // Parallel background security verification if captcha enabled
+      if (state.securityConfig.captchaEnabled && !hasFreshHumanProof(state)) {
+        void verifyHumanProof(state, async () => {
+          await initCaptcha(state);
+        });
+      }
     }, { signal: state.signal });
   }
 
@@ -651,7 +641,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
 
   async function initQuizPage() {
     const startBtn = document.getElementById('startQuizBtn');
-    if (startBtn) startBtn.disabled = true;
+    if (startBtn) startBtn.disabled = false;
 
     const hasProfile = loadProfile(state);
     if (!hasProfile) return;
@@ -665,10 +655,6 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       setCaptchaStatus('Security already verified for this session.', 'ok');
     } else if (state.securityConfig.captchaEnabled) {
       await initCaptcha(state);
-    } else {
-      await verifyHumanProof(state, async () => {
-        await initCaptcha(state);
-      });
     }
 
     try {
