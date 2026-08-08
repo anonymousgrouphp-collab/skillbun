@@ -310,7 +310,7 @@ export function loadProfile(state) {
 export function resetQuizStateUI(state) {
   state.conversationHistory = [];
   state.questionCount = 0;
-  state.totalQuestions = 15;
+  state.totalQuestions = 10;
   state.lastSelectedOption = null;
   state.retryCount = 0;
   state.quizResults = null;
@@ -343,7 +343,7 @@ export function resetQuizStateUI(state) {
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('quizPhase').textContent = 'Phase 1: Discovery';
   document.getElementById('qNum').textContent = '1';
-  document.getElementById('qTotal').textContent = '15';
+  document.getElementById('qTotal').textContent = '10';
 
   if (captchaWrap) {
     if (hasFreshHumanProof(state)) {
@@ -368,7 +368,8 @@ export function resetQuizStateUI(state) {
 export function updateProgress(state, qNum, phase) {
   document.getElementById('qNum').textContent = qNum;
 
-  if (qNum > state.totalQuestions) state.totalQuestions = qNum + 1;
+  if (!state.totalQuestions) state.totalQuestions = 10;
+  if (qNum > state.totalQuestions) state.totalQuestions = qNum;
   document.getElementById('qTotal').textContent = state.totalQuestions;
 
   const percent = Math.min((qNum / state.totalQuestions) * 100, 100);

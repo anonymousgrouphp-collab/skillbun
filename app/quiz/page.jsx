@@ -55,7 +55,7 @@ export default function QuizPage() {
         <div id="welcomeScreen" className="quiz-welcome">
             <div className="welcome-bunny">👋</div>
             <h1>Hey <span id="userName">{name.split(' ')[0]}</span>!</h1>
-            <p>Let's find your perfect tech career path. I'll ask you <strong>10 to 18 questions</strong> that adapt based on your answers.</p>
+            <p>Let's find your perfect tech career path. I'll ask you <strong>10 questions</strong> that adapt based on your answers.</p>
             <div className="welcome-profile" id="welcomeProfile">
               <div className="profile-tag">Degree: {degree}</div>
               <div className="profile-tag">Year: {year}</div>
@@ -74,7 +74,7 @@ export default function QuizPage() {
                 <div className="quiz-progress-bar">
                     <div className="quiz-progress-fill" id="progressFill" style={{ width: '0%' }}></div>
                 </div>
-                <div className="quiz-progress-text">Question <span id="qNum">1</span> of <span id="qTotal">15</span></div>
+                <div className="quiz-progress-text">Question <span id="qNum">1</span> of <span id="qTotal">10</span></div>
             </div>
 
             <div className="quiz-question-card" id="questionCard">
