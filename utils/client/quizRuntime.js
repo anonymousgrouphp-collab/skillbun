@@ -10,7 +10,8 @@ import {
   fetchSecurityConfig,
   verifyHumanProof,
   refreshHumanProofSession,
-  fetchGeminiPayload
+  fetchGeminiPayload,
+  fetchQuizQuestions
 } from './quiz/quizApi';
 import {
   initCaptcha,
@@ -35,167 +36,124 @@ import {
 } from './quiz/quizDom';
 
 const SUPPORT_EMAIL = 'harsh@skillbun.tech';
-const MAX_RETRIES_PER_QUESTION = 3;
 
 export function mountQuizRuntime() {
   const eventController = new AbortController();
   const state = createState(eventController);
 
-  // --- Dynamic Message Helpers ---
-  function getSystemPrompt() {
-    return `You are SkillBun's Elite Tech Mentor — an experienced, radically honest, and analytical career advisor deeply embedded in the Indian tech industry. You have mentored engineers at top Indian product startups (Zomato, Cred, Razorpay) and massive Service/Enterprise MNCs (TCS, Infosys, IBM).
+  let nextInsight = '';
+
+  function getDominantPillar() {
+    if (state.identifiedPillar && state.pillarScores[state.identifiedPillar] !== undefined) {
+      return state.identifiedPillar;
+    }
+    const sorted = Object.entries(state.pillarScores).sort((a, b) => b[1] - a[1]);
+    return sorted[0]?.[0] || 'systems';
+  }
+
+  function getAiCall1Prompt() {
+    const qSummary = state.userAnswers
+      .map((ans, idx) => `Q${idx + 1}: ${ans.question} -> Answered [${ans.optionLabel}]: ${ans.optionText}`)
+      .join('\n');
+
+    const dominantPillar = getDominantPillar();
+    const topTags = Object.entries(state.tagScores)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([t, s]) => `${t}: ${s}`)
+      .join(', ');
+
+    return `You are SkillBun's AI Tech Mentor for Indian students.
+STUDENT PROFILE:
+- Name: ${state.userProfile.name}
+- Degree: ${state.userProfile.degree}
+- Year: ${state.userProfile.year}
+- Stated Interest: ${state.userProfile.interest || 'Not specified'}
+- Dominant Pillar: ${dominantPillar}
+- Top Tag Scores: ${topTags || 'None'}
+
+STUDENT ANSWERS SO FAR (Questions 1-7):
+${qSummary}
+
+YOUR TASK:
+Based on their answers above, generate ONE highly tailored, realistic Indian tech workplace scenario question for Question 8 (Phase 3: AI Niche Deep-Dive).
+Test their preference between 2 competing technical sub-specializations inside their dominant pillar (${dominantPillar}).
+
+RESPONSE FORMAT (JSON ONLY, no markdown):
+{
+  "type": "question",
+  "phase": 3,
+  "questionNumber": 8,
+  "insight": "1-2 sentence mentor observation reflecting on ${state.userProfile.name}'s technical traits revealed so far.",
+  "question": "Your dynamic situational question text?",
+  "options": [
+    {"label": "A", "text": "Option A text", "pillar": "${dominantPillar}", "tags": ["tag1"]},
+    {"label": "B", "text": "Option B text", "pillar": "${dominantPillar}", "tags": ["tag2"]},
+    {"label": "C", "text": "Option C text", "pillar": "${dominantPillar}", "tags": ["tag3"]},
+    {"label": "D", "text": "Option D text", "pillar": "${dominantPillar}", "tags": ["tag4"]}
+  ]
+}`;
+  }
+
+  function getAiCall2Prompt() {
+    const qSummary = state.userAnswers
+      .map((ans, idx) => `Q${idx + 1}: ${ans.question} -> Answered [${ans.optionLabel}]: ${ans.optionText}`)
+      .join('\n');
+
+    const topPillars = Object.entries(state.pillarScores)
+      .sort((a, b) => b[1] - a[1])
+      .map(([pillar, score]) => `${pillar}: ${score} pts`)
+      .join(', ');
+
+    const topTags = Object.entries(state.tagScores)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 8)
+      .map(([t, s]) => `${t}: ${s}pts`)
+      .join(', ');
+
+    return `You are SkillBun's Elite Tech Mentor. Synthesize the student's complete 10-question diagnostic quiz into top 3 career recommendations.
 
 STUDENT PROFILE:
 - Name: ${state.userProfile.name}
 - Degree: ${state.userProfile.degree}
-- Current Year: ${state.userProfile.year}
+- Year: ${state.userProfile.year}
+- Interest: ${state.userProfile.interest || 'Not specified'}
 
-YOUR GOAL:
-Act as a ruthless but fair diagnostician to uncover the absolute best career fit for this specific student. Avoid generic, fluffy answers. Dive deep into their psychology, risk tolerance, and problem-solving style. 
+PILLAR SCORES:
+${topPillars}
 
-THE 6 PILLARS OF TECH (Do not assume they want to code!):
-1. Software Engineering & Systems (Logic, algorithms, distributed systems, legacy code)
-2. Data & AI (Math, statistical modeling, data pipelines, LLM fine-tuning)
-3. Design & Product (User empathy, business metrics, scope negotiation, Figma)
-4. Cloud & Infrastructure (Reliability, cost-optimization, Kubernetes, incident response)
-5. Cybersecurity & Risk (Offensive/Defensive security, compliance, zero-trust)
-6. Operations & Specialized (Technical writing, QA automation, RPA, Game Dev)
+TOP TAG SCORES:
+${topTags}
 
-DIAGNOSTIC DEPTH RULES:
-- Track evidence across these axes: domain pull, problem-solving style, math/data comfort, user empathy, systems/reliability mindset, security/risk mindset, communication/ownership, ambiguity tolerance, and preferred work environment.
-- Do not lock onto the first attractive answer. Keep at least two plausible career hypotheses alive until the student has answered enough niche-discovery questions.
-- Every option should test a tradeoff, not a vibe: speed vs correctness, breadth vs specialization, user impact vs technical depth, autonomy vs structured delivery, risk-taking vs reliability.
-- By questions 6-10, narrow to a pillar but compare sub-specializations inside that pillar using realistic work samples.
-- In final recommendations, explain the evidence from the student's answers and avoid generic "you like coding" reasoning.
+FULL 10-QUESTION QUIZ ANSWERS:
+${qSummary}
 
-ASSESSMENT STRUCTURE (10-18 Questions, 4 Phases):
+YOUR TASK:
+Return EXACTLY 3 ranked career recommendations in JSON format.
+Each "roadmapUrl" MUST be an exact bare local roadmap slug from SkillBun's 100 roadmaps (e.g., 'fullstack', 'frontend', 'backend', 'ai_ml_engineer', 'data_science', 'devops_cloud', 'cybersecurity', 'ui_ux_design', 'product_manager', 'cloud_architect', 'android', 'flutter_developer', 'react_native_developer', 'java_developer', 'python_developer', 'go_developer', 'rust_developer', 'nextjs_developer', 'data_engineering', 'data_analyst', 'site_reliability_engineer', 'qa_automation', 'technical_writing', 'penetration_tester', 'business_analyst', 'cloud_security_engineer').
 
-PHASE 1 — Core Tech DNA & Grit (Questions 1-5):
-Ask orthogonal situational questions to identify their core pillar and work ethic. 
-Present harsh, realistic mini-scenarios.
-Example: "Your company's production server just crashed during a massive Diwali sale. You are expected to..."
-A) Dig into the logs to find the root cause (Infra/Backend) B) Coordinate with the business team to handle customer complaints (Product/Support) C) Patch the security vulnerability that caused it (Security) D) Analyze the data loss and write a recovery script (Data)
-
-PHASE 2 — Indian Market Realities & Niche Discovery (Questions 6-10):
-Once a pillar is identified, ABANDON the others completely.
-Present scenarios specific to Indian work culture: tight deadlines, changing client requirements, service-based vs product-based dynamics, and legacy systems.
-Example: "Your manager in an MNC asks you to use an outdated tech stack for a new client project because 'it is what the client asked for'. What do you do?"
-
-PHASE 3 — Execution & Complexity Handling (Questions 11-14):
-Determine their technical depth and working style. How do they handle extreme complexity? 
-Do they prefer hacking together a quick MVP (Startups) or writing highly scalable, robust enterprise code (Big Tech/GICs)?
-
-PHASE 4 — The Curveball / Final Polish (Questions 15-18):
-Throw a challenging scenario that forces them to choose between two good (or two bad) options to test their conviction. 
-Only proceed to this phase if you are not yet 95% confident.
-
-RULES:
-1. Ask exactly ONE question per response.
-2. Provide exactly 4 options (A, B, C, D) — each must represent a meaningfully different path or approach.
-3. Every question MUST adapt dynamically based on ALL previous answers. Ask "What would you do?" scenario-based questions, NOT "Which do you prefer?".
-4. Keep questions engaging, conversational, and grounded in real Indian tech industry situations (startups, MNCs, freelancing, open-source, competitive programming, toxic managers, legacy codebases).
-5. NEVER assume 'Tech' means 'Software Developer'. Actively explore non-coding roles like Product Management, UX Research, Technical Writing, DevOps, Security, etc.
-6. After question 1, ALWAYS provide a highly analytical 2-sentence "insight" field reflecting on the psychological traits and professional leanings revealed by their previous answer. Make it sound like a seasoned mentor's observation (e.g., "You showed a preference for systemic stability over rapid prototyping. This suggests you'd thrive in Enterprise environments over chaotic startups.")
-7. DYNAMIC LENGTH: Ask between 10 and 18 questions. Only output the final recommendation ("type": "result") when you have reached 95%+ confidence. If by question 10 you are very confident, you may finish. Do NOT always stop at exactly 10.
-8. When generating the final result, you MUST use the exact roadmap ID from the provided list for EVERY career. This is critical. Cross-reference the career title with the slug list carefully. If unsure, use the closest reasonable match, not 'general'.
-9. Because SkillBun has many niche roadmaps, prefer the most specific matching roadmap. For example, choose 'react_native_developer' over 'frontend' for React Native, 'llmops_engineer' over 'ai_ml_engineer' for LLM production operations, and 'application_security_engineer' over 'cybersecurity' for secure code review.
-
-RESPONSE FORMAT (for questions):
-You MUST respond in this exact JSON format, with no markdown, no code fences, just raw JSON:
-{
-  "type": "question",
-  "phase": 1,
-  "questionNumber": 1,
-  "insight": "",
-  "question": "Your situational question text here?",
-  "options": [
-    {"label": "A", "text": "Option A text"},
-    {"label": "B", "text": "Option B text"},
-    {"label": "C", "text": "Option C text"},
-    {"label": "D", "text": "Option D text"}
-  ]
-}
-
-RESPONSE FORMAT (for final recommendation):
-When you are ready to give the final result, return EXACTLY this structure:
+RESPONSE FORMAT (JSON ONLY, no markdown):
 {
   "type": "result",
   "careers": [
     {
       "rank": 1,
       "title": "Career Title",
-      "matchPercent": 92,
-      "description": "2-3 sentences explaining WHY this is a great fit based on their specific answers",
+      "matchPercent": 94,
+      "description": "2-3 sentences explaining WHY based on their specific answers.",
       "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"],
       "salaryRange": "₹X - ₹Y LPA (entry level in India)",
       "demand": "High/Medium/Growing",
-      "nextSteps": "Specific, actionable advice for an Indian student to start this career path",
+      "nextSteps": "Specific, actionable steps for an Indian student.",
       "roadmapUrl": "exact_slug_from_list"
-    }
+    },
+    { "rank": 2, ... },
+    { "rank": 3, ... }
   ]
-}
-
-Provide EXACTLY 3 careers in the final recommendation, ranked by match quality. Be highly specific to the Indian tech market (mention Indian companies, exact salary ranges in LPA, relevant certifications like AWS/GCP, or platforms like NPTEL/CDAC if relevant).
-
-CRITICAL — ROADMAP SLUG MAPPING:
-For the "roadmapUrl" field, you MUST use ONLY an exact slug from this list. Do NOT invent slugs. Do NOT use full URLs. Just the bare ID string:
-['ai_ml_engineer', 'ai_research_engineer', 'analytics_engineer', 'android', 'angular_developer', 'api_platform_engineer', 'application_security_engineer', 'ar_vr_developer', 'aws_cloud_engineer', 'azure_cloud_engineer', 'backend', 'bi_developer', 'blockchain_web3', 'business_analyst', 'c_cpp_systems_developer', 'cloud_architect', 'cloud_security_engineer', 'computer_vision_engineer', 'content_designer', 'cybersecurity', 'data_analyst', 'data_engineering', 'data_governance_specialist', 'data_science', 'data_visualization_specialist', 'database_admin', 'design_systems_engineer', 'desktop_app_developer', 'devops_cloud', 'dfir_analyst', 'digital_marketing_analyst', 'dotnet_developer', 'elixir_phoenix_developer', 'embedded_iot', 'finops_engineer', 'flutter_developer', 'frontend', 'fullstack', 'game_development', 'gcp_cloud_engineer', 'generative_ai_app_developer', 'geospatial_data_scientist', 'go_developer', 'graphql_api_developer', 'grc_analyst', 'iam_engineer', 'ios_developer', 'java_developer', 'kubernetes_engineer', 'linux_system_admin', 'llmops_engineer', 'macos_developer', 'malware_analyst', 'mlops_engineer', 'network_engineer', 'nextjs_developer', 'nlp_engineer', 'no_code_low_code_developer', 'observability_engineer', 'penetration_tester', 'php_laravel_developer', 'platform_engineer', 'product_designer', 'product_manager', 'prompt_engineer', 'python_developer', 'qa_automation', 'react_native_developer', 'recommendation_systems_engineer', 'red_team_operator', 'reinforcement_learning_engineer', 'release_engineer', 'robotics_engineer', 'rpa_developer', 'ruby_on_rails_developer', 'rust_developer', 'salesforce_developer', 'scala_developer', 'scrum_master_agile_coach', 'seo_specialist', 'serverless_developer', 'service_designer', 'shopify_developer', 'site_reliability_engineer', 'soc_analyst', 'speech_ai_engineer', 'svelte_developer', 'technical_artist', 'technical_support_engineer', 'technical_writing', 'terraform_iac_engineer', 'threat_intelligence_analyst', 'ui_ux_design', 'unity_developer', 'unreal_engine_developer', 'ux_researcher', 'vue_developer', 'windows_app_developer', 'wordpress_developer', 'general'].
-
-Common mapping hints:
-- "Full Stack Developer" → 'fullstack'
-- "Frontend Developer" → 'frontend'  
-- "Backend Developer" → 'backend'
-- "Data Scientist" → 'data_science'
-- "ML Engineer" / "AI Engineer" → 'ai_ml_engineer'
-- "DevOps Engineer" → 'devops_cloud'
-- "UX/UI Designer" → 'ui_ux_design'
-- "Product Manager" → 'product_manager'
-- "Cybersecurity Analyst" → 'cybersecurity'
-- "Cloud Architect" → 'cloud_architect'
-- "Mobile Developer (Android)" → 'android'
-- "Mobile Developer (iOS)" → 'ios_developer'
-- "Mobile Developer (Flutter)" → 'flutter_developer'
-- "Game Developer" → 'game_development'
-- "Blockchain Developer" → 'blockchain_web3'
-- "QA Engineer" → 'qa_automation'
-- "Technical Writer" → 'technical_writing'
-- "Ethical Hacker / Pentester" → 'penetration_tester'
-- "SRE" → 'site_reliability_engineer'
-- "Business Analyst" → 'business_analyst'
-- Only use 'general' as an absolute last resort when nothing else fits.
-
-Start with the first question now.`;
+}`;
   }
 
-  function buildQuizUserMessage(userMessage) {
-    if (!state.quizResults && state.questionCount >= 18) {
-      return userMessage + '\n\nIMPORTANT: You have now asked 18 questions. You MUST return the final recommendation JSON now with "type": "result" and exactly 3 careers. Each career MUST have a valid roadmapUrl slug from the provided list. Use the most specific local roadmap slug that fits the answer evidence.';
-    }
-
-    if (!state.quizResults && state.questionCount >= 14) {
-      return userMessage + '\n\nNote: You have asked ' + state.questionCount + ' questions. If you have 95%+ confidence, return the final recommendation now. Otherwise, you may ask up to ' + (18 - state.questionCount) + ' more questions. Make sure your scenarios are increasingly complex and specific to Indian tech realities. Push for edge cases (Phase 4). Before finalizing, compare the top 2-3 niche roadmap options and choose specific slugs rather than generic umbrellas.';
-    }
-
-    if (!state.quizResults && state.questionCount === 3) {
-      return userMessage + '\n\nNote: If two or more pillars are still plausible, ask a scenario that separates them sharply. Do not ask preference-only questions.';
-    }
-
-    if (!state.quizResults && state.questionCount === 5) {
-      return userMessage + '\n\nNote: You should now transition to PHASE 2 (Indian Market Realities & Niche Discovery). Abandon the pillars the user rejected. Present complex scenarios specific to Indian work culture (e.g., service vs product company dynamics, legacy code, client pressure).';
-    }
-
-    if (!state.quizResults && state.questionCount === 8) {
-      return userMessage + '\n\nNote: You should now test niche fit inside the strongest pillar. Use a work-sample scenario that can distinguish between nearby roadmap paths such as generic software, framework-specific, cloud-specific, security-specific, data-specific, or product/design-specific roles.';
-    }
-
-    if (!state.quizResults && state.questionCount === 10) {
-      return userMessage + '\n\nNote: You should now transition to PHASE 3 (Execution & Complexity Handling). Ask about their working style under extreme complexity. Start wrapping up if your confidence is high.';
-    }
-
-    return userMessage;
-  }
-
-  async function callGemini(userMessage) {
+  async function callGemini(promptText) {
     const verified = await verifyHumanProof(state, async () => {
       await initCaptcha(state);
     });
@@ -203,142 +161,295 @@ Start with the first question now.`;
       throw new Error('Human verification required');
     }
 
-    let startedConversation = false;
-    let appendedUserMessage = false;
-
-    if (state.conversationHistory.length === 0) {
-      state.conversationHistory.push({
-        role: 'user',
-        parts: [{ text: getSystemPrompt() }]
-      });
-      startedConversation = true;
-    } else if (userMessage) {
-      state.conversationHistory.push({
-        role: 'user',
-        parts: [{ text: buildQuizUserMessage(userMessage) }]
-      });
-      appendedUserMessage = true;
-    }
-
     const payload = {
-      contents: state.conversationHistory,
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: promptText }]
+        }
+      ],
       generationConfig: {
-        temperature: 0.8,
+        temperature: 0.7,
         topP: 0.95,
-        maxOutputTokens: 4096,
+        maxOutputTokens: 2048,
         responseMimeType: "application/json"
       }
     };
 
-    try {
-      const data = await fetchGeminiPayload(state, payload);
-      const parts = data?.candidates?.[0]?.content?.parts;
-      let text = '';
-      if (Array.isArray(parts)) {
-        const textPart = parts.find(part => typeof part?.text === 'string' && part.text.trim());
-        text = textPart?.text || '';
-      }
-
-      if (!text) throw new Error('Empty response from Gemini');
-
-      // Robust parser helper
-      const parsedJSON = JSON.parse(text.trim().replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim());
-      const parsed = normalizeQuizResponse(state, parsedJSON);
-
-      state.conversationHistory.push({
-        role: 'model',
-        parts: [{ text }]
-      });
-
-      return parsed;
-
-    } catch (err) {
-      console.error('Gemini API Error:', err);
-
-      if (startedConversation) {
-        state.conversationHistory = [];
-      } else if (appendedUserMessage && state.conversationHistory.at(-1)?.role === 'user') {
-        state.conversationHistory.pop();
-      }
-
-      const message = String(err?.message || '').trim();
-      const status = Number.isFinite(err?.status) ? err.status : 0;
-      const retryAfterMs = Number.parseInt(err?.retryAfterMs, 10) || 0;
-
-      const friendly = new Error(message || "Our AI bunny tripped! Don't worry - our team is on it.");
-      friendly.status = status;
-      friendly.retryAfterMs = retryAfterMs;
-      friendly.code = err?.code || (status ? `AI_${status}` : 'AI_UNKNOWN');
-      friendly.originalMessage = message;
-
-      throw friendly;
+    const data = await fetchGeminiPayload(state, payload);
+    const parts = data?.candidates?.[0]?.content?.parts;
+    let text = '';
+    if (Array.isArray(parts)) {
+      const textPart = parts.find(part => typeof part?.text === 'string' && part.text.trim());
+      text = textPart?.text || '';
     }
+
+    if (!text) throw new Error('Empty response from AI service');
+
+    const parsedJSON = JSON.parse(text.trim().replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim());
+    return normalizeQuizResponse(state, parsedJSON);
   }
 
-  // --- Start Quiz Action ---
-  async function startNextQuestion() {
-    document.getElementById('optionsContainer').style.display = 'none';
-    document.getElementById('quizLoading').style.display = 'flex';
+  function getLocalFallbackResults() {
+    const sortedTags = Object.entries(state.tagScores).sort((a, b) => b[1] - a[1]);
+    const topSlug1 = sortedTags[0]?.[0] || 'fullstack';
+    const topSlug2 = sortedTags[1]?.[0] || 'backend';
+    const topSlug3 = sortedTags[2]?.[0] || 'ai_ml_engineer';
 
-    try {
-      const response = await callGemini(null);
-      document.getElementById('quizLoading').style.display = 'none';
-      document.getElementById('optionsContainer').style.display = 'grid';
+    const fallbackCatalog = {
+      fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frameworks.', salary: '₹6 - ₹14 LPA', demand: 'High' },
+      frontend: { title: 'Frontend Developer', desc: 'Craft high-performance, responsive web interfaces and design systems.', salary: '₹5 - ₹13 LPA', demand: 'High' },
+      backend: { title: 'Backend Systems Engineer', desc: 'Design microservices, high-throughput APIs, and database models.', salary: '₹7 - ₹16 LPA', demand: 'High' },
+      nextjs_developer: { title: 'Next.js & React Developer', desc: 'Build modern server-rendered web applications with Next.js & React.', salary: '₹6 - ₹15 LPA', demand: 'High' },
+      ai_ml_engineer: { title: 'AI & Machine Learning Engineer', desc: 'Develop intelligent AI models, neural networks, and LLM applications.', salary: '₹8 - ₹18 LPA', demand: 'High' },
+      data_science: { title: 'Data Scientist', desc: 'Extract strategic insights from massive datasets using statistical modeling.', salary: '₹6 - ₹15 LPA', demand: 'High' },
+      data_engineering: { title: 'Data Engineer', desc: 'Build distributed data pipelines, ETL flows, and data warehouses.', salary: '₹7 - ₹16 LPA', demand: 'High' },
+      devops_cloud: { title: 'DevOps & Cloud Engineer', desc: 'Automate CI/CD pipelines, Docker containers, and cloud infrastructure.', salary: '₹7 - ₹16 LPA', demand: 'High' },
+      cybersecurity: { title: 'Cybersecurity Analyst', desc: 'Protect corporate assets, audit network security, and perform threat analysis.', salary: '₹6 - ₹15 LPA', demand: 'High' },
+      ui_ux_design: { title: 'UI/UX Product Designer', desc: 'Craft delightful, user-centered digital interfaces and design systems.', salary: '₹5 - ₹12 LPA', demand: 'High' },
+      product_manager: { title: 'Technical Product Manager', desc: 'Bridge business strategy, user empathy, and engineering execution.', salary: '₹8 - ₹18 LPA', demand: 'Growing' }
+    };
 
-      if (response.type === 'result') {
-        showResults(state, response);
+    const getMeta = (slug) => fallbackCatalog[slug] || {
+      title: slug.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      desc: 'Master the core skills and technology stack for this high-demand career path.',
+      salary: '₹6 - ₹14 LPA',
+      demand: 'High'
+    };
+
+    const m1 = getMeta(topSlug1);
+    const m2 = getMeta(topSlug2);
+    const m3 = getMeta(topSlug3);
+
+    return {
+      type: 'result',
+      careers: [
+        {
+          rank: 1,
+          title: m1.title,
+          matchPercent: 93,
+          description: m1.desc,
+          skills: ['Problem Solving', 'Architecture', 'Clean Code', 'Git', 'Agile'],
+          salaryRange: m1.salary,
+          demand: m1.demand,
+          nextSteps: 'Start mastering the core fundamentals on SkillBun roadmap.',
+          roadmapUrl: topSlug1
+        },
+        {
+          rank: 2,
+          title: m2.title,
+          matchPercent: 87,
+          description: m2.desc,
+          skills: ['System Design', 'API Integration', 'Data Structures', 'Testing'],
+          salaryRange: m2.salary,
+          demand: m2.demand,
+          nextSteps: 'Explore real-world projects in this career domain.',
+          roadmapUrl: topSlug2
+        },
+        {
+          rank: 3,
+          title: m3.title,
+          matchPercent: 82,
+          description: m3.desc,
+          skills: ['Cloud & Tools', 'Analytics', 'Security', 'Automation'],
+          salaryRange: m3.salary,
+          demand: m3.demand,
+          nextSteps: 'Check out the detailed step-by-step roadmap for your career.',
+          roadmapUrl: topSlug3
+        }
+      ]
+    };
+  }
+
+  function pickQuestionForStep(qNum) {
+    const questionsObj = state.quizQuestions;
+    if (!questionsObj) return null;
+
+    const used = new Set(state.usedQuestionIds || []);
+
+    if (qNum <= 3) {
+      if (state.identifiedPillar && Array.isArray(questionsObj.phase2?.[state.identifiedPillar])) {
+        const p2Pool = questionsObj.phase2[state.identifiedPillar].filter(q => !used.has(q.id));
+        if (p2Pool.length > 0) {
+          const picked = p2Pool[Math.floor(Math.random() * p2Pool.length)];
+          state.usedQuestionIds.push(picked.id);
+          return picked;
+        }
+      }
+      const p1Pool = (questionsObj.phase1 || []).filter(q => !used.has(q.id));
+      if (p1Pool.length > 0) {
+        const picked = p1Pool[Math.floor(Math.random() * p1Pool.length)];
+        state.usedQuestionIds.push(picked.id);
+        return picked;
+      }
+    }
+
+    if (qNum >= 4 && qNum <= 7) {
+      const dominantPillar = getDominantPillar();
+      let pool = (questionsObj.phase2?.[dominantPillar] || []).filter(q => !used.has(q.id));
+      if (pool.length === 0) {
+        pool = (questionsObj.phase1 || []).filter(q => !used.has(q.id));
+      }
+      if (pool.length > 0) {
+        const picked = pool[Math.floor(Math.random() * pool.length)];
+        state.usedQuestionIds.push(picked.id);
+        return picked;
+      }
+    }
+
+    if (qNum >= 9 && qNum <= 10) {
+      const p4Pool = (questionsObj.phase4 || []).filter(q => !used.has(q.id));
+      if (p4Pool.length > 0) {
+        const picked = p4Pool[Math.floor(Math.random() * p4Pool.length)];
+        state.usedQuestionIds.push(picked.id);
+        return picked;
+      }
+    }
+
+    const fallbackAll = [
+      ...(questionsObj.phase1 || []),
+      ...Object.values(questionsObj.phase2 || {}).flat(),
+      ...(questionsObj.phase4 || [])
+    ].filter(q => !used.has(q.id));
+
+    if (fallbackAll.length > 0) {
+      const picked = fallbackAll[Math.floor(Math.random() * fallbackAll.length)];
+      state.usedQuestionIds.push(picked.id);
+      return picked;
+    }
+
+    return null;
+  }
+
+  async function advanceQuestion() {
+    const qNum = state.questionCount + 1;
+    state.questionCount = qNum;
+
+    if (qNum <= 10) {
+      if (qNum === 8) {
+        document.getElementById('optionsContainer').style.display = 'none';
+        document.getElementById('quizLoading').style.display = 'flex';
+        const loadingP = document.getElementById('quizLoading').querySelector('p');
+        if (loadingP) loadingP.textContent = 'SkillBun AI is generating your custom niche scenario...';
+
+        try {
+          const aiQuestion = await callGemini(getAiCall1Prompt());
+          document.getElementById('quizLoading').style.display = 'none';
+          document.getElementById('optionsContainer').style.display = 'grid';
+
+          showQuestion(state, {
+            type: 'question',
+            phase: 3,
+            questionNumber: 8,
+            insight: aiQuestion.insight || nextInsight || 'AI Niche Deep-Dive based on your Q1-Q7 answers.',
+            question: aiQuestion.question,
+            options: aiQuestion.options
+          }, selectOption);
+          nextInsight = '';
+        } catch (err) {
+          console.warn('AI Call 1 failed, using seamless local fallback Q8:', err.message);
+          document.getElementById('quizLoading').style.display = 'none';
+          document.getElementById('optionsContainer').style.display = 'grid';
+
+          const dominantPillar = getDominantPillar();
+          const fallbackList = state.quizQuestions?.phase3Fallback?.[dominantPillar] || state.quizQuestions?.phase3Fallback?.systems || [];
+          const localQ8 = fallbackList[0] || {
+            q: 'In a real enterprise environment, what aspect of project quality matters most to you?',
+            options: [
+              { l: 'A', t: 'Clean, test-driven codebase that other developers can easily read and extend.', pillar: 'systems', tags: ['backend', 'fullstack'] },
+              { l: 'B', t: 'High accuracy, statistical validity, and reproducible results.', pillar: 'data_ai', tags: ['ai_ml_engineer', 'data_science'] },
+              { l: 'C', t: 'Delighting the user and driving business retention metrics.', pillar: 'design_product', tags: ['product_manager', 'ui_ux_design'] },
+              { l: 'D', t: 'Security compliance, fault tolerance, and zero vulnerabilities.', pillar: 'cloud_infra', tags: ['devops_cloud', 'cybersecurity'] }
+            ]
+          };
+
+          showQuestion(state, {
+            type: 'question',
+            phase: 3,
+            questionNumber: 8,
+            insight: nextInsight || 'Enterprise quality & engineering trade-off scenario.',
+            question: localQ8.q || localQ8.question,
+            options: localQ8.options
+          }, selectOption);
+          nextInsight = '';
+        }
       } else {
-        showQuestion(state, response, selectOption);
+        const rawQ = pickQuestionForStep(qNum);
+        if (rawQ) {
+          let phaseNum = rawQ.phase || 1;
+          if (qNum >= 4 && qNum <= 7) phaseNum = 2;
+          if (qNum >= 9) phaseNum = 3;
+
+          showQuestion(state, {
+            type: 'question',
+            phase: phaseNum,
+            questionNumber: qNum,
+            insight: nextInsight || (qNum > 1 ? `Tracking your technical DNA preferences.` : ''),
+            question: rawQ.q || rawQ.question,
+            options: rawQ.options
+          }, selectOption);
+          nextInsight = '';
+        }
       }
-    } catch (err) {
-      document.getElementById('quizLoading').style.display = 'none';
-      document.getElementById('optionsContainer').style.display = 'grid';
-      showErrorUI(state, err, retryLastQuestion);
+    } else {
+      document.getElementById('optionsContainer').style.display = 'none';
+      document.getElementById('quizLoading').style.display = 'flex';
+      const loadingP = document.getElementById('quizLoading').querySelector('p');
+      if (loadingP) loadingP.textContent = 'SkillBun AI is synthesizing your 10-question career matches...';
+
+      try {
+        const aiResults = await callGemini(getAiCall2Prompt());
+        document.getElementById('quizLoading').style.display = 'none';
+        showResults(state, aiResults);
+      } catch (err) {
+        console.warn('AI Call 2 failed, rendering instant score-based recommendations:', err.message);
+        document.getElementById('quizLoading').style.display = 'none';
+        const fallbackResults = getLocalFallbackResults();
+        showResults(state, fallbackResults);
+      }
     }
   }
 
-  // --- Select Option Action ---
-  async function selectOption(option, element) {
+  function selectOption(option, element) {
     state.lastSelectedOption = option;
+
+    const optPillar = option.pillar;
+    if (optPillar && state.pillarScores[optPillar] !== undefined) {
+      state.pillarScores[optPillar] += 1;
+    }
+
+    const tags = Array.isArray(option.tags) ? option.tags : [];
+    tags.forEach((tag) => {
+      state.tagScores[tag] = (state.tagScores[tag] || 0) + 1;
+    });
+
+    if (option.i) {
+      nextInsight = option.i;
+    }
+
+    const optText = option.t || option.text || '';
+    const optLabel = option.l || option.label || 'A';
+
+    state.userAnswers.push({
+      questionNumber: state.questionCount,
+      question: document.getElementById('questionText')?.textContent || '',
+      optionLabel: optLabel,
+      optionText: optText,
+      pillar: optPillar || 'general',
+      tags: tags
+    });
+
     document.querySelectorAll('.quiz-option').forEach(el => {
       el.classList.remove('selected');
       el.disabled = true;
     });
     element.classList.add('selected');
 
-    setTimeout(async () => {
-      document.getElementById('optionsContainer').style.display = 'none';
-      document.getElementById('quizLoading').style.display = 'flex';
-
-      try {
-        const response = await callGemini(`My answer: ${option.label}. ${option.text}`);
-
-        document.getElementById('quizLoading').style.display = 'none';
-        document.getElementById('optionsContainer').style.display = 'grid';
-
-        if (response.type === 'result') {
-          showResults(state, response);
-        } else {
-          showQuestion(state, response, selectOption);
-        }
-      } catch (err) {
-        document.getElementById('quizLoading').style.display = 'none';
-        document.getElementById('optionsContainer').style.display = 'grid';
-        showErrorUI(state, err, retryLastQuestion);
-      }
-    }, 500);
+    setTimeout(() => {
+      advanceQuestion();
+    }, 250);
   }
 
-  // --- Retry Last Question Action ---
-  function retryLastQuestion() {
-    if (state.lastSelectedOption) {
-      selectOption(state.lastSelectedOption, document.createElement('button'));
-    } else {
-      startNextQuestion();
-    }
-  }
-
-  // --- Load More Careers Action ---
   async function loadMoreCareers() {
     const loadBtn = document.getElementById('loadMoreBtn');
     if (!loadBtn) return;
@@ -352,37 +463,25 @@ Start with the first question now.`;
       if (!container) throw new Error('Results container not found');
 
       const existingTitles = new Set(
-        Array.from(container.querySelectorAll('.result-card h3')).map(el => normalizeMatchText(el.textContent))
+        Array.from(container.querySelectorAll('.result-card h3')).map(el => el.textContent.toLowerCase().trim())
       );
       const existingSlugs = new Set(
         Array.from(container.querySelectorAll('.result-card'))
           .map(el => el.dataset.roadmapSlug)
           .filter(Boolean)
       );
-      const excludedTitles = Array.from(existingTitles).filter(Boolean).slice(0, 8).join(', ') || 'none';
-      const excludedSlugs = Array.from(existingSlugs).filter(Boolean).slice(0, 8).join(', ') || 'none';
 
-      const response = await callGemini(
-        'Based on our conversation, suggest 3 MORE different career paths that could also be a good fit. Provide careers that are DIFFERENT from the ones you already recommended. Avoid these normalized titles: ' + excludedTitles + '. Avoid these roadmap slugs: ' + excludedSlugs + '. Use the same JSON result format with "type": "result". The "roadmapUrl" field MUST be one exact bare local roadmap slug from the provided list; do not use full URLs or coming-soon.'
-      );
-
+      const prompt = `Based on our previous quiz results, suggest 3 MORE unique career paths that are DIFFERENT from: ${Array.from(existingSlugs).join(', ')}. Use the exact same JSON format with "type": "result" and "careers" array. Use bare local roadmap slugs for "roadmapUrl".`;
+      const response = await callGemini(prompt);
       let careers = extractCareers(response);
 
       if (careers.length === 0) {
-        const strictResponse = await callGemini(
-          'Return only JSON with {"type":"result","careers":[...]} and exactly 3 unique careers. Avoid titles: ' + excludedTitles + '. Avoid roadmap slugs: ' + excludedSlugs + '. Keep fields: title, matchPercent, description, skills, salaryRange, demand, nextSteps, roadmapUrl. roadmapUrl must be an exact bare local roadmap slug.'
-        );
-        careers = extractCareers(strictResponse);
-      }
-
-      if (careers.length === 0) {
-        throw new Error('No career paths returned');
+        throw new Error('No additional career paths returned');
       }
 
       const uniqueCareers = careers.filter((career) => {
-        const titleKey = normalizeMatchText(career.title);
         const slug = resolveRoadmapSlug(career);
-        return !existingTitles.has(titleKey) && (!slug || slug === 'general' || !existingSlugs.has(slug));
+        return !existingTitles.has(career.title.toLowerCase().trim()) && (!slug || slug === 'general' || !existingSlugs.has(slug));
       });
 
       if (uniqueCareers.length === 0) {
@@ -412,185 +511,6 @@ Start with the first question now.`;
     }
   }
 
-  // --- Show Error UI Callback ---
-  function showErrorUI(state, err, retryCallback) {
-    state.retryCount++;
-    const message = String(err?.message || '').trim();
-    const status = err?.status || 0;
-    const retryAfterMs = err?.retryAfterMs || 0;
-    const code = String(err?.code || (status ? `AI_${status}` : 'AI_CLIENT')).trim();
-    const isMaxRetries = state.retryCount >= MAX_RETRIES_PER_QUESTION;
-
-    const containerDiv = document.createElement('div');
-    containerDiv.style.textAlign = 'center';
-
-    const bunnyDiv = document.createElement('div');
-    bunnyDiv.style.fontSize = '2.5rem';
-    bunnyDiv.style.marginBottom = '0.8rem';
-    bunnyDiv.textContent = '🐰💔';
-    containerDiv.appendChild(bunnyDiv);
-
-    const oopsDiv = document.createElement('div');
-    oopsDiv.style.fontWeight = '800';
-    oopsDiv.style.fontSize = '1.1rem';
-    oopsDiv.style.marginBottom = '0.5rem';
-    oopsDiv.textContent = 'Oops! Something went wrong on our side.';
-    containerDiv.appendChild(oopsDiv);
-
-    const detailDiv = document.createElement('div');
-    detailDiv.style.color = 'var(--muted)';
-    detailDiv.style.fontSize = '0.9rem';
-    detailDiv.style.lineHeight = '1.6';
-    detailDiv.textContent = message || "Our AI bunny tripped! Don't worry - our team is on it.";
-    containerDiv.appendChild(detailDiv);
-
-    if (retryAfterMs > 0) {
-      const waitDiv = document.createElement('div');
-      waitDiv.style.color = 'var(--muted)';
-      waitDiv.style.fontSize = '0.8rem';
-      waitDiv.style.marginTop = '0.55rem';
-      waitDiv.textContent = 'Suggested wait: ' + formatWaitTime(retryAfterMs);
-      containerDiv.appendChild(waitDiv);
-    }
-
-    const retryDiv = document.createElement('div');
-    if (isMaxRetries) {
-      retryDiv.style.color = 'var(--danger)';
-      retryDiv.style.fontSize = '0.8rem';
-      retryDiv.style.marginTop = '0.6rem';
-      retryDiv.style.fontWeight = '700';
-      retryDiv.textContent = 'Multiple attempts failed. Please try again later or report this issue.';
-    } else {
-      retryDiv.style.color = 'var(--muted)';
-      retryDiv.style.fontSize = '0.8rem';
-      retryDiv.style.marginTop = '0.6rem';
-      retryDiv.textContent = 'Attempt ' + state.retryCount + ' of ' + MAX_RETRIES_PER_QUESTION;
-    }
-    containerDiv.appendChild(retryDiv);
-
-    if (code) {
-      const codeDiv = document.createElement('div');
-      codeDiv.style.color = 'var(--muted)';
-      codeDiv.style.fontSize = '0.75rem';
-      codeDiv.style.marginTop = '0.4rem';
-      codeDiv.textContent = 'Reference: ' + code + (status ? ' / HTTP ' + status : '');
-      containerDiv.appendChild(codeDiv);
-    }
-
-    const qText = document.getElementById('questionText');
-    qText.innerHTML = '';
-    qText.appendChild(containerDiv);
-
-    const subject = encodeURIComponent('SkillBun Quiz Error');
-    const body = encodeURIComponent(buildErrorReportBody(state, {
-      code,
-      message,
-      originalMessage: err?.originalMessage,
-      retryAfterMs,
-      status
-    }));
-
-    const optionsContainer = document.getElementById('optionsContainer');
-    optionsContainer.innerHTML = '';
-
-    const reportLink = document.createElement('a');
-    reportLink.className = 'quiz-option';
-    reportLink.href = 'mailto:' + encodeURIComponent(SUPPORT_EMAIL) + '?subject=' + subject + '&body=' + body;
-    reportLink.style.textDecoration = 'none';
-
-    const reportLabel = document.createElement('span');
-    reportLabel.className = 'option-label';
-    reportLabel.textContent = '📧';
-    const reportText = document.createElement('span');
-    reportText.className = 'option-text';
-    reportText.textContent = 'Report to Team';
-
-    reportLink.appendChild(reportLabel);
-    reportLink.appendChild(reportText);
-    optionsContainer.appendChild(reportLink);
-
-    const actionBtn = document.createElement('button');
-    actionBtn.className = 'quiz-option';
-    actionBtn.id = 'retryLastQuestionBtn';
-
-    const actionLabel = document.createElement('span');
-    actionLabel.className = 'option-label';
-    actionLabel.textContent = !isMaxRetries ? '🔄' : '🏠';
-
-    const actionText = document.createElement('span');
-    actionText.className = 'option-text';
-    actionText.textContent = !isMaxRetries
-      ? 'Try Again (' + (MAX_RETRIES_PER_QUESTION - state.retryCount) + ' left)'
-      : 'Back to Home';
-
-    actionBtn.appendChild(actionLabel);
-    actionBtn.appendChild(actionText);
-    optionsContainer.appendChild(actionBtn);
-
-    const retryBtn = document.getElementById('retryLastQuestionBtn');
-    if (retryBtn) {
-      if (isMaxRetries) {
-        retryBtn.addEventListener('click', () => { window.location.href = '/'; }, { signal: state.signal });
-      } else {
-        retryBtn.addEventListener('click', retryCallback, { signal: state.signal });
-      }
-    }
-  }
-
-  // --- Show Question Helper Callback ---
-  function showQuestion(state, data, selectOptionCallback) {
-    state.retryCount = 0;
-    state.questionCount = data.questionNumber || state.questionCount + 1;
-    updateProgress(state, state.questionCount, data.phase || 1);
-
-    const insightEl = document.getElementById('aiInsight');
-    if (insightEl) {
-      if (data.insight && state.questionCount > 1) {
-        insightEl.textContent = '💡 ' + data.insight;
-        insightEl.style.display = 'block';
-        insightEl.style.animation = 'none';
-        insightEl.offsetHeight; // trigger reflow
-        insightEl.style.animation = 'fadeInUp 0.4s ease forwards';
-      } else {
-        insightEl.style.display = 'none';
-      }
-    }
-
-    const qText = document.getElementById('questionText');
-    qText.style.opacity = '0';
-    setTimeout(() => {
-      qText.textContent = data.question;
-      qText.style.opacity = '1';
-    }, 200);
-
-    const container = document.getElementById('optionsContainer');
-    container.innerHTML = '';
-    container.style.opacity = '0';
-
-    setTimeout(() => {
-      data.options.forEach((opt, i) => {
-        const optEl = document.createElement('button');
-        optEl.className = 'quiz-option';
-        optEl.style.animationDelay = (i * 0.1) + 's';
-
-        const labelSpan = document.createElement('span');
-        labelSpan.className = 'option-label';
-        labelSpan.textContent = opt.label;
-
-        const textSpan = document.createElement('span');
-        textSpan.className = 'option-text';
-        textSpan.textContent = opt.text;
-
-        optEl.appendChild(labelSpan);
-        optEl.appendChild(textSpan);
-        optEl.addEventListener('click', () => selectOptionCallback(opt, optEl), { signal: state.signal });
-        container.appendChild(optEl);
-      });
-      container.style.opacity = '1';
-    }, 300);
-  }
-
-  // --- Event Bindings ---
   const startQuizBtnEl = document.getElementById('startQuizBtn');
   if (startQuizBtnEl) {
     startQuizBtnEl.addEventListener('click', async () => {
@@ -618,7 +538,32 @@ Start with the first question now.`;
       const quizScreen = document.getElementById('quizScreen');
       if (welcomeScreen) welcomeScreen.style.display = 'none';
       if (quizScreen) quizScreen.style.display = 'block';
-      startNextQuestion();
+
+      state.questionCount = 0;
+      state.userAnswers = [];
+      state.tagScores = {};
+      state.usedQuestionIds = [];
+      state.pillarScores = { systems: 0, data_ai: 0, design_product: 0, cloud_infra: 0, security: 0, operations: 0 };
+      nextInsight = '';
+
+      if (state.quizQuestions?.profileMapping && state.userProfile) {
+        const interest = state.userProfile.interest;
+        const mappedPillar = state.quizQuestions.profileMapping.interestToPillar?.[interest];
+        if (mappedPillar) {
+          state.identifiedPillar = mappedPillar;
+          state.pillarScores[mappedPillar] = (state.pillarScores[mappedPillar] || 0) + 2;
+        }
+
+        const degree = state.userProfile.degree;
+        const degreeBoosts = state.quizQuestions.profileMapping.degreeBoosts?.[degree];
+        if (degreeBoosts) {
+          Object.entries(degreeBoosts).forEach(([p, boost]) => {
+            state.pillarScores[p] = (state.pillarScores[p] || 0) + boost;
+          });
+        }
+      }
+
+      advanceQuestion();
     }, { signal: state.signal });
   }
 
@@ -657,6 +602,12 @@ Start with the first question now.`;
       });
     }
 
+    try {
+      state.quizQuestions = await fetchQuizQuestions(state);
+    } catch (err) {
+      console.error('Could not load encrypted quiz questions:', err.message);
+    }
+
     const userBadge = document.getElementById('userBadge');
     if (userBadge) userBadge.addEventListener('click', toggleDropdown, { signal: state.signal });
 
@@ -671,20 +622,4 @@ Start with the first question now.`;
   return () => {
     eventController.abort();
   };
-}
-
-function normalizeMatchText(value) {
-  return String(value || '')
-    .toLowerCase()
-    .replace(/c\+\+/g, 'cplusplus')
-    .replace(/c#/g, 'csharp')
-    .replace(/\.net/g, 'dotnet')
-    .replace(/ci\/cd/g, 'cicd')
-    .replace(/ui\/ux/g, 'ui ux')
-    .replace(/ar\/vr/g, 'ar vr')
-    .replace(/no-code/g, 'no code')
-    .replace(/low-code/g, 'low code')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
 }

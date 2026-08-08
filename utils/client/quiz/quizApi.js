@@ -227,3 +227,24 @@ export async function fetchGeminiPayload(state, payload) {
 
   throw lastError || new Error('AI request failed');
 }
+
+export async function fetchQuizQuestions(state) {
+  const idToken = await getFirebaseIdToken();
+  const headers = {
+    Authorization: `Bearer ${idToken}`
+  };
+  if (state.humanProofToken) headers[HUMAN_PROOF_HEADER] = state.humanProofToken;
+
+  const res = await fetch('/api/quiz/questions', {
+    method: 'GET',
+    headers
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.error || 'Failed to fetch quiz questions');
+  }
+
+  return await res.json();
+}
+

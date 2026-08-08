@@ -383,6 +383,59 @@ export function updateProgress(state, qNum, phase) {
   document.getElementById('quizPhase').textContent = safeGet(phaseNames, phase) || '✨ Phase: Finalizing Match';
 }
 
+export function showQuestion(state, data, onSelect) {
+  const userName = (state.userProfile?.name || 'Student').split(' ')[0];
+
+  updateProgress(state, data.questionNumber || state.questionCount, data.phase || 1);
+
+  const questionText = document.getElementById('questionText');
+  const aiInsight = document.getElementById('aiInsight');
+  const optionsContainer = document.getElementById('optionsContainer');
+
+  if (questionText) {
+    const rawQ = data.question || '';
+    questionText.textContent = rawQ.replace(/\{name\}/g, userName);
+  }
+
+  if (aiInsight) {
+    if (data.insight && String(data.insight).trim().length > 0) {
+      const formattedInsight = String(data.insight).replace(/\{name\}/g, userName);
+      aiInsight.innerHTML = `💡 <span>${sanitize(formattedInsight)}</span>`;
+      aiInsight.style.display = 'block';
+    } else {
+      aiInsight.style.display = 'none';
+      aiInsight.innerHTML = '';
+    }
+  }
+
+  if (optionsContainer) {
+    optionsContainer.innerHTML = '';
+    optionsContainer.style.display = 'grid';
+    optionsContainer.style.opacity = '1';
+
+    const options = Array.isArray(data.options) ? data.options : [];
+    options.forEach((opt) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quiz-option';
+
+      const rawText = opt.t || opt.text || '';
+      const optText = rawText.replace(/\{name\}/g, userName);
+      const label = opt.l || opt.label || '•';
+
+      btn.innerHTML = `<span class="opt-label">${sanitize(label)}</span> <span class="opt-text">${sanitize(optText)}</span>`;
+
+      btn.addEventListener('click', () => {
+        if (typeof onSelect === 'function') {
+          onSelect(opt, btn);
+        }
+      });
+
+      optionsContainer.appendChild(btn);
+    });
+  }
+}
+
 export function normalizeMatchText(value) {
   return String(value || '')
     .toLowerCase()
