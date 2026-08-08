@@ -216,29 +216,6 @@ export default function ContactPage() {
                   </svg>
                   LinkedIn
                 </a>
-                <a
-                  href="https://www.youtube.com/@TeamCosmic-d4e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-badge"
-                  aria-label="SkillBun YouTube (opens in a new tab)"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none" />
-                  </svg>
-                  YouTube
-                </a>
               </div>
             </div>
           </aside>
