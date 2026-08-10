@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import projectsData from '@/public/data/projects_curated.json';
 import styles from './projects.module.css';
+import posthog from 'posthog-js';
 
 const DOMAIN_OPTIONS = [
   { key: 'all', label: '🌟 All Domains' },
@@ -161,7 +162,14 @@ export default function ProjectsPage() {
                   <button
                     type="button"
                     className={styles.btnPrimary}
-                    onClick={() => setActiveModalProject(project)}
+                    onClick={() => {
+                      posthog.capture('project_blueprint_viewed', {
+                        project_id: project.id,
+                        project_domain: project.domain,
+                        difficulty: project.difficulty,
+                      });
+                      setActiveModalProject(project);
+                    }}
                   >
                     <span>📋 View Blueprint</span>
                   </button>

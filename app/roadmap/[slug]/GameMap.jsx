@@ -169,6 +169,16 @@ export default function GameMap({ roadmap, slug }) {
 
     try {
       await saveRoadmapProgress(slug, next);
+      if (!wasDone) {
+        const completedNode = allNodes.find((node) => node.id === id);
+        trackEvent('roadmap_node_completed', {
+          roadmap_slug: slug,
+          node_id: id,
+          node_tag: completedNode?.tag || 'essential',
+          completed_nodes: next.length,
+          completion_percent: total === 0 ? 0 : Math.round((next.length / total) * 100),
+        });
+      }
     } catch (error) {
       console.error('Failed to save roadmap progress:', error);
       setProgress(previous);

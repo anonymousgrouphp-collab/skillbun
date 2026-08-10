@@ -29,6 +29,7 @@ import {
   sanitizeHTML,
   updateUsageLimitCard
 } from './counsellor/counsellorDom';
+import posthog from 'posthog-js';
 
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const SKILLBUN_CONTACT_EMAIL = 'harsh@skillbun.tech';
@@ -169,6 +170,9 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
 
     // Append user message bubble
     appendMessage(state, 'user', text);
+    posthog.capture('counsellor_message_sent', {
+      conversation_message_count: state.conversationHistory.filter((message) => message.role === 'user').length + 1,
+    });
 
     // Dynamic suggestions visibility
     const suggestionsEl = getEl('chatSuggestions');

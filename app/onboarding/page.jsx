@@ -3,6 +3,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 import { useAuth } from '../components/AuthProvider';
+import posthog from 'posthog-js';
 import styles from './onboarding.module.css';
 
 function OnboardingForm() {
@@ -48,6 +49,12 @@ function OnboardingForm() {
 
     try {
       await saveProfile({ name, degree, year, interest });
+      posthog.capture('profile_completed', {
+        degree,
+        academic_year: year,
+        has_interest: Boolean(interest),
+        destination: targetPath,
+      });
       router.replace(targetPath);
     } catch (saveError) {
       console.error('Failed to save Firebase profile:', saveError);

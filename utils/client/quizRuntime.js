@@ -34,6 +34,7 @@ import {
   toggleDropdown,
   logoutUser
 } from './quiz/quizDom';
+import posthog from 'posthog-js';
 
 const SUPPORT_EMAIL = 'harsh@skillbun.tech';
 
@@ -461,11 +462,21 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
 
         document.getElementById('quizLoading').style.display = 'none';
         showResults(state, aiResults);
+        posthog.capture('quiz_completed', {
+          recommendation_source: 'ai',
+          questions_answered: state.userAnswers.length,
+          dominant_pillar: getDominantPillar(),
+        });
       } catch (err) {
         console.warn('AI Call 2 timeout/failed, rendering instant score-based recommendations:', err.message);
         document.getElementById('quizLoading').style.display = 'none';
         const fallbackResults = getLocalFallbackResults();
         showResults(state, fallbackResults);
+        posthog.capture('quiz_completed', {
+          recommendation_source: 'fallback',
+          questions_answered: state.userAnswers.length,
+          dominant_pillar: getDominantPillar(),
+        });
       }
     }
   }
