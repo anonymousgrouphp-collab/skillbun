@@ -258,6 +258,10 @@ export async function refreshHumanProofSession(state) {
 }
 
 export async function fetchGeminiPayload(state, payload) {
+  return fetchCounsellorPayload(state, payload);
+}
+
+export async function fetchCounsellorPayload(state, payload) {
   let lastError = null;
 
   for (let attempt = 0; attempt <= AI_CLIENT_MAX_RETRIES; attempt += 1) {
@@ -269,7 +273,7 @@ export async function fetchGeminiPayload(state, payload) {
       };
       if (state.humanProofToken) headers[HUMAN_PROOF_HEADER] = state.humanProofToken;
 
-      const response = await fetch('/api/gemini', {
+      const response = await fetch('/api/counsellor', {
         method: 'POST',
         headers,
         body: JSON.stringify(payload)

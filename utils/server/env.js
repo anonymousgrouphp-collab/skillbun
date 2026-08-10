@@ -53,6 +53,26 @@ export function getGeminiApiKey() {
   return getFirstNonEmpty(process.env.GEMINI_API_KEY)
 }
 
+export function getGroqApiKey() {
+  return getFirstNonEmpty(process.env.GROQ_API_KEY)
+}
+
+export function getHuggingFaceApiKey() {
+  return getFirstNonEmpty(process.env.HUGGINGFACE_API_KEY)
+}
+
+export function getOpenRouterApiKey() {
+  return getFirstNonEmpty(process.env.OPENROUTER_API_KEY)
+}
+
+export function getOllamaBaseUrl() {
+  return getFirstNonEmpty(process.env.OLLAMA_BASE_URL)
+}
+
+export function getCounsellorAiProvider() {
+  return getFirstNonEmpty(process.env.COUNSELLOR_AI_PROVIDER, 'auto').toLowerCase()
+}
+
 export function getGeminiTimeoutMs() {
   return parseIntWithinRange(process.env.GEMINI_TIMEOUT_MS, 20_000, 5_000, 60_000)
 }
