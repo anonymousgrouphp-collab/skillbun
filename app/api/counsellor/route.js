@@ -251,7 +251,7 @@ async function fetchOpenRouterResponse(apiKey, contents) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-3.3-70b-instruct:free',
+        model: 'openrouter/free',
         messages,
         temperature: 0.75,
         max_tokens: 2048,
@@ -468,30 +468,26 @@ export async function POST(request) {
       }
     }
 
-    // Auto strategy: Try available free open-source provider first, then configured keys
+    // Auto strategy: Try lightning-fast Groq LPU first, then OpenRouter, Pollinations & others
     if (!textResponse && (preferredProvider === 'auto' || preferredProvider === 'free-opensource')) {
-      // 1. Try Free Online Open-Source Llama 3.3 70B Model (Zero API key required!)
-      try {
-        textResponse = await fetchFreeOpenSourceLlamaResponse(contents)
-      } catch (e) {
-        console.warn('Free OpenSource Llama error:', e?.message)
+      // 1. Try Groq Llama 3.3 70B (Fastest LPU hardware in the world - 800+ tokens/sec)
+      if (getGroqApiKey()) {
+        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq LPU error:', e?.message) }
       }
 
-      // 2. Try configured provider keys if available
-      if (!textResponse && getGroqApiKey()) {
-        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) {}
-      }
-      if (!textResponse && getHuggingFaceApiKey()) {
-        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) {}
-      }
+      // 2. Try OpenRouter Free Tier
       if (!textResponse && getOpenRouterApiKey()) {
-        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) {}
+        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter free error:', e?.message) }
       }
-      if (!textResponse && getOllamaBaseUrl()) {
-        try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents) } catch (e) {}
+
+      // 3. Try Hugging Face Serverless
+      if (!textResponse && getHuggingFaceApiKey()) {
+        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace error:', e?.message) }
       }
-      if (!textResponse && getGeminiApiKey()) {
-        try { textResponse = await fetchGeminiResponse(getGeminiApiKey(), contents) } catch (e) {}
+
+      // 4. Try Free Online Pollinations Serverless Llama
+      if (!textResponse) {
+        try { textResponse = await fetchFreeOpenSourceLlamaResponse(contents) } catch (e) { console.warn('Free Pollinations Llama error:', e?.message) }
       }
     }
 
