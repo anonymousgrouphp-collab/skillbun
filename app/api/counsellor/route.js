@@ -171,7 +171,7 @@ async function retrieveSkillbunKnowledge(contents = []) {
 - Platform: SkillBun (AI-Powered Career Discovery Platform for Indian Tech Students)
 - Key Roadmaps: 100 catalog roadmaps available including Frontend ([Frontend](/roadmap/frontend)), Fullstack ([Fullstack](/roadmap/fullstack)), AI/ML ([AI/ML](/roadmap/ai_ml_engineer)), Data Science ([Data Science](/roadmap/data_science)), DevOps ([DevOps](/roadmap/devops_cloud)), Cybersecurity ([Cybersecurity](/roadmap/cybersecurity)).
 - Certification: Verifiable Certificates awarded upon reaching 60% roadmap progress & scoring 70%+ on proctored assessment (/roadmap/[slug]/certify).
-- Support Contact: harsh@skillbun.tech`
+- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support!`
   }
 
   const ragSnippets = topMatches.map((slug) => {
@@ -182,7 +182,7 @@ async function retrieveSkillbunKnowledge(contents = []) {
   return `${identitySnippet}${domainRefusalSnippet}${liveSearchSnippet}\nSKILLBUN INTERNAL KNOWLEDGE BASE (RETRIEVED FOR THIS USER QUERY):
 ${ragSnippets}
 - SkillBun Platform Links: Always include the exact markdown roadmap links provided above in your response so students can click directly into SkillBun roadmaps!
-- Support Contact: harsh@skillbun.tech`
+- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support!`
 }
 
 async function convertContentsToOpenAiMessages(contents = []) {
@@ -390,6 +390,21 @@ function applyStrictBrandMasking(text = '') {
     .replace(/\b(Google|Meta|Alibaba)\s+(AI|LLM|Model)\b/gi, 'SkillBun Engine')
 }
 
+function stripUnsolicitedEmail(text = '', userQuery = '') {
+  if (!text) return ''
+  const isContactIntent = /contact|email|support|reach|helpdesk|owner|founder|harsh/i.test(userQuery)
+  const isOffTopicRefusal = /outside my scope|outside my domain|take a screenshot/i.test(text)
+
+  if (!isContactIntent && !isOffTopicRefusal) {
+    return text
+      .replace(/\n\n+###?\s*Next Steps[^\n]*\n+[^\n]*harsh@skillbun\.tech[^\n]*/gi, '')
+      .replace(/\n\n+[^\n]*reach out[^\n]*harsh@skillbun\.tech[^\n]*/gi, '')
+      .replace(/\n\n+[^\n]*contact[^\n]*harsh@skillbun\.tech[^\n]*/gi, '')
+      .trim()
+  }
+  return text
+}
+
 function isOffTopicQuery(lastMsg = '') {
   const STRICT_OFF_TOPIC_REGEX = /\b(chai|tea|recipe|cook|cooking|dish|recipe|cricket|football|basketball|ipl|match|movie|film|actor|actress|song|singing|poem|poetry|joke|jokes|weather|rain|temperature|politics|election|minister|love|dating|relationship|crush|astrology|horoscope|zodiac|food|burger|pizza|crypto|bitcoin|stock market)\b/i
   const STRICT_TECH_KEYWORD = /\b(tech|code|coding|program|programming|developer|engineer|engineering|software|hardware|java|python|js|javascript|react|node|html|css|ai|ml|data|sql|cloud|aws|devops|security|cyber|roadmap|college|university|bca|btech|mca|job|jobs|hiring|career|salary|lpa|skillbun|harsh|contact|email)\b/i
@@ -512,7 +527,12 @@ export async function POST(request) {
     }
 
     // Ironclad Brand Masking & Sanitize Filter
+    const lastUserQuery = contents.slice(-3).map((item) => {
+      return Array.isArray(item?.parts) ? item.parts.map((p) => p?.text || '').join(' ') : ''
+    }).join(' ')
+
     textResponse = applyStrictBrandMasking(textResponse)
+    textResponse = stripUnsolicitedEmail(textResponse, lastUserQuery)
 
     return NextResponse.json(formatCounsellorResponse(textResponse))
   } catch (err) {
