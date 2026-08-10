@@ -78,7 +78,7 @@ export default function CounsellorPage() {
               <div className="limit-progress-container">
                 <div className="limit-text">
                   <span>Messages Left:</span>
-                  <strong id="limitCount">15 / 15</strong>
+                  <strong id="limitCount">100 / 100</strong>
                 </div>
                 <div className="limit-bar-bg">
                   <div className="limit-bar" id="limitBar" style={{ width: '100%' }}></div>
@@ -103,6 +103,14 @@ export default function CounsellorPage() {
               <div className="chat-header-info">
                 <h2>Bun-Bot Counsellor</h2>
                 <p><span className="status-dot"></span> Online · Ready to help {name.split(' ')[0]}</p>
+              </div>
+              <div className="counsellor-mode-toggle" id="modeToggleContainer">
+                <button className="mode-btn active" id="modeFastBtn" data-mode="fast" title="SkillBun Instant Engine (0ms latency)">
+                  ⚡ Fast Mode <span className="mode-badge">Instant 0ms</span>
+                </button>
+                <button className="mode-btn" id="modeDeepBtn" data-mode="deep" title="Hybrid Open-Source LLM + Web Search + RAG">
+                  🧠 Deep Mode <span className="mode-badge">AI + Web</span>
+                </button>
               </div>
               <button className="chat-clear-btn" id="clearChatBtn">🗑 Clear Chat</button>
             </div>

@@ -169,7 +169,7 @@ export function updateUsageLimitCard() {
     console.warn('Could not read rate limit for UI:', err);
   }
 
-  const RATE_LIMIT_MAX = 15;
+  const RATE_LIMIT_MAX = 100;
   const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
   const now = Date.now();
 

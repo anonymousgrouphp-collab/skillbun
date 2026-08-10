@@ -220,6 +220,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     trimConversationHistory();
 
     const payload = {
+      mode: state.counsellorMode || 'fast',
       contents: state.conversationHistory,
       generationConfig: {
         temperature: 0.75,
@@ -368,6 +369,25 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
     if (!hasProfile) return;
 
     updateUsageLimitCard();
+
+    state.counsellorMode = 'fast';
+
+    const fastBtn = getEl('modeFastBtn');
+    const deepBtn = getEl('modeDeepBtn');
+
+    if (fastBtn && deepBtn) {
+      fastBtn.addEventListener('click', () => {
+        state.counsellorMode = 'fast';
+        fastBtn.classList.add('active');
+        deepBtn.classList.remove('active');
+      }, { signal: state.signal });
+
+      deepBtn.addEventListener('click', () => {
+        state.counsellorMode = 'deep';
+        deepBtn.classList.add('active');
+        fastBtn.classList.remove('active');
+      }, { signal: state.signal });
+    }
 
     const textarea = getEl('chatInput');
     const sendBtn = getEl('sendBtn');
