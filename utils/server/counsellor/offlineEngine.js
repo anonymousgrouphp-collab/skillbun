@@ -62,10 +62,12 @@ function getLatestUserQuery(contents = []) {
   return '';
 }
 
-export function generateOfflineCounsellorResponse(contents = []) {
+export function generateOfflineCounsellorResponse(contents = [], searchContext = '') {
   const profile = extractUserProfileFromHistory(contents);
   const query = getLatestUserQuery(contents);
   const lower = query.toLowerCase();
+
+  const webSearchHeader = searchContext ? `\n\n🌐 **Real-time Live Web Search Results:**\n${searchContext}\n` : '';
 
   // 0. Non-Tech / Off-Topic Refusal
   const OFF_TOPIC_REGEX = /chai|tea|recipe|cook|cricket|football|movie|song|poem|joke|weather|politics|love|dating|astrology|food/i;
@@ -166,5 +168,5 @@ export function generateOfflineCounsellorResponse(contents = []) {
     `- **SkillBun Roadmaps**: Direct links to interactive maps like [Frontend Roadmap](/roadmap/frontend), [Fullstack Roadmap](/roadmap/fullstack), and [AI/ML Roadmap](/roadmap/ai_ml_engineer).\n` +
     `- **Indian Tech Market Insight**: Fresh graduate salaries in LPA, GATE/NIMCET guidance, and industry requirements.\n` +
     `- **SkillBun Support**: Drop a line to [${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL}).\n\n` +
-    `What specific tech field or career path would you like to explore today?`;
+    `What specific tech field or career path would you like to explore today?` + webSearchHeader;
 }
