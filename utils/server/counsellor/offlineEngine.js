@@ -79,9 +79,9 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
       `💡 *If you think we made a mistake, please take a screenshot and email us at **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**.*`;
   }
 
-  // 1. Support / Contact Intent
-  if (/contact|email|support|reach|helpdesk|owner|founder|harsh/i.test(lower)) {
-    return `Hello **${profile.name}**! 👋\n\nYou can reach out directly to the SkillBun core team anytime at:\n\n📧 **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**\n\nWhether you need help with your career roadmap, platform account questions, or certification support, we're always happy to help you!`;
+  // 1. Founder & Support / Contact Intent
+  if (/founder|owner|creator|built skillbun|created skillbun|harsh|contact|email|support|reach|helpdesk/i.test(lower)) {
+    return `Hello **${profile.name}**! 👋\n\n**SkillBun** was founded by **Harsh** ([harsh@skillbun.tech](mailto:harsh@skillbun.tech)) to empower Indian tech students with AI-powered career discovery, 100+ interactive roadmaps, and verifiable certifications!\n\nYou can reach out directly to Harsh and the core team anytime at **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**.`;
   }
 
   // 2. Salary / Package / Placement Intent
