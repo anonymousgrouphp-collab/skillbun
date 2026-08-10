@@ -23,6 +23,7 @@ import {
   toggleSecurityBanner,
   loadProfile,
   appendMessage,
+  appendStreamingMessage,
   setCaptchaStatus,
   toggleDropdown,
   logoutUser,
@@ -244,7 +245,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
         parts: [{ text: botResponse }]
       });
 
-      appendMessage(state, 'bot', botResponse);
+      appendStreamingMessage(state, 'bot', botResponse);
       incrementRateLimit();
       updateUsageLimitCard();
 

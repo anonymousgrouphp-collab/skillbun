@@ -122,6 +122,59 @@ export function appendMessage(state, role, text) {
   }, 50);
 }
 
+export function appendStreamingMessage(state, role, text, onComplete) {
+  const container = getEl('chatMessages');
+  if (!container) return;
+
+  if (role === 'user') {
+    appendMessage(state, role, text);
+    if (onComplete) onComplete();
+    return;
+  }
+
+  const row = document.createElement('div');
+  row.className = `message-row ${role}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = `msg-avatar ${role}`;
+  avatar.textContent = '🤖';
+
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `message ${role}`;
+  msgDiv.innerHTML = '';
+
+  row.appendChild(avatar);
+  row.appendChild(msgDiv);
+  container.appendChild(row);
+
+  // Live Typewriter Streaming Effect (ChatGPT & Google Gemini Style!)
+  const tokens = String(text ?? '').split(/(\s+)/);
+  let currentIndex = 0;
+  let currentText = '';
+
+  function typeNextToken() {
+    if (currentIndex >= tokens.length) {
+      msgDiv.innerHTML = renderBotHTML(text);
+      container.scrollTop = container.scrollHeight;
+      if (onComplete) onComplete();
+      return;
+    }
+
+    const count = Math.min(3, tokens.length - currentIndex);
+    for (let i = 0; i < count; i++) {
+      currentText += tokens[currentIndex + i];
+    }
+    currentIndex += count;
+
+    msgDiv.innerHTML = renderBotHTML(currentText);
+    container.scrollTop = container.scrollHeight;
+
+    setTimeout(typeNextToken, 16);
+  }
+
+  typeNextToken();
+}
+
 export function setCaptchaStatus(message, tone) {
   const statusEl = getEl('captchaStatus');
   if (!statusEl) return;
