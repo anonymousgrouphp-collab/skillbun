@@ -468,24 +468,24 @@ export async function POST(request) {
       }
     }
 
-    // Auto strategy: Try lightning-fast Groq LPU first, then OpenRouter, Pollinations & others
+    // Auto strategy: Strictly ordered by LLM Intelligence & Worthiness Rating
     if (!textResponse && (preferredProvider === 'auto' || preferredProvider === 'free-opensource')) {
-      // 1. Try Groq Llama 3.3 70B (Fastest LPU hardware in the world - 800+ tokens/sec)
+      // 1. [Rank 1 - 10/10 Worthiness] Groq Llama 3.3 70B (Flagship 70B Model + LPU Hardware)
       if (getGroqApiKey()) {
         try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq LPU error:', e?.message) }
       }
 
-      // 2. Try OpenRouter Free Tier
-      if (!textResponse && getOpenRouterApiKey()) {
-        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter free error:', e?.message) }
-      }
-
-      // 3. Try Hugging Face Serverless
+      // 2. [Rank 2 - 9.5/10 Worthiness] Hugging Face Qwen 2.5 Coder 32B Instruct (Deep Coding & Tech Logic)
       if (!textResponse && getHuggingFaceApiKey()) {
         try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace error:', e?.message) }
       }
 
-      // 4. Try Free Online Pollinations Serverless Llama
+      // 3. [Rank 3 - 8.5/10 Worthiness] OpenRouter Free Gateway (Multi-Model Free Router)
+      if (!textResponse && getOpenRouterApiKey()) {
+        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter free error:', e?.message) }
+      }
+
+      // 4. [Rank 4 - 8/10 Worthiness] Free Online Pollinations Serverless Llama
       if (!textResponse) {
         try { textResponse = await fetchFreeOpenSourceLlamaResponse(contents) } catch (e) { console.warn('Free Pollinations Llama error:', e?.message) }
       }
