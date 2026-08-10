@@ -212,7 +212,7 @@ async function convertContentsToOpenAiMessages(contents = []) {
 async function fetchGroqResponse(apiKey, contents) {
   const messages = await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
+  const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 4_500))
 
   try {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -241,7 +241,7 @@ async function fetchGroqResponse(apiKey, contents) {
 async function fetchOpenRouterResponse(apiKey, contents) {
   const messages = await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
+  const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 4_500))
 
   try {
     const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -270,7 +270,7 @@ async function fetchOpenRouterResponse(apiKey, contents) {
 async function fetchHuggingFaceResponse(apiKey, contents) {
   const messages = await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
+  const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 4_500))
 
   try {
     const res = await fetch('https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct/v1/chat/completions', {
