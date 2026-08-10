@@ -34,6 +34,15 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/logo.png" type="image/png" />
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#F4F7F2" />
+        {/* Google tag (gtag.js) - G-XTFMS5Q59C */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTFMS5Q59C"></script>
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-XTFMS5Q59C', { send_page_view: true });
+        `}} />
         {/* Theme initialization — runs before paint to prevent flash */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
