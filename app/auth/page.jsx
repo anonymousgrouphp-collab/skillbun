@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 import { validateEmail } from '@/utils/shared/emailValidator';
+import posthog from 'posthog-js';
 
 const PASSWORD_RESET_COOLDOWN_MS = 60 * 1000;
 const PASSWORD_RESET_COOLDOWN_KEY = 'sb_password_reset_available_at';
@@ -361,9 +362,11 @@ function AuthForm() {
         }
 
         await signUpWithEmail(formEmail, password);
+        posthog.capture('account_signed_up', { authentication_method: 'email' });
         setStatus('Verification email sent. Setting up your profile...');
       } else {
         await signInWithEmail(formEmail, password);
+        posthog.capture('account_logged_in', { authentication_method: 'email' });
         setStatus('Logged in. Loading your SkillBun profile...');
       }
     } catch (authSubmitError) {
@@ -380,6 +383,7 @@ function AuthForm() {
 
     try {
       await signInWithGoogle();
+      posthog.capture('account_logged_in', { authentication_method: 'google' });
       setStatus('Google sign-in complete. Loading your SkillBun profile...');
     } catch (googleError) {
       setError(friendlyAuthError(googleError));

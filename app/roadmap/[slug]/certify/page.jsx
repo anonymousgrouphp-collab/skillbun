@@ -447,6 +447,10 @@ export default function CertifyPage() {
     setSelectedAnswers({});
     setQuestionTimer(45);
     setQuizState('active');
+    posthog.capture('certification_quiz_started', {
+      roadmap_slug: slug,
+      question_count: shuffled.length,
+    });
     setViolationCount(0);
     violationRef.current = 0;
     lastViolationRef.current = 0;
@@ -624,7 +628,7 @@ export default function CertifyPage() {
         createdAt: serverTimestamp(),
       });
 
-      trackEvent('cert_issued', { certId, slug, score, certName: certName.trim() });
+      trackEvent('cert_issued', { cert_id: certId, slug, score });
       router.push(`/certificate/${certId}`);
     } catch (err) {
       console.error('Failed to mint certificate:', err);

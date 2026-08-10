@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
+import { useEffect, useRef, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-import posthog from 'posthog-js';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import posthog from 'posthog-js';
 import { trackPageView, identifyUser } from '@/lib/analytics';
 import { useAuth } from './AuthProvider';
 
@@ -13,6 +13,7 @@ function AnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const auth = useAuth();
+  const identifiedUserId = useRef(null);
 
   // Track Page Views on route change
   useEffect(() => {
@@ -21,35 +22,36 @@ function AnalyticsTracker() {
     trackPageView(url);
   }, [pathname, searchParams]);
 
-  // Identify User when Auth state changes
+  // Firebase restores authentication on refresh and emits this callback after sign-in.
+  // PostHog persists the identity, so only synchronize when the authenticated account changes.
   useEffect(() => {
-    if (auth?.user?.uid) {
-      identifyUser(auth.user.uid, {
-        email: auth.user.email,
-        degree: auth.profile?.degree || '',
-        year: auth.profile?.year || '',
-        interest: auth.profile?.interest || '',
-      });
+    const user = auth?.user;
+
+    if (user?.uid) {
+      if (identifiedUserId.current && identifiedUserId.current !== user.uid) {
+        posthog.reset();
+      }
+
+      if (identifiedUserId.current !== user.uid) {
+        const personProperties = {};
+        if (user.email) personProperties.email = user.email;
+        if (user.displayName) personProperties.name = user.displayName;
+        identifyUser(user.uid, personProperties);
+        identifiedUserId.current = user.uid;
+      }
+      return;
     }
-  }, [auth?.user, auth?.profile]);
+
+    if (identifiedUserId.current) {
+      posthog.reset();
+      identifiedUserId.current = null;
+    }
+  }, [auth?.user]);
 
   return null;
 }
 
 export function AnalyticsProvider({ children }) {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN || process.env.NEXT_PUBLIC_POSTHOG_KEY || 'phc_vi8BxTy7vMdhuQn7WSmcQ4n4C2hPqBemqXEGTStm83HJ';
-      const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
-
-      posthog.init(token, {
-        api_host: host,
-        person_profiles: 'identified_only',
-        capture_pageview: true,
-      });
-    }
-  }, []);
-
   return (
     <>
       <Suspense fallback={null}>
