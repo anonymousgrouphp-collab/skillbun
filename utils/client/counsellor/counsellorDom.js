@@ -233,6 +233,11 @@ export function updateUsageLimitCard() {
   const remaining = Math.max(0, RATE_LIMIT_MAX - count);
   limitCountEl.textContent = `${remaining} / ${RATE_LIMIT_MAX}`;
 
+  const mobileLimitCountEl = getEl('mobileLimitCount');
+  if (mobileLimitCountEl) {
+    mobileLimitCountEl.textContent = `${remaining}/${RATE_LIMIT_MAX}`;
+  }
+
   const percent = Math.min(100, Math.max(0, (remaining / RATE_LIMIT_MAX) * 100));
   limitBarEl.style.width = `${percent}%`;
 
