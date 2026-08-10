@@ -383,7 +383,22 @@ function formatCounsellorResponse(text) {
   }
 }
 
+function applyStrictBrandMasking(text = '') {
+  if (!text) return ''
+  return text
+    .replace(/\b(Gemini 2\.5|Gemini|ChatGPT|GPT-4o|GPT-4|GPT-3\.5|OpenAI|Llama 3\.3|Llama|Groq|Anthropic|Claude|Qwen|DeepSeek)\b/gi, 'SkillBun AI')
+    .replace(/\b(Google|Meta|Alibaba)\s+(AI|LLM|Model)\b/gi, 'SkillBun Engine')
+}
+
+function isOffTopicQuery(lastMsg = '') {
+  const STRICT_OFF_TOPIC_REGEX = /\b(chai|tea|recipe|cook|cooking|dish|recipe|cricket|football|basketball|ipl|match|movie|film|actor|actress|song|singing|poem|poetry|joke|jokes|weather|rain|temperature|politics|election|minister|love|dating|relationship|crush|astrology|horoscope|zodiac|food|burger|pizza|crypto|bitcoin|stock market)\b/i
+  const STRICT_TECH_KEYWORD = /\b(tech|code|coding|program|programming|developer|engineer|engineering|software|hardware|java|python|js|javascript|react|node|html|css|ai|ml|data|sql|cloud|aws|devops|security|cyber|roadmap|college|university|bca|btech|mca|job|jobs|hiring|career|salary|lpa|skillbun|harsh|contact|email)\b/i
+
+  return STRICT_OFF_TOPIC_REGEX.test(lastMsg) && !STRICT_TECH_KEYWORD.test(lastMsg)
+}
+
 export async function POST(request) {
+
   try {
     const authResult = await verifyAuthenticatedUser(request)
     if (authResult.error) {
@@ -495,6 +510,9 @@ export async function POST(request) {
     if (!textResponse) {
       textResponse = generateOfflineCounsellorResponse(contents)
     }
+
+    // Ironclad Brand Masking & Sanitize Filter
+    textResponse = applyStrictBrandMasking(textResponse)
 
     return NextResponse.json(formatCounsellorResponse(textResponse))
   } catch (err) {

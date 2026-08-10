@@ -70,8 +70,8 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
   const webSearchHeader = searchContext ? `\n\n🌐 **Real-time Live Web Search Results:**\n${searchContext}\n` : '';
 
   // 0. Non-Tech / Off-Topic Refusal
-  const OFF_TOPIC_REGEX = /chai|tea|recipe|cook|cricket|football|movie|song|poem|joke|weather|politics|love|dating|astrology|food/i;
-  const IS_TECH_KEYWORD = /tech|code|program|developer|engineer|software|java|python|js|react|html|css|ai|ml|data|sql|cloud|aws|devops|roadmap|college|bca|btech|mca|job|career|salary|lpa|skillbun|contact|harsh/i;
+  const OFF_TOPIC_REGEX = /\b(chai|tea|recipe|cook|cooking|dish|restaurant|cricket|football|basketball|ipl|match|movie|film|actor|actress|song|singing|poem|poetry|joke|jokes|weather|rain|temperature|politics|election|minister|love|dating|relationship|crush|astrology|horoscope|zodiac|food|burger|pizza|crypto|bitcoin|stock market)\b/i;
+  const IS_TECH_KEYWORD = /\b(tech|code|coding|program|programming|developer|engineer|engineering|software|hardware|java|python|js|javascript|react|node|html|css|ai|ml|data|sql|cloud|aws|devops|security|cyber|roadmap|college|university|bca|btech|mca|job|jobs|hiring|career|salary|lpa|skillbun|harsh|contact|email)\b/i;
 
   if (OFF_TOPIC_REGEX.test(lower) && !IS_TECH_KEYWORD.test(lower)) {
     return `Hello **${profile.name}**! I am **Bun-Bot**, SkillBun's AI Career Counsellor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps. 🤖\n\n` +
