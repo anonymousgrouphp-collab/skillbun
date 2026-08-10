@@ -12,7 +12,7 @@ const HUMAN_PROOF_HEADER = 'x-skillbun-human';
 const AI_CLIENT_MAX_RETRIES = 1;
 const AI_RETRYABLE_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
 
-export const RATE_LIMIT_MAX = 15;
+export const RATE_LIMIT_MAX = 100;
 export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 export const RATE_LIMIT_KEY = 'sb_counsel_rl';
 

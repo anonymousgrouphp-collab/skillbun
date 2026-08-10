@@ -435,20 +435,28 @@ export async function POST(request) {
 
     const preferredProvider = getCounsellorAiProvider()
     const contents = body.contents || []
+    const mode = body.mode || 'deep'
 
     let textResponse = ''
 
-    // Execute based on preferred provider or auto fallback strategy
-    if (preferredProvider === 'groq' && getGroqApiKey()) {
-      try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq provider error:', e?.message) }
-    } else if (preferredProvider === 'openrouter' && getOpenRouterApiKey()) {
-      try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter provider error:', e?.message) }
-    } else if (preferredProvider === 'huggingface' && getHuggingFaceApiKey()) {
-      try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace provider error:', e?.message) }
-    } else if (preferredProvider === 'ollama' && getOllamaBaseUrl()) {
-      try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents) } catch (e) { console.warn('Ollama provider error:', e?.message) }
-    } else if (preferredProvider === 'gemini' && getGeminiApiKey()) {
-      try { textResponse = await fetchGeminiResponse(getGeminiApiKey(), contents) } catch (e) { console.warn('Gemini provider error:', e?.message) }
+    // Fast Mode: Instant 0ms SkillBun Knowledge Engine
+    if (mode === 'fast') {
+      textResponse = generateOfflineCounsellorResponse(contents)
+    }
+
+    // Deep Mode: Execute based on preferred provider or auto fallback strategy
+    if (!textResponse && mode === 'deep') {
+      if (preferredProvider === 'groq' && getGroqApiKey()) {
+        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq provider error:', e?.message) }
+      } else if (preferredProvider === 'openrouter' && getOpenRouterApiKey()) {
+        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter provider error:', e?.message) }
+      } else if (preferredProvider === 'huggingface' && getHuggingFaceApiKey()) {
+        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace provider error:', e?.message) }
+      } else if (preferredProvider === 'ollama' && getOllamaBaseUrl()) {
+        try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents) } catch (e) { console.warn('Ollama provider error:', e?.message) }
+      } else if (preferredProvider === 'gemini' && getGeminiApiKey()) {
+        try { textResponse = await fetchGeminiResponse(getGeminiApiKey(), contents) } catch (e) { console.warn('Gemini provider error:', e?.message) }
+      }
     }
 
     // Auto strategy: Try available free open-source provider first, then configured keys
