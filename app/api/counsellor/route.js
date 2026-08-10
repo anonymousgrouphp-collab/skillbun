@@ -439,9 +439,18 @@ export async function POST(request) {
 
     let textResponse = ''
 
-    // Fast Mode: Instant 0ms SkillBun Knowledge Engine
+    // Fast Mode: Instant 0ms SkillBun Knowledge Engine (+ Web Search if real-time query)
     if (mode === 'fast') {
-      textResponse = generateOfflineCounsellorResponse(contents)
+      const lastMsg = contents.slice(-3).map((item) => {
+        return Array.isArray(item?.parts) ? item.parts.map((p) => p?.text || '').join(' ') : ''
+      }).join(' ').toLowerCase()
+
+      const requiresWebSearch = /latest|news|2025|2026|current|trend|update|cutoff|exam date|hiring|job market/i.test(lastMsg)
+      let searchContext = ''
+      if (requiresWebSearch) {
+        searchContext = await fetchFreeDuckDuckGoSearchContext(lastMsg)
+      }
+      textResponse = generateOfflineCounsellorResponse(contents, searchContext)
     }
 
     // Deep Mode: Execute based on preferred provider or auto fallback strategy
