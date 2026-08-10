@@ -169,9 +169,10 @@ async function retrieveSkillbunKnowledge(contents = []) {
   if (topMatches.length === 0) {
     return `${identitySnippet}${domainRefusalSnippet}${liveSearchSnippet}\nSKILLBUN INTERNAL KNOWLEDGE (RAG RETRIEVED):
 - Platform: SkillBun (AI-Powered Career Discovery Platform for Indian Tech Students)
+- Founder & Core Team: SkillBun was founded by Harsh (harsh@skillbun.tech) to empower Indian tech students with AI-powered career discovery, 100+ roadmaps, and verifiable certifications!
 - Key Roadmaps: 100 catalog roadmaps available including Frontend ([Frontend](/roadmap/frontend)), Fullstack ([Fullstack](/roadmap/fullstack)), AI/ML ([AI/ML](/roadmap/ai_ml_engineer)), Data Science ([Data Science](/roadmap/data_science)), DevOps ([DevOps](/roadmap/devops_cloud)), Cybersecurity ([Cybersecurity](/roadmap/cybersecurity)).
 - Certification: Verifiable Certificates awarded upon reaching 60% roadmap progress & scoring 70%+ on proctored assessment (/roadmap/[slug]/certify).
-- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support!`
+- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support or asks about the founder!`
   }
 
   const ragSnippets = topMatches.map((slug) => {
@@ -181,8 +182,9 @@ async function retrieveSkillbunKnowledge(contents = []) {
 
   return `${identitySnippet}${domainRefusalSnippet}${liveSearchSnippet}\nSKILLBUN INTERNAL KNOWLEDGE BASE (RETRIEVED FOR THIS USER QUERY):
 ${ragSnippets}
+- SkillBun Founder: Harsh (harsh@skillbun.tech)
 - SkillBun Platform Links: Always include the exact markdown roadmap links provided above in your response so students can click directly into SkillBun roadmaps!
-- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support!`
+- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support or asks about the founder!`
 }
 
 async function convertContentsToOpenAiMessages(contents = []) {
