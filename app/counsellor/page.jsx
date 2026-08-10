@@ -52,7 +52,7 @@ export default function CounsellorPage() {
     <>
       <div id="main-page" className="counsellor-workspace">
         <div className="workspace-container">
-          {/* Workspace Left Sidebar: Student Desk Guide */}
+          {/* Workspace Left Sidebar: Desktop Desk Guide */}
           <aside className="workspace-sidebar">
             <div className="sidebar-card profile-card">
               <div className="profile-avatar">🐰</div>
@@ -63,16 +63,6 @@ export default function CounsellorPage() {
               </div>
             </div>
             
-            <div className="sidebar-card tips-card">
-              <h4>💡 Bun-Bot Tips</h4>
-              <ul>
-                <li>Compare career tracks (e.g. <em>Web Dev vs. Devops</em>)</li>
-                <li>Ask for typical salaries in <strong>LPA</strong></li>
-                <li>Ask for learning roadmaps (e.g. <em>Frontend Roadmap</em>)</li>
-                <li>Talk in English, Hindi, or Hinglish!</li>
-              </ul>
-            </div>
-
             <div className="sidebar-card limit-card" id="limitCard">
               <h4>⏳ Usage Limit</h4>
               <div className="limit-progress-container">
@@ -89,6 +79,16 @@ export default function CounsellorPage() {
               </div>
             </div>
 
+            <div className="sidebar-card tips-card">
+              <h4>💡 Bun-Bot Tips</h4>
+              <ul>
+                <li>Compare career tracks (e.g. <em>Web Dev vs. Devops</em>)</li>
+                <li>Ask for typical salaries in <strong>LPA</strong></li>
+                <li>Ask for learning roadmaps (e.g. <em>Frontend Roadmap</em>)</li>
+                <li>Talk in English, Hindi, or Hinglish!</li>
+              </ul>
+            </div>
+
             <div className="sidebar-card nav-card">
               <h4>🛠️ Fast Links</h4>
               <a href="/dashboard" className="sidebar-link">📊 Dashboard</a>
@@ -98,12 +98,30 @@ export default function CounsellorPage() {
 
           {/* Main Chat Console */}
           <div id="chat-container" className="chat-console">
-            <div className="chat-header">
-              <div className="chat-bot-icon">🤖</div>
-              <div className="chat-header-info">
-                <h2>Bun-Bot Counsellor</h2>
-                <p><span className="status-dot"></span> Online · Ready to help {name.split(' ')[0]}</p>
+            {/* Mobile Top Compact Info Bar */}
+            <div className="mobile-counsellor-bar">
+              <div className="mobile-limit-badge">
+                <span>⏳ Messages:</span>
+                <strong id="mobileLimitCount">100/100</strong>
               </div>
+              <div className="mobile-bar-actions">
+                <a href="/dashboard" className="mobile-icon-link" title="Dashboard">📊</a>
+                <a href="/quiz" className="mobile-icon-link" title="Retake Quiz">🎯</a>
+              </div>
+            </div>
+
+            <div className="chat-header">
+              <div className="chat-header-main">
+                <div className="chat-bot-icon">🤖</div>
+                <div className="chat-header-info">
+                  <h2>Bun-Bot Counsellor</h2>
+                  <p><span className="status-dot"></span> Online · Ready to help {name.split(' ')[0]}</p>
+                </div>
+                <button className="chat-clear-btn" id="clearChatBtn" title="Clear Chat History">
+                  🗑️ <span className="clear-text">Clear</span>
+                </button>
+              </div>
+
               <div className="counsellor-mode-toggle" id="modeToggleContainer">
                 <button className="mode-btn active" id="modeFastBtn" data-mode="fast" title="SkillBun Instant Engine (0ms latency)">
                   ⚡ Fast Mode <span className="mode-badge">Instant 0ms</span>
@@ -112,7 +130,6 @@ export default function CounsellorPage() {
                   🧠 Deep Mode <span className="mode-badge">AI + Web</span>
                 </button>
               </div>
-              <button className="chat-clear-btn" id="clearChatBtn">🗑 Clear Chat</button>
             </div>
 
             <div id="securityBanner" style={{ display: 'none' }} className="security-banner-card">
