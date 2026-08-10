@@ -1,0 +1,170 @@
+/**
+ * SkillBun Offline Knowledge & Intent Engine for Bun-Bot AI Counsellor.
+ * 100% Free, Zero-API-Key, Zero-Quota Open-Source Knowledge System.
+ */
+
+const SKILLBUN_CONTACT_EMAIL = 'harsh@skillbun.tech';
+
+const ROADMAP_MAPPINGS = [
+  { keywords: ['frontend', 'react', 'css', 'html', 'vue', 'angular', 'svelte'], slug: 'frontend', name: 'Frontend Developer', salary: '4.5 - 18 LPA' },
+  { keywords: ['backend', 'node', 'express', 'django', 'fastapi', 'spring', 'api'], slug: 'backend', name: 'Backend Developer', salary: '5 - 22 LPA' },
+  { keywords: ['fullstack', 'full stack', 'mern', 'mean', 'nextjs'], slug: 'fullstack', name: 'Fullstack Engineer', salary: '6 - 25 LPA' },
+  { keywords: ['ai', 'ml', 'machine learning', 'artificial intelligence', 'deep learning'], slug: 'ai_ml_engineer', name: 'AI/ML Engineer', salary: '7 - 30 LPA' },
+  { keywords: ['generative ai', 'genai', 'llm', 'prompt', 'chatgpt'], slug: 'generative_ai_app_developer', name: 'Generative AI Developer', salary: '8 - 32 LPA' },
+  { keywords: ['data science', 'data scientist', 'pandas', 'numpy'], slug: 'data_science', name: 'Data Scientist', salary: '6 - 24 LPA' },
+  { keywords: ['data analyst', 'sql', 'powerbi', 'tableau', 'excel'], slug: 'data_analyst', name: 'Data Analyst', salary: '4 - 14 LPA' },
+  { keywords: ['devops', 'docker', 'kubernetes', 'ci/cd', 'jenkins'], slug: 'devops_cloud', name: 'DevOps & Cloud Engineer', salary: '6 - 26 LPA' },
+  { keywords: ['cloud', 'aws', 'azure', 'gcp'], slug: 'aws_cloud_engineer', name: 'AWS Cloud Engineer', salary: '5.5 - 22 LPA' },
+  { keywords: ['cybersecurity', 'security', 'ethical hacking', 'pen testing'], slug: 'cybersecurity', name: 'Cybersecurity Specialist', salary: '5 - 20 LPA' },
+  { keywords: ['android', 'kotlin', 'java app', 'mobile app'], slug: 'android', name: 'Android Developer', salary: '4.5 - 18 LPA' },
+  { keywords: ['ios', 'swift', 'apple developer'], slug: 'ios_developer', name: 'iOS Developer', salary: '5 - 20 LPA' },
+  { keywords: ['flutter', 'cross platform'], slug: 'flutter_developer', name: 'Flutter Developer', salary: '4.5 - 16 LPA' },
+  { keywords: ['python'], slug: 'python_developer', name: 'Python Developer', salary: '4.5 - 18 LPA' },
+  { keywords: ['java'], slug: 'java_developer', name: 'Java Enterprise Developer', salary: '5 - 20 LPA' },
+  { keywords: ['ui', 'ux', 'design', 'figma'], slug: 'ui_ux_design', name: 'UI/UX Designer', salary: '4 - 16 LPA' },
+  { keywords: ['blockchain', 'web3', 'solidity', 'crypto'], slug: 'blockchain_web3', name: 'Blockchain & Web3 Engineer', salary: '7 - 35 LPA' },
+  { keywords: ['game', 'unity', 'unreal'], slug: 'game_development', name: 'Game Developer', salary: '4 - 18 LPA' },
+  { keywords: ['c++', 'c/c++', 'embedded', 'systems'], slug: 'c_cpp_systems_developer', name: 'C/C++ Systems Developer', salary: '6 - 24 LPA' },
+  { keywords: ['qa', 'testing', 'automation testing', 'selenium'], slug: 'qa_automation', name: 'QA Automation Engineer', salary: '4 - 15 LPA' },
+];
+
+function extractUserProfileFromHistory(contents = []) {
+  const profile = { name: 'Student', degree: 'Tech Student', year: '1st Year' };
+
+  for (const item of contents) {
+    if (item?.role === 'user' && Array.isArray(item?.parts)) {
+      for (const part of item.parts) {
+        const text = part?.text || '';
+        const nameMatch = text.match(/Name:\s*([^\n]+)/i);
+        const degreeMatch = text.match(/Degree:\s*([^\n]+)/i);
+        const yearMatch = text.match(/Current Year:\s*([^\n]+)/i);
+
+        if (nameMatch?.[1]) profile.name = nameMatch[1].trim();
+        if (degreeMatch?.[1]) profile.degree = degreeMatch[1].trim();
+        if (yearMatch?.[1]) profile.year = yearMatch[1].trim();
+      }
+    }
+  }
+
+  return profile;
+}
+
+function getLatestUserQuery(contents = []) {
+  for (let i = contents.length - 1; i >= 0; i -= 1) {
+    const item = contents[i];
+    if (item?.role === 'user' && Array.isArray(item?.parts)) {
+      const text = item.parts.map((p) => p?.text || '').join(' ').trim();
+      if (text && !text.includes('YOUR ROLE:')) {
+        return text;
+      }
+    }
+  }
+  return '';
+}
+
+export function generateOfflineCounsellorResponse(contents = []) {
+  const profile = extractUserProfileFromHistory(contents);
+  const query = getLatestUserQuery(contents);
+  const lower = query.toLowerCase();
+
+  // 0. Non-Tech / Off-Topic Refusal
+  const OFF_TOPIC_REGEX = /chai|tea|recipe|cook|cricket|football|movie|song|poem|joke|weather|politics|love|dating|astrology|food/i;
+  const IS_TECH_KEYWORD = /tech|code|program|developer|engineer|software|java|python|js|react|html|css|ai|ml|data|sql|cloud|aws|devops|roadmap|college|bca|btech|mca|job|career|salary|lpa|skillbun|contact|harsh/i;
+
+  if (OFF_TOPIC_REGEX.test(lower) && !IS_TECH_KEYWORD.test(lower)) {
+    return `Hello **${profile.name}**! I am **Bun-Bot**, SkillBun's AI Career Counsellor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps. 🤖\n\n` +
+      `This question seems to be outside my domain of tech career guidance!\n\n` +
+      `💡 *If you think we made a mistake, please take a screenshot and email us at **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**.*`;
+  }
+
+  // 1. Support / Contact Intent
+  if (/contact|email|support|reach|helpdesk|owner|founder|harsh/i.test(lower)) {
+    return `Hello **${profile.name}**! 👋\n\nYou can reach out directly to the SkillBun core team anytime at:\n\n📧 **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**\n\nWhether you need help with your career roadmap, platform account questions, or certification support, we're always happy to help you!`;
+  }
+
+  // 2. Salary / Package / Placement Intent
+  if (/salary|lpa|package|pay|compensation|placements|fresher salary/i.test(lower)) {
+    return `Here is a breakdown of starting fresh graduate salaries in the Indian tech market for **${profile.degree}** graduates:\n\n` +
+      `### 💰 Tech Salary Spectrum in India (LPA)\n` +
+      `- **Service-based Companies (TCS/Wipro/Infosys/Cognizant)**: ₹3.5 LPA – ₹5.0 LPA\n` +
+      `- **Product Companies (Mid-tier/Scale-ups)**: ₹7.0 LPA – ₹16.0 LPA\n` +
+      `- **Top Product Giants (FAANG/Tier-1 Tech)**: ₹18.0 LPA – ₹35.0+ LPA\n` +
+      `- **Specialized AI/ML & DevOps Engineers**: ₹8.0 LPA – ₹25.0 LPA\n\n` +
+      `💡 **Pro Tip for ${profile.year} Students**: Master project-building and core fundamentals (DSA + Web/AI) to stand out for high-paying product roles regardless of college tier! Check out our specialized interactive roadmaps to start learning.`;
+  }
+
+  // 3. Exam / Higher Studies Intent
+  if (/gate|nimcet|cdac|mtech|mca|higher studies|entrance exam/i.test(lower)) {
+    return `Great question, **${profile.name}**! Here is an overview of popular higher education & exam options in India:\n\n` +
+      `### 📚 Key Indian Entrance Exams for Tech Students\n` +
+      `- **NIMCET**: Premier entrance exam for MCA admissions into top National Institutes of Technology (NITs).\n` +
+      `- **GATE (CS/IT or DA)**: Unlocks M.Tech admissions at IITs/NITs and PSU jobs. GATE Data Science & AI (DA) paper is also a great option.\n` +
+      `- **CDAC C-CAT**: Post-graduate diploma entry for practical software development and embedded systems training.\n\n` +
+      `Depending on whether your goal is an instant job or higher specialization, balancing projects with exam preparation during your **${profile.year}** is key!`;
+  }
+
+  // 4. Project & Portfolio Intent
+  if (/project|portfolio|resume project|build|idea/i.test(lower)) {
+    return `Hey **${profile.name}**! Building real-world projects is the #1 way to impress recruiters in India. Here are high-impact project ideas for **${profile.degree}** students:\n\n` +
+      `### 🚀 Standout Project Ideas\n` +
+      `1. **Fullstack App**: E-commerce platform or LMS with Auth, Payments, and Admin Dashboard ([Fullstack Roadmap](/roadmap/fullstack)).\n` +
+      `2. **AI-Powered Tool**: RAG Document QA Chatbot or AI Content Summarizer using Python & LangChain ([AI/ML Roadmap](/roadmap/ai_ml_engineer)).\n` +
+      `3. **DevOps Pipeline**: Deploy a microservice application to AWS/GCP with Docker, Kubernetes, and GitHub Actions ([DevOps Roadmap](/roadmap/devops_cloud)).\n\n` +
+      `💡 **Tip**: Host live working demos on Vercel/Render and put the GitHub link directly at the top of your resume!`;
+  }
+
+  // 5. Certification Intent
+  if (/certificate|certification|certify|exam|test/i.test(lower)) {
+    return `Awesome **${profile.name}**! SkillBun offers **Verifiable Roadmap Certificates**! 🎓\n\n` +
+      `### 📜 How to Earn Your SkillBun Certificate\n` +
+      `1. Reach at least **60% progress** on any roadmap (e.g. [Frontend](/roadmap/frontend), [Python](/roadmap/python_developer)).\n` +
+      `2. Take the proctored **Roadmap Assessment Exam** directly on the roadmap page.\n` +
+      `3. Score **70% or higher** (7 out of 10 questions correct) to earn your unique, shareable certificate with QR code verification!`;
+  }
+
+  // 6. BCA / Non-IIT / Tier 3 Hiring Intent
+  if (/bca|bsc|tier 3|non iit|off campus|referral|linkedin/i.test(lower)) {
+    return `Hey **${profile.name}**, as a **${profile.degree}** student, college tier does **NOT** limit your career in tech!\n\n` +
+      `### 🌟 Off-Campus Hiring Playbook for ${profile.degree} Students\n` +
+      `- **GitHub & Live Demos**: 2 stellar projects hosted live beat 10 textbook certificates.\n` +
+      `- **Active LinkedIn**: Share weekly learning proof ("Day X of learning React/Python"). Tag engineers for feedback.\n` +
+      `- **Open Source & Hackathons**: Participate in Unstop, Hack2Skill, and open-source repos to earn real experience.\n` +
+      `- **Direct Referrals**: Message alumni or tech leads politely on LinkedIn asking for code feedback before asking for a referral.`;
+  }
+
+  // 7. Roadmap Match
+  const matchedRoadmaps = ROADMAP_MAPPINGS.filter((item) =>
+    item.keywords.some((kw) => lower.includes(kw))
+  );
+
+  if (matchedRoadmaps.length > 0) {
+    const primary = matchedRoadmaps[0];
+    const secondaryList = matchedRoadmaps.slice(1, 4);
+
+    let output = `Hey **${profile.name}**! Here is tailored advice for **${primary.name}** based on your **${profile.degree}** (${profile.year}) profile:\n\n` +
+      `### 🎯 Recommended Track: [${primary.name}](/roadmap/${primary.slug})\n` +
+      `- **SkillBun Interactive Roadmap**: [Explore ${primary.name} Track](/roadmap/${primary.slug})\n` +
+      `- **Expected Fresh Salary in India**: ~${primary.salary}\n\n` +
+      `### 🛠️ Key Steps to Master:\n` +
+      `1. **Core Fundamentals**: Learn standard syntax, data structures, and foundational concepts.\n` +
+      `2. **Real-world Projects**: Build 2-3 portfolio-grade projects and publish them on GitHub.\n` +
+      `3. **Certification & Practice**: Take our adaptive SkillBun quiz and complete roadmap milestones.\n\n`;
+
+    if (secondaryList.length > 0) {
+      output += `### 🔗 Related Career Roadmaps You Might Explore:\n` +
+        secondaryList.map((r) => `- [${r.name}](/roadmap/${r.slug}) (Salary: ~${r.salary})`).join('\n') + '\n\n';
+    }
+
+    output += `Feel free to ask me any specific question about skills, topics, or interview preparation for this track!`;
+    return output;
+  }
+
+  // 8. Default Friendly Counsellor Guidance
+  return `Hello **${profile.name}**! I'm **Bun-Bot**, your AI Career Counsellor here at SkillBun. 🤖\n\n` +
+    `I can help you with:\n` +
+    `- **Career Roadmaps**: Find the best path for Web Dev, AI/ML, DevOps, Cybersecurity, Data Science & 90+ tracks.\n` +
+    `- **SkillBun Roadmaps**: Direct links to interactive maps like [Frontend Roadmap](/roadmap/frontend), [Fullstack Roadmap](/roadmap/fullstack), and [AI/ML Roadmap](/roadmap/ai_ml_engineer).\n` +
+    `- **Indian Tech Market Insight**: Fresh graduate salaries in LPA, GATE/NIMCET guidance, and industry requirements.\n` +
+    `- **SkillBun Support**: Drop a line to [${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL}).\n\n` +
+    `What specific tech field or career path would you like to explore today?`;
+}
