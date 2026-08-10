@@ -5565,8 +5565,8 @@ footer {
   box-shadow: none !important;
 }
 
-/* --- Mobile & Tablet App-Native Layout (<992px) --- */
-@media (max-width: 992px) {
+/* --- Responsive App-Native Layout (<1200px: Mobile, Tablets, Split-screen Laptop) --- */
+@media (max-width: 1200px) {
   .counsellor-workspace {
     height: calc(100vh - 65px);
     height: calc(100dvh - 65px);
@@ -5581,12 +5581,12 @@ footer {
     padding: 0;
   }
 
-  /* Hide bulky horizontal cards on mobile to give 100% full height to Chat Screen */
+  /* Hide bulky cards on mobile/tablets/split-laptops to give 100% full height to Chat Console */
   .workspace-sidebar {
     display: none !important;
   }
 
-  /* Show sleek top bar on mobile */
+  /* Show sleek top bar */
   .mobile-counsellor-bar {
     display: flex;
   }
@@ -5620,7 +5620,7 @@ footer {
     font-size: 0.75rem;
   }
 
-  /* Mode Toggle on Mobile: Full-Width Segmented Pill Bar */
+  /* Mode Toggle: Full-Width Segmented Pill Bar */
   .counsellor-mode-toggle {
     width: 100%;
     display: flex;
@@ -5674,13 +5674,6 @@ footer {
 
   .chat-clear-btn .clear-text {
     display: inline;
-  }
-}
-    display: none;
-  }
-
-  .chat-clear-btn {
-    padding: 0.4rem;
   }
 }
 
