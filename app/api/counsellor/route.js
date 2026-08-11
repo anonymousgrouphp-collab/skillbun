@@ -467,26 +467,11 @@ export async function POST(request) {
 
     const preferredProvider = getCounsellorAiProvider()
     const contents = body.contents || []
-    const mode = body.mode || 'deep'
 
     let textResponse = ''
 
-    // Fast Mode: Instant 0ms SkillBun Knowledge Engine (+ Web Search if real-time query)
-    if (mode === 'fast') {
-      const lastMsg = contents.slice(-3).map((item) => {
-        return Array.isArray(item?.parts) ? item.parts.map((p) => p?.text || '').join(' ') : ''
-      }).join(' ').toLowerCase()
-
-      const requiresWebSearch = /latest|news|2025|2026|current|trend|update|cutoff|exam date|hiring|job market/i.test(lastMsg)
-      let searchContext = ''
-      if (requiresWebSearch) {
-        searchContext = await fetchFreeDuckDuckGoSearchContext(lastMsg)
-      }
-      textResponse = generateOfflineCounsellorResponse(contents, searchContext)
-    }
-
-    // Deep Mode: Execute based on preferred provider or auto fallback strategy
-    if (!textResponse && mode === 'deep') {
+    // Preferred provider check if specifically set
+    if (!textResponse && preferredProvider !== 'auto' && preferredProvider !== 'free-opensource') {
       if (preferredProvider === 'groq' && getGroqApiKey()) {
         try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq provider error:', e?.message) }
       } else if (preferredProvider === 'openrouter' && getOpenRouterApiKey()) {

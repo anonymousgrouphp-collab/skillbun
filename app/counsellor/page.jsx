@@ -121,15 +121,6 @@ export default function CounsellorPage() {
                   🗑️ <span className="clear-text">Clear</span>
                 </button>
               </div>
-
-              <div className="counsellor-mode-toggle" id="modeToggleContainer">
-                <button className="mode-btn active" id="modeFastBtn" data-mode="fast" title="SkillBun Instant Engine (0ms latency)">
-                  ⚡ Fast Mode <span className="mode-badge">Instant 0ms</span>
-                </button>
-                <button className="mode-btn" id="modeDeepBtn" data-mode="deep" title="Hybrid Open-Source LLM + Web Search + RAG">
-                  🧠 Deep Mode <span className="mode-badge">AI + Web</span>
-                </button>
-              </div>
             </div>
 
             <div id="securityBanner" style={{ display: 'none' }} className="security-banner-card">
