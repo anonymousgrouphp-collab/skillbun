@@ -161,7 +161,19 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
     return output;
   }
 
-  // 8. Default Friendly Counsellor Guidance
+  // 8. Total Roadmap Count Intent
+  if (/how many roadmaps|total roadmaps|number of roadmaps|roadmap count|how many tracks|how many paths/i.test(lower)) {
+    return `Hello **${profile.name}**! 🚀\n\n**SkillBun** features **100+ interactive career roadmaps** covering every major tech domain in India, including:\n\n` +
+      `- **Web Development**: [Frontend](/roadmap/frontend), [Backend](/roadmap/backend), [Fullstack](/roadmap/fullstack)\n` +
+      `- **Artificial Intelligence**: [AI/ML Engineer](/roadmap/ai_ml_engineer), [AI Research Engineer](/roadmap/ai_research_engineer)\n` +
+      `- **Cloud & DevOps**: [DevOps](/roadmap/devops_cloud), [AWS Cloud Engineer](/roadmap/aws_cloud_engineer)\n` +
+      `- **Data & Analytics**: [Data Science](/roadmap/data_science), [Analytics Engineer](/roadmap/analytics_engineer)\n` +
+      `- **Cybersecurity**: [Cybersecurity](/roadmap/cybersecurity), [API Platform Engineer](/roadmap/api_platform_engineer)\n` +
+      `- **Mobile & App Dev**: [Android](/roadmap/android), [iOS](/roadmap/ios)\n\n` +
+      `And 80+ more specialized tracks! You can explore all 100+ roadmaps directly on SkillBun.`;
+  }
+
+  // 9. Default Friendly Counsellor Guidance
   return `Hello **${profile.name}**! I'm **Bun-Bot**, your AI Career Counsellor here at SkillBun. 🤖\n\n` +
     `I can help you with:\n` +
     `- **Career Roadmaps**: Find the best path for Web Dev, AI/ML, DevOps, Cybersecurity, Data Science & 90+ tracks.\n` +
