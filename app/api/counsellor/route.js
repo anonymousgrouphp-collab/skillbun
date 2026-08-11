@@ -199,19 +199,35 @@ ${ragSnippets}
 
 async function convertContentsToOpenAiMessages(contents = []) {
   const ragContext = await retrieveSkillbunKnowledge(contents)
-  const messages = []
+
+  const systemMessage = {
+    role: 'system',
+    content: `You are Bun-Bot, SkillBun's senior AI Career Counsellor specialized in helping Indian tech students (BCA, B.Tech, BSc CS, MCA).
+
+RESPONSE QUALITY MANDATE:
+- Provide RICH, DETAILED, COMPREHENSIVE, and HIGHLY STRUCTURED responses (300 to 600 words).
+- Format your answers using clean Markdown with bold headings (###), bullet points, and numbered steps.
+- For career & tech questions, structure your answer into clear sections:
+  1. 🎯 **Overview & Core Concept**
+  2. 🛠️ **Key Skills & Tech Stack**
+  3. 💰 **Salary & Placement Expectations in India (in LPA)**
+  4. 🚀 **Step-by-Step Actionable Learning Path**
+  5. 💡 **Pro Tips for Freshers & College Students**
+- Always include relevant SkillBun roadmap markdown links provided in the context below.
+- Always be encouraging, practical, and highly detailed. Never output lazy 1-2 sentence answers!
+
+${ragContext}`
+  }
+
+  const messages = [systemMessage]
 
   for (let i = 0; i < contents.length; i += 1) {
     const entry = contents[i]
     if (!entry || typeof entry !== 'object') continue
     const role = entry.role === 'model' ? 'assistant' : entry.role === 'user' ? 'user' : 'system'
-    let text = Array.isArray(entry.parts)
+    const text = Array.isArray(entry.parts)
       ? entry.parts.map((p) => p?.text || '').join('\n')
       : ''
-
-    if (i === 0 && role === 'user') {
-      text = `${text}\n\n${ragContext}`
-    }
 
     if (text) {
       messages.push({ role, content: text })
