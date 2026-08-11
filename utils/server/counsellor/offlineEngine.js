@@ -163,14 +163,16 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
 
   // 8. Total Roadmap Count Intent
   if (/how many roadmaps|total roadmaps|number of roadmaps|roadmap count|how many tracks|how many paths/i.test(lower)) {
-    return `Hello **${profile.name}**! 🚀\n\n**SkillBun** features **100+ interactive career roadmaps** covering every major tech domain in India, including:\n\n` +
-      `- **Web Development**: [Frontend](/roadmap/frontend), [Backend](/roadmap/backend), [Fullstack](/roadmap/fullstack)\n` +
-      `- **Artificial Intelligence**: [AI/ML Engineer](/roadmap/ai_ml_engineer), [AI Research Engineer](/roadmap/ai_research_engineer)\n` +
-      `- **Cloud & DevOps**: [DevOps](/roadmap/devops_cloud), [AWS Cloud Engineer](/roadmap/aws_cloud_engineer)\n` +
-      `- **Data & Analytics**: [Data Science](/roadmap/data_science), [Analytics Engineer](/roadmap/analytics_engineer)\n` +
-      `- **Cybersecurity**: [Cybersecurity](/roadmap/cybersecurity), [API Platform Engineer](/roadmap/api_platform_engineer)\n` +
-      `- **Mobile & App Dev**: [Android](/roadmap/android), [iOS](/roadmap/ios)\n\n` +
-      `And 80+ more specialized tracks! You can explore all 100+ roadmaps directly on SkillBun.`;
+    return `Hello **${profile.name}**! 🚀\n\n**SkillBun** features **100+ interactive career roadmaps** covering every major tech domain in India!\n\n` +
+      `### 🗺️ Featured SkillBun Roadmaps (100+ Available)\n` +
+      `- **Web Development**: [Frontend](/roadmap/frontend) | [Backend](/roadmap/backend) | [Fullstack](/roadmap/fullstack)\n` +
+      `- **Artificial Intelligence**: [AI/ML Engineer](/roadmap/ai_ml_engineer) | [AI Research Engineer](/roadmap/ai_research_engineer)\n` +
+      `- **Cloud & DevOps**: [DevOps & Cloud](/roadmap/devops_cloud) | [AWS Cloud Engineer](/roadmap/aws_cloud_engineer) | [Kubernetes](/roadmap/kubernetes_engineer)\n` +
+      `- **Data & Analytics**: [Data Science](/roadmap/data_science) | [Analytics Engineer](/roadmap/analytics_engineer) | [Data Engineering](/roadmap/data_engineering)\n` +
+      `- **Cybersecurity & Systems**: [Cybersecurity](/roadmap/cybersecurity) | [API Platform Engineer](/roadmap/api_platform_engineer) | [Linux SysAdmin](/roadmap/linux_sysadmin)\n` +
+      `- **Mobile App Dev**: [Android](/roadmap/android) | [iOS](/roadmap/ios) | [Flutter](/roadmap/flutter)\n` +
+      `- **Game Dev & Design**: [Game Development](/roadmap/game_development) | [Unity Developer](/roadmap/unity_developer) | [UI/UX Design](/roadmap/ui_ux_design)\n\n` +
+      `...and 80+ more specialized tracks! Click on any roadmap link above to jump directly into your learning path on SkillBun.`;
   }
 
   // 9. Default Friendly Counsellor Guidance

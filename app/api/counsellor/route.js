@@ -161,9 +161,22 @@ async function retrieveSkillbunKnowledge(contents = []) {
   const isRoadmapCountQuery = /how many roadmaps|total roadmaps|number of roadmaps|roadmap count|how many tracks|how many paths/i.test(lastMsg)
   let countMandateSnippet = ''
   if (isRoadmapCountQuery) {
-    countMandateSnippet = `\nSTRICT ROADMAP COUNT MANDATE:
+    countMandateSnippet = `\nSTRICT ROADMAP COUNT & LINKING MANDATE:
 - SkillBun features exactly 100+ interactive career roadmaps covering Web Dev, AI/ML, DevOps, Cybersecurity, Data Science, Game Dev, Mobile, Cloud, Systems, and more!
-- Always state clearly that SkillBun has 100+ roadmaps. Never say 30+, 40+, 50+, or any lower number.\n`
+- Always state clearly that SkillBun has 100+ roadmaps.
+- MANDATORY LINKING RULE: EVERY roadmap or domain category you list MUST be formatted as an active Markdown link to its SkillBun roadmap URL!
+  Examples of correct markdown links you MUST use:
+  - [Frontend Developer](/roadmap/frontend)
+  - [Backend Developer](/roadmap/backend)
+  - [Fullstack Developer](/roadmap/fullstack)
+  - [AI/ML Engineer](/roadmap/ai_ml_engineer)
+  - [Data Science](/roadmap/data_science)
+  - [DevOps & Cloud](/roadmap/devops_cloud)
+  - [Cybersecurity](/roadmap/cybersecurity)
+  - [Android Developer](/roadmap/android)
+  - [iOS Developer](/roadmap/ios)
+  - [Game Development](/roadmap/game_development)
+- NEVER list plain text domain/roadmap names without clickable Markdown links!\n`
   }
 
   // Match user message against all 100 SkillBun roadmap slugs & keywords
