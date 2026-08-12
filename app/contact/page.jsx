@@ -3,7 +3,11 @@ import './contact.css';
 const supportCards = [
   {
     kind: 'action',
-    icon: '💬',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    ),
     eyebrow: 'Primary support',
     title: 'Help & Support',
     description: 'Platform questions, feedback, feature requests, account issues, or anything that needs the team.',
@@ -12,7 +16,12 @@ const supportCards = [
   },
   {
     kind: 'action',
-    icon: '🚀',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
+      </svg>
+    ),
     eyebrow: 'Business & Partnerships',
     title: 'Partnerships & Inquiries',
     description: 'Collaborations, escalations, partnerships, or broader SkillBun conversations.',
@@ -21,7 +30,14 @@ const supportCards = [
   },
   {
     kind: 'info',
-    icon: '🧾',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"/>
+        <path d="M8 7h8"/>
+        <path d="M8 11h8"/>
+        <path d="M8 15h5"/>
+      </svg>
+    ),
     eyebrow: 'Before you send',
     title: 'Share the right context',
     items: [
@@ -32,7 +48,12 @@ const supportCards = [
   },
   {
     kind: 'info',
-    icon: '🧭',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+    ),
     eyebrow: 'Best fit',
     title: 'What we can help with',
     items: [

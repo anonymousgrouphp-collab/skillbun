@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function ComingSoon({ title = 'Coming Soon 🚀', description = 'We are working hard to bring this feature to life. Check back later!' }) {
+export default function ComingSoon({ title = 'Coming Soon', description = 'We are working hard to bring this feature to life. Check back later!' }) {
   return (
     <div className="notfound-page">
       {/* Floating code snippets background */}
@@ -63,10 +63,17 @@ export default function ComingSoon({ title = 'Coming Soon 🚀', description = '
         {/* Quick action buttons */}
         <div className="notfound-actions">
           <Link href="/" className="btn-primary notfound-btn-home">
-            🏠 Back to Home
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Back to Home
           </Link>
           <Link href="/counsellor" className="notfound-btn-secondary">
-            🤖 Ask Bun-Bot
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+              <rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/>
+            </svg>
+            Ask BunBot
           </Link>
         </div>
 
@@ -74,9 +81,9 @@ export default function ComingSoon({ title = 'Coming Soon 🚀', description = '
         <div className="notfound-suggestions">
           <p className="notfound-suggest-label">While you wait, explore:</p>
           <div className="notfound-suggest-links">
-            <Link href="/quiz" className="notfound-suggest-pill">🐾 Career Quiz</Link>
-            <Link href="/#careers" className="notfound-suggest-pill">🚀 Career Paths</Link>
-            <Link href="/about" className="notfound-suggest-pill">ℹ️ About Us</Link>
+            <Link href="/quiz" className="notfound-suggest-pill">Career Quiz</Link>
+            <Link href="/#careers" className="notfound-suggest-pill">Career Paths</Link>
+            <Link href="/about" className="notfound-suggest-pill">About Us</Link>
           </div>
         </div>
       </div>

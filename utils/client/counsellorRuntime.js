@@ -207,7 +207,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
       thinkingRow = document.createElement('div');
       thinkingRow.className = 'message-row bot thinking-row';
       thinkingRow.innerHTML = `
-        <div class="msg-avatar bot">🤖</div>
+        <div class="msg-avatar bot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/></svg></div>
         <div class="message bot thinking">
           <div class="quiz-loading-dots" style="margin:0.2rem 0;">
             <span></span><span></span><span></span>
