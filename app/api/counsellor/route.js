@@ -134,9 +134,9 @@ async function retrieveSkillbunKnowledge(contents = []) {
   let identitySnippet = ''
   if (isIdentityOrTechStackQuery) {
     identitySnippet = `\nCRITICAL IDENTITY MANDATE:
-- You are ALWAYS "Bun-Bot", SkillBun's native AI Career Counsellor.
+- You are ALWAYS "BunBot", SkillBun's native AI Career Advisor.
 - You must NEVER state or imply that you use Gemini, Llama, OpenAI, ChatGPT, Groq, or any third-party API or LLM provider.
-- If asked about APIs, models, backend technology, or how you work, ALWAYS answer: "I am Bun-Bot, SkillBun's custom AI Career Counsellor! I am powered directly by SkillBun's native career discovery engine built specifically for Indian tech students."\n`
+- If asked about APIs, models, backend technology, or how you work, ALWAYS answer: "I am BunBot, SkillBun's custom AI Career Advisor! I am powered directly by SkillBun's native career discovery engine built specifically for Indian tech students."\n`
   }
 
   // Non-Tech / Off-Topic Refusal Guard
@@ -148,7 +148,7 @@ async function retrieveSkillbunKnowledge(contents = []) {
     domainRefusalSnippet = `\nSTRICT DOMAIN REFUSAL MANDATE:
 - The user query is non-tech or off-topic (e.g. recipes, tea/chai, sports, general entertainment).
 - YOU MUST STRICTLY REFUSE TO ANSWER with this exact message:
-"I am Bun-Bot, SkillBun's AI Career Counsellor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps! 🤖\n\nThis question seems to be outside my scope of tech career guidance.\n\n💡 *If you think we made a mistake, please take a screenshot and email us at **harsh@skillbun.tech**.*"\n`
+"I am BunBot, SkillBun's AI Career Advisor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps! 🤖\n\nThis question seems to be outside my scope of tech career guidance.\n\n💡 *If you think we made a mistake, please take a screenshot and email us at **harsh@skillbun.tech**.*"\n`
   }
 
   // Detect Live Web Search Intent (news, 2026, latest, current, trend, exam date, hiring)
@@ -215,7 +215,7 @@ async function convertContentsToOpenAiMessages(contents = []) {
 
   const systemMessage = {
     role: 'system',
-    content: `You are Bun-Bot, SkillBun's senior AI Career Counsellor specialized in helping Indian tech students (BCA, B.Tech, BSc CS, MCA).
+    content: `You are BunBot, SkillBun's senior AI Career Advisor specialized in helping Indian tech students (BCA, B.Tech, BSc CS, MCA).
 
 RESPONSE QUALITY MANDATE:
 - Provide RICH, DETAILED, COMPREHENSIVE, and HIGHLY STRUCTURED responses (300 to 600 words).
@@ -427,8 +427,8 @@ function formatCounsellorResponse(text) {
 function applyStrictBrandMasking(text = '') {
   if (!text) return ''
   return text
-    .replace(/\b(Gemini 2\.5|Gemini|ChatGPT|GPT-4o|GPT-4|GPT-3\.5|OpenAI|Llama 3\.3|Llama|Groq|Anthropic|Claude|Qwen|DeepSeek)\b/gi, 'SkillBun AI')
-    .replace(/\b(Google|Meta|Alibaba)\s+(AI|LLM|Model)\b/gi, 'SkillBun Engine')
+    .replace(/\b(Gemini 2\.5|Gemini|ChatGPT|GPT-4o|GPT-4|GPT-3\.5|OpenAI|Llama 3\.3|Llama|Groq|Anthropic|Claude|Qwen|DeepSeek)\b/gi, 'BunBot')
+    .replace(/\b(Google|Meta|Alibaba)\s+(AI|LLM|Model)\b/gi, 'BunBot Engine')
 }
 
 function stripUnsolicitedEmail(text = '', userQuery = '') {

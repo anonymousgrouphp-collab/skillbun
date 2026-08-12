@@ -154,14 +154,14 @@ export default function CounsellorPage() {
                 </div>
                 <div className="chat-header-info">
                   <div className="chat-header-title-row">
-                    <h2>Bun-Bot AI Counsellor</h2>
-                    <span className="chat-engine-tag">Discovery Engine v2.0</span>
+                    <h2>BunBot</h2>
+                    <span className="chat-engine-tag">AI Career Advisor</span>
                   </div>
                   <p>
                     <span className="status-dot"></span>
                     <span className="status-text">Online</span>
                     <span className="status-divider">•</span>
-                    <span>Direct Assistant to <strong>{name.split(' ')[0]}</strong></span>
+                    <span>Ready to help <strong>{name.split(' ')[0]}</strong></span>
                   </p>
                 </div>
                 <button className="chat-clear-btn" id="clearChatBtn" title="Clear Chat History">
@@ -190,7 +190,7 @@ export default function CounsellorPage() {
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/></svg>
                 </div>
                 <div className="message bot">
-                  <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor.</p>
+                  <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>BunBot</strong>, your personal AI Career Advisor.</p>
                   <p>I can guide you through every tech career path in India. Ask me anything like:</p>
                   <ul>
                     <li>Pros and cons of learning different courses or languages</li>
@@ -231,7 +231,7 @@ export default function CounsellorPage() {
 
               <div className="chat-input-area">
                 <div className="chat-input-container">
-                  <textarea id="chatInput" className="chat-input" placeholder="Ask Bun-Bot anything about tech careers, roadmaps, salaries..." rows={1}></textarea>
+                  <textarea id="chatInput" className="chat-input" placeholder="Ask BunBot anything about tech careers, roadmaps, salaries..." rows={1}></textarea>
                   <div className="chat-input-hint">Press <span>Enter ↵</span> to send</div>
                 </div>
                 <button className="chat-send-btn" id="sendBtn" title="Send message">

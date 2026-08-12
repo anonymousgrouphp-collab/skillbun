@@ -176,7 +176,7 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
   }
 
   // 9. Default Friendly Counsellor Guidance
-  return `Hello **${profile.name}**! I'm **Bun-Bot**, your AI Career Counsellor here at SkillBun. 🤖\n\n` +
+  return `Hello **${profile.name}**! I'm **BunBot**, your personal AI Career Advisor here at SkillBun. 🤖\n\n` +
     `I can help you with:\n` +
     `- **Career Roadmaps**: Find the best path for Web Dev, AI/ML, DevOps, Cybersecurity, Data Science & 90+ tracks.\n` +
     `- **SkillBun Roadmaps**: Direct links to interactive maps like [Frontend Roadmap](/roadmap/frontend), [Fullstack Roadmap](/roadmap/fullstack), and [AI/ML Roadmap](/roadmap/ai_ml_engineer).\n` +
