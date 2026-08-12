@@ -30,7 +30,7 @@ export default function AboutPage() {
         <li><strong>Holistic Profile Onboarding:</strong> We capture your academic background, current year, and foundational interests to baseline your guidance.</li>
         <li><strong>Adaptive AI Quiz Engine:</strong> A dynamic assessment that adjusts to your responses in real-time, pinpointing your theoretical strengths, practical gaps, and latent affinities.</li>
         <li><strong>Interactive Roadmaps:</strong> High-fidelity, granular career trees (e.g., AI/ML Engineer, DevOps, Frontend) that visually demonstrate exactly what skills to learn, and in what order.</li>
-        <li><strong>Bun-Bot (AI Counsellor):</strong> An integrated, context-aware AI chatbot that remembers your profile and quiz results to answer specific career queries and unstuck you during your roadmap journey.</li>
+        <li><strong>BunBot (AI Career Advisor):</strong> An integrated, context-aware AI chatbot that remembers your profile and quiz results to answer specific career queries and unstuck you during your roadmap journey.</li>
       </ul>
 
       <h2>Our Technology & Ethics</h2>

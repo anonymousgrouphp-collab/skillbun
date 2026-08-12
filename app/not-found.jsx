@@ -90,7 +90,7 @@ export default function NotFound() {
           <p className="notfound-suggest-label">Maybe you were looking for:</p>
           <div className="notfound-suggest-links">
             <Link href="/quiz" className="notfound-suggest-pill">Career Quiz</Link>
-            <Link href="/counsellor" className="notfound-suggest-pill">AI Counsellor</Link>
+            <Link href="/counsellor" className="notfound-suggest-pill">BunBot</Link>
             <Link href="/#careers" className="notfound-suggest-pill">Career Paths</Link>
             <Link href="/about" className="notfound-suggest-pill">About Us</Link>
           </div>

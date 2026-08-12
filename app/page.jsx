@@ -579,18 +579,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== BUN BOT ===== */}
+        {/* ===== BUNBOT ===== */}
         <section className="sb-section sb-split sb-reveal">
           <div className="sb-copy-block">
-            <div className="section-label">Bun-Bot Counsellor</div>
+            <div className="section-label">BunBot AI</div>
             <h2 className="section-title">A career companion after the result screen</h2>
             <p className="section-sub">Students can ask follow-up questions about salaries, languages, certifications, exams, colleges, and day-in-the-life tradeoffs.</p>
-            <a href="/counsellor" className="btn-secondary sb-inline-link">Open Bun-Bot</a>
+            <a href="/counsellor" className="btn-secondary sb-inline-link">Open BunBot</a>
           </div>
-          <div className="sb-bot-window" aria-label="Bun-Bot preview">
+          <div className="sb-bot-window" aria-label="BunBot preview">
             <div className="sb-bot-header">
               <span className="status-dot"></span>
-              <strong>Bun-Bot online</strong>
+              <strong>BunBot online</strong>
             </div>
             <div className="sb-bot-message bot">Ask me why Full Stack, Data, or Cybersecurity fits your profile.</div>
             <div className="sb-bot-message user">Which path is best if I like building projects?</div>
@@ -668,7 +668,7 @@ export default function Home() {
               <ul>
                 <li><a href="/quiz">Career Quiz</a></li>
                 <li><a href="#careers">Career Roadmaps</a></li>
-                <li><a href="/counsellor">AI Counsellor</a></li>
+                <li><a href="/counsellor">BunBot</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><Link href="/certificate">Verify Certificate</Link></li>
               </ul>
