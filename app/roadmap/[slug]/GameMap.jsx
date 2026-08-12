@@ -304,7 +304,7 @@ export default function GameMap({ roadmap, slug }) {
                         </span>
                         {r.type === 'doc' ? (
                           <span className="sk-res-doc-title">
-                            Study Guide by <span className="sk-brand-text">SKILLBUN</span>
+                            Study Guide by <span className="sk-brand-text">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
                           </span>
                         ) : (
                           <span>{r.title}</span>

@@ -64,7 +64,7 @@ These are implementation anchors, not suggestions. If you touch them, you must e
 
 Whenever the SkillBun logo image and wordmark text appear together (nav, footer, auth, CTA cards, etc.):
 1. **Logo Image Asset**: Always use `<Image src="/logo.png" alt="SkillBun Logo" ... />` (or `splash-logo.png` for splash/loading experience). Raw system emojis (e.g. 🐰, 🐾) must NEVER be used as a replacement for the official logo image asset.
-2. **Clean Wordmark Typography**: Always render clean standard text `SKILLBUN` (or `SkillBun`) inside a `<span>` or heading styled with `font-family: var(--font-fredoka), cursive, sans-serif;` and brand green color (`var(--green)` or `#11864f`), bold weight (`font-weight: 700`), and clean letter-spacing (`letter-spacing: 0.04em` or `1px`). **NEVER use fake Unicode symbols** (such as Yi Syllables `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` or symbol pseudofonts) as they render distorted, upside-down, unreadable, and break screen reader accessibility.
+2. **Wordmark Typography**: Always render the text `ꌗꀘꀤ꒒꒒ꌃꀎꈤ` in a `<span>` styled with `font-family: var(--font-fredoka), cursive;` and brand green color (`var(--green)`).
 3. **Lockup Alignment**: The logo image and wordmark text must be aligned inside a flex container (`display: flex` or `inline-flex`, `align-items: center`, `gap: 0.5rem` to `0.65rem`), with proportional font sizes and image dimensions.
 4. **SVG Vector Icons**: For any secondary UI icons across all pages (buttons, cards, drawers, indicators), use modern vector inline SVG icons — system Unicode emojis (such as 🐾, 📖, 📺, 🔗, 🔒, 🎓) must not be rendered as raw text.
 
