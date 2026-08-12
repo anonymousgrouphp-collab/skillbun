@@ -59,6 +59,7 @@ export function renderSuggestionChips(chips = [], onChipClick = () => {}) {
   const container = getEl('chatSuggestions');
   if (!container) return;
 
+  container.style.display = 'flex';
   container.style.opacity = '0';
   container.innerHTML = '';
   chips.forEach((chip) => {
