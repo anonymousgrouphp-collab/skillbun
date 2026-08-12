@@ -29,7 +29,8 @@ import {
   logoutUser,
   sanitizeHTML,
   updateUsageLimitCard,
-  renderSuggestionChips
+  renderSuggestionChips,
+  hideSuggestionsSection
 } from './counsellor/counsellorDom';
 import {
   getPersonalizedInitialChips,
@@ -196,9 +197,8 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
       conversation_message_count: state.conversationHistory.filter((message) => message.role === 'user').length + 1,
     });
 
-    // Dynamic suggestions visibility
-    const suggestionsEl = getEl('chatSuggestions');
-    if (suggestionsEl) suggestionsEl.style.display = 'none';
+    // Hide full suggestions section during loading / processing
+    hideSuggestionsSection();
 
     // Append thinking dot loader bubble
     const container = getEl('chatMessages');

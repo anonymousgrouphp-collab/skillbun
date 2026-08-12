@@ -73,10 +73,26 @@ export function getSvgIcon(iconKey) {
   return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>`;
 }
 
+export function hideSuggestionsSection() {
+  const wrapper = getEl('chatSuggestionsWrapper');
+  if (wrapper) wrapper.style.display = 'none';
+}
+
+export function showSuggestionsSection() {
+  const wrapper = getEl('chatSuggestionsWrapper');
+  if (wrapper) wrapper.style.display = 'block';
+}
+
 export function renderSuggestionChips(chips = [], onChipClick = () => {}) {
   const container = getEl('chatSuggestions');
   if (!container) return;
 
+  if (!chips || chips.length === 0) {
+    hideSuggestionsSection();
+    return;
+  }
+
+  showSuggestionsSection();
   container.style.display = 'flex';
   container.style.opacity = '0';
   container.innerHTML = '';
