@@ -56,7 +56,14 @@ export default function CounsellorPage() {
           <aside className="workspace-sidebar">
             <div className="sidebar-card profile-card">
               <div className="profile-avatar-wrapper">
-                <div className="profile-avatar">🐰</div>
+                <div className="profile-avatar">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                    <path d="M7 3v6"/>
+                    <path d="M17 3v6"/>
+                    <path d="M6 18c0-3 3-5 6-5s6 2 6 5v3H6v-3z"/>
+                  </svg>
+                </div>
                 <div className="avatar-status-ring"></div>
               </div>
               <div className="profile-details">
@@ -68,7 +75,9 @@ export default function CounsellorPage() {
             
             <div className="sidebar-card limit-card" id="limitCard">
               <h4>
-                <span className="card-icon">⚡</span> Usage Quota
+                <span className="card-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </span> Usage Quota
               </h4>
               <div className="limit-progress-container">
                 <div className="limit-text">
@@ -86,7 +95,9 @@ export default function CounsellorPage() {
 
             <div className="sidebar-card tips-card">
               <h4>
-                <span className="card-icon">✨</span> Pro Tips
+                <span className="card-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                </span> Pro Tips
               </h4>
               <ul>
                 <li>Compare career tracks (e.g. <em>Web Dev vs DevOps</em>)</li>
@@ -98,13 +109,19 @@ export default function CounsellorPage() {
 
             <div className="sidebar-card nav-card">
               <h4>
-                <span className="card-icon">🚀</span> Fast Access
+                <span className="card-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/></svg>
+                </span> Fast Access
               </h4>
               <a href="/dashboard" className="sidebar-link">
-                <span className="link-icon">📊</span> Dashboard
+                <span className="link-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                </span> Dashboard
               </a>
               <a href="/quiz" className="sidebar-link">
-                <span className="link-icon">🎯</span> Retake Career Quiz
+                <span className="link-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </span> Retake Career Quiz
               </a>
             </div>
           </aside>
@@ -114,19 +131,25 @@ export default function CounsellorPage() {
             {/* Mobile Top Compact Info Bar */}
             <div className="mobile-counsellor-bar">
               <div className="mobile-limit-badge">
-                <span>⚡ Quota:</span>
+                <span>Quota:</span>
                 <strong id="mobileLimitCount">100/100</strong>
               </div>
               <div className="mobile-bar-actions">
-                <a href="/dashboard" className="mobile-icon-link" title="Dashboard">📊</a>
-                <a href="/quiz" className="mobile-icon-link" title="Retake Quiz">🎯</a>
+                <a href="/dashboard" className="mobile-icon-link" title="Dashboard">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                </a>
+                <a href="/quiz" className="mobile-icon-link" title="Retake Quiz">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </a>
               </div>
             </div>
 
             <div className="chat-header">
               <div className="chat-header-main">
                 <div className="chat-bot-icon-glow">
-                  <div className="chat-bot-icon">🤖</div>
+                  <div className="chat-bot-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/></svg>
+                  </div>
                   <span className="bot-status-ring"></span>
                 </div>
                 <div className="chat-header-info">
@@ -152,7 +175,9 @@ export default function CounsellorPage() {
             </div>
 
             <div id="securityBanner" style={{ display: 'none' }} className="security-banner-card">
-              <div className="security-icon">🔒</div>
+              <div className="security-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
               <div className="security-body">
                 <p id="captchaStatus">Checking security...</p>
                 <div id="captchaWidget"></div>
@@ -161,9 +186,11 @@ export default function CounsellorPage() {
 
             <div className="chat-messages" id="chatMessages">
               <div className="message-row bot">
-                <div className="msg-avatar bot">🤖</div>
+                <div className="msg-avatar bot">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/></svg>
+                </div>
                 <div className="message bot">
-                  <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor 🐰</p>
+                  <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor.</p>
                   <p>I can guide you through every tech career path in India. Ask me anything like:</p>
                   <ul>
                     <li>Pros and cons of learning different courses or languages</li>
@@ -183,9 +210,17 @@ export default function CounsellorPage() {
             {/* Input area wrapper containing prompt starters and input console */}
             <div className="chat-input-wrapper">
               <div className="chat-suggestions-header">
-                <span id="suggestionsTitle">✨ Suggested Questions</span>
+                <span id="suggestionsTitle">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}>
+                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                  </svg>
+                  Suggested Questions
+                </span>
                 <button id="refreshSuggestionsBtn" className="suggestions-refresh-btn" title="Shuffle new questions">
-                  🔄 Shuffle
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                  </svg>
+                  Shuffle
                 </button>
               </div>
               <div className="chat-suggestions" id="chatSuggestions">
