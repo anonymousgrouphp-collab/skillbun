@@ -235,7 +235,7 @@ export default function CertificatePage() {
 
           {/* Overlay: Fix SKILLBUN text (covers NO GLYPH bars in exported template) */}
           <div className={styles.skillbunOverlay} aria-hidden="true">
-            <span className={styles.skillbunText}>SKILLBUN</span>
+            <span className={styles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
           </div>
 
           {/* Overlay: Recipient Name */}
