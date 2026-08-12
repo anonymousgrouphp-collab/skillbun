@@ -76,11 +76,23 @@ export function getSvgIcon(iconKey) {
 export function hideSuggestionsSection() {
   const wrapper = getEl('chatSuggestionsWrapper');
   if (wrapper) wrapper.style.display = 'none';
+
+  const header = document.querySelector('.chat-suggestions-header');
+  if (header) header.style.display = 'none';
+
+  const container = getEl('chatSuggestions');
+  if (container) container.style.display = 'none';
 }
 
 export function showSuggestionsSection() {
   const wrapper = getEl('chatSuggestionsWrapper');
   if (wrapper) wrapper.style.display = 'block';
+
+  const header = document.querySelector('.chat-suggestions-header');
+  if (header) header.style.display = 'flex';
+
+  const container = getEl('chatSuggestions');
+  if (container) container.style.display = 'flex';
 }
 
 export function renderSuggestionChips(chips = [], onChipClick = () => {}) {
