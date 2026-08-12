@@ -55,19 +55,24 @@ export default function CounsellorPage() {
           {/* Workspace Left Sidebar: Desktop Desk Guide */}
           <aside className="workspace-sidebar">
             <div className="sidebar-card profile-card">
-              <div className="profile-avatar">🐰</div>
+              <div className="profile-avatar-wrapper">
+                <div className="profile-avatar">🐰</div>
+                <div className="avatar-status-ring"></div>
+              </div>
               <div className="profile-details">
                 <h3>{name}</h3>
-                <div className="profile-degree">{degree}</div>
-                <div className="profile-year">Year {year}</div>
+                <div className="profile-degree-badge">{degree}</div>
+                <div className="profile-year-tag">Year {year}</div>
               </div>
             </div>
             
             <div className="sidebar-card limit-card" id="limitCard">
-              <h4>⏳ Usage Limit</h4>
+              <h4>
+                <span className="card-icon">⚡</span> Usage Quota
+              </h4>
               <div className="limit-progress-container">
                 <div className="limit-text">
-                  <span>Messages Left:</span>
+                  <span>Messages Left</span>
                   <strong id="limitCount">100 / 100</strong>
                 </div>
                 <div className="limit-bar-bg">
@@ -80,19 +85,27 @@ export default function CounsellorPage() {
             </div>
 
             <div className="sidebar-card tips-card">
-              <h4>💡 Bun-Bot Tips</h4>
+              <h4>
+                <span className="card-icon">✨</span> Pro Tips
+              </h4>
               <ul>
-                <li>Compare career tracks (e.g. <em>Web Dev vs. Devops</em>)</li>
-                <li>Ask for typical salaries in <strong>LPA</strong></li>
-                <li>Ask for learning roadmaps (e.g. <em>Frontend Roadmap</em>)</li>
-                <li>Talk in English, Hindi, or Hinglish!</li>
+                <li>Compare career tracks (e.g. <em>Web Dev vs DevOps</em>)</li>
+                <li>Ask for Indian salaries in <strong>LPA</strong></li>
+                <li>Request interactive roadmaps & cert guidance</li>
+                <li>Speak in English, Hindi, or Hinglish!</li>
               </ul>
             </div>
 
             <div className="sidebar-card nav-card">
-              <h4>🛠️ Fast Links</h4>
-              <a href="/dashboard" className="sidebar-link">📊 Dashboard</a>
-              <a href="/quiz" className="sidebar-link">🎯 Retake Career Quiz</a>
+              <h4>
+                <span className="card-icon">🚀</span> Fast Access
+              </h4>
+              <a href="/dashboard" className="sidebar-link">
+                <span className="link-icon">📊</span> Dashboard
+              </a>
+              <a href="/quiz" className="sidebar-link">
+                <span className="link-icon">🎯</span> Retake Career Quiz
+              </a>
             </div>
           </aside>
 
@@ -101,7 +114,7 @@ export default function CounsellorPage() {
             {/* Mobile Top Compact Info Bar */}
             <div className="mobile-counsellor-bar">
               <div className="mobile-limit-badge">
-                <span>⏳ Messages:</span>
+                <span>⚡ Quota:</span>
                 <strong id="mobileLimitCount">100/100</strong>
               </div>
               <div className="mobile-bar-actions">
@@ -112,13 +125,28 @@ export default function CounsellorPage() {
 
             <div className="chat-header">
               <div className="chat-header-main">
-                <div className="chat-bot-icon">🤖</div>
+                <div className="chat-bot-icon-glow">
+                  <div className="chat-bot-icon">🤖</div>
+                  <span className="bot-status-ring"></span>
+                </div>
                 <div className="chat-header-info">
-                  <h2>Bun-Bot Counsellor</h2>
-                  <p><span className="status-dot"></span> Online · Ready to help {name.split(' ')[0]}</p>
+                  <div className="chat-header-title-row">
+                    <h2>Bun-Bot AI Counsellor</h2>
+                    <span className="chat-engine-tag">Discovery Engine v2.0</span>
+                  </div>
+                  <p>
+                    <span className="status-dot"></span>
+                    <span className="status-text">Online</span>
+                    <span className="status-divider">•</span>
+                    <span>Direct Assistant to <strong>{name.split(' ')[0]}</strong></span>
+                  </p>
                 </div>
                 <button className="chat-clear-btn" id="clearChatBtn" title="Clear Chat History">
-                  🗑️ <span className="clear-text">Clear</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  <span className="clear-text">Clear Chat</span>
                 </button>
               </div>
             </div>
@@ -135,15 +163,15 @@ export default function CounsellorPage() {
               <div className="message-row bot">
                 <div className="msg-avatar bot">🤖</div>
                 <div className="message bot">
-                  <p>Hi {name.split(' ')[0]}! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor. 🐰</p>
-                  <p>I can help you with anything related to tech careers in India. Feel free to ask me:</p>
+                  <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>Bun-Bot</strong>, your personal AI Career Counsellor 🐰</p>
+                  <p>I can guide you through every tech career path in India. Ask me anything like:</p>
                   <ul>
-                    <li>Pros and cons of learning different courses/languages.</li>
-                    <li>Salary expectations for various roles (e.g., Data Scientist vs. Backend Dev).</li>
-                    <li>What a "day in the life" looks like for a specific tech job.</li>
-                    <li>Which entrance exams or certifications might be right for you.</li>
+                    <li>Pros and cons of learning different courses or languages</li>
+                    <li>Salary expectations for various roles (e.g., <em>Data Scientist vs. Backend Dev</em>)</li>
+                    <li>What a "day in the life" looks like for specific tech roles</li>
+                    <li>Which entrance exams or certifications fit your timeline</li>
                   </ul>
-                  <p>What's on your mind?</p>
+                  <p>What would you like to explore today?</p>
                 </div>
               </div>
             </div>
@@ -152,18 +180,23 @@ export default function CounsellorPage() {
               <span></span><span></span><span></span>
             </div>
 
-            {/* Input area wrapper containing suggestion chips and input box */}
+            {/* Input area wrapper containing prompt starters and input console */}
             <div className="chat-input-wrapper">
+              <div className="chat-suggestions-header">
+                <span id="suggestionsTitle">✨ Suggested Questions</span>
+                <button id="refreshSuggestionsBtn" className="suggestions-refresh-btn" title="Shuffle new questions">
+                  🔄 Shuffle
+                </button>
+              </div>
               <div className="chat-suggestions" id="chatSuggestions">
-                <button className="suggestion-chip">💰 Salary for Data Scientist?</button>
-                <button className="suggestion-chip">🤔 Python vs Java?</button>
-                <button className="suggestion-chip">🎓 Best certs for Cloud?</button>
-                <button className="suggestion-chip">📅 Day in life of a Dev?</button>
-                <button className="suggestion-chip">🔐 How to enter Cybersecurity?</button>
+                {/* Dynamically populated by smartSuggestions */}
               </div>
 
               <div className="chat-input-area">
-                <textarea id="chatInput" className="chat-input" placeholder="Ask Bun-Bot anything about tech careers..." rows={1}></textarea>
+                <div className="chat-input-container">
+                  <textarea id="chatInput" className="chat-input" placeholder="Ask Bun-Bot anything about tech careers, roadmaps, salaries..." rows={1}></textarea>
+                  <div className="chat-input-hint">Press <span>Enter ↵</span> to send</div>
+                </div>
                 <button className="chat-send-btn" id="sendBtn" title="Send message">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>

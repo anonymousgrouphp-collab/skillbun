@@ -28,8 +28,14 @@ import {
   toggleDropdown,
   logoutUser,
   sanitizeHTML,
-  updateUsageLimitCard
+  updateUsageLimitCard,
+  renderSuggestionChips
 } from './counsellor/counsellorDom';
+import {
+  getPersonalizedInitialChips,
+  getFollowUpSuggestions,
+  getRandomShuffledChips
+} from './counsellor/smartSuggestions';
 import posthog from 'posthog-js';
 
 const HUMAN_PROOF_HEADER = 'x-skillbun-human';
