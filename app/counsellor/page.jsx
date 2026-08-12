@@ -209,22 +209,24 @@ export default function CounsellorPage() {
 
             {/* Input area wrapper containing prompt starters and input console */}
             <div className="chat-input-wrapper">
-              <div className="chat-suggestions-header">
-                <span id="suggestionsTitle">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}>
-                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                  </svg>
-                  Suggested Questions
-                </span>
-                <button id="refreshSuggestionsBtn" className="suggestions-refresh-btn" title="Shuffle new questions">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-                  </svg>
-                  Shuffle
-                </button>
-              </div>
-              <div className="chat-suggestions" id="chatSuggestions">
-                {/* Dynamically populated by smartSuggestions */}
+              <div className="chat-suggestions-wrapper" id="chatSuggestionsWrapper">
+                <div className="chat-suggestions-header">
+                  <span id="suggestionsTitle">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }}>
+                      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                    </svg>
+                    Suggested Questions
+                  </span>
+                  <button id="refreshSuggestionsBtn" className="suggestions-refresh-btn" title="Shuffle new questions">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                    </svg>
+                    Shuffle
+                  </button>
+                </div>
+                <div className="chat-suggestions" id="chatSuggestions">
+                  {/* Dynamically populated by smartSuggestions */}
+                </div>
               </div>
 
               <div className="chat-input-area">
