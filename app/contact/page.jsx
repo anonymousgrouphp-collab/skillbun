@@ -76,9 +76,9 @@ const faqItems = [
       'Yes, our interactive career roadmaps and profiling tools are designed for students and are completely free to use.',
   },
   {
-    question: 'How do I talk to the Bun-Bot counsellor?',
+    question: 'How do I talk to BunBot?',
     answer:
-      'Once you complete the quiz and select a career roadmap, Bun-Bot will be available directly on your roadmap page to answer specific questions and guide your next steps.',
+      'Once you complete the quiz and select a career roadmap, BunBot will be available to answer specific questions and guide your next steps.',
   },
   {
     question: 'How can I track my progress?',

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'AI Career Counsellor – SkillBun',
-  description: 'Chat with Bun-Bot for personalized career advice.',
+  title: 'BunBot – SkillBun AI Career Advisor',
+  description: 'Chat with BunBot for personalized career advice.',
 };
 
 export default function CounsellorLayout({ children }) {

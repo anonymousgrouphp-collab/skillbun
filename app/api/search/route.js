@@ -41,7 +41,7 @@ const STATIC_PAGES = [
   { title: 'Features', href: '/#features', type: 'page' },
   { title: 'How it Works', href: '/#how', type: 'page' },
   { title: 'Career Paths', href: '/#careers', type: 'page' },
-  { title: 'AI Counsellor', href: '/counsellor', type: 'page' },
+  { title: 'BunBot', href: '/counsellor', type: 'page' },
   { title: 'Connect with us', href: '/#contact', type: 'page' },
 ];
 

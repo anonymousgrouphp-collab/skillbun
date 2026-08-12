@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         <li><strong>Account Information:</strong> When you register using Google Sign-In or email/password authentication, we receive your email address, display name, and profile picture URL via Firebase Authentication.</li>
         <li><strong>User Profile Data:</strong> During onboarding, you provide your academic degree/program, year of study, learning interests, and target tech roles.</li>
         <li><strong>Progress &amp; Quiz Responses:</strong> We store your answers to the adaptive career quiz, assessment scores, certification progress, and completed roadmap nodes.</li>
-        <li><strong>System &amp; Interaction Logs:</strong> We log queries submitted to the Bun-Bot AI Counsellor, session duration, and standard traffic data for security and performance optimization.</li>
+        <li><strong>System &amp; Interaction Logs:</strong> We log queries submitted to BunBot AI, session duration, and standard traffic data for security and performance optimization.</li>
       </ul>
 
       <h2>2. How We Use Your Information</h2>
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
       </p>
       <ul>
         <li>To personalize your career recommendation outputs and build adaptive learning roadmaps.</li>
-        <li>To power the Bun-Bot Counsellor, providing contextually relevant study suggestions and curriculum breakdowns.</li>
+        <li>To power BunBot, providing contextually relevant study suggestions and curriculum breakdowns.</li>
         <li>To issue, verify, and display public certifications and academic achievements.</li>
         <li>To detect, prevent, and mitigate fraudulent activity, bot abuse, and scraping attempts.</li>
         <li>To send transactional emails (e.g., password reset requests) through our secure Zoho SMTP integration.</li>
