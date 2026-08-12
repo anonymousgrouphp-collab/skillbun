@@ -413,6 +413,8 @@ export default function UserMenu() {
             </div>
 
             <div className="user-menu-divider" />
+            <ThemeMenuRow />
+            <div className="user-menu-divider" />
 
             <button
               className="user-menu-item user-menu-signout"
