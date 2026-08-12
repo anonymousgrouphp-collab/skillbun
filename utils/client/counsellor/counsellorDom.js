@@ -55,6 +55,26 @@ export function loadProfile(state) {
   return true;
 }
 
+export function renderSuggestionChips(chips = [], onChipClick = () => {}) {
+  const container = getEl('chatSuggestions');
+  if (!container) return;
+
+  container.style.opacity = '0';
+  container.innerHTML = '';
+  chips.forEach((chip) => {
+    const btn = document.createElement('button');
+    btn.className = 'suggestion-chip';
+    btn.innerHTML = `<span class="chip-icon">${escapeHTML(chip.icon)}</span> ${escapeHTML(chip.text)}`;
+    btn.addEventListener('click', () => onChipClick(chip.text));
+    container.appendChild(btn);
+  });
+
+  setTimeout(() => {
+    container.style.transition = 'opacity 0.25s ease-in-out';
+    container.style.opacity = '1';
+  }, 30);
+}
+
 export function escapeHTML(str) {
   const div = document.createElement('div');
   div.textContent = String(str ?? '');
