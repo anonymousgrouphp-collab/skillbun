@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
 
@@ -633,10 +634,12 @@ export default function Home() {
         {/* ===== CTA ===== */}
         <div className="cta-section">
           <div className="cta-card">
-            <div className="welcome-bunny" style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>💻</div>
+            <div className="welcome-bunny" style={{ marginBottom: '1rem' }}>
+              <Image src="/logo.png" alt="SkillBun Logo" width={56} height={56} unoptimized />
+            </div>
             <h2>Ready to Hop In?</h2>
             <p>Join thousands of students who found their perfect tech career path with SkillBun. It's free to start.</p>
-            <button onClick={() => openAuthModal('/quiz')} className="btn-primary" style={{ margin: '0 auto' }}>🐾 Start Your Quiz — It's Free</button>
+            <button onClick={() => openAuthModal('/quiz')} className="btn-primary" style={{ margin: '0 auto' }}>Start Your Quiz — It's Free</button>
           </div>
         </div>
 
@@ -644,7 +647,10 @@ export default function Home() {
         <footer id="contact">
           <div className="footer-grid">
             <div className="footer-brand">
-              <div className="logo">🐰 ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+              <div className="logo">
+                <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} unoptimized />
+                <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+              </div>
               <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through AI-powered guidance and real peer connections.</p>
               <div className="footer-socials">
                 <a className="social-btn" href="https://www.instagram.com/skillbun.tech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
