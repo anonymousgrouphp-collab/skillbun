@@ -155,7 +155,13 @@ export default function QuizPage() {
 
         <div id="resultScreen" className="quiz-results" style={{ display: 'none' }}>
             <div className="result-header">
-                <div style={{ fontSize: '3rem' }}>🎯</div>
+                <div style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'center' }}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                </div>
                 <h1>Your Career Matches</h1>
                 <p>Based on your profile and answers, here are your top career paths:</p>
             </div>
@@ -164,9 +170,24 @@ export default function QuizPage() {
             </div>
 
             <div className="result-actions">
-                <button type="button" className="btn-primary" id="loadMoreBtn">🔍 Load More Career Paths</button>
-                <button type="button" className="btn-secondary" id="retakeBtn">🔄 Retake Quiz</button>
-                <Link href="/" className="btn-secondary">🏠 Back to Home</Link>
+                <button type="button" className="btn-primary" id="loadMoreBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  Load More Career Paths
+                </button>
+                <button type="button" className="btn-secondary" id="retakeBtn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                  </svg>
+                  Retake Quiz
+                </button>
+                <Link href="/" className="btn-secondary">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                  Back to Home
+                </Link>
             </div>
         </div>
       </div>

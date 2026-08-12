@@ -66,7 +66,14 @@ function OnboardingForm() {
   if (authLoading || profileLoading || !profile.hydrated || !user || (isProfileComplete && !editMode)) {
     return (
       <div className={styles.loadingContainer}>
-        <div className={`welcome-bunny ${styles.welcomeBunny}`}>🐰</div>
+        <div className={`welcome-bunny ${styles.welcomeBunny}`}>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            <path d="M7 3v6"/>
+            <path d="M17 3v6"/>
+            <path d="M6 18c0-3 3-5 6-5s6 2 6 5v3H6v-3z"/>
+          </svg>
+        </div>
         <p className={styles.loadingText}>Setting things up...</p>
       </div>
     );
@@ -75,7 +82,14 @@ function OnboardingForm() {
   return (
     <div className={styles.formContainer}>
       <div className={styles.header}>
-        <div className={styles.bunnyLarge}>🐰</div>
+        <div className={styles.bunnyLarge}>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            <path d="M7 3v6"/>
+            <path d="M17 3v6"/>
+            <path d="M6 18c0-3 3-5 6-5s6 2 6 5v3H6v-3z"/>
+          </svg>
+        </div>
         <h1 className={styles.title}>
           Welcome there!
         </h1>
@@ -120,23 +134,23 @@ function OnboardingForm() {
           <label>Area of Interest (Optional)</label>
           <select name="interest" defaultValue={profile.interest || ''}>
             <option value="">Choose an area that excites you</option>
-            <option value="Web Development">🌐 Web Development</option>
-            <option value="AI / Machine Learning">🤖 AI / Machine Learning</option>
-            <option value="Mobile App Development">📱 Mobile App Development</option>
-            <option value="Data Science">📊 Data Science</option>
-            <option value="Cybersecurity">🔐 Cybersecurity</option>
-            <option value="Cloud Computing">☁️ Cloud Computing</option>
-            <option value="UI/UX Design">🎨 UI/UX Design</option>
-            <option value="Not sure yet">🤔 Not sure yet – help me explore!</option>
+            <option value="Web Development">Web Development</option>
+            <option value="AI / Machine Learning">AI / Machine Learning</option>
+            <option value="Mobile App Development">Mobile App Development</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="UI/UX Design">UI/UX Design</option>
+            <option value="Not sure yet">Not sure yet – help me explore!</option>
           </select>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
           <button type="submit" data-destination="/quiz" className={`btn-form ${styles.btnSubmit}`} disabled={saving}>
-            {saving ? '💾 Saving...' : '🚀 Take Diagnostic Quiz (Recommended)'}
+            {saving ? 'Saving...' : 'Take Diagnostic Quiz (Recommended)'}
           </button>
           <button type="submit" data-destination="/projects" className="btn-secondary" style={{ width: '100%', padding: '0.75rem', borderRadius: '10px', fontWeight: '700', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)', cursor: 'pointer' }} disabled={saving}>
-            🔨 Skip Quiz & Browse Projects Directly
+            Skip Quiz & Browse Projects Directly
           </button>
         </div>
 
@@ -156,7 +170,14 @@ export default function OnboardingPage() {
   return (
     <Suspense fallback={
       <div className={styles.loadingContainer}>
-        <div className={`welcome-bunny ${styles.welcomeBunny}`}>🐰</div>
+        <div className={`welcome-bunny ${styles.welcomeBunny}`}>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+            <path d="M7 3v6"/>
+            <path d="M17 3v6"/>
+            <path d="M6 18c0-3 3-5 6-5s6 2 6 5v3H6v-3z"/>
+          </svg>
+        </div>
         <p className={styles.loadingText}>Setting things up...</p>
       </div>
     }>
