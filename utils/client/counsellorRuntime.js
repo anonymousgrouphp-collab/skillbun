@@ -250,7 +250,19 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
         parts: [{ text: botResponse }]
       });
 
-      appendStreamingMessage(state, 'bot', botResponse);
+      appendStreamingMessage(state, 'bot', botResponse, () => {
+        const followUps = getFollowUpSuggestions(text, botResponse);
+        const headerTitle = getEl('suggestionsTitle');
+        if (headerTitle) headerTitle.textContent = '💡 Suggested Follow-ups';
+        renderSuggestionChips(followUps, (chipText) => {
+          const inputEl = getEl('chatInput');
+          if (inputEl) {
+            inputEl.value = chipText;
+            inputEl.dispatchEvent(new Event('input'));
+          }
+          sendMessage();
+        });
+      });
       incrementRateLimit();
       updateUsageLimitCard();
 
@@ -404,18 +416,27 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
 
     sendBtn.addEventListener('click', sendMessage, { signal: state.signal });
 
-    document.querySelectorAll('.suggestion-chip').forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const suggestionsEl = getEl('chatSuggestions');
-        if (suggestionsEl) suggestionsEl.style.display = 'none';
-        const inputEl = getEl('chatInput');
-        if (inputEl) {
-          inputEl.value = chip.textContent.replace(/^[^\w]+/, '').trim();
-          inputEl.dispatchEvent(new Event('input'));
-        }
-        sendMessage();
+    function handleChipSelection(chipText) {
+      const inputEl = getEl('chatInput');
+      if (inputEl) {
+        inputEl.value = chipText;
+        inputEl.dispatchEvent(new Event('input'));
+      }
+      sendMessage();
+    }
+
+    const initialChips = getPersonalizedInitialChips(state.userProfile);
+    const headerTitle = getEl('suggestionsTitle');
+    if (headerTitle) headerTitle.textContent = '✨ Suggested Questions';
+    renderSuggestionChips(initialChips, handleChipSelection);
+
+    const refreshBtn = getEl('refreshSuggestionsBtn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        const randomChips = getRandomShuffledChips();
+        renderSuggestionChips(randomChips, handleChipSelection);
       }, { signal: state.signal });
-    });
+    }
 
     const clearBtn = getEl('clearChatBtn');
     if (clearBtn) {
@@ -424,8 +445,9 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
         if (!container) return;
         container.innerHTML = '';
         state.conversationHistory = [];
-        const suggestionsEl = getEl('chatSuggestions');
-        if (suggestionsEl) suggestionsEl.style.display = 'flex';
+        const freshChips = getPersonalizedInitialChips(state.userProfile);
+        if (headerTitle) headerTitle.textContent = '✨ Suggested Questions';
+        renderSuggestionChips(freshChips, handleChipSelection);
       }, { signal: state.signal });
     }
 
