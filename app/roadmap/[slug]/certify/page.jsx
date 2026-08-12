@@ -668,7 +668,10 @@ export default function CertifyPage() {
   if (progressInsufficient) {
     return (
       <div className={styles.lockedScreen}>
-        <div className={styles.lockBadge}>🔒 Progress Required</div>
+        <div className={styles.lockBadge} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Progress Required
+        </div>
         <h2>Roadmap Progress Insufficient</h2>
         <p>You need to complete at least <strong>60%</strong> of the <strong>{roadmapTitle}</strong> roadmap before you can attempt the certification quiz. Head back and finish all remaining skill nodes.</p>
         <button onClick={() => router.push(`/roadmap/${slug}`)} className={styles.primaryButton}>
@@ -681,7 +684,10 @@ export default function CertifyPage() {
   if (isLocked) {
     return (
       <div className={styles.lockedScreen}>
-        <div className={styles.lockBadge}>🔒 Quiz Locked</div>
+        <div className={styles.lockBadge} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Quiz Locked
+        </div>
         {lockReason === 'daily' ? (
           <>
             <h2>Daily Limit Reached</h2>
@@ -705,7 +711,10 @@ export default function CertifyPage() {
   if (isAlreadyCertified) {
     return (
       <div className={styles.lockedScreen}>
-        <div className={styles.lockBadge}>🎓 Already Certified</div>
+        <div className={styles.lockBadge} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Already Certified
+        </div>
         <h2>Certification Completed</h2>
         <p>You have already earned a certificate for the <strong>{roadmapTitle}</strong> roadmap. You cannot retake the certification exam.</p>
         <div className={styles.retryActions} style={{ borderTop: 'none', marginTop: '1rem', paddingTop: 0 }}>

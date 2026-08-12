@@ -238,10 +238,15 @@ export default function Home() {
             <div className="hero-tag">For BCA · BSc · B.Tech Students</div>
             <h1>Your Tech <span className="shuffle-text" data-final="Career">Career</span>,<br /><span
               className="highlight">Engineered For <span className="shuffle-text" data-final="Success">Success</span>.</span></h1>
-            <p>SkillBun turns career confusion into a guided system: profile setup, adaptive AI quiz, ranked career matches,
-              interactive roadmaps, and BunBot support for every next step.</p>
             <div className="hero-btns">
-              <button onClick={() => openAuthModal('/quiz')} className="btn-primary">🐾 Take the Career Quiz</button>
+              <button onClick={() => openAuthModal('/quiz')} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+                Take the Career Quiz
+              </button>
               <a href="#features" className="btn-secondary hero-secondary">See the platform</a>
               <Link href="/certificate" className="btn-secondary hero-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '16px', height: '16px' }}>
@@ -561,7 +566,7 @@ export default function Home() {
           <div className="sb-copy-block">
             <div className="section-label">Certifications</div>
             <h2 className="section-title">Earn verifiable digital credentials</h2>
-            <p className="section-sub">Validate your progress. Once you complete 100% of any roadmap, take the proctored exam to earn a public certificate that employers can verify.</p>
+            <p className="section-sub">Validate your progress. Once you complete 60% of any roadmap, take the proctored exam to earn a public certificate that employers can verify.</p>
             <div className="sb-check-list">
               <span>Dynamic 10-question quiz (3 Easy, 5 Moderate, 2 Hard)</span>
               <span>45s question limit & focus loss window masking protection</span>
@@ -690,7 +695,13 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>© 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Reish. Made with 🐾 for India's tech students.</p>
+            <p style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+              © 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Reish. Made with{' '}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)" stroke="var(--green)" strokeWidth="2" style={{ display: 'inline', verticalAlign: 'middle' }}>
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+              </svg>{' '}
+              for India&apos;s tech students.
+            </p>
             <div className="badge-bar">
               <span className="badge">BCA Friendly</span>
               <span className="badge">BS/BS-MS (AICS/CSDA)</span>
