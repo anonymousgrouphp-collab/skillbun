@@ -221,7 +221,7 @@ export default function Home() {
               <ellipse cx="140" cy="195" rx="15" ry="10" fill="#f0f0f0" />
             </svg>
           </div>
-          <div className="splash-title">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+          <div className="splash-title">SKILLBUN</div>
           <div className="splash-subtitle">Hop into the <span>right career</span></div>
           <div className="splash-dots">
             <span></span><span></span><span></span>
@@ -528,7 +528,7 @@ export default function Home() {
 
               {/* Overlay: Fix SKILLBUN text */}
               <div className="sb-cert-mock-overlay-skillbun" aria-hidden="true">
-                <span className="sb-cert-mock-text-skillbun">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                <span className="sb-cert-mock-text-skillbun">SKILLBUN</span>
               </div>
 
               {/* Overlay: Recipient Name */}
@@ -654,7 +654,7 @@ export default function Home() {
             <div className="footer-brand">
               <div className="logo">
                 <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} unoptimized />
-                <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                <span>SKILLBUN</span>
               </div>
               <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through AI-powered guidance and real peer connections.</p>
               <div className="footer-socials">
@@ -696,7 +696,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <p style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
-              © 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Reish. Made with{' '}
+              © 2026 <span>SKILLBUN</span> by Reish. Made with{' '}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)" stroke="var(--green)" strokeWidth="2" style={{ display: 'inline', verticalAlign: 'middle' }}>
                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
               </svg>{' '}

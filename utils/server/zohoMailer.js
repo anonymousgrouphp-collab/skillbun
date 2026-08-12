@@ -59,7 +59,7 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
       'If you did not request this, you can ignore this email.',
       '',
       'Thanks,',
-      'Team ꌗꀘꀤ꒒꒒ꌃꀎꈤ',
+      'Team SkillBun',
     ].join('\n'),
     html: `
       <div style="max-width: 550px; margin: 0 auto; padding: 24px; border: 1px solid #CAD8CF; border-radius: 12px; font-family: 'Nunito', 'Segoe UI', Arial, sans-serif; color: #18211D; background-color: #F4F7F2; line-height: 1.6;">
@@ -68,7 +68,7 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
         </style>
         
         <div style="text-align: center; margin-bottom: 24px;">
-          <h2 style="font-family: 'Fredoka', 'Segoe UI', Arial, sans-serif; color: #11864F; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: 1.5px;">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h2>
+          <h2 style="font-family: 'Fredoka', 'Segoe UI', Arial, sans-serif; color: #11864F; margin: 0; font-size: 26px; font-weight: 700; letter-spacing: 1.5px;">SKILLBUN</h2>
         </div>
 
         <div style="background: #ffffff; padding: 28px; border-radius: 8px; border: 1px solid #CAD8CF;">
@@ -89,7 +89,7 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
 
         <div style="margin-top: 24px; text-align: left; padding-left: 8px;">
           <p style="margin: 0; font-size: 14px; color: #516158;">Thanks,</p>
-          <p style="margin: 4px 0 0 0; font-family: 'Fredoka', 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 700; color: #11864F; letter-spacing: 1px;">Team ꌗꀘꀤ꒒꒒ꌃꀎꈤ</p>
+          <p style="margin: 4px 0 0 0; font-family: 'Fredoka', 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 700; color: #11864F; letter-spacing: 1px;">Team SkillBun</p>
         </div>
       </div>
     `,
