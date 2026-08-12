@@ -430,7 +430,7 @@ export default function DashboardClient({ roadmapsInfo }) {
               </div>
             </article>
 
-            {/* Bun-Bot Form Panel */}
+            {/* BunBot Form Panel */}
             <article className={`${styles.panel} ${styles.bunBotPanel} ${styles.glassPanel}`}>
               <div className={styles.pixarBunnyContainer} aria-hidden="true">
                 <div className={styles.pixarBunny}>
@@ -480,14 +480,14 @@ export default function DashboardClient({ roadmapsInfo }) {
                 <p className={styles.botTitle}>
                   <span className={styles.darkYellow}>Brain fogged?</span>
                   <br />
-                  <span className={styles.darkYellow}>Talk to Bun-Bot!</span>
+                  <span className={styles.darkYellow}>Talk to BunBot!</span>
                 </p>
                 <form action="/counsellor" method="GET" className={styles.askForm}>
-                  <label className={styles.srOnly} htmlFor="dashboard-question">Ask Bun-Bot</label>
+                  <label className={styles.srOnly} htmlFor="dashboard-question">Ask BunBot</label>
                   <input id="dashboard-question" name="q" type="text" placeholder="Ask me anything..." autoComplete="off" required />
-                  <button type="submit" className={styles.darkGlowBtn} aria-label="Send to Bun-Bot">
+                  <button type="submit" className={styles.darkGlowBtn} aria-label="Send to BunBot">
                     <Icon name="send" />
-                    <span className={styles.srOnly}>Send to Bun-Bot</span>
+                    <span className={styles.srOnly}>Send to BunBot</span>
                   </button>
                 </form>
               </div>
@@ -503,7 +503,7 @@ export default function DashboardClient({ roadmapsInfo }) {
           <div className={styles.rhythmTags}>
             <span>Complete one SOC case note</span>
             <span>Review a frontend task</span>
-            <span>Ask Bun-Bot about blockers</span>
+            <span>Ask BunBot about blockers</span>
           </div>
         </section>
       </div>

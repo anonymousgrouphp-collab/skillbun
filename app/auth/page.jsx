@@ -472,7 +472,7 @@ function AuthForm() {
             <div className="auth-path-step">
               <span>03</span>
               <strong>Roadmap progress</strong>
-              <p>Return to saved skills, milestones, and Bun-Bot guidance.</p>
+              <p>Return to saved skills, milestones, and BunBot guidance.</p>
             </div>
           </div>
         </div>

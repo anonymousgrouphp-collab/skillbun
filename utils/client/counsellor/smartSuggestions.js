@@ -1,6 +1,6 @@
 'use client';
 
-// Smart Suggestion Engine for SkillBun AI Counsellor
+// Smart Suggestion Engine for BunBot
 // Generates personalized initial prompt starters & context-aware follow-up chips
 
 export function getPersonalizedInitialChips(profile = {}) {

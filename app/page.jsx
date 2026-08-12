@@ -239,7 +239,7 @@ export default function Home() {
             <h1>Your Tech <span className="shuffle-text" data-final="Career">Career</span>,<br /><span
               className="highlight">Engineered For <span className="shuffle-text" data-final="Success">Success</span>.</span></h1>
             <p>SkillBun turns career confusion into a guided system: profile setup, adaptive AI quiz, ranked career matches,
-              interactive roadmaps, and Bun-Bot support for every next step.</p>
+              interactive roadmaps, and BunBot support for every next step.</p>
             <div className="hero-btns">
               <button onClick={() => openAuthModal('/quiz')} className="btn-primary">🐾 Take the Career Quiz</button>
               <a href="#features" className="btn-secondary hero-secondary">See the platform</a>
@@ -315,9 +315,9 @@ export default function Home() {
                 </article>
 
                 <article className="sb-moment-card roadmap">
-                  <span className="sb-moment-tag">Roadmap + Bun-Bot</span>
+                  <span className="sb-moment-tag">Roadmap + BunBot</span>
                   <h3>Keep moving after results</h3>
-                  <p>Open a skill tree, build projects, track progress, and ask Bun-Bot when a topic feels foggy.</p>
+                  <p>Open a skill tree, build projects, track progress, and ask BunBot when a topic feels foggy.</p>
                 </article>
               </div>
             </div>
@@ -378,7 +378,7 @@ export default function Home() {
             <div className="sb-journey-step">
               <div className="sb-journey-dot">4</div>
               <h3>Open your roadmap</h3>
-              <p>Use your recommended skill tree to learn, build projects, and ask Bun-Bot for help.</p>
+              <p>Use your recommended skill tree to learn, build projects, and ask BunBot for help.</p>
             </div>
           </div>
         </section>
@@ -476,11 +476,11 @@ export default function Home() {
           <div className="sb-copy-block">
             <div className="section-label">Interactive Roadmaps</div>
             <h2 className="section-title">Every recommendation becomes a skill tree</h2>
-            <p className="section-sub">Roadmaps are not static PDFs. They unlock step-by-step, track local progress, include resources, and let you ask Bun-Bot about any topic.</p>
+            <p className="section-sub">Roadmaps are not static PDFs. They unlock step-by-step, track local progress, include resources, and let you ask BunBot about any topic.</p>
             <div className="sb-check-list">
               <span>Skill nodes with prerequisite flow</span>
               <span>Portfolio-ready project checkpoints</span>
-              <span>Progress, XP, resources, and Bun-Bot help</span>
+              <span>Progress, XP, resources, and BunBot help</span>
             </div>
           </div>
         </section>

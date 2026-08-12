@@ -134,14 +134,14 @@ export function getFriendlyAiErrorMessage(error) {
   }
 
   if (/empty response|temporarily unavailable|timed out|could not reach|network/i.test(message)) {
-    return 'Bun-Bot could not reach AI reliably. Please send again and I will continue from here.';
+    return 'BunBot could not reach AI reliably. Please send again and I will continue from here.';
   }
 
   if (/security|human verification/i.test(message)) {
     return message;
   }
 
-  return message || 'Bun-Bot could not answer right now. Please try again.';
+  return message || 'BunBot could not answer right now. Please try again.';
 }
 
 export async function fetchSecurityConfig(state) {

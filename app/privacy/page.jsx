@@ -43,7 +43,7 @@ export default function PrivacyPage() {
       <ul>
         <li><strong>Authentication:</strong> Handled by Firebase Authentication. Your passwords are encrypted and managed directly by Google/Firebase; they are never accessible to SkillBun developers or servers.</li>
         <li><strong>Database Storage:</strong> Profile and learning progress data is persisted in Cloud Firestore. Security is enforced through granular Firestore Rules, ensuring that only you (the authenticated account holder) can read or modify your personal data.</li>
-        <li><strong>AI Capabilities:</strong> The Adaptive Quiz and Bun-Bot chat utilize server-side calls to the Google Gemini API. While we transmit prompt contexts securely, we use enterprise API layers which, under Google's data privacy policies, do not use submitted payloads to train their base models. However, you are advised not to submit highly sensitive PII in free-text fields.</li>
+        <li><strong>AI Capabilities:</strong> The Adaptive Quiz and BunBot chat utilize server-side calls to the Google Gemini API. While we transmit prompt contexts securely, we use enterprise API layers which, under Google's data privacy policies, do not use submitted payloads to train their base models. However, you are advised not to submit highly sensitive PII in free-text fields.</li>
       </ul>
 
       <h2>4. Data Protection &amp; Encryption</h2>
