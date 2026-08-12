@@ -308,7 +308,7 @@ export default function GameMap({ roadmap, slug }) {
                     ))}
                   </div>
                 )}
-                <a href={askBunBot(node.name, roadmap.title)} className="sk-btn-ai" onClick={e => e.stopPropagation()}>🤖 Ask Bun-Bot</a>
+                <a href={askBunBot(node.name, roadmap.title)} className="sk-btn-ai" onClick={e => e.stopPropagation()}>Ask BunBot</a>
               </div>
             )}
           </div>
@@ -601,7 +601,7 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
               {node.isUnlocked ? (node.isDone ? '✅ Completed — Undo?' : '🎯 Mark Complete (+100 XP)') : 'Complete prerequisite first'}
             </button>
             <a href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai">
-              🤖 Ask Bun-Bot
+              Ask BunBot
             </a>
           </div>
 
@@ -651,7 +651,7 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
                 <a href="/auth" className="sk-btn-login">Log in to read this guide</a>
               </div>
             ) : error ? (
-              <p className="sk-drawer-error">Could not load the study guide. Please try again or ask Bun-Bot.</p>
+              <p className="sk-drawer-error">Could not load the study guide. Please try again or ask BunBot.</p>
             ) : (
               <div className="sk-markdown-content" dangerouslySetInnerHTML={{ __html: docHtml }} />
             )}

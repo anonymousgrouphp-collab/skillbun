@@ -16,7 +16,7 @@ export default function TermsPage() {
 
       <h2>2. Description of Service</h2>
       <p>
-        SkillBun is an AI-assisted career discovery and interactive educational ecosystem designed to guide tech students. The Platform provides users with tools such as adaptive career quizzes, custom technology roadmaps, progress tracking, peer-sharing assets, a verifiable certification system, and an AI chat counsellor ("Bun-Bot").
+        SkillBun is an AI-assisted career discovery and interactive educational ecosystem designed to guide tech students. The Platform provides users with tools such as adaptive career quizzes, custom technology roadmaps, progress tracking, peer-sharing assets, a verifiable certification system, and an AI career advisor ("BunBot").
       </p>
 
       <h2>3. Intellectual Property Rights &amp; License</h2>
@@ -30,7 +30,7 @@ export default function TermsPage() {
 
       <h2>4. User Accounts &amp; Registration</h2>
       <p>
-        To access key features (like saving roadmap milestones, chatting with Bun-Bot, and taking the certification exams), you must create an account. You can register using Google Sign-In or your email address, powered by Firebase Authentication.
+        To access key features (like saving roadmap milestones, chatting with BunBot, and taking the certification exams), you must create an account. You can register using Google Sign-In or your email address, powered by Firebase Authentication.
       </p>
       <ul>
         <li>You agree to provide accurate, current, and complete profile information during the onboarding flow.</li>
@@ -67,7 +67,7 @@ export default function TermsPage() {
       <ul>
         <li>The absolute correctness, completion, or up-to-date nature of study guides, video playlists, or AI-generated recommendations.</li>
         <li>Guaranteed job placements, college admissions, internships, or financial outcomes.</li>
-        <li>The accuracy of LLM outputs. Language models (like Gemini API) are subject to hallucinations, and responses from Bun-Bot should be validated independently.</li>
+        <li>The accuracy of LLM outputs. Language models (like Gemini API) are subject to hallucinations, and responses from BunBot should be validated independently.</li>
       </ul>
       <p>
         To the maximum extent permitted by applicable law, Team SkillBun and its members shall not be liable for any indirect, incidental, special, or consequential damages (including, without limitation, loss of data, career opportunities, or tuition fees) arising out of your use of or inability to use the Platform.

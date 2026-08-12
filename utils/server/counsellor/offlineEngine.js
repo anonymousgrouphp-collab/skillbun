@@ -1,5 +1,5 @@
 /**
- * SkillBun Offline Knowledge & Intent Engine for Bun-Bot AI Counsellor.
+ * SkillBun Offline Knowledge & Intent Engine for BunBot AI Career Advisor.
  * 100% Free, Zero-API-Key, Zero-Quota Open-Source Knowledge System.
  */
 
@@ -74,7 +74,7 @@ export function generateOfflineCounsellorResponse(contents = [], searchContext =
   const IS_TECH_KEYWORD = /\b(tech|code|coding|program|programming|developer|engineer|engineering|software|hardware|java|python|js|javascript|react|node|html|css|ai|ml|data|sql|cloud|aws|devops|security|cyber|roadmap|college|university|bca|btech|mca|job|jobs|hiring|career|salary|lpa|skillbun|harsh|contact|email)\b/i;
 
   if (OFF_TOPIC_REGEX.test(lower) && !IS_TECH_KEYWORD.test(lower)) {
-    return `Hello **${profile.name}**! I am **Bun-Bot**, SkillBun's AI Career Counsellor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps. 🤖\n\n` +
+    return `Hello **${profile.name}**! I am **BunBot**, SkillBun's AI Career Advisor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps. 🤖\n\n` +
       `This question seems to be outside my domain of tech career guidance!\n\n` +
       `💡 *If you think we made a mistake, please take a screenshot and email us at **[${SKILLBUN_CONTACT_EMAIL}](mailto:${SKILLBUN_CONTACT_EMAIL})**.*`;
   }
