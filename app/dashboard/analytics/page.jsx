@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import { RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
 
 function formatDateTime(isoString) {
   if (!isoString) return 'N/A';
@@ -24,8 +25,19 @@ function formatDateTime(isoString) {
   }
 }
 
-// Smart Retention Template Recommender out of 18 High-Conversion Variations
+const ALL_15_MARKETING_TEMPLATES = [
+  'welcome_v1', 'welcome_v2', 'welcome_v3',
+  'reengagement_v1', 'reengagement_v2', 'reengagement_v3',
+  'exam_nudge_v1', 'exam_nudge_v2', 'exam_nudge_v3',
+  'exam_failed_v1', 'exam_failed_v2', 'exam_failed_v3',
+  'cert_congrats_v1', 'cert_congrats_v2', 'cert_congrats_v3',
+];
+
+// Smart Non-Repeating & Auto-Shuffling Retention Template Recommender
 function getRecommendedTemplate(u) {
+  const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
+  const sentTemplateIds = sentLogs.map((item) => (typeof item === 'string' ? item : item.templateId));
+
   const certCount = u.certificates?.length || 0;
   const hasAttempts = u.quizAttempts?.length > 0;
   const maxNodes = u.progress?.reduce((max, p) => Math.max(max, p.completedNodeIds?.length || 0), 0) || 0;
@@ -33,19 +45,43 @@ function getRecommendedTemplate(u) {
     ? (Date.now() - new Date(u.lastSignInTime).getTime()) / (1000 * 60 * 60 * 24)
     : 0;
 
+  // Determine priority variations based on student telemetry
+  let priorityList = [];
+
   if (certCount > 0) {
-    return { id: 'cert_congrats_v1', label: '🏆 Cert Alumni V1: Verified Specialist Status & QR Badge' };
+    priorityList = ['cert_congrats_v1', 'cert_congrats_v2', 'cert_congrats_v3', 'reengagement_v1', 'welcome_v2'];
+  } else if (hasAttempts) {
+    priorityList = ['exam_failed_v1', 'exam_failed_v2', 'exam_failed_v3', 'reengagement_v1', 'welcome_v1'];
+  } else if (maxNodes >= 15) {
+    priorityList = ['exam_nudge_v1', 'exam_nudge_v2', 'exam_nudge_v3', 'reengagement_v1', 'welcome_v1'];
+  } else if (daysInactive >= 1.5 && maxNodes > 0) {
+    priorityList = ['reengagement_v1', 'reengagement_v2', 'reengagement_v3', 'welcome_v1', 'exam_nudge_v1'];
+  } else {
+    priorityList = ['welcome_v1', 'welcome_v2', 'welcome_v3', 'reengagement_v1', 'reengagement_v2'];
   }
-  if (hasAttempts) {
-    return { id: 'exam_failed_v1', label: '📚 Cooldown V1: 100% Free Unlimited Retake Granted' };
+
+  // Find the first priority template that HAS NOT been sent yet
+  let unsentTemplateId = priorityList.find((tId) => !sentTemplateIds.includes(tId));
+
+  // Fallback: If all priority variations were sent, check ANY unsent template in all 15 variations
+  if (!unsentTemplateId) {
+    unsentTemplateId = ALL_15_MARKETING_TEMPLATES.find((tId) => !sentTemplateIds.includes(tId));
   }
-  if (maxNodes >= 15) {
-    return { id: 'exam_nudge_v1', label: '🎓 Exam Ready V1: Top 7% Elite Candidate Invitation' };
+
+  // If ALL 15 variations have been sent, wrap around to priorityList[0]
+  if (!unsentTemplateId) {
+    unsentTemplateId = priorityList[0];
   }
-  if (daysInactive >= 1.5 && maxNodes > 0) {
-    return { id: 'reengagement_v1', label: '🐰 Re-Engagement V1: Streak & Candidate Rank Decaying' };
-  }
-  return { id: 'welcome_v1', label: '🚀 Onboarding V1: ₹35,000 Course Value Unlocked Free' };
+
+  const templateConfig = RETENTION_TEMPLATES[unsentTemplateId] || RETENTION_TEMPLATES.welcome_v1;
+  const alreadySentCount = sentTemplateIds.length;
+
+  return {
+    id: unsentTemplateId,
+    label: templateConfig.name,
+    isRotated: alreadySentCount > 0,
+    alreadySentCount,
+  };
 }
 
 export default function AnalyticsDashboardPage() {
@@ -128,6 +164,7 @@ export default function AnalyticsDashboardPage() {
                   lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null),
                   progress: [],
                   quizAttempts: [],
+                  sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
                   certificates: uCerts,
                 };
               });
@@ -171,7 +208,7 @@ export default function AnalyticsDashboardPage() {
       return;
     }
 
-    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Exam Attempts Count', 'Certificates Count', 'Joined Date', 'Last Login Time'];
+    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Exam Attempts Count', 'Certificates Count', 'Emails Sent Count', 'Joined Date', 'Last Login Time'];
     const rows = usersList.map((u) => [
       `"${u.uid}"`,
       `"${u.name.replace(/"/g, '""')}"`,
@@ -182,6 +219,7 @@ export default function AnalyticsDashboardPage() {
       u.progress?.length || 0,
       u.quizAttempts?.length || 0,
       u.certificates?.length || 0,
+      u.sentEmailHistory?.length || 0,
       `"${formatDateTime(u.createdAt)}"`,
       `"${formatDateTime(u.lastSignInTime)}"`,
     ]);
@@ -259,7 +297,7 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler (Enforces Confirmation Prompt for BOTH Sample Send and Direct Candidate Send)
+  // One-Click Retention Email Dispatcher Handler (Auto-Shuffles Recommendations on Dispatch)
   const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
@@ -313,6 +351,29 @@ export default function AnalyticsDashboardPage() {
 
       if (!res.ok || resData.error) {
         throw new Error(resData.error || 'Failed to dispatch email');
+      }
+
+      // Update Local State with new Sent History so Recommendation instantly Auto-Shuffles!
+      if (!isPreview) {
+        setData((prev) => {
+          if (!prev) return prev;
+          const updatedUsers = (prev.users || []).map((u) => {
+            if (u.uid === targetUser.uid) {
+              const currentHistory = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
+              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail }];
+              return { ...u, sentEmailHistory: updatedHistory };
+            }
+            return u;
+          });
+          return { ...prev, users: updatedUsers };
+        });
+
+        // Reset selected template for this user so it defaults to next unsent recommendation
+        setSelectedTemplates((prev) => {
+          const copy = { ...prev };
+          delete copy[targetUser.uid];
+          return copy;
+        });
       }
 
       setStatusMessage({
@@ -607,7 +668,7 @@ export default function AnalyticsDashboardPage() {
                       <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Exams</th>
-                      <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Sent Emails</th>
                       <th style={{ padding: '0.75rem 0.5rem', textAlign: 'center', width: '220px' }}>Actions & Controls</th>
                     </tr>
                   </thead>
@@ -620,6 +681,7 @@ export default function AnalyticsDashboardPage() {
                       const currentTemplate = selectedTemplates[u.uid] || recommended.id;
                       const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
+                      const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
 
                       return (
                         <React.Fragment key={u.uid}>
@@ -664,8 +726,20 @@ export default function AnalyticsDashboardPage() {
                               )}
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.5rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
-                              {formatDateTime(u.createdAt)}
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
+                              <span
+                                style={{
+                                  background: sentLogs.length > 0 ? 'var(--green-subtle)' : 'var(--surface-raised)',
+                                  color: sentLogs.length > 0 ? 'var(--green)' : 'var(--muted)',
+                                  border: `1px solid ${sentLogs.length > 0 ? 'var(--green)' : 'var(--border)'}`,
+                                  padding: '0.2rem 0.6rem',
+                                  borderRadius: '12px',
+                                  fontWeight: '800',
+                                  fontSize: '0.78rem',
+                                }}
+                              >
+                                📬 {sentLogs.length} Sent
+                              </span>
                             </td>
 
                             {/* Action Buttons */}
@@ -797,44 +871,31 @@ export default function AnalyticsDashboardPage() {
                                     )}
                                   </div>
 
-                                  {/* Issued Certificates */}
+                                  {/* Sent Email History Box */}
                                   <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      📜 Earned Certificates ({u.certificates?.length || 0})
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--green)', letterSpacing: '0.5px' }}>
+                                      📬 Sent Email History ({sentLogs.length})
                                     </h4>
-                                    {u.certificates?.length > 0 ? (
-                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        {u.certificates.map((c) => (
-                                          <div key={c.id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.6rem 0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <div>
-                                              <div style={{ fontWeight: '700', fontSize: '0.82rem' }}>{c.roadmapTitle}</div>
-                                              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Score: {c.score}% | ID: {c.certId}</div>
+                                    {sentLogs.length > 0 ? (
+                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: '160px', overflowY: 'auto' }}>
+                                        {sentLogs.map((log, idx) => (
+                                          <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.78rem' }}>
+                                            <div style={{ fontWeight: '700', color: 'var(--green)' }}>
+                                              ✔ {log.templateId}
                                             </div>
-                                            <Link
-                                              href={`/certificate/${c.certId}`}
-                                              target="_blank"
-                                              style={{
-                                                textDecoration: 'none',
-                                                padding: '0.25rem 0.6rem',
-                                                borderRadius: '6px',
-                                                background: 'var(--green-subtle)',
-                                                color: 'var(--green)',
-                                                fontSize: '0.75rem',
-                                                fontWeight: '700',
-                                              }}
-                                            >
-                                              View PDF ↗
-                                            </Link>
+                                            <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
+                                              Sent: {formatDateTime(log.sentAt)}
+                                            </div>
                                           </div>
                                         ))}
                                       </div>
                                     ) : (
-                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No certificates earned yet.</p>
+                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No retention emails sent to this candidate yet.</p>
                                     )}
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH 18 VARIATIONS */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH AUTO-SHUFFLING SMART RECOMMENDER */}
                                 <div
                                   style={{
                                     background: 'rgba(0, 229, 153, 0.08)',
@@ -847,20 +908,20 @@ export default function AnalyticsDashboardPage() {
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun 18-Variation Retention Engine (skillbun.tech)
+                                        📧 SkillBun Non-Repeating Retention Recommender Engine
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                        High-greed & high-conversion copywriting with auto-filled candidate data ({u.name}, {u.email}).
+                                        Remembers previously sent templates & automatically shuffles to the next unsent variation!
                                       </span>
                                     </div>
                                   </div>
 
-                                  {/* Smart Auto-Recommendation Banner */}
+                                  {/* Smart Non-Repeating Auto-Recommendation Banner */}
                                   <div
                                     style={{
                                       background: 'var(--surface-raised)',
                                       border: '1px solid var(--green)',
-                                      padding: '0.5rem 0.85rem',
+                                      padding: '0.6rem 0.85rem',
                                       borderRadius: '8px',
                                       marginBottom: '0.9rem',
                                       fontSize: '0.82rem',
@@ -872,8 +933,13 @@ export default function AnalyticsDashboardPage() {
                                     }}
                                   >
                                     <div>
-                                      ✨ <strong>Telemetry Best-Match Recommendation:</strong>{' '}
+                                      ✨ <strong>Smart Recommendation (Next Unsent):</strong>{' '}
                                       <span style={{ color: 'var(--green)', fontWeight: '800' }}>{recommended.label}</span>
+                                      {recommended.isRotated && (
+                                        <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.5rem', borderRadius: '10px', fontWeight: '700' }}>
+                                          🔄 Auto-Rotated ({recommended.alreadySentCount} sent)
+                                        </span>
+                                      )}
                                     </div>
                                     <button
                                       type="button"
@@ -889,7 +955,7 @@ export default function AnalyticsDashboardPage() {
                                         fontSize: '0.75rem',
                                       }}
                                     >
-                                      🎯 Apply Best Match
+                                      🎯 Apply Next Unsent
                                     </button>
                                   </div>
 
