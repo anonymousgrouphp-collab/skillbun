@@ -101,6 +101,7 @@ export default function AnalyticsDashboardPage() {
                   createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
                   lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null),
                   progress: [],
+                  quizAttempts: [],
                   certificates: uCerts,
                 };
               });
@@ -144,7 +145,7 @@ export default function AnalyticsDashboardPage() {
       return;
     }
 
-    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Certificates Count', 'Joined Date', 'Last Login Time'];
+    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Exam Attempts Count', 'Certificates Count', 'Joined Date', 'Last Login Time'];
     const rows = usersList.map((u) => [
       `"${u.uid}"`,
       `"${u.name.replace(/"/g, '""')}"`,
@@ -153,6 +154,7 @@ export default function AnalyticsDashboardPage() {
       `"${u.year.replace(/"/g, '""')}"`,
       `"${u.interest.replace(/"/g, '""')}"`,
       u.progress?.length || 0,
+      u.quizAttempts?.length || 0,
       u.certificates?.length || 0,
       `"${formatDateTime(u.createdAt)}"`,
       `"${formatDateTime(u.lastSignInTime)}"`,
@@ -185,7 +187,7 @@ export default function AnalyticsDashboardPage() {
         } catch (e) {}
       }
 
-      // 1. Call server API (passes email to delete Auth account + Firestore data)
+      // 1. Call server API
       await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
         method: 'DELETE',
         headers: {
@@ -328,7 +330,7 @@ export default function AnalyticsDashboardPage() {
             SkillBun Admin Database & Analytics
           </h1>
           <p style={{ color: 'var(--muted)', margin: 0 }}>
-            Real-time access to registered student profiles, last login timestamps, linked progress, and certificates.
+            Real-time access to registered student profiles, last login timestamps, exam attempts, and certificates.
           </p>
         </div>
 
@@ -489,7 +491,7 @@ export default function AnalyticsDashboardPage() {
           </div>
         </div>
 
-        {/* TAB 1: Registered Students Table with Prominent Delete Button */}
+        {/* TAB 1: Registered Students Table */}
         {activeTab === 'users' && (
           <div>
             {loading ? (
@@ -514,7 +516,7 @@ export default function AnalyticsDashboardPage() {
                       <th style={{ padding: '0.75rem 0.5rem' }}>Degree & Year</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
-                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Certs</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Exams</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
                       <th style={{ padding: '0.75rem 0.5rem', textAlign: 'center', width: '220px' }}>Actions & Controls</th>
                     </tr>
@@ -550,11 +552,11 @@ export default function AnalyticsDashboardPage() {
 
                           <td style={{ padding: '0.85rem 0.5rem' }}>
                             <div style={{ fontSize: '0.8rem', fontWeight: '700' }}>
-                              {u.progress?.length || 0} active
+                              {u.progress?.length || 0} roadmaps
                             </div>
-                            {u.certificates?.length > 0 && (
-                              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem' }}>
-                                🏆 {u.certificates.length} Certs
+                            {u.quizAttempts?.length > 0 && (
+                              <span style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem', display: 'inline-block', marginTop: '0.2rem' }}>
+                                📝 {u.quizAttempts.length} Exam Attempts
                               </span>
                             )}
                           </td>
@@ -642,7 +644,7 @@ export default function AnalyticsDashboardPage() {
                         </button>
                       </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
                         {/* Profile Details */}
                         <div>
                           <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
@@ -678,6 +680,34 @@ export default function AnalyticsDashboardPage() {
                             </ul>
                           ) : (
                             <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No active roadmap progress logged yet.</p>
+                          )}
+                        </div>
+
+                        {/* Exam Appearances & Quiz Attempts */}
+                        <div>
+                          <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: '#3b82f6', letterSpacing: '0.5px' }}>
+                            📝 Cert Exam Appearances ({u.quizAttempts?.length || 0})
+                          </h4>
+                          {u.quizAttempts?.length > 0 ? (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                              {u.quizAttempts.map((q, idx) => (
+                                <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.8rem' }}>
+                                  <div style={{ fontWeight: '700', color: 'var(--text)' }}>{q.slug}</div>
+                                  <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+                                    Appeared: <strong>{q.attemptsCount || 1} time(s)</strong>
+                                  </div>
+                                  {q.lastAttemptAt && (
+                                    <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
+                                      Last Attempt: {formatDateTime(q.lastAttemptAt)}
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>
+                              No cert exam attempts logged yet. (Exams unlock at 60% roadmap progress).
+                            </p>
                           )}
                         </div>
 
@@ -738,7 +768,7 @@ export default function AnalyticsDashboardPage() {
                             🗑️ Admin Action: Permanently Delete Student Account
                           </strong>
                           <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>
-                            Erases Firestore user profile, progress data, and Firebase Auth account ({u.email}). <strong>Frees email so student can create a brand new account.</strong>
+                            Erases Firestore user profile, progress data, exam attempts, and Firebase Auth account ({u.email}). <strong>Frees email so student can create a brand new account.</strong>
                           </span>
                         </div>
 
