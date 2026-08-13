@@ -95,8 +95,8 @@ export async function POST(request) {
     // Plain text version to pass spam filter checks
     const plainTextBody = `Hi ${studentName},\n\n${subject}\n\nVisit SkillBun at https://skillbun.tech to check your interactive tech career roadmaps, encrypted study guides, and verified certificates.\n\nTo manage notification preferences or unsubscribe: https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}\n\nSkillBun Platform • MSME Registered`;
 
-    // Delivery Confirmation Mechanism: Automatically CC harsh@skillbun.tech for all candidate dispatches!
-    const ccRecipients = (!isPreview && targetEmail.toLowerCase() !== ADMIN_CONFIRMATION_EMAIL)
+    // Delivery Confirmation Mechanism: Automatically BCC harsh@skillbun.tech for all candidate dispatches!
+    const bccRecipients = (!isPreview && targetEmail.toLowerCase() !== ADMIN_CONFIRMATION_EMAIL)
       ? ADMIN_CONFIRMATION_EMAIL
       : undefined;
 
@@ -104,7 +104,7 @@ export async function POST(request) {
     let smtpResponse = null;
     let errorDetail = null;
 
-    // Attempt to send email via Zoho SMTP / Nodemailer with Anti-Spam Headers & CC Confirmation
+    // Attempt to send email via Zoho SMTP / Nodemailer with Anti-Spam Headers & BCC Confirmation
     try {
       const transporter = getTransporter();
       const fromAddress = getPasswordResetFrom() || 'SkillBun Support <noreply@skillbun.tech>';
@@ -113,7 +113,7 @@ export async function POST(request) {
       smtpResponse = await transporter.sendMail({
         from: fromAddress,
         to: targetEmail,
-        cc: ccRecipients,
+        bcc: bccRecipients,
         subject: emailSubject,
         text: plainTextBody,
         html,
@@ -158,14 +158,14 @@ export async function POST(request) {
 
       const successMsg = isPreview
         ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
-        : `✅ Retention email successfully sent to ${targetEmail} (CC'd to harsh@skillbun.tech for delivery confirmation)!`;
+        : `✅ Retention email successfully sent to ${targetEmail} (BCC'd to harsh@skillbun.tech for delivery confirmation)!`;
 
       return NextResponse.json({
         success: true,
         message: successMsg,
         messageId: smtpResponse?.messageId || null,
         sentTemplateId: templateId,
-        cc: ccRecipients || null,
+        bcc: bccRecipients || null,
       });
     } else {
       return NextResponse.json({
