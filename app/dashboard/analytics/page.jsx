@@ -301,16 +301,18 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler
-  const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
+  // One-Click Retention Email Dispatcher Handler (Supports Standard Send & Force Override Send)
+  const handleSendRetentionEmail = async (targetUser, isPreview = false, forceOverride = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
-    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
+    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : forceOverride ? 'force' : 'send'}`;
 
     let confirmPrompt = '';
 
     if (isPreview) {
       confirmPrompt = `🧪 SEND SAMPLE PREVIEW CONFIRMATION 🧪\n\nSend a test preview copy of template "${templateId.toUpperCase()}" to harsh@skillbun.tech for inbox inspection?`;
+    } else if (forceOverride) {
+      confirmPrompt = `⚠️ FORCE SEND (OVERRIDE UNSUBSCRIBE) CONFIRMATION ⚠️\n\nCandidate "${targetUser.name}" (${targetUser.email}) has UNSUBSCRIBED from marketing updates.\n\nAre you sure you want to FORCE DISPATCH template "${templateId.toUpperCase()}" anyway?`;
     } else {
       confirmPrompt = `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
     }
@@ -351,6 +353,7 @@ export default function AnalyticsDashboardPage() {
           progressCount,
           degree: targetUser.degree,
           isPreview,
+          forceOverride,
           adminEmail: userEmail,
         }),
       });
@@ -368,7 +371,7 @@ export default function AnalyticsDashboardPage() {
           const updatedUsers = (prev.users || []).map((u) => {
             if (u.uid === targetUser.uid) {
               const currentHistory = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
-              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail }];
+              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail, forceOverride }];
               return { ...u, sentEmailHistory: updatedHistory };
             }
             return u;
@@ -667,18 +670,18 @@ export default function AnalyticsDashboardPage() {
                 )}
               </div>
             ) : (
-              <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+              <div style={{ overflowX: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
                   <thead>
                     <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Student / Email</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Email Status</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Degree & Year</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Target Interest</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Last Active / Login</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Roadmaps / Exams</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Sent Emails</th>
-                      <th style={{ padding: '0.75rem 0.6rem', textAlign: 'right', whiteSpace: 'nowrap', minWidth: '220px' }}>Actions & Controls</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Student / Email</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Email Status</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Degree & Year</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Exams</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Sent Emails</th>
+                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right', minWidth: '200px' }}>Actions & Controls</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -690,6 +693,7 @@ export default function AnalyticsDashboardPage() {
                       const currentTemplate = selectedTemplates[u.uid] || recommended.id;
                       const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
+                      const isForceLoading = sendingEmailKey === `${u.uid}-force`;
                       const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
 
                       return (
@@ -702,20 +706,20 @@ export default function AnalyticsDashboardPage() {
                               transition: 'background 0.2s ease',
                             }}
                           >
-                            <td style={{ padding: '0.85rem 0.6rem', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
                               <div style={{ fontWeight: '700', color: 'var(--text)' }}>{u.name}</div>
-                              <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{u.email}</div>
+                              <div style={{ fontSize: '0.78rem', color: 'var(--muted)', wordBreak: 'break-word' }}>{u.email}</div>
                             </td>
 
                             {/* Email Subscription Status Badge */}
-                            <td style={{ padding: '0.85rem 0.6rem', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
                               {u.isUnsubscribed ? (
                                 <span
                                   style={{
                                     background: 'rgba(239, 68, 68, 0.15)',
                                     color: '#ef4444',
                                     border: '1px solid #ef4444',
-                                    padding: '0.3rem 0.65rem',
+                                    padding: '0.25rem 0.65rem',
                                     borderRadius: '12px',
                                     fontWeight: '800',
                                     fontSize: '0.78rem',
@@ -735,7 +739,7 @@ export default function AnalyticsDashboardPage() {
                                     background: 'var(--green-subtle)',
                                     color: 'var(--green)',
                                     border: '1px solid var(--green)',
-                                    padding: '0.3rem 0.65rem',
+                                    padding: '0.25rem 0.65rem',
                                     borderRadius: '12px',
                                     fontWeight: '800',
                                     fontSize: '0.78rem',
@@ -751,25 +755,25 @@ export default function AnalyticsDashboardPage() {
                               )}
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.6rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem', color: 'var(--text)' }}>
                               <span style={{ fontWeight: '600' }}>{u.degree}</span>
                               {u.year && u.year !== 'N/A' && <span style={{ fontSize: '0.78rem', color: 'var(--muted)', display: 'block' }}>Year {u.year}</span>}
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.6rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>
-                              <span style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.55rem', borderRadius: '6px', fontSize: '0.8rem', display: 'inline-block', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem', color: 'var(--text)' }}>
+                              <span style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', display: 'inline-block' }}>
                                 {u.interest}
                               </span>
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.6rem', whiteSpace: 'nowrap' }}>
-                              <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
+                              <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)' }}>
                                 🕒 {formatDateTime(u.lastSignInTime)}
                               </div>
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.6rem', whiteSpace: 'nowrap' }}>
-                              <div style={{ fontSize: '0.8rem', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
+                              <div style={{ fontSize: '0.8rem', fontWeight: '700' }}>
                                 {u.progress?.length || 0} roadmaps
                               </div>
                               {u.quizAttempts?.length > 0 && (
@@ -779,13 +783,13 @@ export default function AnalyticsDashboardPage() {
                               )}
                             </td>
 
-                            <td style={{ padding: '0.85rem 0.6rem', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
                               <span
                                 style={{
                                   background: sentLogs.length > 0 ? 'var(--green-subtle)' : 'var(--surface-raised)',
                                   color: sentLogs.length > 0 ? 'var(--green)' : 'var(--muted)',
                                   border: `1px solid ${sentLogs.length > 0 ? 'var(--green)' : 'var(--border)'}`,
-                                  padding: '0.3rem 0.65rem',
+                                  padding: '0.25rem 0.65rem',
                                   borderRadius: '12px',
                                   fontWeight: '800',
                                   fontSize: '0.78rem',
@@ -801,8 +805,8 @@ export default function AnalyticsDashboardPage() {
                             </td>
 
                             {/* Action Buttons */}
-                            <td style={{ padding: '0.85rem 0.6rem', textAlign: 'right', whiteSpace: 'nowrap' }}>
-                              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                            <td style={{ padding: '0.85rem 0.5rem', textAlign: 'right' }}>
+                              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', alignItems: 'center' }}>
                                 <button
                                   type="button"
                                   onClick={() => setExpandedUserUid(isExpanded ? null : u.uid)}
@@ -947,7 +951,7 @@ export default function AnalyticsDashboardPage() {
                                         {sentLogs.map((log, idx) => (
                                           <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.78rem' }}>
                                             <div style={{ fontWeight: '700', color: 'var(--green)' }}>
-                                              ✔ {log.templateId}
+                                              ✔ {log.templateId} {log.forceOverride ? '(FORCE OVERRIDDEN)' : ''}
                                             </div>
                                             <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
                                               Sent: {formatDateTime(log.sentAt)}
@@ -961,7 +965,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH UNSUBSCRIBED COMPLIANCE RULES */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH UNSUBSCRIBED STATUS & FORCE OVERRIDE CONTROLS */}
                                 <div
                                   style={{
                                     background: u.isUnsubscribed ? 'rgba(239, 68, 68, 0.08)' : 'rgba(0, 229, 153, 0.08)',
@@ -974,7 +978,7 @@ export default function AnalyticsDashboardPage() {
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun Retention Email Engine
+                                        📧 SkillBun Retention Email Engine & Subscription Control
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
                                         Status:{' '}
@@ -1088,10 +1092,10 @@ export default function AnalyticsDashboardPage() {
                                     {/* Action 1: Send Sample Test Email to Admin */}
                                     <button
                                       type="button"
-                                      disabled={isPreviewLoading || isSendLoading}
-                                      onClick={() => handleSendRetentionEmail(u, true)}
+                                      disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                      onClick={() => handleSendRetentionEmail(u, true, false)}
                                       style={{
-                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
+                                        cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
                                         padding: '0.65rem 1.1rem',
                                         borderRadius: '10px',
                                         background: 'var(--surface-raised)',
@@ -1107,34 +1111,14 @@ export default function AnalyticsDashboardPage() {
                                       {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me'}
                                     </button>
 
-                                    {/* Action 2: Standard Send to Student (Disabled if Unsubscribed) */}
-                                    {u.isUnsubscribed ? (
+                                    {/* Action 2: Standard Send to Student (Respects Unsubscribe) */}
+                                    {!u.isUnsubscribed && (
                                       <button
                                         type="button"
-                                        disabled
+                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                        onClick={() => handleSendRetentionEmail(u, false, false)}
                                         style={{
-                                          cursor: 'not-allowed',
-                                          padding: '0.65rem 1.3rem',
-                                          borderRadius: '10px',
-                                          background: 'var(--surface-raised)',
-                                          color: '#ef4444',
-                                          border: '1px solid #ef4444',
-                                          fontWeight: '800',
-                                          fontSize: '0.85rem',
-                                          whiteSpace: 'nowrap',
-                                          opacity: 0.7,
-                                        }}
-                                        title="Candidate has unsubscribed from marketing emails"
-                                      >
-                                        🔕 Candidate Unsubscribed
-                                      </button>
-                                    ) : (
-                                      <button
-                                        type="button"
-                                        disabled={isPreviewLoading || isSendLoading}
-                                        onClick={() => handleSendRetentionEmail(u, false)}
-                                        style={{
-                                          cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
+                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
                                           padding: '0.65rem 1.3rem',
                                           borderRadius: '10px',
                                           background: 'var(--green)',
@@ -1148,6 +1132,31 @@ export default function AnalyticsDashboardPage() {
                                         }}
                                       >
                                         {isSendLoading ? '⏳ Sending Email...' : `🚀 Send Auto-Filled Email to ${u.name}`}
+                                      </button>
+                                    )}
+
+                                    {/* Action 3: Special Force Send Button (Overrides Unsubscribe Opt-Out!) */}
+                                    {u.isUnsubscribed && (
+                                      <button
+                                        type="button"
+                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                        onClick={() => handleSendRetentionEmail(u, false, true)}
+                                        style={{
+                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
+                                          padding: '0.65rem 1.3rem',
+                                          borderRadius: '10px',
+                                          background: '#ef4444',
+                                          color: '#ffffff',
+                                          border: 'none',
+                                          fontWeight: '800',
+                                          fontSize: '0.85rem',
+                                          whiteSpace: 'nowrap',
+                                          boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)',
+                                          opacity: isForceLoading ? 0.6 : 1,
+                                        }}
+                                        title="Overrides candidate's unsubscribe preference and dispatches the email anyway"
+                                      >
+                                        {isForceLoading ? '⚡ Force Sending...' : '⚡ Force Send (Override Unsubscribe)'}
                                       </button>
                                     )}
                                   </div>
@@ -1230,34 +1239,34 @@ export default function AnalyticsDashboardPage() {
                 )}
               </div>
             ) : (
-              <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+              <div style={{ overflowX: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
                   <thead>
                     <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Student / Recipient</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Roadmap Track</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Exam Score</th>
-                      <th style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>Certificate ID</th>
-                      <th style={{ padding: '0.75rem 0.6rem', textAlign: 'right', whiteSpace: 'nowrap' }}>Verification</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Student / Recipient</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmap Track</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Exam Score</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Certificate ID</th>
+                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Verification</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredCerts.map((cert) => (
                       <tr key={cert.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                        <td style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>
+                        <td style={{ padding: '0.75rem 0.5rem' }}>
                           <div style={{ fontWeight: '700', color: 'var(--text)' }}>{cert.name}</div>
                           {cert.email && (
                             <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{cert.email}</div>
                           )}
                         </td>
-                        <td style={{ padding: '0.75rem 0.6rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>{cert.roadmapTitle}</td>
-                        <td style={{ padding: '0.75rem 0.6rem', color: 'var(--green)', fontWeight: '800', whiteSpace: 'nowrap' }}>{cert.score}%</td>
-                        <td style={{ padding: '0.75rem 0.6rem', whiteSpace: 'nowrap' }}>
+                        <td style={{ padding: '0.75rem 0.5rem', color: 'var(--text)' }}>{cert.roadmapTitle}</td>
+                        <td style={{ padding: '0.75rem 0.5rem', color: 'var(--green)', fontWeight: '800' }}>{cert.score}%</td>
+                        <td style={{ padding: '0.75rem 0.5rem' }}>
                           <code style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--accent)' }}>
                             {cert.id}
                           </code>
                         </td>
-                        <td style={{ padding: '0.75rem 0.6rem', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                        <td style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>
                           <Link
                             href={`/certificate/${cert.id}`}
                             target="_blank"
