@@ -21,6 +21,7 @@ export async function POST(request) {
       progressCount = 10,
       degree = 'B.Tech - Computer Science',
       isPreview = false,
+      forceOverride = false,
       adminEmail = '',
     } = body;
 
@@ -64,15 +65,15 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid recipient email address' }, { status: 400 });
     }
 
-    // Check if recipient has unsubscribed from marketing emails (Unless it's a security alert)
-    if (!isPreview && !templateId.startsWith('transactional_alert')) {
+    // Check if recipient has unsubscribed from marketing emails (Unless forceOverride is true or it's a security alert)
+    if (!isPreview && !forceOverride && !templateId.startsWith('transactional_alert')) {
       try {
         const db = getFirebaseAdminFirestore();
         if (db) {
           const docRef = await db.collection('unsubscribes').doc(targetEmail.toLowerCase()).get();
           if (docRef.exists) {
             return NextResponse.json({
-              error: `Recipient (${targetEmail}) has unsubscribed from SkillBun marketing & retention emails. Message dispatch canceled for compliance.`,
+              error: `Recipient (${targetEmail}) has unsubscribed from SkillBun marketing emails. To force dispatch anyway, use the "⚡ Force Send (Override Unsubscribe)" control.`,
               isUnsubscribed: true,
             }, { status: 400 });
           }
@@ -146,6 +147,7 @@ export async function POST(request) {
                 subject,
                 sentAt: new Date().toISOString(),
                 adminEmail: authUserEmail || 'harsh@skillbun.tech',
+                forceOverride: Boolean(forceOverride),
               };
               await userDoc.ref.set({
                 sentEmailHistory: [...existingLogs, newLog],
@@ -159,7 +161,7 @@ export async function POST(request) {
 
       const successMsg = isPreview
         ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
-        : `✅ Retention email successfully sent to ${targetEmail} (BCC'd to harsh@skillbun.tech for delivery confirmation)!`;
+        : `✅ Retention email successfully sent to ${targetEmail}${forceOverride ? ' (FORCE OVERRIDDEN)' : ''} (BCC'd to harsh@skillbun.tech for delivery confirmation)!`;
 
       return NextResponse.json({
         success: true,
