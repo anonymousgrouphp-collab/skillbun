@@ -6,6 +6,24 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 
+function formatDateTime(isoString) {
+  if (!isoString) return 'N/A';
+  try {
+    const d = new Date(isoString);
+    if (isNaN(d.getTime())) return 'N/A';
+    return d.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  } catch (e) {
+    return 'N/A';
+  }
+}
+
 export default function AnalyticsDashboardPage() {
   const { user, profile, authLoading } = useAuth();
   const [data, setData] = useState(null);
@@ -81,6 +99,7 @@ export default function AnalyticsDashboardPage() {
                   interest: uData.interest || uData.interest_area || 'N/A',
                   providers: Array.isArray(uData.providers) ? uData.providers : [],
                   createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
+                  lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null),
                   progress: [],
                   certificates: uCerts,
                 };
@@ -125,7 +144,7 @@ export default function AnalyticsDashboardPage() {
       return;
     }
 
-    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Certificates Count', 'Joined Date'];
+    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Certificates Count', 'Joined Date', 'Last Login Time'];
     const rows = usersList.map((u) => [
       `"${u.uid}"`,
       `"${u.name.replace(/"/g, '""')}"`,
@@ -135,7 +154,8 @@ export default function AnalyticsDashboardPage() {
       `"${u.interest.replace(/"/g, '""')}"`,
       u.progress?.length || 0,
       u.certificates?.length || 0,
-      `"${u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}"`,
+      `"${formatDateTime(u.createdAt)}"`,
+      `"${formatDateTime(u.lastSignInTime)}"`,
     ]);
 
     const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
@@ -151,7 +171,7 @@ export default function AnalyticsDashboardPage() {
 
   // Delete User Handler
   const handleDeleteUser = async (targetUser) => {
-    const confirmMsg = `Are you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will erase their profile document, active progress, and account data from Firestore. This action cannot be undone.`;
+    const confirmMsg = `Are you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will erase their profile document, active progress, and account data. This action cannot be undone.`;
     if (!window.confirm(confirmMsg)) return;
 
     setDeletingUid(targetUser.uid);
@@ -166,7 +186,7 @@ export default function AnalyticsDashboardPage() {
       }
 
       // 1. Call server API
-      const res = await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}`, {
+      await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -305,7 +325,7 @@ export default function AnalyticsDashboardPage() {
             SkillBun Admin Database & Analytics
           </h1>
           <p style={{ color: 'var(--muted)', margin: 0 }}>
-            Real-time access to registered student profiles, linked roadmap progress, and verifiable certificates.
+            Real-time access to registered student profiles, last login timestamps, linked progress, and certificates.
           </p>
         </div>
 
@@ -490,8 +510,8 @@ export default function AnalyticsDashboardPage() {
                       <th style={{ padding: '0.75rem 0.5rem' }}>Student / Email</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Degree & Year</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
-                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps Active</th>
-                      <th style={{ padding: '0.75rem 0.5rem' }}>Certificates</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Certs</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
                       <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Actions</th>
                     </tr>
@@ -508,7 +528,7 @@ export default function AnalyticsDashboardPage() {
                             <div
                               style={{
                                 display: 'grid',
-                                gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1.2fr 1.2fr',
+                                gridTemplateColumns: '2fr 1.2fr 1.4fr 1.6fr 1.2fr 1.2fr 1.2fr',
                                 padding: '0.85rem 0.5rem',
                                 alignItems: 'center',
                                 background: isExpanded ? 'var(--surface-raised)' : 'transparent',
@@ -532,24 +552,26 @@ export default function AnalyticsDashboardPage() {
                                 </span>
                               </div>
 
+                              {/* Last Active / Login Time Column */}
                               <div>
-                                <span style={{ fontWeight: '700', color: 'var(--green)' }}>
-                                  {u.progress?.length || 0} active
-                                </span>
+                                <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)' }}>
+                                  🕒 {formatDateTime(u.lastSignInTime)}
+                                </div>
                               </div>
 
                               <div>
-                                {u.certificates?.length > 0 ? (
-                                  <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.2rem 0.6rem', borderRadius: '6px', fontWeight: '800', fontSize: '0.78rem' }}>
+                                <div style={{ fontSize: '0.8rem', fontWeight: '700' }}>
+                                  {u.progress?.length || 0} active
+                                </div>
+                                {u.certificates?.length > 0 && (
+                                  <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem' }}>
                                     🏆 {u.certificates.length} Certs
                                   </span>
-                                ) : (
-                                  <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>0</span>
                                 )}
                               </div>
 
                               <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                {u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}
+                                {formatDateTime(u.createdAt)}
                               </div>
 
                               <div style={{ textAlign: 'right', display: 'flex', gap: '0.4rem', justifyContent: 'flex-end' }}>
@@ -613,7 +635,7 @@ export default function AnalyticsDashboardPage() {
                                   {/* Profile Details */}
                                   <div>
                                     <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      👤 Account Details
+                                      👤 Account & Activity Timestamps
                                     </h4>
                                     <div style={{ fontSize: '0.82rem', lineHeight: '1.7', color: 'var(--text)' }}>
                                       <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
@@ -623,6 +645,10 @@ export default function AnalyticsDashboardPage() {
                                       <div><strong>Academic Year:</strong> {u.year}</div>
                                       <div><strong>Primary Interest:</strong> {u.interest}</div>
                                       <div><strong>Auth Providers:</strong> {u.providers?.join(', ') || 'Password'}</div>
+                                      <div style={{ marginTop: '0.4rem', color: 'var(--green)', fontWeight: '700' }}>
+                                        <strong>🕒 Last Login / Active:</strong> {formatDateTime(u.lastSignInTime)}
+                                      </div>
+                                      <div><strong>📅 Joined Date:</strong> {formatDateTime(u.createdAt)}</div>
                                     </div>
                                   </div>
 

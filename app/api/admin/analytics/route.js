@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import fs from 'fs';
 import path from 'path';
 
@@ -34,11 +34,36 @@ export async function GET() {
 
     let usersList = [];
     let certsList = [];
+    let authUsersMap = {};
 
+    // 1. Fetch Firebase Auth Users metadata (lastSignInTime, creationTime)
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (adminAuth) {
+        const listUsersResult = await adminAuth.listUsers(1000);
+        listUsersResult.users.forEach((userRecord) => {
+          authUsersMap[userRecord.uid] = {
+            lastSignInTime: userRecord.metadata?.lastSignInTime
+              ? new Date(userRecord.metadata.lastSignInTime).toISOString()
+              : null,
+            creationTime: userRecord.metadata?.creationTime
+              ? new Date(userRecord.metadata.creationTime).toISOString()
+              : null,
+            email: userRecord.email || '',
+            displayName: userRecord.displayName || '',
+            providers: userRecord.providerData?.map((p) => p.providerId) || [],
+          };
+        });
+      }
+    } catch (authErr) {
+      console.warn('[Admin Analytics API] Firebase Auth listUsers warning:', authErr.message);
+    }
+
+    // 2. Fetch Firestore Users & Certificates
     try {
       const db = getFirebaseAdminFirestore();
       if (db) {
-        // Fetch all real certificates from Firestore
+        // Fetch all real certificates
         const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').get();
         certsList = certsSnap.docs.map((doc) => {
           const data = doc.data();
@@ -55,12 +80,16 @@ export async function GET() {
           };
         });
 
-        // Fetch all real users from Firestore
+        // Fetch all real user documents from Firestore
         const usersSnap = await db.collection('users').get();
-        
+        const processedUids = new Set();
+
         for (const userDoc of usersSnap.docs) {
           const uData = userDoc.data();
           const uid = userDoc.id;
+          processedUids.add(uid);
+
+          const authMeta = authUsersMap[uid] || {};
 
           // Fetch user's roadmap progress subcollection
           let progressList = [];
@@ -83,17 +112,42 @@ export async function GET() {
 
           usersList.push({
             uid,
-            name: uData.name || uData.displayName || uData.fullName || 'Registered Student',
-            email: uData.email || 'N/A',
+            name: uData.name || uData.displayName || uData.fullName || authMeta.displayName || 'Registered Student',
+            email: uData.email || authMeta.email || 'N/A',
             degree: uData.degree || 'N/A',
             year: uData.year || uData.current_year || 'N/A',
             interest: uData.interest || uData.interest_area || 'N/A',
-            providers: Array.isArray(uData.providers) ? uData.providers : [],
-            createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
+            providers: Array.isArray(uData.providers) && uData.providers.length > 0 ? uData.providers : (authMeta.providers || []),
+            createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : (authMeta.creationTime || null),
+            lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (authMeta.lastSignInTime || uData.createdAt || null),
             progress: progressList,
             certificates: userCerts,
           });
         }
+
+        // Include any Auth users who haven't created a Firestore profile document yet
+        Object.keys(authUsersMap).forEach((authUid) => {
+          if (!processedUids.has(authUid)) {
+            const authMeta = authUsersMap[authUid];
+            const userCerts = certsList.filter(
+              (c) => c.uid === authUid || (c.email && authMeta.email && c.email.toLowerCase() === authMeta.email.toLowerCase())
+            );
+
+            usersList.push({
+              uid: authUid,
+              name: authMeta.displayName || 'Auth User',
+              email: authMeta.email || 'N/A',
+              degree: 'N/A',
+              year: 'N/A',
+              interest: 'N/A',
+              providers: authMeta.providers || [],
+              createdAt: authMeta.creationTime || null,
+              lastSignInTime: authMeta.lastSignInTime || authMeta.creationTime || null,
+              progress: [],
+              certificates: userCerts,
+            });
+          }
+        });
       }
     } catch (err) {
       console.warn('[Admin Analytics API] Firestore server fetch:', err.message);
