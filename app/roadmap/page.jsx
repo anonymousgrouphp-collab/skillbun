@@ -27,9 +27,37 @@ const featuredSlugs = new Set([
   'flutter_developer',
 ]);
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+
 export const metadata = {
-  title: 'Roadmaps - SkillBun',
-  description: 'Browse SkillBun career roadmaps, continue saved skill trees, and explore new learning paths.',
+  title: '100+ Tech Career Roadmaps & Learning Paths | SkillBun',
+  description: 'Explore 100+ step-by-step tech career roadmaps for AI/ML, Fullstack, Backend, DevOps, Cybersecurity, Android, iOS, and Data Science designed for tech students.',
+  keywords: [
+    'Tech Career Roadmaps',
+    'Developer Learning Paths',
+    'Fullstack Roadmap',
+    'AI ML Roadmap',
+    'DevOps Roadmap',
+    'BCA Career Paths',
+    'BTech Skill Trees',
+    'SkillBun Roadmaps',
+  ],
+  alternates: {
+    canonical: `${siteUrl}/roadmap`,
+  },
+  openGraph: {
+    title: '100+ Tech Career Roadmaps & Learning Paths | SkillBun',
+    description: 'Explore 100+ step-by-step tech career roadmaps for AI/ML, Fullstack, Backend, DevOps, Cybersecurity, and Mobile Development.',
+    url: `${siteUrl}/roadmap`,
+    siteName: 'SkillBun',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'SkillBun Roadmaps' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '100+ Tech Career Roadmaps | SkillBun',
+    description: 'Step-by-step tech career roadmaps, study guides, and verified certifications.',
+    images: ['/logo.png'],
+  },
 };
 
 function titleFromSlug(slug) {

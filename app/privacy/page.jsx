@@ -1,6 +1,17 @@
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+
 export const metadata = {
   title: 'Privacy Policy – SkillBun',
-  description: 'SkillBun privacy policy — how we handle your data.',
+  description: 'SkillBun Privacy Policy — details on how we collect, protect, and handle your data.',
+  alternates: {
+    canonical: `${siteUrl}/privacy`,
+  },
+  openGraph: {
+    title: 'Privacy Policy – SkillBun',
+    description: 'SkillBun Privacy Policy — details on how we collect, protect, and handle your data.',
+    url: `${siteUrl}/privacy`,
+    siteName: 'SkillBun',
+  },
 };
 
 export default function PrivacyPage() {

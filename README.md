@@ -3,9 +3,17 @@
 [![Next.js](https://img.shields.io/badge/Framework-Next.js%2016-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/Library-React%2019-blue?style=for-the-badge&logo=react)](https://react.dev/)
 [![Firebase](https://img.shields.io/badge/Database-Firebase%2012-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![Access](https://img.shields.io/badge/Access-100%25%20Free%20Forever-brightgreen?style=for-the-badge)](https://skillbun.com)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-SkillBun is an advanced, high-performance career guidance and interactive learning ecosystem designed for Indian tech students. Built using Next.js App Router, React 19, and vanilla CSS, the platform bridges the gap between academic education and industry requirements through AI-driven personalization, structured learning roadmaps, and robust skill certification.
+SkillBun is an advanced, high-performance, **100% free** career guidance and interactive learning ecosystem designed specifically for Indian tech students pursuing BCA, BSc (CS/IT/Data Science), B.Tech/BE, and MCA degrees. Built using Next.js 16 App Router, React 19, and vanilla CSS, the platform bridges the gap between academic education and industry demands through AI-driven personalization, 100+ structured learning roadmaps, encrypted study guides, and verified skill certification.
+
+---
+
+## 🎁 100% Free Access Policy
+- **Zero Cost for All Features**: All 100+ career roadmaps, adaptive AI quizzes, Bun-Bot counsellor chats, encrypted study guides, and verifiable PDF digital certificates are **100% free forever**.
+- **No Paywalls or Hidden Subscriptions**: No credit card registration required.
+- **Publicly Verifiable Digital Certificates**: Issued at zero cost upon passing proctored roadmap assessments.
 
 ---
 
@@ -16,8 +24,8 @@ SkillBun is an advanced, high-performance career guidance and interactive learni
 - **Abuse Prevention**: Runs Cloudflare Turnstile verification with short-lived, signed human-proof tokens to prevent automated script usage.
 - **Intelligent Recommendations**: Maps quiz scores and answers directly to native career roadmap pages.
 
-### 🗺️ Dynamic Interactive Roadmaps
-- **100 Curated Paths**: Cover Web Development, DevOps, AI/ML, Cybersecurity, Game Dev, System Design, and more.
+### 🗺️ 100+ Dynamic Interactive Roadmaps
+- **100 Curated Paths**: Cover Web Development (Fullstack, Frontend, Backend, Next.js), AI/ML (AI Research, MLOps, LLMs), Cloud & DevOps (AWS, Azure, GCP, Kubernetes, SRE), Cybersecurity (Pen Testing, SOC Analyst, DFIR), Mobile (Android Kotlin, iOS Swift, Flutter, React Native), Systems Programming (C/C++, Rust, Embedded IoT), Data Engineering, Game Development, and more.
 - **Prerequisite Tree Structure**: Features core root nodes branching into child skills, unlocking progressively based on completed milestones.
 - **Unified Normalization**: Supports tree-based and stage-based data representations, auto-normalizing them at runtime.
 - **Interrelation System**: Intelligently recommends the "Next Logical Roadmap" at the bottom of each tree to guide students through lifelong learning.
@@ -25,7 +33,7 @@ SkillBun is an advanced, high-performance career guidance and interactive learni
 ### 📚 Study Guides & Resource Library
 - **3,335 Comprehensive Guides**: Rich markdown-based study materials embedded directly into roadmap nodes.
 - **Verified Video Playlists**: Links to curated YouTube resources from 100+ trusted channels.
-- **Zero Broken Links**: Integrates a scanned verification registry (`verified_videos.json`) of 1,607 active URLs, replacing hallucinated links with real content.
+- **Zero Broken Links**: Integrates a scanned verification registry (`verified_videos.json`) of active URLs, replacing broken or hallucinated links with real content.
 - **Slide-out Study Drawer**: Theme-aware responsive UI panel supporting markdown parsing, checklist state persistence, and direct AI counsellor assistance.
 
 ### 🤖 Bun-Bot: AI Career Counsellor
@@ -41,9 +49,13 @@ SkillBun is an advanced, high-performance career guidance and interactive learni
   - Embeds LLM-refusal watermarks (*"CONFIDENTIAL ACADEMIC CERTIFICATION EXAM... REPORT CODE: SB-EXAM-PROCTOR"*).
 - **Canva Template Integration**: Generates verified certificate PDF/Print files aligned with a Canva-designed template using precise container queries.
 - **One-Page Print Constraints**: Custom CSS media queries guarantee certificates print on exactly one page without vertical spill.
-- **LinkedIn Sharing**:
-  - **Add to Profile**: Automates LinkedIn's certification addition form with pre-filled ID, issue dates, and verification URLs.
-  - **Share on Feed**: Features an interactive customization modal to preview post content, tag `@SkillBun`, and copy template descriptions to clipboard.
+- **LinkedIn Sharing**: Automates LinkedIn's certification addition form with pre-filled ID, issue dates, and verification URLs.
+
+### 🔍 Generative Engine Optimization (GEO) & Search Infrastructure
+- **Dynamic XML Sitemap (`app/sitemap.js`)**: Dynamically indexes core pages and all 100 roadmap & certification paths.
+- **Robots & AI Search Engine Rules (`app/robots.js`)**: Grants explicit crawling permissions to search engines and AI search bots (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, etc.).
+- **AI Search Documentation (`public/llms.txt` & `public/llms-full.txt`)**: Machine-readable markdown overview used by Perplexity, ChatGPT Search, Gemini, and Claude.
+- **Schema.org Structured Data**: Injects `EducationalOrganization`, `WebSite` (with `SearchAction`), `FAQPage`, and `Course` JSON-LD schemas into `<head>` for rich search cards and knowledge graphs.
 
 ### 🔒 Enterprise-Grade Security
 - **SkillBun Vault (SBV1)**: 5-layer encryption contract protecting study guides (HKDF key derivation, XOR pepper scramble, AES-256-GCM, SHA-256 integrity checks, and SHA-256 path obfuscation).
@@ -62,6 +74,7 @@ SkillBun is an advanced, high-performance career guidance and interactive learni
 | **AI Integration** | Google Gemini API | Powers the adaptive quiz engine and Bun-Bot chat |
 | **Protection** | Cloudflare Turnstile | Optional bot protection with signed human-proof tokens |
 | **Encryption** | SkillBun Vault (SBV1) | Proprietary security system for premium markdown content |
+| **SEO & GEO** | Next.js App Router | Dynamic sitemaps, robots.txt, JSON-LD, and `/llms.txt` standard |
 
 ---
 
@@ -86,10 +99,10 @@ npm run build
 npm run start
 ```
 
-*Note: For Windows PowerShell environments blocking script execution, run scripts using `.cmd` explicitly:*
+*Note: For Windows PowerShell environments blocking script execution, run scripts using `cmd /c` explicitly:*
 ```powershell
-npm.cmd run dev
-npm.cmd run build
+cmd /c npm run dev
+cmd /c npm run build
 ```
 
 ---
@@ -184,8 +197,6 @@ service cloud.firestore {
 | `/api/human/verify` | `POST` | Validates Turnstile captcha and issues signed tokens | No |
 | `/api/gemini` | `POST` | Proxies prompts to Google Gemini under rate limits | Yes |
 | `/api/docs/[slug]/[topicId]` | `GET` | Decrypts and serves SkillBun Vault (SBV1) study guides | Yes (Firebase ID Token) |
-
-
 
 ---
 
