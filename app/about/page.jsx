@@ -53,7 +53,7 @@ export default function AboutPage() {
 
       <h2>Our Technology & Ethics</h2>
       <p>
-        We believe in transparent, secure infrastructure. SkillBun leverages advanced LLMs (Google Gemini) strictly for personalized guidance, orchestrated through robust validation pipelines.
+        We believe in transparent, secure infrastructure. SkillBun leverages advanced open-access LLMs and native intelligence engines strictly for personalized guidance, orchestrated through robust validation pipelines.
         We enforce rigorous technical safeguards including rate limiting, human-verification controls (Cloudflare Turnstile), and secure data isolation. Profile and roadmap-progress data are stored in Cloud Firestore with Firebase security rules that restrict each user to their own documents.
       </p>
 
