@@ -37,7 +37,7 @@ export function redirectToProfileSetup(destination) {
 export function loadProfile(state) {
   const { name, degree, year } = getStoredProfile();
   if (!degree || !year) {
-    redirectToProfileSetup('counsellor.html');
+    redirectToProfileSetup('counsellor');
     return false;
   }
 

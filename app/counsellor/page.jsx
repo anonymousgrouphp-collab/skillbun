@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../components/AuthProvider';
 
 export default function CounsellorPage() {
@@ -113,16 +114,16 @@ export default function CounsellorPage() {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/></svg>
                 </span> Fast Access
               </h4>
-              <a href="/dashboard" className="sidebar-link">
+              <Link href="/dashboard" className="sidebar-link">
                 <span className="link-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                 </span> Dashboard
-              </a>
-              <a href="/quiz" className="sidebar-link">
+              </Link>
+              <Link href="/quiz" className="sidebar-link">
                 <span className="link-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                 </span> Retake Career Quiz
-              </a>
+              </Link>
             </div>
           </aside>
 
@@ -135,12 +136,12 @@ export default function CounsellorPage() {
                 <strong id="mobileLimitCount">100/100</strong>
               </div>
               <div className="mobile-bar-actions">
-                <a href="/dashboard" className="mobile-icon-link" title="Dashboard">
+                <Link href="/dashboard" className="mobile-icon-link" title="Dashboard">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-                </a>
-                <a href="/quiz" className="mobile-icon-link" title="Retake Quiz">
+                </Link>
+                <Link href="/quiz" className="mobile-icon-link" title="Retake Quiz">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -231,7 +232,7 @@ export default function CounsellorPage() {
 
               <div className="chat-input-area">
                 <div className="chat-input-container">
-                  <textarea id="chatInput" className="chat-input" placeholder="Ask BunBot anything about tech careers, roadmaps, salaries..." rows={1}></textarea>
+                  <textarea id="chatInput" className="chat-input" placeholder="Ask BunBot anything about tech careers, roadmaps, salaries..." rows={1} aria-label="Chat input"></textarea>
                   <div className="chat-input-hint">Press <span>Enter ↵</span> to send</div>
                 </div>
                 <button className="chat-send-btn" id="sendBtn" title="Send message">

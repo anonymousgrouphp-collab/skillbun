@@ -253,7 +253,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
       appendStreamingMessage(state, 'bot', botResponse, () => {
         const followUps = getFollowUpSuggestions(text, botResponse);
         const headerTitle = getEl('suggestionsTitle');
-        if (headerTitle) headerTitle.textContent = '💡 Suggested Follow-ups';
+        if (headerTitle) headerTitle.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> Suggested Follow-ups`;
         renderSuggestionChips(followUps, (chipText) => {
           const inputEl = getEl('chatInput');
           if (inputEl) {
@@ -427,7 +427,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
 
     const initialChips = getPersonalizedInitialChips(state.userProfile);
     const headerTitle = getEl('suggestionsTitle');
-    if (headerTitle) headerTitle.textContent = '✨ Suggested Questions';
+    if (headerTitle) headerTitle.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> Suggested Questions`;
     renderSuggestionChips(initialChips, handleChipSelection);
 
     const refreshBtn = getEl('refreshSuggestionsBtn');
@@ -446,7 +446,7 @@ Do not output raw JSON format. Provide standard conversational markdown text onl
         container.innerHTML = '';
         state.conversationHistory = [];
         const freshChips = getPersonalizedInitialChips(state.userProfile);
-        if (headerTitle) headerTitle.textContent = '✨ Suggested Questions';
+        if (headerTitle) headerTitle.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 21l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> Suggested Questions`;
         renderSuggestionChips(freshChips, handleChipSelection);
       }, { signal: state.signal });
     }
