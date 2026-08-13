@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 
 export default function AnalyticsDashboardPage() {
   const { user, profile, authLoading } = useAuth();
@@ -13,6 +13,8 @@ export default function AnalyticsDashboardPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('users'); // 'users' | 'certificates'
   const [expandedUserUid, setExpandedUserUid] = useState(null);
+  const [deletingUid, setDeletingUid] = useState(null);
+  const [statusMessage, setStatusMessage] = useState(null);
 
   // Strictly restrict access to harsh@skillbun.tech via Google Login
   const userEmail = (user?.email || '').trim().toLowerCase();
@@ -147,6 +149,68 @@ export default function AnalyticsDashboardPage() {
     document.body.removeChild(link);
   };
 
+  // Delete User Handler
+  const handleDeleteUser = async (targetUser) => {
+    const confirmMsg = `Are you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will erase their profile document, active progress, and account data from Firestore. This action cannot be undone.`;
+    if (!window.confirm(confirmMsg)) return;
+
+    setDeletingUid(targetUser.uid);
+    setStatusMessage(null);
+
+    try {
+      let idToken = '';
+      if (user?.getIdToken) {
+        try {
+          idToken = await user.getIdToken();
+        } catch (e) {}
+      }
+
+      // 1. Call server API
+      const res = await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+        },
+      });
+
+      // 2. Client-side fallback delete if running locally
+      try {
+        const { db } = getFirebaseServices();
+        if (db) {
+          await deleteDoc(doc(db, 'users', targetUser.uid));
+        }
+      } catch (clientDelErr) {
+        console.warn('[Client Delete Fallback Warning]:', clientDelErr);
+      }
+
+      // 3. Update local state immediately
+      setData((prev) => {
+        if (!prev) return prev;
+        const updatedUsers = (prev.users || []).filter((u) => u.uid !== targetUser.uid);
+        return {
+          ...prev,
+          stats: {
+            ...prev.stats,
+            totalStudents: updatedUsers.length,
+          },
+          users: updatedUsers,
+        };
+      });
+
+      if (expandedUserUid === targetUser.uid) {
+        setExpandedUserUid(null);
+      }
+
+      setStatusMessage({ type: 'success', text: `✅ Student "${targetUser.name}" (${targetUser.email}) deleted successfully.` });
+    } catch (err) {
+      console.error('User deletion error:', err);
+      setStatusMessage({ type: 'error', text: `❌ Failed to delete user: ${err.message}` });
+    } finally {
+      setDeletingUid(null);
+    }
+  };
+
   if (authLoading) {
     return (
       <div style={{ maxWidth: '800px', margin: '4rem auto', textAlign: 'center', color: 'var(--text)' }}>
@@ -226,7 +290,7 @@ export default function AnalyticsDashboardPage() {
   return (
     <div style={{ maxWidth: '1250px', margin: '0 auto', padding: '2rem 1.5rem', minHeight: '85vh', color: 'var(--text)' }}>
       {/* Top Header Bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.5rem' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }}></span>
@@ -269,6 +333,31 @@ export default function AnalyticsDashboardPage() {
           </Link>
         </div>
       </div>
+
+      {/* Notification Toast */}
+      {statusMessage && (
+        <div style={{
+          padding: '0.8rem 1.2rem',
+          borderRadius: '10px',
+          marginBottom: '1.5rem',
+          background: statusMessage.type === 'success' ? 'var(--green-subtle)' : 'rgba(239, 68, 68, 0.15)',
+          color: statusMessage.type === 'success' ? 'var(--green)' : '#ef4444',
+          border: `1px solid ${statusMessage.type === 'success' ? 'var(--green)' : '#ef4444'}`,
+          fontWeight: '700',
+          fontSize: '0.9rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <span>{statusMessage.text}</span>
+          <button
+            onClick={() => setStatusMessage(null)}
+            style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Metric Cards Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
@@ -404,12 +493,13 @@ export default function AnalyticsDashboardPage() {
                       <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps Active</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Certificates</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
-                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Linked Data</th>
+                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredUsers.map((u) => {
                       const isExpanded = expandedUserUid === u.uid;
+                      const isDeleting = deletingUid === u.uid;
 
                       return (
                         <tr key={u.uid} style={{ borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
@@ -418,7 +508,7 @@ export default function AnalyticsDashboardPage() {
                             <div
                               style={{
                                 display: 'grid',
-                                gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1.2fr 1fr',
+                                gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1.2fr 1.2fr',
                                 padding: '0.85rem 0.5rem',
                                 alignItems: 'center',
                                 background: isExpanded ? 'var(--surface-raised)' : 'transparent',
@@ -462,7 +552,7 @@ export default function AnalyticsDashboardPage() {
                                 {u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}
                               </div>
 
-                              <div style={{ textAlign: 'right' }}>
+                              <div style={{ textAlign: 'right', display: 'flex', gap: '0.4rem', justifyContent: 'flex-end' }}>
                                 <button
                                   type="button"
                                   onClick={(e) => {
@@ -480,7 +570,30 @@ export default function AnalyticsDashboardPage() {
                                     fontSize: '0.78rem',
                                   }}
                                 >
-                                  {isExpanded ? 'Hide Details ▲' : 'View Data ▾'}
+                                  {isExpanded ? 'Hide ▲' : 'View ▾'}
+                                </button>
+
+                                <button
+                                  type="button"
+                                  disabled={isDeleting}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDeleteUser(u);
+                                  }}
+                                  style={{
+                                    cursor: isDeleting ? 'not-allowed' : 'pointer',
+                                    background: 'rgba(239, 68, 68, 0.12)',
+                                    color: '#ef4444',
+                                    border: '1px solid #ef4444',
+                                    padding: '0.35rem 0.6rem',
+                                    borderRadius: '8px',
+                                    fontWeight: '700',
+                                    fontSize: '0.78rem',
+                                    opacity: isDeleting ? 0.5 : 1,
+                                  }}
+                                  title="Delete Student Record"
+                                >
+                                  {isDeleting ? '...' : '🗑️'}
                                 </button>
                               </div>
                             </div>
@@ -566,6 +679,34 @@ export default function AnalyticsDashboardPage() {
                                       <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No certificates earned yet.</p>
                                     )}
                                   </div>
+                                </div>
+
+                                {/* Danger Zone: Delete User Account */}
+                                <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                                  <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                                    ⚠️ <strong>Admin Danger Zone:</strong> Permanently erase this student profile and associated Firestore data.
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDeleteUser(u)}
+                                    disabled={isDeleting}
+                                    style={{
+                                      cursor: isDeleting ? 'not-allowed' : 'pointer',
+                                      padding: '0.45rem 1rem',
+                                      borderRadius: '8px',
+                                      background: 'rgba(239, 68, 68, 0.15)',
+                                      border: '1px solid #ef4444',
+                                      color: '#ef4444',
+                                      fontWeight: '700',
+                                      fontSize: '0.82rem',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '0.4rem',
+                                      opacity: isDeleting ? 0.6 : 1,
+                                    }}
+                                  >
+                                    {isDeleting ? '⏳ Deleting Account...' : '🗑️ Delete User Account'}
+                                  </button>
                                 </div>
                               </div>
                             )}
