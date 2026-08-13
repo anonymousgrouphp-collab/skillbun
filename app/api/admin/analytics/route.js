@@ -77,16 +77,17 @@ export async function GET() {
           console.warn('[Admin Analytics API] Unsubscribes fetch warning:', unsubErr.message);
         }
 
-        // Fetch all real certificates
+        // Fetch all raw certificates from Firestore
         const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').get();
-        certsList = certsSnap.docs.map((doc) => {
+        const rawCerts = certsSnap.docs.map((doc) => {
           const data = doc.data();
           return {
             id: doc.id,
             certId: doc.id,
+            ref: doc.ref,
             uid: data.uid || '',
             name: data.name || data.studentName || data.userName || 'Anonymous Student',
-            email: data.email || data.userEmail || '',
+            email: (data.email || data.userEmail || '').toLowerCase(),
             roadmapTitle: data.roadmapTitle || data.roadmapSlug || 'Roadmap',
             roadmapSlug: data.roadmapSlug || '',
             score: typeof data.score === 'number' ? data.score : 0,
@@ -97,14 +98,19 @@ export async function GET() {
         // Fetch all real user documents from Firestore
         const usersSnap = await db.collection('users').get();
         const processedUids = new Set();
+        const activeUserUids = new Set();
+        const activeUserEmails = new Set();
 
         for (const userDoc of usersSnap.docs) {
           const uData = userDoc.data();
           const uid = userDoc.id;
           processedUids.add(uid);
+          activeUserUids.add(uid);
 
           const authMeta = authUsersMap[uid] || {};
           const userEmailLower = (uData.email || authMeta.email || '').toLowerCase();
+          if (userEmailLower) activeUserEmails.add(userEmailLower);
+
           const unsubMeta = unsubscribedEmailsMap[userEmailLower];
           const isUnsubscribed = Boolean(unsubMeta);
           const unsubscribedAt = isUnsubscribed ? unsubMeta.unsubscribedAt : null;
@@ -133,15 +139,10 @@ export async function GET() {
                 slug: qDoc.id,
                 attemptsCount: Array.isArray(qData.attempts) ? qData.attempts.length : 0,
                 lastAttemptAt: qData.lastAttemptAt ? new Date(qData.lastAttemptAt).toISOString() : null,
-                updatedAt: qData.updatedAt ? new Date(qData.updatedAt.toDate?.() || qData.updatedAt).toISOString() : null,
+                updatedAt: qData.updatedAt ? new Date(qData.updatedAt).toISOString() : null,
               };
             });
           } catch (e) {}
-
-          // Link certificates belonging to this user
-          const userCerts = certsList.filter(
-            (c) => c.uid === uid || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
-          );
 
           usersList.push({
             uid,
@@ -158,7 +159,7 @@ export async function GET() {
             progress: progressList,
             quizAttempts: quizAttemptsList,
             sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
-            certificates: userCerts,
+            certificates: [], // Will be populated after filtering valid certificates
           });
         }
 
@@ -167,13 +168,12 @@ export async function GET() {
           if (!processedUids.has(authUid)) {
             const authMeta = authUsersMap[authUid];
             const userEmailLower = (authMeta.email || '').toLowerCase();
+            activeUserUids.add(authUid);
+            if (userEmailLower) activeUserEmails.add(userEmailLower);
+
             const unsubMeta = unsubscribedEmailsMap[userEmailLower];
             const isUnsubscribed = Boolean(unsubMeta);
             const unsubscribedAt = isUnsubscribed ? unsubMeta.unsubscribedAt : null;
-
-            const userCerts = certsList.filter(
-              (c) => c.uid === authUid || (c.email && authMeta.email && c.email.toLowerCase() === authMeta.email.toLowerCase())
-            );
 
             usersList.push({
               uid: authUid,
@@ -190,9 +190,43 @@ export async function GET() {
               progress: [],
               quizAttempts: [],
               sentEmailHistory: [],
-              certificates: userCerts,
+              certificates: [],
             });
           }
+        });
+
+        // Clean up Orphaned Certificates (Certificates belonging to deleted users that no longer exist in usersList)
+        const orphanedCertRefs = [];
+        certsList = rawCerts.filter((c) => {
+          const isValidUserCert =
+            (c.uid && activeUserUids.has(c.uid)) ||
+            (c.email && activeUserEmails.has(c.email));
+
+          if (!isValidUserCert) {
+            if (c.ref) orphanedCertRefs.push(c.ref);
+            return false;
+          }
+          return true;
+        });
+
+        // Automatically purge orphaned certificate records from Firestore
+        if (orphanedCertRefs.length > 0) {
+          try {
+            const purgeBatch = db.batch();
+            orphanedCertRefs.forEach((ref) => purgeBatch.delete(ref));
+            await purgeBatch.commit();
+            console.log(`[Admin Analytics]: Automatically wiped ${orphanedCertRefs.length} orphaned certificates belonging to deleted accounts.`);
+          } catch (purgeErr) {
+            console.warn('[Admin Analytics Purge Warning]:', purgeErr.message);
+          }
+        }
+
+        // Link valid certificates back to their respective active users
+        usersList.forEach((u) => {
+          const userEmailLower = (u.email || '').toLowerCase();
+          u.certificates = certsList.filter(
+            (c) => c.uid === u.uid || (c.email && userEmailLower && c.email === userEmailLower)
+          );
         });
       }
     } catch (err) {
@@ -210,7 +244,7 @@ export async function GET() {
         quizCategoriesCount: quizFilesCount,
       },
       users: usersList,
-      certificates: certsList,
+      certificates: certsList.map(({ ref, ...rest }) => rest), // Strip internal ref property before sending JSON
     });
   } catch (error) {
     console.error('[Admin Analytics API Error]:', error);
