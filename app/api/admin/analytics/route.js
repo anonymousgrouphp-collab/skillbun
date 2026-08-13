@@ -59,7 +59,7 @@ export async function GET() {
       console.warn('[Admin Analytics API] Firebase Auth listUsers warning:', authErr.message);
     }
 
-    // 2. Fetch Firestore Users & Certificates
+    // 2. Fetch Firestore Users, Roadmap Progress, Quiz Attempts, and Certificates
     try {
       const db = getFirebaseAdminFirestore();
       if (db) {
@@ -105,6 +105,21 @@ export async function GET() {
             });
           } catch (e) {}
 
+          // Fetch user's quiz attempts subcollection (exam appearances)
+          let quizAttemptsList = [];
+          try {
+            const quizSnap = await db.collection('users').doc(uid).collection('quizAttempts').get();
+            quizAttemptsList = quizSnap.docs.map((qDoc) => {
+              const qData = qDoc.data();
+              return {
+                slug: qDoc.id,
+                attemptsCount: Array.isArray(qData.attempts) ? qData.attempts.length : 0,
+                lastAttemptAt: qData.lastAttemptAt ? new Date(qData.lastAttemptAt).toISOString() : null,
+                updatedAt: qData.updatedAt ? new Date(qData.updatedAt.toDate?.() || qData.updatedAt).toISOString() : null,
+              };
+            });
+          } catch (e) {}
+
           // Link certificates belonging to this user
           const userCerts = certsList.filter(
             (c) => c.uid === uid || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
@@ -121,6 +136,7 @@ export async function GET() {
             createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : (authMeta.creationTime || null),
             lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (authMeta.lastSignInTime || uData.createdAt || null),
             progress: progressList,
+            quizAttempts: quizAttemptsList,
             certificates: userCerts,
           });
         }
@@ -144,6 +160,7 @@ export async function GET() {
               createdAt: authMeta.creationTime || null,
               lastSignInTime: authMeta.lastSignInTime || authMeta.creationTime || null,
               progress: [],
+              quizAttempts: [],
               certificates: userCerts,
             });
           }
