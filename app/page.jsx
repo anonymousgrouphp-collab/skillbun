@@ -591,7 +591,7 @@ export default function Home() {
             <div className="section-label">BunBot AI</div>
             <h2 className="section-title">A career companion after the result screen</h2>
             <p className="section-sub">Students can ask follow-up questions about salaries, languages, certifications, exams, colleges, and day-in-the-life tradeoffs.</p>
-            <a href="/counsellor" className="btn-secondary sb-inline-link">Open BunBot</a>
+            <Link href="/counsellor" className="btn-secondary sb-inline-link">Open BunBot</Link>
           </div>
           <div className="sb-bot-window" aria-label="BunBot preview">
             <div className="sb-bot-header">
