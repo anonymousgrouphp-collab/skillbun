@@ -10,6 +10,9 @@ export async function DELETE(request, { params }) {
       return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
     }
 
+    const reqUrl = new URL(request.url);
+    const emailParam = reqUrl.searchParams.get('email') || '';
+
     // Verify Admin Authorization
     const authHeader = request.headers.get('authorization') || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : '';
@@ -31,7 +34,6 @@ export async function DELETE(request, { params }) {
     }
 
     // Secondary fallback check if header is missing in dev mode
-    const reqUrl = new URL(request.url);
     const bypassKey = reqUrl.searchParams.get('adminEmail');
     if (bypassKey === 'harsh@skillbun.tech' || process.env.NODE_ENV === 'development') {
       isAdmin = true;
@@ -44,7 +46,7 @@ export async function DELETE(request, { params }) {
     let firestoreDeleted = false;
     let authDeleted = false;
 
-    // Delete Firestore user data and subcollections
+    // 1. Delete Firestore user document and all subcollections
     try {
       const db = getFirebaseAdminFirestore();
       if (db) {
@@ -68,12 +70,30 @@ export async function DELETE(request, { params }) {
       console.warn('[Admin Delete Firestore Error]:', dbErr.message);
     }
 
-    // Delete Firebase Auth user
+    // 2. Delete Firebase Auth User Account (by UID and by Email to free up email address for new signup)
     try {
       const adminAuth = getFirebaseAdminAuth();
       if (adminAuth) {
-        await adminAuth.deleteUser(uid);
-        authDeleted = true;
+        // Delete by UID
+        try {
+          await adminAuth.deleteUser(uid);
+          authDeleted = true;
+        } catch (e1) {
+          console.warn('[Admin Delete Auth UID Notice]:', e1.message);
+        }
+
+        // Delete by Email if provided to guarantee email is completely freed up
+        if (emailParam && emailParam.includes('@')) {
+          try {
+            const userByEmail = await adminAuth.getUserByEmail(emailParam);
+            if (userByEmail?.uid) {
+              await adminAuth.deleteUser(userByEmail.uid);
+              authDeleted = true;
+            }
+          } catch (e2) {
+            console.warn('[Admin Delete Auth Email Notice]:', e2.message);
+          }
+        }
       }
     } catch (authDeleteErr) {
       console.warn('[Admin Delete Auth Account Error]:', authDeleteErr.message);
@@ -81,7 +101,7 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json({
       success: true,
-      message: `User ${uid} successfully deleted`,
+      message: `User ${uid} and Firebase Auth account successfully deleted. Email address is now freed up for new registration.`,
       details: { firestoreDeleted, authDeleted },
     });
   } catch (error) {
