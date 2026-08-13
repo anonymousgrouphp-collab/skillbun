@@ -171,7 +171,7 @@ export default function AnalyticsDashboardPage() {
 
   // Delete User Handler
   const handleDeleteUser = async (targetUser) => {
-    const confirmMsg = `Are you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will erase their profile document, active progress, and account data. This action cannot be undone.`;
+    const confirmMsg = `⚠️ DELETE USER CONFIRMATION ⚠️\n\nAre you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will permanently delete their profile, active roadmap progress, and Auth account. The email "${targetUser.email}" will be freed up for a brand new account signup.\n\nProceed with deletion?`;
     if (!window.confirm(confirmMsg)) return;
 
     setDeletingUid(targetUser.uid);
@@ -185,8 +185,8 @@ export default function AnalyticsDashboardPage() {
         } catch (e) {}
       }
 
-      // 1. Call server API
-      await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}`, {
+      // 1. Call server API (passes email to delete Auth account + Firestore data)
+      await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -222,7 +222,10 @@ export default function AnalyticsDashboardPage() {
         setExpandedUserUid(null);
       }
 
-      setStatusMessage({ type: 'success', text: `✅ Student "${targetUser.name}" (${targetUser.email}) deleted successfully.` });
+      setStatusMessage({
+        type: 'success',
+        text: `✅ Student account "${targetUser.name}" (${targetUser.email}) successfully deleted! Email is now freed up for new registration.`,
+      });
     } catch (err) {
       console.error('User deletion error:', err);
       setStatusMessage({ type: 'error', text: `❌ Failed to delete user: ${err.message}` });
@@ -486,7 +489,7 @@ export default function AnalyticsDashboardPage() {
           </div>
         </div>
 
-        {/* TAB 1: Registered Students Excel-style Dropdown Table */}
+        {/* TAB 1: Registered Students Table with Prominent Delete Button */}
         {activeTab === 'users' && (
           <div>
             {loading ? (
@@ -513,7 +516,7 @@ export default function AnalyticsDashboardPage() {
                       <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps / Certs</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
-                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Actions</th>
+                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'center', width: '220px' }}>Actions & Controls</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -522,226 +525,249 @@ export default function AnalyticsDashboardPage() {
                       const isDeleting = deletingUid === u.uid;
 
                       return (
-                        <tr key={u.uid} style={{ borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
-                          <td colSpan={7} style={{ padding: 0 }}>
-                            {/* Main User Row */}
-                            <div
-                              style={{
-                                display: 'grid',
-                                gridTemplateColumns: '2fr 1.2fr 1.4fr 1.6fr 1.2fr 1.2fr 1.2fr',
-                                padding: '0.85rem 0.5rem',
-                                alignItems: 'center',
-                                background: isExpanded ? 'var(--surface-raised)' : 'transparent',
-                                cursor: 'pointer',
-                              }}
-                              onClick={() => setExpandedUserUid(isExpanded ? null : u.uid)}
-                            >
-                              <div>
-                                <div style={{ fontWeight: '700', color: 'var(--text)' }}>{u.name}</div>
-                                <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{u.email}</div>
-                              </div>
+                        <tr key={u.uid} style={{ borderBottom: '1px solid var(--border)', background: isExpanded ? 'var(--surface-raised)' : 'transparent' }}>
+                          <td style={{ padding: '0.85rem 0.5rem' }}>
+                            <div style={{ fontWeight: '700', color: 'var(--text)' }}>{u.name}</div>
+                            <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{u.email}</div>
+                          </td>
 
-                              <div style={{ color: 'var(--text)' }}>
-                                <span style={{ fontWeight: '600' }}>{u.degree}</span>
-                                {u.year && u.year !== 'N/A' && <span style={{ fontSize: '0.78rem', color: 'var(--muted)', display: 'block' }}>Year {u.year}</span>}
-                              </div>
+                          <td style={{ padding: '0.85rem 0.5rem', color: 'var(--text)' }}>
+                            <span style={{ fontWeight: '600' }}>{u.degree}</span>
+                            {u.year && u.year !== 'N/A' && <span style={{ fontSize: '0.78rem', color: 'var(--muted)', display: 'block' }}>Year {u.year}</span>}
+                          </td>
 
-                              <div style={{ color: 'var(--text)' }}>
-                                <span style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem' }}>
-                                  {u.interest}
-                                </span>
-                              </div>
+                          <td style={{ padding: '0.85rem 0.5rem', color: 'var(--text)' }}>
+                            <span style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem' }}>
+                              {u.interest}
+                            </span>
+                          </td>
 
-                              {/* Last Active / Login Time Column */}
-                              <div>
-                                <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)' }}>
-                                  🕒 {formatDateTime(u.lastSignInTime)}
-                                </div>
-                              </div>
-
-                              <div>
-                                <div style={{ fontSize: '0.8rem', fontWeight: '700' }}>
-                                  {u.progress?.length || 0} active
-                                </div>
-                                {u.certificates?.length > 0 && (
-                                  <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem' }}>
-                                    🏆 {u.certificates.length} Certs
-                                  </span>
-                                )}
-                              </div>
-
-                              <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                {formatDateTime(u.createdAt)}
-                              </div>
-
-                              <div style={{ textAlign: 'right', display: 'flex', gap: '0.4rem', justifyContent: 'flex-end' }}>
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setExpandedUserUid(isExpanded ? null : u.uid);
-                                  }}
-                                  style={{
-                                    cursor: 'pointer',
-                                    background: isExpanded ? 'var(--green)' : 'var(--surface-raised)',
-                                    color: isExpanded ? '#fff' : 'var(--text)',
-                                    border: '1px solid var(--border)',
-                                    padding: '0.35rem 0.75rem',
-                                    borderRadius: '8px',
-                                    fontWeight: '700',
-                                    fontSize: '0.78rem',
-                                  }}
-                                >
-                                  {isExpanded ? 'Hide ▲' : 'View ▾'}
-                                </button>
-
-                                <button
-                                  type="button"
-                                  disabled={isDeleting}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDeleteUser(u);
-                                  }}
-                                  style={{
-                                    cursor: isDeleting ? 'not-allowed' : 'pointer',
-                                    background: 'rgba(239, 68, 68, 0.12)',
-                                    color: '#ef4444',
-                                    border: '1px solid #ef4444',
-                                    padding: '0.35rem 0.6rem',
-                                    borderRadius: '8px',
-                                    fontWeight: '700',
-                                    fontSize: '0.78rem',
-                                    opacity: isDeleting ? 0.5 : 1,
-                                  }}
-                                  title="Delete Student Record"
-                                >
-                                  {isDeleting ? '...' : '🗑️'}
-                                </button>
-                              </div>
+                          <td style={{ padding: '0.85rem 0.5rem' }}>
+                            <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)' }}>
+                              🕒 {formatDateTime(u.lastSignInTime)}
                             </div>
+                          </td>
 
-                            {/* Dropdown Accordion Panel for Linked User Data */}
-                            {isExpanded && (
-                              <div
+                          <td style={{ padding: '0.85rem 0.5rem' }}>
+                            <div style={{ fontSize: '0.8rem', fontWeight: '700' }}>
+                              {u.progress?.length || 0} active
+                            </div>
+                            {u.certificates?.length > 0 && (
+                              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem' }}>
+                                🏆 {u.certificates.length} Certs
+                              </span>
+                            )}
+                          </td>
+
+                          <td style={{ padding: '0.85rem 0.5rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
+                            {formatDateTime(u.createdAt)}
+                          </td>
+
+                          {/* Action Buttons: Prominent Red Delete Button + View Drawer Button */}
+                          <td style={{ padding: '0.85rem 0.5rem', textAlign: 'right' }}>
+                            <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', alignItems: 'center' }}>
+                              <button
+                                type="button"
+                                onClick={() => setExpandedUserUid(isExpanded ? null : u.uid)}
                                 style={{
-                                  padding: '1.25rem',
-                                  background: 'var(--surface-raised)',
-                                  borderTop: '1px dashed var(--border)',
-                                  borderBottom: '2px solid var(--green)',
-                                  margin: '0',
+                                  cursor: 'pointer',
+                                  background: isExpanded ? 'var(--green)' : 'var(--surface-raised)',
+                                  color: isExpanded ? '#fff' : 'var(--text)',
+                                  border: '1px solid var(--border)',
+                                  padding: '0.4rem 0.75rem',
+                                  borderRadius: '8px',
+                                  fontWeight: '700',
+                                  fontSize: '0.8rem',
+                                  whiteSpace: 'nowrap',
                                 }}
                               >
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                                  {/* Profile Details */}
-                                  <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      👤 Account & Activity Timestamps
-                                    </h4>
-                                    <div style={{ fontSize: '0.82rem', lineHeight: '1.7', color: 'var(--text)' }}>
-                                      <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
-                                      <div><strong>Full Name:</strong> {u.name}</div>
-                                      <div><strong>Email:</strong> {u.email}</div>
-                                      <div><strong>Degree Program:</strong> {u.degree}</div>
-                                      <div><strong>Academic Year:</strong> {u.year}</div>
-                                      <div><strong>Primary Interest:</strong> {u.interest}</div>
-                                      <div><strong>Auth Providers:</strong> {u.providers?.join(', ') || 'Password'}</div>
-                                      <div style={{ marginTop: '0.4rem', color: 'var(--green)', fontWeight: '700' }}>
-                                        <strong>🕒 Last Login / Active:</strong> {formatDateTime(u.lastSignInTime)}
-                                      </div>
-                                      <div><strong>📅 Joined Date:</strong> {formatDateTime(u.createdAt)}</div>
-                                    </div>
-                                  </div>
+                                {isExpanded ? 'Hide Details ▲' : 'View Data ▾'}
+                              </button>
 
-                                  {/* Active Roadmap Progress */}
-                                  <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      🗺️ Roadmap Activity ({u.progress?.length || 0})
-                                    </h4>
-                                    {u.progress?.length > 0 ? (
-                                      <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text)' }}>
-                                        {u.progress.map((p, idx) => (
-                                          <li key={idx} style={{ marginBottom: '0.3rem' }}>
-                                            <strong>{p.slug}</strong> — {p.completedNodeIds?.length || 0} nodes finished
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    ) : (
-                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No active roadmap progress logged yet.</p>
-                                    )}
-                                  </div>
-
-                                  {/* Issued Certificates */}
-                                  <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      📜 Earned Certificates ({u.certificates?.length || 0})
-                                    </h4>
-                                    {u.certificates?.length > 0 ? (
-                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                        {u.certificates.map((c) => (
-                                          <div key={c.id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.6rem 0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <div>
-                                              <div style={{ fontWeight: '700', fontSize: '0.82rem' }}>{c.roadmapTitle}</div>
-                                              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Score: {c.score}% | ID: {c.certId}</div>
-                                            </div>
-                                            <Link
-                                              href={`/certificate/${c.certId}`}
-                                              target="_blank"
-                                              style={{
-                                                textDecoration: 'none',
-                                                padding: '0.25rem 0.6rem',
-                                                borderRadius: '6px',
-                                                background: 'var(--green-subtle)',
-                                                color: 'var(--green)',
-                                                fontSize: '0.75rem',
-                                                fontWeight: '700',
-                                              }}
-                                            >
-                                              View PDF ↗
-                                            </Link>
-                                          </div>
-                                        ))}
-                                      </div>
-                                    ) : (
-                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No certificates earned yet.</p>
-                                    )}
-                                  </div>
-                                </div>
-
-                                {/* Danger Zone: Delete User Account */}
-                                <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-                                  <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                    ⚠️ <strong>Admin Danger Zone:</strong> Permanently erase this student profile and associated Firestore data.
-                                  </div>
-                                  <button
-                                    type="button"
-                                    onClick={() => handleDeleteUser(u)}
-                                    disabled={isDeleting}
-                                    style={{
-                                      cursor: isDeleting ? 'not-allowed' : 'pointer',
-                                      padding: '0.45rem 1rem',
-                                      borderRadius: '8px',
-                                      background: 'rgba(239, 68, 68, 0.15)',
-                                      border: '1px solid #ef4444',
-                                      color: '#ef4444',
-                                      fontWeight: '700',
-                                      fontSize: '0.82rem',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '0.4rem',
-                                      opacity: isDeleting ? 0.6 : 1,
-                                    }}
-                                  >
-                                    {isDeleting ? '⏳ Deleting Account...' : '🗑️ Delete User Account'}
-                                  </button>
-                                </div>
-                              </div>
-                            )}
+                              <button
+                                type="button"
+                                disabled={isDeleting}
+                                onClick={() => handleDeleteUser(u)}
+                                style={{
+                                  cursor: isDeleting ? 'not-allowed' : 'pointer',
+                                  background: '#ef4444',
+                                  color: '#ffffff',
+                                  border: 'none',
+                                  padding: '0.4rem 0.75rem',
+                                  borderRadius: '8px',
+                                  fontWeight: '800',
+                                  fontSize: '0.8rem',
+                                  whiteSpace: 'nowrap',
+                                  boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)',
+                                  opacity: isDeleting ? 0.6 : 1,
+                                }}
+                                title="Delete User & Free Email Address"
+                              >
+                                {isDeleting ? '⏳ Deleting...' : '🗑️ Delete User'}
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
+
+                {/* Render Expanded User Drawer Outside Table for Perfect Layout */}
+                {filteredUsers.map((u) => {
+                  if (expandedUserUid !== u.uid) return null;
+                  const isDeleting = deletingUid === u.uid;
+
+                  return (
+                    <div
+                      key={`drawer-${u.uid}`}
+                      style={{
+                        padding: '1.5rem',
+                        background: 'var(--surface-raised)',
+                        border: '2px solid var(--green)',
+                        borderRadius: '12px',
+                        marginTop: '1rem',
+                        marginBottom: '1rem',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
+                        <h3 style={{ margin: 0, fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.2rem', color: 'var(--green)' }}>
+                          👤 Linked Student Data: {u.name} ({u.email})
+                        </h3>
+                        <button
+                          onClick={() => setExpandedUserUid(null)}
+                          style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--muted)', fontWeight: 'bold', fontSize: '1.1rem' }}
+                        >
+                          ✕ Close Drawer
+                        </button>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                        {/* Profile Details */}
+                        <div>
+                          <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                            👤 Account & Activity Timestamps
+                          </h4>
+                          <div style={{ fontSize: '0.82rem', lineHeight: '1.8', color: 'var(--text)' }}>
+                            <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
+                            <div><strong>Full Name:</strong> {u.name}</div>
+                            <div><strong>Email:</strong> {u.email}</div>
+                            <div><strong>Degree Program:</strong> {u.degree}</div>
+                            <div><strong>Academic Year:</strong> {u.year}</div>
+                            <div><strong>Primary Interest:</strong> {u.interest}</div>
+                            <div><strong>Auth Providers:</strong> {u.providers?.join(', ') || 'Password'}</div>
+                            <div style={{ marginTop: '0.4rem', color: 'var(--green)', fontWeight: '700' }}>
+                              <strong>🕒 Last Login / Active:</strong> {formatDateTime(u.lastSignInTime)}
+                            </div>
+                            <div><strong>📅 Account Joined Date:</strong> {formatDateTime(u.createdAt)}</div>
+                          </div>
+                        </div>
+
+                        {/* Active Roadmap Progress */}
+                        <div>
+                          <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                            🗺️ Roadmap Activity ({u.progress?.length || 0})
+                          </h4>
+                          {u.progress?.length > 0 ? (
+                            <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text)' }}>
+                              {u.progress.map((p, idx) => (
+                                <li key={idx} style={{ marginBottom: '0.3rem' }}>
+                                  <strong>{p.slug}</strong> — {p.completedNodeIds?.length || 0} nodes finished
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No active roadmap progress logged yet.</p>
+                          )}
+                        </div>
+
+                        {/* Issued Certificates */}
+                        <div>
+                          <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                            📜 Earned Certificates ({u.certificates?.length || 0})
+                          </h4>
+                          {u.certificates?.length > 0 ? (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                              {u.certificates.map((c) => (
+                                <div key={c.id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.6rem 0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                  <div>
+                                    <div style={{ fontWeight: '700', fontSize: '0.82rem' }}>{c.roadmapTitle}</div>
+                                    <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Score: {c.score}% | ID: {c.certId}</div>
+                                  </div>
+                                  <Link
+                                    href={`/certificate/${c.certId}`}
+                                    target="_blank"
+                                    style={{
+                                      textDecoration: 'none',
+                                      padding: '0.25rem 0.6rem',
+                                      borderRadius: '6px',
+                                      background: 'var(--green-subtle)',
+                                      color: 'var(--green)',
+                                      fontSize: '0.75rem',
+                                      fontWeight: '700',
+                                    }}
+                                  >
+                                    View PDF ↗
+                                  </Link>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No certificates earned yet.</p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Prominent Danger Zone Box for Deleting User Account & Freeing Email */}
+                      <div
+                        style={{
+                          background: 'rgba(239, 68, 68, 0.12)',
+                          border: '2px dashed #ef4444',
+                          borderRadius: '12px',
+                          padding: '1rem 1.25rem',
+                          marginTop: '1.5rem',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          flexWrap: 'wrap',
+                          gap: '1rem',
+                        }}
+                      >
+                        <div>
+                          <strong style={{ color: '#ef4444', fontSize: '0.95rem', display: 'block', marginBottom: '0.2rem' }}>
+                            🗑️ Admin Action: Permanently Delete Student Account
+                          </strong>
+                          <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>
+                            Erases Firestore user profile, progress data, and Firebase Auth account ({u.email}). <strong>Frees email so student can create a brand new account.</strong>
+                          </span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteUser(u)}
+                          disabled={isDeleting}
+                          style={{
+                            cursor: isDeleting ? 'not-allowed' : 'pointer',
+                            padding: '0.65rem 1.3rem',
+                            borderRadius: '10px',
+                            background: '#ef4444',
+                            color: '#ffffff',
+                            border: 'none',
+                            fontWeight: '800',
+                            fontSize: '0.9rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)',
+                            opacity: isDeleting ? 0.6 : 1,
+                          }}
+                        >
+                          {isDeleting ? '⏳ Deleting Account...' : '🗑️ Delete User & Free Email'}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
