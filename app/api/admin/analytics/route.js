@@ -35,6 +35,7 @@ export async function GET() {
     let usersList = [];
     let certsList = [];
     let authUsersMap = {};
+    let unsubscribedEmailsMap = {};
 
     // 1. Fetch Firebase Auth Users metadata (lastSignInTime, creationTime)
     try {
@@ -59,10 +60,23 @@ export async function GET() {
       console.warn('[Admin Analytics API] Firebase Auth listUsers warning:', authErr.message);
     }
 
-    // 2. Fetch Firestore Users, Roadmap Progress, Quiz Attempts, and Certificates
+    // 2. Fetch Firestore Users, Unsubscribes, Roadmap Progress, Quiz Attempts, and Certificates
     try {
       const db = getFirebaseAdminFirestore();
       if (db) {
+        // Fetch unsubscribed emails map
+        try {
+          const unsubSnap = await db.collection('unsubscribes').get();
+          unsubSnap.docs.forEach((uDoc) => {
+            const uData = uDoc.data();
+            unsubscribedEmailsMap[uDoc.id.toLowerCase()] = {
+              unsubscribedAt: uData.unsubscribedAt || null,
+            };
+          });
+        } catch (unsubErr) {
+          console.warn('[Admin Analytics API] Unsubscribes fetch warning:', unsubErr.message);
+        }
+
         // Fetch all real certificates
         const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').get();
         certsList = certsSnap.docs.map((doc) => {
@@ -90,6 +104,10 @@ export async function GET() {
           processedUids.add(uid);
 
           const authMeta = authUsersMap[uid] || {};
+          const userEmailLower = (uData.email || authMeta.email || '').toLowerCase();
+          const unsubMeta = unsubscribedEmailsMap[userEmailLower];
+          const isUnsubscribed = Boolean(unsubMeta);
+          const unsubscribedAt = isUnsubscribed ? unsubMeta.unsubscribedAt : null;
 
           // Fetch user's roadmap progress subcollection
           let progressList = [];
@@ -105,7 +123,7 @@ export async function GET() {
             });
           } catch (e) {}
 
-          // Fetch user's quiz attempts subcollection (exam appearances)
+          // Fetch user's quiz attempts subcollection
           let quizAttemptsList = [];
           try {
             const quizSnap = await db.collection('users').doc(uid).collection('quizAttempts').get();
@@ -135,8 +153,11 @@ export async function GET() {
             providers: Array.isArray(uData.providers) && uData.providers.length > 0 ? uData.providers : (authMeta.providers || []),
             createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : (authMeta.creationTime || null),
             lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (authMeta.lastSignInTime || uData.createdAt || null),
+            isUnsubscribed,
+            unsubscribedAt,
             progress: progressList,
             quizAttempts: quizAttemptsList,
+            sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
             certificates: userCerts,
           });
         }
@@ -145,6 +166,11 @@ export async function GET() {
         Object.keys(authUsersMap).forEach((authUid) => {
           if (!processedUids.has(authUid)) {
             const authMeta = authUsersMap[authUid];
+            const userEmailLower = (authMeta.email || '').toLowerCase();
+            const unsubMeta = unsubscribedEmailsMap[userEmailLower];
+            const isUnsubscribed = Boolean(unsubMeta);
+            const unsubscribedAt = isUnsubscribed ? unsubMeta.unsubscribedAt : null;
+
             const userCerts = certsList.filter(
               (c) => c.uid === authUid || (c.email && authMeta.email && c.email.toLowerCase() === authMeta.email.toLowerCase())
             );
@@ -159,8 +185,11 @@ export async function GET() {
               providers: authMeta.providers || [],
               createdAt: authMeta.creationTime || null,
               lastSignInTime: authMeta.lastSignInTime || authMeta.creationTime || null,
+              isUnsubscribed,
+              unsubscribedAt,
               progress: [],
               quizAttempts: [],
+              sentEmailHistory: [],
               certificates: userCerts,
             });
           }

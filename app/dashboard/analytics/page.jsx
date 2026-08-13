@@ -162,6 +162,8 @@ export default function AnalyticsDashboardPage() {
                   providers: Array.isArray(uData.providers) ? uData.providers : [],
                   createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
                   lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null),
+                  isUnsubscribed: Boolean(uData.isUnsubscribed),
+                  unsubscribedAt: uData.unsubscribedAt || null,
                   progress: [],
                   quizAttempts: [],
                   sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
@@ -208,11 +210,13 @@ export default function AnalyticsDashboardPage() {
       return;
     }
 
-    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Exam Attempts Count', 'Certificates Count', 'Emails Sent Count', 'Joined Date', 'Last Login Time'];
+    const headers = ['UID', 'Name', 'Email', 'Subscribed Status', 'Unsubscribed Date', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Exam Attempts Count', 'Certificates Count', 'Emails Sent Count', 'Joined Date', 'Last Login Time'];
     const rows = usersList.map((u) => [
       `"${u.uid}"`,
       `"${u.name.replace(/"/g, '""')}"`,
       `"${u.email.replace(/"/g, '""')}"`,
+      `"${u.isUnsubscribed ? 'Unsubscribed' : 'Subscribed'}"`,
+      `"${formatDateTime(u.unsubscribedAt)}"`,
       `"${u.degree.replace(/"/g, '""')}"`,
       `"${u.year.replace(/"/g, '""')}"`,
       `"${u.interest.replace(/"/g, '""')}"`,
@@ -297,15 +301,21 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler (Auto-Shuffles Recommendations on Dispatch)
-  const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
+  // One-Click Retention Email Dispatcher Handler (Supports Standard Send & Force Override Send)
+  const handleSendRetentionEmail = async (targetUser, isPreview = false, forceOverride = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
-    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
+    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : forceOverride ? 'force' : 'send'}`;
 
-    const confirmPrompt = isPreview
-      ? `🧪 SEND SAMPLE PREVIEW CONFIRMATION 🧪\n\nSend a test preview copy of template "${templateId.toUpperCase()}" to harsh@skillbun.tech for inbox inspection?`
-      : `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
+    let confirmPrompt = '';
+
+    if (isPreview) {
+      confirmPrompt = `🧪 SEND SAMPLE PREVIEW CONFIRMATION 🧪\n\nSend a test preview copy of template "${templateId.toUpperCase()}" to harsh@skillbun.tech for inbox inspection?`;
+    } else if (forceOverride) {
+      confirmPrompt = `⚠️ FORCE SEND (OVERRIDE UNSUBSCRIBE) CONFIRMATION ⚠️\n\nCandidate "${targetUser.name}" (${targetUser.email}) has UNSUBSCRIBED from marketing updates.\n\nAre you sure you want to FORCE DISPATCH template "${templateId.toUpperCase()}" anyway?`;
+    } else {
+      confirmPrompt = `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
+    }
 
     if (!window.confirm(confirmPrompt)) return;
 
@@ -343,6 +353,7 @@ export default function AnalyticsDashboardPage() {
           progressCount,
           degree: targetUser.degree,
           isPreview,
+          forceOverride,
           adminEmail: userEmail,
         }),
       });
@@ -360,7 +371,7 @@ export default function AnalyticsDashboardPage() {
           const updatedUsers = (prev.users || []).map((u) => {
             if (u.uid === targetUser.uid) {
               const currentHistory = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
-              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail }];
+              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail, forceOverride }];
               return { ...u, sentEmailHistory: updatedHistory };
             }
             return u;
@@ -664,6 +675,7 @@ export default function AnalyticsDashboardPage() {
                   <thead>
                     <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Student / Email</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Email Subscription Status</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Degree & Year</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
                       <th style={{ padding: '0.75rem 0.5rem' }}>Last Active / Login</th>
@@ -681,6 +693,7 @@ export default function AnalyticsDashboardPage() {
                       const currentTemplate = selectedTemplates[u.uid] || recommended.id;
                       const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
+                      const isForceLoading = sendingEmailKey === `${u.uid}-force`;
                       const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
 
                       return (
@@ -696,6 +709,42 @@ export default function AnalyticsDashboardPage() {
                             <td style={{ padding: '0.85rem 0.5rem' }}>
                               <div style={{ fontWeight: '700', color: 'var(--text)' }}>{u.name}</div>
                               <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{u.email}</div>
+                            </td>
+
+                            {/* Email Subscription Status Badge */}
+                            <td style={{ padding: '0.85rem 0.5rem' }}>
+                              {u.isUnsubscribed ? (
+                                <span
+                                  style={{
+                                    background: 'rgba(239, 68, 68, 0.15)',
+                                    color: '#ef4444',
+                                    border: '1px solid #ef4444',
+                                    padding: '0.25rem 0.65rem',
+                                    borderRadius: '12px',
+                                    fontWeight: '800',
+                                    fontSize: '0.78rem',
+                                    display: 'inline-block',
+                                  }}
+                                  title={u.unsubscribedAt ? `Unsubscribed on ${formatDateTime(u.unsubscribedAt)}` : 'Unsubscribed'}
+                                >
+                                  🔕 Unsubscribed
+                                </span>
+                              ) : (
+                                <span
+                                  style={{
+                                    background: 'var(--green-subtle)',
+                                    color: 'var(--green)',
+                                    border: '1px solid var(--green)',
+                                    padding: '0.25rem 0.65rem',
+                                    borderRadius: '12px',
+                                    fontWeight: '800',
+                                    fontSize: '0.78rem',
+                                    display: 'inline-block',
+                                  }}
+                                >
+                                  🔔 Subscribed
+                                </span>
+                              )}
                             </td>
 
                             <td style={{ padding: '0.85rem 0.5rem', color: 'var(--text)' }}>
@@ -791,7 +840,7 @@ export default function AnalyticsDashboardPage() {
                           {/* Expanded Dropdown Accordion Row DIRECTLY UNDER THIS USER */}
                           {isExpanded && (
                             <tr style={{ background: 'var(--surface-raised)', borderBottom: '2px solid var(--green)' }}>
-                              <td colSpan={7} style={{ padding: '1.25rem' }}>
+                              <td colSpan={8} style={{ padding: '1.25rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
                                   <h4 style={{ margin: 0, fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.05rem', color: 'var(--green)' }}>
                                     👤 Linked Profile & Activity Breakdown: {u.name} ({u.email})
@@ -814,6 +863,14 @@ export default function AnalyticsDashboardPage() {
                                       <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
                                       <div><strong>Full Name:</strong> {u.name}</div>
                                       <div><strong>Email:</strong> {u.email}</div>
+                                      <div>
+                                        <strong>Subscription Status:</strong>{' '}
+                                        {u.isUnsubscribed ? (
+                                          <span style={{ color: '#ef4444', fontWeight: '800' }}>🔕 UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</span>
+                                        ) : (
+                                          <span style={{ color: 'var(--green)', fontWeight: '800' }}>🔔 Active Subscriber</span>
+                                        )}
+                                      </div>
                                       <div><strong>Degree Program:</strong> {u.degree}</div>
                                       <div><strong>Academic Year:</strong> {u.year}</div>
                                       <div><strong>Primary Interest:</strong> {u.interest}</div>
@@ -881,7 +938,7 @@ export default function AnalyticsDashboardPage() {
                                         {sentLogs.map((log, idx) => (
                                           <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.78rem' }}>
                                             <div style={{ fontWeight: '700', color: 'var(--green)' }}>
-                                              ✔ {log.templateId}
+                                              ✔ {log.templateId} {log.forceOverride ? '(FORCE OVERRIDDEN)' : ''}
                                             </div>
                                             <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
                                               Sent: {formatDateTime(log.sentAt)}
@@ -895,11 +952,11 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH AUTO-SHUFFLING SMART RECOMMENDER */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH UNSUBSCRIBE STATUS & FORCE OVERRIDE CONTROLS */}
                                 <div
                                   style={{
-                                    background: 'rgba(0, 229, 153, 0.08)',
-                                    border: '1.5px solid var(--green)',
+                                    background: u.isUnsubscribed ? 'rgba(239, 68, 68, 0.08)' : 'rgba(0, 229, 153, 0.08)',
+                                    border: `1.5px solid ${u.isUnsubscribed ? '#ef4444' : 'var(--green)'}`,
                                     borderRadius: '12px',
                                     padding: '1.25rem',
                                     marginTop: '1.5rem',
@@ -907,11 +964,16 @@ export default function AnalyticsDashboardPage() {
                                 >
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
-                                      <strong style={{ color: 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun Non-Repeating Retention Recommender Engine
+                                      <strong style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                        📧 SkillBun Retention Email Engine & Subscription Control
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                        Remembers previously sent templates & automatically shuffles to the next unsent variation!
+                                        Status:{' '}
+                                        {u.isUnsubscribed ? (
+                                          <strong style={{ color: '#ef4444' }}>🔕 UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</strong>
+                                        ) : (
+                                          <strong style={{ color: 'var(--green)' }}>🔔 ACTIVE SUBSCRIBER</strong>
+                                        )}
                                       </span>
                                     </div>
                                   </div>
@@ -920,7 +982,7 @@ export default function AnalyticsDashboardPage() {
                                   <div
                                     style={{
                                       background: 'var(--surface-raised)',
-                                      border: '1px solid var(--green)',
+                                      border: `1px solid ${u.isUnsubscribed ? '#ef4444' : 'var(--green)'}`,
                                       padding: '0.6rem 0.85rem',
                                       borderRadius: '8px',
                                       marginBottom: '0.9rem',
@@ -934,7 +996,7 @@ export default function AnalyticsDashboardPage() {
                                   >
                                     <div>
                                       ✨ <strong>Smart Recommendation (Next Unsent):</strong>{' '}
-                                      <span style={{ color: 'var(--green)', fontWeight: '800' }}>{recommended.label}</span>
+                                      <span style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontWeight: '800' }}>{recommended.label}</span>
                                       {recommended.isRotated && (
                                         <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.5rem', borderRadius: '10px', fontWeight: '700' }}>
                                           🔄 Auto-Rotated ({recommended.alreadySentCount} sent)
@@ -948,8 +1010,8 @@ export default function AnalyticsDashboardPage() {
                                         cursor: 'pointer',
                                         padding: '0.25rem 0.7rem',
                                         borderRadius: '6px',
-                                        background: 'var(--green)',
-                                        color: '#000000',
+                                        background: u.isUnsubscribed ? '#ef4444' : 'var(--green)',
+                                        color: '#ffffff',
                                         border: 'none',
                                         fontWeight: '800',
                                         fontSize: '0.75rem',
@@ -1014,13 +1076,13 @@ export default function AnalyticsDashboardPage() {
                                       </optgroup>
                                     </select>
 
-                                    {/* Action 1: Send Sample Test Email to Admin with Confirmation Guard */}
+                                    {/* Action 1: Send Sample Test Email to Admin */}
                                     <button
                                       type="button"
-                                      disabled={isPreviewLoading || isSendLoading}
-                                      onClick={() => handleSendRetentionEmail(u, true)}
+                                      disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                      onClick={() => handleSendRetentionEmail(u, true, false)}
                                       style={{
-                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
+                                        cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
                                         padding: '0.65rem 1.1rem',
                                         borderRadius: '10px',
                                         background: 'var(--surface-raised)',
@@ -1033,30 +1095,57 @@ export default function AnalyticsDashboardPage() {
                                       }}
                                       title="Sends a test copy to harsh@skillbun.tech so you can preview in your inbox first"
                                     >
-                                      {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me (harsh@skillbun.tech)'}
+                                      {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me'}
                                     </button>
 
-                                    {/* Action 2: One-Click Send to Student with Confirmation Guard */}
-                                    <button
-                                      type="button"
-                                      disabled={isPreviewLoading || isSendLoading}
-                                      onClick={() => handleSendRetentionEmail(u, false)}
-                                      style={{
-                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
-                                        padding: '0.65rem 1.3rem',
-                                        borderRadius: '10px',
-                                        background: 'var(--green)',
-                                        color: '#000000',
-                                        border: 'none',
-                                        fontWeight: '800',
-                                        fontSize: '0.85rem',
-                                        whiteSpace: 'nowrap',
-                                        boxShadow: '0 4px 12px rgba(0, 229, 153, 0.4)',
-                                        opacity: isSendLoading ? 0.6 : 1,
-                                      }}
-                                    >
-                                      {isSendLoading ? '⏳ Sending Email...' : `🚀 Send Auto-Filled Email to ${u.name}`}
-                                    </button>
+                                    {/* Action 2: Standard Send to Student (Respects Unsubscribe) */}
+                                    {!u.isUnsubscribed && (
+                                      <button
+                                        type="button"
+                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                        onClick={() => handleSendRetentionEmail(u, false, false)}
+                                        style={{
+                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
+                                          padding: '0.65rem 1.3rem',
+                                          borderRadius: '10px',
+                                          background: 'var(--green)',
+                                          color: '#000000',
+                                          border: 'none',
+                                          fontWeight: '800',
+                                          fontSize: '0.85rem',
+                                          whiteSpace: 'nowrap',
+                                          boxShadow: '0 4px 12px rgba(0, 229, 153, 0.4)',
+                                          opacity: isSendLoading ? 0.6 : 1,
+                                        }}
+                                      >
+                                        {isSendLoading ? '⏳ Sending Email...' : `🚀 Send Auto-Filled Email to ${u.name}`}
+                                      </button>
+                                    )}
+
+                                    {/* Action 3: Special Force Send Button (Overrides Unsubscribe Opt-Out!) */}
+                                    {u.isUnsubscribed && (
+                                      <button
+                                        type="button"
+                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
+                                        onClick={() => handleSendRetentionEmail(u, false, true)}
+                                        style={{
+                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
+                                          padding: '0.65rem 1.3rem',
+                                          borderRadius: '10px',
+                                          background: '#ef4444',
+                                          color: '#ffffff',
+                                          border: 'none',
+                                          fontWeight: '800',
+                                          fontSize: '0.85rem',
+                                          whiteSpace: 'nowrap',
+                                          boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)',
+                                          opacity: isForceLoading ? 0.6 : 1,
+                                        }}
+                                        title="Overrides candidate's unsubscribe preference and dispatches the email anyway"
+                                      >
+                                        {isForceLoading ? '⚡ Force Sending...' : '⚡ Force Send (Override Unsubscribe)'}
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
 
