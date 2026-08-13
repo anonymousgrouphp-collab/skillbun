@@ -6,6 +6,8 @@ import { getPasswordResetFrom } from '@/utils/server/env';
 
 export const runtime = 'nodejs';
 
+const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
+
 export async function POST(request) {
   try {
     const reqUrl = new URL(request.url);
@@ -34,7 +36,7 @@ export async function POST(request) {
         const adminAuth = getFirebaseAdminAuth();
         const decodedToken = await adminAuth.verifyIdToken(token);
         authUserEmail = (decodedToken.email || '').toLowerCase();
-        if (authUserEmail === 'harsh@skillbun.tech') {
+        if (authUserEmail === ADMIN_CONFIRMATION_EMAIL) {
           isAdmin = true;
         }
       } catch (authErr) {
@@ -44,8 +46,8 @@ export async function POST(request) {
 
     // Secondary fallback check for admin email in dev mode
     if (
-      adminEmail.toLowerCase() === 'harsh@skillbun.tech' ||
-      reqUrl.searchParams.get('adminEmail') === 'harsh@skillbun.tech' ||
+      adminEmail.toLowerCase() === ADMIN_CONFIRMATION_EMAIL ||
+      reqUrl.searchParams.get('adminEmail') === ADMIN_CONFIRMATION_EMAIL ||
       process.env.NODE_ENV === 'development'
     ) {
       isAdmin = true;
@@ -56,13 +58,13 @@ export async function POST(request) {
     }
 
     // Determine target recipient email address
-    const targetEmail = isPreview ? 'harsh@skillbun.tech' : recipientEmail;
+    const targetEmail = isPreview ? ADMIN_CONFIRMATION_EMAIL : recipientEmail;
 
     if (!targetEmail || !targetEmail.includes('@')) {
       return NextResponse.json({ error: 'Invalid recipient email address' }, { status: 400 });
     }
 
-    // Check if recipient has unsubscribed from marketing emails (Unless it's a security/transactional alert)
+    // Check if recipient has unsubscribed from marketing emails (Unless it's a security alert)
     if (!isPreview && !templateId.startsWith('transactional_alert')) {
       try {
         const db = getFirebaseAdminFirestore();
@@ -93,18 +95,25 @@ export async function POST(request) {
     // Plain text version to pass spam filter checks
     const plainTextBody = `Hi ${studentName},\n\n${subject}\n\nVisit SkillBun at https://skillbun.tech to check your interactive tech career roadmaps, encrypted study guides, and verified certificates.\n\nTo manage notification preferences or unsubscribe: https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}\n\nSkillBun Platform • MSME Registered`;
 
+    // Delivery Confirmation Mechanism: Automatically CC harsh@skillbun.tech for all candidate dispatches!
+    const ccRecipients = (!isPreview && targetEmail.toLowerCase() !== ADMIN_CONFIRMATION_EMAIL)
+      ? ADMIN_CONFIRMATION_EMAIL
+      : undefined;
+
     let emailSent = false;
+    let smtpResponse = null;
     let errorDetail = null;
 
-    // Attempt to send email via Zoho SMTP / Nodemailer with Anti-Spam Headers
+    // Attempt to send email via Zoho SMTP / Nodemailer with Anti-Spam Headers & CC Confirmation
     try {
       const transporter = getTransporter();
       const fromAddress = getPasswordResetFrom() || 'SkillBun Support <noreply@skillbun.tech>';
       const unsubscribeHeaderUrl = `https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}`;
 
-      await transporter.sendMail({
+      smtpResponse = await transporter.sendMail({
         from: fromAddress,
         to: targetEmail,
+        cc: ccRecipients,
         subject: emailSubject,
         text: plainTextBody,
         html,
@@ -122,19 +131,21 @@ export async function POST(request) {
     }
 
     if (emailSent) {
+      const successMsg = isPreview
+        ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
+        : `✅ Retention email successfully sent to ${targetEmail} (CC'd to harsh@skillbun.tech for delivery confirmation)!`;
+
       return NextResponse.json({
         success: true,
-        message: isPreview
-          ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
-          : `✅ Retention email successfully sent to ${targetEmail}!`,
+        message: successMsg,
+        messageId: smtpResponse?.messageId || null,
+        cc: ccRecipients || null,
       });
     } else {
-      // In dev environment when SMTP credentials are not active, simulate success response
+      // In dev environment or when SMTP fails, return exact diagnostic error so admin knows why
       return NextResponse.json({
-        success: true,
-        simulated: true,
-        message: `ℹ️ [Simulated Dispatch] Email generated for ${targetEmail}. (SMTP error: ${errorDetail || 'Not configured'}).`,
-      });
+        error: `SMTP Dispatch Error: ${errorDetail || 'Could not connect to SMTP server. Check ZOHO_SMTP_USER and ZOHO_SMTP_PASS in environment settings.'}`,
+      }, { status: 500 });
     }
   } catch (err) {
     console.error('Admin Send Email API Error:', err);
