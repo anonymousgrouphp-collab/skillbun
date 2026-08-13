@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin';
+import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 import { getTransporter } from '@/utils/server/zohoMailer';
 import { getPasswordResetFrom } from '@/utils/server/env';
@@ -14,7 +14,7 @@ export async function POST(request) {
     const {
       recipientEmail,
       studentName = 'Student',
-      templateId = 'reengagement',
+      templateId = 'welcome_v1',
       roadmapTitle = 'Full Stack Web Development',
       progressCount = 10,
       degree = 'B.Tech - Computer Science',
@@ -42,7 +42,7 @@ export async function POST(request) {
       }
     }
 
-    // Secondary fallback check if header is missing in dev mode
+    // Secondary fallback check for admin email in dev mode
     if (
       adminEmail.toLowerCase() === 'harsh@skillbun.tech' ||
       reqUrl.searchParams.get('adminEmail') === 'harsh@skillbun.tech' ||
@@ -62,10 +62,27 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid recipient email address' }, { status: 400 });
     }
 
+    // Check if recipient has unsubscribed from marketing emails (Unless it's a security/transactional alert)
+    if (!isPreview && !templateId.startsWith('transactional_alert')) {
+      try {
+        const db = getFirebaseAdminFirestore();
+        if (db) {
+          const docRef = await db.collection('unsubscribes').doc(targetEmail.toLowerCase()).get();
+          if (docRef.exists) {
+            return NextResponse.json({
+              error: `Recipient (${targetEmail}) has unsubscribed from SkillBun marketing & retention emails. Message dispatch canceled for compliance.`,
+            }, { status: 400 });
+          }
+        }
+      } catch (unsubErr) {
+        console.warn('[Unsubscribe Check Warning]:', unsubErr.message);
+      }
+    }
+
     // Generate HTML Email with auto-filled candidate data
     const { subject, html } = generateRetentionEmailHtml(templateId, {
       name: studentName,
-      email: recipientEmail,
+      email: targetEmail,
       roadmapTitle,
       progressCount,
       degree,
@@ -73,19 +90,29 @@ export async function POST(request) {
 
     const emailSubject = isPreview ? `[SAMPLE PREVIEW] ${subject}` : subject;
 
+    // Plain text version to pass spam filter checks
+    const plainTextBody = `Hi ${studentName},\n\n${subject}\n\nVisit SkillBun at https://skillbun.tech to check your interactive tech career roadmaps, encrypted study guides, and verified certificates.\n\nTo manage notification preferences or unsubscribe: https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}\n\nSkillBun Platform • MSME Registered`;
+
     let emailSent = false;
     let errorDetail = null;
 
-    // Attempt to send email via Zoho SMTP / Nodemailer
+    // Attempt to send email via Zoho SMTP / Nodemailer with Anti-Spam Headers
     try {
       const transporter = getTransporter();
-      const fromAddress = getPasswordResetFrom() || 'SkillBun Support <support@skillbun.tech>';
+      const fromAddress = getPasswordResetFrom() || 'SkillBun Support <noreply@skillbun.tech>';
+      const unsubscribeHeaderUrl = `https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}`;
 
       await transporter.sendMail({
         from: fromAddress,
         to: targetEmail,
         subject: emailSubject,
+        text: plainTextBody,
         html,
+        headers: {
+          'List-Unsubscribe': `<${unsubscribeHeaderUrl}>`,
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          'X-Entity-Ref-ID': `sb-email-${Date.now()}`,
+        },
       });
 
       emailSent = true;
@@ -98,26 +125,19 @@ export async function POST(request) {
       return NextResponse.json({
         success: true,
         message: isPreview
-          ? `✅ Sample preview email sent to harsh@skillbun.tech!`
-          : `✅ Retention email sent to ${targetEmail}!`,
-        details: { targetEmail, templateId, subject: emailSubject },
+          ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
+          : `✅ Retention email successfully sent to ${targetEmail}!`,
+      });
+    } else {
+      // In dev environment when SMTP credentials are not active, simulate success response
+      return NextResponse.json({
+        success: true,
+        simulated: true,
+        message: `ℹ️ [Simulated Dispatch] Email generated for ${targetEmail}. (SMTP error: ${errorDetail || 'Not configured'}).`,
       });
     }
-
-    // Fallback response for dev mode / unconfigured SMTP
-    return NextResponse.json({
-      success: true,
-      simulated: true,
-      message: isPreview
-        ? `🧪 [SIMULATED PREVIEW] Sample email rendered for harsh@skillbun.tech (SMTP not active). Subject: "${emailSubject}"`
-        : `🧪 [SIMULATED DISPATCH] Retention email rendered for ${targetEmail} (SMTP not active). Subject: "${emailSubject}"`,
-      details: { targetEmail, templateId, subject: emailSubject, smtpError: errorDetail },
-    });
-  } catch (error) {
-    console.error('[Admin Send Email API Error]:', error);
-    return NextResponse.json(
-      { error: 'Failed to send retention email' },
-      { status: 500 }
-    );
+  } catch (err) {
+    console.error('Admin Send Email API Error:', err);
+    return NextResponse.json({ error: err.message || 'Internal server error dispatching email' }, { status: 500 });
   }
 }
