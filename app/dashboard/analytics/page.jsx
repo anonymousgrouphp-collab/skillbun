@@ -34,6 +34,10 @@ export default function AnalyticsDashboardPage() {
   const [deletingUid, setDeletingUid] = useState(null);
   const [statusMessage, setStatusMessage] = useState(null);
 
+  // Retention email template selection state per user
+  const [selectedTemplates, setSelectedTemplates] = useState({});
+  const [sendingEmailKey, setSendingEmailKey] = useState(null);
+
   // Strictly restrict access to harsh@skillbun.tech via Google Login
   const userEmail = (user?.email || '').trim().toLowerCase();
   const targetAdminEmail = 'harsh@skillbun.tech';
@@ -187,7 +191,6 @@ export default function AnalyticsDashboardPage() {
         } catch (e) {}
       }
 
-      // 1. Call server API
       await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
         method: 'DELETE',
         headers: {
@@ -196,7 +199,6 @@ export default function AnalyticsDashboardPage() {
         },
       });
 
-      // 2. Client-side fallback delete if running locally
       try {
         const { db } = getFirebaseServices();
         if (db) {
@@ -206,7 +208,6 @@ export default function AnalyticsDashboardPage() {
         console.warn('[Client Delete Fallback Warning]:', clientDelErr);
       }
 
-      // 3. Update local state immediately
       setData((prev) => {
         if (!prev) return prev;
         const updatedUsers = (prev.users || []).filter((u) => u.uid !== targetUser.uid);
@@ -233,6 +234,73 @@ export default function AnalyticsDashboardPage() {
       setStatusMessage({ type: 'error', text: `❌ Failed to delete user: ${err.message}` });
     } finally {
       setDeletingUid(null);
+    }
+  };
+
+  // One-Click Retention Email Dispatcher Handler
+  const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
+    const templateId = selectedTemplates[targetUser.uid] || 'reengagement';
+    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
+
+    if (!isPreview) {
+      const confirmSend = window.confirm(
+        `Send retention email to "${targetUser.name}" (${targetUser.email}) using template: "${templateId.toUpperCase()}"?`
+      );
+      if (!confirmSend) return;
+    }
+
+    setSendingEmailKey(actionKey);
+    setStatusMessage(null);
+
+    try {
+      let idToken = '';
+      if (user?.getIdToken) {
+        try {
+          idToken = await user.getIdToken();
+        } catch (e) {}
+      }
+
+      const roadmapTitle =
+        targetUser.progress?.[0]?.slug
+          ? targetUser.progress[0].slug.replace(/_/g, ' ').toUpperCase()
+          : targetUser.interest && targetUser.interest !== 'N/A'
+          ? targetUser.interest
+          : 'Full Stack Web Development';
+
+      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length || 12;
+
+      const res = await fetch('/api/admin/emails/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+        },
+        body: JSON.stringify({
+          recipientEmail: targetUser.email,
+          studentName: targetUser.name,
+          templateId,
+          roadmapTitle,
+          progressCount,
+          isPreview,
+          adminEmail: userEmail,
+        }),
+      });
+
+      const resData = await res.json();
+
+      if (!res.ok || resData.error) {
+        throw new Error(resData.error || 'Failed to dispatch email');
+      }
+
+      setStatusMessage({
+        type: 'success',
+        text: resData.message || (isPreview ? '✅ Sample preview email sent to harsh@skillbun.tech!' : `✅ Retention email sent to ${targetUser.email}!`),
+      });
+    } catch (emailErr) {
+      console.error('Retention email send error:', emailErr);
+      setStatusMessage({ type: 'error', text: `❌ Failed to send retention email: ${emailErr.message}` });
+    } finally {
+      setSendingEmailKey(null);
     }
   };
 
@@ -491,7 +559,7 @@ export default function AnalyticsDashboardPage() {
           </div>
         </div>
 
-        {/* TAB 1: Registered Students Table with Dropdown expanding directly under each user */}
+        {/* TAB 1: Registered Students Table */}
         {activeTab === 'users' && (
           <div>
             {loading ? (
@@ -525,6 +593,9 @@ export default function AnalyticsDashboardPage() {
                     {filteredUsers.map((u) => {
                       const isExpanded = expandedUserUid === u.uid;
                       const isDeleting = deletingUid === u.uid;
+                      const currentTemplate = selectedTemplates[u.uid] || 'reengagement';
+                      const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
+                      const isSendLoading = sendingEmailKey === `${u.uid}-send`;
 
                       return (
                         <React.Fragment key={u.uid}>
@@ -739,6 +810,98 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
+                                {/* NEW: One-Click User Retention Email Control Panel */}
+                                <div
+                                  style={{
+                                    background: 'rgba(0, 229, 153, 0.08)',
+                                    border: '1.5px solid var(--green)',
+                                    borderRadius: '12px',
+                                    padding: '1.25rem',
+                                    marginTop: '1.5rem',
+                                  }}
+                                >
+                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem' }}>
+                                    <div>
+                                      <strong style={{ color: 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                        📧 One-Click User Retention Email Dispatcher
+                                      </strong>
+                                      <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                                        Select a retention trigger to send a personalized HTML email directly to <strong>{u.name}</strong> ({u.email}).
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                                    {/* Email Template Selector */}
+                                    <select
+                                      value={currentTemplate}
+                                      onChange={(e) => setSelectedTemplates((prev) => ({ ...prev, [u.uid]: e.target.value }))}
+                                      style={{
+                                        padding: '0.65rem 1rem',
+                                        borderRadius: '10px',
+                                        border: '1px solid var(--border)',
+                                        background: 'var(--surface-raised)',
+                                        color: 'var(--text)',
+                                        fontWeight: '700',
+                                        fontSize: '0.85rem',
+                                        outline: 'none',
+                                        flex: '1',
+                                        minWidth: '260px',
+                                      }}
+                                    >
+                                      <option value="reengagement">🐰 1. Re-Engagement Nudge (Inactive 3+ Days)</option>
+                                      <option value="exam_nudge">🎓 2. Cert Exam Ready Nudge (60%+ Progress)</option>
+                                      <option value="welcome">🚀 3. Welcome & Onboarding (New Signup)</option>
+                                      <option value="exam_failed">📚 4. Cooldown Encouragement (Failed Attempt)</option>
+                                      <option value="cert_congrats">🏆 5. Certificate Achieved (Alumni Upsell)</option>
+                                    </select>
+
+                                    {/* Action 1: Send Sample Test Email to Admin for Review */}
+                                    <button
+                                      type="button"
+                                      disabled={isPreviewLoading || isSendLoading}
+                                      onClick={() => handleSendRetentionEmail(u, true)}
+                                      style={{
+                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
+                                        padding: '0.65rem 1.1rem',
+                                        borderRadius: '10px',
+                                        background: 'var(--surface-raised)',
+                                        border: '1px solid var(--green)',
+                                        color: 'var(--green)',
+                                        fontWeight: '700',
+                                        fontSize: '0.83rem',
+                                        whiteSpace: 'nowrap',
+                                        opacity: isPreviewLoading ? 0.6 : 1,
+                                      }}
+                                      title="Sends a test copy to harsh@skillbun.tech so you can preview in your inbox first"
+                                    >
+                                      {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me (harsh@skillbun.tech)'}
+                                    </button>
+
+                                    {/* Action 2: One-Click Send to Student */}
+                                    <button
+                                      type="button"
+                                      disabled={isPreviewLoading || isSendLoading}
+                                      onClick={() => handleSendRetentionEmail(u, false)}
+                                      style={{
+                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
+                                        padding: '0.65rem 1.3rem',
+                                        borderRadius: '10px',
+                                        background: 'var(--green)',
+                                        color: '#000000',
+                                        border: 'none',
+                                        fontWeight: '800',
+                                        fontSize: '0.85rem',
+                                        whiteSpace: 'nowrap',
+                                        boxShadow: '0 4px 12px rgba(0, 229, 153, 0.4)',
+                                        opacity: isSendLoading ? 0.6 : 1,
+                                      }}
+                                    >
+                                      {isSendLoading ? '⏳ Sending Email...' : `🚀 Send One-Click Email to ${u.name}`}
+                                    </button>
+                                  </div>
+                                </div>
+
                                 {/* Prominent Danger Zone Box for Deleting User Account & Freeing Email */}
                                 <div
                                   style={{
@@ -746,7 +909,7 @@ export default function AnalyticsDashboardPage() {
                                     border: '2px dashed #ef4444',
                                     borderRadius: '12px',
                                     padding: '1rem 1.25rem',
-                                    marginTop: '1.5rem',
+                                    marginTop: '1rem',
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignItems: 'center',
