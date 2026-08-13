@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
 import { trackEvent } from '@/lib/analytics';
@@ -314,7 +315,7 @@ export default function GameMap({ roadmap, slug }) {
                     ))}
                   </div>
                 )}
-                <a href={askBunBot(node.name, roadmap.title)} className="sk-btn-ai" onClick={e => e.stopPropagation()}>Ask BunBot</a>
+                <Link href={askBunBot(node.name, roadmap.title)} className="sk-btn-ai" onClick={e => e.stopPropagation()}>Ask BunBot</Link>
               </div>
             )}
           </div>
@@ -606,9 +607,9 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
             >
               {node.isUnlocked ? (node.isDone ? '✅ Completed — Undo?' : '🎯 Mark Complete (+100 XP)') : 'Complete prerequisite first'}
             </button>
-            <a href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai">
+            <Link href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai">
               Ask BunBot
-            </a>
+            </Link>
           </div>
 
           {/* YouTube Video Resource */}

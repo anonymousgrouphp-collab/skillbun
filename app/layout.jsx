@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
             <nav>
               <div className="nav-logo">
                 <Link href="/" className="nav-logo-link">
-                  <Image src="/logo.png" alt="SkillBun Logo" width={44} height={44} priority unoptimized />
+                  <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} priority unoptimized />
                   <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
                 </Link>
               </div>
