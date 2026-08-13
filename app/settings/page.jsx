@@ -1,13 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../components/AuthProvider';
 import WorkspaceSidebar from '../components/WorkspaceSidebar';
 import styles from './settings.module.css';
 
-export default function SettingsPage() {
+function SettingsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isUnsubscribeAction =
+    searchParams.get('action') === 'unsubscribe' || searchParams.get('unsubscribe') === '1';
+  const queryEmail = (searchParams.get('email') || '').trim();
+
   const {
     user,
     profile,
@@ -24,7 +30,128 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  // Authentication gate redirect
+  // Email Unsubscribe state
+  const [unsubscribeEmail, setUnsubscribeEmail] = useState(queryEmail || user?.email || '');
+  const [isUnsubscribed, setIsUnsubscribed] = useState(false);
+  const [unsubStatus, setUnsubStatus] = useState('');
+  const [unsubLoading, setUnsubLoading] = useState(false);
+
+  // Handle Unsubscribe Action from Email Footer Link (Un-gated Public Access)
+  useEffect(() => {
+    if (queryEmail || user?.email) {
+      setUnsubscribeEmail(queryEmail || user?.email || '');
+    }
+
+    if (queryEmail) {
+      // Check current status
+      fetch(`/api/unsubscribe?email=${encodeURIComponent(queryEmail)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.unsubscribed) {
+            setIsUnsubscribed(true);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [queryEmail, user]);
+
+  const handleUnsubscribeToggle = async (action = 'unsubscribe') => {
+    const target = unsubscribeEmail || user?.email;
+    if (!target || !target.includes('@')) {
+      setUnsubStatus('❌ Please enter a valid email address.');
+      return;
+    }
+
+    setUnsubLoading(true);
+    setUnsubStatus('');
+
+    try {
+      const res = await fetch('/api/unsubscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: target, action }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setIsUnsubscribed(action === 'unsubscribe');
+        setUnsubStatus(data.message);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('sb_email_unsubscribed', action === 'unsubscribe' ? 'true' : 'false');
+        }
+      } else {
+        setUnsubStatus(`❌ ${data.error || 'Failed to update preferences.'}`);
+      }
+    } catch (err) {
+      setUnsubStatus(`❌ ${err.message || 'Network error updating email preferences.'}`);
+    } finally {
+      setUnsubLoading(false);
+    }
+  };
+
+  // If visitor clicked Unsubscribe link from email (public access, no login wall required)
+  if (isUnsubscribeAction) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
+        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📧</div>
+        <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0 }}>
+          SkillBun Email Preference Center
+        </h1>
+        <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+          Manage your email notifications and marketing updates for SkillBun.
+        </p>
+
+        {unsubStatus && (
+          <div style={{ padding: '0.8rem 1rem', borderRadius: '10px', background: 'var(--green-subtle)', color: 'var(--green)', border: '1px solid var(--green)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            {unsubStatus}
+          </div>
+        )}
+
+        <div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem', marginBottom: '1.5rem', textAlign: 'left' }}>
+          <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', color: 'var(--muted)', marginBottom: '0.5rem' }}>
+            Email Address:
+          </label>
+          <input
+            type="email"
+            value={unsubscribeEmail}
+            onChange={(e) => setUnsubscribeEmail(e.target.value)}
+            placeholder="Enter your registered email..."
+            style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--card-bg)', color: 'var(--text)', fontSize: '0.9rem', outline: 'none', boxSizing: 'border-box' }}
+          />
+
+          <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text)' }}>
+            <strong>Status:</strong> {isUnsubscribed ? <span style={{ color: '#ef4444', fontWeight: '800' }}>Unsubscribed from Marketing Emails</span> : <span style={{ color: 'var(--green)', fontWeight: '800' }}>Active Subscriber</span>}
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {isUnsubscribed ? (
+            <button
+              onClick={() => handleUnsubscribeToggle('resubscribe')}
+              disabled={unsubLoading}
+              className="btn-primary"
+              style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}
+            >
+              {unsubLoading ? 'Saving...' : '🔔 Re-Enable Email Notifications'}
+            </button>
+          ) : (
+            <button
+              onClick={() => handleUnsubscribeToggle('unsubscribe')}
+              disabled={unsubLoading}
+              style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', border: '1px solid #ef4444', fontWeight: '800', cursor: 'pointer' }}
+            >
+              {unsubLoading ? 'Updating...' : '🔕 Unsubscribe from Marketing Emails'}
+            </button>
+          )}
+          <Link href="/" className="btn-secondary" style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '600' }}>
+            Return to SkillBun
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Standard authentication gate redirect
   useEffect(() => {
     if (!authLoading && !user) {
       router.replace('/auth?next=/settings');
@@ -44,7 +171,6 @@ export default function SettingsPage() {
     );
   }
 
-  // Determine auth provider (Google vs Password)
   const isGoogle = Array.isArray(profile.providers) && profile.providers.includes('google.com');
   const providerLabel = isGoogle ? 'Google Account' : 'Email & Password';
 
@@ -90,7 +216,6 @@ export default function SettingsPage() {
 
     try {
       await deleteAccount();
-      // On success, AuthProvider signs out and redirects to homepage
     } catch (err) {
       if (err.code === 'auth/requires-recent-login') {
         setError('🔒 Security check: Please log out and log back in, then immediately delete your account.');
@@ -102,151 +227,174 @@ export default function SettingsPage() {
   }
 
   return (
-    <main className={styles.page}>
-      <div className={styles.bgGridOverlay} aria-hidden="true" />
-
-      <div className={styles.container}>
-        <div className={styles.board}>
-          <WorkspaceSidebar active="settings" title="Settings" status="SETTINGS.ONLINE" kicker="SkillBun Settings" />
-
-          <div className={styles.mainColumn}>
-            {/* Account Details Panel */}
-            <article className={styles.panel}>
-              <div className={styles.panelHeader}>
-                <h2>Account details</h2>
-                <p>Manage your account credentials and verification status</p>
-              </div>
-
-              <div className={styles.section}>
-                <div className={styles.infoGrid}>
-                  <div className={styles.infoCard}>
-                    <span className={styles.infoLabel}>Email Address</span>
-                    <span className={styles.infoValue}>{user.email}</span>
-                  </div>
-
-                  <div className={styles.infoCard}>
-                    <span className={styles.infoLabel}>Sign-in Provider</span>
-                    <span className={styles.infoValue}>{providerLabel}</span>
-                  </div>
-
-                  <div className={styles.infoCard}>
-                    <span className={styles.infoLabel}>Verification Status</span>
-                    <span className={styles.infoValue}>
-                      {user.emailVerified ? (
-                        <span className={`${styles.badge} ${styles.badgeVerified}`}>Verified</span>
-                      ) : (
-                        <span className={`${styles.badge} ${styles.badgeUnverified}`}>Unverified</span>
-                      )}
-                    </span>
-                  </div>
-                </div>
-
-                {!user.emailVerified && (
-                  <button
-                    type="button"
-                    className={styles.resendLink}
-                    onClick={handleResendVerification}
-                    disabled={loading}
-                  >
-                    Resend verification email
-                  </button>
-                )}
-              </div>
-            </article>
-
-            {/* Security Settings Panel */}
-            <article className={styles.panel}>
-              <div className={styles.panelHeader}>
-                <h2>Security & Sign-in</h2>
-                <p>Update your password and manage credentials</p>
-              </div>
-
-              <div className={styles.section}>
-                {isGoogle ? (
-                  <div className={styles.infoCard} style={{ background: 'var(--green-subtle)', borderColor: 'color-mix(in srgb, var(--green) 20%, transparent)', gap: '0.5rem' }}>
-                    <span className={styles.infoLabel} style={{ color: 'var(--green)' }}>Google Authentication</span>
-                    <p className={styles.dangerText} style={{ color: 'var(--text)', marginTop: '0.25rem' }}>
-                      Your account is linked with Google. Authentication and password security are managed securely by Google.
-                    </p>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className={styles.sectionTitle}>Change Password</h3>
-                    <p className={styles.dangerText} style={{ color: 'var(--muted)' }}>
-                      Request a secure password reset link sent to your registered email address.
-                    </p>
-                    <button
-                      type="button"
-                      className={styles.btnSecondary}
-                      onClick={handlePasswordReset}
-                      disabled={loading}
-                    >
-                      Send Password Reset Email
-                    </button>
-                  </>
-                )}
-              </div>
-            </article>
-
-            {/* Danger Zone Panel */}
-            <article className={`${styles.panel} ${styles.dangerPanel}`}>
-              <div className={styles.panelHeader}>
-                <h2 className={styles.dangerTitle}>Danger Zone</h2>
-                <p>Permanently delete your account and progress data</p>
-              </div>
-
-              <div className={styles.section}>
-                <p className={styles.dangerText}>
-                  Permanently delete your SkillBun profile, career quiz results, and all saved roadmap progress. This action is irreversible.
-                </p>
-                <button
-                  type="button"
-                  className={styles.btnDanger}
-                  onClick={() => setShowDeleteModal(true)}
-                  disabled={loading}
-                >
-                  Delete Account
-                </button>
-              </div>
-            </article>
-
-            {/* Alert Messages */}
-            {(status || error) && (
-              <div className={`${styles.message} ${error ? styles.messageError : styles.messageOk}`} role="status">
-                {error || status}
-              </div>
-            )}
-          </div>
+    <div className={styles.settingsPage}>
+      <WorkspaceSidebar />
+      <main className={styles.settingsContainer}>
+        <div className={styles.settingsHeader}>
+          <h1 className={styles.title}>Account Settings</h1>
+          <p className={styles.subtitle}>Manage your login methods, email preferences, and security.</p>
         </div>
-      </div>
 
-      {/* Delete Account Modal Confirmation */}
-      {showDeleteModal && (
-        <div className={styles.modalOverlay} onClick={() => setShowDeleteModal(false)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <h3>Delete your account permanently?</h3>
-            <p>
-              Are you absolutely sure? All your progress, career quiz recommendations, roadmap completion nodes, and profile data will be permanently wiped out. This cannot be undone.
-            </p>
-            <div className={styles.modalActions}>
-              <button
-                type="button"
-                className={styles.modalCancelBtn}
-                onClick={() => setShowDeleteModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className={styles.modalConfirmBtn}
-                onClick={handleDeleteAccount}
-              >
-                Delete Permanently
-              </button>
+        {status && <div className={styles.statusBanner}>{status}</div>}
+        {error && <div className={styles.errorBanner}>{error}</div>}
+
+        {/* SECTION 1: Account Information */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>Account Overview</h2>
+          <div className={styles.infoGrid}>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Full Name</span>
+              <span className={styles.value}>{profile.name || user.displayName || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Email Address</span>
+              <span className={styles.value}>
+                {user.email}
+                {user.emailVerified ? (
+                  <span className={styles.badgeSuccess}>Verified</span>
+                ) : (
+                  <span className={styles.badgeWarning}>Unverified</span>
+                )}
+              </span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Sign-in Method</span>
+              <span className={styles.value}>{providerLabel}</span>
             </div>
           </div>
-        </div>
-      )}
-    </main>
+
+          {!user.emailVerified && !isGoogle && (
+            <div className={styles.actionRow} style={{ marginTop: '1.25rem' }}>
+              <button
+                onClick={handleResendVerification}
+                disabled={loading}
+                className={styles.btnSecondary}
+              >
+                {loading ? 'Sending...' : 'Resend Email Verification'}
+              </button>
+            </div>
+          )}
+        </section>
+
+        {/* SECTION 2: Email Notification Preferences */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>📧 Email Notification Preferences</h2>
+          <p className={styles.cardSubtitle} style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: '1rem' }}>
+            Control whether you receive career roadmap nudges, cert updates, and learning reminders.
+          </p>
+
+          {unsubStatus && (
+            <div style={{ padding: '0.6rem 1rem', borderRadius: '8px', background: 'var(--green-subtle)', color: 'var(--green)', border: '1px solid var(--green)', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem' }}>
+              {unsubStatus}
+            </div>
+          )}
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-raised)', padding: '1rem 1.25rem', borderRadius: '10px', border: '1px solid var(--border)' }}>
+            <div>
+              <strong style={{ display: 'block', fontSize: '0.9rem', color: 'var(--text)' }}>
+                Marketing & Retention Emails
+              </strong>
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
+                Roadmap streak reminders, exam readiness nudges, and new track releases.
+              </span>
+            </div>
+
+            <button
+              type="button"
+              disabled={unsubLoading}
+              onClick={() => handleUnsubscribeToggle(isUnsubscribed ? 'resubscribe' : 'unsubscribe')}
+              style={{
+                cursor: 'pointer',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                background: isUnsubscribed ? 'var(--green-subtle)' : 'rgba(239,68,68,0.12)',
+                color: isUnsubscribed ? 'var(--green)' : '#ef4444',
+                border: `1px solid ${isUnsubscribed ? 'var(--green)' : '#ef4444'}`,
+                fontWeight: '700',
+                fontSize: '0.82rem',
+              }}
+            >
+              {unsubLoading ? 'Updating...' : isUnsubscribed ? '🔔 Enable Emails' : '🔕 Unsubscribe'}
+            </button>
+          </div>
+        </section>
+
+        {/* SECTION 3: Password & Security */}
+        {!isGoogle && (
+          <section className={styles.card}>
+            <h2 className={styles.cardTitle}>Password & Security</h2>
+            <p className={styles.cardSubtitle}>
+              Request a secure password reset link sent directly to <strong>{user.email}</strong>.
+            </p>
+            <div className={styles.actionRow}>
+              <button
+                onClick={handlePasswordReset}
+                disabled={loading}
+                className={styles.btnSecondary}
+              >
+                {loading ? 'Sending...' : 'Send Password Reset Email'}
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* SECTION 4: Danger Zone */}
+        <section className={`${styles.card} ${styles.dangerZone}`}>
+          <h2 className={styles.cardTitleDanger}>Danger Zone</h2>
+          <p className={styles.cardSubtitle}>
+            Permanently delete your SkillBun profile, roadmap progress, and account data.
+          </p>
+          <div className={styles.actionRow}>
+            <button
+              onClick={() => setShowDeleteModal(true)}
+              className={styles.btnDanger}
+              disabled={loading}
+            >
+              Delete My Account
+            </button>
+          </div>
+        </section>
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteModal && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h3 className={styles.modalTitle}>Delete Account?</h3>
+              <p className={styles.modalText}>
+                Are you sure you want to permanently delete your account (<strong>{user.email}</strong>)? All of your roadmap progress, certificates, and profile data will be permanently erased.
+              </p>
+              <div className={styles.modalActions}>
+                <button
+                  onClick={() => setShowDeleteModal(false)}
+                  className={styles.btnSecondary}
+                  disabled={loading}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteAccount}
+                  className={styles.btnDanger}
+                  disabled={loading}
+                >
+                  {loading ? 'Deleting...' : 'Yes, Delete Account'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ opacity: 1, display: 'flex', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>
+        Loading Settings...
+      </div>
+    }>
+      <SettingsContent />
+    </Suspense>
   );
 }

@@ -259,18 +259,17 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler with Candidate Data Auto-Fill
+  // One-Click Retention Email Dispatcher Handler (Enforces Confirmation Prompt for BOTH Sample Send and Direct Candidate Send)
   const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
     const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
 
-    if (!isPreview) {
-      const confirmSend = window.confirm(
-        `Send retention email to candidate "${targetUser.name}" (${targetUser.email}) using template: "${templateId.toUpperCase()}"?\n\nCandidate Data Auto-Fill:\n- Name: ${targetUser.name}\n- Email: ${targetUser.email}\n- Degree: ${targetUser.degree}`
-      );
-      if (!confirmSend) return;
-    }
+    const confirmPrompt = isPreview
+      ? `🧪 SEND SAMPLE PREVIEW CONFIRMATION 🧪\n\nSend a test preview copy of template "${templateId.toUpperCase()}" to harsh@skillbun.tech for inbox inspection?`
+      : `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
+
+    if (!window.confirm(confirmPrompt)) return;
 
     setSendingEmailKey(actionKey);
     setStatusMessage(null);
@@ -835,7 +834,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH SMART RECOMMENDATIONS */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH SMART RECOMMENDATIONS & CONFIRMATION GUARDS */}
                                 <div
                                   style={{
                                     background: 'rgba(0, 229, 153, 0.08)',
@@ -851,7 +850,7 @@ export default function AnalyticsDashboardPage() {
                                         📧 SkillBun Top-Level Retention Email Engine
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                        Auto-fills candidate details ({u.name}, {u.email}, {u.degree}) with CAN-SPAM compliant unsubscribe rules.
+                                        Auto-fills candidate details ({u.name}, {u.email}, {u.degree}) with auto system dark/light theme & working unsubscribe link.
                                       </span>
                                     </div>
                                   </div>
@@ -912,15 +911,15 @@ export default function AnalyticsDashboardPage() {
                                         minWidth: '260px',
                                       }}
                                     >
-                                      <option value="reengagement">🐰 1. Re-Engagement Nudge (Inactive User)</option>
+                                      <option value="reengagement">🐰 1. Re-Engagement Streak Nudge (Inactive User)</option>
                                       <option value="exam_nudge">🎓 2. Cert Exam Ready Nudge (60%+ Progress)</option>
-                                      <option value="welcome">🚀 3. Onboarding & Activation (New Signup)</option>
+                                      <option value="welcome">🚀 3. Onboarding & Activation (2026 Hiring Alert)</option>
                                       <option value="exam_failed">📚 4. Cooldown Encouragement (Failed Attempt)</option>
-                                      <option value="cert_congrats">🏆 5. Certificate Achieved (Alumni Upsell)</option>
+                                      <option value="cert_congrats">🏆 5. Certificate Achieved (Alumni Credentials)</option>
                                       <option value="transactional_alert">🔒 6. Security Alert (No Unsubscribe - Transactional)</option>
                                     </select>
 
-                                    {/* Action 1: Send Sample Test Email to Admin for Review */}
+                                    {/* Action 1: Send Sample Test Email to Admin with Confirmation Guard */}
                                     <button
                                       type="button"
                                       disabled={isPreviewLoading || isSendLoading}
@@ -942,7 +941,7 @@ export default function AnalyticsDashboardPage() {
                                       {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me (harsh@skillbun.tech)'}
                                     </button>
 
-                                    {/* Action 2: One-Click Send to Student */}
+                                    {/* Action 2: One-Click Send to Student with Confirmation Guard */}
                                     <button
                                       type="button"
                                       disabled={isPreviewLoading || isSendLoading}
