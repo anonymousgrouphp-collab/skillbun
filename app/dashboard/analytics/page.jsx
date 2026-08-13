@@ -24,7 +24,7 @@ function formatDateTime(isoString) {
   }
 }
 
-// Smart Retention Template Recommender based on real student telemetry
+// Smart Retention Template Recommender out of 18 High-Conversion Variations
 function getRecommendedTemplate(u) {
   const certCount = u.certificates?.length || 0;
   const hasAttempts = u.quizAttempts?.length > 0;
@@ -34,18 +34,18 @@ function getRecommendedTemplate(u) {
     : 0;
 
   if (certCount > 0) {
-    return { id: 'cert_congrats', label: '🏆 Certificate Achieved (Alumni Upsell)' };
+    return { id: 'cert_congrats_v1', label: '🏆 Cert Alumni V1: Verified Specialist Status & QR Badge' };
   }
   if (hasAttempts) {
-    return { id: 'exam_failed', label: '📚 Cooldown Encouragement (Failed Attempt)' };
+    return { id: 'exam_failed_v1', label: '📚 Cooldown V1: 100% Free Unlimited Retake Granted' };
   }
   if (maxNodes >= 15) {
-    return { id: 'exam_nudge', label: '🎓 Cert Exam Ready Nudge (60%+ Progress)' };
+    return { id: 'exam_nudge_v1', label: '🎓 Exam Ready V1: Top 7% Elite Candidate Invitation' };
   }
   if (daysInactive >= 1.5 && maxNodes > 0) {
-    return { id: 'reengagement', label: '🐰 Re-Engagement Nudge (Inactive User)' };
+    return { id: 'reengagement_v1', label: '🐰 Re-Engagement V1: Streak & Candidate Rank Decaying' };
   }
-  return { id: 'welcome', label: '🚀 Onboarding & Activation (New Signup)' };
+  return { id: 'welcome_v1', label: '🚀 Onboarding V1: ₹35,000 Course Value Unlocked Free' };
 }
 
 export default function AnalyticsDashboardPage() {
@@ -834,7 +834,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH SMART RECOMMENDATIONS & CONFIRMATION GUARDS */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH 18 VARIATIONS */}
                                 <div
                                   style={{
                                     background: 'rgba(0, 229, 153, 0.08)',
@@ -847,10 +847,10 @@ export default function AnalyticsDashboardPage() {
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun Top-Level Retention Email Engine
+                                        📧 SkillBun 18-Variation Retention Engine (skillbun.tech)
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                        Auto-fills candidate details ({u.name}, {u.email}, {u.degree}) with auto system dark/light theme & working unsubscribe link.
+                                        High-greed & high-conversion copywriting with auto-filled candidate data ({u.name}, {u.email}).
                                       </span>
                                     </div>
                                   </div>
@@ -894,7 +894,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
 
                                   <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                                    {/* Email Template Selector */}
+                                    {/* 18 Variations Grouped Email Template Selector */}
                                     <select
                                       value={currentTemplate}
                                       onChange={(e) => setSelectedTemplates((prev) => ({ ...prev, [u.uid]: e.target.value }))}
@@ -908,15 +908,44 @@ export default function AnalyticsDashboardPage() {
                                         fontSize: '0.85rem',
                                         outline: 'none',
                                         flex: '1',
-                                        minWidth: '260px',
+                                        minWidth: '320px',
                                       }}
                                     >
-                                      <option value="reengagement">🐰 1. Re-Engagement Streak Nudge (Inactive User)</option>
-                                      <option value="exam_nudge">🎓 2. Cert Exam Ready Nudge (60%+ Progress)</option>
-                                      <option value="welcome">🚀 3. Onboarding & Activation (2026 Hiring Alert)</option>
-                                      <option value="exam_failed">📚 4. Cooldown Encouragement (Failed Attempt)</option>
-                                      <option value="cert_congrats">🏆 5. Certificate Achieved (Alumni Credentials)</option>
-                                      <option value="transactional_alert">🔒 6. Security Alert (No Unsubscribe - Transactional)</option>
+                                      <optgroup label="1. ONBOARDING & ACTIVATION (NEW SIGNUP)">
+                                        <option value="welcome_v1">🚀 V1: ₹35,000 Course Value Unlocked Free (Greed Angle)</option>
+                                        <option value="welcome_v2">🚀 V2: 2026 Tech Salary Benchmark (Competitive Angle)</option>
+                                        <option value="welcome_v3">🚀 V3: $500 Encrypted SBV1 Vault Access (Privilege Angle)</option>
+                                      </optgroup>
+
+                                      <optgroup label="2. RE-ENGAGEMENT STREAK NUDGE (INACTIVE USER)">
+                                        <option value="reengagement_v1">🐰 V1: Rank & Streak Decaying Alert (Loss Aversion)</option>
+                                        <option value="reengagement_v2">🐰 V2: 3-Minute Quick Win to Exam Ticket (Quick Progress)</option>
+                                        <option value="reengagement_v3">🐰 V3: Recruiter Queue Visibility Alert (Placement Angle)</option>
+                                      </optgroup>
+
+                                      <optgroup label="3. CERTIFICATION EXAM READY NUDGE (60%+ PROGRESS)">
+                                        <option value="exam_nudge_v1">🎓 V1: Top 7% Elite Candidate Invitation (Status Angle)</option>
+                                        <option value="exam_nudge_v2">🎓 V2: Free ₹15,000 Proctored Exam Ticket (High Value Gift)</option>
+                                        <option value="exam_nudge_v3">🎓 V3: Recruiters Verifying SkillBun QR Links (Job Proof)</option>
+                                      </optgroup>
+
+                                      <optgroup label="4. EXAM COOLDOWN ENCOURAGEMENT (FAILED ATTEMPT)">
+                                        <option value="exam_failed_v1">📚 V1: 100% Free Unlimited Retake Ticket (Zero Risk)</option>
+                                        <option value="exam_failed_v2">📚 V2: Review SBV1 Encrypted Study Vault (Pass Guarantee)</option>
+                                        <option value="exam_failed_v3">📚 V3: Missed Passing by Just 2 Questions (High Confidence)</option>
+                                      </optgroup>
+
+                                      <optgroup label="5. CERTIFICATE ACHIEVED (ALUMNI UPSELL)">
+                                        <option value="cert_congrats_v1">🏆 V1: Verified Specialist Status & QR Badge (Credential)</option>
+                                        <option value="cert_congrats_v2">🏆 V2: Next High-Salary Track Combo (Multi-Skill Upsell)</option>
+                                        <option value="cert_congrats_v3">🏆 V3: Priority Recruiter Directory Unlocked (VIP Access)</option>
+                                      </optgroup>
+
+                                      <optgroup label="6. SECURITY & TRANSACTIONAL (NO UNSUBSCRIBE)">
+                                        <option value="transactional_alert_v1">🔒 V1: Account Security & Authentication Alert</option>
+                                        <option value="transactional_alert_v2">🔒 V2: Password & Login Session Guard Notice</option>
+                                        <option value="transactional_alert_v3">🔒 V3: Critical Account Credential Status Alert</option>
+                                      </optgroup>
                                     </select>
 
                                     {/* Action 1: Send Sample Test Email to Admin with Confirmation Guard */}
