@@ -301,18 +301,16 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler (Supports Standard Send & Force Override Send)
-  const handleSendRetentionEmail = async (targetUser, isPreview = false, forceOverride = false) => {
+  // One-Click Retention Email Dispatcher Handler
+  const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
-    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : forceOverride ? 'force' : 'send'}`;
+    const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
 
     let confirmPrompt = '';
 
     if (isPreview) {
       confirmPrompt = `🧪 SEND SAMPLE PREVIEW CONFIRMATION 🧪\n\nSend a test preview copy of template "${templateId.toUpperCase()}" to harsh@skillbun.tech for inbox inspection?`;
-    } else if (forceOverride) {
-      confirmPrompt = `⚠️ FORCE SEND (OVERRIDE UNSUBSCRIBE) CONFIRMATION ⚠️\n\nCandidate "${targetUser.name}" (${targetUser.email}) has UNSUBSCRIBED from marketing updates.\n\nAre you sure you want to FORCE DISPATCH template "${templateId.toUpperCase()}" anyway?`;
     } else {
       confirmPrompt = `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
     }
@@ -353,7 +351,6 @@ export default function AnalyticsDashboardPage() {
           progressCount,
           degree: targetUser.degree,
           isPreview,
-          forceOverride,
           adminEmail: userEmail,
         }),
       });
@@ -371,7 +368,7 @@ export default function AnalyticsDashboardPage() {
           const updatedUsers = (prev.users || []).map((u) => {
             if (u.uid === targetUser.uid) {
               const currentHistory = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
-              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail, forceOverride }];
+              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail }];
               return { ...u, sentEmailHistory: updatedHistory };
             }
             return u;
@@ -693,7 +690,6 @@ export default function AnalyticsDashboardPage() {
                       const currentTemplate = selectedTemplates[u.uid] || recommended.id;
                       const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
-                      const isForceLoading = sendingEmailKey === `${u.uid}-force`;
                       const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
 
                       return (
@@ -951,7 +947,7 @@ export default function AnalyticsDashboardPage() {
                                         {sentLogs.map((log, idx) => (
                                           <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.78rem' }}>
                                             <div style={{ fontWeight: '700', color: 'var(--green)' }}>
-                                              ✔ {log.templateId} {log.forceOverride ? '(FORCE OVERRIDDEN)' : ''}
+                                              ✔ {log.templateId}
                                             </div>
                                             <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
                                               Sent: {formatDateTime(log.sentAt)}
@@ -965,7 +961,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH UNSUBSCRIBED STATUS & FORCE OVERRIDE CONTROLS */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH UNSUBSCRIBED COMPLIANCE RULES */}
                                 <div
                                   style={{
                                     background: u.isUnsubscribed ? 'rgba(239, 68, 68, 0.08)' : 'rgba(0, 229, 153, 0.08)',
@@ -978,7 +974,7 @@ export default function AnalyticsDashboardPage() {
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun Retention Email Engine & Subscription Control
+                                        📧 SkillBun Retention Email Engine
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
                                         Status:{' '}
@@ -1092,10 +1088,10 @@ export default function AnalyticsDashboardPage() {
                                     {/* Action 1: Send Sample Test Email to Admin */}
                                     <button
                                       type="button"
-                                      disabled={isPreviewLoading || isSendLoading || isForceLoading}
-                                      onClick={() => handleSendRetentionEmail(u, true, false)}
+                                      disabled={isPreviewLoading || isSendLoading}
+                                      onClick={() => handleSendRetentionEmail(u, true)}
                                       style={{
-                                        cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
+                                        cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
                                         padding: '0.65rem 1.1rem',
                                         borderRadius: '10px',
                                         background: 'var(--surface-raised)',
@@ -1111,14 +1107,34 @@ export default function AnalyticsDashboardPage() {
                                       {isPreviewLoading ? '⏳ Sending Sample...' : '🧪 Send Sample Preview to Me'}
                                     </button>
 
-                                    {/* Action 2: Standard Send to Student (Respects Unsubscribe) */}
-                                    {!u.isUnsubscribed && (
+                                    {/* Action 2: Standard Send to Student (Disabled if Unsubscribed) */}
+                                    {u.isUnsubscribed ? (
                                       <button
                                         type="button"
-                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
-                                        onClick={() => handleSendRetentionEmail(u, false, false)}
+                                        disabled
                                         style={{
-                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
+                                          cursor: 'not-allowed',
+                                          padding: '0.65rem 1.3rem',
+                                          borderRadius: '10px',
+                                          background: 'var(--surface-raised)',
+                                          color: '#ef4444',
+                                          border: '1px solid #ef4444',
+                                          fontWeight: '800',
+                                          fontSize: '0.85rem',
+                                          whiteSpace: 'nowrap',
+                                          opacity: 0.7,
+                                        }}
+                                        title="Candidate has unsubscribed from marketing emails"
+                                      >
+                                        🔕 Candidate Unsubscribed
+                                      </button>
+                                    ) : (
+                                      <button
+                                        type="button"
+                                        disabled={isPreviewLoading || isSendLoading}
+                                        onClick={() => handleSendRetentionEmail(u, false)}
+                                        style={{
+                                          cursor: isPreviewLoading || isSendLoading ? 'not-allowed' : 'pointer',
                                           padding: '0.65rem 1.3rem',
                                           borderRadius: '10px',
                                           background: 'var(--green)',
@@ -1132,31 +1148,6 @@ export default function AnalyticsDashboardPage() {
                                         }}
                                       >
                                         {isSendLoading ? '⏳ Sending Email...' : `🚀 Send Auto-Filled Email to ${u.name}`}
-                                      </button>
-                                    )}
-
-                                    {/* Action 3: Special Force Send Button (Overrides Unsubscribe Opt-Out!) */}
-                                    {u.isUnsubscribed && (
-                                      <button
-                                        type="button"
-                                        disabled={isPreviewLoading || isSendLoading || isForceLoading}
-                                        onClick={() => handleSendRetentionEmail(u, false, true)}
-                                        style={{
-                                          cursor: isPreviewLoading || isSendLoading || isForceLoading ? 'not-allowed' : 'pointer',
-                                          padding: '0.65rem 1.3rem',
-                                          borderRadius: '10px',
-                                          background: '#ef4444',
-                                          color: '#ffffff',
-                                          border: 'none',
-                                          fontWeight: '800',
-                                          fontSize: '0.85rem',
-                                          whiteSpace: 'nowrap',
-                                          boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)',
-                                          opacity: isForceLoading ? 0.6 : 1,
-                                        }}
-                                        title="Overrides candidate's unsubscribe preference and dispatches the email anyway"
-                                      >
-                                        {isForceLoading ? '⚡ Force Sending...' : '⚡ Force Send (Override Unsubscribe)'}
                                       </button>
                                     )}
                                   </div>
