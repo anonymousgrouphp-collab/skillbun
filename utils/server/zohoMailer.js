@@ -15,20 +15,19 @@ export function getTransporter() {
     return cachedTransporter
   }
 
-  // Fallback defaults for Zoho SMTP if environment variables are partially defined
-  const host = getZohoSmtpHost() || process.env.ZOHO_SMTP_HOST || 'smtppro.zoho.in'
-  const port = getZohoSmtpPort() || 465
-  const user = getZohoSmtpUser() || process.env.ZOHO_SMTP_USER || 'noreply@skillbun.tech'
-  const pass = getZohoSmtpPass() || process.env.ZOHO_SMTP_PASS
+  const host = getZohoSmtpHost()
+  const port = getZohoSmtpPort()
+  const user = getZohoSmtpUser()
+  const pass = getZohoSmtpPass()
 
   if (!user || !pass) {
-    throw new Error('Zoho SMTP credentials (ZOHO_SMTP_USER, ZOHO_SMTP_PASS) are missing.')
+    throw new Error('Zoho SMTP credentials are missing from environment settings.')
   }
 
   cachedTransporter = nodemailer.createTransport({
-    host,
-    port,
-    secure: Number(port) === 465,
+    host: host || 'smtppro.zoho.in',
+    port: port || 465,
+    secure: Number(port || 465) === 465,
     auth: { user, pass },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
@@ -39,14 +38,14 @@ export function getTransporter() {
 }
 
 export function escapeHtml(value) {
-  return String(value)
+  return String(value ?? '')
 }
 
 export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
   const safeLink = escapeHtml(resetLink)
 
   await getTransporter().sendMail({
-    from: getPasswordResetFrom() || 'SkillBun Support <noreply@skillbun.tech>',
+    from: getPasswordResetFrom() || 'SkillBun Support <support@skillbun.tech>',
     to: email,
     subject: 'Reset your SkillBun password',
     text: [
