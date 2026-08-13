@@ -50,8 +50,54 @@ const CAREER_FIELD_LINKS = [
   { label: 'UI/UX Designer', href: '/roadmap/ui_ux_design' },
 ];
 
+const BUNBOT_DEMO_PROMPTS = [
+  {
+    id: 'bca_playbook',
+    chipLabel: '💰 BCA 12 LPA Playbook',
+    userMsg: 'I am a 2nd year BCA student. How do I target high product company salaries?',
+    botIntro: 'Hey! For a 2nd year BCA student, focus on Full Stack Web Dev or Backend Systems first. Here is your roadmap:',
+    tags: [
+      { text: 'Target: 6 - 18 LPA', green: false },
+      { text: 'Roadmap: Fullstack', green: true },
+      { text: 'NIMCET / Referral Ready', green: true },
+    ],
+    botAdvice: 'Start building 2 production GitHub projects and prepare for off-campus referral pipelines.',
+    actionHref: '/counsellor?q=BCA+to+High+Package+Tech+Career+Playbook%3F',
+    actionText: 'Ask BunBot this live →'
+  },
+  {
+    id: 'devops_vs_fullstack',
+    chipLabel: '⚡ Fullstack vs DevOps',
+    userMsg: 'DevOps vs Full Stack Developer: Which path hires faster in 2026 for freshers?',
+    botIntro: 'Full Stack has 3x more entry-level job openings, but DevOps commands higher mid-level packages (~14 LPA avg).',
+    tags: [
+      { text: 'Fastest Hiring: Fullstack', green: true },
+      { text: 'Roadmap: DevOps & Cloud', green: true },
+      { text: 'High Growth: 14 LPA Avg', green: false },
+    ],
+    botAdvice: 'Best Strategy: Learn React & Node first, then add Docker + CI/CD to unlock high-paying DevOps hybrid roles.',
+    actionHref: '/counsellor?q=Fullstack+vs+DevOps+salary+spectrum+in+India%3F',
+    actionText: 'Compare paths with BunBot →'
+  },
+  {
+    id: 'cybersecurity_certs',
+    chipLabel: '🛡️ Cybersecurity Freshers',
+    userMsg: 'Is CEH certification mandatory for getting a SOC Analyst job in India?',
+    botIntro: 'Skip expensive CEH for now! Master Linux networking basics, TryHackMe labs, and get your SkillBun Cybersecurity Certificate first.',
+    tags: [
+      { text: 'Role: SOC Analyst', green: false },
+      { text: 'Roadmap: Cybersecurity', green: true },
+      { text: 'Key Skill: Linux & Pentest', green: true },
+    ],
+    botAdvice: 'Focus on hands-on SIEM log analysis & Linux command line proficiency over theoretical certifications.',
+    actionHref: '/counsellor?q=Is+CEH+certification+worth+it+for+freshers%3F',
+    actionText: 'Explore Security path live →'
+  }
+];
+
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
+  const [activeBunBotPrompt, setActiveBunBotPrompt] = useState(0);
 
   useEffect(() => {
     let timer;
@@ -585,7 +631,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== BUNBOT SHOWCASE ===== */}
+        {/* ===== BUNBOT SHOWCASE (INTERACTIVE ENGINE) ===== */}
         <section id="bunbot" className="sb-section sb-split sb-reveal">
           <div className="sb-copy-block">
             <div className="section-label">
@@ -596,6 +642,13 @@ export default function Home() {
             </div>
             <h2 className="section-title">Your 24/7 AI companion for tech career decisions</h2>
             <p className="section-sub">Trained on Indian tech market realities. Ask follow-up questions about salaries, degree playbooks, roadmap tradeoffs, certifications, and off-campus strategies.</p>
+
+            <div className="sb-bot-signal-strip">
+              <span className="sb-bot-signal-pill">⚡ 100+ Roadmaps Sync</span>
+              <span className="sb-bot-signal-pill">🧠 Profile Memory Engine</span>
+              <span className="sb-bot-signal-pill">🔥 Indian Salary Radar</span>
+              <span className="sb-bot-signal-pill">🛡️ 100% Free</span>
+            </div>
             
             <div className="sb-bot-pillar-grid">
               <div className="sb-bot-pillar-card">
@@ -646,34 +699,53 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sb-bot-window" aria-label="BunBot preview">
+          <div className="sb-bot-window" aria-label="BunBot preview console">
             <div className="sb-bot-header">
+              <div className="sb-bot-mac-dots">
+                <span></span><span></span><span></span>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="status-dot"></span>
-                <strong>BunBot online</strong>
+                <strong style={{ fontSize: '0.82rem', letterSpacing: '0.5px' }}>bunbot.engine</strong>
               </div>
-              <span className="sb-bot-badge">AI Career Advisor</span>
+              <span className="sb-bot-badge">⚡ 110ms RAG</span>
             </div>
             
             <div className="sb-bot-prompts-bar">
-              <span className="sb-bot-prompts-label">Try asking:</span>
-              <Link href="/counsellor?q=BCA+to+High+Package+Tech+Career+Playbook%3F" className="sb-bot-prompt-chip">
-                <span>💰 BCA 12 LPA Playbook</span>
-              </Link>
-              <Link href="/counsellor?q=Fullstack+vs+DevOps+salary+spectrum+in+India%3F" className="sb-bot-prompt-chip">
-                <span>⚡ Fullstack vs DevOps</span>
-              </Link>
+              <span className="sb-bot-prompts-label">Tap Prompt:</span>
+              {BUNBOT_DEMO_PROMPTS.map((prompt, idx) => (
+                <button
+                  key={prompt.id}
+                  type="button"
+                  className={`sb-bot-prompt-chip ${activeBunBotPrompt === idx ? 'active' : ''}`}
+                  onClick={() => setActiveBunBotPrompt(idx)}
+                >
+                  <span>{prompt.chipLabel}</span>
+                </button>
+              ))}
             </div>
 
             <div className="sb-bot-chat-preview">
-              <div className="sb-bot-message user">I am a 2nd year BCA student. How do I target high product company salaries?</div>
+              <div className="sb-bot-message user">
+                {BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].userMsg}
+              </div>
               <div className="sb-bot-message bot">
-                <p>Hello! For a 2nd year BCA student, focus on <strong>Full Stack Web Dev</strong> or <strong>Backend Systems</strong> first. Here is your roadmap:</p>
+                <p>{BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].botIntro}</p>
                 <div className="sb-bot-preview-tags">
-                  <span className="sb-bot-tag">Target: 6 - 18 LPA</span>
-                  <span className="sb-bot-tag green">Roadmap: Fullstack</span>
+                  {BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].tags.map((tag, tIdx) => (
+                    <span key={tIdx} className={`sb-bot-tag ${tag.green ? 'green' : ''}`}>
+                      {tag.text}
+                    </span>
+                  ))}
                 </div>
-                <p style={{ marginTop: '8px', fontSize: '0.85rem' }}>Start building 2 production GitHub projects and prepare for off-campus referral pipelines.</p>
+                <p style={{ marginTop: '10px', fontSize: '0.84rem', lineHeight: '1.45' }}>
+                  {BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].botAdvice}
+                </p>
+                <div style={{ marginTop: '12px' }}>
+                  <Link href={BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].actionHref} className="sb-bot-action-link">
+                    {BUNBOT_DEMO_PROMPTS[activeBunBotPrompt].actionText}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
