@@ -78,7 +78,7 @@ export default function TermsPage() {
       <ul>
         <li>The absolute correctness, completion, or up-to-date nature of study guides, video playlists, or AI-generated recommendations.</li>
         <li>Guaranteed job placements, college admissions, internships, or financial outcomes.</li>
-        <li>The accuracy of LLM outputs. Language models (like Gemini API) are subject to hallucinations, and responses from BunBot should be validated independently.</li>
+        <li>The accuracy of LLM outputs. AI language models are subject to hallucinations, and responses from BunBot should be validated independently.</li>
       </ul>
       <p>
         To the maximum extent permitted by applicable law, Team SkillBun and its members shall not be liable for any indirect, incidental, special, or consequential damages (including, without limitation, loss of data, career opportunities, or tuition fees) arising out of your use of or inability to use the Platform.

@@ -1,15 +1,12 @@
 import { NextResponse } from 'next/server'
 import {
   getCounsellorAiProvider,
-  getGeminiApiKey,
   getGroqApiKey,
   getHuggingFaceApiKey,
   getOpenRouterApiKey,
   getOllamaBaseUrl,
-  getGeminiMaxRetries,
-  getGeminiRateLimitPerHour,
   getGeminiRateLimitPerMinute,
-  getGeminiRetryBaseDelayMs,
+  getGeminiRateLimitPerHour,
   getGeminiTimeoutMs,
 } from '@/utils/server/env'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
@@ -390,26 +387,6 @@ async function fetchFreeOpenSourceLlamaResponse(contents) {
   }
 }
 
-async function fetchGeminiResponse(apiKey, contents) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
-
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents }),
-      signal: controller.signal,
-    })
-
-    if (!res.ok) throw new Error(`Gemini HTTP ${res.status}`)
-    const data = await res.json()
-    return data?.candidates?.[0]?.content?.parts?.[0]?.text || ''
-  } finally {
-    clearTimeout(timeout)
-  }
-}
 
 function formatCounsellorResponse(text) {
   return {
@@ -519,8 +496,6 @@ export async function POST(request) {
         try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace provider error:', e?.message) }
       } else if (preferredProvider === 'ollama' && getOllamaBaseUrl()) {
         try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents) } catch (e) { console.warn('Ollama provider error:', e?.message) }
-      } else if (preferredProvider === 'gemini' && getGeminiApiKey()) {
-        try { textResponse = await fetchGeminiResponse(getGeminiApiKey(), contents) } catch (e) { console.warn('Gemini provider error:', e?.message) }
       }
     }
 

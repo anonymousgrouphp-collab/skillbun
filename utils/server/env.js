@@ -50,7 +50,7 @@ export function isCaptchaEnabled() {
 }
 
 export function getGeminiApiKey() {
-  return getFirstNonEmpty(process.env.GEMINI_API_KEY)
+  return ''
 }
 
 export function getGroqApiKey() {
@@ -70,19 +70,19 @@ export function getOllamaBaseUrl() {
 }
 
 export function getCounsellorAiProvider() {
-  return getFirstNonEmpty(process.env.COUNSELLOR_AI_PROVIDER, 'auto').toLowerCase()
+  return (process.env.COUNSELLOR_AI_PROVIDER || 'auto').trim().toLowerCase()
 }
 
 export function getGeminiTimeoutMs() {
-  return parseIntWithinRange(process.env.GEMINI_TIMEOUT_MS, 20_000, 5_000, 60_000)
+  return parseIntWithinRange(process.env.GEMINI_TIMEOUT_MS, 15_000, 5_000, 60_000)
 }
 
 export function getGeminiRateLimitPerMinute() {
-  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_MINUTE, 12, 1, 120)
+  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_MINUTE, 10, 1, 120)
 }
 
 export function getGeminiRateLimitPerHour() {
-  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_HOUR, 80, 5, 2000)
+  return parseIntWithinRange(process.env.GEMINI_RATE_LIMIT_PER_HOUR, 120, 5, 2000)
 }
 
 export function getGeminiMaxRetries() {
@@ -90,7 +90,7 @@ export function getGeminiMaxRetries() {
 }
 
 export function getGeminiRetryBaseDelayMs() {
-  return parseIntWithinRange(process.env.GEMINI_RETRY_BASE_DELAY_MS, 450, 100, 5_000)
+  return parseIntWithinRange(process.env.GEMINI_RETRY_BASE_DELAY_MS, 800, 100, 5_000)
 }
 
 export function getHumanProofTtlMs() {
@@ -105,7 +105,8 @@ export function getHumanProofSecret() {
   }
 
   const fallbackSeed = getFirstNonEmpty(
-    process.env.GEMINI_API_KEY
+    process.env.GROQ_API_KEY,
+    process.env.OPENROUTER_API_KEY
   )
 
   if (fallbackSeed) {
