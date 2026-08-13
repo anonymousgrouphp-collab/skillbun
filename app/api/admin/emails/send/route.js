@@ -131,6 +131,31 @@ export async function POST(request) {
     }
 
     if (emailSent) {
+      // Record Sent Email Log in Candidate's Firestore Document to prevent duplicate suggestions!
+      if (!isPreview && recipientEmail) {
+        try {
+          const db = getFirebaseAdminFirestore();
+          if (db) {
+            const usersSnap = await db.collection('users').where('email', '==', recipientEmail.toLowerCase()).get();
+            if (!usersSnap.empty) {
+              const userDoc = usersSnap.docs[0];
+              const existingLogs = Array.isArray(userDoc.data().sentEmailHistory) ? userDoc.data().sentEmailHistory : [];
+              const newLog = {
+                templateId,
+                subject,
+                sentAt: new Date().toISOString(),
+                adminEmail: authUserEmail || 'harsh@skillbun.tech',
+              };
+              await userDoc.ref.set({
+                sentEmailHistory: [...existingLogs, newLog],
+              }, { merge: true });
+            }
+          }
+        } catch (logErr) {
+          console.warn('[Sent Email History Log Warning]:', logErr.message);
+        }
+      }
+
       const successMsg = isPreview
         ? `✅ Sample preview email for template "${templateId}" successfully sent to harsh@skillbun.tech!`
         : `✅ Retention email successfully sent to ${targetEmail} (CC'd to harsh@skillbun.tech for delivery confirmation)!`;
@@ -139,10 +164,10 @@ export async function POST(request) {
         success: true,
         message: successMsg,
         messageId: smtpResponse?.messageId || null,
+        sentTemplateId: templateId,
         cc: ccRecipients || null,
       });
     } else {
-      // In dev environment or when SMTP fails, return exact diagnostic error so admin knows why
       return NextResponse.json({
         error: `SMTP Dispatch Error: ${errorDetail || 'Could not connect to SMTP server. Check ZOHO_SMTP_USER and ZOHO_SMTP_PASS in environment settings.'}`,
       }, { status: 500 });

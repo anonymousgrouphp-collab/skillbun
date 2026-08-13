@@ -1,5 +1,3 @@
-import { escapeHtml } from './zohoMailer';
-
 /**
  * SkillBun Ultra-Premium User Retention & Lifecycle Email System (18 Variations)
  * Domain: https://skillbun.tech
@@ -12,6 +10,15 @@ import { escapeHtml } from './zohoMailer';
  */
 
 const SITE_URL = 'https://skillbun.tech';
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
 
 export const RETENTION_TEMPLATES = {
   // CATEGORY 1: ONBOARDING & ACTIVATION (NEW SIGNUP)
@@ -295,9 +302,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
   let subject = '';
 
   switch (templateId) {
-    // ----------------------------------------------------
     // CATEGORY 1: ONBOARDING & ACTIVATION (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'welcome_v1':
       subject = `🚨 ₹35,000 Tech Curriculum Unlocked 100% Free for ${name} (Limited Access)`;
       contentHtml = `
@@ -412,9 +417,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
       `;
       break;
 
-    // ----------------------------------------------------
     // CATEGORY 2: RE-ENGAGEMENT STREAK NUDGE (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'reengagement_v1':
       subject = `⚠️ Your ${roadmapTitle} streak & candidate rank is decaying, ${name}!`;
       contentHtml = `
@@ -524,9 +527,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
       `;
       break;
 
-    // ----------------------------------------------------
     // CATEGORY 3: CERTIFICATION EXAM READY (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'exam_nudge_v1':
       subject = `🏆 You are in the Top 7% Qualified Candidates for ${roadmapTitle} Cert, ${name}!`;
       contentHtml = `
@@ -632,9 +633,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
       `;
       break;
 
-    // ----------------------------------------------------
     // CATEGORY 4: EXAM COOLDOWN ENCOURAGEMENT (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'exam_failed_v1':
       subject = `⚡ Retake Ticket Granted! 100% Free Retake for ${roadmapTitle}, ${name}`;
       contentHtml = `
@@ -730,9 +729,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
       `;
       break;
 
-    // ----------------------------------------------------
     // CATEGORY 5: CERTIFICATE ACHIEVED (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'cert_congrats_v1':
       subject = `🎉 Verified Specialist Status Unlocked! Claim your QR Badge, ${name}`;
       contentHtml = `
@@ -818,9 +815,7 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
       `;
       break;
 
-    // ----------------------------------------------------
     // CATEGORY 6: SECURITY & TRANSACTIONAL (3 VARIATIONS)
-    // ----------------------------------------------------
     case 'transactional_alert_v1':
       subject = `🔒 SkillBun Account Security & Authentication Notice for ${name}`;
       contentHtml = `
