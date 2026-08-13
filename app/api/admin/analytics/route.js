@@ -1,34 +1,22 @@
 import { NextResponse } from 'next/server';
-import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin';
-import { getApps, initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+import { getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import fs from 'fs';
 import path from 'path';
 
 export const runtime = 'nodejs';
 
-function getAdminDb() {
-  try {
-    const auth = getFirebaseAdminAuth();
-    if (!auth) return null;
-    return getFirestore();
-  } catch (e) {
-    return null;
-  }
-}
-
-export async function GET(request) {
+export async function GET() {
   try {
     const roadmapsDir = path.join(process.cwd(), 'public', 'data', 'roadmaps');
     const quizzesDir = path.join(process.cwd(), 'public', 'data', 'quizzes');
 
-    // Count roadmaps
+    // Count available roadmap JSON files
     let roadmapsCount = 0;
     if (fs.existsSync(roadmapsDir)) {
       roadmapsCount = fs.readdirSync(roadmapsDir).filter((f) => f.endsWith('.json')).length;
     }
 
-    // Count static quizzes & total questions
+    // Count static quizzes & total question bank
     let quizFilesCount = 0;
     let totalQuestionsCount = 0;
     if (fs.existsSync(quizzesDir)) {
@@ -44,94 +32,85 @@ export async function GET(request) {
       });
     }
 
-    let userCount = 0;
-    let certCount = 0;
-    let recentCertificates = [];
-    const db = getAdminDb();
+    let usersList = [];
+    let certsList = [];
 
-    if (db) {
-      try {
-        const usersSnap = await db.collection('users').select().get();
-        userCount = usersSnap.size;
-
-        const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').limit(20).get();
-        certCount = certsSnap.size;
-
-        const docsList = certsSnap.docs.map((doc) => {
+    try {
+      const db = getFirebaseAdminFirestore();
+      if (db) {
+        // Fetch all real certificates from Firestore
+        const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').get();
+        certsList = certsSnap.docs.map((doc) => {
           const data = doc.data();
           return {
             id: doc.id,
-            name: data.name || data.userName || 'Anonymous Student',
-            email: data.email || data.userEmail || null,
+            certId: doc.id,
+            uid: data.uid || '',
+            name: data.name || data.studentName || data.userName || 'Anonymous Student',
+            email: data.email || data.userEmail || '',
             roadmapTitle: data.roadmapTitle || data.roadmapSlug || 'Roadmap',
-            score: data.score || 0,
-            createdAt: data.createdAt ? new Date(data.createdAt.toDate?.() || data.createdAt).toISOString() : null,
+            roadmapSlug: data.roadmapSlug || '',
+            score: typeof data.score === 'number' ? data.score : 0,
+            createdAt: data.createdAt ? new Date(data.createdAt.toDate?.() || data.createdAt).toISOString() : new Date().toISOString(),
           };
         });
-        if (docsList.length > 0) {
-          recentCertificates = docsList;
-        }
-      } catch (err) {
-        console.warn('[Admin Analytics API] Firestore fetch fallback:', err.message);
-      }
-    }
 
-    if (!recentCertificates || recentCertificates.length === 0) {
-      recentCertificates = [
-        {
-          id: 'SB-88219-FSD',
-          name: 'Aarav Sharma',
-          email: 'aarav.s@student.edu',
-          roadmapTitle: 'Full-Stack Web Developer',
-          score: 90,
-          createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
-        },
-        {
-          id: 'SB-77402-AIML',
-          name: 'Priya Patel',
-          email: 'priya.p@tech.in',
-          roadmapTitle: 'AI & Machine Learning Engineer',
-          score: 85,
-          createdAt: new Date(Date.now() - 3600000 * 14).toISOString(),
-        },
-        {
-          id: 'SB-66194-DEVOPS',
-          name: 'Rohan Verma',
-          email: 'rohan.v@gmail.com',
-          roadmapTitle: 'DevOps & Cloud Engineer',
-          score: 95,
-          createdAt: new Date(Date.now() - 3600000 * 28).toISOString(),
-        },
-        {
-          id: 'SB-55901-CYBER',
-          name: 'Ananya Gupta',
-          email: 'ananya.g@college.edu',
-          roadmapTitle: 'Cybersecurity Analyst',
-          score: 80,
-          createdAt: new Date(Date.now() - 3600000 * 48).toISOString(),
-        },
-        {
-          id: 'SB-44310-SYS',
-          name: 'Harsh Vardhan',
-          email: 'harsh@skillbun.tech',
-          roadmapTitle: 'Backend Systems Architect',
-          score: 100,
-          createdAt: new Date(Date.now() - 3600000 * 72).toISOString(),
-        },
-      ];
+        // Fetch all real users from Firestore
+        const usersSnap = await db.collection('users').get();
+        
+        for (const userDoc of usersSnap.docs) {
+          const uData = userDoc.data();
+          const uid = userDoc.id;
+
+          // Fetch user's roadmap progress subcollection
+          let progressList = [];
+          try {
+            const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').get();
+            progressList = progSnap.docs.map((pDoc) => {
+              const pData = pDoc.data();
+              return {
+                slug: pDoc.id,
+                completedNodeIds: Array.isArray(pData.completedNodeIds) ? pData.completedNodeIds : [],
+                updatedAt: pData.updatedAt ? new Date(pData.updatedAt.toDate?.() || pData.updatedAt).toISOString() : null,
+              };
+            });
+          } catch (e) {}
+
+          // Link certificates belonging to this user
+          const userCerts = certsList.filter(
+            (c) => c.uid === uid || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
+          );
+
+          usersList.push({
+            uid,
+            name: uData.name || uData.displayName || uData.fullName || 'Registered Student',
+            email: uData.email || 'N/A',
+            degree: uData.degree || 'N/A',
+            year: uData.year || uData.current_year || 'N/A',
+            interest: uData.interest || uData.interest_area || 'N/A',
+            providers: Array.isArray(uData.providers) ? uData.providers : [],
+            createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
+            progress: progressList,
+            certificates: userCerts,
+          });
+        }
+      }
+    } catch (err) {
+      console.warn('[Admin Analytics API] Firestore server fetch:', err.message);
     }
 
     return NextResponse.json({
       success: true,
       timestamp: new Date().toISOString(),
       stats: {
-        totalStudents: userCount || 128, // Includes active platform cohort fallback
-        totalCertificates: certCount || 42,
+        totalStudents: usersList.length,
+        totalCertificates: certsList.length,
         totalRoadmaps: roadmapsCount,
         quizQuestionBank: totalQuestionsCount,
         quizCategoriesCount: quizFilesCount,
       },
-      recentCertificates,
+      users: usersList,
+      certificates: certsList,
     });
   } catch (error) {
     console.error('[Admin Analytics API Error]:', error);
