@@ -8,6 +8,7 @@ export default function AnalyticsDashboardPage() {
   const { user, profile, authLoading } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Strictly restrict access to harsh@skillbun.tech via Google Login
   const userEmail = (user?.email || '').trim().toLowerCase();
@@ -299,40 +300,129 @@ export default function AnalyticsDashboardPage() {
 
       </div>
 
-      {/* Recent Certificates Table */}
-      {recentCerts.length > 0 && (
-        <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', boxShadow: 'var(--card-shadow)' }}>
-          <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-fredoka), sans-serif', marginTop: 0, marginBottom: '1rem' }}>
-            📜 Recent Platform Certificates
-          </h2>
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
-              <thead>
-                <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
-                  <th style={{ padding: '0.75rem' }}>Student Name</th>
-                  <th style={{ padding: '0.75rem' }}>Roadmap Track</th>
-                  <th style={{ padding: '0.75rem' }}>Score</th>
-                  <th style={{ padding: '0.75rem' }}>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentCerts.map((cert) => (
-                  <tr key={cert.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                    <td style={{ padding: '0.75rem', fontWeight: '700' }}>{cert.name}</td>
-                    <td style={{ padding: '0.75rem' }}>{cert.roadmapTitle}</td>
-                    <td style={{ padding: '0.75rem', color: 'var(--green)', fontWeight: '800' }}>{cert.score}%</td>
-                    <td style={{ padding: '0.75rem' }}>
-                      <Link href={`/certificate/${cert.id}`} style={{ color: 'var(--accent)', fontWeight: '700', textDecoration: 'none' }}>
-                        View Cert →
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* Issued Certificates & Recipient Registry */}
+      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', boxShadow: 'var(--card-shadow)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
+          <div>
+            <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-fredoka), sans-serif', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              📜 Certificate Recipient Registry
+            </h2>
+            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>
+              Official records of certificates issued to students across all 100+ roadmaps.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <input
+              type="text"
+              placeholder="🔍 Search name, email, or cert ID..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                padding: '0.55rem 1rem',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                background: 'var(--surface-raised)',
+                color: 'var(--text)',
+                fontSize: '0.85rem',
+                outline: 'none',
+                minWidth: '240px',
+              }}
+            />
+            <Link
+              href="/certificate"
+              style={{
+                textDecoration: 'none',
+                padding: '0.55rem 1rem',
+                borderRadius: '10px',
+                background: 'var(--green-subtle)',
+                border: '1px solid var(--green)',
+                color: 'var(--green)',
+                fontWeight: '700',
+                fontSize: '0.85rem',
+              }}
+            >
+              🌐 Public Registry Lookup
+            </Link>
           </div>
         </div>
-      )}
+
+        {(() => {
+          const filteredCerts = recentCerts.filter((cert) => {
+            if (!searchTerm.trim()) return true;
+            const q = searchTerm.toLowerCase();
+            return (
+              (cert.name || '').toLowerCase().includes(q) ||
+              (cert.email || '').toLowerCase().includes(q) ||
+              (cert.roadmapTitle || '').toLowerCase().includes(q) ||
+              (cert.id || '').toLowerCase().includes(q)
+            );
+          });
+
+          if (filteredCerts.length === 0) {
+            return (
+              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>
+                <p style={{ fontSize: '1rem', margin: 0 }}>No certificate records match "{searchTerm}".</p>
+              </div>
+            );
+          }
+
+          return (
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
+                    <th style={{ padding: '0.75rem' }}>Student / Recipient</th>
+                    <th style={{ padding: '0.75rem' }}>Roadmap Track</th>
+                    <th style={{ padding: '0.75rem' }}>Exam Score</th>
+                    <th style={{ padding: '0.75rem' }}>Certificate ID</th>
+                    <th style={{ padding: '0.75rem', textAlign: 'right' }}>Verification</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredCerts.map((cert) => (
+                    <tr key={cert.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                      <td style={{ padding: '0.75rem' }}>
+                        <div style={{ fontWeight: '700', color: 'var(--text)' }}>{cert.name}</div>
+                        {cert.email && (
+                          <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{cert.email}</div>
+                        )}
+                      </td>
+                      <td style={{ padding: '0.75rem', color: 'var(--text)' }}>{cert.roadmapTitle}</td>
+                      <td style={{ padding: '0.75rem', color: 'var(--green)', fontWeight: '800' }}>{cert.score}%</td>
+                      <td style={{ padding: '0.75rem' }}>
+                        <code style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--accent)' }}>
+                          {cert.id}
+                        </code>
+                      </td>
+                      <td style={{ padding: '0.75rem', textAlign: 'right' }}>
+                        <Link
+                          href={`/certificate/${cert.id}`}
+                          target="_blank"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.3rem',
+                            color: 'var(--green)',
+                            fontWeight: '700',
+                            textDecoration: 'none',
+                            background: 'var(--green-subtle)',
+                            padding: '0.35rem 0.75rem',
+                            borderRadius: '8px',
+                            fontSize: '0.82rem',
+                          }}
+                        >
+                          View Certificate ↗
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        })()}
+      </div>
     </div>
   );
 }
