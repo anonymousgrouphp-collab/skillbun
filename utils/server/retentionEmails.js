@@ -6,7 +6,7 @@
  * - "Company Loss, Student Gain" Copywriting Psychology (Free ₹35,000+ Value Angle)
  * - Automatic System Dark/Light Theme Support (prefers-color-scheme)
  * - Dynamic Candidate Auto-Fill ({name}, {email}, {roadmapTitle}, {progressCount}, {degree})
- * - Compliance Rules: Unsubscribe link to https://skillbun.tech/settings?action=unsubscribe on marketing emails; omitted on transactional emails.
+ * - Compliance Rules: Ultra-compact, discreet unsubscribe link to https://skillbun.tech/settings?action=unsubscribe on marketing emails; omitted on transactional emails.
  */
 
 const SITE_URL = 'https://skillbun.tech';
@@ -179,25 +179,7 @@ export const RETENTION_TEMPLATES = {
 };
 
 function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true, email = '') {
-  const safeEmail = escapeHtml(email);
   const unsubscribeUrl = `${SITE_URL}/settings?action=unsubscribe&email=${encodeURIComponent(email)}`;
-
-  const unsubscribeFooter = isMarketing
-    ? `
-      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #21262d; font-size: 11px; color: #8b949e; line-height: 1.6;">
-        You are receiving this lifecycle notification because you registered on SkillBun.tech. 
-        <br>
-        To manage email notifications or unsubscribe from marketing updates, 
-        <a href="${unsubscribeUrl}" target="_blank" style="color: #00e599; font-weight: 700; text-decoration: underline;">
-          Click here to Unsubscribe / Change Preferences
-        </a>.
-      </div>
-    `
-    : `
-      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #21262d; font-size: 11px; color: #8b949e;">
-        This is an essential security/account alert for ${safeEmail || 'your account'}. Unsubscribe is disabled for transactional security messages.
-      </div>
-    `;
 
   return `
 <!DOCTYPE html>
@@ -266,16 +248,11 @@ function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true, email
             </td>
           </tr>
 
-          <!-- Compliance Footer -->
+          <!-- Discreet Ultra-Compact Footer -->
           <tr>
-            <td style="background-color: #0d1117; padding: 24px 32px; border-top: 1px solid #21262d; text-align: center; font-size: 12px; color: #8b949e; line-height: 1.5;">
-              <p style="margin: 0 0 6px 0; color: #e6edf3; font-weight: 700; font-size: 13px;">
-                SkillBun Interactive Tech Career Platform (skillbun.tech)
-              </p>
-              <p style="margin: 0 0 8px 0; font-size: 12px; color: #8b949e;">
-                MSME Registered Educational Platform • 100+ Free Roadmaps & Verified QR Certifications.
-              </p>
-              ${unsubscribeFooter}
+            <td style="background-color: #0d1117; padding: 12px 24px; border-top: 1px solid #21262d; text-align: center; font-size: 10px; color: #6e7681; line-height: 1.4;">
+              <span style="color: #6e7681;">SkillBun.tech</span>
+              ${isMarketing ? ` • <a href="${unsubscribeUrl}" target="_blank" style="color: #6e7681; text-decoration: underline;">Unsubscribe / Preferences</a>` : ''}
             </td>
           </tr>
 
