@@ -17,6 +17,7 @@ export async function POST(request) {
       templateId = 'reengagement',
       roadmapTitle = 'Full Stack Web Development',
       progressCount = 10,
+      degree = 'B.Tech - Computer Science',
       isPreview = false,
       adminEmail = '',
     } = body;
@@ -61,11 +62,13 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid recipient email address' }, { status: 400 });
     }
 
-    // Generate HTML Email
+    // Generate HTML Email with auto-filled candidate data
     const { subject, html } = generateRetentionEmailHtml(templateId, {
       name: studentName,
+      email: recipientEmail,
       roadmapTitle,
       progressCount,
+      degree,
     });
 
     const emailSubject = isPreview ? `[SAMPLE PREVIEW] ${subject}` : subject;
