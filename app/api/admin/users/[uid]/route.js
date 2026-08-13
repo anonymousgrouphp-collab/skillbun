@@ -46,7 +46,7 @@ export async function DELETE(request, { params }) {
     let firestoreDeleted = false;
     let authDeleted = false;
 
-    // 1. Delete Firestore user document and all subcollections
+    // 1. Delete Firestore user document, subcollections, AND issued certificates
     try {
       const db = getFirebaseAdminFirestore();
       if (db) {
@@ -65,6 +65,29 @@ export async function DELETE(request, { params }) {
         // Delete main user profile document
         await db.collection('users').doc(uid).delete();
         firestoreDeleted = true;
+
+        // Cascade delete all issued certificates belonging to this user (by UID and Email)
+        const certBatch = db.batch();
+        let certsToDeleteCount = 0;
+
+        const certsByUid = await db.collection('certificates').where('uid', '==', uid).get();
+        certsByUid.docs.forEach((cDoc) => {
+          certBatch.delete(cDoc.ref);
+          certsToDeleteCount++;
+        });
+
+        if (emailParam && emailParam.includes('@')) {
+          const certsByEmail = await db.collection('certificates').where('email', '==', emailParam.toLowerCase()).get();
+          certsByEmail.docs.forEach((cDoc) => {
+            certBatch.delete(cDoc.ref);
+            certsToDeleteCount++;
+          });
+        }
+
+        if (certsToDeleteCount > 0) {
+          await certBatch.commit();
+          console.log(`[Admin Delete]: Cascade deleted ${certsToDeleteCount} certificates for user ${uid} (${emailParam}).`);
+        }
       }
     } catch (dbErr) {
       console.warn('[Admin Delete Firestore Error]:', dbErr.message);
@@ -101,14 +124,12 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json({
       success: true,
-      message: `User ${uid} and Firebase Auth account successfully deleted. Email address is now freed up for new registration.`,
-      details: { firestoreDeleted, authDeleted },
+      message: `Student account (${uid}) and associated certificates permanently deleted. Email address freed up.`,
+      firestoreDeleted,
+      authDeleted,
     });
   } catch (error) {
-    console.error('[Admin Delete User API Error]:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete user account' },
-      { status: 500 }
-    );
+    console.error('Admin Delete User API Error:', error);
+    return NextResponse.json({ error: error.message || 'Failed to delete user account' }, { status: 500 });
   }
 }
