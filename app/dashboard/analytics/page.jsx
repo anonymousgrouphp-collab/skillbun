@@ -24,6 +24,30 @@ function formatDateTime(isoString) {
   }
 }
 
+// Smart Retention Template Recommender based on real student telemetry
+function getRecommendedTemplate(u) {
+  const certCount = u.certificates?.length || 0;
+  const hasAttempts = u.quizAttempts?.length > 0;
+  const maxNodes = u.progress?.reduce((max, p) => Math.max(max, p.completedNodeIds?.length || 0), 0) || 0;
+  const daysInactive = u.lastSignInTime
+    ? (Date.now() - new Date(u.lastSignInTime).getTime()) / (1000 * 60 * 60 * 24)
+    : 0;
+
+  if (certCount > 0) {
+    return { id: 'cert_congrats', label: '🏆 Certificate Achieved (Alumni Upsell)' };
+  }
+  if (hasAttempts) {
+    return { id: 'exam_failed', label: '📚 Cooldown Encouragement (Failed Attempt)' };
+  }
+  if (maxNodes >= 15) {
+    return { id: 'exam_nudge', label: '🎓 Cert Exam Ready Nudge (60%+ Progress)' };
+  }
+  if (daysInactive >= 1.5 && maxNodes > 0) {
+    return { id: 'reengagement', label: '🐰 Re-Engagement Nudge (Inactive User)' };
+  }
+  return { id: 'welcome', label: '🚀 Onboarding & Activation (New Signup)' };
+}
+
 export default function AnalyticsDashboardPage() {
   const { user, profile, authLoading } = useAuth();
   const [data, setData] = useState(null);
@@ -70,7 +94,6 @@ export default function AnalyticsDashboardPage() {
           try {
             const { db } = getFirebaseServices();
             if (db) {
-              // Read real certificates from Firestore client
               const certsSnap = await getDocs(collection(db, 'certificates'));
               certificates = certsSnap.docs.map((doc) => {
                 const cData = doc.data();
@@ -87,7 +110,6 @@ export default function AnalyticsDashboardPage() {
                 };
               });
 
-              // Read real users from Firestore client
               const usersSnap = await getDocs(collection(db, 'users'));
               users = usersSnap.docs.map((doc) => {
                 const uData = doc.data();
@@ -237,14 +259,15 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // One-Click Retention Email Dispatcher Handler
+  // One-Click Retention Email Dispatcher Handler with Candidate Data Auto-Fill
   const handleSendRetentionEmail = async (targetUser, isPreview = false) => {
-    const templateId = selectedTemplates[targetUser.uid] || 'reengagement';
+    const recommended = getRecommendedTemplate(targetUser);
+    const templateId = selectedTemplates[targetUser.uid] || recommended.id;
     const actionKey = `${targetUser.uid}-${isPreview ? 'preview' : 'send'}`;
 
     if (!isPreview) {
       const confirmSend = window.confirm(
-        `Send retention email to "${targetUser.name}" (${targetUser.email}) using template: "${templateId.toUpperCase()}"?`
+        `Send retention email to candidate "${targetUser.name}" (${targetUser.email}) using template: "${templateId.toUpperCase()}"?\n\nCandidate Data Auto-Fill:\n- Name: ${targetUser.name}\n- Email: ${targetUser.email}\n- Degree: ${targetUser.degree}`
       );
       if (!confirmSend) return;
     }
@@ -281,6 +304,7 @@ export default function AnalyticsDashboardPage() {
           templateId,
           roadmapTitle,
           progressCount,
+          degree: targetUser.degree,
           isPreview,
           adminEmail: userEmail,
         }),
@@ -356,7 +380,6 @@ export default function AnalyticsDashboardPage() {
     quizQuestionBank: 3335,
   };
 
-  // Search filtering
   const searchLower = searchTerm.trim().toLowerCase();
 
   const filteredUsers = usersList.filter((u) => {
@@ -593,7 +616,9 @@ export default function AnalyticsDashboardPage() {
                     {filteredUsers.map((u) => {
                       const isExpanded = expandedUserUid === u.uid;
                       const isDeleting = deletingUid === u.uid;
-                      const currentTemplate = selectedTemplates[u.uid] || 'reengagement';
+
+                      const recommended = getRecommendedTemplate(u);
+                      const currentTemplate = selectedTemplates[u.uid] || recommended.id;
                       const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
 
@@ -810,7 +835,7 @@ export default function AnalyticsDashboardPage() {
                                   </div>
                                 </div>
 
-                                {/* NEW: One-Click User Retention Email Control Panel */}
+                                {/* ONE-CLICK RETENTION EMAIL DISPATCHER WITH SMART RECOMMENDATIONS */}
                                 <div
                                   style={{
                                     background: 'rgba(0, 229, 153, 0.08)',
@@ -820,15 +845,53 @@ export default function AnalyticsDashboardPage() {
                                     marginTop: '1.5rem',
                                   }}
                                 >
-                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1rem' }}>
+                                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 One-Click User Retention Email Dispatcher
+                                        📧 SkillBun Top-Level Retention Email Engine
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                        Select a retention trigger to send a personalized HTML email directly to <strong>{u.name}</strong> ({u.email}).
+                                        Auto-fills candidate details ({u.name}, {u.email}, {u.degree}) with CAN-SPAM compliant unsubscribe rules.
                                       </span>
                                     </div>
+                                  </div>
+
+                                  {/* Smart Auto-Recommendation Banner */}
+                                  <div
+                                    style={{
+                                      background: 'var(--surface-raised)',
+                                      border: '1px solid var(--green)',
+                                      padding: '0.5rem 0.85rem',
+                                      borderRadius: '8px',
+                                      marginBottom: '0.9rem',
+                                      fontSize: '0.82rem',
+                                      display: 'flex',
+                                      justifyContent: 'space-between',
+                                      alignItems: 'center',
+                                      flexWrap: 'wrap',
+                                      gap: '0.5rem',
+                                    }}
+                                  >
+                                    <div>
+                                      ✨ <strong>Telemetry Best-Match Recommendation:</strong>{' '}
+                                      <span style={{ color: 'var(--green)', fontWeight: '800' }}>{recommended.label}</span>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={() => setSelectedTemplates((prev) => ({ ...prev, [u.uid]: recommended.id }))}
+                                      style={{
+                                        cursor: 'pointer',
+                                        padding: '0.25rem 0.7rem',
+                                        borderRadius: '6px',
+                                        background: 'var(--green)',
+                                        color: '#000000',
+                                        border: 'none',
+                                        fontWeight: '800',
+                                        fontSize: '0.75rem',
+                                      }}
+                                    >
+                                      🎯 Apply Best Match
+                                    </button>
                                   </div>
 
                                   <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -849,11 +912,12 @@ export default function AnalyticsDashboardPage() {
                                         minWidth: '260px',
                                       }}
                                     >
-                                      <option value="reengagement">🐰 1. Re-Engagement Nudge (Inactive 3+ Days)</option>
+                                      <option value="reengagement">🐰 1. Re-Engagement Nudge (Inactive User)</option>
                                       <option value="exam_nudge">🎓 2. Cert Exam Ready Nudge (60%+ Progress)</option>
-                                      <option value="welcome">🚀 3. Welcome & Onboarding (New Signup)</option>
+                                      <option value="welcome">🚀 3. Onboarding & Activation (New Signup)</option>
                                       <option value="exam_failed">📚 4. Cooldown Encouragement (Failed Attempt)</option>
                                       <option value="cert_congrats">🏆 5. Certificate Achieved (Alumni Upsell)</option>
+                                      <option value="transactional_alert">🔒 6. Security Alert (No Unsubscribe - Transactional)</option>
                                     </select>
 
                                     {/* Action 1: Send Sample Test Email to Admin for Review */}
@@ -897,7 +961,7 @@ export default function AnalyticsDashboardPage() {
                                         opacity: isSendLoading ? 0.6 : 1,
                                       }}
                                     >
-                                      {isSendLoading ? '⏳ Sending Email...' : `🚀 Send One-Click Email to ${u.name}`}
+                                      {isSendLoading ? '⏳ Sending Email...' : `🚀 Send Auto-Filled Email to ${u.name}`}
                                     </button>
                                   </div>
                                 </div>
