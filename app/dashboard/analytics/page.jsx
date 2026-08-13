@@ -3,12 +3,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
+import { getFirebaseServices } from '@/utils/client/firebaseClient';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function AnalyticsDashboardPage() {
   const { user, profile, authLoading } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState('users'); // 'users' | 'certificates'
+  const [expandedUserUid, setExpandedUserUid] = useState(null);
 
   // Strictly restrict access to harsh@skillbun.tech via Google Login
   const userEmail = (user?.email || '').trim().toLowerCase();
@@ -26,22 +30,122 @@ export default function AnalyticsDashboardPage() {
     }
 
     let active = true;
-    fetch('/api/admin/analytics')
-      .then((res) => res.json())
-      .then((resData) => {
-        if (active && resData.success) {
-          setData(resData);
+
+    async function fetchAnalyticsData() {
+      try {
+        const res = await fetch('/api/admin/analytics');
+        const resData = await res.json();
+
+        if (!active) return;
+
+        let users = resData.users || [];
+        let certificates = resData.certificates || [];
+
+        // Client-side fallback if server Admin API returned empty or credential missing
+        if ((!users || users.length === 0) && (!certificates || certificates.length === 0)) {
+          try {
+            const { db } = getFirebaseServices();
+            if (db) {
+              // Read real certificates from Firestore client
+              const certsSnap = await getDocs(collection(db, 'certificates'));
+              certificates = certsSnap.docs.map((doc) => {
+                const cData = doc.data();
+                return {
+                  id: doc.id,
+                  certId: doc.id,
+                  uid: cData.uid || '',
+                  name: cData.name || cData.studentName || cData.userName || 'Student',
+                  email: cData.email || cData.userEmail || '',
+                  roadmapTitle: cData.roadmapTitle || cData.roadmapSlug || 'Roadmap',
+                  roadmapSlug: cData.roadmapSlug || '',
+                  score: typeof cData.score === 'number' ? cData.score : 0,
+                  createdAt: cData.createdAt ? new Date(cData.createdAt.toDate?.() || cData.createdAt).toISOString() : new Date().toISOString(),
+                };
+              });
+
+              // Read real users from Firestore client
+              const usersSnap = await getDocs(collection(db, 'users'));
+              users = usersSnap.docs.map((doc) => {
+                const uData = doc.data();
+                const uCerts = certificates.filter(
+                  (c) => c.uid === doc.id || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
+                );
+                return {
+                  uid: doc.id,
+                  name: uData.name || uData.displayName || uData.fullName || 'Registered Student',
+                  email: uData.email || 'N/A',
+                  degree: uData.degree || 'N/A',
+                  year: uData.year || uData.current_year || 'N/A',
+                  interest: uData.interest || uData.interest_area || 'N/A',
+                  providers: Array.isArray(uData.providers) ? uData.providers : [],
+                  createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
+                  progress: [],
+                  certificates: uCerts,
+                };
+              });
+            }
+          } catch (clientErr) {
+            console.warn('[Analytics Client Fallback Error]:', clientErr);
+          }
         }
-      })
-      .catch((err) => console.error('Analytics load error:', err))
-      .finally(() => {
+
+        if (active) {
+          setData({
+            stats: {
+              totalStudents: users.length,
+              totalCertificates: certificates.length,
+              totalRoadmaps: resData.stats?.totalRoadmaps || 100,
+              quizQuestionBank: resData.stats?.quizQuestionBank || 3335,
+            },
+            users,
+            certificates,
+          });
+        }
+      } catch (err) {
+        console.error('Analytics load error:', err);
+      } finally {
         if (active) setLoading(false);
-      });
+      }
+    }
+
+    fetchAnalyticsData();
 
     return () => {
       active = false;
     };
   }, [user, isAuthorizedAdmin]);
+
+  // CSV Export functionality
+  const handleExportCSV = () => {
+    const usersList = data?.users || [];
+    if (usersList.length === 0) {
+      alert('No user data available to export.');
+      return;
+    }
+
+    const headers = ['UID', 'Name', 'Email', 'Degree', 'Year', 'Target Interest', 'Roadmaps Count', 'Certificates Count', 'Joined Date'];
+    const rows = usersList.map((u) => [
+      `"${u.uid}"`,
+      `"${u.name.replace(/"/g, '""')}"`,
+      `"${u.email.replace(/"/g, '""')}"`,
+      `"${u.degree.replace(/"/g, '""')}"`,
+      `"${u.year.replace(/"/g, '""')}"`,
+      `"${u.interest.replace(/"/g, '""')}"`,
+      u.progress?.length || 0,
+      u.certificates?.length || 0,
+      `"${u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}"`,
+    ]);
+
+    const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `SkillBun_Student_Database_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   if (authLoading) {
     return (
@@ -85,23 +189,48 @@ export default function AnalyticsDashboardPage() {
     );
   }
 
+  const usersList = data?.users || [];
+  const certsList = data?.certificates || [];
+
   const stats = data?.stats || {
-    totalStudents: 128,
-    totalCertificates: 42,
-    totalRoadmaps: 15,
-    quizQuestionBank: 750,
+    totalStudents: usersList.length,
+    totalCertificates: certsList.length,
+    totalRoadmaps: 100,
+    quizQuestionBank: 3335,
   };
 
-  const recentCerts = data?.recentCertificates || [];
+  // Search filtering
+  const searchLower = searchTerm.trim().toLowerCase();
+
+  const filteredUsers = usersList.filter((u) => {
+    if (!searchLower) return true;
+    return (
+      (u.name || '').toLowerCase().includes(searchLower) ||
+      (u.email || '').toLowerCase().includes(searchLower) ||
+      (u.degree || '').toLowerCase().includes(searchLower) ||
+      (u.interest || '').toLowerCase().includes(searchLower) ||
+      (u.uid || '').toLowerCase().includes(searchLower)
+    );
+  });
+
+  const filteredCerts = certsList.filter((c) => {
+    if (!searchLower) return true;
+    return (
+      (c.name || '').toLowerCase().includes(searchLower) ||
+      (c.email || '').toLowerCase().includes(searchLower) ||
+      (c.roadmapTitle || '').toLowerCase().includes(searchLower) ||
+      (c.id || '').toLowerCase().includes(searchLower)
+    );
+  });
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 1.5rem', minHeight: '85vh', color: 'var(--text)' }}>
-      {/* Header */}
+    <div style={{ maxWidth: '1250px', margin: '0 auto', padding: '2rem 1.5rem', minHeight: '85vh', color: 'var(--text)' }}>
+      {/* Top Header Bar */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.5rem' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }}></span>
-            Platform Telemetry Active
+            Real Platform Telemetry & Firestore Database Sync
           </div>
           <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '2.2rem', margin: '0 0 0.4rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,15 +238,33 @@ export default function AnalyticsDashboardPage() {
               <line x1="12" y1="20" x2="12" y2="4"/>
               <line x1="6" y1="20" x2="6" y2="14"/>
             </svg>
-            SkillBun Analytics Console
+            SkillBun Admin Database & Analytics
           </h1>
           <p style={{ color: 'var(--muted)', margin: 0 }}>
-            Real-time insight into student engagement, career quiz funnels, and roadmap metrics.
+            Real-time access to registered student profiles, linked roadmap progress, and verifiable certificates.
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <Link href="/dashboard" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.9rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <button
+            onClick={handleExportCSV}
+            style={{
+              cursor: 'pointer',
+              padding: '0.6rem 1.2rem',
+              borderRadius: '10px',
+              background: 'var(--surface-raised)',
+              border: '1px solid var(--green)',
+              color: 'var(--green)',
+              fontWeight: '700',
+              fontSize: '0.88rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+            }}
+          >
+            📥 Export Database (CSV)
+          </button>
+          <Link href="/dashboard" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
             ← User Dashboard
           </Link>
         </div>
@@ -126,196 +273,78 @@ export default function AnalyticsDashboardPage() {
       {/* Metric Cards Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
         <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', boxShadow: 'var(--card-shadow)' }}>
-          <div style={{ marginBottom: '0.5rem' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Total Registered Students</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Registered Students</div>
           <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--green)', marginTop: '0.2rem' }}>
             {loading ? '...' : stats.totalStudents}
           </div>
         </div>
 
         <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', boxShadow: 'var(--card-shadow)' }}>
-          <div style={{ marginBottom: '0.5rem' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
-              <path d="M4 22h16"/>
-              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
-              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
-            </svg>
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Certificates Issued</div>
-          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--green)', marginTop: '0.2rem' }}>
+          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Issued Certificates</div>
+          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--accent)', marginTop: '0.2rem' }}>
             {loading ? '...' : stats.totalCertificates}
           </div>
         </div>
 
         <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', boxShadow: 'var(--card-shadow)' }}>
-          <div style={{ marginBottom: '0.5rem' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
-            </svg>
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Career Roadmaps</div>
-          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--accent)', marginTop: '0.2rem' }}>
-            {loading ? '...' : stats.totalRoadmaps}
+          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Tech Roadmaps</div>
+          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--text)', marginTop: '0.2rem' }}>
+            {stats.totalRoadmaps}
           </div>
         </div>
 
         <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', boxShadow: 'var(--card-shadow)' }}>
-          <div style={{ marginBottom: '0.5rem' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
-          </div>
-          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Quiz Question Bank</div>
-          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--lime)', marginTop: '0.2rem' }}>
-            {loading ? '...' : stats.quizQuestionBank}
+          <div style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Question Bank</div>
+          <div style={{ fontSize: '2.4rem', fontWeight: '800', fontFamily: 'var(--font-fredoka), sans-serif', color: 'var(--text)', marginTop: '0.2rem' }}>
+            {stats.quizQuestionBank}+
           </div>
         </div>
       </div>
 
-      {/* Two Column Layout: Funnel + Active Providers */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-        
-        {/* Funnel Card */}
-        <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', boxShadow: 'var(--card-shadow)' }}>
-          <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-fredoka), sans-serif', marginTop: 0, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            📈 Student Journey Conversion Funnel
-          </h2>
-          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.5rem' }}>
-            Typical completion rate across the 5 core milestones of SkillBun.
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.3rem' }}>
-                <span>1. Homepage Visit</span>
-                <span>100%</span>
-              </div>
-              <div style={{ height: '10px', borderRadius: '5px', background: 'var(--border)', overflow: 'hidden' }}>
-                <div style={{ width: '100%', height: '100%', background: 'var(--green)' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.3rem' }}>
-                <span>2. Onboarding / Profile Complete</span>
-                <span>84%</span>
-              </div>
-              <div style={{ height: '10px', borderRadius: '5px', background: 'var(--border)', overflow: 'hidden' }}>
-                <div style={{ width: '84%', height: '100%', background: 'var(--green)' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.3rem' }}>
-                <span>3. Career Discovery Quiz Completed</span>
-                <span>68%</span>
-              </div>
-              <div style={{ height: '10px', borderRadius: '5px', background: 'var(--border)', overflow: 'hidden' }}>
-                <div style={{ width: '68%', height: '100%', background: 'var(--accent)' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.3rem' }}>
-                <span>4. Roadmap Interaction</span>
-                <span>52%</span>
-              </div>
-              <div style={{ height: '10px', borderRadius: '5px', background: 'var(--border)', overflow: 'hidden' }}>
-                <div style={{ width: '52%', height: '100%', background: 'var(--accent)' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.3rem' }}>
-                <span>5. Certification Exam Passed</span>
-                <span>38%</span>
-              </div>
-              <div style={{ height: '10px', borderRadius: '5px', background: 'var(--border)', overflow: 'hidden' }}>
-                <div style={{ width: '38%', height: '100%', background: 'var(--lime)' }}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Telemetry Integrations Provider Status */}
-        <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', boxShadow: 'var(--card-shadow)' }}>
-          <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-fredoka), sans-serif', marginTop: 0, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            ⚙️ Active Analytics Services
-          </h2>
-          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.5rem' }}>
-            Integration status of connected analytics & logging backends.
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 1rem', borderRadius: '12px', background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-              <div>
-                <strong style={{ display: 'block', fontSize: '0.95rem' }}>Internal Platform Engine</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Supabase / Firestore telemetry & cert logs</span>
-              </div>
-              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                ACTIVE
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 1rem', borderRadius: '12px', background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-              <div>
-                <strong style={{ display: 'block', fontSize: '0.95rem' }}>Vercel Analytics & Speed Insights</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Zero-config performance & pageview tracking</span>
-              </div>
-              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                ENABLED
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 1rem', borderRadius: '12px', background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-              <div>
-                <strong style={{ display: 'block', fontSize: '0.95rem' }}>Google Analytics 4 (GA4)</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>SEO acquisition & traffic source analytics</span>
-              </div>
-              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                ACTIVE
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.8rem 1rem', borderRadius: '12px', background: 'var(--surface-raised)', border: '1px solid var(--border)' }}>
-              <div>
-                <strong style={{ display: 'block', fontSize: '0.95rem' }}>PostHog Product Analytics</strong>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>Session replay & custom event captures</span>
-              </div>
-              <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', fontSize: '0.75rem', fontWeight: '800', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                ACTIVE
-              </span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Issued Certificates & Recipient Registry */}
+      {/* Main Database & Registry Section */}
       <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', boxShadow: 'var(--card-shadow)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
-          <div>
-            <h2 style={{ fontSize: '1.3rem', fontFamily: 'var(--font-fredoka), sans-serif', margin: '0 0 0.3rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              📜 Certificate Recipient Registry
-            </h2>
-            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>
-              Official records of certificates issued to students across all 100+ roadmaps.
-            </p>
+        {/* Navigation Tabs & Search Bar */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border)', pb: '1rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button
+              onClick={() => setActiveTab('users')}
+              style={{
+                cursor: 'pointer',
+                padding: '0.6rem 1.2rem',
+                borderRadius: '10px',
+                border: 'none',
+                background: activeTab === 'users' ? 'var(--green)' : 'transparent',
+                color: activeTab === 'users' ? '#fff' : 'var(--muted)',
+                fontWeight: '700',
+                fontSize: '0.9rem',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              👥 Registered Students ({usersList.length})
+            </button>
+
+            <button
+              onClick={() => setActiveTab('certificates')}
+              style={{
+                cursor: 'pointer',
+                padding: '0.6rem 1.2rem',
+                borderRadius: '10px',
+                border: 'none',
+                background: activeTab === 'certificates' ? 'var(--green)' : 'transparent',
+                color: activeTab === 'certificates' ? '#fff' : 'var(--muted)',
+                fontWeight: '700',
+                fontSize: '0.9rem',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              📜 Issued Certificates ({certsList.length})
+            </button>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <input
               type="text"
-              placeholder="🔍 Search name, email, or cert ID..."
+              placeholder="🔍 Search name, email, degree, interest, cert ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
@@ -326,7 +355,7 @@ export default function AnalyticsDashboardPage() {
                 color: 'var(--text)',
                 fontSize: '0.85rem',
                 outline: 'none',
-                minWidth: '240px',
+                minWidth: '280px',
               }}
             />
             <Link
@@ -340,88 +369,289 @@ export default function AnalyticsDashboardPage() {
                 color: 'var(--green)',
                 fontWeight: '700',
                 fontSize: '0.85rem',
+                whiteSpace: 'nowrap',
               }}
             >
-              🌐 Public Registry Lookup
+              🌐 Public Cert Verification
             </Link>
           </div>
         </div>
 
-        {(() => {
-          const filteredCerts = recentCerts.filter((cert) => {
-            if (!searchTerm.trim()) return true;
-            const q = searchTerm.toLowerCase();
-            return (
-              (cert.name || '').toLowerCase().includes(q) ||
-              (cert.email || '').toLowerCase().includes(q) ||
-              (cert.roadmapTitle || '').toLowerCase().includes(q) ||
-              (cert.id || '').toLowerCase().includes(q)
-            );
-          });
-
-          if (filteredCerts.length === 0) {
-            return (
-              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <p style={{ fontSize: '1rem', margin: 0 }}>No certificate records match "{searchTerm}".</p>
+        {/* TAB 1: Registered Students Excel-style Dropdown Table */}
+        {activeTab === 'users' && (
+          <div>
+            {loading ? (
+              <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
+                <p>⏳ Loading real student records from Firestore...</p>
               </div>
-            );
-          }
-
-          return (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
-                <thead>
-                  <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
-                    <th style={{ padding: '0.75rem' }}>Student / Recipient</th>
-                    <th style={{ padding: '0.75rem' }}>Roadmap Track</th>
-                    <th style={{ padding: '0.75rem' }}>Exam Score</th>
-                    <th style={{ padding: '0.75rem' }}>Certificate ID</th>
-                    <th style={{ padding: '0.75rem', textAlign: 'right' }}>Verification</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCerts.map((cert) => (
-                    <tr key={cert.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                      <td style={{ padding: '0.75rem' }}>
-                        <div style={{ fontWeight: '700', color: 'var(--text)' }}>{cert.name}</div>
-                        {cert.email && (
-                          <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{cert.email}</div>
-                        )}
-                      </td>
-                      <td style={{ padding: '0.75rem', color: 'var(--text)' }}>{cert.roadmapTitle}</td>
-                      <td style={{ padding: '0.75rem', color: 'var(--green)', fontWeight: '800' }}>{cert.score}%</td>
-                      <td style={{ padding: '0.75rem' }}>
-                        <code style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--accent)' }}>
-                          {cert.id}
-                        </code>
-                      </td>
-                      <td style={{ padding: '0.75rem', textAlign: 'right' }}>
-                        <Link
-                          href={`/certificate/${cert.id}`}
-                          target="_blank"
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.3rem',
-                            color: 'var(--green)',
-                            fontWeight: '700',
-                            textDecoration: 'none',
-                            background: 'var(--green-subtle)',
-                            padding: '0.35rem 0.75rem',
-                            borderRadius: '8px',
-                            fontSize: '0.82rem',
-                          }}
-                        >
-                          View Certificate ↗
-                        </Link>
-                      </td>
+            ) : filteredUsers.length === 0 ? (
+              <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📁</div>
+                {searchTerm ? (
+                  <p style={{ margin: 0 }}>No student records match "{searchTerm}".</p>
+                ) : (
+                  <p style={{ margin: 0 }}>No student accounts registered in Firestore database yet. New signups will automatically appear here in real-time.</p>
+                )}
+              </div>
+            ) : (
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Student / Email</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Degree & Year</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Target Interest</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Roadmaps Active</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Certificates</th>
+                      <th style={{ padding: '0.75rem 0.5rem' }}>Joined Date</th>
+                      <th style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>Linked Data</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-        })()}
+                  </thead>
+                  <tbody>
+                    {filteredUsers.map((u) => {
+                      const isExpanded = expandedUserUid === u.uid;
+
+                      return (
+                        <tr key={u.uid} style={{ borderBottom: '1px solid var(--border)', verticalAlign: 'top' }}>
+                          <td colSpan={7} style={{ padding: 0 }}>
+                            {/* Main User Row */}
+                            <div
+                              style={{
+                                display: 'grid',
+                                gridTemplateColumns: '2fr 1.2fr 1.5fr 1fr 1fr 1.2fr 1fr',
+                                padding: '0.85rem 0.5rem',
+                                alignItems: 'center',
+                                background: isExpanded ? 'var(--surface-raised)' : 'transparent',
+                                cursor: 'pointer',
+                              }}
+                              onClick={() => setExpandedUserUid(isExpanded ? null : u.uid)}
+                            >
+                              <div>
+                                <div style={{ fontWeight: '700', color: 'var(--text)' }}>{u.name}</div>
+                                <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{u.email}</div>
+                              </div>
+
+                              <div style={{ color: 'var(--text)' }}>
+                                <span style={{ fontWeight: '600' }}>{u.degree}</span>
+                                {u.year && u.year !== 'N/A' && <span style={{ fontSize: '0.78rem', color: 'var(--muted)', display: 'block' }}>Year {u.year}</span>}
+                              </div>
+
+                              <div style={{ color: 'var(--text)' }}>
+                                <span style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem' }}>
+                                  {u.interest}
+                                </span>
+                              </div>
+
+                              <div>
+                                <span style={{ fontWeight: '700', color: 'var(--green)' }}>
+                                  {u.progress?.length || 0} active
+                                </span>
+                              </div>
+
+                              <div>
+                                {u.certificates?.length > 0 ? (
+                                  <span style={{ background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.2rem 0.6rem', borderRadius: '6px', fontWeight: '800', fontSize: '0.78rem' }}>
+                                    🏆 {u.certificates.length} Certs
+                                  </span>
+                                ) : (
+                                  <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>0</span>
+                                )}
+                              </div>
+
+                              <div style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                                {u.createdAt ? new Date(u.createdAt).toLocaleDateString() : 'N/A'}
+                              </div>
+
+                              <div style={{ textAlign: 'right' }}>
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpandedUserUid(isExpanded ? null : u.uid);
+                                  }}
+                                  style={{
+                                    cursor: 'pointer',
+                                    background: isExpanded ? 'var(--green)' : 'var(--surface-raised)',
+                                    color: isExpanded ? '#fff' : 'var(--text)',
+                                    border: '1px solid var(--border)',
+                                    padding: '0.35rem 0.75rem',
+                                    borderRadius: '8px',
+                                    fontWeight: '700',
+                                    fontSize: '0.78rem',
+                                  }}
+                                >
+                                  {isExpanded ? 'Hide Details ▲' : 'View Data ▾'}
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Dropdown Accordion Panel for Linked User Data */}
+                            {isExpanded && (
+                              <div
+                                style={{
+                                  padding: '1.25rem',
+                                  background: 'var(--surface-raised)',
+                                  borderTop: '1px dashed var(--border)',
+                                  borderBottom: '2px solid var(--green)',
+                                  margin: '0',
+                                }}
+                              >
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                                  {/* Profile Details */}
+                                  <div>
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                                      👤 Account Details
+                                    </h4>
+                                    <div style={{ fontSize: '0.82rem', lineHeight: '1.7', color: 'var(--text)' }}>
+                                      <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
+                                      <div><strong>Full Name:</strong> {u.name}</div>
+                                      <div><strong>Email:</strong> {u.email}</div>
+                                      <div><strong>Degree Program:</strong> {u.degree}</div>
+                                      <div><strong>Academic Year:</strong> {u.year}</div>
+                                      <div><strong>Primary Interest:</strong> {u.interest}</div>
+                                      <div><strong>Auth Providers:</strong> {u.providers?.join(', ') || 'Password'}</div>
+                                    </div>
+                                  </div>
+
+                                  {/* Active Roadmap Progress */}
+                                  <div>
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                                      🗺️ Roadmap Activity ({u.progress?.length || 0})
+                                    </h4>
+                                    {u.progress?.length > 0 ? (
+                                      <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text)' }}>
+                                        {u.progress.map((p, idx) => (
+                                          <li key={idx} style={{ marginBottom: '0.3rem' }}>
+                                            <strong>{p.slug}</strong> — {p.completedNodeIds?.length || 0} nodes finished
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    ) : (
+                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No active roadmap progress logged yet.</p>
+                                    )}
+                                  </div>
+
+                                  {/* Issued Certificates */}
+                                  <div>
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
+                                      📜 Earned Certificates ({u.certificates?.length || 0})
+                                    </h4>
+                                    {u.certificates?.length > 0 ? (
+                                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        {u.certificates.map((c) => (
+                                          <div key={c.id} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.6rem 0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <div>
+                                              <div style={{ fontWeight: '700', fontSize: '0.82rem' }}>{c.roadmapTitle}</div>
+                                              <div style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Score: {c.score}% | ID: {c.certId}</div>
+                                            </div>
+                                            <Link
+                                              href={`/certificate/${c.certId}`}
+                                              target="_blank"
+                                              style={{
+                                                textDecoration: 'none',
+                                                padding: '0.25rem 0.6rem',
+                                                borderRadius: '6px',
+                                                background: 'var(--green-subtle)',
+                                                color: 'var(--green)',
+                                                fontSize: '0.75rem',
+                                                fontWeight: '700',
+                                              }}
+                                            >
+                                              View PDF ↗
+                                            </Link>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      <p style={{ fontSize: '0.82rem', color: 'var(--muted)', margin: 0 }}>No certificates earned yet.</p>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 2: Issued Certificates Registry */}
+        {activeTab === 'certificates' && (
+          <div>
+            {loading ? (
+              <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
+                <p>⏳ Loading real certificate records from Firestore...</p>
+              </div>
+            ) : filteredCerts.length === 0 ? (
+              <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📜</div>
+                {searchTerm ? (
+                  <p style={{ margin: 0 }}>No certificates match "{searchTerm}".</p>
+                ) : (
+                  <p style={{ margin: 0 }}>No certificates issued in Firestore database yet. Earned student certificates will automatically appear here.</p>
+                )}
+              </div>
+            ) : (
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '2px solid var(--border)', color: 'var(--muted)' }}>
+                      <th style={{ padding: '0.75rem' }}>Student / Recipient</th>
+                      <th style={{ padding: '0.75rem' }}>Roadmap Track</th>
+                      <th style={{ padding: '0.75rem' }}>Exam Score</th>
+                      <th style={{ padding: '0.75rem' }}>Certificate ID</th>
+                      <th style={{ padding: '0.75rem', textAlign: 'right' }}>Verification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredCerts.map((cert) => (
+                      <tr key={cert.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                        <td style={{ padding: '0.75rem' }}>
+                          <div style={{ fontWeight: '700', color: 'var(--text)' }}>{cert.name}</div>
+                          {cert.email && (
+                            <div style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{cert.email}</div>
+                          )}
+                        </td>
+                        <td style={{ padding: '0.75rem', color: 'var(--text)' }}>{cert.roadmapTitle}</td>
+                        <td style={{ padding: '0.75rem', color: 'var(--green)', fontWeight: '800' }}>{cert.score}%</td>
+                        <td style={{ padding: '0.75rem' }}>
+                          <code style={{ background: 'var(--surface-raised)', padding: '0.2rem 0.5rem', borderRadius: '6px', fontSize: '0.8rem', color: 'var(--accent)' }}>
+                            {cert.id}
+                          </code>
+                        </td>
+                        <td style={{ padding: '0.75rem', textAlign: 'right' }}>
+                          <Link
+                            href={`/certificate/${cert.id}`}
+                            target="_blank"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.3rem',
+                              color: 'var(--green)',
+                              fontWeight: '700',
+                              textDecoration: 'none',
+                              background: 'var(--green-subtle)',
+                              padding: '0.35rem 0.75rem',
+                              borderRadius: '8px',
+                              fontSize: '0.82rem',
+                            }}
+                          >
+                            View Certificate ↗
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
