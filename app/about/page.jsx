@@ -1,8 +1,20 @@
 import Link from 'next/link';
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+
 export const metadata = {
-  title: 'About Us – SkillBun',
-  description: 'Learn about SkillBun, our mission, and the team behind the platform.',
+  title: 'About SkillBun – Empowering Tech Students with AI Career Guidance',
+  description: 'Learn how SkillBun bridges the gap between academic computer science curricula (BCA, BSc, B.Tech, MCA) and tech industry expectations through AI guidance, roadmaps, and verified certifications.',
+  alternates: {
+    canonical: `${siteUrl}/about`,
+  },
+  openGraph: {
+    title: 'About SkillBun – Empowering Tech Students with AI Career Guidance',
+    description: 'Learn how SkillBun helps tech students find their ideal career path through AI guidance, structured roadmaps, and verified certifications.',
+    url: `${siteUrl}/about`,
+    siteName: 'SkillBun',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'SkillBun About' }],
+  },
 };
 
 export default function AboutPage() {
@@ -24,14 +36,20 @@ export default function AboutPage() {
 
       <h2>What We Built</h2>
       <p>
-        Our ecosystem revolves around four core capabilities designed to provide a continuous, adaptive learning journey:
+        Our ecosystem revolves around five core capabilities designed to provide a continuous, adaptive learning journey:
       </p>
       <ul>
-        <li><strong>Holistic Profile Onboarding:</strong> We capture your academic background, current year, and foundational interests to baseline your guidance.</li>
         <li><strong>Adaptive AI Quiz Engine:</strong> A dynamic assessment that adjusts to your responses in real-time, pinpointing your theoretical strengths, practical gaps, and latent affinities.</li>
-        <li><strong>Interactive Roadmaps:</strong> High-fidelity, granular career trees (e.g., AI/ML Engineer, DevOps, Frontend) that visually demonstrate exactly what skills to learn, and in what order.</li>
-        <li><strong>BunBot (AI Career Advisor):</strong> An integrated, context-aware AI chatbot that remembers your profile and quiz results to answer specific career queries and unstuck you during your roadmap journey.</li>
+        <li><strong>100+ Interactive Career Roadmaps:</strong> High-fidelity, granular career trees (AI/ML, Fullstack, DevOps, Cybersecurity, Mobile Development, Systems Programming) that visually demonstrate exactly what skills to learn, and in what order.</li>
+        <li><strong>Bun-Bot (AI Career Counsellor):</strong> An integrated, context-aware AI chatbot that remembers your profile and quiz results to answer specific career queries and keep you on track.</li>
+        <li><strong>SkillBun Vault (SBV1) Study Guides:</strong> 3,300+ encrypted interactive study guides, verified video playlists, and curated documentation links embedded directly into roadmap nodes.</li>
+        <li><strong>Verified Digital Certification:</strong> Proctored 10-MCQ exams awarded upon reaching 60%+ roadmap completion, generating publicly shareable verified certificates at <code>/certificate/[id]</code>.</li>
       </ul>
+
+      <h2>100% Free Policy</h2>
+      <p>
+        SkillBun is <strong>100% Completely Free</strong> for all students. We believe high-quality career guidance and skill verification should be universally accessible. All 100+ roadmaps, study guides, AI quizzes, Bun-Bot counsellor chats, and digital certificates are 100% free forever without subscriptions, paywalls, or credit card requirements.
+      </p>
 
       <h2>Our Technology & Ethics</h2>
       <p>

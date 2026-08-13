@@ -1,6 +1,17 @@
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+
 export const metadata = {
   title: 'Terms of Use – SkillBun',
-  description: 'SkillBun terms of use — rules for using our platform.',
+  description: 'SkillBun Terms of Use — conditions, guidelines, and rules for platform usage.',
+  alternates: {
+    canonical: `${siteUrl}/terms`,
+  },
+  openGraph: {
+    title: 'Terms of Use – SkillBun',
+    description: 'SkillBun Terms of Use — conditions, guidelines, and rules for platform usage.',
+    url: `${siteUrl}/terms`,
+    siteName: 'SkillBun',
+  },
 };
 
 export default function TermsPage() {

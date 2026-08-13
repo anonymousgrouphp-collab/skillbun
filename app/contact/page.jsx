@@ -98,9 +98,21 @@ const faqColumns = [
   faqItems.slice(faqColumnSize),
 ];
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+
 export const metadata = {
-  title: 'Contact Us - SkillBun',
-  description: 'Get in touch with the SkillBun team for support, feedback, or inquiries.',
+  title: 'Contact Us – SkillBun Support & Inquiries',
+  description: 'Have questions, feedback, or need help with SkillBun roadmaps or certifications? Get in touch with the SkillBun team.',
+  alternates: {
+    canonical: `${siteUrl}/contact`,
+  },
+  openGraph: {
+    title: 'Contact Us – SkillBun Support & Inquiries',
+    description: 'Get in touch with the SkillBun team for support, feedback, or inquiries.',
+    url: `${siteUrl}/contact`,
+    siteName: 'SkillBun',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'Contact SkillBun' }],
+  },
 };
 
 export default function ContactPage() {
