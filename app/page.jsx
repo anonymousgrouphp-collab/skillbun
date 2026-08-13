@@ -585,22 +585,97 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== BUNBOT ===== */}
-        <section className="sb-section sb-split sb-reveal">
+        {/* ===== BUNBOT SHOWCASE ===== */}
+        <section id="bunbot" className="sb-section sb-split sb-reveal">
           <div className="sb-copy-block">
-            <div className="section-label">BunBot AI</div>
-            <h2 className="section-title">A career companion after the result screen</h2>
-            <p className="section-sub">Students can ask follow-up questions about salaries, languages, certifications, exams, colleges, and day-in-the-life tradeoffs.</p>
-            <Link href="/counsellor" className="btn-secondary sb-inline-link">Open BunBot</Link>
+            <div className="section-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '5px' }}>
+                <rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/>
+              </svg>
+              BunBot AI Advisor
+            </div>
+            <h2 className="section-title">Your 24/7 AI companion for tech career decisions</h2>
+            <p className="section-sub">Trained on Indian tech market realities. Ask follow-up questions about salaries, degree playbooks, roadmap tradeoffs, certifications, and off-campus strategies.</p>
+            
+            <div className="sb-bot-pillar-grid">
+              <div className="sb-bot-pillar-card">
+                <div className="sb-bot-pillar-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
+                <div>
+                  <strong>Degree & Year Aware</strong>
+                  <p>Remembers if you are BCA, BSc, or B.Tech (1st–4th Year) to align advice with your college timeline.</p>
+                </div>
+              </div>
+              <div className="sb-bot-pillar-card">
+                <div className="sb-bot-pillar-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div>
+                  <strong>Indian LPA Insights</strong>
+                  <p>Provides realistic fresher to senior salary spectrums across product, FAANG, and service roles.</p>
+                </div>
+              </div>
+              <div className="sb-bot-pillar-card">
+                <div className="sb-bot-pillar-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/></svg>
+                </div>
+                <div>
+                  <strong>100+ Roadmap Sync</strong>
+                  <p>Recommends exact SkillBun roadmaps and study guide steps to unblock your learning journey.</p>
+                </div>
+              </div>
+              <div className="sb-bot-pillar-card">
+                <div className="sb-bot-pillar-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <strong>Hinglish Friendly</strong>
+                  <p>Ask in English, Hindi, or Hinglish — standard conversational dialogue without rigid syntax.</p>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginTop: '24px' }}>
+              <Link href="/counsellor" className="btn-primary sb-inline-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="18" height="12" x="3" y="8" rx="2"/><path d="M12 2v6"/><circle cx="8" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><path d="M9 18h6"/>
+                </svg>
+                Chat with BunBot Now
+              </Link>
+            </div>
           </div>
+
           <div className="sb-bot-window" aria-label="BunBot preview">
             <div className="sb-bot-header">
-              <span className="status-dot"></span>
-              <strong>BunBot online</strong>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="status-dot"></span>
+                <strong>BunBot online</strong>
+              </div>
+              <span className="sb-bot-badge">AI Career Advisor</span>
             </div>
-            <div className="sb-bot-message bot">Ask me why Full Stack, Data, or Cybersecurity fits your profile.</div>
-            <div className="sb-bot-message user">Which path is best if I like building projects?</div>
-            <div className="sb-bot-message bot">Start with Full Stack, compare Backend next, then use the roadmap to build proof.</div>
+            
+            <div className="sb-bot-prompts-bar">
+              <span className="sb-bot-prompts-label">Try asking:</span>
+              <Link href="/counsellor?q=BCA+to+High+Package+Tech+Career+Playbook%3F" className="sb-bot-prompt-chip">
+                <span>💰 BCA 12 LPA Playbook</span>
+              </Link>
+              <Link href="/counsellor?q=Fullstack+vs+DevOps+salary+spectrum+in+India%3F" className="sb-bot-prompt-chip">
+                <span>⚡ Fullstack vs DevOps</span>
+              </Link>
+            </div>
+
+            <div className="sb-bot-chat-preview">
+              <div className="sb-bot-message user">I am a 2nd year BCA student. How do I target high product company salaries?</div>
+              <div className="sb-bot-message bot">
+                <p>Hello! For a 2nd year BCA student, focus on <strong>Full Stack Web Dev</strong> or <strong>Backend Systems</strong> first. Here is your roadmap:</p>
+                <div className="sb-bot-preview-tags">
+                  <span className="sb-bot-tag">Target: 6 - 18 LPA</span>
+                  <span className="sb-bot-tag green">Roadmap: Fullstack</span>
+                </div>
+                <p style={{ marginTop: '8px', fontSize: '0.85rem' }}>Start building 2 production GitHub projects and prepare for off-campus referral pipelines.</p>
+              </div>
+            </div>
           </div>
         </section>
 
