@@ -96,7 +96,8 @@ service cloud.firestore {
       return signedIn() && (
         request.auth.token.admin == true ||
         request.auth.token.email.lower() == 'harsh@skillbun.tech' ||
-        request.auth.token.email.lower() in ['harsh@skillbun.tech', 'admin@skillbun.tech']
+        request.auth.token.email.lower() in ['harsh@skillbun.tech', 'admin@skillbun.tech'] ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()))
       );
     }
 
@@ -160,6 +161,11 @@ service cloud.firestore {
         isEmployeeOwner(resource.data.metadata_snapshot.personal_email)
       );
       allow write: if isAdmin();
+    }
+
+    // Admin RBAC Registry collection: Managed directly by founder in database
+    match /admins/{adminEmail} {
+      allow read, write: if isAdmin();
     }
   }
 }

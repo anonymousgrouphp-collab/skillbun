@@ -1,5 +1,5 @@
 import { getFirebaseAdminAuth } from './firebaseAdmin.js';
-import { isAuthorizedAdminEmail } from './env.js';
+import { isUserAuthorizedAdmin } from './workforceEmployees.js';
 
 export const MILESTONE_PRIORITIES = Object.freeze(['LOW', 'MEDIUM', 'HIGH', 'URGENT']);
 export const MILESTONE_STATUSES = Object.freeze(['TODO', 'IN_PROGRESS', 'UNDER_REVIEW', 'COMPLETED']);
@@ -197,7 +197,7 @@ export async function authenticateMilestoneCaller(request) {
     const auth = getFirebaseAdminAuth();
     const decoded = await auth.verifyIdToken(token);
     const email = (decoded.email || '').toLowerCase().trim();
-    const isAdmin = decoded.admin === true || isAuthorizedAdminEmail(email);
+    const isAdmin = await isUserAuthorizedAdmin(decoded);
 
     return {
       uid: decoded.uid,
