@@ -140,10 +140,18 @@ const jsonLdStructuredData = {
         },
         {
           '@type': 'Question',
+          name: 'How does the AI career quiz work?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'SkillBun\'s adaptive quiz analyzes your background, aptitude, technical interests, and work style in real-time to recommend and rank the best-fit technology career roadmaps for you.',
+          },
+        },
+        {
+          '@type': 'Question',
           name: 'What features does SkillBun offer?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'SkillBun provides 100+ step-by-step career roadmaps (AI/ML, Fullstack, DevOps, Cybersecurity, Mobile), an adaptive technical quiz engine, Bun-Bot AI career counsellor, interactive study guides, and free proctored digital certifications.',
+            text: 'SkillBun provides 100+ step-by-step career roadmaps (AI/ML, Fullstack, DevOps, Cybersecurity, Mobile), an adaptive technical quiz engine, Bun-Bot AI career counsellor, interactive study guides, video courses, and free proctored digital certifications.',
           },
         },
         {
@@ -159,7 +167,23 @@ const jsonLdStructuredData = {
           name: 'How do I earn a free SkillBun Certificate?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'When you achieve at least 60% progress on any career roadmap, you unlock the free certification exam. Passing the 10-question adaptive assessment (scoring 70% or higher) earns a publicly verifiable digital certificate at zero cost.',
+            text: 'When you achieve at least 60% progress on any career roadmap, you unlock the free certification exam. Passing the 10-question adaptive assessment (scoring 70% or higher) earns a publicly verifiable digital certificate with a unique ID and QR code.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is Bun-Bot and how does it help learners?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Bun-Bot is an AI-powered technical career counsellor integrated into every roadmap. It helps students understand difficult concepts, provides code guidance, suggests portfolio project ideas, and answers career questions 24/7.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I verify SkillBun certificates online?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes, every SkillBun certificate has a unique verification URL at skillbun.tech/certificate/[id] where employers and recruiters can verify candidate credentials, issue date, and specialization.',
           },
         },
       ],

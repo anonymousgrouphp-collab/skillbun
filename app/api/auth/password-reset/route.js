@@ -4,7 +4,7 @@ import { getAllowedAppOrigins, getAppOrigin } from '@/utils/server/env'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { checkServerRateLimit, hashRateLimitSubject } from '@/utils/server/rateLimitStore'
 import { sendSkillBunPasswordResetEmail } from '@/utils/server/zohoMailer'
-import { validateEmail } from '@/utils/shared/emailValidator'
+import { validateSchema } from '@/utils/server/inputValidator'
 
 export const runtime = 'nodejs'
 
@@ -109,14 +109,26 @@ export async function POST(request) {
   let email = ''
 
   try {
-    const body = await request.json().catch(() => ({}))
-    const emailCheck = validateEmail(body?.email)
-
-    if (!emailCheck.isValid) {
-      return NextResponse.json({ error: emailCheck.error }, { status: 400 })
+    let rawBody
+    try {
+      rawBody = await request.json()
+    } catch {
+      return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 })
     }
 
-    email = emailCheck.normalizedEmail
+    const schemaCheck = validateSchema(rawBody, {
+      email: { type: 'email', required: true, label: 'Email address' },
+    }, {
+      fieldName: 'Password reset payload',
+      allowUnknown: false,
+      maxKeys: 1,
+    })
+
+    if (!schemaCheck.isValid) {
+      return NextResponse.json({ error: schemaCheck.error }, { status: 400 })
+    }
+
+    email = schemaCheck.value.email
 
     const address = getClientAddress(request)
     // 1. Check rate limit (without incrementing)

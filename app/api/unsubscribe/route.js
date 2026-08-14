@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
-import { validateEmail, validateEnum, validatePlainObject } from '@/utils/server/inputValidator';
+import { validateEmail, validateSchema } from '@/utils/server/inputValidator';
 
 export const runtime = 'nodejs';
 
@@ -42,26 +42,26 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
-    const objectCheck = validatePlainObject(rawBody, { fieldName: 'Unsubscribe payload', maxKeys: 4 });
-    if (!objectCheck.isValid) {
-      return NextResponse.json({ error: objectCheck.error }, { status: 400 });
-    }
-
-    const emailCheck = validateEmail(rawBody.email);
-    if (!emailCheck.isValid) {
-      return NextResponse.json({ error: emailCheck.error }, { status: 400 });
-    }
-
-    const actionCheck = validateEnum(rawBody.action, ['unsubscribe', 'resubscribe'], {
-      fieldName: 'action',
-      defaultValue: 'unsubscribe',
+    const schemaCheck = validateSchema(rawBody, {
+      email: { type: 'email', required: true, label: 'Email address' },
+      action: {
+        type: 'enum',
+        required: false,
+        allowedValues: ['unsubscribe', 'resubscribe'],
+        defaultValue: 'unsubscribe',
+        label: 'Action',
+      },
+    }, {
+      fieldName: 'Unsubscribe payload',
+      allowUnknown: false,
+      maxKeys: 2,
     });
-    if (!actionCheck.isValid) {
-      return NextResponse.json({ error: actionCheck.error }, { status: 400 });
+
+    if (!schemaCheck.isValid) {
+      return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
     }
 
-    const email = emailCheck.normalizedEmail;
-    const action = actionCheck.value;
+    const { email, action } = schemaCheck.value;
 
     const db = getFirebaseAdminFirestore();
     if (db) {
