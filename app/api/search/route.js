@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
-import { validateString } from '@/utils/server/inputValidator';
+import { validateString, sanitizeCacheKey } from '@/utils/server/inputValidator';
 import { getOrSetCache } from '@/utils/server/redisCache';
 
 const ROADMAPS_DIR = path.join(process.cwd(), 'public', 'data', 'roadmaps');
@@ -56,6 +56,7 @@ export async function GET(request) {
       fieldName: 'Search query',
       maxLength: 100,
       allowEmpty: true,
+      rejectSqlInjection: true,
     });
     if (!qCheck.isValid) {
       return NextResponse.json({ error: qCheck.error }, { status: 400 });
@@ -65,7 +66,7 @@ export async function GET(request) {
   const query = (rawQ || '').toLowerCase().trim();
 
   // Multi-tier cache: Check L1 memory / L2 Redis cache first
-  const cacheKey = `sb:search:${query || '_default'}`;
+  const cacheKey = sanitizeCacheKey(`sb:search:${query || '_default'}`);
   const responseData = await getOrSetCache(cacheKey, 300, async () => {
     const roadmaps = getRoadmaps();
 

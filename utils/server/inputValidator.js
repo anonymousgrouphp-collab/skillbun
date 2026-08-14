@@ -40,7 +40,41 @@ export function validatePlainObject(value, options = {}) {
 }
 
 /**
- * Validates a string with strict type, length, and format rules.
+ * Patterns matching known SQL injection attack vectors.
+ */
+export const SQL_INJECTION_PATTERNS = [
+  // Classic tautologies and boolean manipulation: ' or '1'='1, " or ""="", ' or 1=1--, ' and 'a'='a, admin' and 1=1#
+  /(?:'|"|`|\b)\s*(?:or|and|xor)\s+(?:'[^']*'|"[^"]*"|`[^`]*`|'[^']*|"[^"]*|\d+)\s*=\s*(?:'[^']*'|"[^"]*"|`[^`]*`|'[^']*|"[^"]*|\d+)/i,
+  /\b(?:or|and|xor)\s+\d+\s*=\s*\d+\s*(?:--|#|\/\*)/i,
+  // UNION SELECT attacks
+  /\bunion\s+(?:all\s+)?select\b/i,
+  // Stacked queries with dangerous DML/DDL operations
+  /;\s*(?:select|insert|update|delete|drop|alter|create|truncate|exec|execute|grant|revoke|union)\b/i,
+  // SQL comments in suspicious syntax
+  /(?:--|#)\s*(?:$|\r|\n)/,
+  /\/\*[\s\S]*?\*\//,
+  // Time-based and blind SQL injection functions
+  /\b(?:sleep|benchmark|waitfor\s+delay|pg_sleep)\s*\(/i,
+  // System metadata tables
+  /\b(?:information_schema\.|sys\.objects|sysobjects|sysdatabases|syscolumns)\b/i,
+  // Dangerous SQL Server / Oracle stored procedures
+  /\b(?:xp_cmdshell|sp_executesql|dbms_pipe|utl_http)\b/i,
+  // Hex/char encoding evasions commonly used in SQLi payloads: 0x61646d696e, CHAR(39)
+  /\b0x[0-9a-fA-F]{8,}\b/,
+  /\b(?:char|nchar|varchar|nvarchar)\s*\(\s*\d+\s*(?:,\s*\d+\s*)*\)/i,
+];
+
+/**
+ * Checks whether a given string contains SQL injection attack signatures.
+ * Returns true if suspicious SQL injection syntax is found.
+ */
+export function hasSqlInjectionPattern(value) {
+  if (typeof value !== 'string' || !value.trim()) return false;
+  return SQL_INJECTION_PATTERNS.some((pattern) => pattern.test(value));
+}
+
+/**
+ * Validates a string with strict type, length, format, and injection protection rules.
  */
 export function validateString(value, options = {}) {
   const {
@@ -50,6 +84,7 @@ export function validateString(value, options = {}) {
     pattern = null,
     allowEmpty = false,
     trim = true,
+    rejectSqlInjection = false,
   } = options;
 
   if (typeof value !== 'string') {
@@ -93,6 +128,15 @@ export function validateString(value, options = {}) {
     };
   }
 
+  // Reject SQL injection attempts if flag is enabled
+  if (rejectSqlInjection && hasSqlInjectionPattern(processed)) {
+    return {
+      isValid: false,
+      error: `${fieldName} contains invalid or unsafe characters.`,
+      value: processed,
+    };
+  }
+
   if (pattern && !pattern.test(processed)) {
     return {
       isValid: false,
@@ -102,6 +146,45 @@ export function validateString(value, options = {}) {
   }
 
   return { isValid: true, value: processed, error: null };
+}
+
+/**
+ * Validates Firestore document or collection identifiers to prevent path traversal,
+ * NoSQL key tampering, or forbidden characters.
+ */
+export function validateFirestoreId(id, options = {}) {
+  const { fieldName = 'Document ID', minLength = 1, maxLength = 128, allowAtSymbol = true } = options;
+
+  if (typeof id !== 'string' || !id.trim()) {
+    return { isValid: false, error: `${fieldName} is required and must be a non-empty string.`, value: '' };
+  }
+
+  const trimmed = id.trim();
+
+  // Prevent path traversal
+  if (trimmed.includes('/') || trimmed.includes('\\') || trimmed.includes('..') || trimmed.includes('\0')) {
+    return { isValid: false, error: `${fieldName} contains invalid path characters.`, value: '' };
+  }
+
+  if (trimmed.length < minLength || trimmed.length > maxLength) {
+    return { isValid: false, error: `${fieldName} length must be between ${minLength} and ${maxLength} characters.`, value: '' };
+  }
+
+  const idPattern = allowAtSymbol ? /^[a-zA-Z0-9_\-\.@]+$/ : /^[a-zA-Z0-9_\-]+$/;
+  if (!idPattern.test(trimmed)) {
+    return { isValid: false, error: `${fieldName} contains invalid characters.`, value: '' };
+  }
+
+  return { isValid: true, value: trimmed, error: null };
+}
+
+/**
+ * Sanitizes a cache key string for Redis or memory caches to prevent key injection,
+ * newline poisoning, or unintended key collision.
+ */
+export function sanitizeCacheKey(key) {
+  if (typeof key !== 'string') return '_invalid_key';
+  return key.replace(/[\r\n\t\0\x00-\x1F\x7F]/g, '').trim().slice(0, 256);
 }
 
 /**
@@ -292,6 +375,7 @@ export function validateSchema(payload, schema, options = {}) {
         maxLength: rule.maxLength ?? 1000,
         pattern: rule.pattern,
         allowEmpty: rule.allowEmpty ?? !rule.required,
+        rejectSqlInjection: rule.rejectSqlInjection ?? true,
       });
       if (!res.isValid) return { isValid: false, error: res.error, value: null };
       validated[key] = res.value;
