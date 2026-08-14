@@ -8,13 +8,7 @@ import {
   getZohoSmtpUser,
 } from '@/utils/server/env'
 
-let cachedTransporter = null
-
 export function getTransporter() {
-  if (cachedTransporter) {
-    return cachedTransporter
-  }
-
   const host = getZohoSmtpHost()
   const port = getZohoSmtpPort()
   const user = getZohoSmtpUser()
@@ -27,17 +21,16 @@ export function getTransporter() {
   const smtpPort = Number(port || 465)
   const isSecure = smtpPort === 465
 
-  cachedTransporter = nodemailer.createTransport({
+  return nodemailer.createTransport({
     host: host || 'smtppro.zoho.in',
     port: smtpPort,
     secure: isSecure,
     auth: { user, pass },
-    connectionTimeout: 5000,
-    greetingTimeout: 5000,
-    socketTimeout: 6000,
+    pool: false,
+    connectionTimeout: 7000,
+    greetingTimeout: 7000,
+    socketTimeout: 10000,
   })
-
-  return cachedTransporter
 }
 
 export function escapeHtml(value) {
