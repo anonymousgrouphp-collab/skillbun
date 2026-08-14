@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { isAuthorizedAdminEmail } from '@/utils/server/env'
-import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
+import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin'
 import { validateFirestoreId, validateSchema, validateString } from '@/utils/server/inputValidator'
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { getClientAddress } from '@/utils/server/requestUtils'
@@ -115,6 +115,29 @@ export function apiError(message, status, code, options = {}) {
   }, { status, headers })
 }
 
+export async function isUserAuthorizedAdmin(decodedToken) {
+  if (!decodedToken) return false
+  if (decodedToken.admin === true) return true
+  const email = (decodedToken.email || '').trim().toLowerCase()
+  if (!email) return false
+  if (isAuthorizedAdminEmail(email)) return true
+
+  // Dynamic Database-Driven Admin Lookup from Firestore /admins/{email}
+  try {
+    const db = getFirebaseAdminFirestore()
+    if (db) {
+      const adminDoc = await db.collection('admins').doc(email).get()
+      if (adminDoc.exists && adminDoc.data()?.active !== false) {
+        return true
+      }
+    }
+  } catch {
+    // Non-blocking fallback
+  }
+
+  return false
+}
+
 export async function requireWorkforceAdmin(request) {
   const authHeader = request.headers.get('authorization') || ''
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : ''
@@ -133,7 +156,8 @@ export async function requireWorkforceAdmin(request) {
   try {
     const decodedToken = await adminAuth.verifyIdToken(token)
     const email = (decodedToken.email || '').trim().toLowerCase()
-    if (decodedToken.admin !== true && !isAuthorizedAdminEmail(email)) {
+    const isAdmin = await isUserAuthorizedAdmin(decodedToken)
+    if (!isAdmin) {
       return { response: apiError('Admin privileges are required.', 403, 'FORBIDDEN') }
     }
 
