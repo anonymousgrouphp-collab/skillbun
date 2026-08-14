@@ -4,8 +4,8 @@
 **Previous Phase:** [Phase 1 ← Data Model & Encryption](./PHASE_1_DATA_MODEL.md)  
 **Next Phase:** [Phase 3 → Admin Workforce Hub UI](./PHASE_3_ADMIN_UI.md)  
 **Effort:** ~1.5 Days (1 Engineer)  
-**Status:** ⬜ Not Started  
-**Depends On:** Phase 1 (Firestore schema + encryption helper must exist)
+**Status:** ✅ Completed  
+**Depends On:** Phase 1 (✅ Complete — Firestore schema, security rules, encryption helper, and ID generator ready)
 
 ---
 
@@ -41,7 +41,7 @@ All routes are admin-only (guarded by `isAuthorizedAdminEmail()` which covers bo
 
 #### `DELETE /api/admin/workforce/employees/[id]`
 - Soft-delete preferred: set `status: 'ARCHIVED'` and `archived_at` timestamp
-- Hard-delete only if employee has zero linked certificates and milestones
+- Hard-delete only if employee has zero linked certificates, milestones, and workforce audit documents
 
 ### 2.2 Validation Schema
 
@@ -86,17 +86,17 @@ Apply existing `checkServerRateLimit()`:
 
 ## Verification Checklist
 
-- [ ] **V2.1** — `POST` creates employee → returned `id` matches Firestore document
-- [ ] **V2.2** — `GET` returns list of all employees with `[ENCRYPTED]` for credentials
-- [ ] **V2.3** — `PATCH` updates fields and `updated_at` timestamp changes
-- [ ] **V2.4** — `DELETE` soft-archives the employee (status = `ARCHIVED`)
-- [ ] **V2.5** — Non-admin authenticated user gets `403 Forbidden` on all routes
-- [ ] **V2.6** — Unauthenticated request gets `401`
-- [ ] **V2.7** — Missing required fields return `400` with clear validation error
-- [ ] **V2.8** — Invalid email format is rejected
-- [ ] **V2.9** — Duplicate `personal_email` is rejected on `POST`
-- [ ] **V2.10** — Rate limit triggers `429` after 10 rapid requests
-- [ ] **V2.11** — `npm run build` passes with no new errors
+- [x] **V2.1** — `POST` creates employee → returned `id` matches Firestore document
+- [x] **V2.2** — `GET` returns list of all employees with `[ENCRYPTED]` for credentials
+- [x] **V2.3** — `PATCH` updates fields and `updated_at` timestamp changes
+- [x] **V2.4** — `DELETE` soft-archives the employee (status = `ARCHIVED`)
+- [x] **V2.5** — Non-admin authenticated user gets `403 Forbidden` on all routes
+- [x] **V2.6** — Unauthenticated request gets `401`
+- [x] **V2.7** — Missing required fields return `400` with clear validation error
+- [x] **V2.8** — Invalid email format is rejected
+- [x] **V2.9** — Duplicate `personal_email` is rejected on `POST`
+- [x] **V2.10** — Rate limit triggers `429` after 10 rapid requests
+- [x] **V2.11** — `npm run build` / lint passes with no new errors
 
 ---
 

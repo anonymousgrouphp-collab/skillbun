@@ -3,13 +3,15 @@ import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/
 import { validateSchema } from '@/utils/server/inputValidator';
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
 import { getClientAddress } from '@/utils/server/requestUtils';
+import { isAuthorizedAdminEmail } from '@/utils/server/env';
+import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 
 export const runtime = 'nodejs';
 
 const CERT_MINT_RATE_LIMITS = [
-  { name: 'userMinute', windowMs: 60 * 1000, maxRequests: 3, getSubject: ({ uid }) => `user:${uid}` },
-  { name: 'userHour', windowMs: 60 * 60 * 1000, maxRequests: 10, getSubject: ({ uid }) => `user:${uid}` },
-  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 20, getSubject: ({ address }) => `ip:${address}` },
+  { name: 'userMinute', windowMs: 60 * 1000, maxRequests: 5, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'userHour', windowMs: 60 * 60 * 1000, maxRequests: 30, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 50, getSubject: ({ address }) => `ip:${address}` },
 ];
 
 export async function POST(request) {
@@ -29,12 +31,13 @@ export async function POST(request) {
         return NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 });
       }
       decodedToken = await adminAuth.verifyIdToken(token);
-    } catch (authErr) {
+    } catch {
       return NextResponse.json({ error: 'Invalid or expired authentication token. Please log in again.' }, { status: 401 });
     }
 
     const uid = decodedToken.uid;
     const email = (decodedToken.email || '').toLowerCase();
+    const isAdmin = decodedToken.admin === true || isAuthorizedAdminEmail(email);
     const address = getClientAddress(request);
 
     // 2. Rate Limiting Protection
@@ -55,7 +58,7 @@ export async function POST(request) {
       );
     }
 
-    // 3. Validate Request Payload Schema
+    // 3. Parse Request Payload
     let rawBody;
     try {
       rawBody = await request.json();
@@ -63,61 +66,165 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
-    const schemaCheck = validateSchema(rawBody, {
-      name: { type: 'string', required: true, minLength: 1, maxLength: 100, label: 'Candidate Name' },
-      roadmapSlug: { type: 'string', required: true, minLength: 1, maxLength: 80, pattern: /^[a-z0-9_]+$/, label: 'Roadmap Slug' },
-      roadmapTitle: { type: 'string', required: true, minLength: 1, maxLength: 150, label: 'Roadmap Title' },
-      score: { type: 'integer', required: true, min: 70, max: 100, label: 'Exam Score' },
-    }, {
-      fieldName: 'Certificate mint payload',
-      allowUnknown: false,
-      maxKeys: 4,
-    });
-
-    if (!schemaCheck.isValid) {
-      return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
-    }
-
-    const { name, roadmapSlug, roadmapTitle, score } = schemaCheck.value;
+    const certType = (rawBody.cert_type || 'ROADMAP').toUpperCase();
 
     const db = getFirebaseAdminFirestore();
     if (!db) {
       return NextResponse.json({ error: 'Database service unavailable.' }, { status: 500 });
     }
 
-    // 4. Verify Roadmap Progress Eligibility (In production, verify user has progress recorded)
-    if (process.env.NODE_ENV === 'production') {
-      try {
-        const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').doc(roadmapSlug).get();
-        if (!progSnap.exists) {
-          return NextResponse.json({
-            error: 'You must complete roadmap topics before qualifying for a verified certificate.'
-          }, { status: 403 });
-        }
-      } catch (progErr) {
-        console.warn('[Cert Mint Progress Check Warning]:', progErr.message);
+    // ==========================================
+    // FLOW A: Standard ROADMAP Certificate (Self-Mint after Quiz)
+    // ==========================================
+    if (certType === 'ROADMAP') {
+      const schemaCheck = validateSchema(rawBody, {
+        name: { type: 'string', required: true, minLength: 1, maxLength: 100, label: 'Candidate Name' },
+        roadmapSlug: { type: 'string', required: true, minLength: 1, maxLength: 80, pattern: /^[a-z0-9_]+$/, label: 'Roadmap Slug' },
+        roadmapTitle: { type: 'string', required: true, minLength: 1, maxLength: 150, label: 'Roadmap Title' },
+        score: { type: 'integer', required: true, min: 70, max: 100, label: 'Exam Score' },
+        cert_type: { type: 'string', required: false },
+      }, {
+        fieldName: 'Certificate mint payload',
+        allowUnknown: false,
+        maxKeys: 5,
+      });
+
+      if (!schemaCheck.isValid) {
+        return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
       }
+
+      const { name, roadmapSlug, roadmapTitle, score } = schemaCheck.value;
+
+      // Verify Roadmap Progress Eligibility in production
+      if (process.env.NODE_ENV === 'production') {
+        try {
+          const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').doc(roadmapSlug).get();
+          if (!progSnap.exists) {
+            return NextResponse.json({
+              error: 'You must complete roadmap topics before qualifying for a verified certificate.'
+            }, { status: 403 });
+          }
+        } catch (progErr) {
+          console.warn('[Cert Mint Progress Check Warning]:', progErr.message);
+        }
+      }
+
+      const certRef = db.collection('certificates').doc();
+      const certId = certRef.id;
+
+      await certRef.set({
+        uid,
+        name: name.trim(),
+        email,
+        roadmapSlug,
+        roadmapTitle: roadmapTitle.trim(),
+        score,
+        cert_type: 'ROADMAP',
+        is_revoked: false,
+        createdAt: new Date(),
+      });
+
+      return NextResponse.json({
+        success: true,
+        certId,
+        cert_type: 'ROADMAP',
+        message: 'Verified certificate minted successfully.',
+      });
     }
 
-    // 5. Server-Side Certificate Document Creation
-    const certRef = db.collection('certificates').doc();
-    const certId = certRef.id;
+    // ==========================================
+    // FLOW B: Workforce Credentials (INTERNSHIP, TRAINING, LOR) - Admin Only
+    // ==========================================
+    if (['INTERNSHIP', 'TRAINING', 'LOR'].includes(certType)) {
+      if (!isAdmin) {
+        return NextResponse.json({ error: 'Only administrators can issue workforce credentials.' }, { status: 403 });
+      }
 
-    await certRef.set({
-      uid,
-      name: name.trim(),
-      email,
-      roadmapSlug,
-      roadmapTitle: roadmapTitle.trim(),
-      score,
-      createdAt: new Date(),
-    });
+      const {
+        employee_id,
+        name,
+        email: candidateEmail,
+        stream_or_track,
+        start_date,
+        end_date,
+        recommendation_text,
+        issued_by,
+      } = rawBody;
 
-    return NextResponse.json({
-      success: true,
-      certId,
-      message: 'Verified certificate minted successfully.',
-    });
+      if (!employee_id || typeof employee_id !== 'string') {
+        return NextResponse.json({ error: 'employee_id is required.' }, { status: 400 });
+      }
+
+      if (!name || typeof name !== 'string' || name.trim().length < 2) {
+        return NextResponse.json({ error: 'Candidate name is required.' }, { status: 400 });
+      }
+
+      if (!candidateEmail || typeof candidateEmail !== 'string') {
+        return NextResponse.json({ error: 'Candidate email is required.' }, { status: 400 });
+      }
+
+      if (!stream_or_track || typeof stream_or_track !== 'string') {
+        return NextResponse.json({ error: 'Stream or training track title is required.' }, { status: 400 });
+      }
+
+      // Check employee record
+      const employeeDoc = await db.collection('employees').doc(employee_id.trim()).get();
+      if (!employeeDoc.exists) {
+        return NextResponse.json({ error: 'Referenced employee record not found.' }, { status: 404 });
+      }
+
+      const employeeData = employeeDoc.data();
+      if (employeeData.status === 'TERMINATED') {
+        return NextResponse.json({ error: 'Cannot issue credentials to a terminated employee.' }, { status: 400 });
+      }
+
+      if (certType === 'LOR') {
+        if (!recommendation_text || typeof recommendation_text !== 'string' || recommendation_text.trim().length < 20) {
+          return NextResponse.json({ error: 'A valid recommendation text (minimum 20 characters) is required for LOR.' }, { status: 400 });
+        }
+      }
+
+      // Generate custom ID according to credential type
+      let prefix = WORKFORCE_PREFIXES.INTERNSHIP;
+      if (certType === 'TRAINING') prefix = WORKFORCE_PREFIXES.TRAINING;
+      if (certType === 'LOR') prefix = WORKFORCE_PREFIXES.LOR;
+
+      const certId = generateWorkforceId(prefix);
+      const certRef = db.collection('certificates').doc(certId);
+
+      const now = new Date();
+      const certData = {
+        id: certId,
+        cert_type: certType,
+        employee_id: employee_id.trim(),
+        uid: employeeData.user_uid || uid,
+        name: name.trim(),
+        email: candidateEmail.trim().toLowerCase(),
+        department: employeeData.department || '',
+        designation: employeeData.designation || '',
+        stream_or_track: stream_or_track.trim(),
+        start_date: start_date ? String(start_date).slice(0, 10) : employeeData.joining_date || null,
+        end_date: end_date ? String(end_date).slice(0, 10) : employeeData.contract_end_date || null,
+        recommendation_text: certType === 'LOR' ? recommendation_text.trim() : null,
+        issued_by: issued_by || 'Harsh Patel (Lead, SkillBun / Team Cosmic)',
+        issued_by_email: email,
+        is_revoked: false,
+        createdAt: now,
+        updatedAt: now,
+      };
+
+      await certRef.set(certData);
+
+      return NextResponse.json({
+        success: true,
+        certId,
+        cert_type: certType,
+        certificate: certData,
+        message: `${certType.replace('_', ' ')} credential minted successfully.`,
+      });
+    }
+
+    return NextResponse.json({ error: `Invalid cert_type: "${certType}".` }, { status: 400 });
   } catch (error) {
     console.error('[Certify Mint API Error]:', error);
     return NextResponse.json({ error: 'Failed to mint certificate. Please try again.' }, { status: 500 });

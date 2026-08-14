@@ -206,3 +206,7 @@ export function isRedisConfigured() {
   return hasUpstash || hasRedisUrl
 }
 
+export function getWorkforceEncryptionKey() {
+  return getFirstNonEmpty(process.env.WORKFORCE_ENCRYPTION_KEY)
+}
+

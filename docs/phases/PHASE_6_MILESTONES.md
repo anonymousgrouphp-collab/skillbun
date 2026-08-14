@@ -4,7 +4,7 @@
 **Previous Phase:** [Phase 5 ← Email Dispatch Pipeline](./PHASE_5_EMAIL_DISPATCH.md)  
 **Next Phase:** [Phase 7 → Certificate Type Expansion](./PHASE_7_CERT_EXPANSION.md)  
 **Effort:** ~1.5 Days (1 Engineer)  
-**Status:** ⬜ Not Started  
+**Status:** ✅ Completed  
 **Depends On:** Phase 2 (employee records must exist), Phase 3 (admin UI shell)
 
 ---
@@ -67,6 +67,7 @@ Add to `/admin/workforce` employee detail view:
 
 | Action | File |
 |:---|:---|
+| NEW | `utils/server/workforceMilestones.js` (validation, serialization, intern field guards) |
 | NEW | `app/api/admin/workforce/milestones/route.js` (GET, POST) |
 | NEW | `app/api/admin/workforce/milestones/[id]/route.js` (PATCH, DELETE) |
 | MODIFY | `app/admin/workforce/page.jsx` (add milestone panel to employee detail) |
@@ -76,19 +77,20 @@ Add to `/admin/workforce` employee detail view:
 
 ## Verification Checklist
 
-- [ ] **V6.1** — `POST` creates milestone linked to correct employee
-- [ ] **V6.2** — `GET` with `?employeeId=` returns only that employee's milestones
-- [ ] **V6.3** — `PATCH` by admin updates any field
-- [ ] **V6.4** — `PATCH` by intern only allows `status` and `deliverable_url` changes (server rejects other fields)
-- [ ] **V6.5** — `DELETE` removes milestone (admin-only)
-- [ ] **V6.6** — Priority badges render correctly (color-coded)
-- [ ] **V6.7** — Status pills display and are accurate
-- [ ] **V6.8** — "Add Milestone" modal validates required fields
-- [ ] **V6.9** — Overdue milestones (past due_date, not completed) show red indicator
-- [ ] **V6.10** — Deliverable URLs are clickable and open in new tab
-- [ ] **V6.11** — Milestone panel works in both dark and light themes
-- [ ] **V6.12** — `npm run build` passes with no new errors
+- [x] **V6.1** — `POST` creates milestone linked to correct employee
+- [x] **V6.2** — `GET` with `?employeeId=` returns only that employee's milestones
+- [x] **V6.3** — `PATCH` by admin updates any field
+- [x] **V6.4** — `PATCH` by intern only allows `status` and `deliverable_url` changes (server rejects other fields)
+- [x] **V6.5** — `DELETE` removes milestone (admin-only)
+- [x] **V6.6** — Priority badges render correctly (color-coded)
+- [x] **V6.7** — Status pills display and are accurate
+- [x] **V6.8** — "Add Milestone" modal validates required fields
+- [x] **V6.9** — Overdue milestones (past due_date, not completed) show red indicator
+- [x] **V6.10** — Deliverable URLs are clickable and open in new tab
+- [x] **V6.11** — Milestone panel works in both dark and light themes
+- [x] **V6.12** — `npm run build` passes with no new errors
 
 ---
 
 **→ Once all checks pass, proceed to [Phase 7: Certificate Type Expansion](./PHASE_7_CERT_EXPANSION.md)**
+

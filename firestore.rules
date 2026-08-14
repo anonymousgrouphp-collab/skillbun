@@ -88,6 +88,24 @@ service cloud.firestore {
         optionalTimestamp('updatedAt');
     }
 
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && (
+        request.auth.token.admin == true ||
+        request.auth.token.email.lower() == 'harsh@skillbun.tech' ||
+        request.auth.token.email.lower() in ['harsh@skillbun.tech', 'admin@skillbun.tech']
+      );
+    }
+
+    function isEmployeeOwner(email) {
+      return signedIn() && 
+        request.auth.token.email != null &&
+        request.auth.token.email.lower() == email.lower();
+    }
+
     match /users/{uid} {
       allow read, delete: if signedInAs(uid);
       allow create, update: if signedInAs(uid) && validUserProfile(uid);
@@ -106,6 +124,42 @@ service cloud.firestore {
     match /certificates/{certId} {
       allow read: if true;
       allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
+    }
+
+    // Workforce Hub: Employees collection (Admin full CRUD; Intern read-only on their own record)
+    match /employees/{employeeId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.personal_email)
+      );
+      allow write: if isAdmin();
+    }
+
+    // Workforce Hub: Milestones collection (Admin full CRUD; Intern can read and update only status, deliverable_url, updated_at)
+    match /milestones/{milestoneId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.employee_email)
+      );
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (
+        signedIn() &&
+        resource != null &&
+        isEmployeeOwner(resource.data.employee_email) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'deliverable_url', 'updated_at'])
+      );
+    }
+
+    // Workforce Hub: Workforce Audit Documents collection (Admin full CRUD; Intern read-only on issued docs)
+    match /workforce_docs/{docId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.metadata_snapshot.personal_email)
+      );
+      allow write: if isAdmin();
     }
   }
 }
