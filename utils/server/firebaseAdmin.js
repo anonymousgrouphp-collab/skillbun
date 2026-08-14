@@ -34,9 +34,21 @@ function getAdminApp() {
 }
 
 export function getFirebaseAdminAuth() {
-  return getAuth(getAdminApp())
+  try {
+    const app = getAdminApp()
+    return app ? getAuth(app) : null
+  } catch (err) {
+    console.warn('[Firebase Admin Auth Init Warning]:', err.message)
+    return null
+  }
 }
 
 export function getFirebaseAdminFirestore() {
-  return getFirestore(getAdminApp())
+  try {
+    const app = getAdminApp()
+    return app ? getFirestore(app) : null
+  } catch (err) {
+    console.warn('[Firebase Admin Firestore Init Warning]:', err.message)
+    return null
+  }
 }
