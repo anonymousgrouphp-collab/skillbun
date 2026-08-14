@@ -68,27 +68,52 @@ const faqItems = [
   {
     question: 'How does the AI career quiz work?',
     answer:
-      'Our quiz engine adapts to your responses in real-time to analyze your interests, skills, and strengths, providing personalized career recommendations.',
+      'Our adaptive quiz analyzes your background, logical aptitude, technical interests, and work preferences in real-time. Based on your inputs, it ranks and suggests the top tech career paths that best align with your strengths.',
   },
   {
-    question: 'Are the career roadmaps free?',
+    question: 'Are the career roadmaps and certifications completely free?',
     answer:
-      'Yes, our interactive career roadmaps and profiling tools are designed for students and are completely free to use.',
+      'Yes, 100%! All 100+ interactive tech roadmaps, curated study guides, video resources, Bun-Bot AI counsellor guidance, and official digital certificates are completely free for all students and learners with zero paywalls.',
   },
   {
-    question: 'How do I talk to BunBot?',
+    question: 'How do I earn and verify an official SkillBun Certificate?',
     answer:
-      'Once you complete the quiz and select a career roadmap, BunBot will be available to answer specific questions and guide your next steps.',
+      'Once you achieve at least 60% progress on any career roadmap, you unlock the certification exam. Passing the proctored 10-question adaptive assessment (scoring 70% or higher) automatically generates an official, tamper-proof digital certificate with a verifiable QR code and public URL.',
   },
   {
-    question: 'How can I track my progress?',
+    question: 'How do I talk to Bun-Bot AI Counsellor?',
     answer:
-      'Your progress is automatically saved to your profile. You can view your completed roadmap nodes and revisit your quiz recommendations at any time by logging into your account.',
+      'Bun-Bot is available directly within each roadmap and career guidance view. You can ask role-specific questions, request clarification on difficult technical concepts, get project inspiration, and ask for career advice tailored to your learning pace.',
   },
   {
-    question: 'Can I retake the career quiz?',
+    question: 'How is my learning progress tracked and saved?',
     answer:
-      'Absolutely! You can always retake the quiz if your interests have shifted or if you want to explore different career paths.',
+      'Your milestone progress and completed topic nodes are automatically synced to your cloud profile in real-time. Whenever you log in from any device, your roadmaps, quiz results, and unlocked certificates are right where you left them.',
+  },
+  {
+    question: 'Can I retake the career quiz or explore multiple roadmaps?',
+    answer:
+      'Absolutely! You can retake the quiz anytime as your interests evolve, or independently explore, bookmark, and study any of our 100+ career roadmaps concurrently across AI, Fullstack, DevOps, Cybersecurity, Mobile, and more.',
+  },
+  {
+    question: 'What resources are included in each roadmap topic?',
+    answer:
+      'Each interactive roadmap node features comprehensive markdown study guides, curated high-quality YouTube video tutorials, official documentation links, milestone project ideas, and practical skill checklists.',
+  },
+  {
+    question: 'Why do I need to log in to read full study guides?',
+    answer:
+      'To protect our proprietary educational content and track individual student milestone completion, detailed deep-dive study guides are securely decrypted and served to authenticated student accounts.',
+  },
+  {
+    question: 'Can I share my SkillBun Certificate on LinkedIn or resumes?',
+    answer:
+      'Yes! Every certificate comes with a permanent, public verification link at skillbun.tech/certificate/[id] that recruiters and employers can visit to verify your credential, name, roadmap subject, issue date, and authenticity.',
+  },
+  {
+    question: 'How can I suggest a new roadmap, report an issue, or contribute?',
+    answer:
+      'We welcome community feedback! You can reach us directly via the contact form above, send an email to our support team, or connect with us on GitHub and Discord to suggest new topics, report broken links, or propose roadmap improvements.',
   },
 ];
 

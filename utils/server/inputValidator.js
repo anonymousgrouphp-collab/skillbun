@@ -1,4 +1,4 @@
-import { validateEmail } from '@/utils/shared/emailValidator';
+import { validateEmail } from '../shared/emailValidator.js';
 
 /**
  * Validates a plain object (rejecting null, primitives, arrays, and objects with suspicious prototypes).
@@ -234,6 +234,113 @@ export function validateArray(value, options = {}) {
   }
 
   return { isValid: true, value, error: null };
+}
+
+/**
+ * Validates an entire object against a structured field schema.
+ * Rejects unknown fields by default to prevent unwanted or injected payload properties.
+ */
+export function validateSchema(payload, schema, options = {}) {
+  const { allowUnknown = false, fieldName = 'Payload', maxKeys = 50 } = options;
+
+  const objCheck = validatePlainObject(payload, { fieldName, maxKeys });
+  if (!objCheck.isValid) {
+    return { isValid: false, error: objCheck.error, value: null };
+  }
+
+  const payloadKeys = Object.keys(payload);
+  const schemaKeys = new Set(Object.keys(schema));
+
+  if (!allowUnknown) {
+    for (const key of payloadKeys) {
+      if (!schemaKeys.has(key)) {
+        return {
+          isValid: false,
+          error: `Unrecognized field '${key}' in ${fieldName}.`,
+          value: null,
+        };
+      }
+    }
+  }
+
+  const validated = {};
+
+  for (const [key, rule] of Object.entries(schema)) {
+    const rawVal = payload[key];
+    const isPresent = rawVal !== undefined && rawVal !== null;
+
+    if (rule.required && (!isPresent || rawVal === '')) {
+      return {
+        isValid: false,
+        error: `${rule.label || key} is required.`,
+        value: null,
+      };
+    }
+
+    if (!isPresent) {
+      if (rule.defaultValue !== undefined) {
+        validated[key] = rule.defaultValue;
+      }
+      continue;
+    }
+
+    // Type validation
+    if (rule.type === 'string') {
+      const res = validateString(rawVal, {
+        fieldName: rule.label || key,
+        minLength: rule.minLength ?? 0,
+        maxLength: rule.maxLength ?? 1000,
+        pattern: rule.pattern,
+        allowEmpty: rule.allowEmpty ?? !rule.required,
+      });
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value;
+    } else if (rule.type === 'email') {
+      const res = validateEmail(rawVal);
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.normalizedEmail;
+    } else if (rule.type === 'integer') {
+      const res = validateInteger(rawVal, {
+        fieldName: rule.label || key,
+        min: rule.min,
+        max: rule.max,
+        defaultValue: rule.defaultValue,
+      });
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value;
+    } else if (rule.type === 'boolean') {
+      const res = validateBoolean(rawVal, {
+        fieldName: rule.label || key,
+        defaultValue: rule.defaultValue,
+      });
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value;
+    } else if (rule.type === 'enum') {
+      const res = validateEnum(rawVal, rule.allowedValues || [], {
+        fieldName: rule.label || key,
+        defaultValue: rule.defaultValue,
+      });
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value;
+    } else if (rule.type === 'array') {
+      const res = validateArray(rawVal, {
+        fieldName: rule.label || key,
+        minItems: rule.minItems ?? 0,
+        maxItems: rule.maxItems ?? 100,
+        itemValidator: rule.itemValidator,
+      });
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value;
+    } else if (typeof rule.validator === 'function') {
+      const res = rule.validator(rawVal);
+      if (!res.isValid) return { isValid: false, error: res.error, value: null };
+      validated[key] = res.value !== undefined ? res.value : rawVal;
+    } else {
+      validated[key] = rawVal;
+    }
+  }
+
+  return { isValid: true, error: null, value: validated };
 }
 
 export { validateEmail };

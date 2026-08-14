@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
+import { validateString } from '@/utils/server/inputValidator';
 
 const ROADMAPS_DIR = path.join(process.cwd(), 'public', 'data', 'roadmaps');
 
@@ -48,14 +49,19 @@ const STATIC_PAGES = [
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const rawQ = searchParams.get('q');
-  
-  if (rawQ !== null && typeof rawQ === 'string' && rawQ.length > 100) {
-    return NextResponse.json({ error: 'Search query is too long (max 100 characters).' }, { status: 400 });
+
+  if (rawQ !== null) {
+    const qCheck = validateString(rawQ, {
+      fieldName: 'Search query',
+      maxLength: 100,
+      allowEmpty: true,
+    });
+    if (!qCheck.isValid) {
+      return NextResponse.json({ error: qCheck.error }, { status: 400 });
+    }
   }
 
-  // Remove unsafe control characters
-  const sanitizedQ = typeof rawQ === 'string' ? rawQ.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '') : '';
-  const query = sanitizedQ.toLowerCase().trim();
+  const query = (rawQ || '').toLowerCase().trim();
   const roadmaps = getRoadmaps();
   
   if (!query) {

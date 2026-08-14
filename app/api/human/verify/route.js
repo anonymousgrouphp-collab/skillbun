@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { getTurnstileSecretKey, isCaptchaEnabled } from '@/utils/server/env'
 import { issueHumanProofToken, verifyHumanProofToken } from '@/utils/server/humanProof'
+import { validateSchema } from '@/utils/server/inputValidator'
 
 export async function POST(request) {
   const captchaEnabled = isCaptchaEnabled()
@@ -44,19 +45,25 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
-    if (!body || typeof body !== 'object' || Array.isArray(body)) {
-      return NextResponse.json({ error: 'Payload must be a valid JSON object.' }, { status: 400 });
+    const schemaCheck = validateSchema(body, {
+      token: {
+        type: 'string',
+        required: true,
+        minLength: 1,
+        maxLength: 2048,
+        label: 'Captcha token',
+      },
+    }, {
+      fieldName: 'Captcha verification payload',
+      allowUnknown: false,
+      maxKeys: 1,
+    });
+
+    if (!schemaCheck.isValid) {
+      return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
     }
 
-    const token = typeof body?.token === 'string' ? body.token.trim() : '';
-
-    if (!token) {
-      return NextResponse.json({ error: 'Captcha token is required.' }, { status: 400 });
-    }
-
-    if (token.length > 2048) {
-      return NextResponse.json({ error: 'Captcha token is too long.' }, { status: 400 });
-    }
+    const token = schemaCheck.value.token;
 
     const bypassHeader = request.headers.get('x-skillbun-bypass') || '';
     const isLocal = process.env.NODE_ENV !== 'production';

@@ -3,13 +3,7 @@ import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/
 import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 import { getTransporter } from '@/utils/server/zohoMailer';
 import { getPasswordResetFrom, isAuthorizedAdminEmail } from '@/utils/server/env';
-import {
-  validateEmail,
-  validatePlainObject,
-  validateString,
-  validateInteger,
-  validateBoolean,
-} from '@/utils/server/inputValidator';
+import { validateSchema } from '@/utils/server/inputValidator';
 
 export const runtime = 'nodejs';
 
@@ -17,6 +11,29 @@ const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
 
 export async function POST(request) {
   try {
+    // 0. Verify Admin Authorization
+    const authHeader = request.headers.get('authorization') || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
+
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication required for admin access' }, { status: 401 });
+    }
+
+    let authUserEmail = '';
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
+      }
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      authUserEmail = (decodedToken.email || '').toLowerCase();
+      if (!isAuthorizedAdminEmail(authUserEmail)) {
+        return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
+      }
+    } catch (authErr) {
+      return NextResponse.json({ error: 'Invalid or expired authentication token' }, { status: 401 });
+    }
+
     let body;
     try {
       body = await request.json();
@@ -24,81 +41,42 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
-    const objectCheck = validatePlainObject(body, { fieldName: 'Email dispatch payload', maxKeys: 12 });
-    if (!objectCheck.isValid) {
-      return NextResponse.json({ error: objectCheck.error }, { status: 400 });
-    }
-
-    const isPreviewCheck = validateBoolean(body.isPreview, { fieldName: 'isPreview', defaultValue: false });
-    if (!isPreviewCheck.isValid) {
-      return NextResponse.json({ error: isPreviewCheck.error }, { status: 400 });
-    }
-    const isPreview = isPreviewCheck.value;
-
-    const forceOverrideCheck = validateBoolean(body.forceOverride, { fieldName: 'forceOverride', defaultValue: false });
-    if (!forceOverrideCheck.isValid) {
-      return NextResponse.json({ error: forceOverrideCheck.error }, { status: 400 });
-    }
-    const forceOverride = forceOverrideCheck.value;
-
-    const studentNameCheck = validateString(body.studentName ?? 'Student', {
-      fieldName: 'studentName',
-      minLength: 1,
-      maxLength: 100,
+    const schemaCheck = validateSchema(body, {
+      isPreview: { type: 'boolean', defaultValue: false },
+      forceOverride: { type: 'boolean', defaultValue: false },
+      studentName: { type: 'string', minLength: 1, maxLength: 100, defaultValue: 'Student' },
+      templateId: { type: 'string', minLength: 1, maxLength: 64, pattern: /^[a-zA-Z0-9_-]+$/, defaultValue: 'welcome_v1' },
+      roadmapTitle: { type: 'string', minLength: 1, maxLength: 150, defaultValue: 'Full Stack Web Development' },
+      progressCount: { type: 'integer', min: 0, max: 10000, defaultValue: 10 },
+      degree: { type: 'string', minLength: 1, maxLength: 120, defaultValue: 'B.Tech - Computer Science' },
+      recipientEmail: { type: 'email', required: false },
+    }, {
+      fieldName: 'Email dispatch payload',
+      allowUnknown: false,
+      maxKeys: 10,
     });
-    if (!studentNameCheck.isValid) {
-      return NextResponse.json({ error: studentNameCheck.error }, { status: 400 });
-    }
-    const studentName = studentNameCheck.value;
 
-    const templateIdCheck = validateString(body.templateId ?? 'welcome_v1', {
-      fieldName: 'templateId',
-      minLength: 1,
-      maxLength: 64,
-      pattern: /^[a-zA-Z0-9_-]+$/,
-    });
-    if (!templateIdCheck.isValid) {
-      return NextResponse.json({ error: templateIdCheck.error }, { status: 400 });
+    if (!schemaCheck.isValid) {
+      return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
     }
-    const templateId = templateIdCheck.value;
 
-    const roadmapTitleCheck = validateString(body.roadmapTitle ?? 'Full Stack Web Development', {
-      fieldName: 'roadmapTitle',
-      minLength: 1,
-      maxLength: 150,
-    });
-    if (!roadmapTitleCheck.isValid) {
-      return NextResponse.json({ error: roadmapTitleCheck.error }, { status: 400 });
-    }
-    const roadmapTitle = roadmapTitleCheck.value;
-
-    const progressCountCheck = validateInteger(body.progressCount ?? 10, {
-      fieldName: 'progressCount',
-      min: 0,
-      max: 1000,
-    });
-    if (!progressCountCheck.isValid) {
-      return NextResponse.json({ error: progressCountCheck.error }, { status: 400 });
-    }
-    const progressCount = progressCountCheck.value;
-
-    const degreeCheck = validateString(body.degree ?? 'B.Tech - Computer Science', {
-      fieldName: 'degree',
-      minLength: 1,
-      maxLength: 120,
-    });
-    if (!degreeCheck.isValid) {
-      return NextResponse.json({ error: degreeCheck.error }, { status: 400 });
-    }
-    const degree = degreeCheck.value;
+    const {
+      isPreview,
+      forceOverride,
+      studentName,
+      templateId,
+      roadmapTitle,
+      progressCount,
+      degree,
+      recipientEmail,
+    } = schemaCheck.value;
 
     let targetEmail = ADMIN_CONFIRMATION_EMAIL;
     if (!isPreview) {
-      const emailCheck = validateEmail(body.recipientEmail);
-      if (!emailCheck.isValid) {
-        return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+      if (!recipientEmail) {
+        return NextResponse.json({ error: 'recipientEmail is required for production email dispatch.' }, { status: 400 });
       }
-      targetEmail = emailCheck.normalizedEmail;
+      targetEmail = recipientEmail;
     }
 
     // Check if recipient has unsubscribed from marketing emails (Unless forceOverride is true or it's a security alert)
