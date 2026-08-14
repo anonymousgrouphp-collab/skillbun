@@ -31,29 +31,39 @@ function SettingsContent() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // Email Unsubscribe state
-  const [unsubscribeEmail, setUnsubscribeEmail] = useState(queryEmail || user?.email || '');
+  const [customUnsubscribeEmail, setCustomUnsubscribeEmail] = useState('');
+  const unsubscribeEmail = customUnsubscribeEmail || queryEmail || user?.email || '';
   const [isUnsubscribed, setIsUnsubscribed] = useState(false);
   const [unsubStatus, setUnsubStatus] = useState('');
   const [unsubLoading, setUnsubLoading] = useState(false);
 
-  // Handle Unsubscribe Action from Email Footer Link (Un-gated Public Access)
+  // Handle Unsubscribe Action from Email Footer Link
   useEffect(() => {
-    if (queryEmail || user?.email) {
-      setUnsubscribeEmail(queryEmail || user?.email || '');
+    if (!queryEmail) return;
+
+    fetch(`/api/unsubscribe?email=${encodeURIComponent(queryEmail)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.unsubscribed) {
+          setIsUnsubscribed(true);
+        }
+      })
+      .catch(() => {});
+  }, [queryEmail]);
+
+  // Standard authentication gate redirect
+  useEffect(() => {
+    if (isUnsubscribeAction) return;
+
+    if (!authLoading && !user) {
+      router.replace('/auth?next=/settings');
+      return;
     }
 
-    if (queryEmail) {
-      // Check current status
-      fetch(`/api/unsubscribe?email=${encodeURIComponent(queryEmail)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.unsubscribed) {
-            setIsUnsubscribed(true);
-          }
-        })
-        .catch(() => {});
+    if (!authLoading && !profileLoading && user && !isProfileComplete) {
+      router.replace('/onboarding?next=/settings');
     }
-  }, [queryEmail, user]);
+  }, [authLoading, isProfileComplete, isUnsubscribeAction, profileLoading, router, user]);
 
   const handleUnsubscribeToggle = async (action = 'unsubscribe') => {
     const target = unsubscribeEmail || user?.email;
@@ -114,7 +124,7 @@ function SettingsContent() {
           <input
             type="email"
             value={unsubscribeEmail}
-            onChange={(e) => setUnsubscribeEmail(e.target.value)}
+            onChange={(e) => setCustomUnsubscribeEmail(e.target.value)}
             placeholder="Enter your registered email..."
             style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--card-bg)', color: 'var(--text)', fontSize: '0.9rem', outline: 'none', boxSizing: 'border-box' }}
           />
@@ -150,18 +160,6 @@ function SettingsContent() {
       </div>
     );
   }
-
-  // Standard authentication gate redirect
-  useEffect(() => {
-    if (!authLoading && !user) {
-      router.replace('/auth?next=/settings');
-      return;
-    }
-
-    if (!authLoading && !profileLoading && user && !isProfileComplete) {
-      router.replace('/onboarding?next=/settings');
-    }
-  }, [authLoading, isProfileComplete, profileLoading, router, user]);
 
   if (authLoading || profileLoading || !profile.hydrated || !user || !isProfileComplete) {
     return (
@@ -261,10 +259,33 @@ function SettingsContent() {
               <span className={styles.label}>Sign-in Method</span>
               <span className={styles.value}>{providerLabel}</span>
             </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Degree / Program</span>
+              <span className={styles.value}>{profile.degree || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Current Year</span>
+              <span className={styles.value}>{profile.year || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Area of Interest</span>
+              <span className={styles.value}>{profile.interest || 'Not Specified'}</span>
+            </div>
           </div>
 
-          {!user.emailVerified && !isGoogle && (
-            <div className={styles.actionRow} style={{ marginTop: '1.25rem' }}>
+          <div className={styles.actionRow} style={{ marginTop: '1.25rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link
+              href="/onboarding?next=/settings&edit=1"
+              className={styles.btnSecondary}
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+              </svg>
+              Edit Profile Details
+            </Link>
+
+            {!user.emailVerified && !isGoogle && (
               <button
                 onClick={handleResendVerification}
                 disabled={loading}
@@ -272,8 +293,8 @@ function SettingsContent() {
               >
                 {loading ? 'Sending...' : 'Resend Email Verification'}
               </button>
-            </div>
-          )}
+            )}
+          </div>
         </section>
 
         {/* SECTION 2: Email Notification Preferences */}
