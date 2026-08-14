@@ -164,6 +164,8 @@ export const RETENTION_TEMPLATES = {
 };
 
 export function renderTemplateContent(templateId, { name, email, roadmapTitle, progressCount, degree }) {
+  const templateConfig = RETENTION_TEMPLATES[templateId] || RETENTION_TEMPLATES.welcome_v1;
+  const isMarketing = templateConfig ? templateConfig.isMarketing !== false : true;
   let contentHtml = '';
   let subject = '';
 
