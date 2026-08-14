@@ -175,7 +175,7 @@ export function getPasswordResetFrom() {
 }
 
 export function getAdminEmails() {
-  const envEmails = getFirstNonEmpty(process.env.ADMIN_EMAILS, process.env.NEXT_PUBLIC_ADMIN_EMAILS)
+  const envEmails = getFirstNonEmpty(process.env.ADMIN_EMAILS)
   const defaultAdmins = ['harsh@skillbun.tech']
   if (!envEmails) return defaultAdmins
   const parsed = envEmails.split(',').map((e) => e.trim().toLowerCase()).filter(Boolean)

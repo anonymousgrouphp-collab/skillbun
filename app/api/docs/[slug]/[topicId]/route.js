@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
+import { getClientAddress } from '@/utils/server/requestUtils'
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import { createDecipheriv, createHmac, createHash } from 'crypto'
 
 export const runtime = 'nodejs'
+
+const DOCS_RATE_LIMITS = [
+  { name: 'userMinute', windowMs: 60 * 1000, maxRequests: 30, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'userHour', windowMs: 60 * 60 * 1000, maxRequests: 300, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'ipMinute', windowMs: 60 * 1000, maxRequests: 60, getSubject: ({ address }) => `ip:${address}` },
+]
 
 /**
  * GET /api/docs/[slug]/[topicId]
@@ -115,12 +123,33 @@ export async function GET(request, { params }) {
     )
   }
 
+  let uid = ''
   try {
-    await getFirebaseAdminAuth().verifyIdToken(idToken)
+    const decodedToken = await getFirebaseAdminAuth().verifyIdToken(idToken)
+    uid = decodedToken.uid || ''
   } catch (err) {
     return NextResponse.json(
       { error: 'Invalid or expired authentication token. Please log in again.' },
       { status: 401 }
+    )
+  }
+
+  // Rate limit check: prevent scraping attacks
+  const address = getClientAddress(request)
+  const rateLimit = await checkServerRateLimit({
+    namespace: 'docsAccess',
+    subject: { uid, address },
+    limits: DOCS_RATE_LIMITS,
+    increment: true,
+  })
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: 'Study guide access rate limit exceeded. Please wait a moment.' },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) },
+      }
     )
   }
 
