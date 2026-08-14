@@ -1,17 +1,24 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { validateEmail, validateEnum, validatePlainObject } from '@/utils/server/inputValidator';
 
 export const runtime = 'nodejs';
 
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const email = (searchParams.get('email') || '').trim().toLowerCase();
+    const rawEmail = searchParams.get('email');
 
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ unsubscribed: false });
+    if (!rawEmail) {
+      return NextResponse.json({ error: 'Email parameter is required.' }, { status: 400 });
     }
 
+    const emailCheck = validateEmail(rawEmail);
+    if (!emailCheck.isValid) {
+      return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+    }
+
+    const email = emailCheck.normalizedEmail;
     const db = getFirebaseAdminFirestore();
     if (db) {
       const docRef = await db.collection('unsubscribes').doc(email).get();
@@ -22,19 +29,39 @@ export async function GET(request) {
 
     return NextResponse.json({ unsubscribed: false });
   } catch (err) {
-    return NextResponse.json({ unsubscribed: false });
+    return NextResponse.json({ error: 'Failed to fetch subscription status.' }, { status: 500 });
   }
 }
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const email = (body.email || '').trim().toLowerCase();
-    const action = body.action || 'unsubscribe'; // 'unsubscribe' | 'resubscribe'
-
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Valid email address is required' }, { status: 400 });
+    let rawBody;
+    try {
+      rawBody = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
+
+    const objectCheck = validatePlainObject(rawBody, { fieldName: 'Unsubscribe payload', maxKeys: 4 });
+    if (!objectCheck.isValid) {
+      return NextResponse.json({ error: objectCheck.error }, { status: 400 });
+    }
+
+    const emailCheck = validateEmail(rawBody.email);
+    if (!emailCheck.isValid) {
+      return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+    }
+
+    const actionCheck = validateEnum(rawBody.action, ['unsubscribe', 'resubscribe'], {
+      fieldName: 'action',
+      defaultValue: 'unsubscribe',
+    });
+    if (!actionCheck.isValid) {
+      return NextResponse.json({ error: actionCheck.error }, { status: 400 });
+    }
+
+    const email = emailCheck.normalizedEmail;
+    const action = actionCheck.value;
 
     const db = getFirebaseAdminFirestore();
     if (db) {
@@ -59,6 +86,6 @@ export async function POST(request) {
     });
   } catch (err) {
     console.error('[Unsubscribe API Error]:', err);
-    return NextResponse.json({ error: 'Failed to update email preferences' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to update email preferences.' }, { status: 500 });
   }
 }

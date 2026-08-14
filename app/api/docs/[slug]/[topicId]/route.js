@@ -90,8 +90,17 @@ function decryptSBV1(filePath, encryptionKey, fileIdentity) {
 export async function GET(request, { params }) {
   const { slug, topicId } = await params
 
-  // Validate path params — prevent path traversal
-  if (!slug || !topicId || /[^a-zA-Z0-9_-]/.test(slug) || /[^a-zA-Z0-9_-]/.test(topicId)) {
+  // Validate path params — prevent path traversal and enforce strict format and length bounds
+  if (
+    !slug ||
+    !topicId ||
+    typeof slug !== 'string' ||
+    typeof topicId !== 'string' ||
+    slug.length > 64 ||
+    topicId.length > 128 ||
+    !/^[a-zA-Z0-9_-]+$/.test(slug) ||
+    !/^[a-zA-Z0-9_-]+$/.test(topicId)
+  ) {
     return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 })
   }
 

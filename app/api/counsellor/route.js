@@ -60,8 +60,8 @@ function getRateLimitSubject(request, uid) {
 }
 
 function validatePayload(body) {
-  if (!body || typeof body !== 'object') {
-    return 'Payload must be a JSON object.'
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    return 'Payload must be a valid JSON object.'
   }
 
   if (!Array.isArray(body.contents) || body.contents.length === 0) {
@@ -70,6 +70,36 @@ function validatePayload(body) {
 
   if (body.contents.length > MAX_CONTENT_ITEMS) {
     return 'Conversation payload is too large.'
+  }
+
+  for (let i = 0; i < body.contents.length; i++) {
+    const entry = body.contents[i]
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+      return `Conversation payload contains an invalid message at index ${i}.`
+    }
+
+    if (entry.role !== 'user' && entry.role !== 'model') {
+      return `Conversation message at index ${i} contains an invalid role.`
+    }
+
+    if (!Array.isArray(entry.parts) || entry.parts.length === 0 || entry.parts.length > MAX_PARTS_PER_MESSAGE) {
+      return `Conversation message at index ${i} contains an invalid parts list.`
+    }
+
+    for (let j = 0; j < entry.parts.length; j++) {
+      const part = entry.parts[j]
+      if (!part || typeof part !== 'object' || Array.isArray(part)) {
+        return `Message part at [${i}][${j}] must be an object.`
+      }
+
+      if (typeof part.text !== 'string' || !part.text.trim()) {
+        return `Message part at [${i}][${j}] must contain non-empty text.`
+      }
+
+      if (part.text.length > MAX_PART_TEXT_CHARS) {
+        return `Message part at [${i}][${j}] text exceeds maximum length.`
+      }
+    }
   }
 
   return ''
