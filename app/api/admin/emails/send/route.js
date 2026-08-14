@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 import { getTransporter } from '@/utils/server/zohoMailer';
-import { getPasswordResetFrom, isAuthorizedAdminEmail } from '@/utils/server/env';
+import { getPasswordResetFrom } from '@/utils/server/env';
+import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import { validateSchema } from '@/utils/server/inputValidator';
 
 export const runtime = 'nodejs';
@@ -27,7 +28,8 @@ export async function POST(request) {
       }
       const decodedToken = await adminAuth.verifyIdToken(token);
       authUserEmail = (decodedToken.email || '').toLowerCase();
-      if (!isAuthorizedAdminEmail(authUserEmail)) {
+      const isAdmin = await isUserAuthorizedAdmin(decodedToken);
+      if (!isAdmin) {
         return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
       }
     } catch (authErr) {

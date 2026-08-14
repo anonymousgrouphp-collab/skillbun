@@ -370,9 +370,11 @@ export default function UserMenu() {
     .slice(0, 2) || 'S';
   const mobileInitial = initials[0] || 'S';
   const userEmail = (user?.email || '').toLowerCase().trim();
-  const isAdminUser = userEmail === 'harsh@skillbun.tech' || userEmail === 'admin@skillbun.tech';
+  const isGoogleLogin = Array.isArray(user?.providerData) &&
+    user.providerData.some((p) => p.providerId === 'google.com');
+  const isFounderAdmin = userEmail === 'harsh@skillbun.tech' && isGoogleLogin;
   const baseItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
-  const accountItems = isAdminUser
+  const accountItems = isFounderAdmin
     ? [{ href: '/admin', label: 'Admin Console', icon: 'shield' }, ...baseItems]
     : baseItems;
 

@@ -3,7 +3,7 @@ import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/
 import { validateSchema } from '@/utils/server/inputValidator';
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
 import { getClientAddress } from '@/utils/server/requestUtils';
-import { isAuthorizedAdminEmail } from '@/utils/server/env';
+import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 
 export const runtime = 'nodejs';
@@ -37,7 +37,7 @@ export async function POST(request) {
 
     const uid = decodedToken.uid;
     const email = (decodedToken.email || '').toLowerCase();
-    const isAdmin = decodedToken.admin === true || isAuthorizedAdminEmail(email);
+    const isAdmin = await isUserAuthorizedAdmin(decodedToken);
     const address = getClientAddress(request);
 
     // 2. Rate Limiting Protection

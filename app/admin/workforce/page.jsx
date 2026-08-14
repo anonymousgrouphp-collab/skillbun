@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { useAuth } from '@/app/components/AuthProvider'
+import { useAdminAccess } from '@/utils/client/adminAuth'
 import styles from './workforce.module.css'
 
 const STATUS_TABS = [
@@ -124,6 +125,7 @@ function toPayload(form, { includeStatus = false } = {}) {
 export default function WorkforcePage() {
   const router = useRouter()
   const { user, authLoading } = useAuth()
+  const { isAdmin, isFounder, role, checking } = useAdminAccess(user, authLoading)
   const [employees, setEmployees] = useState([])
   const [pagination, setPagination] = useState({ has_more: false, next_page_token: null })
   const [loading, setLoading] = useState(true)
@@ -186,12 +188,12 @@ export default function WorkforcePage() {
       return () => window.clearTimeout(deniedTimer)
     }
     const loadTimer = window.setTimeout(() => {
-      loadEmployees()
+      if (isAdmin) loadEmployees()
     }, 0)
     return () => window.clearTimeout(loadTimer)
     // Authentication state determines when the first protected request may run.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authLoading, user])
+  }, [authLoading, user, isAdmin])
 
   const expiringSoon = useMemo(() => employees.filter((employee) => {
     const days = daysUntil(employee.contract_end_date)
@@ -681,8 +683,25 @@ export default function WorkforcePage() {
     return actions
   }
 
-  if (authLoading || (!user && !toast)) {
+  if (authLoading || checking || (!user && !toast)) {
     return <main className={styles.page}><div className={styles.loading}>Checking Workforce Hub access...</div></main>
+  }
+
+  if (!isAdmin) {
+    return (
+      <main className={styles.page}>
+        <div style={{ maxWidth: '480px', margin: '10vh auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid #ef4444', borderRadius: '16px', textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚫</div>
+          <h2 style={{ color: '#ef4444', marginBottom: '0.75rem' }}>403 — Unauthorized Access</h2>
+          <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            Signed in as <strong>{user?.email || 'Student'}</strong>. This section is restricted to authorized platform administrators.
+          </p>
+          <a href="/dashboard" style={{ background: 'var(--surface-raised)', color: 'var(--text)', border: '1px solid var(--border)', padding: '0.6rem 1.25rem', borderRadius: '8px', textDecoration: 'none', fontWeight: '600' }}>
+            ← Back to Student Dashboard
+          </a>
+        </div>
+      </main>
+    )
   }
 
   return (

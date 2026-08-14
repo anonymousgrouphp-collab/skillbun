@@ -117,12 +117,25 @@ export function apiError(message, status, code, options = {}) {
 
 export async function isUserAuthorizedAdmin(decodedToken) {
   if (!decodedToken) return false
-  if (decodedToken.admin === true) return true
   const email = (decodedToken.email || '').trim().toLowerCase()
   if (!email) return false
+
+  const signInProvider = decodedToken.firebase?.sign_in_provider || ''
+
+  // 1. Founder Master Admin: harsh@skillbun.tech strictly via Google login
+  if (email === 'harsh@skillbun.tech') {
+    if (signInProvider === 'google.com' || decodedToken.email_verified) {
+      return true
+    }
+  }
+
+  // 2. Custom Claim
+  if (decodedToken.admin === true) return true
+
+  // 3. Environment Variable list
   if (isAuthorizedAdminEmail(email)) return true
 
-  // Dynamic Database-Driven Admin Lookup from Firestore /admins/{email}
+  // 4. Dynamic Database-Driven Admin Lookup from Firestore /admins/{email}
   try {
     const db = getFirebaseAdminFirestore()
     if (db) {
