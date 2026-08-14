@@ -1,4 +1,5 @@
 import { getUpstashRedisRestToken, getUpstashRedisRestUrl, isRedisConfigured } from './env.js'
+import { sanitizeCacheKey } from './inputValidator.js'
 
 // In-memory L1 cache for serverless instance lifespan
 const memoryL1Cache = new Map()
@@ -7,10 +8,11 @@ const memoryL1Cache = new Map()
  * Multi-layer Cache Manager (L1 Instance Memory -> L2 Upstash Redis -> L3 Source Data)
  */
 export async function getCache(key) {
+  const safeKey = sanitizeCacheKey(key)
   const now = Date.now()
 
   // 1. Check L1 In-Memory Cache
-  const l1Hit = memoryL1Cache.get(key)
+  const l1Hit = memoryL1Cache.get(safeKey)
   if (l1Hit && l1Hit.expiresAt > now) {
     return l1Hit.value
   }
@@ -54,10 +56,11 @@ export async function getCache(key) {
 }
 
 export async function setCache(key, value, ttlSeconds = 300) {
+  const safeKey = sanitizeCacheKey(key)
   const now = Date.now()
 
   // 1. Save in L1 Memory
-  memoryL1Cache.set(key, { value, expiresAt: now + ttlSeconds * 1000 })
+  memoryL1Cache.set(safeKey, { value, expiresAt: now + ttlSeconds * 1000 })
 
   // 2. Save in L2 Upstash Redis
   if (isRedisConfigured()) {
@@ -67,7 +70,7 @@ export async function setCache(key, value, ttlSeconds = 300) {
     if (restUrl && restToken) {
       try {
         const stringVal = typeof value === 'string' ? value : JSON.stringify(value)
-        fetch(`${restUrl.replace(/\/+$/, '')}/setex/${encodeURIComponent(key)}/${ttlSeconds}/${encodeURIComponent(stringVal)}`, {
+        fetch(`${restUrl.replace(/\/+$/, '')}/setex/${encodeURIComponent(safeKey)}/${ttlSeconds}/${encodeURIComponent(stringVal)}`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${restToken}` },
         }).catch(() => {})
