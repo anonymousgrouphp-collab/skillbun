@@ -197,6 +197,11 @@ export async function POST(request) {
     }
   } catch (err) {
     console.error('Admin Send Email API Error:', err);
-    return NextResponse.json({ error: `Server error: ${err.message || 'Internal server error dispatching email'}` }, { status: 500 });
+    return NextResponse.json({
+      success: false,
+      error: `Server error: ${err.message || 'Internal server error dispatching email'}`,
+      stack: err.stack || null,
+      details: String(err),
+    }, { status: 500 });
   }
 }

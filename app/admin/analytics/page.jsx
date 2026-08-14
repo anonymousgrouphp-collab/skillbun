@@ -418,8 +418,18 @@ export default function AnalyticsDashboardPage() {
       }
 
       if (!res.ok || !resData?.success) {
-        const errorMsg = resData?.error || (rawText && rawText.length < 300 ? rawText : `HTTP ${res.status} (${res.statusText || 'Server Error'})`);
-        throw new Error(errorMsg);
+        let extractedError = resData?.error || resData?.message;
+        let diagnosticDetails = resData?.stack || resData?.details || (resData ? JSON.stringify(resData, null, 2) : rawText);
+        if (!extractedError) {
+          if (rawText) {
+            extractedError = `HTTP ${res.status}: ${rawText.slice(0, 300)}`;
+          } else {
+            extractedError = `HTTP ${res.status} (${res.statusText || 'Server Error'})`;
+          }
+        }
+        const err = new Error(extractedError);
+        err.diagnosticDetails = diagnosticDetails;
+        throw err;
       }
 
       if (!isSampleTest) {
@@ -449,7 +459,11 @@ export default function AnalyticsDashboardPage() {
       });
     } catch (emailErr) {
       console.error('Retention email send error:', emailErr);
-      setStatusMessage({ type: 'error', text: `❌ Failed to send retention email: ${emailErr.message}` });
+      setStatusMessage({
+        type: 'error',
+        text: `❌ Failed to send retention email: ${emailErr.message}`,
+        details: emailErr.diagnosticDetails || emailErr.stack || String(emailErr),
+      });
     } finally {
       setSendingEmailKey(null);
     }
@@ -583,10 +597,10 @@ export default function AnalyticsDashboardPage() {
         </div>
       </div>
 
-      {/* Notification Toast */}
+      {/* Notification Toast with Diagnostic Console */}
       {statusMessage && (
         <div style={{
-          padding: '0.8rem 1.2rem',
+          padding: '1rem 1.25rem',
           borderRadius: '10px',
           marginBottom: '1.5rem',
           background: statusMessage.type === 'success' ? 'var(--green-subtle)' : 'rgba(239, 68, 68, 0.15)',
@@ -594,17 +608,60 @@ export default function AnalyticsDashboardPage() {
           border: `1px solid ${statusMessage.type === 'success' ? 'var(--green)' : '#ef4444'}`,
           fontWeight: '700',
           fontSize: '0.9rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
         }}>
-          <span>{statusMessage.text}</span>
-          <button
-            onClick={() => setStatusMessage(null)}
-            style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' }}
-          >
-            ✕
-          </button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>{statusMessage.text}</span>
+            <button
+              onClick={() => setStatusMessage(null)}
+              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontWeight: 'bold', fontSize: '1.1rem', marginLeft: '1rem' }}
+            >
+              ✕
+            </button>
+          </div>
+          {statusMessage.details && (
+            <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(239, 68, 68, 0.3)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  🔍 Full Diagnostic Server Payload:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard?.writeText(statusMessage.details);
+                    alert('📋 Diagnostic payload copied to clipboard!');
+                  }}
+                  style={{
+                    background: 'var(--surface-raised)',
+                    border: '1px solid currentColor',
+                    color: 'inherit',
+                    borderRadius: '4px',
+                    padding: '0.2rem 0.6rem',
+                    fontSize: '0.75rem',
+                    cursor: 'pointer',
+                    fontWeight: '700',
+                  }}
+                >
+                  📋 Copy Diagnostic Error
+                </button>
+              </div>
+              <pre style={{
+                margin: 0,
+                padding: '0.75rem',
+                borderRadius: '6px',
+                background: 'rgba(0,0,0,0.4)',
+                color: 'var(--text)',
+                fontSize: '0.78rem',
+                fontFamily: 'monospace',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-all',
+                maxHeight: '220px',
+                overflowY: 'auto',
+                fontWeight: '400',
+              }}>
+                {statusMessage.details}
+              </pre>
+            </div>
+          )}
         </div>
       )}
 
