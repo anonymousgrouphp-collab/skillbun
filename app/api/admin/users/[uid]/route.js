@@ -80,7 +80,7 @@ export async function DELETE(request, { params }) {
 
         if (certsToDeleteCount > 0) {
           await certBatch.commit();
-          console.log(`[Admin Delete]: Cascade deleted ${certsToDeleteCount} certificates for user ${uid} (${emailParam}).`);
+          console.warn(`[Admin Delete]: Cascade deleted ${certsToDeleteCount} certificates for user ${uid} (${emailParam}).`);
         }
       }
     } catch (dbErr) {

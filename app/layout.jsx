@@ -8,6 +8,7 @@ import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
 import { AuthProvider } from './components/AuthProvider';
 import AnalyticsProvider from './components/AnalyticsProvider';
+import Footer from './components/Footer';
 
 const fredoka = Fredoka({
   subsets: ['latin'],
@@ -193,6 +194,7 @@ export default function RootLayout({ children }) {
         `}} />
       </head>
       <body>
+        <a href="#main-content" className="skip-nav">Skip to content</a>
         <AuthProvider>
           <AnalyticsProvider>
             <nav>
@@ -209,7 +211,8 @@ export default function RootLayout({ children }) {
                 <UserMenu />
               </div>
             </nav>
-            {children}
+            <main id="main-content">{children}</main>
+            <Footer />
           </AnalyticsProvider>
         </AuthProvider>
       </body>
