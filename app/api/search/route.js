@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { NextResponse } from 'next/server';
 import { validateString } from '@/utils/server/inputValidator';
+import { getOrSetCache } from '@/utils/server/redisCache';
 
 const ROADMAPS_DIR = path.join(process.cwd(), 'public', 'data', 'roadmaps');
 
@@ -62,21 +63,32 @@ export async function GET(request) {
   }
 
   const query = (rawQ || '').toLowerCase().trim();
-  const roadmaps = getRoadmaps();
-  
-  if (!query) {
-    // Return some default suggestions when search is empty but focused
-    return NextResponse.json({
-      pages: STATIC_PAGES.slice(1, 5), // skip home
-      roadmaps: roadmaps.slice(0, 6)
-    });
-  }
 
-  const filteredPages = STATIC_PAGES.filter(p => p.title.toLowerCase().includes(query));
-  const filteredRoadmaps = roadmaps.filter(r => r.title.toLowerCase().includes(query));
+  // Multi-tier cache: Check L1 memory / L2 Redis cache first
+  const cacheKey = `sb:search:${query || '_default'}`;
+  const responseData = await getOrSetCache(cacheKey, 300, async () => {
+    const roadmaps = getRoadmaps();
 
-  return NextResponse.json({
-    pages: filteredPages.slice(0, 4),
-    roadmaps: filteredRoadmaps.slice(0, 8)
+    if (!query) {
+      return {
+        pages: STATIC_PAGES.slice(1, 5),
+        roadmaps: roadmaps.slice(0, 6),
+      };
+    }
+
+    const filteredPages = STATIC_PAGES.filter((p) => p.title.toLowerCase().includes(query));
+    const filteredRoadmaps = roadmaps.filter((r) => r.title.toLowerCase().includes(query));
+
+    return {
+      pages: filteredPages.slice(0, 4),
+      roadmaps: filteredRoadmaps.slice(0, 8),
+    };
+  });
+
+  return NextResponse.json(responseData, {
+    headers: {
+      // Browser: 60s | CDN Edge: 300s | SWR: 24h
+      'Cache-Control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400',
+    },
   });
 }
