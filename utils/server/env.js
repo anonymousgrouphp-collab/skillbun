@@ -151,7 +151,13 @@ export function getFirebaseAdminClientEmail() {
 }
 
 export function getFirebaseAdminPrivateKey() {
-  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_PRIVATE_KEY).replace(/\\n/g, '\n')
+  const key = getFirstNonEmpty(process.env.FIREBASE_ADMIN_PRIVATE_KEY)
+  if (!key) return ''
+  let cleaned = key.trim()
+  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
+    cleaned = cleaned.slice(1, -1)
+  }
+  return cleaned.replace(/\\n/g, '\n')
 }
 
 export function getZohoSmtpHost() {
