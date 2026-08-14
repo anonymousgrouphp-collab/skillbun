@@ -1,11 +1,31 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { validateEmail, validateSchema } from '@/utils/server/inputValidator';
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
+import { getClientAddress } from '@/utils/server/requestUtils';
 
 export const runtime = 'nodejs';
 
+const UNSUBSCRIBE_RATE_LIMITS = [
+  { name: 'ipMinute', windowMs: 60 * 1000, maxRequests: 10, getSubject: ({ address }) => `ip:${address}` },
+  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 60, getSubject: ({ address }) => `ip:${address}` },
+  { name: 'emailHour', windowMs: 60 * 60 * 1000, maxRequests: 5, getSubject: ({ email }) => `email:${email}` },
+];
+
 export async function GET(request) {
   try {
+    const address = getClientAddress(request);
+    const ipRateLimit = await checkServerRateLimit({
+      namespace: 'unsubscribeGet',
+      subject: { address },
+      limits: [{ name: 'ipMinute', windowMs: 60 * 1000, maxRequests: 30, getSubject: ({ address }) => `ip:${address}` }],
+      increment: true,
+    });
+
+    if (!ipRateLimit.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please wait a moment.' }, { status: 429 });
+    }
+
     const { searchParams } = new URL(request.url);
     const rawEmail = searchParams.get('email');
 
@@ -35,6 +55,8 @@ export async function GET(request) {
 
 export async function POST(request) {
   try {
+    const address = getClientAddress(request);
+
     let rawBody;
     try {
       rawBody = await request.json();
@@ -62,6 +84,23 @@ export async function POST(request) {
     }
 
     const { email, action } = schemaCheck.value;
+
+    const rateLimit = await checkServerRateLimit({
+      namespace: 'unsubscribePost',
+      subject: { address, email },
+      limits: UNSUBSCRIBE_RATE_LIMITS,
+      increment: true,
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many preference update requests. Please wait a moment.' },
+        {
+          status: 429,
+          headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) },
+        }
+      );
+    }
 
     const db = getFirebaseAdminFirestore();
     if (db) {

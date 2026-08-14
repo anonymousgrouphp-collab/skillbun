@@ -596,36 +596,44 @@ export default function CertifyPage() {
     }
   }, [quizState, slug, score, passed, correctCount]);
 
-  // Save certificate to Firestore if passed
+  // Save certificate via server-side authenticated API if passed
   const handleMintCertificate = async () => {
     if (isMinting) return;
     setIsMinting(true);
 
-    const services = getFirebaseServices();
-    if (!services.configured || !user) {
-      alert('Firebase connection unavailable.');
+    if (!user) {
+      alert('You must be logged in to mint your verified certificate.');
       setIsMinting(false);
       return;
     }
 
     try {
-      const certRef = doc(collection(services.db, 'certificates'));
-      const certId = certRef.id;
-
-      await setDoc(certRef, {
-        uid: user.uid,
-        name: certName.trim(),
-        roadmapSlug: slug,
-        roadmapTitle: roadmapTitle,
-        score: score,
-        createdAt: serverTimestamp(),
+      const token = await user.getIdToken();
+      const res = await fetch('/api/certify/mint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: certName.trim(),
+          roadmapSlug: slug,
+          roadmapTitle: roadmapTitle,
+          score: score,
+        }),
       });
 
-      trackEvent('cert_issued', { cert_id: certId, slug, score });
-      router.push(`/certificate/${certId}`);
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to issue certificate.');
+      }
+
+      trackEvent('cert_issued', { cert_id: data.certId, slug, score });
+      router.push(`/certificate/${data.certId}`);
     } catch (err) {
       console.error('Failed to mint certificate:', err);
-      alert('Failed to save certificate to database.');
+      alert(err.message || 'Failed to save certificate to database. Please try again.');
       setIsMinting(false);
     }
   };

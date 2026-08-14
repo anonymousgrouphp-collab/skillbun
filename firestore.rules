@@ -105,7 +105,7 @@ service cloud.firestore {
 
     match /certificates/{certId} {
       allow read: if true;
-      allow create: if validCertificate();
+      allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
     }
   }
 }

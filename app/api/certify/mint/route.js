@@ -1,0 +1,125 @@
+import { NextResponse } from 'next/server';
+import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { validateSchema } from '@/utils/server/inputValidator';
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
+import { getClientAddress } from '@/utils/server/requestUtils';
+
+export const runtime = 'nodejs';
+
+const CERT_MINT_RATE_LIMITS = [
+  { name: 'userMinute', windowMs: 60 * 1000, maxRequests: 3, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'userHour', windowMs: 60 * 60 * 1000, maxRequests: 10, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 20, getSubject: ({ address }) => `ip:${address}` },
+];
+
+export async function POST(request) {
+  try {
+    // 1. Verify User Authentication
+    const authHeader = request.headers.get('authorization') || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
+
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication required to issue certificate.' }, { status: 401 });
+    }
+
+    let decodedToken;
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 });
+      }
+      decodedToken = await adminAuth.verifyIdToken(token);
+    } catch (authErr) {
+      return NextResponse.json({ error: 'Invalid or expired authentication token. Please log in again.' }, { status: 401 });
+    }
+
+    const uid = decodedToken.uid;
+    const email = (decodedToken.email || '').toLowerCase();
+    const address = getClientAddress(request);
+
+    // 2. Rate Limiting Protection
+    const rateLimit = await checkServerRateLimit({
+      namespace: 'certMint',
+      subject: { uid, address },
+      limits: CERT_MINT_RATE_LIMITS,
+      increment: true,
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many certificate minting requests. Please wait a moment.' },
+        {
+          status: 429,
+          headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) },
+        }
+      );
+    }
+
+    // 3. Validate Request Payload Schema
+    let rawBody;
+    try {
+      rawBody = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
+    }
+
+    const schemaCheck = validateSchema(rawBody, {
+      name: { type: 'string', required: true, minLength: 1, maxLength: 100, label: 'Candidate Name' },
+      roadmapSlug: { type: 'string', required: true, minLength: 1, maxLength: 80, pattern: /^[a-z0-9_]+$/, label: 'Roadmap Slug' },
+      roadmapTitle: { type: 'string', required: true, minLength: 1, maxLength: 150, label: 'Roadmap Title' },
+      score: { type: 'integer', required: true, min: 70, max: 100, label: 'Exam Score' },
+    }, {
+      fieldName: 'Certificate mint payload',
+      allowUnknown: false,
+      maxKeys: 4,
+    });
+
+    if (!schemaCheck.isValid) {
+      return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
+    }
+
+    const { name, roadmapSlug, roadmapTitle, score } = schemaCheck.value;
+
+    const db = getFirebaseAdminFirestore();
+    if (!db) {
+      return NextResponse.json({ error: 'Database service unavailable.' }, { status: 500 });
+    }
+
+    // 4. Verify Roadmap Progress Eligibility (In production, verify user has progress recorded)
+    if (process.env.NODE_ENV === 'production') {
+      try {
+        const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').doc(roadmapSlug).get();
+        if (!progSnap.exists) {
+          return NextResponse.json({
+            error: 'You must complete roadmap topics before qualifying for a verified certificate.'
+          }, { status: 403 });
+        }
+      } catch (progErr) {
+        console.warn('[Cert Mint Progress Check Warning]:', progErr.message);
+      }
+    }
+
+    // 5. Server-Side Certificate Document Creation
+    const certRef = db.collection('certificates').doc();
+    const certId = certRef.id;
+
+    await certRef.set({
+      uid,
+      name: name.trim(),
+      email,
+      roadmapSlug,
+      roadmapTitle: roadmapTitle.trim(),
+      score,
+      createdAt: new Date(),
+    });
+
+    return NextResponse.json({
+      success: true,
+      certId,
+      message: 'Verified certificate minted successfully.',
+    });
+  } catch (error) {
+    console.error('[Certify Mint API Error]:', error);
+    return NextResponse.json({ error: 'Failed to mint certificate. Please try again.' }, { status: 500 });
+  }
+}
