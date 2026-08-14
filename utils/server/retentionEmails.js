@@ -56,6 +56,8 @@ export function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true
       .text-subtle { color: #475569 !important; }
       .text-title { color: #0f172a !important; }
       .box-dark { background-color: #f1f5f9 !important; border-color: #cbd5e1 !important; color: #1e293b !important; }
+      .brand-wordmark { color: #008751 !important; }
+      .brand-subtitle { color: #64748b !important; }
     }
     @media (prefers-color-scheme: dark) {
       .email-bg { background-color: #05070a !important; }
@@ -64,6 +66,8 @@ export function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true
       .text-subtle { color: #8b949e !important; }
       .text-title { color: #ffffff !important; }
       .box-dark { background-color: #0d1117 !important; border-color: #30363d !important; color: #c9d1d9 !important; }
+      .brand-wordmark { color: #00e599 !important; }
+      .brand-subtitle { color: #94a3b8 !important; }
     }
   </style>
 </head>
@@ -73,12 +77,16 @@ export function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true
       <td align="center">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="email-card" style="max-width: 600px; background-color: #111722; border: 1px solid #1f293d; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
           
-          <!-- SkillBun Brand Header -->
+          <!-- SkillBun Brand Header (Unique Wordmark Lockup per AGENTS.md) -->
           <tr>
-            <td style="padding: 24px 32px; background: linear-gradient(180deg, rgba(0,229,153,0.08) 0%, rgba(0,0,0,0) 100%); border-bottom: 1px solid #1f293d; text-align: center;">
-              <a href="${SITE_URL}" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                <img src="${SITE_URL}/logo.png" alt="SkillBun Logo" width="36" height="36" style="vertical-align: middle; border: 0;" />
-                <span style="font-size: 24px; font-weight: 900; color: #00e599; letter-spacing: -0.5px; vertical-align: middle;">SkillBun</span>
+            <td style="padding: 28px 24px 20px 24px; text-align: center; border-bottom: 2px solid #00e599; background: linear-gradient(180deg, rgba(0,229,153,0.06) 0%, rgba(0,0,0,0) 100%);">
+              <a href="${SITE_URL}" target="_blank" style="text-decoration: none; display: inline-block;">
+                <div style="font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 32px; font-weight: 900; color: #00e599; letter-spacing: 2px; line-height: 1.2;" class="brand-wordmark">
+                  ꌗꀘꀤ꒒꒒ꌃꀎꈤ
+                </div>
+                <div style="font-size: 11px; font-weight: 700; color: #94a3b8; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 8px;" class="brand-subtitle">
+                  SKILLBUN.TECH &bull; HOP INTO THE RIGHT TECH CAREER &bull; 100% FREE
+                </div>
               </a>
             </td>
           </tr>
