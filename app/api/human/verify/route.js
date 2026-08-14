@@ -44,7 +44,7 @@ export async function POST(request) {
     const isLocal = process.env.NODE_ENV !== 'production'
     const isBypassed = (token === 'bypass-captcha-dev') || (bypassHeader === 'bypass-captcha-dev')
 
-    if (isBypassed && (isLocal || bypassHeader === 'bypass-captcha-dev')) {
+    if (isBypassed && isLocal) {
       const issued = issueHumanProofToken({ v: 1 })
 
       if (!issued) {

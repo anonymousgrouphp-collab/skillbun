@@ -117,7 +117,19 @@ export default function AnalyticsDashboardPage() {
 
     async function fetchAnalyticsData() {
       try {
-        const res = await fetch('/api/admin/analytics');
+        let idToken = '';
+        if (user?.getIdToken) {
+          try {
+            idToken = await user.getIdToken();
+          } catch (e) {}
+        }
+
+        const res = await fetch('/api/admin/analytics', {
+          headers: {
+            'Content-Type': 'application/json',
+            ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+          },
+        });
         const resData = await res.json();
 
         if (!active) return;

@@ -177,3 +177,18 @@ export function getZohoSmtpPass() {
 export function getPasswordResetFrom() {
   return getFirstNonEmpty(process.env.PASSWORD_RESET_FROM, process.env.ZOHO_SMTP_USER)
 }
+
+export function getAdminEmails() {
+  const envEmails = getFirstNonEmpty(process.env.ADMIN_EMAILS, process.env.NEXT_PUBLIC_ADMIN_EMAILS)
+  const defaultAdmins = ['harsh@skillbun.tech']
+  if (!envEmails) return defaultAdmins
+  const parsed = envEmails.split(',').map((e) => e.trim().toLowerCase()).filter(Boolean)
+  return Array.from(new Set([...defaultAdmins, ...parsed]))
+}
+
+export function isAuthorizedAdminEmail(email) {
+  if (typeof email !== 'string' || !email.trim()) return false
+  const normalized = email.trim().toLowerCase()
+  return getAdminEmails().includes(normalized)
+}
+

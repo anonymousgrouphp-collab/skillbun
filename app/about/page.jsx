@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
   title: 'About SkillBun – Empowering Tech Students with AI Career Guidance',

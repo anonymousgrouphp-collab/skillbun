@@ -68,7 +68,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params
   const data = readRoadmap(slug)
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com'
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech'
 
   if (!data) {
     return { title: 'Roadmap Not Found | SkillBun' }
@@ -120,7 +120,7 @@ export async function generateMetadata({ params }) {
 export default async function RoadmapPage({ params }) {
   const { slug } = await params
   const data = readRoadmap(slug)
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com'
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech'
 
   if (!data) {
     notFound()

@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
   title: 'Adaptive AI Tech Career Quiz | SkillBun',

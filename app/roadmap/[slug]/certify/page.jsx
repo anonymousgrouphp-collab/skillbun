@@ -294,7 +294,10 @@ export default function CertifyPage() {
         const configRes = await fetch('/api/config');
         if (configRes.ok) {
           const configData = await configRes.json();
-          setSiteKey(configData.siteKey);
+          const captcha = configData?.captcha || {};
+          if (captcha.enabled && captcha.siteKey) {
+            setSiteKey(captcha.siteKey);
+          }
         }
 
         // 5. Fetch Attempts history from Firestore

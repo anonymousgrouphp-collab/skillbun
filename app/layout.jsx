@@ -23,7 +23,7 @@ const nunito = Nunito({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

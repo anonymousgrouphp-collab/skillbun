@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { isAuthorizedAdminEmail } from '@/utils/server/env';
 
 export const runtime = 'nodejs';
 
@@ -15,32 +16,25 @@ export async function DELETE(request, { params }) {
 
     // Verify Admin Authorization
     const authHeader = request.headers.get('authorization') || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
 
-    let isAdmin = false;
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication token required for admin action' }, { status: 401 });
+    }
+
     let authUserEmail = '';
-
-    if (token) {
-      try {
-        const adminAuth = getFirebaseAdminAuth();
-        const decodedToken = await adminAuth.verifyIdToken(token);
-        authUserEmail = (decodedToken.email || '').toLowerCase();
-        if (authUserEmail === 'harsh@skillbun.tech') {
-          isAdmin = true;
-        }
-      } catch (authErr) {
-        console.warn('[Admin Delete API Auth Error]:', authErr.message);
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
       }
-    }
-
-    // Secondary fallback check if header is missing in dev mode
-    const bypassKey = reqUrl.searchParams.get('adminEmail');
-    if (bypassKey === 'harsh@skillbun.tech' || process.env.NODE_ENV === 'development') {
-      isAdmin = true;
-    }
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Unauthorized admin request' }, { status: 403 });
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      authUserEmail = (decodedToken.email || '').toLowerCase();
+      if (!isAuthorizedAdminEmail(authUserEmail)) {
+        return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
+      }
+    } catch (authErr) {
+      return NextResponse.json({ error: 'Invalid or expired admin authentication token' }, { status: 401 });
     }
 
     let firestoreDeleted = false;

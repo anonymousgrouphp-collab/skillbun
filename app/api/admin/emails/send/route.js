@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 import { getTransporter } from '@/utils/server/zohoMailer';
-import { getPasswordResetFrom } from '@/utils/server/env';
+import { getPasswordResetFrom, isAuthorizedAdminEmail } from '@/utils/server/env';
 
 export const runtime = 'nodejs';
 
@@ -10,7 +10,6 @@ const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
 
 export async function POST(request) {
   try {
-    const reqUrl = new URL(request.url);
     const body = await request.json();
 
     const {
@@ -22,40 +21,29 @@ export async function POST(request) {
       degree = 'B.Tech - Computer Science',
       isPreview = false,
       forceOverride = false,
-      adminEmail = '',
     } = body;
 
     // Verify Admin Authorization
     const authHeader = request.headers.get('authorization') || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
 
-    let isAdmin = false;
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication token required for admin action' }, { status: 401 });
+    }
+
     let authUserEmail = '';
-
-    if (token) {
-      try {
-        const adminAuth = getFirebaseAdminAuth();
-        const decodedToken = await adminAuth.verifyIdToken(token);
-        authUserEmail = (decodedToken.email || '').toLowerCase();
-        if (authUserEmail === ADMIN_CONFIRMATION_EMAIL) {
-          isAdmin = true;
-        }
-      } catch (authErr) {
-        console.warn('[Admin Send Email Auth Warning]:', authErr.message);
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
       }
-    }
-
-    // Secondary fallback check for admin email in dev mode
-    if (
-      adminEmail.toLowerCase() === ADMIN_CONFIRMATION_EMAIL ||
-      reqUrl.searchParams.get('adminEmail') === ADMIN_CONFIRMATION_EMAIL ||
-      process.env.NODE_ENV === 'development'
-    ) {
-      isAdmin = true;
-    }
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Unauthorized admin request' }, { status: 403 });
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      authUserEmail = (decodedToken.email || '').toLowerCase();
+      if (!isAuthorizedAdminEmail(authUserEmail)) {
+        return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
+      }
+    } catch (authErr) {
+      return NextResponse.json({ error: 'Invalid or expired admin authentication token' }, { status: 401 });
     }
 
     // Determine target recipient email address
