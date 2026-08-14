@@ -6,7 +6,7 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
-import { RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
+import { RETENTION_TEMPLATES, generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 
 function formatDateTime(isoString) {
   if (!isoString) return 'N/A';
@@ -315,22 +315,11 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // Instant HTML Preview Modal Handler
-  const handlePreviewEmail = async (targetUser) => {
-    const recommended = getRecommendedTemplate(targetUser);
-    const templateId = selectedTemplates[targetUser.uid] || recommended.id;
-    const actionKey = `${targetUser.uid}-preview-modal`;
-
-    setSendingEmailKey(actionKey);
-    setStatusMessage(null);
-
+  // Instant HTML Preview Modal Handler (Synchronous Client Rendering with 0ms Latency)
+  const handlePreviewEmail = (targetUser) => {
     try {
-      let idToken = '';
-      if (user?.getIdToken) {
-        try {
-          idToken = await user.getIdToken();
-        } catch {}
-      }
+      const recommended = getRecommendedTemplate(targetUser);
+      const templateId = selectedTemplates[targetUser.uid] || recommended.id;
 
       const roadmapTitle =
         targetUser.progress?.[0]?.slug
@@ -341,35 +330,24 @@ export default function AnalyticsDashboardPage() {
 
       const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length || 12;
 
-      const res = await fetch('/api/admin/emails/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
-        },
-        body: JSON.stringify({
-          recipientEmail: targetUser.email,
-          studentName: targetUser.name,
-          templateId,
-          roadmapTitle,
-          progressCount,
-          degree: targetUser.degree,
-          isPreview: true,
-          adminEmail: userEmail,
-        }),
+      const { subject, html } = generateRetentionEmailHtml(templateId, {
+        name: targetUser.name || 'Student',
+        email: targetUser.email || 'harsh@skillbun.tech',
+        roadmapTitle,
+        progressCount,
+        degree: targetUser.degree || 'B.Tech - Computer Science',
       });
 
-      const resData = await res.json().catch(() => null);
-      if (resData?.success && resData?.preview) {
-        setPreviewModalContent(resData.preview);
-      } else {
-        throw new Error(resData?.error || 'Failed to render preview template');
-      }
+      setPreviewModalContent({
+        templateId,
+        subject,
+        html,
+        to: targetUser.email || 'harsh@skillbun.tech',
+        studentName: targetUser.name || 'Student',
+      });
     } catch (previewErr) {
       console.error('Preview error:', previewErr);
       setStatusMessage({ type: 'error', text: `❌ Failed to generate preview: ${previewErr.message}` });
-    } finally {
-      setSendingEmailKey(null);
     }
   };
 
