@@ -1,6 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
-import { getAuth } from 'firebase-admin/auth'
 import { getFirestore } from 'firebase-admin/firestore'
+import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import {
   getFirebaseAdminClientEmail,
@@ -9,6 +9,9 @@ import {
 } from '@/utils/server/env'
 
 const ADMIN_APP_NAME = 'skillbun-admin'
+const FIREBASE_JWKS = createRemoteJWKSet(
+  new URL('https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com')
+)
 
 function getAdminApp() {
   const existingApp = getApps().find((app) => app.name === ADMIN_APP_NAME)
@@ -34,29 +37,41 @@ function getAdminApp() {
 }
 
 export function getFirebaseAdminAuth() {
-  try {
-    const app = getAdminApp()
-    return app ? getAuth(app) : null
-  } catch (err) {
-    console.warn('[Firebase Admin Auth Init Warning]:', err.message)
-    return null
+  const projectId = getFirebaseAdminProjectId() || 'skillbun-75d10'
+
+  return {
+    async verifyIdToken(token) {
+      if (!token || typeof token !== 'string') {
+        throw new Error('Decoding Firebase ID token failed. Invalid token.')
+      }
+
+      const { payload } = await jwtVerify(token, FIREBASE_JWKS, {
+        issuer: `https://securetoken.google.com/${projectId}`,
+        audience: projectId,
+      })
+
+      return {
+        ...payload,
+        uid: payload.user_id || payload.sub,
+        email: payload.email || '',
+      }
+    },
   }
 }
 
 export function getFirebaseAdminFirestore() {
   try {
     const app = getAdminApp()
-    if (!app) return null;
-    
+    if (!app) return null
+
     const db = getFirestore(app)
     try {
-      // Force REST instead of gRPC to prevent Vercel Node runtime crashes from unhandledRejection
       db.settings({ preferRest: true })
-    } catch (settingErr) {
-      // Ignore if settings were already initialized on this instance
+    } catch {
+      // Ignore if already configured
     }
-    
-    return db;
+
+    return db
   } catch (err) {
     console.warn('[Firebase Admin Firestore Init Warning]:', err.message)
     return null
