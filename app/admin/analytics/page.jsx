@@ -116,12 +116,14 @@ export default function AdminAnalyticsPage() {
     let isMounted = true;
 
     async function fetchAdminData() {
+      if (authLoading || checking) return;
       if (!user || !isAdmin) {
         if (isMounted) setLoading(false);
         return;
       }
 
       try {
+        setLoading(true);
         setError(null);
 
         // Fetch user data via admin API
@@ -134,94 +136,96 @@ export default function AdminAnalyticsPage() {
 
         if (res.ok) {
           const data = await res.json();
-          if (data.users && Array.isArray(data.users)) {
+          if (isMounted && data.users && Array.isArray(data.users)) {
             setUsersData(data.users);
+            if (data.certificates && Array.isArray(data.certificates)) {
+              setCertificatesData(data.certificates);
+            }
             setLoading(false);
             return;
           }
         }
 
-        // Client-side fallback if server Admin API returned empty or credential missing
+        // Client-side fallback with parallel fetching
         const { db } = getFirebaseServices();
         if (!db) {
           throw new Error('Firestore client is not initialized.');
         }
 
-        const usersSnapshot = await getDocs(collection(db, 'users'));
-        const usersList = [];
-
-        for (const userDoc of usersSnapshot.docs) {
-          const uData = userDoc.data();
-          const uid = userDoc.id;
-
-          const progressSnap = await getDocs(collection(db, `users/${uid}/roadmapProgress`));
-          const progress = progressSnap.docs.map((d) => d.data());
-
-          const attemptsSnap = await getDocs(collection(db, `users/${uid}/quizAttempts`));
-          const quizAttempts = attemptsSnap.docs.map((d) => d.data());
-
-          usersList.push({
-            uid,
-            name: uData.fullName || uData.name || uData.displayName || 'Anonymous',
-            email: uData.email || 'No email',
-            degree: uData.degree || 'Not specified',
-            year: uData.current_year || uData.year || 'Not specified',
-            interest: uData.interest_area || uData.interest || 'Not specified',
-            providers: uData.providers || [],
-            createdAt: uData.createdAt ? (uData.createdAt.toDate ? uData.createdAt.toDate().toISOString() : uData.createdAt) : null,
-            lastSignInTime: uData.updatedAt ? (uData.updatedAt.toDate ? uData.updatedAt.toDate().toISOString() : uData.updatedAt) : null,
-            sentEmailHistory: uData.sentEmailHistory || [],
-            isUnsubscribed: uData.isUnsubscribed || false,
-            unsubscribedAt: uData.unsubscribedAt || null,
-            progress,
-            quizAttempts,
+        // Fetch certificates
+        try {
+          const certsSnap = await getDocs(collection(db, 'certificates'));
+          const certsList = certsSnap.docs.map((d) => {
+            const cData = d.data();
+            return {
+              id: d.id,
+              ...cData,
+              createdAt: cData.createdAt ? (cData.createdAt.toDate ? cData.createdAt.toDate().toISOString() : cData.createdAt) : null,
+            };
           });
+          certsList.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+          if (isMounted) setCertificatesData(certsList);
+        } catch (cErr) {
+          console.warn('[Certificates Client Fetch Warning]', cErr);
         }
 
-        setUsersData(usersList);
+        // Fetch users in parallel
+        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const usersList = await Promise.all(
+          usersSnapshot.docs.map(async (userDoc) => {
+            const uData = userDoc.data();
+            const uid = userDoc.id;
+
+            let progress = [];
+            let quizAttempts = [];
+
+            try {
+              const progressSnap = await getDocs(collection(db, `users/${uid}/roadmapProgress`));
+              progress = progressSnap.docs.map((d) => d.data());
+            } catch {}
+
+            try {
+              const attemptsSnap = await getDocs(collection(db, `users/${uid}/quizAttempts`));
+              quizAttempts = attemptsSnap.docs.map((d) => d.data());
+            } catch {}
+
+            return {
+              uid,
+              name: uData.fullName || uData.name || uData.displayName || 'Anonymous',
+              email: uData.email || 'No email',
+              degree: uData.degree || 'Not specified',
+              year: uData.current_year || uData.year || 'Not specified',
+              interest: uData.interest_area || uData.interest || 'Not specified',
+              providers: uData.providers || [],
+              createdAt: uData.createdAt ? (uData.createdAt.toDate ? uData.createdAt.toDate().toISOString() : uData.createdAt) : null,
+              lastSignInTime: uData.updatedAt ? (uData.updatedAt.toDate ? uData.updatedAt.toDate().toISOString() : uData.updatedAt) : null,
+              sentEmailHistory: uData.sentEmailHistory || [],
+              isUnsubscribed: uData.isUnsubscribed || false,
+              unsubscribedAt: uData.unsubscribedAt || null,
+              progress,
+              quizAttempts,
+              certificates: [],
+            };
+          })
+        );
+
+        if (isMounted) {
+          setUsersData(usersList);
+        }
       } catch (err) {
         console.error('[Admin Analytics Fetch]', err);
-        setError(err.message || 'Failed to load telemetry database.');
+        if (isMounted) setError(err.message || 'Failed to load telemetry database.');
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     }
 
     fetchAdminData();
-  }, [user, isAdmin]);
 
-  // Fetch real certificate registry
-  useEffect(() => {
-    if (!user || !isAdmin || activeTab !== 'certs') return;
-
-    async function fetchCerts() {
-      try {
-        setCertsLoading(true);
-        const { db } = getFirebaseServices();
-        if (!db) return;
-
-        const certsSnap = await getDocs(collection(db, 'certificates'));
-        const certsList = certsSnap.docs.map((d) => {
-          const data = d.data();
-          return {
-            id: d.id,
-            ...data,
-            createdAt: data.createdAt ? (data.createdAt.toDate ? data.createdAt.toDate().toISOString() : data.createdAt) : null,
-          };
-        });
-
-        // Sort descending by date
-        certsList.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
-        setCertificatesData(certsList);
-      } catch (err) {
-        console.error('[Certificates Fetch]', err);
-      } finally {
-        setCertsLoading(false);
-      }
-    }
-
-    fetchCerts();
-  }, [user, isAdmin, activeTab]);
+    return () => {
+      isMounted = false;
+    };
+  }, [user, isAdmin, authLoading, checking]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
