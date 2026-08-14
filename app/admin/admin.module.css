@@ -1,0 +1,256 @@
+.adminContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  min-height: 85vh;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.titleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleText {
+  font-family: var(--font-fredoka), sans-serif;
+  font-size: 2rem;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.securityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 680px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.actionBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.actionBtnSecondary:hover {
+  background: var(--card-bg);
+  border-color: var(--text);
+}
+
+.hubGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hubCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hubCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hubCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.hubIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.hubIconBlue {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.hubIconGreen {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.hubIconPurple {
+  background: rgba(168, 85, 247, 0.12);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.hubIconAmber {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.25);
+}
+
+.hubCardTitle {
+  font-family: var(--font-fredoka), sans-serif;
+  font-size: 1.25rem;
+  color: var(--text);
+  margin: 0 0 0.35rem 0;
+}
+
+.hubCardDesc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hubFeaturesList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hubFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.hubCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.statusBanner {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.statusDetails {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statusIcon {
+  font-size: 2rem;
+}
+
+.statusTitle {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin: 0 0 0.2rem 0;
+}
+
+.statusMeta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.authGateCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3.5rem 2rem;
+  max-width: 520px;
+  text-align: center;
+  margin: 10vh auto;
+}
+
+@media (max-width: 768px) {
+  .adminContainer {
+    padding: 1.5rem 1rem;
+  }
+  .titleText {
+    font-size: 1.6rem;
+  }
+  .hubGrid {
+    grid-template-columns: 1fr;
+  }
+}

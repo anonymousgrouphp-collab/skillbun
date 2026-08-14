@@ -4,7 +4,7 @@
 **Previous Phase:** [Phase 6 ← Milestone Task System](./PHASE_6_MILESTONES.md)  
 **Next Phase:** [Phase 8 → Certificate Multi-Template Renderer](./PHASE_8_CERT_RENDERER.md)  
 **Effort:** ~1.5 Days (1 Engineer)  
-**Status:** ⬜ Not Started  
+**Status:** ✅ Completed  
 **Depends On:** Phase 3 (admin UI), existing `/api/certify/mint` route
 
 ---
@@ -32,7 +32,7 @@ stream_or_track:    { type: 'string' },           // e.g., "Tech Team (Developme
 start_date:         { type: 'string' },           // YYYY-MM-DD
 end_date:           { type: 'string' },           // YYYY-MM-DD
 recommendation_text:{ type: 'string' },           // LOR only
-issued_by:          { type: 'string', default: 'Harsh Patel (Lead, SkillBun)' },
+issued_by:          { type: 'string', default: 'Harsh Patel (Lead, SkillBun / Team Cosmic)' },
 ```
 
 **Logic changes:**
@@ -77,26 +77,29 @@ Add to employee detail view:
 
 | Action | File |
 |:---|:---|
-| MODIFY | `app/api/certify/mint/route.js` (extend schema + admin-only workforce flow) |
-| MODIFY | `app/admin/workforce/page.jsx` (add 3 issuance modals + credentials list) |
-| MODIFY | `app/admin/workforce/workforce.module.css` (modal styles) |
+| MODIFY | `app/api/certify/mint/route.js` (extend schema + admin-only workforce flow + custom IDs) |
+| NEW | `app/api/admin/workforce/credentials/route.js` (GET credentials by employee ID) |
+| NEW | `app/api/admin/workforce/credentials/[id]/route.js` (PATCH credential revocation) |
+| MODIFY | `app/admin/workforce/page.jsx` (add 3 issuance modals + credentials list + revocation actions) |
+| MODIFY | `app/admin/workforce/workforce.module.css` (credentials cards, badges, and issuance styles) |
 
 ---
 
 ## Verification Checklist
 
-- [ ] **V7.1** — Existing `ROADMAP` cert minting still works unchanged (backward compat)
-- [ ] **V7.2** — `INTERNSHIP` cert mints with correct `SB-INT-YYYY-XXXXXX` ID
-- [ ] **V7.3** — `TRAINING` cert mints with correct `SB-TRN-YYYY-XXXXXX` ID
-- [ ] **V7.4** — `LOR` cert mints with `recommendation_text` stored in Firestore
-- [ ] **V7.5** — Non-admin user cannot mint `INTERNSHIP`/`TRAINING`/`LOR` (403)
-- [ ] **V7.6** — Terminated employee cannot receive completion certs (blocked)
-- [ ] **V7.7** — Admin modals pre-fill correct employee data
-- [ ] **V7.8** — LOR textarea shows editable boilerplate text
-- [ ] **V7.9** — Issued credentials list shows all certs for employee
-- [ ] **V7.10** — Revoke button sets `is_revoked: true` in Firestore
-- [ ] **V7.11** — `npm run build` passes with no new errors
+- [x] **V7.1** — Existing `ROADMAP` cert minting still works unchanged (backward compat)
+- [x] **V7.2** — `INTERNSHIP` cert mints with correct `SB-INT-YYYY-XXXXXX` ID
+- [x] **V7.3** — `TRAINING` cert mints with correct `SB-TRN-YYYY-XXXXXX` ID
+- [x] **V7.4** — `LOR` cert mints with `recommendation_text` stored in Firestore
+- [x] **V7.5** — Non-admin user cannot mint `INTERNSHIP`/`TRAINING`/`LOR` (403)
+- [x] **V7.6** — Terminated employee cannot receive completion certs (blocked)
+- [x] **V7.7** — Admin modals pre-fill correct employee data
+- [x] **V7.8** — LOR textarea shows editable boilerplate text
+- [x] **V7.9** — Issued credentials list shows all certs for employee
+- [x] **V7.10** — Revoke button sets `is_revoked: true` in Firestore
+- [x] **V7.11** — `npm run build` passes with no new errors
 
 ---
 
 **→ Once all checks pass, proceed to [Phase 8: Certificate Multi-Template Renderer](./PHASE_8_CERT_RENDERER.md)**
+

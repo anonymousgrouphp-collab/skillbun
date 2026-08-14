@@ -360,17 +360,19 @@ graph TD
     P8 --> P9["Phase 9: Intern Workspace Portal (2d)"]
 ```
 
-| Phase | Scope | Effort | Spec Document |
-|:---|:---|:---|:---|
-| **Phase 1** | Firestore schema, security rules, AES-256 encryption helper | ~1 day | [PHASE_1_DATA_MODEL.md](./phases/PHASE_1_DATA_MODEL.md) |
-| **Phase 2** | Employee CRUD API (GET/POST/PATCH/DELETE) with validation & rate limiting | ~1.5 days | [PHASE_2_EMPLOYEE_CRUD_API.md](./phases/PHASE_2_EMPLOYEE_CRUD_API.md) |
-| **Phase 3** | `/admin/workforce` UI — employee table, status tabs, add/edit modals, tenure countdown | ~2 days | [PHASE_3_ADMIN_UI.md](./phases/PHASE_3_ADMIN_UI.md) |
-| **Phase 4** | Install `pdf-lib`, build 4-page offer letter & 1-page extension letter generators | ~2 days | [PHASE_4_PDF_ENGINE.md](./phases/PHASE_4_PDF_ENGINE.md) |
-| **Phase 5** | Extend Zoho mailer for attachments, offer dispatch API, SMTP fallback | ~1.5 days | [PHASE_5_EMAIL_DISPATCH.md](./phases/PHASE_5_EMAIL_DISPATCH.md) |
-| **Phase 6** | Milestone CRUD API + admin milestone panel in workforce hub | ~1.5 days | [PHASE_6_MILESTONES.md](./phases/PHASE_6_MILESTONES.md) |
-| **Phase 7** | Extend cert minting API for INTERNSHIP/TRAINING/LOR + admin issuance modals | ~1.5 days | [PHASE_7_CERT_EXPANSION.md](./phases/PHASE_7_CERT_EXPANSION.md) |
-| **Phase 8** | Update `/certificate/[id]` for 4 cert types + LOR letterhead + revoked handling | ~2 days | [PHASE_8_CERT_RENDERER.md](./phases/PHASE_8_CERT_RENDERER.md) |
-| **Phase 9** | `/portal` intern workspace — credentials, milestones, documents, dual-role nav | ~2 days | [PHASE_9_INTERN_PORTAL.md](./phases/PHASE_9_INTERN_PORTAL.md) |
+| Phase | Scope | Effort | Status | Spec Document |
+|:---|:---|:---|:---:|:---|
+| **Phase 1** | Firestore schema, security rules, AES-256 encryption helper, ID generator | ~1 day | ✅ **Completed** | [PHASE_1_DATA_MODEL.md](./phases/PHASE_1_DATA_MODEL.md) |
+| **Phase 2** | Employee CRUD API (GET/POST/PATCH/DELETE) with validation & rate limiting | ~1.5 days | ✅ **Completed** | [PHASE_2_EMPLOYEE_CRUD_API.md](./phases/PHASE_2_EMPLOYEE_CRUD_API.md) |
+| **Phase 3** | `/admin/workforce` UI — employee table, status tabs, add/edit modals, tenure countdown | ~2 days | ✅ **Completed** | [PHASE_3_ADMIN_UI.md](./phases/PHASE_3_ADMIN_UI.md) |
+| **Phase 4** | Install `pdf-lib`, build 4-page offer letter & 1-page extension letter generators | ~2 days | ✅ **Completed** | [PHASE_4_PDF_ENGINE.md](./phases/PHASE_4_PDF_ENGINE.md) |
+| **Phase 5** | Extend Zoho mailer for attachments, offer dispatch API, SMTP fallback | ~1.5 days | ✅ **Completed** | [PHASE_5_EMAIL_DISPATCH.md](./phases/PHASE_5_EMAIL_DISPATCH.md) |
+| **Phase 6** | Milestone CRUD API + admin milestone panel in workforce hub | ~1.5 days | ✅ **Completed** | [PHASE_6_MILESTONES.md](./phases/PHASE_6_MILESTONES.md) |
+| **Phase 7** | Extend cert minting API for INTERNSHIP/TRAINING/LOR + admin issuance modals | ~1.5 days | ✅ **Completed** | [PHASE_7_CERT_EXPANSION.md](./phases/PHASE_7_CERT_EXPANSION.md) |
+| **Phase 8** | Update `/certificate/[id]` for 4 cert types + LOR letterhead + revoked handling | ~2 days | ✅ **Completed** | [PHASE_8_CERT_RENDERER.md](./phases/PHASE_8_CERT_RENDERER.md) |
+| **Phase 9** | `/portal` intern workspace — credentials, milestones, documents, dual-role nav | ~2 days | ✅ **Completed** | [PHASE_9_INTERN_PORTAL.md](./phases/PHASE_9_INTERN_PORTAL.md) |
+
+> **Live Progress Tracker:** Track the active engineering status, verification checklist, and implementation deliverables for all 9 phases in [PRD_COMPLETE_PROGRESS.md](./PRD_COMPLETE_PROGRESS.md).
 
 > **Design Dependency:** Phase 8 requires Canva PNG templates for Internship and Training certificates (`public/internship-cert-template.png`, `public/training-cert-template.png`). These must be ready before Phase 8 begins.
 

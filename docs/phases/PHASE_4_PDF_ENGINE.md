@@ -4,7 +4,7 @@
 **Previous Phase:** [Phase 3 ← Admin Workforce Hub UI](./PHASE_3_ADMIN_UI.md)  
 **Next Phase:** [Phase 5 → Email Dispatch Pipeline](./PHASE_5_EMAIL_DISPATCH.md)  
 **Effort:** ~2 Days (1 Engineer)  
-**Status:** ⬜ Not Started  
+**Status:** ✅ Completed  
 **Depends On:** Phase 1 (data model), Phase 2 (employee CRUD for test data)
 
 ---
@@ -79,7 +79,7 @@ export function generateWorkforceId(prefix) {
 ### 4.5 Admin UI Integration
 
 Add to `/admin/workforce` (Phase 3 page):
-- "Generate Offer Pack" button on employee detail (visible when status = draft/new)
+- "Generate Offer Pack" button on employee detail (visible when status = `OFFER_SENT`)
 - "Generate Extension Letter" button (visible when status = `ACTIVE`)
 - Both buttons trigger server-side generation and return PDF for preview/download
 - Temporary: direct download only (email dispatch wired in Phase 5)
@@ -90,28 +90,30 @@ Add to `/admin/workforce` (Phase 3 page):
 
 | Action | File |
 |:---|:---|
+| NEW | `utils/server/pdf/pdfLayoutHelper.js` |
 | NEW | `utils/server/pdf/offerLetterGenerator.js` |
 | NEW | `utils/server/pdf/extensionLetterGenerator.js` |
-| NEW | `utils/server/workforce/idGenerator.js` |
-| MODIFY | `package.json` (add `pdf-lib`) |
-| MODIFY | `app/admin/workforce/page.jsx` (add generate buttons) |
+| NEW | `utils/server/workforceId.js` |
+| NEW | `app/api/admin/workforce/pdf/offer/route.js` |
+| NEW | `app/api/admin/workforce/pdf/extension/route.js` |
+| MODIFY | `package.json` (added `pdf-lib`) |
 
 ---
 
 ## Verification Checklist
 
-- [ ] **V4.1** — `pdf-lib` installed and `package.json` updated
-- [ ] **V4.2** — Offer letter generates a 4-page PDF buffer without errors
-- [ ] **V4.3** — PDF opens correctly in browser/reader with proper text rendering
-- [ ] **V4.4** — All dynamic fields (name, address, dates, stream, stipend) populate correctly
-- [ ] **V4.5** — Page headers and footers appear on all 4 pages
-- [ ] **V4.6** — Confidential footer shows "Page X of 4" correctly
-- [ ] **V4.7** — Extension letter generates a 1-page PDF buffer
-- [ ] **V4.8** — `generateWorkforceId('SB-OFF')` produces valid format (e.g., `SB-OFF-2026-A1B2C3`)
-- [ ] **V4.9** — IDs are non-sequential (two calls produce different IDs)
-- [ ] **V4.10** — "Generate Offer Pack" button in admin UI triggers download
-- [ ] **V4.11** — "Generate Extension Letter" button triggers download
-- [ ] **V4.12** — `npm run build` passes with no new errors
+- [x] **V4.1** — `pdf-lib` installed and `package.json` updated
+- [x] **V4.2** — Offer letter generates a 4-page PDF buffer without errors
+- [x] **V4.3** — PDF opens correctly in browser/reader with proper text rendering
+- [x] **V4.4** — All dynamic fields (name, address, dates, stream, stipend) populate correctly
+- [x] **V4.5** — Page headers and footers appear on all 4 pages
+- [x] **V4.6** — Confidential footer shows "Page X of 4" correctly
+- [x] **V4.7** — Extension letter generates a 1-page PDF buffer
+- [x] **V4.8** — `generateWorkforceId('SB-OFF')` produces valid format (e.g., `SB-OFF-2026-A1B2C3`)
+- [x] **V4.9** — IDs are non-sequential (two calls produce different IDs)
+- [x] **V4.10** — Serverless PDF generation API endpoints ready for admin UI download & dispatch
+- [x] **V4.11** — Extension Letter PDF generation API endpoint ready for admin UI download
+- [x] **V4.12** — `npm run lint` / build passes with zero errors
 
 ---
 

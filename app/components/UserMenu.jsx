@@ -14,6 +14,7 @@ const GUEST_ITEMS = [
 
 const INCOMPLETE_PROFILE_ITEMS = [
   { href: '/projects', label: 'Projects Hub', icon: 'projects' },
+  { href: '/portal', label: 'Intern Workspace', icon: 'spark' },
   { href: '/onboarding?next=/dashboard', label: 'Complete Profile', icon: 'profile' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
@@ -23,6 +24,7 @@ const INCOMPLETE_PROFILE_ITEMS = [
 const COMPLETE_PROFILE_ITEMS = [
   { href: '/projects', label: 'Projects Hub', icon: 'projects' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+  { href: '/portal', label: 'Intern Workspace', icon: 'spark' },
   { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
   { href: '/roadmap?view=saved', label: 'Saved Paths', icon: 'saved' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
@@ -80,6 +82,12 @@ function MenuIcon({ name }) {
       </>
     ),
     spark: <path d="M13 2 9 10l-7 3 7 3 4 8 4-8 7-3-7-3-4-8Z" />,
+    shield: (
+      <>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
     verify: (
       <>
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -359,8 +367,12 @@ export default function UserMenu() {
     .join('')
     .toUpperCase()
     .slice(0, 2);
-  const mobileInitial = initials[0] || 'S';
-  const accountItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
+  const userEmail = (user?.email || '').toLowerCase().trim();
+  const isAdminUser = userEmail === 'harsh@skillbun.tech' || userEmail === 'admin@skillbun.tech';
+  const baseItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
+  const accountItems = isAdminUser
+    ? [{ href: '/admin', label: 'Admin Console', icon: 'shield' }, ...baseItems]
+    : baseItems;
 
   return (
     <div className="mobile-dropdown-group user-menu-shell user-menu-shell-authenticated">
