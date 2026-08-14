@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
+import { useAdminAccess } from '@/utils/client/adminAuth';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
@@ -108,18 +109,14 @@ export default function AdminAnalyticsPage() {
   const [deletingUid, setDeletingUid] = useState(null);
   const [previewModalContent, setPreviewModalContent] = useState(null);
 
-  const targetAdminEmail = 'harsh@skillbun.tech';
+  const { isAdmin, isFounder, role, checking } = useAdminAccess(user, authLoading);
   const userEmail = (user?.email || '').toLowerCase().trim();
-  const isGoogleLogin = user?.providerData?.some((p) => p.providerId === 'google.com');
-
-  // Hardened security check
-  const isAuthorizedAdmin = (userEmail === targetAdminEmail || userEmail === 'admin@skillbun.tech');
 
   useEffect(() => {
     let isMounted = true;
 
     async function fetchAdminData() {
-      if (!user || !isAuthorizedAdmin) {
+      if (!user || !isAdmin) {
         if (isMounted) setLoading(false);
         return;
       }
@@ -191,11 +188,11 @@ export default function AdminAnalyticsPage() {
     }
 
     fetchAdminData();
-  }, [user, isAuthorizedAdmin]);
+  }, [user, isAdmin]);
 
   // Fetch real certificate registry
   useEffect(() => {
-    if (!user || !isAuthorizedAdmin || activeTab !== 'certs') return;
+    if (!user || !isAdmin || activeTab !== 'certs') return;
 
     async function fetchCerts() {
       try {
@@ -224,7 +221,7 @@ export default function AdminAnalyticsPage() {
     }
 
     fetchCerts();
-  }, [user, isAuthorizedAdmin, activeTab]);
+  }, [user, isAdmin, activeTab]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -360,7 +357,7 @@ export default function AdminAnalyticsPage() {
     );
   });
 
-  if (authLoading || (loading && !usersData.length)) {
+  if (authLoading || checking || (loading && !usersData.length)) {
     return (
       <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
         <div style={{ fontSize: '2.5rem' }}>🐰</div>
@@ -388,7 +385,7 @@ export default function AdminAnalyticsPage() {
     );
   }
 
-  if (!isAuthorizedAdmin) {
+  if (!isAdmin) {
     return (
       <div style={{ minHeight: '75vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
         <div style={{ background: 'var(--card-bg)', border: '1px solid #ef4444', borderRadius: '16px', padding: '3rem', maxWidth: '480px', textAlign: 'center' }}>

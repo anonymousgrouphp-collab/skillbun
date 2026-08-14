@@ -3,16 +3,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
+import { useAdminAccess } from '@/utils/client/adminAuth';
 import styles from './admin.module.css';
 
 export default function AdminRootPage() {
   const { user, authLoading } = useAuth();
-  const targetAdminEmail = 'harsh@skillbun.tech';
+  const { isAdmin, isFounder, role, checking } = useAdminAccess(user, authLoading);
   const userEmail = (user?.email || '').toLowerCase().trim();
 
-  const isAuthorizedAdmin = userEmail === targetAdminEmail || userEmail === 'admin@skillbun.tech';
-
-  if (authLoading) {
+  if (authLoading || checking) {
     return (
       <div className={styles.adminContainer} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
         <div style={{ textAlign: 'center', color: 'var(--muted)' }}>
@@ -23,7 +22,8 @@ export default function AdminRootPage() {
     );
   }
 
-  if (!user || !isAuthorizedAdmin) {
+  // Not signed in
+  if (!user) {
     return (
       <div className={styles.adminContainer}>
         <div className={styles.authGateCard}>
@@ -32,7 +32,7 @@ export default function AdminRootPage() {
             SkillBun Command Center
           </h2>
           <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '2rem' }}>
-            This internal portal is restricted to authorized platform administrators ({targetAdminEmail}).
+            This internal portal is restricted to authorized platform administrators. Please sign in with your admin account.
           </p>
           <Link
             href="/auth?next=/admin"
@@ -46,7 +46,39 @@ export default function AdminRootPage() {
               display: 'inline-block',
             }}
           >
-            Sign In with Admin Account
+            Sign In with Google
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Signed in, but unauthorized (neither Founder via Google nor in /admins database)
+  if (!isAdmin) {
+    return (
+      <div className={styles.adminContainer}>
+        <div className={styles.authGateCard} style={{ borderColor: '#ef4444' }}>
+          <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🚫</div>
+          <h2 style={{ fontFamily: 'var(--font-fredoka), sans-serif', color: '#ef4444', marginBottom: '0.75rem' }}>
+            403 — Access Denied
+          </h2>
+          <p style={{ color: 'var(--muted)', fontSize: '0.92rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+            Signed in as <strong>{userEmail}</strong>. You are recognized as a student and do not have administrative privileges.
+          </p>
+          <Link
+            href="/dashboard"
+            style={{
+              background: 'var(--surface-raised)',
+              color: 'var(--text)',
+              border: '1px solid var(--border)',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontWeight: '600',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            ← Back to Student Dashboard
           </Link>
         </div>
       </div>
@@ -60,7 +92,11 @@ export default function AdminRootPage() {
         <div className={styles.titleArea}>
           <div className={styles.titleBadge}>
             <h1 className={styles.titleText}>SkillBun Admin Command Center</h1>
-            <span className={styles.securityPill}>🛡️ Master Admin</span>
+            {isFounder ? (
+              <span className={styles.securityPill}>👑 Founder Master Admin</span>
+            ) : (
+              <span className={styles.securityPill}>🛡️ Authorized {role?.toUpperCase() || 'ADMIN'}</span>
+            )}
           </div>
           <p className={styles.subtitle}>
             Unified operations console for workforce onboarding, student telemetry CRM, retention automations, and credential issuance.
@@ -166,7 +202,9 @@ export default function AdminRootPage() {
         <div className={styles.statusDetails}>
           <div className={styles.statusIcon}>🔐</div>
           <div>
-            <div className={styles.statusTitle}>Master Administrator Access Active</div>
+            <div className={styles.statusTitle}>
+              {isFounder ? '👑 Founder Master Admin Active' : `🛡️ ${role?.toUpperCase() || 'ADMIN'} Privileges Active`}
+            </div>
             <p className={styles.statusMeta}>
               Signed in as <strong>{userEmail}</strong>. Protected by Firebase Auth token verification, server-side RBAC, and rate limiting.
             </p>

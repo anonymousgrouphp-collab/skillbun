@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
-import { isAuthorizedAdminEmail } from '@/utils/server/env';
+import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import fs from 'fs';
 import path from 'path';
 
@@ -22,8 +22,8 @@ export async function GET(request) {
         return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
       }
       const decodedToken = await adminAuth.verifyIdToken(token);
-      const userEmail = (decodedToken.email || '').toLowerCase();
-      if (!isAuthorizedAdminEmail(userEmail)) {
+      const isAdmin = await isUserAuthorizedAdmin(decodedToken);
+      if (!isAdmin) {
         return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
       }
     } catch (authErr) {
