@@ -192,3 +192,21 @@ export function isAuthorizedAdminEmail(email) {
   return getAdminEmails().includes(normalized)
 }
 
+export function getUpstashRedisRestUrl() {
+  return getFirstNonEmpty(process.env.UPSTASH_REDIS_REST_URL, process.env.KV_REST_API_URL)
+}
+
+export function getUpstashRedisRestToken() {
+  return getFirstNonEmpty(process.env.UPSTASH_REDIS_REST_TOKEN, process.env.KV_REST_API_TOKEN)
+}
+
+export function getRedisUrl() {
+  return getFirstNonEmpty(process.env.REDIS_URL, process.env.KV_URL)
+}
+
+export function isRedisConfigured() {
+  const hasUpstash = Boolean(getUpstashRedisRestUrl() && getUpstashRedisRestToken())
+  const hasRedisUrl = Boolean(getRedisUrl())
+  return hasUpstash || hasRedisUrl
+}
+
