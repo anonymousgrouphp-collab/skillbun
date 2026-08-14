@@ -37,29 +37,43 @@ export async function POST(request) {
   }
 
   try {
-    const body = await request.json().catch(() => ({}))
-    const token = typeof body?.token === 'string' ? body.token : ''
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
+    }
 
-    const bypassHeader = request.headers.get('x-skillbun-bypass') || ''
-    const isLocal = process.env.NODE_ENV !== 'production'
-    const isBypassed = (token === 'bypass-captcha-dev') || (bypassHeader === 'bypass-captcha-dev')
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ error: 'Payload must be a valid JSON object.' }, { status: 400 });
+    }
+
+    const token = typeof body?.token === 'string' ? body.token.trim() : '';
+
+    if (!token) {
+      return NextResponse.json({ error: 'Captcha token is required.' }, { status: 400 });
+    }
+
+    if (token.length > 2048) {
+      return NextResponse.json({ error: 'Captcha token is too long.' }, { status: 400 });
+    }
+
+    const bypassHeader = request.headers.get('x-skillbun-bypass') || '';
+    const isLocal = process.env.NODE_ENV !== 'production';
+    const isBypassed = (token === 'bypass-captcha-dev') || (bypassHeader === 'bypass-captcha-dev');
 
     if (isBypassed && isLocal) {
-      const issued = issueHumanProofToken({ v: 1 })
+      const issued = issueHumanProofToken({ v: 1 });
 
       if (!issued) {
-        return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
+        return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 });
       }
 
       return NextResponse.json({
         captchaEnabled: true,
         humanToken: issued.token,
         expiresAt: issued.expiresAt,
-      })
-    }
-
-    if (!token) {
-      return NextResponse.json({ error: 'Captcha token is required.' }, { status: 400 })
+      });
     }
 
     const formBody = new URLSearchParams({

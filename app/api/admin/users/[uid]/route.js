@@ -1,18 +1,35 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { isAuthorizedAdminEmail } from '@/utils/server/env';
+import { validateString, validateEmail } from '@/utils/server/inputValidator';
 
 export const runtime = 'nodejs';
 
 export async function DELETE(request, { params }) {
   try {
     const { uid } = await params;
-    if (!uid || typeof uid !== 'string') {
-      return NextResponse.json({ error: 'Invalid user ID' }, { status: 400 });
+    const uidCheck = validateString(uid, {
+      fieldName: 'uid',
+      minLength: 1,
+      maxLength: 128,
+      pattern: /^[a-zA-Z0-9_-]+$/,
+    });
+
+    if (!uidCheck.isValid) {
+      return NextResponse.json({ error: uidCheck.error }, { status: 400 });
     }
 
     const reqUrl = new URL(request.url);
-    const emailParam = reqUrl.searchParams.get('email') || '';
+    const rawEmailParam = reqUrl.searchParams.get('email');
+    let emailParam = '';
+
+    if (rawEmailParam) {
+      const emailCheck = validateEmail(rawEmailParam);
+      if (!emailCheck.isValid) {
+        return NextResponse.json({ error: emailCheck.error }, { status: 400 });
+      }
+      emailParam = emailCheck.normalizedEmail;
+    }
 
     // Verify Admin Authorization
     const authHeader = request.headers.get('authorization') || '';

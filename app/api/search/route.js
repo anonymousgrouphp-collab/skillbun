@@ -47,9 +47,15 @@ const STATIC_PAGES = [
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const q = searchParams.get('q') || '';
+  const rawQ = searchParams.get('q');
   
-  const query = q.toLowerCase().trim();
+  if (rawQ !== null && typeof rawQ === 'string' && rawQ.length > 100) {
+    return NextResponse.json({ error: 'Search query is too long (max 100 characters).' }, { status: 400 });
+  }
+
+  // Remove unsafe control characters
+  const sanitizedQ = typeof rawQ === 'string' ? rawQ.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '') : '';
+  const query = sanitizedQ.toLowerCase().trim();
   const roadmaps = getRoadmaps();
   
   if (!query) {
