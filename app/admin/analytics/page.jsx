@@ -408,10 +408,18 @@ export default function AnalyticsDashboardPage() {
         }),
       });
 
-      const resData = await res.json().catch(() => null);
+      let resData = null;
+      let rawText = '';
+      try {
+        rawText = await res.text();
+        resData = JSON.parse(rawText);
+      } catch {
+        resData = null;
+      }
 
       if (!res.ok || !resData?.success) {
-        throw new Error(resData?.error || 'Failed to dispatch email');
+        const errorMsg = resData?.error || (rawText && rawText.length < 300 ? rawText : `HTTP ${res.status} (${res.statusText || 'Server Error'})`);
+        throw new Error(errorMsg);
       }
 
       if (!isSampleTest) {

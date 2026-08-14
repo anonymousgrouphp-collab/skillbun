@@ -9,6 +9,7 @@ export default function StudentRowDetails({
   setSelectedTemplates,
   sendingEmailKey,
   handleSendRetentionEmail,
+  handlePreviewEmail,
   handleDeleteUser,
   isDeleting,
   setExpandedUserUid,
@@ -17,6 +18,7 @@ export default function StudentRowDetails({
   const recommended = getRecommendedTemplate(u);
   const currentTemplate = selectedTemplates[u.uid] || recommended.id;
   const isPreviewLoading = sendingEmailKey === `${u.uid}-preview`;
+  const isSampleLoading = sendingEmailKey === `${u.uid}-sample`;
   const isSendLoading = sendingEmailKey === `${u.uid}-send`;
   const isForceLoading = sendingEmailKey === `${u.uid}-force`;
   const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
@@ -182,8 +184,9 @@ export default function StudentRowDetails({
             </select>
 
             <button
-              onClick={() => handleSendRetentionEmail(u, currentTemplate, false, true)}
-              disabled={isPreviewLoading}
+              type="button"
+              onClick={() => handlePreviewEmail ? handlePreviewEmail(u) : null}
+              disabled={isPreviewLoading || isSampleLoading || isSendLoading || isForceLoading}
               style={{
                 background: 'var(--surface-raised)',
                 color: 'var(--text)',
@@ -192,15 +195,35 @@ export default function StudentRowDetails({
                 padding: '0.4rem 0.85rem',
                 fontSize: '0.8rem',
                 fontWeight: '600',
-                cursor: 'pointer',
+                cursor: isPreviewLoading ? 'not-allowed' : 'pointer',
               }}
             >
               {isPreviewLoading ? '⏳ Previewing...' : '👁️ Preview Body'}
             </button>
 
             <button
-              onClick={() => handleSendRetentionEmail(u, currentTemplate, false, false)}
-              disabled={isSendLoading}
+              type="button"
+              onClick={() => handleSendRetentionEmail(u, true, false)}
+              disabled={isPreviewLoading || isSampleLoading || isSendLoading || isForceLoading}
+              style={{
+                background: 'var(--surface-raised)',
+                color: 'var(--text)',
+                border: '1px solid var(--border)',
+                borderRadius: '6px',
+                padding: '0.4rem 0.85rem',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                cursor: isSampleLoading ? 'not-allowed' : 'pointer',
+              }}
+              title="Sends a test copy to harsh@skillbun.tech via Zoho SMTP"
+            >
+              {isSampleLoading ? '⏳ Sending Sample...' : '🧪 Send Test Email to Me'}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleSendRetentionEmail(u, false, false)}
+              disabled={isPreviewLoading || isSampleLoading || isSendLoading || isForceLoading}
               style={{
                 background: 'var(--green)',
                 color: '#000',
@@ -209,15 +232,16 @@ export default function StudentRowDetails({
                 padding: '0.4rem 0.95rem',
                 fontSize: '0.8rem',
                 fontWeight: '700',
-                cursor: 'pointer',
+                cursor: isSendLoading ? 'not-allowed' : 'pointer',
               }}
             >
-              {isSendLoading ? '🚀 Sending...' : '✉️ Send Email'}
+              {isSendLoading ? '🚀 Sending...' : `✉️ Send to ${u.name || 'Student'}`}
             </button>
 
             <button
-              onClick={() => handleSendRetentionEmail(u, currentTemplate, true, false)}
-              disabled={isForceLoading}
+              type="button"
+              onClick={() => handleSendRetentionEmail(u, false, true)}
+              disabled={isPreviewLoading || isSampleLoading || isSendLoading || isForceLoading}
               title="Send even if this exact template was sent recently or student is unsubscribed (Override)"
               style={{
                 background: 'rgba(239, 68, 68, 0.15)',
@@ -227,7 +251,7 @@ export default function StudentRowDetails({
                 padding: '0.4rem 0.75rem',
                 fontSize: '0.75rem',
                 fontWeight: '600',
-                cursor: 'pointer',
+                cursor: isForceLoading ? 'not-allowed' : 'pointer',
               }}
             >
               {isForceLoading ? '⚡ Overriding...' : '⚠️ Force Override'}

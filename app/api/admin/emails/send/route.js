@@ -6,6 +6,7 @@ import { getPasswordResetFrom } from '@/utils/server/env';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 
 export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
 
@@ -23,7 +24,7 @@ export async function POST(request) {
     try {
       const adminAuth = getFirebaseAdminAuth();
       if (!adminAuth) {
-        return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
+        return NextResponse.json({ error: 'Server authentication configuration error (Firebase Admin unavailable)' }, { status: 500 });
       }
       const decodedToken = await adminAuth.verifyIdToken(token);
       authUserEmail = (decodedToken.email || '').toLowerCase();
@@ -31,8 +32,8 @@ export async function POST(request) {
       if (!isAdmin) {
         return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
       }
-    } catch {
-      return NextResponse.json({ error: 'Invalid or expired authentication token' }, { status: 401 });
+    } catch (authErr) {
+      return NextResponse.json({ error: `Authentication failed: ${authErr.message || 'Invalid or expired token'}` }, { status: 401 });
     }
 
     let body;
@@ -124,7 +125,8 @@ export async function POST(request) {
 
     try {
       const transporter = getTransporter();
-      const fromAddress = getPasswordResetFrom() || 'SkillBun Support <noreply@skillbun.tech>';
+      const rawFrom = getPasswordResetFrom() || 'noreply@skillbun.tech';
+      const fromAddress = rawFrom.includes('<') ? rawFrom : `SkillBun Support <${rawFrom}>`;
       const unsubscribeHeaderUrl = `https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}`;
 
       smtpResponse = await transporter.sendMail({
@@ -143,8 +145,8 @@ export async function POST(request) {
 
       emailSent = true;
     } catch (sendErr) {
-      errorDetail = sendErr.message;
-      console.warn('[Admin Email Dispatch Warning]:', sendErr.message);
+      errorDetail = sendErr.message || 'SMTP transmission failure';
+      console.warn('[Admin Email Dispatch Warning]:', sendErr);
     }
 
     if (emailSent) {
@@ -180,12 +182,21 @@ export async function POST(request) {
         bcc: bccRecipients || null,
       });
     } else {
+      let helpfulHint = '';
+      if (errorDetail && errorDetail.includes('535')) {
+        helpfulHint = ' (Authentication failed: Verify ZOHO_SMTP_PASS uses a Zoho App Password if 2FA is enabled)';
+      } else if (errorDetail && errorDetail.includes('553')) {
+        helpfulHint = ' (Relaying disallowed: Verify sender email address is an authorized Zoho Mail user or alias)';
+      } else if (errorDetail && (errorDetail.includes('ETIMEDOUT') || errorDetail.includes('ESOCKETTIMEDOUT'))) {
+        helpfulHint = ' (Connection timed out: Check ZOHO_SMTP_HOST and ZOHO_SMTP_PORT settings)';
+      }
+
       return NextResponse.json({
-        error: `SMTP Dispatch Error: ${errorDetail || 'Could not connect to Zoho SMTP server. Check environment settings.'}`,
+        error: `Zoho SMTP Dispatch Failed: ${errorDetail || 'Connection to Zoho SMTP server failed.'}${helpfulHint}`,
       }, { status: 500 });
     }
   } catch (err) {
     console.error('Admin Send Email API Error:', err);
-    return NextResponse.json({ error: err.message || 'Internal server error dispatching email' }, { status: 500 });
+    return NextResponse.json({ error: `Server error: ${err.message || 'Internal server error dispatching email'}` }, { status: 500 });
   }
 }
