@@ -46,7 +46,17 @@ export function getFirebaseAdminAuth() {
 export function getFirebaseAdminFirestore() {
   try {
     const app = getAdminApp()
-    return app ? getFirestore(app) : null
+    if (!app) return null;
+    
+    const db = getFirestore(app)
+    try {
+      // Force REST instead of gRPC to prevent Vercel Node runtime crashes from unhandledRejection
+      db.settings({ preferRest: true })
+    } catch (settingErr) {
+      // Ignore if settings were already initialized on this instance
+    }
+    
+    return db;
   } catch (err) {
     console.warn('[Firebase Admin Firestore Init Warning]:', err.message)
     return null
