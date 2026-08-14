@@ -68,16 +68,6 @@ service cloud.firestore {
         optionalTimestamp('updatedAt');
     }
 
-    function validCertificate() {
-      return request.resource.data.keys().hasAll(['uid', 'roadmapSlug', 'roadmapTitle', 'score', 'name', 'createdAt']) &&
-        request.resource.data.keys().hasOnly(['uid', 'roadmapSlug', 'roadmapTitle', 'score', 'name', 'createdAt']) &&
-        request.auth != null && request.resource.data.uid == request.auth.uid &&
-        request.resource.data.score is int && request.resource.data.score >= 70 &&
-        request.resource.data.roadmapSlug is string &&
-        request.resource.data.roadmapTitle is string &&
-        request.resource.data.name is string &&
-        request.resource.data.createdAt is timestamp;
-    }
 
     function validQuizAttempt(slug) {
       return slug.matches('^[a-z0-9_]{1,80}$') &&
