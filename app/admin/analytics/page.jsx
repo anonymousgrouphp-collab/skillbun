@@ -304,7 +304,10 @@ export default function AdminAnalyticsPage() {
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
+      if (!data) {
+        throw new Error(`Server returned HTTP ${res.status}`);
+      }
 
       if (isPreview && data.success && data.preview) {
         setPreviewModalContent(data.preview);
@@ -312,7 +315,7 @@ export default function AdminAnalyticsPage() {
       }
 
       if (data.success) {
-        showToast(`✅ Email "${templateId}" dispatched successfully to ${targetUser.email}`);
+        showToast(data.message || `✅ Email "${templateId}" dispatched successfully to ${targetUser.email}`);
         setUsersData((prev) =>
           prev.map((u) => {
             if (u.uid === targetUser.uid) {
