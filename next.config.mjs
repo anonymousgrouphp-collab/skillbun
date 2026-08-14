@@ -55,6 +55,24 @@ const nextConfig = {
         source: '/:path*',
         headers: securityHeaders,
       },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/(logo.png|splash-logo.png|certificate-template.png|favicon.ico)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=604800, s-maxage=2592000, stale-while-revalidate=86400' },
+        ],
+      },
+      {
+        source: '/data/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400' },
+        ],
+      },
     ]
   },
 }
