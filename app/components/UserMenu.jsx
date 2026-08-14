@@ -270,7 +270,7 @@ export default function UserMenu() {
     </button>
   );
 
-  if (authLoading || (user && profileLoading) || !profile.hydrated) {
+  if (authLoading || (user && profileLoading) || !profile?.hydrated) {
     return (
       <div className="mobile-dropdown-group user-menu-shell">
         <div className="user-menu-wrapper" ref={menuRef}>
@@ -359,14 +359,16 @@ export default function UserMenu() {
     );
   }
 
-  const displayName = profile.hasName ? profile.name : user.email?.split('@')[0] || 'Student';
-  const firstName = displayName.split(' ')[0];
-  const initials = displayName
+  const displayName = profile?.hasName ? (profile?.name || 'Student') : (user?.email?.split('@')[0] || 'Student');
+  const firstName = (displayName || 'Student').split(' ')[0] || 'Student';
+  const initials = (displayName || 'Student')
     .split(' ')
+    .filter(Boolean)
     .map((part) => part[0])
     .join('')
     .toUpperCase()
-    .slice(0, 2);
+    .slice(0, 2) || 'S';
+  const mobileInitial = initials[0] || 'S';
   const userEmail = (user?.email || '').toLowerCase().trim();
   const isAdminUser = userEmail === 'harsh@skillbun.tech' || userEmail === 'admin@skillbun.tech';
   const baseItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
