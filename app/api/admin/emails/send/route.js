@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 import { getTransporter } from '@/utils/server/zohoMailer';
-import { getPasswordResetFrom } from '@/utils/server/env';
+import { getPasswordResetFrom, getZohoSmtpUser } from '@/utils/server/env';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 
 export const runtime = 'nodejs';
@@ -125,7 +125,8 @@ export async function POST(request) {
 
     try {
       const transporter = getTransporter();
-      const rawFrom = getPasswordResetFrom() || 'noreply@skillbun.tech';
+      const smtpUser = getZohoSmtpUser();
+      const rawFrom = getPasswordResetFrom() || smtpUser || 'support@skillbun.tech';
       const fromAddress = rawFrom.includes('<') ? rawFrom : `SkillBun Support <${rawFrom}>`;
       const unsubscribeHeaderUrl = `https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}`;
 
@@ -186,14 +187,15 @@ export async function POST(request) {
       if (errorDetail && errorDetail.includes('535')) {
         helpfulHint = ' (Authentication failed: Verify ZOHO_SMTP_PASS uses a Zoho App Password if 2FA is enabled)';
       } else if (errorDetail && errorDetail.includes('553')) {
-        helpfulHint = ' (Relaying disallowed: Verify sender email address is an authorized Zoho Mail user or alias)';
+        helpfulHint = ' (Relaying disallowed: Verify sender email address matches authenticated Zoho user)';
       } else if (errorDetail && (errorDetail.includes('ETIMEDOUT') || errorDetail.includes('ESOCKETTIMEDOUT'))) {
         helpfulHint = ' (Connection timed out: Check ZOHO_SMTP_HOST and ZOHO_SMTP_PORT settings)';
       }
 
       return NextResponse.json({
+        success: false,
         error: `Zoho SMTP Dispatch Failed: ${errorDetail || 'Connection to Zoho SMTP server failed.'}${helpfulHint}`,
-      }, { status: 500 });
+      }, { status: 400 });
     }
   } catch (err) {
     console.error('Admin Send Email API Error:', err);

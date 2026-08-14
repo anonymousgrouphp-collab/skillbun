@@ -32,9 +32,9 @@ export function getTransporter() {
     port: smtpPort,
     secure: isSecure,
     auth: { user, pass },
-    connectionTimeout: 8000,
-    greetingTimeout: 8000,
-    socketTimeout: 12000,
+    connectionTimeout: 5000,
+    greetingTimeout: 5000,
+    socketTimeout: 6000,
   })
 
   return cachedTransporter
