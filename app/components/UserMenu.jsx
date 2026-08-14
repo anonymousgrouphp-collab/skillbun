@@ -56,13 +56,6 @@ function MenuIcon({ name }) {
         <circle cx="12" cy="7" r="4" />
       </>
     ),
-    progress: (
-      <>
-        <path d="M4 19V5" />
-        <path d="M4 19h16" />
-        <path d="m7 15 4-4 3 3 5-7" />
-      </>
-    ),
     saved: <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1Z" />,
     support: (
       <>

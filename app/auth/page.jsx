@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../components/AuthProvider';
-import { normalizeInternalPath } from '@/utils/shared/routes';
+import { normalizeInternalPath, buildOnboardingPath } from '@/utils/shared/routes';
 import { validateEmail } from '@/utils/shared/emailValidator';
 import posthog from 'posthog-js';
 
@@ -79,10 +79,6 @@ function friendlyTurnstileError(errorCode) {
   }
 
   return code ? `Verification failed (Error ${code}). Please retry.` : 'Verification failed. Please retry.';
-}
-
-function buildOnboardingPath(next) {
-  return `/onboarding?next=${encodeURIComponent(next)}`;
 }
 
 function AuthForm() {
