@@ -193,7 +193,7 @@ export async function POST(request) {
     } else {
       return NextResponse.json({
         error: `Zoho SMTP Dispatch Error: ${errorDetail || 'Could not connect to Zoho SMTP server.'}`,
-      }, { status: 400 });
+      }, { status: 200 });
     }
   } catch (err) {
     console.error('Admin Send Email API Error:', err);
@@ -202,6 +202,6 @@ export async function POST(request) {
       error: `Server error: ${err.message || 'Internal server error dispatching email'}`,
       stack: err.stack || null,
       details: String(err),
-    }, { status: 500 });
+    }, { status: 200 });
   }
 }
