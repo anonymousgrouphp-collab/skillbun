@@ -39,6 +39,7 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  serverExternalPackages: ['firebase-admin', '@google-cloud/firestore', 'nodemailer'],
   outputFileTracingIncludes: {
     '/api/docs/[slug]/[topicId]': ['./content/docs/??/*.sbv'],
   },
