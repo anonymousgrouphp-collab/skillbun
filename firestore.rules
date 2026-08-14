@@ -98,17 +98,17 @@ service cloud.firestore {
     }
 
     match /users/{uid} {
-      allow read, delete: if signedInAs(uid);
-      allow create, update: if signedInAs(uid) && validUserProfile(uid);
+      allow read, delete: if signedInAs(uid) || isAdmin();
+      allow create, update: if (signedInAs(uid) && validUserProfile(uid)) || isAdmin();
 
       match /roadmapProgress/{slug} {
-        allow read, delete: if signedInAs(uid);
-        allow create, update: if signedInAs(uid) && validProgress(slug);
+        allow read, delete: if signedInAs(uid) || isAdmin();
+        allow create, update: if (signedInAs(uid) && validProgress(slug)) || isAdmin();
       }
 
       match /quizAttempts/{slug} {
-        allow read, delete: if signedInAs(uid);
-        allow create, update: if signedInAs(uid) && validQuizAttempt(slug);
+        allow read, delete: if signedInAs(uid) || isAdmin();
+        allow create, update: if (signedInAs(uid) && validQuizAttempt(slug)) || isAdmin();
       }
     }
 
