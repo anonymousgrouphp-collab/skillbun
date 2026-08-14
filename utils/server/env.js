@@ -49,10 +49,6 @@ export function isCaptchaEnabled() {
   return hasKeys && parseBoolean(process.env.TURNSTILE_ENABLED, false)
 }
 
-export function getGeminiApiKey() {
-  return ''
-}
-
 export function getGroqApiKey() {
   return getFirstNonEmpty(process.env.GROQ_API_KEY)
 }

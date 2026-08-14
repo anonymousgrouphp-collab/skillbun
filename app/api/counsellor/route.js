@@ -13,6 +13,7 @@ import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { verifyHumanProofToken } from '@/utils/server/humanProof'
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { generateOfflineCounsellorResponse } from '@/utils/server/counsellor/offlineEngine'
+import { getClientAddress } from '@/utils/server/requestUtils'
 
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
@@ -23,16 +24,6 @@ const RATE_LIMIT_BUCKETS = [
   { name: 'minute', windowMs: 60 * 1000, getLimit: getGeminiRateLimitPerMinute },
   { name: 'hour', windowMs: 60 * 60 * 1000, getLimit: getGeminiRateLimitPerHour },
 ]
-
-function getClientAddress(request) {
-  const forwardedFor = request.headers.get('x-forwarded-for') || ''
-  return (
-    request.headers.get('cf-connecting-ip') ||
-    request.headers.get('x-real-ip') ||
-    forwardedFor.split(',')[0]?.trim() ||
-    'local'
-  )
-}
 
 function getBearerToken(request) {
   const authorization = request.headers.get('authorization') || ''
@@ -451,13 +442,6 @@ function stripUnsolicitedEmail(text = '', userQuery = '') {
       .trim()
   }
   return text
-}
-
-function isOffTopicQuery(lastMsg = '') {
-  const STRICT_OFF_TOPIC_REGEX = /\b(chai|tea|recipe|cook|cooking|dish|recipe|cricket|football|basketball|ipl|match|movie|film|actor|actress|song|singing|poem|poetry|joke|jokes|weather|rain|temperature|politics|election|minister|love|dating|relationship|crush|astrology|horoscope|zodiac|food|burger|pizza|crypto|bitcoin|stock market)\b/i
-  const STRICT_TECH_KEYWORD = /\b(tech|code|coding|program|programming|developer|engineer|engineering|software|hardware|java|python|js|javascript|react|node|html|css|ai|ml|data|sql|cloud|aws|devops|security|cyber|roadmap|college|university|bca|btech|mca|job|jobs|hiring|career|salary|lpa|skillbun|harsh|contact|email)\b/i
-
-  return STRICT_OFF_TOPIC_REGEX.test(lastMsg) && !STRICT_TECH_KEYWORD.test(lastMsg)
 }
 
 export async function POST(request) {

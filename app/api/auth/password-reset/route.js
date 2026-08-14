@@ -5,6 +5,7 @@ import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { checkServerRateLimit, hashRateLimitSubject } from '@/utils/server/rateLimitStore'
 import { sendSkillBunPasswordResetEmail } from '@/utils/server/zohoMailer'
 import { validateSchema } from '@/utils/server/inputValidator'
+import { getClientAddress } from '@/utils/server/requestUtils'
 
 export const runtime = 'nodejs'
 
@@ -16,16 +17,6 @@ const RATE_LIMITS = [
 
 function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase()
-}
-
-function getClientAddress(request) {
-  const forwardedFor = request.headers.get('x-forwarded-for') || ''
-  return (
-    request.headers.get('cf-connecting-ip') ||
-    request.headers.get('x-real-ip') ||
-    forwardedFor.split(',')[0]?.trim() ||
-    'local'
-  )
 }
 
 async function checkRateLimit({ address, email, increment = true }) {

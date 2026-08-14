@@ -3,16 +3,14 @@ import { NextResponse } from 'next/server'
 import {
   getGroqApiKey,
   getOpenRouterApiKey,
-  getHuggingFaceApiKey,
-  getGeminiMaxRetries,
   getGeminiRateLimitPerHour,
   getGeminiRateLimitPerMinute,
-  getGeminiRetryBaseDelayMs,
   getGeminiTimeoutMs,
 } from '@/utils/server/env'
 import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { verifyHumanProofToken } from '@/utils/server/humanProof'
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
+import { getClientAddress } from '@/utils/server/requestUtils'
 
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
@@ -22,16 +20,6 @@ const RATE_LIMIT_BUCKETS = [
   { name: 'minute', windowMs: 60 * 1000, getLimit: getGeminiRateLimitPerMinute },
   { name: 'hour', windowMs: 60 * 60 * 1000, getLimit: getGeminiRateLimitPerHour },
 ]
-
-function getClientAddress(request) {
-  const forwardedFor = request.headers.get('x-forwarded-for') || ''
-  return (
-    request.headers.get('cf-connecting-ip') ||
-    request.headers.get('x-real-ip') ||
-    forwardedFor.split(',')[0]?.trim() ||
-    'local'
-  )
-}
 
 function getBearerToken(request) {
   const authorization = request.headers.get('authorization') || ''
