@@ -318,17 +318,18 @@ export default function AnalyticsDashboardPage() {
   // Instant HTML Preview Modal Handler (Synchronous Client Rendering with 0ms Latency)
   const handlePreviewEmail = (targetUser) => {
     try {
+      if (!targetUser) return;
       const recommended = getRecommendedTemplate(targetUser);
-      const templateId = selectedTemplates[targetUser.uid] || recommended.id;
+      const templateId = selectedTemplates[targetUser.uid] || recommended?.id || 'welcome_v1';
 
       const roadmapTitle =
         targetUser.progress?.[0]?.slug
-          ? targetUser.progress[0].slug.replace(/_/g, ' ').toUpperCase()
+          ? String(targetUser.progress[0].slug).replace(/_/g, ' ').toUpperCase()
           : targetUser.interest && targetUser.interest !== 'N/A'
-          ? targetUser.interest
+          ? String(targetUser.interest)
           : 'Full Stack Web Development';
 
-      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length || 12;
+      const progressCount = Number(targetUser.progress?.[0]?.completedNodeIds?.length) || 12;
 
       const { subject, html } = generateRetentionEmailHtml(templateId, {
         name: targetUser.name || 'Student',
@@ -340,14 +341,14 @@ export default function AnalyticsDashboardPage() {
 
       setPreviewModalContent({
         templateId,
-        subject,
-        html,
+        subject: subject || 'SkillBun Update',
+        html: html || '<p>Email Preview</p>',
         to: targetUser.email || 'harsh@skillbun.tech',
         studentName: targetUser.name || 'Student',
       });
     } catch (previewErr) {
       console.error('Preview error:', previewErr);
-      setStatusMessage({ type: 'error', text: `❌ Failed to generate preview: ${previewErr.message}` });
+      setStatusMessage({ type: 'error', text: `❌ Preview Error: ${previewErr.message}` });
     }
   };
 
