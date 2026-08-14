@@ -168,31 +168,23 @@ export default function CertifyPage() {
       const last24hAttempts = attempts.filter((t) => t > oneDayAgo);
 
       // Check daily limit (3 attempts)
-      if (last24hAttempts.length >= 3) {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Dev bypass: Skipping daily limit lock');
-        } else {
-          setIsLocked(true);
-          setLockReason('daily');
-          // Calculate remaining time until oldest attempt in last 24h expires
-          const oldest = Math.min(...last24hAttempts);
-          setCooldownRemaining(Math.ceil((oldest + 24 * 60 * 60 * 1000 - now) / 1000));
-          return;
-        }
+      if (last24hAttempts.length >= 3 && process.env.NODE_ENV !== 'development') {
+        setIsLocked(true);
+        setLockReason('daily');
+        // Calculate remaining time until oldest attempt in last 24h expires
+        const oldest = Math.min(...last24hAttempts);
+        setCooldownRemaining(Math.ceil((oldest + 24 * 60 * 60 * 1000 - now) / 1000));
+        return;
       }
 
       // Check consecutive failure cooldown: if user has failed twice, enforce 1 hour cooldown since last attempt
-      if (attempts.length >= 2) {
+      if (attempts.length >= 2 && process.env.NODE_ENV !== 'development') {
         const lastAttempt = data.lastAttemptAt || attempts[attempts.length - 1];
         if (now - lastAttempt < 60 * 60 * 1000) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Dev bypass: Skipping failure cooldown lock');
-          } else {
-            setIsLocked(true);
-            setLockReason('cooldown');
-            setCooldownRemaining(Math.ceil((lastAttempt + 60 * 60 * 1000 - now) / 1000));
-            return;
-          }
+          setIsLocked(true);
+          setLockReason('cooldown');
+          setCooldownRemaining(Math.ceil((lastAttempt + 60 * 60 * 1000 - now) / 1000));
+          return;
         }
       }
     }
@@ -306,9 +298,7 @@ export default function CertifyPage() {
         // 6. Check if user is already certified for this roadmap
         const services = getFirebaseServices();
         if (services.configured && user) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Dev bypass: Skipping certification existence check');
-          } else {
+          if (process.env.NODE_ENV !== 'development') {
             const certsRef = collection(services.db, 'certificates');
             const q = query(certsRef, where('uid', '==', user.uid), where('roadmapSlug', '==', slug));
             const querySnapshot = await getDocs(q);

@@ -238,7 +238,7 @@ export async function GET(request) {
             const purgeBatch = db.batch();
             orphanedCertRefs.forEach((ref) => purgeBatch.delete(ref));
             await purgeBatch.commit();
-            console.log(`[Admin Analytics]: Automatically wiped ${orphanedCertRefs.length} orphaned certificates belonging to deleted accounts.`);
+            console.warn(`[Admin Analytics]: Automatically wiped ${orphanedCertRefs.length} orphaned certificates belonging to deleted accounts.`);
           } catch (purgeErr) {
             console.warn('[Admin Analytics Purge Warning]:', purgeErr.message);
           }
