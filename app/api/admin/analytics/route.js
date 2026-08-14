@@ -1,12 +1,35 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { isAuthorizedAdminEmail } from '@/utils/server/env';
 import fs from 'fs';
 import path from 'path';
 
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request) {
   try {
+    // 0. Verify Admin Authorization
+    const authHeader = request.headers.get('authorization') || '';
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
+
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication required for admin access' }, { status: 401 });
+    }
+
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error' }, { status: 500 });
+      }
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      const userEmail = (decodedToken.email || '').toLowerCase();
+      if (!isAuthorizedAdminEmail(userEmail)) {
+        return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
+      }
+    } catch (authErr) {
+      return NextResponse.json({ error: 'Invalid or expired authentication token' }, { status: 401 });
+    }
+
     const roadmapsDir = path.join(process.cwd(), 'public', 'data', 'roadmaps');
     const quizzesDir = path.join(process.cwd(), 'public', 'data', 'quizzes');
 

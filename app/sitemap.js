@@ -4,7 +4,7 @@ import path from 'path';
 export const revalidate = 86400; // Revalidate sitemap once per day
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.com';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
   const currentDate = new Date().toISOString();
 
   // Core static site routes
