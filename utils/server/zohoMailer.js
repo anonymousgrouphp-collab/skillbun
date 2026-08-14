@@ -21,17 +21,20 @@ export function getTransporter() {
   const pass = getZohoSmtpPass()
 
   if (!user || !pass) {
-    throw new Error('Zoho SMTP credentials are missing from environment settings.')
+    throw new Error('Zoho SMTP credentials missing: Please ensure ZOHO_SMTP_USER and ZOHO_SMTP_PASS are configured in environment settings.')
   }
+
+  const smtpPort = Number(port || 465)
+  const isSecure = smtpPort === 465
 
   cachedTransporter = nodemailer.createTransport({
     host: host || 'smtppro.zoho.in',
-    port: port || 465,
-    secure: Number(port || 465) === 465,
+    port: smtpPort,
+    secure: isSecure,
     auth: { user, pass },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 12000,
   })
 
   return cachedTransporter
