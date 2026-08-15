@@ -57,13 +57,13 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
 
   const contentHtml = `
     <div style="margin-bottom: 24px;">
-      <div style="display: inline-block; background-color: rgba(0,229,153,0.12); color: #00e599; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
+      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
         🎉 Formal Internship Offer
       </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #ffffff; margin: 0 0 10px 0;">
+      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
         Welcome to SkillBun!
       </h1>
-      <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
+      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
         Official Offer of Engagement & Internship Terms
       </p>
     </div>
@@ -77,37 +77,37 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     </p>
 
     <!-- Details Box -->
-    <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div style="font-weight: 800; color: #00e599; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
+      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
         Engagement Overview
       </div>
       <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.8;">
         <tr>
-          <td style="color: #8b949e; width: 40%;">Candidate Name:</td>
-          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
+          <td class="table-label" style="color: #64748b; width: 40%;">Candidate Name:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Role & Stream:</td>
-          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
+          <td class="table-label" style="color: #64748b;">Role & Stream:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Tenure Period:</td>
-          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(contractEndDate)}</td>
+          <td class="table-label" style="color: #64748b;">Tenure Period:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(contractEndDate)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Stipend Structure:</td>
-          <td style="color: #00e599; font-weight: 700;">${escapeHtml(stipendDisplay)}</td>
+          <td class="table-label" style="color: #64748b;">Stipend Structure:</td>
+          <td class="text-accent" style="color: #008751; font-weight: 700;">${escapeHtml(stipendDisplay)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Reference Code:</td>
-          <td style="color: #ffffff; font-family: monospace;">${escapeHtml(referenceId)}</td>
+          <td class="table-label" style="color: #64748b;">Reference Code:</td>
+          <td class="table-val" style="color: #0f172a; font-family: monospace; font-weight: 700;">${escapeHtml(referenceId)}</td>
         </tr>
       </table>
     </div>
 
     <!-- Instructions Box -->
-    <div style="background-color: rgba(0,229,153,0.06); border-left: 3px solid #00e599; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #c9d1d9;">
-      <strong style="color: #ffffff;">Next Steps to Confirm Your Seat:</strong>
+    <div class="box-instructions" style="background-color: #f0fdf4; border-left: 3px solid #00b87a; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #166534;">
+      <strong class="instructions-heading" style="color: #0f172a;">Next Steps to Confirm Your Seat:</strong>
       <ol style="margin: 8px 0 0 0; padding-left: 20px;">
         <li>Review the attached formal <strong>4-page Internship Offer Letter & Terms PDF</strong>.</li>
         <li>Sign the <strong>Candidate Acceptance block on Page 4</strong>.</li>
@@ -119,11 +119,11 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
       We look forward to working closely with you on production software systems, agile roadmaps, and high-impact engineering milestones!
     </p>
 
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #21262d; font-size: 13.5px; line-height: 1.5; color: #8b949e;">
+    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
       Warm regards,<br>
-      <strong style="color: #ffffff;">Harsh Patel</strong><br>
+      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
       Lead, SkillBun<br>
-      <a href="https://skillbun.tech" style="color: #00e599; text-decoration: none;">skillbun.tech</a>
+      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
     </div>
   `;
 
@@ -192,13 +192,13 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
 
   const contentHtml = `
     <div style="margin-bottom: 24px;">
-      <div style="display: inline-block; background-color: rgba(0,229,153,0.12); color: #00e599; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
+      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
         🚀 Internship Tenure Extension
       </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #ffffff; margin: 0 0 10px 0;">
+      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
         Extension of Internship Tenure
       </h1>
-      <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
+      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
         Official Addendum & Revised Terms
       </p>
     </div>
@@ -212,33 +212,33 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
     </p>
 
     <!-- Details Box -->
-    <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div style="font-weight: 800; color: #00e599; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
+      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
         Revised Tenure Overview
       </div>
       <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.8;">
         <tr>
-          <td style="color: #8b949e; width: 40%;">Candidate Name:</td>
-          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
+          <td class="table-label" style="color: #64748b; width: 40%;">Candidate Name:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Role & Department:</td>
-          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
+          <td class="table-label" style="color: #64748b;">Role & Department:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Revised Tenure Period:</td>
-          <td style="color: #00e599; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(extendedEndDate)}</td>
+          <td class="table-label" style="color: #64748b;">Revised Tenure Period:</td>
+          <td class="text-accent" style="color: #008751; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(extendedEndDate)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Extension Reference:</td>
-          <td style="color: #ffffff; font-family: monospace;">${escapeHtml(referenceId)}</td>
+          <td class="table-label" style="color: #64748b;">Extension Reference:</td>
+          <td class="table-val" style="color: #0f172a; font-family: monospace; font-weight: 700;">${escapeHtml(referenceId)}</td>
         </tr>
       </table>
     </div>
 
     <!-- Instructions Box -->
-    <div style="background-color: rgba(0,229,153,0.06); border-left: 3px solid #00e599; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #c9d1d9;">
-      <strong style="color: #ffffff;">Instructions & Acceptance:</strong>
+    <div class="box-instructions" style="background-color: #f0fdf4; border-left: 3px solid #00b87a; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #166534;">
+      <strong class="instructions-heading" style="color: #0f172a;">Instructions & Acceptance:</strong>
       <ol style="margin: 8px 0 0 0; padding-left: 20px;">
         <li>Review your attached official <strong>Extension Letter PDF</strong>.</li>
         <li>Sign the <strong>Candidate Acceptance block</strong> at the bottom of the letter.</li>
@@ -250,11 +250,11 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
       We look forward to achieving further production milestones and scaling our core systems together!
     </p>
 
-    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #21262d; font-size: 13.5px; line-height: 1.5; color: #8b949e;">
+    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
       Warm regards,<br>
-      <strong style="color: #ffffff;">Harsh Patel</strong><br>
+      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
       Lead, SkillBun<br>
-      <a href="https://skillbun.tech" style="color: #00e599; text-decoration: none;">skillbun.tech</a>
+      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
     </div>
   `;
 
