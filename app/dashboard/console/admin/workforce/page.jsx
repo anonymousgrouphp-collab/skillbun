@@ -16,6 +16,191 @@ const STATUS_TABS = [
   { key: 'TERMINATED', label: 'Terminated' },
 ]
 
+export const PRESET_DEPARTMENTS = [
+  'Engineering & Technology',
+  'Frontend Web Development',
+  'Backend & Cloud Engineering',
+  'Full-Stack Web Development',
+  'AI & Machine Learning',
+  'UI/UX & Product Design',
+  'Product Management',
+  'Content & Technical Writing',
+  'Social Media & PR',
+  'Marketing & Growth',
+  'Human Resources & Talent Acquisition',
+  'Operations & Management',
+]
+
+export const DEPARTMENT_DESIGNATIONS = {
+  'Engineering & Technology': {
+    INTERN: [
+      'Software Engineer Intern',
+      'Engineering Intern',
+      'QA & Testing Intern',
+      'DevOps Intern',
+    ],
+    EMPLOYEE: [
+      'Software Engineer',
+      'Senior Software Engineer',
+      'Lead Software Engineer',
+      'QA Automation Engineer',
+      'DevOps & Cloud Engineer',
+      'Engineering Manager',
+    ],
+  },
+  'Frontend Web Development': {
+    INTERN: [
+      'Frontend Developer Intern',
+      'React / Next.js Developer Intern',
+      'UI Developer Intern',
+    ],
+    EMPLOYEE: [
+      'Frontend Engineer',
+      'Senior Frontend Engineer',
+      'Lead Frontend Engineer',
+    ],
+  },
+  'Backend & Cloud Engineering': {
+    INTERN: [
+      'Backend Developer Intern',
+      'Cloud Engineering Intern',
+      'Node.js / API Intern',
+    ],
+    EMPLOYEE: [
+      'Backend Engineer',
+      'Senior Backend Engineer',
+      'Lead Backend Engineer',
+      'Cloud Architect',
+    ],
+  },
+  'Full-Stack Web Development': {
+    INTERN: [
+      'Full Stack Developer Intern',
+      'Web Development Intern',
+    ],
+    EMPLOYEE: [
+      'Full Stack Engineer',
+      'Senior Full Stack Engineer',
+      'Lead Full Stack Engineer',
+    ],
+  },
+  'AI & Machine Learning': {
+    INTERN: [
+      'AI / ML Engineer Intern',
+      'Generative AI Intern',
+      'Data Science Intern',
+    ],
+    EMPLOYEE: [
+      'AI / ML Engineer',
+      'Senior AI Engineer',
+      'LLM & Applied AI Lead',
+      'Data Scientist',
+    ],
+  },
+  'UI/UX & Product Design': {
+    INTERN: [
+      'UI/UX Design Intern',
+      'Product Design Intern',
+      'Visual Design Intern',
+    ],
+    EMPLOYEE: [
+      'UI/UX Designer',
+      'Senior Product Designer',
+      'Lead Product Designer',
+      'Design Lead',
+    ],
+  },
+  'Product Management': {
+    INTERN: [
+      'Product Management Intern',
+      'Associate Product Intern',
+    ],
+    EMPLOYEE: [
+      'Associate Product Manager',
+      'Product Manager',
+      'Senior Product Manager',
+      'Lead Product Manager',
+    ],
+  },
+  'Content & Technical Writing': {
+    INTERN: [
+      'Content & Technical Writer Intern',
+      'Curriculum Content Intern',
+      'Technical Documentation Intern',
+    ],
+    EMPLOYEE: [
+      'Technical Writer',
+      'Senior Technical Writer',
+      'Content Lead / Technical Writer',
+      'Curriculum Lead',
+    ],
+  },
+  'Social Media & PR': {
+    INTERN: [
+      'Social Media & PR Intern',
+      'Community & PR Intern',
+      'Brand & Social Media Intern',
+    ],
+    EMPLOYEE: [
+      'Social Media & PR Lead',
+      'PR & Communications Manager',
+      'Community & Brand Manager',
+    ],
+  },
+  'Marketing & Growth': {
+    INTERN: [
+      'Digital Marketing & Growth Intern',
+      'SEO & Performance Marketing Intern',
+      'Growth Intern',
+    ],
+    EMPLOYEE: [
+      'Growth & Marketing Specialist',
+      'Growth & Marketing Manager',
+      'SEO & Performance Lead',
+    ],
+  },
+  'Human Resources & Talent Acquisition': {
+    INTERN: [
+      'Human Resources (HR) Intern',
+      'Talent Acquisition Intern',
+      'People Operations Intern',
+    ],
+    EMPLOYEE: [
+      'HR Specialist',
+      'Talent Acquisition Lead',
+      'Human Resources (HR) Lead',
+      'People & Culture Manager',
+    ],
+  },
+  'Operations & Management': {
+    INTERN: [
+      'Operations Intern',
+      'Project Operations Intern',
+      'Business Operations Intern',
+    ],
+    EMPLOYEE: [
+      'Operations Associate',
+      'Operations Lead',
+      'Operations Manager',
+      'Business Operations Manager',
+    ],
+  },
+}
+
+export function getDesignationsFor(department, employmentType) {
+  const roleType = employmentType === 'INTERN' ? 'INTERN' : 'EMPLOYEE'
+  if (department && DEPARTMENT_DESIGNATIONS[department]) {
+    return DEPARTMENT_DESIGNATIONS[department][roleType] || []
+  }
+  const all = new Set()
+  for (const dept of Object.values(DEPARTMENT_DESIGNATIONS)) {
+    for (const d of (dept[roleType] || [])) {
+      all.add(d)
+    }
+  }
+  return Array.from(all)
+}
+
 const EMPTY_FORM = {
   salutation: 'Mr.',
   full_name: '',
@@ -135,6 +320,9 @@ export default function WorkforcePage() {
   const [sortBy, setSortBy] = useState('full_name')
   const [modal, setModal] = useState(null)
   const [form, setForm] = useState(EMPTY_FORM)
+  const [deptSelect, setDeptSelect] = useState('')
+  const [desigSelect, setDesigSelect] = useState('')
+  const [sameAddress, setSameAddress] = useState(false)
   const [dispatchFallback, setDispatchFallback] = useState(null)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
@@ -437,6 +625,9 @@ export default function WorkforcePage() {
 
   const openAdd = () => {
     setForm(EMPTY_FORM)
+    setDeptSelect('')
+    setDesigSelect('')
+    setSameAddress(false)
     setModalTab('DETAILS')
     setShowMilestoneForm(false)
     setEditingMilestoneId(null)
@@ -449,6 +640,27 @@ export default function WorkforcePage() {
 
   const openEdit = (employee) => {
     setForm(formFromEmployee(employee))
+    let activeDept = ''
+    if (PRESET_DEPARTMENTS.includes(employee.department)) {
+      activeDept = employee.department
+      setDeptSelect(employee.department)
+    } else if (employee.department) {
+      activeDept = '__OTHER__'
+      setDeptSelect('__OTHER__')
+    } else {
+      setDeptSelect('')
+    }
+
+    const activeList = getDesignationsFor(activeDept === '__OTHER__' ? '' : activeDept, employee.employment_type)
+    if (activeList.includes(employee.designation)) {
+      setDesigSelect(employee.designation)
+    } else if (employee.designation) {
+      setDesigSelect('__OTHER__')
+    } else {
+      setDesigSelect('')
+    }
+
+    setSameAddress(Boolean(employee.current_address && employee.permanent_address && employee.current_address.trim() === employee.permanent_address.trim()))
     setModalTab('DETAILS')
     setShowMilestoneForm(false)
     setEditingMilestoneId(null)
@@ -465,6 +677,82 @@ export default function WorkforcePage() {
       setShowMilestoneForm(false)
       setEditingMilestoneId(null)
       setIssuanceModal(null)
+    }
+  }
+
+  const handleEmploymentTypeChange = (event) => {
+    const newType = event.target.value
+    setForm((current) => ({ ...current, employment_type: newType }))
+    const activeList = getDesignationsFor(deptSelect === '__OTHER__' ? '' : deptSelect, newType)
+    if (desigSelect !== '__OTHER__') {
+      if (activeList.includes(form.designation)) {
+        setDesigSelect(form.designation)
+      } else {
+        setDesigSelect('')
+        setForm((current) => ({ ...current, designation: '' }))
+      }
+    }
+  }
+
+  const handleDeptSelectChange = (event) => {
+    const value = event.target.value
+    setDeptSelect(value)
+    let updatedDept = value
+    if (value === '__OTHER__') {
+      if (PRESET_DEPARTMENTS.includes(form.department)) {
+        updatedDept = ''
+      } else {
+        updatedDept = form.department
+      }
+    }
+    setForm((current) => ({ ...current, department: updatedDept }))
+
+    const newAvailableDesigs = getDesignationsFor(value === '__OTHER__' ? '' : value, form.employment_type)
+    if (desigSelect !== '__OTHER__') {
+      if (newAvailableDesigs.includes(form.designation)) {
+        setDesigSelect(form.designation)
+      } else {
+        setDesigSelect('')
+        setForm((current) => ({ ...current, designation: '' }))
+      }
+    }
+  }
+
+  const handleDesigSelectChange = (event) => {
+    const value = event.target.value
+    setDesigSelect(value)
+    const activeList = getDesignationsFor(deptSelect === '__OTHER__' ? '' : deptSelect, form.employment_type)
+    if (value === '__OTHER__') {
+      if (activeList.includes(form.designation)) {
+        setForm((current) => ({ ...current, designation: '' }))
+      }
+    } else {
+      setForm((current) => ({ ...current, designation: value }))
+    }
+  }
+
+  const handleCurrentAddressChange = (event) => {
+    const value = event.target.value
+    setForm((current) => ({
+      ...current,
+      current_address: value,
+      ...(sameAddress ? { permanent_address: value } : {}),
+    }))
+  }
+
+  const handlePermanentAddressChange = (event) => {
+    const value = event.target.value
+    if (sameAddress && value !== form.current_address) {
+      setSameAddress(false)
+    }
+    setForm((current) => ({ ...current, permanent_address: value }))
+  }
+
+  const handleSameAddressToggle = (event) => {
+    const isChecked = event.target.checked
+    setSameAddress(isChecked)
+    if (isChecked) {
+      setForm((current) => ({ ...current, permanent_address: current.current_address }))
     }
   }
 
@@ -676,10 +964,10 @@ export default function WorkforcePage() {
 
   const actionsFor = (employee) => {
     const actions = []
-    if (employee.status === 'OFFER_SENT') actions.push(['ACTIVE', 'Mark Active'])
-    if (employee.status === 'ACTIVE') actions.push(['EXTENDED', 'Mark Extended'])
-    if (['ACTIVE', 'EXTENDED'].includes(employee.status)) actions.push(['COMPLETED', 'Mark Completed'])
-    if (['OFFER_SENT', 'ACTIVE', 'EXTENDED'].includes(employee.status)) actions.push(['TERMINATED', 'Mark Terminated'])
+    if (employee.status === 'OFFER_SENT') actions.push(['ACTIVE', 'Activate'])
+    if (employee.status === 'ACTIVE') actions.push(['EXTENDED', 'Extend'])
+    if (['ACTIVE', 'EXTENDED'].includes(employee.status)) actions.push(['COMPLETED', 'Complete'])
+    if (['OFFER_SENT', 'ACTIVE', 'EXTENDED'].includes(employee.status)) actions.push(['TERMINATED', 'Terminate'])
     return actions
   }
 
@@ -791,58 +1079,189 @@ export default function WorkforcePage() {
 
       {modal && <div className={styles.backdrop} role="presentation" onMouseDown={closeModal}>
         <section className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}>
-          {modal === 'confirm-terminate' ? <>
-            <div className={styles.modalHeader}><div><p className={styles.eyebrow}>Status change</p><h2 id="modal-title">Terminate employment?</h2></div><button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button></div>
-            <p className={styles.confirmText}>This will mark <strong>{form.full_name}</strong> as terminated. You can archive the record later, but this status change is logged immediately.</p>
-            <div className={styles.modalActions}><button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button><button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting}>{submitting ? 'Updating...' : 'Confirm termination'}</button></div>
-          </> : <div>
-            <div className={styles.modalHeader}><div><p className={styles.eyebrow}>{modal === 'add' ? 'New workforce record' : 'Employee record'}</p><h2 id="modal-title">{modal === 'add' ? 'Add Candidate' : `Edit ${form.full_name}`}</h2></div><button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button></div>
-            {modal === 'edit' && (
-              <div className={styles.modalTabs}>
-                <button
-                  type="button"
-                  className={`${styles.modalTab} ${modalTab === 'DETAILS' ? styles.modalTabActive : ''}`}
-                  onClick={() => setModalTab('DETAILS')}
-                >
-                  Candidate Details
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.modalTab} ${modalTab === 'MILESTONES' ? styles.modalTabActive : ''}`}
-                  onClick={() => setModalTab('MILESTONES')}
-                >
-                  Sprint Milestones ({milestones.length})
-                </button>
-                <button
-                  type="button"
-                  className={`${styles.modalTab} ${modalTab === 'CREDENTIALS' ? styles.modalTabActive : ''}`}
-                  onClick={() => setModalTab('CREDENTIALS')}
-                >
-                  Credentials & LOR ({credentials.length})
-                </button>
-              </div>
-            )}
-
-            {modalTab === 'DETAILS' && (
-              <form onSubmit={saveEmployee}>
-                <div className={styles.formGrid}>
-                  <label>Salutation<select name="salutation" value={form.salutation} onChange={updateField}><option>Mr.</option><option>Ms.</option></select></label>
-                  <label>Full name<input name="full_name" value={form.full_name} onChange={updateField} required /></label>
-                  <label>Parent name<input name="parent_name" value={form.parent_name} onChange={updateField} required /></label>
-                  <label>Personal email<input name="personal_email" type="email" value={form.personal_email} onChange={updateField} required /></label>
-                  <label>Phone<input name="phone" value={form.phone} onChange={updateField} required /></label>
-                  <label>Employment type<select name="employment_type" value={form.employment_type} onChange={updateField}><option value="INTERN">Intern</option><option value="FULL_TIME">Full time</option><option value="CONTRACTOR">Contractor</option></select></label>
-                  <label>Course / degree<input name="course_degree" value={form.course_degree} onChange={updateField} required /></label>
-                  <label>College name<input name="college_name" value={form.college_name} onChange={updateField} required /></label>
-                  <label>Department<input name="department" value={form.department} onChange={updateField} required /></label>
-                  <label>Designation<input name="designation" value={form.designation} onChange={updateField} required /></label>
-                  <label>Joining date<input name="joining_date" type="date" value={form.joining_date} onChange={updateField} required /></label>
-                  <label>Contract end date<input name="contract_end_date" type="date" value={form.contract_end_date} onChange={updateField} required /></label>
-                  <label>Stipend amount (INR)<input name="stipend_amount" type="number" min="0" step="0.01" value={form.stipend_amount} onChange={updateField} required /></label>
-                  <label>Work email <span className={styles.optional}>Optional</span><input name="work_email" type="email" value={form.work_email} onChange={updateField} /></label>
-                  <label className={styles.fullWidth}>Current address<textarea name="current_address" value={form.current_address} onChange={updateField} required rows="2" /></label>
-                  <label className={styles.fullWidth}>Permanent address<textarea name="permanent_address" value={form.permanent_address} onChange={updateField} required rows="2" /></label>
+          {modal === 'confirm-terminate' ? (
+            <div className={styles.modalContent} style={{ padding: '1.35rem' }}>
+              <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
+                <div>
+                  <p className={styles.eyebrow}>Status change</p>
+                  <h2 id="modal-title">Terminate employment?</h2>
                 </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+              <p className={styles.confirmText}>This will mark <strong>{form.full_name}</strong> as terminated. You can archive the record later, but this status change is logged immediately.</p>
+              <div className={styles.modalActions} style={{ borderTop: 'none', marginTop: '1.15rem' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting}>{submitting ? 'Updating...' : 'Confirm termination'}</button>
+              </div>
+            </div>
+          ) : modal === 'dispatch-fallback' && dispatchFallback ? (
+            <div className={styles.modalContent} style={{ padding: '1.35rem' }}>
+              <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
+                <div>
+                  <p className={styles.eyebrow}>SMTP Dispatch Notice</p>
+                  <h2 id="modal-title">Manual Dispatch Ready</h2>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+              <p className={styles.confirmText}>
+                The 4-page formal Offer Letter PDF (Ref: <strong>{dispatchFallback.referenceId}</strong>) was generated successfully.
+                However, automated Zoho SMTP delivery failed. You can download the generated PDF below and email the candidate manually:
+              </p>
+              <div className={styles.alertBanner} role="alert" style={{ margin: '1rem 0' }}>
+                <span>{dispatchFallback.error}</span>
+              </div>
+              <div className={styles.boxDark} style={{ margin: '1rem 0', fontSize: '0.86rem', lineHeight: '1.6' }}>
+                <p style={{ margin: '0 0 0.35rem 0' }}><strong>Recipient:</strong> {dispatchFallback.recipient}</p>
+                <p style={{ margin: 0 }}><strong>Subject:</strong> {dispatchFallback.subject}</p>
+              </div>
+              <div className={styles.modalActions}>
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  onClick={() => downloadBase64Pdf(dispatchFallback.pdfBase64, dispatchFallback.filename)}
+                >
+                  Download Generated PDF
+                </button>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close</button>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.modalContent}>
+              <div className={styles.modalHeader}>
+                <div>
+                  <p className={styles.eyebrow}>{modal === 'add' ? 'New workforce record' : 'Employee record'}</p>
+                  <h2 id="modal-title">{modal === 'add' ? 'Add Candidate' : `Edit ${form.full_name}`}</h2>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+              {modal === 'edit' && (
+                <div className={styles.modalTabs}>
+                  <button
+                    type="button"
+                    className={`${styles.modalTab} ${modalTab === 'DETAILS' ? styles.modalTabActive : ''}`}
+                    onClick={() => setModalTab('DETAILS')}
+                  >
+                    Candidate Details
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.modalTab} ${modalTab === 'MILESTONES' ? styles.modalTabActive : ''}`}
+                    onClick={() => setModalTab('MILESTONES')}
+                  >
+                    Sprint Milestones ({milestones.length})
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.modalTab} ${modalTab === 'CREDENTIALS' ? styles.modalTabActive : ''}`}
+                    onClick={() => setModalTab('CREDENTIALS')}
+                  >
+                    Credentials & LOR ({credentials.length})
+                  </button>
+                </div>
+              )}
+
+              <div className={styles.modalBody}>
+                {modalTab === 'DETAILS' && (
+                  <form onSubmit={saveEmployee}>
+                    <div className={styles.formGrid}>
+                      <label>Salutation<select name="salutation" value={form.salutation} onChange={updateField}><option>Mr.</option><option>Ms.</option></select></label>
+                      <label>Full name<input name="full_name" value={form.full_name} onChange={updateField} required /></label>
+                      <label>Parent name<input name="parent_name" value={form.parent_name} onChange={updateField} required /></label>
+                      <label>Personal email<input name="personal_email" type="email" value={form.personal_email} onChange={updateField} required /></label>
+                      <label>Phone<input name="phone" value={form.phone} onChange={updateField} required /></label>
+                      <label>Employment type<select name="employment_type" value={form.employment_type} onChange={handleEmploymentTypeChange}><option value="INTERN">Intern</option><option value="FULL_TIME">Full time</option><option value="CONTRACTOR">Contractor</option></select></label>
+                      <label>Course / degree<input name="course_degree" value={form.course_degree} onChange={updateField} required /></label>
+                      <label>College name<input name="college_name" value={form.college_name} onChange={updateField} required /></label>
+                      
+                      <div className={styles.fieldGroup}>
+                        <label>
+                          Department
+                          <select value={deptSelect} onChange={handleDeptSelectChange} required>
+                            <option value="" disabled>Select department...</option>
+                            {PRESET_DEPARTMENTS.map((dept) => (
+                              <option key={dept} value={dept}>{dept}</option>
+                            ))}
+                            <option value="__OTHER__">Other (Please specify)</option>
+                          </select>
+                        </label>
+                        {deptSelect === '__OTHER__' && (
+                          <input
+                            name="department"
+                            value={form.department}
+                            onChange={updateField}
+                            placeholder="Please specify department name"
+                            required
+                            className={styles.specifyInput}
+                            autoFocus
+                          />
+                        )}
+                      </div>
+
+                      <div className={styles.fieldGroup}>
+                        <label>
+                          Designation ({form.employment_type === 'INTERN' ? 'Intern Roles' : 'Employee Roles'}
+                          {deptSelect && deptSelect !== '__OTHER__' ? ` • ${deptSelect}` : ''})
+                          <select value={desigSelect} onChange={handleDesigSelectChange} required>
+                            <option value="" disabled>
+                              {deptSelect && deptSelect !== '__OTHER__' ? `Select ${deptSelect} role...` : 'Select designation...'}
+                            </option>
+                            {getDesignationsFor(deptSelect === '__OTHER__' ? '' : deptSelect, form.employment_type).map((desig) => (
+                              <option key={desig} value={desig}>{desig}</option>
+                            ))}
+                            <option value="__OTHER__">Other (Please specify)</option>
+                          </select>
+                        </label>
+                        {desigSelect === '__OTHER__' && (
+                          <input
+                            name="designation"
+                            value={form.designation}
+                            onChange={updateField}
+                            placeholder="Please specify designation title"
+                            required
+                            className={styles.specifyInput}
+                            autoFocus
+                          />
+                        )}
+                      </div>
+
+                      <label>Joining date<input name="joining_date" type="date" value={form.joining_date} onChange={updateField} required /></label>
+                      <label>Contract end date<input name="contract_end_date" type="date" value={form.contract_end_date} onChange={updateField} required /></label>
+                      <label>Stipend amount (INR)<input name="stipend_amount" type="number" min="0" step="0.01" value={form.stipend_amount} onChange={updateField} required /></label>
+                      <label>Work email <span className={styles.optional}>Optional</span><input name="work_email" type="email" value={form.work_email} onChange={updateField} /></label>
+                      <label className={styles.fullWidth}>
+                        Current address
+                        <textarea
+                          name="current_address"
+                          value={form.current_address}
+                          onChange={handleCurrentAddressChange}
+                          required
+                          rows="2"
+                          placeholder="Current residential / local address"
+                        />
+                      </label>
+                      
+                      <div className={styles.fullWidth}>
+                        <div className={styles.addressHeader}>
+                          <label style={{ margin: 0 }}>Permanent address</label>
+                          <label className={styles.checkboxLabel}>
+                            <input
+                              type="checkbox"
+                              checked={sameAddress}
+                              onChange={handleSameAddressToggle}
+                            />
+                            <span>Same as current address</span>
+                          </label>
+                        </div>
+                        <textarea
+                          name="permanent_address"
+                          value={form.permanent_address}
+                          onChange={handlePermanentAddressChange}
+                          required
+                          rows="2"
+                          placeholder="Permanent home address"
+                        />
+                      </div>
+                    </div>
                 <fieldset className={styles.credentials}><legend>Zoho credentials <span>optional and encrypted on save</span></legend><div className={styles.formGrid}>
                   <label>Zoho work email<input name="work_email" type="email" value={form.credentials_data.work_email} onChange={updateCredential} /></label>
                   <label>Zoho password<input name="password" type="password" value={form.credentials_data.password} onChange={updateCredential} autoComplete="new-password" /></label>
@@ -1226,7 +1645,9 @@ export default function WorkforcePage() {
                 </div>
               </div>
             )}
-          </div>}
+            </div>
+          </div>
+        )}
           {modal === 'dispatch-fallback' && dispatchFallback && (
             <div>
               <div className={styles.modalHeader}>
