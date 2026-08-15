@@ -97,6 +97,18 @@ export default function AnalyticsDashboardPage() {
   const userEmail = (user?.email || '').trim().toLowerCase();
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam === 'certs' || tabParam === 'certificates') {
+        setActiveTab('certificates');
+      } else if (tabParam === 'users' || tabParam === 'crm' || tabParam === 'students') {
+        setActiveTab('users');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (authLoading || checking) return;
     if (!user || !isAdmin) return;
 
