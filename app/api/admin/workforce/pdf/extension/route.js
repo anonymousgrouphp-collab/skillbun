@@ -72,7 +72,7 @@ export async function POST(request) {
       doc_type: 'EXTENSION_LETTER',
       title: 'Extension of Internship Tenure',
       metadata_snapshot: metadataSnapshot,
-      issued_by: admin.email || admin.uid,
+      issued_by: admin.email || admin.uid || 'admin',
       issued_at: now,
     });
     batch.update(doc.ref, {
@@ -106,6 +106,6 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error('[Workforce PDF Extension Generation Error]', error);
-    return apiError('Unable to generate Extension Letter PDF.', 500, 'INTERNAL_ERROR');
+    return apiError(error?.message || 'Unable to generate Extension Letter PDF.', 500, 'INTERNAL_ERROR');
   }
 }
