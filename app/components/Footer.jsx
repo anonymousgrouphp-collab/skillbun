@@ -36,6 +36,7 @@ export default function Footer() {
             <li><Link href="/counsellor">BunBot</Link></li>
             <li><Link href="/dashboard">Dashboard</Link></li>
             <li><Link href="/certificate">Verify Certificate</Link></li>
+            <li><Link href="/alumni">Alumni & Workforce Vault</Link></li>
           </ul>
         </div>
         <div className="footer-col">

@@ -304,31 +304,66 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
  * @param {string} [params.effectiveDate] - Effective date string
  * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
  */
-export function buildTerminationDispatchEmail({ employee, reason, effectiveDate }) {
+export function buildTerminationDispatchEmail({
+  employee,
+  reasonCode = 'COMPLETED',
+  reason = '',
+  grantedCredentials = [],
+  effectiveDate,
+}) {
   if (!employee) {
     throw new TypeError('buildTerminationDispatchEmail requires an employee record object.');
   }
 
   const salutation = employee.salutation || 'Mr./Ms.';
   const fullName = employee.full_name || 'Candidate';
-  const designation = employee.designation || 'Intern / Employee';
+  const designation = employee.designation || 'Intern';
   const department = employee.department || 'Tech Team';
   const effDate = formatDate(effectiveDate || new Date());
 
-  const subject = `[SkillBun] Official Notice of Engagement Conclusion & Offboarding - ${fullName}`;
+  const isPositive = ['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION', 'MUTUAL_SEPARATION'].includes(reasonCode);
+
+  const subject = isPositive
+    ? `[SkillBun] Internship Completion & Offboarding Acknowledgement - ${fullName}`
+    : `[SkillBun] Official Notice of Engagement Conclusion - ${fullName}`;
+
   const cc = 'harsh@skillbun.tech';
   const replyTo = 'harsh@skillbun.tech';
 
+  const badgeText = isPositive ? '🎉 Tenure Concluded & Certified' : '⚠️ Formal Offboarding Notice';
+  const badgeColor = isPositive ? '#008751' : '#ef4444';
+  const badgeBg = isPositive ? 'rgba(0,184,122,0.1)' : 'rgba(239,68,68,0.12)';
+  const headingText = isPositive ? 'Completion of Internship Tenure' : 'Notice of Engagement Conclusion';
+
+  const introParagraph = isPositive
+    ? `We would like to formally acknowledge the successful conclusion of your internship tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun, effective <strong>${escapeHtml(effDate)}</strong>. We sincerely appreciate your dedication, technical problem solving, and proactive contributions to our student-centric tech roadmaps.`
+    : `This email serves as official notification that your tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun has concluded, effective <strong>${escapeHtml(effDate)}</strong>.`;
+
+  const credentialsHtml = grantedCredentials.length > 0 ? `
+    <div class="box-card" style="background-color: #f0fdf4; border: 1.5px solid rgba(0,184,122,0.3); border-radius: 14px; padding: 18px 20px; margin: 18px 0;">
+      <div style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">
+        🎓 Granted Verified Credentials & Documents
+      </div>
+      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #166534;">
+        ${grantedCredentials.map((c) => `<li><strong>${escapeHtml(c)}</strong> — Verified in SkillBun Trust Registry</li>`).join('')}
+      </ul>
+      <div style="margin-top: 12px; font-size: 13px; color: #166534;">
+        You can securely view, verify, and download all your official credentials at any time in the <strong>SkillBun Alumni Vault</strong>:<br>
+        <a href="https://skillbun.tech/alumni" style="display: inline-block; margin-top: 8px; background-color: #008751; color: #ffffff; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-weight: 750; font-size: 12.5px;">Visit Alumni Document Vault &rarr;</a>
+      </div>
+    </div>
+  ` : '';
+
   const contentHtml = `
     <div style="margin-bottom: 24px;">
-      <div style="display: inline-block; background-color: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        ⚠️ Formal Offboarding Notice
+      <div style="display: inline-block; background-color: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeColor}; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
+        ${badgeText}
       </div>
       <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        Notice of Engagement Conclusion
+        ${headingText}
       </h1>
       <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
-        Official Record & Access Revocation Notice
+        Official Record & Offboarding Summary
       </p>
     </div>
 
@@ -337,7 +372,7 @@ export function buildTerminationDispatchEmail({ employee, reason, effectiveDate 
     </p>
 
     <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      This email serves as official notification that your tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun has concluded, effective <strong>${escapeHtml(effDate)}</strong>.
+      ${introParagraph}
     </p>
 
     ${reason ? `
@@ -347,27 +382,29 @@ export function buildTerminationDispatchEmail({ employee, reason, effectiveDate 
     </div>
     ` : ''}
 
+    ${credentialsHtml}
+
     <!-- Offboarding Protocol Box -->
     <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div style="font-weight: 800; color: #ef4444; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+      <div style="font-weight: 800; color: ${badgeColor}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
         Offboarding & Access Protocol
       </div>
       <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #475569;">
-        <li>All internal workforce credentials, dashboard privileges, and production access have been <strong>immediately revoked</strong>.</li>
-        <li>Active certificates or verified status badges tied to this active role have been transitioned to concluded/revoked status.</li>
-        <li>You remain bound by confidentiality and intellectual property non-disclosure obligations agreed upon during onboarding.</li>
+        <li>Internal workforce administrative credentials and workspace permissions have been transitioned to offboarded status.</li>
+        <li>Your earned public credentials remain securely preserved in the <a href="https://skillbun.tech/alumni" style="color: #008751; text-decoration: underline;">Alumni Vault</a>.</li>
+        <li>You remain bound by confidentiality and non-disclosure terms agreed upon during engagement.</li>
       </ul>
     </div>
 
     <p style="margin: 20px 0 0 0; line-height: 1.6;">
-      If you have questions regarding offboarding settlements or final documentation, please reply directly to this email thread.
+      ${isPositive ? 'We wish you the very best in your future career endeavors and look forward to celebrating your continued success!' : 'If you have questions regarding offboarding settlements or documentation, reply directly to this email.'}
     </p>
 
     <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
-      Sincerely,<br>
+      Warm regards,<br>
       <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
       Lead, SkillBun<br>
-      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
+      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 750;">skillbun.tech</a>
     </div>
   `;
 
@@ -381,17 +418,16 @@ export function buildTerminationDispatchEmail({ employee, reason, effectiveDate 
   const text = [
     `Dear ${salutation} ${fullName},`,
     '',
-    `This email serves as official notification that your tenure as ${designation} within the ${department} at SkillBun has concluded, effective ${effDate}.`,
+    introParagraph.replace(/<[^>]+>/g, ''),
     '',
     reason ? `Administrative Note: ${reason}\n` : '',
+    grantedCredentials.length > 0 ? `GRANTED CREDENTIALS:\n${grantedCredentials.map((c) => `- ${c}`).join('\n')}\nAlumni Document Vault: https://skillbun.tech/alumni\n` : '',
     'OFFBOARDING & ACCESS PROTOCOL:',
-    '- All internal workforce credentials, dashboard privileges, and portal access have been immediately revoked.',
-    '- Active credentials or verified status badges tied to this role have been transitioned to concluded/revoked status.',
-    '- You remain bound by confidentiality and non-disclosure obligations.',
+    '- Internal workspace credentials and dashboard privileges have transitioned to offboarded status.',
+    '- Earned public credentials remain preserved at https://skillbun.tech/alumni.',
+    '- Confidentiality and non-disclosure obligations remain binding.',
     '',
-    'If you have questions regarding offboarding settlements or final documentation, reply directly to this email.',
-    '',
-    'Sincerely,',
+    'Warm regards,',
     'Harsh Patel',
     'Lead, SkillBun',
     'https://skillbun.tech',
