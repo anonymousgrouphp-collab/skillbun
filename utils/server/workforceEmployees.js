@@ -28,8 +28,8 @@ const STATUS_TRANSITIONS = Object.freeze({
 })
 
 const EMPLOYEE_RATE_LIMITS = [
-  { name: 'adminMinute', windowMs: 60 * 1000, maxRequests: 10, getSubject: ({ uid }) => `user:${uid}` },
-  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 30, getSubject: ({ address }) => `ip:${address}` },
+  { name: 'adminMinute', windowMs: 60 * 1000, maxRequests: 240, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'ipHour', windowMs: 60 * 60 * 1000, maxRequests: 2000, getSubject: ({ address }) => `ip:${address}` },
 ]
 
 function validateDate(value, fieldName) {
@@ -181,6 +181,10 @@ export async function requireWorkforceAdmin(request) {
 }
 
 export async function enforceEmployeeRateLimit(request, uid) {
+  if (process.env.NODE_ENV === 'development') {
+    return null;
+  }
+
   const rateLimit = await checkServerRateLimit({
     namespace: 'workforceEmployees',
     subject: { uid, address: getClientAddress(request) },
