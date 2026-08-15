@@ -713,9 +713,9 @@ export default function WorkforcePage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
               <p className={styles.eyebrow} style={{ margin: 0 }}>Team Cosmic / SkillBun</p>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>
-              <a href="/admin" style={{ color: 'var(--green)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '700' }}>← Admin Hub</a>
+              <a href="/dashboard/console/admin" style={{ color: 'var(--green)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '700' }}>← Admin Hub</a>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>
-              <a href="/admin/analytics" style={{ color: 'var(--muted)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '600' }}>📊 Analytics & CRM</a>
+              <a href="/dashboard/console/admin/analytics" style={{ color: 'var(--muted)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '600' }}>📊 Analytics & CRM</a>
             </div>
             <h1 id="workforce-title">Workforce Hub</h1>
             <p className={styles.subtitle}>Manage candidate details, employment status, and upcoming contract milestones.</p>

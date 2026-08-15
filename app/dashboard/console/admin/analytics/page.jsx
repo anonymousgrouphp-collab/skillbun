@@ -499,7 +499,7 @@ export default function AnalyticsDashboardPage() {
         <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
           This section is restricted to authorized platform administrators. Please sign in with your admin account.
         </p>
-        <Link href="/auth?next=/admin/analytics" className="btn-primary" style={{ display: 'inline-block', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
+        <Link href="/auth?next=/dashboard/console/admin/analytics" className="btn-primary" style={{ display: 'inline-block', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
           🌐 Sign in with Google
         </Link>
       </div>
@@ -597,12 +597,14 @@ export default function AnalyticsDashboardPage() {
           >
             📥 Export Database (CSV)
           </button>
-          <Link href="/admin" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
-            🏠 Admin Hub
-          </Link>
-          <Link href="/admin/workforce" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
-            👥 Workforce Hub
-          </Link>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link href="/dashboard/console/admin" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
+              ← Admin Hub
+            </Link>
+            <Link href="/dashboard/console/admin/workforce" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
+              👥 Workforce Hub
+            </Link>
+          </div>
           <Link href="/dashboard" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--muted)', fontWeight: '600', fontSize: '0.88rem' }}>
             ← Student Dashboard
           </Link>

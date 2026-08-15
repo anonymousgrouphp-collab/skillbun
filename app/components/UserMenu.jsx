@@ -14,7 +14,6 @@ const GUEST_ITEMS = [
 
 const INCOMPLETE_PROFILE_ITEMS = [
   { href: '/projects', label: 'Projects Hub', icon: 'projects' },
-  { href: '/portal', label: 'Intern Workspace', icon: 'spark' },
   { href: '/onboarding?next=/dashboard', label: 'Complete Profile', icon: 'profile' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
@@ -24,7 +23,6 @@ const INCOMPLETE_PROFILE_ITEMS = [
 const COMPLETE_PROFILE_ITEMS = [
   { href: '/projects', label: 'Projects Hub', icon: 'projects' },
   { href: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
-  { href: '/portal', label: 'Intern Workspace', icon: 'spark' },
   { href: '/onboarding?next=/dashboard&edit=1', label: 'Profile Settings', icon: 'profile' },
   { href: '/roadmap?view=saved', label: 'Saved Paths', icon: 'saved' },
   { href: '/certificate', label: 'Verify Certificate', icon: 'verify' },
@@ -374,9 +372,7 @@ export default function UserMenu() {
     user.providerData.some((p) => p.providerId === 'google.com');
   const isFounderAdmin = userEmail === 'harsh@skillbun.tech' && isGoogleLogin;
   const baseItems = isProfileComplete ? COMPLETE_PROFILE_ITEMS : INCOMPLETE_PROFILE_ITEMS;
-  const accountItems = isFounderAdmin
-    ? [{ href: '/admin', label: 'Admin Console', icon: 'shield' }, ...baseItems]
-    : baseItems;
+  const accountItems = baseItems;
 
   return (
     <div className="mobile-dropdown-group user-menu-shell user-menu-shell-authenticated">

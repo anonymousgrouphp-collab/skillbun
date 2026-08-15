@@ -44,7 +44,7 @@ export default function AdminRootPage() {
             This internal operations portal is strictly restricted to authorized platform administrators. Please authenticate with your admin account.
           </p>
           <Link
-            href="/auth?next=/admin"
+            href="/auth?next=/dashboard/console/admin"
             style={{
               background: 'var(--green)',
               color: '#000',
@@ -135,7 +135,7 @@ export default function AdminRootPage() {
             </svg>
             Student Dashboard
           </Link>
-          <Link href="/portal" className={styles.actionBtnSecondary}>
+          <Link href="/dashboard/console/portal" className={styles.actionBtnSecondary}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
@@ -196,7 +196,7 @@ export default function AdminRootPage() {
           </div>
 
           <div className={styles.hubCardFooter}>
-            <Link href="/admin/workforce" className={styles.hubFooterLink}>
+            <Link href="/dashboard/console/admin/workforce" className={styles.hubFooterLink}>
               <span>Open Workforce Hub</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -254,7 +254,7 @@ export default function AdminRootPage() {
           </div>
 
           <div className={styles.hubCardFooterSplit}>
-            <Link href="/admin/analytics" className={styles.hubFooterLink}>
+            <Link href="/dashboard/console/admin/analytics" className={styles.hubFooterLink}>
               <span>Open Student CRM</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -262,7 +262,7 @@ export default function AdminRootPage() {
               </svg>
             </Link>
 
-            <Link href="/admin/analytics?tab=certs" className={styles.hubFooterLinkSecondary}>
+            <Link href="/dashboard/console/admin/analytics?tab=certs" className={styles.hubFooterLinkSecondary}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 15l-2 5l4-2l4 2l-2-5"/>
                 <circle cx="12" cy="9" r="6"/>
