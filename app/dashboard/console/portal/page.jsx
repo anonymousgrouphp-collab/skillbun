@@ -249,7 +249,7 @@ export default function InternPortalPage() {
         {/* ── HERO BANNER ── */}
         <section className={styles.portalHero}>
           <div className={styles.heroLeft}>
-            <p className={styles.eyebrow}>Team Cosmic / SkillBun Intern Workspace</p>
+            <p className={styles.eyebrow}>SkillBun Intern Workspace</p>
             <h1 className={styles.heroTitle}>Welcome, {employee.full_name}</h1>
             <div className={styles.heroMeta}>
               <span><strong>Designation:</strong> {employee.designation}</span>

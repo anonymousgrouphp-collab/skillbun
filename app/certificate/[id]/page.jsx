@@ -95,11 +95,11 @@ export default function CertificatePage() {
           const title = data.stream_or_track || data.roadmapTitle || 'Professional Track';
 
           if (certType === 'INTERNSHIP') {
-            setCustomPostText(`I'm excited to share that I have earned the Verified Certificate of Internship in ${title} at @SkillBun / Team Cosmic! 🚀\n\nVerify my credential here: ${certUrl}`);
+            setCustomPostText(`I'm excited to share that I have earned the Verified Certificate of Internship in ${title} at @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`);
           } else if (certType === 'TRAINING') {
             setCustomPostText(`I'm excited to share that I have completed the Professional Training in ${title} on @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`);
           } else if (certType === 'LOR') {
-            setCustomPostText(`I am honoured to share my Official Letter of Recommendation from @SkillBun / Team Cosmic! 🌟\n\nVerify here: ${certUrl}`);
+            setCustomPostText(`I am honoured to share my Official Letter of Recommendation from @SkillBun! 🌟\n\nVerify here: ${certUrl}`);
           } else {
             setCustomPostText(`I'm excited to share that I have completed the ${data.roadmapTitle || 'Roadmap'} Certification on @SkillBun! 🚀\n\nVerify my credential here: ${certUrl}`);
           }
@@ -286,7 +286,7 @@ export default function CertificatePage() {
                 <img src="/logo.png" alt="SkillBun Logo" />
                 <div>
                   <h2>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h2>
-                  <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 'bold', letterSpacing: '0.05em' }}>TEAM COSMIC HOLDINGS</span>
+                  <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 'bold', letterSpacing: '0.05em' }}>OFFICIAL VERIFIED CREDENTIAL</span>
                 </div>
               </div>
               <div className={styles.lorMetaRight}>
@@ -308,14 +308,14 @@ export default function CertificatePage() {
             </div>
 
             <div className={styles.lorBody}>
-              {cert.recommendation_text || 'This is to certify that the candidate demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun / Team Cosmic.'}
+              {cert.recommendation_text || 'This is to certify that the candidate demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun.'}
             </div>
 
             <footer className={styles.lorSignOff}>
               <div className={styles.lorSignDetails}>
                 <strong>{cert.issued_by || 'Harsh Patel'}</strong>
                 <span>Lead & Managing Director</span>
-                <span>SkillBun / Team Cosmic</span>
+                <span>SkillBun</span>
               </div>
               <div className={styles.lorSealBlock}>
                 <span className={styles.lorSealBadge}>🔒 Verified Official Credential</span>

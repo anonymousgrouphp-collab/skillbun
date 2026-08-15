@@ -140,7 +140,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page1, '1. BACKGROUND & ORGANIZATIONAL OVERVIEW', y, boldFont, 10);
   y = drawParagraph(
     page1,
-    'SkillBun operates under its parent organization, Team Cosmic, with a dedicated mission to empower students and early-career software developers with structured roadmap navigation, practical technical skill mastery, and direct production engineering exposure. Through our collaborative internship programs, we bring emerging talent into high-impact environments to build, deploy, and scale world-class developer tools and career discovery platforms.',
+    'SkillBun operates with a dedicated mission to empower students and early-career software developers with structured roadmap navigation, practical technical skill mastery, and direct production engineering exposure. Through our collaborative internship programs, we bring emerging talent into high-impact environments to build, deploy, and scale world-class developer tools and career discovery platforms.',
     y,
     regularFont,
     9,
@@ -153,7 +153,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page1, '2. SELECTION AS INTERN', y, boldFont, 10);
   y = drawParagraph(
     page1,
-    `Following our structured 4-round technical screening process (comprising Resume & Portfolio Screening, Preliminary Introductory Evaluation, Technical Domain Q&A, and Leadership Review), Team Cosmic and SkillBun are pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
+    `Following our structured 4-round technical screening process (comprising Resume & Portfolio Screening, Preliminary Introductory Evaluation, Technical Domain Q&A, and Leadership Review), SkillBun is pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
     y,
     regularFont,
     9,
@@ -175,7 +175,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y -= 4;
   y = drawParagraph(
     page1,
-    '3.2 Internship Not Employment: The candidate acknowledges and agrees that this engagement is strictly an internship and does not constitute an employer-employee relationship, civil service post, or entitlement to permanent tenure at Team Cosmic or SkillBun.',
+    '3.2 Internship Not Employment: The candidate acknowledges and agrees that this engagement is strictly an internship and does not constitute an employer-employee relationship, civil service post, or entitlement to permanent tenure at SkillBun.',
     y,
     regularFont,
     9,
@@ -266,7 +266,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page2, '8. INTELLECTUAL PROPERTY & NON-DISCLOSURE AGREEMENT (NDA)', y, boldFont, 10);
   y = drawParagraph(
     page2,
-    '8.1 Sole Company Ownership: All software code, designs, algorithms, architectures, documentation, workflows, and inventions created by the intern during this engagement shall remain the sole, exclusive, and unencumbered intellectual property of Team Cosmic and SkillBun.',
+    '8.1 Sole Company Ownership: All software code, designs, algorithms, architectures, documentation, workflows, and inventions created by the intern during this engagement shall remain the sole, exclusive, and unencumbered intellectual property of SkillBun.',
     y,
     regularFont,
     9,
@@ -365,7 +365,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page3, '11. LIMITATION OF LIABILITY & GOVERNING LAW', y, boldFont, 10);
   y = drawParagraph(
     page3,
-    '11.1 Limitation of Liability: In no event shall Team Cosmic, SkillBun, or its leads be liable for any indirect, incidental, or consequential damages arising out of or related to this educational internship.',
+    '11.1 Limitation of Liability: In no event shall SkillBun or its leads be liable for any indirect, incidental, or consequential damages arising out of or related to this educational internship.',
     y,
     regularFont,
     9,
@@ -387,7 +387,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page3, '12. ENTIRE AGREEMENT', y, boldFont, 10);
   y = drawParagraph(
     page3,
-    'This document represents the entire understanding between Team Cosmic / SkillBun and the candidate, superseding all prior discussions, emails, or representations concerning the internship program.',
+    'This document represents the entire understanding between SkillBun and the candidate, superseding all prior discussions, emails, or representations concerning the internship program.',
     y,
     regularFont,
     9,
@@ -437,7 +437,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
     height: 24,
     color: COLORS.bgLight,
   });
-  page4.drawText('FOR SKILLBUN (TEAM COSMIC)', {
+  page4.drawText('FOR SKILLBUN', {
     x: MARGINS.left + 10,
     y: y - 16,
     size: 9,
@@ -447,7 +447,7 @@ export async function generateOfferLetterPdf(employee, options = {}) {
 
   page4.drawText('Authorized Signatory:', { x: MARGINS.left + 10, y: y - 42, size: 8.5, font: boldFont, color: COLORS.secondary });
   page4.drawText('Harsh Patel', { x: MARGINS.left + 10, y: y - 56, size: 10, font: boldFont, color: COLORS.primary });
-  page4.drawText('Lead, SkillBun & Team Cosmic', { x: MARGINS.left + 10, y: y - 68, size: 8.5, font: regularFont, color: COLORS.secondary });
+  page4.drawText('Lead, SkillBun', { x: MARGINS.left + 10, y: y - 68, size: 8.5, font: regularFont, color: COLORS.secondary });
 
   // Seal / Signature Badge Placeholder
   page4.drawRectangle({

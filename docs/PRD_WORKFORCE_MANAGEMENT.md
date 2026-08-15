@@ -8,7 +8,7 @@
 - **Public Credential Verification:** `/certificate/[id]`  
 **Target Version:** v1.0 (Production-Ready MVP)  
 **Author:** Senior Product Manager (incorporating Founder & Lead Architecture Directives)  
-**Parent Entity:** SkillBun (A project operating under Team Cosmic)  
+**Parent Entity:** SkillBun  
 **Status:** ✅ **APPROVED BY FOUNDER (HARSH PATEL)**  
 
 ---
@@ -48,7 +48,7 @@ To prevent duplicate engineering work, this module strictly extends and reuses S
 ## 3. Target Users & Personas
 
 ### Persona 1: The Founder & Lead Operator
-* **Name:** Harsh Patel (Lead, SkillBun / Team Cosmic)
+* **Name:** Harsh Patel (Lead, SkillBun)
 * **Workflow:**
   1. Add candidate in $< 60$ seconds with academic, personal, and role details.
   2. 1-click generate the exact **4-page formal Offer Letter & Terms of Engagement** PDF via `pdf-lib`.
@@ -68,7 +68,7 @@ To prevent duplicate engineering work, this module strictly extends and reuses S
 ## 4. Goals and Non-Goals
 
 ### 4.1 Goals (In Scope - MVP v1.0)
-1. **Serverless 4-Page Offer Pack Generator:** Pixel-perfect programmatic rendering via `pdf-lib` matching the verified SkillBun / Team Cosmic Agreement layout.
+1. **Serverless 4-Page Offer Pack Generator:** Pixel-perfect programmatic rendering via `pdf-lib` matching the verified SkillBun Agreement layout.
 2. **Automated Zoho Mail Pipeline:** Server-side dispatch with attached PDF, anti-spam headers, and CC to `harsh@skillbun.tech`.
 3. **Admin Workforce Hub (`/admin/workforce`):** Candidate CRUD, status pipeline (`OFFER_SENT`, `ACTIVE`, `EXTENDED`, `COMPLETED`, `TERMINATED`), tenure countdown alerts, and 1-click credential issuance.
 4. **Intern Self-Service Workspace (`/portal`):** Protected dashboard showing encrypted Zoho credentials (click-to-reveal), milestone checklist, and issued documents.
@@ -134,7 +134,7 @@ The server-side generator uses `pdf-lib` to build a vector PDF with exact typogr
 
 ```text
 [Page 1]
-- Header: SKILLBUN (A project operating under its parent organization, Team Cosmic)
+- Header: SKILLBUN (Interactive Tech Career Ecosystem)
 - Blue Accent Title: | INTERNSHIP OFFER LETTER & TERMS OF ENGAGEMENT
 - To Block: 
     - [Salutation: Mr./Ms.] [Candidate Name] son/daughter of [Parent's Name]
@@ -142,7 +142,7 @@ The server-side generator uses `pdf-lib` to build a vector PDF with exact typogr
     - Permanent Address: [Permanent Address]
     - Qualification: [Degree/Course, e.g., B.Tech (CSE)]
     - College: [Name of College/University]
-- | BACKGROUND (Team Cosmic & SkillBun overview)
+- | BACKGROUND (SkillBun overview)
 - | SELECTION AS INTERN (4-round screening: Resume, Intro Meet, Stream Q&A, Internal Review)
 - | INTERNSHIP STATUS AND PURPOSE (1. Learning Experience, 2. Internship Not Employment, 3. Global Team Collaboration)
 
@@ -154,7 +154,7 @@ The server-side generator uses `pdf-lib` to build a vector PDF with exact typogr
 - | INTELLECTUAL PROPERTY AND NON-DISCLOSURE AGREEMENT (NDA) (1. Company IP, 2. Strict Confidentiality & Penalty)
 
 [Page 3]
-- | NDA Contd. (3. Content Ownership by Team Cosmic & SkillBun)
+- | NDA Contd. (3. Content Ownership by SkillBun)
 - | COMPENSATION, PERKS & PPO (1. Unpaid/Stipend status, 2. Assured Perks: Certificate of Internship, Training Certificate, LOR, 3. Pre-Placement Offer terms)
 - | INTERNSHIP TERMINATION (SkillBun termination, Intern written notice, Effects)
 - | LIMITATION OF LIABILITY & | DISCLAIMER OF WARRANTIES
@@ -162,7 +162,7 @@ The server-side generator uses `pdf-lib` to build a vector PDF with exact typogr
 
 [Page 4]
 - IN WITNESS WHEREOF Execution Block
-- For SkillBun (A project under Team Cosmic): Name: Harsh Patel, Title: Lead, SkillBun + Official Signature & Seal Stamp
+- For SkillBun: Name: Harsh Patel, Title: Lead, SkillBun + Official Signature & Seal Stamp
 - For [Candidate Name]: Title: Intern + Signature Line
 - Confidential Footer: SkillBun Internship Program • Confidential | Page X of 4
 ```
@@ -194,7 +194,7 @@ graph LR
 
 1. **Internship & Training Certificates:** Rendered using Canva vector background PNG templates (`/internship-cert-template.png`, `/training-cert-template.png`) with dynamic typography (Cinzel recipient name, Pixelify track title, verification badge, and QR code).
 2. **Letter of Recommendation (LOR):** Rendered as an official **Corporate Letterhead Document (A4 Vertical)** featuring:
-   - Official Team Cosmic / SkillBun letterhead banner.
+   - Official SkillBun letterhead banner.
    - Formal salutation: *"TO WHOMSOEVER IT MAY CONCERN"*.
    - Dynamic recommendation body praising specific stream contributions and tenure (pre-filled with professional boilerplate in Admin modal, fully editable by Harsh before issuance).
    - Official seal stamp and signature of Harsh Patel (Lead, SkillBun).

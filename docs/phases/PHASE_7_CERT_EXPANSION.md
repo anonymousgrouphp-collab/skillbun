@@ -32,7 +32,7 @@ stream_or_track:    { type: 'string' },           // e.g., "Tech Team (Developme
 start_date:         { type: 'string' },           // YYYY-MM-DD
 end_date:           { type: 'string' },           // YYYY-MM-DD
 recommendation_text:{ type: 'string' },           // LOR only
-issued_by:          { type: 'string', default: 'Harsh Patel (Lead, SkillBun / Team Cosmic)' },
+issued_by:          { type: 'string', default: 'Harsh Patel (Lead, SkillBun)' },
 ```
 
 **Logic changes:**

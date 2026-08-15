@@ -374,7 +374,7 @@ export default function WorkforcePage() {
 
   const openIssuance = (type) => {
     const defaultStream = form.department ? `${form.department} (Development & Engineering)` : 'Technology & Product Engineering'
-    const defaultLor = `During their tenure at SkillBun / Team Cosmic, ${form.full_name} demonstrated exceptional dedication, technical excellence, and collaboration within the ${form.department} department as a ${form.designation}. They consistently delivered high-quality contributions across all assigned sprint deliverables, showing deep problem-solving proficiency, proactive communication, and high ethical standards. I strongly recommend ${form.full_name} for future professional and academic pursuits.`
+    const defaultLor = `During their tenure at SkillBun, ${form.full_name} demonstrated exceptional dedication, technical excellence, and collaboration within the ${form.department} department as a ${form.designation}. They consistently delivered high-quality contributions across all assigned sprint deliverables, showing deep problem-solving proficiency, proactive communication, and high ethical standards. I strongly recommend ${form.full_name} for future professional and academic pursuits.`
 
     setIssuanceForm({
       stream_or_track: type === 'TRAINING' ? 'Full-Stack Web Engineering & Distributed Cloud Systems' : defaultStream,
@@ -711,7 +711,7 @@ export default function WorkforcePage() {
         <header className={styles.header}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <p className={styles.eyebrow} style={{ margin: 0 }}>Team Cosmic / SkillBun</p>
+              <p className={styles.eyebrow} style={{ margin: 0 }}>SkillBun Operations</p>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>
               <a href="/dashboard/console/admin" style={{ color: 'var(--green)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '700' }}>← Admin Hub</a>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>

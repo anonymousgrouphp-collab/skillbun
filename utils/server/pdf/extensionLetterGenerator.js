@@ -124,7 +124,7 @@ export async function generateExtensionLetterPdf(employee, options = {}) {
   y = drawSectionHeading(page, '1. PERFORMANCE APPRECIATION & TENURE EXTENSION', y, boldFont, 10);
   y = drawParagraph(
     page,
-    `On behalf of Team Cosmic and SkillBun, we commend your outstanding technical contributions, dedication, and proactive engineering ownership demonstrated throughout your ongoing tenure as ${designation} within the ${department}. Your consistent execution across sprint milestones has been highly valued.`,
+    `On behalf of SkillBun, we commend your outstanding technical contributions, dedication, and proactive engineering ownership demonstrated throughout your ongoing tenure as ${designation} within the ${department}. Your consistent execution across sprint milestones has been highly valued.`,
     y,
     regularFont,
     9,
@@ -181,7 +181,7 @@ export async function generateExtensionLetterPdf(employee, options = {}) {
     height: 24,
     color: COLORS.bgLight,
   });
-  page.drawText('FOR SKILLBUN (TEAM COSMIC)', {
+  page.drawText('FOR SKILLBUN', {
     x: MARGINS.left + 10,
     y: y - 16,
     size: 9,
@@ -191,7 +191,7 @@ export async function generateExtensionLetterPdf(employee, options = {}) {
 
   page.drawText('Authorized Signatory:', { x: MARGINS.left + 10, y: y - 42, size: 8.5, font: boldFont, color: COLORS.secondary });
   page.drawText('Harsh Patel', { x: MARGINS.left + 10, y: y - 56, size: 10, font: boldFont, color: COLORS.primary });
-  page.drawText('Lead, SkillBun & Team Cosmic', { x: MARGINS.left + 10, y: y - 68, size: 8.5, font: regularFont, color: COLORS.secondary });
+  page.drawText('Lead, SkillBun', { x: MARGINS.left + 10, y: y - 68, size: 8.5, font: regularFont, color: COLORS.secondary });
 
   page.drawRectangle({
     x: MARGINS.left + 10,

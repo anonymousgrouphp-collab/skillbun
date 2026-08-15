@@ -51,7 +51,7 @@ Read `cert.cert_type` (defaulting to `'ROADMAP'` for backward compat) and render
 
 #### `LOR`
 - **No Canva template** — fully programmatic vertical A4 layout
-- Header: Team Cosmic / SkillBun letterhead banner with logo
+- Header: SkillBun letterhead banner with logo
 - Title: "LETTER OF RECOMMENDATION"
 - Salutation: **"TO WHOMSOEVER IT MAY CONCERN"**
 - Body: `cert.recommendation_text` rendered as formatted paragraphs
