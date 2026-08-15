@@ -65,7 +65,7 @@ export default function InternPortalPage() {
     if (authLoading) return;
 
     if (!user) {
-      router.push('/auth?next=/portal');
+      router.push('/auth?next=/dashboard/console/portal');
       return;
     }
 

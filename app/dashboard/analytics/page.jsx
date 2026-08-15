@@ -8,7 +8,7 @@ export default function DeprecatedDashboardAnalyticsPage() {
 
   useEffect(() => {
     // Redirect seamlessly to the new unified Admin Analytics route
-    router.replace('/admin/analytics');
+    router.replace('/dashboard/console/admin/analytics');
   }, [router]);
 
   return (
