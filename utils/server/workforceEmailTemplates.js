@@ -295,3 +295,114 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
     replyTo,
   };
 }
+
+/**
+ * Generates the formal Termination / Offboarding Notice email payload.
+ * @param {Object} params
+ * @param {Object} params.employee - Firestore employee record
+ * @param {string} [params.reason] - Optional reason or note
+ * @param {string} [params.effectiveDate] - Effective date string
+ * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
+ */
+export function buildTerminationDispatchEmail({ employee, reason, effectiveDate }) {
+  if (!employee) {
+    throw new TypeError('buildTerminationDispatchEmail requires an employee record object.');
+  }
+
+  const salutation = employee.salutation || 'Mr./Ms.';
+  const fullName = employee.full_name || 'Candidate';
+  const designation = employee.designation || 'Intern / Employee';
+  const department = employee.department || 'Tech Team';
+  const effDate = formatDate(effectiveDate || new Date());
+
+  const subject = `[SkillBun] Official Notice of Engagement Conclusion & Offboarding - ${fullName}`;
+  const cc = 'harsh@skillbun.tech';
+  const replyTo = 'harsh@skillbun.tech';
+
+  const contentHtml = `
+    <div style="margin-bottom: 24px;">
+      <div style="display: inline-block; background-color: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
+        ⚠️ Formal Offboarding Notice
+      </div>
+      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
+        Notice of Engagement Conclusion
+      </h1>
+      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
+        Official Record & Access Revocation Notice
+      </p>
+    </div>
+
+    <p style="margin: 0 0 14px 0;">
+      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
+    </p>
+
+    <p style="margin: 0 0 16px 0; line-height: 1.6;">
+      This email serves as official notification that your tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun has concluded, effective <strong>${escapeHtml(effDate)}</strong>.
+    </p>
+
+    ${reason ? `
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 16px 20px; margin: 16px 0;">
+      <div style="font-size: 12px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 6px;">Administrative Note</div>
+      <div style="font-size: 14px; line-height: 1.5; color: #1e293b;">${escapeHtml(reason)}</div>
+    </div>
+    ` : ''}
+
+    <!-- Offboarding Protocol Box -->
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
+      <div style="font-weight: 800; color: #ef4444; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+        Offboarding & Access Protocol
+      </div>
+      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #475569;">
+        <li>All internal workforce credentials, dashboard privileges, and production access have been <strong>immediately revoked</strong>.</li>
+        <li>Active certificates or verified status badges tied to this active role have been transitioned to concluded/revoked status.</li>
+        <li>You remain bound by confidentiality and intellectual property non-disclosure obligations agreed upon during onboarding.</li>
+      </ul>
+    </div>
+
+    <p style="margin: 20px 0 0 0; line-height: 1.6;">
+      If you have questions regarding offboarding settlements or final documentation, please reply directly to this email thread.
+    </p>
+
+    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
+      Sincerely,<br>
+      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
+      Lead, SkillBun<br>
+      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
+    </div>
+  `;
+
+  const html = buildBaseEmailWrapper(
+    contentHtml,
+    subject,
+    false,
+    employee.personal_email || ''
+  );
+
+  const text = [
+    `Dear ${salutation} ${fullName},`,
+    '',
+    `This email serves as official notification that your tenure as ${designation} within the ${department} at SkillBun has concluded, effective ${effDate}.`,
+    '',
+    reason ? `Administrative Note: ${reason}\n` : '',
+    'OFFBOARDING & ACCESS PROTOCOL:',
+    '- All internal workforce credentials, dashboard privileges, and portal access have been immediately revoked.',
+    '- Active credentials or verified status badges tied to this role have been transitioned to concluded/revoked status.',
+    '- You remain bound by confidentiality and non-disclosure obligations.',
+    '',
+    'If you have questions regarding offboarding settlements or final documentation, reply directly to this email.',
+    '',
+    'Sincerely,',
+    'Harsh Patel',
+    'Lead, SkillBun',
+    'https://skillbun.tech',
+  ].join('\n');
+
+  return {
+    subject,
+    html,
+    text,
+    cc,
+    replyTo,
+  };
+}
+

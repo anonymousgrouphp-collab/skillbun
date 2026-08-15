@@ -338,6 +338,8 @@ export default function WorkforcePage() {
   const [extensionTarget, setExtensionTarget] = useState(null)
   const [extensionMonths, setExtensionMonths] = useState('3')
   const [customExtensionDate, setCustomExtensionDate] = useState('')
+  const [terminationReason, setTerminationReason] = useState('')
+  const [sendTerminationEmail, setSendTerminationEmail] = useState(true)
   const [dispatchFallback, setDispatchFallback] = useState(null)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
@@ -857,16 +859,31 @@ export default function WorkforcePage() {
   }
 
   const confirmTermination = async () => {
+    if (!user) return
     setSubmitting(true)
     setError('')
     try {
-      await request(`/api/admin/workforce/employees/${form.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: 'TERMINATED' }),
+      const idToken = await user.getIdToken()
+      const res = await fetch('/api/admin/workforce/terminate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          employeeId: form.id,
+          reason: terminationReason,
+          sendEmail: sendTerminationEmail,
+        }),
       })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to process termination.')
+      }
+
       setModal(null)
-      showToast('Employee marked Terminated.')
+      setTerminationReason('')
+      showToast(data.message || 'Employment terminated and portal access revoked.')
       await loadEmployees()
     } catch (terminationError) {
       setError(terminationError.message)
@@ -1147,18 +1164,48 @@ export default function WorkforcePage() {
       {modal && <div className={styles.backdrop} role="presentation" onMouseDown={closeModal}>
         <section className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}>
           {modal === 'confirm-terminate' ? (
-            <div className={styles.modalContent} style={{ padding: '1.35rem' }}>
+            <div className={styles.modalContent} style={{ padding: '1.4rem' }}>
               <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
                 <div>
-                  <p className={styles.eyebrow}>Status change</p>
-                  <h2 id="modal-title">Terminate employment?</h2>
+                  <p className={styles.eyebrow} style={{ color: 'var(--danger)' }}>Offboarding & Access Revocation</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.25rem' }}>Terminate Employment & Revoke Access?</h2>
                 </div>
                 <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
               </div>
-              <p className={styles.confirmText}>This will mark <strong>{form.full_name}</strong> as terminated. You can archive the record later, but this status change is logged immediately.</p>
-              <div className={styles.modalActions} style={{ borderTop: 'none', marginTop: '1.15rem' }}>
+              <p className={styles.confirmText} style={{ marginBottom: '1rem', lineHeight: '1.5' }}>
+                This will immediately mark <strong>{form.full_name}</strong> as terminated, <strong>instantly revoke all internal portal & dashboard access</strong>, and <strong>invalidate any active credentials</strong>.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '1.2rem' }}>
+                <label className={styles.field} style={{ margin: 0 }}>
+                  <span className={styles.fieldLabel}>Termination Reason / Administrative Note (Optional)</span>
+                  <input
+                    type="text"
+                    value={terminationReason}
+                    onChange={(e) => setTerminationReason(e.target.value)}
+                    placeholder="e.g. End of internship tenure / Voluntary resignation"
+                    className={styles.input}
+                  />
+                </label>
+
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', cursor: 'pointer', color: 'var(--text)' }}>
+                  <input
+                    type="checkbox"
+                    checked={sendTerminationEmail}
+                    onChange={(e) => setSendTerminationEmail(e.target.checked)}
+                    style={{ accentColor: 'var(--danger)', width: '16px', height: '16px', cursor: 'pointer' }}
+                  />
+                  <span>Send formal Offboarding & Revocation Notice email to <strong>{form.personal_email || 'candidate'}</strong></span>
+                </label>
+              </div>
+
+              {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
+
+              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '0.5rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
-                <button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting}>{submitting ? 'Updating...' : 'Confirm termination'}</button>
+                <button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting} style={{ fontWeight: 800, padding: '0.45rem 1.1rem' }}>
+                  {submitting ? 'Revoking Access...' : '⚠️ Confirm Termination & Send Letter'}
+                </button>
               </div>
             </div>
           ) : modal === 'dispatch-fallback' && dispatchFallback ? (
