@@ -77,7 +77,7 @@ export async function POST(request) {
     });
     batch.update(doc.ref, {
       contract_end_date: new Date(`${new_contract_end_date}T00:00:00.000Z`),
-      ...(employeeData.status === 'ACTIVE' ? { status: 'EXTENDED' } : {}),
+      status: 'EXTENDED',
       updated_at: now,
     });
     await batch.commit();

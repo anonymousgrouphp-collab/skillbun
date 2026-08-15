@@ -881,7 +881,7 @@ export default function WorkforcePage() {
     setError('')
     try {
       const idToken = await user.getIdToken()
-      const res = await fetch('/api/admin/workforce/pdf/offer', {
+      const res = await fetch('/api/admin/workforce/pdf/offer?format=json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -889,24 +889,16 @@ export default function WorkforcePage() {
         },
         body: JSON.stringify({ employeeId }),
       })
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.message || 'Failed to generate offer letter PDF.')
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.success) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to generate offer letter PDF.')
       }
-      const blob = await res.blob()
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      const headerDisposition = res.headers.get('Content-Disposition')
-      const match = headerDisposition && headerDisposition.match(/filename="?([^"]+)"?/)
-      a.download = match ? match[1] : 'Offer_Letter.pdf'
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      window.URL.revokeObjectURL(url)
-      showToast('Offer letter PDF generated and downloaded.')
+      downloadBase64Pdf(data.pdfBase64, data.filename)
+      showToast(`Offer letter PDF (${data.referenceId}) downloaded.`)
+      return true
     } catch (pdfErr) {
       setError(pdfErr.message)
+      throw pdfErr
     } finally {
       setSubmitting(false)
     }
@@ -918,7 +910,7 @@ export default function WorkforcePage() {
     setError('')
     try {
       const idToken = await user.getIdToken()
-      const res = await fetch('/api/admin/workforce/pdf/extension', {
+      const res = await fetch('/api/admin/workforce/pdf/extension?format=json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -926,24 +918,16 @@ export default function WorkforcePage() {
         },
         body: JSON.stringify({ employeeId, new_contract_end_date: newContractEndDate }),
       })
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.message || 'Failed to generate extension letter PDF.')
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.success) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to generate extension letter PDF.')
       }
-      const blob = await res.blob()
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      const headerDisposition = res.headers.get('Content-Disposition')
-      const match = headerDisposition && headerDisposition.match(/filename="?([^"]+)"?/)
-      a.download = match ? match[1] : 'Extension_Letter.pdf'
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      window.URL.revokeObjectURL(url)
-      showToast('Extension letter PDF generated and downloaded.')
+      downloadBase64Pdf(data.pdfBase64, data.filename)
+      showToast(`Extension letter PDF (${data.referenceId}) generated & downloaded.`)
+      return true
     } catch (pdfErr) {
       setError(pdfErr.message)
+      throw pdfErr
     } finally {
       setSubmitting(false)
     }
@@ -1821,9 +1805,13 @@ export default function WorkforcePage() {
                   className={styles.primaryButton}
                   disabled={submitting || !customExtensionDate}
                   onClick={async () => {
-                    await downloadExtensionPdf(extensionTarget.id, customExtensionDate)
-                    setModal(null)
-                    await loadEmployees()
+                    try {
+                      await downloadExtensionPdf(extensionTarget.id, customExtensionDate)
+                      setModal(null)
+                      await loadEmployees()
+                    } catch (err) {
+                      console.error('[Extension Error]', err)
+                    }
                   }}
                 >
                   {submitting ? 'Generating PDF...' : '📄 Generate & Download Extension PDF'}
