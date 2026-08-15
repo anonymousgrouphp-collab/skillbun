@@ -240,6 +240,18 @@ function dateOnly(value) {
   return String(value).slice(0, 10)
 }
 
+function calculateExtensionDate(baseDateStr, months) {
+  const base = baseDateStr ? new Date(`${dateOnly(baseDateStr)}T00:00:00`) : new Date()
+  const y = base.getFullYear()
+  const m = base.getMonth()
+  const d = base.getDate()
+  const target = new Date(y, m + months, d)
+  const yyyy = target.getFullYear()
+  const mm = String(target.getMonth() + 1).padStart(2, '0')
+  const dd = String(target.getDate()).padStart(2, '0')
+  return `${yyyy}-${mm}-${dd}`
+}
+
 function daysUntil(value) {
   if (!value) return null
   const end = new Date(`${dateOnly(value)}T00:00:00`)
@@ -323,6 +335,9 @@ export default function WorkforcePage() {
   const [deptSelect, setDeptSelect] = useState('')
   const [desigSelect, setDesigSelect] = useState('')
   const [sameAddress, setSameAddress] = useState(false)
+  const [extensionTarget, setExtensionTarget] = useState(null)
+  const [extensionMonths, setExtensionMonths] = useState('3')
+  const [customExtensionDate, setCustomExtensionDate] = useState('')
   const [dispatchFallback, setDispatchFallback] = useState(null)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
@@ -634,8 +649,18 @@ export default function WorkforcePage() {
     setMilestones([])
     setCredentials([])
     setIssuanceModal(null)
+    setExtensionTarget(null)
     setError('')
     setModal('add')
+  }
+
+  const openExtendModal = (employee) => {
+    setExtensionTarget(employee)
+    setExtensionMonths('3')
+    const initialNewDate = calculateExtensionDate(employee.contract_end_date, 3)
+    setCustomExtensionDate(initialNewDate)
+    setError('')
+    setModal('extend')
   }
 
   const openEdit = (employee) => {
@@ -808,6 +833,10 @@ export default function WorkforcePage() {
     if (status === 'TERMINATED') {
       setForm(formFromEmployee(employee))
       setModal('confirm-terminate')
+      return
+    }
+    if (status === 'EXTENDED') {
+      openExtendModal(employee)
       return
     }
     setSubmitting(true)
@@ -1367,10 +1396,10 @@ export default function WorkforcePage() {
                         <button
                           type="button"
                           className={styles.secondaryButton}
-                          onClick={() => downloadExtensionPdf(form.id, form.contract_end_date)}
+                          onClick={() => openExtendModal(form)}
                           disabled={submitting}
                         >
-                          Download Extension PDF
+                          📅 Extend Tenure / PDF
                         </button>
                       )}
                     </>
@@ -1722,6 +1751,86 @@ export default function WorkforcePage() {
             </div>
           </div>
         )}
+          {modal === 'extend' && extensionTarget && (
+            <div>
+              <div className={styles.modalHeader}>
+                <div>
+                  <p className={styles.eyebrow}>Tenure Extension</p>
+                  <h2 id="modal-title">Extend Internship Tenure</h2>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+              <p className={styles.confirmText} style={{ marginBottom: '1rem' }}>
+                Select extension duration for <strong>{extensionTarget.full_name}</strong> ({extensionTarget.designation} • {extensionTarget.department}).
+              </p>
+
+              <div style={{ padding: '0.85rem 1rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', marginBottom: '1.15rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.84rem', marginBottom: '0.5rem' }}>
+                  <span style={{ color: 'var(--muted)' }}>Current Contract End:</span>
+                  <strong>{dateOnly(extensionTarget.contract_end_date) || 'N/A'}</strong>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', color: 'var(--green)' }}>
+                  <span>Revised Extended End Date:</span>
+                  <strong style={{ fontWeight: 800 }}>{customExtensionDate || 'N/A'}</strong>
+                </div>
+              </div>
+
+              <div className={styles.formGrid} style={{ gridTemplateColumns: '1fr', gap: '0.85rem' }}>
+                <label>
+                  Extension Duration
+                  <select
+                    value={extensionMonths}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setExtensionMonths(val)
+                      if (val !== 'custom') {
+                        const computed = calculateExtensionDate(extensionTarget.contract_end_date, Number(val))
+                        setCustomExtensionDate(computed)
+                      }
+                    }}
+                  >
+                    <option value="1">1 Month (+1M)</option>
+                    <option value="2">2 Months (+2M)</option>
+                    <option value="3">3 Months (+3M)</option>
+                    <option value="6">6 Months (+6M)</option>
+                    <option value="12">12 Months (+1 Year)</option>
+                    <option value="custom">Custom Date (Pick Date Below)</option>
+                  </select>
+                </label>
+
+                <label>
+                  New Extended Contract End Date (YYYY-MM-DD)
+                  <input
+                    type="date"
+                    value={customExtensionDate}
+                    onChange={(e) => {
+                      setCustomExtensionDate(e.target.value)
+                      setExtensionMonths('custom')
+                    }}
+                    required
+                  />
+                </label>
+              </div>
+
+              {error && <div className={styles.error} role="alert" style={{ marginTop: '0.85rem' }}>{error}</div>}
+
+              <div className={styles.modalActions}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  disabled={submitting || !customExtensionDate}
+                  onClick={async () => {
+                    await downloadExtensionPdf(extensionTarget.id, customExtensionDate)
+                    setModal(null)
+                    await loadEmployees()
+                  }}
+                >
+                  {submitting ? 'Generating PDF...' : '📄 Generate & Download Extension PDF'}
+                </button>
+              </div>
+            </div>
+          )}
           {modal === 'dispatch-fallback' && dispatchFallback && (
             <div>
               <div className={styles.modalHeader}>

@@ -16,8 +16,20 @@ import {
 function formatDate(dateValue) {
   if (!dateValue) return 'N/A';
   try {
-    const d = typeof dateValue === 'string' ? new Date(dateValue) : dateValue;
-    if (Number.isNaN(d.getTime())) return String(dateValue);
+    let d;
+    if (typeof dateValue === 'string') {
+      d = new Date(dateValue.includes('T') ? dateValue : `${dateValue}T00:00:00.000Z`);
+    } else if (dateValue?.toDate && typeof dateValue.toDate === 'function') {
+      d = dateValue.toDate();
+    } else if (dateValue?._seconds) {
+      d = new Date(dateValue._seconds * 1000);
+    } else if (dateValue instanceof Date) {
+      d = dateValue;
+    } else {
+      d = new Date(dateValue);
+    }
+
+    if (!d || Number.isNaN(d.getTime())) return String(dateValue);
     return d.toLocaleDateString('en-IN', {
       day: 'numeric',
       month: 'long',
