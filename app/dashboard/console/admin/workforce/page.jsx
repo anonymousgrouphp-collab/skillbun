@@ -968,6 +968,44 @@ export default function WorkforcePage() {
     }
   }
 
+  const dispatchExtensionLetter = async (employeeId, newContractEndDate) => {
+    if (!user) return
+    setSubmitting(true)
+    setError('')
+    try {
+      const idToken = await user.getIdToken()
+      const res = await fetch('/api/admin/workforce/extension', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          employeeId,
+          new_contract_end_date: newContractEndDate,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok && !data.fallbackDownload) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to dispatch extension letter.')
+      }
+
+      if (data.success) {
+        setModal(null)
+        showToast(`Extension letter (${data.referenceId}) generated & dispatched via email!`)
+        await loadEmployees()
+      } else if (data.fallbackDownload) {
+        setDispatchFallback(data)
+        setModal('dispatch-fallback')
+        await loadEmployees()
+      }
+    } catch (dispatchErr) {
+      setError(dispatchErr.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   const downloadBase64Pdf = (base64Content, filename) => {
     try {
       const byteCharacters = atob(base64Content)
@@ -1358,33 +1396,56 @@ export default function WorkforcePage() {
                 <div className={styles.modalActions}>
                   {modal === 'edit' && (
                     <>
-                      <button
-                        type="button"
-                        className={styles.dispatchButton}
-                        onClick={() => dispatchOfferLetter(form.id)}
-                        disabled={submitting}
-                      >
-                        {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
-                      </button>
-                      {form.status === 'OFFER_SENT' && (
-                        <button
-                          type="button"
-                          className={styles.secondaryButton}
-                          onClick={() => downloadOfferPdf(form.id)}
-                          disabled={submitting}
-                        >
-                          Download Offer PDF
-                        </button>
-                      )}
-                      {['ACTIVE', 'EXTENDED'].includes(form.status) && (
-                        <button
-                          type="button"
-                          className={styles.secondaryButton}
-                          onClick={() => openExtendModal(form)}
-                          disabled={submitting}
-                        >
-                          📅 Extend Tenure / PDF
-                        </button>
+                      {form.status === 'EXTENDED' ? (
+                        <>
+                          <button
+                            type="button"
+                            className={styles.dispatchButton}
+                            onClick={() => dispatchExtensionLetter(form.id, form.contract_end_date)}
+                            disabled={submitting}
+                          >
+                            {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => openExtendModal(form)}
+                            disabled={submitting}
+                          >
+                            📅 Extend Tenure / PDF
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            className={styles.dispatchButton}
+                            onClick={() => dispatchOfferLetter(form.id)}
+                            disabled={submitting}
+                          >
+                            {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
+                          </button>
+                          {form.status === 'OFFER_SENT' && (
+                            <button
+                              type="button"
+                              className={styles.secondaryButton}
+                              onClick={() => downloadOfferPdf(form.id)}
+                              disabled={submitting}
+                            >
+                              Download Offer PDF
+                            </button>
+                          )}
+                          {form.status === 'ACTIVE' && (
+                            <button
+                              type="button"
+                              className={styles.secondaryButton}
+                              onClick={() => openExtendModal(form)}
+                              disabled={submitting}
+                            >
+                              📅 Extend Tenure / PDF
+                            </button>
+                          )}
+                        </>
                       )}
                     </>
                   )}
@@ -1798,11 +1859,11 @@ export default function WorkforcePage() {
 
               {error && <div className={styles.error} role="alert" style={{ marginTop: '0.85rem' }}>{error}</div>}
 
-              <div className={styles.modalActions}>
+              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.65rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
                 <button
                   type="button"
-                  className={styles.primaryButton}
+                  className={styles.secondaryButton}
                   disabled={submitting || !customExtensionDate}
                   onClick={async () => {
                     try {
@@ -1814,7 +1875,21 @@ export default function WorkforcePage() {
                     }
                   }}
                 >
-                  {submitting ? 'Generating PDF...' : '📄 Generate & Download Extension PDF'}
+                  {submitting ? 'Generating PDF...' : '📄 Download PDF Only'}
+                </button>
+                <button
+                  type="button"
+                  className={styles.dispatchButton}
+                  disabled={submitting || !customExtensionDate}
+                  onClick={async () => {
+                    try {
+                      await dispatchExtensionLetter(extensionTarget.id, customExtensionDate)
+                    } catch (err) {
+                      console.error('[Extension Dispatch Error]', err)
+                    }
+                  }}
+                >
+                  {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
                 </button>
               </div>
             </div>
