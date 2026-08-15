@@ -68,7 +68,10 @@
 .fieldGroup { display: flex; flex-direction: column; gap: 0.35rem; }
 .specifyInput { border-color: color-mix(in srgb, var(--green) 55%, var(--border)) !important; background: color-mix(in srgb, var(--green-subtle) 30%, var(--surface)) !important; }
 .fullWidth { grid-column: 1 / -1; }
-.addressHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; }
+.addressHeader, .fieldHeaderFlex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; }
+.durationPills { display: flex; align-items: center; gap: 0.25rem; }
+.durationPill { min-height: 1.35rem; padding: 0.12rem 0.42rem; border-radius: 5px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: 0.68rem; font-weight: 800; cursor: pointer; line-height: 1; transition: all 0.15s ease; }
+.durationPill:hover { border-color: var(--green); color: var(--green); background: var(--green-subtle); }
 .checkboxLabel { display: inline-flex !important; flex-direction: row !important; align-items: center !important; gap: 0.45rem !important; cursor: pointer; color: var(--muted); font-size: 0.76rem !important; font-weight: 700 !important; user-select: none; }
 .checkboxLabel:hover { color: var(--text); }
 .checkboxLabel input[type="checkbox"] { width: 14px !important; height: 14px !important; accent-color: var(--green); cursor: pointer; margin: 0 !important; }

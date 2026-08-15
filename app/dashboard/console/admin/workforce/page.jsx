@@ -756,6 +756,22 @@ export default function WorkforcePage() {
     }
   }
 
+  const applyTenureDuration = (months) => {
+    const baseDate = form.joining_date || new Date().toISOString().slice(0, 10)
+    const [y, m, d] = baseDate.split('-').map(Number)
+    const target = new Date(y, m - 1 + months, d)
+    const yyyy = target.getFullYear()
+    const mm = String(target.getMonth() + 1).padStart(2, '0')
+    const dd = String(target.getDate()).padStart(2, '0')
+    const calculatedEndDate = `${yyyy}-${mm}-${dd}`
+
+    setForm((current) => ({
+      ...current,
+      joining_date: current.joining_date || baseDate,
+      contract_end_date: calculatedEndDate,
+    }))
+  }
+
   const updateField = (event) => {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
@@ -1224,8 +1240,66 @@ export default function WorkforcePage() {
                         )}
                       </div>
 
-                      <label>Joining date<input name="joining_date" type="date" value={form.joining_date} onChange={updateField} required /></label>
-                      <label>Contract end date<input name="contract_end_date" type="date" value={form.contract_end_date} onChange={updateField} required /></label>
+                      <label>
+                        Joining date
+                        <input
+                          name="joining_date"
+                          type="date"
+                          value={form.joining_date}
+                          onChange={updateField}
+                          required
+                        />
+                      </label>
+
+                      <div className={styles.fieldGroup}>
+                        <div className={styles.fieldHeaderFlex}>
+                          <label style={{ margin: 0 }}>Contract end date</label>
+                          <div className={styles.durationPills} title="Auto-fill end date from joining date">
+                            <button
+                              type="button"
+                              className={styles.durationPill}
+                              onClick={() => applyTenureDuration(1)}
+                            >
+                              1M
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.durationPill}
+                              onClick={() => applyTenureDuration(2)}
+                            >
+                              2M
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.durationPill}
+                              onClick={() => applyTenureDuration(3)}
+                            >
+                              3M
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.durationPill}
+                              onClick={() => applyTenureDuration(6)}
+                            >
+                              6M
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.durationPill}
+                              onClick={() => applyTenureDuration(12)}
+                            >
+                              1Yr
+                            </button>
+                          </div>
+                        </div>
+                        <input
+                          name="contract_end_date"
+                          type="date"
+                          value={form.contract_end_date}
+                          onChange={updateField}
+                          required
+                        />
+                      </div>
                       <label>Stipend amount (INR)<input name="stipend_amount" type="number" min="0" step="0.01" value={form.stipend_amount} onChange={updateField} required /></label>
                       <label>Work email <span className={styles.optional}>Optional</span><input name="work_email" type="email" value={form.work_email} onChange={updateField} /></label>
                       <label className={styles.fullWidth}>
