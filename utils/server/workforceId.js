@@ -3,6 +3,8 @@ import crypto from 'node:crypto';
 export const WORKFORCE_PREFIXES = Object.freeze({
   OFFER: 'SB-OFF',
   EXTENSION: 'SB-EXT',
+  TERMINATION: 'SB-TERM',
+  RELIEVING: 'SB-REL',
   INTERNSHIP: 'SB-INT',
   TRAINING: 'SB-TRN',
   LOR: 'SB-LOR',
@@ -27,7 +29,7 @@ function getRandomAlphanumeric(length = 6) {
 
 /**
  * Generates a formatted workforce document or credential ID.
- * @param {'SB-OFF' | 'SB-EXT' | 'SB-INT' | 'SB-TRN' | 'SB-LOR'} prefix
+ * @param {'SB-OFF' | 'SB-EXT' | 'SB-TERM' | 'SB-REL' | 'SB-INT' | 'SB-TRN' | 'SB-LOR'} prefix
  * @param {number} [customYear] - Optional override year (defaults to current UTC year)
  * @returns {string} e.g. "SB-OFF-2026-8K29DF"
  */
@@ -52,7 +54,7 @@ export function generateWorkforceId(prefix, customYear) {
  */
 export function isValidWorkforceId(id) {
   if (typeof id !== 'string') return false;
-  const regex = /^SB-(OFF|EXT|INT|TRN|LOR)-\d{4}-[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/;
+  const regex = /^SB-(OFF|EXT|TERM|REL|INT|TRN|LOR)-\d{4}-[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/;
   return regex.test(id.trim().toUpperCase());
 }
 
