@@ -34,7 +34,7 @@ Must render the exact 4-page layout from PRD Section 6.1:
 
 | Page | Content |
 |:---|:---|
-| **Page 1** | Header (SKILLBUN / Team Cosmic), blue accent title, To Block (salutation, name, parent, addresses, qualification, college), BACKGROUND, SELECTION AS INTERN, INTERNSHIP STATUS AND PURPOSE |
+| **Page 1** | Header (SKILLBUN), blue accent title, To Block (salutation, name, parent, addresses, qualification, college), BACKGROUND, SELECTION AS INTERN, INTERNSHIP STATUS AND PURPOSE |
 | **Page 2** | PARTICIPATION AND RESPONSIBILITIES (period dates), TIME MANAGEMENT, DUTIES (stream-specific), COMPLIANCE, PROFESSIONAL CONDUCT, NDA |
 | **Page 3** | NDA contd., COMPENSATION/PERKS/PPO (stipend or unpaid), TERMINATION clauses, LIABILITY, GOVERNING LAW, ENTIRE AGREEMENT |
 | **Page 4** | IN WITNESS WHEREOF execution block, SkillBun signature (Harsh Patel, Lead) with seal placeholder, Candidate signature line, confidential footer |

@@ -206,7 +206,7 @@ export async function POST(request) {
         start_date: start_date ? String(start_date).slice(0, 10) : employeeData.joining_date || null,
         end_date: end_date ? String(end_date).slice(0, 10) : employeeData.contract_end_date || null,
         recommendation_text: certType === 'LOR' ? recommendation_text.trim() : null,
-        issued_by: issued_by || 'Harsh Patel (Lead, SkillBun / Team Cosmic)',
+        issued_by: issued_by || 'Harsh Patel (Lead, SkillBun)',
         issued_by_email: email,
         is_revoked: false,
         createdAt: now,

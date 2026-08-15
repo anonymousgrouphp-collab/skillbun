@@ -49,7 +49,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
         🎉 Formal Internship Offer
       </div>
       <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #ffffff; margin: 0 0 10px 0;">
-        Welcome to SkillBun & Team Cosmic!
+        Welcome to SkillBun!
       </h1>
       <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
         Official Offer of Engagement & Internship Terms
@@ -61,7 +61,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     </p>
 
     <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      Following your comprehensive technical evaluation and leadership screening, Team Cosmic and SkillBun are pleased to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.
+      Following your comprehensive technical evaluation and leadership screening, SkillBun is pleased to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.
     </p>
 
     <!-- Details Box -->
@@ -80,28 +80,28 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
         </tr>
         <tr>
           <td style="color: #8b949e;">Tenure Period:</td>
-          <td style="color: #ffffff;">${escapeHtml(joiningDate)} — ${escapeHtml(contractEndDate)}</td>
+          <td style="color: #ffffff; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(contractEndDate)}</td>
         </tr>
         <tr>
-          <td style="color: #8b949e;">Stipend Status:</td>
-          <td style="color: #ffffff;">${escapeHtml(stipendDisplay)}</td>
+          <td style="color: #8b949e;">Stipend Structure:</td>
+          <td style="color: #00e599; font-weight: 700;">${escapeHtml(stipendDisplay)}</td>
         </tr>
         <tr>
           <td style="color: #8b949e;">Reference Code:</td>
-          <td style="color: #00e599; font-family: monospace; font-weight: 700;">${escapeHtml(referenceId)}</td>
+          <td style="color: #ffffff; font-family: monospace;">${escapeHtml(referenceId)}</td>
         </tr>
       </table>
     </div>
 
-    <div style="font-weight: 700; color: #ffffff; font-size: 15px; margin: 22px 0 10px 0;">
-      Next Steps to Confirm Your Onboarding:
+    <!-- Instructions Box -->
+    <div style="background-color: rgba(0,229,153,0.06); border-left: 3px solid #00e599; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #c9d1d9;">
+      <strong style="color: #ffffff;">Next Steps to Confirm Your Seat:</strong>
+      <ol style="margin: 8px 0 0 0; padding-left: 20px;">
+        <li>Review the attached formal <strong>4-page Internship Offer Letter & Terms PDF</strong>.</li>
+        <li>Sign the <strong>Candidate Acceptance block on Page 4</strong>.</li>
+        <li>Reply back to this email with your signed copy within <strong>3 business days</strong>.</li>
+      </ol>
     </div>
-
-    <ol style="margin: 0 0 20px 0; padding-left: 20px; line-height: 1.7; color: #c9d1d9;">
-      <li>Review the attached formal 4-page PDF document (<strong>SkillBun Offer Letter & Terms of Engagement</strong>).</li>
-      <li>Sign in the <strong>Acceptance Block</strong> on Page 4 (physical or digital signature).</li>
-      <li>Reply back to this email thread (<strong>harsh@skillbun.tech</strong>) with your signed copy within <strong>three (3) business days</strong> to finalize your onboarding.</li>
-    </ol>
 
     <p style="margin: 20px 0 0 0; line-height: 1.6;">
       We look forward to working closely with you on production software systems, agile roadmaps, and high-impact engineering milestones!
@@ -110,7 +110,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #21262d; font-size: 13.5px; line-height: 1.5; color: #8b949e;">
       Warm regards,<br>
       <strong style="color: #ffffff;">Harsh Patel</strong><br>
-      Lead, SkillBun & Team Cosmic<br>
+      Lead, SkillBun<br>
       <a href="https://skillbun.tech" style="color: #00e599; text-decoration: none;">skillbun.tech</a>
     </div>
   `;
@@ -125,7 +125,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
   const text = [
     `Dear ${salutation} ${fullName},`,
     '',
-    `Following your technical evaluation and leadership screening, Team Cosmic and SkillBun are pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
+    `Following your technical evaluation and leadership screening, SkillBun is pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
     '',
     'ENGAGEMENT OVERVIEW:',
     `- Candidate Name: ${salutation} ${fullName}`,
@@ -141,7 +141,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     '',
     'Warm regards,',
     'Harsh Patel',
-    'Lead, SkillBun & Team Cosmic',
+    'Lead, SkillBun',
     'https://skillbun.tech',
   ].join('\n');
 

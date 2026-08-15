@@ -16,7 +16,7 @@ export const COLORS = Object.freeze({
   primary: rgb(0.12, 0.14, 0.18),
   secondary: rgb(0.35, 0.40, 0.46),
   muted: rgb(0.55, 0.60, 0.65),
-  accent: rgb(0.08, 0.44, 0.78),      // SkillBun / Cosmic Blue
+  accent: rgb(0.08, 0.44, 0.78),      // SkillBun Primary Blue
   accentGreen: rgb(0.06, 0.62, 0.40), // SkillBun Brand Green
   border: rgb(0.82, 0.86, 0.90),
   bgLight: rgb(0.96, 0.97, 0.98),
@@ -24,24 +24,24 @@ export const COLORS = Object.freeze({
 });
 
 /**
- * Wraps text into lines that fit within maxWidth.
+ * Wraps text into lines that fit within a maximum width in points.
  * @param {string} text
- * @param {number} maxWidth
  * @param {import('pdf-lib').PDFFont} font
  * @param {number} fontSize
- * @returns {string[]} Array of wrapped line strings
+ * @param {number} maxWidth
+ * @returns {string[]}
  */
-export function wrapText(text, maxWidth, font, fontSize) {
+export function wrapText(text, font, fontSize, maxWidth) {
   if (!text) return [];
   const words = text.split(/\s+/);
   const lines = [];
   let currentLine = '';
 
   for (const word of words) {
-    const candidate = currentLine ? `${currentLine} ${word}` : word;
-    const width = font.widthOfTextAtSize(candidate, fontSize);
+    const testLine = currentLine ? `${currentLine} ${word}` : word;
+    const width = font.widthOfTextAtSize(testLine, fontSize);
     if (width <= maxWidth) {
-      currentLine = candidate;
+      currentLine = testLine;
     } else {
       if (currentLine) lines.push(currentLine);
       currentLine = word;
@@ -53,7 +53,7 @@ export function wrapText(text, maxWidth, font, fontSize) {
 }
 
 /**
- * Draws standard SkillBun / Team Cosmic header on a page.
+ * Draws standard SkillBun header on a page.
  * @param {import('pdf-lib').PDFPage} page
  * @param {import('pdf-lib').PDFFont} boldFont
  * @param {import('pdf-lib').PDFFont} regularFont
@@ -72,8 +72,8 @@ export function drawPageHeader(page, boldFont, regularFont, referenceId, docDate
     color: COLORS.accent,
   });
 
-  // Parent Org Subtitle
-  page.drawText('(A project operating under its parent organization, Team Cosmic)', {
+  // Subtitle
+  page.drawText('— Interactive Tech Career Ecosystem (skillbun.tech)', {
     x: MARGINS.left + 85,
     y: topY + 1,
     size: 8.5,
