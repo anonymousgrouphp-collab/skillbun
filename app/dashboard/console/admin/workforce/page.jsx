@@ -338,7 +338,12 @@ export default function WorkforcePage() {
   const [extensionTarget, setExtensionTarget] = useState(null)
   const [extensionMonths, setExtensionMonths] = useState('3')
   const [customExtensionDate, setCustomExtensionDate] = useState('')
+  const [terminationReasonCode, setTerminationReasonCode] = useState('COMPLETED')
   const [terminationReason, setTerminationReason] = useState('')
+  const [grantInternshipCert, setGrantInternshipCert] = useState(true)
+  const [grantTrainingCert, setGrantTrainingCert] = useState(true)
+  const [grantLor, setGrantLor] = useState(true)
+  const [revokeAccess, setRevokeAccess] = useState(true)
   const [sendTerminationEmail, setSendTerminationEmail] = useState(true)
   const [emailPreview, setEmailPreview] = useState(null)
   const [pdfPreview, setPdfPreview] = useState(null)
@@ -875,13 +880,18 @@ export default function WorkforcePage() {
         },
         body: JSON.stringify({
           employeeId: form.id,
+          reasonCode: terminationReasonCode,
           reason: terminationReason,
+          grantInternshipCert,
+          grantTrainingCert,
+          grantLor,
+          revokeAccess,
           sendEmail: sendTerminationEmail,
         }),
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) {
-        throw new Error(data?.error?.message || data?.message || 'Failed to process termination.')
+        throw new Error(data?.error?.message || data?.message || 'Failed to process offboarding.')
       }
 
       setModal(null)
@@ -1253,39 +1263,118 @@ export default function WorkforcePage() {
       {modal && <div className={styles.backdrop} role="presentation" onMouseDown={closeModal}>
         <section className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}>
           {modal === 'confirm-terminate' ? (
-            <div className={styles.modalContent} style={{ padding: '1.4rem' }}>
+            <div className={styles.modalContent} style={{ padding: '1.4rem', maxWidth: '620px', width: '100%' }}>
               <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
                 <div>
-                  <p className={styles.eyebrow} style={{ color: 'var(--danger)' }}>Offboarding & Access Revocation</p>
-                  <h2 id="modal-title" style={{ fontSize: '1.25rem' }}>Terminate Employment & Revoke Access?</h2>
+                  <p className={styles.eyebrow} style={{ color: 'var(--accent)' }}>Offboarding & Document Issuance</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.25rem' }}>Conclude Tenure / Offboard Candidate</h2>
                 </div>
                 <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
               </div>
               <p className={styles.confirmText} style={{ marginBottom: '1rem', lineHeight: '1.5' }}>
-                This will immediately mark <strong>{form.full_name}</strong> as terminated, <strong>instantly revoke all internal portal & dashboard access</strong>, and <strong>invalidate any active credentials</strong>.
+                Process official tenure offboarding for <strong>{form.full_name}</strong>. Granted credentials will be permanently preserved in the public <strong>SkillBun Alumni Vault</strong>.
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '1.2rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginBottom: '1.2rem' }}>
                 <label className={styles.field} style={{ margin: 0 }}>
-                  <span className={styles.fieldLabel}>Termination Reason / Administrative Note (Optional)</span>
+                  <span className={styles.fieldLabel}>Offboarding / Separation Reason</span>
+                  <select
+                    value={terminationReasonCode}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setTerminationReasonCode(val)
+                      if (val === 'COMPLETED' || val === 'ACADEMIC_LEAVE' || val === 'VOLUNTARY_RESIGNATION') {
+                        setGrantInternshipCert(true)
+                        setGrantTrainingCert(true)
+                        setGrantLor(true)
+                      } else if (val === 'POLICY_DISCONTINUATION') {
+                        setGrantInternshipCert(false)
+                        setGrantTrainingCert(false)
+                        setGrantLor(false)
+                      }
+                    }}
+                    className={styles.select}
+                  >
+                    <option value="COMPLETED">🎉 Tenure Completed Successfully (Standard Graduation)</option>
+                    <option value="ACADEMIC_LEAVE">📚 Academic Commitments & College Exams</option>
+                    <option value="VOLUNTARY_RESIGNATION">🤝 Voluntary Resignation / Personal Career Move</option>
+                    <option value="MUTUAL_SEPARATION">⚖️ Mutual Separation Agreement</option>
+                    <option value="PERFORMANCE_FIT">🔄 Role Re-alignment / Performance Fit</option>
+                    <option value="POLICY_DISCONTINUATION">⚠️ Administrative Action / Policy Discontinuation</option>
+                    <option value="CUSTOM">📝 Custom Specified Reason</option>
+                  </select>
+                </label>
+
+                <label className={styles.field} style={{ margin: 0 }}>
+                  <span className={styles.fieldLabel}>Administrative Note / Custom Reason (Optional)</span>
                   <input
                     type="text"
                     value={terminationReason}
                     onChange={(e) => setTerminationReason(e.target.value)}
-                    placeholder="e.g. End of internship tenure / Voluntary resignation"
+                    placeholder="e.g. Completed all sprints with distinction / Returning to campus"
                     className={styles.input}
                   />
                 </label>
 
-                <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.85rem', cursor: 'pointer', color: 'var(--text)' }}>
-                  <input
-                    type="checkbox"
-                    checked={sendTerminationEmail}
-                    onChange={(e) => setSendTerminationEmail(e.target.checked)}
-                    style={{ accentColor: 'var(--danger)', width: '16px', height: '16px', cursor: 'pointer' }}
-                  />
-                  <span>Send formal Offboarding & Revocation Notice email to <strong>{form.personal_email || 'candidate'}</strong></span>
-                </label>
+                {/* Credential Granting Options */}
+                <div style={{ background: 'var(--surface)', padding: '0.85rem 1rem', borderRadius: '12px', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    Verified Document Grants (Preserved in Alumni Vault)
+                  </span>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={grantInternshipCert}
+                      onChange={(e) => setGrantInternshipCert(e.target.checked)}
+                      style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
+                    />
+                    <span>🎓 Issue <strong>Certificate of Internship Completion (SB-INT)</strong></span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={grantTrainingCert}
+                      onChange={(e) => setGrantTrainingCert(e.target.checked)}
+                      style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
+                    />
+                    <span>📘 Issue <strong>Practical Industry Training Certificate (SB-TRN)</strong></span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={grantLor}
+                      onChange={(e) => setGrantLor(e.target.checked)}
+                      style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
+                    />
+                    <span>🌟 Issue <strong>Official Letter of Recommendation (SB-LOR)</strong></span>
+                  </label>
+                </div>
+
+                {/* Access & Email Controls */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.2rem' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={revokeAccess}
+                      onChange={(e) => setRevokeAccess(e.target.checked)}
+                      style={{ accentColor: 'var(--danger)', width: '16px', height: '16px', cursor: 'pointer' }}
+                    />
+                    <span>🔒 Revoke workspace credentials & internal dashboard access</span>
+                  </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
+                    <input
+                      type="checkbox"
+                      checked={sendTerminationEmail}
+                      onChange={(e) => setSendTerminationEmail(e.target.checked)}
+                      style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
+                    />
+                    <span>✉️ Send formal Offboarding & Documents email to <strong>{form.personal_email || 'candidate'}</strong></span>
+                  </label>
+                </div>
               </div>
 
               {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
@@ -1295,13 +1384,29 @@ export default function WorkforcePage() {
                 <button
                   type="button"
                   className={styles.secondaryButton}
-                  onClick={() => openEmailPreview('TERMINATION_EMAIL', form, { reason: terminationReason })}
+                  onClick={() => {
+                    const granted = []
+                    if (grantInternshipCert) granted.push('Certificate of Internship Completion (SB-INT)')
+                    if (grantTrainingCert) granted.push('Practical Industry Training Certificate (SB-TRN)')
+                    if (grantLor) granted.push('Official Letter of Recommendation (SB-LOR)')
+                    openEmailPreview('TERMINATION_EMAIL', form, {
+                      reasonCode: terminationReasonCode,
+                      reason: terminationReason,
+                      grantedCredentials: granted,
+                    })
+                  }}
                   disabled={submitting}
                 >
                   👁️ Preview Notice Email
                 </button>
-                <button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting} style={{ fontWeight: 800, padding: '0.45rem 1.1rem' }}>
-                  {submitting ? 'Revoking Access...' : '⚠️ Confirm Termination & Send Letter'}
+                <button
+                  type="button"
+                  className={['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? styles.primaryButton : styles.terminateButton}
+                  onClick={confirmTermination}
+                  disabled={submitting}
+                  style={{ fontWeight: 800, padding: '0.45rem 1.15rem' }}
+                >
+                  {submitting ? 'Processing...' : ['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? '🎉 Conclude & Grant Documents' : '⚠️ Confirm Offboarding'}
                 </button>
               </div>
             </div>

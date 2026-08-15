@@ -69,9 +69,12 @@ export async function POST(request) {
         break;
       }
       case 'TERMINATION_EMAIL': {
+        const { reasonCode = 'COMPLETED', grantedCredentials = [] } = body;
         payload = buildTerminationDispatchEmail({
           employee: employeeData,
+          reasonCode,
           reason,
+          grantedCredentials,
           effectiveDate: new Date().toISOString().slice(0, 10),
         });
         break;

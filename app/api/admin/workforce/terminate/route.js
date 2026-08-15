@@ -27,7 +27,17 @@ export async function POST(request) {
       return apiError('Payload must be valid JSON.', 400, 'BAD_REQUEST');
     }
 
-    const { employeeId, reason, sendEmail = true } = body;
+    const {
+      employeeId,
+      reasonCode = 'COMPLETED',
+      reason = '',
+      grantInternshipCert = false,
+      grantTrainingCert = false,
+      grantLor = false,
+      revokeAccess = true,
+      sendEmail = true,
+    } = body;
+
     if (!employeeId || typeof employeeId !== 'string') {
       return apiError('employeeId is required.', 400, 'VALIDATION_ERROR');
     }
@@ -49,52 +59,103 @@ export async function POST(request) {
     const now = new Date();
     const referenceId = generateWorkforceId('SB-TERM');
 
-    // 1. Update Employee Record to TERMINATED & mark portal access revoked
+    const grantedCredentials = [];
+
+    // Helper date format
+    const toIsoDate = (val) => {
+      if (!val) return '';
+      if (val.toDate && typeof val.toDate === 'function') return val.toDate().toISOString().slice(0, 10);
+      if (val instanceof Date) return val.toISOString().slice(0, 10);
+      return String(val).slice(0, 10);
+    };
+
+    const startDate = toIsoDate(employeeData.joining_date);
+    const endDate = toIsoDate(employeeData.contract_end_date) || now.toISOString().slice(0, 10);
+
+    // 1. Grant requested verified credentials
+    const certBatch = db.batch();
+
+    if (grantInternshipCert) {
+      const certId = generateWorkforceId('SB-INT');
+      const certRef = db.collection('certificates').doc(certId);
+      certBatch.set(certRef, {
+        cert_type: 'INTERNSHIP',
+        employee_id: employeeId,
+        name: employeeData.full_name,
+        email: (employeeData.personal_email || '').trim().toLowerCase(),
+        department: employeeData.department,
+        designation: employeeData.designation,
+        stream_or_track: `${employeeData.designation} (${employeeData.department})`,
+        start_date: startDate,
+        end_date: endDate,
+        issued_by: admin.email || admin.uid || 'SkillBun Admin',
+        is_revoked: false,
+        createdAt: now,
+      });
+      grantedCredentials.push(`Certificate of Internship Completion (${certId})`);
+    }
+
+    if (grantTrainingCert) {
+      const certId = generateWorkforceId('SB-TRN');
+      const certRef = db.collection('certificates').doc(certId);
+      certBatch.set(certRef, {
+        cert_type: 'TRAINING',
+        employee_id: employeeId,
+        name: employeeData.full_name,
+        email: (employeeData.personal_email || '').trim().toLowerCase(),
+        department: employeeData.department,
+        designation: employeeData.designation,
+        stream_or_track: `Advanced Industry Training: ${employeeData.department}`,
+        start_date: startDate,
+        end_date: endDate,
+        issued_by: admin.email || admin.uid || 'SkillBun Admin',
+        is_revoked: false,
+        createdAt: now,
+      });
+      grantedCredentials.push(`Practical Training Completion Certificate (${certId})`);
+    }
+
+    if (grantLor) {
+      const certId = generateWorkforceId('SB-LOR');
+      const certRef = db.collection('certificates').doc(certId);
+      certBatch.set(certRef, {
+        cert_type: 'LOR',
+        employee_id: employeeId,
+        name: employeeData.full_name,
+        email: (employeeData.personal_email || '').trim().toLowerCase(),
+        department: employeeData.department,
+        designation: employeeData.designation,
+        stream_or_track: `Letter of Recommendation - ${employeeData.full_name}`,
+        recommendation_text: `During their tenure at SkillBun as ${employeeData.designation}, ${employeeData.full_name} demonstrated exceptional dedication, technical agility, and collaborative problem-solving skills.`,
+        start_date: startDate,
+        end_date: endDate,
+        issued_by: 'Harsh Patel, Lead at SkillBun',
+        is_revoked: false,
+        createdAt: now,
+      });
+      grantedCredentials.push(`Official Letter of Recommendation (${certId})`);
+    }
+
+    if (grantedCredentials.length > 0) {
+      await certBatch.commit();
+    }
+
+    // 2. Update Employee Record to TERMINATED
     await employeeRef.update({
       status: 'TERMINATED',
       terminated_at: now,
       terminated_by: admin.email || admin.uid || 'admin',
-      termination_reason: reason || 'Administrative conclusion of tenure.',
-      portal_access_revoked: true,
-      portal_access_revoked_at: now,
+      termination_reason_code: reasonCode,
+      termination_reason: reason || '',
+      granted_credentials: grantedCredentials,
+      portal_access_revoked: Boolean(revokeAccess),
+      portal_access_revoked_at: revokeAccess ? now : null,
       updated_at: now,
     });
 
-    // 2. Revoke all certificates/credentials linked to this employee
-    let revokedCertsCount = 0;
-    try {
-      const [byEmpIdSnap, byEmailSnap] = await Promise.all([
-        db.collection('certificates').where('employee_id', '==', employeeId).get(),
-        employeeData.personal_email
-          ? db.collection('certificates').where('email', '==', employeeData.personal_email.trim().toLowerCase()).get()
-          : { empty: true, docs: [] },
-      ]);
-
-      const certsToRevoke = new Map();
-      byEmpIdSnap.docs?.forEach((doc) => certsToRevoke.set(doc.id, doc.ref));
-      byEmailSnap.docs?.forEach((doc) => certsToRevoke.set(doc.id, doc.ref));
-
-      if (certsToRevoke.size > 0) {
-        const batch = db.batch();
-        certsToRevoke.forEach((ref) => {
-          batch.update(ref, {
-            is_revoked: true,
-            revoked_at: now,
-            revoked_by: admin.email || admin.uid || 'admin',
-            revocation_reason: 'Employment Terminated - Offboarded',
-            updatedAt: now,
-          });
-        });
-        await batch.commit();
-        revokedCertsCount = certsToRevoke.size;
-      }
-    } catch (certRevokeErr) {
-      console.warn('[Workforce Terminate] Certificate revocation warning:', certRevokeErr);
-    }
-
-    // 3. Revoke Firebase Auth session tokens & user portal flags
+    // 3. Revoke Firebase Auth session tokens & user portal flags (if requested)
     let authRevoked = false;
-    if (employeeData.personal_email) {
+    if (revokeAccess && employeeData.personal_email) {
       try {
         const userRecord = await adminAuth.getUserByEmail(employeeData.personal_email.trim().toLowerCase());
         if (userRecord?.uid) {
@@ -112,12 +173,11 @@ export async function POST(request) {
           authRevoked = true;
         }
       } catch (authErr) {
-        // Non-blocking if candidate didn't have an auth user account yet
         console.log('[Workforce Terminate] No active Firebase Auth user account to revoke:', authErr?.message);
       }
     }
 
-    // 4. Send Formal Termination Email Notice (if enabled)
+    // 4. Send Formal Offboarding & Documents Email Notice (if enabled)
     let emailDispatched = false;
     let emailError = null;
 
@@ -125,7 +185,9 @@ export async function POST(request) {
       try {
         const emailPayload = buildTerminationDispatchEmail({
           employee: employeeData,
+          reasonCode,
           reason,
+          grantedCredentials,
           effectiveDate: now.toISOString().slice(0, 10),
         });
 
@@ -145,7 +207,7 @@ export async function POST(request) {
           id: referenceId,
           employee_id: employeeId,
           doc_type: 'TERMINATION_NOTICE',
-          title: 'Notice of Engagement Conclusion & Access Revocation',
+          title: reasonCode === 'COMPLETED' ? 'Internship Completion & Offboarding Record' : 'Notice of Engagement Conclusion',
           status: 'DISPATCHED',
           metadata_snapshot: {
             reference_id: referenceId,
@@ -153,7 +215,9 @@ export async function POST(request) {
             personal_email: employeeData.personal_email,
             department: employeeData.department,
             designation: employeeData.designation,
+            reason_code: reasonCode,
             reason: reason || '',
+            granted_credentials: grantedCredentials,
             effective_date: now.toISOString().slice(0, 10),
           },
           dispatched_to: employeeData.personal_email,
@@ -170,16 +234,14 @@ export async function POST(request) {
       success: true,
       referenceId,
       employeeId,
-      revokedCertsCount,
+      grantedCredentials,
       authRevoked,
       emailDispatched,
       emailError,
-      message: emailDispatched
-        ? `Employment terminated, portal access revoked, and termination notice email dispatched to ${employeeData.personal_email}.`
-        : `Employment terminated and portal access revoked.${emailError ? ` (Email failed: ${emailError})` : ''}`,
+      message: `Offboarding processed successfully. ${grantedCredentials.length} credentials granted. ${emailDispatched ? 'Confirmation email dispatched to candidate.' : ''}`,
     });
   } catch (error) {
     console.error('[Workforce Terminate Error]', error);
-    return apiError(error?.message || 'Unable to process termination and access revocation.', 500, 'INTERNAL_ERROR');
+    return apiError(error?.message || 'Unable to process offboarding and access update.', 500, 'INTERNAL_ERROR');
   }
 }
