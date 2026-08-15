@@ -340,9 +340,9 @@ export default function WorkforcePage() {
   const [customExtensionDate, setCustomExtensionDate] = useState('')
   const [terminationReasonCode, setTerminationReasonCode] = useState('COMPLETED')
   const [terminationReason, setTerminationReason] = useState('')
-  const [grantInternshipCert, setGrantInternshipCert] = useState(true)
-  const [grantTrainingCert, setGrantTrainingCert] = useState(true)
-  const [grantLor, setGrantLor] = useState(true)
+  const [grantInternshipCert, setGrantInternshipCert] = useState(false)
+  const [grantTrainingCert, setGrantTrainingCert] = useState(false)
+  const [grantLor, setGrantLor] = useState(false)
   const [revokeAccess, setRevokeAccess] = useState(true)
   const [sendTerminationEmail, setSendTerminationEmail] = useState(true)
   const [emailPreview, setEmailPreview] = useState(null)
@@ -842,6 +842,13 @@ export default function WorkforcePage() {
   const changeStatus = async (employee, status) => {
     if (status === 'TERMINATED') {
       setForm(formFromEmployee(employee))
+      setTerminationReasonCode('COMPLETED')
+      setTerminationReason('')
+      setGrantInternshipCert(false)
+      setGrantTrainingCert(false)
+      setGrantLor(false)
+      setRevokeAccess(true)
+      setSendTerminationEmail(true)
       setModal('confirm-terminate')
       return
     }
@@ -1286,19 +1293,7 @@ export default function WorkforcePage() {
                   <span className={styles.fieldLabel}>Offboarding / Separation Reason</span>
                   <select
                     value={terminationReasonCode}
-                    onChange={(e) => {
-                      const val = e.target.value
-                      setTerminationReasonCode(val)
-                      if (val === 'COMPLETED' || val === 'ACADEMIC_LEAVE' || val === 'VOLUNTARY_RESIGNATION') {
-                        setGrantInternshipCert(true)
-                        setGrantTrainingCert(true)
-                        setGrantLor(true)
-                      } else if (val === 'POLICY_DISCONTINUATION') {
-                        setGrantInternshipCert(false)
-                        setGrantTrainingCert(false)
-                        setGrantLor(false)
-                      }
-                    }}
+                    onChange={(e) => setTerminationReasonCode(e.target.value)}
                     className={styles.select}
                   >
                     <option value="COMPLETED">🎉 Tenure Completed Successfully (Standard Graduation)</option>
