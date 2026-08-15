@@ -340,6 +340,9 @@ export default function WorkforcePage() {
   const [customExtensionDate, setCustomExtensionDate] = useState('')
   const [terminationReason, setTerminationReason] = useState('')
   const [sendTerminationEmail, setSendTerminationEmail] = useState(true)
+  const [emailPreview, setEmailPreview] = useState(null)
+  const [pdfPreview, setPdfPreview] = useState(null)
+  const [previewTheme, setPreviewTheme] = useState('dark')
   const [dispatchFallback, setDispatchFallback] = useState(null)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
@@ -1023,6 +1026,92 @@ export default function WorkforcePage() {
     }
   }
 
+  const openEmailPreview = async (type, employee, extraData = {}) => {
+    if (!user) return
+    setSubmitting(true)
+    setError('')
+    try {
+      const idToken = await user.getIdToken()
+      const res = await fetch('/api/admin/workforce/preview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          employeeId: employee?.id,
+          employeeOverride: employee,
+          type,
+          ...extraData,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to generate email preview.')
+      }
+
+      setEmailPreview({
+        ...data,
+        employee,
+        extraData,
+      })
+      setModal('email-preview')
+    } catch (previewErr) {
+      setError(previewErr.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const openPdfPreview = async (type, employee, extraData = {}) => {
+    if (!user) return
+    setSubmitting(true)
+    setError('')
+    try {
+      const idToken = await user.getIdToken()
+      const endpoint = type === 'EXTENSION'
+        ? '/api/admin/workforce/pdf/extension?format=json'
+        : '/api/admin/workforce/pdf/offer?format=json'
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          employeeId: employee.id,
+          new_contract_end_date: extraData.new_contract_end_date,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.pdfBase64) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to render PDF preview.')
+      }
+
+      const byteCharacters = atob(data.pdfBase64)
+      const byteNumbers = new Array(byteCharacters.length)
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i)
+      }
+      const byteArray = new Uint8Array(byteNumbers)
+      const blob = new Blob([byteArray], { type: 'application/pdf' })
+      const blobUrl = URL.createObjectURL(blob)
+
+      setPdfPreview({
+        url: blobUrl,
+        title: type === 'EXTENSION' ? 'Extension Letter PDF' : 'Internship Offer Letter PDF',
+        filename: data.filename || 'SkillBun_Document.pdf',
+        referenceId: data.referenceId,
+      })
+      setModal('pdf-preview')
+    } catch (pdfErr) {
+      setError(pdfErr.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   const downloadBase64Pdf = (base64Content, filename) => {
     try {
       const byteCharacters = atob(base64Content)
@@ -1201,8 +1290,16 @@ export default function WorkforcePage() {
 
               {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
 
-              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '0.5rem' }}>
+              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  onClick={() => openEmailPreview('TERMINATION_EMAIL', form, { reason: terminationReason })}
+                  disabled={submitting}
+                >
+                  👁️ Preview Notice Email
+                </button>
                 <button type="button" className={styles.terminateButton} onClick={confirmTermination} disabled={submitting} style={{ fontWeight: 800, padding: '0.45rem 1.1rem' }}>
                   {submitting ? 'Revoking Access...' : '⚠️ Confirm Termination & Send Letter'}
                 </button>
@@ -1440,11 +1537,27 @@ export default function WorkforcePage() {
                   <label className={styles.fullWidth}>Access notes<textarea name="access_notes" value={form.credentials_data.access_notes} onChange={updateCredential} rows="2" /></label>
                 </div></fieldset>
                 {error && <div className={styles.error} role="alert">{error}</div>}
-                <div className={styles.modalActions}>
+                <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem' }}>
                   {modal === 'edit' && (
                     <>
                       {form.status === 'EXTENDED' ? (
                         <>
+                          <button
+                            type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => openEmailPreview('EXTENSION_EMAIL', form, { new_contract_end_date: form.contract_end_date })}
+                            disabled={submitting}
+                          >
+                            👁️ Preview Email
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => openPdfPreview('EXTENSION', form, { new_contract_end_date: form.contract_end_date })}
+                            disabled={submitting}
+                          >
+                            👁️ Preview PDF
+                          </button>
                           <button
                             type="button"
                             className={styles.dispatchButton}
@@ -1466,22 +1579,28 @@ export default function WorkforcePage() {
                         <>
                           <button
                             type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => openEmailPreview('OFFER_EMAIL', form)}
+                            disabled={submitting}
+                          >
+                            👁️ Preview Email
+                          </button>
+                          <button
+                            type="button"
+                            className={styles.secondaryButton}
+                            onClick={() => openPdfPreview('OFFER', form)}
+                            disabled={submitting}
+                          >
+                            👁️ Preview PDF
+                          </button>
+                          <button
+                            type="button"
                             className={styles.dispatchButton}
                             onClick={() => dispatchOfferLetter(form.id)}
                             disabled={submitting}
                           >
                             {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
                           </button>
-                          {form.status === 'OFFER_SENT' && (
-                            <button
-                              type="button"
-                              className={styles.secondaryButton}
-                              onClick={() => downloadOfferPdf(form.id)}
-                              disabled={submitting}
-                            >
-                              Download Offer PDF
-                            </button>
-                          )}
                           {form.status === 'ACTIVE' && (
                             <button
                               type="button"
@@ -1906,8 +2025,24 @@ export default function WorkforcePage() {
 
               {error && <div className={styles.error} role="alert" style={{ marginTop: '0.85rem' }}>{error}</div>}
 
-              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.65rem' }}>
+              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={submitting || !customExtensionDate}
+                  onClick={() => openEmailPreview('EXTENSION_EMAIL', extensionTarget, { new_contract_end_date: customExtensionDate })}
+                >
+                  👁️ Preview Email
+                </button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  disabled={submitting || !customExtensionDate}
+                  onClick={() => openPdfPreview('EXTENSION', extensionTarget, { new_contract_end_date: customExtensionDate })}
+                >
+                  👁️ Preview PDF
+                </button>
                 <button
                   type="button"
                   className={styles.secondaryButton}
@@ -1970,6 +2105,118 @@ export default function WorkforcePage() {
                   Download Generated PDF
                 </button>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close</button>
+              </div>
+            </div>
+          )}
+
+          {modal === 'email-preview' && emailPreview && (
+            <div className={styles.modalContent} style={{ maxWidth: '780px', width: '100%', padding: '1.25rem' }}>
+              <div className={styles.modalHeader} style={{ padding: '0 0 0.85rem 0', borderBottom: '1px solid var(--border)', marginBottom: '0.85rem' }}>
+                <div style={{ flex: 1 }}>
+                  <p className={styles.eyebrow}>Interactive Email Preview</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.15rem', margin: '0.15rem 0' }}>{emailPreview.subject}</h2>
+                  <div style={{ display: 'flex', gap: '0.85rem', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '0.35rem', flexWrap: 'wrap' }}>
+                    <span><strong>To:</strong> {emailPreview.recipient}</span>
+                    <span><strong>CC:</strong> {emailPreview.cc}</span>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    className={styles.secondaryButton}
+                    style={{ padding: '0.3rem 0.65rem', fontSize: '0.75rem', height: 'auto' }}
+                    onClick={() => setPreviewTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+                  >
+                    {previewTheme === 'dark' ? '☀️ Light View' : '🌙 Dark View'}
+                  </button>
+                  <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+                </div>
+              </div>
+
+              <div style={{
+                borderRadius: '12px',
+                border: '1px solid var(--border)',
+                overflow: 'hidden',
+                background: previewTheme === 'dark' ? '#06090e' : '#f4f6f8',
+                height: '460px',
+              }}>
+                <iframe
+                  title="Email Live Preview"
+                  srcDoc={previewTheme === 'light'
+                    ? emailPreview.html.replace('color-scheme: light dark;', 'color-scheme: light;')
+                    : emailPreview.html.replace('color-scheme: light dark;', 'color-scheme: dark;').replace('background-color: #f4f6f8;', 'background-color: #06090e;')
+                  }
+                  style={{ width: '100%', height: '100%', border: 'none' }}
+                />
+              </div>
+
+              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '0.85rem', marginTop: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close Preview</button>
+                {emailPreview.type === 'OFFER_EMAIL' && (
+                  <button
+                    type="button"
+                    className={styles.dispatchButton}
+                    disabled={submitting}
+                    onClick={() => dispatchOfferLetter(emailPreview.employee.id)}
+                  >
+                    {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
+                  </button>
+                )}
+                {emailPreview.type === 'EXTENSION_EMAIL' && (
+                  <button
+                    type="button"
+                    className={styles.dispatchButton}
+                    disabled={submitting}
+                    onClick={() => dispatchExtensionLetter(emailPreview.employee.id, emailPreview.extraData?.new_contract_end_date)}
+                  >
+                    {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
+                  </button>
+                )}
+                {emailPreview.type === 'TERMINATION_EMAIL' && (
+                  <button
+                    type="button"
+                    className={styles.terminateButton}
+                    disabled={submitting}
+                    onClick={confirmTermination}
+                  >
+                    {submitting ? 'Revoking Access...' : '⚠️ Confirm & Dispatch Termination'}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {modal === 'pdf-preview' && pdfPreview && (
+            <div className={styles.modalContent} style={{ maxWidth: '850px', width: '100%', padding: '1.25rem' }}>
+              <div className={styles.modalHeader} style={{ padding: '0 0 0.85rem 0', borderBottom: '1px solid var(--border)', marginBottom: '0.85rem' }}>
+                <div>
+                  <p className={styles.eyebrow}>Official Document Preview</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.15rem', margin: '0.15rem 0' }}>{pdfPreview.title}</h2>
+                  {pdfPreview.referenceId && (
+                    <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontFamily: 'monospace' }}>Ref: {pdfPreview.referenceId}</span>
+                  )}
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+
+              <div style={{ borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden', height: '520px' }}>
+                <iframe
+                  title="PDF Live Preview"
+                  src={pdfPreview.url}
+                  style={{ width: '100%', height: '100%', border: 'none' }}
+                />
+              </div>
+
+              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '0.85rem', marginTop: '0.85rem' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close Preview</button>
+                <a
+                  href={pdfPreview.url}
+                  download={pdfPreview.filename}
+                  className={styles.primaryButton}
+                  style={{ textDecoration: 'none' }}
+                >
+                  ⬇️ Download PDF
+                </a>
               </div>
             </div>
           )}
