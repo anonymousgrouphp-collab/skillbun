@@ -1261,8 +1261,14 @@ export default function WorkforcePage() {
       </section>
 
       {modal && <div className={styles.backdrop} role="presentation" onMouseDown={closeModal}>
-        <section className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title" onMouseDown={(event) => event.stopPropagation()}>
-          {modal === 'confirm-terminate' ? (
+        <section
+          className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          onMouseDown={(event) => event.stopPropagation()}
+        >
+          {modal === 'confirm-terminate' && (
             <div className={styles.modalContent} style={{ padding: '1.4rem', maxWidth: '620px', width: '100%' }}>
               <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
                 <div>
@@ -1410,7 +1416,9 @@ export default function WorkforcePage() {
                 </button>
               </div>
             </div>
-          ) : modal === 'dispatch-fallback' && dispatchFallback ? (
+          )}
+
+          {modal === 'dispatch-fallback' && dispatchFallback && (
             <div className={styles.modalContent} style={{ padding: '1.35rem' }}>
               <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
                 <div>
@@ -1441,7 +1449,9 @@ export default function WorkforcePage() {
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close</button>
               </div>
             </div>
-          ) : (
+          )}
+
+          {(modal === 'add' || modal === 'edit') && (
             <div className={styles.modalContent}>
               <div className={styles.modalHeader}>
                 <div>
@@ -2064,15 +2074,16 @@ export default function WorkforcePage() {
                 </div>
               </div>
             )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
           {modal === 'extend' && extensionTarget && (
-            <div>
-              <div className={styles.modalHeader}>
+            <div className={styles.modalContent} style={{ padding: '1.4rem', maxWidth: '580px', width: '100%' }}>
+              <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
                 <div>
                   <p className={styles.eyebrow}>Tenure Extension</p>
-                  <h2 id="modal-title">Extend Internship Tenure</h2>
+                  <h2 id="modal-title" style={{ fontSize: '1.25rem' }}>Extend Internship Tenure</h2>
                 </div>
                 <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
               </div>
@@ -2130,7 +2141,7 @@ export default function WorkforcePage() {
 
               {error && <div className={styles.error} role="alert" style={{ marginTop: '0.85rem' }}>{error}</div>}
 
-              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
                 <button
                   type="button"
@@ -2181,41 +2192,9 @@ export default function WorkforcePage() {
               </div>
             </div>
           )}
-          {modal === 'dispatch-fallback' && dispatchFallback && (
-            <div>
-              <div className={styles.modalHeader}>
-                <div>
-                  <p className={styles.eyebrow}>SMTP Dispatch Notice</p>
-                  <h2 id="modal-title">Manual Dispatch Ready</h2>
-                </div>
-                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
-              </div>
-              <p className={styles.confirmText}>
-                The 4-page formal Offer Letter PDF (Ref: <strong>{dispatchFallback.referenceId}</strong>) was generated successfully.
-                However, automated Zoho SMTP delivery failed. You can download the generated PDF below and email the candidate manually:
-              </p>
-              <div className={styles.alertBanner} role="alert" style={{ margin: '1rem 0' }}>
-                <span>{dispatchFallback.error}</span>
-              </div>
-              <div className={styles.boxDark} style={{ margin: '1rem 0', fontSize: '0.86rem', lineHeight: '1.6' }}>
-                <p style={{ margin: '0 0 0.35rem 0' }}><strong>Recipient:</strong> {dispatchFallback.recipient}</p>
-                <p style={{ margin: 0 }}><strong>Subject:</strong> {dispatchFallback.subject}</p>
-              </div>
-              <div className={styles.modalActions}>
-                <button
-                  type="button"
-                  className={styles.primaryButton}
-                  onClick={() => downloadBase64Pdf(dispatchFallback.pdfBase64, dispatchFallback.filename)}
-                >
-                  Download Generated PDF
-                </button>
-                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Close</button>
-              </div>
-            </div>
-          )}
 
           {modal === 'email-preview' && emailPreview && (
-            <div className={styles.modalContent} style={{ maxWidth: '780px', width: '100%', padding: '1.25rem' }}>
+            <div className={styles.modalContent} style={{ maxWidth: '820px', width: '100%', padding: '1.25rem' }}>
               <div className={styles.modalHeader} style={{ padding: '0 0 0.85rem 0', borderBottom: '1px solid var(--border)', marginBottom: '0.85rem' }}>
                 <div style={{ flex: 1 }}>
                   <p className={styles.eyebrow}>Interactive Email Preview</p>
@@ -2242,16 +2221,25 @@ export default function WorkforcePage() {
                 borderRadius: '12px',
                 border: '1px solid var(--border)',
                 overflow: 'hidden',
-                background: previewTheme === 'dark' ? '#06090e' : '#f4f6f8',
-                height: '460px',
+                background: previewTheme === 'dark' ? '#0d1117' : '#f4f6f8',
+                height: '520px',
               }}>
                 <iframe
                   title="Email Live Preview"
-                  srcDoc={previewTheme === 'light'
-                    ? emailPreview.html.replace('color-scheme: light dark;', 'color-scheme: light;')
-                    : emailPreview.html.replace('color-scheme: light dark;', 'color-scheme: dark;').replace('background-color: #f4f6f8;', 'background-color: #06090e;')
+                  srcDoc={previewTheme === 'dark'
+                    ? emailPreview.html.replace('</head>', `
+                      <style>
+                        body, .email-wrapper { background-color: #0d1117 !important; }
+                        .email-container { background-color: #161b22 !important; border-color: #30363d !important; }
+                        .text-title, .text-primary, h1, h2, h3, p, strong, td { color: #f0f6fc !important; }
+                        .text-subtle, .text-muted, .footer-text { color: #8b949e !important; }
+                        .box-card, .footer-bg, .info-row { background-color: #21262d !important; border-color: #30363d !important; color: #e6edf3 !important; }
+                        .divider { border-top-color: #30363d !important; color: #8b949e !important; }
+                        a.text-accent { color: #00e599 !important; }
+                      </style></head>`)
+                    : emailPreview.html
                   }
-                  style={{ width: '100%', height: '100%', border: 'none' }}
+                  style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
                 />
               </div>
 
