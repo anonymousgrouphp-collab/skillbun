@@ -25,15 +25,37 @@ export const COLORS = Object.freeze({
 
 /**
  * Wraps text into lines that fit within a maximum width in points.
+ * Supports both signatures:
+ *   wrapText(text, maxWidth, font, fontSize)
+ *   wrapText(text, font, fontSize, maxWidth)
  * @param {string} text
- * @param {import('pdf-lib').PDFFont} font
- * @param {number} fontSize
- * @param {number} maxWidth
+ * @param {number|import('pdf-lib').PDFFont} arg2
+ * @param {import('pdf-lib').PDFFont|number} arg3
+ * @param {number} [arg4]
  * @returns {string[]}
  */
-export function wrapText(text, font, fontSize, maxWidth) {
+export function wrapText(text, arg2, arg3, arg4) {
   if (!text) return [];
-  const words = text.split(/\s+/);
+
+  let font;
+  let fontSize;
+  let maxWidth;
+
+  if (typeof arg2 === 'number') {
+    maxWidth = arg2;
+    font = arg3;
+    fontSize = typeof arg4 === 'number' ? arg4 : 9.5;
+  } else {
+    font = arg2;
+    fontSize = typeof arg3 === 'number' ? arg3 : 9.5;
+    maxWidth = typeof arg4 === 'number' ? arg4 : CONTENT_WIDTH;
+  }
+
+  if (!font || typeof font.widthOfTextAtSize !== 'function') {
+    return [String(text)];
+  }
+
+  const words = String(text).split(/\s+/);
   const lines = [];
   let currentLine = '';
 
