@@ -4,7 +4,7 @@ import { validateSchema } from '@/utils/server/inputValidator';
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
 import { getClientAddress } from '@/utils/server/requestUtils';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
-import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
+import { generateCertificateId, generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 
 export const runtime = 'nodejs';
 
@@ -109,10 +109,11 @@ export async function POST(request) {
         }
       }
 
-      const certRef = db.collection('certificates').doc();
-      const certId = certRef.id;
+      const certId = generateCertificateId();
+      const certRef = db.collection('certificates').doc(certId);
 
       await certRef.set({
+        id: certId,
         uid,
         name: name.trim(),
         email,
@@ -190,11 +191,13 @@ export async function POST(request) {
       if (certType === 'LOR') prefix = WORKFORCE_PREFIXES.LOR;
 
       const certId = generateWorkforceId(prefix);
+      const displayId = formatWorkforceDisplayId(certId);
       const certRef = db.collection('certificates').doc(certId);
 
       const now = new Date();
       const certData = {
         id: certId,
+        display_id: displayId,
         cert_type: certType,
         employee_id: employee_id.trim(),
         uid: employeeData.user_uid || uid,
@@ -218,6 +221,7 @@ export async function POST(request) {
       return NextResponse.json({
         success: true,
         certId,
+        displayId,
         cert_type: certType,
         certificate: certData,
         message: `${certType.replace('_', ' ')} credential minted successfully.`,

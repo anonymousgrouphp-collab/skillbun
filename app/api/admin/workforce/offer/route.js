@@ -7,7 +7,7 @@ import {
   validateEmployeeId,
 } from '@/utils/server/workforceEmployees';
 import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator';
-import { generateWorkforceId } from '@/utils/server/workforceId';
+import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates';
 import { decryptCredentials, encryptCredentials } from '@/utils/server/workforceCrypto';
@@ -48,7 +48,7 @@ export async function POST(request) {
     const employeeData = employeeDoc.data();
 
     // 1. Generate unique reference ID
-    const referenceId = generateWorkforceId('SB-OFF');
+    const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.OFFER);
 
     // 2. Generate 4-page Offer Letter PDF in-memory buffer
     const { buffer, filename, metadataSnapshot } = await generateOfferLetterPdf(

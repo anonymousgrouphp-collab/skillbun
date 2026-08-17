@@ -57,7 +57,7 @@ export async function POST(request) {
 
     switch (type) {
       case 'OFFER_EMAIL': {
-        const referenceId = employeeData.offer_reference_id || 'SB-OFF-2026-PREVIEW';
+        const referenceId = employeeData.offer_reference_id || 'SKB/2026/HR-OFF/PREVIEW';
         let credentials = employeeData.credentials_data || null;
         if (!credentials && employeeData.encrypted_credentials) {
           try {
@@ -78,7 +78,7 @@ export async function POST(request) {
         break;
       }
       case 'EXTENSION_EMAIL': {
-        const referenceId = employeeData.extension_reference_id || 'SB-EXT-2026-PREVIEW';
+        const referenceId = employeeData.extension_reference_id || 'SKB/2026/HR-EXT/PREVIEW';
         payload = buildExtensionDispatchEmail({
           employee: employeeData,
           referenceId,

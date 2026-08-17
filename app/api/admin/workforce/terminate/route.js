@@ -6,7 +6,7 @@ import {
   requireWorkforceAdmin,
   validateEmployeeId,
 } from '@/utils/server/workforceEmployees';
-import { generateWorkforceId } from '@/utils/server/workforceId';
+import { generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildTerminationDispatchEmail } from '@/utils/server/workforceEmailTemplates';
 
@@ -57,7 +57,7 @@ export async function POST(request) {
 
     const employeeData = employeeDoc.data();
     const now = new Date();
-    const referenceId = generateWorkforceId('SB-TERM');
+    const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.TERMINATION);
 
     const grantedCredentials = [];
 
@@ -76,9 +76,12 @@ export async function POST(request) {
     const certBatch = db.batch();
 
     if (grantInternshipCert) {
-      const certId = generateWorkforceId('SB-INT');
+      const certId = generateWorkforceId(WORKFORCE_PREFIXES.INTERNSHIP);
+      const displayId = formatWorkforceDisplayId(certId);
       const certRef = db.collection('certificates').doc(certId);
       certBatch.set(certRef, {
+        id: certId,
+        display_id: displayId,
         cert_type: 'INTERNSHIP',
         employee_id: employeeId,
         name: employeeData.full_name,
@@ -92,13 +95,16 @@ export async function POST(request) {
         is_revoked: false,
         createdAt: now,
       });
-      grantedCredentials.push(`Certificate of Internship Completion (${certId})`);
+      grantedCredentials.push(`Certificate of Internship Completion (${displayId})`);
     }
 
     if (grantTrainingCert) {
-      const certId = generateWorkforceId('SB-TRN');
+      const certId = generateWorkforceId(WORKFORCE_PREFIXES.TRAINING);
+      const displayId = formatWorkforceDisplayId(certId);
       const certRef = db.collection('certificates').doc(certId);
       certBatch.set(certRef, {
+        id: certId,
+        display_id: displayId,
         cert_type: 'TRAINING',
         employee_id: employeeId,
         name: employeeData.full_name,
@@ -112,13 +118,16 @@ export async function POST(request) {
         is_revoked: false,
         createdAt: now,
       });
-      grantedCredentials.push(`Practical Training Completion Certificate (${certId})`);
+      grantedCredentials.push(`Practical Training Completion Certificate (${displayId})`);
     }
 
     if (grantLor) {
-      const certId = generateWorkforceId('SB-LOR');
+      const certId = generateWorkforceId(WORKFORCE_PREFIXES.LOR);
+      const displayId = formatWorkforceDisplayId(certId);
       const certRef = db.collection('certificates').doc(certId);
       certBatch.set(certRef, {
+        id: certId,
+        display_id: displayId,
         cert_type: 'LOR',
         employee_id: employeeId,
         name: employeeData.full_name,
@@ -133,7 +142,7 @@ export async function POST(request) {
         is_revoked: false,
         createdAt: now,
       });
-      grantedCredentials.push(`Official Letter of Recommendation (${certId})`);
+      grantedCredentials.push(`Official Letter of Recommendation (${displayId})`);
     }
 
     if (grantedCredentials.length > 0) {

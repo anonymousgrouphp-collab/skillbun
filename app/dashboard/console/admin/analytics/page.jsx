@@ -84,7 +84,16 @@ export default function AnalyticsDashboardPage() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('users'); // 'users' | 'certificates'
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam === 'certs' || tabParam === 'certificates') {
+        return 'certificates';
+      }
+    }
+    return 'users';
+  });
   const [expandedUserUid, setExpandedUserUid] = useState(null);
   const [deletingUid, setDeletingUid] = useState(null);
   const [statusMessage, setStatusMessage] = useState(null);
@@ -95,18 +104,6 @@ export default function AnalyticsDashboardPage() {
   const [sendingEmailKey, setSendingEmailKey] = useState(null);
 
   const userEmail = (user?.email || '').trim().toLowerCase();
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const tabParam = params.get('tab');
-      if (tabParam === 'certs' || tabParam === 'certificates') {
-        setActiveTab('certificates');
-      } else if (tabParam === 'users' || tabParam === 'crm' || tabParam === 'students') {
-        setActiveTab('users');
-      }
-    }
-  }, []);
 
   useEffect(() => {
     if (authLoading || checking) return;

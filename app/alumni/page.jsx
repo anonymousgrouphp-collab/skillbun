@@ -57,10 +57,18 @@ export default function AlumniPortalPage() {
 
   // Auto-search if user is logged in
   useEffect(() => {
+    let active = true;
     if (user?.email && !hasSearched) {
-      setQuery(user.email);
-      searchDocuments(user.email);
+      queueMicrotask(() => {
+        if (active) {
+          setQuery(user.email);
+          searchDocuments(user.email);
+        }
+      });
     }
+    return () => {
+      active = false;
+    };
   }, [user, hasSearched, searchDocuments]);
 
   const handleSubmit = (e) => {
@@ -108,7 +116,7 @@ export default function AlumniPortalPage() {
           <input
             type="text"
             className={styles.searchInput}
-            placeholder="Enter your personal email or Document Ref ID (e.g. SB-INT-...)"
+            placeholder="Enter your personal email or Document Ref ID (e.g. SKB/2026/INT-REC/...)"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             required
@@ -118,7 +126,7 @@ export default function AlumniPortalPage() {
           </button>
         </form>
         <p className={styles.helperText}>
-          Search with your registered email or official Reference Code (e.g. <code>SB-INT-2026-XXXXXX</code>)
+          Search with your registered email or official Reference Code (e.g. <code>SKB/2026/INT-REC/XXXXXX</code> or <code>SKBXXXX-XX-XX-XXXX</code>)
         </p>
       </div>
 
@@ -133,9 +141,9 @@ export default function AlumniPortalPage() {
       {hasSearched && !loading && documents.length === 0 && !error && (
         <div className={styles.emptyState}>
           <div className={styles.emptyIcon}>📂</div>
-          <div className={styles.emptyTitle}>No verified records found</div>
+          <div className={styles.emptyTitle}>No Records Found</div>
           <div className={styles.emptyText}>
-            No certificates or workforce documents were found for &quot;{searchedQuery}&quot;. Please double check your email address or reference ID.
+            No verified certificates or workforce letters found for <strong>{query}</strong>. Ensure the query is exact.
           </div>
         </div>
       )}
@@ -159,7 +167,7 @@ export default function AlumniPortalPage() {
                     <span className={styles.cardType}>
                       {getBadgeIcon(doc.type)} {doc.type.replace(/_/g, ' ')}
                     </span>
-                    <span className={styles.cardRef}>{doc.id}</span>
+                    <span className={styles.cardRef}>{doc.display_id || doc.id}</span>
                   </div>
 
                   <h3 className={styles.cardTitle}>{doc.title}</h3>

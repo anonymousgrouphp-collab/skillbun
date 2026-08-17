@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore, getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin';
+import { formatWorkforceDisplayId } from '@/utils/server/workforceId';
 
 export const runtime = 'nodejs';
 
@@ -33,7 +34,8 @@ export async function GET(request) {
 
     const db = getFirebaseAdminFirestore();
     const isEmail = searchQuery.includes('@');
-    const isRefCode = searchQuery.startsWith('sb-');
+    const isRefCode = searchQuery.startsWith('sb-') || searchQuery.startsWith('skb-') || searchQuery.startsWith('skb/') || searchQuery.includes('/');
+    const normalizedRef = searchQuery.toUpperCase().replace(/\//g, '-');
 
     const results = [];
 
@@ -43,8 +45,13 @@ export async function GET(request) {
       if (isEmail) {
         certSnap = await db.collection('certificates').where('email', '==', searchQuery).get();
       } else if (isRefCode) {
-        const docSnap = await db.collection('certificates').doc(searchQuery.toUpperCase()).get();
-        certSnap = { docs: docSnap.exists ? [docSnap] : [] };
+        let docSnap = await db.collection('certificates').doc(normalizedRef).get();
+        if (!docSnap.exists && normalizedRef !== searchQuery.toUpperCase()) {
+          try {
+            docSnap = await db.collection('certificates').doc(searchQuery.toUpperCase()).get();
+          } catch {}
+        }
+        certSnap = { docs: docSnap && docSnap.exists ? [docSnap] : [] };
       } else {
         certSnap = await db.collection('certificates').where('employee_id', '==', searchQuery).get();
       }
@@ -53,6 +60,7 @@ export async function GET(request) {
         const data = doc.data();
         results.push({
           id: doc.id,
+          display_id: data.display_id || (data.cert_type === 'ROADMAP' ? doc.id : formatWorkforceDisplayId(doc.id)),
           category: 'CERTIFICATE',
           type: data.cert_type || 'ROADMAP',
           title: data.stream_or_track || data.roadmapTitle || 'Internship Certificate of Completion',
@@ -77,8 +85,13 @@ export async function GET(request) {
       if (isEmail) {
         docsSnap = await db.collection('workforce_docs').where('dispatched_to', '==', searchQuery).get();
       } else if (isRefCode) {
-        const docSnap = await db.collection('workforce_docs').doc(searchQuery.toUpperCase()).get();
-        docsSnap = { docs: docSnap.exists ? [docSnap] : [] };
+        let docSnap = await db.collection('workforce_docs').doc(normalizedRef).get();
+        if (!docSnap.exists && normalizedRef !== searchQuery.toUpperCase()) {
+          try {
+            docSnap = await db.collection('workforce_docs').doc(searchQuery.toUpperCase()).get();
+          } catch {}
+        }
+        docsSnap = { docs: docSnap && docSnap.exists ? [docSnap] : [] };
       } else {
         docsSnap = await db.collection('workforce_docs').where('employee_id', '==', searchQuery).get();
       }
@@ -88,6 +101,7 @@ export async function GET(request) {
         const meta = data.metadata_snapshot || {};
         results.push({
           id: doc.id,
+          display_id: data.display_id || formatWorkforceDisplayId(doc.id),
           category: 'WORKFORCE_DOCUMENT',
           type: data.doc_type || 'OFFER_LETTER',
           title: data.title || 'Workforce Document',
@@ -100,10 +114,11 @@ export async function GET(request) {
           issued_at: data.issued_at?.toDate ? data.issued_at.toDate().toISOString() : data.issued_at || '',
           is_revoked: Boolean(data.is_revoked),
           verification_url: null,
+          pdf_base64: data.pdf_base64 || null,
         });
       });
-    } catch (workforceErr) {
-      console.warn('[Alumni Workforce Docs Query Warning]:', workforceErr);
+    } catch (docsErr) {
+      console.warn('[Alumni Docs Query Warning]:', docsErr);
     }
 
     // Sort newest first

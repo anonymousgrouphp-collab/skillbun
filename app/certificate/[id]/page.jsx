@@ -71,10 +71,18 @@ export default function CertificatePage() {
       }
 
       try {
-        const docRef = doc(services.db, 'certificates', id);
-        const snapshot = await getDoc(docRef);
+        const rawId = Array.isArray(id) ? id.join('/') : String(id || '');
+        const decodedId = decodeURIComponent(rawId).trim();
+        const normalizedId = decodedId.replace(/\//g, '-');
 
-        if (snapshot.exists()) {
+        let snapshot = await getDoc(doc(services.db, 'certificates', normalizedId));
+        if (!snapshot.exists() && normalizedId !== decodedId) {
+          try {
+            snapshot = await getDoc(doc(services.db, 'certificates', decodedId));
+          } catch {}
+        }
+
+        if (snapshot && snapshot.exists()) {
           const data = snapshot.data();
           let date = new Date();
           if (data.createdAt?.toDate) {
@@ -84,6 +92,7 @@ export default function CertificatePage() {
           }
           const loadedCert = {
             id: snapshot.id,
+            display_id: data.display_id || (snapshot.id.startsWith('SKB-') && snapshot.id.includes('-HR-') ? snapshot.id.replace(/-/g, '/') : snapshot.id),
             ...data,
             createdAtDate: date,
           };
@@ -290,7 +299,7 @@ export default function CertificatePage() {
                 </div>
               </div>
               <div className={styles.lorMetaRight}>
-                <div>Ref ID: <strong>{cert.id}</strong></div>
+                <div>Ref ID: <strong>{cert.display_id || cert.id}</strong></div>
                 <div>Date: <strong>{cert.createdAtDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</strong></div>
               </div>
             </header>
@@ -352,7 +361,7 @@ export default function CertificatePage() {
               </div>
             )}
             <div className={styles.qrMeta}>
-              <span className={styles.qrMetaId}>{cert.id}</span>
+              <span className={styles.qrMetaId}>{cert.display_id || cert.id}</span>
             </div>
           </section>
         ) : certType === 'TRAINING' ? (
@@ -376,7 +385,7 @@ export default function CertificatePage() {
               {cert.stream_or_track || 'TRAINING PROGRAM'}
             </h2>
             <div className={styles.qrMeta}>
-              <span className={styles.qrMetaId}>{cert.id}</span>
+              <span className={styles.qrMetaId}>{cert.display_id || cert.id}</span>
             </div>
           </section>
         ) : (
@@ -400,7 +409,7 @@ export default function CertificatePage() {
               {cert.roadmapTitle}
             </h2>
             <div className={styles.qrMeta}>
-              <span className={styles.qrMetaId}>{cert.id}</span>
+              <span className={styles.qrMetaId}>{cert.display_id || cert.id}</span>
             </div>
           </section>
         )}

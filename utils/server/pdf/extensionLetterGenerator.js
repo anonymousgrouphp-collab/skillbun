@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts } from 'pdf-lib';
-import { generateWorkforceId } from '../workforceId.js';
+import { generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '../workforceId.js';
 import {
   COLORS,
   CONTENT_WIDTH,
@@ -46,8 +46,8 @@ function formatDate(dateValue) {
  * @param {Object} employee - Employee record data from Firestore
  * @param {Object} [options]
  * @param {string|Date} [options.newContractEndDate] - The new/extended end date
- * @param {string} [options.originalReferenceId] - The original offer reference ID (e.g. SB-OFF-2026-8K29DF)
- * @param {string} [options.referenceId] - Optional pre-allocated reference ID (e.g. SB-EXT-2026-3N72LA)
+ * @param {string} [options.originalReferenceId] - The original offer reference ID (e.g. SKB/2026/HR-OFF/8K29DF)
+ * @param {string} [options.referenceId] - Optional pre-allocated reference ID (e.g. SKB/2026/HR-EXT/3N72LA)
  * @returns {Promise<{ buffer: Buffer, filename: string, referenceId: string, metadataSnapshot: Object }>}
  */
 export async function generateExtensionLetterPdf(employee, options = {}) {
@@ -55,8 +55,9 @@ export async function generateExtensionLetterPdf(employee, options = {}) {
     throw new TypeError('generateExtensionLetterPdf requires a valid employee record object.');
   }
 
-  const referenceId = options.referenceId || employee.reference_id || generateWorkforceId('SB-EXT');
-  const originalRefId = options.originalReferenceId || employee.offer_reference_id || employee.original_offer_id || 'SB-OFF-ORIGINAL';
+  const rawRefId = options.referenceId || employee.reference_id || generateWorkforceId(WORKFORCE_PREFIXES.EXTENSION);
+  const referenceId = formatWorkforceDisplayId(rawRefId);
+  const originalRefId = formatWorkforceDisplayId(options.originalReferenceId || employee.offer_reference_id || employee.original_offer_id || 'SKB/2026/HR-OFF/ORIGINAL');
   const issueDateStr = formatDate(new Date());
 
   const salutation = employee.salutation || 'Mr./Ms.';
@@ -281,11 +282,12 @@ export async function generateExtensionLetterPdf(employee, options = {}) {
   const pdfBytes = await doc.save();
   const buffer = Buffer.from(pdfBytes);
   const sanitizedName = fullName.toLowerCase().replace(/[^a-z0-9]/g, '_');
-  const filename = `SkillBun_Extension_Letter_${sanitizedName}_${referenceId}.pdf`;
+  const safeFilenameRef = referenceId.replace(/[\/\\]/g, '_');
+  const filename = `SkillBun_Extension_Letter_${sanitizedName}_${safeFilenameRef}.pdf`;
 
   const metadataSnapshot = {
     reference_id: referenceId,
-    original_reference_id: originalRefId || 'SB-OFF-ORIGINAL',
+    original_reference_id: originalRefId || 'SKB/2026/HR-OFF/ORIGINAL',
     salutation: salutation || 'Mr./Ms.',
     full_name: fullName || 'Candidate Name',
     parent_name: parentName || 'Parent / Guardian',

@@ -7,7 +7,7 @@ import {
   validateEmployeeId,
 } from '@/utils/server/workforceEmployees';
 import { generateExtensionLetterPdf } from '@/utils/server/pdf/extensionLetterGenerator';
-import { generateWorkforceId } from '@/utils/server/workforceId';
+import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildExtensionDispatchEmail } from '@/utils/server/workforceEmailTemplates';
 
@@ -70,7 +70,7 @@ export async function POST(request) {
     }
 
     // 1. Generate unique reference ID
-    const referenceId = generateWorkforceId('SB-EXT');
+    const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.EXTENSION);
 
     // 2. Generate formal Extension Letter PDF
     const { buffer, filename, metadataSnapshot } = await generateExtensionLetterPdf(
