@@ -12,6 +12,10 @@ import {
   validateEmployeeId,
   validateEmployeePayload,
 } from '@/utils/server/workforceEmployees'
+import { generateWorkforceId } from '@/utils/server/workforceId'
+import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
+import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates'
+import { sendMailWithAttachment } from '@/utils/server/zohoMailer'
 
 export const runtime = 'nodejs'
 
@@ -110,6 +114,7 @@ export async function POST(request) {
     const employees = db.collection('employees')
     const employeeRef = employees.doc()
     const now = new Date()
+    const isExistingEmployee = Boolean(prepared.skipOfferEmail)
 
     await db.runTransaction(async (transaction) => {
       const duplicate = await transaction.get(
@@ -124,13 +129,130 @@ export async function POST(request) {
       transaction.set(employeeRef, {
         id: employeeRef.id,
         ...prepared.value,
-        status: 'OFFER_SENT',
+        status: isExistingEmployee ? 'ACTIVE' : 'OFFER_SENT',
         created_at: now,
         updated_at: now,
       })
     })
 
-    return NextResponse.json({ success: true, id: employeeRef.id }, { status: 201 })
+    // If existing employee checkbox was marked, skip PDF creation & email dispatch
+    if (isExistingEmployee) {
+      return NextResponse.json({
+        success: true,
+        id: employeeRef.id,
+        skipOfferEmail: true,
+        message: 'Candidate added as existing employee (Offer email skipped).',
+      }, { status: 201 })
+    }
+
+    // Auto-generate formal Offer Letter PDF and dispatch email
+    const referenceId = generateWorkforceId('SB-OFF')
+
+    try {
+      const { buffer, filename, metadataSnapshot } = await generateOfferLetterPdf(
+        {
+          ...prepared.value,
+          id: employeeRef.id,
+        },
+        { referenceId }
+      )
+
+      const emailPayload = buildOfferDispatchEmail({
+        employee: prepared.value,
+        referenceId,
+        credentials: prepared.credentials,
+      })
+
+      // Attempt Email Dispatch via Zoho SMTP
+      try {
+        await sendMailWithAttachment({
+          to: prepared.value.personal_email,
+          from: emailPayload.from,
+          cc: emailPayload.cc,
+          replyTo: emailPayload.replyTo,
+          subject: emailPayload.subject,
+          html: emailPayload.html,
+          text: emailPayload.text,
+          attachments: [
+            {
+              filename,
+              content: buffer,
+              contentType: 'application/pdf',
+            },
+          ],
+        })
+
+        // Record in workforce_docs collection & update employee
+        const workforceDocs = db.collection('workforce_docs')
+        const docRef = workforceDocs.doc(referenceId)
+
+        const batch = db.batch()
+        batch.create(docRef, {
+          id: referenceId,
+          employee_id: employeeRef.id,
+          doc_type: 'OFFER_PACK',
+          title: 'Internship Offer Letter & Terms of Engagement',
+          status: 'DISPATCHED',
+          metadata_snapshot: metadataSnapshot,
+          dispatched_to: prepared.value.personal_email,
+          issued_by: admin.email || admin.uid,
+          issued_at: now,
+        })
+
+        batch.update(employeeRef, {
+          status: 'OFFER_SENT',
+          offer_reference_id: referenceId,
+          offer_dispatched_at: now,
+          updated_at: now,
+        })
+
+        await batch.commit()
+
+        return NextResponse.json({
+          success: true,
+          id: employeeRef.id,
+          offerDispatched: true,
+          referenceId,
+          filename,
+          message: `Candidate added & Offer letter (${referenceId}) dispatched to ${prepared.value.personal_email}!`,
+        }, { status: 201 })
+      } catch (smtpError) {
+        console.error('[Workforce Employee POST - Zoho SMTP Failed]', smtpError)
+
+        try {
+          await employeeRef.update({
+            status: 'DISPATCH_FAILED',
+            offer_reference_id: referenceId,
+            last_dispatch_error: smtpError?.message || 'SMTP transmission failure',
+            updated_at: now,
+          })
+        } catch (updateErr) {
+          console.error('[Failed to update employee status to DISPATCH_FAILED]', updateErr)
+        }
+
+        return NextResponse.json({
+          success: true,
+          id: employeeRef.id,
+          offerDispatched: false,
+          fallbackDownload: true,
+          referenceId,
+          filename,
+          pdfBase64: buffer.toString('base64'),
+          recipient: prepared.value.personal_email,
+          subject: emailPayload.subject,
+          error: `Candidate created, but SMTP Dispatch failed: ${smtpError?.message || 'Network error'}. Manual PDF download ready.`,
+          message: `Candidate created, but email dispatch failed. Manual PDF download is ready.`,
+        }, { status: 201 })
+      }
+    } catch (pdfGenError) {
+      console.error('[Workforce Employee POST - PDF Generation Failed]', pdfGenError)
+      return NextResponse.json({
+        success: true,
+        id: employeeRef.id,
+        offerDispatched: false,
+        message: 'Candidate created, but offer letter generation encountered an error.',
+      }, { status: 201 })
+    }
   } catch (error) {
     if (error?.code === 'DUPLICATE_EMAIL') {
       return apiError('An employee with this personal email already exists.', 409, 'DUPLICATE_EMAIL')

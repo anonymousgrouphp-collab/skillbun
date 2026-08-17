@@ -89,13 +89,14 @@ const EMPLOYEE_FIELDS = Object.freeze({
   stipend_currency: { type: 'enum', allowedValues: ['INR'], defaultValue: 'INR', label: 'Stipend currency' },
   work_email: { type: 'email', label: 'Work email' },
   credentials_data: { validator: validateCredentialsData },
+  skip_offer_email: { type: 'boolean', defaultValue: false, label: 'Skip offer email' },
 })
 
 function withRequiredFields(schema) {
   return Object.fromEntries(
     Object.entries(schema).map(([key, rule]) => [key, {
       ...rule,
-      required: !['work_email', 'credentials_data', 'stipend_currency'].includes(key),
+      required: !['work_email', 'credentials_data', 'stipend_currency', 'skip_offer_email'].includes(key),
     }])
   )
 }
@@ -212,7 +213,7 @@ export function validateEmployeePayload(payload, { partial = false } = {}) {
   const result = validateSchema(payload, schema, {
     fieldName: 'Employee payload',
     allowUnknown: false,
-    maxKeys: partial ? 19 : 18,
+    maxKeys: partial ? 20 : 19,
   })
 
   if (!result.isValid || !partial) return result
@@ -228,7 +229,10 @@ export function prepareEmployeeData(validated) {
   const credentials = employee.credentials_data
   delete employee.credentials_data
 
-  if (!credentials) return { isValid: true, value: employee }
+  const skipOfferEmail = Boolean(employee.skip_offer_email)
+  delete employee.skip_offer_email
+
+  if (!credentials) return { isValid: true, value: employee, credentials: null, skipOfferEmail }
 
   if (employee.work_email && employee.work_email !== credentials.work_email) {
     return { isValid: false, error: 'Work email must match credentials_data.work_email.' }
@@ -240,7 +244,7 @@ export function prepareEmployeeData(validated) {
     work_email: employee.work_email,
   })
 
-  return { isValid: true, value: employee }
+  return { isValid: true, value: employee, credentials, skipOfferEmail }
 }
 
 export function isStatusTransitionAllowed(currentStatus, nextStatus) {

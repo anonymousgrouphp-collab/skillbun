@@ -41,7 +41,7 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
   const safeLink = escapeHtml(resetLink)
 
   await getTransporter().sendMail({
-    from: getPasswordResetFrom() || 'SkillBun Support <support@skillbun.tech>',
+    from: getPasswordResetFrom() || 'SkillBun <noreply@skillbun.tech>',
     to: email,
     subject: 'Reset your SkillBun password',
     text: [
@@ -89,7 +89,7 @@ export async function sendMailWithAttachment({
     throw new TypeError('sendMailWithAttachment requires a valid "to" recipient email address.')
   }
 
-  const defaultFrom = getPasswordResetFrom() || 'SkillBun Careers <noreply@skillbun.tech>'
+  const defaultFrom = getPasswordResetFrom() || 'SkillBun <noreply@skillbun.tech>'
   const mailOptions = {
     from: from || defaultFrom,
     to,
