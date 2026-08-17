@@ -376,6 +376,9 @@ export default function WorkforcePage() {
   const [pdfPreview, setPdfPreview] = useState(null)
   const [previewTheme, setPreviewTheme] = useState('dark')
   const [dispatchFallback, setDispatchFallback] = useState(null)
+  const [activationTarget, setActivationTarget] = useState(null)
+  const [activationCreds, setActivationCreds] = useState({ work_email: '', password: '', access_notes: '' })
+  const [showActivationPassword, setShowActivationPassword] = useState(false)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
 
@@ -745,7 +748,12 @@ export default function WorkforcePage() {
 
   const closeModal = () => {
     if (!submitting) {
+      if (pdfPreview?.url) {
+        URL.revokeObjectURL(pdfPreview.url)
+        setPdfPreview(null)
+      }
       setModal(null)
+      setActivationTarget(null)
       setShowMilestoneForm(false)
       setEditingMilestoneId(null)
       setIssuanceModal(null)
@@ -922,6 +930,10 @@ export default function WorkforcePage() {
       openExtendModal(employee)
       return
     }
+    if (status === 'ACTIVE') {
+      openActivateModal(employee)
+      return
+    }
     setSubmitting(true)
     setError('')
     try {
@@ -1036,7 +1048,62 @@ export default function WorkforcePage() {
     }
   }
 
-  const dispatchOfferLetter = async (employeeId) => {
+  const openActivateModal = (employee) => {
+    setActivationTarget(employee)
+    setActivationCreds({
+      work_email: employee.work_email || (employee.full_name ? `${employee.full_name.toLowerCase().replace(/[^a-z0-9]/g, '')}@skillbun.tech` : ''),
+      password: '',
+      access_notes: '',
+    })
+    setShowActivationPassword(false)
+    setError('')
+    if (employee.has_credentials) {
+      setModal('confirm-activate')
+    } else {
+      setModal('activate-credentials')
+    }
+  }
+
+  const confirmActivation = async ({ skipEmail = false, withFormCreds = false } = {}) => {
+    if (!user || !activationTarget) return
+    setSubmitting(true)
+    setError('')
+    try {
+      const idToken = await user.getIdToken()
+      const credentialsData = withFormCreds && (activationCreds.work_email || activationCreds.password)
+        ? activationCreds
+        : null
+
+      const res = await fetch('/api/admin/workforce/activate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({
+          employeeId: activationTarget.id,
+          credentials_data: credentialsData,
+          skipEmail,
+        }),
+      })
+
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.success) {
+        throw new Error(data?.error?.message || data?.message || 'Failed to activate employee.')
+      }
+
+      setModal(null)
+      setActivationTarget(null)
+      showToast(data.message || 'Employee marked Active!')
+      await loadEmployees()
+    } catch (actErr) {
+      setError(actErr.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const dispatchOfferLetter = async (employeeId, credentialsData = null) => {
     if (!user) return
     setSubmitting(true)
     setError('')
@@ -1048,7 +1115,7 @@ export default function WorkforcePage() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${idToken}`,
         },
-        body: JSON.stringify({ employeeId }),
+        body: JSON.stringify({ employeeId, credentials_data: credentialsData }),
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok && !data.fallbackDownload) {
@@ -1831,7 +1898,7 @@ export default function WorkforcePage() {
                           <button
                             type="button"
                             className={styles.dispatchButton}
-                            onClick={() => dispatchOfferLetter(form.id)}
+                            onClick={() => dispatchOfferLetter(form.id, form.credentials_data)}
                             disabled={submitting}
                           >
                             {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
@@ -2455,6 +2522,146 @@ export default function WorkforcePage() {
                 >
                   ⬇️ Download PDF
                 </a>
+              </div>
+            </div>
+          )}
+
+          {modal === 'confirm-activate' && activationTarget && (
+            <div className={styles.modalContent} style={{ maxWidth: '520px', width: '100%', padding: '1.5rem' }}>
+              <div className={styles.modalHeader} style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem', marginBottom: '1rem' }}>
+                <div>
+                  <p className={styles.eyebrow} style={{ color: 'var(--green)' }}>🚀 Onboarding Activation</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.2rem', margin: '0.2rem 0' }}>Activate {activationTarget.full_name}</h2>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>{activationTarget.designation} • {activationTarget.department}</span>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+
+              <p style={{ fontSize: '0.9rem', color: 'var(--foreground)', lineHeight: 1.6, margin: '0 0 1rem 0' }}>
+                This candidate already has provisioned Zoho enterprise credentials saved in the database.
+              </p>
+
+              <div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '10px', padding: '1rem', marginBottom: '1.25rem', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                <div><strong>Candidate:</strong> {activationTarget.full_name}</div>
+                <div><strong>Personal Email:</strong> {activationTarget.personal_email}</div>
+                {activationTarget.work_email && <div><strong>Work Email (Zoho):</strong> {activationTarget.work_email}</div>}
+              </div>
+
+              {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
+
+              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  onClick={() => confirmActivation({ skipEmail: true })}
+                  disabled={submitting}
+                  title="Activate status to ACTIVE without dispatching welcome email"
+                >
+                  Skip Email & Activate
+                </button>
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  onClick={() => confirmActivation({ skipEmail: false })}
+                  disabled={submitting}
+                >
+                  {submitting ? 'Activating & Sending...' : '🚀 Activate & Send Welcome Email'}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {modal === 'activate-credentials' && activationTarget && (
+            <div className={styles.modalContent} style={{ maxWidth: '560px', width: '100%', padding: '1.5rem' }}>
+              <div className={styles.modalHeader} style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem', marginBottom: '1rem' }}>
+                <div>
+                  <p className={styles.eyebrow} style={{ color: 'var(--green)' }}>🚀 Provision Workspace & Activate</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.2rem', margin: '0.2rem 0' }}>Activate {activationTarget.full_name}</h2>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>{activationTarget.designation} • {activationTarget.department}</span>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+
+              <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 1.25rem 0' }}>
+                No Zoho workspace credentials found for this candidate. You can enter them below to dispatch the official Welcome Email, or click <strong>Skip</strong> to activate directly.
+              </p>
+
+              <div style={{ display: 'grid', gap: '1rem', marginBottom: '1.25rem' }}>
+                <label className={styles.label}>
+                  Zoho Work Email
+                  <input
+                    type="email"
+                    className={styles.input}
+                    value={activationCreds.work_email}
+                    onChange={(e) => setActivationCreds({ ...activationCreds, work_email: e.target.value })}
+                    placeholder="e.g. name@skillbun.tech"
+                  />
+                </label>
+
+                <label className={styles.label}>
+                  Zoho Temporary Password
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type={showActivationPassword ? 'text' : 'password'}
+                      className={styles.input}
+                      value={activationCreds.password}
+                      onChange={(e) => setActivationCreds({ ...activationCreds, password: e.target.value })}
+                      placeholder="Enter temporary password for candidate"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowActivationPassword(!showActivationPassword)}
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: 'var(--muted)',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      {showActivationPassword ? '🙈' : '👁️'}
+                    </button>
+                  </div>
+                </label>
+
+                <label className={styles.label}>
+                  Access Notes (Optional)
+                  <textarea
+                    className={styles.textarea}
+                    rows={2}
+                    value={activationCreds.access_notes}
+                    onChange={(e) => setActivationCreds({ ...activationCreds, access_notes: e.target.value })}
+                    placeholder="e.g. Workspace Pro Admin, Discord role assigned"
+                  />
+                </label>
+              </div>
+
+              {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
+
+              <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className={styles.secondaryButton}
+                  onClick={() => confirmActivation({ skipEmail: true })}
+                  disabled={submitting}
+                  title="Activate status to ACTIVE without saving credentials or sending email"
+                >
+                  Skip Credentials & Activate
+                </button>
+                <button
+                  type="button"
+                  className={styles.primaryButton}
+                  onClick={() => confirmActivation({ skipEmail: false, withFormCreds: true })}
+                  disabled={submitting || !activationCreds.work_email.trim() || !activationCreds.password}
+                >
+                  {submitting ? 'Saving & Activating...' : '🚀 Save Credentials & Activate'}
+                </button>
               </div>
             </div>
           )}

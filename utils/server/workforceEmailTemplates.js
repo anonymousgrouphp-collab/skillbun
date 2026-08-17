@@ -517,3 +517,152 @@ export function buildTerminationDispatchEmail({
   };
 }
 
+export function buildActivationWelcomeEmail({ employee, credentials }) {
+  const fullName = employee.full_name || 'Team Member';
+  const salutation = employee.salutation || 'Mr./Ms.';
+  const designation = employee.designation || 'Intern';
+  const department = employee.department || 'Engineering';
+  const joiningDate = formatDate(employee.joining_date);
+
+  const zohoWorkEmail = (credentials?.work_email || employee.work_email || '').trim();
+  const zohoPassword = credentials?.password || '';
+  const zohoNotes = (credentials?.access_notes || '').trim();
+  const hasZohoCredentials = Boolean(zohoWorkEmail && zohoPassword);
+
+  const subject = `[SkillBun] Welcome to the Team! Onboarding Complete & Workspace Access - ${fullName}`;
+  const from = 'SkillBun Hiring Team <noreply@skillbun.tech>';
+  const cc = 'harsh@skillbun.tech';
+  const replyTo = 'harsh@skillbun.tech';
+
+  const credentialsHtml = hasZohoCredentials ? `
+    <!-- Zoho Enterprise Credentials Card -->
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #00b87a; border-radius: 14px; padding: 20px; margin: 22px 0; box-shadow: 0 4px 16px rgba(0, 184, 122, 0.08);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
+          🏢 Enterprise Workspace & Zoho Mail Credentials
+        </div>
+        <span style="background: rgba(0,184,122,0.12); color: #008751; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Active</span>
+      </div>
+      <p style="margin: 0 0 14px 0; font-size: 13.5px; color: #475569; line-height: 1.5;">
+        Your SkillBun enterprise workspace account is officially provisioned. Please use these confidential credentials to sign in to your work email and team tools:
+      </p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.9;">
+        <tr>
+          <td class="table-label" style="color: #64748b; width: 38%;">Work Email (Zoho):</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace;">${escapeHtml(zohoWorkEmail)}</td>
+        </tr>
+        <tr>
+          <td class="table-label" style="color: #64748b;">Temporary Password:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace; letter-spacing: 0.5px; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; display: inline-block;">${escapeHtml(zohoPassword)}</td>
+        </tr>
+        <tr>
+          <td class="table-label" style="color: #64748b;">Mail Login Portal:</td>
+          <td class="table-val">
+            <a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 700; text-decoration: underline;">https://mail.zoho.in</a>
+          </td>
+        </tr>
+        ${zohoNotes ? `
+        <tr>
+          <td class="table-label" style="color: #64748b; vertical-align: top;">Access Notes:</td>
+          <td class="table-val" style="color: #334155; font-size: 13px;">${escapeHtml(zohoNotes)}</td>
+        </tr>` : ''}
+      </table>
+      <div style="margin-top: 14px; padding: 10px 12px; background: rgba(0, 135, 81, 0.06); border-radius: 8px; font-size: 12px; color: #166534; line-height: 1.5;">
+        🔒 <strong>Security Protocol:</strong> Please update your temporary password immediately upon your first sign-in at Zoho Mail.
+      </div>
+    </div>
+  ` : '';
+
+  const contentHtml = `
+    <div style="margin-bottom: 24px;">
+      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
+        🚀 Onboarding Complete & Active
+      </div>
+      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
+        Welcome to the SkillBun Team!
+      </h1>
+      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
+        Your engagement is now officially active.
+      </p>
+    </div>
+
+    <p style="margin: 0 0 14px 0;">
+      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
+    </p>
+
+    <p style="margin: 0 0 16px 0; line-height: 1.6;">
+      We are delighted to confirm that your onboarding documentation has been processed and your status is officially <strong>ACTIVE</strong> as <strong>${escapeHtml(designation)}</strong> (${escapeHtml(department)}), effective from <strong>${escapeHtml(joiningDate)}</strong>.
+    </p>
+
+    ${credentialsHtml}
+
+    <!-- Quick Start Box -->
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
+      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+        📌 Day 1 Getting Started
+      </div>
+      <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.8; color: #475569;">
+        ${hasZohoCredentials ? '<li>Log in to your official Zoho work mailbox (<a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 600;">mail.zoho.in</a>) to verify access.</li>' : ''}
+        <li>Check your inbox for team project invitations and sprint check-in schedules.</li>
+        <li>Familiarize yourself with interactive roadmaps and technical resources at <a href="https://skillbun.tech" target="_blank" style="color: #008751; font-weight: 600;">skillbun.tech</a>.</li>
+        <li>For any operational questions, reach out directly to the core team at <a href="mailto:harsh@skillbun.tech" style="color: #008751; font-weight: 600;">harsh@skillbun.tech</a>.</li>
+      </ol>
+    </div>
+
+    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
+      Warm regards,<br>
+      <strong class="instructions-heading" style="color: #0f172a;">SkillBun Hiring & People Operations</strong><br>
+      SkillBun Inc. • <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 750;">skillbun.tech</a>
+    </div>
+  `;
+
+  const html = buildBaseEmailWrapper(
+    contentHtml,
+    subject,
+    false,
+    employee.personal_email || ''
+  );
+
+  const textLines = [
+    `Dear ${salutation} ${fullName},`,
+    '',
+    `We are delighted to confirm that your onboarding documentation has been processed and your status is officially ACTIVE as ${designation} (${department}), effective from ${joiningDate}.`,
+    '',
+  ];
+
+  if (hasZohoCredentials) {
+    textLines.push(
+      'ENTERPRISE WORKSPACE & ZOHO MAIL CREDENTIALS:',
+      `- Work Email: ${zohoWorkEmail}`,
+      `- Temporary Password: ${zohoPassword}`,
+      '- Login Portal: https://mail.zoho.in',
+      ...(zohoNotes ? [`- Access Notes: ${zohoNotes}`] : []),
+      '(Note: Please update your temporary password upon first login.)',
+      ''
+    );
+  }
+
+  textLines.push(
+    'DAY 1 GETTING STARTED:',
+    hasZohoCredentials ? '1. Log in to your Zoho work mailbox (https://mail.zoho.in).' : '1. Check your inbox for team project invitations.',
+    '2. Familiarize yourself with interactive roadmaps at https://skillbun.tech.',
+    '3. For questions, contact harsh@skillbun.tech.',
+    '',
+    'Warm regards,',
+    'SkillBun Hiring & People Operations',
+    'SkillBun Inc.',
+    'https://skillbun.tech'
+  );
+
+  const text = textLines.join('\n');
+
+  return {
+    subject,
+    html,
+    text,
+    from,
+    cc,
+    replyTo,
+  };
+}
+
