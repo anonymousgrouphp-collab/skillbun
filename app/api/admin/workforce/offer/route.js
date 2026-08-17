@@ -10,6 +10,7 @@ import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
 import { generateWorkforceId } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates';
+import { decryptCredentials } from '@/utils/server/workforceCrypto';
 
 export const runtime = 'nodejs';
 
@@ -58,10 +59,21 @@ export async function POST(request) {
       { referenceId }
     );
 
-    // 3. Build email payload
+    // 3. Decrypt credentials if available
+    let credentials = null;
+    if (employeeData.encrypted_credentials) {
+      try {
+        credentials = decryptCredentials(employeeData.encrypted_credentials);
+      } catch (decErr) {
+        console.warn('[Offer Dispatch] Could not decrypt credentials for email inclusion:', decErr.message);
+      }
+    }
+
+    // 4. Build email payload
     const emailPayload = buildOfferDispatchEmail({
       employee: employeeData,
       referenceId,
+      credentials,
     });
 
     const now = new Date();

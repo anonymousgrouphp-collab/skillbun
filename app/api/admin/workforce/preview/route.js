@@ -11,6 +11,7 @@ import {
   buildExtensionDispatchEmail,
   buildTerminationDispatchEmail,
 } from '@/utils/server/workforceEmailTemplates';
+import { decryptCredentials } from '@/utils/server/workforceCrypto';
 
 export const runtime = 'nodejs';
 
@@ -56,7 +57,13 @@ export async function POST(request) {
     switch (type) {
       case 'OFFER_EMAIL': {
         const referenceId = employeeData.offer_reference_id || 'SB-OFF-2026-PREVIEW';
-        payload = buildOfferDispatchEmail({ employee: employeeData, referenceId });
+        let credentials = employeeData.credentials_data || null;
+        if (!credentials && employeeData.encrypted_credentials) {
+          try {
+            credentials = decryptCredentials(employeeData.encrypted_credentials);
+          } catch {}
+        }
+        payload = buildOfferDispatchEmail({ employee: employeeData, referenceId, credentials });
         break;
       }
       case 'EXTENSION_EMAIL': {

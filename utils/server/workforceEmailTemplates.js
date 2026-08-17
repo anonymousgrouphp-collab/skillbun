@@ -35,7 +35,7 @@ function formatDate(dateValue) {
  * @param {string} params.referenceId - Allocated workforce offer reference ID (e.g. SB-OFF-2026-XXXXXX)
  * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
  */
-export function buildOfferDispatchEmail({ employee, referenceId }) {
+export function buildOfferDispatchEmail({ employee, referenceId, credentials = null }) {
   if (!employee) {
     throw new TypeError('buildOfferDispatchEmail requires an employee record object.');
   }
@@ -44,6 +44,8 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
   const fullName = employee.full_name || 'Candidate';
   const designation = employee.designation || 'Engineering Intern';
   const department = employee.department || 'Tech Team (Development & Engineering)';
+  const courseDegree = employee.course_degree || '';
+  const collegeName = employee.college_name || '';
   const joiningDate = formatDate(employee.joining_date);
   const contractEndDate = formatDate(employee.contract_end_date);
   const stipendAmount = typeof employee.stipend_amount === 'number' ? employee.stipend_amount : 0;
@@ -51,17 +53,62 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     ? `INR ${stipendAmount.toLocaleString('en-IN')} / month`
     : 'Merit-based training with verified credentials & LOR';
 
-  const subject = `[SkillBun] Internship Offer Letter & Terms of Engagement - ${fullName} (Ref: ${referenceId})`;
+  const zohoWorkEmail = (credentials?.work_email || employee.work_email || '').trim();
+  const zohoPassword = credentials?.password || '';
+  const zohoNotes = (credentials?.access_notes || '').trim();
+  const hasZohoCredentials = Boolean(zohoWorkEmail && zohoPassword);
+
+  const subject = `[SkillBun] Formal Offer of Engagement & Internship Terms - ${fullName} (Ref: ${referenceId})`;
+  const from = 'SkillBun Hiring Team <noreply@skillbun.tech>';
   const cc = 'harsh@skillbun.tech';
   const replyTo = 'harsh@skillbun.tech';
+
+  const credentialsHtml = hasZohoCredentials ? `
+    <!-- Zoho Enterprise Credentials Card -->
+    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #00b87a; border-radius: 14px; padding: 20px; margin: 22px 0; box-shadow: 0 4px 16px rgba(0, 184, 122, 0.08);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
+          🏢 Enterprise Workspace & Zoho Mail Credentials
+        </div>
+        <span style="background: rgba(0,184,122,0.12); color: #008751; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Provisioned</span>
+      </div>
+      <p style="margin: 0 0 14px 0; font-size: 13.5px; color: #475569; line-height: 1.5;">
+        Your official SkillBun enterprise workspace account has been provisioned. Please use these confidential credentials to access your work mailbox and team collaboration tools:
+      </p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.9;">
+        <tr>
+          <td class="table-label" style="color: #64748b; width: 38%;">Work Email (Zoho):</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace;">${escapeHtml(zohoWorkEmail)}</td>
+        </tr>
+        <tr>
+          <td class="table-label" style="color: #64748b;">Temporary Password:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace; letter-spacing: 0.5px; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; display: inline-block;">${escapeHtml(zohoPassword)}</td>
+        </tr>
+        <tr>
+          <td class="table-label" style="color: #64748b;">Mail Login Portal:</td>
+          <td class="table-val">
+            <a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 700; text-decoration: underline;">https://mail.zoho.in</a>
+          </td>
+        </tr>
+        ${zohoNotes ? `
+        <tr>
+          <td class="table-label" style="color: #64748b; vertical-align: top;">Access Notes:</td>
+          <td class="table-val" style="color: #334155; font-size: 13px;">${escapeHtml(zohoNotes)}</td>
+        </tr>` : ''}
+      </table>
+      <div style="margin-top: 14px; padding: 10px 12px; background: rgba(0, 135, 81, 0.06); border-radius: 8px; font-size: 12px; color: #166534; line-height: 1.5;">
+        🔒 <strong>Security Protocol:</strong> For compliance and safety, please update your temporary password immediately upon your first sign-in at Zoho Mail.
+      </div>
+    </div>
+  ` : '';
 
   const contentHtml = `
     <div style="margin-bottom: 24px;">
       <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        🎉 Formal Internship Offer
+        🎉 Formal Internship Offer & Welcome
       </div>
       <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        Welcome to SkillBun!
+        Welcome to the SkillBun Team!
       </h1>
       <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
         Official Offer of Engagement & Internship Terms
@@ -73,7 +120,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     </p>
 
     <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      Following your comprehensive technical evaluation and leadership screening, SkillBun is pleased to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.
+      Following your comprehensive technical evaluation and screening, SkillBun is thrilled to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.
     </p>
 
     <!-- Details Box -->
@@ -90,6 +137,11 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
           <td class="table-label" style="color: #64748b;">Role & Stream:</td>
           <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
         </tr>
+        ${courseDegree ? `
+        <tr>
+          <td class="table-label" style="color: #64748b;">Academic Qualification:</td>
+          <td class="table-val" style="color: #0f172a; font-weight: 600;">${escapeHtml(courseDegree)}${collegeName ? ` &bull; ${escapeHtml(collegeName)}` : ''}</td>
+        </tr>` : ''}
         <tr>
           <td class="table-label" style="color: #64748b;">Tenure Period:</td>
           <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(contractEndDate)}</td>
@@ -105,6 +157,8 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
       </table>
     </div>
 
+    ${credentialsHtml}
+
     <!-- Instructions Box -->
     <div class="box-instructions" style="background-color: #f0fdf4; border-left: 3px solid #00b87a; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #166534;">
       <strong class="instructions-heading" style="color: #0f172a;">Next Steps to Confirm Your Seat:</strong>
@@ -112,6 +166,7 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
         <li>Review the attached formal <strong>4-page Internship Offer Letter & Terms PDF</strong>.</li>
         <li>Sign the <strong>Candidate Acceptance block on Page 4</strong>.</li>
         <li>Reply back to this email with your signed copy within <strong>3 business days</strong>.</li>
+        ${hasZohoCredentials ? '<li>Log into your Zoho work email and verify initial access to team channels.</li>' : ''}
       </ol>
     </div>
 
@@ -121,9 +176,9 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
 
     <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
       Warm regards,<br>
-      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
-      Lead, SkillBun<br>
-      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
+      <strong class="instructions-heading" style="color: #0f172a; font-size: 15px;">SkillBun Hiring Team</strong><br>
+      <span style="color: #64748b; font-size: 13px;">Talent Acquisition & People Operations</span><br>
+      SkillBun Inc. &bull; <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
     </div>
   `;
 
@@ -134,17 +189,33 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     employee.personal_email || ''
   );
 
-  const text = [
+  const textLines = [
     `Dear ${salutation} ${fullName},`,
     '',
-    `Following your technical evaluation and leadership screening, SkillBun is pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
+    `Following your technical evaluation and screening, SkillBun is pleased to extend this formal offer for the position of ${designation} within the ${department}.`,
     '',
     'ENGAGEMENT OVERVIEW:',
     `- Candidate Name: ${salutation} ${fullName}`,
     `- Role & Stream: ${designation} (${department})`,
+    ...(courseDegree ? [`- Academic Qualification: ${courseDegree}${collegeName ? ` (${collegeName})` : ''}`] : []),
     `- Tenure Period: ${joiningDate} to ${contractEndDate}`,
     `- Stipend: ${stipendDisplay}`,
     `- Reference Code: ${referenceId}`,
+  ];
+
+  if (hasZohoCredentials) {
+    textLines.push(
+      '',
+      'ENTERPRISE WORKSPACE & ZOHO MAIL CREDENTIALS:',
+      `- Work Email: ${zohoWorkEmail}`,
+      `- Temporary Password: ${zohoPassword}`,
+      '- Login Portal: https://mail.zoho.in',
+      ...(zohoNotes ? [`- Access Notes: ${zohoNotes}`] : []),
+      '(Note: Please update your temporary password upon first login.)'
+    );
+  }
+
+  textLines.push(
     '',
     'NEXT STEPS:',
     '1. Review the attached 4-page Offer Letter & Terms of Engagement PDF.',
@@ -152,15 +223,19 @@ export function buildOfferDispatchEmail({ employee, referenceId }) {
     '3. Reply back to harsh@skillbun.tech with your signed copy within 3 business days.',
     '',
     'Warm regards,',
-    'Harsh Patel',
-    'Lead, SkillBun',
-    'https://skillbun.tech',
-  ].join('\n');
+    'SkillBun Hiring Team',
+    'Talent Acquisition & People Operations',
+    'SkillBun Inc.',
+    'https://skillbun.tech'
+  );
+
+  const text = textLines.join('\n');
 
   return {
     subject,
     html,
     text,
+    from,
     cc,
     replyTo,
   };

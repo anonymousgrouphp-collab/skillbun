@@ -16,6 +16,29 @@ const STATUS_TABS = [
   { key: 'TERMINATED', label: 'Terminated' },
 ]
 
+export const PRESET_COURSES = [
+  'B.Tech - Computer Science & Engineering (CSE)',
+  'B.Tech - Information Technology (IT)',
+  'B.Tech - Artificial Intelligence & Data Science (AI/DS)',
+  'B.Tech - Electronics & Communication (ECE)',
+  'B.Tech - Electrical Engineering (EE)',
+  'B.Tech - Mechanical Engineering (ME)',
+  'B.Tech - Civil Engineering (CE)',
+  'B.Tech / B.E. (Other Specialization)',
+  'BCA (Bachelor of Computer Applications)',
+  'MCA (Master of Computer Applications)',
+  'B.Sc - Computer Science',
+  'B.Sc - Information Technology',
+  'B.Sc - Data Science / Statistics / Mathematics',
+  'M.Sc - Computer Science / IT',
+  'M.Tech / M.E. (Computer Science / Engineering)',
+  'BBA (Bachelor of Business Administration)',
+  'MBA (Master of Business Administration)',
+  'B.Des / M.Des (Design / UI-UX / Interaction)',
+  'B.Com / M.Com',
+  'Diploma in Computer Science / IT / Polytechnic',
+]
+
 export const PRESET_DEPARTMENTS = [
   'Engineering & Technology',
   'Frontend Web Development',
@@ -220,6 +243,7 @@ const EMPTY_FORM = {
   stipend_currency: 'INR',
   work_email: '',
   credentials_data: { work_email: '', password: '', access_notes: '' },
+  skip_offer_email: false,
 }
 
 function Icon({ name, size = 18 }) {
@@ -282,6 +306,7 @@ function formFromEmployee(employee) {
     // Credentials are intentionally never returned by the API. Keep this section blank
     // during edits so unchanged encrypted values are preserved server-side.
     credentials_data: { ...EMPTY_FORM.credentials_data },
+    skip_offer_email: false,
   }
 }
 
@@ -305,6 +330,7 @@ function toPayload(form, { includeStatus = false } = {}) {
     contract_end_date: form.contract_end_date,
     stipend_amount: Number(form.stipend_amount),
     stipend_currency: 'INR',
+    skip_offer_email: Boolean(form.skip_offer_email),
   }
 
   if (form.work_email.trim()) payload.work_email = form.work_email.trim().toLowerCase()
@@ -332,6 +358,7 @@ export default function WorkforcePage() {
   const [sortBy, setSortBy] = useState('full_name')
   const [modal, setModal] = useState(null)
   const [form, setForm] = useState(EMPTY_FORM)
+  const [courseSelect, setCourseSelect] = useState('')
   const [deptSelect, setDeptSelect] = useState('')
   const [desigSelect, setDesigSelect] = useState('')
   const [sameAddress, setSameAddress] = useState(false)
@@ -649,7 +676,8 @@ export default function WorkforcePage() {
   }
 
   const openAdd = () => {
-    setForm(EMPTY_FORM)
+    setForm({ ...EMPTY_FORM, skip_offer_email: false })
+    setCourseSelect('')
     setDeptSelect('')
     setDesigSelect('')
     setSameAddress(false)
@@ -675,6 +703,15 @@ export default function WorkforcePage() {
 
   const openEdit = (employee) => {
     setForm(formFromEmployee(employee))
+
+    if (PRESET_COURSES.includes(employee.course_degree)) {
+      setCourseSelect(employee.course_degree)
+    } else if (employee.course_degree) {
+      setCourseSelect('__OTHER__')
+    } else {
+      setCourseSelect('')
+    }
+
     let activeDept = ''
     if (PRESET_DEPARTMENTS.includes(employee.department)) {
       activeDept = employee.department
@@ -713,6 +750,20 @@ export default function WorkforcePage() {
       setEditingMilestoneId(null)
       setIssuanceModal(null)
     }
+  }
+
+  const handleCourseSelectChange = (event) => {
+    const value = event.target.value
+    setCourseSelect(value)
+    let updatedCourse = value
+    if (value === '__OTHER__') {
+      if (PRESET_COURSES.includes(form.course_degree)) {
+        updatedCourse = ''
+      } else {
+        updatedCourse = form.course_degree
+      }
+    }
+    setForm((current) => ({ ...current, course_degree: updatedCourse }))
   }
 
   const handleEmploymentTypeChange = (event) => {
@@ -824,13 +875,28 @@ export default function WorkforcePage() {
     setError('')
     try {
       const isEdit = modal === 'edit'
-      await request(isEdit ? `/api/admin/workforce/employees/${form.id}` : '/api/admin/workforce/employees', {
+      const resData = await request(isEdit ? `/api/admin/workforce/employees/${form.id}` : '/api/admin/workforce/employees', {
         method: isEdit ? 'PATCH' : 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(toPayload(form, { includeStatus: isEdit })),
       })
+
+      if (!isEdit && resData?.fallbackDownload) {
+        setDispatchFallback(resData)
+        setModal('dispatch-fallback')
+        showToast('Candidate saved. Email dispatch failed, manual PDF ready.')
+        await loadEmployees()
+        return
+      }
+
       setModal(null)
-      showToast(isEdit ? 'Employee details updated.' : 'Candidate added to the workforce hub.')
+      if (isEdit) {
+        showToast('Employee details updated.')
+      } else if (resData?.skipOfferEmail) {
+        showToast('Candidate saved (Offer email skipped for existing team member).')
+      } else {
+        showToast(resData?.message || 'Candidate added & Offer letter dispatched via email!')
+      }
       await loadEmployees()
     } catch (saveError) {
       setError(saveError.message)
@@ -1491,7 +1557,31 @@ export default function WorkforcePage() {
                       <label>Personal email<input name="personal_email" type="email" value={form.personal_email} onChange={updateField} required /></label>
                       <label>Phone<input name="phone" value={form.phone} onChange={updateField} required /></label>
                       <label>Employment type<select name="employment_type" value={form.employment_type} onChange={handleEmploymentTypeChange}><option value="INTERN">Intern</option><option value="FULL_TIME">Full time</option><option value="CONTRACTOR">Contractor</option></select></label>
-                      <label>Course / degree<input name="course_degree" value={form.course_degree} onChange={updateField} required /></label>
+
+                      <div className={styles.fieldGroup}>
+                        <label>
+                          Course / degree
+                          <select value={courseSelect} onChange={handleCourseSelectChange} required>
+                            <option value="" disabled>Select course / degree...</option>
+                            {PRESET_COURSES.map((course) => (
+                              <option key={course} value={course}>{course}</option>
+                            ))}
+                            <option value="__OTHER__">Other (Please specify)</option>
+                          </select>
+                        </label>
+                        {courseSelect === '__OTHER__' && (
+                          <input
+                            name="course_degree"
+                            value={form.course_degree}
+                            onChange={updateField}
+                            placeholder="Please specify course / degree qualification"
+                            required
+                            className={styles.specifyInput}
+                            autoFocus
+                          />
+                        )}
+                      </div>
+
                       <label>College name<input name="college_name" value={form.college_name} onChange={updateField} required /></label>
                       
                       <div className={styles.fieldGroup}>
@@ -1646,6 +1736,41 @@ export default function WorkforcePage() {
                   <label>Zoho password<input name="password" type="password" value={form.credentials_data.password} onChange={updateCredential} autoComplete="new-password" /></label>
                   <label className={styles.fullWidth}>Access notes<textarea name="access_notes" value={form.credentials_data.access_notes} onChange={updateCredential} rows="2" /></label>
                 </div></fieldset>
+
+                {modal === 'add' && (
+                  <div style={{ marginTop: '0.85rem', marginBottom: '0.5rem' }}>
+                    <label
+                      className={styles.checkboxLabel}
+                      style={{
+                        background: 'color-mix(in srgb, var(--surface) 92%, var(--green))',
+                        padding: '12px 16px',
+                        borderRadius: '10px',
+                        border: '1px solid color-mix(in srgb, var(--border) 70%, var(--green))',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '12px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        name="skip_offer_email"
+                        checked={Boolean(form.skip_offer_email)}
+                        onChange={(e) => setForm((prev) => ({ ...prev, skip_offer_email: e.target.checked }))}
+                        style={{ marginTop: '3px', accentColor: 'var(--green)' }}
+                      />
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--foreground)' }}>
+                          Existing team member (Skip offer letter email dispatch)
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '2px', lineHeight: 1.4 }}>
+                          If checked, no offer email will be sent to the candidate. Only their profile and credentials data will be saved directly into the database.
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                )}
+
                 {error && <div className={styles.error} role="alert">{error}</div>}
                 <div className={styles.modalActions} style={{ flexWrap: 'wrap', gap: '0.5rem' }}>
                   {modal === 'edit' && (
