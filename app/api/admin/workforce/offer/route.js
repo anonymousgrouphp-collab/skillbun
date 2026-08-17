@@ -10,7 +10,7 @@ import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
 import { generateWorkforceId } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates';
-import { decryptCredentials } from '@/utils/server/workforceCrypto';
+import { decryptCredentials, encryptCredentials } from '@/utils/server/workforceCrypto';
 
 export const runtime = 'nodejs';
 
@@ -29,7 +29,7 @@ export async function POST(request) {
       return apiError('Payload must be valid JSON.', 400, 'BAD_REQUEST');
     }
 
-    const { employeeId } = body;
+    const { employeeId, credentials_data } = body;
     if (!employeeId || typeof employeeId !== 'string') {
       return apiError('employeeId is required.', 400, 'VALIDATION_ERROR');
     }
@@ -59,9 +59,32 @@ export async function POST(request) {
       { referenceId }
     );
 
-    // 3. Decrypt credentials if available
+    // 3. Save or decrypt credentials
     let credentials = null;
-    if (employeeData.encrypted_credentials) {
+    if (credentials_data && typeof credentials_data === 'object') {
+      const workEmail = (credentials_data.work_email || '').trim();
+      const password = credentials_data.password || '';
+      const accessNotes = (credentials_data.access_notes || '').trim();
+      if (workEmail || password) {
+        credentials = {
+          work_email: workEmail,
+          password: password,
+          access_notes: accessNotes,
+        };
+        try {
+          const encrypted = encryptCredentials(credentials);
+          await employeeRef.update({
+            encrypted_credentials: encrypted,
+            work_email: workEmail || employeeData.work_email || null,
+            updated_at: new Date(),
+          });
+        } catch (encErr) {
+          console.warn('[Offer Dispatch] Could not persist new credentials:', encErr.message);
+        }
+      }
+    }
+
+    if (!credentials && employeeData.encrypted_credentials) {
       try {
         credentials = decryptCredentials(employeeData.encrypted_credentials);
       } catch (decErr) {
@@ -71,7 +94,10 @@ export async function POST(request) {
 
     // 4. Build email payload
     const emailPayload = buildOfferDispatchEmail({
-      employee: employeeData,
+      employee: {
+        ...employeeData,
+        work_email: credentials?.work_email || employeeData.work_email || '',
+      },
       referenceId,
       credentials,
     });

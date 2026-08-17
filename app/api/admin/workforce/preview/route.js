@@ -10,6 +10,7 @@ import {
   buildOfferDispatchEmail,
   buildExtensionDispatchEmail,
   buildTerminationDispatchEmail,
+  buildActivationWelcomeEmail,
 } from '@/utils/server/workforceEmailTemplates';
 import { decryptCredentials } from '@/utils/server/workforceCrypto';
 
@@ -66,6 +67,16 @@ export async function POST(request) {
         payload = buildOfferDispatchEmail({ employee: employeeData, referenceId, credentials });
         break;
       }
+      case 'ACTIVATION_EMAIL': {
+        let credentials = employeeData.credentials_data || null;
+        if (!credentials && employeeData.encrypted_credentials) {
+          try {
+            credentials = decryptCredentials(employeeData.encrypted_credentials);
+          } catch {}
+        }
+        payload = buildActivationWelcomeEmail({ employee: employeeData, credentials });
+        break;
+      }
       case 'EXTENSION_EMAIL': {
         const referenceId = employeeData.extension_reference_id || 'SB-EXT-2026-PREVIEW';
         payload = buildExtensionDispatchEmail({
@@ -87,7 +98,7 @@ export async function POST(request) {
         break;
       }
       default:
-        return apiError('Invalid preview type. Must be OFFER_EMAIL, EXTENSION_EMAIL, or TERMINATION_EMAIL.', 400, 'VALIDATION_ERROR');
+        return apiError('Invalid preview type. Must be OFFER_EMAIL, ACTIVATION_EMAIL, EXTENSION_EMAIL, or TERMINATION_EMAIL.', 400, 'VALIDATION_ERROR');
     }
 
     return NextResponse.json({

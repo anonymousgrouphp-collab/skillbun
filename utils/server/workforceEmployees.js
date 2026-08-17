@@ -261,8 +261,9 @@ export function serializeEmployee(id, data) {
   const employee = { ...data, id }
   delete employee.credentials_data
   employee.encrypted_credentials = data.encrypted_credentials ? '[ENCRYPTED]' : null
+  employee.has_credentials = Boolean(data.encrypted_credentials)
 
-  for (const field of ['joining_date', 'contract_end_date', 'created_at', 'updated_at', 'archived_at', 'offer_dispatched_at']) {
+  for (const field of ['joining_date', 'contract_end_date', 'created_at', 'updated_at', 'archived_at', 'offer_dispatched_at', 'activated_at']) {
     if (field in employee) employee[field] = serializeTimestamp(employee[field])
   }
 
