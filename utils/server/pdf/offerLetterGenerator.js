@@ -1,5 +1,5 @@
 import { PDFDocument, StandardFonts } from 'pdf-lib';
-import { generateWorkforceId } from '../workforceId.js';
+import { generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '../workforceId.js';
 import {
   COLORS,
   CONTENT_WIDTH,
@@ -54,7 +54,8 @@ export async function generateOfferLetterPdf(employee, options = {}) {
     throw new TypeError('generateOfferLetterPdf requires a valid employee record object.');
   }
 
-  const referenceId = options.referenceId || employee.offer_reference_id || employee.reference_id || generateWorkforceId('SB-OFF');
+  const rawRefId = options.referenceId || employee.offer_reference_id || employee.reference_id || generateWorkforceId(WORKFORCE_PREFIXES.OFFER);
+  const referenceId = formatWorkforceDisplayId(rawRefId);
   const issueDateStr = formatDate(new Date());
 
   const salutation = employee.salutation || 'Mr./Ms.';
@@ -569,7 +570,8 @@ export async function generateOfferLetterPdf(employee, options = {}) {
   const pdfBytes = await doc.save();
   const buffer = Buffer.from(pdfBytes);
   const sanitizedName = fullName.toLowerCase().replace(/[^a-z0-9]/g, '_');
-  const filename = `SkillBun_Offer_Letter_${sanitizedName}_${referenceId}.pdf`;
+  const safeFilenameRef = referenceId.replace(/[\/\\]/g, '_');
+  const filename = `SkillBun_Offer_Letter_${sanitizedName}_${safeFilenameRef}.pdf`;
 
   const metadataSnapshot = {
     reference_id: referenceId,

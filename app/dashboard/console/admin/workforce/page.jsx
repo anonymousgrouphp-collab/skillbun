@@ -1463,7 +1463,7 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantInternshipCert(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>🎓 Issue <strong>Certificate of Internship Completion (SB-INT)</strong></span>
+                    <span>🎓 Issue <strong>Certificate of Internship Completion (INT-REC)</strong></span>
                   </label>
 
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
@@ -1473,7 +1473,7 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantTrainingCert(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>📘 Issue <strong>Practical Industry Training Certificate (SB-TRN)</strong></span>
+                    <span>📘 Issue <strong>Practical Industry Training Certificate (TRN-EXP)</strong></span>
                   </label>
 
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
@@ -1483,7 +1483,7 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantLor(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>🌟 Issue <strong>Official Letter of Recommendation (SB-LOR)</strong></span>
+                    <span>🌟 Issue <strong>Official Letter of Recommendation (CORP-LOR)</strong></span>
                   </label>
                 </div>
 
@@ -1520,9 +1520,9 @@ export default function WorkforcePage() {
                   className={styles.secondaryButton}
                   onClick={() => {
                     const granted = []
-                    if (grantInternshipCert) granted.push('Certificate of Internship Completion (SB-INT)')
-                    if (grantTrainingCert) granted.push('Practical Industry Training Certificate (SB-TRN)')
-                    if (grantLor) granted.push('Official Letter of Recommendation (SB-LOR)')
+                    if (grantInternshipCert) granted.push('Certificate of Internship Completion (INT-REC)')
+                    if (grantTrainingCert) granted.push('Practical Industry Training Certificate (TRN-EXP)')
+                    if (grantLor) granted.push('Official Letter of Recommendation (CORP-LOR)')
                     openEmailPreview('TERMINATION_EMAIL', form, {
                       reasonCode: terminationReasonCode,
                       reason: terminationReason,

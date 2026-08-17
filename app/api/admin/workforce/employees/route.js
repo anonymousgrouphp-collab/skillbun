@@ -12,7 +12,7 @@ import {
   validateEmployeeId,
   validateEmployeePayload,
 } from '@/utils/server/workforceEmployees'
-import { generateWorkforceId } from '@/utils/server/workforceId'
+import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId'
 import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates'
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer'
@@ -146,7 +146,7 @@ export async function POST(request) {
     }
 
     // Auto-generate formal Offer Letter PDF and dispatch email
-    const referenceId = generateWorkforceId('SB-OFF')
+    const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.OFFER)
 
     try {
       const { buffer, filename, metadataSnapshot } = await generateOfferLetterPdf(
