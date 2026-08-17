@@ -1851,7 +1851,19 @@ export default function WorkforcePage() {
                     </>
                   )}
                   <button type="button" className={styles.secondaryButton} onClick={closeModal}>Cancel</button>
-                  <button type="submit" className={styles.primaryButton} disabled={submitting}>{submitting ? 'Saving...' : modal === 'add' ? 'Add Candidate' : 'Save changes'}</button>
+                  <button type="submit" className={styles.primaryButton} disabled={submitting}>
+                    {submitting
+                      ? modal === 'add'
+                        ? form.skip_offer_email
+                          ? 'Adding Candidate...'
+                          : 'Sending & Adding...'
+                        : 'Saving...'
+                      : modal === 'add'
+                        ? form.skip_offer_email
+                          ? 'Add Candidate'
+                          : 'Send Offer Letter & Add Candidate'
+                        : 'Save changes'}
+                  </button>
                 </div>
               </form>
             )}
