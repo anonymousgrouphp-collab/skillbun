@@ -2584,12 +2584,12 @@ export default function WorkforcePage() {
               </div>
 
               <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: 1.5, margin: '0 0 1.25rem 0' }}>
-                No Zoho workspace credentials found for this candidate. You can enter them below to dispatch the official Welcome Email, or click <strong>Skip</strong> to activate directly.
+                No Zoho workspace credentials found for this candidate. You can enter them below to dispatch the Welcome Email with credentials, or click <strong>Activate & Send Welcome Email</strong> to send the standard Welcome Email without credentials.
               </p>
 
               <div style={{ display: 'grid', gap: '1rem', marginBottom: '1.25rem' }}>
                 <label className={styles.label}>
-                  Zoho Work Email
+                  Zoho Work Email (Optional)
                   <input
                     type="email"
                     className={styles.input}
@@ -2600,7 +2600,7 @@ export default function WorkforcePage() {
                 </label>
 
                 <label className={styles.label}>
-                  Zoho Temporary Password
+                  Zoho Temporary Password (Optional)
                   <div style={{ position: 'relative' }}>
                     <input
                       type={showActivationPassword ? 'text' : 'password'}
@@ -2650,18 +2650,29 @@ export default function WorkforcePage() {
                   className={styles.secondaryButton}
                   onClick={() => confirmActivation({ skipEmail: true })}
                   disabled={submitting}
-                  title="Activate status to ACTIVE without saving credentials or sending email"
+                  title="Activate status to ACTIVE without dispatching any email"
                 >
-                  Skip Credentials & Activate
+                  Skip Email & Activate
                 </button>
-                <button
-                  type="button"
-                  className={styles.primaryButton}
-                  onClick={() => confirmActivation({ skipEmail: false, withFormCreds: true })}
-                  disabled={submitting || !activationCreds.work_email.trim() || !activationCreds.password}
-                >
-                  {submitting ? 'Saving & Activating...' : '🚀 Save Credentials & Activate'}
-                </button>
+                {activationCreds.work_email.trim() && activationCreds.password ? (
+                  <button
+                    type="button"
+                    className={styles.primaryButton}
+                    onClick={() => confirmActivation({ skipEmail: false, withFormCreds: true })}
+                    disabled={submitting}
+                  >
+                    {submitting ? 'Saving & Activating...' : '🚀 Save Credentials & Activate'}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.primaryButton}
+                    onClick={() => confirmActivation({ skipEmail: false, withFormCreds: false })}
+                    disabled={submitting}
+                  >
+                    {submitting ? 'Activating & Sending...' : '✉️ Activate & Send Welcome Email'}
+                  </button>
+                )}
               </div>
             </div>
           )}
