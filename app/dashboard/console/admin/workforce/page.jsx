@@ -2424,12 +2424,25 @@ export default function WorkforcePage() {
                 <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
               </div>
 
-              <div style={{ borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden', height: '520px' }}>
-                <iframe
-                  title="PDF Live Preview"
-                  src={pdfPreview.url}
-                  style={{ width: '100%', height: '100%', border: 'none' }}
-                />
+              <div style={{ borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden', height: '560px', background: 'var(--surface)' }}>
+                <object
+                  data={pdfPreview.url}
+                  type="application/pdf"
+                  style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                >
+                  <iframe
+                    title="PDF Live Preview"
+                    src={pdfPreview.url}
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                  >
+                    <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>
+                      <p>Your browser does not support inline PDF preview.</p>
+                      <a href={pdfPreview.url} download={pdfPreview.filename} className={styles.primaryButton} style={{ display: 'inline-block', marginTop: '1rem', textDecoration: 'none' }}>
+                        Download PDF
+                      </a>
+                    </div>
+                  </iframe>
+                </object>
               </div>
 
               <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '0.85rem', marginTop: '0.85rem' }}>
