@@ -438,10 +438,10 @@ export default function CertificatePage() {
                 </div>
 
                 <div className={styles.internshipGovtAttribution}>
-                  <span className={styles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
-                  <div className={styles.internshipReishIdentity}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/reish-mark.png" alt="Reish Mark" className={styles.internshipReishLogo} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/reish-mark.png" alt="Reish Mark" className={styles.internshipReishLogo} />
+                  <div className={styles.internshipReishDetails}>
+                    <span className={styles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/reish-wordmark.png" alt="REISH" className={styles.internshipReishWordmarkImg} />
                   </div>
