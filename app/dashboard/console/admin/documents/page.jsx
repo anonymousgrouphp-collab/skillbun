@@ -8,172 +8,130 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import styles from './documents.module.css';
 
-// Extended Document Catalog (Excluding student certification)
-const DOCUMENT_TEMPLATES = [
+// Strictly the 4 Production Documents Currently in Active Use
+const PRODUCTION_DOCUMENTS = [
   {
     id: 'workforce_offer',
-    category: 'Offer & Engagement',
-    name: '🏢 Formal Offer of Engagement & Terms (4-Page Pack)',
-    categoryLabel: '🏢 Offer & Engagement',
+    category: 'Offer Letter',
+    docType: 'OFFER_PACK',
+    name: '🏢 Internship Offer Letter & Terms of Engagement',
     prefix: 'HR-OFF',
-    defaultHeading: 'FORMAL OFFER OF ENGAGEMENT & TERMS OF INTERNSHIP',
-    description: '4-page legal terms pack covering background, duties, stipend, NDA, IP assignment & sign-off.',
+    defaultHeading: 'INTERNSHIP OFFER LETTER & TERMS OF ENGAGEMENT',
+    description: '4-Page formal legal agreement & Zoho email dispatch issued upon candidate selection.',
     defaultClauses: `<h3>1. BACKGROUND & ORGANIZATIONAL OVERVIEW</h3>
 <p>SkillBun operates with a dedicated mission to empower students and early-career software developers with structured roadmap navigation, practical technical skill mastery, and direct production engineering exposure. Through our collaborative internship programs, we bring emerging talent into high-impact environments to build, deploy, and scale world-class developer tools and career discovery platforms.</p>
 
 <h3>2. SELECTION AS INTERN</h3>
-<p>Following our structured technical screening process comprising Resume & Portfolio Screening, Preliminary Evaluation, Domain Q&A, and Leadership Review, SkillBun is pleased to extend this formal offer for the position of <strong>{{designation}}</strong> within the <strong>{{department}}</strong>.</p>
+<p>Following our structured 4-round technical screening process (comprising Resume & Portfolio Screening, Preliminary Introductory Evaluation, Technical Domain Q&A, and Leadership Review), SkillBun is pleased to extend this formal offer for the position of <strong>{{designation}}</strong> within the <strong>{{department}}</strong>.</p>
 
 <h3>3. INTERNSHIP STATUS AND PURPOSE</h3>
 <p><strong>3.1 Educational & Practical Learning Experience:</strong> This engagement is designed as an intensive experiential learning program aimed at bridging academic coursework with production-grade engineering, agile sprint workflows, and real-world system architecture.</p>
 <p><strong>3.2 Internship Not Employment:</strong> The candidate acknowledges and agrees that this engagement is strictly an internship and does not constitute an employer-employee relationship, civil service post, or entitlement to permanent tenure at SkillBun.</p>
-<p><strong>3.3 Collaborative Toolchains:</strong> The intern will collaborate closely with engineering leads and product architects using industry-standard communication and version-control toolchains (Zoho Workspace, GitHub, Figma, and Next.js).</p>
+<p><strong>3.3 Collaborative Toolchains:</strong> The intern will collaborate closely with engineering leads, product architects, and peer team members using industry-standard communication and version-control toolchains (Zoho Workspace, GitHub, Figma, and Next.js).</p>
 
-<h3>4. TENURE, REMUNERATION & COMMITMENT</h3>
-<p><strong>4.1 Tenure:</strong> The internship shall commence on <strong>{{joining_date}}</strong> and conclude on <strong>{{contract_end_date}}</strong> (the "Internship Period"), unless extended by mutual written agreement.</p>
-<p><strong>4.2 Stipend & Compensation:</strong> The candidate shall receive a monthly stipend of <strong>INR {{stipend_amount}} / month</strong>, subject to regular deliverable milestones and sprint performance reviews.</p>
+<h3>4. INTERNSHIP PARTICIPATION AND RESPONSIBILITIES</h3>
+<p><strong>4.1 Internship Period:</strong> The tenure of this internship shall commence on <strong>{{joining_date}}</strong> and conclude on <strong>{{contract_end_date}}</strong> (the "Internship Period"), unless extended by mutual written agreement or terminated earlier pursuant to the provisions herein.</p>
+<p><strong>4.2 Sprints & Deliverables:</strong> The intern shall actively participate in sprint planning, technical standups, milestone reviews, and feature implementations as assigned by their designated engineering mentor.</p>
+<p><strong>4.3 Professional Standards:</strong> The intern agrees to uphold the highest standards of professional conduct, academic integrity, collaborative communication, and engineering discipline throughout the tenure.</p>
 
-<h3>5. CONFIDENTIALITY & INTELLECTUAL PROPERTY</h3>
-<p><strong>5.1 Non-Disclosure:</strong> The intern agrees to treat all proprietary source code, database architectures, student telemetry, API keys, and strategic roadmaps as strictly confidential during and subsequent to the tenure.</p>
-<p><strong>5.2 Intellectual Property Assignment:</strong> All code, documentation, designs, and architectural artifacts developed during the internship belong solely and exclusively to SkillBun.</p>`,
+<h3>5. STIPEND, EXPENSES & EQUIPMENT</h3>
+<p><strong>5.1 Stipend Structure:</strong> The candidate shall be entitled to receive a monthly stipend of <strong>INR {{stipend_amount}} / month</strong>, subject to regular milestone progress and sprint deliverable sign-offs.</p>
+<p><strong>5.2 Remote Infrastructure:</strong> As a remote-first collaborative engagement, the intern shall utilize their personal computing workstation and secure high-speed internet connectivity.</p>
+
+<h3>6. CONFIDENTIALITY & NON-DISCLOSURE (NDA)</h3>
+<p><strong>6.1 Proprietary Information:</strong> The intern acknowledges that during the tenure, they will have access to confidential and proprietary information belonging to SkillBun, including but not limited to source code repositories, system architectures, API keys, student telemetry, curriculum roadmaps, and business strategies.</p>
+<p><strong>6.2 Strict Non-Disclosure:</strong> The intern agrees not to disclose, publish, duplicate, or transfer any proprietary assets or confidential materials to any third party without explicit prior written authorization from SkillBun.</p>
+
+<h3>7. INTELLECTUAL PROPERTY (IP) ASSIGNMENT</h3>
+<p>All software source code, algorithms, documentation, UI/UX designs, system workflows, and technical artifacts created, authored, or contributed by the intern in connection with this internship belong solely, exclusively, and perpetually to SkillBun Technologies.</p>
+
+<h3>8. CODE OF CONDUCT & NON-DISPARAGEMENT</h3>
+<p>The intern agrees to maintain professional decorum across all public and internal communications. The intern shall not make, publish, or disseminate any false, misleading, or disparaging statements regarding SkillBun, its founders, mentors, or platform operations.</p>
+
+<h3>9. TERMINATION & SEPARATION</h3>
+<p>Either party may terminate this internship engagement with a <strong>7-day written notice</strong>. SkillBun reserves the right to conclude the engagement immediately in the event of material breach of confidentiality, willful misconduct, or non-delivery of milestone commitments.</p>
+
+<h3>10. GOVERNING LAW & JURISDICTION</h3>
+<p>This engagement letter and all accompanying terms shall be governed by and construed in accordance with the applicable laws of India, with jurisdiction vested in the competent courts of Gujarat, India.</p>`,
   },
   {
     id: 'workforce_extension',
-    category: 'Tenure & Extension',
+    category: 'Extension',
+    docType: 'EXTENSION_LETTER',
     name: '🏢 Extension of Internship Tenure Addendum',
-    categoryLabel: '🏢 Tenure & Extension',
     prefix: 'HR-EXT',
-    defaultHeading: 'ADDENDUM: EXTENSION OF INTERNSHIP TENURE',
-    description: 'Formal tenure extension addendum citing original offer, revised completion date & sprint milestones.',
-    defaultClauses: `<h3>1. PREAMBLE & APPRECIATION</h3>
-<p>This Addendum to the Internship Offer of Engagement is issued in recognition of the exceptional technical contributions, engineering discipline, and milestone execution demonstrated by <strong>{{candidate_name}}</strong> in their role as <strong>{{designation}}</strong> within the <strong>{{department}}</strong>.</p>
+    defaultHeading: 'EXTENSION OF INTERNSHIP TENURE',
+    description: '1-Page legal addendum & Zoho email dispatch extending completion date and sprint roadmap.',
+    defaultClauses: `<h3>1. PERFORMANCE APPRECIATION & TENURE EXTENSION</h3>
+<p>On behalf of SkillBun, we commend your outstanding technical contributions, dedication, and proactive engineering ownership demonstrated throughout your ongoing tenure as <strong>{{designation}}</strong> within the <strong>{{department}}</strong>. Your consistent execution across sprint milestones has been highly valued.</p>
 
-<h3>2. EXTENDED TENURE PERIOD</h3>
-<p>Pursuant to mutual discussions and performance evaluations, the tenure of the internship is hereby formally extended from the original completion date of <strong>{{contract_end_date}}</strong> to the revised completion date of <strong>{{extended_date}}</strong> (the "Extended Period").</p>
+<h3>2. REVISED INTERNSHIP PERIOD</h3>
+<p>In recognition of your performance and ongoing project roadmaps, we are pleased to formally extend your internship engagement. The revised tenure of your internship is now effective from <strong>{{joining_date}}</strong> through <strong>{{extended_date}}</strong> (the "Extended Period").</p>
 
-<h3>3. SCOPE OF WORK & SPRINT DELIVERABLES</h3>
-<p>During the Extended Period, the intern will spearhead advanced architectural features, production deployments, and peer code reviews in alignment with SkillBun's core platform roadmap.</p>
+<h3>3. SCOPE OF CONTINUING WORK</h3>
+<p>During the Extended Period, you will continue to lead feature deliverables, system optimizations, and agile sprints under the direction of your engineering mentor in alignment with SkillBun platform milestones.</p>
 
 <h3>4. CONTINUING VALIDITY OF TERMS</h3>
-<p>All other terms, conditions, non-disclosure obligations, and intellectual property assignments outlined in the original Offer Letter (Ref: <strong>{{reference_id}}</strong>) shall remain in full force and effect without modification.</p>`,
-  },
-  {
-    id: 'workforce_relieving',
-    category: 'Relieving & Experience',
-    name: '🏢 Relieving & Work Experience Letter',
-    categoryLabel: '🏢 Relieving & Experience',
-    prefix: 'HR-REL',
-    defaultHeading: 'RELIEVING LETTER & CERTIFICATE OF SERVICE',
-    description: 'Formal relieving letter certifying completed tenure, role, satisfactory conduct & release of obligations.',
-    defaultClauses: `<h3>TO WHOMSOEVER IT MAY CONCERN</h3>
-<p>This is to certify that <strong>{{candidate_name}}</strong> (Parent/Guardian: {{parent_name}}), a student of <strong>{{college_name}}</strong> pursuing <strong>{{course_degree}}</strong>, was engaged with <strong>SkillBun</strong> as an intern from <strong>{{joining_date}}</strong> to <strong>{{contract_end_date}}</strong>.</p>
-
-<h3>1. ROLE & DEPARTMENT</h3>
-<p>During their tenure, they served with distinction in the capacity of <strong>{{designation}}</strong> within the <strong>{{department}}</strong>.</p>
-
-<h3>2. KEY DELIVERABLES & PERFORMANCE</h3>
-<p>During their engagement, they actively contributed to production codebase development, system optimization, feature delivery, and cross-functional team sprints. Their conduct, technical competence, and dedication throughout the tenure were found to be exemplary.</p>
-
-<h3>3. RELIEVING & RELEASE OF OBLIGATIONS</h3>
-<p>They have completed all assigned milestone deliverables and handed over all workspace assets, accounts, and project documentation. Consequently, they stand formally relieved from all operational duties with effect from the close of business hours on <strong>{{contract_end_date}}</strong>.</p>
-
-<p>We thank them for their valuable contributions to SkillBun and wish them all the success in their future academic and professional endeavors.</p>`,
-  },
-  {
-    id: 'workforce_completion',
-    category: 'Relieving & Experience',
-    name: '🏢 Internship Completion & Recommendation Record',
-    categoryLabel: '🏢 Relieving & Experience',
-    prefix: 'HR-REC',
-    defaultHeading: 'CERTIFICATE OF INTERNSHIP COMPLETION & MERIT RECOMMENDATION',
-    description: 'Merit recommendation record highlighting shipped technical milestones and leadership review.',
-    defaultClauses: `<h3>OFFICIAL RECOMMENDATION & COMPLETION RECORD</h3>
-<p>SkillBun hereby records and certifies that <strong>{{candidate_name}}</strong> has successfully completed their intensive practical engineering internship as <strong>{{designation}}</strong> within the <strong>{{department}}</strong> from <strong>{{joining_date}}</strong> to <strong>{{contract_end_date}}</strong>.</p>
-
-<h3>1. DEMONSTRATED TECHNICAL COMPETENCIES</h3>
-<p>During this tenure, the candidate demonstrated high proficiency in full-stack architecture, API integration, modern responsive user interfaces, and agile production workflows. They consistently exhibited strong problem-solving capabilities and analytical rigor.</p>
-
-<h3>2. LEADERSHIP & TEAM COLLABORATION</h3>
-<p>In addition to individual technical output, they actively collaborated with senior engineering mentors, participated in code reviews, and adhered to rigorous engineering hygiene and security standards.</p>
-
-<h3>3. VERIFICATION & ENDORSEMENT</h3>
-<p>This completion record is archived permanently in the SkillBun Corporate Registry and can be independently verified on the Alumni Document Vault using unique Reference ID <strong>{{reference_id}}</strong>.</p>`,
+<p>All other terms, conditions, confidentiality obligations (NDA), intellectual property assignments, and codes of conduct specified in your original Offer Letter (Ref: <strong>{{reference_id}}</strong>) shall remain in full force and effect without alteration.</p>`,
   },
   {
     id: 'workforce_termination',
-    category: 'Separation & Notice',
-    name: '🏢 Notice of Separation & Access Conclusion',
-    categoryLabel: '🏢 Separation & Notice',
+    category: 'Termination',
+    docType: 'TERMINATION_NOTICE',
+    name: '🏢 Notice of Engagement Conclusion & Offboarding Record',
     prefix: 'HR-TERM',
     defaultHeading: 'NOTICE OF ENGAGEMENT CONCLUSION & OFFBOARDING RECORD',
-    description: 'Formal separation notice with reason code, asset return checklist, and post-engagement obligations.',
-    defaultClauses: `<h3>1. FORMAL NOTICE OF CONCLUSION</h3>
-<p>This document serves as formal written notice regarding the conclusion of the internship engagement of <strong>{{candidate_name}}</strong> as <strong>{{designation}}</strong> in the <strong>{{department}}</strong>, effective <strong>{{contract_end_date}}</strong>.</p>
+    description: 'Formal separation notice, credential conclusion & alumni document registry archive record.',
+    defaultClauses: `<h3>1. OFFICIAL NOTICE OF ENGAGEMENT CONCLUSION</h3>
+<p>This document serves as official acknowledgement and notification regarding the formal conclusion of the internship engagement of <strong>{{candidate_name}}</strong> as <strong>{{designation}}</strong> in the <strong>{{department}}</strong>, effective <strong>{{contract_end_date}}</strong>.</p>
 
-<h3>2. OFFBOARDING & ACCESS REVOCATION</h3>
-<p>In accordance with standard SkillBun offboarding protocols, all internal system access—including corporate Zoho Workspace credentials, GitHub organization access, internal communication channels, and developer keys—have been concluded.</p>
+<h3>2. OFFBOARDING SUMMARY & REASON</h3>
+<p>The engagement has concluded under status code <strong>COMPLETED / TENURE_CONCLUDED</strong> upon the fulfillment of assigned internship sprint milestones and academic term requirements.</p>
 
-<h3>3. POST-ENGAGEMENT OBLIGATIONS</h3>
-<p>The candidate is reminded of their continuing legal obligations regarding the confidentiality of SkillBun proprietary materials, user telemetry, system architecture, and non-disclosure commitments as agreed in the initial engagement terms.</p>
+<h3>3. SYSTEM ACCESS & WORKSPACE OFFBOARDING</h3>
+<p>In accordance with standard SkillBun security and IT governance protocols, all internal workspace credentials, corporate Zoho accounts, repository access, and developer keys have been systematically concluded.</p>
 
-<h3>4. ALUMNI DOCUMENT ACCESS</h3>
-<p>Any granted credentials, letters, and service records remain securely accessible on the public Alumni Document Vault at <a href="https://skillbun.tech/alumni" target="_blank" rel="noopener noreferrer">https://skillbun.tech/alumni</a> using Reference ID <strong>{{reference_id}}</strong>.</p>`,
+<h3>4. POST-ENGAGEMENT CONFIDENTIALITY</h3>
+<p>The candidate is formally reminded of their continuing legal obligations regarding non-disclosure of proprietary source code, system architectures, and confidential platform data as agreed in their original terms of engagement.</p>
+
+<h3>5. ALUMNI DOCUMENT VAULT ACCESS</h3>
+<p>All granted completion documents, verified credentials, and tenure records remain permanently archived and publicly verifiable on the SkillBun Alumni Document Vault at <a href="https://skillbun.tech/alumni" target="_blank" rel="noopener noreferrer">https://skillbun.tech/alumni</a> using Reference ID <strong>{{reference_id}}</strong>.</p>`,
   },
   {
     id: 'workforce_activation',
-    category: 'Day-1 Activation',
+    category: 'Activation',
+    docType: 'ACTIVATION_WELCOME',
     name: '🏢 Day-1 Workspace & Credentials Activation Notice',
-    categoryLabel: '🏢 Day-1 Activation',
     prefix: 'HR-ACT',
     defaultHeading: 'DAY-1 WORKSPACE ACTIVATION & CREDENTIALS ONBOARDING',
-    description: 'Welcome notice with corporate Zoho Mail credentials, toolchain access & sprint setup.',
+    description: 'Corporate Zoho Mail credentials provisioning, team tools onboarding & Day-1 checklist.',
     defaultClauses: `<h3>1. WELCOME TO SKILLBUN ENGINEERING</h3>
-<p>Welcome aboard, <strong>{{candidate_name}}</strong>! We are excited to have you join our core engineering and operations team as <strong>{{designation}}</strong> within the <strong>{{department}}</strong>.</p>
+<p>We are delighted to confirm that your onboarding documentation has been processed and your status is officially <strong>ACTIVE</strong> as <strong>{{designation}}</strong> within the <strong>{{department}}</strong>, effective from <strong>{{joining_date}}</strong>.</p>
 
-<h3>2. PROVISIONED CORPORATE WORKSPACE CREDENTIALS</h3>
-<p>Your official corporate email account has been provisioned on Zoho Workspace. Please find your primary onboarding credentials below:</p>
+<h3>2. PROVISIONED ENTERPRISE WORKSPACE CREDENTIALS</h3>
+<p>Your official SkillBun enterprise workspace account has been provisioned. Please use these credentials to access your corporate work mailbox and collaborative toolchains:</p>
 <ul>
-  <li><strong>Corporate Email:</strong> {{personal_email}}</li>
-  <li><strong>Temporary Password:</strong> Provided in your secured onboarding transmission</li>
-  <li><strong>Workspace Portal:</strong> <a href="https://mail.zoho.com" target="_blank" rel="noopener noreferrer">https://mail.zoho.com</a></li>
+  <li><strong>Corporate Work Email:</strong> {{work_email}}</li>
+  <li><strong>Temporary Access Password:</strong> Provided in your secure onboarding transmission</li>
+  <li><strong>Mail Login Portal:</strong> <a href="https://mail.zoho.in" target="_blank" rel="noopener noreferrer">https://mail.zoho.in</a></li>
 </ul>
 
-<h3>3. ONBOARDING CHECKLIST & FIRST SPRINT</h3>
-<p>Please complete the following Day-1 setup steps within 24 hours:</p>
+<h3>3. DAY-1 GETTING STARTED CHECKLIST</h3>
 <ol>
-  <li>Log in to Zoho Mail and configure your 2-Factor Authentication (2FA).</li>
-  <li>Join the official SkillBun GitHub Organization via the invite sent to your work email.</li>
-  <li>Review the platform developer guidelines and architectural docs.</li>
-  <li>Attend your scheduled orientation sync with your engineering lead.</li>
+  <li>Log in to your official Zoho work mailbox (<a href="https://mail.zoho.in" target="_blank" rel="noopener noreferrer">mail.zoho.in</a>) and configure your primary 2FA security credentials.</li>
+  <li>Check your work inbox for GitHub organization invitations and team sprint schedules.</li>
+  <li>Review the platform developer guidelines and architectural standards at <a href="https://skillbun.tech" target="_blank" rel="noopener noreferrer">skillbun.tech</a>.</li>
+  <li>For any operational or technical support, connect directly with founder Harsh Patel at <a href="mailto:harsh@skillbun.tech">harsh@skillbun.tech</a>.</li>
 </ol>`,
-  },
-  {
-    id: 'custom_doc',
-    category: 'Custom Studio',
-    name: '✍️ Custom Legal & Workforce Document Builder',
-    categoryLabel: '✍️ Custom Studio',
-    prefix: 'HR-CUSTOM',
-    defaultHeading: 'OFFICIAL NOTIFICATION & POLICY NOTICE',
-    description: 'Freeform customizable workforce letter, memorandum, addendum, or company policy notice.',
-    defaultClauses: `<h3>1. PURPOSE & APPLICABILITY</h3>
-<p>This official notice is issued to <strong>{{candidate_name}}</strong>, serving as <strong>{{designation}}</strong> in the <strong>{{department}}</strong>.</p>
-
-<h3>2. POLICY / AMENDMENT DETAILS</h3>
-<p>Write your custom terms, policy updates, milestone revisions, or special commendations here using standard formatting and variable chips.</p>
-
-<h3>3. EFFECTIVE DATE & COMPLIANCE</h3>
-<p>This document takes effect on <strong>{{issue_date}}</strong> and remains binding under SkillBun administrative guidelines.</p>`,
   },
 ];
 
 const CATEGORIES = [
   'All',
-  'Offer & Engagement',
-  'Tenure & Extension',
-  'Relieving & Experience',
-  'Separation & Notice',
-  'Day-1 Activation',
-  'Custom Studio',
+  'Offer Letter',
+  'Extension',
+  'Termination',
+  'Activation',
 ];
 
 const DOC_TYPE_TABS = [
@@ -212,7 +170,7 @@ function formatDateTime(iso) {
   if (!iso) return '—';
   try {
     return new Date(iso).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-  } catch { return iso; }
+  } catch { return String(d); }
 }
 
 export default function DocumentManagerPage() {
@@ -224,16 +182,19 @@ export default function DocumentManagerPage() {
   const [mainMode, setMainMode] = useState('studio');
 
   // ==========================================
-  // STUDIO STATE
+  // STUDIO STATE (Strictly 4 Production Documents)
   // ==========================================
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedTemplateId, setSelectedTemplateId] = useState('workforce_offer');
 
-  // Dynamic Parameter Variables
+  // Form Inputs / Parameters matching Firestore employee schema
+  const [salutation, setSalutation] = useState('Mr./Ms.');
   const [candidateName, setCandidateName] = useState('Alex Sharma');
   const [parentName, setParentName] = useState('Rajesh Sharma');
   const [personalEmail, setPersonalEmail] = useState('alex.sharma@example.com');
   const [phone, setPhone] = useState('+91 98765 43210');
+  const [currentAddress, setCurrentAddress] = useState('Flat 402, Green Valley Apartments, Mumbai');
+  const [permanentAddress, setPermanentAddress] = useState('Flat 402, Green Valley Apartments, Mumbai');
   const [department, setDepartment] = useState('Tech Team (Development & Engineering)');
   const [designation, setDesignation] = useState('Engineering Intern');
   const [courseDegree, setCourseDegree] = useState('B.Tech in Computer Science');
@@ -242,16 +203,17 @@ export default function DocumentManagerPage() {
   const [contractEndDate, setContractEndDate] = useState('2026-11-30');
   const [extendedDate, setExtendedDate] = useState('2027-01-31');
   const [stipendAmount, setStipendAmount] = useState('15,000');
+  const [workEmail, setWorkEmail] = useState('alex.sharma@skillbun.tech');
   const [signatoryName, setSignatoryName] = useState('Harsh Patel');
   const [signatoryTitle, setSignatoryTitle] = useState('Founder & Director');
 
   // Editable Document Content
-  const [docHeading, setDocHeading] = useState(DOCUMENT_TEMPLATES[0].defaultHeading);
-  const [docClauses, setDocClauses] = useState(DOCUMENT_TEMPLATES[0].defaultClauses);
+  const [docHeading, setDocHeading] = useState(PRODUCTION_DOCUMENTS[0].defaultHeading);
+  const [docClauses, setDocClauses] = useState(PRODUCTION_DOCUMENTS[0].defaultClauses);
 
   // Studio View Controls
   const [canvasViewMode, setCanvasViewMode] = useState('document'); // 'document' | 'email'
-  const [viewport, setViewport] = useState('desktop'); // 'desktop' | 'mobile' | 'print'
+  const [viewport, setViewport] = useState('desktop'); // 'desktop' | 'mobile'
   const [previewBg, setPreviewBg] = useState('dark'); // 'dark' | 'light'
 
   // Dispatch / Action State
@@ -312,13 +274,13 @@ export default function DocumentManagerPage() {
 
   // Current active template definition
   const currentTemplate = useMemo(() => {
-    return DOCUMENT_TEMPLATES.find(t => t.id === selectedTemplateId) || DOCUMENT_TEMPLATES[0];
+    return PRODUCTION_DOCUMENTS.find(t => t.id === selectedTemplateId) || PRODUCTION_DOCUMENTS[0];
   }, [selectedTemplateId]);
 
   // Filter templates by category
   const filteredTemplates = useMemo(() => {
-    if (selectedCategory === 'All') return DOCUMENT_TEMPLATES;
-    return DOCUMENT_TEMPLATES.filter(t => t.category === selectedCategory);
+    if (selectedCategory === 'All') return PRODUCTION_DOCUMENTS;
+    return PRODUCTION_DOCUMENTS.filter(t => t.category === selectedCategory);
   }, [selectedCategory]);
 
   // Select a template
@@ -329,6 +291,7 @@ export default function DocumentManagerPage() {
     setStatusMessage(null);
   }, []);
 
+  // Dynamic Reference ID matching SkillBun standard
   const currentRefId = useMemo(() => {
     const year = new Date().getFullYear();
     return `SKB/${year}/${currentTemplate.prefix}/8K29DF`;
@@ -338,10 +301,14 @@ export default function DocumentManagerPage() {
   const renderedContent = useMemo(() => {
     let content = docClauses || '';
     const replacements = {
+      '{{salutation}}': salutation || 'Mr./Ms.',
       '{{candidate_name}}': candidateName || 'Candidate Name',
       '{{parent_name}}': parentName || 'Parent / Guardian',
       '{{personal_email}}': personalEmail || 'candidate@example.com',
+      '{{work_email}}': workEmail || 'candidate@skillbun.tech',
       '{{phone}}': phone || '—',
+      '{{current_address}}': currentAddress || 'Address on record',
+      '{{permanent_address}}': permanentAddress || currentAddress || 'Address on record',
       '{{department}}': department || 'Engineering Department',
       '{{designation}}': designation || 'Engineering Intern',
       '{{course_degree}}': courseDegree || 'B.Tech / Degree',
@@ -362,8 +329,8 @@ export default function DocumentManagerPage() {
     }
     return content;
   }, [
-    docClauses, candidateName, parentName, personalEmail, phone,
-    department, designation, courseDegree, collegeName,
+    docClauses, salutation, candidateName, parentName, personalEmail, workEmail, phone,
+    currentAddress, permanentAddress, department, designation, courseDegree, collegeName,
     joiningDate, contractEndDate, extendedDate, stipendAmount,
     currentRefId, signatoryName, signatoryTitle,
   ]);
@@ -402,14 +369,14 @@ export default function DocumentManagerPage() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${docHeading || 'SkillBun Workforce Document'} - ${candidateName}</title>
+  <title>${docHeading || currentTemplate.defaultHeading} - ${candidateName}</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #111827; padding: 40px; max-width: 800px; margin: 0 auto; }
     .brand-bar { border-bottom: 2.5px solid #008751; padding-bottom: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; }
-    .title { color: #008751; font-weight: 800; font-size: 22px; }
+    .title { color: #008751; font-weight: 800; font-size: 22px; font-family: 'Fredoka', cursive, sans-serif; }
     .ref-badge { background: #f3f4f6; border: 1px solid #d1d5db; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px; font-weight: 800; }
-    .heading { text-align: center; font-size: 16px; font-weight: 800; text-transform: uppercase; background: #f9fafb; padding: 8px; border-left: 4px solid #008751; border-right: 4px solid #008751; margin: 20px 0; }
-    .recipient-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 14px; }
+    .heading { text-align: center; font-size: 15px; font-weight: 800; text-transform: uppercase; background: #f9fafb; padding: 8px; border-left: 4px solid #008751; border-right: 4px solid #008751; margin: 20px 0; }
+    .recipient-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 13.5px; }
     .signatory { margin-top: 40px; padding-top: 16px; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: flex-end; }
     .footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #6b7280; text-align: center; }
   </style>
@@ -422,14 +389,15 @@ export default function DocumentManagerPage() {
     </div>
     <div style="text-align: right;">
       <span class="ref-badge">${currentRefId}</span>
-      <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Issued: ${formatDate(new Date())}</div>
+      <div style="font-size: 11px; color: #6b7280; margin-top: 4px;">Date: ${formatDate(new Date())}</div>
     </div>
   </div>
 
   <div class="recipient-box">
-    <strong>To: ${candidateName}</strong> (${parentName ? `S/o or D/o ${parentName}` : ''})<br>
-    Email: ${personalEmail} | Phone: ${phone}<br>
-    Institution: ${collegeName} (${courseDegree})
+    <strong>TO: ${salutation} ${candidateName}</strong> (${parentName ? `S/o / D/o ${parentName}` : ''})<br>
+    Current Address: ${currentAddress}<br>
+    Academic Qualification: ${courseDegree} • ${collegeName}<br>
+    Designation & Stream: ${designation} — ${department}
   </div>
 
   <div class="heading">${docHeading || currentTemplate.defaultHeading}</div>
@@ -466,7 +434,7 @@ export default function DocumentManagerPage() {
     URL.revokeObjectURL(url);
   };
 
-  // Dispatch Test Email to Founder or Target
+  // Dispatch Test Email via Zoho SMTP
   const handleSendTestDispatch = async (isTarget = false) => {
     if (isTarget) setIsSendingTarget(true);
     else setIsSendingTest(true);
@@ -478,23 +446,23 @@ export default function DocumentManagerPage() {
         throw new Error('Please enter a valid target email address.');
       }
 
-      const subject = `[SkillBun Document] ${docHeading || currentTemplate.defaultHeading} - ${candidateName} (Ref: ${currentRefId})`;
+      const subject = `[SkillBun] ${docHeading || currentTemplate.defaultHeading} - ${candidateName} (Ref: ${currentRefId})`;
       const htmlBody = `
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #111827; max-width: 640px; margin: 0 auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb;">
   <div style="border-bottom: 2.5px solid #008751; padding-bottom: 12px; margin-bottom: 20px;">
-    <div style="font-size: 20px; font-weight: 800; color: #008751;">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+    <div style="font-size: 20px; font-weight: 800; color: #008751; font-family: cursive, sans-serif;">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
     <div style="font-size: 12px; color: #4b5563;">Official Workforce & Legal Document Transmission</div>
   </div>
 
   <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px;">
-    <strong>Document Ref:</strong> ${currentRefId}<br>
-    <strong>Issued To:</strong> ${candidateName} (${personalEmail})<br>
-    <strong>Department:</strong> ${department} — ${designation}
+    <strong>Reference ID:</strong> ${currentRefId}<br>
+    <strong>Candidate Name:</strong> ${salutation} ${candidateName} (${personalEmail})<br>
+    <strong>Role & Department:</strong> ${designation} (${department})
   </div>
 
-  <h2 style="font-size: 16px; color: #111827; text-transform: uppercase; margin-bottom: 16px;">${docHeading || currentTemplate.defaultHeading}</h2>
+  <h2 style="font-size: 15px; color: #111827; text-transform: uppercase; margin-bottom: 16px; border-left: 3px solid #008751; padding-left: 8px;">${docHeading || currentTemplate.defaultHeading}</h2>
 
-  <div style="font-size: 14px; color: #374151;">
+  <div style="font-size: 13.5px; color: #374151; line-height: 1.65;">
     ${renderedContent}
   </div>
 
@@ -558,7 +526,6 @@ export default function DocumentManagerPage() {
     }
   }, [mainMode, registryTab, user, isAdmin, loadRegistryDocs]);
 
-  // Open Document Detail
   const openDetail = async (doc) => {
     setDetailLoading(true);
     setSelectedDoc(doc);
@@ -595,7 +562,6 @@ export default function DocumentManagerPage() {
     }
   };
 
-  // Revoke / Restore in Registry
   const handleRevoke = async () => {
     if (!revokeTarget) return;
     setRevoking(true);
@@ -674,11 +640,11 @@ export default function DocumentManagerPage() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
-              Legal & HR Console
+              Workforce Legal Console
             </span>
           </div>
           <p className={styles.subtitle}>
-            Live interactive document builder, template editor, real-time A4 letterhead canvas preview, 1-click PDF export, Zoho test dispatch, and workforce document registry.
+            Live interactive management for SkillBun's official workforce documents — Offer Letters, Tenure Extensions, Termination Notices, and Day-1 Activation Dispatches.
           </p>
         </div>
 
@@ -715,14 +681,14 @@ export default function DocumentManagerPage() {
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+            <line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line>
           </svg>
           Issued Documents Archive ({registryDocs.length})
         </button>
       </div>
 
       {/* ============================================================
-          MODE 1: DOCUMENT STUDIO & LIVE EDITOR
+          MODE 1: DOCUMENT STUDIO & LIVE EDITOR (4 PRODUCTION DOCUMENTS)
          ============================================================ */}
       {mainMode === 'studio' && (
         <div>
@@ -741,19 +707,19 @@ export default function DocumentManagerPage() {
 
           {/* 2-Column Studio Layout */}
           <div className={styles.studioLayout}>
-            {/* Left Column: Catalog, Form Variables & Clause Editor */}
+            {/* Left Column: Document Selector, Parameters & Clause Editor */}
             <div className={styles.editorPanel}>
-              {/* Template Catalog */}
+              {/* Document Selector */}
               <div className={styles.cardSection}>
                 <div className={styles.sectionHeader}>
                   <h3 className={styles.sectionTitle}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" />
                     </svg>
-                    Document Formats ({filteredTemplates.length})
+                    Production Workforce Documents ({filteredTemplates.length})
                   </h3>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)', fontWeight: 700 }}>
-                    {selectedCategory}
+                  <span style={{ fontSize: '0.75rem', color: 'var(--green)', fontWeight: 800 }}>
+                    Active Templates
                   </span>
                 </div>
 
@@ -776,25 +742,33 @@ export default function DocumentManagerPage() {
                 </div>
               </div>
 
-              {/* Dynamic Variables Form */}
+              {/* Dynamic Variables Form matching Firestore Employee Schema */}
               <div className={styles.cardSection}>
                 <div className={styles.sectionHeader}>
                   <h3 className={styles.sectionTitle}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
                     </svg>
-                    Candidate & Role Parameters
+                    Candidate & Engagement Data
                   </h3>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Live updates</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Live interpolation</span>
                 </div>
 
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Candidate Name</label>
+                    <label className={styles.formLabel}>Salutation</label>
+                    <select className={styles.inputField} value={salutation} onChange={e => setSalutation(e.target.value)}>
+                      <option value="Mr./Ms.">Mr./Ms.</option>
+                      <option value="Mr.">Mr.</option>
+                      <option value="Ms.">Ms.</option>
+                    </select>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Candidate Full Name</label>
                     <input className={styles.inputField} value={candidateName} onChange={e => setCandidateName(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Parent / Guardian</label>
+                    <label className={styles.formLabel}>Parent / Guardian Name</label>
                     <input className={styles.inputField} value={parentName} onChange={e => setParentName(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
@@ -802,19 +776,27 @@ export default function DocumentManagerPage() {
                     <input className={styles.inputField} value={personalEmail} onChange={e => setPersonalEmail(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Phone</label>
+                    <label className={styles.formLabel}>Phone Number</label>
                     <input className={styles.inputField} value={phone} onChange={e => setPhone(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Department</label>
+                    <label className={styles.formLabel}>Corporate Work Email</label>
+                    <input className={styles.inputField} value={workEmail} onChange={e => setWorkEmail(e.target.value)} />
+                  </div>
+                  <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+                    <label className={styles.formLabel}>Address on Record</label>
+                    <input className={styles.inputField} value={currentAddress} onChange={e => setCurrentAddress(e.target.value)} />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Department / Team</label>
                     <input className={styles.inputField} value={department} onChange={e => setDepartment(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Designation</label>
+                    <label className={styles.formLabel}>Designation / Role</label>
                     <input className={styles.inputField} value={designation} onChange={e => setDesignation(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Course / Degree</label>
+                    <label className={styles.formLabel}>Course & Degree</label>
                     <input className={styles.inputField} value={courseDegree} onChange={e => setCourseDegree(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
@@ -831,28 +813,28 @@ export default function DocumentManagerPage() {
                   </div>
                   {selectedTemplateId === 'workforce_extension' && (
                     <div className={`${styles.formGroup} ${styles.fullWidth}`}>
-                      <label className={styles.formLabel} style={{ color: 'var(--green)' }}>Extended Completion Date</label>
+                      <label className={styles.formLabel} style={{ color: 'var(--green)' }}>Extended Contract End Date</label>
                       <input type="date" className={styles.inputField} value={extendedDate} onChange={e => setExtendedDate(e.target.value)} />
                     </div>
                   )}
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Stipend (INR/mo)</label>
+                    <label className={styles.formLabel}>Monthly Stipend (INR)</label>
                     <input className={styles.inputField} value={stipendAmount} onChange={e => setStipendAmount(e.target.value)} />
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.formLabel}>Signatory</label>
+                    <label className={styles.formLabel}>Authorized Signatory</label>
                     <input className={styles.inputField} value={signatoryName} onChange={e => setSignatoryName(e.target.value)} />
                   </div>
                 </div>
 
-                {/* Variable Substitution Chips */}
+                {/* Variable Chips */}
                 <div style={{ marginTop: '0.85rem' }}>
-                  <label className={styles.formLabel}>Click to insert variable tags into editor:</label>
+                  <label className={styles.formLabel}>Insert dynamic variable tags:</label>
                   <div className={styles.variableBar}>
                     {[
                       '{{candidate_name}}', '{{designation}}', '{{department}}',
                       '{{joining_date}}', '{{contract_end_date}}', '{{stipend_amount}}',
-                      '{{college_name}}', '{{course_degree}}', '{{reference_id}}',
+                      '{{college_name}}', '{{work_email}}', '{{reference_id}}',
                     ].map(chip => (
                       <span key={chip} className={styles.variableChip} onClick={() => handleInsertVariable(chip)}>
                         {chip}
@@ -862,14 +844,14 @@ export default function DocumentManagerPage() {
                 </div>
               </div>
 
-              {/* Clause & HTML Editor */}
+              {/* Clause & Document Body Editor */}
               <div className={styles.cardSection}>
                 <div className={styles.sectionHeader}>
                   <h3 className={styles.sectionTitle}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
                     </svg>
-                    Document Heading & Clauses Editor
+                    Legal Clauses & Body Editor
                   </h3>
                   <button
                     className={styles.actionBtnSecondary}
@@ -879,23 +861,22 @@ export default function DocumentManagerPage() {
                     }}
                     style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem' }}
                   >
-                    Reset Template
+                    Reset Clauses
                   </button>
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.formLabel}>Document Heading</label>
+                  <label className={styles.formLabel}>Document Header Banner</label>
                   <input
                     className={styles.inputField}
                     value={docHeading}
                     onChange={e => setDocHeading(e.target.value)}
-                    placeholder="e.g. FORMAL OFFER OF ENGAGEMENT"
                   />
                 </div>
 
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel}>
-                    <span>Clauses & Legal Body (HTML with Variables)</span>
+                    <span>Document Clauses & Terms (HTML Format)</span>
                     <button onClick={handleCopy} style={{ background: 'none', border: 'none', color: 'var(--green)', cursor: 'pointer', fontSize: '0.75rem', fontWeight: 800 }}>
                       {copied ? '✓ Copied' : 'Copy HTML'}
                     </button>
@@ -912,7 +893,7 @@ export default function DocumentManagerPage() {
               </div>
             </div>
 
-            {/* Right Column: Live Document Preview & Dispatch Console */}
+            {/* Right Column: Live A4 Canvas & Action Console */}
             <div className={styles.previewPanel}>
               {/* Preview Toolbar */}
               <div className={styles.previewToolbar}>
@@ -922,13 +903,13 @@ export default function DocumentManagerPage() {
                     className={`${styles.deviceBtn} ${canvasViewMode === 'document' ? styles.deviceBtnActive : ''}`}
                     onClick={() => setCanvasViewMode('document')}
                   >
-                    📄 A4 Document View
+                    📄 Official Document View
                   </button>
                   <button
                     className={`${styles.deviceBtn} ${canvasViewMode === 'email' ? styles.deviceBtnActive : ''}`}
                     onClick={() => setCanvasViewMode('email')}
                   >
-                    ✉️ Email Dispatch View
+                    ✉️ Zoho Email Dispatch
                   </button>
                 </div>
 
@@ -938,14 +919,14 @@ export default function DocumentManagerPage() {
                     <button
                       className={`${styles.deviceBtn} ${viewport === 'desktop' ? styles.deviceBtnActive : ''}`}
                       onClick={() => setViewport('desktop')}
-                      title="Desktop Layout"
+                      title="Desktop Width"
                     >
                       💻 Desktop
                     </button>
                     <button
                       className={`${styles.deviceBtn} ${viewport === 'mobile' ? styles.deviceBtnActive : ''}`}
                       onClick={() => setViewport('mobile')}
-                      title="Mobile Layout"
+                      title="Mobile Width"
                     >
                       📱 Mobile
                     </button>
@@ -970,59 +951,87 @@ export default function DocumentManagerPage() {
 
               {/* Live Rendered Canvas Container */}
               <div className={`${styles.previewFrameContainer} ${previewBg === 'light' ? styles.previewFrameContainerLight : styles.previewFrameContainerDark}`}>
-                {/* A4 Letterhead Canvas */}
-                <div className={`${styles.a4DocumentCanvas} ${viewport === 'mobile' ? styles.a4CanvasMobile : ''}`}>
-                  {/* Top Letterhead Bar */}
-                  <div className={styles.docTopBrandBar}>
-                    <div className={styles.docBrandLeft}>
-                      <Image src="/logo.png" alt="SkillBun Logo" width={34} height={34} style={{ borderRadius: '8px' }} />
-                      <div>
-                        <div className={styles.docBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
-                        <div className={styles.docOrgTagline}>SkillBun Technologies • Engineering Workforce Division</div>
+                {/* View 1: A4 Paper Document Canvas (matches pdf-lib layout) */}
+                {canvasViewMode === 'document' && (
+                  <div className={`${styles.a4DocumentCanvas} ${viewport === 'mobile' ? styles.a4CanvasMobile : ''}`}>
+                    {/* Top Letterhead Bar */}
+                    <div className={styles.docTopBrandBar}>
+                      <div className={styles.docBrandLeft}>
+                        <Image src="/logo.png" alt="SkillBun Logo" width={34} height={34} style={{ borderRadius: '8px' }} />
+                        <div>
+                          <div className={styles.docBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+                          <div className={styles.docOrgTagline}>SkillBun Technologies • Engineering Workforce Division</div>
+                        </div>
+                      </div>
+                      <div className={styles.docRefMeta}>
+                        <span className={styles.docRefBadge}>{currentRefId}</span>
+                        <span className={styles.docIssueDate}>Date: {formatDate(new Date())}</span>
                       </div>
                     </div>
-                    <div className={styles.docRefMeta}>
-                      <span className={styles.docRefBadge}>{currentRefId}</span>
-                      <span className={styles.docIssueDate}>Date: {formatDate(new Date())}</span>
+
+                    {/* Candidate Details Box matching offerLetterGenerator.js */}
+                    <div className={styles.docRecipientBlock}>
+                      <strong>TO: {salutation} {candidateName || 'Candidate Name'}</strong>
+                      {parentName ? ` (S/o / D/o ${parentName})` : ''}<br />
+                      <span>Current Address: {currentAddress || 'Address on record'}</span><br />
+                      <span>Academic Qualification: {courseDegree || 'Degree'} • {collegeName || 'Institution'}</span><br />
+                      <span style={{ color: '#008751', fontWeight: 700 }}>Designation & Stream: {designation} — {department}</span>
+                    </div>
+
+                    {/* Document Header Banner */}
+                    <div className={styles.docHeading}>
+                      {docHeading || currentTemplate.defaultHeading}
+                    </div>
+
+                    {/* Rendered Dynamic Clauses */}
+                    <div
+                      className={styles.docBodyContent}
+                      dangerouslySetInnerHTML={{ __html: renderedContent }}
+                    />
+
+                    {/* Official Signatory Block */}
+                    <div className={styles.docSignatoryBlock}>
+                      <div className={styles.docSignatoryInfo}>
+                        <strong>{signatoryName}</strong>
+                        <span>{signatoryTitle}</span><br />
+                        <span style={{ color: '#008751', fontWeight: 800, fontSize: '0.8rem' }}>SkillBun Technologies</span>
+                      </div>
+                      <div className={styles.docStampBadge}>
+                        OFFICIALLY ISSUED • SKILLBUN HR
+                      </div>
+                    </div>
+
+                    {/* Tamper-Proof Verification Notice */}
+                    <div className={styles.docVerificationFooter}>
+                      CONFIDENTIAL & OFFICIAL WORKFORCE DOCUMENT • SKILLBUN TECHNOLOGIES • VERIFY RECORD AT HTTPS://SKILLBUN.TECH/ALUMNI
                     </div>
                   </div>
+                )}
 
-                  {/* Addressing Box */}
-                  <div className={styles.docRecipientBlock}>
-                    <strong>To: {candidateName || 'Candidate Name'}</strong>
-                    {parentName ? ` (S/o or D/o ${parentName})` : ''}<br />
-                    <span>Email: {personalEmail || '—'} | Phone: {phone || '—'}</span><br />
-                    <span>Institution: {collegeName || '—'} ({courseDegree || '—'})</span>
-                  </div>
-
-                  {/* Document Heading */}
-                  <div className={styles.docHeading}>
-                    {docHeading || currentTemplate.defaultHeading}
-                  </div>
-
-                  {/* Rendered Dynamic Clauses */}
-                  <div
-                    className={styles.docBodyContent}
-                    dangerouslySetInnerHTML={{ __html: renderedContent }}
-                  />
-
-                  {/* Official Signatory Block */}
-                  <div className={styles.docSignatoryBlock}>
-                    <div className={styles.docSignatoryInfo}>
-                      <strong>{signatoryName}</strong>
-                      <span>{signatoryTitle}</span><br />
-                      <span style={{ color: '#008751', fontWeight: 800, fontSize: '0.8rem' }}>SkillBun Technologies</span>
+                {/* View 2: Responsive Zoho Email Dispatch View */}
+                {canvasViewMode === 'email' && (
+                  <div style={{ width: '100%', maxWidth: viewport === 'mobile' ? '375px' : '620px', background: '#ffffff', color: '#0f172a', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 8px 30px rgba(0,0,0,0.15)', fontSize: '13.5px', lineHeight: 1.6 }}>
+                    <div style={{ borderBottom: '2.5px solid #008751', paddingBottom: '12px', marginBottom: '16px' }}>
+                      <div style={{ fontFamily: 'var(--font-fredoka), cursive', fontSize: '20px', fontWeight: 800, color: '#008751' }}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+                      <div style={{ fontSize: '11px', color: '#64748b' }}>SkillBun Hiring Team &bull; &lt;noreply@skillbun.tech&gt;</div>
                     </div>
-                    <div className={styles.docStampBadge}>
-                      OFFICIALLY ISSUED • SKILLBUN HR
+
+                    <div style={{ backgroundColor: '#f8fafc', border: '1.5px solid #e2e8f0', borderRadius: '10px', padding: '14px', marginBottom: '16px', fontSize: '13px' }}>
+                      <strong>Subject:</strong> [SkillBun] {docHeading || currentTemplate.defaultHeading} - {candidateName} (Ref: {currentRefId})<br />
+                      <strong>Recipient:</strong> {personalEmail} | <strong>CC:</strong> harsh@skillbun.tech
+                    </div>
+
+                    <p>Dear {salutation} {candidateName},</p>
+
+                    <div dangerouslySetInnerHTML={{ __html: renderedContent }} />
+
+                    <div style={{ marginTop: '24px', paddingTop: '14px', borderTop: '1px solid #e2e8f0', fontSize: '12px', color: '#64748b' }}>
+                      Warm regards,<br />
+                      <strong>SkillBun Hiring Team</strong><br />
+                      Talent Acquisition & People Operations &bull; <a href="https://skillbun.tech" style={{ color: '#008751', fontWeight: 700, textDecoration: 'none' }}>skillbun.tech</a>
                     </div>
                   </div>
-
-                  {/* Tamper-Proof Footer */}
-                  <div className={styles.docVerificationFooter}>
-                    CONFIDENTIAL & OFFICIAL WORKFORCE DOCUMENT • SKILLBUN TECHNOLOGIES • VERIFY RECORD AT HTTPS://SKILLBUN.TECH/ALUMNI
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Action Console: Print, Download, & Zoho SMTP Dispatch */}
@@ -1066,7 +1075,7 @@ export default function DocumentManagerPage() {
                   <input
                     type="email"
                     className={styles.inputField}
-                    placeholder="Send directly to candidate email..."
+                    placeholder="Dispatch directly to candidate email..."
                     value={targetRecipient}
                     onChange={e => setTargetRecipient(e.target.value)}
                     style={{ fontSize: '0.85rem' }}
@@ -1094,7 +1103,7 @@ export default function DocumentManagerPage() {
       )}
 
       {/* ============================================================
-          MODE 2: ISSUED DOCUMENTS REGISTRY & ARCHIVE
+          MODE 2: ISSUED DOCUMENTS REGISTRY & ARCHIVE (DATABASE VIEW)
          ============================================================ */}
       {mainMode === 'registry' && (
         <div>
