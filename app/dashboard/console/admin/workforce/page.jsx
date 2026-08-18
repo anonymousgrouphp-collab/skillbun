@@ -254,6 +254,7 @@ function Icon({ name, size = 18 }) {
     close: <path d="m6 6 12 12M18 6 6 18" />,
     alert: <><path d="M12 3 2.9 20h18.2L12 3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></>,
     refresh: <><path d="M20 11a8 8 0 0 0-14.8-4.2L3 9" /><path d="M3 4v5h5" /><path d="M4 13a8 8 0 0 0 14.8 4.2L21 15" /><path d="M21 20v-5h-5" /></>,
+    trash: <><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" y1="11" x2="10" y2="17" /><line x1="14" y1="11" x2="14" y2="17" /></>,
   }
 
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>
@@ -379,6 +380,7 @@ export default function WorkforcePage() {
   const [activationTarget, setActivationTarget] = useState(null)
   const [activationCreds, setActivationCreds] = useState({ work_email: '', password: '', access_notes: '' })
   const [showActivationPassword, setShowActivationPassword] = useState(false)
+  const [employeeToDelete, setEmployeeToDelete] = useState(null)
   const [error, setError] = useState('')
   const [toast, setToast] = useState('')
 
@@ -754,9 +756,43 @@ export default function WorkforcePage() {
       }
       setModal(null)
       setActivationTarget(null)
+      setEmployeeToDelete(null)
       setShowMilestoneForm(false)
       setEditingMilestoneId(null)
       setIssuanceModal(null)
+    }
+  }
+
+  const openDeleteConfirm = (employee) => {
+    setEmployeeToDelete(employee)
+    setError('')
+    setModal('confirm-delete')
+  }
+
+  const handleDeleteEmployee = async () => {
+    if (!employeeToDelete || !user) return
+    setSubmitting(true)
+    setError('')
+    try {
+      const res = await fetch(`/api/admin/workforce/employees/${employeeToDelete.id}?hard=true`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${await user.getIdToken()}`,
+        },
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to delete employee record.')
+      }
+      setEmployees((prev) => prev.filter((e) => e.id !== employeeToDelete.id))
+      setModal(null)
+      const empName = employeeToDelete.full_name
+      setEmployeeToDelete(null)
+      showToast(`Employee "${empName}" and all associated credentials permanently deleted.`)
+    } catch (err) {
+      setError(err.message || 'Failed to delete employee.')
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -1385,7 +1421,8 @@ export default function WorkforcePage() {
                   <td data-label="Status"><span className={`${styles.status} ${styles[`status${employee.status}`] || ''}`}>{statusLabel(employee.status)}</span></td>
                   <td data-label="Tenure remaining">{tenure ? <span className={`${styles.tenure} ${styles[tenure.tone]}`}>{tenure.label}</span> : <span className={styles.muted}>--</span>}</td>
                   <td data-label="Actions" onClick={(event) => event.stopPropagation()}><div className={styles.actions}>
-                    <button type="button" className={styles.iconButton} onClick={() => openEdit(employee)} aria-label={`Edit ${employee.full_name}`}><Icon name="edit" /></button>
+                    <button type="button" className={styles.iconButton} onClick={() => openEdit(employee)} aria-label={`Edit ${employee.full_name}`} title={`Edit ${employee.full_name}`}><Icon name="edit" /></button>
+                    <button type="button" className={`${styles.iconButton} ${styles.deleteIconButton}`} onClick={() => openDeleteConfirm(employee)} aria-label={`Delete ${employee.full_name}`} title={`Delete ${employee.full_name} & Records`}><Icon name="trash" /></button>
                     {actionsFor(employee).map(([status, label]) => <button key={status} type="button" className={status === 'TERMINATED' ? styles.terminateButton : styles.actionButton} onClick={() => changeStatus(employee, status)} disabled={submitting}>{label}</button>)}
                   </div></td>
                 </tr>
@@ -1402,7 +1439,7 @@ export default function WorkforcePage() {
 
       {modal && <div className={styles.backdrop} role="presentation" onMouseDown={closeModal}>
         <section
-          className={`${styles.modal} ${modal === 'confirm-terminate' ? styles.confirmModal : ''}`}
+          className={`${styles.modal} ${modal === 'confirm-terminate' || modal === 'confirm-delete' ? styles.confirmModal : ''}`}
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -1541,6 +1578,37 @@ export default function WorkforcePage() {
                   style={{ fontWeight: 800, padding: '0.45rem 1.15rem' }}
                 >
                   {submitting ? 'Processing...' : ['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? '🎉 Conclude & Grant Documents' : '⚠️ Confirm Offboarding'}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {modal === 'confirm-delete' && employeeToDelete && (
+            <div className={styles.modalContent} style={{ padding: '1.4rem', maxWidth: '540px', width: '100%' }}>
+              <div className={styles.modalHeader} style={{ padding: 0, borderBottom: 'none', marginBottom: '0.85rem' }}>
+                <div>
+                  <p className={styles.eyebrow} style={{ color: 'var(--danger)' }}>Permanent Deletion</p>
+                  <h2 id="modal-title" style={{ fontSize: '1.25rem' }}>Delete Employee & Records</h2>
+                </div>
+                <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
+              </div>
+              <p className={styles.confirmText} style={{ marginBottom: '1rem', lineHeight: '1.5' }}>
+                Are you sure you want to permanently delete <strong>{employeeToDelete.full_name}</strong> ({employeeToDelete.personal_email})?
+              </p>
+              <div style={{ padding: '0.85rem 1rem', background: 'var(--danger-soft)', border: '1px solid color-mix(in srgb, var(--danger) 30%, transparent)', borderRadius: '10px', fontSize: '0.82rem', color: 'var(--text)', marginBottom: '1.2rem', lineHeight: '1.6' }}>
+                <strong style={{ color: 'var(--danger)' }}>⚠️ Permanent Cascade Deletion:</strong>
+                <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
+                  <li>Employee profile & tenure record</li>
+                  <li>All verified certificates (Internship, Training, LOR)</li>
+                  <li>All formal workforce documents (Offer & Extension letters)</li>
+                  <li>All assigned milestone deliverables</li>
+                </ul>
+              </div>
+              {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
+              <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', gap: '0.65rem' }}>
+                <button type="button" className={styles.secondaryButton} onClick={closeModal} disabled={submitting}>Cancel</button>
+                <button type="button" className={styles.dangerButton} onClick={handleDeleteEmployee} disabled={submitting}>
+                  {submitting ? 'Deleting...' : '🗑️ Delete Employee & All Records'}
                 </button>
               </div>
             </div>

@@ -113,51 +113,73 @@ export async function DELETE(request, { params }) {
     const limited = await enforceEmployeeRateLimit(request, admin.uid)
     if (limited) return limited
 
-    const hardParam = new URL(request.url).searchParams.get('hard')
-    if (hardParam !== null && hardParam !== 'true' && hardParam !== 'false') {
-      return apiError('hard must be either true or false.', 400, 'VALIDATION_ERROR')
-    }
+    const url = new URL(request.url)
+    const hardParam = url.searchParams.get('hard')
 
     const db = getFirebaseAdminFirestore()
     const employeeRef = db.collection('employees').doc(idCheck.value)
-    const hardDelete = hardParam === 'true'
+    const employeeSnap = await employeeRef.get()
+    if (!employeeSnap.exists) return apiError('Employee record not found.', 404, 'NOT_FOUND')
 
-    if (!hardDelete) {
-      const snapshot = await employeeRef.get()
-      if (!snapshot.exists) return apiError('Employee record not found.', 404, 'NOT_FOUND')
+    const employeeData = employeeSnap.data()
+    const employeeEmail = (employeeData.personal_email || '').trim().toLowerCase()
+
+    // Soft delete if explicitly requested with hard=false
+    if (hardParam === 'false') {
       const now = new Date()
       await employeeRef.update({ status: 'ARCHIVED', archived_at: now, updated_at: now })
       return NextResponse.json({ success: true, id: employeeRef.id, status: 'ARCHIVED' })
     }
 
-    await db.runTransaction(async (transaction) => {
-      const [employee, certificates, milestones, workforceDocs] = await Promise.all([
-        transaction.get(employeeRef),
-        transaction.get(db.collection('certificates').where('employee_id', '==', employeeRef.id).limit(1)),
-        transaction.get(db.collection('milestones').where('employee_id', '==', employeeRef.id).limit(1)),
-        transaction.get(db.collection('workforce_docs').where('employee_id', '==', employeeRef.id).limit(1)),
-      ])
+    // Cascade deletion of all linked certificates, milestones, workforce_docs, and the employee
+    const batch = db.batch()
 
-      if (!employee.exists) {
-        const error = new Error('NOT_FOUND')
-        error.code = 'NOT_FOUND'
-        throw error
+    // 1. Certificates linked to this employee
+    const [certByEmpSnap, certByEmailSnap] = await Promise.all([
+      db.collection('certificates').where('employee_id', '==', employeeRef.id).get(),
+      employeeEmail ? db.collection('certificates').where('email', '==', employeeEmail).get() : { docs: [] },
+    ])
+    const certDocRefs = new Map()
+    certByEmpSnap.docs.forEach((d) => certDocRefs.set(d.id, d.ref))
+    certByEmailSnap.docs.forEach((d) => {
+      const data = d.data()
+      if (data.cert_type !== 'ROADMAP' || data.employee_id === employeeRef.id) {
+        certDocRefs.set(d.id, d.ref)
       }
-      if (!certificates.empty || !milestones.empty || !workforceDocs.empty) {
-        const error = new Error('LINKED_RECORDS')
-        error.code = 'LINKED_RECORDS'
-        throw error
-      }
-
-      transaction.delete(employeeRef)
     })
+    certDocRefs.forEach((ref) => batch.delete(ref))
 
-    return NextResponse.json({ success: true, id: employeeRef.id, deleted: true })
+    // 2. Milestones linked to this employee
+    const milestoneSnap = await db.collection('milestones').where('employee_id', '==', employeeRef.id).get()
+    milestoneSnap.docs.forEach((d) => batch.delete(d.ref))
+
+    // 3. Workforce docs linked to this employee
+    const [docsByEmpSnap, docsByEmailSnap] = await Promise.all([
+      db.collection('workforce_docs').where('employee_id', '==', employeeRef.id).get(),
+      employeeEmail ? db.collection('workforce_docs').where('dispatched_to', '==', employeeEmail).get() : { docs: [] },
+    ])
+    const workforceDocRefs = new Map()
+    docsByEmpSnap.docs.forEach((d) => workforceDocRefs.set(d.id, d.ref))
+    docsByEmailSnap.docs.forEach((d) => workforceDocRefs.set(d.id, d.ref))
+    workforceDocRefs.forEach((ref) => batch.delete(ref))
+
+    // 4. Employee record
+    batch.delete(employeeRef)
+
+    await batch.commit()
+
+    return NextResponse.json({
+      success: true,
+      id: employeeRef.id,
+      deleted: true,
+      cascadeCount: {
+        certificates: certDocRefs.size,
+        milestones: milestoneSnap.size,
+        workforceDocs: workforceDocRefs.size,
+      },
+    })
   } catch (error) {
     if (error?.code === 'NOT_FOUND') return apiError('Employee record not found.', 404, 'NOT_FOUND')
-    if (error?.code === 'LINKED_RECORDS') {
-      return apiError('Hard deletion is unavailable while certificates, milestones, or workforce documents are linked to this employee.', 409, 'CONFLICT')
-    }
     console.error('[Workforce Employee DELETE]', error)
     return apiError('Unable to delete the employee record.', 500, 'INTERNAL_ERROR')
   }
