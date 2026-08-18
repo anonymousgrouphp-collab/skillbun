@@ -149,6 +149,11 @@ export default function DocumentManagerPage() {
   const [signatoryTitle, setSignatoryTitle] = useState('Founder & Lead, SkillBun');
   const [customRefId, setCustomRefId] = useState('SKB/2026/HR-OFF/8K29DF');
 
+  // PDF Preview Engine State
+  const [pdfBase64, setPdfBase64] = useState(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [viewMode, setViewMode] = useState('pdf'); // 'pdf' | 'html'
+
   // Issue Form State
   const [issueType, setIssueType] = useState('OFFER_PACK');
   const [issueName, setIssueName] = useState('');
@@ -167,6 +172,78 @@ export default function DocumentManagerPage() {
   const currentTemplate = useMemo(() => {
     return PRODUCTION_DOCUMENTS.find((d) => d.id === selectedDocId) || PRODUCTION_DOCUMENTS[0];
   }, [selectedDocId]);
+
+  // Fetch real PDF preview from backend
+  const generateLivePdfPreview = useCallback(async () => {
+    if (!user || !isAdmin) return;
+    setPdfLoading(true);
+    try {
+      const token = await user.getIdToken();
+      const res = await fetch('/api/admin/workforce/pdf/preview', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          docType: currentTemplate.docType,
+          referenceId: customRefId,
+          newContractEndDate: contractEndDate,
+          employee: {
+            salutation,
+            full_name: candidateName,
+            parent_name: parentName,
+            personal_email: personalEmail,
+            current_address: currentAddress,
+            course_degree: courseDegree,
+            college_name: collegeName,
+            department,
+            designation,
+            joining_date: joiningDate,
+            contract_end_date: contractEndDate,
+            stipend_amount: parseInt(stipendAmount.replace(/[^0-9]/g, ''), 10) || 10000,
+            stipend_currency: 'INR',
+          },
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success && data.pdfBase64) {
+        setPdfBase64(data.pdfBase64);
+      }
+    } catch (err) {
+      console.error('Failed to generate PDF preview:', err);
+    } finally {
+      setPdfLoading(false);
+    }
+  }, [
+    user,
+    isAdmin,
+    currentTemplate.docType,
+    customRefId,
+    salutation,
+    candidateName,
+    parentName,
+    personalEmail,
+    currentAddress,
+    courseDegree,
+    collegeName,
+    department,
+    designation,
+    joiningDate,
+    contractEndDate,
+    stipendAmount,
+  ]);
+
+  // Debounced auto-refresh of live PDF preview when simulator inputs change
+  useEffect(() => {
+    if (activeTab === 'studio') {
+      const timer = setTimeout(() => {
+        generateLivePdfPreview();
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab, generateLivePdfPreview]);
 
   // Fetch documents from backend
   const fetchDocuments = useCallback(async () => {
@@ -222,7 +299,6 @@ export default function DocumentManagerPage() {
   // Filtered documents
   const filteredDocuments = useMemo(() => {
     return documents.filter((doc) => {
-      // Search
       if (searchTerm) {
         const q = searchTerm.toLowerCase();
         const matches =
@@ -234,7 +310,6 @@ export default function DocumentManagerPage() {
           (doc.metadata_snapshot?.designation || '').toLowerCase().includes(q);
         if (!matches) return false;
       }
-      // Status
       if (statusFilter === 'ACTIVE' && doc.is_revoked) return false;
       if (statusFilter === 'REVOKED' && !doc.is_revoked) return false;
       return true;
@@ -305,7 +380,6 @@ export default function DocumentManagerPage() {
         downloadLink.download = `${docItem.display_id || docItem.id}.pdf`;
         downloadLink.click();
       } else {
-        // Fallback print
         alert('Binary PDF not cached in storage. Opening printable view.');
         setSelectedDocForModal(docItem);
       }
@@ -314,6 +388,19 @@ export default function DocumentManagerPage() {
     } finally {
       setActionLoadingId(null);
     }
+  };
+
+  // Download Simulated PDF from Studio
+  const handleDownloadSimulatedPdf = () => {
+    if (!pdfBase64) {
+      generateLivePdfPreview();
+      return;
+    }
+    const linkSource = `data:application/pdf;base64,${pdfBase64}`;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = linkSource;
+    downloadLink.download = `${customRefId.replace(/[\/\\]/g, '_')}_Official.pdf`;
+    downloadLink.click();
   };
 
   // Issue Form Submit
@@ -653,7 +740,7 @@ export default function DocumentManagerPage() {
       {/* TAB 2: LIVE PDF & LETTERHEAD STUDIO                           */}
       {/* ============================================================ */}
       {activeTab === 'studio' && (
-        <div style={{ display: 'grid', gridTemplateColumns: '420px 1fr', gap: '1.5rem', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '1.5rem', alignItems: 'start' }}>
           {/* Controls Left */}
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
@@ -783,101 +870,161 @@ export default function DocumentManagerPage() {
             </div>
           </div>
 
-          {/* Live A4 Letterhead Preview (Right) */}
+          {/* Live Preview (Right): REAL PDF Engine Viewer & HTML Toggle */}
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
               <div style={{ fontWeight: '800', fontSize: '0.92rem', color: 'var(--text)' }}>
-                Exact A4 Letterhead Output: {currentTemplate.name}
+                Exact Output: {currentTemplate.name}
               </div>
 
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ background: 'var(--surface-raised)', padding: '0.2rem', borderRadius: '8px', display: 'flex', gap: '0.25rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('pdf')}
+                    style={{
+                      background: viewMode === 'pdf' ? 'var(--green)' : 'transparent',
+                      color: viewMode === 'pdf' ? '#000' : 'var(--muted)',
+                      border: 'none',
+                      padding: '0.3rem 0.65rem',
+                      borderRadius: '6px',
+                      fontSize: '0.76rem',
+                      fontWeight: '800',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📄 Real PDF View (Multi-Page)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('html')}
+                    style={{
+                      background: viewMode === 'html' ? 'var(--green)' : 'transparent',
+                      color: viewMode === 'html' ? '#000' : 'var(--muted)',
+                      border: 'none',
+                      padding: '0.3rem 0.65rem',
+                      borderRadius: '6px',
+                      fontSize: '0.76rem',
+                      fontWeight: '800',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    📝 Clean A4 Letterhead
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleDownloadSimulatedPdf}
+                  style={{ background: 'var(--green)', color: '#000', border: 'none', padding: '0.4rem 0.85rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '800', cursor: 'pointer' }}
+                >
+                  📥 Download PDF
+                </button>
+
                 <button
                   type="button"
                   onClick={() => window.print()}
                   style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.4rem 0.8rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '700', cursor: 'pointer' }}
                 >
-                  🖨️ Print / Save PDF
+                  🖨️ Print
                 </button>
               </div>
             </div>
 
-            {/* Official SkillBun A4 Letterhead Canvas */}
-            <div className={styles.a4DocumentCanvas} style={{ maxWidth: '820px', margin: '0 auto', background: '#ffffff', color: '#0f172a', padding: '3rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 12px 36px rgba(0,0,0,0.15)', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13.5px', lineHeight: '1.65' }}>
-              {/* Header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2.5px solid #008751', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Image src="/logo.png" alt="SkillBun" width={40} height={40} style={{ borderRadius: '8px' }} />
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '22px', fontWeight: '900', color: '#008751' }}>
-                      ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '600' }}>
-                      SkillBun Technologies • Engineering Workforce Division
-                    </div>
+            {/* REAL PDF IFRAME PREVIEW */}
+            {viewMode === 'pdf' ? (
+              <div style={{ width: '100%', minHeight: '840px', background: '#525659', borderRadius: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                {pdfLoading && (
+                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, color: '#ffffff', fontWeight: '700', fontSize: '1rem' }}>
+                    ⏳ Compiling Real PDF with pdf-lib...
                   </div>
-                </div>
-
-                <div style={{ textAlign: 'right', fontSize: '11.5px', color: '#64748b' }}>
-                  <div style={{ fontWeight: '800', color: '#0f172a' }}>{customRefId}</div>
-                  <div>Date: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
-                </div>
+                )}
+                {pdfBase64 ? (
+                  <iframe
+                    src={`data:application/pdf;base64,${pdfBase64}#toolbar=1&navpanes=1`}
+                    title="Real PDF Preview"
+                    style={{ width: '100%', height: '840px', border: 'none' }}
+                  />
+                ) : (
+                  <div style={{ padding: '4rem', textAlign: 'center', color: '#ffffff' }}>
+                    <p>Generating PDF preview...</p>
+                  </div>
+                )}
               </div>
-
-              {/* Recipient Box */}
-              <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0.85rem 1.15rem', marginBottom: '1.5rem', fontSize: '12.5px' }}>
-                <strong style={{ fontSize: '14px', color: '#0f172a' }}>TO: {salutation} {candidateName}</strong>
-                {parentName && <span> (S/o or D/o {parentName})</span>}<br />
-                <span>Address: {currentAddress}</span><br />
-                <span>Academic Record: {courseDegree} • {collegeName}</span><br />
-                <strong style={{ color: '#008751' }}>Designation: {designation} — {department}</strong>
-              </div>
-
-              {/* Document Title Banner */}
-              <div style={{ textAlign: 'center', background: '#f1f5f9', padding: '0.6rem 1rem', borderRadius: '6px', fontWeight: '900', letterSpacing: '0.04em', color: '#0f172a', fontSize: '14px', marginBottom: '1.5rem' }}>
-                {currentTemplate.defaultHeading}
-              </div>
-
-              {/* Clauses */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#334155' }}>
-                {currentTemplate.sampleClauses.map((clause, idx) => {
-                  let text = clause.text
-                    .replace(/{{designation}}/g, designation)
-                    .replace(/{{department}}/g, department)
-                    .replace(/{{joining_date}}/g, joiningDate)
-                    .replace(/{{contract_end_date}}/g, contractEndDate)
-                    .replace(/{{extended_date}}/g, contractEndDate)
-                    .replace(/{{stipend_amount}}/g, stipendAmount)
-                    .replace(/{{candidate_name}}/g, candidateName)
-                    .replace(/{{reference_id}}/g, customRefId)
-                    .replace(/{{work_email}}/g, `${candidateName.toLowerCase().replace(/[^a-z0-9]/g, '')}@skillbun.tech`);
-
-                  return (
-                    <div key={idx}>
-                      <div style={{ fontWeight: '800', color: '#0f172a', fontSize: '12.5px', marginBottom: '0.2rem' }}>
-                        {clause.title}
+            ) : (
+              /* CLEAN HTML A4 LETTERHEAD VIEW */
+              <div className={styles.a4DocumentCanvas} style={{ maxWidth: '820px', margin: '0 auto', background: '#ffffff', color: '#0f172a', padding: '3rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 12px 36px rgba(0,0,0,0.15)', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13.5px', lineHeight: '1.65' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2.5px solid #008751', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <Image src="/logo.png" alt="SkillBun" width={40} height={40} style={{ borderRadius: '8px' }} />
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '22px', fontWeight: '900', color: '#008751' }}>
+                        ꌗꀘꀤ꒒꒒ꌃꀎꈤ
                       </div>
-                      <div style={{ whiteSpace: 'pre-line' }}>{text}</div>
+                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '600' }}>
+                        SkillBun Technologies • Engineering Workforce Division
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-
-              {/* Signatory Box */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem', marginTop: '2rem' }}>
-                <div>
-                  <strong style={{ display: 'block', color: '#0f172a', fontSize: '13px' }}>{signatoryName}</strong>
-                  <span style={{ fontSize: '11.5px', color: '#64748b' }}>{signatoryTitle}</span><br />
-                  <span style={{ fontSize: '11px', color: '#008751', fontWeight: '800' }}>SkillBun Technologies</span>
-                </div>
-
-                <div style={{ textAlign: 'right', fontSize: '10.5px', color: '#64748b' }}>
-                  <div style={{ border: '1px solid #008751', color: '#008751', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: '800', marginBottom: '0.25rem' }}>
-                    OFFICIALLY ISSUED • SKILLBUN HR
                   </div>
-                  <div>Verify at https://skillbun.tech/alumni</div>
+
+                  <div style={{ textAlign: 'right', fontSize: '11.5px', color: '#64748b' }}>
+                    <div style={{ fontWeight: '800', color: '#0f172a' }}>{customRefId}</div>
+                    <div>Date: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+                  </div>
+                </div>
+
+                <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0.85rem 1.15rem', marginBottom: '1.5rem', fontSize: '12.5px' }}>
+                  <strong style={{ fontSize: '14px', color: '#0f172a' }}>TO: {salutation} {candidateName}</strong>
+                  {parentName && <span> (S/o or D/o {parentName})</span>}<br />
+                  <span>Address: {currentAddress}</span><br />
+                  <span>Academic Record: {courseDegree} • {collegeName}</span><br />
+                  <strong style={{ color: '#008751' }}>Designation: {designation} — {department}</strong>
+                </div>
+
+                <div style={{ textAlign: 'center', background: '#f1f5f9', padding: '0.6rem 1rem', borderRadius: '6px', fontWeight: '900', letterSpacing: '0.04em', color: '#0f172a', fontSize: '14px', marginBottom: '1.5rem' }}>
+                  {currentTemplate.defaultHeading}
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#334155' }}>
+                  {currentTemplate.sampleClauses.map((clause, idx) => {
+                    let text = clause.text
+                      .replace(/{{designation}}/g, designation)
+                      .replace(/{{department}}/g, department)
+                      .replace(/{{joining_date}}/g, joiningDate)
+                      .replace(/{{contract_end_date}}/g, contractEndDate)
+                      .replace(/{{extended_date}}/g, contractEndDate)
+                      .replace(/{{stipend_amount}}/g, stipendAmount)
+                      .replace(/{{candidate_name}}/g, candidateName)
+                      .replace(/{{reference_id}}/g, customRefId)
+                      .replace(/{{work_email}}/g, `${candidateName.toLowerCase().replace(/[^a-z0-9]/g, '')}@skillbun.tech`);
+
+                    return (
+                      <div key={idx}>
+                        <div style={{ fontWeight: '800', color: '#0f172a', fontSize: '12.5px', marginBottom: '0.2rem' }}>
+                          {clause.title}
+                        </div>
+                        <div style={{ whiteSpace: 'pre-line' }}>{text}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem', marginTop: '2rem' }}>
+                  <div>
+                    <strong style={{ display: 'block', color: '#0f172a', fontSize: '13px' }}>{signatoryName}</strong>
+                    <span style={{ fontSize: '11.5px', color: '#64748b' }}>{signatoryTitle}</span><br />
+                    <span style={{ fontSize: '11px', color: '#008751', fontWeight: '800' }}>SkillBun Technologies</span>
+                  </div>
+
+                  <div style={{ textAlign: 'right', fontSize: '10.5px', color: '#64748b' }}>
+                    <div style={{ border: '1px solid #008751', color: '#008751', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: '800', marginBottom: '0.25rem' }}>
+                      OFFICIALLY ISSUED • SKILLBUN HR
+                    </div>
+                    <div>Verify at https://skillbun.tech/alumni</div>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}
