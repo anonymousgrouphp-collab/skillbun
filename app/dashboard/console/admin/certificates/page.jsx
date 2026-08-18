@@ -2,10 +2,23 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import certStyles from '@/app/certificate/[id]/certificate.module.css';
 import styles from './certificates.module.css';
+
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  display: 'swap',
+});
+
+const pixelify = Pixelify_Sans({
+  subsets: ['latin'],
+  weight: ['700'],
+  display: 'swap',
+});
 
 const TEMPLATE_DESIGNS = [
   {
@@ -64,13 +77,20 @@ export default function AdminCertificatesPage() {
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [actionLoadingId, setActionLoadingId] = useState(null);
 
-  // Live Canvas Studio state
+  // Live Canvas Studio state (Simulation variables)
   const [selectedDesignId, setSelectedDesignId] = useState('ROADMAP');
   const [simName, setSimName] = useState('Alex Sharma');
   const [simTrack, setSimTrack] = useState('Full Stack Web Development');
   const [simScore, setSimScore] = useState(94);
   const [simCertId, setSimCertId] = useState('SKB8F92-4C-10-9A7E');
   const [simDate, setSimDate] = useState(new Date().toISOString().slice(0, 10));
+  const [simDepartment, setSimDepartment] = useState('Core Engineering');
+  const [simDesignation, setSimDesignation] = useState('Software Engineering Intern');
+  const [simStartDate, setSimStartDate] = useState('01-06-2026');
+  const [simEndDate, setSimEndDate] = useState('31-08-2026');
+  const [simLorText, setSimLorText] = useState(
+    'This is to certify that Alex Sharma demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They showed remarkable mastery over distributed systems architecture and full-stack delivery.'
+  );
 
   // Minting Form state
   const [mintType, setMintType] = useState('ROADMAP');
@@ -275,7 +295,7 @@ export default function AdminCertificatesPage() {
     }
   };
 
-  const currentDesign = TEMPLATE_DESIGNS.find((t) => t.id === selectedDesignId) || TEMPLATE_DESIGNS[0];
+  const currentDesign = TEMPLATE_DESIGNS.find((d) => d.id === selectedDesignId) || TEMPLATE_DESIGNS[0];
 
   if (authLoading || checking) {
     return (
@@ -317,7 +337,7 @@ export default function AdminCertificatesPage() {
             </span>
           </div>
           <p className={styles.subtitle}>
-            Unified operations console to search, live-preview, issue, revoke, and verify all 4 platform certificate types across academic and workforce tracks.
+            Unified operations console to search, live-preview, issue, revoke, and verify all 4 platform certificate types using the exact Canva overlay specs.
           </p>
         </div>
 
@@ -587,7 +607,7 @@ export default function AdminCertificatesPage() {
         </div>
       )}
 
-      {/* TAB 2: LIVE DESIGN & CANVAS OVERLAY STUDIO */}
+      {/* TAB 2: LIVE DESIGN & CANVAS OVERLAY STUDIO (EXACT /certificate/[id] ENGINE) */}
       {activeTab === 'studio' && (
         <div className={styles.studioLayout}>
           {/* Controls Left Column */}
@@ -597,7 +617,7 @@ export default function AdminCertificatesPage() {
                 🎨 Certificate Design Switcher
               </div>
               <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>
-                Simulate Canva / SVG dynamic template overlay placement.
+                Live simulator matching the exact public overlay engine from <code>/certificate/[id]</code>.
               </p>
             </div>
 
@@ -674,14 +694,71 @@ export default function AdminCertificatesPage() {
                   className={styles.inputField}
                 />
               </div>
+
+              {selectedDesignId === 'INTERNSHIP' && (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginTop: '0.5rem' }}>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>Start Date</label>
+                    <input
+                      type="text"
+                      value={simStartDate}
+                      onChange={(e) => setSimStartDate(e.target.value)}
+                      className={styles.inputField}
+                    />
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>End Date</label>
+                    <input
+                      type="text"
+                      value={simEndDate}
+                      onChange={(e) => setSimEndDate(e.target.value)}
+                      className={styles.inputField}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {selectedDesignId === 'LOR' && (
+                <>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginTop: '0.5rem' }}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.formLabel}>Department</label>
+                      <input
+                        type="text"
+                        value={simDepartment}
+                        onChange={(e) => setSimDepartment(e.target.value)}
+                        className={styles.inputField}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.formLabel}>Designation</label>
+                      <input
+                        type="text"
+                        value={simDesignation}
+                        onChange={(e) => setSimDesignation(e.target.value)}
+                        className={styles.inputField}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.formGroup} style={{ marginTop: '0.5rem' }}>
+                    <label className={styles.formLabel}>Recommendation Text</label>
+                    <textarea
+                      value={simLorText}
+                      onChange={(e) => setSimLorText(e.target.value)}
+                      className={styles.textareaField}
+                      rows={3}
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
-          {/* Canvas Viewport Right Column */}
+          {/* Canvas Viewport Right Column — Exact 1:1 Rendering */}
           <div className={styles.canvasViewport}>
             <div className={styles.canvasTopBar}>
               <div style={{ fontWeight: '800', fontSize: '0.92rem', color: 'var(--text)' }}>
-                Preview: {currentDesign.name}
+                Exact Public Render: {currentDesign.name}
               </div>
 
               <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -699,84 +776,137 @@ export default function AdminCertificatesPage() {
                   className={styles.actionBtnSecondary}
                   style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', color: 'var(--green)' }}
                 >
-                  🔗 Public Verification Page ↗
+                  🔗 Open /certificate/[id] ↗
                 </Link>
               </div>
             </div>
 
-            {/* Visual Template Overlay Mock */}
-            <div className={styles.certMockContainer}>
-              {currentDesign.bgImage ? (
-                <Image
-                  src={currentDesign.bgImage}
-                  alt={currentDesign.name}
-                  width={1120}
-                  height={792}
-                  className={styles.certTemplateBg}
-                  priority
-                />
+            {/* Exact Public Certificate Frame Matching /certificate/[id]/page.jsx */}
+            <div style={{ width: '100%', maxWidth: '840px', margin: '0 auto' }}>
+              {selectedDesignId === 'LOR' ? (
+                <section className={certStyles.lorLetterhead}>
+                  <header className={certStyles.lorHeader}>
+                    <div className={certStyles.lorBrandLogo}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/logo.png" alt="SkillBun Logo" />
+                      <div>
+                        <h2>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h2>
+                        <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 'bold', letterSpacing: '0.05em' }}>
+                          OFFICIAL VERIFIED CREDENTIAL
+                        </span>
+                      </div>
+                    </div>
+                    <div className={certStyles.lorMetaRight}>
+                      <div>Ref ID: <strong>{simCertId}</strong></div>
+                      <div>Date: <strong>{new Date(simDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</strong></div>
+                    </div>
+                  </header>
+
+                  <h1 className={`${certStyles.lorTitle} ${cinzel.className}`}>Letter of Recommendation</h1>
+                  <p className={certStyles.lorSalutation}>TO WHOMSOEVER IT MAY CONCERN</p>
+
+                  <div className={certStyles.lorCandidateStrip}>
+                    <div><strong>Candidate:</strong> {simName}</div>
+                    <div><strong>Designation:</strong> {simDesignation} — {simDepartment}</div>
+                    {simStartDate && simEndDate && (
+                      <div><strong>Tenure:</strong> {simStartDate} to {simEndDate}</div>
+                    )}
+                  </div>
+
+                  <div className={certStyles.lorBody}>
+                    {simLorText}
+                  </div>
+
+                  <footer className={certStyles.lorSignOff}>
+                    <div className={certStyles.lorSignDetails}>
+                      <strong>Harsh Patel</strong>
+                      <span>Lead & Managing Director</span>
+                      <span>SkillBun</span>
+                    </div>
+                    <div className={certStyles.lorSealBlock}>
+                      <span className={certStyles.lorSealBadge}>🔒 Verified Official Credential</span>
+                    </div>
+                  </footer>
+
+                  <div className={certStyles.lorFooterRef}>
+                    SkillBun Credential Verification: https://skillbun.tech/certificate/{simCertId}
+                  </div>
+                </section>
+              ) : selectedDesignId === 'INTERNSHIP' ? (
+                <section className={certStyles.certificateFrame}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/internship-cert-template.png"
+                    alt={`Certificate of Internship — ${simName}`}
+                    className={certStyles.templateImg}
+                    draggable={false}
+                  />
+                  <div className={certStyles.skillbunOverlay} aria-hidden="true">
+                    <span className={certStyles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                  </div>
+                  <h1 className={`${certStyles.recipientName} ${cinzel.className}`}>{simName}</h1>
+                  <h2
+                    className={`${certStyles.roadmapTitle} ${pixelify.className}`}
+                    style={{ '--char-count': (simTrack || 'INTERNSHIP').length }}
+                  >
+                    {simTrack}
+                  </h2>
+                  {simStartDate && simEndDate && (
+                    <div className={certStyles.tenureOverlay}>
+                      TENURE: {simStartDate} TO {simEndDate}
+                    </div>
+                  )}
+                  <div className={certStyles.qrMeta}>
+                    <span className={certStyles.qrMetaId}>{simCertId}</span>
+                  </div>
+                </section>
+              ) : selectedDesignId === 'TRAINING' ? (
+                <section className={certStyles.certificateFrame}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/training-cert-template.png"
+                    alt={`Certificate of Training — ${simName}`}
+                    className={certStyles.templateImg}
+                    draggable={false}
+                  />
+                  <div className={certStyles.skillbunOverlay} aria-hidden="true">
+                    <span className={certStyles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                  </div>
+                  <h1 className={`${certStyles.recipientName} ${cinzel.className}`}>{simName}</h1>
+                  <h2
+                    className={`${certStyles.roadmapTitle} ${pixelify.className}`}
+                    style={{ '--char-count': (simTrack || 'TRAINING PROGRAM').length }}
+                  >
+                    {simTrack}
+                  </h2>
+                  <div className={certStyles.qrMeta}>
+                    <span className={certStyles.qrMetaId}>{simCertId}</span>
+                  </div>
+                </section>
               ) : (
-                /* LOR Letterhead Layout */
-                <div style={{ padding: '2.5rem 3rem', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: '#0f172a', background: '#ffffff' }}>
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2px solid #00b87a', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-                      <div style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '24px', fontWeight: '900', color: '#008751' }}>
-                        ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-                      </div>
-                      <div style={{ fontSize: '11px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>
-                        Official Letter of Recommendation
-                      </div>
-                    </div>
-                    <h3 style={{ margin: '0 0 1rem 0', fontSize: '18px', color: '#0f172a' }}>
-                      TO WHOMSOEVER IT MAY CONCERN
-                    </h3>
-                    <p style={{ fontSize: '13px', lineHeight: '1.7', color: '#334155' }}>
-                      This is to certify that <strong>{simName}</strong> has demonstrated exceptional technical competence, engineering agility, and proactive problem solving while contributing to <strong>{simTrack}</strong> at SkillBun.
-                    </p>
+                /* Standard Roadmap Assessment Certificate */
+                <section className={certStyles.certificateFrame}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/certificate-template.png"
+                    alt={`SkillBun Certificate of Completion — ${simName}`}
+                    className={certStyles.templateImg}
+                    draggable={false}
+                  />
+                  <div className={certStyles.skillbunOverlay} aria-hidden="true">
+                    <span className={certStyles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #e2e8f0', paddingTop: '1rem', fontSize: '11px', color: '#64748b' }}>
-                    <div>
-                      <strong>Harsh Patel</strong><br />
-                      Lead, SkillBun Platform
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      Ref: <code>{simCertId}</code><br />
-                      Verified on skillbun.tech
-                    </div>
+                  <h1 className={`${certStyles.recipientName} ${cinzel.className}`}>{simName}</h1>
+                  <h2
+                    className={`${certStyles.roadmapTitle} ${pixelify.className}`}
+                    style={{ '--char-count': (simTrack || '').length }}
+                  >
+                    {simTrack}
+                  </h2>
+                  <div className={certStyles.qrMeta}>
+                    <span className={certStyles.qrMetaId}>{simCertId}</span>
                   </div>
-                </div>
-              )}
-
-              {/* Positioned Overlays for Image Templates */}
-              {currentDesign.bgImage && (
-                <>
-                  <div className={styles.overlayStudentName}>
-                    {simName}
-                  </div>
-
-                  <div className={styles.overlayTrackTitle}>
-                    {selectedDesignId === 'ROADMAP' ? `${simTrack} (${simScore}% Score)` : simTrack}
-                  </div>
-
-                  <div className={styles.overlayMetaBar}>
-                    <div style={{ textAlign: 'left' }}>
-                      <div>ISSUED: {simDate}</div>
-                      <div className={styles.overlayIdCode}>ID: {simCertId}</div>
-                    </div>
-
-                    <div className={styles.overlayQrBlock}>
-                      <div className={styles.overlayQrBox}>
-                        🏁
-                      </div>
-                      <span style={{ fontSize: '0.62rem', letterSpacing: '0.04em' }}>SKILLBUN.TECH</span>
-                    </div>
-
-                    <div style={{ textAlign: 'right' }}>
-                      <div>VERIFIED CREDENTIAL</div>
-                      <div style={{ color: '#008751', fontWeight: '700' }}>100% AUTHENTIC</div>
-                    </div>
-                  </div>
-                </>
+                </section>
               )}
             </div>
           </div>
