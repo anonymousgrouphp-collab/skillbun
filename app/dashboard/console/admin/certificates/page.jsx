@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import QRCodeSvg from '@/app/components/QRCodeSvg';
+import OfficialSeal from '@/app/components/OfficialSeal';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import certStyles from '@/app/certificate/[id]/certificate.module.css';
@@ -1017,16 +1018,7 @@ export default function AdminCertificatesPage() {
 
                       {/* Center: Gold Embossed Dual Brand Seal Stamp */}
                       <div className={certStyles.internshipSealArea}>
-                        <div className={certStyles.vintageSealRing}>
-                          <div className={certStyles.sealInnerPattern}>
-                            <div className={certStyles.sealLogoCenter}>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/reish-mark.png" alt="Reish Seal" className={certStyles.sealReishIcon} />
-                            </div>
-                            <div className={certStyles.sealStarBanner}>★ REISH ★</div>
-                            <div className={certStyles.sealOfficialText}>OFFICIAL SEAL</div>
-                          </div>
-                        </div>
+                        <OfficialSeal />
                       </div>
 
                       {/* Right: Live Vector Scannable QR Code */}
