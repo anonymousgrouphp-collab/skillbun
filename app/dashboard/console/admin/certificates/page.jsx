@@ -1014,10 +1014,8 @@ export default function AdminCertificatesPage() {
                         </div>
 
                         <div className={certStyles.signatureCanvas}>
-                          <div className={certStyles.signatureScript}>Harsh Patel</div>
-                          <div className={certStyles.signatureLine} />
-                          <div className={certStyles.signatoryName}>Harsh Patel</div>
-                          <div className={certStyles.signatoryRole}>Lead & Managing Director, SkillBun</div>
+                          <div className={certStyles.signatoryName}>Signing Authority</div>
+                          <div className={certStyles.signatoryRole}>Managing Director, SkillBun</div>
                         </div>
                       </div>
 
