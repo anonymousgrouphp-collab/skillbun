@@ -1027,7 +1027,7 @@ export default function AdminCertificatesPage() {
                       {/* Right: Live Vector Scannable QR Code */}
                       <div className={certStyles.internshipQrArea}>
                         <div className={certStyles.qrCodeWrapper}>
-                          <QRCodeSvg value={`https://skillbun-v2.vercel.app/certificate/${simCertId}`} size={84} />
+                          <QRCodeSvg value={`https://skillbun.vercel.app/certificate/${(simCertId || '').replace(/\//g, '-')}`} size={84} />
                         </div>
                       </div>
                     </div>
