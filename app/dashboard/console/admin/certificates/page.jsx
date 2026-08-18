@@ -1032,9 +1032,8 @@ export default function AdminCertificatesPage() {
                       {/* Right: Live Vector Scannable QR Code */}
                       <div className={certStyles.internshipQrArea}>
                         <div className={certStyles.qrCodeWrapper}>
-                          <QRCodeSvg value={`https://skillbun.tech/certificate/${simCertId}`} size={74} />
+                          <QRCodeSvg value={`https://skillbun.tech/certificate/${simCertId}`} size={82} />
                         </div>
-                        <div className={certStyles.qrCaption}>Scan to verify online</div>
                       </div>
                     </div>
 
@@ -1045,7 +1044,7 @@ export default function AdminCertificatesPage() {
                         <span>Govt. of India MSME Registered Entity</span>
                       </div>
                       <div className={certStyles.footnoteUrl}>
-                        Verify online: <code>https://skillbun.tech/certificate/{simCertId}</code>
+                        Scan the above QR to verify online
                       </div>
                     </div>
                   </div>

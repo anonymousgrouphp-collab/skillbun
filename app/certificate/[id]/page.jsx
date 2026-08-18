@@ -560,20 +560,19 @@ export default function CertificatePage() {
                 {/* Right: Live Vector Scannable QR Code */}
                 <div className={styles.internshipQrArea}>
                   <div className={styles.qrCodeWrapper}>
-                    <QRCodeSvg value={getCertUrl()} size={74} />
+                    <QRCodeSvg value={getCertUrl()} size={82} />
                   </div>
-                  <div className={styles.qrCaption}>Scan to verify online</div>
                 </div>
               </div>
 
-              {/* Bottom Trust & Verification URL Strip */}
+              {/* Bottom Trust & Verification Footnote Strip */}
               <div className={styles.internshipVerificationFootnote}>
                 <div className={styles.msmeSealBadge}>
                   <span>🇮🇳</span>
                   <span>Govt. of India MSME Registered Entity</span>
                 </div>
                 <div className={styles.footnoteUrl}>
-                  Verify online: <code>{typeof window !== 'undefined' ? window.location.href : `https://skillbun.tech/certificate/${cert.id}`}</code>
+                  Scan the above QR to verify online
                 </div>
               </div>
             </div>
