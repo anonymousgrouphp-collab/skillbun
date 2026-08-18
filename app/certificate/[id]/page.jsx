@@ -216,8 +216,8 @@ export default function CertificatePage() {
 
   const getCertUrl = () => {
     if (!cert) return '';
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://skillbun.tech';
-    return `${baseUrl}/certificate/${cert.id}`;
+    const certId = cert.display_id || cert.id;
+    return `https://skillbun-v2.vercel.app/certificate/${certId}`;
   };
 
   const certType = (cert?.cert_type || 'ROADMAP').toUpperCase();
