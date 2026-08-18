@@ -1,0 +1,245 @@
+import { NextResponse } from 'next/server';
+import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
+import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
+import { generateCertificateId, generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
+
+export const runtime = 'nodejs';
+
+const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
+
+async function verifyAdminAuth(request) {
+  const authHeader = request.headers.get('authorization') || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
+
+  if (token) {
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (adminAuth) {
+        const decoded = await adminAuth.verifyIdToken(token);
+        const isAdmin = await isUserAuthorizedAdmin(decoded);
+        if (isAdmin) {
+          return { authorized: true, email: (decoded.email || '').toLowerCase(), uid: decoded.uid };
+        }
+      }
+    } catch (e) {
+      console.warn('[Admin Certificates Auth Warning]:', e.message);
+    }
+  }
+
+  // Fallback for local development or founder email query
+  const url = new URL(request.url);
+  const adminEmail = (url.searchParams.get('adminEmail') || '').toLowerCase();
+  if (adminEmail === ADMIN_CONFIRMATION_EMAIL || process.env.NODE_ENV === 'development') {
+    return { authorized: true, email: ADMIN_CONFIRMATION_EMAIL, uid: 'admin_dev' };
+  }
+
+  return { authorized: false, response: NextResponse.json({ error: 'Unauthorized: Admin privileges required.' }, { status: 403 }) };
+}
+
+export async function GET(request) {
+  try {
+    const auth = await verifyAdminAuth(request);
+    if (!auth.authorized) return auth.response;
+
+    const url = new URL(request.url);
+    const certType = url.searchParams.get('type') || '';
+    const status = url.searchParams.get('status') || '';
+    const search = (url.searchParams.get('search') || '').trim().toLowerCase();
+
+    const db = getFirebaseAdminFirestore();
+    if (!db) {
+      return NextResponse.json({ error: 'Database connection unavailable.' }, { status: 500 });
+    }
+
+    const certsSnap = await db.collection('certificates').orderBy('createdAt', 'desc').get();
+    
+    let certificates = certsSnap.docs.map((doc) => {
+      const data = doc.data();
+      const toIso = (val) => {
+        if (!val) return null;
+        if (val.toDate && typeof val.toDate === 'function') return val.toDate().toISOString();
+        if (val instanceof Date) return val.toISOString();
+        if (typeof val === 'string') return val;
+        return null;
+      };
+
+      const cType = (data.cert_type || 'ROADMAP').toUpperCase();
+
+      return {
+        id: doc.id,
+        display_id: data.display_id || (doc.id.startsWith('SKB-') && doc.id.includes('-HR-') ? doc.id.replace(/-/g, '/') : doc.id),
+        cert_type: cType,
+        uid: data.uid || '',
+        employee_id: data.employee_id || '',
+        name: data.name || data.studentName || data.userName || 'Student',
+        email: (data.email || data.userEmail || '').toLowerCase(),
+        roadmapTitle: data.roadmapTitle || data.stream_or_track || 'Roadmap Track',
+        roadmapSlug: data.roadmapSlug || '',
+        department: data.department || '',
+        designation: data.designation || '',
+        stream_or_track: data.stream_or_track || data.roadmapTitle || '',
+        score: typeof data.score === 'number' ? data.score : 100,
+        start_date: data.start_date || null,
+        end_date: data.end_date || null,
+        recommendation_text: data.recommendation_text || '',
+        issued_by: data.issued_by || 'SkillBun Academic Verification Authority',
+        is_revoked: Boolean(data.is_revoked),
+        revoked_at: toIso(data.revoked_at),
+        revoked_by: data.revoked_by || null,
+        createdAt: toIso(data.createdAt) || new Date().toISOString(),
+      };
+    });
+
+    // Compute metrics
+    const totalCount = certificates.length;
+    const roadmapCount = certificates.filter((c) => c.cert_type === 'ROADMAP').length;
+    const workforceCount = certificates.filter((c) => ['INTERNSHIP', 'TRAINING', 'LOR'].includes(c.cert_type)).length;
+    const activeCount = certificates.filter((c) => !c.is_revoked).length;
+    const revokedCount = certificates.filter((c) => c.is_revoked).length;
+
+    // Filter by type
+    if (certType && certType !== 'ALL') {
+      if (certType === 'WORKFORCE') {
+        certificates = certificates.filter((c) => ['INTERNSHIP', 'TRAINING', 'LOR'].includes(c.cert_type));
+      } else {
+        certificates = certificates.filter((c) => c.cert_type === certType.toUpperCase());
+      }
+    }
+
+    // Filter by status
+    if (status === 'ACTIVE') {
+      certificates = certificates.filter((c) => !c.is_revoked);
+    } else if (status === 'REVOKED') {
+      certificates = certificates.filter((c) => c.is_revoked);
+    }
+
+    // Search query
+    if (search) {
+      certificates = certificates.filter((c) => {
+        return (
+          c.id.toLowerCase().includes(search) ||
+          c.display_id.toLowerCase().includes(search) ||
+          c.name.toLowerCase().includes(search) ||
+          c.email.toLowerCase().includes(search) ||
+          c.roadmapTitle.toLowerCase().includes(search) ||
+          c.stream_or_track.toLowerCase().includes(search) ||
+          (c.department && c.department.toLowerCase().includes(search))
+        );
+      });
+    }
+
+    return NextResponse.json({
+      success: true,
+      certificates,
+      count: certificates.length,
+      metrics: {
+        totalCount,
+        roadmapCount,
+        workforceCount,
+        activeCount,
+        revokedCount,
+      },
+    });
+  } catch (err) {
+    console.error('[Admin Certificates GET Error]:', err);
+    return NextResponse.json({ error: 'Failed to retrieve certificate records.' }, { status: 500 });
+  }
+}
+
+export async function POST(request) {
+  try {
+    const auth = await verifyAdminAuth(request);
+    if (!auth.authorized) return auth.response;
+
+    let body = {};
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
+    }
+
+    const certType = String(body.cert_type || 'ROADMAP').toUpperCase();
+    const candidateName = String(body.name || '').trim();
+    const candidateEmail = String(body.email || '').trim().toLowerCase();
+    const streamOrTrack = String(body.stream_or_track || body.roadmapTitle || '').trim();
+    const roadmapSlug = String(body.roadmapSlug || '').trim().toLowerCase();
+    const score = Number(body.score !== undefined ? body.score : 100);
+    const department = String(body.department || 'Engineering').trim();
+    const designation = String(body.designation || 'Intern').trim();
+    const startDate = body.start_date ? String(body.start_date).slice(0, 10) : null;
+    const endDate = body.end_date ? String(body.end_date).slice(0, 10) : null;
+    const recommendationText = String(body.recommendation_text || '').trim();
+    const customCertId = String(body.custom_id || '').trim();
+
+    if (!candidateName || candidateName.length < 2) {
+      return NextResponse.json({ error: 'Candidate name is required.' }, { status: 400 });
+    }
+
+    if (!streamOrTrack) {
+      return NextResponse.json({ error: 'Stream / Roadmap Track title is required.' }, { status: 400 });
+    }
+
+    const db = getFirebaseAdminFirestore();
+    if (!db) {
+      return NextResponse.json({ error: 'Database connection unavailable.' }, { status: 500 });
+    }
+
+    let certId = customCertId;
+    let displayId = customCertId;
+
+    if (!certId) {
+      if (certType === 'ROADMAP') {
+        certId = generateCertificateId();
+        displayId = certId;
+      } else if (certType === 'INTERNSHIP') {
+        certId = generateWorkforceId(WORKFORCE_PREFIXES.INTERNSHIP);
+        displayId = formatWorkforceDisplayId(certId);
+      } else if (certType === 'TRAINING') {
+        certId = generateWorkforceId(WORKFORCE_PREFIXES.TRAINING);
+        displayId = formatWorkforceDisplayId(certId);
+      } else if (certType === 'LOR') {
+        certId = generateWorkforceId(WORKFORCE_PREFIXES.LOR);
+        displayId = formatWorkforceDisplayId(certId);
+      } else {
+        certId = generateCertificateId();
+        displayId = certId;
+      }
+    }
+
+    const now = new Date();
+    const newCert = {
+      id: certId,
+      display_id: displayId,
+      cert_type: certType,
+      name: candidateName,
+      email: candidateEmail || 'student@skillbun.tech',
+      roadmapTitle: streamOrTrack,
+      roadmapSlug: roadmapSlug || streamOrTrack.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+      stream_or_track: streamOrTrack,
+      department,
+      designation,
+      score: isNaN(score) ? 100 : score,
+      start_date: startDate,
+      end_date: endDate,
+      recommendation_text: certType === 'LOR' ? (recommendationText || `During their tenure at SkillBun, ${candidateName} demonstrated exceptional technical agility and dedication.`) : null,
+      issued_by: certType === 'LOR' ? 'Harsh Patel, Lead at SkillBun' : 'SkillBun Academic Verification Authority',
+      issued_by_admin: auth.email,
+      is_revoked: false,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    await db.collection('certificates').doc(certId).set(newCert);
+
+    return NextResponse.json({
+      success: true,
+      certId,
+      displayId,
+      certificate: newCert,
+      message: `✅ Certificate (${displayId}) issued successfully!`,
+    });
+  } catch (err) {
+    console.error('[Admin Certificates POST Error]:', err);
+    return NextResponse.json({ error: `Failed to issue certificate: ${err.message}` }, { status: 500 });
+  }
+}

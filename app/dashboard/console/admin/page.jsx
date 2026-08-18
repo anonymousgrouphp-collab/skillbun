@@ -262,17 +262,74 @@ export default function AdminRootPage() {
               </svg>
             </Link>
 
-            <Link href="/dashboard/console/admin/analytics?tab=certs" className={styles.hubFooterLinkSecondary}>
+            <Link href="/dashboard/console/admin/certificates" className={styles.hubFooterLinkSecondary}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 15l-2 5l4-2l4 2l-2-5"/>
                 <circle cx="12" cy="9" r="6"/>
               </svg>
-              <span>Certificates Registry</span>
+              <span>Certificate Studio</span>
             </Link>
           </div>
         </div>
 
-        {/* Hub 3: Mail & Campaign Studio */}
+        {/* Hub 3: Certificate & Credential Studio */}
+        <div className={styles.hubCard}>
+          <div>
+            <div className={styles.hubCardHeader}>
+              <div className={`${styles.hubIconBox} ${styles.hubIconGreen}`}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 15l-2 5l4-2l4 2l-2-5"/>
+                  <circle cx="12" cy="9" r="6"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className={styles.hubCardTitle}>Certificate & Credential Studio</h3>
+                <p className={styles.hubCardDesc}>
+                  Unified digital credentials manager — live Canva template previews, manual minting, revocation controls, and Base32 cryptographic verification.
+                </p>
+              </div>
+            </div>
+
+            <ul className={styles.hubFeaturesList}>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>4 Certificate Types:</strong> Roadmap, Internship, Training & LOR</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Live Canvas Overlay Studio:</strong> In-browser visual overlay testing</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Manual Minting Engine:</strong> Instant issuance with Base32 IDs</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>1-Click Revocation & Verify:</strong> Real-time Firestore sync</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.hubCardFooter}>
+            <Link href="/dashboard/console/admin/certificates" className={styles.hubFooterLink}>
+              <span>Open Certificate Studio</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
+          </div>
+        </div>
+
+        {/* Hub 4: Mail & Campaign Studio */}
         <div className={styles.hubCard}>
           <div>
             <div className={styles.hubCardHeader}>
