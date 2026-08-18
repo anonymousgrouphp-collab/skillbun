@@ -2,116 +2,29 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import styles from './documents.module.css';
 
-// 4 Official SkillBun Workforce Documents
+// Official SkillBun Workforce Legal PDF Documents
 const PRODUCTION_DOCUMENTS = [
   {
     id: 'workforce_offer',
     category: 'Offer Letter',
     docType: 'OFFER_PACK',
-    name: '🏢 4-Page Internship Offer Letter & Engagement Terms',
+    name: '🏢 4-Page Internship Offer Letter & Legal Agreement',
     prefix: 'HR-OFF',
     defaultHeading: 'INTERNSHIP OFFER LETTER & TERMS OF ENGAGEMENT',
-    description: '4-Page formal legal agreement with annexures, code of conduct, IP assignment, and stipend terms.',
-    sampleClauses: [
-      {
-        title: '1. BACKGROUND & ORGANIZATIONAL OVERVIEW',
-        text: 'SkillBun operates with a dedicated mission to empower students and early-career software developers with structured roadmap navigation, practical technical skill mastery, and direct production engineering exposure. Through our collaborative internship programs, we bring emerging talent into high-impact environments to build, deploy, and scale world-class developer tools and career discovery platforms.',
-      },
-      {
-        title: '2. SELECTION AS INTERN',
-        text: 'Following our structured 4-round technical screening process, SkillBun is pleased to extend this formal offer for the position of {{designation}} within the {{department}}.',
-      },
-      {
-        title: '3. INTERNSHIP STATUS & PURPOSE',
-        text: 'This engagement is designed as an intensive experiential learning program aimed at bridging academic coursework with production-grade engineering, agile sprint workflows, and real-world system architecture. This engagement is strictly an internship and does not constitute an employer-employee relationship.',
-      },
-      {
-        title: '4. TENURE & DELIVERABLES',
-        text: 'The tenure of this internship shall commence on {{joining_date}} and conclude on {{contract_end_date}}, unless extended by mutual written agreement or terminated earlier pursuant to the provisions herein. The intern shall actively participate in sprint planning, technical standups, and milestone reviews.',
-      },
-      {
-        title: '5. STIPEND & EXPENSES',
-        text: 'The candidate shall be entitled to receive a monthly stipend of {{stipend_amount}}, subject to regular milestone progress and sprint deliverable sign-offs.',
-      },
-      {
-        title: '6. CONFIDENTIALITY, IP & CODE OF CONDUCT',
-        text: 'The intern agrees not to disclose proprietary source code, system architectures, or confidential platform data. All software source code, algorithms, and technical artifacts created in connection with this internship belong solely to SkillBun Technologies.',
-      },
-    ],
+    description: '4-Page formal legal agreement with annexures, agile sprint milestones, IP assignment, and stipend terms.',
   },
   {
     id: 'workforce_extension',
     category: 'Extension',
     docType: 'EXTENSION_LETTER',
-    name: '📈 Extension of Internship Tenure Addendum',
+    name: '📈 Internship Tenure Extension Legal Addendum',
     prefix: 'HR-EXT',
     defaultHeading: 'EXTENSION OF INTERNSHIP TENURE',
-    description: '1-Page legal addendum extending completion date, sprint roadmap, and milestone deliverables.',
-    sampleClauses: [
-      {
-        title: '1. PERFORMANCE APPRECIATION & TENURE EXTENSION',
-        text: 'On behalf of SkillBun, we commend your outstanding technical contributions, dedication, and proactive engineering ownership demonstrated throughout your tenure as {{designation}} within the {{department}}.',
-      },
-      {
-        title: '2. REVISED INTERNSHIP PERIOD',
-        text: 'In recognition of your performance and ongoing project roadmaps, we are pleased to formally extend your internship engagement effective from {{joining_date}} through {{extended_date}}.',
-      },
-      {
-        title: '3. CONTINUING VALIDITY OF TERMS',
-        text: 'All other terms, conditions, confidentiality obligations (NDA), intellectual property assignments, and codes of conduct specified in your original Offer Letter (Ref: {{reference_id}}) shall remain in full force and effect.',
-      },
-    ],
-  },
-  {
-    id: 'workforce_termination',
-    category: 'Termination',
-    docType: 'TERMINATION_NOTICE',
-    name: '🚪 Notice of Engagement Conclusion & Offboarding Record',
-    prefix: 'HR-TERM',
-    defaultHeading: 'NOTICE OF ENGAGEMENT CONCLUSION & OFFBOARDING RECORD',
-    description: 'Formal separation notice, credential conclusion & alumni document registry archive record.',
-    sampleClauses: [
-      {
-        title: '1. OFFICIAL NOTICE OF ENGAGEMENT CONCLUSION',
-        text: 'This document serves as official acknowledgement regarding the formal conclusion of the internship engagement of {{candidate_name}} as {{designation}} in the {{department}}, effective {{contract_end_date}}.',
-      },
-      {
-        title: '2. OFFBOARDING & CREDENTIAL ACCESS',
-        text: 'The engagement has concluded under status code COMPLETED upon fulfillment of assigned sprint deliverables. Internal workspace credentials and corporate accounts have been systematically concluded.',
-      },
-      {
-        title: '3. ALUMNI DOCUMENT VAULT ACCESS',
-        text: 'All granted completion certificates and tenure records remain permanently archived and publicly verifiable on the SkillBun Alumni Document Vault at https://skillbun.tech/alumni using Reference ID {{reference_id}}.',
-      },
-    ],
-  },
-  {
-    id: 'workforce_activation',
-    category: 'Activation',
-    docType: 'ACTIVATION_WELCOME',
-    name: '🔑 Day-1 Workspace & Credentials Activation Notice',
-    prefix: 'HR-ACT',
-    defaultHeading: 'DAY-1 WORKSPACE ACTIVATION & CREDENTIALS ONBOARDING',
-    description: 'Corporate Zoho Mail credentials provisioning, team tools onboarding & Day-1 checklist.',
-    sampleClauses: [
-      {
-        title: '1. WELCOME TO SKILLBUN ENGINEERING',
-        text: 'We are delighted to confirm that your onboarding documentation has been processed and your status is officially ACTIVE as {{designation}} within the {{department}}, effective from {{joining_date}}.',
-      },
-      {
-        title: '2. PROVISIONED ENTERPRISE WORKSPACE CREDENTIALS',
-        text: 'Your official SkillBun enterprise workspace account has been provisioned:\n• Corporate Work Email: {{work_email}}\n• Mail Login Portal: https://mail.zoho.in\n• Security: 2FA Authentication Required on First Login',
-      },
-      {
-        title: '3. GETTING STARTED ON DAY 1',
-        text: 'Review the platform developer guidelines and architectural standards. For operational or technical queries, connect directly with founder Harsh Patel at harsh@skillbun.tech.',
-      },
-    ],
+    description: 'Formal legal addendum extending completion date, sprint roadmap, and milestone deliverables.',
   },
 ];
 
@@ -131,7 +44,7 @@ export default function DocumentManagerPage() {
   const [selectedDocForModal, setSelectedDocForModal] = useState(null);
   const [actionLoadingId, setActionLoadingId] = useState(null);
 
-  // Live PDF & Letterhead Studio Simulator State
+  // Live PDF Studio Simulator State
   const [selectedDocId, setSelectedDocId] = useState('workforce_offer');
   const [salutation, setSalutation] = useState('Mr.');
   const [candidateName, setCandidateName] = useState('Alex Sharma');
@@ -145,14 +58,11 @@ export default function DocumentManagerPage() {
   const [joiningDate, setJoiningDate] = useState('01 September 2026');
   const [contractEndDate, setContractEndDate] = useState('30 November 2026');
   const [stipendAmount, setStipendAmount] = useState('INR 10,000 / month');
-  const [signatoryName, setSignatoryName] = useState('Harsh Patel');
-  const [signatoryTitle, setSignatoryTitle] = useState('Founder & Lead, SkillBun');
   const [customRefId, setCustomRefId] = useState('SKB/2026/HR-OFF/8K29DF');
 
   // PDF Preview Engine State
   const [pdfBase64, setPdfBase64] = useState(null);
   const [pdfLoading, setPdfLoading] = useState(false);
-  const [viewMode, setViewMode] = useState('pdf'); // 'pdf' | 'html'
 
   // Issue Form State
   const [issueType, setIssueType] = useState('OFFER_PACK');
@@ -331,8 +241,8 @@ export default function DocumentManagerPage() {
   const handleToggleRevoke = async (docItem) => {
     const nextState = !docItem.is_revoked;
     const promptMsg = nextState
-      ? `Revoke workforce document (${docItem.display_id || docItem.id})?`
-      : `Re-instate document (${docItem.display_id || docItem.id})?`;
+      ? `Revoke workforce legal document (${docItem.display_id || docItem.id})?`
+      : `Re-instate legal document (${docItem.display_id || docItem.id})?`;
 
     if (!window.confirm(promptMsg)) return;
 
@@ -380,8 +290,7 @@ export default function DocumentManagerPage() {
         downloadLink.download = `${docItem.display_id || docItem.id}.pdf`;
         downloadLink.click();
       } else {
-        alert('Binary PDF not cached in storage. Opening printable view.');
-        setSelectedDocForModal(docItem);
+        alert('Binary PDF not stored on record. Use the Live PDF Studio to generate a fresh copy.');
       }
     } catch (e) {
       alert('Error downloading PDF.');
@@ -416,9 +325,7 @@ export default function DocumentManagerPage() {
 
     try {
       const token = await user.getIdToken();
-      let endpoint = '/api/admin/workforce/offer';
-
-      const res = await fetch(endpoint, {
+      const res = await fetch('/api/admin/workforce/offer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -443,7 +350,7 @@ export default function DocumentManagerPage() {
       if (data.success) {
         setFeedback({
           type: 'success',
-          text: `🎉 Document (${data.referenceId || 'Issued'}) created and registered in Document Vault!`,
+          text: `🎉 Document (${data.referenceId || 'Issued'}) generated and registered in Document Vault!`,
         });
         setIssueName('');
         setIssueEmail('');
@@ -490,11 +397,11 @@ export default function DocumentManagerPage() {
       <div className={styles.headerRow}>
         <div className={styles.titleArea}>
           <div className={styles.titleBadge}>
-            <h1 className={styles.titleText}>Workforce Document Vault & Studio</h1>
-            <span className={styles.securityPill}>🛡️ Legal PDF & Archive Engine</span>
+            <h1 className={styles.titleText}>Workforce Legal Document & PDF Vault</h1>
+            <span className={styles.securityPill}>🛡️ pdf-lib Legal Engine</span>
           </div>
           <p className={styles.subtitle}>
-            Inspect, live-preview, download, and manage official SkillBun workforce legal agreements, 4-page offer packs, tenure extension addendums, and Day-1 activation records.
+            Inspect, live-preview, compile, and manage official SkillBun workforce legal PDF agreements, 4-page offer packs, tenure extension addendums, and offboarding records.
           </p>
         </div>
 
@@ -545,7 +452,7 @@ export default function DocumentManagerPage() {
           onClick={() => setActiveTab('studio')}
           className={`${styles.mainModeBtn} ${activeTab === 'studio' ? styles.mainModeBtnActive : ''}`}
         >
-          <span>📄</span> Live PDF & Letterhead Studio
+          <span>📄</span> Live Legal PDF Studio & Generator
         </button>
         <button
           type="button"
@@ -737,7 +644,7 @@ export default function DocumentManagerPage() {
       )}
 
       {/* ============================================================ */}
-      {/* TAB 2: LIVE PDF & LETTERHEAD STUDIO                           */}
+      {/* TAB 2: LIVE LEGAL PDF STUDIO & GENERATOR                     */}
       {/* ============================================================ */}
       {activeTab === 'studio' && (
         <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '1.5rem', alignItems: 'start' }}>
@@ -745,10 +652,10 @@ export default function DocumentManagerPage() {
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
               <div style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>
-                📄 Document Template Switcher
+                📄 PDF Template & Variable Studio
               </div>
               <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>
-                Live simulator matching the exact SkillBun legal PDF layout helper.
+                Live simulator matching the exact production `pdf-lib` legal generator.
               </p>
             </div>
 
@@ -870,161 +777,43 @@ export default function DocumentManagerPage() {
             </div>
           </div>
 
-          {/* Live Preview (Right): REAL PDF Engine Viewer & HTML Toggle */}
+          {/* Live Preview (Right): REAL MULTI-PAGE PDF VIEWER */}
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <div style={{ fontWeight: '800', fontSize: '0.92rem', color: 'var(--text)' }}>
-                Exact Output: {currentTemplate.name}
+              <div style={{ fontWeight: '800', fontSize: '0.95rem', color: 'var(--text)' }}>
+                Compiled PDF Output: {currentTemplate.name}
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <div style={{ background: 'var(--surface-raised)', padding: '0.2rem', borderRadius: '8px', display: 'flex', gap: '0.25rem' }}>
-                  <button
-                    type="button"
-                    onClick={() => setViewMode('pdf')}
-                    style={{
-                      background: viewMode === 'pdf' ? 'var(--green)' : 'transparent',
-                      color: viewMode === 'pdf' ? '#000' : 'var(--muted)',
-                      border: 'none',
-                      padding: '0.3rem 0.65rem',
-                      borderRadius: '6px',
-                      fontSize: '0.76rem',
-                      fontWeight: '800',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    📄 Real PDF View (Multi-Page)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setViewMode('html')}
-                    style={{
-                      background: viewMode === 'html' ? 'var(--green)' : 'transparent',
-                      color: viewMode === 'html' ? '#000' : 'var(--muted)',
-                      border: 'none',
-                      padding: '0.3rem 0.65rem',
-                      borderRadius: '6px',
-                      fontSize: '0.76rem',
-                      fontWeight: '800',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    📝 Clean A4 Letterhead
-                  </button>
-                </div>
-
                 <button
                   type="button"
                   onClick={handleDownloadSimulatedPdf}
-                  style={{ background: 'var(--green)', color: '#000', border: 'none', padding: '0.4rem 0.85rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '800', cursor: 'pointer' }}
+                  style={{ background: 'var(--green)', color: '#000', border: 'none', padding: '0.45rem 1rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: '800', cursor: 'pointer' }}
                 >
-                  📥 Download PDF
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => window.print()}
-                  style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.4rem 0.8rem', borderRadius: '8px', fontSize: '0.8rem', fontWeight: '700', cursor: 'pointer' }}
-                >
-                  🖨️ Print
+                  📥 Download Real PDF
                 </button>
               </div>
             </div>
 
             {/* REAL PDF IFRAME PREVIEW */}
-            {viewMode === 'pdf' ? (
-              <div style={{ width: '100%', minHeight: '840px', background: '#525659', borderRadius: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-                {pdfLoading && (
-                  <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, color: '#ffffff', fontWeight: '700', fontSize: '1rem' }}>
-                    ⏳ Compiling Real PDF with pdf-lib...
-                  </div>
-                )}
-                {pdfBase64 ? (
-                  <iframe
-                    src={`data:application/pdf;base64,${pdfBase64}#toolbar=1&navpanes=1`}
-                    title="Real PDF Preview"
-                    style={{ width: '100%', height: '840px', border: 'none' }}
-                  />
-                ) : (
-                  <div style={{ padding: '4rem', textAlign: 'center', color: '#ffffff' }}>
-                    <p>Generating PDF preview...</p>
-                  </div>
-                )}
-              </div>
-            ) : (
-              /* CLEAN HTML A4 LETTERHEAD VIEW */
-              <div className={styles.a4DocumentCanvas} style={{ maxWidth: '820px', margin: '0 auto', background: '#ffffff', color: '#0f172a', padding: '3rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 12px 36px rgba(0,0,0,0.15)', fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '13.5px', lineHeight: '1.65' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '2.5px solid #008751', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <Image src="/logo.png" alt="SkillBun" width={40} height={40} style={{ borderRadius: '8px' }} />
-                    <div>
-                      <div style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '22px', fontWeight: '900', color: '#008751' }}>
-                        ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-                      </div>
-                      <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '600' }}>
-                        SkillBun Technologies • Engineering Workforce Division
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ textAlign: 'right', fontSize: '11.5px', color: '#64748b' }}>
-                    <div style={{ fontWeight: '800', color: '#0f172a' }}>{customRefId}</div>
-                    <div>Date: {new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
-                  </div>
+            <div style={{ width: '100%', minHeight: '860px', background: '#525659', borderRadius: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              {pdfLoading && (
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, color: '#ffffff', fontWeight: '700', fontSize: '1rem' }}>
+                  ⏳ Compiling Real PDF with pdf-lib...
                 </div>
-
-                <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0.85rem 1.15rem', marginBottom: '1.5rem', fontSize: '12.5px' }}>
-                  <strong style={{ fontSize: '14px', color: '#0f172a' }}>TO: {salutation} {candidateName}</strong>
-                  {parentName && <span> (S/o or D/o {parentName})</span>}<br />
-                  <span>Address: {currentAddress}</span><br />
-                  <span>Academic Record: {courseDegree} • {collegeName}</span><br />
-                  <strong style={{ color: '#008751' }}>Designation: {designation} — {department}</strong>
+              )}
+              {pdfBase64 ? (
+                <iframe
+                  src={`data:application/pdf;base64,${pdfBase64}#toolbar=1&navpanes=1`}
+                  title="Real PDF Preview"
+                  style={{ width: '100%', height: '860px', border: 'none' }}
+                />
+              ) : (
+                <div style={{ padding: '4rem', textAlign: 'center', color: '#ffffff' }}>
+                  <p>Generating PDF preview...</p>
                 </div>
-
-                <div style={{ textAlign: 'center', background: '#f1f5f9', padding: '0.6rem 1rem', borderRadius: '6px', fontWeight: '900', letterSpacing: '0.04em', color: '#0f172a', fontSize: '14px', marginBottom: '1.5rem' }}>
-                  {currentTemplate.defaultHeading}
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#334155' }}>
-                  {currentTemplate.sampleClauses.map((clause, idx) => {
-                    let text = clause.text
-                      .replace(/{{designation}}/g, designation)
-                      .replace(/{{department}}/g, department)
-                      .replace(/{{joining_date}}/g, joiningDate)
-                      .replace(/{{contract_end_date}}/g, contractEndDate)
-                      .replace(/{{extended_date}}/g, contractEndDate)
-                      .replace(/{{stipend_amount}}/g, stipendAmount)
-                      .replace(/{{candidate_name}}/g, candidateName)
-                      .replace(/{{reference_id}}/g, customRefId)
-                      .replace(/{{work_email}}/g, `${candidateName.toLowerCase().replace(/[^a-z0-9]/g, '')}@skillbun.tech`);
-
-                    return (
-                      <div key={idx}>
-                        <div style={{ fontWeight: '800', color: '#0f172a', fontSize: '12.5px', marginBottom: '0.2rem' }}>
-                          {clause.title}
-                        </div>
-                        <div style={{ whiteSpace: 'pre-line' }}>{text}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem', marginTop: '2rem' }}>
-                  <div>
-                    <strong style={{ display: 'block', color: '#0f172a', fontSize: '13px' }}>{signatoryName}</strong>
-                    <span style={{ fontSize: '11.5px', color: '#64748b' }}>{signatoryTitle}</span><br />
-                    <span style={{ fontSize: '11px', color: '#008751', fontWeight: '800' }}>SkillBun Technologies</span>
-                  </div>
-
-                  <div style={{ textAlign: 'right', fontSize: '10.5px', color: '#64748b' }}>
-                    <div style={{ border: '1px solid #008751', color: '#008751', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: '800', marginBottom: '0.25rem' }}>
-                      OFFICIALLY ISSUED • SKILLBUN HR
-                    </div>
-                    <div>Verify at https://skillbun.tech/alumni</div>
-                  </div>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}
