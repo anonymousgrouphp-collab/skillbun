@@ -81,6 +81,41 @@ function OrnateCorner({ position = 'TL' }) {
   );
 }
 
+function formatRecommendationText(rawText, candidateName) {
+  const firstName = candidateName ? candidateName.trim().split(' ')[0] : 'The candidate';
+  if (!rawText || !rawText.trim()) {
+    return `${firstName} demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They contributed to core engineering milestones with distinguished commitment and professionalism. We wish them continued success in all future endeavors.`;
+  }
+  return rawText
+    .replace(/^This is to certify that\s+[A-Za-z\s]+(has\s+)?(demonstrated|completed|shown|contributed)/i, `${firstName} $2`)
+    .replace(/^This is to certify that\s+/i, '');
+}
+
+function getDisplayIssueDate(cert) {
+  if (cert.issue_date) return cert.issue_date;
+  
+  const createdDate = cert.createdAtDate || new Date();
+  
+  if (cert.end_date) {
+    const parts = cert.end_date.split(/[-/]/);
+    let endDateObj = null;
+    if (parts.length === 3) {
+      if (parts[0].length === 4) {
+        endDateObj = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+      } else if (parts[2].length === 4) {
+        endDateObj = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+      }
+    }
+    if (endDateObj && !isNaN(endDateObj.getTime())) {
+      if (createdDate < endDateObj) {
+        return cert.end_date;
+      }
+    }
+  }
+
+  return createdDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+}
+
 export default function CertificatePage() {
   const params = useParams();
   const id = params.id;
@@ -410,7 +445,6 @@ export default function CertificatePage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/reish-wordmark.png" alt="REISH" className={styles.internshipReishWordmarkImg} />
                   </div>
-                  <span className={styles.internshipMsmeNote}>Govt. of India MSME Registered Startup</span>
                 </div>
               </header>
 
@@ -488,8 +522,7 @@ export default function CertificatePage() {
               {/* Formal Performance Statement */}
               <div className={styles.internshipConductStatement}>
                 <p>
-                  {cert.recommendation_text || cert.performance_remarks ||
-                    `During this internship, their performance and conduct were found to be Exemplary. They demonstrated outstanding technical dedication, proactive problem solving, and professionalism in software deliverables. We commend their contributions and wish them continued excellence in all future endeavors.`}
+                  {formatRecommendationText(cert.recommendation_text || cert.performance_remarks, cert.name)}
                 </p>
               </div>
 
@@ -499,7 +532,7 @@ export default function CertificatePage() {
                 <div className={styles.internshipSigBlock}>
                   <div className={styles.internshipIdDate}>
                     <div>Certificate ID: <strong>{cert.display_id || cert.id}</strong></div>
-                    <div>Date of Issue: <strong>{cert.createdAtDate ? cert.createdAtDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) : new Date().toLocaleDateString('en-GB')}</strong></div>
+                    <div>Date of Issue: <strong>{getDisplayIssueDate(cert)}</strong></div>
                   </div>
 
                   <div className={styles.signatureCanvas}>
