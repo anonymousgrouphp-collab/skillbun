@@ -1285,9 +1285,8 @@
 /* Right: QR Code */
 .internshipQrArea {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .qrCodeWrapper {
@@ -1295,15 +1294,10 @@
   padding: 4px;
   border-radius: 6px;
   border: 1.5px solid #C5A059;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  display: inline-block;
-}
-
-.qrCaption {
-  font-size: clamp(0.58rem, 0.85vw, 0.66rem);
-  color: #6b7280;
-  font-weight: 800;
-  margin-top: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ── Bottom Footnote ── */
@@ -1314,7 +1308,7 @@
   border-top: 1px solid #EDE2CB;
   margin-top: clamp(0.55rem, 1.1vw, 0.85rem);
   padding-top: clamp(0.35rem, 0.8vw, 0.5rem);
-  font-size: clamp(0.6rem, 0.9vw, 0.68rem);
+  font-size: clamp(0.62rem, 0.95vw, 0.72rem);
   color: #6b7280;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -1329,13 +1323,9 @@
 }
 
 .footnoteUrl {
-  font-family: monospace;
-  color: #4b5563;
-}
-
-.footnoteUrl code {
-  color: #11864F;
-  font-weight: 800;
+  font-weight: 700;
+  color: #4a5568;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
