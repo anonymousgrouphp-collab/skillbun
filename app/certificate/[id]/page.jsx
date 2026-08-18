@@ -435,7 +435,7 @@ export default function CertificatePage() {
               <header className={styles.internshipHeader}>
                 <div className={styles.internshipBrandLockup}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/logo.png" alt="SkillBun Logo" className={styles.internshipBrandLogo} />
+                  <img src="/logo-tight.png" alt="SkillBun Logo" className={styles.internshipBrandLogo} />
                   <div className={styles.internshipBrandDetails}>
                     <div className={styles.internshipBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
                     <div className={styles.internshipBrandSubtitle}>

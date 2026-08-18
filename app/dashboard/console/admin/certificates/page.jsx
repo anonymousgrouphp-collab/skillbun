@@ -906,7 +906,7 @@ export default function AdminCertificatesPage() {
                     <header className={certStyles.internshipHeader}>
                       <div className={certStyles.internshipBrandLockup}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/logo.png" alt="SkillBun Logo" className={certStyles.internshipBrandLogo} />
+                        <img src="/logo-tight.png" alt="SkillBun Logo" className={certStyles.internshipBrandLogo} />
                         <div className={certStyles.internshipBrandDetails}>
                           <div className={certStyles.internshipBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
                           <div className={certStyles.internshipBrandSubtitle}>
