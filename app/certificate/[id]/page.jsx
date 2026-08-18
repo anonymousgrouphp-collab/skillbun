@@ -6,6 +6,7 @@ import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
+import QRCodeSvg from '@/app/components/QRCodeSvg';
 import styles from './certificate.module.css';
 
 const cinzel = Cinzel({
@@ -34,6 +35,48 @@ function PrintIcon() {
       <polyline points="6 9 6 2 18 2 18 9" />
       <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
       <rect x="6" y="14" width="12" height="8" />
+    </svg>
+  );
+}
+
+function OrnateCorner({ position = 'TL' }) {
+  const transforms = {
+    TL: '',
+    TR: 'scaleX(-1)',
+    BL: 'scaleY(-1)',
+    BR: 'scale(-1, -1)',
+  };
+
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      className={`${styles.certCorner} ${styles[`certCorner${position}`]}`}
+      style={{ transform: transforms[position] }}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M0 3 H100 M3 0 V100" stroke="#8C6D23" strokeWidth="3" />
+      <path d="M0 7 H100 M7 0 V100" stroke="#F5E8C7" strokeWidth="1.5" />
+      <path d="M0 11 H100 M11 0 V100" stroke="#C5A059" strokeWidth="1.5" strokeDasharray="3 2" />
+      <path d="M0 15 H100 M15 0 V100" stroke="#8C6D23" strokeWidth="1.5" />
+      <path
+        d="M15 15 C28 15 40 20 46 30 C52 39 48 50 38 55 C29 59 19 54 17 45 C15 35 23 26 33 26 C40 26 45 31 43 37 C41 42 36 44 33 40 C30 37 31 33 35 33"
+        stroke="#9D782F"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 15 C15 28 20 40 30 46 C39 52 50 48 55 38 C59 29 54 19 45 17 C35 15 26 23 26 33 C26 40 31 45 37 43 C42 41 44 36 40 33 C37 30 33 31 33 35"
+        stroke="#9D782F"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <circle cx="26" cy="26" r="4.5" fill="#8C6D23" />
+      <circle cx="26" cy="26" r="2.5" fill="#FDF6D8" />
+      <circle cx="15" cy="15" r="2.5" fill="#8C6D23" />
+      <path d="M26 26 Q44 18 62 19 Q50 24 44 32" fill="#C5A059" opacity="0.85" />
+      <path d="M26 26 Q18 44 19 62 Q24 50 32 44" fill="#C5A059" opacity="0.85" />
     </svg>
   );
 }
@@ -339,26 +382,10 @@ export default function CertificatePage() {
           /* BRANCH 2: Landscape Certificate of Internship — Classic Academic Prestige */
           <section className={styles.internshipCertFrame}>
             {/* Vintage Ornate Corner Accents */}
-            <div className={`${styles.certCorner} ${styles.certCornerTL}`} aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L100 0 L100 8 L18 8 L18 18 L100 18 L100 24 L24 24 L24 100 L18 100 L18 24 L8 24 L8 100 L0 100 Z M28 28 L90 28 L90 32 L34 32 L34 90 L28 90 Z M40 40 L80 40 L80 44 L44 44 L44 80 L40 80 Z" />
-              </svg>
-            </div>
-            <div className={`${styles.certCorner} ${styles.certCornerTR}`} aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L100 0 L100 100 L92 100 L92 24 L82 24 L82 100 L76 100 L76 24 L0 24 L0 18 L82 18 L82 8 L0 8 Z M10 28 L72 28 L72 90 L66 90 L66 32 L10 32 Z M20 40 L60 40 L60 80 L56 80 L56 44 L20 44 Z" />
-              </svg>
-            </div>
-            <div className={`${styles.certCorner} ${styles.certCornerBL}`} aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M0 0 L8 0 L8 76 L18 76 L18 0 L24 0 L24 76 L100 76 L100 82 L18 82 L18 92 L100 92 L100 100 L0 100 Z M28 10 L34 10 L34 68 L90 68 L90 72 L28 72 Z M40 20 L44 20 L44 56 L80 56 L80 60 L40 60 Z" />
-              </svg>
-            </div>
-            <div className={`${styles.certCorner} ${styles.certCornerBR}`} aria-hidden="true">
-              <svg viewBox="0 0 100 100" fill="currentColor">
-                <path d="M92 0 L100 0 L100 100 L0 100 L0 92 L82 92 L82 82 L0 82 L0 76 L76 76 L76 0 L82 0 L82 76 L92 76 Z M66 10 L72 10 L72 72 L10 72 L10 68 L66 68 Z M56 20 L60 20 L60 60 L20 60 L20 56 L56 56 Z" />
-              </svg>
-            </div>
+            <OrnateCorner position="TL" />
+            <OrnateCorner position="TR" />
+            <OrnateCorner position="BL" />
+            <OrnateCorner position="BR" />
 
             {/* Inner Gold Frame */}
             <div className={styles.internshipInnerContainer}>
@@ -461,7 +488,7 @@ export default function CertificatePage() {
               <div className={styles.internshipConductStatement}>
                 <p>
                   {cert.recommendation_text || cert.performance_remarks ||
-                    `During this internship, their performance and conduct were found to be Exemplary. They contributed to core engineering milestones with distinguished commitment, technical acumen, and professionalism. We wish them continued excellence in all future endeavors.`}
+                    `During this internship, their performance and conduct were found to be Exemplary. They demonstrated outstanding technical dedication, proactive problem solving, and professionalism in software deliverables. We commend their contributions and wish them continued excellence in all future endeavors.`}
                 </p>
               </div>
 
@@ -496,15 +523,10 @@ export default function CertificatePage() {
                   </div>
                 </div>
 
-                {/* Right: Live Scannable QR Code */}
+                {/* Right: Live Vector Scannable QR Code */}
                 <div className={styles.internshipQrArea}>
                   <div className={styles.qrCodeWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(getCertUrl())}&margin=4`}
-                      alt="Verification QR Code"
-                      className={styles.qrCodeImage}
-                    />
+                    <QRCodeSvg value={getCertUrl()} size={74} />
                   </div>
                   <div className={styles.qrCaption}>Scan to verify online</div>
                 </div>

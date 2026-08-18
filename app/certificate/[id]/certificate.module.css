@@ -30,9 +30,9 @@
 .container {
   position: relative;
   z-index: 2;
-  width: min(1000px, calc(100vw - 2rem));
+  width: min(1140px, calc(100vw - 1.5rem));
   margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2.5rem) 0 4rem;
+  padding: clamp(1rem, 2.5vw, 2rem) 0 4rem;
 }
 
 /* ============================================
@@ -829,17 +829,17 @@
 .internshipCertFrame {
   position: relative;
   width: 100%;
-  max-width: 1060px;
+  max-width: 1080px;
   margin: 0 auto;
-  background: linear-gradient(145deg, #FFFCF7 0%, #FAF5EB 50%, #FFFDF9 100%);
+  background: linear-gradient(135deg, #FFFCF7 0%, #FAF5EB 45%, #F7EFE0 100%);
   border: 3.5px solid #8C6D23;
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.18),
-    0 0 0 8px #F5E8C7,
-    0 0 0 11px #8C6D23,
-    inset 0 0 40px rgba(197, 160, 89, 0.08);
-  border-radius: 14px;
-  padding: clamp(10px, 1.6vw, 16px);
+    0 20px 50px rgba(0, 0, 0, 0.18),
+    0 0 0 7px #F5E8C7,
+    0 0 0 10px #8C6D23,
+    inset 0 0 50px rgba(197, 160, 89, 0.1);
+  border-radius: 12px;
+  padding: clamp(8px, 1.2vw, 14px);
   box-sizing: border-box;
   color: #1a1a1a;
   overflow: hidden;
@@ -848,26 +848,24 @@
 /* ── Vintage Ornate Corner Accents ── */
 .certCorner {
   position: absolute;
-  width: clamp(48px, 6.5vw, 68px);
-  height: clamp(48px, 6.5vw, 68px);
-  color: #9D782F;
-  opacity: 0.85;
+  width: clamp(52px, 7vw, 76px);
+  height: clamp(52px, 7vw, 76px);
   pointer-events: none;
-  z-index: 3;
+  z-index: 4;
 }
 
-.certCornerTL { top: 6px; left: 6px; }
-.certCornerTR { top: 6px; right: 6px; }
-.certCornerBL { bottom: 6px; left: 6px; }
-.certCornerBR { bottom: 6px; right: 6px; }
+.certCornerTL { top: 4px; left: 4px; }
+.certCornerTR { top: 4px; right: 4px; }
+.certCornerBL { bottom: 4px; left: 4px; }
+.certCornerBR { bottom: 4px; right: 4px; }
 
 /* ── Inner Gold Frame ── */
 .internshipInnerContainer {
   position: relative;
   border: 1.5px solid #C5A059;
-  border-radius: 8px;
-  padding: clamp(1.2rem, 3.2vw, 2.4rem) clamp(1.4rem, 4vw, 3.2rem);
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.98) 0%, rgba(253, 248, 237, 0.88) 100%);
+  border-radius: 6px;
+  padding: clamp(0.85rem, 1.8vw, 1.4rem) clamp(1.2rem, 2.8vw, 2.2rem);
+  background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.98) 0%, rgba(253, 248, 237, 0.88) 100%);
   z-index: 2;
   box-sizing: border-box;
   text-align: center;
@@ -879,21 +877,21 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px double #C5A059;
-  padding-bottom: clamp(0.75rem, 1.8vw, 1.25rem);
-  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  padding-bottom: clamp(0.45rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.55rem, 1.2vw, 0.85rem);
   gap: 1rem;
 }
 
 .internshipBrandLockup {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   text-align: left;
 }
 
 .internshipBrandLogo {
-  width: clamp(38px, 4.5vw, 48px);
-  height: clamp(38px, 4.5vw, 48px);
+  width: clamp(34px, 4vw, 42px);
+  height: clamp(34px, 4vw, 42px);
   object-fit: contain;
 }
 
@@ -904,7 +902,7 @@
 
 .internshipBrandWordmark {
   font-family: var(--font-fredoka), cursive, sans-serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   font-weight: 900;
   color: #11864F;
   letter-spacing: 0.04em;
@@ -912,7 +910,7 @@
 }
 
 .internshipBrandSubtitle {
-  font-size: clamp(0.65rem, 1.1vw, 0.76rem);
+  font-size: clamp(0.6rem, 0.95vw, 0.7rem);
   font-weight: 800;
   color: #666;
   letter-spacing: 0.08em;
@@ -927,7 +925,7 @@
 }
 
 .internshipGovtTag {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 800;
   color: #777;
   letter-spacing: 0.08em;
@@ -937,27 +935,28 @@
 .internshipReishIdentity {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  margin: 0.15rem 0;
+  gap: 0.4rem;
+  margin: 0.1rem 0;
 }
 
 .internshipReishLogo {
-  width: clamp(24px, 3vw, 32px);
+  width: clamp(22px, 2.8vw, 30px);
   height: auto;
-  max-height: 28px;
+  max-height: 26px;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .internshipReishText {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 900;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   color: #111;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .internshipMsmeNote {
-  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  font-size: clamp(0.58rem, 0.9vw, 0.68rem);
   font-weight: 700;
   color: #8C6D23;
   letter-spacing: 0.02em;
@@ -965,17 +964,17 @@
 
 /* ── Certificate Title Block ── */
 .internshipTitleBlock {
-  margin-bottom: clamp(1rem, 2vw, 1.4rem);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .titleFlourishDivider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   color: #C5A059;
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .flourishSymbol {
@@ -983,54 +982,54 @@
 }
 
 .flourishLine {
-  width: clamp(40px, 8vw, 90px);
+  width: clamp(35px, 6vw, 75px);
   height: 1.5px;
   background: linear-gradient(90deg, transparent, #C5A059, transparent);
 }
 
 .flourishStar {
   color: #8C6D23;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .internshipMainTitle {
-  font-size: clamp(1.45rem, 3.4vw, 2.35rem);
+  font-size: clamp(1.35rem, 2.8vw, 1.95rem);
   font-weight: 900;
-  color: #1a2a1a;
+  color: #1a202c;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.2rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .internshipSubTitleBadge {
   display: inline-block;
-  font-size: clamp(0.68rem, 1.2vw, 0.82rem);
+  font-size: clamp(0.62rem, 1vw, 0.74rem);
   font-weight: 900;
   color: #8C6D23;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   background: rgba(197, 160, 89, 0.12);
-  padding: 0.25rem 1rem;
+  padding: 0.18rem 0.8rem;
   border-radius: 999px;
   border: 1px solid rgba(197, 160, 89, 0.35);
 }
 
 /* ── Recipient Presentation ── */
 .internshipRecipientSection {
-  margin-bottom: clamp(0.85rem, 1.8vw, 1.25rem);
+  margin-bottom: clamp(0.45rem, 1vw, 0.75rem);
 }
 
 .internshipCertifyText {
   font-style: italic;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-size: clamp(0.85rem, 1.25vw, 0.98rem);
   color: #555;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.15rem;
 }
 
 .internshipCandidateName {
-  font-size: clamp(1.5rem, 3.6vw, 2.45rem);
+  font-size: clamp(1.4rem, 3vw, 2.15rem);
   font-weight: 900;
   color: #111;
   text-transform: uppercase;
@@ -1045,18 +1044,18 @@
 
 .internshipNameUnderline {
   position: relative;
-  width: clamp(180px, 45vw, 360px);
+  width: clamp(160px, 35vw, 280px);
   height: 2px;
   background: linear-gradient(90deg, transparent, #C5A059, #8C6D23, #C5A059, transparent);
-  margin: 0.5rem auto 0;
+  margin: 0.3rem auto 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .nameUnderlineDiamond {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #8C6D23;
   transform: rotate(45deg);
   border: 1px solid #FAF5EB;
@@ -1064,17 +1063,17 @@
 
 /* ── Achievement & Role Statement ── */
 .internshipAchievementBlock {
-  margin-bottom: clamp(0.9rem, 2vw, 1.35rem);
-  max-width: 880px;
+  margin-bottom: clamp(0.45rem, 1vw, 0.75rem);
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .internshipRoleStatement {
-  font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+  font-size: clamp(0.82rem, 1.25vw, 0.95rem);
   color: #2d3748;
-  line-height: 1.6;
-  margin: 0 0 0.25rem;
+  line-height: 1.5;
+  margin: 0 0 0.15rem;
 }
 
 .highlightRole {
@@ -1091,7 +1090,7 @@
 }
 
 .internshipOrgStatement {
-  font-size: clamp(0.82rem, 1.3vw, 0.94rem);
+  font-size: clamp(0.76rem, 1.1vw, 0.86rem);
   color: #4a5568;
   margin: 0;
 }
@@ -1100,24 +1099,24 @@
 .internshipMetricsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(0.5rem, 1.5vw, 1rem);
-  max-width: 840px;
-  margin: 0 auto clamp(0.9rem, 2vw, 1.35rem);
+  gap: clamp(0.35rem, 0.8vw, 0.65rem);
+  max-width: 800px;
+  margin: 0 auto clamp(0.45rem, 1vw, 0.75rem);
 }
 
 .internshipMetricPill {
   background: #fdfaf2;
   border: 1px solid rgba(197, 160, 89, 0.5);
-  border-radius: 8px;
-  padding: clamp(0.4rem, 1vw, 0.65rem) clamp(0.6rem, 1.2vw, 0.9rem);
+  border-radius: 6px;
+  padding: clamp(0.25rem, 0.6vw, 0.45rem) clamp(0.45rem, 0.9vw, 0.75rem);
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  box-shadow: 0 2px 6px rgba(140, 109, 35, 0.06);
+  gap: 0.1rem;
+  box-shadow: 0 1px 4px rgba(140, 109, 35, 0.05);
 }
 
 .metricPillLabel {
-  font-size: clamp(0.65rem, 1vw, 0.74rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.68rem);
   font-weight: 800;
   color: #718096;
   text-transform: uppercase;
@@ -1125,27 +1124,27 @@
 }
 
 .metricPillVal {
-  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+  font-size: clamp(0.76rem, 1.15vw, 0.88rem);
   font-weight: 900;
   color: #1a202c;
 }
 
 /* ── Formal Performance Evaluation Statement ── */
 .internshipConductStatement {
-  background: rgba(255, 255, 255, 0.85);
-  border-left: 3.5px solid #11864F;
-  border-right: 3.5px solid #C5A059;
-  padding: clamp(0.65rem, 1.4vw, 0.95rem) clamp(0.9rem, 2vw, 1.4rem);
+  background: rgba(255, 255, 255, 0.88);
+  border-left: 3px solid #11864F;
+  border-right: 3px solid #C5A059;
+  padding: clamp(0.4rem, 0.9vw, 0.65rem) clamp(0.7rem, 1.5vw, 1.1rem);
   border-radius: 6px;
-  margin: 0 auto clamp(1rem, 2.2vw, 1.6rem);
-  max-width: 860px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin: 0 auto clamp(0.55rem, 1.2vw, 0.85rem);
+  max-width: 840px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.03);
 }
 
 .internshipConductStatement p {
-  font-size: clamp(0.8rem, 1.25vw, 0.92rem);
+  font-size: clamp(0.74rem, 1vw, 0.84rem);
   color: #374151;
-  line-height: 1.6;
+  line-height: 1.45;
   margin: 0;
   font-style: italic;
 }
@@ -1153,12 +1152,12 @@
 /* ── Authentication Footer: Signatures, Seal, QR Code ── */
 .internshipAuthFooter {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1.1fr;
+  grid-template-columns: 1.2fr 1fr 1fr;
   align-items: center;
   border-top: 1.5px solid #E2D6BE;
-  padding-top: clamp(0.85rem, 1.8vw, 1.25rem);
-  margin-top: clamp(0.6rem, 1.5vw, 1rem);
-  gap: 1rem;
+  padding-top: clamp(0.55rem, 1.1vw, 0.85rem);
+  margin-top: clamp(0.35rem, 0.9vw, 0.65rem);
+  gap: 0.75rem;
   text-align: left;
 }
 
@@ -1166,13 +1165,13 @@
 .internshipSigBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.45rem;
 }
 
 .internshipIdDate {
-  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
+  font-size: clamp(0.68rem, 1vw, 0.76rem);
   color: #4b5563;
-  line-height: 1.4;
+  line-height: 1.35;
   font-family: monospace;
 }
 
@@ -1188,28 +1187,28 @@
 
 .signatureScript {
   font-family: 'Brush Script MT', cursive, Georgia, serif;
-  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
   color: #11864F;
-  margin-bottom: -4px;
+  margin-bottom: -3px;
   transform: rotate(-3deg);
 }
 
 .signatureLine {
-  width: clamp(120px, 20vw, 160px);
+  width: clamp(110px, 18vw, 145px);
   height: 1.5px;
   background: #111;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 
 .signatoryName {
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.76rem, 1.1vw, 0.85rem);
   font-weight: 900;
   color: #111;
   line-height: 1.2;
 }
 
 .signatoryRole {
-  font-size: clamp(0.68rem, 1vw, 0.76rem);
+  font-size: clamp(0.64rem, 0.9vw, 0.72rem);
   color: #6b7280;
   font-weight: 700;
 }
@@ -1222,14 +1221,14 @@
 }
 
 .vintageSealRing {
-  width: clamp(76px, 9vw, 96px);
-  height: clamp(76px, 9vw, 96px);
+  width: clamp(72px, 8vw, 88px);
+  height: clamp(72px, 8vw, 88px);
   border-radius: 50%;
   border: 3px double #C5A059;
-  background: radial-gradient(circle at 30% 30%, #FFEFC8, #D8B263 70%, #9C782F 100%);
+  background: radial-gradient(circle at 35% 35%, #FFF2D1 0%, #D8B263 60%, #9C782F 100%);
   box-shadow:
-    0 4px 12px rgba(156, 120, 47, 0.35),
-    inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    0 4px 12px rgba(156, 120, 47, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1252,8 +1251,8 @@
 }
 
 .sealLogoCenter {
-  width: clamp(20px, 2.5vw, 26px);
-  height: clamp(20px, 2.5vw, 26px);
+  width: clamp(18px, 2.2vw, 24px);
+  height: clamp(18px, 2.2vw, 24px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1263,18 +1262,19 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  mix-blend-mode: multiply;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
 }
 
 .sealStarBanner {
-  font-size: clamp(0.5rem, 0.75vw, 0.6rem);
+  font-size: clamp(0.48rem, 0.7vw, 0.56rem);
   font-weight: 900;
   letter-spacing: 0.08em;
   margin-top: 1px;
 }
 
 .sealOfficialText {
-  font-size: clamp(0.44rem, 0.65vw, 0.52rem);
+  font-size: clamp(0.42rem, 0.6vw, 0.48rem);
   font-weight: 800;
   letter-spacing: 0.06em;
   opacity: 0.9;
@@ -1294,19 +1294,14 @@
   border-radius: 6px;
   border: 1.5px solid #C5A059;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.qrCodeImage {
-  width: clamp(68px, 8vw, 84px);
-  height: clamp(68px, 8vw, 84px);
-  display: block;
+  display: inline-block;
 }
 
 .qrCaption {
-  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
+  font-size: clamp(0.58rem, 0.85vw, 0.66rem);
   color: #6b7280;
   font-weight: 800;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
 }
 
 /* ── Bottom Footnote ── */
@@ -1315,9 +1310,9 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #EDE2CB;
-  margin-top: clamp(0.75rem, 1.5vw, 1.1rem);
-  padding-top: clamp(0.45rem, 1vw, 0.65rem);
-  font-size: clamp(0.62rem, 0.95vw, 0.72rem);
+  margin-top: clamp(0.55rem, 1.1vw, 0.85rem);
+  padding-top: clamp(0.35rem, 0.8vw, 0.5rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.68rem);
   color: #6b7280;
   flex-wrap: wrap;
   gap: 0.5rem;
