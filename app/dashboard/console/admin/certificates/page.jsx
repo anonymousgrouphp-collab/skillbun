@@ -63,6 +63,16 @@ function OrnateCorner({ position = 'TL' }) {
   );
 }
 
+function formatRecommendationText(rawText, candidateName) {
+  const firstName = candidateName ? candidateName.trim().split(' ')[0] : 'The candidate';
+  if (!rawText || !rawText.trim()) {
+    return `${firstName} demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They contributed to core engineering milestones with distinguished commitment and professionalism. We wish them continued success in all future endeavors.`;
+  }
+  return rawText
+    .replace(/^This is to certify that\s+[A-Za-z\s]+(has\s+)?(demonstrated|completed|shown|contributed)/i, `${firstName} $2`)
+    .replace(/^This is to certify that\s+/i, '');
+}
+
 const TEMPLATE_DESIGNS = [
   {
     id: 'ROADMAP',
@@ -126,13 +136,13 @@ export default function AdminCertificatesPage() {
   const [simTrack, setSimTrack] = useState('Full Stack Web Development');
   const [simScore, setSimScore] = useState(94);
   const [simCertId, setSimCertId] = useState('SKB8F92-4C-10-9A7E');
-  const [simDate, setSimDate] = useState(new Date().toISOString().slice(0, 10));
+  const [simDate, setSimDate] = useState('31-08-2026');
   const [simDepartment, setSimDepartment] = useState('Core Engineering');
   const [simDesignation, setSimDesignation] = useState('Software Engineering Intern');
   const [simStartDate, setSimStartDate] = useState('01-06-2026');
   const [simEndDate, setSimEndDate] = useState('31-08-2026');
   const [simLorText, setSimLorText] = useState(
-    'This is to certify that Alex Sharma demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They showed remarkable mastery over distributed systems architecture and full-stack delivery.'
+    'Alex demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They showed remarkable mastery over distributed systems architecture and full-stack delivery.'
   );
 
   // Minting Form state
@@ -907,7 +917,6 @@ export default function AdminCertificatesPage() {
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src="/reish-wordmark.png" alt="REISH" className={certStyles.internshipReishWordmarkImg} />
                         </div>
-                        <span className={certStyles.internshipMsmeNote}>Govt. of India MSME Registered Startup</span>
                       </div>
                     </header>
 
@@ -985,8 +994,7 @@ export default function AdminCertificatesPage() {
                     {/* Formal Performance Statement */}
                     <div className={certStyles.internshipConductStatement}>
                       <p>
-                        {simLorText ||
-                          `During this internship, their performance and conduct were found to be Exemplary. They demonstrated outstanding technical dedication, proactive problem solving, and professionalism in software deliverables. We commend their contributions and wish them distinguished success in all future endeavors.`}
+                        {formatRecommendationText(simLorText, simName)}
                       </p>
                     </div>
 
@@ -996,7 +1004,7 @@ export default function AdminCertificatesPage() {
                       <div className={certStyles.internshipSigBlock}>
                         <div className={certStyles.internshipIdDate}>
                           <div>Certificate ID: <strong>{simCertId}</strong></div>
-                          <div>Date of Issue: <strong>{simDate || new Date().toLocaleDateString('en-GB')}</strong></div>
+                          <div>Date of Issue: <strong>{simDate || simEndDate || new Date().toLocaleDateString('en-GB')}</strong></div>
                         </div>
 
                         <div className={certStyles.signatureCanvas}>
