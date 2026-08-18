@@ -556,7 +556,7 @@ export default function CertificatePage() {
                 {/* Right: Live Vector Scannable QR Code */}
                 <div className={styles.internshipQrArea}>
                   <div className={styles.qrCodeWrapper}>
-                    <QRCodeSvg value={getCertUrl()} size={82} />
+                    <QRCodeSvg value={getCertUrl()} size={88} />
                   </div>
                 </div>
               </div>
