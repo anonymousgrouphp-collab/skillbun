@@ -336,32 +336,190 @@ export default function CertificatePage() {
             </div>
           </section>
         ) : certType === 'INTERNSHIP' ? (
-          /* BRANCH 2: Internship Certificate - Canva Overlay */
-          <section className={styles.certificateFrame}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/internship-cert-template.png"
-              alt={`Certificate of Internship — ${cert.name}`}
-              className={styles.templateImg}
-              draggable={false}
-            />
-            <div className={styles.skillbunOverlay} aria-hidden="true">
-              <span className={styles.skillbunText}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+          /* BRANCH 2: Landscape Certificate of Internship — Classic Academic Prestige */
+          <section className={styles.internshipCertFrame}>
+            {/* Vintage Ornate Corner Accents */}
+            <div className={`${styles.certCorner} ${styles.certCornerTL}`} aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L100 0 L100 8 L18 8 L18 18 L100 18 L100 24 L24 24 L24 100 L18 100 L18 24 L8 24 L8 100 L0 100 Z M28 28 L90 28 L90 32 L34 32 L34 90 L28 90 Z M40 40 L80 40 L80 44 L44 44 L44 80 L40 80 Z" />
+              </svg>
             </div>
-            <h1 className={`${styles.recipientName} ${cinzel.className}`}>{cert.name}</h1>
-            <h2
-              className={`${styles.roadmapTitle} ${pixelify.className}`}
-              style={{ '--char-count': (cert.stream_or_track || cert.department || 'INTERNSHIP').length }}
-            >
-              {cert.stream_or_track || `${cert.department} INTERNSHIP`}
-            </h2>
-            {cert.start_date && cert.end_date && (
-              <div className={styles.tenureOverlay}>
-                TENURE: {cert.start_date} TO {cert.end_date}
+            <div className={`${styles.certCorner} ${styles.certCornerTR}`} aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L100 0 L100 100 L92 100 L92 24 L82 24 L82 100 L76 100 L76 24 L0 24 L0 18 L82 18 L82 8 L0 8 Z M10 28 L72 28 L72 90 L66 90 L66 32 L10 32 Z M20 40 L60 40 L60 80 L56 80 L56 44 L20 44 Z" />
+              </svg>
+            </div>
+            <div className={`${styles.certCorner} ${styles.certCornerBL}`} aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M0 0 L8 0 L8 76 L18 76 L18 0 L24 0 L24 76 L100 76 L100 82 L18 82 L18 92 L100 92 L100 100 L0 100 Z M28 10 L34 10 L34 68 L90 68 L90 72 L28 72 Z M40 20 L44 20 L44 56 L80 56 L80 60 L40 60 Z" />
+              </svg>
+            </div>
+            <div className={`${styles.certCorner} ${styles.certCornerBR}`} aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="currentColor">
+                <path d="M92 0 L100 0 L100 100 L0 100 L0 92 L82 92 L82 82 L0 82 L0 76 L76 76 L76 0 L82 0 L82 76 L92 76 Z M66 10 L72 10 L72 72 L10 72 L10 68 L66 68 Z M56 20 L60 20 L60 60 L20 60 L20 56 L56 56 Z" />
+              </svg>
+            </div>
+
+            {/* Inner Gold Frame */}
+            <div className={styles.internshipInnerContainer}>
+              {/* Top Institutional Header */}
+              <header className={styles.internshipHeader}>
+                <div className={styles.internshipBrandLockup}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo.png" alt="SkillBun Logo" className={styles.internshipBrandLogo} />
+                  <div className={styles.internshipBrandDetails}>
+                    <div className={styles.internshipBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+                    <div className={styles.internshipBrandSubtitle}>
+                      CAREER &amp; WORKFORCE SYSTEMS
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.internshipGovtAttribution}>
+                  <span className={styles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
+                  <div className={styles.internshipReishIdentity}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/reish-logo.png" alt="Reish Logo" className={styles.internshipReishLogo} />
+                    <span className={styles.internshipReishText}>REISH</span>
+                  </div>
+                  <span className={styles.internshipMsmeNote}>Govt. of India MSME Registered Startup</span>
+                </div>
+              </header>
+
+              {/* Title Section */}
+              <div className={styles.internshipTitleBlock}>
+                <div className={styles.titleFlourishDivider}>
+                  <span className={styles.flourishSymbol}>❖</span>
+                  <div className={styles.flourishLine} />
+                  <span className={styles.flourishStar}>★</span>
+                  <div className={styles.flourishLine} />
+                  <span className={styles.flourishSymbol}>❖</span>
+                </div>
+                <h1 className={`${styles.internshipMainTitle} ${cinzel.className}`}>
+                  Certificate of Completion
+                </h1>
+                <div className={styles.internshipSubTitleBadge}>
+                  PROFESSIONAL INTERNSHIP MERIT CREDENTIAL
+                </div>
               </div>
-            )}
-            <div className={styles.qrMeta}>
-              <span className={styles.qrMetaId}>{cert.display_id || cert.id}</span>
+
+              {/* Recipient Statement */}
+              <div className={styles.internshipRecipientSection}>
+                <p className={styles.internshipCertifyText}>This is to certify that</p>
+                <h2 className={`${styles.internshipCandidateName} ${cinzel.className}`}>
+                  {cert.name}
+                </h2>
+                <div className={styles.internshipNameUnderline}>
+                  <div className={styles.nameUnderlineDiamond} />
+                </div>
+              </div>
+
+              {/* Role & Track Description */}
+              <div className={styles.internshipAchievementBlock}>
+                <p className={styles.internshipRoleStatement}>
+                  has successfully completed the professional internship as{' '}
+                  <strong className={styles.highlightRole}>
+                    {cert.designation || cert.role || 'Software Engineering Intern'}
+                  </strong>
+                  {' '}in{' '}
+                  <strong className={styles.highlightStream}>
+                    {cert.stream_or_track || cert.department || 'Software Development'}
+                  </strong>
+                </p>
+                <p className={styles.internshipOrgStatement}>
+                  conducted under the engineering direction of <strong>SkillBun</strong> (operated by <strong>Reish</strong>).
+                </p>
+              </div>
+
+              {/* Key Meta Badges: Duration, Grade, Mode */}
+              <div className={styles.internshipMetricsGrid}>
+                <div className={styles.internshipMetricPill}>
+                  <span className={styles.metricPillLabel}>Internship Duration</span>
+                  <span className={styles.metricPillVal}>
+                    {cert.start_date && cert.end_date
+                      ? `${cert.start_date} to ${cert.end_date}`
+                      : 'Milestone Tenure'}
+                  </span>
+                </div>
+
+                <div className={styles.internshipMetricPill}>
+                  <span className={styles.metricPillLabel}>Performance Rating</span>
+                  <span className={styles.metricPillVal}>
+                    {cert.grade || (cert.score ? `Grade A (${cert.score}%)` : 'Grade A (Excellent)')}
+                  </span>
+                </div>
+
+                <div className={styles.internshipMetricPill}>
+                  <span className={styles.metricPillLabel}>Mode of Engagement</span>
+                  <span className={styles.metricPillVal}>
+                    {cert.mode || cert.venue || 'Virtual / Remote Operations'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Formal Performance Statement */}
+              <div className={styles.internshipConductStatement}>
+                <p>
+                  {cert.recommendation_text || cert.performance_remarks ||
+                    `During this internship, their performance and conduct were found to be Exemplary. They contributed to core engineering milestones with distinguished commitment, technical acumen, and professionalism. We wish them continued excellence in all future endeavors.`}
+                </p>
+              </div>
+
+              {/* Signatures, Official Seal & QR Code Block */}
+              <div className={styles.internshipAuthFooter}>
+                {/* Left: Credential ID, Date & Signature */}
+                <div className={styles.internshipSigBlock}>
+                  <div className={styles.internshipIdDate}>
+                    <div>Certificate ID: <strong>{cert.display_id || cert.id}</strong></div>
+                    <div>Date of Issue: <strong>{cert.createdAtDate ? cert.createdAtDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) : new Date().toLocaleDateString('en-GB')}</strong></div>
+                  </div>
+
+                  <div className={styles.signatureCanvas}>
+                    <div className={styles.signatureScript}>Harsh Patel</div>
+                    <div className={styles.signatureLine} />
+                    <div className={styles.signatoryName}>{cert.issued_by || 'Harsh Patel'}</div>
+                    <div className={styles.signatoryRole}>{cert.signatory_title || 'Lead & Managing Director, SkillBun'}</div>
+                  </div>
+                </div>
+
+                {/* Center: Gold Embossed Dual Brand Seal Stamp */}
+                <div className={styles.internshipSealArea}>
+                  <div className={styles.vintageSealRing}>
+                    <div className={styles.sealInnerPattern}>
+                      <div className={styles.sealLogoCenter}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/reish-logo.png" alt="Reish Seal" className={styles.sealReishIcon} />
+                      </div>
+                      <div className={styles.sealStarBanner}>★ REISH ★</div>
+                      <div className={styles.sealOfficialText}>OFFICIAL SEAL</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Live Scannable QR Code */}
+                <div className={styles.internshipQrArea}>
+                  <div className={styles.qrCodeWrapper}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(getCertUrl())}&margin=4`}
+                      alt="Verification QR Code"
+                      className={styles.qrCodeImage}
+                    />
+                  </div>
+                  <div className={styles.qrCaption}>Scan to verify online</div>
+                </div>
+              </div>
+
+              {/* Bottom Trust & Verification URL Strip */}
+              <div className={styles.internshipVerificationFootnote}>
+                <div className={styles.msmeSealBadge}>
+                  <span>🇮🇳</span>
+                  <span>Govt. of India MSME Registered Entity</span>
+                </div>
+                <div className={styles.footnoteUrl}>
+                  Verify online: <code>{typeof window !== 'undefined' ? window.location.href : `https://skillbun.tech/certificate/${cert.id}`}</code>
+                </div>
+              </div>
             </div>
           </section>
         ) : certType === 'TRAINING' ? (
