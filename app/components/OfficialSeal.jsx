@@ -54,12 +54,12 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         {/* Circular text paths */}
         <path
           id="sealTopArc"
-          d="M 32,100 A 68,68 0 1,1 168,100"
+          d="M 30,100 A 70,70 0 1,1 170,100"
           fill="none"
         />
         <path
           id="sealBottomArc"
-          d="M 166,100 A 66,66 0 0,1 34,100"
+          d="M 30,100 A 70,70 0 0,0 170,100"
           fill="none"
         />
       </defs>
@@ -118,7 +118,7 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         fill="#382305"
         style={{
           fontFamily: 'Cinzel, Georgia, serif',
-          fontSize: '9.8px',
+          fontSize: '9.6px',
           fontWeight: '900',
           letterSpacing: '0.14em',
           textShadow: '0 1px 1px rgba(255, 245, 214, 0.6)',
@@ -134,7 +134,7 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         fill="#382305"
         style={{
           fontFamily: 'Cinzel, Georgia, serif',
-          fontSize: '9.2px',
+          fontSize: '9.6px',
           fontWeight: '900',
           letterSpacing: '0.16em',
           textShadow: '0 1px 1px rgba(255, 245, 214, 0.6)',
@@ -194,29 +194,19 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         opacity="0.6"
       />
 
-      {/* Layer 7: REISH Stag Emblem Mark in Center */}
+      {/* Layer 7: REISH Stag Emblem Mark in Center (Centered without stars) */}
       <image
         href="/reish-mark.png"
-        x="75"
-        y="68"
-        width="50"
-        height="44"
+        x="72"
+        y="72"
+        width="56"
+        height="56"
         preserveAspectRatio="xMidYMid meet"
         style={{
           mixBlendMode: 'multiply',
-          filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.25)) contrast(1.15)',
+          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3)) contrast(1.2)',
         }}
       />
-
-      {/* Layer 8: 3 Stars below Emblem */}
-      <g fill="#3D2505" opacity="0.9">
-        {/* Star Left */}
-        <polygon points="86,122 87.5,118 90.5,118 88,120 89,123 86,121.2 83,123 84,120 81.5,118 84.5,118" />
-        {/* Star Center (larger) */}
-        <polygon points="100,123.5 101.8,118.5 105.5,118.5 102.5,121 103.8,125 100,122.5 96.2,125 97.5,121 94.5,118.5 98.2,118.5" />
-        {/* Star Right */}
-        <polygon points="114,122 115.5,118 118.5,118 116,120 117,123 114,121.2 111,123 112,120 109.5,118 112.5,118" />
-      </g>
     </svg>
   );
 }
