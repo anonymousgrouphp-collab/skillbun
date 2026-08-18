@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
-import { generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
+import { generateRetentionEmailHtml, buildBaseEmailWrapper } from '@/utils/server/retentionEmails';
+import {
+  buildOfferDispatchEmail,
+  buildActivationWelcomeEmail,
+  buildExtensionDispatchEmail,
+  buildTerminationDispatchEmail,
+} from '@/utils/server/workforceEmailTemplates';
 import { getTransporter } from '@/utils/server/zohoMailer';
 import { getPasswordResetFrom } from '@/utils/server/env';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
@@ -64,9 +70,115 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized: Admin privileges required' }, { status: 403 });
     }
 
+    const customSubject = typeof body.customSubject === 'string' ? body.customSubject.trim() : '';
+    const customHtml = typeof body.customHtml === 'string' ? body.customHtml.trim() : '';
+
+    // Helper to resolve email subject & html based on template or custom override
+    const resolveEmailContent = (tId, data) => {
+      if (customHtml) {
+        const sub = customSubject || `SkillBun Notification for ${data.name}`;
+        return {
+          subject: sub,
+          html: customHtml.includes('<html') ? customHtml : buildBaseEmailWrapper(customHtml, sub, !tId.startsWith('transactional') && !tId.startsWith('workforce'), data.email),
+          isMarketing: !tId.startsWith('transactional') && !tId.startsWith('workforce'),
+        };
+      }
+
+      if (tId === 'workforce_offer') {
+        const payload = buildOfferDispatchEmail({
+          employee: {
+            salutation: 'Mr./Ms.',
+            full_name: data.name,
+            designation: 'Engineering Intern',
+            department: 'Tech Team (Development & Engineering)',
+            course_degree: data.degree,
+            joining_date: new Date(),
+            contract_end_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+            stipend_amount: 0,
+            personal_email: data.email,
+            work_email: `${data.name.toLowerCase().replace(/[^a-z0-9]/g, '') || 'intern'}@skillbun.tech`,
+          },
+          referenceId: 'SB-OFF-2026-DEMO01',
+          credentials: {
+            work_email: `${data.name.toLowerCase().replace(/[^a-z0-9]/g, '') || 'intern'}@skillbun.tech`,
+            password: 'TempPassword#2026',
+            access_notes: 'Initial Zoho Mail Enterprise Provisioning',
+          },
+        });
+        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+      }
+
+      if (tId === 'workforce_activation') {
+        const payload = buildActivationWelcomeEmail({
+          employee: {
+            salutation: 'Mr./Ms.',
+            full_name: data.name,
+            designation: 'Software Engineering Intern',
+            department: 'Core Platform Engineering',
+            joining_date: new Date(),
+            personal_email: data.email,
+            work_email: `${data.name.toLowerCase().replace(/[^a-z0-9]/g, '') || 'intern'}@skillbun.tech`,
+          },
+          credentials: {
+            work_email: `${data.name.toLowerCase().replace(/[^a-z0-9]/g, '') || 'intern'}@skillbun.tech`,
+            password: 'TempPassword#2026',
+            access_notes: 'Active Zoho Mail Enterprise Account',
+          },
+        });
+        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+      }
+
+      if (tId === 'workforce_extension') {
+        const payload = buildExtensionDispatchEmail({
+          employee: {
+            salutation: 'Mr./Ms.',
+            full_name: data.name,
+            designation: 'Engineering Intern',
+            department: 'Tech Team',
+            joining_date: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+            contract_end_date: new Date(),
+            personal_email: data.email,
+          },
+          referenceId: 'SB-EXT-2026-DEMO01',
+          newContractEndDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+        });
+        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+      }
+
+      if (tId === 'workforce_termination') {
+        const payload = buildTerminationDispatchEmail({
+          employee: {
+            salutation: 'Mr./Ms.',
+            full_name: data.name,
+            designation: 'Engineering Intern',
+            department: 'Tech Team',
+            joining_date: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+            contract_end_date: new Date(),
+            personal_email: data.email,
+          },
+          reasonCode: 'COMPLETED',
+          reason: 'Successful completion of internship tenure and deliverables.',
+          grantedCredentials: [
+            'Certificate of Internship Completion (SB-INT-2026-DEMO01)',
+            'Practical Training Completion Certificate (SB-TRN-2026-DEMO01)',
+            'Official Letter of Recommendation (SB-LOR-2026-DEMO01)',
+          ],
+          effectiveDate: new Date().toISOString().slice(0, 10),
+        });
+        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+      }
+
+      const res = generateRetentionEmailHtml(templateId, data);
+      return {
+        subject: customSubject || res.subject,
+        html: res.html,
+        isMarketing: !templateId.startsWith('transactional_alert'),
+      };
+    };
+
     // 1. Instant HTML Preview Mode
     if (isPreview) {
-      const { subject, html } = generateRetentionEmailHtml(templateId, {
+      const { subject, html } = resolveEmailContent(templateId, {
         name: studentName,
         email: recipientEmail || ADMIN_CONFIRMATION_EMAIL,
         roadmapTitle,
@@ -97,7 +209,7 @@ export async function POST(request) {
     }
 
     // Check if recipient has unsubscribed from marketing emails
-    if (!isPreview && !forceOverride && !templateId.startsWith('transactional_alert')) {
+    if (!isPreview && !forceOverride && !templateId.startsWith('transactional_alert') && !templateId.startsWith('workforce')) {
       try {
         const db = getFirebaseAdminFirestore();
         if (db) {
@@ -115,7 +227,7 @@ export async function POST(request) {
     }
 
     // Generate HTML Email
-    const { subject, html } = generateRetentionEmailHtml(templateId, {
+    const { subject, html } = resolveEmailContent(templateId, {
       name: studentName,
       email: targetEmail,
       roadmapTitle,
