@@ -85,11 +85,16 @@ function OrnateCorner({ position = 'TL' }) {
 function formatRecommendationText(rawText, candidateName) {
   const firstName = candidateName ? candidateName.trim().split(' ')[0] : 'The candidate';
   if (!rawText || !rawText.trim()) {
-    return `${firstName} demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun. They contributed to core engineering milestones with distinguished commitment and professionalism. We wish them continued success in all future endeavors.`;
+    return `${firstName} demonstrated exceptional dedication, professional excellence, and proactive collaboration during their engagement at SkillBun. They contributed to key project and organizational milestones with distinguished commitment and high standards of execution. We wish them continued success in all future endeavors.`;
   }
   return rawText
     .replace(/^This is to certify that\s+[A-Za-z\s]+(has\s+)?(demonstrated|completed|shown|contributed)/i, `${firstName} $2`)
-    .replace(/^This is to certify that\s+/i, '');
+    .replace(/^This is to certify that\s+/i, '')
+    .replace(/\bcore engineering milestones\b/gi, 'key organizational milestones')
+    .replace(/\bengineering milestones\b/gi, 'project milestones')
+    .replace(/\bhigh technical excellence\b/gi, 'professional excellence')
+    .replace(/\btechnical excellence\b/gi, 'professional excellence')
+    .replace(/\btechnical dedication\b/gi, 'professional dedication');
 }
 
 function getDisplayIssueDate(cert) {
@@ -490,7 +495,7 @@ export default function CertificatePage() {
                   </strong>
                 </p>
                 <p className={styles.internshipOrgStatement}>
-                  conducted under the engineering direction of <strong>SkillBun</strong> (operated by <strong>Reish</strong>).
+                  conducted under the professional direction of <strong>SkillBun</strong> (operated by <strong>Reish</strong>).
                 </p>
               </div>
 
