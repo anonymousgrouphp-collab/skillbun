@@ -406,8 +406,9 @@ export default function CertificatePage() {
                   <span className={styles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
                   <div className={styles.internshipReishIdentity}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/reish-logo.png" alt="Reish Logo" className={styles.internshipReishLogo} />
-                    <span className={styles.internshipReishText}>REISH</span>
+                    <img src="/reish-mark.png" alt="Reish Mark" className={styles.internshipReishLogo} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/reish-wordmark.png" alt="REISH" className={styles.internshipReishWordmarkImg} />
                   </div>
                   <span className={styles.internshipMsmeNote}>Govt. of India MSME Registered Startup</span>
                 </div>
@@ -515,7 +516,7 @@ export default function CertificatePage() {
                     <div className={styles.sealInnerPattern}>
                       <div className={styles.sealLogoCenter}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/reish-logo.png" alt="Reish Seal" className={styles.sealReishIcon} />
+                        <img src="/reish-mark.png" alt="Reish Seal" className={styles.sealReishIcon} />
                       </div>
                       <div className={styles.sealStarBanner}>★ REISH ★</div>
                       <div className={styles.sealOfficialText}>OFFICIAL SEAL</div>
