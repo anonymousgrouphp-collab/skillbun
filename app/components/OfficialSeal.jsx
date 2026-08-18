@@ -4,7 +4,7 @@ import React from 'react';
 
 /**
  * OfficialSeal — Ultra-prestigious 36-point scalloped gold foil seal with
- * circular engraved typography, beaded concentric rings, and REISH emblem medallion.
+ * high-contrast circular engraved typography, multi-layer bevels, and prominent REISH emblem.
  */
 export default function OfficialSeal({ size, className = '', style = {} }) {
   const sunburstD =
@@ -16,50 +16,50 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
       className={className}
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        width: size ? (typeof size === 'number' ? `${size}px` : size) : 'clamp(82px, 9vw, 98px)',
-        height: size ? (typeof size === 'number' ? `${size}px` : size) : 'clamp(82px, 9vw, 98px)',
-        filter: 'drop-shadow(0 6px 14px rgba(140, 109, 35, 0.42)) drop-shadow(0 2px 4px rgba(0,0,0,0.12))',
+        width: size ? (typeof size === 'number' ? `${size}px` : size) : 'clamp(112px, 12.8vw, 134px)',
+        height: size ? (typeof size === 'number' ? `${size}px` : size) : 'clamp(112px, 12.8vw, 134px)',
+        filter: 'drop-shadow(0 8px 20px rgba(180, 130, 20, 0.45)) drop-shadow(0 2px 5px rgba(0,0,0,0.18))',
         display: 'block',
         ...style,
       }}
       aria-label="Official REISH and SkillBun Verified Seal"
     >
       <defs>
-        {/* Outer Radiant Gold Gradient */}
-        <radialGradient id="goldRadialOuter" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#FFF8E7" />
-          <stop offset="25%" stopColor="#F5D77F" />
-          <stop offset="55%" stopColor="#D8A939" />
-          <stop offset="85%" stopColor="#A47518" />
-          <stop offset="100%" stopColor="#6D4907" />
+        {/* Vibrant 24K Polished Gold Outer Gradient */}
+        <radialGradient id="goldRadialOuter" cx="35%" cy="28%" r="72%">
+          <stop offset="0%" stopColor="#FFFDF2" />
+          <stop offset="20%" stopColor="#FEEA9A" />
+          <stop offset="50%" stopColor="#E5B232" />
+          <stop offset="80%" stopColor="#B37D14" />
+          <stop offset="100%" stopColor="#784E04" />
         </radialGradient>
 
-        {/* Inner Ring Gold Gradient */}
-        <linearGradient id="goldLinearRing" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFF2CE" />
-          <stop offset="35%" stopColor="#E2B755" />
-          <stop offset="70%" stopColor="#B3801D" />
-          <stop offset="100%" stopColor="#875A0B" />
-        </linearGradient>
+        {/* Text Ring Background Gradient */}
+        <radialGradient id="goldRingBg" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#FFF9E6" />
+          <stop offset="35%" stopColor="#F5D26D" />
+          <stop offset="70%" stopColor="#C99420" />
+          <stop offset="100%" stopColor="#966708" />
+        </radialGradient>
 
         {/* Core Medallion Background */}
         <radialGradient id="goldCore" cx="38%" cy="32%" r="65%">
-          <stop offset="0%" stopColor="#FFFCF4" />
-          <stop offset="30%" stopColor="#F7E2A4" />
-          <stop offset="65%" stopColor="#D8A83B" />
-          <stop offset="90%" stopColor="#AD7B1C" />
-          <stop offset="100%" stopColor="#7E540C" />
+          <stop offset="0%" stopColor="#FFFFFB" />
+          <stop offset="25%" stopColor="#FFF1BE" />
+          <stop offset="60%" stopColor="#E2B13C" />
+          <stop offset="85%" stopColor="#B88019" />
+          <stop offset="100%" stopColor="#875608" />
         </radialGradient>
 
         {/* Circular text paths */}
         <path
           id="sealTopArc"
-          d="M 30,100 A 70,70 0 1,1 170,100"
+          d="M 28,100 A 72,72 0 1,1 172,100"
           fill="none"
         />
         <path
           id="sealBottomArc"
-          d="M 30,100 A 70,70 0 0,0 170,100"
+          d="M 28,100 A 72,72 0 0,0 172,100"
           fill="none"
         />
       </defs>
@@ -68,60 +68,59 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
       <path
         d={sunburstD}
         fill="url(#goldRadialOuter)"
-        stroke="#7A530C"
+        stroke="#6E4402"
         strokeWidth="1.2"
       />
 
-      {/* Layer 2: Beveled Gold Outer Rim */}
+      {/* Layer 2: Outer Beveled Gold Rim */}
       <circle
         cx="100"
         cy="100"
-        r="88"
+        r="88.5"
         fill="none"
-        stroke="#FFF5D6"
+        stroke="#FFFDF0"
+        strokeWidth="1.8"
+        opacity="0.9"
+      />
+      <circle
+        cx="100"
+        cy="100"
+        r="86"
+        fill="none"
+        stroke="#7A4F06"
         strokeWidth="1.5"
-        opacity="0.85"
-      />
-      <circle
-        cx="100"
-        cy="100"
-        r="85"
-        fill="none"
-        stroke="#8C6212"
-        strokeWidth="1.2"
       />
 
-      {/* Layer 3: Outer Beaded Dot Ring */}
+      {/* Layer 3: Text Track Ring Background */}
       <circle
         cx="100"
         cy="100"
-        r="81"
+        r="84"
+        fill="url(#goldRingBg)"
+        stroke="#966708"
+        strokeWidth="1"
+      />
+
+      {/* Outer Beaded Dot Ring */}
+      <circle
+        cx="100"
+        cy="100"
+        r="83"
         fill="none"
-        stroke="#68450A"
-        strokeWidth="2"
+        stroke="#593501"
+        strokeWidth="1.8"
         strokeDasharray="2.5 3.5"
       />
 
-      {/* Layer 4: Text Ribbon Track */}
-      <circle
-        cx="100"
-        cy="100"
-        r="75"
-        fill="none"
-        stroke="#E6BD5C"
-        strokeWidth="0.8"
-        opacity="0.6"
-      />
-
-      {/* Arched Top Text: ★ REISH · SKILLBUN ★ */}
+      {/* Arched Top Text: ★ REISH · SKILLBUN ★ (High Contrast, Bold, Crisp) */}
       <text
-        fill="#382305"
+        fill="#1C0E00"
         style={{
           fontFamily: 'Cinzel, Georgia, serif',
-          fontSize: '9.6px',
+          fontSize: '12px',
           fontWeight: '900',
-          letterSpacing: '0.14em',
-          textShadow: '0 1px 1px rgba(255, 245, 214, 0.6)',
+          letterSpacing: '0.12em',
+          textShadow: '0 1px 1.5px rgba(255, 250, 225, 0.85)',
         }}
       >
         <textPath href="#sealTopArc" startOffset="50%" textAnchor="middle">
@@ -129,15 +128,15 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         </textPath>
       </text>
 
-      {/* Arched Bottom Text: ★ OFFICIAL SEAL ★ */}
+      {/* Arched Bottom Text: ★ OFFICIAL SEAL ★ (Upright & Bold) */}
       <text
-        fill="#382305"
+        fill="#1C0E00"
         style={{
           fontFamily: 'Cinzel, Georgia, serif',
-          fontSize: '9.6px',
+          fontSize: '11.5px',
           fontWeight: '900',
-          letterSpacing: '0.16em',
-          textShadow: '0 1px 1px rgba(255, 245, 214, 0.6)',
+          letterSpacing: '0.14em',
+          textShadow: '0 1px 1.5px rgba(255, 250, 225, 0.85)',
         }}
       >
         <textPath href="#sealBottomArc" startOffset="50%" textAnchor="middle">
@@ -145,66 +144,66 @@ export default function OfficialSeal({ size, className = '', style = {} }) {
         </textPath>
       </text>
 
-      {/* Layer 5: Inner Beaded & Beveled Gold Rings */}
+      {/* Layer 5: Inner Gold Border & Beaded Ring */}
       <circle
         cx="100"
         cy="100"
-        r="54"
+        r="56"
         fill="none"
-        stroke="#7A530C"
-        strokeWidth="1.5"
+        stroke="#613901"
+        strokeWidth="1.8"
       />
       <circle
         cx="100"
         cy="100"
-        r="51"
+        r="53.5"
         fill="none"
-        stroke="#FFF8E0"
-        strokeWidth="1"
-        opacity="0.9"
+        stroke="#FFFDF2"
+        strokeWidth="1.2"
+        opacity="0.95"
       />
       <circle
         cx="100"
         cy="100"
-        r="48"
+        r="50"
         fill="none"
-        stroke="#68450A"
+        stroke="#593501"
         strokeWidth="1.6"
-        strokeDasharray="1.8 2.8"
+        strokeDasharray="2 3"
       />
 
       {/* Layer 6: Core Medallion Center */}
       <circle
         cx="100"
         cy="100"
-        r="45"
+        r="47"
         fill="url(#goldCore)"
-        stroke="#7A530C"
-        strokeWidth="1"
+        stroke="#7A4F06"
+        strokeWidth="1.5"
       />
 
       {/* Inner Metallic Highlight Ring */}
       <circle
         cx="100"
         cy="100"
-        r="42"
+        r="44"
         fill="none"
-        stroke="#FFFDF6"
-        strokeWidth="0.8"
-        opacity="0.6"
+        stroke="#FFFFFF"
+        strokeWidth="1"
+        opacity="0.75"
       />
 
-      {/* Layer 7: REISH Stag Emblem Mark in Center (Centered without stars) */}
+      {/* Layer 7: REISH Stag Emblem Mark in Center (Prominent, Centered & Crisp) */}
       <image
         href="/reish-mark.png"
-        x="72"
-        y="72"
-        width="56"
-        height="56"
+        x="66"
+        y="66"
+        width="68"
+        height="68"
         preserveAspectRatio="xMidYMid meet"
         style={{
           mixBlendMode: 'multiply',
-          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3)) contrast(1.2)',
+          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.35)) contrast(1.25)',
         }}
       />
     </svg>
