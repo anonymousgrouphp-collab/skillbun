@@ -7,6 +7,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import QRCodeSvg from '@/app/components/QRCodeSvg';
+import OfficialSeal from '@/app/components/OfficialSeal';
 import styles from './certificate.module.css';
 
 const cinzel = Cinzel({
@@ -545,16 +546,7 @@ export default function CertificatePage() {
 
                 {/* Center: Gold Embossed Dual Brand Seal Stamp */}
                 <div className={styles.internshipSealArea}>
-                  <div className={styles.vintageSealRing}>
-                    <div className={styles.sealInnerPattern}>
-                      <div className={styles.sealLogoCenter}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/reish-mark.png" alt="Reish Seal" className={styles.sealReishIcon} />
-                      </div>
-                      <div className={styles.sealStarBanner}>★ REISH ★</div>
-                      <div className={styles.sealOfficialText}>OFFICIAL SEAL</div>
-                    </div>
-                  </div>
+                  <OfficialSeal />
                 </div>
 
                 {/* Right: Live Vector Scannable QR Code */}
