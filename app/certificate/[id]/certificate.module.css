@@ -919,41 +919,47 @@
 
 .internshipGovtAttribution {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-  justify-content: center;
-}
-
-.internshipGovtTag {
-  font-size: clamp(0.56rem, 0.85vw, 0.64rem);
-  font-weight: 800;
-  color: #777;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1.1;
-  margin-bottom: 0.2rem;
-}
-
-.internshipReishIdentity {
-  display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0.42rem;
+  gap: clamp(0.45rem, 0.8vw, 0.65rem);
 }
 
 .internshipReishLogo {
-  height: clamp(21px, 2.6vw, 26px);
-  width: auto;
+  width: clamp(30px, 3.8vw, 38px);
+  height: clamp(28px, 3.4vw, 36px);
   object-fit: contain;
+  flex-shrink: 0;
+}
+
+.internshipReishDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: clamp(94px, 11.5vw, 114px);
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.internshipGovtTag {
+  width: 100%;
+  display: block;
+  font-size: clamp(0.5rem, 0.68vw, 0.61rem);
+  font-weight: 800;
+  color: #666;
+  text-transform: uppercase;
+  text-align: justify;
+  text-align-last: justify;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .internshipReishWordmarkImg {
-  height: clamp(10px, 1.25vw, 12.5px);
-  width: auto;
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
   filter: contrast(1.15);
-  display: block;
 }
 
 /* ── Certificate Title Block ── */
