@@ -432,7 +432,7 @@ export default function CertificatePage() {
                   <div className={styles.internshipBrandDetails}>
                     <div className={styles.internshipBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
                     <div className={styles.internshipBrandSubtitle}>
-                      CAREER &amp; WORKFORCE SYSTEMS
+                      CAREER &amp; SKILLS
                     </div>
                   </div>
                 </div>
