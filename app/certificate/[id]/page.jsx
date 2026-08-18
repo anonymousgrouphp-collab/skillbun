@@ -542,10 +542,8 @@ export default function CertificatePage() {
                   </div>
 
                   <div className={styles.signatureCanvas}>
-                    <div className={styles.signatureScript}>Harsh Patel</div>
-                    <div className={styles.signatureLine} />
-                    <div className={styles.signatoryName}>{cert.issued_by || 'Harsh Patel'}</div>
-                    <div className={styles.signatoryRole}>{cert.signatory_title || 'Lead & Managing Director, SkillBun'}</div>
+                    <div className={styles.signatoryName}>Signing Authority</div>
+                    <div className={styles.signatoryRole}>Managing Director, SkillBun</div>
                   </div>
                 </div>
 
