@@ -24,6 +24,10 @@
 .sortField { display: flex; align-items: center; gap: .4rem; color: var(--muted); font-size: .78rem; font-weight: 800; white-space: nowrap; }.sortField select { min-height: 2.5rem; border: 1px solid var(--border); border-radius: 10px; padding: 0 .55rem; outline: 0; background: var(--surface-raised); color: var(--text); font: inherit; font-size: .8rem; }
 .refreshButton, .iconButton { width: 2.5rem; color: var(--muted); border-color: var(--border); background: var(--surface-raised); }
 .refreshButton:hover, .iconButton:hover { color: var(--green); border-color: var(--green); }
+.deleteIconButton:hover { color: var(--danger) !important; border-color: var(--danger) !important; background: var(--danger-soft) !important; }
+.dangerButton { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 2.5rem; padding: .65rem 1rem; border: 1px solid transparent; border-radius: 10px; cursor: pointer; font: inherit; font-size: .84rem; font-weight: 800; color: #fff; background: #dc2626; box-shadow: 0 8px 18px color-mix(in srgb, #dc2626 25%, transparent); transition: transform .18s ease, background .18s ease; }
+.dangerButton:hover { transform: translateY(-1px); background: #b91c1c; }
+.dangerButton:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .tableWrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: 18px; background: color-mix(in srgb, var(--surface-raised) 84%, transparent); box-shadow: var(--card-shadow); width: 100%; }
 .table { width: 100%; min-width: 860px; border-collapse: collapse; }
 .table th { padding: .8rem .9rem; border-bottom: 1px solid var(--border); color: var(--muted); background: color-mix(in srgb, var(--surface) 72%, transparent); text-align: left; font: 800 .7rem/1.2 monospace; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
