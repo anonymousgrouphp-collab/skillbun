@@ -271,6 +271,63 @@ export default function AdminRootPage() {
             </Link>
           </div>
         </div>
+
+        {/* Hub 3: Mail & Campaign Studio */}
+        <div className={styles.hubCard}>
+          <div>
+            <div className={styles.hubCardHeader}>
+              <div className={`${styles.hubIconBox} ${styles.hubIconPurple}`}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 className={styles.hubCardTitle}>Mail & Campaign Studio</h3>
+                <p className={styles.hubCardDesc}>
+                  Live visual editor, real-time responsive email previews, all 23 platform retention & workforce templates, and Zoho SMTP test dispatches.
+                </p>
+              </div>
+            </div>
+
+            <ul className={styles.hubFeaturesList}>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>23 Platform Templates:</strong> Onboarding, streaks, exams, and offers</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Live In-Browser Editor:</strong> Instant HTML & subject tweaking</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>Device Previews:</strong> Desktop (640px) vs Mobile (375px) toggle</span>
+              </li>
+              <li className={styles.hubFeatureItem}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span><strong>1-Click Zoho SMTP Testing:</strong> Test dispatch to founder inbox</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.hubCardFooter}>
+            <Link href="/dashboard/console/admin/emails" className={styles.hubFooterLink}>
+              <span>Open Mail Studio</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* Security & Access Status Banner */}
