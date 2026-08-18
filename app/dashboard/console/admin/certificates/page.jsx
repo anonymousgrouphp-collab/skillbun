@@ -910,10 +910,10 @@ export default function AdminCertificatesPage() {
                       </div>
 
                       <div className={certStyles.internshipGovtAttribution}>
-                        <span className={certStyles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
-                        <div className={certStyles.internshipReishIdentity}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src="/reish-mark.png" alt="Reish Mark" className={certStyles.internshipReishLogo} />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/reish-mark.png" alt="Reish Mark" className={certStyles.internshipReishLogo} />
+                        <div className={certStyles.internshipReishDetails}>
+                          <span className={certStyles.internshipGovtTag}>MANAGED &amp; ISSUED BY</span>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src="/reish-wordmark.png" alt="REISH" className={certStyles.internshipReishWordmarkImg} />
                         </div>
