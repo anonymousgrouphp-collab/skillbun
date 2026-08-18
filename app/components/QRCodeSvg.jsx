@@ -5,11 +5,12 @@ import QRCode from 'qrcode';
 
 /**
  * QRCodeSvg — 100% ISO/IEC 18004 compliant QR Code with Level 'H' Error Correction,
- * aesthetic rounded dot modules, and central SkillBun logo badge.
+ * pitch-black solid rounded modules (no translucency), edge-to-edge square fit,
+ * and central SkillBun logo badge.
  */
 export default function QRCodeSvg({
   value = 'https://skillbun.vercel.app',
-  size = 84,
+  size = 88,
   className = '',
   style = {},
   logoSrc = '/logo.png',
@@ -31,11 +32,11 @@ export default function QRCodeSvg({
   if (!qrData) return null;
 
   const { moduleCount, data } = qrData;
-  const margin = 2;
+  const margin = 1;
   const totalDim = moduleCount + margin * 2;
 
-  // Center logo zone: cover ~26% of modules in center
-  const logoModules = Math.floor(moduleCount * 0.26);
+  // Center logo zone: cover ~24% of modules in center
+  const logoModules = Math.floor(moduleCount * 0.24);
   const centerStart = Math.floor((moduleCount - logoModules) / 2);
   const centerEnd = centerStart + logoModules - 1;
 
@@ -54,36 +55,42 @@ export default function QRCodeSvg({
   const dots = [];
   for (let r = 0; r < moduleCount; r++) {
     for (let c = 0; c < moduleCount; c++) {
-      if (isCenterZone(r, c)) continue;
+      if (isFinder(r, c) || isCenterZone(r, c)) continue;
       if (data[r * moduleCount + c]) {
         const x = c + margin;
         const y = r + margin;
-        if (isFinder(r, c)) {
-          dots.push(
-            <rect
-              key={`d-${r}-${c}`}
-              x={x + 0.05}
-              y={y + 0.05}
-              width={0.9}
-              height={0.9}
-              rx={0.15}
-              fill="#000000"
-            />
-          );
-        } else {
-          dots.push(
-            <circle
-              key={`d-${r}-${c}`}
-              cx={x + 0.5}
-              cy={y + 0.5}
-              r={0.42}
-              fill="#111827"
-            />
-          );
-        }
+        dots.push(
+          <rect
+            key={`d-${r}-${c}`}
+            x={x + 0.04}
+            y={y + 0.04}
+            width={0.92}
+            height={0.92}
+            rx={0.22}
+            fill="#000000"
+          />
+        );
       }
     }
   }
+
+  // 3 Dedicated Finder Patterns
+  const finderCoords = [
+    { fx: margin, fy: margin },
+    { fx: moduleCount - 7 + margin, fy: margin },
+    { fx: margin, fy: moduleCount - 7 + margin },
+  ];
+
+  const finders = finderCoords.map(({ fx, fy }, idx) => (
+    <g key={`finder-${idx}`}>
+      {/* Outer 7x7 Box */}
+      <rect x={fx} y={fy} width={7} height={7} rx={1.2} fill="#000000" />
+      {/* Middle 5x5 White Cutout */}
+      <rect x={fx + 1} y={fy + 1} width={5} height={5} rx={0.8} fill="#ffffff" />
+      {/* Inner 3x3 Solid Core */}
+      <rect x={fx + 2} y={fy + 2} width={3} height={3} rx={0.6} fill="#000000" />
+    </g>
+  ));
 
   // Center badge dimensions
   const badgeX = centerStart + margin - 0.2;
@@ -101,14 +108,16 @@ export default function QRCodeSvg({
       style={{
         display: 'block',
         background: '#ffffff',
-        borderRadius: '6px',
         ...style,
       }}
       aria-label="Scannable Certificate Verification QR Code"
     >
-      <rect width={totalDim} height={totalDim} fill="#ffffff" rx={2} />
+      <rect width={totalDim} height={totalDim} fill="#ffffff" rx={0.8} />
 
-      {/* QR Data & Finder Modules */}
+      {/* Finder Patterns */}
+      {finders}
+
+      {/* QR Data Modules */}
       <g>{dots}</g>
 
       {/* Center White Rounded Badge */}
@@ -117,9 +126,9 @@ export default function QRCodeSvg({
         y={badgeY}
         width={badgeSize}
         height={badgeSize}
-        rx={1.5}
+        rx={1.4}
         fill="#ffffff"
-        stroke="#E5E7EB"
+        stroke="#E2E8F0"
         strokeWidth={0.2}
       />
 
