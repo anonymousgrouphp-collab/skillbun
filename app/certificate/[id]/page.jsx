@@ -210,8 +210,17 @@ export default function CertificatePage() {
     fetchCertificate();
   }, [id]);
 
-  const handlePrint = () => {
+   const handlePrint = () => {
+    const originalTitle = document.title;
+    if (cert) {
+      const candidateName = cert.name || 'Candidate';
+      const roleOrTrack = cert.designation || cert.stream_or_track || cert.roadmapTitle || 'Certificate';
+      document.title = `${candidateName} - ${roleOrTrack} Certificate - SkillBun`;
+    }
     window.print();
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 2000);
   };
 
   const getCertUrl = () => {
@@ -251,46 +260,42 @@ export default function CertificatePage() {
 
     const params = new URLSearchParams({
       startTask: 'CERTIFICATION_NAME',
-      name: name,
-      issueYear: cert.createdAtDate.getFullYear().toString(),
-      issueMonth: (cert.createdAtDate.getMonth() + 1).toString(),
-      certUrl: certUrl,
-      certId: cert.id,
+      name,
+      organizationId: orgId || '',
+      issueYear: cert.createdAtDate?.getFullYear?.() ? String(cert.createdAtDate.getFullYear()) : '2026',
+      issueMonth: cert.createdAtDate?.getMonth ? String(cert.createdAtDate.getMonth() + 1) : '1',
+      certUrl,
+      certId: cert.display_id || cert.id,
     });
-
-    if (orgId) {
-      params.append('organizationId', orgId);
-    } else {
-      params.append('organizationName', 'SkillBun');
-    }
 
     return `https://www.linkedin.com/profile/add?${params.toString()}`;
   };
 
-  const handleShareOnFeed = (e) => {
-    e.preventDefault();
-    setShowShareModal(true);
-    setCopied(false);
+  const handleShareOnFeed = () => {
+    if (!cert) return;
+    setModalOpen(true);
   };
 
-  const handleCopyText = () => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(customPostText)
-        .then(() => {
-          setCopied(true);
-          setToast('📋 Post template copied! Paste it on LinkedIn.');
-        })
-        .catch((err) => {
-          console.error('Failed to copy text:', err);
-        });
+  const handleCopyPostText = async () => {
+    try {
+      await navigator.clipboard.writeText(customPostText);
+      setToast('Post text copied to clipboard!');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setToast('Failed to copy text.');
     }
   };
 
-  const handleOpenLinkedIn = () => {
+  const handleProceedToLinkedIn = () => {
     const certUrl = getCertUrl();
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(certUrl)}`;
-    window.open(shareUrl, '_blank', 'noopener,noreferrer');
-    setShowShareModal(false);
+    const encodedUrl = encodeURIComponent(certUrl);
+    const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+    window.open(linkedInShareUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleDownloadImage = () => {
+    handlePrint();
   };
 
   if (loading) {
@@ -329,7 +334,7 @@ export default function CertificatePage() {
         )}
 
         {/* Certificate Type Badge */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className={styles.typeBadgeWrapper}>
           <div className={`${styles.typeBadge} ${styles['typeBadge' + certType] || ''}`}>
             <span>{badge.icon}</span> {badge.label}
           </div>
