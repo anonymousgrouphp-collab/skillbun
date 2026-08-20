@@ -374,10 +374,10 @@ export default function CertificatePage() {
         {/* BRANCH 1: Letter of Recommendation (LOR) - Corporate Vertical Letterhead */}
         {certType === 'LOR' ? (
           <section className={styles.lorLetterhead}>
-            <header className={styles.lorHeader}>
+            <div className={styles.lorHeader}>
               <div className={styles.lorBrandLogo}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.png" alt="SkillBun Logo" />
+                <img src="/logo-tight.png" alt="SkillBun Logo" />
                 <div>
                   <h2>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h2>
                   <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 'bold', letterSpacing: '0.05em' }}>OFFICIAL VERIFIED CREDENTIAL</span>
@@ -387,7 +387,7 @@ export default function CertificatePage() {
                 <div>Ref ID: <strong>{cert.display_id || cert.id}</strong></div>
                 <div>Date: <strong>{cert.createdAtDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</strong></div>
               </div>
-            </header>
+            </div>
 
             <h1 className={`${styles.lorTitle} ${cinzel.className}`}>Letter of Recommendation</h1>
 
@@ -405,7 +405,7 @@ export default function CertificatePage() {
               {cert.recommendation_text || 'This is to certify that the candidate demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun.'}
             </div>
 
-            <footer className={styles.lorSignOff}>
+            <div className={styles.lorSignOff}>
               <div className={styles.lorSignDetails}>
                 <strong>{cert.issued_by || 'Harsh Patel'}</strong>
                 <span>Lead & Managing Director</span>
@@ -414,7 +414,7 @@ export default function CertificatePage() {
               <div className={styles.lorSealBlock}>
                 <span className={styles.lorSealBadge}>🔒 Verified Official Credential</span>
               </div>
-            </footer>
+            </div>
 
             <div className={styles.lorFooterRef}>
               SkillBun Credential Verification: {typeof window !== 'undefined' ? window.location.href : `https://skillbun.tech/certificate/${cert.id}`}
@@ -432,7 +432,7 @@ export default function CertificatePage() {
             {/* Inner Gold Frame */}
             <div className={styles.internshipInnerContainer}>
               {/* Top Institutional Header */}
-              <header className={styles.internshipHeader}>
+              <div className={styles.internshipHeader}>
                 <div className={styles.internshipBrandLockup}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logo-tight.png" alt="SkillBun Logo" className={styles.internshipBrandLogo} />
@@ -453,7 +453,7 @@ export default function CertificatePage() {
                     <img src="/reish-wordmark.png" alt="REISH" className={styles.internshipReishWordmarkImg} />
                   </div>
                 </div>
-              </header>
+              </div>
 
               {/* Title Section */}
               <div className={styles.internshipTitleBlock}>
