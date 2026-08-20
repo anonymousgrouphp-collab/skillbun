@@ -1340,17 +1340,30 @@
 }
 
 @media print {
-  .page {
-    min-height: 0 !important;
-    background: #fff !important;
+  @page {
+    size: A4 landscape;
+    margin: 0;
   }
 
-  .bgGridOverlay,
   .actionsBar,
-  .verificationNote,
+  .bgGridOverlay,
   .toast,
-  .modalOverlay {
+  .verificationNote,
+  .modalOverlay,
+  nav,
+  footer {
     display: none !important;
+  }
+
+  .page {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .container {
@@ -1374,8 +1387,14 @@
     box-shadow: none !important;
     max-width: 100% !important;
     border: 2px solid #8C6D23 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .internshipHeader {
+    display: flex !important;
   }
 }
 
