@@ -43,7 +43,7 @@ export function buildOfferDispatchEmail({ employee, referenceId, credentials = n
   const salutation = employee.salutation || 'Mr./Ms.';
   const fullName = employee.full_name || 'Candidate';
   const designation = employee.designation || 'Engineering Intern';
-  const department = employee.department || 'Tech Team (Development & Engineering)';
+  const department = employee.department || 'Operations & Management';
   const courseDegree = employee.course_degree || '';
   const collegeName = employee.college_name || '';
   const joiningDate = formatDate(employee.joining_date);
@@ -257,7 +257,7 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
   const salutation = employee.salutation || 'Mr./Ms.';
   const fullName = employee.full_name || 'Candidate';
   const designation = employee.designation || 'Engineering Intern';
-  const department = employee.department || 'Tech Team (Development & Engineering)';
+  const department = employee.department || 'Operations & Management';
   const joiningDate = formatDate(employee.joining_date);
   const extendedEndDate = formatDate(newContractEndDate || employee.contract_end_date);
 

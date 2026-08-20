@@ -618,11 +618,11 @@ export default function WorkforcePage() {
   }
 
   const openIssuance = (type) => {
-    const defaultStream = form.department ? `${form.department} (Development & Engineering)` : 'Technology & Product Engineering'
-    const defaultLor = `During their tenure at SkillBun, ${form.full_name} demonstrated exceptional dedication, technical excellence, and collaboration within the ${form.department} department as a ${form.designation}. They consistently delivered high-quality contributions across all assigned sprint deliverables, showing deep problem-solving proficiency, proactive communication, and high ethical standards. I strongly recommend ${form.full_name} for future professional and academic pursuits.`
+    const defaultStream = form.department || 'Operations & Management'
+    const defaultLor = `During their tenure at SkillBun, ${form.full_name} demonstrated exceptional dedication, professional excellence, and proactive collaboration within the ${form.department || 'Operations'} department as a ${form.designation || 'Intern'}. They consistently delivered high-quality contributions across all assigned milestones, showing deep problem-solving proficiency, proactive communication, and high ethical standards. I strongly recommend ${form.full_name} for future professional and academic pursuits.`
 
     setIssuanceForm({
-      stream_or_track: type === 'TRAINING' ? 'Full-Stack Web Engineering & Distributed Cloud Systems' : defaultStream,
+      stream_or_track: form.department || (type === 'TRAINING' ? 'Professional Industry Training' : defaultStream),
       start_date: form.joining_date || '',
       end_date: form.contract_end_date || '',
       recommendation_text: defaultLor,
