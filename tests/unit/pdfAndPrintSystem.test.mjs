@@ -129,6 +129,18 @@ describe('SkillBun 2-Pillar PDF & Print System Test Suite', () => {
       assert.doesNotThrow(() => {
         triggerDocumentPrint({ title: 'Test Certificate Title' });
       });
+      assert.doesNotThrow(() => {
+        triggerDocumentPrint({
+          title: 'Test LOR Title',
+          orientation: 'portrait',
+        });
+      });
+      assert.doesNotThrow(() => {
+        triggerDocumentPrint({
+          title: 'Test Landscape Cert Title',
+          orientation: 'landscape',
+        });
+      });
     });
   });
 });

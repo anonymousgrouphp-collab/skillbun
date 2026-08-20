@@ -252,8 +252,12 @@ export default function CertificatePage() {
   const handlePrint = () => {
     const candidateName = cert?.name?.trim() || 'Candidate';
     const roleOrTrack = (cert?.designation || cert?.stream_or_track || cert?.roadmapTitle || 'Certificate').trim();
+    const isLor = (cert?.cert_type || '').toUpperCase() === 'LOR';
     triggerDocumentPrint({
-      title: `${candidateName} - ${roleOrTrack} Certificate - SkillBun`,
+      title: isLor
+        ? `${candidateName} - Letter of Recommendation - SkillBun`
+        : `${candidateName} - ${roleOrTrack} Certificate - SkillBun`,
+      orientation: isLor ? 'portrait' : 'landscape',
     });
   };
 
@@ -354,7 +358,7 @@ export default function CertificatePage() {
   }
 
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} ${certType === 'LOR' ? styles.pageLor : ''}`}>
       {/* Background Decorative Overlay */}
       <div className={styles.bgGridOverlay} aria-hidden="true" />
 

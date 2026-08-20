@@ -863,7 +863,10 @@ export default function AdminCertificatesPage() {
                 <button
                   type="button"
                   onClick={() => triggerDocumentPrint({
-                    title: `${simCandidateName || 'Candidate'} - ${selectedDesignId} Certificate - SkillBun`
+                    title: selectedDesignId === 'LOR'
+                      ? `${simCandidateName || 'Candidate'} - Letter of Recommendation - SkillBun`
+                      : `${simCandidateName || 'Candidate'} - ${selectedDesignId} Certificate - SkillBun`,
+                    orientation: selectedDesignId === 'LOR' ? 'portrait' : 'landscape',
                   })}
                   className={styles.actionBtnSecondary}
                   style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
