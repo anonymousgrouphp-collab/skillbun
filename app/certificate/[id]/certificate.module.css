@@ -1316,10 +1316,277 @@
     width: 95vw !important;
     max-width: 1040px !important;
     margin: auto !important;
+    padding: 10px 14px !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    border: 3.5px solid #8C6D23 !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: stretch !important;
+    background: linear-gradient(135deg, #FFFCF7 0%, #FAF5EB 45%, #F7EFE0 100%) !important;
+  }
+
+  .internshipInnerContainer {
+    height: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1rem 2rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border: 1.5px solid #C5A059 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.98) 0%, rgba(253, 248, 237, 0.88) 100%) !important;
+  }
+
+  /* Header Lockup — Symmetrical Left/Right */
+  .internshipHeader {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 2px double #C5A059 !important;
+    padding-bottom: 0.65rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .internshipBrandLockup {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    text-align: left !important;
+  }
+
+  .internshipGovtAttribution {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    text-align: left !important;
+  }
+
+  .internshipBrandLogo,
+  .internshipReishLogo {
+    height: 44px !important;
+    width: auto !important;
+  }
+
+  .internshipBrandWordmark {
+    font-size: 1.3rem !important;
+    line-height: 1 !important;
+  }
+
+  .internshipBrandSubtitle,
+  .internshipGovtTag {
+    font-size: 0.62rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Titles & Candidate Name */
+  .internshipTitleBlock {
+    margin-bottom: 0.65rem !important;
+  }
+
+  .titleFlourishDivider {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .internshipMainTitle {
+    font-size: 1.85rem !important;
+    margin: 0 0 0.25rem !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.15 !important;
+  }
+
+  .internshipSubTitleBadge {
+    font-size: 0.72rem !important;
+    padding: 0.2rem 0.8rem !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .internshipRecipientSection {
+    margin-bottom: 0.65rem !important;
+  }
+
+  .internshipCertifyText {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .internshipCandidateName {
+    font-size: 2.05rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.06em !important;
+    -webkit-text-fill-color: #111111 !important;
+    color: #111111 !important;
+  }
+
+  .internshipNameUnderline {
+    width: 240px !important;
+    height: 2px !important;
+    margin: 0.35rem auto 0 !important;
+  }
+
+  /* Statements */
+  .internshipAchievementBlock {
+    margin-bottom: 0.65rem !important;
+    max-width: 860px !important;
+  }
+
+  .internshipRoleStatement {
+    font-size: 0.92rem !important;
+    line-height: 1.45 !important;
+    margin: 0 0 0.2rem !important;
+  }
+
+  .internshipOrgStatement {
+    font-size: 0.82rem !important;
+    margin: 0 !important;
+  }
+
+  /* Key Metrics Badges Grid — strictly 3 in 1 row */
+  .internshipMetricsGrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.65rem !important;
+    max-width: 800px !important;
+    margin: 0 auto 0.65rem !important;
+  }
+
+  .internshipMetricPill {
+    padding: 0.35rem 0.75rem !important;
+    border: 1px solid rgba(197, 160, 89, 0.5) !important;
+    background: #fdfaf2 !important;
+    border-radius: 6px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .metricPillLabel {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .metricPillVal {
+    font-size: 0.85rem !important;
+  }
+
+  /* Recommendation Conduct Statement */
+  .internshipConductStatement {
+    padding: 0.55rem 1rem !important;
+    margin: 0 auto 0.65rem !important;
+    border-left: 3px solid #11864F !important;
+    border-right: 3px solid #C5A059 !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    border-radius: 6px !important;
+    max-width: 840px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .internshipConductStatement p {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Footer Signatures, Seal & QR — strictly 3 columns in 1 row */
+  .internshipAuthFooter {
+    display: grid !important;
+    grid-template-columns: 1.3fr auto 1fr !important;
+    align-items: center !important;
+    border-top: 1.5px solid #E2D6BE !important;
+    padding-top: 0.65rem !important;
+    margin-top: 0.45rem !important;
+    gap: 1rem !important;
+    text-align: left !important;
+  }
+
+  .internshipSigBlock {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    gap: 0.5rem !important;
+  }
+
+  .internshipIdDate {
+    font-size: 0.74rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .signatoryName {
+    font-size: 0.88rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  .signatoryRole {
+    font-size: 0.72rem !important;
+  }
+
+  .internshipSealArea {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .internshipSealArea img,
+  .internshipSealArea svg {
+    width: 88px !important;
+    height: 88px !important;
+    object-fit: contain !important;
+  }
+
+  .internshipQrArea {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  .qrCodeWrapper {
+    width: 84px !important;
+    height: 84px !important;
+    padding: 5px !important;
+    background: #ffffff !important;
+    border: 1.5px solid #C5A059 !important;
+    border-radius: 6px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .qrCodeWrapper svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .internshipVerificationFootnote {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-top: 1px solid #EDE2CB !important;
+    margin-top: 0.65rem !important;
+    padding-top: 0.35rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .msmeSealBadge {
+    font-size: 0.72rem !important;
+  }
+
+  .footnoteUrl {
+    font-size: 0.72rem !important;
+  }
+
+  .certCorner {
+    width: 65px !important;
+    height: 65px !important;
   }
 
   .lorLetterhead {
