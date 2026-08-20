@@ -12,22 +12,32 @@
 /**
  * Dispatches a standardized window.print() execution while ensuring:
  * - Dynamic document title is set before printing (so the default PDF save filename is pristine).
- * - Original document title is reliably restored afterwards.
+ * - Exact page orientation is locked via injected @page style rule (A4 portrait for LOR, A4 landscape for Certificates).
+ * - Original document title and DOM styles are reliably restored afterwards.
  * - Device and screen independence is guaranteed through CSS @media print specifications.
  *
  * @param {Object} options
  * @param {string} options.title - The desired filename / document title during print (e.g. "Candidate Name - Certificate - SkillBun")
+ * @param {'landscape'|'portrait'} [options.orientation='landscape'] - Standard A4 orientation
  * @param {Function} [options.onBeforePrint] - Optional callback before print trigger
  * @param {Function} [options.onAfterPrint] - Optional callback after print dialog closes
  */
-export function triggerDocumentPrint({ title, onBeforePrint, onAfterPrint } = {}) {
+export function triggerDocumentPrint({ title, orientation = 'landscape', onBeforePrint, onAfterPrint } = {}) {
   if (typeof window === 'undefined') return;
 
   const originalTitle = document.title;
+  let styleEl = null;
 
   try {
     if (title && typeof title === 'string') {
       document.title = title.trim();
+    }
+
+    if (orientation) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'sb-print-orientation-override';
+      styleEl.textContent = `@media print { @page { size: A4 ${orientation} !important; margin: 0 !important; } }`;
+      document.head.appendChild(styleEl);
     }
 
     if (typeof onBeforePrint === 'function') {
@@ -40,10 +50,13 @@ export function triggerDocumentPrint({ title, onBeforePrint, onAfterPrint } = {}
 
     window.print();
   } finally {
-    // Restore title after standard print dialog interaction delay
+    // Restore title and remove orientation override style element after standard print interaction delay
     setTimeout(() => {
       if (typeof document !== 'undefined') {
         document.title = originalTitle;
+      }
+      if (styleEl && styleEl.parentNode) {
+        styleEl.remove();
       }
       if (typeof onAfterPrint === 'function') {
         try {

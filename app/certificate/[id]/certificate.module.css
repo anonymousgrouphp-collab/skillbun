@@ -1753,18 +1753,49 @@
     height: 65px !important;
   }
 
+  /* Portrait LOR Letterhead Page Layout */
+  .pageLor {
+    min-height: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .pageLor .container {
+    height: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
   .lorLetterhead {
     box-shadow: none !important;
-    max-width: 100% !important;
+    max-width: 195mm !important;
     width: 100% !important;
+    min-height: 275mm !important;
+    max-height: 287mm !important;
     padding: 1.2cm 1.5cm !important;
-    margin: 0 auto !important;
+    margin: auto !important;
     border-top: 5px solid #11864F !important;
     border-bottom: 5px solid #C5A059 !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
   }
 
   .certificateFrame {
