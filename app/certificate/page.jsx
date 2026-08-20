@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, limit } from 'firebase/firestore';
 import styles from './verify.module.css';
 
 export default function VerifyRegistryPage() {
@@ -14,7 +15,8 @@ export default function VerifyRegistryPage() {
 
   const handleVerify = async (e) => {
     e.preventDefault();
-    if (!searchId.trim()) return;
+    const rawInput = searchId.trim();
+    if (!rawInput) return;
 
     setLoading(true);
     setError('');
@@ -29,10 +31,54 @@ export default function VerifyRegistryPage() {
     }
 
     try {
-      const docRef = doc(services.db, 'certificates', searchId.trim());
-      const snapshot = await getDoc(docRef);
+      const normalizedId = rawInput.replace(/\//g, '-');
+      const displayId = rawInput.replace(/-/g, '/');
 
-      if (snapshot.exists()) {
+      let snapshot = null;
+
+      // Step 1: Try direct document lookup with hyphenated ID
+      try {
+        const docRef = doc(services.db, 'certificates', normalizedId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          snapshot = docSnap;
+        }
+      } catch (e) {
+        console.warn('Direct doc lookup error:', e);
+      }
+
+      // Step 2: If raw input didn't have slashes and differs from normalized, try raw input
+      if (!snapshot && !rawInput.includes('/') && rawInput !== normalizedId) {
+        try {
+          const docRef = doc(services.db, 'certificates', rawInput);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            snapshot = docSnap;
+          }
+        } catch (e) {
+          console.warn('Raw doc lookup error:', e);
+        }
+      }
+
+      // Step 3: Query by display_id field
+      if (!snapshot) {
+        try {
+          const certsCol = collection(services.db, 'certificates');
+          const q = query(
+            certsCol,
+            where('display_id', 'in', [rawInput, displayId, normalizedId]),
+            limit(1)
+          );
+          const querySnap = await getDocs(q);
+          if (!querySnap.empty) {
+            snapshot = querySnap.docs[0];
+          }
+        } catch (e) {
+          console.warn('Query by display_id error:', e);
+        }
+      }
+
+      if (snapshot && snapshot.exists()) {
         const data = snapshot.data();
         let date = new Date();
         if (data.createdAt?.toDate) {
@@ -42,11 +88,12 @@ export default function VerifyRegistryPage() {
         }
         setCert({
           id: snapshot.id,
+          display_id: data.display_id || (snapshot.id.startsWith('SKB-') && snapshot.id.includes('-') ? snapshot.id.replace(/-/g, '/') : snapshot.id),
           ...data,
           createdAtDate: date,
         });
       } else {
-        setError('No certificate found matching this verification ID. Please double-check the characters.');
+        setError(`No certificate found matching verification ID "${rawInput}". Please double-check the characters.`);
       }
     } catch (err) {
       console.error('Failed to verify certificate ID:', err);
@@ -81,7 +128,7 @@ export default function VerifyRegistryPage() {
                   id="verify-id"
                   value={searchId}
                   onChange={(e) => setSearchId(e.target.value)}
-                  placeholder="e.g. 7vP4bxWeGiPL7gdU1ste"
+                  placeholder="e.g. SKB/2026/INT-REC/EJGHNG or SKB8F92-4C-10-9A7E"
                   className={styles.searchInput}
                   disabled={loading}
                 />
@@ -122,13 +169,19 @@ export default function VerifyRegistryPage() {
                       <span className={styles.detailValue}>{cert.name}</span>
                     </div>
                     <div className={styles.detailItem}>
-                      <span className={styles.detailLabel}>Certified Subject:</span>
-                      <span className={styles.detailValue}>{cert.roadmapTitle} Roadmap</span>
+                      <span className={styles.detailLabel}>Credential / Subject:</span>
+                      <span className={styles.detailValue}>
+                        {cert.designation || cert.stream_or_track || (cert.roadmapTitle ? `${cert.roadmapTitle} Roadmap` : 'Professional Credential')}
+                      </span>
                     </div>
-                    <div className={styles.detailItem}>
-                      <span className={styles.detailLabel}>Grade Achieved:</span>
-                      <span className={styles.detailValue}>{cert.score}% Score</span>
-                    </div>
+                    {(cert.performance_rating || cert.score !== undefined) && (
+                      <div className={styles.detailItem}>
+                        <span className={styles.detailLabel}>Grade / Rating:</span>
+                        <span className={styles.detailValue}>
+                          {cert.performance_rating || `${cert.score}% Score`}
+                        </span>
+                      </div>
+                    )}
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Issue Date:</span>
                       <span className={styles.detailValue}>
@@ -140,13 +193,23 @@ export default function VerifyRegistryPage() {
                       </span>
                     </div>
                     <div className={styles.detailItem}>
-                      <span className={styles.detailLabel}>Registry ID:</span>
-                      <span className={styles.detailValue}><code>{cert.id}</code></span>
+                      <span className={styles.detailLabel}>Certificate ID:</span>
+                      <span className={styles.detailValue}><code>{cert.display_id || cert.id}</code></span>
                     </div>
                   </div>
 
+                  <div style={{ margin: '1.25rem 0', textAlign: 'center' }}>
+                    <Link
+                      href={`/certificate/${cert.id}`}
+                      className={styles.primaryButton}
+                      style={{ width: '100%', textDecoration: 'none', boxSizing: 'border-box' }}
+                    >
+                      🎓 View Full Official Certificate
+                    </Link>
+                  </div>
+
                   <div className={styles.securityNote}>
-                    🔒 <strong>Security Registry Notice:</strong> This public verification page confirms the legitimacy of this credential in the SkillBun database. For security and privacy reasons, full certificate rendering and high-resolution PDF downloads are restricted to the owner's dashboard.
+                    🔒 <strong>Security Registry Notice:</strong> This public verification record confirms the cryptographic authenticity of this credential in the SkillBun database registry.
                   </div>
                 </div>
               )}
