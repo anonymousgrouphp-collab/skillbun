@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { useAuth } from '@/app/components/AuthProvider'
 import { useAdminAccess } from '@/utils/client/adminAuth'
+import { downloadBase64Pdf as downloadUnifiedBase64Pdf } from '@/utils/client/printAndDownload'
 import styles from './workforce.module.css'
 
 const STATUS_TABS = [
@@ -1300,24 +1301,12 @@ export default function WorkforcePage() {
 
   const downloadBase64Pdf = (base64Content, filename) => {
     try {
-      const byteCharacters = atob(base64Content)
-      const byteNumbers = new Array(byteCharacters.length)
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i)
+      const success = downloadUnifiedBase64Pdf(base64Content, filename || 'Offer_Letter.pdf');
+      if (success) {
+        showToast('Generated PDF downloaded to device.');
       }
-      const byteArray = new Uint8Array(byteNumbers)
-      const blob = new Blob([byteArray], { type: 'application/pdf' })
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = filename || 'Offer_Letter.pdf'
-      document.body.appendChild(a)
-      a.click()
-      a.remove()
-      window.URL.revokeObjectURL(url)
-      showToast('Generated PDF downloaded to device.')
     } catch (downloadErr) {
-      setError('Unable to download fallback PDF: ' + downloadErr.message)
+      setError('Unable to download fallback PDF: ' + downloadErr.message);
     }
   }
 

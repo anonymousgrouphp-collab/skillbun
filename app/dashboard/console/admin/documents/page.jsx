@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import { downloadBase64Pdf } from '@/utils/client/printAndDownload';
 import styles from './documents.module.css';
 
 // Official SkillBun Workforce Legal PDF Documents
@@ -284,11 +285,7 @@ export default function DocumentManagerPage() {
       const data = await res.json();
 
       if (data.success && data.document?.pdf_base64) {
-        const linkSource = `data:application/pdf;base64,${data.document.pdf_base64}`;
-        const downloadLink = document.createElement('a');
-        downloadLink.href = linkSource;
-        downloadLink.download = `${docItem.display_id || docItem.id}.pdf`;
-        downloadLink.click();
+        downloadBase64Pdf(data.document.pdf_base64, `${docItem.display_id || docItem.id}.pdf`);
       } else {
         alert('Binary PDF not stored on record. Use the Live PDF Studio to generate a fresh copy.');
       }
@@ -305,11 +302,7 @@ export default function DocumentManagerPage() {
       generateLivePdfPreview();
       return;
     }
-    const linkSource = `data:application/pdf;base64,${pdfBase64}`;
-    const downloadLink = document.createElement('a');
-    downloadLink.href = linkSource;
-    downloadLink.download = `${customRefId.replace(/[\/\\]/g, '_')}_Official.pdf`;
-    downloadLink.click();
+    downloadBase64Pdf(pdfBase64, `${customRefId.replace(/[\/\\]/g, '_')}_Official.pdf`);
   };
 
   // Issue Form Submit
