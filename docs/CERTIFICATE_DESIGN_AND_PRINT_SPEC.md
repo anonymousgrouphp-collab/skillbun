@@ -195,7 +195,7 @@ Always render flags and trust seals with crisp, cross-platform inline SVG compon
 |---|---|---|
 | **INTERNSHIP** (`INT-REC`) | Academic Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, 3 Metric Badges, Conduct Statement, 24K Gold Seal, Vector QR, IndiaFlagIcon |
 | **TRAINING** (`INT-PRAC`) | Practical Industry Engineering Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, Training Tenure/Rating/Mode Badges, Lab Evaluation Remarks, 24K Gold Seal, Vector QR, IndiaFlagIcon |
-| **LOR** (`HR-REL` / `LOR`) | Corporate Executive Letterhead | Executive Letterhead, Ref ID Strip, Salutation, 4-Pill Candidate Grid, Structured 3-Paragraph Appraisal, CEO Sign-off, 24K Gold Seal, Vector QR, IndiaFlagIcon |
+| **LOR** (`HR-REL` / `LOR`) | Corporate Executive Letterhead | Executive Letterhead, Ref ID Strip, Salutation, 4-Pill Candidate Grid, Structured 3-Paragraph Appraisal, Clean Founder/Director Sign-off, Scannable Vector QR, IndiaFlagIcon (No Academic Seal) |
 | **ROADMAP** (Academic) | Historical Canva Template Overlay | High-Res Background Overlay, Recipient Name & Roadmap Title Overlays |
 
 ---

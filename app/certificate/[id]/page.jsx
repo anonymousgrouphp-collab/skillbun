@@ -513,22 +513,19 @@ export default function CertificatePage() {
               </p>
             </div>
 
-            {/* Executive Sign-off, 24K Gold Seal & Live Scannable Vector QR Code Block */}
+            {/* Executive Sign-off & Live Scannable Vector QR Code Block */}
             <div className={styles.lorAuthFooter}>
               {/* Left: Signatory */}
               <div className={styles.lorSigBlock}>
                 <div className={styles.lorSignOffSalutation}>Sincerely,</div>
                 <div className={styles.lorSignatureCanvas}>
-                  <div className={styles.lorSignatoryName}>{cert.issued_by || 'Harsh Patel'}</div>
-                  <div className={styles.lorSignatoryRole}>Founder &amp; Managing Director</div>
-                  <div className={styles.lorSignatoryOrg}>SkillBun (Operated by Reish)</div>
+                  <div className={styles.lorSignatoryName}>
+                    {(cert.issued_by || 'Harsh Patel').replace(/\s*\(.*?\)/g, '').replace(/,\s*Lead.*/i, '').trim() || 'Harsh Patel'}
+                  </div>
+                  <div className={styles.lorSignatoryRole}>Founder &amp; Managing Director, SkillBun</div>
+                  <div className={styles.lorSignatoryOrg}>Operated by Reish</div>
                   <div className={styles.lorSignatoryContact}>harsh@skillbun.tech</div>
                 </div>
-              </div>
-
-              {/* Center: 24K Gold Official Seal */}
-              <div className={styles.lorSealArea}>
-                <OfficialSeal />
               </div>
 
               {/* Right: Live Vector Scannable QR Code */}
@@ -547,7 +544,7 @@ export default function CertificatePage() {
                 <span>Govt. of India MSME Registered Entity</span>
               </div>
               <div className={styles.footnoteUrl}>
-                Ref: {cert.display_id || cert.id} • skillbun.tech/certificate
+                Ref: {cert.display_id || cert.id}
               </div>
             </div>
           </section>
