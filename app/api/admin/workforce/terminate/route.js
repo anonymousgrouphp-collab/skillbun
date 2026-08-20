@@ -138,7 +138,7 @@ export async function POST(request) {
         recommendation_text: `During their tenure at SkillBun as ${employeeData.designation}, ${employeeData.full_name} demonstrated exceptional dedication, technical agility, and collaborative problem-solving skills.`,
         start_date: startDate,
         end_date: endDate,
-        issued_by: 'Harsh Patel, Lead at SkillBun',
+        issued_by: 'Harsh Patel',
         is_revoked: false,
         createdAt: now,
       });

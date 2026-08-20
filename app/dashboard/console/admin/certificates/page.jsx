@@ -984,20 +984,16 @@ export default function AdminCertificatesPage() {
                     </p>
                   </div>
 
-                  {/* Executive Sign-off, 24K Gold Seal & Live Scannable Vector QR Code Block */}
+                  {/* Executive Sign-off & Live Scannable Vector QR Code Block */}
                   <div className={certStyles.lorAuthFooter}>
                     <div className={certStyles.lorSigBlock}>
                       <div className={certStyles.lorSignOffSalutation}>Sincerely,</div>
                       <div className={certStyles.lorSignatureCanvas}>
                         <div className={certStyles.lorSignatoryName}>Harsh Patel</div>
-                        <div className={certStyles.lorSignatoryRole}>Founder &amp; Managing Director</div>
-                        <div className={certStyles.lorSignatoryOrg}>SkillBun (Operated by Reish)</div>
+                        <div className={certStyles.lorSignatoryRole}>Founder &amp; Managing Director, SkillBun</div>
+                        <div className={certStyles.lorSignatoryOrg}>Operated by Reish</div>
                         <div className={certStyles.lorSignatoryContact}>harsh@skillbun.tech</div>
                       </div>
-                    </div>
-
-                    <div className={certStyles.lorSealArea}>
-                      <OfficialSeal />
                     </div>
 
                     <div className={certStyles.lorQrArea}>
@@ -1015,7 +1011,7 @@ export default function AdminCertificatesPage() {
                       <span>Govt. of India MSME Registered Entity</span>
                     </div>
                     <div className={certStyles.footnoteUrl}>
-                      Ref: {simCertId} • skillbun.tech/certificate
+                      Ref: {simCertId}
                     </div>
                   </div>
                 </section>
