@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import QRCodeSvg from '@/app/components/QRCodeSvg';
 import OfficialSeal from '@/app/components/OfficialSeal';
+import { triggerDocumentPrint } from '@/utils/client/printAndDownload';
 import styles from './certificate.module.css';
 
 const cinzel = Cinzel({
@@ -248,17 +249,12 @@ export default function CertificatePage() {
     fetchCertificate();
   }, [id]);
 
-   const handlePrint = () => {
-    const originalTitle = document.title;
-    if (cert) {
-      const candidateName = cert.name || 'Candidate';
-      const roleOrTrack = cert.designation || cert.stream_or_track || cert.roadmapTitle || 'Certificate';
-      document.title = `${candidateName} - ${roleOrTrack} Certificate - SkillBun`;
-    }
-    window.print();
-    setTimeout(() => {
-      document.title = originalTitle;
-    }, 2000);
+  const handlePrint = () => {
+    const candidateName = cert?.name?.trim() || 'Candidate';
+    const roleOrTrack = (cert?.designation || cert?.stream_or_track || cert?.roadmapTitle || 'Certificate').trim();
+    triggerDocumentPrint({
+      title: `${candidateName} - ${roleOrTrack} Certificate - SkillBun`,
+    });
   };
 
   const getCertUrl = () => {
@@ -332,49 +328,49 @@ export default function CertificatePage() {
     window.open(linkedInShareUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleDownloadImage = () => {
-    handlePrint();
-  };
-
   if (loading) {
     return (
-      <div className={styles.loadingScreen}>
-        <div className={styles.spinner}></div>
-        <p>Verifying credentials...</p>
-      </div>
+      <main className={styles.page}>
+        <div className={styles.loadingWrapper}>
+          <div className={styles.spinner} />
+          <p>Verifying and retrieving secure certificate...</p>
+        </div>
+      </main>
     );
   }
 
   if (error || !cert) {
     return (
-      <div className={styles.errorScreen}>
-        <div className={styles.errorIcon}>⚠️</div>
-        <h2>Invalid Certificate</h2>
-        <p>{error || 'The certificate identifier is incorrect or does not exist.'}</p>
-        <Link href="/" className={styles.primaryButton}>
-          Back to Home
-        </Link>
-      </div>
+      <main className={styles.page}>
+        <div className={styles.errorWrapper}>
+          <h2>Certificate Verification</h2>
+          <p>{error || 'No certificate record found.'}</p>
+          <Link href="/certificate" className={styles.actionBtn}>
+            Back to Verification
+          </Link>
+        </div>
+      </main>
     );
   }
 
-  const badge = getBadgeMeta();
-
   return (
     <main className={styles.page}>
+      {/* Background Decorative Overlay */}
       <div className={styles.bgGridOverlay} aria-hidden="true" />
 
-      <div className={styles.container}>
-        {toast && (
-          <div className={styles.toast} role="alert">
-            {toast}
-          </div>
-        )}
+      {/* Toast Notification */}
+      {toast && (
+        <div className={styles.toast} role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
 
-        {/* Certificate Type Badge */}
+      <div className={styles.container}>
+        {/* Top Type Indicator Badge */}
         <div className={styles.typeBadgeWrapper}>
-          <div className={`${styles.typeBadge} ${styles['typeBadge' + certType] || ''}`}>
-            <span>{badge.icon}</span> {badge.label}
+          <div className={styles.typeBadge}>
+            <span className={styles.typeBadgeIcon}>{getBadgeMeta().icon}</span>
+            <span>{getBadgeMeta().label}</span>
           </div>
         </div>
 
@@ -414,53 +410,145 @@ export default function CertificatePage() {
         {/* CERTIFICATE DISPLAY BRANCHING                                             */}
         {/* ========================================================================= */}
 
-        {/* BRANCH 1: Letter of Recommendation (LOR) - Corporate Vertical Letterhead */}
+        {/* BRANCH 1: Letter of Recommendation (LOR) - Corporate Executive Letterhead */}
         {certType === 'LOR' ? (
           <section className={styles.lorLetterhead}>
+            {/* Top Institutional Header */}
             <div className={styles.lorHeader}>
-              <div className={styles.lorBrandLogo}>
+              <div className={styles.lorBrandLockup}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo-tight.png" alt="SkillBun Logo" />
-                <div>
-                  <h2>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</h2>
-                  <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 'bold', letterSpacing: '0.05em' }}>OFFICIAL VERIFIED CREDENTIAL</span>
+                <img src="/logo-tight.png" alt="SkillBun Logo" className={styles.lorBrandLogo} />
+                <div className={styles.lorBrandDetails}>
+                  <div className={styles.lorBrandWordmark}>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
+                  <div className={styles.lorBrandSubtitle}>
+                    CAREER &amp; SKILLS
+                  </div>
                 </div>
               </div>
-              <div className={styles.lorMetaRight}>
-                <div>Ref ID: <strong>{cert.display_id || cert.id}</strong></div>
-                <div>Date: <strong>{cert.createdAtDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</strong></div>
+
+              <div className={styles.lorGovtAttribution}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/reish-mark.png" alt="Reish Mark" className={styles.lorReishLogo} />
+                <div className={styles.lorReishDetails}>
+                  <span className={styles.lorGovtTag}>MANAGED &amp; ISSUED BY</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/reish-wordmark.png" alt="REISH" className={styles.lorReishWordmarkImg} />
+                </div>
               </div>
             </div>
 
-            <h1 className={`${styles.lorTitle} ${cinzel.className}`}>Letter of Recommendation</h1>
-
-            <p className={styles.lorSalutation}>TO WHOMSOEVER IT MAY CONCERN</p>
-
-            <div className={styles.lorCandidateStrip}>
-              <div><strong>Candidate:</strong> {cert.name}</div>
-              <div><strong>Designation:</strong> {cert.designation || 'Intern'} — {cert.department || 'Engineering'}</div>
-              {cert.start_date && cert.end_date && (
-                <div><strong>Tenure:</strong> {cert.start_date} to {cert.end_date}</div>
-              )}
-            </div>
-
-            <div className={styles.lorBody}>
-              {cert.recommendation_text || 'This is to certify that the candidate demonstrated exceptional dedication, high technical excellence, and proactive collaboration during their engagement at SkillBun.'}
-            </div>
-
-            <div className={styles.lorSignOff}>
-              <div className={styles.lorSignDetails}>
-                <strong>{cert.issued_by || 'Harsh Patel'}</strong>
-                <span>Lead & Managing Director</span>
-                <span>SkillBun</span>
+            {/* Reference Meta Strip */}
+            <div className={styles.lorMetaStrip}>
+              <div className={styles.lorMetaItem}>
+                <span className={styles.lorMetaLabel}>Reference ID:</span>
+                <strong className={styles.lorMetaValue}>{cert.display_id || cert.id}</strong>
               </div>
-              <div className={styles.lorSealBlock}>
-                <span className={styles.lorSealBadge}>🔒 Verified Official Credential</span>
+              <div className={styles.lorMetaItem}>
+                <span className={styles.lorMetaLabel}>Date of Issuance:</span>
+                <strong className={styles.lorMetaValue}>{getDisplayIssueDate(cert)}</strong>
               </div>
             </div>
 
-            <div className={styles.lorFooterRef}>
-              SkillBun Credential Verification: {typeof window !== 'undefined' ? window.location.href : `https://skillbun.tech/certificate/${cert.id}`}
+            {/* Title Section */}
+            <div className={styles.lorTitleBlock}>
+              <div className={styles.titleFlourishDivider}>
+                <span className={styles.flourishSymbol}>❖</span>
+                <div className={styles.flourishLine} />
+                <span className={styles.flourishStar}>★</span>
+                <div className={styles.flourishLine} />
+                <span className={styles.flourishSymbol}>❖</span>
+              </div>
+              <h1 className={`${styles.lorMainTitle} ${cinzel.className}`}>
+                Letter of Recommendation
+              </h1>
+              <div className={styles.lorSubTitleBadge}>
+                OFFICIAL EXECUTIVE APPRAISAL &amp; ENDORSEMENT
+              </div>
+            </div>
+
+            {/* Formal Salutation */}
+            <div className={styles.lorSalutationBlock}>
+              TO WHOMSOEVER IT MAY CONCERN
+            </div>
+
+            {/* Candidate Engagement Summary Grid */}
+            <div className={styles.lorCandidateGrid}>
+              <div className={styles.lorCandidatePill}>
+                <span className={styles.lorPillLabel}>Candidate Name</span>
+                <span className={styles.lorPillValue}>{cert.name}</span>
+              </div>
+              <div className={styles.lorCandidatePill}>
+                <span className={styles.lorPillLabel}>Designation &amp; Role</span>
+                <span className={styles.lorPillValue}>{cert.designation || cert.role || 'Professional Intern'}</span>
+              </div>
+              <div className={styles.lorCandidatePill}>
+                <span className={styles.lorPillLabel}>Department / Track</span>
+                <span className={styles.lorPillValue}>{cert.department || cert.stream_or_track || 'Operations & Management'}</span>
+              </div>
+              <div className={styles.lorCandidatePill}>
+                <span className={styles.lorPillLabel}>Tenure of Engagement</span>
+                <span className={styles.lorPillValue}>
+                  {cert.start_date && cert.end_date ? `${cert.start_date} to ${cert.end_date}` : 'Verified Tenure'}
+                </span>
+              </div>
+            </div>
+
+            {/* Structured Recommendation Body */}
+            <div className={styles.lorBodyContent}>
+              <p>
+                It is with high professional regard and absolute confidence that I write this official Letter of Recommendation on behalf of <strong>{cert.name}</strong>, who completed their tenure at <strong>SkillBun</strong> (operated by <strong>Reish</strong>) serving in the capacity of <strong>{cert.designation || cert.role || 'Intern'}</strong> within the <strong>{cert.department || cert.stream_or_track || 'Operations'}</strong> department.
+              </p>
+
+              <p>
+                {formatRecommendationText(
+                  cert.recommendation_text ||
+                  cert.performance_remarks ||
+                  `Throughout their engagement, ${cert.name} consistently demonstrated outstanding analytical capability, diligent execution, and disciplined adherence to organizational milestones. They proactively tackled complex challenges with initiative and creativity, collaborating seamlessly across multi-disciplinary teams while maintaining uncompromising standards of professionalism and integrity.`,
+                  cert.name
+                )}
+              </p>
+
+              <p>
+                Their positive attitude, strategic problem-solving aptitude, and fast-learning agility make them an invaluable asset to any high-performance team or advanced academic institution. I give <strong>{cert.name}</strong> my highest endorsement for all forthcoming career, postgraduate, and professional opportunities.
+              </p>
+            </div>
+
+            {/* Executive Sign-off, 24K Gold Seal & Live Scannable Vector QR Code Block */}
+            <div className={styles.lorAuthFooter}>
+              {/* Left: Signatory */}
+              <div className={styles.lorSigBlock}>
+                <div className={styles.lorSignOffSalutation}>Sincerely,</div>
+                <div className={styles.lorSignatureCanvas}>
+                  <div className={styles.lorSignatoryName}>{cert.issued_by || 'Harsh Patel'}</div>
+                  <div className={styles.lorSignatoryRole}>Founder &amp; Managing Director</div>
+                  <div className={styles.lorSignatoryOrg}>SkillBun (Operated by Reish)</div>
+                  <div className={styles.lorSignatoryContact}>harsh@skillbun.tech</div>
+                </div>
+              </div>
+
+              {/* Center: 24K Gold Official Seal */}
+              <div className={styles.lorSealArea}>
+                <OfficialSeal />
+              </div>
+
+              {/* Right: Live Vector Scannable QR Code */}
+              <div className={styles.lorQrArea}>
+                <div className={styles.qrCodeWrapper}>
+                  <QRCodeSvg value={getCertUrl()} size={84} />
+                </div>
+                <span className={styles.lorQrLabel}>Scan to Verify Online</span>
+              </div>
+            </div>
+
+            {/* Bottom Institutional Trust & Footnote Strip */}
+            <div className={styles.lorVerificationFootnote}>
+              <div className={styles.msmeSealBadge}>
+                <IndiaFlagIcon size={18} />
+                <span>Govt. of India MSME Registered Entity</span>
+              </div>
+              <div className={styles.footnoteUrl}>
+                Ref: {cert.display_id || cert.id} • skillbun.tech/certificate
+              </div>
             </div>
           </section>
         ) : certType === 'INTERNSHIP' ? (

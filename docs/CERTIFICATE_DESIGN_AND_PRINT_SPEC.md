@@ -148,23 +148,39 @@ Firestore interprets `/` in document paths as subcollection delimiters. Passing 
 
 When the user clicks **"Print / Save PDF"**, the browser automatically names the PDF using `document.title`.
 
-- **Pattern**: `${candidateName} - ${roleOrTrack} Certificate - SkillBun.pdf`
-- **Example**: `HARSH PATEL - Project Operations Intern Certificate - SkillBun.pdf`
+- **Certificates Pattern**: `${candidateName} - ${roleOrTrack} Certificate - SkillBun.pdf`
+- **LOR Pattern**: `${candidateName} - Letter of Recommendation - SkillBun.pdf`
 - **Implementation**:
   ```javascript
   const handlePrint = () => {
-    const originalTitle = document.title;
-    const cleanName = cert?.name?.trim() || 'Candidate';
-    const cleanRole = (cert?.designation || cert?.stream_or_track || cert?.roadmapTitle || 'Merit').trim();
-    document.title = `${cleanName} - ${cleanRole} Certificate - SkillBun`;
-    window.print();
-    setTimeout(() => { document.title = originalTitle; }, 1000);
+    const candidateName = cert?.name?.trim() || 'Candidate';
+    const isLor = certType === 'LOR';
+    const roleOrTrack = (cert?.designation || cert?.stream_or_track || cert?.roadmapTitle || 'Certificate').trim();
+    const docTitle = isLor
+      ? `${candidateName} - Letter of Recommendation - SkillBun`
+      : `${candidateName} - ${roleOrTrack} Certificate - SkillBun`;
+    triggerDocumentPrint({
+      title: docTitle,
+    });
   };
   ```
 
 ---
 
-## 8. Live Vector QR Code Specification
+## 8. Cross-Platform Vector Icons (Never Raw System Flag Emojis)
+
+### ❌ The Pitfall: Windows Flag Emoji Collapse
+Windows fonts (*Segoe UI Emoji*) do not provide color flag bitmaps for `🇮🇳` (*Flag of India*), causing Windows browsers to render the raw 2-letter country code text `"IN"`.
+
+### ✅ The Rule: Pure Inline Vector SVGs
+Always render flags and trust seals with crisp, cross-platform inline SVG components (`<IndiaFlagIcon size={18} />`) featuring:
+- Official Saffron, White, and Green tricolor bands.
+- 24-spoke Navy Blue Ashoka Chakra.
+- Guaranteed 100% pixel-perfect rendering across Windows, macOS, Linux, Android, iOS, and in all PDF exports.
+
+---
+
+## 9. Live Vector QR Code Specification
 
 - **Rendering**: Pure SVG vector output via `qrcode.react` (`QRCodeSvg`).
 - **Error Correction**: Level `'H'` (High — 30% redundancy).
@@ -173,18 +189,18 @@ When the user clicks **"Print / Save PDF"**, the browser automatically names the
 
 ---
 
-## 9. Template Classification & Branching
+## 10. Template Classification & Branching
 
 | Certificate Type | Template Style | Frame Type |
 |---|---|---|
-| **INTERNSHIP** (`INT-REC`) | Academic Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, 3 Metric Badges, Conduct Statement, 24K Gold Seal, Vector QR |
-| **TRAINING** (`INT-PRAC`) | Practical Industry Engineering Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, Training Tenure/Rating/Mode Badges, Lab Evaluation Remarks, 24K Gold Seal, Vector QR |
-| **LOR** (`HR-REL` / `LOR`) | Corporate Vertical Letterhead | Executive Letterhead, Reference Meta, Salutation, Recommendation Body, Managing Director Sign-off |
+| **INTERNSHIP** (`INT-REC`) | Academic Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, 3 Metric Badges, Conduct Statement, 24K Gold Seal, Vector QR, IndiaFlagIcon |
+| **TRAINING** (`INT-PRAC`) | Practical Industry Engineering Parchment Frame | 4 Corner Flourishes, Symmetrical Headers, Training Tenure/Rating/Mode Badges, Lab Evaluation Remarks, 24K Gold Seal, Vector QR, IndiaFlagIcon |
+| **LOR** (`HR-REL` / `LOR`) | Corporate Executive Letterhead | Executive Letterhead, Ref ID Strip, Salutation, 4-Pill Candidate Grid, Structured 3-Paragraph Appraisal, CEO Sign-off, 24K Gold Seal, Vector QR, IndiaFlagIcon |
 | **ROADMAP** (Academic) | Historical Canva Template Overlay | High-Res Background Overlay, Recipient Name & Roadmap Title Overlays |
 
 ---
 
-## 10. Checklist to Prevent Regressions
+## 11. Checklist to Prevent Regressions
 
 Before pushing changes to certificate or print code:
 - [x] Run `npm test` (verify 11/11 tests pass).
@@ -192,4 +208,4 @@ Before pushing changes to certificate or print code:
 - [x] Run `npm run build` (confirm Turbopack compiles with 0 errors).
 - [x] Increment `package.json` version by `0.0.1`.
 - [x] Push to both `origin main` and `v2 main`.
-- [x] Verify Print / Save PDF preview fills landscape canvas with rich proportions.
+- [x] Verify Print / Save PDF preview fills portrait/landscape canvas with rich proportions.
