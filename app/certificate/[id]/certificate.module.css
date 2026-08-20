@@ -543,78 +543,6 @@
 }
 
 
-/* ============================================
-   PRINT MEDIA — Landscape A4
-   ============================================ */
-@media print {
-  @page {
-    size: landscape;
-    margin: 0;
-  }
-
-  /* Hide non-certificate UI */
-  .actionsBar,
-  .bgGridOverlay,
-  .toast,
-  .verificationNote {
-    display: none !important;
-  }
-
-  .page {
-    min-height: unset !important;
-    height: 100vh !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .container {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100vh !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .certificateFrame {
-    width: 100% !important;
-    max-height: 100vh !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .templateImg {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 100vh !important;
-    object-fit: contain !important;
-  }
-
-
-  /* Fallback solid gold for browsers that can't print gradient text */
-  .recipientName {
-    -webkit-text-fill-color: #BF953F !important;
-    color: #BF953F !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .roadmapTitle {
-    -webkit-text-fill-color: #BF953F !important;
-    color: #BF953F !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .qrMeta {
-    background: #ffffff !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-}
 
 /* ============================================
    Phase 8 Multi-Template Additions
@@ -1345,6 +1273,9 @@
     margin: 0;
   }
 
+  .typeBadge,
+  .typeBadgeWrapper,
+  .revokedBanner,
   .actionsBar,
   .bgGridOverlay,
   .toast,
@@ -1357,20 +1288,58 @@
 
   .page {
     min-height: 0 !important;
-    height: auto !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     padding: 0 !important;
     margin: 0 !important;
     background: #ffffff !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    overflow: hidden !important;
   }
 
   .container {
     width: 100% !important;
     max-width: 100% !important;
+    height: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .internshipCertFrame {
+    box-shadow: none !important;
+    width: 297mm !important;
+    max-width: 98vw !important;
+    height: 204mm !important;
+    max-height: 96vh !important;
+    margin: 0 auto !important;
+    padding: clamp(0.5rem, 1.2vw, 0.85rem) !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-sizing: border-box !important;
+  }
+
+  .internshipInnerContainer {
+    height: 100% !important;
+    box-sizing: border-box !important;
+    padding: clamp(0.45rem, 1vw, 0.75rem) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .internshipHeader {
+    display: flex !important;
+  }
+
+  .internshipAuthFooter {
+    display: grid !important;
   }
 
   .lorLetterhead {
@@ -1381,20 +1350,30 @@
 
   .certificateFrame {
     box-shadow: none !important;
+    width: 100% !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
   }
 
-  .internshipCertFrame {
-    box-shadow: none !important;
-    max-width: 100% !important;
-    border: 2px solid #8C6D23 !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+  .templateImg {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100vh !important;
+    object-fit: contain !important;
+  }
+
+  .recipientName,
+  .roadmapTitle {
+    -webkit-text-fill-color: #BF953F !important;
+    color: #BF953F !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  .internshipHeader {
-    display: flex !important;
+  .qrMeta {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
 
