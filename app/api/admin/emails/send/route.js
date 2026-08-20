@@ -90,7 +90,7 @@ export async function POST(request) {
             salutation: 'Mr./Ms.',
             full_name: data.name,
             designation: 'Engineering Intern',
-            department: 'Tech Team (Development & Engineering)',
+            department: 'Technology & Engineering',
             course_degree: data.degree,
             joining_date: new Date(),
             contract_end_date: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
