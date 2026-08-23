@@ -1897,3 +1897,4 @@
 [2026-08-23T10:59:48] chore(deps): update analytics telemetry adapter
 [2026-08-23T12:05:52] chore(deps): update analytics telemetry adapter
 [2026-08-23T11:29:19] chore(deps): update analytics telemetry adapter
+[2026-08-23T23:14:14] perf(cache): optimize career trajectory data loader
