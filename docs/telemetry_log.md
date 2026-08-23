@@ -1892,3 +1892,4 @@
 [2026-08-23T12:01:30] feat(career): enhance career pathway matching algorithm
 [2026-08-23T11:24:03] fix(assessment): refine skill gap analysis scoring weights
 [2026-08-23T21:25:11] fix(analytics): correct career aptitude score calculation
+[2026-08-23T22:39:22] refactor(counseling): streamline multi-step guidance flow
