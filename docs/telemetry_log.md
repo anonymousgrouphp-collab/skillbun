@@ -670,3 +670,4 @@
 [2026-08-27T12:20:55] style(ui): adjust career dashboard card elevation
 [2026-08-27T19:25:08] style(ui): adjust career dashboard card elevation
 [2026-08-27T11:20:15] chore(deps): update analytics telemetry adapter
+[2026-08-27T11:17:28] docs(telemetry): record platform assessment metrics
