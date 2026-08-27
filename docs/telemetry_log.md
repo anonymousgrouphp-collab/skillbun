@@ -685,3 +685,4 @@
 [2026-08-27T21:08:56] refactor(counseling): streamline multi-step guidance flow
 [2026-08-27T19:48:25] style(ui): adjust career dashboard card elevation
 [2026-08-27T09:25:03] fix(analytics): correct career aptitude score calculation
+[2026-08-27T14:23:35] refactor(counseling): streamline multi-step guidance flow
