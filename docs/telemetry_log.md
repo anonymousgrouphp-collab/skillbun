@@ -656,3 +656,4 @@
 [2026-08-27T16:08:40] refactor(counseling): streamline multi-step guidance flow
 [2026-08-27T10:32:41] perf(cache): optimize career trajectory data loader
 [2026-08-27T12:10:42] fix(analytics): correct career aptitude score calculation
+[2026-08-27T18:53:59] fix(analytics): correct career aptitude score calculation
