@@ -651,3 +651,4 @@
 [2026-03-19T09:53:07] feat(roadmap): add milestone progress tracking
 [2026-03-19T12:19:10] perf(cache): optimize career trajectory data loader
 [2026-08-27T18:59:45] docs(telemetry): record platform assessment metrics
+[2026-08-27T19:33:57] refactor(counseling): streamline multi-step guidance flow
