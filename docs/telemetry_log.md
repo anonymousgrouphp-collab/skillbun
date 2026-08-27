@@ -650,3 +650,4 @@
 [2026-03-19T13:49:08] test(matching): add test suite for recommendation score
 [2026-03-19T09:53:07] feat(roadmap): add milestone progress tracking
 [2026-03-19T12:19:10] perf(cache): optimize career trajectory data loader
+[2026-08-27T18:59:45] docs(telemetry): record platform assessment metrics
