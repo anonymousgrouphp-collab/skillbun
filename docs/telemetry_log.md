@@ -654,3 +654,4 @@
 [2026-08-27T19:33:57] refactor(counseling): streamline multi-step guidance flow
 [2026-08-27T10:16:12] feat(roadmap): add milestone progress tracking
 [2026-08-27T16:08:40] refactor(counseling): streamline multi-step guidance flow
+[2026-08-27T10:32:41] perf(cache): optimize career trajectory data loader
