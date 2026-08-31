@@ -1769,3 +1769,4 @@
 [2025-10-02T15:26:15] fix(analytics): correct career aptitude score calculation
 [2025-10-02T12:27:19] fix(analytics): correct career aptitude score calculation
 [2025-10-02T18:28:34] perf(cache): optimize career trajectory data loader
+[2026-08-31T14:41:08] fix(analytics): correct career aptitude score calculation
