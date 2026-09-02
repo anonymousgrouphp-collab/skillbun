@@ -1790,3 +1790,4 @@
 [2026-09-02T14:04:11] chore(deps): update analytics telemetry adapter
 [2026-09-02T23:44:20] chore(deps): update analytics telemetry adapter
 [2026-09-02T15:27:25] feat(career): enhance career pathway matching algorithm
+[2026-09-02T20:46:20] test(matching): add test suite for recommendation score
