@@ -1785,3 +1785,4 @@
 [2026-09-02T23:45:41] style(ui): adjust career dashboard card elevation
 [2026-09-02T13:54:24] chore(deps): update analytics telemetry adapter
 [2026-09-02T23:08:10] docs(telemetry): record platform assessment metrics
+[2026-09-02T15:02:26] feat(career): enhance career pathway matching algorithm
