@@ -1416,3 +1416,4 @@
 [2026-09-04T23:10:34] docs(telemetry): record platform assessment metrics
 [2026-09-04T12:47:25] feat(roadmap): add milestone progress tracking
 [2026-09-04T17:40:09] refactor(counseling): streamline multi-step guidance flow
+[2026-09-04T19:00:35] feat(roadmap): add milestone progress tracking
