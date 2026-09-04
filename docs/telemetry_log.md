@@ -1426,3 +1426,4 @@
 [2026-09-04T09:54:48] feat(roadmap): add milestone progress tracking
 [2026-09-04T22:41:35] fix(assessment): refine skill gap analysis scoring weights
 [2026-09-04T17:42:04] refactor(counseling): streamline multi-step guidance flow
+[2026-09-04T11:12:46] fix(analytics): correct career aptitude score calculation
