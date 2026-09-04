@@ -1424,3 +1424,4 @@
 [2026-09-04T12:10:11] docs(telemetry): record platform assessment metrics
 [2026-09-04T16:12:07] perf(cache): optimize career trajectory data loader
 [2026-09-04T09:54:48] feat(roadmap): add milestone progress tracking
+[2026-09-04T22:41:35] fix(assessment): refine skill gap analysis scoring weights
