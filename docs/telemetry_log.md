@@ -1419,3 +1419,4 @@
 [2026-09-04T19:00:35] feat(roadmap): add milestone progress tracking
 [2026-09-04T12:07:02] feat(career): enhance career pathway matching algorithm
 [2026-09-04T20:34:35] fix(assessment): refine skill gap analysis scoring weights
+[2026-09-04T17:13:47] style(ui): adjust career dashboard card elevation
