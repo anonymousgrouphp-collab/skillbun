@@ -320,3 +320,4 @@
 [2026-04-14T20:35:43] feat(career): enhance career pathway matching algorithm
 [2026-04-14T10:44:54] docs(telemetry): record platform assessment metrics
 [2026-04-14T22:50:23] refactor(counseling): streamline guidance flow
+[2026-04-14T10:05:45] feat(roadmap): add milestone progress tracking
