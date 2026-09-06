@@ -311,7 +311,7 @@ export default function CertificatePage() {
 
   const handleShareOnFeed = () => {
     if (!cert) return;
-    setModalOpen(true);
+    setShowShareModal(true);
   };
 
   const handleCopyPostText = async () => {
@@ -905,7 +905,7 @@ export default function CertificatePage() {
                   onChange={(e) => setCustomPostText(e.target.value)}
                 />
                 
-                <button className={styles.copyBtn} onClick={handleCopyText}>
+                <button className={styles.copyBtn} onClick={handleCopyPostText}>
                   {copied ? 'Copied! ✓' : 'Copy Post Text 📋'}
                 </button>
 
@@ -929,7 +929,7 @@ export default function CertificatePage() {
               </div>
               <div className={styles.modalFooter}>
                 <button className={styles.secondaryBtn} onClick={() => setShowShareModal(false)}>Cancel</button>
-                <button className={styles.primaryBtn} onClick={handleOpenLinkedIn}>
+                <button className={styles.primaryBtn} onClick={handleProceedToLinkedIn}>
                   Open LinkedIn Share &rarr;
                 </button>
               </div>
