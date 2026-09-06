@@ -10,10 +10,17 @@ import {
 import { getTransporter } from '@/utils/server/zohoMailer';
 import { getPasswordResetFrom } from '@/utils/server/env';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
+import { getClientAddress } from '@/utils/server/requestUtils';
 
 export const runtime = 'nodejs';
 
 const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
+
+const EMAIL_RATE_LIMITS = [
+  { name: 'emailMinute', windowMs: 60 * 1000, maxRequests: 10, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'emailIpHour', windowMs: 60 * 60 * 1000, maxRequests: 60, getSubject: ({ address }) => `ip:${address}` },
+];
 
 export async function POST(request) {
   try {
@@ -34,41 +41,40 @@ export async function POST(request) {
     const roadmapTitle = String(body.roadmapTitle || targetUser.roadmapTitle || 'Full Stack Web Development').trim();
     const progressCount = Number(body.progressCount || targetUser.completedNodesCount || 10) || 0;
     const degree = String(body.degree || targetUser.degree || 'B.Tech - Computer Science').trim();
-    const adminEmail = String(body.adminEmail || '').trim().toLowerCase();
 
-    // 0. Verify Admin Authorization (Primary token verification with robust fallback)
+    // 0. Verify Admin Authorization — Bearer token required, no fallbacks
     const authHeader = request.headers.get('authorization') || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
 
-    let isAdmin = false;
+    if (!token) {
+      return NextResponse.json({ error: 'Authentication required: Bearer token missing.' }, { status: 401 });
+    }
+
     let authUserEmail = '';
 
-    if (token) {
-      try {
-        const adminAuth = getFirebaseAdminAuth();
-        if (adminAuth) {
-          const decodedToken = await adminAuth.verifyIdToken(token);
-          authUserEmail = (decodedToken.email || '').toLowerCase();
-          isAdmin = await isUserAuthorizedAdmin(decodedToken);
-        }
-      } catch (authErr) {
-        console.warn('[Admin Send Email Auth Warning]:', authErr.message);
+    try {
+      const adminAuth = getFirebaseAdminAuth();
+      if (!adminAuth) {
+        return NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 });
       }
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      authUserEmail = (decodedToken.email || '').toLowerCase();
+      const isAdmin = await isUserAuthorizedAdmin(decodedToken);
+      if (!isAdmin) {
+        return NextResponse.json({ error: 'Unauthorized: Admin privileges required.' }, { status: 403 });
+      }
+
+      // Rate limiting
+      const address = getClientAddress(request);
+      const rateLimit = await checkServerRateLimit({ namespace: 'adminEmail', subject: { uid: decodedToken.uid, address }, limits: EMAIL_RATE_LIMITS, increment: true });
+      if (!rateLimit.allowed) {
+        return NextResponse.json({ error: 'Too many email requests. Please wait.' }, { status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) } });
+      }
+    } catch (authErr) {
+      console.warn('[Admin Send Email Auth Warning]:', authErr.message);
+      return NextResponse.json({ error: 'Invalid or expired authentication token.' }, { status: 401 });
     }
 
-    // Fallback check for founder email
-    if (
-      authUserEmail === ADMIN_CONFIRMATION_EMAIL ||
-      adminEmail === ADMIN_CONFIRMATION_EMAIL ||
-      reqUrl.searchParams.get('adminEmail') === ADMIN_CONFIRMATION_EMAIL ||
-      process.env.NODE_ENV === 'development'
-    ) {
-      isAdmin = true;
-    }
-
-    if (!isAdmin) {
-      return NextResponse.json({ error: 'Unauthorized: Admin privileges required' }, { status: 403 });
-    }
 
     const customSubject = typeof body.customSubject === 'string' ? body.customSubject.trim() : '';
     const customHtml = typeof body.customHtml === 'string' ? body.customHtml.trim() : '';
@@ -283,7 +289,7 @@ export async function POST(request) {
               templateId,
               subject,
               sentAt: new Date().toISOString(),
-              adminEmail: authUserEmail || adminEmail || 'harsh@skillbun.tech',
+              adminEmail: authUserEmail || 'harsh@skillbun.tech',
               forceOverride: Boolean(forceOverride),
             };
             await userDoc.ref.set({
@@ -311,9 +317,7 @@ export async function POST(request) {
     console.error('Admin Send Email API Error:', err);
     return NextResponse.json({
       success: false,
-      error: `Server error: ${err.message || 'Internal server error dispatching email'}`,
-      stack: err.stack || null,
-      details: String(err),
-    }, { status: 200 });
+      error: 'Internal server error dispatching email.',
+    }, { status: 500 });
   }
 }

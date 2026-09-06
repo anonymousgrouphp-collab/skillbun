@@ -93,7 +93,6 @@ export default function CertifyPage() {
 
   const { user, profile, authLoading } = useAuth();
   const [roadmapTitle, setRoadmapTitle] = useState('');
-  const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [progressInsufficient, setProgressInsufficient] = useState(false);
@@ -113,11 +112,14 @@ export default function CertifyPage() {
   const [cooldownRemaining, setCooldownRemaining] = useState(0);
 
   // Active quiz state
+  const [attemptId, setAttemptId] = useState('');
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [questionTimer, setQuestionTimer] = useState(45);
   const [ipAddress, setIpAddress] = useState('127.0.0.1');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [examResult, setExamResult] = useState({ score: 0, passed: false, correctCount: 0, review: [] });
 
   // Cheating protection
   const [showBlurModal, setShowBlurModal] = useState(false);
@@ -216,23 +218,66 @@ export default function CertifyPage() {
     }
   }, []);
 
-  // Handles moving to next question
+  // Submits the exam answers to the server for authoritative evaluation
+  const submitExam = useCallback(async (finalAnswers, isDevBypass = false) => {
+    if (isSubmitting || !user) return;
+    setIsSubmitting(true);
+    clearInterval(timerRef.current);
+
+    try {
+      const token = await user.getIdToken();
+      const res = await fetch('/api/certify/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          attemptId,
+          answers: finalAnswers,
+          isDevBypass: Boolean(isDevBypass),
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to evaluate exam.');
+      }
+
+      setExamResult({
+        score: data.score,
+        passed: data.passed,
+        correctCount: data.correctCount,
+        review: data.review || [],
+      });
+      setQuizState('results');
+    } catch (err) {
+      console.error('[Certify Submit Error]:', err);
+      alert(err.message || 'Submission error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [user, attemptId, isSubmitting]);
+
+  // Handles moving to next question or triggering submission on question 10
   const handleNextQuestion = useCallback((forcedVal = undefined) => {
     clearInterval(timerRef.current);
     const selected = forcedVal !== undefined ? forcedVal : selectedAnswers[currentIndex];
-    
-    // Default to unanswered if undefined
-    if (selected === undefined) {
-      setSelectedAnswers((prev) => ({ ...prev, [currentIndex]: -1 }));
-    }
+    const resolvedChoice = selected !== undefined ? selected : -1;
+
+    const nextAnswers = {
+      ...selectedAnswers,
+      [currentIndex]: resolvedChoice,
+    };
+    setSelectedAnswers(nextAnswers);
 
     if (currentIndex < 9) {
       setCurrentIndex((prev) => prev + 1);
       setQuestionTimer(45);
     } else {
-      setQuizState('results');
+      submitExam(nextAnswers, false);
     }
-  }, [currentIndex, selectedAnswers]);
+  }, [currentIndex, selectedAnswers, submitExam]);
 
   // Fetch roadmap, quiz questions, and config on mount
   useEffect(() => {
@@ -269,17 +314,7 @@ export default function CertifyPage() {
           }
         }
 
-        // 2. Fetch pre-generated quiz questions
-        const quizRes = await fetch(`/data/quizzes/${slug}.json`);
-        if (!quizRes.ok) {
-          setError('Certification quiz is not available for this roadmap yet.');
-          setLoading(false);
-          return;
-        }
-        const quizData = await quizRes.json();
-        setQuestions(quizData);
-
-        // 3. Set default certificate name
+        // 2. Set default certificate name
         setCertName(profile?.name || user.displayName || '');
 
         // 4. Fetch Turnstile Site Key from Config API
@@ -398,55 +433,66 @@ export default function CertifyPage() {
       return;
     }
 
-    // Append attempt record in Firestore
-    const services = getFirebaseServices();
-    if (services.configured && user) {
-      try {
-        const now = Date.now();
-        const nextAttempts = [...attemptsData.attempts, now];
-        await setDoc(doc(services.db, 'users', user.uid, 'quizAttempts', slug), {
-          slug,
-          attempts: nextAttempts,
-          lastAttemptAt: now,
-          updatedAt: serverTimestamp(),
-        }, { merge: true });
-      } catch (err) {
-        console.error('Failed to log quiz attempt:', err);
+    try {
+      setLoading(true);
+      const token = await user.getIdToken();
+      const res = await fetch('/api/certify/start', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          roadmapSlug: slug,
+          certName: certName.trim(),
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        if (data.reason === 'ALREADY_CERTIFIED') {
+          setIsAlreadyCertified(true);
+          setExistingCertId(data.certId || '');
+          return;
+        }
+        if (data.reason === 'DAILY_LIMIT_EXCEEDED') {
+          setIsLocked(true);
+          setLockReason('daily');
+          setCooldownRemaining(data.cooldownRemaining || 86400);
+          return;
+        }
+        if (data.reason === 'COOLDOWN_ACTIVE') {
+          setIsLocked(true);
+          setLockReason('cooldown');
+          setCooldownRemaining(data.cooldownRemaining || 3600);
+          return;
+        }
+        if (data.reason === 'PROGRESS_INSUFFICIENT') {
+          setProgressInsufficient(true);
+          return;
+        }
+        throw new Error(data.error || 'Failed to start certification exam.');
       }
+
+      setAttemptId(data.attemptId);
+      setShuffledQuestions(data.questions || []);
+      setCurrentIndex(0);
+      setSelectedAnswers({});
+      setQuestionTimer(45);
+      setQuizState('active');
+      trackEvent('certification_quiz_started', {
+        roadmap_slug: slug,
+        question_count: (data.questions || []).length,
+      });
+      setViolationCount(0);
+      violationRef.current = 0;
+      lastViolationRef.current = 0;
+    } catch (err) {
+      console.error('[Start Exam Error]:', err);
+      alert(err.message || 'Could not start exam. Please try again.');
+    } finally {
+      setLoading(false);
     }
-
-    // Select and shuffle 10 questions: 3 easy, 5 moderate, 2 hard
-    const easy = questions.filter((q) => q.difficulty === 'easy');
-    const moderate = questions.filter((q) => q.difficulty === 'moderate');
-    const hard = questions.filter((q) => q.difficulty === 'hard');
-
-    const selectedEasy = shuffleArray(easy).slice(0, 3);
-    const selectedMod = shuffleArray(moderate).slice(0, 5);
-    const selectedHard = shuffleArray(hard).slice(0, 2);
-
-    const merged = [...selectedEasy, ...selectedMod, ...selectedHard];
-    const shuffled = shuffleArray(merged).map((q) => {
-      const correctOption = q.options[q.correctIndex];
-      const shuffledOptions = shuffleArray(q.options);
-      return {
-        ...q,
-        options: shuffledOptions,
-        correctIndex: shuffledOptions.indexOf(correctOption),
-      };
-    });
-
-    setShuffledQuestions(shuffled);
-    setCurrentIndex(0);
-    setSelectedAnswers({});
-    setQuestionTimer(45);
-    setQuizState('active');
-    posthog.capture('certification_quiz_started', {
-      roadmap_slug: slug,
-      question_count: shuffled.length,
-    });
-    setViolationCount(0);
-    violationRef.current = 0;
-    lastViolationRef.current = 0;
   };
 
   // Live Timer logic (using absolute time to prevent throttling on tab switch)
@@ -571,24 +617,10 @@ export default function CertifyPage() {
     };
   }, [quizState]);
 
-  // Compute final score
-  const { score, passed, correctCount } = useMemo(() => {
-    if (quizState !== 'results') return { score: 0, passed: false, correctCount: 0 };
-
-    let correct = 0;
-    shuffledQuestions.forEach((q, idx) => {
-      if (selectedAnswers[idx] === q.correctIndex) {
-        correct++;
-      }
-    });
-
-    const finalScore = Math.round((correct / 10) * 100);
-    return {
-      score: finalScore,
-      passed: finalScore >= 70,
-      correctCount: correct,
-    };
-  }, [quizState, shuffledQuestions, selectedAnswers]);
+  // Server-evaluated exam results
+  const score = examResult.score;
+  const passed = examResult.passed;
+  const correctCount = examResult.correctCount;
 
   useEffect(() => {
     if (quizState === 'results') {
@@ -616,10 +648,10 @@ export default function CertifyPage() {
           'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
+          attemptId,
           name: certName.trim(),
           roadmapSlug: slug,
           roadmapTitle: roadmapTitle,
-          score: score,
         }),
       });
 
@@ -629,7 +661,7 @@ export default function CertifyPage() {
         throw new Error(data.error || 'Failed to issue certificate.');
       }
 
-      trackEvent('cert_issued', { cert_id: data.certId, slug, score });
+      trackEvent('cert_issued', { cert_id: data.certId, slug, score: data.score || score });
       router.push(`/certificate/${data.certId}`);
     } catch (err) {
       console.error('Failed to mint certificate:', err);
@@ -822,10 +854,7 @@ export default function CertifyPage() {
                 className={styles.questionNum}
                 onDoubleClick={() => {
                   if (process.env.NODE_ENV === 'development') {
-                    const mockAnswers = {};
-                    shuffledQuestions.forEach((q, i) => { mockAnswers[i] = q.correctIndex; });
-                    setSelectedAnswers(mockAnswers);
-                    setQuizState('results');
+                    submitExam(selectedAnswers, true);
                   }
                 }}
                 style={{ cursor: process.env.NODE_ENV === 'development' ? 'pointer' : 'default' }}
@@ -936,17 +965,16 @@ export default function CertifyPage() {
                 <div className={styles.reviewSection}>
                   <h3>Review Questions & Explanations:</h3>
                   <div className={styles.reviewList}>
-                    {shuffledQuestions.map((q, idx) => {
-                      const userAns = selectedAnswers[idx];
-                      const isCorrect = userAns === q.correctIndex;
+                    {(examResult.review || []).map((item, idx) => {
+                      const isCorrect = item.isCorrect;
                       return (
                         <div key={idx} className={`${styles.reviewItem} ${isCorrect ? styles.revCorrect : styles.revIncorrect}`}>
-                          <p className={styles.revQuestion}><strong>Q{idx + 1}:</strong> {q.question}</p>
+                          <p className={styles.revQuestion}><strong>Q{idx + 1}:</strong> {item.question}</p>
                           <p className={styles.revChoice}>
-                            Your answer: <span className={styles.ansTxt}>{userAns >= 0 ? q.options[userAns] : 'No Answer (Timed out)'}</span>
+                            Your answer: <span className={styles.ansTxt}>{item.userChoice >= 0 && item.options ? item.options[item.userChoice] : 'No Answer (Timed out)'}</span>
                             {!isCorrect && <span style={{color: '#f85149', fontWeight: 'bold', marginLeft: '8px'}}>(Incorrect)</span>}
                           </p>
-                          {isCorrect && <p className={styles.revExplanation}><strong>Explanation:</strong> {q.explanation}</p>}
+                          {item.explanation && <p className={styles.revExplanation}><strong>Explanation:</strong> {item.explanation}</p>}
                         </div>
                       );
                     })}

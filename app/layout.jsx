@@ -82,7 +82,7 @@ export const metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'SkillBun – 100% Free AI Tech Career Roadmaps & Certifications',
     description: '100% Free AI guidance, 100+ tech career roadmaps, adaptive quizzes, and free verified certificates for students.',
     images: ['/logo.png'],
@@ -103,8 +103,8 @@ const jsonLdStructuredData = {
       description: 'SkillBun helps BCA, BSc, B.Tech, and MCA tech students find their ideal career path through 100% free AI guidance, 100+ structured roadmaps, and free verified certificates.',
       isAccessibleForFree: true,
       sameAs: [
-        'https://github.com/skillbun',
-        'https://linkedin.com/company/skillbun',
+        'https://www.linkedin.com/company/skillbun-tech/',
+        'https://www.instagram.com/skillbun.tech/',
       ],
     },
     {
@@ -202,6 +202,20 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdStructuredData) }}
         />
+        {/* Google Consent Mode v2 Default (denied until user grants consent) */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          var consentStatus = 'denied';
+          try {
+            if (localStorage.getItem('sb_consent_choice') === 'accepted') consentStatus = 'granted';
+          } catch(e){}
+          gtag('consent', 'default', {
+            'analytics_storage': consentStatus,
+            'ad_storage': 'denied',
+            'personalization_storage': 'denied'
+          });
+        `}} />
         {/* Theme initialization — runs before paint to prevent flash */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){

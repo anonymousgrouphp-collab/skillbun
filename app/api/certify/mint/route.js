@@ -78,10 +78,10 @@ export async function POST(request) {
     // ==========================================
     if (certType === 'ROADMAP') {
       const schemaCheck = validateSchema(rawBody, {
+        attemptId: { type: 'string', required: true, minLength: 10, maxLength: 120, label: 'Exam Attempt ID' },
         name: { type: 'string', required: true, minLength: 1, maxLength: 100, label: 'Candidate Name' },
         roadmapSlug: { type: 'string', required: true, minLength: 1, maxLength: 80, pattern: /^[a-z0-9_]+$/, label: 'Roadmap Slug' },
         roadmapTitle: { type: 'string', required: true, minLength: 1, maxLength: 150, label: 'Roadmap Title' },
-        score: { type: 'integer', required: true, min: 70, max: 100, label: 'Exam Score' },
         cert_type: { type: 'string', required: false },
       }, {
         fieldName: 'Certificate mint payload',
@@ -93,42 +93,80 @@ export async function POST(request) {
         return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
       }
 
-      const { name, roadmapSlug, roadmapTitle, score } = schemaCheck.value;
+      const { attemptId, name, roadmapSlug, roadmapTitle } = schemaCheck.value;
 
-      // Verify Roadmap Progress Eligibility in production
-      if (process.env.NODE_ENV === 'production') {
-        try {
-          const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').doc(roadmapSlug).get();
-          if (!progSnap.exists) {
-            return NextResponse.json({
-              error: 'You must complete roadmap topics before qualifying for a verified certificate.'
-            }, { status: 403 });
-          }
-        } catch (progErr) {
-          console.warn('[Cert Mint Progress Check Warning]:', progErr.message);
-        }
+      // 1. Authoritative Exam Verification: Fetch attempt record from Firestore
+      const attemptRef = db.collection('examAttempts').doc(attemptId);
+      const attemptSnap = await attemptRef.get();
+
+      if (!attemptSnap.exists) {
+        return NextResponse.json({ error: 'Exam attempt record not found. Please complete the exam first.' }, { status: 404 });
       }
 
+      const attemptData = attemptSnap.data();
+
+      // Verify Attempt Ownership
+      if (attemptData.uid !== uid) {
+        return NextResponse.json({ error: 'Unauthorized: Attempt belongs to another user.' }, { status: 403 });
+      }
+
+      // Verify Roadmap Match
+      if (attemptData.roadmapSlug !== roadmapSlug) {
+        return NextResponse.json({ error: 'Exam attempt does not match the requested roadmap.' }, { status: 400 });
+      }
+
+      // Verify Exam was Completed and Passed
+      if (attemptData.status !== 'COMPLETED' || !attemptData.passed) {
+        return NextResponse.json({
+          error: 'Cannot issue certificate: Exam attempt was not completed or passing grade (70%) was not achieved.',
+          score: attemptData.score ?? 0,
+          passed: Boolean(attemptData.passed),
+        }, { status: 400 });
+      }
+
+      // Verify Anti-Replay: Certificate must not have been minted already from this attempt
+      if (attemptData.minted) {
+        return NextResponse.json({
+          error: 'A certificate has already been issued for this exam attempt.',
+          certId: attemptData.certId || null,
+        }, { status: 400 });
+      }
+
+      const verifiedScore = attemptData.score;
       const certId = generateCertificateId();
       const certRef = db.collection('certificates').doc(certId);
+      const now = new Date();
 
-      await certRef.set({
+      // Atomic commit: mint certificate and mark attempt as minted
+      const batch = db.batch();
+      batch.set(certRef, {
         id: certId,
         uid,
         name: name.trim(),
         email,
         roadmapSlug,
         roadmapTitle: roadmapTitle.trim(),
-        score,
+        score: verifiedScore,
+        attemptId,
         cert_type: 'ROADMAP',
         is_revoked: false,
-        createdAt: new Date(),
+        createdAt: now,
       });
+
+      batch.update(attemptRef, {
+        minted: true,
+        certId,
+        mintedAt: now,
+        updatedAt: now,
+      });
+
+      await batch.commit();
 
       return NextResponse.json({
         success: true,
         certId,
         cert_type: 'ROADMAP',
+        score: verifiedScore,
         message: 'Verified certificate minted successfully.',
       });
     }

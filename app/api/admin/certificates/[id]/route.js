@@ -1,44 +1,51 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
+import { getClientAddress } from '@/utils/server/requestUtils';
 
 export const runtime = 'nodejs';
 
-const ADMIN_CONFIRMATION_EMAIL = 'harsh@skillbun.tech';
+const ADMIN_RATE_LIMITS = [
+  { name: 'adminMinute', windowMs: 60 * 1000, maxRequests: 30, getSubject: ({ uid }) => `user:${uid}` },
+  { name: 'adminIpHour', windowMs: 60 * 60 * 1000, maxRequests: 200, getSubject: ({ address }) => `ip:${address}` },
+];
 
 async function verifyAdminAuth(request) {
   const authHeader = request.headers.get('authorization') || '';
   const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7).trim() : '';
 
-  if (token) {
-    try {
-      const adminAuth = getFirebaseAdminAuth();
-      if (adminAuth) {
-        const decoded = await adminAuth.verifyIdToken(token);
-        const isAdmin = await isUserAuthorizedAdmin(decoded);
-        if (isAdmin) {
-          return { authorized: true, email: (decoded.email || '').toLowerCase(), uid: decoded.uid };
-        }
-      }
-    } catch (e) {
-      console.warn('[Admin Certificate [id] Auth Warning]:', e.message);
+  if (!token) {
+    return { authorized: false, response: NextResponse.json({ error: 'Authentication required: Bearer token missing.' }, { status: 401 }) };
+  }
+
+  try {
+    const adminAuth = getFirebaseAdminAuth();
+    if (!adminAuth) {
+      return { authorized: false, response: NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 }) };
     }
+    const decoded = await adminAuth.verifyIdToken(token);
+    const isAdmin = await isUserAuthorizedAdmin(decoded);
+    if (isAdmin) {
+      return { authorized: true, email: (decoded.email || '').toLowerCase(), uid: decoded.uid };
+    }
+    return { authorized: false, response: NextResponse.json({ error: 'Unauthorized: Admin privileges required.' }, { status: 403 }) };
+  } catch (e) {
+    console.warn('[Admin Certificate [id] Auth Warning]:', e.message);
+    return { authorized: false, response: NextResponse.json({ error: 'Invalid or expired authentication token.' }, { status: 401 }) };
   }
-
-  // Fallback for local development or founder email
-  const url = new URL(request.url);
-  const adminEmail = (url.searchParams.get('adminEmail') || '').toLowerCase();
-  if (adminEmail === ADMIN_CONFIRMATION_EMAIL || process.env.NODE_ENV === 'development') {
-    return { authorized: true, email: ADMIN_CONFIRMATION_EMAIL, uid: 'admin_dev' };
-  }
-
-  return { authorized: false, response: NextResponse.json({ error: 'Unauthorized: Admin privileges required.' }, { status: 403 }) };
 }
 
 export async function GET(request, { params }) {
   try {
     const auth = await verifyAdminAuth(request);
     if (!auth.authorized) return auth.response;
+
+    const address = getClientAddress(request);
+    const rateLimit = await checkServerRateLimit({ namespace: 'adminCerts', subject: { uid: auth.uid, address }, limits: ADMIN_RATE_LIMITS, increment: true });
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please wait.' }, { status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) } });
+    }
 
     const { id } = await params;
     if (!id) return NextResponse.json({ error: 'Certificate ID is required.' }, { status: 400 });
@@ -65,6 +72,12 @@ export async function PATCH(request, { params }) {
   try {
     const auth = await verifyAdminAuth(request);
     if (!auth.authorized) return auth.response;
+
+    const address = getClientAddress(request);
+    const rateLimit = await checkServerRateLimit({ namespace: 'adminCerts', subject: { uid: auth.uid, address }, limits: ADMIN_RATE_LIMITS, increment: true });
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please wait.' }, { status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) } });
+    }
 
     const { id } = await params;
     if (!id) return NextResponse.json({ error: 'Certificate ID is required.' }, { status: 400 });
@@ -122,6 +135,12 @@ export async function DELETE(request, { params }) {
   try {
     const auth = await verifyAdminAuth(request);
     if (!auth.authorized) return auth.response;
+
+    const address = getClientAddress(request);
+    const rateLimit = await checkServerRateLimit({ namespace: 'adminCerts', subject: { uid: auth.uid, address }, limits: ADMIN_RATE_LIMITS, increment: true });
+    if (!rateLimit.allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please wait.' }, { status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(rateLimit.retryAfterMs / 1000))) } });
+    }
 
     const { id } = await params;
     if (!id) return NextResponse.json({ error: 'Certificate ID is required.' }, { status: 400 });

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { normalizeInternalPath } from '@/utils/shared/routes';
 import { Cinzel, Pixelify_Sans } from 'next/font/google';
@@ -96,6 +97,7 @@ const BUNBOT_DEMO_PROMPTS = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   const [showSplash, setShowSplash] = useState(true);
   const [activeBunBotPrompt, setActiveBunBotPrompt] = useState(0);
 
@@ -219,7 +221,7 @@ export default function Home() {
 
   const openAuthModal = (destination) => {
     localStorage.setItem('sb_dest', normalizeInternalPath(destination, '/quiz'));
-    window.location.assign(`/auth?next=${encodeURIComponent(destination)}`);
+    router.push(`/auth?next=${encodeURIComponent(destination)}`);
   };
 
   return (
