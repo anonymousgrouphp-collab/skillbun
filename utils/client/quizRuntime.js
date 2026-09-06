@@ -64,7 +64,7 @@ export function mountQuizRuntime() {
       .map(([t, s]) => `${t}: ${s}`)
       .join(', ');
 
-    return `You are SkillBun's AI Tech Mentor for Indian students.
+    return `You are SkillBun's AI Tech Mentor for computer science and tech students worldwide.
 STUDENT PROFILE:
 - Name: ${state.userProfile.name}
 - Degree: ${state.userProfile.degree}
@@ -77,7 +77,7 @@ STUDENT ANSWERS SO FAR (Questions 1-7):
 ${qSummary}
 
 YOUR TASK:
-Based on their answers above, generate ONE highly tailored, realistic Indian tech workplace scenario question for Question 8 (Phase 3: AI Niche Deep-Dive).
+Based on their answers above, generate ONE highly tailored, realistic modern tech workplace scenario question for Question 8 (Phase 3: AI Niche Deep-Dive).
 Test their preference between 2 competing technical sub-specializations inside their dominant pillar (${dominantPillar}).
 
 RESPONSE FORMAT (JSON ONLY, no markdown):
@@ -143,9 +143,9 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       "matchPercent": 94,
       "description": "2-3 sentences explaining WHY based on their specific answers.",
       "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"],
-      "salaryRange": "₹X - ₹Y LPA (entry level in India)",
+      "salaryRange": "$XXk - $YYk USD / regional equivalent (entry level)",
       "demand": "High/Medium/Growing",
-      "nextSteps": "Specific, actionable steps for an Indian student.",
+      "nextSteps": "Specific, actionable steps for a tech student or junior developer.",
       "roadmapUrl": "exact_slug_from_list"
     },
     { "rank": 2, ... },
@@ -193,41 +193,41 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
 
   const fallbackCatalog = {
     // Systems
-    fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frontend and backend frameworks.', salary: '₹6 - ₹14 LPA', demand: 'High', skills: ['JavaScript', 'React/Next.js', 'Node.js', 'PostgreSQL', 'REST APIs'] },
-    frontend: { title: 'Frontend Developer', desc: 'Craft high-performance, responsive web interfaces and modern UI design systems.', salary: '₹5 - ₹13 LPA', demand: 'High', skills: ['HTML/CSS', 'JavaScript', 'React', 'Tailwind', 'Web Performance'] },
-    backend: { title: 'Backend Systems Engineer', desc: 'Design microservices, high-throughput APIs, data pipelines, and database models.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Node.js/Go/Python', 'System Design', 'Databases', 'Docker', 'API Security'] },
-    nextjs_developer: { title: 'Next.js & React Developer', desc: 'Build modern server-rendered web applications with Next.js & React.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Next.js', 'React', 'TypeScript', 'Server Components', 'GraphQL'] },
-    android: { title: 'Android Mobile Developer', desc: 'Build native Android apps used by millions globally using Kotlin and Jetpack Compose.', salary: '₹5 - ₹14 LPA', demand: 'High', skills: ['Kotlin', 'Android SDK', 'Jetpack Compose', 'REST APIs', 'MVVM'] },
-    ios_developer: { title: 'iOS Mobile Developer', desc: 'Craft sleek, high-end native iOS applications for Apple devices.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Swift', 'SwiftUI', 'Xcode', 'CoreData', 'iOS Design'] },
-    flutter_developer: { title: 'Flutter Developer', desc: 'Build multi-platform mobile apps from a single codebase using Flutter.', salary: '₹5 - ₹13 LPA', demand: 'High', skills: ['Dart', 'Flutter', 'State Management', 'Firebase', 'Mobile UI'] },
-    react_native_developer: { title: 'React Native Developer', desc: 'Build cross-platform iOS and Android apps using React and JavaScript.', salary: '₹6 - ₹14 LPA', demand: 'High', skills: ['React Native', 'JavaScript', 'Redux', 'Native Modules', 'Mobile Optimization'] },
-    python_developer: { title: 'Python Software Engineer', desc: 'Build backend microservices, automation engines, and data applications.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Python', 'Django/FastAPI', 'PostgreSQL', 'Data Structures', 'Async IO'] },
-    java_developer: { title: 'Java Enterprise Engineer', desc: 'Engineer robust enterprise platforms and backend microservices using Java & Spring.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Java', 'Spring Boot', 'Microservices', 'Hibernate', 'SQL'] },
-    go_developer: { title: 'Go Systems Engineer', desc: 'Build ultra-fast, concurrent backend microservices and cloud infrastructure engines.', salary: '₹8 - ₹18 LPA', demand: 'High', skills: ['Go', 'Concurrency', 'gRPC', 'Docker', 'Distributed Systems'] },
+    fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frontend and backend frameworks.', salary: '$75k - $130k / yr (₹6 - ₹14 LPA)', demand: 'High', skills: ['JavaScript', 'React/Next.js', 'Node.js', 'PostgreSQL', 'REST APIs'] },
+    frontend: { title: 'Frontend Developer', desc: 'Craft high-performance, responsive web interfaces and modern UI design systems.', salary: '$70k - $120k / yr (₹5 - ₹13 LPA)', demand: 'High', skills: ['HTML/CSS', 'JavaScript', 'React', 'Tailwind', 'Web Performance'] },
+    backend: { title: 'Backend Systems Engineer', desc: 'Design microservices, high-throughput APIs, data pipelines, and database models.', salary: '$80k - $140k / yr (₹7 - ₹16 LPA)', demand: 'High', skills: ['Node.js/Go/Python', 'System Design', 'Databases', 'Docker', 'API Security'] },
+    nextjs_developer: { title: 'Next.js & React Developer', desc: 'Build modern server-rendered web applications with Next.js & React.', salary: '$75k - $135k / yr (₹6 - ₹15 LPA)', demand: 'High', skills: ['Next.js', 'React', 'TypeScript', 'Server Components', 'GraphQL'] },
+    android: { title: 'Android Mobile Developer', desc: 'Build native Android apps used by millions globally using Kotlin and Jetpack Compose.', salary: '$70k - $125k / yr (₹5 - ₹14 LPA)', demand: 'High', skills: ['Kotlin', 'Android SDK', 'Jetpack Compose', 'REST APIs', 'MVVM'] },
+    ios_developer: { title: 'iOS Mobile Developer', desc: 'Craft sleek, high-end native iOS applications for Apple devices.', salary: '$80k - $145k / yr (₹7 - ₹16 LPA)', demand: 'High', skills: ['Swift', 'SwiftUI', 'Xcode', 'CoreData', 'iOS Design'] },
+    flutter_developer: { title: 'Flutter Developer', desc: 'Build multi-platform mobile apps from a single codebase using Flutter.', salary: '$70k - $120k / yr (₹5 - ₹13 LPA)', demand: 'High', skills: ['Dart', 'Flutter', 'State Management', 'Firebase', 'Mobile UI'] },
+    react_native_developer: { title: 'React Native Developer', desc: 'Build cross-platform iOS and Android apps using React and JavaScript.', salary: '$75k - $130k / yr (₹6 - ₹14 LPA)', demand: 'High', skills: ['React Native', 'JavaScript', 'Redux', 'Native Modules', 'Mobile Optimization'] },
+    python_developer: { title: 'Python Software Engineer', desc: 'Build backend microservices, automation engines, and data applications.', salary: '$75k - $135k / yr (₹6 - ₹15 LPA)', demand: 'High', skills: ['Python', 'Django/FastAPI', 'PostgreSQL', 'Data Structures', 'Async IO'] },
+    java_developer: { title: 'Java Enterprise Engineer', desc: 'Engineer robust enterprise platforms and backend microservices using Java & Spring.', salary: '$75k - $135k / yr (₹6 - ₹15 LPA)', demand: 'High', skills: ['Java', 'Spring Boot', 'Microservices', 'Hibernate', 'SQL'] },
+    go_developer: { title: 'Go Systems Engineer', desc: 'Build ultra-fast, concurrent backend microservices and cloud infrastructure engines.', salary: '$85k - $155k / yr (₹8 - ₹18 LPA)', demand: 'High', skills: ['Go', 'Concurrency', 'gRPC', 'Docker', 'Distributed Systems'] },
 
     // Data & AI
-    ai_ml_engineer: { title: 'AI & Machine Learning Engineer', desc: 'Develop intelligent AI models, neural networks, and LLM applications.', salary: '₹8 - ₹18 LPA', demand: 'High', skills: ['Python', 'PyTorch/TensorFlow', 'LLMs & RAG', 'Scikit-Learn', 'Math & Stats'] },
-    data_science: { title: 'Data Scientist', desc: 'Extract strategic insights and predictive models from complex corporate datasets.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Python/R', 'Pandas', 'Statistical Modeling', 'Machine Learning', 'SQL'] },
-    data_engineering: { title: 'Data Engineer', desc: 'Build distributed data pipelines, ETL flows, and cloud data warehouses.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Apache Spark', 'SQL', 'Kafka', 'Python/Scala', 'Data Warehouses'] },
-    data_analyst: { title: 'Data Analyst', desc: 'Analyze data trends, build interactive dashboards, and drive business decision-making.', salary: '₹4.5 - ₹10 LPA', demand: 'High', skills: ['SQL', 'Excel', 'Tableau/PowerBI', 'Python', 'Business Metrics'] },
+    ai_ml_engineer: { title: 'AI & Machine Learning Engineer', desc: 'Develop intelligent AI models, neural networks, and LLM applications.', salary: '$90k - $160k / yr (₹8 - ₹18 LPA)', demand: 'High', skills: ['Python', 'PyTorch/TensorFlow', 'LLMs & RAG', 'Scikit-Learn', 'Math & Stats'] },
+    data_science: { title: 'Data Scientist', desc: 'Extract strategic insights and predictive models from complex corporate datasets.', salary: '$80k - $140k / yr (₹6 - ₹15 LPA)', demand: 'High', skills: ['Python/R', 'Pandas', 'Statistical Modeling', 'Machine Learning', 'SQL'] },
+    data_engineering: { title: 'Data Engineer', desc: 'Build distributed data pipelines, ETL flows, and cloud data warehouses.', salary: '$85k - $150k / yr (₹7 - ₹16 LPA)', demand: 'High', skills: ['Apache Spark', 'SQL', 'Kafka', 'Python/Scala', 'Data Warehouses'] },
+    data_analyst: { title: 'Data Analyst', desc: 'Analyze data trends, build interactive dashboards, and drive business decision-making.', salary: '$60k - $100k / yr (₹4.5 - ₹10 LPA)', demand: 'High', skills: ['SQL', 'Excel', 'Tableau/PowerBI', 'Python', 'Business Metrics'] },
 
     // Cloud & Infra & Security
-    devops_cloud: { title: 'DevOps & Cloud Engineer', desc: 'Automate CI/CD pipelines, Docker containers, and cloud infrastructure.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['AWS/Azure', 'Docker & Kubernetes', 'Terraform', 'CI/CD', 'Linux'] },
-    cybersecurity: { title: 'Cybersecurity Specialist', desc: 'Protect corporate networks, perform vulnerability audits, and safeguard data.', salary: '₹6 - ₹15 LPA', demand: 'High', skills: ['Network Security', 'Ethical Hacking', 'SIEM Tools', 'Cryptography', 'Linux'] },
-    penetration_tester: { title: 'Penetration Tester / Red Teamer', desc: 'Simulate real-world cyberattacks to identify vulnerabilities in security posture.', salary: '₹7 - ₹16 LPA', demand: 'High', skills: ['Metasploit', 'Burp Suite', 'Web Security', 'Reverse Engineering', 'OSCP'] },
-    cloud_architect: { title: 'Cloud Solutions Architect', desc: 'Design resilient, cost-effective, and secure enterprise multi-cloud architectures.', salary: '₹10 - ₹22 LPA', demand: 'High', skills: ['AWS/GCP/Azure', 'System Design', 'Cloud Security', 'Cost Optimization', 'Networking'] },
+    devops_cloud: { title: 'DevOps & Cloud Engineer', desc: 'Automate CI/CD pipelines, Docker containers, and cloud infrastructure.', salary: '$85k - $150k / yr (₹7 - ₹16 LPA)', demand: 'High', skills: ['AWS/Azure', 'Docker & Kubernetes', 'Terraform', 'CI/CD', 'Linux'] },
+    cybersecurity: { title: 'Cybersecurity Specialist', desc: 'Protect corporate networks, perform vulnerability audits, and safeguard data.', salary: '$75k - $140k / yr (₹6 - ₹15 LPA)', demand: 'High', skills: ['Network Security', 'Ethical Hacking', 'SIEM Tools', 'Cryptography', 'Linux'] },
+    penetration_tester: { title: 'Penetration Tester / Red Teamer', desc: 'Simulate real-world cyberattacks to identify vulnerabilities in security posture.', salary: '$80k - $150k / yr (₹7 - ₹16 LPA)', demand: 'High', skills: ['Metasploit', 'Burp Suite', 'Web Security', 'Reverse Engineering', 'OSCP'] },
+    cloud_architect: { title: 'Cloud Solutions Architect', desc: 'Design resilient, cost-effective, and secure enterprise multi-cloud architectures.', salary: '$110k - $190k / yr (₹10 - ₹22 LPA)', demand: 'High', skills: ['AWS/GCP/Azure', 'System Design', 'Cloud Security', 'Cost Optimization', 'Networking'] },
 
     // Design & Product
-    ui_ux_design: { title: 'UI/UX Product Designer', desc: 'Craft delightful, user-centered digital interfaces and design systems.', salary: '₹5 - ₹12 LPA', demand: 'High', skills: ['Figma', 'User Research', 'Wireframing', 'Prototyping', 'Design Systems'] },
-    product_manager: { title: 'Technical Product Manager', desc: 'Bridge business strategy, user empathy, and engineering execution.', salary: '₹8 - ₹18 LPA', demand: 'Growing', skills: ['Product Roadmap', 'Agile/Scrum', 'User Analytics', 'Feature Specifying', 'Leadership'] },
-    qa_automation: { title: 'QA Automation Engineer', desc: 'Build automated testing suites and ensure software release quality across applications.', salary: '₹5 - ₹12 LPA', demand: 'High', skills: ['Selenium/Cypress', 'Playwright', 'JavaScript/Python', 'API Testing', 'CI/CD'] }
+    ui_ux_design: { title: 'UI/UX Product Designer', desc: 'Craft delightful, user-centered digital interfaces and design systems.', salary: '$65k - $120k / yr (₹5 - ₹12 LPA)', demand: 'High', skills: ['Figma', 'User Research', 'Wireframing', 'Prototyping', 'Design Systems'] },
+    product_manager: { title: 'Technical Product Manager', desc: 'Bridge business strategy, user empathy, and engineering execution.', salary: '$85k - $160k / yr (₹8 - ₹18 LPA)', demand: 'Growing', skills: ['Product Roadmap', 'Agile/Scrum', 'User Analytics', 'Feature Specifying', 'Leadership'] },
+    qa_automation: { title: 'QA Automation Engineer', desc: 'Build automated testing suites and ensure software release quality across applications.', salary: '$65k - $115k / yr (₹5 - ₹12 LPA)', demand: 'High', skills: ['Selenium/Cypress', 'Playwright', 'JavaScript/Python', 'API Testing', 'CI/CD'] }
   };
 
   function getMeta(slug) {
     return fallbackCatalog[slug] || {
       title: slug.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
       desc: 'Master the core skills and technology stack for this high-demand career path.',
-      salary: '₹6 - ₹14 LPA',
+      salary: '$75k - $130k / yr (₹6 - ₹14 LPA)',
       demand: 'High',
       skills: ['Core Fundamentals', 'Problem Solving', 'Tools & Frameworks', 'Agile Workflows']
     };
@@ -287,7 +287,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
     phase1: [
       {
         id: 101, phase: 1,
-        q: "Your college team is building a major project for an all-India hackathon. Which part of the project do you naturally take charge of, {name}?",
+        q: "Your college team is building a major project for an international tech hackathon. Which part of the project do you naturally take charge of, {name}?",
         options: [
           { l: "A", t: "Designing and building the core application logic, APIs, and databases so everything runs reliably.", pillar: "systems", tags: ["fullstack", "backend", "frontend"], i: "Solid engineering instinct, {name}! You naturally focus on core application architecture." },
           { l: "B", t: "Training an intelligent model or analyzing datasets to give your project smart predictive capabilities.", pillar: "data_ai", tags: ["ai_ml_engineer", "data_science"], i: "Analytical mindset, {name}! You look for patterns and intelligence in data." },
@@ -297,7 +297,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       },
       {
         id: 102, phase: 1,
-        q: "During a major online sale in India, the e-commerce backend experiences severe lag. What is your immediate diagnostic reaction, {name}?",
+        q: "During a global product launch event, the e-commerce backend experiences severe lag. What is your immediate diagnostic reaction, {name}?",
         options: [
           { l: "A", t: "Inspect server-side execution traces, database queries, and async code execution bottlenecks.", pillar: "systems", tags: ["backend", "java_developer", "go_developer"], i: "Deep troubleshooter, {name}! You jump right into code execution performance." },
           { l: "B", t: "Analyze real-time event telemetry to understand drop-offs, user funnel anomalies, and anomaly alerts.", pillar: "data_ai", tags: ["data_analyst", "analytics_engineer"], i: "Data-driven approach, {name}! You look at system health through metrics and user data." },

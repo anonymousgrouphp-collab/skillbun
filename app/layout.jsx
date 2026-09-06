@@ -32,15 +32,15 @@ export const metadata = {
     default: 'SkillBun – 100% Free AI Tech Career Roadmaps & Verified Certifications',
     template: '%s | SkillBun',
   },
-  description: 'SkillBun is a 100% Free AI-powered career discovery platform for BCA, BSc, B.Tech, and MCA students. Explore 100+ free step-by-step career roadmaps, adaptive AI quizzes, Bun-Bot AI counsellor, and earn free verified digital certificates.',
+  description: 'SkillBun is a 100% Free AI-powered career discovery platform for computer science, software engineering, and tech students worldwide. Explore 100+ free step-by-step career roadmaps, adaptive AI quizzes, Bun-Bot AI counsellor, and earn free verified digital certificates.',
   keywords: [
     'SkillBun',
     'Free Tech Career Roadmaps',
     'Free Developer Certifications',
     'Free AI Career Counsellor',
     'Free Coding Quiz',
-    'BCA Career Guide',
-    'BTech Skill Trees',
+    'Global Tech Career Paths',
+    'Computer Science Skill Trees',
     'Frontend Roadmap Free',
     'Backend Roadmap Free',
     'AI ML Roadmap Free',
@@ -67,7 +67,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'SkillBun – 100% Free AI Tech Career Roadmaps & Verified Certifications',
-    description: '100% Free tech career roadmaps, adaptive AI quizzes, Bun-Bot AI mentor, and verified certificates for BCA, BSc, B.Tech, and MCA students.',
+    description: '100% Free tech career roadmaps, adaptive AI quizzes, Bun-Bot AI mentor, and verified certificates for computer science and tech students globally.',
     url: siteUrl,
     siteName: 'SkillBun',
     images: [
@@ -84,7 +84,7 @@ export const metadata = {
   twitter: {
     card: 'summary',
     title: 'SkillBun – 100% Free AI Tech Career Roadmaps & Certifications',
-    description: '100% Free AI guidance, 100+ tech career roadmaps, adaptive quizzes, and free verified certificates for students.',
+    description: '100% Free AI guidance, 100+ tech career roadmaps, adaptive quizzes, and free verified certificates for students worldwide.',
     images: ['/logo.png'],
     creator: '@SkillBun',
   },
@@ -100,7 +100,7 @@ const jsonLdStructuredData = {
       url: siteUrl,
       logo: `${siteUrl}/logo.png`,
       image: `${siteUrl}/logo.png`,
-      description: 'SkillBun helps BCA, BSc, B.Tech, and MCA tech students find their ideal career path through 100% free AI guidance, 100+ structured roadmaps, and free verified certificates.',
+      description: 'SkillBun helps computer science, software engineering, and tech students worldwide find their ideal career path through 100% free AI guidance, 100+ structured roadmaps, and free verified certificates.',
       isAccessibleForFree: true,
       sameAs: [
         'https://www.linkedin.com/company/skillbun-tech/',

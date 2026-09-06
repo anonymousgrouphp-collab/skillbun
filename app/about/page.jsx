@@ -4,13 +4,13 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
   title: 'About SkillBun – Empowering Tech Students with AI Career Guidance',
-  description: 'Learn how SkillBun bridges the gap between academic computer science curricula (BCA, BSc, B.Tech, MCA) and tech industry expectations through AI guidance, roadmaps, and verified certifications.',
+  description: 'Learn how SkillBun bridges the gap between academic computer science curricula and modern tech industry expectations through AI guidance, roadmaps, and verified certifications worldwide.',
   alternates: {
     canonical: `${siteUrl}/about`,
   },
   openGraph: {
     title: 'About SkillBun – Empowering Tech Students with AI Career Guidance',
-    description: 'Learn how SkillBun helps tech students find their ideal career path through AI guidance, structured roadmaps, and verified certifications.',
+    description: 'Learn how SkillBun helps tech and computer science students worldwide find their ideal career path through AI guidance, structured roadmaps, and verified certifications.',
     url: `${siteUrl}/about`,
     siteName: 'SkillBun',
     images: [{ url: '/logo.png', width: 512, height: 512, alt: 'SkillBun About' }],
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <p><em>Last updated: May 3, 2026</em></p>
 
       <p>
-        SkillBun is an AI-powered career discovery platform exclusively designed for Indian tech students pursuing BCA, BSc, BS/BS-MS (AICS/CSDA), and B.Tech degrees.
+        SkillBun is an AI-powered career discovery and skill verification platform designed for computer science, software engineering, and tech students worldwide.
         We built this platform to bridge the gap between academic curricula and industry demands, reducing career confusion and converting abstract guidance into concrete, executable next steps.
       </p>
 
@@ -59,12 +59,12 @@ export default function AboutPage() {
 
       <h2>Our Mission</h2>
       <p>
-        Our core mission is straightforward: to make career direction clearer, faster, and more actionable for the next generation of Indian technologists—without hiding essential guidance behind paywalls, intrusive advertisements, or unnecessary complexity.
+        Our core mission is straightforward: to make career direction clearer, faster, and more actionable for the next generation of software engineers, cloud architects, and tech leaders globally—without hiding essential guidance behind paywalls, intrusive advertisements, or unnecessary complexity.
       </p>
 
       <h2>Team</h2>
       <p>
-        Reish manages this project with the active guidance and contribution of multiple IITians.
+        Built and maintained by Reish with the active contributions of senior engineers and tech industry mentors.
       </p>
       <div style={{ marginTop: '2rem' }}>
         <Link href="/contact" className="cta-button" style={{ display: 'inline-block', padding: '0.75rem 1.5rem', backgroundColor: 'var(--brand-color, #22c55e)', color: '#fff', textDecoration: 'none', borderRadius: '4px', fontWeight: 'bold' }}>

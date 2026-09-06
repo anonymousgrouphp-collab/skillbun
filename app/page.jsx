@@ -52,38 +52,38 @@ const CAREER_FIELD_LINKS = [
 
 const BUNBOT_DEMO_PROMPTS = [
   {
-    id: 'bca_playbook',
-    chipLabel: '💰 BCA 12 LPA Playbook',
-    userMsg: 'I am a 2nd year BCA student. How do I target high product company salaries?',
-    botIntro: 'Hey! For a 2nd year BCA student, focus on Full Stack Web Dev or Backend Systems first. Here is your roadmap:',
+    id: 'swe_playbook',
+    chipLabel: '💰 6-Figure Tech Playbook',
+    userMsg: 'I am a 2nd year CS student. How do I target high-compensation software engineer roles?',
+    botIntro: 'Hey! For an early CS student, focus on Full Stack Web Dev or Backend Distributed Systems first. Here is your roadmap:',
     tags: [
-      { text: 'Target: 6 - 18 LPA', green: false },
+      { text: 'Target: $80k+ / 12-20 LPA', green: false },
       { text: 'Roadmap: Fullstack', green: true },
-      { text: 'NIMCET / Referral Ready', green: true },
+      { text: 'Portfolio & Referral Ready', green: true },
     ],
-    botAdvice: 'Start building 2 production GitHub projects and prepare for off-campus referral pipelines.',
-    actionHref: '/counsellor?q=BCA+to+High+Package+Tech+Career+Playbook%3F',
+    botAdvice: 'Start building 2 production GitHub projects and prepare for internship & referral pipelines.',
+    actionHref: '/counsellor?q=How+to+land+a+high+paying+software+engineering+job%3F',
     actionText: 'Ask BunBot this live →'
   },
   {
     id: 'devops_vs_fullstack',
     chipLabel: '⚡ Fullstack vs DevOps',
-    userMsg: 'DevOps vs Full Stack Developer: Which path hires faster in 2026 for freshers?',
-    botIntro: 'Full Stack has 3x more entry-level job openings, but DevOps commands higher mid-level packages (~14 LPA avg).',
+    userMsg: 'DevOps vs Full Stack Developer: Which path hires faster in 2026 for junior developers?',
+    botIntro: 'Full Stack has 3x more entry-level job openings, but DevOps commands higher mid-level compensation (~$120k / 16 LPA avg).',
     tags: [
       { text: 'Fastest Hiring: Fullstack', green: true },
       { text: 'Roadmap: DevOps & Cloud', green: true },
-      { text: 'High Growth: 14 LPA Avg', green: false },
+      { text: 'High Growth: $120k / 16 LPA', green: false },
     ],
     botAdvice: 'Best Strategy: Learn React & Node first, then add Docker + CI/CD to unlock high-paying DevOps hybrid roles.',
-    actionHref: '/counsellor?q=Fullstack+vs+DevOps+salary+spectrum+in+India%3F',
+    actionHref: '/counsellor?q=Fullstack+vs+DevOps+global+salary+spectrum+and+remote+roles%3F',
     actionText: 'Compare paths with BunBot →'
   },
   {
     id: 'cybersecurity_certs',
-    chipLabel: '🛡️ Cybersecurity Freshers',
-    userMsg: 'Is CEH certification mandatory for getting a SOC Analyst job in India?',
-    botIntro: 'Skip expensive CEH for now! Master Linux networking basics, TryHackMe labs, and get your SkillBun Cybersecurity Certificate first.',
+    chipLabel: '🛡️ Cybersecurity Entry',
+    userMsg: 'Is CEH certification mandatory for getting a junior SOC Analyst job?',
+    botIntro: 'Skip expensive theoretical certs for now! Master Linux networking basics, TryHackMe labs, and get your SkillBun Cybersecurity Certificate first.',
     tags: [
       { text: 'Role: SOC Analyst', green: false },
       { text: 'Roadmap: Cybersecurity', green: true },
@@ -198,7 +198,7 @@ export default function Home() {
           <div className="hero-bg-glow"></div>
           <div className="floaters" id="floaters"></div>
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div className="hero-tag">For BCA · BSc · B.Tech Students</div>
+            <div className="hero-tag">For Computer Science & Tech Students Worldwide</div>
             <h1>Your Tech <span className="shuffle-text" data-final="Career">Career</span>,<br /><span
               className="highlight">Engineered For <span className="shuffle-text" data-final="Success">Success</span>.</span></h1>
             <div className="hero-btns">
@@ -264,7 +264,7 @@ export default function Home() {
                   <h3>Context first</h3>
                   <p>Degree, year, interests, and learning confidence shape the first guidance layer.</p>
                   <div className="sb-signal-chips">
-                    <span>BCA</span>
+                    <span>CS / Software Engg</span>
                     <span>2nd Year</span>
                     <span>Not sure yet</span>
                   </div>
@@ -558,12 +558,12 @@ export default function Home() {
               BunBot AI Advisor
             </div>
             <h2 className="section-title">Your 24/7 AI companion for tech career decisions</h2>
-            <p className="section-sub">Trained on Indian tech market realities. Ask follow-up questions about salaries, degree playbooks, roadmap tradeoffs, certifications, and off-campus strategies.</p>
+            <p className="section-sub">Trained on global tech industry realities. Ask follow-up questions about salaries, degree playbooks, roadmap tradeoffs, certifications, and international remote strategies.</p>
 
             <div className="sb-bot-signal-strip">
               <span className="sb-bot-signal-pill">⚡ 100+ Roadmaps Sync</span>
               <span className="sb-bot-signal-pill">🧠 Profile Memory Engine</span>
-              <span className="sb-bot-signal-pill">🔥 Indian Salary Radar</span>
+              <span className="sb-bot-signal-pill">🔥 Global Salary Radar</span>
               <span className="sb-bot-signal-pill">🛡️ 100% Free</span>
             </div>
             
@@ -573,8 +573,8 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
                 </div>
                 <div>
-                  <strong>Degree & Year Aware</strong>
-                  <p>Remembers if you are BCA, BSc, or B.Tech (1st–4th Year) to align advice with your college timeline.</p>
+                  <strong>Degree & Stage Aware</strong>
+                  <p>Remembers your degree, year, bootcamp, or self-taught timeline to align advice with your career stage.</p>
                 </div>
               </div>
               <div className="sb-bot-pillar-card">
@@ -582,8 +582,8 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <div>
-                  <strong>Indian LPA Insights</strong>
-                  <p>Provides realistic fresher to senior salary spectrums across product, FAANG, and service roles.</p>
+                  <strong>Global Salary Insights</strong>
+                  <p>Provides realistic junior to senior salary spectrums across Big Tech, product scale-ups, and remote engineering roles.</p>
                 </div>
               </div>
               <div className="sb-bot-pillar-card">
@@ -600,8 +600,8 @@ export default function Home() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 </div>
                 <div>
-                  <strong>Hinglish Friendly</strong>
-                  <p>Ask in English, Hindi, or Hinglish — standard conversational dialogue without rigid syntax.</p>
+                  <strong>Global Tech Insights</strong>
+                  <p>Benchmarks technical skills against worldwide developer standards and modern stack requirements.</p>
                 </div>
               </div>
             </div>
@@ -672,7 +672,7 @@ export default function Home() {
         <section id="careers" className="sb-section sb-reveal" style={{ paddingTop: 0 }}>
           <div className="section-label">Explore Fields</div>
           <h2 className="section-title">Which path will you hop?</h2>
-          <p className="section-sub">SkillBun covers major and emerging tech roles for BCA, BSc, BS/BS-MS, and B.Tech students.</p>
+          <p className="section-sub">SkillBun covers major and emerging tech roles for Computer Science, Software Engineering, IT, and self-taught learners worldwide.</p>
           <div className="fields-wrap">
             {CAREER_FIELD_LINKS.map((field) => (
               <a className="field-pill" href={field.href} key={field.href}>{field.label}</a>

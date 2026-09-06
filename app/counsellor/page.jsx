@@ -102,9 +102,9 @@ export default function CounsellorPage() {
               </h4>
               <ul>
                 <li>Compare career tracks (e.g. <em>Web Dev vs DevOps</em>)</li>
-                <li>Ask for Indian salaries in <strong>LPA</strong></li>
+                <li>Ask for global salaries in <strong>USD ($) or your local currency</strong></li>
                 <li>Request interactive roadmaps & cert guidance</li>
-                <li>Speak in English, Hindi, or Hinglish!</li>
+                <li>Ask in English or your preferred conversational language!</li>
               </ul>
             </div>
 
@@ -192,12 +192,12 @@ export default function CounsellorPage() {
                 </div>
                 <div className="message bot">
                   <p>Hi <strong>{name.split(' ')[0]}</strong>! I'm <strong>BunBot</strong>, your personal AI Career Advisor.</p>
-                  <p>I can guide you through every tech career path in India. Ask me anything like:</p>
+                  <p>I can guide you through tech career paths worldwide. Ask me anything like:</p>
                   <ul>
                     <li>Pros and cons of learning different courses or languages</li>
                     <li>Salary expectations for various roles (e.g., <em>Data Scientist vs. Backend Dev</em>)</li>
                     <li>What a "day in the life" looks like for specific tech roles</li>
-                    <li>Which entrance exams or certifications fit your timeline</li>
+                    <li>Which projects, skills, or certifications fit your timeline</li>
                   </ul>
                   <p>What would you like to explore today?</p>
                 </div>
