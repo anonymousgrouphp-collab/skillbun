@@ -28,7 +28,6 @@ const FLOATER_TEXTS = [
   'SELECT dream FROM opportunities'
 ];
 
-const CODE_CHARS = ['0', '1', '</>', '{}', '[]', '//', 'def', 'fn', 'var', '&&', '||', '!=', 'if', 'for', 'git'];
 const FLOATER_LEFT_LANES = [10, 18, 27, 35];
 const FLOATER_RIGHT_LANES = [57, 65, 74, 82];
 const CAREER_FIELD_LINKS = [
@@ -98,26 +97,17 @@ const BUNBOT_DEMO_PROMPTS = [
 
 export default function Home() {
   const router = useRouter();
-  const [showSplash, setShowSplash] = useState(true);
   const [activeBunBotPrompt, setActiveBunBotPrompt] = useState(0);
 
   useEffect(() => {
-    let timer;
-    let authFrame;
     const shuffleTimeouts = [];
     const shuffleIntervals = [];
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('authRequired') === 'true') {
       window.history.replaceState({}, '', '/');
-      authFrame = window.requestAnimationFrame(() => {
-        setShowSplash(false);
-      });
-    } else {
-      // Splash timer
-      timer = setTimeout(() => setShowSplash(false), 3000);
     }
 
-    // Shuffle text animation (delayed until after splash)
+    // Shuffle text animation (starts immediately on mount)
     const shuffleTexts = document.querySelectorAll('.shuffle-text');
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
 
@@ -141,30 +131,11 @@ export default function Home() {
             el.innerText = finalWord;
             clearInterval(iv);
           }
-        }, 50);
+        }, 40);
         shuffleIntervals.push(iv);
-      }, 3500 + idx * 400);
+      }, 200 + idx * 200);
       shuffleTimeouts.push(timeoutId);
     });
-
-    // Code Rain on splash
-    const rainEl = document.getElementById('codeRain');
-    if (rainEl) {
-      rainEl.innerHTML = '';
-      for (let i = 0; i < 20; i++) {
-        const col = document.createElement('div');
-        col.className = 'code-col';
-        col.style.left = `${Math.random() * 100}%`;
-        col.style.animationDuration = `${6 + Math.random() * 8}s`;
-        col.style.animationDelay = `${Math.random() * 5}s`;
-        let content = '';
-        for (let j = 0; j < 15; j++) {
-          content += `${CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]}<br>`;
-        }
-        col.innerHTML = content;
-        rainEl.appendChild(col);
-      }
-    }
 
     // Floating code snippets in hero
     const floatersEl = document.getElementById('floaters');
@@ -207,14 +178,9 @@ export default function Home() {
     }
 
     return () => {
-      if (authFrame) {
-        window.cancelAnimationFrame(authFrame);
-      }
-      clearTimeout(timer);
       shuffleTimeouts.forEach((timeoutId) => window.clearTimeout(timeoutId));
       shuffleIntervals.forEach((intervalId) => window.clearInterval(intervalId));
       revealObserver?.disconnect();
-      if (rainEl) rainEl.innerHTML = '';
       if (floatersEl) floatersEl.innerHTML = '';
     };
   }, []);
@@ -226,57 +192,6 @@ export default function Home() {
 
   return (
     <>
-      {/* ===== SPLASH SCREEN ===== */}
-      {showSplash && (
-        <div id="splash" style={{ display: 'flex' }}>
-          <div className="code-rain" id="codeRain"></div>
-          <div className="bunny-wrap">
-            <svg className="bunny-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Left Ear */}
-              <ellipse cx="68" cy="68" rx="16" ry="44" fill="#f0f0f0" transform="rotate(-10 68 68)" />
-              <ellipse cx="68" cy="68" rx="8" ry="34" fill="#f9a8d4" transform="rotate(-10 68 68)" />
-              {/* Right Ear */}
-              <g className="ear-right">
-                <ellipse cx="132" cy="68" rx="16" ry="44" fill="#f0f0f0" transform="rotate(10 132 68)" />
-                <ellipse cx="132" cy="68" rx="8" ry="34" fill="#f9a8d4" transform="rotate(10 132 68)" />
-              </g>
-              {/* Body */}
-              <ellipse cx="100" cy="170" rx="55" ry="45" fill="#f0f0f0" />
-              {/* Head */}
-              <circle cx="100" cy="118" r="46" fill="#f0f0f0" />
-              {/* Eyes */}
-              <g className="eye">
-                <circle cx="85" cy="113" r="8" fill="#1a1a2e" />
-                <circle cx="88" cy="110" r="2.5" fill="white" />
-              </g>
-              <g className="eye">
-                <circle cx="115" cy="113" r="8" fill="#1a1a2e" />
-                <circle cx="118" cy="110" r="2.5" fill="white" />
-              </g>
-              {/* Nose */}
-              <ellipse cx="100" cy="126" rx="5" ry="3.5" fill="#f9a8d4" />
-              {/* Mouth */}
-              <path d="M93 130 Q100 136 107 130" stroke="#ccc" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-              {/* Cheeks */}
-              <circle cx="77" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
-              <circle cx="123" cy="122" r="9" fill="#fca5a5" opacity="0.5" />
-              {/* Code badge on tummy */}
-              <rect x="72" y="152" width="56" height="30" rx="8" fill="var(--bg)" stroke="#2ECC71" strokeWidth="1.5" />
-              <text x="100" y="163" textAnchor="middle" fill="#2ECC71" fontFamily="monospace" fontSize="7">&lt;code&gt;</text>
-              <text x="100" y="174" textAnchor="middle" fill="#A8FF3E" fontFamily="monospace" fontSize="7">career/&gt;</text>
-              {/* Paws */}
-              <ellipse cx="60" cy="195" rx="15" ry="10" fill="#f0f0f0" />
-              <ellipse cx="140" cy="195" rx="15" ry="10" fill="#f0f0f0" />
-            </svg>
-          </div>
-          <div className="splash-title">ꌗꀘꀤ꒒꒒ꌃꀎꈤ</div>
-          <div className="splash-subtitle">Hop into the <span>right career</span></div>
-          <div className="splash-dots">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-      )}
-
       <div id="main-page">
         {/* ===== HERO ===== */}
         <div className="hero">
