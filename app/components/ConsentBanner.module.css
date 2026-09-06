@@ -1,103 +1,185 @@
 .bannerOverlay {
   position: fixed;
-  bottom: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  max-width: 640px;
-  margin: 0 auto;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  left: auto;
+  width: 360px;
+  max-width: calc(100vw - 2rem);
   z-index: 99999;
-  background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--dropdown-shadow);
   border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-  backdrop-filter: blur(12px);
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1.1rem 1.25rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: slideInCorner 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
 }
 
-@keyframes slideUp {
+@keyframes slideInCorner {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px) scale(0.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
-.title {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.titleWrap {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+}
+
+.cookieIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 0.92rem;
   font-weight: 700;
-  color: var(--text, #1a1a1a);
+  color: var(--text);
   margin: 0;
+  line-height: 1.25;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: var(--text);
+  background: var(--green-subtle);
 }
 
 .text {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.45;
-  color: var(--text-muted, #555555);
+  color: var(--muted);
   margin: 0;
+}
+
+.complianceRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  line-height: 1.3;
 }
 
 .complianceNote {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: var(--text-subtle, #777777);
-  margin: 0;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.dot {
+  color: var(--muted);
+  opacity: 0.5;
 }
 
 .complianceLink {
-  color: var(--green, #10b981);
+  color: var(--green);
   text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.complianceLink:hover {
+  color: var(--lime);
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
   margin-top: 0.25rem;
-  flex-wrap: wrap;
 }
 
 .acceptBtn {
-  background: var(--green, #10b981);
+  flex: 1;
+  background: var(--green);
   color: #ffffff;
   border: none;
-  padding: 0.55rem 1.15rem;
+  padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+
+:global([data-theme="dark"]) .acceptBtn {
+  color: #0D1117;
 }
 
 .acceptBtn:hover {
-  opacity: 0.92;
+  background: var(--lime);
+  color: #0D1117;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
 }
 
 .declineBtn {
+  flex: 1;
   background: transparent;
-  color: var(--text, #1a1a1a);
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
-  padding: 0.55rem 1.15rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .declineBtn:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--green-subtle);
+  border-color: var(--green);
+  color: var(--text);
+}
+
+@media (max-width: 480px) {
+  .bannerOverlay {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    max-width: none;
+    padding: 1rem 1.1rem;
+  }
 }

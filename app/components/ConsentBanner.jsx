@@ -74,23 +74,59 @@ export default function ConsentBanner() {
   };
 
   return (
-    <aside className={styles.bannerOverlay} role="dialog" aria-label="Privacy & Cookie Consent">
+    <aside
+      className={styles.bannerOverlay}
+      role="dialog"
+      aria-label="Privacy & Cookie Preferences"
+      aria-describedby="cookie-consent-desc"
+    >
       <div className={styles.content}>
-        <h4 className={styles.title}>
-          <span>🍪</span> Privacy & Learning Experience Choice
-        </h4>
-        <p className={styles.text}>
-          SkillBun uses essential session cookies to keep you signed in. With your permission, we also use aggregated analytics (PostHog & GA4) to improve student career tracks. We never sell student data or serve third-party ads.
+        <div className={styles.header}>
+          <div className={styles.titleWrap}>
+            <span className={styles.cookieIcon} aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5" />
+                <path d="M8.5 8.5v.01" />
+                <path d="M16 15.5v.01" />
+                <path d="M12 12v.01" />
+                <path d="M11 17v.01" />
+                <path d="M7 13v.01" />
+              </svg>
+            </span>
+            <h4 className={styles.title}>Cookie &amp; Privacy</h4>
+          </div>
+          <button
+            onClick={handleDecline}
+            className={styles.closeBtn}
+            type="button"
+            aria-label="Decline and dismiss cookie notice"
+            title="Decline non-essential cookies"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <p id="cookie-consent-desc" className={styles.text}>
+          SkillBun uses cookies &amp; aggregated analytics to personalize roadmaps and track learning progress. We never sell student data.
         </p>
-        <p className={styles.complianceNote}>
-          By clicking <strong>Accept</strong>, you confirm you are 18+ or an enrolled student with guardian consent in accordance with global privacy standards (GDPR, CCPA) and India&apos;s DPDP Act 2023. Read our <Link href="/privacy" className={styles.complianceLink}>Privacy Policy</Link>.
-        </p>
+
+        <div className={styles.complianceRow}>
+          <span className={styles.complianceNote}>GDPR, CCPA &amp; DPDP Compliant</span>
+          <span className={styles.dot}>•</span>
+          <Link href="/privacy" className={styles.complianceLink}>
+            Privacy Policy
+          </Link>
+        </div>
+
         <div className={styles.actions}>
           <button onClick={handleAccept} className={styles.acceptBtn} type="button">
-            Accept Analytics
+            Accept
           </button>
           <button onClick={handleDecline} className={styles.declineBtn} type="button">
-            Decline Non-Essential
+            Decline
           </button>
         </div>
       </div>
