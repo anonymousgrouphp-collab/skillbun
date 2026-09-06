@@ -123,6 +123,26 @@ export default function GameMap({ roadmap, slug }) {
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
   const [verifiedVideos, setVerifiedVideos] = useState([]);
+  const [activeTab, setActiveTab] = useState('learn');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      if (['learn', 'goal', 'boost'].includes(tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
+
+  const handleTabChange = (newTab) => {
+    setActiveTab(newTab);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', newTab);
+      window.history.replaceState(null, '', url.pathname + url.search);
+    }
+  };
 
 
   useEffect(() => {
@@ -418,48 +438,258 @@ export default function GameMap({ roadmap, slug }) {
         </div>
       </div>
 
-      {/* The Skill Tree */}
-      <div className="sk-tree-scroll">
-        <div className="sk-tree">
-          {roadmapTree.map((rootNode, idx) => {
-            const rootUnlocked = idx === 0 || isRootGateComplete(roadmapTree[idx - 1]);
-
-            return (
-              <div className="sk-root-step" key={rootNode.id}>
-                <TreeNode node={rootNode} depth={0} parentUnlocked={rootUnlocked} />
-                {idx < roadmapTree.length - 1 && <div className="sk-step-connector" />}
-              </div>
-            );
-          })}
+      {/* Pillar Navigation Tabs: Learn, Goal, Boost */}
+      <div className="sk-pillar-nav-wrapper">
+        <div className="sk-pillar-nav" role="tablist" aria-label="Roadmap Pillars">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'learn'}
+            className={`sk-pillar-tab ${activeTab === 'learn' ? 'active' : ''}`}
+            onClick={() => handleTabChange('learn')}
+          >
+            <span className="sk-pillar-tab-icon">📘</span>
+            <span className="sk-pillar-tab-text">Learn</span>
+            <span className="sk-pillar-tab-badge">{total} Nodes</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'goal'}
+            className={`sk-pillar-tab ${activeTab === 'goal' ? 'active' : ''}`}
+            onClick={() => handleTabChange('goal')}
+          >
+            <span className="sk-pillar-tab-icon">🎯</span>
+            <span className="sk-pillar-tab-text">Goal</span>
+            <span className="sk-pillar-tab-badge">Global $ & ₹</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'boost'}
+            className={`sk-pillar-tab ${activeTab === 'boost' ? 'active' : ''}`}
+            onClick={() => handleTabChange('boost')}
+          >
+            <span className="sk-pillar-tab-icon">🚀</span>
+            <span className="sk-pillar-tab-text">Boost</span>
+            <span className="sk-pillar-tab-badge">Projects & Certs</span>
+          </button>
         </div>
       </div>
 
-      {/* Next Recommended Roadmap */}
-      {nextRoadmap && (
-        <div className="sk-next-section">
-          <div className="sk-next-label">Next Career Milestone</div>
-          <button 
-            className="sk-next-card"
-            onClick={() => router.push(`/roadmap/${nextRoadmap.next}`)}
-            title={`Go to ${nextRoadmap.title} Roadmap`}
-          >
-            <div className="sk-next-glow"></div>
-            <div className="sk-next-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
-              </svg>
+      {/* 1. LEARN TAB: The Interactive Skill Tree */}
+      {activeTab === 'learn' && (
+        <>
+          <div className="sk-tree-scroll">
+            <div className="sk-tree">
+              {roadmapTree.map((rootNode, idx) => {
+                const rootUnlocked = idx === 0 || isRootGateComplete(roadmapTree[idx - 1]);
+
+                return (
+                  <div className="sk-root-step" key={rootNode.id}>
+                    <TreeNode node={rootNode} depth={0} parentUnlocked={rootUnlocked} />
+                    {idx < roadmapTree.length - 1 && <div className="sk-step-connector" />}
+                  </div>
+                );
+              })}
             </div>
-            <div className="sk-next-info">
-              <span className="sk-next-tag">Next Step</span>
-              <h3 className="sk-next-title">{nextRoadmap.title}</h3>
+          </div>
+
+          {/* Next Recommended Roadmap */}
+          {nextRoadmap && (
+            <div className="sk-next-section">
+              <div className="sk-next-label">Next Career Milestone</div>
+              <button 
+                className="sk-next-card"
+                onClick={() => router.push(`/roadmap/${nextRoadmap.next}`)}
+                title={`Go to ${nextRoadmap.title} Roadmap`}
+              >
+                <div className="sk-next-glow"></div>
+                <div className="sk-next-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
+                  </svg>
+                </div>
+                <div className="sk-next-info">
+                  <span className="sk-next-tag">Next Step</span>
+                  <h3 className="sk-next-title">{nextRoadmap.title}</h3>
+                </div>
+                <div className="sk-next-arrow">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </div>
+              </button>
             </div>
-            <div className="sk-next-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+          )}
+        </>
+      )}
+
+      {/* 2. GOAL TAB: Career Mission & Global Dual-Currency Benchmarks */}
+      {activeTab === 'goal' && (
+        <div className="sk-pillar-panel sk-goal-panel">
+          <div className="sk-panel-card sk-goal-hero-card">
+            <div className="sk-panel-badge">🎯 CAREER OBJECTIVE</div>
+            <h2>{roadmap.title} Mission</h2>
+            <p className="sk-goal-lead">{roadmap.goal?.objective || roadmap.description}</p>
+            <div className="sk-goal-meta-row">
+              <span className="sk-pill ess">{roadmap.goal?.experience_level || 'Entry to Senior (0 - 5+ Years)'}</span>
+              <span className="sk-pill adv">Global Tech Standard</span>
             </div>
-          </button>
+          </div>
+
+          <div className="sk-panel-card sk-salary-card">
+            <div className="sk-panel-badge">💰 GLOBAL COMPENSATION BENCHMARKS</div>
+            <h3>Dual-Currency Salary Spectrum</h3>
+            <p className="sk-salary-sub">Calibrated benchmarks across remote engineering teams, Silicon Valley hubs, and regional tech ecosystems.</p>
+            <div className="sk-salary-grid">
+              <div className="sk-salary-box">
+                <span className="sk-salary-tag">Big Tech & Global Remote</span>
+                <div className="sk-salary-amount sk-green">
+                  {roadmap.goal?.salary_range?.usd
+                    ? `$${(roadmap.goal.salary_range.usd.min / 1000).toFixed(0)}k - $${(roadmap.goal.salary_range.usd.max / 1000).toFixed(0)}k`
+                    : '$80k - $140k'}
+                  <span className="sk-salary-period">/ yr USD</span>
+                </div>
+                <span className="sk-salary-note">Worldwide Remote & US / European Tech Hubs</span>
+              </div>
+              <div className="sk-salary-box">
+                <span className="sk-salary-tag">Regional Tech Hubs</span>
+                <div className="sk-salary-amount">
+                  {roadmap.goal?.salary_range?.inr_lpa
+                    ? `₹${roadmap.goal.salary_range.inr_lpa.min} - ₹${roadmap.goal.salary_range.inr_lpa.max}`
+                    : '₹6 - ₹20'}
+                  <span className="sk-salary-period">LPA (INR)</span>
+                </div>
+                <span className="sk-salary-note">India, APAC & Emerging Tech Startup Hubs</span>
+              </div>
+            </div>
+          </div>
+
+          {roadmap.goal?.target_roles?.length > 0 && (
+            <div className="sk-panel-card">
+              <div className="sk-panel-badge">💼 TARGET ROLES</div>
+              <h3>Industry Job Titles</h3>
+              <p className="sk-panel-desc">Key engineering roles hiring worldwide for this skill profile.</p>
+              <div className="sk-role-pills">
+                {roadmap.goal.target_roles.map((role, i) => (
+                  <span key={i} className="sk-role-pill">
+                    <span className="sk-role-bullet">•</span>
+                    {role}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="sk-panel-card">
+            <div className="sk-panel-badge">🏛️ ARCHITECTURAL PILLARS</div>
+            <h3>Core Engineering Pillars</h3>
+            <div className="sk-pillar-grid">
+              {(roadmap.goal?.career_pillars || ['Foundational Systems', 'Architecture & Scale', 'Production Reliability']).map((pillar, i) => (
+                <div key={i} className="sk-pillar-box">
+                  <div className="sk-pillar-num">0{i + 1}</div>
+                  <h4>{pillar}</h4>
+                </div>
+              ))}
+            </div>
+            {roadmap.learn?.summary && (
+              <div className="sk-learn-summary-box">
+                <p>{roadmap.learn.summary}</p>
+              </div>
+            )}
+            <div className="sk-panel-action-row">
+              <button
+                type="button"
+                className="sk-cert-btn unlocked"
+                onClick={() => handleTabChange('learn')}
+              >
+                Explore Interactive Skill Tree (Learn) →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. BOOST TAB: Projects, Certifications & Interview Prep */}
+      {activeTab === 'boost' && (
+        <div className="sk-pillar-panel sk-boost-panel">
+          <div className="sk-panel-card sk-boost-hero-card">
+            <div className="sk-panel-badge">🚀 CAREER ACCELERATION</div>
+            <h2>Proof of Work & Portfolio Boost</h2>
+            <p className="sk-goal-lead">Stand out to global engineering managers and technical recruiters with portfolio-grade capstones, industry certifications, and Bun-Bot interview preparation.</p>
+          </div>
+
+          <div className="sk-panel-card">
+            <div className="sk-panel-badge">🏆 PORTFOLIO-GRADE CAPSTONES</div>
+            <h3>Recommended Projects for {roadmap.title}</h3>
+            <p className="sk-panel-desc">Production-grade deliverables to showcase genuine engineering depth on your GitHub profile and resume.</p>
+            <div className="sk-project-list">
+              {(roadmap.boost?.capstone_projects || []).map((proj, i) => (
+                <div key={i} className="sk-project-item">
+                  <div className="sk-project-header">
+                    <h4>{proj.title}</h4>
+                    <span className="sk-pill adv">Capstone #{i + 1}</span>
+                  </div>
+                  <p className="sk-project-desc">{proj.description}</p>
+                  <div className="sk-project-tags">
+                    {(proj.tech_stack || []).map((t, idx) => (
+                      <span key={idx} className="sk-project-tag">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="sk-boost-dual-grid">
+            <div className="sk-panel-card">
+              <div className="sk-panel-badge">📜 INDUSTRY CREDENTIALS</div>
+              <h3>Globally Recognized Certifications</h3>
+              <ul className="sk-bullet-list">
+                {(roadmap.boost?.certifications || ['Standard Cloud Associate', 'Domain Professional']).map((cert, i) => (
+                  <li key={i}>
+                    <span className="sk-list-check">✓</span>
+                    <span>{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="sk-panel-card">
+              <div className="sk-panel-badge">⚡ INTERVIEW FOCUS</div>
+              <h3>Key Technical Interview Topics</h3>
+              <ul className="sk-bullet-list">
+                {(roadmap.boost?.interview_focus || ['System Design', 'Algorithms & Problem Solving', 'Domain Depth']).map((topic, i) => (
+                  <li key={i}>
+                    <span className="sk-list-check">⚡</span>
+                    <span>{topic}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="sk-panel-card sk-cta-card">
+            <div className="sk-panel-badge">🤖 MENTORSHIP & VERIFICATION</div>
+            <h3>Ready to accelerate your {roadmap.title} journey?</h3>
+            <p className="sk-panel-desc">Practice technical interview questions with Bun-Bot or take the official SkillBun proctored certification exam.</p>
+            <div className="sk-cta-buttons">
+              <Link
+                href={`/counsellor?${new URLSearchParams({ q: `Simulate a technical interview for a ${roadmap.title} role. Ask me real interview questions one by one.`, context: `${roadmap.title} Roadmap` })}`}
+                className="sk-btn-ai sk-cta-ai"
+              >
+                🤖 Simulate Interview with BunBot
+              </Link>
+              <Link
+                href={`/roadmap/${slug}/certify`}
+                className="sk-cert-btn unlocked sk-cta-cert"
+              >
+                🏆 Take Certification Exam
+              </Link>
+            </div>
+          </div>
         </div>
       )}
 

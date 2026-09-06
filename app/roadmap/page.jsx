@@ -199,6 +199,7 @@ function readRoadmaps() {
             nodeIds: nodes.map((node) => node.id),
             resourceCount: countResources(tree),
             featured: featuredSlugs.has(slug),
+            salary: roadmap.goal?.salary || null,
           };
         } catch {
           const title = titleFromSlug(slug);
