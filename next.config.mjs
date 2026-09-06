@@ -49,6 +49,18 @@ const nextConfig = {
         source: '/__/auth/:path*',
         destination: `${firebaseAuthOrigin}/__/auth/:path*`,
       },
+      {
+        source: '/roadmap/:slug/goal',
+        destination: '/roadmap/:slug?tab=goal',
+      },
+      {
+        source: '/roadmap/:slug/learn',
+        destination: '/roadmap/:slug?tab=learn',
+      },
+      {
+        source: '/roadmap/:slug/boost',
+        destination: '/roadmap/:slug?tab=boost',
+      },
     ]
   },
   async headers() {

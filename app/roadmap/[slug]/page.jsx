@@ -117,8 +117,9 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function RoadmapPage({ params }) {
+export default async function RoadmapPage({ params, searchParams }) {
   const { slug } = await params
+  const { tab } = (await searchParams) || {}
   const data = readRoadmap(slug)
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech'
 
@@ -158,7 +159,7 @@ export default async function RoadmapPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
       />
-      <GameMap key={slug} roadmap={data} slug={slug} />
+      <GameMap key={slug} roadmap={data} slug={slug} initialTab={tab} />
     </>
   )
 }

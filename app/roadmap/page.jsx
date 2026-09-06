@@ -31,7 +31,7 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
   title: '100+ Tech Career Roadmaps & Learning Paths | SkillBun',
-  description: 'Explore 100+ step-by-step tech career roadmaps for AI/ML, Fullstack, Backend, DevOps, Cybersecurity, Android, iOS, and Data Science designed for tech students.',
+  description: 'Explore 100+ step-by-step tech career roadmaps for AI/ML, Fullstack, Backend, DevOps, Cybersecurity, Mobile, Cloud, and Systems Architecture designed for software engineers, students, and self-taught developers worldwide.',
   keywords: [
     'Tech Career Roadmaps',
     'Developer Learning Paths',
