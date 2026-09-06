@@ -113,7 +113,7 @@ function getTerminalNodes(node) {
   return node.children.flatMap(child => getTerminalNodes(child));
 }
 
-export default function GameMap({ roadmap, slug }) {
+export default function GameMap({ roadmap, slug, initialTab }) {
   const router = useRouter();
   const nextRoadmap = useMemo(() => connections[slug] || null, [slug]);
   const { user, authLoading, saveRoadmapProgress, progressVersion } = useAuth();
@@ -123,24 +123,54 @@ export default function GameMap({ roadmap, slug }) {
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
   const [verifiedVideos, setVerifiedVideos] = useState([]);
-  const [activeTab, setActiveTab] = useState('learn');
-
-  useEffect(() => {
+  const [activeTab, setActiveTab] = useState(() => {
+    if (initialTab && ['learn', 'goal', 'boost'].includes(initialTab)) {
+      return initialTab;
+    }
     if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname.endsWith('/goal')) return 'goal';
+      if (pathname.endsWith('/boost')) return 'boost';
+      if (pathname.endsWith('/learn')) return 'learn';
       const params = new URLSearchParams(window.location.search);
       const tab = params.get('tab');
+      if (['learn', 'goal', 'boost'].includes(tab)) return tab;
+    }
+    return 'learn';
+  });
+
+  useEffect(() => {
+    const syncTab = () => {
+      const pathname = window.location.pathname;
+      const pathTab = pathname.endsWith('/goal')
+        ? 'goal'
+        : pathname.endsWith('/boost')
+        ? 'boost'
+        : pathname.endsWith('/learn')
+        ? 'learn'
+        : null;
+
+      const params = new URLSearchParams(window.location.search);
+      const tab = pathTab || params.get('tab');
       if (['learn', 'goal', 'boost'].includes(tab)) {
         setActiveTab(tab);
+      } else {
+        setActiveTab('learn');
       }
-    }
+    };
+
+    syncTab();
+    window.addEventListener('popstate', syncTab);
+    return () => window.removeEventListener('popstate', syncTab);
   }, []);
 
   const handleTabChange = (newTab) => {
     setActiveTab(newTab);
     if (typeof window !== 'undefined') {
       const url = new URL(window.location.href);
+      const basePath = url.pathname.replace(/\/(goal|learn|boost)$/, '');
       url.searchParams.set('tab', newTab);
-      window.history.replaceState(null, '', url.pathname + url.search);
+      window.history.pushState({ tab: newTab }, '', `${basePath}?tab=${newTab}`);
     }
   };
 

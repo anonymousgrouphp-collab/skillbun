@@ -48,8 +48,13 @@ test('SkillBun 100 Roadmaps Global Standard Suite', async (t) => {
 
       // Pillar 3: Boost
       assert.ok(data.boost, `${file} must define boost`);
-      assert.ok(Array.isArray(data.boost.capstone_projects) && data.boost.capstone_projects.length >= 1, `${file} boost must define capstone_projects`);
-      assert.ok(Array.isArray(data.boost.certifications) && data.boost.certifications.length >= 1, `${file} boost must define certifications`);
+      assert.ok(Array.isArray(data.boost.capstone_projects) && data.boost.capstone_projects.length >= 2, `${file} boost must define at least 2 capstone_projects`);
+      for (const proj of data.boost.capstone_projects) {
+        assert.ok(proj.title && proj.title.length > 3, `${file} capstone project must have title`);
+        assert.ok(proj.description && proj.description.length >= 40, `${file} capstone project must have comprehensive description`);
+        assert.ok(Array.isArray(proj.tech_stack) && proj.tech_stack.length >= 2, `${file} capstone project must have tech_stack`);
+      }
+      assert.ok(Array.isArray(data.boost.certifications) && data.boost.certifications.length >= 2, `${file} boost must define at least 2 certifications`);
       assert.ok(Array.isArray(data.boost.interview_focus) && data.boost.interview_focus.length >= 2, `${file} boost must define interview_focus`);
 
       // Structure integrity
@@ -59,11 +64,11 @@ test('SkillBun 100 Roadmaps Global Standard Suite', async (t) => {
     }
   });
 
-  await t.test('Zero regional framing phrases remain anywhere in all 100 files', () => {
-    const regionalRegex = /\b(in India|Indian landscape|dynamic Indian context)\b/i;
+  await t.test('Zero regional framing phrases or non-global resources remain anywhere in all 100 files', () => {
+    const strictRegionalRegex = /\b(in India|Indian landscape|dynamic Indian context|hindi|apna college|codewithharry|thapa technical|kunal kushwaha|hitesh choudhary|bca|mca|tier-3|tier 3)\b/i;
     for (const file of files) {
       const raw = fs.readFileSync(path.join(ROADMAPS_DIR, file), 'utf8');
-      assert.equal(regionalRegex.test(raw), false, `Found regional framing text in ${file}`);
+      assert.equal(strictRegionalRegex.test(raw), false, `Found regional framing text in ${file}`);
     }
   });
 });
