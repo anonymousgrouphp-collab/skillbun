@@ -1,14 +1,17 @@
 {
   "name": "skillbun",
-  "version": "2.9.3",
+  "version": "2.9.7",
   "description": "SkillBun - Hop into the Right Career",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0 <=22.x"
+  },
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test tests/unit/idSystem.test.mjs tests/unit/pdfAndPrintSystem.test.mjs"
+    "test": "node --test tests/unit/idSystem.test.mjs tests/unit/pdfAndPrintSystem.test.mjs tests/unit/securityAudit.test.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.1",

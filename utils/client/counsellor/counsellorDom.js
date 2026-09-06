@@ -31,6 +31,7 @@ export function getStoredProfile() {
 }
 
 export function redirectToProfileSetup(destination) {
+  // eslint-disable-next-line @next/next/no-location-assign-relative-destination
   window.location.href = `/onboarding?next=${encodeURIComponent('/' + destination.replace('.html', ''))}`;
 }
 
@@ -269,6 +270,7 @@ export function logoutUser(state) {
   localStorage.removeItem('sb_year');
   localStorage.removeItem(RATE_LIMIT_KEY);
   clearHumanProof(state);
+  // eslint-disable-next-line @next/next/no-location-assign-relative-destination
   window.location.href = '/';
 }
 

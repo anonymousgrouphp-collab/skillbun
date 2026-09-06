@@ -146,6 +146,12 @@ async function checkRedisRateLimit({ namespace, subject, limits, increment = tru
  * Check rate limits using in-memory store (for testing or local fallback)
  */
 function checkMemoryRateLimit({ namespace, subject, limits, now = Date.now(), increment = true }) {
+  if (process.env.NODE_ENV === 'production') {
+    console.error(
+      `[SECURITY_DEGRADATION_ALERT]: Rate limiting for namespace "${namespace}" degraded to isolated in-memory store. Redis and Firestore are unavailable! Limits will not synchronize across serverless instances.`
+    )
+  }
+
   let blockedBucket = null
   const pendingUpdates = []
 

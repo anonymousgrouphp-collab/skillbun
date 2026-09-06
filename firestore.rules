@@ -113,8 +113,15 @@ service cloud.firestore {
     }
 
     match /certificates/{certId} {
-      allow read: if true;
+      allow get: if true;           // Public single-document verification by exact certificate ID
+      allow list: if signedIn();    // Authenticated users only — prevents anonymous REST API collection enumeration
       allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
+    }
+
+    match /examAttempts/{attemptId} {
+      allow get: if signedIn() && resource != null && resource.data.uid == request.auth.uid;
+      allow list: if isAdmin();
+      allow write: if false; // Server-side backend API evaluation only
     }
 
     // Workforce Hub: Employees collection (Admin full CRUD; Intern read-only on their own record)

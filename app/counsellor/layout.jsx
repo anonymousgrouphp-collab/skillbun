@@ -1,18 +1,6 @@
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
-
 export const metadata = {
-  title: 'Bun-Bot – AI Career Counsellor & Tech Advisor | SkillBun',
-  description: 'Chat 24/7 with Bun-Bot, SkillBun’s AI-powered career counsellor, for personalized guidance, resume tips, and technical roadmap advice.',
-  alternates: {
-    canonical: `${siteUrl}/counsellor`,
-  },
-  openGraph: {
-    title: 'Bun-Bot – AI Career Counsellor & Tech Advisor | SkillBun',
-    description: 'Chat 24/7 with Bun-Bot, SkillBun’s AI-powered career counsellor, for personalized guidance and roadmap advice.',
-    url: `${siteUrl}/counsellor`,
-    siteName: 'SkillBun',
-    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'Bun-Bot AI Advisor' }],
-  },
+  title: 'Bun-Bot AI Career Counsellor | SkillBun',
+  description: 'Chat with Bun-Bot, your personal 24/7 AI career mentor for tech degree guidance, roadmap advice, and interview preparation.',
 };
 
 export default function CounsellorLayout({ children }) {

@@ -1,4 +1,16 @@
 {
   "buildCommand": "next build",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "regions": ["bom1", "sin1"],
+  "functions": {
+    "app/api/counsellor/route.js": {
+      "maxDuration": 30
+    },
+    "app/api/gemini/route.js": {
+      "maxDuration": 30
+    },
+    "app/api/admin/workforce/pdf/**": {
+      "maxDuration": 30
+    }
+  }
 }

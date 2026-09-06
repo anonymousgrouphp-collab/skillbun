@@ -1,5 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
+import { getAuth } from 'firebase-admin/auth'
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import {
@@ -24,7 +25,7 @@ function getAdminApp() {
   const privateKey = getFirebaseAdminPrivateKey()
 
   if (!projectId || !clientEmail || !privateKey) {
-    throw new Error('Firebase Admin credentials are not configured.')
+    return null
   }
 
   return initializeApp({
@@ -36,7 +37,22 @@ function getAdminApp() {
   }, ADMIN_APP_NAME)
 }
 
+/**
+ * Returns Firebase Admin Auth instance with full capabilities:
+ * verifyIdToken, deleteUser, revokeRefreshTokens, getUser, listUsers.
+ * Falls back gracefully to jose lightweight verification if service account credentials are unavailable.
+ */
 export function getFirebaseAdminAuth() {
+  try {
+    const app = getAdminApp()
+    if (app) {
+      return getAuth(app)
+    }
+  } catch (err) {
+    console.warn('[Firebase Admin Auth Init Warning]: Falling back to jose verification:', err?.message || err)
+  }
+
+  // Lightweight verification fallback for environments without service account credentials
   const projectId = getFirebaseAdminProjectId() || 'skillbun-75d10'
 
   return {
@@ -55,6 +71,12 @@ export function getFirebaseAdminAuth() {
         uid: payload.user_id || payload.sub,
         email: payload.email || '',
       }
+    },
+    async deleteUser() {
+      throw new Error('Firebase Admin service credentials required for deleteUser.')
+    },
+    async revokeRefreshTokens() {
+      throw new Error('Firebase Admin service credentials required for revokeRefreshTokens.')
     },
   }
 }

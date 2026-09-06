@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from './AuthProvider';
 import ThemeToggle from './ThemeToggle';
 
@@ -149,6 +150,7 @@ function ThemeMenuRow() {
 }
 
 export default function UserMenu() {
+  const router = useRouter();
   const menuRef = useRef(null);
   const { user, profile, authLoading, profileLoading, isProfileComplete, signOutUser, deleteAccount } = useAuth();
   const [accountOpen, setAccountOpen] = useState(false);
@@ -189,13 +191,7 @@ export default function UserMenu() {
     setNavOpen(false);
   };
 
-  const toggleNavMenu = (event) => {
-    event.stopPropagation();
-    setNavOpen((current) => !current);
-    setAccountOpen(false);
-  };
-
-  const handleLogout = async (event) => {
+  const handleSignOut = async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -206,7 +202,7 @@ export default function UserMenu() {
 
     try {
       await signOutUser();
-      window.location.assign('/');
+      router.push('/');
     } catch (error) {
       console.error('Failed to sign out:', error);
       setSigningOut(false);
@@ -232,7 +228,7 @@ export default function UserMenu() {
       await deleteAccount();
       setAccountOpen(false);
       closeNavMenu();
-      window.location.assign('/');
+      router.push('/');
     } catch (error) {
       console.error('Failed to delete account:', error);
       const message = error?.code === 'auth/requires-recent-login'

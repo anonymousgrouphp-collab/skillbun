@@ -38,7 +38,7 @@ const MAGIC_HEADER = Buffer.from('SBV1');
 const FORMAT_VERSION = 0x01;
 const SB_PEPPER = Buffer.from('SkillBunVault2026!HopIntoSecurity@SBV1#Pepper$Key%Guard', 'utf8');
 
-const SOURCE_FILE = path.join(__dirname, '..', 'public', 'data', 'quizQuestions.json');
+const SOURCE_FILE = path.join(__dirname, '..', 'content', 'quiz', 'source_quizQuestions.json');
 const TARGET_FILE = path.join(__dirname, '..', 'content', 'quiz', 'questions.sbv');
 
 function deriveFileKey(masterKey, salt, fileIdentity) {

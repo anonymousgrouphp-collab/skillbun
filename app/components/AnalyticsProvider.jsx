@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
@@ -8,23 +8,42 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import posthog from 'posthog-js';
 import { trackPageView, identifyUser } from '@/lib/analytics';
 import { useAuth } from './AuthProvider';
+import ConsentBanner, { getConsentChoice } from './ConsentBanner';
 
 function AnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const auth = useAuth();
   const identifiedUserId = useRef(null);
+  const [consentGranted, setConsentGranted] = useState(false);
 
-  // Track Page Views on route change
+  // Sync consent state on mount and when changed
   useEffect(() => {
-    if (!pathname) return;
+    const checkConsent = () => {
+      setConsentGranted(getConsentChoice() === 'accepted');
+    };
+
+    checkConsent();
+
+    const handleConsentUpdate = (e) => {
+      setConsentGranted(e?.detail?.status === 'accepted');
+    };
+
+    window.addEventListener('sb_consent_updated', handleConsentUpdate);
+    return () => window.removeEventListener('sb_consent_updated', handleConsentUpdate);
+  }, []);
+
+  // Track Page Views on route change — strictly guarded by consent
+  useEffect(() => {
+    if (!pathname || !consentGranted) return;
     const url = searchParams?.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
     trackPageView(url);
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, consentGranted]);
 
-  // Firebase restores authentication on refresh and emits this callback after sign-in.
-  // PostHog persists the identity, so only synchronize when the authenticated account changes.
+  // Synchronize identity to PostHog — strictly guarded by consent
   useEffect(() => {
+    if (!consentGranted) return;
+
     const user = auth?.user;
 
     if (user?.uid) {
@@ -46,7 +65,7 @@ function AnalyticsTracker() {
       posthog.reset();
       identifiedUserId.current = null;
     }
-  }, [auth?.user]);
+  }, [auth?.user, consentGranted]);
 
   return null;
 }
@@ -85,6 +104,9 @@ export function AnalyticsProvider({ children }) {
           })();
         `}
       </Script>
+
+      {/* Consent gate banner for DPDP Act 2023 & GDPR compliance */}
+      <ConsentBanner />
 
       {children}
     </>

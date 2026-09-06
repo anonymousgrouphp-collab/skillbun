@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BANK_DIR = path.join(__dirname, 'quiz-bank');
-const OUTPUT_FILE = path.join(__dirname, '..', 'public', 'data', 'quizQuestions.json');
+const OUTPUT_FILE = path.join(__dirname, '..', 'content', 'quiz', 'source_quizQuestions.json');
 
 // --- Load all question modules ---
 const config = require('./quiz-bank/config');
