@@ -191,6 +191,12 @@ export default function UserMenu() {
     setNavOpen(false);
   };
 
+  const toggleNavMenu = (event) => {
+    event.stopPropagation();
+    setNavOpen((current) => !current);
+    setAccountOpen(false);
+  };
+
   const handleSignOut = async (event) => {
     event.preventDefault();
     event.stopPropagation();
