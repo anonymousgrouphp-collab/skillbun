@@ -425,7 +425,7 @@ export default function UserMenu() {
 
             <button
               className="user-menu-item user-menu-signout"
-              onClick={handleLogout}
+              onClick={handleSignOut}
               disabled={signingOut || deletingAccount}
               role="menuitem"
             >
@@ -476,7 +476,7 @@ export default function UserMenu() {
 
             <button
               className="user-menu-item user-menu-signout"
-              onClick={handleLogout}
+              onClick={handleSignOut}
               disabled={signingOut || deletingAccount}
               role="menuitem"
             >
