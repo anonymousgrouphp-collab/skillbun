@@ -1,7 +1,73 @@
 {
   "id": "llmops_engineer",
   "title": "LLMOps Engineer",
-  "description": "A deep, project-based roadmap for LLMOps Engineer: Operate LLM applications with prompt/version management, retrieval evaluation, tracing, guardrails, model routing, cost control, and production monitoring.",
+  "description": "Operationalize, fine-tune, serve, and monitor Large Language Models at production scale with optimal throughput, KV-cache management, and hardware utilization.",
+  "goal": {
+    "objective": "Engineer high-throughput inference infrastructure, distributed serving engines, LoRA fine-tuning pipelines, and safety guardrails for generative AI models.",
+    "salary": "$100,000 - $180,000 / yr (₹10 - ₹32 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 100000,
+        "max": 180000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 10,
+        "max": 32,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Mid to Staff (2 - 6+ Years)",
+    "target_roles": [
+      "LLMOps Engineer",
+      "AI Infrastructure Engineer",
+      "Model Serving Specialist"
+    ],
+    "career_pillars": [
+      "High-Throughput Model Serving (vLLM/TGI)",
+      "LoRA / QLoRA Parameter-Efficient Fine-Tuning",
+      "GPU Cluster Utilization & Inference Cost Optimization"
+    ]
+  },
+  "learn": {
+    "summary": "Master high-throughput LLM serving engines (vLLM, HuggingFace TGI), PagedAttention, KV-cache optimization, quantizations (AWQ, GPTQ), LoRA/QLoRA tuning, and GPU orchestration with Ray.",
+    "key_competencies": [
+      "vLLM, TGI & TensorRT-LLM Serving Engines",
+      "PagedAttention & Continuous Batching Mechanics",
+      "Parameter-Efficient Fine-Tuning (LoRA/QLoRA)",
+      "Model Quantization (INT4, FP8, AWQ, GGUF)",
+      "GPU Telemetry, Triton Inference Server & Ray Clusters"
+    ],
+    "prerequisites": [
+      "Linux & Docker container proficiency",
+      "Python systems programming",
+      "Foundations of transformer architectures"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Production LLM Gateway with Dynamic Fallback & Caching",
+        "tech_stack": [
+          "Python",
+          "vLLM",
+          "Ray",
+          "Prometheus",
+          "Kubernetes"
+        ],
+        "description": "Deploy an enterprise LLM proxy with PagedAttention, token-level streaming, rate limiting, and semantic response caching."
+      }
+    ],
+    "certifications": [
+      "Linux Foundation Certified Kubernetes Administrator (CKA)"
+    ],
+    "interview_focus": [
+      "PagedAttention & Memory Fragmentation in KV-Cache",
+      "Continuous Batching vs Static Batching in LLM Inference",
+      "LoRA Weight Merging vs Adapter Serving",
+      "Cost Analysis: Self-Hosted GPU vs Proprietary API Tokens"
+    ]
+  },
   "format": "tree",
   "tree": [
     {
