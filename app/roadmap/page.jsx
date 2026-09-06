@@ -37,9 +37,9 @@ export const metadata = {
     'Developer Learning Paths',
     'Fullstack Roadmap',
     'AI ML Roadmap',
-    'DevOps Roadmap',
-    'BCA Career Paths',
-    'BTech Skill Trees',
+    'Global Tech Career Paths',
+    'Computer Science Roadmaps',
+    'Software Engineer Learning Paths',
     'SkillBun Roadmaps',
   ],
   alternates: {

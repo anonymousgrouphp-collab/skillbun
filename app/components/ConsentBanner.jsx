@@ -83,7 +83,7 @@ export default function ConsentBanner() {
           SkillBun uses essential session cookies to keep you signed in. With your permission, we also use aggregated analytics (PostHog & GA4) to improve student career tracks. We never sell student data or serve third-party ads.
         </p>
         <p className={styles.complianceNote}>
-          By clicking <strong>Accept</strong>, you confirm you are 18+ or an enrolled college student with guardian consent in accordance with India&apos;s DPDP Act 2023. Read our <Link href="/privacy" className={styles.complianceLink}>Privacy Policy</Link>.
+          By clicking <strong>Accept</strong>, you confirm you are 18+ or an enrolled student with guardian consent in accordance with global privacy standards (GDPR, CCPA) and India&apos;s DPDP Act 2023. Read our <Link href="/privacy" className={styles.complianceLink}>Privacy Policy</Link>.
         </p>
         <div className={styles.actions}>
           <button onClick={handleAccept} className={styles.acceptBtn} type="button">

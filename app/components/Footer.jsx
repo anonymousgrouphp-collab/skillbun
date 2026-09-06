@@ -10,7 +10,7 @@ export default function Footer() {
             <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} unoptimized />
             <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
           </div>
-          <p>Hop into the right career. Helping BCA, BSc, and B.Tech students find their perfect tech path through AI-powered guidance and real peer connections.</p>
+          <p>Hop into the right career. Helping computer science, software engineering, and tech students worldwide find their perfect path through AI-powered guidance and structured roadmaps.</p>
           <div className="footer-socials">
             <a className="social-btn" href="https://www.instagram.com/skillbun.tech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -55,12 +55,12 @@ export default function Footer() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)" stroke="var(--green)" strokeWidth="2" style={{ display: 'inline', verticalAlign: 'middle' }}>
             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
           </svg>{' '}
-          for India&apos;s tech students.
+          for tech students worldwide.
         </p>
         <div className="badge-bar">
-          <span className="badge">BCA Friendly</span>
-          <span className="badge">BS/BS-MS (AICS/CSDA)</span>
-          <span className="badge">B.Tech(CS/IT)</span>
+          <span className="badge">Global Tech Paths</span>
+          <span className="badge">CS & Software Engg</span>
+          <span className="badge">100+ Free Roadmaps</span>
           <span className="badge">AI Powered</span>
         </div>
       </div>
