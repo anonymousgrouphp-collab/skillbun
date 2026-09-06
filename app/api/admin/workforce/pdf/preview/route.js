@@ -4,6 +4,7 @@ import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
 import { generateExtensionLetterPdf } from '@/utils/server/pdf/extensionLetterGenerator';
 
 export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 export async function POST(request) {
   try {

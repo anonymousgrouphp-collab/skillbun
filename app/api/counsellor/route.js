@@ -15,6 +15,8 @@ import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { generateOfflineCounsellorResponse } from '@/utils/server/counsellor/offlineEngine'
 import { getClientAddress } from '@/utils/server/requestUtils'
 
+export const maxDuration = 30
+
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
 const MAX_PARTS_PER_MESSAGE = 12

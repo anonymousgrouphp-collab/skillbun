@@ -9,6 +9,7 @@ import {
 import { generateExtensionLetterPdf } from '@/utils/server/pdf/extensionLetterGenerator';
 
 export const runtime = 'nodejs';
+export const maxDuration = 30;
 
 function isValidDateOnly(value) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
