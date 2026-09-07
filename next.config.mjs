@@ -36,10 +36,12 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  webpack: (config, { isServer }) => { if (isServer) { config.resolve.alias = { ...config.resolve.alias, jose: path.resolve(__dirname, 'node_modules/jose/dist/node/cjs/index.js') } } return config },
+
   turbopack: {
     root: __dirname,
   },
-  serverExternalPackages: ['firebase-admin', '@google-cloud/firestore', '@google-cloud/storage', 'nodemailer'],
+  serverExternalPackages: ['@google-cloud/firestore', '@google-cloud/storage', 'nodemailer'],
   outputFileTracingIncludes: {
     '/api/docs/[slug]/[topicId]': ['./content/docs/??/*.sbv'],
   },
@@ -91,3 +93,4 @@ const nextConfig = {
 }
 
 export default nextConfig
+
