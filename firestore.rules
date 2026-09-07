@@ -114,7 +114,7 @@ service cloud.firestore {
 
     match /certificates/{certId} {
       allow get: if true;           // Public single-document verification by exact certificate ID
-      allow list: if signedIn();    // Authenticated users only — prevents anonymous REST API collection enumeration
+      allow list: if isAdmin();     // Admin users only — prevents user-level and anonymous REST API collection enumeration
       allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
     }
 

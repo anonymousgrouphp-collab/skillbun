@@ -73,4 +73,20 @@ test('SkillBun Security Hardening & Input Defense Suite', async (t) => {
     const internId = generateWorkforceId(WORKFORCE_PREFIXES.INTERNSHIP);
     assert.match(internId, /^SKB-\d{4}-INT-REC-[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/);
   });
+
+  await t.test('Alumni Document Verification IDOR Invariants', () => {
+    // Reference code validator pattern
+    const isRefCode = (q) => /^(sb|skb)[-/]/i.test(q) || q.includes('/');
+
+    // Valid institutional reference patterns
+    assert.equal(isRefCode('SKB/2026/HR-OFF/8K29DF'), true);
+    assert.equal(isRefCode('SKB-2026-INT-REC-7R35TK'), true);
+    assert.equal(isRefCode('SKB8F92-4C-10-9A7E/ref'), true);
+
+    // Malicious email enumeration queries MUST NOT be treated as reference codes
+    assert.equal(isRefCode('victim@example.com'), false);
+    assert.equal(isRefCode('admin@skillbun.tech'), false);
+    assert.equal(isRefCode('ceoharshpatel@gmail.com'), false);
+    assert.equal(isRefCode(''), false);
+  });
 });

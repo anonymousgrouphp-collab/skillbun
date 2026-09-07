@@ -1,8 +1,16 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore, getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin';
+import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import { formatWorkforceDisplayId } from '@/utils/server/workforceId';
 
 export const runtime = 'nodejs';
+
+function maskEmail(email) {
+  if (!email || !email.includes('@')) return '';
+  const [local, domain] = email.split('@');
+  if (local.length <= 2) return `${local[0]}***@${domain}`;
+  return `${local[0]}${local[1]}***${local[local.length - 1]}@${domain}`;
+}
 
 export async function GET(request) {
   try {
@@ -12,18 +20,52 @@ export async function GET(request) {
     const authHeader = request.headers.get('authorization') || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : '';
 
+    const isRefCode = /^(sb|skb)[-/]/i.test(rawQuery) || rawQuery.includes('/');
+
     let userEmail = '';
+    let isAdmin = false;
+
     if (token) {
       try {
         const adminAuth = getFirebaseAdminAuth();
+        if (!adminAuth) {
+          return NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 });
+        }
         const decoded = await adminAuth.verifyIdToken(token);
         userEmail = (decoded.email || '').trim().toLowerCase();
-      } catch {
-        // Fallback to query
+        isAdmin = await isUserAuthorizedAdmin(decoded);
+      } catch (authErr) {
+        console.warn('[Alumni Auth Warning]:', authErr?.message);
+        return NextResponse.json({ error: 'Invalid or expired authentication token.' }, { status: 401 });
       }
     }
 
-    const searchQuery = (rawQuery || userEmail).toLowerCase();
+    // Security Gate: Non-reference lookups (email or general queries) strictly require valid authentication
+    if (!isRefCode && !token) {
+      return NextResponse.json({
+        success: false,
+        documents: [],
+        error: 'Authentication required. Please sign in to look up records by email.',
+      }, { status: 401 });
+    }
+
+    // Target Query Resolution & IDOR Prevention
+    let searchQuery = '';
+    if (isRefCode) {
+      searchQuery = rawQuery.toLowerCase();
+    } else {
+      const requestedEmail = (rawQuery || userEmail).toLowerCase();
+      // Non-admins are strictly forbidden from searching another user's email
+      if (requestedEmail !== userEmail && !isAdmin) {
+        return NextResponse.json({
+          success: false,
+          documents: [],
+          error: 'Forbidden: You can only retrieve documents issued to your own account.',
+        }, { status: 403 });
+      }
+      searchQuery = requestedEmail;
+    }
+
     if (!searchQuery) {
       return NextResponse.json({
         success: false,
@@ -34,7 +76,6 @@ export async function GET(request) {
 
     const db = getFirebaseAdminFirestore();
     const isEmail = searchQuery.includes('@');
-    const isRefCode = searchQuery.startsWith('sb-') || searchQuery.startsWith('skb-') || searchQuery.startsWith('skb/') || searchQuery.includes('/');
     const normalizedRef = searchQuery.toUpperCase().replace(/\//g, '-');
 
     const results = [];
@@ -52,12 +93,15 @@ export async function GET(request) {
           } catch {}
         }
         certSnap = { docs: docSnap && docSnap.exists ? [docSnap] : [] };
-      } else {
+      } else if (isAdmin) {
         certSnap = await db.collection('certificates').where('employee_id', '==', searchQuery).get();
       }
 
       certSnap?.docs?.forEach((doc) => {
         const data = doc.data();
+        const certEmail = (data.email || '').toLowerCase();
+        const isOwnerOrAdmin = isAdmin || (userEmail && userEmail === certEmail);
+
         results.push({
           id: doc.id,
           display_id: data.display_id || (data.cert_type === 'ROADMAP' ? doc.id : formatWorkforceDisplayId(doc.id)),
@@ -65,7 +109,7 @@ export async function GET(request) {
           type: data.cert_type || 'ROADMAP',
           title: data.stream_or_track || data.roadmapTitle || 'Internship Certificate of Completion',
           recipient_name: data.name || '',
-          recipient_email: data.email || '',
+          recipient_email: isOwnerOrAdmin ? (data.email || '') : maskEmail(data.email || ''),
           department: data.department || '',
           designation: data.designation || '',
           start_date: data.start_date || '',
@@ -92,13 +136,16 @@ export async function GET(request) {
           } catch {}
         }
         docsSnap = { docs: docSnap && docSnap.exists ? [docSnap] : [] };
-      } else {
+      } else if (isAdmin) {
         docsSnap = await db.collection('workforce_docs').where('employee_id', '==', searchQuery).get();
       }
 
       docsSnap?.docs?.forEach((doc) => {
         const data = doc.data();
         const meta = data.metadata_snapshot || {};
+        const docRecipientEmail = (data.dispatched_to || meta.personal_email || '').toLowerCase();
+        const isOwnerOrAdmin = isAdmin || (userEmail && userEmail === docRecipientEmail);
+
         results.push({
           id: doc.id,
           display_id: data.display_id || formatWorkforceDisplayId(doc.id),
@@ -106,7 +153,7 @@ export async function GET(request) {
           type: data.doc_type || 'OFFER_LETTER',
           title: data.title || 'Workforce Document',
           recipient_name: meta.full_name || '',
-          recipient_email: data.dispatched_to || meta.personal_email || '',
+          recipient_email: isOwnerOrAdmin ? (data.dispatched_to || meta.personal_email || '') : maskEmail(data.dispatched_to || meta.personal_email || ''),
           department: meta.department || '',
           designation: meta.designation || '',
           start_date: meta.joining_date || '',
@@ -114,7 +161,7 @@ export async function GET(request) {
           issued_at: data.issued_at?.toDate ? data.issued_at.toDate().toISOString() : data.issued_at || '',
           is_revoked: Boolean(data.is_revoked),
           verification_url: null,
-          pdf_base64: data.pdf_base64 || null,
+          pdf_base64: isOwnerOrAdmin ? (data.pdf_base64 || null) : null,
         });
       });
     } catch (docsErr) {
@@ -138,3 +185,4 @@ export async function GET(request) {
     }, { status: 500 });
   }
 }
+
