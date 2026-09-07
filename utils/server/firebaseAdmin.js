@@ -48,16 +48,6 @@ function getAdminApp() {
  * Falls back gracefully to jose lightweight verification if service account credentials are unavailable.
  */
 export function getFirebaseAdminAuth() {
-  try {
-    const app = getAdminApp()
-    if (app) {
-      const { getAuth } = await import('firebase-admin/auth'); return getAuth(app)
-    }
-  } catch (err) {
-    console.warn('[Firebase Admin Auth Init Warning]: Falling back to jose verification:', err?.message || err)
-  }
-
-  // Lightweight verification fallback for environments without service account credentials
   const projectId = getFirebaseAdminProjectId() || 'skillbun-75d10'
 
   return {
@@ -77,11 +67,75 @@ export function getFirebaseAdminAuth() {
         email: payload.email || '',
       }
     },
-    async deleteUser() {
+
+    async deleteUser(uid) {
+      const app = getAdminApp()
+      if (app) {
+        try {
+          const { getAuth } = await import('firebase-admin/auth')
+          return await getAuth(app).deleteUser(uid)
+        } catch (err) {
+          console.warn('[Firebase Admin Auth deleteUser error]:', err?.message || err)
+          throw err
+        }
+      }
       throw new Error('Firebase Admin service credentials required for deleteUser.')
     },
-    async revokeRefreshTokens() {
+
+    async revokeRefreshTokens(uid) {
+      const app = getAdminApp()
+      if (app) {
+        try {
+          const { getAuth } = await import('firebase-admin/auth')
+          return await getAuth(app).revokeRefreshTokens(uid)
+        } catch (err) {
+          console.warn('[Firebase Admin Auth revokeRefreshTokens error]:', err?.message || err)
+          throw err
+        }
+      }
       throw new Error('Firebase Admin service credentials required for revokeRefreshTokens.')
+    },
+
+    async getUserByEmail(email) {
+      const app = getAdminApp()
+      if (app) {
+        try {
+          const { getAuth } = await import('firebase-admin/auth')
+          return await getAuth(app).getUserByEmail(email)
+        } catch (err) {
+          console.warn('[Firebase Admin Auth getUserByEmail error]:', err?.message || err)
+          throw err
+        }
+      }
+      throw new Error('Firebase Admin service credentials required for getUserByEmail.')
+    },
+
+    async generatePasswordResetLink(email, actionCodeSettings) {
+      const app = getAdminApp()
+      if (app) {
+        try {
+          const { getAuth } = await import('firebase-admin/auth')
+          return await getAuth(app).generatePasswordResetLink(email, actionCodeSettings)
+        } catch (err) {
+          console.warn('[Firebase Admin Auth generatePasswordResetLink error]:', err?.message || err)
+          throw err
+        }
+      }
+      throw new Error('Firebase Admin service credentials required for generatePasswordResetLink.')
+    },
+
+    async getUser(uid) {
+      const app = getAdminApp()
+      if (app) {
+        try {
+          const { getAuth } = await import('firebase-admin/auth')
+          return await getAuth(app).getUser(uid)
+        } catch (err) {
+          console.warn('[Firebase Admin Auth getUser error]:', err?.message || err)
+          throw err
+        }
+      }
+      throw new Error('Firebase Admin service credentials required for getUser.')
     },
   }
 }
