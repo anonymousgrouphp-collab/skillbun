@@ -143,15 +143,25 @@ export function getAllowedAppOrigins() {
 }
 
 export function getFirebaseAdminProjectId() {
-  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_PROJECT_ID)
+  return getFirstNonEmpty(
+    process.env.FIREBASE_ADMIN_PROJECT_ID,
+    process.env.FIREBASE_PROJECT_ID,
+    process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  )
 }
 
 export function getFirebaseAdminClientEmail() {
-  return getFirstNonEmpty(process.env.FIREBASE_ADMIN_CLIENT_EMAIL)
+  return getFirstNonEmpty(
+    process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+    process.env.FIREBASE_CLIENT_EMAIL
+  )
 }
 
 export function getFirebaseAdminPrivateKey() {
-  const key = getFirstNonEmpty(process.env.FIREBASE_ADMIN_PRIVATE_KEY)
+  const key = getFirstNonEmpty(
+    process.env.FIREBASE_ADMIN_PRIVATE_KEY,
+    process.env.FIREBASE_PRIVATE_KEY
+  )
   if (!key) return ''
   let cleaned = key.trim()
   if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
