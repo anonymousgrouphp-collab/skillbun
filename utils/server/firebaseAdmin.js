@@ -1,6 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
-import { getAuth } from 'firebase-admin/auth'
+// getAuth loaded dynamically on-demand
 import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import {
@@ -51,7 +51,7 @@ export function getFirebaseAdminAuth() {
   try {
     const app = getAdminApp()
     if (app) {
-      return getAuth(app)
+      const { getAuth } = await import('firebase-admin/auth'); return getAuth(app)
     }
   } catch (err) {
     console.warn('[Firebase Admin Auth Init Warning]: Falling back to jose verification:', err?.message || err)
@@ -104,3 +104,4 @@ export function getFirebaseAdminFirestore() {
     return null
   }
 }
+
