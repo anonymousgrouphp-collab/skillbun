@@ -15,26 +15,31 @@ const FIREBASE_JWKS = createRemoteJWKSet(
 )
 
 function getAdminApp() {
-  const existingApp = getApps().find((app) => app.name === ADMIN_APP_NAME)
-  if (existingApp) {
-    return existingApp
-  }
+  try {
+    const existingApp = getApps().find((app) => app.name === ADMIN_APP_NAME)
+    if (existingApp) {
+      return existingApp
+    }
 
-  const projectId = getFirebaseAdminProjectId()
-  const clientEmail = getFirebaseAdminClientEmail()
-  const privateKey = getFirebaseAdminPrivateKey()
+    const projectId = getFirebaseAdminProjectId()
+    const clientEmail = getFirebaseAdminClientEmail()
+    const privateKey = getFirebaseAdminPrivateKey()
 
-  if (!projectId || !clientEmail || !privateKey) {
+    if (!projectId || !clientEmail || !privateKey) {
+      return null
+    }
+
+    return initializeApp({
+      credential: cert({
+        projectId,
+        clientEmail,
+        privateKey,
+      }),
+    }, ADMIN_APP_NAME)
+  } catch (err) {
+    console.error('[Firebase Admin App Init Error]:', err?.message || err)
     return null
   }
-
-  return initializeApp({
-    credential: cert({
-      projectId,
-      clientEmail,
-      privateKey,
-    }),
-  }, ADMIN_APP_NAME)
 }
 
 /**
