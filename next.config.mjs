@@ -39,12 +39,16 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
-  serverExternalPackages: ['firebase-admin', '@google-cloud/firestore', 'nodemailer'],
+  serverExternalPackages: ['firebase-admin', '@google-cloud/firestore', '@google-cloud/storage', 'nodemailer'],
   outputFileTracingIncludes: {
     '/api/docs/[slug]/[topicId]': ['./content/docs/??/*.sbv'],
   },
   async rewrites() {
     return [
+      {
+        source: '/manifest.json',
+        destination: '/manifest.webmanifest',
+      },
       {
         source: '/__/auth/:path*',
         destination: `${firebaseAuthOrigin}/__/auth/:path*`,

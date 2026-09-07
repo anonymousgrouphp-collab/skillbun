@@ -63,7 +63,7 @@ export async function POST(request) {
 
     const attemptId = String(rawBody.attemptId || '').trim();
     const answers = typeof rawBody.answers === 'object' && rawBody.answers !== null ? rawBody.answers : {};
-    const isDevBypass = Boolean(rawBody.isDevBypass);
+    const isDevBypass = process.env.NODE_ENV === 'development' && Boolean(rawBody.isDevBypass);
 
     if (!attemptId || !attemptId.startsWith('att_')) {
       return NextResponse.json({ error: 'Valid attemptId is required.' }, { status: 400 });
