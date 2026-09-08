@@ -32,6 +32,9 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json({ error: 'Payload must be a JSON object.' }, { status: 400 });
+    }
     const targetUser = body.targetUser || {};
     const isPreview = Boolean(body.isPreview);
     const forceOverride = Boolean(body.forceOverride);

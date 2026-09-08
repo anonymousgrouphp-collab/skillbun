@@ -1,7 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 // getAuth loaded dynamically on-demand
-import { createRemoteJWKSet, jwtVerify } from 'jose'
 
 import {
   getFirebaseAdminClientEmail,
@@ -10,9 +9,6 @@ import {
 } from '@/utils/server/env'
 
 const ADMIN_APP_NAME = 'skillbun-admin'
-const FIREBASE_JWKS = createRemoteJWKSet(
-  new URL('https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com')
-)
 
 function getAdminApp() {
   try {
@@ -45,27 +41,26 @@ function getAdminApp() {
 /**
  * Returns Firebase Admin Auth instance with full capabilities:
  * verifyIdToken, deleteUser, revokeRefreshTokens, getUser, listUsers.
- * Falls back gracefully to jose lightweight verification if service account credentials are unavailable.
+ * Token verification fails closed and checks disabled users and revoked sessions.
  */
 export function getFirebaseAdminAuth() {
-  const projectId = getFirebaseAdminProjectId() || 'skillbun-75d10'
-
   return {
     async verifyIdToken(token) {
       if (!token || typeof token !== 'string') {
         throw new Error('Decoding Firebase ID token failed. Invalid token.')
       }
 
-      const { payload } = await jwtVerify(token, FIREBASE_JWKS, {
-        issuer: `https://securetoken.google.com/${projectId}`,
-        audience: projectId,
-      })
+      const app = getAdminApp()
+      if (!app) throw new Error('Firebase Admin service credentials required for token verification.')
+      const { getAuth } = await import('firebase-admin/auth')
+      return getAuth(app).verifyIdToken(token, true)
+    },
 
-      return {
-        ...payload,
-        uid: payload.user_id || payload.sub,
-        email: payload.email || '',
-      }
+    async listUsers(maxResults, pageToken) {
+      const app = getAdminApp()
+      if (!app) throw new Error('Firebase Admin service credentials required for listUsers.')
+      const { getAuth } = await import('firebase-admin/auth')
+      return getAuth(app).listUsers(maxResults, pageToken)
     },
 
     async deleteUser(uid) {

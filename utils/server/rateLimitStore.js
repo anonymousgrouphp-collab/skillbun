@@ -65,15 +65,9 @@ async function checkRedisRateLimit({ namespace, subject, limits, increment = tru
     }
 
     const redisKey = `sb:rl:${namespace}:${limit.name}:${hashRateLimitSubject(limitSubject)}`
-    bucketMeta.push({ limit, maxRequests, windowMs, redisKey })
-
-    if (increment) {
-      pipeline.push(['INCR', redisKey])
-      pipeline.push(['PTTL', redisKey])
-    } else {
-      pipeline.push(['GET', redisKey])
-      pipeline.push(['PTTL', redisKey])
-    }
+    bucketMeta.push({ limit, maxRequests, windowMs })
+    // Each counter and its expiry are one atomic operation, including TTL repair.
+    pipeline.push(['EVAL', "local n=tonumber(redis.call('GET',KEYS[1]) or '0'); if ARGV[2]=='1' then n=redis.call('INCR',KEYS[1]); if redis.call('PTTL',KEYS[1])<0 then redis.call('PEXPIRE',KEYS[1],ARGV[1]); end; end; return {n,redis.call('PTTL',KEYS[1])}", '1', redisKey, String(windowMs), increment ? '1' : '0'])
   }
 
   const controller = new AbortController()
@@ -90,37 +84,24 @@ async function checkRedisRateLimit({ namespace, subject, limits, increment = tru
       signal: controller.signal,
     })
 
-    clearTimeout(timeoutId)
-
     if (!response.ok) {
       console.warn(`Upstash Redis rate limit request failed with status: ${response.status}`)
       return null
     }
 
     const results = await response.json()
-    if (!Array.isArray(results)) {
+    if (!Array.isArray(results) || results.length !== bucketMeta.length) {
       return null
     }
 
     let blockedBucket = null
 
     for (let i = 0; i < bucketMeta.length; i++) {
-      const { limit, maxRequests, windowMs, redisKey } = bucketMeta[i]
-      const countRes = results[i * 2]?.result
-      const pttlRes = results[i * 2 + 1]?.result
-
-      let currentCount = typeof countRes === 'number' ? countRes : Number.parseInt(countRes || '0', 10)
-      let pttl = typeof pttlRes === 'number' ? pttlRes : Number.parseInt(pttlRes || '-1', 10)
-
-      // If new key or expired without TTL set, ensure TTL is applied
-      if (increment && currentCount === 1 && pttl === -1) {
-        // Set expiry asynchronously in the background
-        fetch(`${restUrl.replace(/\/+$/, '')}/pexpire/${encodeURIComponent(redisKey)}/${windowMs}`, {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${restToken}` },
-        }).catch((err) => console.warn('Failed to set Redis PEXPIRE:', err?.message))
-        pttl = windowMs
-      }
+      const { limit, maxRequests, windowMs } = bucketMeta[i]
+      const result = results[i]?.result
+      if (results[i]?.error || !Array.isArray(result) || result.length !== 2) return null
+      const [currentCount, pttl] = result.map(Number)
+      if (!Number.isFinite(currentCount) || !Number.isFinite(pttl) || currentCount < 0) return null
 
       if (currentCount > maxRequests || (!increment && currentCount >= maxRequests)) {
         const retryAfterMs = pttl > 0 ? pttl : windowMs
@@ -136,9 +117,10 @@ async function checkRedisRateLimit({ namespace, subject, limits, increment = tru
 
     return { allowed: true }
   } catch (err) {
-    clearTimeout(timeoutId)
     console.warn('Redis rate limit error, falling back to database/memory store:', err?.message || err)
     return null
+  } finally {
+    clearTimeout(timeoutId)
   }
 }
 

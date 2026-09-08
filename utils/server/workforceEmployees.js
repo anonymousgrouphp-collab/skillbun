@@ -118,6 +118,9 @@ export function apiError(message, status, code, options = {}) {
 
 export async function isUserAuthorizedAdmin(decodedToken) {
   if (!decodedToken) return false
+  if (decodedToken.admin === true) return true
+  // Email-based privileges require proof of mailbox ownership.
+  if (decodedToken.email_verified !== true) return false
   const email = (decodedToken.email || '').trim().toLowerCase()
   if (!email) return false
 

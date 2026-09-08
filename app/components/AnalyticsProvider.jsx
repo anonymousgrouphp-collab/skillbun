@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { hasAnalyticsConsent } from '@/utils/client/analyticsConsent';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import posthog from 'posthog-js';
@@ -36,7 +37,7 @@ function AnalyticsTracker() {
   // Track Page Views on route change — strictly guarded by consent
   useEffect(() => {
     if (!pathname || !consentGranted) return;
-    const url = searchParams?.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
+    const url = pathname;
     trackPageView(url);
   }, [pathname, searchParams, consentGranted]);
 
@@ -53,8 +54,7 @@ function AnalyticsTracker() {
 
       if (identifiedUserId.current !== user.uid) {
         const personProperties = {};
-        if (user.email) personProperties.email = user.email;
-        if (user.displayName) personProperties.name = user.displayName;
+        // Contact details are not analytics properties.
         identifyUser(user.uid, personProperties);
         identifiedUserId.current = user.uid;
       }
@@ -70,40 +70,28 @@ function AnalyticsTracker() {
   return null;
 }
 
-export function AnalyticsProvider({ children }) {
+export function AnalyticsProvider({ children, nonce }) {
+  const [accepted, setAccepted] = useState(false);
+  useEffect(() => {
+    const sync = () => {
+      const consent = hasAnalyticsConsent();
+      window['ga-disable-G-XTFMS5Q59C'] = !consent;
+      setAccepted(consent);
+    };
+    sync();
+    window.addEventListener('sb_consent_updated', sync);
+    window.addEventListener('storage', sync);
+    return () => { window.removeEventListener('sb_consent_updated', sync); window.removeEventListener('storage', sync); };
+  }, []);
   return (
     <>
       <Suspense fallback={null}>
         <AnalyticsTracker />
       </Suspense>
 
-      {/* Official Vercel Web Analytics Component */}
-      <Analytics />
-
-      {/* Official Vercel Speed Insights Component */}
-      <SpeedInsights />
-
-      {/* Vercel Speed Insights & Performance Listener */}
-      <Script id="vercel-speed-insights" strategy="afterInteractive">
-        {`
-          (function(){
-            if (typeof window !== 'undefined' && 'performance' in window) {
-              window.addEventListener('load', function() {
-                setTimeout(function() {
-                  var nav = performance.getEntriesByType('navigation')[0];
-                  if (nav) {
-                    window.gtag && window.gtag('event', 'page_speed_vitals', {
-                      domComplete: Math.round(nav.domComplete),
-                      loadEventEnd: Math.round(nav.loadEventEnd),
-                      duration: Math.round(nav.duration)
-                    });
-                  }
-                }, 0);
-              });
-            }
-          })();
-        `}
-      </Script>
+      {accepted && <GoogleAnalytics gaId="G-XTFMS5Q59C" nonce={nonce} />}
+      {accepted && <Analytics beforeSend={(event) => hasAnalyticsConsent() ? event : null} />}
+      {accepted && <SpeedInsights beforeSend={(event) => hasAnalyticsConsent() ? event : null} />}
 
       {/* Consent gate banner for DPDP Act 2023 & GDPR compliance */}
       <ConsentBanner />

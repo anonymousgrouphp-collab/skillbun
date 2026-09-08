@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminFirestore, getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
-import { formatWorkforceDisplayId } from '@/utils/server/workforceId';
+import { formatWorkforceDisplayId, isValidCertificateId } from '@/utils/server/workforceId';
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
+import { getClientAddress } from '@/utils/server/requestUtils';
 
 export const runtime = 'nodejs';
 
@@ -20,7 +22,8 @@ export async function GET(request) {
     const authHeader = request.headers.get('authorization') || '';
     const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : '';
 
-    const isRefCode = /^(sb|skb)[-/]/i.test(rawQuery) || rawQuery.includes('/');
+    if (rawQuery.length > 254) return NextResponse.json({ error: 'Query is too long.' }, { status: 400 });
+    const isRefCode = isValidCertificateId(rawQuery);
 
     let userEmail = '';
     let isAdmin = false;
@@ -32,7 +35,7 @@ export async function GET(request) {
           return NextResponse.json({ error: 'Server authentication configuration error.' }, { status: 500 });
         }
         const decoded = await adminAuth.verifyIdToken(token);
-        userEmail = (decoded.email || '').trim().toLowerCase();
+        userEmail = decoded.email_verified === true ? (decoded.email || '').trim().toLowerCase() : '';
         isAdmin = await isUserAuthorizedAdmin(decoded);
       } catch (authErr) {
         console.warn('[Alumni Auth Warning]:', authErr?.message);
@@ -52,7 +55,7 @@ export async function GET(request) {
     // Target Query Resolution & IDOR Prevention
     let searchQuery = '';
     if (isRefCode) {
-      searchQuery = rawQuery.toLowerCase();
+      searchQuery = rawQuery;
     } else {
       const requestedEmail = (rawQuery || userEmail).toLowerCase();
       // Non-admins are strictly forbidden from searching another user's email
@@ -74,9 +77,15 @@ export async function GET(request) {
       }, { status: 400 });
     }
 
+    const limit = await checkServerRateLimit({ namespace: 'alumniLookup', subject: getClientAddress(request),
+      limits: [{ name: 'minute', windowMs: 60000, maxRequests: 30 }], increment: true });
+    if (!limit.allowed) return NextResponse.json({ error: 'Too many lookup requests.' }, {
+      status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(limit.retryAfterMs / 1000))) },
+    });
     const db = getFirebaseAdminFirestore();
+    if (!db) return NextResponse.json({ error: 'Document service unavailable.' }, { status: 503 });
     const isEmail = searchQuery.includes('@');
-    const normalizedRef = searchQuery.toUpperCase().replace(/\//g, '-');
+    const normalizedRef = /^(SKB|SB)/i.test(searchQuery) ? searchQuery.toUpperCase().replace(/\//g, '-') : searchQuery;
 
     const results = [];
 
@@ -176,7 +185,7 @@ export async function GET(request) {
       query: searchQuery,
       count: results.length,
       documents: results,
-    });
+    }, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('[Alumni Documents API Error]:', error);
     return NextResponse.json({
@@ -185,4 +194,3 @@ export async function GET(request) {
     }, { status: 500 });
   }
 }
-

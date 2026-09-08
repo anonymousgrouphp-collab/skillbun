@@ -125,20 +125,20 @@ export async function loadRoadmapData(slug) {
  * 2. Are attempt rate limits or cooldowns active?
  * 3. In production, has the user completed at least 60% of roadmap nodes?
  */
-export async function verifyExamEligibility({ uid, slug, roadmapData }) {
+export async function verifyExamEligibility({ uid, slug, roadmapData, transaction }) {
   const db = getFirebaseAdminFirestore();
+  const read = (ref) => transaction ? transaction.get(ref) : ref.get();
   if (!db) {
     throw new Error('Database service unavailable.');
   }
 
   // 1. Check if user already holds an active certificate for this roadmap
-  const certsSnap = await db
+  const certsSnap = await read(db
     .collection('certificates')
     .where('uid', '==', uid)
     .where('roadmapSlug', '==', slug)
     .where('is_revoked', '==', false)
-    .limit(1)
-    .get();
+    .limit(1));
 
   if (!certsSnap.empty) {
     return {
@@ -150,7 +150,7 @@ export async function verifyExamEligibility({ uid, slug, roadmapData }) {
   }
 
   // 2. Check attempts and cooldown rules in Firestore
-  const attemptsDoc = await db.collection('users').doc(uid).collection('quizAttempts').doc(slug).get();
+  const attemptsDoc = await read(db.collection('users').doc(uid).collection('quizAttempts').doc(slug));
   if (attemptsDoc.exists) {
     const data = attemptsDoc.data();
     const attempts = Array.isArray(data.attempts) ? data.attempts : [];
@@ -194,7 +194,7 @@ export async function verifyExamEligibility({ uid, slug, roadmapData }) {
     const totalNodes = allNodes.length;
 
     if (totalNodes > 0) {
-      const progSnap = await db.collection('users').doc(uid).collection('roadmapProgress').doc(slug).get();
+      const progSnap = await read(db.collection('users').doc(uid).collection('roadmapProgress').doc(slug));
       if (!progSnap.exists) {
         return {
           eligible: false,
@@ -209,7 +209,7 @@ export async function verifyExamEligibility({ uid, slug, roadmapData }) {
       const validCompleted = allNodes.filter((n) => completedNodeIds.includes(n.id)).length;
       const completionPercent = Math.round((validCompleted / totalNodes) * 100);
 
-      if (completionPercent < 60) {
+      if (validCompleted / totalNodes < 0.6) {
         return {
           eligible: false,
           reason: 'PROGRESS_INSUFFICIENT',

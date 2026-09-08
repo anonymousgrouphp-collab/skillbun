@@ -1,3 +1,5 @@
+import PrivacyPreferences from '../components/PrivacyPreferences';
+
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://skillbun.tech';
 
 export const metadata = {
@@ -18,6 +20,7 @@ export default function PrivacyPage() {
   return (
     <div className="static-page">
       <h1>Privacy Policy</h1>
+      <PrivacyPreferences />
       <p><em>Last updated: June 12, 2026</em></p>
 
       <p>

@@ -2,7 +2,7 @@ import './globals.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fredoka, Nunito } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { headers } from 'next/headers';
 import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
@@ -191,7 +191,9 @@ const jsonLdStructuredData = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Request-scoped nonces require dynamic HTML rendering.
+  const nonce = (await headers()).get('x-nonce') || undefined;
   return (
     <html lang="en" className={`${fredoka.variable} ${nunito.variable}`} suppressHydrationWarning>
       <head>
@@ -199,11 +201,12 @@ export default function RootLayout({ children }) {
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#F4F7F2" />
         <script
+          nonce={nonce}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdStructuredData) }}
         />
         {/* Google Consent Mode v2 Default (denied until user grants consent) */}
-        <script dangerouslySetInnerHTML={{ __html: `
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           var consentStatus = 'denied';
@@ -213,11 +216,13 @@ export default function RootLayout({ children }) {
           gtag('consent', 'default', {
             'analytics_storage': consentStatus,
             'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
             'personalization_storage': 'denied'
           });
         `}} />
         {/* Theme initialization — runs before paint to prevent flash */}
-        <script dangerouslySetInnerHTML={{ __html: `
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: `
           (function(){
             try {
               var saved = localStorage.getItem('sb_theme');
@@ -234,7 +239,7 @@ export default function RootLayout({ children }) {
       <body>
         <a href="#main-content" className="skip-nav">Skip to content</a>
         <AuthProvider>
-          <AnalyticsProvider>
+          <AnalyticsProvider nonce={nonce}>
             <nav>
               <div className="nav-logo">
                 <Link href="/" className="nav-logo-link">
@@ -254,7 +259,6 @@ export default function RootLayout({ children }) {
           </AnalyticsProvider>
         </AuthProvider>
       </body>
-      <GoogleAnalytics gaId="G-XTFMS5Q59C" />
     </html>
   );
 }

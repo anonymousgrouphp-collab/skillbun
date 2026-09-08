@@ -1,6 +1,6 @@
 {
   "name": "skillbun",
-  "version": "2.10.12",
+  "version": "2.10.13",
   "description": "SkillBun - Hop into the Right Career",
   "private": true,
   "engines": {
@@ -11,7 +11,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test tests/unit/idSystem.test.mjs tests/unit/pdfAndPrintSystem.test.mjs tests/unit/securityAudit.test.mjs tests/unit/roadmapsGlobalStandard.test.mjs"
+    "test": "node --test tests/unit/idSystem.test.mjs tests/unit/pdfAndPrintSystem.test.mjs tests/unit/securityAudit.test.mjs tests/unit/roadmapsGlobalStandard.test.mjs tests/unit/productionHardening.test.mjs",
+    "audit:smoke": "node scripts/production-smoke.mjs"
   },
   "dependencies": {
     "@google-cloud/firestore": "^8.7.1",
