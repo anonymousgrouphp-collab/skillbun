@@ -84,15 +84,19 @@ service cloud.firestore {
 
     function isAdmin() {
       return signedIn() && (
-        request.auth.token.admin == true ||
-        request.auth.token.email.lower() == 'harsh@skillbun.tech' ||
-        request.auth.token.email.lower() in ['harsh@skillbun.tech', 'admin@skillbun.tech'] ||
-        exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()))
+        request.auth.token.get('admin', false) == true ||
+        (request.auth.token.get('email_verified', false) == true &&
+          request.auth.token.get('email', '') is string && (
+            request.auth.token.email.lower() == 'harsh@skillbun.tech' ||
+            (exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower())) &&
+              get(/databases/$(database)/documents/admins/$(request.auth.token.email.lower())).data.get('active', true) != false)
+          ))
       );
     }
 
     function isEmployeeOwner(email) {
       return signedIn() && 
+        request.auth.token.get('email_verified', false) == true &&
         request.auth.token.email != null &&
         request.auth.token.email.lower() == email.lower();
     }
@@ -107,20 +111,19 @@ service cloud.firestore {
       }
 
       match /quizAttempts/{slug} {
-        allow read, delete: if signedInAs(uid) || isAdmin();
-        allow create, update: if (signedInAs(uid) && validQuizAttempt(slug)) || isAdmin();
+        allow read: if signedInAs(uid) || isAdmin();
+        allow write: if false; // Authoritative cooldown history is server-owned.
       }
     }
 
     match /certificates/{certId} {
       allow get: if true;           // Public single-document verification by exact certificate ID
-      allow list: if isAdmin();     // Admin users only — prevents user-level and anonymous REST API collection enumeration
+      allow list: if isAdmin() || signedInAs(resource.data.uid); // Owners must query by their own uid.
       allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
     }
 
     match /examAttempts/{attemptId} {
-      allow get: if signedIn() && resource != null && resource.data.uid == request.auth.uid;
-      allow list: if isAdmin();
+      allow read: if false; // Includes the answer key; only server routes may read it.
       allow write: if false; // Server-side backend API evaluation only
     }
 
@@ -162,7 +165,8 @@ service cloud.firestore {
 
     // Admin RBAC Registry collection: Managed directly by founder in database
     match /admins/{adminEmail} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin() || (signedIn() && request.auth.token.get('email_verified', false) == true && request.auth.token.email.lower() == adminEmail);
+      allow write: if isAdmin();
     }
   }
 }

@@ -11,6 +11,8 @@ SkillBun is an AI-powered career discovery, learning roadmap, and skill certific
 
 ## 🎁 100% Free Access Policy
 
+Production documentation: [current audit and release gates](docs/HARDENING_RELEASE_REPORT_2026-09-08.md) · [architecture and workflow charts](docs/ARCHITECTURE_WORKFLOW_2026-09-08.md).
+
 - **Zero Cost for All Features**: All 100+ career roadmaps, adaptive AI quizzes, Bun-Bot counsellor chats, encrypted study guides, and verifiable PDF digital certificates are **100% free forever**.
 - **No Paywalls or Hidden Subscriptions**: No credit card registration required.
 - **Publicly Verifiable Digital Certificates**: Earned at zero cost upon completing roadmap progress and passing proctored skill assessments.

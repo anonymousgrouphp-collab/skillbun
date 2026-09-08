@@ -112,6 +112,7 @@ export default function SearchBar() {
             type="text"
             className="search-input"
             placeholder="Search roadmaps, pages..."
+            aria-label="Search roadmaps and pages"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={openSearch}

@@ -3,23 +3,24 @@ import { NextResponse } from 'next/server'
 import { getTurnstileSecretKey, isCaptchaEnabled } from '@/utils/server/env'
 import { issueHumanProofToken, verifyHumanProofToken } from '@/utils/server/humanProof'
 import { validateSchema } from '@/utils/server/inputValidator'
+import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
+import { getClientAddress } from '@/utils/server/requestUtils'
 
 export async function POST(request) {
+  const limit = await checkServerRateLimit({ namespace: 'humanVerify', subject: getClientAddress(request),
+    limits: [{ name: 'minute', windowMs: 60000, maxRequests: 30 }], increment: true })
+  if (!limit.allowed) return NextResponse.json({ error: 'Too many verification requests.' }, {
+    status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(limit.retryAfterMs / 1000))) },
+  })
   const captchaEnabled = isCaptchaEnabled()
   const existingToken = request.headers.get('x-skillbun-human') || ''
   const existingVerification = verifyHumanProofToken(existingToken)
 
   if (existingVerification.valid) {
-    const refreshed = issueHumanProofToken({ v: 1 })
-
-    if (!refreshed) {
-      return NextResponse.json({ error: 'Human verification is not configured.' }, { status: 500 })
-    }
-
     return NextResponse.json({
       captchaEnabled: captchaEnabled,
-      humanToken: refreshed.token,
-      expiresAt: refreshed.expiresAt,
+      humanToken: existingToken,
+      expiresAt: existingVerification.expiresAt,
     })
   }
 
@@ -66,7 +67,7 @@ export async function POST(request) {
     const token = schemaCheck.value.token;
 
     const bypassHeader = request.headers.get('x-skillbun-bypass') || '';
-    const isLocal = process.env.NODE_ENV !== 'production';
+    const isLocal = process.env.NODE_ENV === 'development';
     const isBypassed = (token === 'bypass-captcha-dev') || (bypassHeader === 'bypass-captcha-dev');
 
     if (isBypassed && isLocal) {
@@ -97,7 +98,8 @@ export async function POST(request) {
     const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formBody.toString()
+      body: formBody.toString(),
+      signal: AbortSignal.timeout(8000),
     })
 
     const data = await response.json()

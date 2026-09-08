@@ -2,22 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import posthog from 'posthog-js';
+import { CONSENT_STORAGE_KEY, getConsentChoice, syncPosthogConsent } from '@/utils/client/analyticsConsent';
 import styles from './ConsentBanner.module.css';
 
-export const CONSENT_STORAGE_KEY = 'sb_consent_choice';
-
-export function getConsentChoice() {
-  if (typeof window === 'undefined') return null;
-  try {
-    return localStorage.getItem(CONSENT_STORAGE_KEY);
-  } catch {
-    return null;
-  }
-}
+export { CONSENT_STORAGE_KEY, getConsentChoice };
 
 export function updateAnalyticsConsent(status) {
   if (typeof window === 'undefined') return;
+  if (!['accepted', 'declined'].includes(status)) return;
 
   try {
     localStorage.setItem(CONSENT_STORAGE_KEY, status);
@@ -26,21 +18,20 @@ export function updateAnalyticsConsent(status) {
   }
 
   // 1. Google Analytics Consent Mode v2 Update
+  window['ga-disable-G-XTFMS5Q59C'] = status !== 'accepted';
   if (typeof window.gtag === 'function') {
     window.gtag('consent', 'update', {
       analytics_storage: status === 'accepted' ? 'granted' : 'denied',
       ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
       personalization_storage: 'denied',
     });
   }
 
   // 2. PostHog Opt-In / Opt-Out
   try {
-    if (status === 'accepted') {
-      posthog.opt_in_capturing();
-    } else {
-      posthog.opt_out_capturing();
-    }
+    syncPosthogConsent();
   } catch {
     // PostHog might not be initialized
   }
@@ -53,12 +44,15 @@ export default function ConsentBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const reopen = () => setVisible(true);
+    window.addEventListener('sb_open_consent', reopen);
     const existing = getConsentChoice();
+    let timer;
     if (!existing) {
       // Delay display slightly so first paint is uninterrupted
-      const timer = setTimeout(() => setVisible(true), 1200);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => setVisible(true), 1200);
     }
+    return () => { clearTimeout(timer); window.removeEventListener('sb_open_consent', reopen); };
   }, []);
 
   if (!visible) return null;
@@ -114,7 +108,7 @@ export default function ConsentBanner() {
         </p>
 
         <div className={styles.complianceRow}>
-          <span className={styles.complianceNote}>GDPR, CCPA &amp; DPDP Compliant</span>
+          <span className={styles.complianceNote}>Your privacy choices</span>
           <span className={styles.dot}>•</span>
           <Link href="/privacy" className={styles.complianceLink}>
             Privacy Policy

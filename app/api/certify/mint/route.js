@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { mintExamCertificate, ExamError } from '@/utils/server/certificationState.mjs';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { validateSchema } from '@/utils/server/inputValidator';
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
@@ -66,6 +67,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Payload must be valid JSON.' }, { status: 400 });
     }
 
+    if (!rawBody || typeof rawBody !== 'object' || Array.isArray(rawBody) || (rawBody.cert_type !== undefined && typeof rawBody.cert_type !== 'string')) return NextResponse.json({ error: 'Invalid certificate payload.' }, { status: 400 });
     const certType = (rawBody.cert_type || 'ROADMAP').toUpperCase();
 
     const db = getFirebaseAdminFirestore();
@@ -93,82 +95,9 @@ export async function POST(request) {
         return NextResponse.json({ error: schemaCheck.error }, { status: 400 });
       }
 
-      const { attemptId, name, roadmapSlug, roadmapTitle } = schemaCheck.value;
-
-      // 1. Authoritative Exam Verification: Fetch attempt record from Firestore
-      const attemptRef = db.collection('examAttempts').doc(attemptId);
-      const attemptSnap = await attemptRef.get();
-
-      if (!attemptSnap.exists) {
-        return NextResponse.json({ error: 'Exam attempt record not found. Please complete the exam first.' }, { status: 404 });
-      }
-
-      const attemptData = attemptSnap.data();
-
-      // Verify Attempt Ownership
-      if (attemptData.uid !== uid) {
-        return NextResponse.json({ error: 'Unauthorized: Attempt belongs to another user.' }, { status: 403 });
-      }
-
-      // Verify Roadmap Match
-      if (attemptData.roadmapSlug !== roadmapSlug) {
-        return NextResponse.json({ error: 'Exam attempt does not match the requested roadmap.' }, { status: 400 });
-      }
-
-      // Verify Exam was Completed and Passed
-      if (attemptData.status !== 'COMPLETED' || !attemptData.passed) {
-        return NextResponse.json({
-          error: 'Cannot issue certificate: Exam attempt was not completed or passing grade (70%) was not achieved.',
-          score: attemptData.score ?? 0,
-          passed: Boolean(attemptData.passed),
-        }, { status: 400 });
-      }
-
-      // Verify Anti-Replay: Certificate must not have been minted already from this attempt
-      if (attemptData.minted) {
-        return NextResponse.json({
-          error: 'A certificate has already been issued for this exam attempt.',
-          certId: attemptData.certId || null,
-        }, { status: 400 });
-      }
-
-      const verifiedScore = attemptData.score;
-      const certId = generateCertificateId();
-      const certRef = db.collection('certificates').doc(certId);
-      const now = new Date();
-
-      // Atomic commit: mint certificate and mark attempt as minted
-      const batch = db.batch();
-      batch.set(certRef, {
-        id: certId,
-        uid,
-        name: name.trim(),
-        email,
-        roadmapSlug,
-        roadmapTitle: roadmapTitle.trim(),
-        score: verifiedScore,
-        attemptId,
-        cert_type: 'ROADMAP',
-        is_revoked: false,
-        createdAt: now,
-      });
-
-      batch.update(attemptRef, {
-        minted: true,
-        certId,
-        mintedAt: now,
-        updatedAt: now,
-      });
-
-      await batch.commit();
-
-      return NextResponse.json({
-        success: true,
-        certId,
-        cert_type: 'ROADMAP',
-        score: verifiedScore,
-        message: 'Verified certificate minted successfully.',
-      });
+      const { attemptId, roadmapSlug } = schemaCheck.value;
+      const result = await mintExamCertificate(db, { uid, email, attemptId, roadmapSlug, certId: generateCertificateId() });
+      return NextResponse.json(result, { headers: { 'Cache-Control': 'private, no-store' } });
     }
 
     // ==========================================
@@ -268,6 +197,7 @@ export async function POST(request) {
 
     return NextResponse.json({ error: `Invalid cert_type: "${certType}".` }, { status: 400 });
   } catch (error) {
+    if (error instanceof ExamError) return NextResponse.json({ error: error.message }, { status: error.status });
     console.error('[Certify Mint API Error]:', error);
     return NextResponse.json({ error: 'Failed to mint certificate. Please try again.' }, { status: 500 });
   }

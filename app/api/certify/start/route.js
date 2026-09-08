@@ -107,20 +107,6 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Roadmap curriculum not found.' }, { status: 404 });
     }
 
-    // 5. Verify Eligibility (Already Certified, Cooldowns, 60% Progress)
-    const eligibility = await verifyExamEligibility({ uid, slug: roadmapSlug, roadmapData });
-    if (!eligibility.eligible) {
-      return NextResponse.json(
-        {
-          error: eligibility.error,
-          reason: eligibility.reason,
-          cooldownRemaining: eligibility.cooldownRemaining || 0,
-          certId: eligibility.certId || null,
-        },
-        { status: 403 }
-      );
-    }
-
     // 6. Load Question Bank
     const questionBank = await loadQuizBank(roadmapSlug);
     if (!questionBank) {
@@ -158,27 +144,27 @@ export async function POST(request) {
       updatedAt: now,
     };
 
-    await db.collection('examAttempts').doc(attemptId).set(attemptRecord);
-
-    // Update historical attempts subcollection for cooldown tracking
-    try {
-      const attemptsDocRef = db.collection('users').doc(uid).collection('quizAttempts').doc(roadmapSlug);
-      const docSnap = await attemptsDocRef.get();
-      const existingAttempts = docSnap.exists && Array.isArray(docSnap.data().attempts)
-        ? docSnap.data().attempts
-        : [];
-
-      await attemptsDocRef.set(
-        {
-          slug: roadmapSlug,
-          attempts: [...existingAttempts, Date.now()],
-          lastAttemptAt: Date.now(),
-          updatedAt: now,
-        },
-        { merge: true }
-      );
-    } catch (attemptLogErr) {
-      console.warn('[Quiz Attempt Log Warning]:', attemptLogErr.message);
+    // Reserve quota and create the attempt together; parallel starts cannot bypass limits.
+    const eligibility = await db.runTransaction(async (transaction) => {
+      const checked = await verifyExamEligibility({ uid, slug: roadmapSlug, roadmapData, transaction });
+      if (!checked.eligible) return checked;
+      const historyRef = db.collection('users').doc(uid).collection('quizAttempts').doc(roadmapSlug);
+      const history = await transaction.get(historyRef);
+      const historyData = history.exists ? history.data() : {};
+      const attempts = (Array.isArray(historyData.attempts) ? historyData.attempts : [])
+        .filter((time) => Number.isFinite(time) && time > now.getTime() - 86400000);
+      transaction.create(db.collection('examAttempts').doc(attemptId), attemptRecord);
+      transaction.set(historyRef, {
+        slug: roadmapSlug, attempts: [...attempts, now.getTime()],
+        lastAttemptAt: now.getTime(), updatedAt: now,
+      });
+      return checked;
+    });
+    if (!eligibility.eligible) {
+      return NextResponse.json({
+        error: eligibility.error, reason: eligibility.reason,
+        cooldownRemaining: eligibility.cooldownRemaining || 0, certId: eligibility.certId || null,
+      }, { status: 403 });
     }
 
     // 9. Return Sanitized Questions to Client (STRICTLY NO ANSWERS OR EXPLANATIONS)
@@ -190,7 +176,7 @@ export async function POST(request) {
       totalQuestions: clientQuestions.length,
       timeLimitPerQuestion: 45,
       expiresAt: expiresAt.toISOString(),
-    });
+    }, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('[Certify Start API Error]:', error);
     return NextResponse.json({ error: 'Failed to initiate certification exam. Please try again.' }, { status: 500 });

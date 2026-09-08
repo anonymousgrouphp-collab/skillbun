@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateSchema, validatePlainObject, SQL_INJECTION_PATTERNS } from '../../utils/server/inputValidator.js';
-import { generateCertificateId, generateWorkforceId, WORKFORCE_PREFIXES } from '../../utils/server/workforceId.js';
+import { generateCertificateId, generateWorkforceId, WORKFORCE_PREFIXES, isValidCertificateId } from '../../utils/server/workforceId.js';
 
 test('SkillBun Security Hardening & Input Defense Suite', async (t) => {
   await t.test('Universal SQL Injection Regex Defense', () => {
@@ -76,12 +76,15 @@ test('SkillBun Security Hardening & Input Defense Suite', async (t) => {
 
   await t.test('Alumni Document Verification IDOR Invariants', () => {
     // Reference code validator pattern
-    const isRefCode = (q) => /^(sb|skb)[-/]/i.test(q) || q.includes('/');
+    const isRefCode = isValidCertificateId;
 
     // Valid institutional reference patterns
     assert.equal(isRefCode('SKB/2026/HR-OFF/8K29DF'), true);
     assert.equal(isRefCode('SKB-2026-INT-REC-7R35TK'), true);
-    assert.equal(isRefCode('SKB8F92-4C-10-9A7E/ref'), true);
+    assert.equal(isRefCode(generateCertificateId()), true);
+    assert.equal(isRefCode('Abc123def456ghi789JK'), true);
+    assert.equal(isRefCode('SKB8F92-4C-10-9A7E/ref'), false);
+    assert.equal(isRefCode('sb/victim@example.com'), false);
 
     // Malicious email enumeration queries MUST NOT be treated as reference codes
     assert.equal(isRefCode('victim@example.com'), false);
