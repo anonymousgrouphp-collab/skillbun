@@ -126,7 +126,7 @@ export const RETENTION_TEMPLATES = {
     category: '4. Exam Retake',
     name: 'Retake V1: Retakes are free',
     subject: 'Your {roadmapTitle} retake is ready when you are, {name}',
-    description: 'Reassures the student that retakes are free and unlimited.',
+    description: 'Reassures the student that retakes are free.',
     isMarketing: true,
   },
   exam_failed_v2: {
@@ -404,9 +404,10 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
           emailSpecSheet([
             ['Roadmap', roadmapTitle],
             ['Format', '10 adaptive questions'],
+            ['Time limit', '45 seconds a question'],
             ['Passing score', '70% or higher'],
             ['Cost', 'Free'],
-            ['Retakes', 'Unlimited'],
+            ['Retakes', 'Free — up to 3 a day'],
             ['On passing', 'Verified certificate + PDF'],
           ], { flush: true }),
           { label: 'Exam specification' }
@@ -426,13 +427,13 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
         ${emailStatBand([
           { value: '10', label: 'Questions' },
           { value: '70%', label: 'To pass' },
-          { value: '&#8734;', label: 'Retakes' },
+          { value: '3', label: 'Free retakes / day' },
         ])}
         ${emailPoints([
           '<strong>Questions are drawn</strong> from the topics you’ve already studied',
           '<strong>70% to pass</strong> — that’s 7 of 10 correct',
           '<strong>Shuffled each time</strong>, so every attempt is different',
-          '<strong>No time pressure</strong> — work through it at your own pace',
+          '<strong>45 seconds a question</strong> — anything left unanswered counts as incorrect',
         ])}
         ${emailText(`When you're ready, open your ${roadmapTitle} roadmap and start the exam from there.`)}
         ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Begin the exam' })}
@@ -466,13 +467,13 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
       eyebrow = 'Retake available';
       docTag = 'Retake';
       headline = 'Not this time — and that’s fine';
-      lede = `Retakes on ${roadmapTitle} are free and unlimited, so you can try again whenever you're ready.`;
+      lede = `Retakes on ${roadmapTitle} are free, so you can try again whenever you're ready.`;
       contentHtml = `
         ${emailText('Plenty of people don’t pass on the first attempt. There’s no penalty and nothing to pay — take a short break, then go again.')}
         ${emailFrame(
           emailSpecSheet([
             ['Retake cost', 'Free'],
-            ['Attempts allowed', 'Unlimited'],
+            ['Attempts allowed', '3 per 24 hours'],
             ['Question set', 'Reshuffled each attempt'],
             ['Progress lost', 'None'],
           ], { flush: true }),

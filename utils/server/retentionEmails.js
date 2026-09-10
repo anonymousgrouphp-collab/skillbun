@@ -28,10 +28,67 @@ function decodeHtmlEntities(value) {
     .replaceAll('&amp;', '&');
 }
 
+const ROADMAP_TITLE_FALLBACK = 'Full Stack Web Development';
+
+/*
+ * Values that are legitimate answers elsewhere in the product but are not the
+ * name of a track. The analytics console falls back to the student's onboarding
+ * interest when they have no roadmap progress yet, and "Not sure yet – help me
+ * explore!" is one of the options that form offers — which is how a live subject
+ * line came to read "you're Not sure yet – help me explore! certified".
+ */
+const NOT_A_TRACK = /^(n\/?a|none|null|undefined|unknown|other|not sure\b[\s\S]*|[-–—.]+)$/i;
+
+/* Tokens that must not be sentence-cased when a shouted title is repaired. */
+const ACRONYMS = new Map(
+  [
+    'AI', 'ML', 'UI', 'UX', 'API', 'AR', 'VR', 'SRE', 'NLP', 'QA', 'IT', 'CS',
+    'SQL', 'AWS', 'GCP', 'SOC', 'CI', 'CD', 'PHP', 'CSS', 'HTML', 'JS', 'TS',
+    'AI/ML',
+  ].map((token) => [token, token])
+);
+ACRONYMS.set('IOT', 'IoT');
+ACRONYMS.set('IOS', 'iOS');
+ACRONYMS.set('DEVOPS', 'DevOps');
+ACRONYMS.set('MLOPS', 'MLOps');
+ACRONYMS.set('SAAS', 'SaaS');
+
+/**
+ * Make a track name safe to drop into a sentence.
+ *
+ * Callers reach this with three shapes: a real title ("Full Stack Web
+ * Development"), a roadmap slug, or a shouted slug — the analytics console
+ * upper-cases what it reads from progress, which put "FULL STACK WEB
+ * DEVELOPMENT" mid-sentence. A title that already has mixed case is returned
+ * untouched, so "UI/UX Design" survives intact.
+ */
+function normalizeRoadmapTitle(value) {
+  const raw = String(value ?? '').trim();
+  if (!raw || NOT_A_TRACK.test(raw)) return ROADMAP_TITLE_FALLBACK;
+
+  // Underscores are always separators; hyphens only when there is no space at
+  // all, so a genuine "Full-Stack Developer" keeps its hyphen.
+  const isSlug = !/\s/.test(raw) && /[_-]/.test(raw);
+  const spaced = (isSlug ? raw.replace(/[_-]+/g, ' ') : raw.replace(/_+/g, ' '))
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!spaced || NOT_A_TRACK.test(spaced)) return ROADMAP_TITLE_FALLBACK;
+
+  const isShouted = spaced === spaced.toUpperCase() && /[A-Z]{2,}/.test(spaced);
+  if (!isShouted && !isSlug) return spaced;
+
+  return spaced.replace(/[A-Za-z][A-Za-z']*/g, (word) => {
+    const upper = word.toUpperCase();
+    if (ACRONYMS.has(upper)) return ACRONYMS.get(upper);
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+}
+
 export function generateRetentionEmailHtml(templateId, data = {}) {
   const name = escapeHtml(data.name || 'Student');
   const email = escapeHtml(data.email || '');
-  const roadmapTitle = escapeHtml(data.roadmapTitle || 'Full Stack Web Development');
+  const roadmapTitle = escapeHtml(normalizeRoadmapTitle(data.roadmapTitle));
   const progressCount = data.progressCount || 12;
   const degree = escapeHtml(data.degree || 'B.Tech - Computer Science');
 

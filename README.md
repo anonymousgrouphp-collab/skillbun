@@ -2,7 +2,7 @@
 
 [![Next.js](https://img.shields.io/badge/Framework-Next.js%2016-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/Library-React%2019-blue?style=for-the-badge&logo=react)](https://react.dev/)
-[![Access](https://img.shields.io/badge/Access-100%25%20Free%20Forever-brightgreen?style=for-the-badge)](https://skillbun.com)
+[![Access](https://img.shields.io/badge/Access-100%25%20Free%20Forever-brightgreen?style=for-the-badge)](https://skillbun.tech)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 SkillBun is an AI-powered career discovery, learning roadmap, and skill certification platform designed specifically for Indian tech students pursuing BCA, BSc (CS/IT/Data Science), B.Tech/BE, and MCA degrees. Built using Next.js 16 App Router, React 19, and vanilla CSS, the platform bridges the gap between academic education and industry demands through personalized guidance, 100+ structured learning roadmaps, interactive study guides, and verified certifications.
@@ -10,6 +10,8 @@ SkillBun is an AI-powered career discovery, learning roadmap, and skill certific
 ---
 
 ## 🎁 100% Free Access Policy
+
+Production documentation: [architecture and workflow charts](docs/ARCHITECTURE_WORKFLOW.md) · [email design system](docs/EMAIL_DESIGN_SYSTEM.md).
 
 - **Zero Cost for All Features**: All 100+ career roadmaps, adaptive AI quizzes, Bun-Bot counsellor chats, encrypted study guides, and verifiable PDF digital certificates are **100% free forever**.
 - **No Paywalls or Hidden Subscriptions**: No credit card registration required.
@@ -44,7 +46,16 @@ SkillBun is an AI-powered career discovery, learning roadmap, and skill certific
 ### 🎓 Verifiable Digital Certification System
 - **Adaptive Proctored Exam**: 10-question assessment (3 Easy, 5 Moderate, 2 Hard) unlocked at 60%+ roadmap completion.
 - **Anti-Cheating Safeguards**: Enforces focus-loss detection, text selection blocking, watermark identification, and proctoring controls.
-- **Instant Digital Certificate**: Generates shareable verified certificates at `https://skillbun.com/certificate/[id]` with automated LinkedIn certification integration.
+- **Instant Digital Certificate**: Generates shareable verified certificates at `https://skillbun.tech/certificate/[id]` with automated LinkedIn certification integration.
+
+### ✉️ Lifecycle Email System
+
+- **One Shared Design System**: Every outgoing email — 18 student lifecycle templates, 4 workforce letters, and the password reset — is composed from [`utils/server/emailTheme.js`](utils/server/emailTheme.js). No template writes its own shell, masthead or styles.
+- **Technical-Document Layout**: Masthead, title block, content and footer on a single flat sheet. Ornament is drawn with table cells and CSS gradients rather than image files, so it survives inboxes that block images by default.
+- **Automatic Theme Sync**: Emails follow the reader's device theme via `color-scheme` metadata, `prefers-color-scheme`, and the `[data-ogsc]` / `[data-ogsb]` attributes Outlook stamps in place of the media query. Light stays inline as the always-readable fallback.
+- **Outlook-Safe Composition**: Outlook for Windows renders through Word and supports only `display:none`, so buttons and tags are built as table cells with `mso-padding-alt` instead of inline-block boxes.
+- **Honest Copy**: No invented course values, rankings, hiring statistics or scarcity claims — the platform is free, and the emails say only that.
+- Full reference: [docs/EMAIL_DESIGN_SYSTEM.md](docs/EMAIL_DESIGN_SYSTEM.md).
 
 ### 🔍 Generative Engine Optimization (GEO) & Search Readiness
 - **Dynamic Sitemap (`app/sitemap.js`)**: Dynamically indexes all core static pages and 100+ career roadmap paths.
