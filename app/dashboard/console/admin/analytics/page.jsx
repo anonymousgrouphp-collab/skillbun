@@ -382,13 +382,13 @@ export default function AnalyticsDashboardPage() {
   };
 
   // Preparing a recommendation reuses an unseen saved draft, or generates and saves one when needed.
-  const prepareRecommendation = async (targetUser, draftId) => {
-    setSendingEmailKey(targetUser.uid + '-preview-modal');
+  const prepareRecommendation = async (targetUser, draftId, action = 'prepare') => {
+    setSendingEmailKey(targetUser.uid + (action === 'generate' ? '-ai-generate' : '-preview-modal'));
     try {
       const token = await user.getIdToken();
       const response = await fetch('/api/admin/emails/drafts', {
         method: 'POST', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uid: targetUser.uid, action: 'prepare', ...(draftId ? { draftId } : {}) }),
+        body: JSON.stringify({ uid: targetUser.uid, action, ...(draftId ? { draftId } : {}) }),
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error);
@@ -904,6 +904,7 @@ export default function AnalyticsDashboardPage() {
         {/* TAB 1: Registered Students Table */}
         {activeTab === 'users' && (
           <div>
+            <EmailDraftLibrary user={user} defaultOpen />
             {loading ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
                 <p>⏳ Loading real student records from Firestore...</p>
@@ -941,6 +942,7 @@ export default function AnalyticsDashboardPage() {
                       const currentTemplate = selectedTemplates[u.uid] || recommended.id || '';
                       const savedChoice = preparedTemplates[u.uid];
                       const isPreviewModalLoading = sendingEmailKey === `${u.uid}-preview-modal`;
+                      const isAiGenerating = sendingEmailKey === `${u.uid}-ai-generate`;
                       const isSampleLoading = sendingEmailKey === `${u.uid}-sample`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
                       const isForceLoading = sendingEmailKey === `${u.uid}-force`;
@@ -1267,23 +1269,42 @@ export default function AnalyticsDashboardPage() {
                                         </span>
                                       )}
                                     </div>
-                                    <button
-                                      type="button"
-                                      disabled={!recommended.eligible || Boolean(sendingEmailKey)}
-                                      onClick={() => prepareRecommendation(u)}
-                                      style={{
-                                        cursor: 'pointer',
-                                        padding: '0.25rem 0.7rem',
-                                        borderRadius: '6px',
-                                        background: u.isUnsubscribed ? '#ef4444' : 'var(--green)',
-                                        color: '#ffffff',
-                                        border: 'none',
-                                        fontWeight: '800',
-                                        fontSize: '0.75rem',
-                                      }}
-                                    >
-                                      {isPreviewModalLoading ? 'Preparing…' : recommended.needsGeneration ? 'Prepare a fresh variation' : 'Prepare recommended mail'}
-                                    </button>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                      <button
+                                        type="button"
+                                        disabled={!recommended.eligible || Boolean(sendingEmailKey)}
+                                        onClick={() => prepareRecommendation(u)}
+                                        style={{
+                                          cursor: 'pointer',
+                                          padding: '0.4rem 0.7rem',
+                                          borderRadius: '6px',
+                                          background: 'var(--surface-raised)',
+                                          color: 'var(--green)',
+                                          border: '1px solid var(--green)',
+                                          fontWeight: '800',
+                                          fontSize: '0.75rem',
+                                        }}
+                                      >
+                                        {isPreviewModalLoading ? 'Preparing…' : 'Prepare recommended mail'}
+                                      </button>
+                                      <button
+                                        type="button"
+                                        disabled={!recommended.eligible || Boolean(sendingEmailKey)}
+                                        onClick={() => prepareRecommendation(u, undefined, 'generate')}
+                                        style={{
+                                          cursor: 'pointer',
+                                          padding: '0.4rem 0.7rem',
+                                          borderRadius: '6px',
+                                          background: 'var(--green)',
+                                          color: '#000000',
+                                          border: 'none',
+                                          fontWeight: '800',
+                                          fontSize: '0.75rem',
+                                        }}
+                                      >
+                                        {isAiGenerating ? 'Generating & saving…' : 'Generate new AI mail'}
+                                      </button>
+                                    </div>
                                   </div>
 
                                   {recommended.eligible && <EmailDraftLibrary user={user} fixedCategory={recommended.category} onChoose={draft => prepareRecommendation(u, draft.id)} />}

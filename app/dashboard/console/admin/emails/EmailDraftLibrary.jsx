@@ -5,8 +5,8 @@ import { EMAIL_CATEGORIES } from '@/utils/shared/emailRecommendation';
 import { renderSavedEmail } from '@/utils/shared/emailDraft';
 
 const control = { padding: '0.6rem', border: '1px solid var(--border)', borderRadius: 8, color: 'var(--text)', background: 'var(--surface-raised)', maxWidth: '100%' };
-export default function EmailDraftLibrary({ user, fixedCategory, onChoose }) {
-  const [open, setOpen] = useState(false);
+export default function EmailDraftLibrary({ user, fixedCategory, onChoose, defaultOpen = false }) {
+  const [open, setOpen] = useState(defaultOpen);
   const [category, setCategory] = useState(fixedCategory || 'welcome');
   const [search, setSearch] = useState('');
   const [drafts, setDrafts] = useState([]);
@@ -52,8 +52,8 @@ export default function EmailDraftLibrary({ user, fixedCategory, onChoose }) {
       setPreview(result.preview);
     } catch (err) { setError(err.message); } finally { setBusy(false); }
   }
-  return <details onToggle={event => setOpen(event.currentTarget.open)} style={{ border: '1px solid var(--border)', borderRadius: 12, padding: '1rem', marginBottom: '1rem', background: 'var(--surface)', color: 'var(--text)' }}>
-    <summary style={{ cursor: 'pointer', fontWeight: 800 }}>Saved AI email library</summary>
+  return <details defaultOpen={defaultOpen} onToggle={event => setOpen(event.currentTarget.open)} style={{ border: '1px solid var(--border)', borderRadius: 12, padding: '1rem', marginBottom: '1rem', background: 'var(--surface)', color: 'var(--text)' }}>
+    <summary style={{ cursor: 'pointer', fontWeight: 800 }}>AI mail generator & saved library</summary>
     {open && <div style={{ marginTop: '1rem' }}>
       <p style={{ color: 'var(--muted)' }}>Every new variation is saved for reuse. Review drafts before sending from the Student CRM.</p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
