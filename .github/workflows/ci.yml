@@ -1,0 +1,42 @@
+name: SkillBun Production CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit-and-verify:
+    name: Lint, Test & Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Static Code Analysis (ESLint)
+        run: npm run lint
+
+      - name: Unit & Security Test Suite
+        run: npm test
+
+      - name: Production Build Verification
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: https://skillbun.tech
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: skillbun-75d10

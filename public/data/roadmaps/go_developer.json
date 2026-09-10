@@ -1,0 +1,1168 @@
+{
+  "id": "go_developer",
+  "title": "Go Developer",
+  "description": "Master high-concurrency systems, low-latency microservices, cloud-native networking, and distributed computing with Golang.",
+  "goal": {
+    "objective": "Engineer blazingly fast, lightweight, and highly concurrent microservices and infrastructure tools that power global cloud infrastructure.",
+    "salary": "$90,000 - $160,000 / yr (₹8 - ₹26 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 90000,
+        "max": 160000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 8,
+        "max": 26,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Junior to Senior (1 - 6+ Years)",
+    "target_roles": [
+      "Go Software Engineer",
+      "Cloud-Native Developer",
+      "Backend Infrastructure Engineer",
+      "Distributed Systems Engineer"
+    ],
+    "career_pillars": [
+      "Goroutines & Channel Concurrency",
+      "Low-Latency Microservices & gRPC",
+      "Cloud-Native Containerized Operations"
+    ]
+  },
+  "learn": {
+    "summary": "Master Go language fundamentals, memory management, pointers, concurrency with goroutines and channels, gRPC/Protobuf, Gin/Echo frameworks, and Docker orchestration.",
+    "key_competencies": [
+      "Go Syntax, Structs, Interfaces & Generics",
+      "Goroutines, Channels & the Go Scheduler",
+      "gRPC & Protocol Buffers Communication",
+      "PostgreSQL with pgx & GORM Optimization",
+      "Benchmarking, Profiling (pprof) & Unit Testing"
+    ],
+    "prerequisites": [
+      "Basic programming in any language (C, Java, Python, or JS)",
+      "Understanding of concurrency & threads",
+      "Basic networking concepts"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "High-Throughput Distributed Rate Limiter & API Gateway",
+        "tech_stack": [
+          "Go",
+          "Redis",
+          "gRPC",
+          "Docker",
+          "Prometheus"
+        ],
+        "description": "Design a token-bucket rate limiter handling 50,000 concurrent requests with sub-millisecond p99 latency."
+      },
+      {
+        "title": "Distributed Job Scheduler & Task Queue with Raft Consensus",
+        "tech_stack": [
+          "Go",
+          "Raft",
+          "gRPC",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "description": "Implement a distributed fault-tolerant task scheduler supporting cron intervals, automatic worker failover, dead-letter queues, and linearizable state consensus."
+      }
+    ],
+    "certifications": [
+      "Linux Foundation Certified Kubernetes Application Developer (CKAD)",
+      "Google Cloud Certified Cloud Developer"
+    ],
+    "interview_focus": [
+      "Go Scheduler (GMP Model) & Goroutine Stack Scaling",
+      "Channel Deadlocks & Race Condition Detection",
+      "Interface Internals (iface/eface)",
+      "gRPC Streaming vs Traditional REST Overheads"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "go_foundations",
+      "name": "Go Language Foundations",
+      "tag": "essential",
+      "description": "Master the fundamental syntax, data structures, control flow, error handling, and core principles of the Go language, along with project organization, modern module management, and essential tooling.",
+      "resources": [
+        {
+          "title": "Go Tour",
+          "url": "https://go.dev/tour/",
+          "type": "course"
+        },
+        {
+          "title": "Go Programming Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+          "type": "video"
+        },
+        {
+          "title": "Go in 100 Seconds (Fireship)",
+          "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_lang_fundamentals",
+          "name": "Core Language Constructs",
+          "tag": "essential",
+          "description": "Understand Go's basic syntax, primitive and composite data types (arrays, slices, maps, structs), control flow statements, functions, methods, and the struct-based object model.",
+          "resources": [
+            {
+              "title": "Effective Go",
+              "url": "https://go.dev/doc/effective_go",
+              "type": "article"
+            },
+            {
+              "title": "Go Data Structures",
+              "url": "https://go.dev/blog/go-slices-usage-and-internals",
+              "type": "article"
+            },
+            {
+              "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+              "type": "video"
+            },
+            {
+              "title": "Build a REST API in Go (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_lang_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_error_handling",
+          "name": "Idiomatic Error Handling",
+          "tag": "essential",
+          "description": "Learn Go's robust approach to error handling including multiple return values, using the 'errors' package, creating custom error types, wrapping errors, and sentinel errors for clear error propagation.",
+          "resources": [
+            {
+              "title": "Error Handling in Go",
+              "url": "https://go.dev/blog/error-handling-and-go",
+              "type": "article"
+            },
+            {
+              "title": "Working with Errors in Go 1.13",
+              "url": "https://go.dev/blog/go1.13-errors",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_error_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_interfaces_composition",
+          "name": "Interfaces and Composition",
+          "tag": "essential",
+          "description": "Grasp the power of Go interfaces for achieving polymorphism and designing flexible APIs. Understand type embedding and how composition is favored over inheritance for building adaptable systems.",
+          "resources": [
+            {
+              "title": "Go's Tour of Composition",
+              "url": "https://go.dev/doc/effective_go#embedding",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_interfaces_composition.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_packages_modules",
+          "name": "Packages, Modules, and Workspace",
+          "tag": "essential",
+          "description": "Understand Go's module system for dependency management, package organization, import paths, versioning, `go work` for multi-module development, and the standard project layout.",
+          "resources": [
+            {
+              "title": "Go Modules Reference",
+              "url": "https://go.dev/ref/mod",
+              "type": "article"
+            },
+            {
+              "title": "Go Workspaces Tutorial",
+              "url": "https://go.dev/doc/tutorial/workspaces",
+              "type": "article"
+            },
+            {
+              "title": "Standard Go Project Layout",
+              "url": "https://github.com/golang-standards/project-layout",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_packages_modules.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_generics_principles",
+          "name": "Generics and Type Parameters",
+          "tag": "essential",
+          "description": "Explore Go's generics feature (Go 1.18+) to write more flexible and reusable code. Understand type parameters, type constraints, and their application in functions and data structures.",
+          "resources": [
+            {
+              "title": "An Introduction to Go Generics",
+              "url": "https://go.dev/doc/tutorial/generics",
+              "type": "article"
+            },
+            {
+              "title": "Go Generics Cheatsheet",
+              "url": "https://medium.com/a-journey-with-go/go-generics-cheatsheet-75c120a16869",
+              "type": "article"
+            },
+            {
+              "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+              "type": "video"
+            },
+            {
+              "title": "Build a REST API in Go (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_generics_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_tooling_practices",
+          "name": "Essential Tooling and Best Practices",
+          "tag": "essential",
+          "description": "Utilize Go's built-in tools like 'gofmt', 'goimports', 'go vet', 'go generate', and understand general best practices for writing clean, performant, and maintainable Go code, including Go Proverbs and common idioms.",
+          "resources": [
+            {
+              "title": "Go Tooling",
+              "url": "https://go.dev/doc/tutorial/call-module-code",
+              "type": "article"
+            },
+            {
+              "title": "Go Proverbs",
+              "url": "https://go-proverbs.github.io/",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_tooling_practices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_reflection_unsafe",
+          "name": "Reflection and Unsafe Operations",
+          "tag": "advanced",
+          "description": "Dive into Go's reflection capabilities for runtime inspection and modification of types. Understand the `unsafe` package for direct memory manipulation and its careful use cases and implications.",
+          "resources": [
+            {
+              "title": "The Laws of Reflection",
+              "url": "https://go.dev/blog/laws-of-reflection",
+              "type": "article"
+            },
+            {
+              "title": "Using Go's unsafe package",
+              "url": "https://medium.com/a-journey-with-go/go-using-unsafe-package-a764acb3858c",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_reflection_unsafe.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_concurrency_mastery",
+      "name": "Concurrency Mastery",
+      "tag": "essential",
+      "description": "Dive deep into Go's powerful concurrency model using goroutines, channels, and the 'context' package for building highly efficient, responsive, and robust applications.",
+      "resources": [
+        {
+          "title": "Go Concurrency Patterns",
+          "url": "https://go.dev/blog/pipelines",
+          "type": "article"
+        },
+        {
+          "title": "Concurrency in Go (Go by Example)",
+          "url": "https://gobyexample.com/goroutines",
+          "type": "article"
+        },
+        {
+          "title": "Go Programming Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+          "type": "video"
+        },
+        {
+          "title": "Go in 100 Seconds (Fireship)",
+          "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_concurrency_mastery.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_goroutines_channels",
+          "name": "Goroutines and Channels",
+          "tag": "essential",
+          "description": "Learn to launch and manage goroutines for concurrent execution, communicate safely using channels (buffered and unbuffered), and coordinate complex flows with 'select' statements.",
+          "resources": [
+            {
+              "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+              "type": "video"
+            },
+            {
+              "title": "Build a REST API in Go (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_goroutines_channels.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_sync_primitives",
+          "name": "Synchronization Primitives",
+          "tag": "essential",
+          "description": "Understand and apply primitives from the 'sync' package like Mutex, RWMutex, WaitGroup, Once, and Cond to prevent race conditions, safely access shared resources, and synchronize concurrent operations.",
+          "resources": [
+            {
+              "title": "Go Sync Package",
+              "url": "https://pkg.go.dev/sync",
+              "type": "article"
+            },
+            {
+              "title": "Shared Memory By Communicating",
+              "url": "https://go.dev/blog/codelab-share",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_sync_primitives.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_context_management",
+          "name": "Context and Cancellation",
+          "tag": "essential",
+          "description": "Utilize the 'context' package for managing request-scoped values, propagating cancellation signals, and setting timeouts and deadlines across complex goroutine hierarchies and API calls.",
+          "resources": [
+            {
+              "title": "Go Concurrency Patterns: Context",
+              "url": "https://go.dev/blog/go1.7-context",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_context_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_advanced_concurrency_patterns",
+          "name": "Advanced Concurrency Patterns",
+          "tag": "advanced",
+          "description": "Explore common and advanced concurrency patterns like worker pools, fan-in/fan-out, throttling, error propagation in pipelines, and techniques for graceful shutdown and resource cleanup.",
+          "resources": [
+            {
+              "title": "Advanced Go Concurrency Patterns",
+              "url": "https://www.ardanlabs.com/blog/2018/11/goroutine-leaks-the-abandoned-goroutine.html",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_advanced_concurrency_patterns.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_web_services_dev",
+      "name": "Building Web Services",
+      "tag": "essential",
+      "description": "Develop robust, scalable, and secure HTTP APIs and services, covering routing, middleware, data persistence, caching, and foundational security practices using Go's standard library and popular frameworks.",
+      "resources": [
+        {
+          "title": "Go Web Examples",
+          "url": "https://gowebexamples.com/",
+          "type": "article"
+        },
+        {
+          "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+          "type": "video"
+        },
+        {
+          "title": "Build a REST API in Go (Traversy Media)",
+          "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_web_services_dev.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_http_server_basics",
+          "name": "HTTP Server Fundamentals & Routing",
+          "tag": "essential",
+          "description": "Build web servers using Go's powerful 'net/http' package. Learn to handle requests, generate responses, perform JSON serialization/deserialization, and integrate popular routing libraries like 'chi', 'gin', or 'echo'.",
+          "resources": [
+            {
+              "title": "net/http Package Documentation",
+              "url": "https://pkg.go.dev/net/http",
+              "type": "article"
+            },
+            {
+              "title": "Chi Router Documentation",
+              "url": "https://go-chi.io/",
+              "type": "article"
+            },
+            {
+              "title": "Gin Web Framework",
+              "url": "https://gin-gonic.com/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_http_server_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_middleware_api_design",
+          "name": "Middleware and API Design",
+          "tag": "essential",
+          "description": "Implement reusable middleware for common concerns like logging, authentication, authorization, error recovery, and rate limiting. Learn principles of RESTful API design, versioning, and documentation (OpenAPI/Swagger).",
+          "resources": [
+            {
+              "title": "Writing Go Middleware",
+              "url": "https://www.alexedwards.net/blog/making-and-using-middleware",
+              "type": "article"
+            },
+            {
+              "title": "OpenAPI Specification",
+              "url": "https://swagger.io/specification/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_middleware_api_design.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_data_persistence",
+          "name": "Data Persistence with SQL and NoSQL",
+          "tag": "essential",
+          "description": "Interact with SQL databases (PostgreSQL, MySQL) using 'database/sql' and modern drivers like 'pgx'. Explore popular ORMs/query builders like GORM, SQLC, or sqlx. Learn basic NoSQL (Redis, MongoDB) integration for various use cases.",
+          "resources": [
+            {
+              "title": "Go SQL Database Tutorial",
+              "url": "https://go.dev/doc/database/",
+              "type": "article"
+            },
+            {
+              "title": "pgx PostgreSQL Driver",
+              "url": "https://github.com/jackc/pgx",
+              "type": "article"
+            },
+            {
+              "title": "GORM Documentation",
+              "url": "https://gorm.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_data_persistence.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_caching_strategies",
+          "name": "Caching Strategies and Implementation",
+          "tag": "essential",
+          "description": "Understand the importance of caching for performance. Learn different caching patterns (e.g., write-through, cache-aside) and implement caching solutions using in-memory caches or external stores like Redis.",
+          "resources": [
+            {
+              "title": "Caching in Go with Redis",
+              "url": "https://pkg.go.dev/github.com/go-redis/redis/v8",
+              "type": "article"
+            },
+            {
+              "title": "Implementing a simple cache in Go",
+              "url": "https://golangbot.com/cache-go/",
+              "type": "article"
+            },
+            {
+              "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+              "type": "video"
+            },
+            {
+              "title": "Build a REST API in Go (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_caching_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_auth_validation_security",
+          "name": "Authentication, Validation, and Security",
+          "tag": "essential",
+          "description": "Implement secure authentication mechanisms (JWT, OAuth2, session management), robust data validation using libraries like 'go-playground/validator', handle CORS, and apply other critical security best practices for Go web services.",
+          "resources": [
+            {
+              "title": "Go-Playground/Validator",
+              "url": "https://github.com/go-playground/validator",
+              "type": "article"
+            },
+            {
+              "title": "OWASP Top 10 for Go",
+              "url": "https://owasp.org/www-project-top-ten/2017/01_The_Biggest_Risks/A6-2017-Security_Misconfiguration",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_auth_validation_security.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_advanced_system_design",
+      "name": "Advanced Go & System Design",
+      "tag": "advanced",
+      "description": "Explore advanced Go topics and common system design patterns for building scalable, distributed, and resilient systems, including messaging, gRPC, and robust architectural principles.",
+      "resources": [
+        {
+          "title": "Advanced Go Programming (Anthony GG)",
+          "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+          "type": "video"
+        },
+        {
+          "title": "Go Testing Tutorial (Akhil Sharma)",
+          "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_advanced_system_design.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_messaging_queues",
+          "name": "Messaging Queues and Background Jobs",
+          "tag": "advanced",
+          "description": "Integrate Go services with reliable message brokers (e.g., RabbitMQ, Kafka, NATS) for asynchronous communication, event-driven architectures, background processing, and building robust distributed systems.",
+          "resources": [
+            {
+              "title": "Go with RabbitMQ (tutorial)",
+              "url": "https://www.rabbitmq.com/tutorials/tutorial-one-go.html",
+              "type": "article"
+            },
+            {
+              "title": "Confluent Kafka Go Client",
+              "url": "https://github.com/confluentinc/confluent-kafka-go",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_messaging_queues.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_grpc_microservices",
+          "name": "gRPC and Microservices",
+          "tag": "advanced",
+          "description": "Learn to build high-performance inter-service communication using gRPC and Protocol Buffers. Understand core microservice architecture concepts like service discovery, API gateways, circuit breakers, and an introduction to Service Mesh concepts (e.g., Linkerd, Istio).",
+          "resources": [
+            {
+              "title": "gRPC Basics - Go",
+              "url": "https://grpc.io/docs/languages/go/basics/",
+              "type": "article"
+            },
+            {
+              "title": "Protocol Buffers Developer Guide",
+              "url": "https://developers.google.com/protocol-buffers",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Service Mesh",
+              "url": "https://www.cncf.io/blog/2021/08/17/an-introduction-to-service-mesh/",
+              "type": "article"
+            },
+            {
+              "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+              "type": "video"
+            },
+            {
+              "title": "Build a REST API in Go (Traversy Media)",
+              "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_grpc_microservices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_config_env_management",
+          "name": "Configuration and Environment Management",
+          "tag": "essential",
+          "description": "Implement robust configuration management for Go applications using environment variables, command-line flags, and configuration files (YAML, JSON). Explore libraries like Viper and best practices for managing secrets.",
+          "resources": [
+            {
+              "title": "Go Config Management Best Practices",
+              "url": "https://www.ardanlabs.com/blog/2022/01/configuration-management-in-go.html",
+              "type": "article"
+            },
+            {
+              "title": "Viper Documentation",
+              "url": "https://github.com/spf13/viper",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_config_env_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_design_patterns_principles",
+          "name": "Design Patterns and Principles",
+          "tag": "advanced",
+          "description": "Apply common software design patterns in Go (e.g., Builder, Factory, Strategy, Observer) and understand fundamental principles like SOLID, Dependency Injection, and architectural styles like Clean Architecture, Hexagonal Architecture, and Event-Driven Architecture.",
+          "resources": [
+            {
+              "title": "Go Design Patterns (tutorials)",
+              "url": "https://refactoring.guru/design-patterns/go",
+              "type": "article"
+            },
+            {
+              "title": "Clean Architecture in Go",
+              "url": "https://medium.com/@mohsen.tahmid/clean-architecture-in-go-c598ae90302b",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_design_patterns_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_advanced_io_networking",
+          "name": "Advanced I/O and Networking",
+          "tag": "advanced",
+          "description": "Deep dive into Go's 'io' and 'net' packages. Understand network programming fundamentals, building custom TCP/UDP servers and clients, multiplexing, and advanced I/O operations for high-performance applications.",
+          "resources": [
+            {
+              "title": "Go's net package documentation",
+              "url": "https://pkg.go.dev/net",
+              "type": "article"
+            },
+            {
+              "title": "Building a TCP Server in Go",
+              "url": "https://tutorialedge.net/golang/building-a-tcp-server-in-go/",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_advanced_io_networking.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_ops_production",
+      "name": "Testing, Observability, & Deployment",
+      "tag": "advanced",
+      "description": "Build robust, production-ready Go applications by implementing comprehensive testing strategies, establishing effective observability, and mastering deployment to containerized and cloud environments.",
+      "resources": [
+        {
+          "title": "Go Testing Package",
+          "url": "https://pkg.go.dev/testing",
+          "type": "article"
+        },
+        {
+          "title": "Docker Go Guide",
+          "url": "https://docs.docker.com/language/golang/",
+          "type": "article"
+        },
+        {
+          "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+          "type": "video"
+        },
+        {
+          "title": "Build a REST API in Go (Traversy Media)",
+          "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_ops_production.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_comprehensive_testing",
+          "name": "Comprehensive Testing Strategies",
+          "tag": "advanced",
+          "description": "Write effective unit, integration, and end-to-end tests using Go's built-in testing framework. Learn about table-driven tests, mocking and dependency injection, property-based testing, fuzz testing, benchmarking, and utilizing the race detector for concurrency issues.",
+          "resources": [
+            {
+              "title": "Go Fuzzing",
+              "url": "https://go.dev/doc/security/fuzz/",
+              "type": "article"
+            },
+            {
+              "title": "Testing in Go: A Deep Dive",
+              "url": "https://go.dev/blog/cover",
+              "type": "article"
+            },
+            {
+              "title": "Testify Mocking Framework",
+              "url": "https://pkg.go.dev/github.com/stretchr/testify/mock",
+              "type": "article"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_comprehensive_testing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_observability_prod",
+          "name": "Observability in Production",
+          "tag": "advanced",
+          "description": "Implement structured logging, gather and visualize metrics (Prometheus, Grafana), configure distributed tracing (OpenTelemetry, Jaeger), perform in-depth profiling with 'pprof', and set up health checks and alerting strategies for monitoring Go services in production.",
+          "resources": [
+            {
+              "title": "pprof Documentation",
+              "url": "https://pkg.go.dev/net/http/pprof",
+              "type": "article"
+            },
+            {
+              "title": "OpenTelemetry Go",
+              "url": "https://opentelemetry.io/docs/languages/go/",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus Go Client",
+              "url": "https://prometheus.io/docs/guides/go-application/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_observability_prod.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_containerization_deployment",
+          "name": "Containerization and Cloud Deployment",
+          "tag": "advanced",
+          "description": "Containerize Go applications using Docker (focus on multi-stage builds and minimal images), understand Kubernetes deployment basics (Pods, Deployments, Services), and deploy to major cloud platforms (AWS, GCP, Azure) including configuration, secrets management, and serverless deployments (e.g., AWS Lambda, GCP Cloud Functions).",
+          "resources": [
+            {
+              "title": "Official Docker Go Image",
+              "url": "https://hub.docker.com/_/golang",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Concepts",
+              "url": "https://kubernetes.io/docs/concepts/",
+              "type": "article"
+            },
+            {
+              "title": "Go with AWS Lambda",
+              "url": "https://aws.github.io/aws-lambda-go/",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_containerization_deployment.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_capstone_pro_dev",
+      "name": "Capstone Project & Professional Development",
+      "tag": "advanced",
+      "description": "Apply all learned concepts to build a production-ready Go service, focusing on performance, scalability, maintainability, and preparing for professional roles in the industry.",
+      "resources": [
+        {
+          "title": "Go Tutorial for Beginners (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=yyUHQIec83I",
+          "type": "video"
+        },
+        {
+          "title": "Build a REST API in Go (Traversy Media)",
+          "url": "https://www.youtube.com/watch?v=SonwZ6MF5BE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/go_developer/go_capstone_pro_dev.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "go_production_service_project",
+          "name": "Build a Production-Ready Go Service",
+          "tag": "advanced",
+          "description": "Develop a complex Go backend service (e.g., URL shortener, e-commerce API, real-time chat) integrating databases, caching, message queues, robust error handling, full test coverage, and comprehensive observability, fully containerized and ready for cloud deployment.",
+          "resources": [
+            {
+              "title": "Building a Modern Go Application",
+              "url": "https://www.ardanlabs.com/blog/2021/08/go-microservice-architecture.html",
+              "type": "article"
+            },
+            {
+              "title": "Designing Data-Intensive Applications",
+              "url": "https://dataintensive.net/",
+              "type": "course"
+            },
+            {
+              "title": "Go Concurrency Patterns (Google)",
+              "url": "https://www.youtube.com/watch?v=f6kdp27TYZs",
+              "type": "video"
+            },
+            {
+              "title": "Go Web Development Tutorial (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=jFfo23yIWac",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_production_service_project.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_performance_optimization",
+          "name": "Performance Optimization & Refactoring",
+          "tag": "advanced",
+          "description": "Learn to identify and resolve performance bottlenecks using profiling tools ('pprof', tracing). Master refactoring techniques to improve code quality, maintainability, readability, and scalability of Go applications. Understand memory management and garbage collection in Go.",
+          "resources": [
+            {
+              "title": "Go Performance Tuning",
+              "url": "https://go.dev/doc/diagnose",
+              "type": "article"
+            },
+            {
+              "title": "Refactoring Techniques (Martin Fowler)",
+              "url": "https://martinfowler.com/books/refactoring.html",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Go Programming (Anthony GG)",
+              "url": "https://www.youtube.com/watch?v=LvgVSSpwND8",
+              "type": "video"
+            },
+            {
+              "title": "Go Testing Tutorial (Akhil Sharma)",
+              "url": "https://www.youtube.com/watch?v=FjkSJ1iXKpg",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_performance_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "go_ci_cd_pipelines",
+          "name": "CI/CD Pipelines for Go",
+          "tag": "advanced",
+          "description": "Understand Continuous Integration and Continuous Delivery principles. Implement robust CI/CD pipelines for Go projects using tools like GitHub Actions, GitLab CI, or Jenkins to automate testing, build processes, and deployment workflows efficiently.",
+          "resources": [
+            {
+              "title": "Go CI/CD with GitHub Actions",
+              "url": "https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go",
+              "type": "article"
+            },
+            {
+              "title": "GitLab CI for Go projects",
+              "url": "https://docs.gitlab.com/ee/ci/examples/go.html",
+              "type": "article"
+            },
+            {
+              "title": "Go Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=un6ZyFkqFKo",
+              "type": "video"
+            },
+            {
+              "title": "Go in 100 Seconds (Fireship)",
+              "url": "https://www.youtube.com/watch?v=446E-r0rXHI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/go_developer/go_ci_cd_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

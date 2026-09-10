@@ -1,0 +1,602 @@
+[
+  {
+    "question": "What is a primary responsibility of a Release Engineer in a software development lifecycle?",
+    "options": [
+      "Writing core business logic code for new features.",
+      "Designing the user interface and user experience.",
+      "Coordinating and orchestrating the deployment of software to various environments.",
+      "Managing financial budgets for IT projects."
+    ],
+    "correctIndex": 2,
+    "explanation": "The Release Engineer's core role involves coordinating, orchestrating, and streamlining the deployment process of software, ensuring reliable and consistent releases. Writing business logic, designing UI, or managing budgets are outside this scope.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of release engineering, what does \"versioning\" primarily refer to?",
+    "options": [
+      "Creating different UI themes for an application.",
+      "Assigning unique identifiers to software artifacts and their changes.",
+      "Managing user roles and permissions in a system.",
+      "Optimizing database queries for performance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Versioning is the process of assigning unique identifiers to different states or releases of software, allowing for tracking changes, rollbacks, and managing dependencies. It's fundamental for release coordination.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main purpose of \"release notes\" for a software release?",
+    "options": [
+      "To provide detailed internal code documentation for developers.",
+      "To list financial projections for the software's success.",
+      "To communicate new features, bug fixes, and known issues to users and stakeholders.",
+      "To track individual developer performance metrics."
+    ],
+    "correctIndex": 2,
+    "explanation": "Release notes serve as a communication tool for informing users and stakeholders about what's new, changed, or fixed in a specific software release, managing expectations and providing useful context.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes the benefit of implementing a CI/CD pipeline in the context of release engineering?",
+    "options": [
+      "It eliminates the need for any manual testing.",
+      "It fully automates all aspects of software development.",
+      "It automates build, test, and deployment processes, enabling faster and more reliable releases.",
+      "It focuses solely on fixing bugs after production deployment."
+    ],
+    "correctIndex": 2,
+    "explanation": "CI/CD pipelines automate the integration, testing, and deployment phases, significantly reducing manual errors, speeding up the release cycle, and improving release reliability. It doesn't eliminate all manual testing nor automate all development aspects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Release Engineer is setting up a new project's environment. Which type of tool is fundamental for tracking changes to source code and collaborating with a team?",
+    "options": [
+      "An Integrated Development Environment (IDE).",
+      "A Version Control System (VCS).",
+      "A Customer Relationship Management (CRM) system.",
+      "An Enterprise Resource Planning (ERP) system."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Version Control System (VCS) like Git is crucial for managing source code, tracking changes, and enabling collaboration among developers, forming the backbone of any modern release process.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When an issue is discovered post-release, what immediate action might a Release Engineer coordinate to mitigate impact quickly?",
+    "options": [
+      "Begin planning the next major feature release.",
+      "Initiate a rollback to the previous stable version.",
+      "Schedule an extensive code refactoring session.",
+      "Discontinue support for the affected application."
+    ],
+    "correctIndex": 1,
+    "explanation": "If an issue is discovered after a release, a common and effective immediate mitigation strategy is to initiate a rollback to the last known stable version to restore service while a fix is prepared.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a key characteristic of an artifact promotion strategy in a CI/CD pipeline?",
+    "options": [
+      "Artifacts are modified as they move through different environments.",
+      "Only code changes, not compiled artifacts, are moved between environments.",
+      "The same immutable artifact is promoted through different environments (e.g., dev, staging, prod).",
+      "Artifact promotion is solely a manual process."
+    ],
+    "correctIndex": 2,
+    "explanation": "A key principle of artifact promotion is that the exact same immutable artifact is moved through various environments. This ensures that what was tested in staging is precisely what gets deployed to production, preventing 'it worked on my machine' issues.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Release Engineer is tasked with ensuring an application's binaries are consistently built regardless of the developer's local machine configuration. What concept or tool set is most relevant to achieving this?",
+    "options": [
+      "Using a standardized local IDE for all developers.",
+      "Implementing a robust build system with defined dependencies and environments.",
+      "Encouraging developers to manually compile their code before committing.",
+      "Relying solely on runtime environment variables for configuration."
+    ],
+    "correctIndex": 1,
+    "explanation": "A robust build system (e.g., Maven, Gradle, npm scripts within a CI context, Docker) defines the exact steps and dependencies needed to compile and package an application, ensuring consistent output irrespective of the local developer environment.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a critical release, a Release Engineer identifies that the deployment script fails intermittently due to race conditions. What is the most effective approach to diagnose and resolve this issue?",
+    "options": [
+      "Manually run the script multiple times until it succeeds.",
+      "Add extensive logging and introduce deliberate delays to observe state changes.",
+      "Rewrite the entire deployment script from scratch immediately.",
+      "Assume it's a network issue and escalate to the network team."
+    ],
+    "correctIndex": 1,
+    "explanation": "Race conditions are often hard to reproduce and diagnose. Adding extensive logging to capture the state at critical points and potentially introducing small delays can help expose the sequence of events leading to the failure, enabling identification of the root cause.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An organization is adopting a strategy of frequent, small releases. As a Release Engineer, what is a primary challenge this poses for \"change management\" and how is it typically addressed?",
+    "options": [
+      "Challenge: Increased risk of large, unpredictable changes; Address: Impose strict, lengthy approval processes.",
+      "Challenge: Difficulty in tracking individual changes; Address: Implement automated release notes generation and robust versioning.",
+      "Challenge: Reduced need for testing; Address: Minimize pre-release quality checks.",
+      "Challenge: Higher infrastructure costs; Address: Manually provision servers for each release."
+    ],
+    "correctIndex": 1,
+    "explanation": "Frequent small releases make it harder to track what exactly changed. Robust versioning and automated release notes generation help manage and communicate these granular changes effectively to stakeholders and for auditing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before a major feature release, a Release Engineer needs to ensure that the new code does not introduce regressions in existing functionality. Which part of the release process is primarily responsible for preventing this?",
+    "options": [
+      "Updating developer documentation.",
+      "Conducting thorough code reviews by peer developers.",
+      "Implementing and running automated regression tests.",
+      "Performing a final security audit only."
+    ],
+    "correctIndex": 2,
+    "explanation": "Automated regression tests are specifically designed to verify that existing functionality remains intact after new code changes. While code reviews and security audits are important, regression testing directly addresses the risk of introducing regressions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Release Engineer is preparing for a production deployment that involves sensitive customer data. What is a crucial consideration regarding \"security\" and \"data protection\" during the release process itself?",
+    "options": [
+      "Ensuring all release scripts are publicly accessible for transparency.",
+      "Hardcoding API keys directly into deployment scripts for ease of use.",
+      "Implementing secure credential management (e.g., vaults) for deployment automation.",
+      "Disabling all logging during deployment to prevent data exposure."
+    ],
+    "correctIndex": 2,
+    "explanation": "Protecting sensitive data during deployment requires secure handling of credentials (API keys, passwords). Using credential management systems (like HashiCorp Vault) prevents secrets from being exposed in scripts, logs, or version control. Public scripts or disabled logging are security anti-patterns.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A release pipeline includes a manual approval step for deploying to production. This introduces a bottleneck. What is the Release Engineer's best strategy to address this while maintaining control?",
+    "options": [
+      "Eliminate the approval step entirely to speed up the pipeline.",
+      "Automate the criteria for approval using gates that check test results, security scans, and configuration.",
+      "Require all developers to approve every production deployment.",
+      "Assign the approval responsibility to a single, always-available team member."
+    ],
+    "correctIndex": 1,
+    "explanation": "The best way to address manual bottlenecks while maintaining control is to automate the approval criteria. By defining and implementing gates that check objective metrics (test results, security scans, compliance, configuration), the system can automatically grant approval when all conditions are met, transforming a manual step into an automated check.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a key practice for a Release Engineer to ensure effective \"stakeholder communication\" regarding release progress and potential issues?",
+    "options": [
+      "Only communicate after a release is fully complete and stable.",
+      "Regularly publish automated status updates and dashboards for all key metrics.",
+      "Rely solely on ad-hoc verbal updates during team stand-ups.",
+      "Provide extremely detailed technical logs to non-technical stakeholders."
+    ],
+    "correctIndex": 1,
+    "explanation": "Effective stakeholder communication involves proactive and transparent updates. Automated status updates and dashboards provide readily accessible, consistent information on release progress, health, and potential issues in a consumable format for various stakeholders.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When creating \"decision records\" for a release, what is their primary benefit for future operations?",
+    "options": [
+      "To serve as legal documentation in case of a lawsuit.",
+      "To justify past choices and provide context for future modifications or troubleshooting.",
+      "To replace the need for code comments or inline documentation.",
+      "To strictly enforce a single decision-making authority."
+    ],
+    "correctIndex": 1,
+    "explanation": "Decision records capture the rationale behind significant choices made during the release process (e.g., technology choice, rollback strategy, specific configuration). This context is invaluable for future teams or individuals who need to understand, modify, or troubleshoot the release.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Release Engineer is preparing a \"lessons-learned\" section for a post-release retrospective. What kind of content is most valuable to include?",
+    "options": [
+      "A list of all individual team members who made mistakes.",
+      "A summary of positive and negative outcomes, unexpected challenges, and actionable improvements for future releases.",
+      "A comprehensive list of all code changes made during the release cycle.",
+      "A detailed breakdown of the time spent by each team member on tasks."
+    ],
+    "correctIndex": 1,
+    "explanation": "A valuable \"lessons-learned\" section focuses on constructive feedback: identifying what went well, what went wrong, unexpected obstacles, and, most importantly, actionable steps to improve future release processes. It's about process improvement, not blame or granular task tracking.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A Release Engineer needs to demonstrate their expertise in \"build systems\" for a portfolio. What artifact would best showcase this skill?",
+    "options": [
+      "A screenshot of a deployed application's user interface.",
+      "A configuration file (e.g., Jenkinsfile, .gitlab-ci.yml, build.gradle) demonstrating complex build logic.",
+      "A document outlining the company's organizational chart.",
+      "A simple text file with a list of favorite programming languages."
+    ],
+    "correctIndex": 1,
+    "explanation": "A configuration file for a CI/CD pipeline or a specific build tool (like a Jenkinsfile or Gradle script) directly demonstrates the Release Engineer's ability to define, configure, and manage complex build logic, dependencies, and environments, which is core to build systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When defining \"acceptance criteria\" for a new feature to be included in a release, what is the Release Engineer's primary interest?",
+    "options": [
+      "Ensuring the criteria are purely aesthetic and subjective.",
+      "Verifying that the criteria are measurable and clearly define what \"done\" means for deployment and functional verification.",
+      "Making the criteria as vague as possible to allow for flexibility.",
+      "Limiting acceptance criteria only to performance benchmarks."
+    ],
+    "correctIndex": 1,
+    "explanation": "The Release Engineer is interested in acceptance criteria that are measurable and unambiguous. This clarity ensures that they can automate checks and confidently verify whether a feature is ready for release, meeting the definition of 'done' for deployment and functional readiness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An important aspect of \"lifecycle ownership\" for a Release Engineer is managing the various environments (dev, staging, production). What does this primarily entail?",
+    "options": [
+      "Manually creating new environments for every single feature branch.",
+      "Ensuring consistency, proper configuration, and appropriate data synchronization across environments.",
+      "Allowing developers to make ad-hoc changes directly in production for testing.",
+      "Completely isolating environments so no data or configuration can ever be shared."
+    ],
+    "correctIndex": 1,
+    "explanation": "Lifecycle ownership for environments means maintaining their health, ensuring they are consistently configured, managing data integrity (e.g., refreshing staging data), and providing mechanisms for smooth artifact promotion, all crucial for reliable releases.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of \"failure handling\" within a release pipeline, what is the most effective proactive measure a Release Engineer can implement?",
+    "options": [
+      "Relying on end-users to report failures after production deployment.",
+      "Implementing automated checks at each stage and designing clear rollback strategies.",
+      "Disabling all error reporting to reduce log noise.",
+      "Halting all development activities if any minor failure occurs in testing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Effective failure handling is proactive. Implementing automated checks at every stage identifies issues early, and having clear rollback strategies ensures rapid recovery if a failure does occur further down the pipeline or in production.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A company has a strict policy of \"immutable infrastructure\" where servers are never patched or modified after deployment. As a Release Engineer, how would you address a critical zero-day vulnerability in an application's base OS?",
+    "options": [
+      "Manually SSH into each server to apply the patch directly.",
+      "Initiate a new release cycle where a new base image with the patch is built, and then redeploy all affected services.",
+      "Temporarily disable the vulnerable service until a manual fix can be applied.",
+      "Ignore the vulnerability, assuming the immutable infrastructure provides sufficient isolation."
+    ],
+    "correctIndex": 1,
+    "explanation": "With immutable infrastructure, servers are replaced, not modified. To address a critical vulnerability, the Release Engineer must trigger a new build process for the base image (or application image), incorporating the patch, and then redeploy all affected services using this new, secure image. Manual patching violates immutability.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An organization utilizes a \"monorepo\" for multiple microservices, with each service having its own release schedule. The Release Engineer observes that promoting a specific service's artifact from staging to production often inadvertently includes unverified changes from other services in the same monorepo. What \"implementation pattern\" and strategy should be adopted to resolve this?",
+    "options": [
+      "Implement a \"single release train\" model for all services, forcing them to release together.",
+      "Introduce a \"sparse checkout\" strategy for the monorepo during build, coupled with explicit dependency tracking for each service's build/artifact.",
+      "Migrate each microservice to its own separate repository.",
+      "Manually review all code changes in the entire monorepo before any single service release."
+    ],
+    "correctIndex": 1,
+    "explanation": "The problem stems from the build system potentially pulling in the latest state of the entire monorepo rather than just the specific service's verified dependencies. A \"sparse checkout\" (or similar strategy like dedicated build contexts) for the monorepo, combined with explicit dependency tracking and careful build system configuration, ensures that only the relevant and verified code for a specific service is built and promoted as an artifact, preventing \"bleed-through\" of unverified changes from other services. Migrating to separate repos is an architectural change, not an implementation pattern, and manual review is unsustainable.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A critical production system experiences an outage immediately after a new release. The \"monitoring\" systems show degraded performance and error rates. As a Release Engineer, what is the most robust and rapid \"rollback\" strategy in a highly automated environment, and what is its underlying principle?",
+    "options": [
+      "Immediately revert the code in version control and trigger a new build and deploy from that reverted commit.",
+      "Scale down the newly deployed services and manually deploy the previous stable artifacts onto the remaining instances.",
+      "Trigger an automated rollback mechanism that points load balancers to the previous stable deployment while simultaneously initiating the termination of the failed deployment.",
+      "Wait for the development team to push a hotfix, then redeploy the hotfix."
+    ],
+    "correctIndex": 2,
+    "explanation": "The most robust and rapid rollback strategy involves an automated mechanism. This typically means shifting traffic (via load balancers) back to the last known good deployment (which should still be available and running or quickly brought back online), while the problematic deployment is gracefully terminated. This minimizes downtime by avoiding a full redeploy of the previous version and leverages the principle of having previous stable versions readily available.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A Release Engineer is tasked with improving the \"security\" of the release pipeline itself, beyond just scanning application code. What is a critical \"failure mode\" to consider in the pipeline, and how would you mitigate it?",
+    "options": [
+      "Failure mode: Slow build times; Mitigation: Upgrade CI/CD server hardware.",
+      "Failure mode: Unauthorized access to release artifacts; Mitigation: Implement strong access controls and integrity checks on artifact repositories.",
+      "Failure mode: Test flakiness; Mitigation: Increase the number of test runs.",
+      "Failure mode: Developers forgetting to write release notes; Mitigation: Enforce release note templates."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unauthorized access to release artifacts is a significant security failure mode in the pipeline. If malicious actors can modify or inject code into artifacts, it compromises the entire supply chain. Mitigation involves implementing robust role-based access controls (RBAC) for artifact repositories and pipelines, using cryptographic signatures or checksums to verify artifact integrity at each promotion stage, and regular security audits of the pipeline infrastructure.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are acting as a Release Engineer for a project that requires \"high availability\" and \"zero-downtime deployments.\" What \"implementation pattern\" would be most suitable for deploying critical updates, and why?",
+    "options": [
+      "Big Bang deployment: Release everything at once to quickly get changes out.",
+      "In-place upgrade: Shut down existing instances, update them, then bring them back up.",
+      "Blue/Green or Canary deployment: Deploy new version alongside old, gradually shift traffic, and rollback if issues arise.",
+      "Manual deployment: Carefully update each server by hand to ensure precision."
+    ],
+    "correctIndex": 2,
+    "explanation": "For zero-downtime and high availability, \"Blue/Green\" or \"Canary\" deployment patterns are ideal. Both involve deploying the new version alongside the old, gradually routing traffic to the new version, and providing a rapid rollback path by simply diverting traffic back to the old, stable version if any issues are detected. Big Bang and in-place upgrades inherently cause downtime, and manual deployments are error-prone and slow.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary role of a Release Engineer?",
+    "options": [
+      "To write core application business logic",
+      "To design, build, and maintain pipelines and processes for compiling, packaging, testing, and deploying software builds reliably",
+      "To design marketing pages and logos",
+      "To manage database SQL tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Release engineers focus on shipping software. They own CI/CD builds, configuration management, artifact packaging, and deployment automation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is CI (Continuous Integration)?",
+    "options": [
+      "A coding standard replacing JavaScript",
+      "The practice of frequently merging code changes into a shared repository, running automated builds and tests to catch issues early",
+      "A database synchronization protocol",
+      "A software tool that designs layouts"
+    ],
+    "correctIndex": 1,
+    "explanation": "CI automates build loops. Every commit triggers unit tests and compilation check scripts, alerting developers of errors.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which version control system is the industry standard for tracking code changes?",
+    "options": [
+      "Subversion",
+      "Git",
+      "Mercurial",
+      "Perforce"
+    ],
+    "correctIndex": 1,
+    "explanation": "Git is a distributed version control system, widely used globally to manage code history and branch collaborations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'build artifact' in software release cycles?",
+    "options": [
+      "A legacy code comment that should be deleted",
+      "The compiled, packaged, or generated file output from a build pipeline (like a jar, zip, or container image) ready for deployment",
+      "A database backup schedule config",
+      "A spreadsheet tracking project tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Artifacts are the deployable outputs of pipelines, stored in repositories (like Artifactory, Docker Registry) with version tags.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between Continuous Delivery and Continuous Deployment?",
+    "options": [
+      "Continuous Delivery is only for mobile applications",
+      "Continuous Delivery requires manual approval to deploy builds to production; Continuous Deployment automates releases to production directly after tests pass",
+      "Continuous Deployment is written in Python; Delivery in Java",
+      "There is no difference between them"
+    ],
+    "correctIndex": 1,
+    "explanation": "Both automate builds and testing. Continuous Delivery prepares deployable builds (manually released). Continuous Deployment pushes code to production automatically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which file in a Node.js project defines dependencies, scripts, and the package version?",
+    "options": [
+      "package.json",
+      "webpack.config.js",
+      "App.js",
+      "npm.config"
+    ],
+    "correctIndex": 0,
+    "explanation": "`package.json` manages metadata, versions, and dependencies in Node.js applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is semantic versioning (SemVer) and how is a version numbered (e.g. 2.1.3)?",
+    "options": [
+      "A format numbering database tables; 2 is DB ID, 1 is Table ID, 3 is Row ID",
+      "A versioning format: MAJOR.MINOR.PATCH (e.g., 2.1.3), where MAJOR is breaking, MINOR is feature addition, and PATCH is bug fixes",
+      "A way to count developer commits",
+      "An encryption format for passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "SemVer unifies dependency updates. Upgrading minor/patch is safe. Major alerts developers to potential code breakage.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a major benefit of using Docker containers for software distribution?",
+    "options": [
+      "They make applications execute without memory or CPU",
+      "They package an application and its dependencies together, guaranteeing it runs identically across different environment servers",
+      "They eliminate the need for git repositories",
+      "They host databases in GPU caches"
+    ],
+    "correctIndex": 1,
+    "explanation": "Containers solve the 'works on my machine' issue by bundling OS libraries, runtime, and code, providing environment consistency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'rolling update' deployment strategy do?",
+    "options": [
+      "Terminates all server instances before updating them",
+      "Gradually replaces old instances of an application with new versions to ensure zero downtime during releases",
+      "Rotates database backup files on storage",
+      "Resets system configuration files hourly"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rolling updates update servers incrementally (e.g., updating 2 out of 10 servers at a time), keeping the system online.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a 'canary release'?",
+    "options": [
+      "A security test targeting firewall ports",
+      "Deploying the new software version to a tiny subset of users first to check stability before updating the remaining servers",
+      "Building applications in virtual machine sandboxes",
+      "Testing database read/write speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "Canary releases limit blast radius. If the new code contains bugs, only a tiny percentage of users are affected, and the release can be rolled back safely.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is GitFlow?",
+    "options": [
+      "A command line tool that compiles git code",
+      "A branching model for Git that uses master, develop, feature, release, and hotfix branches to organize release management",
+      "A database replication service",
+      "An API routing protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "GitFlow structures branching. Work happens in features, merges to develop, is polished in release, and merges to master/main for tags.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of an Artifact Repository (e.g., JFrog Artifactory or Sonatype Nexus)?",
+    "options": [
+      "To host developer employee portfolios",
+      "To securely store, manage, and version binary build packages (artifacts) generated by CI/CD pipelines",
+      "To backup database logs",
+      "To write documentation templates"
+    ],
+    "correctIndex": 1,
+    "explanation": "Artifact repositories act as the single source of truth for compiled binaries, ensuring production pulls validated packages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of the 'webhook' in Git systems?",
+    "options": [
+      "To write commit logs to disk folders",
+      "An HTTP POST request sent by Git servers to a CI server when commits are pushed, triggering automated builds instantly",
+      "To encrypt git branch directories",
+      "To resolve local domain routing paths"
+    ],
+    "correctIndex": 1,
+    "explanation": "Webhooks link Git and CI. When developers push code to GitHub, GitHub triggers a webhook call to Jenkins/CircleCI to start the build.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'infrastructure as code' (IaC) and what is a popular tool for it?",
+    "options": [
+      "Writing server documentation in markdown; tool is Git",
+      "Defining and provisioning physical/virtual server infrastructure using configuration files; popular tool is Terraform",
+      "Configuring firewall settings in terminal scripts; tool is iptables",
+      "Running database migrations in PHP; tool is Laravel"
+    ],
+    "correctIndex": 1,
+    "explanation": "IaC brings version control to infrastructure. Tools like Terraform define VMs, networks, and databases as code, automating deployments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'blue-green deployment' strategy accomplish?",
+    "options": [
+      "Updates half of the server instances using one version, half using another version, to compare performance metrics",
+      "Maintains two identical production environments; cuts all traffic over to the updated environment once validated, minimizing downtime",
+      "Saves backup server files in two different countries",
+      "Restricts application layouts to blue or green visual accents"
+    ],
+    "correctIndex": 1,
+    "explanation": "Blue-Green enables instant rollback. If the new environment (Green) fails, traffic is cut back to the old environment (Blue) instantly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'hotfix' branch in version control setups?",
+    "options": [
+      "A branch used to test experimental features",
+      "A branch created directly from production (main/master) to resolve critical bugs immediately, merged back to main and develop",
+      "A branch that deletes temporary cache files",
+      "A branch running on local servers only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hotfixes bypass normal release cycles. They address critical production bugs immediately, ensuring fixes are integrated into active development.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of static code analysis (SAST) in build pipelines?",
+    "options": [
+      "Measuring compilation latency of servers",
+      "Analyzing source code statically (without executing it) to find security flaws, bugs, or style violations in pipelines",
+      "Executing automated unit tests in parallel",
+      "Checking database index speeds"
+    ],
+    "correctIndex": 1,
+    "explanation": "SAST scanners (like SonarQube) audit source code, blocking builds if security vulnerabilities or code smell thresholds are violated.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'environment drift' mean, and how is it mitigated?",
+    "options": [
+      "Servers changing physical locations; mitigated by relocation",
+      "When development, staging, and production server configurations deviate over time; mitigated by using containerization and IaC templates",
+      "Changes in system timezone settings; mitigated by NTP syncing",
+      "Unstable network routing paths; mitigated by hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Drift causes bugs where code works in staging but fails in production. Mitigation involves IaC automation and Docker containers, ensuring identical systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a 'release coordinator' or 'release manager'?",
+    "options": [
+      "A developer who writes application test scripts",
+      "The person responsible for coordinating release builds, scheduling deployments, managing risks, and aligning stakeholders",
+      "A cloud administrator provisioning database server nodes",
+      "A security auditor testing system firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "Release coordinators manage delivery, coordinating across product, QA, operations, and business teams for successful releases.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'deployment validation' (or smoke testing) post-release?",
+    "options": [
+      "Checking server temperatures physically",
+      "A quick set of automated or manual checks run immediately after deployment to verify the application has booted and behaves correctly",
+      "Compiling code source files on master nodes",
+      "Writing database backups to local folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Validation confirms success. Post-release smoke tests check if main APIs respond, verifying the deployment didn't break core systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Explain the difference between 'git merge --no-ff' and standard fast-forward merges, and why release engineers prefer the former for merging feature branches.",
+    "options": [
+      "Fast-forward merges delete commit histories; --no-ff preserves them",
+      "Fast-forward moves the branch pointer forward without a commit; --no-ff forces a merge commit, preserving the history and grouping of feature commits",
+      "Fast-forward merges are only for master branches",
+      "They are identical commands in git compilers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Standard merges can flatten history, making it hard to see which commits belonged to a feature. `--no-ff` creates a merge commit, grouping feature commits and simplifying history rollback.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of 'Code Signing' in release management, and how do certificate chains establish trust?",
+    "options": [
+      "Signing code documents legally; certificate chains trace developer accounts",
+      "Applying a cryptographic signature to binaries to verify author identity and prevent tampering; trust is established by tracing the signature to a trusted root CA",
+      "Formatting code files; certificate chains track styling rules",
+      "Encrypting database tables; certificate chains trace SQL drivers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Code signing prevents operating system warnings (like SmartScreen). The OS checks if the binary signature traces back to a trusted root certificate authority, verifying software integrity.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Explain how 'Hermetic Builds' (reproducible builds) eliminate environment variables from corrupting compiled artifacts, and how containerized build agents achieve them.",
+    "options": [
+      "By deleting env files during git commits",
+      "By running compilations in completely isolated containers with disabled network access and pinned dependency files, guaranteeing identical output bytes",
+      "By hosting databases on local networks only",
+      "By scheduling builds during server off-peak hours"
+    ],
+    "correctIndex": 1,
+    "explanation": "Non-hermetic builds depend on local libraries, causing binary drift. Hermetic builds pin all packages, compiler versions, and environments in isolated containers, producing identical byte output regardless of which build server runs the task.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'GitOps' continuous delivery, and how does it reconcile cluster configurations against Git repositories?",
+    "options": [
+      "A git branch command; reconciles by git push rules",
+      "A CD pattern where target states are declared in Git; controllers (like ArgoCD) continuously monitor the cluster and Git, applying changes to eliminate drift",
+      "A database backup protocol; reconciles by SQL comparison",
+      "A tool managing local network switches; reconciles by routing tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "GitOps ensures the Git repo is the single source of truth. If configuration drift occurs in the cluster, GitOps agents automatically revert changes to match Git.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In the context of compliance and governance, what does 'separation of duties' (SoD) mean for code promotions, and how is it enforced in CI/CD pipelines?",
+    "options": [
+      "Splitting developer tasks alphabetically; enforced by team managers",
+      "Ensuring the developer who writes the code cannot approve the pull request or manually trigger the production release; enforced by automated branch protections and IAM roles",
+      "Separating frontend and backend files; enforced by compilers",
+      "Restricting data access to local IP ranges; enforced by firewalls"
+    ],
+    "correctIndex": 1,
+    "explanation": "SoD is a key auditing standard. Enforced via GitHub branch protections (requiring review from designated teams) and locking production pipeline triggers to automated services rather than developer accounts.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,915 @@
+{
+  "id": "salesforce_developer",
+  "title": "Salesforce Developer",
+  "description": "Develop enterprise customer relationship management solutions on Salesforce: Apex programming, Lightning Web Components (LWC), SOQL, and integrations.",
+  "goal": {
+    "objective": "Customize and extend the world’s leading enterprise CRM platform using Apex, Lightning Web Components, and secure API integrations.",
+    "salary": "$85,000 - $150,000 / yr (₹7 - ₹24 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 85000,
+        "max": 150000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 7,
+        "max": 24,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Entry to Senior (0 - 6+ Years)",
+    "target_roles": [
+      "Salesforce Developer",
+      "Salesforce Technical Architect",
+      "LWC Developer"
+    ],
+    "career_pillars": [
+      "Apex Backend Programming & Trigger Architecture",
+      "Lightning Web Components (LWC) Modern UI",
+      "Governor Limits Management & SOQL/SOSL Queries"
+    ]
+  },
+  "learn": {
+    "summary": "Master Apex object-oriented programming, SOQL/SOSL database querying, Lightning Web Components (modern JavaScript/web components), trigger frameworks, and governor limits.",
+    "key_competencies": [
+      "Apex Programming, Classes & Asynchronous Apex (Batch/Queueable)",
+      "Lightning Web Components (LWC) & Event Propagation",
+      "SOQL/SOSL Query Optimization & Relationship Queries",
+      "Apex Trigger Frameworks & Bulkification",
+      "Salesforce Governor Limits & Transaction Boundaries"
+    ],
+    "prerequisites": [
+      "Object-Oriented Programming (Java or C# familiarity)",
+      "Basic web standards (JavaScript, HTML, CSS)",
+      "Relational database concepts"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Custom Healthcare Case Management Portal in Salesforce",
+        "tech_stack": [
+          "Salesforce DX",
+          "Apex",
+          "LWC",
+          "SOQL",
+          "REST Callout"
+        ],
+        "description": "Build a custom patient intake system featuring interactive LWC forms, automated insurance verification callouts, and bulkified Apex triggers."
+      },
+      {
+        "title": "Lightning Web Components (LWC) Enterprise Order Console",
+        "tech_stack": [
+          "Apex",
+          "LWC",
+          "Salesforce DX",
+          "SOQL",
+          "REST Callouts"
+        ],
+        "description": "Design an asynchronous Lightning Web Component dashboard with bulkified Apex triggers, external ERP REST callouts, and unit test coverage exceeding 90%."
+      }
+    ],
+    "certifications": [
+      "Salesforce Certified Platform Developer I (PDI)",
+      "Salesforce Certified Platform Developer II (PDII)"
+    ],
+    "interview_focus": [
+      "Salesforce Governor Limits & Bulkification Architecture",
+      "LWC Event Handling (Custom Events vs LMS vs PubSub)",
+      "Trigger Frameworks & Avoiding Recursive Loops",
+      "Asynchronous Apex: Future vs Queueable vs Batch Apex"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "sf_platform_fundamentals",
+      "name": "Salesforce Platform Fundamentals",
+      "tag": "essential",
+      "description": "Develop a solid understanding of CRM concepts, the Salesforce ecosystem, declarative customization, data architecture, and robust security models.",
+      "resources": [
+        {
+          "title": "Trailhead: Salesforce Platform Basics",
+          "url": "https://trailhead.salesforce.com/content/learn/modules/starting_force_com",
+          "type": "course"
+        },
+        {
+          "title": "Salesforce Full Course for Beginners (Simplilearn)",
+          "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+          "type": "video"
+        },
+        {
+          "title": "Apex Programming Tutorial (Salesforce Hulk)",
+          "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/salesforce_developer/sf_platform_fundamentals.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "crm_ecosystem_basics",
+          "name": "CRM Concepts & Salesforce Ecosystem Overview",
+          "tag": "essential",
+          "description": "Grasp core CRM principles, understand the Salesforce Customer 360 vision, explore various Salesforce Clouds (Sales Cloud, Service Cloud, Experience Cloud, Marketing Cloud, Analytics Cloud, etc.), AppExchange, and the multi-tenant architecture to comprehend the platform's breadth and capabilities.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/crm_ecosystem_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "declarative_development",
+          "name": "Declarative Customization & Automation (Admin Essentials)",
+          "tag": "essential",
+          "description": "Master standard and custom objects, fields, relationships, page layouts, record types, compact layouts, path, profiles, permission sets, roles, sharing settings, validation rules, formula fields, rollup summary fields, and powerful automation tools like Salesforce Flow (Screen Flow, Record-Triggered Flow, Schedule-Triggered Flow, Autolaunched Flow) to build robust business logic without code.",
+          "resources": [
+            {
+              "title": "Trailhead Admin Beginner",
+              "url": "https://trailhead.salesforce.com/content/learn/trails/force_com_admin_beginner",
+              "type": "course"
+            },
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/declarative_development.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "data_model_architecture",
+          "name": "Salesforce Data Model & Object Architecture",
+          "tag": "essential",
+          "description": "Design efficient and scalable data models using standard and custom objects. Understand different relationship types (Lookup, Master-Detail, Many-to-Many using Junction Objects), external objects, schema builder, field history tracking, and data storage considerations.",
+          "resources": [
+            {
+              "title": "Data Modeling Trailhead",
+              "url": "https://trailhead.salesforce.com/content/learn/modules/data_modeling",
+              "type": "course"
+            },
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/data_model_architecture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "security_access_control",
+          "name": "Salesforce Security & Access Control Model",
+          "tag": "essential",
+          "description": "Implement a multi-layered security model by understanding Organization-Wide Defaults (OWD), Role Hierarchy, Sharing Rules (owner-based, criteria-based), Manual Sharing, Profiles, Permission Sets, Public Groups, Queues, Territory Management, and Field-Level Security (FLS) to control data visibility and access effectively.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/security_access_control.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sf_developer_core",
+      "name": "Salesforce Developer Core Skills",
+      "tag": "essential",
+      "description": "Acquire foundational programming and declarative automation skills using Apex, SOQL, Lightning Web Components, and essential developer tools for custom solutions.",
+      "resources": [
+        {
+          "title": "Salesforce Developer Documentation",
+          "url": "https://developer.salesforce.com/docs",
+          "type": "article"
+        },
+        {
+          "title": "SOQL Tutorial (Salesforce Ben)",
+          "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+          "type": "video"
+        },
+        {
+          "title": "Salesforce Integration Patterns (Salesforce Developers)",
+          "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/salesforce_developer/sf_developer_core.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "developer_tools_environments",
+          "name": "Developer Tools & Development Environments",
+          "tag": "essential",
+          "description": "Set up Salesforce CLI, VS Code with Salesforce extensions (Apex, LWC, Aura Components, ESLint, Prettier), understand different development environments (Developer Orgs, Sandboxes - Dev, Dev Pro, Partial, Full), Scratch Orgs, and efficient development workflows for a productive and collaborative environment.",
+          "resources": [
+            {
+              "title": "Salesforce CLI",
+              "url": "https://developer.salesforce.com/tools/salesforcecli/",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/developer_tools_environments.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "apex_programming",
+          "name": "Apex Programming Language Fundamentals",
+          "tag": "essential",
+          "description": "Learn Apex syntax, data types, variables, operators, control flow statements (if/else, loops), collections (Lists, Sets, Maps), DML operations, database methods, exception handling, classes, objects, interfaces, inheritance, polymorphism, and basic SOQL/SOSL integration within Apex. Understand Apex best practices like bulkification and avoiding hardcoding.",
+          "resources": [
+            {
+              "title": "Apex Developer Guide",
+              "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/apex_programming.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "soql_sosl_queries",
+          "name": "SOQL & SOSL for Data Manipulation",
+          "tag": "essential",
+          "description": "Master Salesforce Object Query Language (SOQL) for efficient data retrieval, including relationship queries (parent-to-child, child-to-parent), aggregate functions, and understanding query performance. Utilize Salesforce Object Search Language (SOSL) for full-text searches across multiple objects and fields.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/soql_sosl_queries.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "apex_triggers_automation",
+          "name": "Apex Triggers, Automation & Best Practices",
+          "tag": "essential",
+          "description": "Develop bulk-safe and efficient Apex Triggers, understand trigger context variables, trigger order of execution, and implement best practices such as one trigger per object pattern and trigger handler classes. Compare and contrast Apex triggers with Salesforce Flow for automation use cases.",
+          "resources": [
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/apex_triggers_automation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "asynchronous_apex_techniques",
+          "name": "Asynchronous Apex Techniques",
+          "tag": "essential",
+          "description": "Implement asynchronous processing using Future Methods, Batch Apex for large data sets, Queueable Apex for more complex chaining, and Scheduled Apex for recurring tasks, understanding their use cases and governor limits.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/asynchronous_apex_techniques.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "apex_testing_debugging",
+          "name": "Apex Testing, Debugging & Quality Assurance",
+          "tag": "essential",
+          "description": "Write robust unit tests for Apex classes and triggers, including test data creation (Test.startTest(), Test.stopTest()), mocking callouts, asserting expected results, and achieving the required code coverage. Utilize debug logs, system.debug statements, and the Developer Console for efficient troubleshooting and performance analysis of Apex code.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/apex_testing_debugging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "lwc_fundamentals",
+          "name": "Lightning Web Components (LWC) Fundamentals",
+          "tag": "essential",
+          "description": "Build modern and performant user interfaces using HTML templates, JavaScript controllers, and CSS. Master key LWC concepts such as decorators (@api, @track, @wire), data binding, component composition, lifecycle hooks, event handling (custom events, standard events), and understanding the Lightning Data Service (LDS) for efficient data interaction.",
+          "resources": [
+            {
+              "title": "Lightning Web Components Dev Guide",
+              "url": "https://developer.salesforce.com/docs/platform/lwc/guide",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/lwc_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sf_advanced_dev_practices",
+      "name": "Advanced Salesforce Development & Practices",
+      "tag": "advanced",
+      "description": "Deep dive into advanced development patterns, performance optimization, security best practices, and event-driven architecture within the Salesforce platform.",
+      "resources": [
+        {
+          "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+          "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+          "type": "video"
+        },
+        {
+          "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/salesforce_developer/sf_advanced_dev_practices.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "apex_design_patterns",
+          "name": "Advanced Apex Design Patterns & Frameworks",
+          "tag": "advanced",
+          "description": "Apply advanced architectural patterns for scalable and maintainable Apex development, including Trigger Frameworks (e.g., fflib), Service Layer, Domain Layer, Selector Layer, Unit of Work patterns, and enterprise-grade architecture considerations.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/apex_design_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "lwc_advanced_patterns",
+          "name": "LWC Advanced Concepts, Performance & Best Practices",
+          "tag": "advanced",
+          "description": "Implement advanced inter-component communication patterns (pub-sub, Lightning Message Service), dynamic component creation, working with third-party JavaScript libraries, performance optimization techniques (memoization, lazy loading), accessibility considerations, and advanced styling in LWCs.",
+          "resources": [
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/lwc_advanced_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "governor_limits_optimization",
+          "name": "Governor Limits, Scalability & Performance Optimization",
+          "tag": "advanced",
+          "description": "Gain an in-depth understanding of all Salesforce Governor Limits (CPU time, SOQL queries, DML statements, heap size, etc.). Design and implement solutions to proactively avoid hitting limits, optimize SOQL and DML operations, manage large data volumes, and ensure application scalability and performance.",
+          "resources": [
+            {
+              "title": "Apex Governor Limits",
+              "url": "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/governor_limits_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "platform_event_architecture",
+          "name": "Event-Driven Architecture: Platform Events & CDC",
+          "tag": "advanced",
+          "description": "Design and implement event-driven architectures using Platform Events for custom notifications and integrations, and Change Data Capture (CDC) for near real-time data synchronization with external systems. Understand the CometD streaming API for subscribing to these events.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/platform_event_architecture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "secure_development_practices",
+          "name": "Secure Development Practices & Code Review",
+          "tag": "advanced",
+          "description": "Implement robust security best practices in Apex (CRUD/FLS enforcement using Schema methods and WITH USER_MODE, SOQL Injection prevention with 'escapeSingleQuotes', CSRF protection) and LWC (XSS prevention, Locker Service compliance, CSP) to build secure and compliant applications. Understand common security vulnerabilities and how to mitigate them.",
+          "resources": [
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/secure_development_practices.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "custom_metadata_settings",
+          "name": "Custom Metadata Types & Custom Settings",
+          "tag": "advanced",
+          "description": "Understand and implement Custom Metadata Types and Custom Settings for storing configurable application data, promoting reusability, and reducing hardcoding in Apex and Flow for flexible and easily maintainable solutions.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/custom_metadata_settings.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sf_integrations_devops",
+      "name": "Integrations & DevOps",
+      "tag": "advanced",
+      "description": "Master techniques for connecting Salesforce with external systems, managing source code effectively, and implementing modern deployment pipelines.",
+      "resources": [
+        {
+          "title": "SOQL Tutorial (Salesforce Ben)",
+          "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+          "type": "video"
+        },
+        {
+          "title": "Salesforce Integration Patterns (Salesforce Developers)",
+          "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/salesforce_developer/sf_integrations_devops.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "salesforce_apis",
+          "name": "Salesforce APIs: REST, SOAP, Metadata, Bulk, Streaming",
+          "tag": "advanced",
+          "description": "Master various Salesforce APIs for programmatic access: REST API for general data operations, SOAP API for complex integrations, Metadata API for programmatic metadata deployment and retrieval, Bulk API for large-scale data operations, and Streaming API (including Platform Events and CDC) for real-time notifications. Understand API authentication methods (OAuth, Session ID).",
+          "resources": [
+            {
+              "title": "Salesforce REST API Developer Guide",
+              "url": "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/salesforce_apis.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "external_services_callouts",
+          "name": "External Integrations & Apex Callouts",
+          "tag": "advanced",
+          "description": "Integrate Salesforce with external web services using Apex HTTP Callouts, Named Credentials for secure endpoint configuration, External Services (Mulesoft Composer, Salesforce Connect), and handling various authentication mechanisms (OAuth, API Keys) and data formats (JSON, XML).",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/external_services_callouts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "version_control_git",
+          "name": "Version Control with Git & GitHub",
+          "tag": "advanced",
+          "description": "Learn Git fundamentals for source code management, including common commands (clone, add, commit, push, pull, branch, merge, rebase), resolving merge conflicts, and collaborating effectively on Salesforce development projects using platforms like GitHub, GitLab, or Bitbucket.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/version_control_git.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "salesforce_dx_deployment",
+          "name": "Salesforce DX & Modern Metadata Deployment",
+          "tag": "advanced",
+          "description": "Understand the Salesforce DX project structure, manifest files (package.xml), scratch orgs for ephemeral development, source tracking, and perform efficient metadata deployments and retrievals using the Salesforce CLI and VS Code. Explore the Salesforce CLI commands for various development tasks.",
+          "resources": [
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/salesforce_dx_deployment.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ci_cd_fundamentals",
+          "name": "CI/CD Pipeline Fundamentals for Salesforce",
+          "tag": "advanced",
+          "description": "Explore Continuous Integration (CI) and Continuous Delivery/Deployment (CD) concepts. Learn about setting up basic CI/CD pipelines for Salesforce using tools like GitHub Actions, GitLab CI/CD, Azure DevOps, Jenkins, or specialized Salesforce DevOps platforms (e.g., Copado, Gearset). Understand automated testing, static code analysis, and deployment automation.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/ci_cd_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "packaging_appexchange_strategies",
+          "name": "Managed Packages & AppExchange Strategies",
+          "tag": "advanced",
+          "description": "Understand the concepts of Unmanaged and Managed Packages. Learn how to create, test, and deploy managed packages for distributing applications via AppExchange, including considerations for subscriber orgs, security reviews, and versioning.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/packaging_appexchange_strategies.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sf_project_career_readiness",
+      "name": "Project & Career Readiness",
+      "tag": "advanced",
+      "description": "Apply learned skills to real-world projects, understand solution design principles, and thoroughly prepare for professional certifications and job interviews.",
+      "resources": [
+        {
+          "title": "Salesforce Full Course for Beginners (Simplilearn)",
+          "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+          "type": "video"
+        },
+        {
+          "title": "Apex Programming Tutorial (Salesforce Hulk)",
+          "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/salesforce_developer/sf_project_career_readiness.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "portfolio_capstone_projects",
+          "name": "Portfolio Building & Capstone Projects",
+          "tag": "advanced",
+          "description": "Develop and implement a comprehensive Salesforce application or a series of mini-projects showcasing custom objects, declarative automation, Apex, LWC, integrations, CI/CD setup, and robust testing. Document your architectural choices, development process, and create compelling demos and GitHub repositories to present your capabilities.",
+          "resources": [
+            {
+              "title": "Sample Gallery - Salesforce Developers",
+              "url": "https://developer.salesforce.com/sample-gallery",
+              "type": "article"
+            },
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/portfolio_capstone_projects.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "solution_design_architecture",
+          "name": "Salesforce Solution Design & Architectural Principles",
+          "tag": "advanced",
+          "description": "Understand Salesforce Well-Architected principles (Trust, Clarity, Simplicity, Sustainability, Resiliency, Agility). Learn about various architectural patterns (e.g., integration patterns, data migration strategies), considerations for large-scale enterprise implementations, governance, and effective documentation for solutions. Explore common design challenges and solutions.",
+          "resources": [
+            {
+              "title": "Salesforce Well-Architected",
+              "url": "https://architect.salesforce.com/well-architected",
+              "type": "article"
+            },
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/solution_design_architecture.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "certification_interview_prep",
+          "name": "Certification & Job Interview Preparation",
+          "tag": "advanced",
+          "description": "Thoroughly prepare for the Salesforce Platform Developer I and optionally Platform Developer II certifications. Practice common interview questions, scenario-based problem-solving, live coding challenges, and effectively present your portfolio and experience to potential employers. Understand the Salesforce career path and ecosystem roles.",
+          "resources": [
+            {
+              "title": "Salesforce Platform Developer I Exam Guide",
+              "url": "https://developer.salesforce.com/resources2/certification-site/files/SGCertifiedPlatformDeveloperI.pdf",
+              "type": "course"
+            },
+            {
+              "title": "Salesforce Full Course for Beginners (Simplilearn)",
+              "url": "https://www.youtube.com/watch?v=GY9Is06myZE",
+              "type": "video"
+            },
+            {
+              "title": "Apex Programming Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0dqS3hzv3iA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/certification_interview_prep.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "debugging_troubleshooting",
+          "name": "Advanced Debugging & Troubleshooting Techniques",
+          "tag": "advanced",
+          "description": "Develop advanced skills in diagnosing and resolving complex issues across Apex, LWC, Flows, declarative automation, and integrations. Utilize advanced debugging tools (VS Code debugger, Apex Debugger, browser developer tools), event monitoring, Health Check, and various systematic troubleshooting methodologies to identify root causes and implement effective solutions.",
+          "resources": [
+            {
+              "title": "Salesforce LWC Tutorial (Salesforce Hulk)",
+              "url": "https://www.youtube.com/watch?v=0y6MqYJE0u4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Admin Certification Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=QE2s7zx3Xbs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/debugging_troubleshooting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "post_deployment_maintenance",
+          "name": "Post-Deployment & Application Maintenance",
+          "tag": "advanced",
+          "description": "Understand best practices for post-deployment activities, including monitoring application performance, managing change requests, handling bug fixes, implementing continuous improvement, and documenting ongoing maintenance procedures for Salesforce applications.",
+          "resources": [
+            {
+              "title": "SOQL Tutorial (Salesforce Ben)",
+              "url": "https://www.youtube.com/watch?v=XK8CpKnGpk4",
+              "type": "video"
+            },
+            {
+              "title": "Salesforce Integration Patterns (Salesforce Developers)",
+              "url": "https://www.youtube.com/watch?v=QyGHj-JGSGY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/salesforce_developer/post_deployment_maintenance.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

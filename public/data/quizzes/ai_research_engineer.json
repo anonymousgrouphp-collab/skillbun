@@ -1,0 +1,602 @@
+[
+  {
+    "question": "What is a primary focus of an AI Research Engineer's role in supporting applied AI research?",
+    "options": [
+      "Developing marketing strategies for AI products.",
+      "Conducting literature reviews and designing experiments.",
+      "Managing large-scale data warehousing infrastructure.",
+      "Optimizing cloud spending for existing production models."
+    ],
+    "correctIndex": 1,
+    "explanation": "The AI Research Engineer role explicitly states 'Support applied AI research with literature review, experiment design...'. Other options are outside the core research engineering scope.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In the context of AI research, what does 'reproducibility' primarily refer to?",
+    "options": [
+      "The ability to easily duplicate a dataset for backup purposes.",
+      "The capacity for another researcher to independently obtain the same results using the same methods and data.",
+      "The process of fine-tuning a pre-trained model on new data.",
+      "The speed at which an AI model can generate new outputs."
+    ],
+    "correctIndex": 1,
+    "explanation": "Reproducibility is a cornerstone of scientific research, ensuring that experimental results can be verified and built upon by others using the same methodology and data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which version control system is most commonly used in AI research and software development for tracking changes in code and experiments?",
+    "options": [
+      "SVN",
+      "Git",
+      "Mercurial",
+      "Perforce"
+    ],
+    "correctIndex": 1,
+    "explanation": "Git is the industry standard for version control due to its distributed nature, robust branching, and widespread adoption, making it essential for managing code and experimental scripts in AI research.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An AI Research Engineer is setting up a neural network model. Which PyTorch module is primarily used to define the layers of the network?",
+    "options": [
+      "torch.optim",
+      "torch.nn",
+      "torch.utils.data",
+      "torch.tensor"
+    ],
+    "correctIndex": 1,
+    "explanation": "torch.nn provides the building blocks for neural networks, including layers like Linear, Conv2d, ReLU, and containers like Sequential, which are fundamental for defining model architecture. torch.optim is for optimizers, torch.utils.data for data handling, and torch.tensor for data structures.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When designing an experiment for a new AI model, what is the initial step an AI Research Engineer should take to ensure clarity of purpose?",
+    "options": [
+      "Immediately start coding the model architecture.",
+      "Define the research question and specific hypotheses.",
+      "Collect as much diverse data as possible.",
+      "Select the most powerful GPU available."
+    ],
+    "correctIndex": 1,
+    "explanation": "A clear research question and well-defined hypotheses are crucial for guiding the experiment, determining relevant metrics, and interpreting results effectively. Without them, the experiment lacks direction.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is it beneficial to decompose a complex AI research problem into smaller, manageable sub-problems?",
+    "options": [
+      "It guarantees faster execution times for the model.",
+      "It makes the problem easier to debug, test, and parallelize.",
+      "It eliminates the need for version control.",
+      "It simplifies stakeholder communication by hiding complexity."
+    ],
+    "correctIndex": 1,
+    "explanation": "Breaking down a problem enhances modularity, which simplifies debugging by isolating issues, facilitates unit testing for individual components, and often allows for parallel development or execution of different parts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a team setting, what is the primary purpose of a 'pull request' (PR) in a version control system like Git?",
+    "options": [
+      "To request access to a private repository.",
+      "To deploy code directly to a production server.",
+      "To propose changes, facilitate code review, and merge code into a main branch.",
+      "To generate automated documentation from code comments."
+    ],
+    "correctIndex": 2,
+    "explanation": "Pull requests are a core part of collaborative development, enabling team members to review, discuss, and approve code changes before they are integrated into the main codebase, ensuring quality and consistency.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An AI Research Engineer is tasked with evaluating a novel recommendation system. What specific problem does 'cold start' typically refer to in this context?",
+    "options": [
+      "The system takes too long to initialize upon deployment.",
+      "The system performs poorly for new users or items with little interaction history.",
+      "The server hosting the model frequently crashes due to high load.",
+      "The model struggles to recommend items in cold weather."
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'cold start' problem in recommendation systems occurs when there isn't enough data about a new user or item to make accurate recommendations, making it a critical challenge for AI Research Engineers to address in such systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When evaluating an AI model, why are 'benchmarks' crucial for an AI Research Engineer?",
+    "options": [
+      "They provide a standardized way to compare the model's performance against existing solutions or state-of-the-art.",
+      "They automatically optimize the model's hyperparameters.",
+      "They ensure the model is compliant with legal regulations.",
+      "They are primarily used to debug memory leaks in training."
+    ],
+    "correctIndex": 0,
+    "explanation": "Benchmarks offer a common ground for evaluating and comparing different AI models or approaches, allowing researchers to gauge progress and identify areas for improvement relative to established standards or other research efforts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI Research Engineer is debugging a PyTorch model where the loss function unexpectedly returns NaN values. Which debugging strategy is most effective for quickly identifying the source of this issue?",
+    "options": [
+      "Restarting the entire training process multiple times.",
+      "Adding print statements or using a debugger to inspect tensor values (e.g., gradients, activations) at various stages of the forward and backward pass.",
+      "Completely rewriting the model architecture from scratch.",
+      "Ignoring the NaN values and hoping they resolve themselves."
+    ],
+    "correctIndex": 1,
+    "explanation": "NaN issues often stem from numerical instability (e.g., division by zero, log(0), exploding gradients). Inspecting tensor values step-by-step allows pinpointing exactly where the NaN first appears, helping to identify the problematic operation or input.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A research team decides to adopt a 'notebook-first' approach for initial experimentation. What is a key challenge an AI Research Engineer might face when trying to move this experimental code into a reproducible and production-ready state?",
+    "options": [
+      "Notebooks inherently prevent the use of GPUs.",
+      "Converting notebooks to modular, version-controlled scripts with proper dependency management can be complex.",
+      "Notebooks are incompatible with git for version control.",
+      "The output cells in notebooks cannot display plots or images."
+    ],
+    "correctIndex": 1,
+    "explanation": "While excellent for exploration, notebooks often lead to monolithic code, unmanaged dependencies within cells, and difficulty tracking changes precisely. Refactoring into clean Python scripts is often necessary for robust, reproducible, and deployable research code.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When implementing a custom training loop in PyTorch, an AI Research Engineer needs to ensure that gradients are correctly computed only for the current batch. Which PyTorch context manager is essential for preventing gradient accumulation across multiple mini-batches?",
+    "options": [
+      "torch.no_grad()",
+      "model.eval()",
+      "optimizer.zero_grad()",
+      "torch.inference_mode()"
+    ],
+    "correctIndex": 2,
+    "explanation": "optimizer.zero_grad() explicitly clears the gradients of all optimized torch.Tensors. Without this call, gradients from previous batches would accumulate, leading to incorrect updates. torch.no_grad() and torch.inference_mode() disable gradient computation entirely (used for inference), and model.eval() sets the model to evaluation mode (affecting layers like Dropout/BatchNorm).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI Research Engineer is designing an experiment to compare two different regularization techniques for a new image classification model. To ensure a fair comparison, what is a critical aspect of 'experiment design' they must control or randomize?",
+    "options": [
+      "Using different random seeds for each technique to introduce variety.",
+      "Ensuring both techniques are trained for exactly 10 epochs.",
+      "Using the same dataset, model architecture, optimizer, and hyperparameter search space (where applicable) for both.",
+      "Running the experiments on entirely different hardware setups."
+    ],
+    "correctIndex": 2,
+    "explanation": "For a fair comparison between techniques, all other variables (dataset, base model, optimizer, learning rate schedule, etc.) must be kept constant. This isolates the effect of the regularization technique being studied.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new AI Research Engineer joins a project aimed at improving an existing NLP model's performance on a specific benchmark dataset. After implementing a new architecture, they observe a significant drop in performance compared to the baseline. What is the most immediate and critical step to take?",
+    "options": [
+      "Scrap the new architecture and revert to the baseline immediately.",
+      "Publish the results anyway, highlighting the challenges.",
+      "Thoroughly check the implementation for bugs, data preprocessing, hyperparameter settings, and ensure the evaluation setup is identical to the baseline.",
+      "Assume the new architecture is fundamentally flawed and start entirely fresh."
+    ],
+    "correctIndex": 2,
+    "explanation": "Before concluding a new approach is bad, it's paramount to ensure the experiment was conducted correctly. Implementation errors, subtle data mismatches, or incorrect evaluation can easily lead to misleading results.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a flexible AI model training pipeline, an AI Research Engineer chooses to use a configuration file (e.g., YAML, JSON) for managing hyperparameters and experimental settings. What is the primary benefit of this 'implementation pattern'?",
+    "options": [
+      "It allows the model to train faster.",
+      "It makes it easier to track and reproduce experiments without modifying code directly.",
+      "It automatically scales the training to multiple GPUs.",
+      "It provides built-in version control for data files."
+    ],
+    "correctIndex": 1,
+    "explanation": "External configuration files centralize experiment settings, making it simple to change parameters, compare different runs, and reproduce results consistently without altering the core training script, which is crucial for research.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI Research Engineer submits a pull request for a new model feature. During code review, a teammate points out that the new feature lacks unit tests. Why is this a significant concern for 'quality, testing, and review'?",
+    "options": [
+      "Unit tests are only relevant for production-ready code, not research.",
+      "Lack of unit tests makes it difficult to verify the correctness of individual components and can lead to regressions later.",
+      "Writing unit tests slows down the initial development phase too much.",
+      "Unit tests are replaced by end-to-end integration tests in AI research."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests isolate and verify small, testable parts of the code. They are essential for ensuring that each component functions as expected, preventing regressions when changes are made, and speeding up debugging by pinpointing issues early.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A research team is developing a critical AI component. To prevent 'regression' issues, what strategy should the AI Research Engineer prioritize in their testing workflow?",
+    "options": [
+      "Only test new features and ignore existing functionalities.",
+      "Implement a comprehensive suite of automated integration and unit tests that run on every code change.",
+      "Rely solely on manual testing by multiple team members.",
+      "Conduct A/B tests on users for every minor code update."
+    ],
+    "correctIndex": 1,
+    "explanation": "Automated regression testing ensures that new changes or bug fixes do not inadvertently break existing, previously working functionalities. This is critical for maintaining stability and confidence in the codebase.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI Research Engineer has developed a highly accurate model, but stakeholders are concerned about its 'reliability' in a real-world setting. What aspect are they most likely concerned about?",
+    "options": [
+      "The model's ability to achieve state-of-the-art performance on a benchmark.",
+      "The model's consistency and stability in performance over time and under varying, potentially unseen, conditions.",
+      "The speed at which the model was trained.",
+      "The elegance of the model's underlying mathematical theory."
+    ],
+    "correctIndex": 1,
+    "explanation": "Reliability in an operational context refers to the model's ability to consistently perform its intended function without failure or significant degradation under various real-world inputs and environmental changes, which is different from peak benchmark performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing an AI model that processes sensitive user data, an AI Research Engineer must consider 'security' implications. What is a crucial practice to prevent unauthorized access or leakage of this data during training?",
+    "options": [
+      "Storing all sensitive data in a publicly accessible cloud bucket for ease of access.",
+      "Implementing strong access controls, encryption, and anonymization/pseudonymization techniques for sensitive data.",
+      "Running all training experiments on a personal laptop without network access.",
+      "Ignoring data security as it's primarily a responsibility of the IT department."
+    ],
+    "correctIndex": 1,
+    "explanation": "Protecting sensitive data involves multiple layers of security, including restricting who can access it, encrypting it both at rest and in transit, and transforming it to remove personally identifiable information where possible, all of which fall under the AI Research Engineer's purview to ensure safe handling.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "During a stakeholder demo for a new AI-powered feature, the AI Research Engineer is asked about the 'acceptance criteria.' What does this term refer to in the context of the team's delivery workflow?",
+    "options": [
+      "The number of users who have accepted the new feature.",
+      "The technical specifications of the hardware required for deployment.",
+      "The pre-defined conditions that must be met for the feature to be considered complete and ready for release.",
+      "The ethical guidelines governing the AI model's behavior."
+    ],
+    "correctIndex": 2,
+    "explanation": "Acceptance criteria are a set of explicit, testable conditions that define when a user story, feature, or task is considered 'done' and meets the needs of the stakeholders, ensuring clarity and alignment before delivery.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "An AI Research Engineer is performing an 'ablation study' on a complex neural network architecture that combines several novel components (A, B, C). What is the primary goal of such a study?",
+    "options": [
+      "To determine the optimal learning rate for the full model.",
+      "To quantify the individual contribution of each component (A, B, C) to the overall model performance.",
+      "To compare the model's performance against a completely different state-of-the-art model.",
+      "To identify the fastest way to train the full model."
+    ],
+    "correctIndex": 1,
+    "explanation": "An ablation study involves systematically removing or simplifying parts of a complex system to understand the impact and importance of each component. This helps identify which parts are essential and contribute most to the observed performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A research project involves training a generative AI model on a proprietary dataset. During the 'review' phase, a concern is raised about potential 'data leakage' if the model were to be deployed. How would an AI Research Engineer typically address this concern?",
+    "options": [
+      "Ignore the concern, as generative models are inherently safe from data leakage.",
+      "Train the model for fewer epochs to reduce memorization.",
+      "Implement techniques like differential privacy during training or apply robust privacy-preserving inference methods, and conduct thorough evaluations to detect memorization.",
+      "Simply warn users that the model might reveal sensitive information."
+    ],
+    "correctIndex": 2,
+    "explanation": "Data leakage (or memorization) is a critical concern for generative models. Addressing it requires advanced techniques like differential privacy, secure multi-party computation, or rigorous testing strategies (e.g., membership inference attacks) to ensure that the model does not inadvertently expose sensitive training data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are tasked with adapting a pre-trained transformer model for a highly specialized, low-resource language task. You have a very small, carefully curated dataset. What is the most effective strategy for managing constraints like limited data and avoiding overfitting, while still leveraging the pre-trained model?",
+    "options": [
+      "Retrain the entire transformer model from scratch on your small dataset.",
+      "Freeze all layers of the pre-trained model and only train a newly added classification head.",
+      "Perform prompt engineering or implement fine-tuning with techniques like LoRA (Low-Rank Adaptation) or adapter layers, alongside careful validation and regularization.",
+      "Increase the model complexity significantly to compensate for the small dataset."
+    ],
+    "correctIndex": 2,
+    "explanation": "For low-resource tasks, simply training a new head might be too restrictive, and retraining from scratch will almost certainly overfit. Techniques like LoRA or adapters allow efficient fine-tuning of only a small number of parameters, preserving the learned representations of the large pre-trained model while adapting it to the new task, mitigating overfitting. Prompt engineering can also guide the pre-trained model without weight updates.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An AI Research Engineer is preparing to hand over a newly developed, high-performing AI model to a MLOps team for deployment. What is the most crucial artifact to provide for successful 'handoff' and ongoing 'lifecycle ownership'?",
+    "options": [
+      "Only the trained model weights file.",
+      "A detailed README.md, comprehensive documentation (including model card, API specifications, dependencies), trained weights, and a reproducible training/inference pipeline.",
+      "A verbal explanation of how the model works.",
+      "A link to the research paper outlining the model's theory."
+    ],
+    "correctIndex": 1,
+    "explanation": "Effective handoff requires not just the model, but also all the context and tools needed for others to understand, deploy, monitor, and maintain it. This includes clear documentation of its purpose, usage, dependencies, and how to reproduce its results, ensuring smooth lifecycle ownership.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When building a 'portfolio-grade AI Research Engineer project,' you are advised to include a 'lessons-learned section.' What is the primary purpose of this section?",
+    "options": [
+      "To list all the software tools you used during the project.",
+      "To document the problems encountered, solutions found, insights gained, and how you would approach similar challenges differently in the future.",
+      "To provide a summary of the project's technical specifications.",
+      "To brag about how well the project performed on its benchmarks."
+    ],
+    "correctIndex": 1,
+    "explanation": "The lessons-learned section demonstrates critical thinking, problem-solving skills, and a growth mindset. It shows reflection on the process, not just the outcome, which is highly valued in research and engineering roles.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary purpose of a literature review in AI research?",
+    "options": [
+      "To copy existing methods",
+      "To understand the current state of knowledge and identify gaps for new contributions",
+      "To find code to reuse directly",
+      "To determine which programming language to use"
+    ],
+    "correctIndex": 1,
+    "explanation": "A literature review surveys existing work to understand what has been done, identify gaps, and position new research contributions within the broader field. It helps avoid redundant work and ensures the researcher builds on established foundations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the term 'ablation study' mean in the context of AI research?",
+    "options": [
+      "A study comparing AI to human performance",
+      "Systematically removing components of a model to understand their individual contributions",
+      "Training a model from scratch without pre-trained weights",
+      "A study of computational resource requirements"
+    ],
+    "correctIndex": 1,
+    "explanation": "An ablation study involves systematically removing or disabling components of a system to measure their individual contribution to overall performance. This helps researchers understand which parts of their model are most important and justify design decisions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which venue is considered a top-tier AI/ML research conference?",
+    "options": [
+      "CES",
+      "NeurIPS",
+      "AWS re:Invent",
+      "Google I/O"
+    ],
+    "correctIndex": 1,
+    "explanation": "NeurIPS (Neural Information Processing Systems) is one of the most prestigious academic conferences for machine learning and AI research. Other top venues include ICML, ICLR, CVPR, and ACL. CES, AWS re:Invent, and Google I/O are industry conferences, not academic research venues.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'baseline model' in research experiments?",
+    "options": [
+      "The most complex model available",
+      "A simple or standard reference model used to benchmark and compare the proposed method against",
+      "A model that has been deployed in production",
+      "The final model submitted for publication"
+    ],
+    "correctIndex": 1,
+    "explanation": "A baseline model serves as a reference point for comparison. It is typically a well-known, established method or a simple approach that helps researchers demonstrate whether their proposed method offers meaningful improvements over existing solutions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does 'reproducibility' mean in the context of AI research?",
+    "options": [
+      "The ability to train a model faster",
+      "The ability for other researchers to obtain the same results using the same data and methods",
+      "The speed at which a paper is published",
+      "The number of citations a paper receives"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reproducibility ensures that other researchers can replicate the reported results by following the described methodology, using the same data, and running the provided code. It is a cornerstone of scientific credibility and is increasingly emphasized in AI conferences.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a research paper, what is the purpose of the 'Related Work' section?",
+    "options": [
+      "To list all references alphabetically",
+      "To position the current work relative to existing research and highlight differences",
+      "To describe the experimental setup",
+      "To present the final results"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Related Work section surveys and discusses prior research that is relevant to the current paper. It contextualizes the contribution by explaining how the proposed approach differs from, builds upon, or improves over existing methods.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is arXiv primarily used for in the AI research community?",
+    "options": [
+      "Hosting production ML models",
+      "Sharing research preprints before formal peer review",
+      "Running distributed training experiments",
+      "Managing research team schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "arXiv is an open-access preprint repository where researchers share papers before or alongside formal peer-reviewed publication. It allows rapid dissemination of findings and has become a primary channel for sharing AI/ML research in the community.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "An AI researcher wants to fairly compare their new image classifier against existing methods. Which practice ensures a valid comparison?",
+    "options": [
+      "Using different datasets for each method",
+      "Using the same dataset splits, evaluation metrics, and computational budget for all methods",
+      "Only reporting results where the new method wins",
+      "Training baseline models with a lower learning rate"
+    ],
+    "correctIndex": 1,
+    "explanation": "Fair comparison requires consistent experimental conditions: the same data splits (train/val/test), the same evaluation metrics, and comparable computational resources. This ensures that observed differences are due to the method itself, not experimental artifacts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the 'attention mechanism' primarily designed to solve in sequence-to-sequence models?",
+    "options": [
+      "Reducing the number of parameters",
+      "Allowing the decoder to focus on relevant parts of the input sequence rather than relying on a single fixed-length context vector",
+      "Eliminating the need for training data",
+      "Automatically tuning hyperparameters"
+    ],
+    "correctIndex": 1,
+    "explanation": "The attention mechanism addresses the information bottleneck problem in seq2seq models, where the entire input sequence was compressed into a single fixed-length vector. Attention allows the decoder to dynamically weight and attend to different parts of the input at each decoding step.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of neural architecture search (NAS), what does the search space define?",
+    "options": [
+      "The dataset used for training",
+      "The set of all possible architectures that the search algorithm can explore",
+      "The hyperparameter tuning schedule",
+      "The loss function to optimize"
+    ],
+    "correctIndex": 1,
+    "explanation": "The search space in NAS defines the set of all candidate architectures — including possible operations (convolutions, pooling, etc.), connectivity patterns, and layer configurations — that the algorithm can explore to find an optimal neural network design.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the key innovation of the Transformer architecture introduced in 'Attention Is All You Need' (Vaswani et al., 2017)?",
+    "options": [
+      "Using convolutional layers for sequence processing",
+      "Replacing recurrence entirely with self-attention and positional encodings",
+      "Introducing LSTM gates for better memory",
+      "Using reinforcement learning for sequence generation"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Transformer architecture replaced recurrent and convolutional layers entirely with multi-head self-attention mechanisms and positional encodings. This enabled parallel processing of sequences and better capture of long-range dependencies, becoming the foundation for models like BERT and GPT.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'few-shot learning' in the context of modern AI research?",
+    "options": [
+      "Training a model with billions of parameters",
+      "The ability of a model to learn and generalize from only a handful of labeled examples per class",
+      "Training a model for only a few epochs",
+      "Using a small model architecture"
+    ],
+    "correctIndex": 1,
+    "explanation": "Few-shot learning refers to the ability of a model to learn new concepts or tasks from very few labeled examples (typically 1-5 per class). This contrasts with traditional supervised learning that requires large labeled datasets and is an active area of research.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A researcher publishes results showing a 2% accuracy improvement over the state-of-the-art. Why is reporting statistical significance (e.g., confidence intervals or p-values) important?",
+    "options": [
+      "It makes the paper longer",
+      "It determines whether the improvement is likely due to the method or random variation",
+      "It is only relevant for medical research",
+      "It replaces the need for ablation studies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Statistical significance testing helps determine whether an observed improvement is genuinely attributable to the proposed method or could have arisen from random variation in data splits, initialization, or other stochastic factors. Without it, small improvements may be meaningless.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In self-supervised learning, how does the model obtain training signal without manually labeled data?",
+    "options": [
+      "It uses reinforcement learning rewards",
+      "It creates pseudo-labels from the data itself using pretext tasks (e.g., predicting masked tokens, contrastive learning)",
+      "It generates labels using a separate labeled dataset",
+      "It does not need any training signal"
+    ],
+    "correctIndex": 1,
+    "explanation": "Self-supervised learning designs pretext tasks that generate supervision from the data itself. Examples include masked language modeling (BERT), next-token prediction (GPT), and contrastive learning (SimCLR). The model learns rich representations that transfer well to downstream tasks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of using a validation set during hyperparameter tuning?",
+    "options": [
+      "To increase the amount of training data",
+      "To evaluate hyperparameter choices on held-out data without contaminating the test set",
+      "To visualize model architecture",
+      "To reduce training time"
+    ],
+    "correctIndex": 1,
+    "explanation": "The validation set provides an unbiased evaluation of hyperparameter choices during model development. Using it prevents overfitting to the test set (which should only be used for final evaluation) and helps select the best model configuration.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'knowledge distillation' involve in deep learning research?",
+    "options": [
+      "Compressing a dataset into fewer samples",
+      "Training a smaller 'student' model to mimic the outputs of a larger 'teacher' model",
+      "Removing layers from a pre-trained model",
+      "Converting model weights to a different data type"
+    ],
+    "correctIndex": 1,
+    "explanation": "Knowledge distillation transfers knowledge from a large, complex teacher model to a smaller, more efficient student model by training the student to match the teacher's soft output probabilities. This produces compact models that retain much of the teacher's performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a research context, what is 'data augmentation' and why is it used?",
+    "options": [
+      "Collecting more data from new sources",
+      "Applying transformations (rotations, flips, crops) to existing data to artificially increase training set diversity",
+      "Removing outliers from the dataset",
+      "Labeling unlabeled data using crowdsourcing"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data augmentation applies various transformations to existing training samples to create synthetic variations, effectively increasing dataset size and diversity. This helps reduce overfitting and improves model generalization, especially when labeled data is scarce.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between pre-training and fine-tuning in the context of large language models?",
+    "options": [
+      "Pre-training uses labeled data; fine-tuning uses unlabeled data",
+      "Pre-training learns general representations from large corpora; fine-tuning adapts the model to a specific downstream task",
+      "They are the same process with different names",
+      "Pre-training is faster than fine-tuning"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pre-training involves training a model on a large, general corpus to learn broad language representations (e.g., GPT's next-token prediction). Fine-tuning then adapts this pre-trained model to a specific task using a smaller, task-specific dataset, leveraging the general knowledge already learned.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When a research paper reports BLEU scores for machine translation, what is being measured?",
+    "options": [
+      "The model's inference speed",
+      "The overlap between machine-generated translations and human reference translations using n-gram precision",
+      "The model's parameter count",
+      "The energy consumption during training"
+    ],
+    "correctIndex": 1,
+    "explanation": "BLEU (Bilingual Evaluation Understudy) measures the quality of machine translation by computing n-gram precision between the generated text and one or more reference translations. Higher BLEU scores indicate greater overlap with human translations, though the metric has known limitations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'curriculum learning' in the context of training neural networks?",
+    "options": [
+      "Teaching students about neural networks",
+      "Training the model by presenting examples in a meaningful order, typically from easy to hard",
+      "Using a fixed training schedule with constant learning rate",
+      "Training multiple models simultaneously"
+    ],
+    "correctIndex": 1,
+    "explanation": "Curriculum learning, inspired by human learning, involves training models by presenting training examples in a structured order — typically starting with easier examples and gradually increasing difficulty. This can lead to faster convergence and better generalization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In the context of diffusion models (e.g., DDPM, Stable Diffusion), what is the fundamental generative process?",
+    "options": [
+      "Training a discriminator to distinguish real from fake images",
+      "Gradually denoising a sample from pure Gaussian noise into a coherent output by learning to reverse a forward noise-addition process",
+      "Mapping random latent vectors through a single feedforward pass",
+      "Autoregressive generation of pixels one at a time"
+    ],
+    "correctIndex": 1,
+    "explanation": "Diffusion models define a forward process that gradually adds Gaussian noise to data over many steps until it becomes pure noise, then learn to reverse this process step by step. Generation starts from random noise and iteratively denoises it into a coherent sample. This approach has achieved state-of-the-art image generation quality.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A researcher is working with a Vision Transformer (ViT) and notices it performs poorly on a small dataset compared to CNNs. What is the most likely explanation?",
+    "options": [
+      "ViTs cannot process images",
+      "ViTs lack the inductive biases of CNNs (locality, translation equivariance) and require larger datasets to learn these properties from data",
+      "ViTs are always inferior to CNNs",
+      "The learning rate was set incorrectly"
+    ],
+    "correctIndex": 1,
+    "explanation": "CNNs have built-in inductive biases like local receptive fields and translation equivariance that help them learn efficiently from smaller datasets. ViTs, using self-attention, must learn these spatial relationships entirely from data, requiring significantly more training data to match or exceed CNN performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In Reinforcement Learning from Human Feedback (RLHF), as used in training ChatGPT, what role does the 'reward model' play?",
+    "options": [
+      "It generates training text for the language model",
+      "It is a learned proxy for human preferences, scoring model outputs to guide policy optimization via PPO",
+      "It replaces the need for pre-training",
+      "It determines the model's architecture"
+    ],
+    "correctIndex": 1,
+    "explanation": "In RLHF, a reward model is trained on human preference comparisons (which of two outputs is better). This reward model then provides scalar reward signals to fine-tune the language model using Proximal Policy Optimization (PPO), aligning the model's outputs with human preferences without requiring constant human feedback.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'scaling law' phenomenon observed in large language models, as described by Kaplan et al. (2020)?",
+    "options": [
+      "Model performance plateaus after a certain size",
+      "Model performance improves predictably as a power-law function of model size, dataset size, and compute budget",
+      "Larger models always overfit",
+      "Training cost decreases linearly with model size"
+    ],
+    "correctIndex": 1,
+    "explanation": "Scaling laws show that language model performance (measured by loss) follows predictable power-law relationships with model parameters, dataset size, and compute budget. These findings enable researchers to predict performance at scale and allocate resources optimally, guiding decisions like the Chinchilla-optimal training regime.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In the context of mechanistic interpretability research, what does 'circuit analysis' in neural networks aim to achieve?",
+    "options": [
+      "Optimizing the electrical circuits of hardware accelerators",
+      "Identifying and understanding specific subnetworks (circuits) within trained models that implement particular computational functions",
+      "Designing new neural network architectures",
+      "Measuring inference latency on different hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Circuit analysis in mechanistic interpretability seeks to reverse-engineer trained neural networks by identifying specific subnetworks that implement particular computational functions (e.g., indirect object identification in language models). This helps understand how models process information and make decisions at a granular level.",
+    "difficulty": "hard"
+  }
+]

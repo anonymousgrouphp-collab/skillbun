@@ -1,0 +1,602 @@
+[
+  {
+    "question": "A new Linux user needs to find their current working directory. Which command should they use?",
+    "options": [
+      "ls",
+      "cd",
+      "pwd",
+      "mkdir"
+    ],
+    "correctIndex": 2,
+    "explanation": "`pwd` (print working directory) shows the current location in the filesystem. `ls` lists contents, `cd` changes directory, `mkdir` creates a directory.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You want to give a file read and write permissions to its owner, but only read permissions to its group and others. Which octal permission set should you use?",
+    "options": [
+      "755",
+      "644",
+      "777",
+      "600"
+    ],
+    "correctIndex": 1,
+    "explanation": "`6` for owner (read, write), `4` for group (read only), `4` for others (read only).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "On a Debian-based Linux distribution, which command is typically used to install new software packages?",
+    "options": [
+      "yum install",
+      "rpm -i",
+      "apt install",
+      "dnf install"
+    ],
+    "correctIndex": 2,
+    "explanation": "`apt` is the package manager for Debian/Ubuntu systems. `yum` and `dnf` are for Red Hat-based systems, `rpm` is a lower-level package tool.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You want to save the output of a command `ls -l` into a file named `file_list.txt`. Which command achieves this, overwriting the file if it exists?",
+    "options": [
+      "ls -l > file_list.txt",
+      "ls -l >> file_list.txt",
+      "ls -l | file_list.txt",
+      "ls -l < file_list.txt"
+    ],
+    "correctIndex": 0,
+    "explanation": "`>` redirects standard output, overwriting the file. `>>` appends, `|` pipes to another command, `<` redirects input.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To check the current status of the `nginx` web server service on a systemd-based Linux distribution, which command would you use?",
+    "options": [
+      "service nginx status",
+      "systemctl status nginx",
+      "nginx --status",
+      "checkservice nginx"
+    ],
+    "correctIndex": 1,
+    "explanation": "`systemctl` is the primary command for managing systemd services, and `status` shows their current state.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "After creating a new filesystem on a disk partition, what is the next essential step to make it accessible for storing data in the Linux directory tree?",
+    "options": [
+      "format the partition",
+      "label the partition",
+      "mount the filesystem",
+      "defragment the partition"
+    ],
+    "correctIndex": 2,
+    "explanation": "Formatting creates the filesystem, but mounting connects it to a specific directory (mount point) in the Linux filesystem hierarchy, making it usable.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command is used to securely connect to a remote Linux server named `server.example.com` as the user `adminuser`?",
+    "options": [
+      "ftp adminuser@server.example.com",
+      "ssh adminuser@server.example.com",
+      "telnet adminuser@server.example.com",
+      "rlogin adminuser@server.example.com"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ssh` (Secure Shell) is the standard protocol for secure remote access and command execution on Linux systems. FTP, Telnet, and rlogin are insecure or outdated.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You need to find all lines containing the word \"ERROR\" (case-insensitive) in the `/var/log/syslog` file, and display them along with their line numbers. Which command accomplishes this?",
+    "options": [
+      "grep -i ERROR /var/log/syslog | nl",
+      "grep -in ERROR /var/log/syslog",
+      "find /var/log -name syslog -exec grep -i ERROR {} \\;",
+      "cat /var/log/syslog | grep -i ERROR -n"
+    ],
+    "correctIndex": 1,
+    "explanation": "`grep -i` makes the search case-insensitive, and `grep -n` displays line numbers. Piping to `nl` or `cat` then piping to grep with `-n` is less efficient or incorrect.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new user `devuser` needs to be able to run `apt update` and `apt upgrade` without being prompted for a password, but should not have full root access. How would you configure `sudo` for this specific requirement?",
+    "options": [
+      "Add devuser to the 'sudo' group",
+      "Edit /etc/sudoers and add 'devuser ALL=(ALL) NOPASSWD: /usr/bin/apt update, /usr/bin/apt upgrade'",
+      "Run 'usermod -aG root devuser'",
+      "Give devuser the root password"
+    ],
+    "correctIndex": 1,
+    "explanation": "Adding to the `sudo` group grants broader access. Specific commands with `NOPASSWD` provide fine-grained control without password prompts. Granting root password or full root access is insecure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You've deployed a new web server and configured Nginx to listen on port 80 and 443. However, users cannot access the site. After checking Nginx status (it's running), you suspect the firewall. Which command would you typically use with `firewalld` to allow incoming HTTP traffic?",
+    "options": [
+      "iptables -A INPUT -p tcp --dport 80 -j ACCEPT",
+      "ufw allow 80/tcp",
+      "firewall-cmd --add-service=http --permanent && firewall-cmd --reload",
+      "systemctl stop firewalld"
+    ],
+    "correctIndex": 2,
+    "explanation": "This command adds the 'http' service (which includes port 80) to the firewall rules permanently and reloads firewalld. `iptables` and `ufw` are different firewall management tools. Stopping the firewall is insecure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A service you're troubleshooting recently failed. You want to view its specific log entries from the `journald` system log, starting from the last boot. Which `journalctl` option is most appropriate?",
+    "options": [
+      "journalctl -f",
+      "journalctl -u your_service --since \"last boot\"",
+      "journalctl -b",
+      "journalctl -p err"
+    ],
+    "correctIndex": 1,
+    "explanation": "`-u` filters by unit (service), and `--since \"last boot\"` ensures logs are from the current boot cycle. `-f` follows live logs, `-b` shows all logs from current boot, `-p err` shows only error level messages.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have an existing LVM Volume Group (VG) and need to expand a Logical Volume (LV) within it. After ensuring there is free space in the VG, what is the typical next step to increase the LV size and then the filesystem size?",
+    "options": [
+      "lvcreate -L +10G /dev/vgname/lvname",
+      "vgextend /dev/vgname /dev/sdb1",
+      "lvextend -L +10G /dev/vgname/lvname && resize2fs /dev/vgname/lvname",
+      "pvresize /dev/sdb1"
+    ],
+    "correctIndex": 2,
+    "explanation": "`lvextend` increases the logical volume size. `resize2fs` (or `xfs_growfs` for XFS) then expands the filesystem to use the new space. `lvcreate` creates a new LV, `vgextend` adds a physical volume to a VG, `pvresize` resizes a physical volume.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "As part of hardening an SSH server, you want to disable password-based authentication and only allow key-based authentication for security. Which parameter in `sshd_config` should be changed, and to what value?",
+    "options": [
+      "PermitRootLogin no",
+      "PasswordAuthentication no",
+      "AllowTcpForwarding yes",
+      "UsePAM no"
+    ],
+    "correctIndex": 1,
+    "explanation": "Setting `PasswordAuthentication no` disables password logins, forcing users to authenticate with SSH keys. `PermitRootLogin no` is also a hardening step but doesn't specifically address password authentication for all users.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are writing a Bash script that needs to check if a specific directory `/opt/myapp` exists. If it does not exist, the script should create it. Which Bash construct correctly achieves this?",
+    "options": [
+      "`[ -d /opt/myapp ] && mkdir /opt/myapp`",
+      "`if [ ! -d /opt/myapp ]; then mkdir /opt/myapp; fi`",
+      "`if [ -f /opt/myapp ]; then mkdir /opt/myapp; fi`",
+      "`test -e /opt/myapp || create_dir /opt/myapp`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`[ ! -d /opt/myapp ]` checks if `/opt/myapp` is NOT a directory. The `if` statement then executes `mkdir` if the condition is true. The `&&` construct would create if it *does* exist (opposite). `-f` checks for a file.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A monitoring dashboard shows high CPU utilization (consistently 90%+) on a critical web server. What is the most immediate and appropriate first step to investigate this incident?",
+    "options": [
+      "Reboot the server immediately",
+      "Check running processes with 'top' or 'htop' to identify resource-intensive applications",
+      "Increase the server's CPU allocation",
+      "Notify the development team about a potential code issue"
+    ],
+    "correctIndex": 1,
+    "explanation": "Investigating the root cause with tools like `top` or `htop` is the crucial first step to understand which process is consuming CPU. Rebooting is premature, increasing CPU is a mitigation not a diagnosis, and notifying dev team is too early without more data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You receive an alert that the `/var` partition on a production server is 95% full. Following your runbook, what is the most common immediate action to free up space without affecting running services, before a deeper investigation?",
+    "options": [
+      "Delete core application data files",
+      "Extend the logical volume using LVM",
+      "Clear old log files and package caches",
+      "Unmount and reformat the /var partition"
+    ],
+    "correctIndex": 2,
+    "explanation": "Old logs (e.g., `journalctl --vacuum-time=1w`) and package manager caches (`apt clean`, `yum clean all`) are common culprits for disk space usage in `/var` and can often be safely cleared to gain immediate space. Deleting app data is critical, LVM extension is a longer-term fix, and reformatting is destructive.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to create a compressed archive of the `/home/user/documents` directory, including all its subdirectories and files, and name it `mydocuments.tar.gz`. Which command should you use?",
+    "options": [
+      "zip -r mydocuments.tar.gz /home/user/documents",
+      "tar -cvf mydocuments.tar.gz /home/user/documents",
+      "tar -czvf mydocuments.tar.gz /home/user/documents",
+      "gzip mydocuments.tar /home/user/documents"
+    ],
+    "correctIndex": 2,
+    "explanation": "`tar` is used for archiving. `-c` creates, `-z` compresses with gzip, `-v` verbose, `-f` specifies filename. `zip` uses a different format, `tar -cvf` creates an uncompressed tarball, `gzip` compresses single files.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to add an existing user `appuser` to the `webgroup` group, ensuring that `appuser` also retains membership in any other groups it currently belongs to. Which command is appropriate?",
+    "options": [
+      "usermod -G webgroup appuser",
+      "usermod -aG webgroup appuser",
+      "groupadd webgroup appuser",
+      "gpasswd -a appuser webgroup"
+    ],
+    "correctIndex": 1,
+    "explanation": "`usermod -aG` appends the user to the specified group(s) without removing them from their existing groups. `usermod -G` (without `-a`) would overwrite existing group memberships. `groupadd` creates a group, and `gpasswd -a` is an alternative, but `usermod -aG` is very common.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to schedule a script (`/opt/backup.sh`) to run every day at 03:00 AM. Which entry in the crontab for the root user would achieve this?",
+    "options": [
+      "0 3 * * * /opt/backup.sh",
+      "* 3 * * * /opt/backup.sh",
+      "@daily /opt/backup.sh",
+      "3 0 * * * /opt/backup.sh"
+    ],
+    "correctIndex": 0,
+    "explanation": "The cron format is `minute hour day_of_month month day_of_week command`. `0 3` means 0 minutes past the 3rd hour, i.e., 03:00 AM. `@daily` is also valid but `0 3 * * *` is the explicit form.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After making configuration changes, your server is failing to boot into its graphical environment and is stuck at a command prompt. You suspect a recent change to the display manager. To boot into a multi-user command-line environment and troubleshoot, which systemd target should you temporarily set?",
+    "options": [
+      "graphical.target",
+      "reboot.target",
+      "rescue.target",
+      "multi-user.target"
+    ],
+    "correctIndex": 3,
+    "explanation": "`multi-user.target` provides a fully functional command-line environment without a graphical interface, which is ideal for troubleshooting issues preventing graphical boot. `rescue.target` is more minimal, and `graphical.target` is the goal, not the solution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical server unexpectedly rebooted and now a key filesystem (`/data`) is unmountable, reporting errors about a \"bad superblock.\" You've tried `fsck -y /dev/sdb1` but it fails. Based on typical recovery steps, what is the most likely next action to attempt recovery?",
+    "options": [
+      "Reformat the partition and restore from backup",
+      "Attempt to restore the superblock from a backup copy using 'e2fsck -b' with a known superblock offset",
+      "Replace the entire physical disk",
+      "Force mount the filesystem with 'mount -o ro,force /dev/sdb1 /data'"
+    ],
+    "correctIndex": 1,
+    "explanation": "`e2fsck -b` allows specifying an alternate superblock. Filesystems store backup superblocks at known intervals (e.g., 8193 for ext4). This is a common advanced recovery technique before resorting to reformatting. Reformatting loses data, replacing the disk is extreme without more diagnosis, and force mounting a corrupt filesystem can worsen damage.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are writing an Ansible playbook to ensure a user `monitoruser` exists and has an SSH key deployed. Which of the following tasks demonstrates idempotency for ensuring the user's existence and SSH key setup?",
+    "options": [
+      "a) - name: Create monitoruser useradd monitoruser && mkdir /home/monitoruser/.ssh",
+      "b) - name: Ensure monitoruser exists ansible.builtin.user: name=monitoruser state=present - name: Deploy SSH key ansible.builtin.authorized_key: user=monitoruser key=\"{{ lookup('file', '~/.ssh/id_rsa.pub') }}\" state=present",
+      "c) - name: Create monitoruser with key shell: | if ! id monitoruser >/dev/null 2>&1; then useradd monitoruser; mkdir /home/monitoruser/.ssh; chmod 700 /home/monitoruser/.ssh; echo \"{{ lookup('file', '~/.ssh/id_rsa.pub') }}\" > /home/monitoruser/.ssh/authorized_keys; chmod 600 /home/monitoruser/.ssh/authorized_keys; fi",
+      "d) - name: Add monitoruser ansible.builtin.user: name=monitoruser - name: Copy key shell: cp ~/.ssh/id_rsa.pub /home/monitoruser/.ssh/authorized_keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Option (b) uses Ansible's declarative `user` and `authorized_key` modules. These modules are inherently idempotent, meaning they will only make changes if the desired state is not already met. Options (a), (c), and (d) use shell commands directly, which are not inherently idempotent and would require manual conditional logic (like in c) or would re-run commands unnecessarily (a, d), potentially causing errors or being inefficient.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Your production web server uses Nginx with TLS certificates managed by Certbot. An alert fires indicating \"Expired TLS certificate\" for your main domain. Your incident runbook instructs you to check Certbot's renewal status. If renewal failed, what is the most robust command to manually attempt renewal and diagnose issues?",
+    "options": [
+      "certbot renew",
+      "certbot renew --force-renewal",
+      "systemctl restart nginx",
+      "certbot certonly --webroot -w /var/www/html -d example.com"
+    ],
+    "correctIndex": 1,
+    "explanation": "`certbot renew` attempts renewal only if certificates are due for renewal. `--force-renewal` overrides this and attempts renewal regardless, which is useful for diagnosing why an automated renewal might have failed or for emergency manual renewal. Restarting Nginx doesn't renew certificates. `certonly` is for obtaining new certificates, not renewing existing ones in this context.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are locked out of a critical production server via SSH after accidentally blocking your IP address with `firewalld`. You have no console access. Which is the most viable and commonly used recovery method, assuming standard cloud environment practices?",
+    "options": [
+      "Wait for the firewall rules to timeout automatically",
+      "Physically access the server to reset network configuration",
+      "Use the cloud provider's console or serial port access to revert firewall rules",
+      "Connect via FTP and edit firewall configuration files"
+    ],
+    "correctIndex": 2,
+    "explanation": "In cloud environments, the \"console\" or \"serial port\" access provided by the cloud provider (e.g., AWS EC2 Serial Console, Azure Serial Console, GCP Serial Console) is designed for situations like SSH lockout. Firewall rules typically don't have automatic timeouts for IP blocks. Physical access is often impossible for cloud servers. FTP cannot modify firewall rules or execute commands.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You have an LVM setup with a logical volume `/dev/vgdata/lvprod` and a recent snapshot `/dev/vgdata/lvprod_snap`. Due to a critical data corruption on `lvprod`, you need to revert `lvprod` to the state of `lvprod_snap`. What is the correct procedure, assuming `lvprod` is currently mounted at `/data`?",
+    "options": [
+      "a) umount /data && lvconvert --merge /dev/vgdata/lvprod_snap",
+      "b) lvconvert --merge /dev/vgdata/lvprod_snap && mount /dev/vgdata/lvprod /data",
+      "c) dd if=/dev/vgdata/lvprod_snap of=/dev/vgdata/lvprod",
+      "d) lvremove /dev/vgdata/lvprod && lvrename /dev/vgdata/lvprod_snap /dev/vgdata/lvprod"
+    ],
+    "correctIndex": 0,
+    "explanation": "To merge a snapshot back into its origin, the origin logical volume (`lvprod`) must be unmounted. `lvconvert --merge` is the command to perform this operation. The snapshot volume itself is merged *into* the origin. Option (b) attempts to merge while mounted which will fail. Option (c) `dd` is risky and not the standard LVM way. Option (d) renames, not merges, and would discard the original LV data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which Linux command is used to change the permissions of a file or directory?",
+    "options": [
+      "chown",
+      "chmod",
+      "chgrp",
+      "attrib"
+    ],
+    "correctIndex": 1,
+    "explanation": "`chmod` (change mode) is used to change file/directory permissions (e.g., read, write, execute). `chown` changes ownership.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the default home directory of the root user in most Linux distributions?",
+    "options": [
+      "/home/root",
+      "/root",
+      "/",
+      "/var/root"
+    ],
+    "correctIndex": 1,
+    "explanation": "The superuser (root) home directory is `/root`, separated from regular users whose home directories are under `/home`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which command-line utility is used to view running processes in real-time in Linux?",
+    "options": [
+      "ps",
+      "top",
+      "df",
+      "free"
+    ],
+    "correctIndex": 1,
+    "explanation": "`top` displays a dynamic, real-time list of running processes and system resources. `ps` is static.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which file contains the list of local users and their basic account details (excluding passwords)?",
+    "options": [
+      "/etc/shadow",
+      "/etc/passwd",
+      "/etc/group",
+      "/etc/users"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/passwd` stores user account details like UID, GID, home directory, and default shell. Passwords are in `/etc/shadow`.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does the command 'df -h' do?",
+    "options": [
+      "Shows directory files in alphabetical order",
+      "Displays disk space usage on mounted filesystems in human-readable format",
+      "Downloads files from a remote hosting site",
+      "Deletes temporary folders recursively"
+    ],
+    "correctIndex": 1,
+    "explanation": "`df` reports file system disk space usage, and `-h` prints sizes in human-readable format (e.g., GB, MB).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which directory contains system configuration files in a standard Linux system?",
+    "options": [
+      "/bin",
+      "/etc",
+      "/var",
+      "/usr"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `/etc` directory is dedicated to system-wide configuration files and startup scripts.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which symbol is used in Linux shells to redirect the output of one command as input to another?",
+    "options": [
+      ">",
+      ">>",
+      "|",
+      "<"
+    ],
+    "correctIndex": 2,
+    "explanation": "The pipe symbol (`|`) routes stdout of the left command to stdin of the right command.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How does the 'kill' command with signal 9 (-9 or -SIGKILL) differ from signal 15 (-15 or -SIGTERM)?",
+    "options": [
+      "Signal 9 is for stopping background processes only; 15 is for foreground",
+      "Signal 15 requests clean termination (allowing processes to save state and clean up); Signal 9 forces immediate termination, bypassing process cleanup",
+      "Signal 9 restarts the process; Signal 15 stops it permanently",
+      "There is no difference between these signals"
+    ],
+    "correctIndex": 1,
+    "explanation": "SIGTERM (15) is polite, allowing processes to clean up descriptors. SIGKILL (9) is handled directly by the kernel to terminate the process immediately without cleanup.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the '/proc' virtual filesystem in Linux?",
+    "options": [
+      "Storing backup files for installation packages",
+      "Providing an interface to kernel data structures and runtime process statistics on a running system",
+      "Containing bootloader scripts for system startup",
+      "Serving as a temporary caching directory"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/proc` is a virtual (in-memory) filesystem. Reading files inside `/proc` queries live kernel parameters and hardware or process info dynamically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to configure and view network interface addresses and status in modern Linux distros (replacing ifconfig)?",
+    "options": [
+      "netstat",
+      "ip addr",
+      "route",
+      "nslookup"
+    ],
+    "correctIndex": 1,
+    "explanation": "The `ip` command (part of iproute2 package) replaces the deprecated `ifconfig` for network management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of systemd in modern Linux distributions?",
+    "options": [
+      "A package manager for compiling applications",
+      "An init system and system manager that bootstraps user space and manages system services/daemons",
+      "A desktop GUI interface manager",
+      "A firewall service that blocks network ports"
+    ],
+    "correctIndex": 1,
+    "explanation": "systemd is the first process (PID 1) started by the kernel, responsible for launching and managing services, sockets, mount points, and device units.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a hard link and a soft (symbolic) link?",
+    "options": [
+      "Soft links can only point to directories; hard links can only point to files",
+      "Hard links point to the same inode directly and share file data; soft links point to the path of another file and break if the source is moved",
+      "Hard links are created with 'ln -s'; soft links are created with 'ln'",
+      "Soft links use more disk space than hard links"
+    ],
+    "correctIndex": 1,
+    "explanation": "Hard links are directory entries pointing to the same inode (cannot cross filesystems). Soft links are pointer files containing paths, functioning like shortcuts.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which configuration file is used to configure static mount points that are mounted automatically at boot time?",
+    "options": [
+      "/etc/mtab",
+      "/etc/fstab",
+      "/etc/exports",
+      "/etc/resolve.conf"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/fstab` (file system table) lists all disks, partitions, and remote filesystems that should be mounted automatically or on demand.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a load average of '2.00, 1.50, 0.50' in uptime indicate on a system with exactly one CPU core?",
+    "options": [
+      "The system has 50% idle CPU capacity over the last 15 minutes",
+      "The system has been overloaded over the last 1 and 5 minutes (processes queued/waiting for CPU), but was underloaded over the last 15 minutes",
+      "The system has been 100% idle over all timeframes",
+      "The system is running out of disk space"
+    ],
+    "correctIndex": 1,
+    "explanation": "On a single-core CPU, load average > 1.0 means processes are queued. A load of 2.00 over the last 1 minute means the CPU was 100% over-subscribed, while 0.50 over 15 minutes means it was underutilized.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'sticky bit' permission flag do when set on a directory in Linux?",
+    "options": [
+      "It prevents anyone from creating new files in the directory",
+      "It ensures that only the file owner, directory owner, or root can delete or rename files within that directory",
+      "It forces all subdirectories to inherit group permissions",
+      "It makes all files executable by default"
+    ],
+    "correctIndex": 1,
+    "explanation": "The sticky bit (indicated by 't' in permissions, e.g., `/tmp`) prevents users from deleting or renaming files owned by other users within that folder.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to display block devices (like hard drives and partitions) and their sizes?",
+    "options": [
+      "lsblk",
+      "fdisk -l",
+      "df",
+      "blkid"
+    ],
+    "correctIndex": 0,
+    "explanation": "`lsblk` lists block devices in a tree structure. `fdisk -l` is also valid but requires root privileges and lists partition tables.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'journalctl' command in systemd-based Linux systems?",
+    "options": [
+      "To write scripts in a system journal",
+      "To query and view logs generated by systemd's journaling service",
+      "To schedules cron jobs on a calendar",
+      "To check configuration syntax errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "`journalctl` queries logs collected by systemd-journald. Filters like `-u service_name` view logs for specific units.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command is used to change user password aging and expiration details in Linux?",
+    "options": [
+      "passwd",
+      "chage",
+      "usermod",
+      "useradd"
+    ],
+    "correctIndex": 1,
+    "explanation": "`chage` (change age) edits password expiry, warning periods, and account inactivity limits. `passwd` can do basic updates, but `chage` is designed for policy management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which file controls the DNS servers that the Linux local resolver queries to resolve domain names?",
+    "options": [
+      "/etc/hosts",
+      "/etc/resolv.conf",
+      "/etc/networks",
+      "/etc/hostname"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/etc/resolv.conf` defines nameservers, search domains, and resolver options. `/etc/hosts` provides static name mappings.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the function of the 'rsync' command in Linux?",
+    "options": [
+      "To encrypt file streams over a network",
+      "To copy and synchronize files and directories locally or remotely, using delta-transfer algorithms to copy only changes",
+      "To restart system services remotely",
+      "To scan directories for syntax errors"
+    ],
+    "correctIndex": 1,
+    "explanation": "`rsync` synchronizes directories efficiently by calculating differences (deltas) and sending only modified parts of files, saving bandwidth.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Linux memory management, what is 'OOM Killer' (Out of Memory Killer) and how does it select target processes?",
+    "options": [
+      "A backup tool that kills idle processes; selects targets randomly",
+      "A kernel mechanism that terminates processes to free memory when system RAM is exhausted; selects targets based on badness score computed from memory consumption and oom_score_adj",
+      "A software package that stops background services during updates; selects by CPU usage",
+      "A disk clean tool that deletes cache files"
+    ],
+    "correctIndex": 1,
+    "explanation": "The OOM Killer recovers systems from kernel panics due to out-of-memory. It computes a 'badness score' based on RAM usage and kills the process with the highest score.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between PAM (Pluggable Authentication Modules) and nsswitch (Name Service Switch) in Linux security?",
+    "options": [
+      "PAM is for network routing; nsswitch is for database lookups",
+      "PAM handles user authentication, password policies, and session setup; nsswitch configures the sources from which database information (like passwords, hosts, groups) is retrieved",
+      "Nsswitch is older and completely replaced by PAM modules",
+      "PAM handles file encryption; nsswitch handles shell permissions"
+    ],
+    "correctIndex": 1,
+    "explanation": "PAM is the authentication gatekeeper (verifying passwords, tokens). NSS defines where system APIs (like getpwuid) look to retrieve user details (e.g., local files, LDAP, or NIS).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does a filesystem inode store, and what critical item is NOT stored in an inode?",
+    "options": [
+      "Stores the file name; does not store the file contents",
+      "Stores file metadata (owner, size, permissions, block locations); does not store the file name",
+      "Stores the file contents; does not store the owner UID",
+      "Stores local directory links; does not store timestamps"
+    ],
+    "correctIndex": 1,
+    "explanation": "Inodes store all file metadata and locations of data blocks on disk. However, the file name is stored inside the directory file database pointing to that inode number, not in the inode itself.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Which Linux kernel feature allows isolating resources (like CPU, Memory, Network) for groups of processes, serving as a foundation for container systems?",
+    "options": [
+      "Namespaces",
+      "Cgroups (Control Groups)",
+      "SELinux",
+      "Sysctl"
+    ],
+    "correctIndex": 1,
+    "explanation": "Cgroups limit, account for, and isolate resource usage (CPU, memory, disk I/O) of processes. Namespaces isolate visibility (PID, Network, Mounts). Both enable containers.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the purpose of the 'sysctl' utility in Linux system administration?",
+    "options": [
+      "To control running system processes under init",
+      "To configure kernel parameters at runtime by reading and writing files under /proc/sys/",
+      "To manage virtual file systems dynamically",
+      "To configure display outputs on desktop servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "`sysctl` queries and modifies kernel settings (like TCP window sizes, IP forwarding, swapiness) during runtime without rebooting.",
+    "difficulty": "hard"
+  }
+]

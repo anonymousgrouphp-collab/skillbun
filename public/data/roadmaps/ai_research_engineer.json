@@ -1,0 +1,1124 @@
+{
+  "id": "ai_research_engineer",
+  "title": "AI Research Engineer",
+  "description": "Bridge bleeding-edge theoretical AI advancements and practical systems implementations, scaling frontier model architectures and research benchmarks.",
+  "goal": {
+    "objective": "Implement novel deep learning architectures from scientific papers, push algorithmic boundaries, and scale large neural networks across distributed GPU clusters.",
+    "salary": "$110,000 - $195,000 / yr (₹12 - ₹40 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 110000,
+        "max": 195000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 12,
+        "max": 40,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Mid to Principal (2 - 7+ Years)",
+    "target_roles": [
+      "AI Research Engineer",
+      "Research Scientist",
+      "Deep Learning Architect",
+      "Frontier Model Engineer"
+    ],
+    "career_pillars": [
+      "Advanced Deep Learning Theory",
+      "Distributed Multi-GPU Training (Megatron-LM, FSDP)",
+      "Custom CUDA Kernels & Research Reproducibility"
+    ]
+  },
+  "learn": {
+    "summary": "Deep dive into theoretical neural network foundations, custom loss functions, transformer scaling laws, JAX/PyTorch internals, distributed training (ZeRO/FSDP), and research paper replication.",
+    "key_competencies": [
+      "Advanced Probability, Information Theory & Vector Calculus",
+      "PyTorch & JAX Computational Graphs",
+      "Distributed Multi-Node Training (Deepspeed/FSDP)",
+      "CUDA Kernel Programming with Triton/C++",
+      "Research Paper Implementation & Benchmarking"
+    ],
+    "prerequisites": [
+      "Advanced mathematical rigor (multivariable calculus, statistics)",
+      "Deep Python & C++ fluency",
+      "Strong theoretical computer science foundation"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Open-Source Transformer Replication & Scaling Experiment",
+        "tech_stack": [
+          "PyTorch",
+          "FSDP",
+          "WandB",
+          "HuggingFace"
+        ],
+        "description": "Implement an attention architecture from a NeurIPS paper from scratch and train it on a multi-GPU cluster with loss curves."
+      },
+      {
+        "title": "Sparse Mixture-of-Experts (MoE) Language Model from Scratch",
+        "tech_stack": [
+          "PyTorch",
+          "CUDA",
+          "Triton",
+          "WandB"
+        ],
+        "description": "Implement and train an efficient sparse MoE architecture with top-2 token routing, auxiliary load balancing loss, and custom Triton kernel acceleration."
+      }
+    ],
+    "certifications": [
+      "DeepLearning.AI Deep Learning Specialization",
+      "Stanford Online Machine Learning Specialization",
+      "AWS Certified Machine Learning - Specialty"
+    ],
+    "interview_focus": [
+      "Mathematical Proofs of Attention Complexity",
+      "Distributed Training Parallelism (Tensor, Pipeline, Data)",
+      "Gradient Vanishing / Exploding Dynamics",
+      "Research Paper Analysis & Critique"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "ai_research_engineer_foundational_skills",
+      "name": "Foundational Skills for AI Research",
+      "tag": "essential",
+      "description": "Build a strong theoretical and practical base in mathematics, programming, and core machine learning concepts essential for effective AI research.",
+      "resources": [
+        {
+          "title": "Deep Learning Specialization (Coursera by Andrew Ng)",
+          "url": "https://www.coursera.org/specializations/deep-learning",
+          "type": "course"
+        },
+        {
+          "title": "Mathematics for Machine Learning (Coursera by Imperial College London)",
+          "url": "https://www.coursera.org/specializations/mathematics-for-machine-learning",
+          "type": "course"
+        },
+        {
+          "title": "Machine Learning for Everybody - Full Course",
+          "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
+          "type": "video"
+        },
+        {
+          "title": "Mathematics for Machine Learning Full Course | Linear Algebra, Calculus, Probability & Stats for ML",
+          "url": "https://www.youtube.com/watch?v=Xi2qcKt25bY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_foundational_skills.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_math_stats",
+          "name": "Mathematics and Statistics for ML",
+          "tag": "essential",
+          "description": "Master the core mathematical and statistical concepts crucial for understanding and developing AI algorithms, including linear algebra, calculus, probability, and optimization theory.",
+          "resources": [
+            {
+              "title": "Linear Algebra (Khan Academy)",
+              "url": "https://www.khanacademy.org/math/linear-algebra",
+              "type": "course"
+            },
+            {
+              "title": "3Blue1Brown - Essence of Calculus",
+              "url": "https://www.youtube.com/watch?v=WUvTyaaNkzM",
+              "type": "video"
+            },
+            {
+              "title": "Essential Math for Data Science - Linear Algebra",
+              "url": "https://www.youtube.com/watch?v=SioiFuMRiv4",
+              "type": "video"
+            },
+            {
+              "title": "Probability & Statistics for Data Science & Machine Learning",
+              "url": "https://www.youtube.com/watch?v=Vfo5le26IhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_math_stats.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_prog_essentials",
+          "name": "Programming Essentials for AI",
+          "tag": "essential",
+          "description": "Develop strong programming skills in Python, including advanced data structures, algorithms, object-oriented programming, and best practices for scientific computing using libraries like NumPy, SciPy, and Pandas.",
+          "resources": [
+            {
+              "title": "Python for Data Science Handbook (Jake VanderPlas)",
+              "url": "https://jakevdp.github.io/PythonDataScienceHandbook/",
+              "type": "article"
+            },
+            {
+              "title": "Fluent Python (Luciano Ramalho)",
+              "url": "https://www.oreilly.com/library/view/fluent-python-2nd/9781492056324/",
+              "type": "article"
+            },
+            {
+              "title": "Algorithms & Data Structures Tutorials (GeeksforGeeks)",
+              "url": "https://www.geeksforgeeks.org/data-structures/",
+              "type": "article"
+            },
+            {
+              "title": "Data Structures and Algorithms in Python - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=pkYVOmU3MgA",
+              "type": "video"
+            },
+            {
+              "title": "Python for Data Science - Course for Beginners (Learn with Examples)",
+              "url": "https://www.youtube.com/watch?v=HrRA67O-QXI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_prog_essentials.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_ml_fundamentals",
+          "name": "Machine Learning Fundamentals",
+          "tag": "essential",
+          "description": "Understand the foundational concepts of machine learning, including supervised/unsupervised learning, regression, classification, model evaluation metrics, and classic algorithms.",
+          "resources": [
+            {
+              "title": "Machine Learning (Stanford University by Andrew Ng)",
+              "url": "https://www.coursera.org/learn/machine-learning",
+              "type": "course"
+            },
+            {
+              "title": "Scikit-learn Documentation",
+              "url": "https://scikit-learn.org/stable/documentation.html",
+              "type": "article"
+            },
+            {
+              "title": "Machine Learning with Python Full Course - Learn Machine Learning in 4 Hours",
+              "url": "https://www.youtube.com/watch?v=ie4oGI85SAE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_ml_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_research_landscape",
+          "name": "AI Research Landscape & Ethics",
+          "tag": "essential",
+          "description": "Gain an overview of the AI research ecosystem, common challenges, different types of research roles, and critical ethical considerations in AI development.",
+          "resources": [
+            {
+              "title": "AI Ethics Course (Elements of AI)",
+              "url": "https://course.elementsofai.com/5",
+              "type": "course"
+            },
+            {
+              "title": "The AI Revolution: The Road to Artificial General Intelligence (Tim Urban)",
+              "url": "https://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html",
+              "type": "article"
+            },
+            {
+              "title": "What is AI Ethics? AI Explained",
+              "url": "https://www.youtube.com/watch?v=COgvUFGLPCs",
+              "type": "video"
+            },
+            {
+              "title": "Why AI is Harder Than We Think (MIT)",
+              "url": "https://www.youtube.com/watch?v=g6DYjKLRRGA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_research_landscape.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_dev_environment",
+          "name": "Development Environment & Version Control",
+          "tag": "essential",
+          "description": "Set up an efficient development environment, master Git for version control, and understand command-line tools for AI research workflows, including virtual environments.",
+          "resources": [
+            {
+              "title": "Git Handbook (GitHub Guides)",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "Real Python - Virtual Environments and Packages",
+              "url": "https://realpython.com/python-virtual-environments-a-primer/",
+              "type": "article"
+            },
+            {
+              "title": "The Linux Command Line: A Complete Introduction (William E. Shotts Jr.)",
+              "url": "http://linuxcommand.org/tlcl.php",
+              "type": "article"
+            },
+            {
+              "title": "Git and GitHub for Beginners - Crash Course",
+              "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+              "type": "video"
+            },
+            {
+              "title": "Python Virtual Environments Tutorial",
+              "url": "https://www.youtube.com/watch?v=Y21OR1OPC9A",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_dev_environment.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_software_engineering_ml",
+          "name": "Software Engineering Principles for ML",
+          "tag": "essential",
+          "description": "Apply software engineering best practices, including modular design, testing, debugging, code review, and performance profiling, tailored for machine learning projects and research prototypes.",
+          "resources": [
+            {
+              "title": "Clean Code (Robert C. Martin)",
+              "url": "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
+              "type": "article"
+            },
+            {
+              "title": "Testing Python (PyTest Documentation)",
+              "url": "https://docs.pytest.org/en/stable/",
+              "type": "article"
+            },
+            {
+              "title": "Effective Python (Brett Slatkin)",
+              "url": "https://effectivepython.com/",
+              "type": "article"
+            },
+            {
+              "title": "Software Engineering for Machine Learning (MLOps Part 1)",
+              "url": "https://www.youtube.com/watch?v=vwJKzPHTrkk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_software_engineering_ml.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_research_engineer_deep_learning_core",
+      "name": "Deep Learning Core & Frameworks",
+      "tag": "essential",
+      "description": "Dive deep into the principles of deep learning, popular architectures, and gain hands-on proficiency with a leading framework like PyTorch.",
+      "resources": [
+        {
+          "title": "PyTorch Documentation and Tutorials",
+          "url": "https://pytorch.org/tutorials/",
+          "type": "course"
+        },
+        {
+          "title": "Fast.ai Practical Deep Learning for Coders",
+          "url": "https://course.fast.ai/",
+          "type": "course"
+        },
+        {
+          "title": "Deep Learning for Beginners: An Introduction with Python and PyTorch",
+          "url": "https://www.youtube.com/watch?v=Idg5uFnpV1M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_deep_learning_core.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_pytorch_mastery",
+          "name": "PyTorch Mastery",
+          "tag": "essential",
+          "description": "Become proficient in PyTorch, covering tensors, autograd, building neural networks with nn.Module, custom datasets, data loaders, and optimizers.",
+          "resources": [
+            {
+              "title": "Deep Learning with PyTorch: A 60 Minute Blitz",
+              "url": "https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch Lightning Documentation",
+              "url": "https://lightning.ai/docs/pytorch/stable/",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch for Deep Learning - Full Course",
+              "url": "https://www.youtube.com/watch?v=V_xro1bcAuA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_pytorch_mastery.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_nn_architectures",
+          "name": "Neural Network Architectures",
+          "tag": "essential",
+          "description": "Explore and implement various deep learning architectures, including CNNs, RNNs, LSTMs, Transformers, autoencoders, and generative models (GANs, VAEs).",
+          "resources": [
+            {
+              "title": "Deep Learning (Ian Goodfellow, Yoshua Bengio, Aaron Courville)",
+              "url": "https://www.deeplearningbook.org/",
+              "type": "article"
+            },
+            {
+              "title": "Stanford CS231n: Convolutional Neural Networks for Visual Recognition",
+              "url": "http://cs231n.stanford.edu/",
+              "type": "course"
+            },
+            {
+              "title": "Stanford CS224n: Natural Language Processing with Deep Learning",
+              "url": "http://web.stanford.edu/class/cs224n/",
+              "type": "course"
+            },
+            {
+              "title": "Neural Network Architectures Explained | Types of Neural Networks",
+              "url": "https://www.youtube.com/watch?v=jmmW0F0biz0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_nn_architectures.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_data_pipelines_dl",
+          "name": "Data Pipelines for Deep Learning",
+          "tag": "essential",
+          "description": "Learn techniques for efficient data loading, preprocessing, augmentation, and handling diverse data types (images, text, audio) for deep learning models, focusing on research data.",
+          "resources": [
+            {
+              "title": "Albumentations Documentation",
+              "url": "https://albumentations.ai/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Hugging Face Datasets Library",
+              "url": "https://huggingface.co/docs/datasets/index",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch Dataset & DataLoader Explained",
+              "url": "https://www.youtube.com/watch?v=PXOzkkB5eH0",
+              "type": "video"
+            },
+            {
+              "title": "Custom Dataset and Dataloader in PyTorch (PyTorch Tutorial from scratch #5)",
+              "url": "https://www.youtube.com/watch?v=IHq1t7NxS8k",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_data_pipelines_dl.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_training_optimization",
+          "name": "Deep Learning Training & Optimization",
+          "tag": "essential",
+          "description": "Master advanced training strategies, including different optimizers, learning rate schedules, regularization techniques (dropout, batch normalization), and transfer learning.",
+          "resources": [
+            {
+              "title": "An overview of gradient descent optimization algorithms (Sebastian Ruder)",
+              "url": "https://ruder.io/optimizing-gradient-descent/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Batch Normalization (Towards Data Science)",
+              "url": "https://towardsdatascience.com/understanding-batch-normalization-with-examples-in-pytorch-and-tensorflow-32c45155f41",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning Tutorial 10: Optimizers",
+              "url": "https://www.youtube.com/watch?v=7S7EZj_vxw4",
+              "type": "video"
+            },
+            {
+              "title": "Transfer Learning in Keras & TensorFlow 2.0 (Deep Learning Tutorial)",
+              "url": "https://www.youtube.com/watch?v=yXIYD0IeTnw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_training_optimization.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_research_engineer_research_methodology",
+      "name": "AI Research Methodology & Experimentation",
+      "tag": "advanced",
+      "description": "Acquire the essential skills for conducting rigorous AI research, from systematic literature review and experiment design to robust evaluation and analysis.",
+      "resources": [
+        {
+          "title": "How to Read a Paper (S. Keshav)",
+          "url": "https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf",
+          "type": "article"
+        },
+        {
+          "title": "Weights & Biases Guides",
+          "url": "https://docs.wandb.ai/guides/",
+          "type": "article"
+        },
+        {
+          "title": "MLOps Full Course - Machine Learning Operations Tutorial",
+          "url": "https://www.youtube.com/watch?v=w71RHxAWxaM",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_research_methodology.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_literature_review_skills",
+          "name": "Systematic Literature Review",
+          "tag": "advanced",
+          "description": "Develop skills in identifying, critically analyzing, and synthesizing existing research papers, identifying research gaps, and formulating novel research questions.",
+          "resources": [
+            {
+              "title": "Connected Papers",
+              "url": "https://www.connectedpapers.com/",
+              "type": "article"
+            },
+            {
+              "title": "ArXiv",
+              "url": "https://arxiv.org/",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Scholar",
+              "url": "https://www.semanticscholar.org/",
+              "type": "article"
+            },
+            {
+              "title": "How to conduct a Systematic Literature Review for Beginners",
+              "url": "https://www.youtube.com/watch?v=WUErib-fXV0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_literature_review_skills.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_experiment_design_control",
+          "name": "Experiment Design & Control",
+          "tag": "advanced",
+          "description": "Learn to design reproducible and statistically sound experiments, establish strong baselines, and control for confounding variables in AI research to ensure valid results.",
+          "resources": [
+            {
+              "title": "The Scientific Method in Machine Learning (Google Research)",
+              "url": "https://ai.google/research/pubs/pub46553/",
+              "type": "article"
+            },
+            {
+              "title": "Designing good experiments in machine learning (Fast.ai forum)",
+              "url": "https://forums.fast.ai/t/designing-good-experiments-in-machine-learning/25838",
+              "type": "article"
+            },
+            {
+              "title": "A/B Testing Full Course - Learn to Split Test",
+              "url": "https://www.youtube.com/watch?v=eiIhTbFP0ls",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_experiment_design_control.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_reproducibility_mlops",
+          "name": "Reproducibility & Research MLOps",
+          "tag": "advanced",
+          "description": "Implement best practices for reproducible research, including code and environment management, data versioning, and using experiment tracking platforms (W&B, MLflow, DVC).",
+          "resources": [
+            {
+              "title": "DVC (Data Version Control) Documentation",
+              "url": "https://dvc.org/doc",
+              "type": "article"
+            },
+            {
+              "title": "MLflow Documentation",
+              "url": "https://mlflow.org/docs/latest/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Weights & Biases Best Practices for Reproducibility",
+              "url": "https://docs.wandb.ai/guides/track/reproducibility",
+              "type": "article"
+            },
+            {
+              "title": "MLflow Tutorial for Machine Learning - FULL COURSE",
+              "url": "https://www.youtube.com/watch?v=6ngxBkx05Fs",
+              "type": "video"
+            },
+            {
+              "title": "Weights & Biases (W&B) Crash Course - Full Tutorial for ML Experiment Tracking",
+              "url": "https://www.youtube.com/watch?v=hmewPDNUNJs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_reproducibility_mlops.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_model_evaluation_advanced",
+          "name": "Advanced Model Evaluation & Statistics",
+          "tag": "advanced",
+          "description": "Go beyond basic metrics to understand statistical significance, confidence intervals, error analysis, calibration, and methods for evaluating model robustness and fairness in research.",
+          "resources": [
+            {
+              "title": "Interpretable Machine Learning (Christoph Molnar)",
+              "url": "https://christophm.github.io/interpretable-ml-book/",
+              "type": "article"
+            },
+            {
+              "title": "Fairness in AI (Google AI Ethics)",
+              "url": "https://ai.google/responsibility/responsible-ai/",
+              "type": "article"
+            },
+            {
+              "title": "A/B Testing: Statistical Significance, Test & Sample Size",
+              "url": "https://www.youtube.com/watch?v=BmNBxAhatYI",
+              "type": "video"
+            },
+            {
+              "title": "What is AI Ethics and Fairness? Machine Learning Tutorial",
+              "url": "https://www.youtube.com/watch?v=COgvUFGLPCs",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_model_evaluation_advanced.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_benchmarking_ablations",
+          "name": "Benchmarking & Ablation Studies",
+          "tag": "advanced",
+          "description": "Learn to rigorously benchmark models against state-of-the-art results and design effective ablation studies to understand the contribution of individual components to model performance.",
+          "resources": [
+            {
+              "title": "Papers with Code",
+              "url": "https://paperswithcode.com/",
+              "type": "article"
+            },
+            {
+              "title": "How to Do Ablation Studies (The Batch, DeepMind)",
+              "url": "https://www.deepmind.com/the-batch/how-to-do-ablation-studies",
+              "type": "article"
+            },
+            {
+              "title": "How To Evaluate Your Machine Learning Model",
+              "url": "https://www.youtube.com/watch?v=LbX4X71-TFI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_benchmarking_ablations.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_research_engineer_advanced_research_topics",
+      "name": "Advanced Research Topics & Specialization",
+      "tag": "advanced",
+      "description": "Explore cutting-edge areas within AI research, develop specialized expertise, and understand advanced techniques and challenges to push the boundaries of current AI capabilities.",
+      "resources": [
+        {
+          "title": "Hugging Face Transformers Documentation",
+          "url": "https://huggingface.co/docs/transformers/index",
+          "type": "article"
+        },
+        {
+          "title": "DeepLearning.AI Generative AI Specialization",
+          "url": "https://www.deeplearning.ai/courses/generative-ai-with-transformers/",
+          "type": "course"
+        },
+        {
+          "title": "The Complete Guide to Generative AI",
+          "url": "https://www.youtube.com/watch?v=lv7ka-8FscI",
+          "type": "video"
+        },
+        {
+          "title": "Reinforcement Learning Tutorial | From Zero to Hero",
+          "url": "https://www.youtube.com/watch?v=VnpRp7ZglfA",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_advanced_research_topics.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_llms_nlp_advanced",
+          "name": "Large Language Models & Advanced NLP",
+          "tag": "advanced",
+          "description": "Deep dive into LLMs, their architectures, pre-training, fine-tuning, prompt engineering, Retrieval-Augmented Generation (RAG), and ethical considerations in natural language processing research.",
+          "resources": [
+            {
+              "title": "The Illustrated Transformer (Jay Alammar)",
+              "url": "https://jalammar.github.io/illustrated-transformer/",
+              "type": "article"
+            },
+            {
+              "title": "Prompt Engineering Guide",
+              "url": "https://www.promptingguide.ai/",
+              "type": "article"
+            },
+            {
+              "title": "What are Large Language Models (LLMs)? | Learn Deep Learning",
+              "url": "https://www.youtube.com/watch?v=5sLYAQS9sWQ",
+              "type": "video"
+            },
+            {
+              "title": "Retrieval Augmented Generation (RAG) Explained",
+              "url": "https://www.youtube.com/watch?v=dDkynerzV-Q",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_llms_nlp_advanced.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_generative_ai_cv_advanced",
+          "name": "Generative AI & Advanced Computer Vision",
+          "tag": "advanced",
+          "description": "Study advanced topics in computer vision, including object detection, semantic segmentation, image generation (diffusion models), and understanding multimodal AI, with practical implementations.",
+          "resources": [
+            {
+              "title": "Diffusion Models Beat GANs on Image Synthesis (OpenAI Blog)",
+              "url": "https://openai.com/research/diffusion-models-beat-gans-on-image-synthesis",
+              "type": "article"
+            },
+            {
+              "title": "YOLO: Real-Time Object Detection",
+              "url": "https://pjreddie.com/darknet/yolo/",
+              "type": "article"
+            },
+            {
+              "title": "Object Detection using YOLOv8 - Full Course for Beginners",
+              "url": "https://www.youtube.com/watch?v=WgPbbWmnXJ8",
+              "type": "video"
+            },
+            {
+              "title": "How Diffusion Models Work - Deep Learning Simply Explained",
+              "url": "https://www.youtube.com/watch?v=yTAMrHVG1ew",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_generative_ai_cv_advanced.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_efficient_ai_optimization",
+          "name": "Efficient AI & Resource Optimization",
+          "tag": "advanced",
+          "description": "Learn techniques for model compression, quantization, pruning, knowledge distillation, and distributed training to optimize AI models for performance and resource efficiency.",
+          "resources": [
+            {
+              "title": "Hugging Face Optimum",
+              "url": "https://huggingface.co/docs/optimum/index",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch Distributed Data Parallel Tutorial",
+              "url": "https://pytorch.org/tutorials/intermediate/ddp_tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "Model Quantization Explained | AI Engineering",
+              "url": "https://www.youtube.com/watch?v=qqN63hbziaI",
+              "type": "video"
+            },
+            {
+              "title": "What is Knowledge Distillation in ML? (Teacher-Student Models Explained)",
+              "url": "https://www.youtube.com/watch?v=_3asoj46jVw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_efficient_ai_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_causal_ai_interpretability",
+          "name": "Causal AI & Interpretability",
+          "tag": "advanced",
+          "description": "Understand the fundamentals of causal inference and techniques for interpreting complex AI models (Explainable AI - XAI), crucial for trustworthiness and debugging in research.",
+          "resources": [
+            {
+              "title": "Causal Inference for The Brave and True",
+              "url": "https://matheusfacure.github.io/python-causality-handbook/landing-page.html",
+              "type": "article"
+            },
+            {
+              "title": "LIME: 'Why Should I Trust You?': Explaining the Predictions of Any Classifier",
+              "url": "https://arxiv.org/abs/1602.04938",
+              "type": "article"
+            },
+            {
+              "title": "Causal AI Explained | IBM Technology",
+              "url": "https://www.youtube.com/watch?v=7QlQKTGsPt8",
+              "type": "video"
+            },
+            {
+              "title": "Explainable AI (XAI) Explained for Beginners",
+              "url": "https://www.youtube.com/watch?v=vNup3PygoWI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_causal_ai_interpretability.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_federated_learning_privacy",
+          "name": "Federated Learning & Privacy-Preserving AI",
+          "tag": "advanced",
+          "description": "Explore methods for training AI models on decentralized datasets while preserving data privacy, including federated learning and secure multi-party computation.",
+          "resources": [
+            {
+              "title": "Towards Federated Learning at Scale (Google AI Blog)",
+              "url": "https://ai.googleblog.com/2021/04/towards-federated-learning-at-scale.html",
+              "type": "article"
+            },
+            {
+              "title": "OpenMined",
+              "url": "https://www.openmined.org/",
+              "type": "article"
+            },
+            {
+              "title": "Federated Learning Explained",
+              "url": "https://www.youtube.com/watch?v=VrEQBlEVri0",
+              "type": "video"
+            },
+            {
+              "title": "Privacy-Preserving AI | AI Explained",
+              "url": "https://www.youtube.com/watch?v=BvCOZrqGyNU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_federated_learning_privacy.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_research_engineer_research_communication_impact",
+      "name": "Research Communication & Open Science",
+      "tag": "advanced",
+      "description": "Develop the crucial skills to effectively communicate research findings, contribute to the scientific community, and share knowledge through publications and presentations.",
+      "resources": [
+        {
+          "title": "Nature Masterclasses: Scientific Writing and Publishing",
+          "url": "https://masterclasses.nature.com/online-courses/7890",
+          "type": "course"
+        },
+        {
+          "title": "How to Write a Paper in a Weekend (By Prof. Pete Carr)",
+          "url": "https://www.youtube.com/watch?v=UY7sVKJPTMA",
+          "type": "video"
+        },
+        {
+          "title": "Open Science: What and why?",
+          "url": "https://www.youtube.com/watch?v=F7KGEMjFG50",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_research_communication_impact.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_scientific_writing_publication",
+          "name": "Scientific Writing & Publication",
+          "tag": "advanced",
+          "description": "Master the art of writing clear, concise, and impactful research papers, technical reports, and proposals for conferences and journals following academic standards.",
+          "resources": [
+            {
+              "title": "Writing a Scientific Paper (Scitable by Nature Education)",
+              "url": "https://www.nature.com/scitable/topicpage/writing-a-scientific-paper-1025/",
+              "type": "article"
+            },
+            {
+              "title": "LaTeX Tutorials (Overleaf)",
+              "url": "https://www.overleaf.com/learn/latex/tutorials",
+              "type": "article"
+            },
+            {
+              "title": "How to Write a Paper in a Weekend (By Prof. Pete Carr)",
+              "url": "https://www.youtube.com/watch?v=UY7sVKJPTMA",
+              "type": "video"
+            },
+            {
+              "title": "How to write a scientific paper",
+              "url": "https://www.youtube.com/watch?v=-kguiI17880",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_scientific_writing_publication.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_presentation_storytelling",
+          "name": "Research Presentation & Storytelling",
+          "tag": "advanced",
+          "description": "Craft compelling presentations for conferences, workshops, and internal reviews, effectively communicating complex research to diverse technical and non-technical audiences.",
+          "resources": [
+            {
+              "title": "Presentation Skills for Academics (University of Melbourne)",
+              "url": "https://students.unimelb.edu.au/academic-skills/explore-our-resources/presentations",
+              "type": "article"
+            },
+            {
+              "title": "Tips for a great scientific presentation (Elsevier)",
+              "url": "https://www.elsevier.com/connect/authors-update/tips-for-a-great-scientific-presentation",
+              "type": "article"
+            },
+            {
+              "title": "How to give a killer presentation",
+              "url": "https://www.youtube.com/watch?v=Q074YSGwRTM",
+              "type": "video"
+            },
+            {
+              "title": "How to speak so that people want to listen | Julian Treasure",
+              "url": "https://www.youtube.com/watch?v=eIho2S0ZahI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_presentation_storytelling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_open_source_contribution",
+          "name": "Open-Source Contributions & Collaboration",
+          "tag": "advanced",
+          "description": "Learn how to contribute effectively to open-source AI projects, publish research code, and engage with the broader scientific community to foster collaboration and impact.",
+          "resources": [
+            {
+              "title": "How To Contribute To Open Source (GitHub Guides)",
+              "url": "https://opensource.guide/how-to-contribute/",
+              "type": "article"
+            },
+            {
+              "title": "Reproducibility in ML: Best practices for publishing code (W&B)",
+              "url": "https://docs.wandb.ai/guides/track/reproducibility#code-and-dependencies",
+              "type": "article"
+            },
+            {
+              "title": "How to Contribute to Open Source - Git & GitHub Tutorial",
+              "url": "https://www.youtube.com/watch?v=CML6vfKjQss",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_open_source_contribution.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai_research_engineer_career_showcase_growth",
+      "name": "Career Showcase & Continuous Growth",
+      "tag": "advanced",
+      "description": "Transform your research skills into a compelling professional profile, excel in interviews, and foster a mindset of continuous learning in the fast-evolving AI field.",
+      "resources": [
+        {
+          "title": "Building a Machine Learning Portfolio (Towards Data Science)",
+          "url": "https://towardsdatascience.com/building-a-machine-learning-portfolio-the-right-way-5c8e4d3a6d7f",
+          "type": "article"
+        },
+        {
+          "title": "Top 5 AI/ML Portfolio Projects for Aspiring Data Scientists and ML Engineers",
+          "url": "https://www.youtube.com/watch?v=Y3hNeXfa1Aw",
+          "type": "video"
+        },
+        {
+          "title": "How To Become A Machine Learning Engineer - Roadmap, Skills & Resources",
+          "url": "https://www.youtube.com/watch?v=7IgVGSaQPaw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/ai_research_engineer/ai_research_engineer_career_showcase_growth.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ai_research_engineer_portfolio_development",
+          "name": "Research Portfolio Development",
+          "tag": "advanced",
+          "description": "Curate a strong portfolio showcasing your research projects, code, publications, and contributions, demonstrating your expertise and research impact to potential employers.",
+          "resources": [
+            {
+              "title": "GitHub Profile README guide",
+              "url": "https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme",
+              "type": "article"
+            },
+            {
+              "title": "Personal Website for Researchers Guide",
+              "url": "https://www.gradschool.com.au/the-ultimate-guide-to-personal-websites-for-academics/",
+              "type": "article"
+            },
+            {
+              "title": "How to build a Strong Portfolio for Machine Learning Engineers | ML Portfolio",
+              "url": "https://www.youtube.com/watch?v=rQo1vkCe8OE",
+              "type": "video"
+            },
+            {
+              "title": "How to Build a Data Science Portfolio in 2023 | 5 Tips for Data Scientists",
+              "url": "https://www.youtube.com/watch?v=QMP858aZcow",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_portfolio_development.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_interview_prep_research",
+          "name": "Interview Strategies for Research Roles",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews, whiteboard coding, research proposal discussions, and behavioral questions specific to AI Research Engineer positions at top-tier labs and companies.",
+          "resources": [
+            {
+              "title": "Cracking the Coding Interview (Gayle Laakmann McDowell)",
+              "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+              "type": "article"
+            },
+            {
+              "title": "Machine Learning System Design Interview Guide (Towards Data Science)",
+              "url": "https://towardsdatascience.com/machine-learning-system-design-interview-guide-b79e2c65a046",
+              "type": "article"
+            },
+            {
+              "title": "Machine Learning Interview Preparation | Common Questions & Tips",
+              "url": "https://www.youtube.com/watch?v=s-MaQ6S9_DA",
+              "type": "video"
+            },
+            {
+              "title": "How to Ace Research Scientist Interviews at Google, Meta, etc. (Tips & Advice)",
+              "url": "https://www.youtube.com/watch?v=uwQOCOcNjXI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_interview_prep_research.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ai_research_engineer_continuous_learning_trends",
+          "name": "Continuous Learning & Staying Current",
+          "tag": "advanced",
+          "description": "Develop strategies for continuously learning, tracking new publications, attending conferences, and engaging with AI research communities to stay at the forefront of the field.",
+          "resources": [
+            {
+              "title": "ArXiv Sanity Preserver",
+              "url": "http://www.arxiv-sanity.com/",
+              "type": "article"
+            },
+            {
+              "title": "Top AI Conferences (e.g., NeurIPS, ICML, ICLR, CVPR, ACL)",
+              "url": "https://ai.google/research/conferences/",
+              "type": "article"
+            },
+            {
+              "title": "How to Read Research Papers | MIT Researchers",
+              "url": "https://www.youtube.com/watch?v=pNIe5Uf_nAE",
+              "type": "video"
+            },
+            {
+              "title": "How to Stay Up-to-Date in the World of AI/ML Research",
+              "url": "https://www.youtube.com/watch?v=KIm70L1X32E",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/ai_research_engineer/ai_research_engineer_continuous_learning_trends.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,602 @@
+[
+  {
+    "question": "A developer needs to ensure that an `IDisposable` object, such as a database connection or file stream, is properly released even if an exception occurs. Which C# language construct is primarily designed for this purpose?",
+    "options": [
+      "try-catch-finally block",
+      "using statement",
+      "lock statement",
+      "await keyword"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'using' statement ensures that Dispose() is called on an IDisposable object when the object goes out of scope, even if an exception occurs. This is syntactic sugar for a try-finally block where Dispose() is called in the finally block.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which .NET CLI command would a developer use to scaffold a new ASP.NET Core Web API project from the command line?",
+    "options": [
+      "dotnet build",
+      "dotnet run",
+      "dotnet new webapi",
+      "dotnet add package"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'dotnet new webapi' command is used to create a new project based on the ASP.NET Core Web API template. Other commands are for building, running, or managing packages.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In an ASP.NET Core application, you want to make a service available for dependency injection with a scoped lifetime. Which method is typically used within the `Program.cs` file (or `Startup.cs`'s `ConfigureServices`) to register such a service?",
+    "options": [
+      "builder.Services.AddScoped<IService, ServiceImplementation>();",
+      "app.UseMiddleware<CustomMiddleware>();",
+      "builder.Build();",
+      "builder.Services.AddControllers();"
+    ],
+    "correctIndex": 0,
+    "explanation": "The 'builder.Services.AddScoped<IService, ServiceImplementation>()' method is used to register a service with a scoped lifetime, meaning a new instance is created once per client request. 'app.UseMiddleware' adds middleware, 'builder.Build' builds the application host, and 'builder.Services.AddControllers' adds controller support.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer needs to filter a collection of `Product` objects to only include products whose `Price` is greater than 100. Which LINQ keyword is specifically designed for this filtering operation?",
+    "options": [
+      "Select",
+      "OrderBy",
+      "Where",
+      "GroupBy"
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'Where' LINQ keyword is used to filter a sequence of values based on a predicate (a condition). 'Select' transforms elements, 'OrderBy' sorts them, and 'GroupBy' groups them.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing with Entity Framework Core, what is the primary purpose of creating and applying a database migration?",
+    "options": [
+      "To define the database connection string",
+      "To update the application's C# entity models",
+      "To create or modify the database schema to match the EF Core model",
+      "To seed initial data into the database tables"
+    ],
+    "correctIndex": 2,
+    "explanation": "Database migrations in EF Core are used to evolve the database schema over time to keep it in sync with the application's C# entity models without losing existing data. While seeding data can be part of migrations, the primary purpose is schema management.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which standard HTTP method is primarily used by a client to request and retrieve data from a server without causing any changes to the server's state?",
+    "options": [
+      "POST",
+      "PUT",
+      "GET",
+      "DELETE"
+    ],
+    "correctIndex": 2,
+    "explanation": "The GET method is used to request data from a specified resource. It should only retrieve data and have no other effect on the data.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of containerizing a .NET API application using Docker, especially when moving from a development environment to production?",
+    "options": [
+      "It makes the C# code execute faster on the server.",
+      "It eliminates the need for any form of testing.",
+      "It provides a consistent and isolated environment, ensuring the application runs the same everywhere.",
+      "It automatically scales the application's database horizontally."
+    ],
+    "correctIndex": 2,
+    "explanation": "Containerization with Docker wraps an application and its dependencies into a single, isolated unit, ensuring consistent execution across different environments (development, staging, production).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A developer writes an `async` method in C# that performs a CPU-bound operation. Instead of using `await Task.Run(() => ...)` for the CPU-bound part, they directly use `await` on a method that performs heavy computation on the UI thread. What is the most likely consequence if this method is called from a UI application?",
+    "options": [
+      "The UI will remain responsive throughout the operation.",
+      "The method will automatically scale across multiple CPU cores.",
+      "The UI thread will be blocked, leading to an unresponsive application.",
+      "The application will crash due to a stack overflow."
+    ],
+    "correctIndex": 2,
+    "explanation": "Using 'await' on a CPU-bound operation without offloading it (e.g., via Task.Run) from the UI thread will block the UI thread, making the application unresponsive. 'await' is primarily for I/O-bound operations to free up the thread.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to implement a custom logging mechanism that inspects and logs details about every incoming HTTP request before it reaches any controller or minimal API endpoint in your ASP.NET Core application. Which component type is the most appropriate for this task?",
+    "options": [
+      "An Action Filter",
+      "A Middleware component",
+      "A service registered with `AddSingleton`",
+      "An Authorization Filter"
+    ],
+    "correctIndex": 1,
+    "explanation": "Middleware components are executed in a pipeline for every incoming HTTP request and can intercept requests before they reach the endpoint or responses after the endpoint has processed them. Action filters execute within the MVC pipeline, and services don't directly handle the request pipeline flow.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider two Entity Framework Core entities: `Department` and `Employee`. A `Department` can have multiple `Employee`s, but each `Employee` belongs to only one `Department`. How would you typically model this one-to-many relationship using EF Core conventions?",
+    "options": [
+      "Add a `List<Employee>` navigation property to `Department` and a `DepartmentId` foreign key property to `Employee`.",
+      "Add a `Department` navigation property to `Employee` and a `List<Department>` to `Department`.",
+      "Add a `DepartmentId` property to `Department` and an `EmployeeId` property to `Employee`.",
+      "Create a separate many-to-many join table for `DepartmentEmployees`."
+    ],
+    "correctIndex": 0,
+    "explanation": "For a one-to-many relationship, the 'one' side (Department) has a collection of the 'many' side (List<Employee>), and the 'many' side (Employee) has a foreign key property (DepartmentId) pointing to the 'one' side.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing unit tests for a service that depends on an external repository interface (`IRepository`). To isolate the service under test and verify its behavior without actually hitting a database, they want to simulate the `IRepository`'s behavior. Which testing concept or tool is most suitable for this scenario?",
+    "options": [
+      "Integration Testing with `WebApplicationFactory`",
+      "End-to-End Testing",
+      "A mocking framework (e.g., Moq)",
+      "UI Automation Testing"
+    ],
+    "correctIndex": 2,
+    "explanation": "A mocking framework like Moq allows you to create mock objects that mimic the behavior of real dependencies (like IRepository), enabling isolated unit testing of the service layer without external dependencies.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your .NET API needs to send a welcome email to new users after their registration. This is a long-running task and should not block the HTTP request/response cycle. Which ASP.NET Core feature or pattern is ideal for executing such background tasks reliably within the application's lifecycle?",
+    "options": [
+      "A synchronous controller action",
+      "An HTTP DelegatingHandler",
+      "An `IHostedService` implementation",
+      "An Action Filter"
+    ],
+    "correctIndex": 2,
+    "explanation": "An 'IHostedService' is a long-running background task that runs for the lifetime of the application. It's suitable for performing operations like sending emails, processing queues, or other background work without blocking the main request thread.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You have an object `product` that can be either a `Book` or a `Movie`. You need to retrieve its `Title` and `Year` properties using a single assignment statement with C# 9+ pattern matching. Which code snippet demonstrates the most appropriate way to achieve this using a switch expression?",
+    "options": [
+      "string title; int year; if (product is Book b) { title = b.BookTitle; year = b.PublicationYear; } else if (product is Movie m) { title = m.MovieTitle; year = m.ReleaseYear; }",
+      "var (title, year) = product switch { Book b => (b.BookTitle, b.PublicationYear), Movie m => (m.MovieTitle, m.ReleaseYear), _ => (null, 0) };",
+      "product.DisplayDetails();",
+      "string title = product.Title; int year = product.Year;"
+    ],
+    "correctIndex": 1,
+    "explanation": "The C# switch expression, combined with property patterns and tuple syntax, allows for concise and expressive pattern matching to extract properties from different types within a single expression. Other options are less concise or assume a common base interface not specified.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A .NET Core application needs to use different database connection strings for development and production environments. What is the recommended and secure approach for managing these environment-specific configurations?",
+    "options": [
+      "Hardcode both connection strings directly into the `appsettings.json` file.",
+      "Manually change the `appsettings.json` file contents before each deployment.",
+      "Use `appsettings.Development.json` for development and environment variables or Azure Key Vault for production.",
+      "Embed all connection strings directly into the C# code using `const` fields."
+    ],
+    "correctIndex": 2,
+    "explanation": "Using 'appsettings.Development.json' (or similar 'appsettings.[Environment].json') for local development and environment variables or cloud secrets management services (like Azure Key Vault) for production provides secure and flexible configuration management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are building an ASP.NET Core API endpoint that accepts a DTO (Data Transfer Object) for creating a new user. You want to ensure that the `Username` field is not null or empty and the `Email` field is a valid email format before processing the request. What is the most common and declarative way to achieve this using built-in ASP.NET Core features?",
+    "options": [
+      "Manually check these conditions with `if` statements in the controller action.",
+      "Implement a custom middleware to validate the entire request body.",
+      "Apply `[Required]` and `[EmailAddress]` data annotation attributes to the corresponding properties in the DTO.",
+      "Write a custom `IModelBinder` for the DTO."
+    ],
+    "correctIndex": 2,
+    "explanation": "Data annotation attributes like `[Required]` and `[EmailAddress]` on DTO properties provide declarative model validation in ASP.NET Core, automatically checking conditions during model binding and populating `ModelState` with errors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing a Minimal API in ASP.NET Core, which line of code correctly defines a simple HTTP GET endpoint at the path `/hello` that returns a string message?",
+    "options": [
+      "app.UseRouting().UseEndpoints(endpoints => endpoints.MapGet(\"/hello\", () => \"Hello World!\"));",
+      "app.MapGet(\"/hello\", () => \"Hello World!\");",
+      "[HttpGet(\"/hello\")] public IActionResult SayHello() { return Ok(\"Hello World!\"); }",
+      "app.AddRoute(\"/hello\", HttpMethod.Get, () => \"Hello World!\");"
+    ],
+    "correctIndex": 1,
+    "explanation": "In Minimal APIs, endpoints are registered directly on the `WebApplication` instance (app) using 'MapGet', 'MapPost', etc., providing a concise way to define routes and handlers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are deploying a sensitive .NET API to Azure App Service. How can you securely manage database connection strings and other secrets so they are not committed to source control and are only accessible at runtime?",
+    "options": [
+      "Store them as plain text in the `appsettings.json` file.",
+      "Encrypt the `appsettings.json` file before deployment.",
+      "Utilize Azure App Service Application Settings or reference Azure Key Vault secrets.",
+      "Hardcode them directly into the deployment script."
+    ],
+    "correctIndex": 2,
+    "explanation": "Azure App Service Application Settings provide a secure way to store configuration values, which are then injected as environment variables into the running application. For higher security, Azure Key Vault can be used to store secrets, with App Service referencing them.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your .NET API consumes a third-party microservice that is known to occasionally experience transient failures. To make your API more robust, you want to automatically retry failed HTTP requests to this service a few times before giving up. Which common .NET pattern/library is best suited for implementing such a retry policy?",
+    "options": [
+      "Using `Task.Delay()` in a loop with `HttpClient`",
+      "Implementing a custom `Thread.Sleep()` logic",
+      "Leveraging `HttpClientFactory` with the Polly library",
+      "Creating a new `Process` for each retry attempt"
+    ],
+    "correctIndex": 2,
+    "explanation": "Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, and Fallback in a fluent and thread-safe manner. It integrates well with HttpClientFactory.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer is writing integration tests for an ASP.NET Core API that involves querying a database. To ensure test isolation and a clean state for each test run, they want to spin up a fresh, disposable PostgreSQL database container. Which .NET testing tool is specifically designed to facilitate this kind of setup?",
+    "options": [
+      "xUnit's `Fact` attribute",
+      "Moq framework",
+      "WebApplicationFactory",
+      "Testcontainers"
+    ],
+    "correctIndex": 3,
+    "explanation": "Testcontainers for .NET is a library that allows you to spin up various Docker containers (like databases, message queues) programmatically within your tests, providing isolated and reproducible testing environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When developing new features as 'API slices' in an ASP.NET Core application, encompassing an endpoint, its validation, EF Core model, and associated tests, what is the primary architectural advantage this approach offers for large projects?",
+    "options": [
+      "It mandates a single, monolithic database for all slices.",
+      "It allows individual features to be developed, tested, and potentially deployed independently.",
+      "It eliminates the need for any form of dependency injection.",
+      "It requires all business logic to reside directly within controller actions."
+    ],
+    "correctIndex": 1,
+    "explanation": "Developing features as 'API slices' (or vertical slices) promotes modularity, allowing teams to work on distinct business capabilities with minimal interference, leading to easier maintenance, independent deployment, and improved scalability for large applications.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A C# WinForms application calls an `async` method using `myAsyncMethod().Result;` from a button click event handler. Occasionally, the application deadlocks, becoming unresponsive. What is the most common cause of this deadlock when `Result` or `Wait()` is used on an async method from a UI/ASP.NET synchronization context?",
+    "options": [
+      "The `async` method throws an unhandled exception.",
+      "The `async` method is not properly awaited, leading to an infinite loop.",
+      "The `await` continuation attempts to resume on the captured synchronization context, but that context is blocked by the synchronous caller waiting for the `async` method to complete.",
+      "The garbage collector is performing a long-running cleanup operation."
+    ],
+    "correctIndex": 2,
+    "explanation": "This is a classic async/await deadlock scenario. When an 'await' operation captures a UI or ASP.NET SynchronizationContext, it tries to resume the method on that same context. If the calling thread synchronously blocks (with .Result or .Wait()) on the async method, it ties up the context, preventing the 'await' from resuming, leading to a deadlock.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You're building an API for managing inventory, and multiple users might concurrently try to update the stock quantity of the same product. To prevent lost updates and ensure data consistency, you need to implement a mechanism that detects if a record has been modified by another user since it was last read. Which Entity Framework Core feature or strategy is most effective for this optimistic concurrency control?",
+    "options": [
+      "Implementing database table-level locks for every update operation.",
+      "Using a `[Timestamp]` (row version) property on the entity to detect changes.",
+      "Disabling change tracking for all entities in the `DbContext`.",
+      "Manually checking all property values against the original values before saving."
+    ],
+    "correctIndex": 1,
+    "explanation": "Optimistic concurrency control is typically implemented in EF Core using a 'row version' property, often mapped to a `[Timestamp]` or `rowversion` column in the database. When an update is attempted, EF Core checks if this value has changed, indicating a concurrent modification, and throws a `DbUpdateConcurrencyException`.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a large-scale .NET application, enforcing architectural boundaries between distinct business capabilities (e.g., Orders, Users, Payments) through techniques like Bounded Contexts or Vertical Slice Architecture is crucial. What is the primary benefit of such an architectural approach, especially considering long-term maintainability and scalability?",
+    "options": [
+      "It enforces a single, monolithic code base for all features.",
+      "It eliminates the need for dependency injection within the application.",
+      "It allows teams to independently develop, deploy, and scale specific business domains, fostering autonomy and reducing coupling.",
+      "It inherently removes the need for any database migrations."
+    ],
+    "correctIndex": 2,
+    "explanation": "Architectural boundaries (like Bounded Contexts or Vertical Slices) promote modularity, allowing distinct business domains to evolve independently. This reduces coupling, improves maintainability, and enables independent deployment and scaling, which are critical for large-scale, complex applications.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "An ASP.NET Core API uses JWT (JSON Web Token) authentication and authorizes requests based on user roles defined within the token. A client sends a JWT with a 'role' claim set to 'Manager'. The API has an endpoint protected by `[Authorize(Roles = \"Manager\")]`. How does ASP.NET Core typically verify that the requesting user has the 'Manager' role?",
+    "options": [
+      "It makes a real-time database query to retrieve the user's roles for every request.",
+      "It decrypts the JWT and then checks a remote Identity Provider for the user's roles.",
+      "It decodes the JWT and inspects the 'role' claim(s) directly within the token's payload against the specified role.",
+      "It compares the token's signature against a predefined secret without examining its claims."
+    ],
+    "correctIndex": 2,
+    "explanation": "When using JWT authentication with `[Authorize(Roles)]`, ASP.NET Core's authorization middleware decodes the JWT and inspects the claims within its payload (specifically the 'role' claim, by default) to determine if the authenticated user possesses the required role(s). No database lookup is performed per request for this.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "To effectively monitor a production .NET API for performance bottlenecks, errors, and end-to-end request tracing across microservices, a development team needs a comprehensive observability strategy. Which combination of practices and tools provides the most effective solution for achieving this?",
+    "options": [
+      "Relying solely on basic `Console.WriteLine()` statements and periodic server resource checks.",
+      "Implementing structured logging (e.g., Serilog), capturing metrics (e.g., Prometheus/Grafana), and utilizing distributed tracing (e.g., OpenTelemetry).",
+      "Only monitoring CPU and memory usage of the hosting servers.",
+      "Using simple file-based logging for errors and relying on manual debugging in production."
+    ],
+    "correctIndex": 1,
+    "explanation": "A robust observability strategy involves three pillars: structured logging (for detailed events), metrics (for aggregated performance data), and distributed tracing (for following requests across service boundaries). Tools like Serilog, Prometheus/Grafana, and OpenTelemetry enable this comprehensive visibility.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is .NET?",
+    "options": [
+      "A domain extension for websites",
+      "A free, open-source, developer platform developed by Microsoft for building many types of applications",
+      "An operating system for cloud servers",
+      "A programming language similar to HTML"
+    ],
+    "correctIndex": 1,
+    "explanation": ".NET is a managed framework that compiles and runs applications written in languages like C#, F#, or VB.NET.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which programming language is the primary choice for building applications on the .NET platform?",
+    "options": [
+      "Python",
+      "C#",
+      "JavaScript",
+      "Ruby"
+    ],
+    "correctIndex": 1,
+    "explanation": "C# (C-Sharp) is the flagship, modern object-oriented language designed by Microsoft for the .NET platform.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is ASP.NET Core used for?",
+    "options": [
+      "Designing graphic layouts",
+      "Building high-performance web applications, APIs, and microservices in .NET",
+      "Setting up local server network cables",
+      "Managing SQL database backups directly"
+    ],
+    "correctIndex": 1,
+    "explanation": "ASP.NET Core is the open-source, cross-platform web framework in .NET for building web applications and web APIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does CLI stand for in .NET development?",
+    "options": [
+      "Common Language Infrastructure",
+      "Command Line Interface (e.g. dotnet CLI)",
+      "Client Link Integration",
+      "Core Logic Interface"
+    ],
+    "correctIndex": 1,
+    "explanation": "The dotnet CLI is the command line interface tool used to create, build, run, and publish .NET applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is Entity Framework (EF) Core?",
+    "options": [
+      "A framework for designing UI wireframes",
+      "An open-source Object-Relational Mapper (ORM) for .NET, allowing developers to query databases using C# objects",
+      "A security standard for user authentication",
+      "A compression library for file transfers"
+    ],
+    "correctIndex": 1,
+    "explanation": "EF Core is Microsoft's official ORM, mapping database tables to C# classes and converting LINQ queries to raw SQL queries.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does NuGet manage in .NET projects?",
+    "options": [
+      "Server hardware configurations",
+      "Third-party libraries and packages (dependencies) in .NET applications",
+      "User login credentials",
+      "Database table schemas"
+    ],
+    "correctIndex": 1,
+    "explanation": "NuGet is the package manager for .NET, enabling developers to search, download, and update dependencies easily.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the output format of a compiled .NET application?",
+    "options": [
+      "Raw Python scripts",
+      "Common Intermediate Language (CIL) bytecode packaged in DLL or EXE files",
+      "Compiled HTML files",
+      "Uncompressed ZIP folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "When .NET code is compiled, it compiles to CIL (Intermediate Language). At runtime, the JIT compiler compiles CIL to native machine code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the role of the CLR (Common Language Runtime) in .NET?",
+    "options": [
+      "To compile C# to python scripts",
+      "The runtime environment that manages execution of .NET programs, handling memory (garbage collection), safety, and JIT compilation",
+      "A database server administration tool",
+      "A networking routing firewall"
+    ],
+    "correctIndex": 1,
+    "explanation": "The CLR is the engine of .NET. It runs compiled CIL bytecode, handles memory allocation/deallocation, manages security boundaries, and handles exceptions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is LINQ (Language Integrated Query) in C#?",
+    "options": [
+      "A compiler command that links libraries",
+      "A set of technologies based on the integration of query capabilities directly into the C# language, allowing data queries across objects, SQL, and XML uniformally",
+      "A database engine software developed by Microsoft",
+      "A style sheet language for formatting UIs"
+    ],
+    "correctIndex": 1,
+    "explanation": "LINQ integrates query syntax directly into C# (e.g. `var query = users.Where(u => u.Age > 18)`), enabling compile-time type-safety checks for data queries.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between .NET Framework and .NET Core (and modern .NET 5+)?",
+    "options": [
+      "Core is paid; Framework is free",
+      ".NET Framework is legacy, Windows-only; .NET Core (and .NET 5+) is open-source, cross-platform, and optimized for cloud architectures",
+      "Framework is faster and smaller than Core",
+      "Core does not support C# programming"
+    ],
+    "correctIndex": 1,
+    "explanation": "Microsoft rebuilt the platform with .NET Core to support cross-platform (Linux, macOS) and microservices containers. Modern .NET (5, 6, 7, 8) continues this unified open-source track.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is Dependency Injection (DI) and how is it integrated into ASP.NET Core?",
+    "options": [
+      "Injecting viruses into code; mitigated by scanners",
+      "A design pattern for achieving loose coupling, integrated natively into ASP.NET Core via a built-in IoC container to manage service lifetimes",
+      "Injecting database tables into models directly",
+      "A network routing protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "ASP.NET Core has built-in DI. Services are registered in startup code and injected into controller constructors automatically, promoting modularity and testability.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What are the three service lifetimes in .NET Dependency Injection?",
+    "options": [
+      "Short, Medium, Long",
+      "Transient (created each time requested), Scoped (created once per request), and Singleton (created once, shared globally)",
+      "Public, Private, Protected",
+      "Static, Dynamic, Volatile"
+    ],
+    "correctIndex": 1,
+    "explanation": "Transient services are lightweight and stateless. Scoped services persist across a single HTTP request. Singleton services stay in memory for the app lifecycle.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Kestrel do in ASP.NET Core?",
+    "options": [
+      "It scales down CPU speeds",
+      "A lightweight, cross-platform, high-performance web server engine used to host ASP.NET Core apps by default",
+      "It encrypts database backups",
+      "It compiles C# source files into DLLs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kestrel is the default web server that listens for HTTP requests. It is often placed behind a reverse proxy (like IIS or Nginx) in production environments.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'appsettings.json' and 'Secrets Manager' (dotnet user-secrets)?",
+    "options": [
+      "appsettings.json is only for databases; user-secrets is for web pages",
+      "appsettings.json stores non-sensitive configuration committed to git; user-secrets stores local development credentials off-disk outside the project folder to prevent key leaks",
+      "user-secrets is used in production environments",
+      "appsettings.json is encrypted; user-secrets is not"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Secrets Manager tool is specifically for local development to keep sensitive connection strings or API keys out of code repos. Production uses env vars or Azure Key Vault.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Middleware' in ASP.NET Core?",
+    "options": [
+      "Software placed physically in datacenter middle racks",
+      "Software components assembled into an application pipeline to handle HTTP requests and responses (e.g. authentication, routing, CORS)",
+      "A database query optimizer",
+      "A compiler utility that formats code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Middleware components run sequentially. When a request arrives, it travels through middleware classes (e.g., Logging -> Auth -> Routing -> Endpoints) and returns along the same path.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of asynchronous programming (async/await) in C#?",
+    "options": [
+      "To make code compile faster",
+      "To release threads back to the thread pool during I/O-bound tasks, preventing thread exhaustion and improving application scalability",
+      "To run code in different programming languages",
+      "To write database backups in background"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using async/await ensures threads do not block waiting for database or network tasks, allowing the thread pool to handle other incoming requests in high-scale web APIs.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does JIT stand for in .NET compilation?",
+    "options": [
+      "Java Integration Tool",
+      "Just-In-Time (compiler that compiles CIL bytecode to native machine code at runtime)",
+      "Join Index Table",
+      "Job Integration Task"
+    ],
+    "correctIndex": 1,
+    "explanation": "The JIT compiler is part of the CLR, translating intermediate CIL instructions into CPU-specific instructions just before execution, optimizing for the target processor.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Value Types and Reference Types in C#?",
+    "options": [
+      "Value types are stored on the heap; reference types on the stack",
+      "Value types (like structs, int, bool) store actual data and are allocated on the stack; Reference types (like classes, string) store pointers to data and are allocated on the heap",
+      "Reference types are always faster than value types",
+      "Value types cannot be modified"
+    ],
+    "correctIndex": 1,
+    "explanation": "Value types copy their data on assignment. Reference types copy their pointer, meaning two variables can point to and modify the same heap-allocated object.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Garbage Collection' in .NET and how is it structured?",
+    "options": [
+      "Deleting old files from directories; structured by chron dates",
+      "An automatic memory manager using a generational system (Gen 0, Gen 1, Gen 2) to optimize memory cleanup on the heap based on object lifetimes",
+      "A developer cleanup meeting; structured by team ranks",
+      "An index optimization process; structured by tables"
+    ],
+    "correctIndex": 1,
+    "explanation": ".NET GC divides the heap into three generations. Gen 0 has new short-lived objects. Gen 1 is a buffer. Gen 2 has long-lived objects. Collecting Gen 0 is fast, while Gen 2 requires full sweeps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does Entity Framework Core 'Migrations' do?",
+    "options": [
+      "Migrates the codebase to a different programming language",
+      "A feature that allows developers to sync their database schema with their C# EF Core data model code, generating SQL scripts automatically",
+      "Moves servers to a different cloud provider",
+      "Imports CSV data into tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Migrations track changes to model classes (e.g. adding a property) and generate C# code representing database schema updates, keeping database and code structures synced.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'IL' (Intermediate Language) viewing, and how do tools like ILDasm or ILSpy assist .NET developers?",
+    "options": [
+      "A tool for editing UI layout elements",
+      "Viewing the compiled bytecode output of .NET compilers to understand compiler optimizations, reverse-engineer assemblies, or debug low-level issues",
+      "A database query planner tool",
+      "A compiler utility that translates C# to Python"
+    ],
+    "correctIndex": 1,
+    "explanation": "ILDasm/ILSpy decompile compiled DLLs back to CIL bytecode or reconstructed C# code, which is vital for security audits, checking optimization behaviors, or analyzing third-party libraries.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Memory Leak' in a managed .NET application, and how does it happen if garbage collection is automatic?",
+    "options": [
+      "Data leaking to hackers; happens via bad firewalls",
+      "Objects remaining reachable in the reference tree (e.g., static lists, event handlers not unsubscribed), preventing the Garbage Collector from releasing their memory",
+      "A bug in the compiler; happens during build",
+      "RAM running out of physical sectors; happens on old hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Managed leaks occur when objects that are no longer needed are still referenced by long-lived roots (like static variables or event subscriptions). Since a path to the root exists, the GC cannot free them.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In C#, what is the difference between Task.Run and using async/await for I/O operations?",
+    "options": [
+      "Task.Run is only for file writes; async/await is for networks",
+      "Task.Run queues work on the Thread Pool (ideal for CPU-bound tasks); async/await uses non-blocking hardware interrupts without blocking any thread pool threads (ideal for I/O-bound tasks)",
+      "Task.Run is serverless; async/await is server-based",
+      "They are identical in thread allocation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Using `Task.Run` for database calls consumes a thread just to wait for the database, defeating the scalability benefits of async I/O. True async/await releases the thread during hardware waits.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Reflection' API in .NET and what is its main performance drawback?",
+    "options": [
+      "An API for displaying screen layout reflections; drawback is screen glare",
+      "An API allowing code to inspect metadata and dynamically instantiate types/invoke methods at runtime; drawback is high CPU overhead compared to static calls",
+      "An API for mirroring databases; drawback is sync lag",
+      "A testing framework; drawback is it is slow to run tests"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reflection allows inspecting assemblies, reading attributes, and creating objects dynamically. However, since type validation and lookups happen at runtime (bypassing JIT optimizations), it is slow.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'SPAN<T>' and 'Memory<T>' introduced in modern .NET, and how do they optimize performance?",
+    "options": [
+      "Special classes for storing network passwords securely",
+      "Contiguous representations of arbitrary memory (stack, heap, native) that allow slicing and manipulation without allocating memory copies, reducing garbage collection pressure",
+      "A database index type that speeds up write queries",
+      "A multithreading library that replaces standard tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "`Span<T>` provides type-safe access to memory. Slicing a span (e.g., getting a substring) does not allocate a new string object on the heap; it creates a reference to the existing buffer, saving memory allocation.",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,602 @@
+[
+  {
+    "question": "What is the primary purpose of a data catalog in data governance?",
+    "options": [
+      "To store raw data files for archival purposes.",
+      "To provide a centralized, searchable inventory of an organization's data assets.",
+      "To execute complex data transformations.",
+      "To enforce data security protocols automatically."
+    ],
+    "correctIndex": 1,
+    "explanation": "A data catalog's primary role is to act as a comprehensive inventory, making data assets discoverable and understandable to users. Options A, C, and D describe functions typically handled by data storage, ETL tools, or security systems, respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following best describes data lineage in the context of data governance?",
+    "options": [
+      "The process of migrating data from old systems to new ones.",
+      "The lifecycle of data from creation to archival.",
+      "A historical record tracing data's origin, transformations, and movement over time.",
+      "The categorization of data based on its sensitivity."
+    ],
+    "correctIndex": 2,
+    "explanation": "Data lineage provides an audit trail for data, showing its journey from source to destination, including all modifications. Options A, B, and D describe data migration, data lifecycle (broader), and data classification, respectively.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main goal of defining data ownership in data governance?",
+    "options": [
+      "To assign responsibility for data quality, security, and compliance.",
+      "To restrict all access to sensitive data.",
+      "To delegate data entry tasks to specific individuals.",
+      "To determine the monetary value of data assets."
+    ],
+    "correctIndex": 0,
+    "explanation": "Data ownership assigns clear accountability for managing and protecting specific data assets, ensuring someone is responsible for their integrity, security, and regulatory compliance.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A Data Governance Specialist is primarily responsible for ensuring which aspect of data?",
+    "options": [
+      "Database administration and performance tuning.",
+      "Data acquisition from external vendors.",
+      "The overall quality, security, usability, and integrity of data.",
+      "Developing data visualization dashboards."
+    ],
+    "correctIndex": 2,
+    "explanation": "The core responsibility of a Data Governance Specialist involves establishing and enforcing policies and standards to ensure data quality, security, usability, and integrity across the organization.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In data governance, what does 'data stewardship' primarily involve?",
+    "options": [
+      "Automating data processing tasks.",
+      "Day-to-day operational management and oversight of data assets.",
+      "Designing and building data warehouses.",
+      "Negotiating data sharing agreements with third parties."
+    ],
+    "correctIndex": 1,
+    "explanation": "Data stewardship focuses on the practical, operational management of data assets, ensuring policies are followed and data quality is maintained on a daily basis.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is version control important for data governance artifacts like policy documents and data quality rules?",
+    "options": [
+      "To automatically translate documents into multiple languages.",
+      "To track changes, manage different versions, and collaborate effectively on evolving governance assets.",
+      "To compress documents for faster storage and retrieval.",
+      "To encrypt documents and restrict access to unauthorized users."
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems (like Git) are crucial for managing changes to code and documents, enabling teams to track history, revert to previous versions, and collaborate without overwriting each other's work, which is vital for evolving governance assets.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing data quality rules, what is a key consideration for their reusability across different data sets or systems?",
+    "options": [
+      "Making them highly specific to a single, unique business process.",
+      "Designing them with parameterized inputs and generic logic.",
+      "Storing them exclusively within individual application codebases.",
+      "Ensuring they require manual intervention for every execution."
+    ],
+    "correctIndex": 1,
+    "explanation": "Reusability is achieved by designing rules that can be adapted to different contexts through parameters or generic logic, rather than being hard-coded for a single instance.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A company is struggling with inconsistent customer data (e.g., varying spellings of names, different address formats) across various departmental systems. Which data governance problem is this most indicative of?",
+    "options": [
+      "Lack of proper data retention policies.",
+      "Weak data privacy controls.",
+      "Inadequate data quality management.",
+      "Absence of a data catalog."
+    ],
+    "correctIndex": 2,
+    "explanation": "Inconsistent data directly points to issues with data quality. While other options are data governance concerns, they don't directly address the problem of varying data representations for the same entity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your organization is implementing a new data privacy regulation (e.g., GDPR). As a Data Governance Specialist, what would be your initial step regarding data retention policies?",
+    "options": [
+      "Immediately delete all data older than 6 months.",
+      "Conduct an inventory of all data assets to understand what data is held and where.",
+      "Purchase new data storage infrastructure.",
+      "Outsource all data privacy compliance to a third party."
+    ],
+    "correctIndex": 1,
+    "explanation": "Before establishing or modifying retention policies, it's crucial to understand the existing data landscape. An inventory helps identify data types, locations, and current retention practices, informing compliant policy development.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are setting up a local environment for developing data quality rules. Which type of tool would you prioritize for managing rule definitions and their associated metadata, ensuring they can be shared and versioned by a team?",
+    "options": [
+      "A simple text editor on your local machine.",
+      "A proprietary database client for direct database interaction.",
+      "A dedicated data quality platform or a version-controlled repository (e.g., Git) for rule scripts/configurations.",
+      "A general-purpose spreadsheet application."
+    ],
+    "correctIndex": 2,
+    "explanation": "For team collaboration, versioning, and managing metadata of data quality rules, a specialized data quality platform or a version-controlled repository like Git is essential. A text editor or spreadsheet lacks these capabilities, and a database client is for data interaction, not rule management.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A business user reports that a critical sales report is showing incorrect values. As a Data Governance Specialist, how would you primarily use data lineage to investigate this issue?",
+    "options": [
+      "To identify the owner of the sales report.",
+      "To trace the data backward from the report to its source systems and intermediate transformations.",
+      "To compare the report's current values with historical backups.",
+      "To determine if the report adheres to naming conventions."
+    ],
+    "correctIndex": 1,
+    "explanation": "Data lineage allows you to follow the data's journey, making it invaluable for debugging data discrepancies by pinpointing where errors might have been introduced during extraction, transformation, or loading.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing an access policy for sensitive financial data, what is a common pattern to ensure both security and usability for authorized personnel?",
+    "options": [
+      "Granting all users full administrator access to simplify management.",
+      "Implementing role-based access control (RBAC) with least privilege principles.",
+      "Storing all sensitive data in an unencrypted public cloud bucket.",
+      "Requiring manual approval from 10 different managers for every data access request."
+    ],
+    "correctIndex": 1,
+    "explanation": "Role-based access control (RBAC) combined with the principle of least privilege ensures users only have access to the data necessary for their roles, balancing security with operational efficiency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Before deploying a new set of data quality rules into production, what is a crucial step to ensure their effectiveness and prevent unintended consequences?",
+    "options": [
+      "Announce the rules to all data consumers immediately.",
+      "Test the rules against representative sample data and staging environments.",
+      "Delete all historical data to ensure the rules start fresh.",
+      "Grant unrestricted access to all data to facilitate rule testing."
+    ],
+    "correctIndex": 1,
+    "explanation": "Thorough testing against sample data and in a staging environment is critical to validate the rules' logic, identify false positives/negatives, and ensure they behave as expected without impacting live systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A new data source needs to be integrated, requiring updates to existing data governance policies. What is the most effective approach for stakeholder communication regarding these changes?",
+    "options": [
+      "Send a single email to all employees announcing the changes.",
+      "Post the updated policies on a hidden internal wiki page.",
+      "Conduct workshops and targeted communications with affected data owners, stewards, and consumers.",
+      "Implement the changes silently and observe for feedback."
+    ],
+    "correctIndex": 2,
+    "explanation": "Effective stakeholder communication involves targeted engagement, explanation of impact, and opportunities for feedback, especially for policy changes. Workshops and specific communications are far more effective than general announcements or silent changes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To protect sensitive data, what is a fundamental principle a Data Governance Specialist should advocate for regarding data access?",
+    "options": [
+      "Granting blanket access to all data for all employees.",
+      "Implementing the principle of \"need-to-know\" or \"least privilege\".",
+      "Storing sensitive data on personal devices to limit network exposure.",
+      "Relying solely on data encryption without access controls."
+    ],
+    "correctIndex": 1,
+    "explanation": "The principles of \"need-to-know\" and \"least privilege\" dictate that individuals should only have access to the specific data required to perform their job functions, significantly reducing the risk of unauthorized access or breaches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When collaborating on a new data governance initiative, why are decision records important in the team delivery workflow?",
+    "options": [
+      "To replace formal project documentation entirely.",
+      "To provide a chronological log of all technical implementations.",
+      "To capture the rationale, context, and alternatives considered for key decisions, aiding future understanding and auditing.",
+      "To automatically generate progress reports for management."
+    ],
+    "correctIndex": 2,
+    "explanation": "Decision records (often called Architecture Decision Records - ADRs) are vital for documenting the \"why\" behind significant choices, ensuring transparency, maintainability, and institutional knowledge retention within a project.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A key objective of a data governance program is to improve data quality. Which of the following activities is most directly related to achieving this objective?",
+    "options": [
+      "Migrating data to a cloud-based data warehouse.",
+      "Defining and implementing data validation rules at the point of data entry.",
+      "Developing advanced machine learning models for predictive analytics.",
+      "Creating detailed entity-relationship diagrams for existing databases."
+    ],
+    "correctIndex": 1,
+    "explanation": "Implementing data validation rules directly tackles data quality by preventing incorrect or inconsistent data from entering the system, which is a proactive measure for improvement.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A business unit requests access to a new dataset for analytics purposes. What is a key workflow consideration for a Data Governance Specialist before granting access?",
+    "options": [
+      "Immediately provision full access to speed up the process.",
+      "Assess the data's classification, sensitivity, and the requestor's legitimate business need.",
+      "Instruct the business unit to perform data cleaning themselves after access.",
+      "Require the business unit to sign a non-disclosure agreement (NDA) only."
+    ],
+    "correctIndex": 1,
+    "explanation": "A Data Governance Specialist must evaluate the data's characteristics and the justification for access to ensure compliance with policies (e.g., privacy, security) and the principle of least privilege.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When establishing data retention policies for different data types within a complex organization, what common pattern helps simplify management and ensure compliance?",
+    "options": [
+      "Applying a single, organization-wide retention period for all data.",
+      "Centralizing retention policy definitions and applying them based on data classification or regulatory requirements.",
+      "Allowing individual business units to define their own retention periods independently.",
+      "Deleting data as soon as it is no longer actively used, regardless of regulations."
+    ],
+    "correctIndex": 1,
+    "explanation": "Centralizing and categorizing data retention policies based on classification (e.g., PII, financial, operational) and relevant regulations allows for systematic and compliant management, avoiding ad-hoc or inconsistent approaches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "How would you ensure the accessibility of data governance documentation for various stakeholders, including those with technical and non-technical backgrounds?",
+    "options": [
+      "Store all documentation in a highly technical format (e.g., Markdown) in a code repository.",
+      "Provide documentation in multiple formats (e.g., executive summaries, detailed technical guides, flowcharts) and via accessible platforms (e.g., intranet, data catalog).",
+      "Only distribute documentation via email attachments.",
+      "Rely solely on verbal explanations during meetings."
+    ],
+    "correctIndex": 1,
+    "explanation": "Accessibility requires catering to different audiences and learning styles. Providing varied formats and utilizing widely accessible platforms ensures that both technical and non-technical stakeholders can understand and engage with governance documentation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your organization is considering migrating sensitive customer data to a public cloud platform. From a data governance perspective, what is the most complex risk factor to assess and mitigate thoroughly?",
+    "options": [
+      "The cost of cloud storage compared to on-premise solutions.",
+      "Ensuring compliance with data residency and cross-border data transfer regulations across multiple jurisdictions.",
+      "The physical security of cloud data centers.",
+      "The potential for minor performance degradation in data queries."
+    ],
+    "correctIndex": 1,
+    "explanation": "Data residency and cross-border transfer regulations (like GDPR, CCPA) are highly complex and vary significantly by jurisdiction. Migrating sensitive data to a global cloud platform requires meticulous legal and technical assessment to ensure continuous compliance, often involving intricate contractual agreements (DPAs) and technical controls, which is far more complex than cost, physical security (usually handled by the cloud provider), or performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A critical data governance policy update needs to be rolled out across multiple, geographically dispersed teams with minimal disruption. What is the most robust strategy for lifecycle ownership and change management in this scenario?",
+    "options": [
+      "Email the new policy to all team leads and expect self-implementation.",
+      "Implement a phased rollout plan, establishing local data stewards, providing comprehensive training, and leveraging a centralized governance platform for policy enforcement and monitoring.",
+      "Schedule a single mandatory global webinar for all employees to announce the change.",
+      "Update the policy documentation and rely on automated system changes without user notification."
+    ],
+    "correctIndex": 1,
+    "explanation": "A phased rollout, empowered local stewards, training, and a centralized platform address the complexity of large-scale policy changes by enabling proper adoption, localized support, and consistent enforcement, minimizing disruption and ensuring success.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a review of a proposed data governance solution, a senior stakeholder raises concerns about potential conflicts with existing legacy systems and their unique data formats. How would you best incorporate this feedback into the team delivery workflow?",
+    "options": [
+      "Dismiss the concern as out of scope for the new solution.",
+      "Immediately halt the project until all legacy systems are modernized.",
+      "Document the concern as a critical risk, initiate a specific analysis to understand the integration impact, and propose mitigation strategies (e.g., data mapping, integration layers) for review.",
+      "Assume the new solution will automatically handle legacy data without explicit planning."
+    ],
+    "correctIndex": 2,
+    "explanation": "Acknowledging and systematically addressing critical concerns, especially those involving complex legacy integrations, is crucial. Documenting, analyzing, and proposing concrete mitigation strategies demonstrates thoroughness and a proactive approach to potential roadblocks in the delivery workflow.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "When designing a comprehensive data privacy framework that spans multiple regulatory requirements (e.g., GDPR, CCPA), what architectural pattern best supports adaptability and future compliance changes?",
+    "options": [
+      "Hard-coding specific privacy rules into each application's codebase.",
+      "Implementing a centralized policy engine that externalizes privacy rules and allows for dynamic configuration and updates.",
+      "Relying on manual review processes for every data access request.",
+      "Consolidating all data into a single, monolithic database without segmentation."
+    ],
+    "correctIndex": 1,
+    "explanation": "A centralized policy engine allows privacy rules to be managed independently of individual applications. This modular approach makes it easier to adapt to new regulations, update existing rules, and ensure consistent enforcement across the organization without requiring extensive code changes in multiple systems.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are preparing a portfolio capstone project demonstrating your Data Governance Specialist expertise. What is the most impactful element to include in your project's README or presentation to showcase practical application and value?",
+    "options": [
+      "A lengthy list of all the software tools you used.",
+      "A detailed explanation of the theoretical principles of data governance.",
+      "A \"problem, solution, outcome\" narrative, including specific metrics, diagrams of data flows/governance controls, and a \"lessons learned\" section.",
+      "A simple screenshot of a data quality report."
+    ],
+    "correctIndex": 2,
+    "explanation": "An impactful portfolio piece goes beyond tools or theory; it demonstrates practical problem-solving, shows tangible results (outcomes/metrics), provides clarity through diagrams, and reflects on the process with \"lessons learned.\" This showcases a complete understanding and applied expertise.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary objective of Data Governance?",
+    "options": [
+      "Writing raw database queries",
+      "Establishing policies, roles, and standards to ensure data security, accuracy, consistency, and proper usage across an organization",
+      "Designing user interfaces",
+      "Configuring server hardware"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Governance focuses on managing the availability, usability, integrity, and security of corporate data assets.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does GDPR stand for in data privacy?",
+    "options": [
+      "Global Database Protection Rule",
+      "General Data Protection Regulation",
+      "Government Data Privacy Register",
+      "General Document Privacy Rights"
+    ],
+    "correctIndex": 1,
+    "explanation": "GDPR is a comprehensive European Union regulation governing data protection and privacy for all individuals within the EU.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'PII' in information security?",
+    "options": [
+      "Private Internet Protocol",
+      "Personally Identifiable Information",
+      "Public Index Interface",
+      "Process Integration Index"
+    ],
+    "correctIndex": 1,
+    "explanation": "PII refers to any information that can be used to distinguish or trace an individual's identity (e.g., Social Security Number, email, phone number).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Data Steward' responsible for?",
+    "options": [
+      "Buying server hardware",
+      "Managing the day-to-day quality, definition, and business rules of specific data assets within their department",
+      "Writing the backend application code",
+      "Designing corporate logo branding"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Stewards act as caretakers of data, ensuring it is documented correctly, complies with standards, and meets quality goals.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Data Dictionary'?",
+    "options": [
+      "A book explaining computer terms",
+      "A centralized metadata document defining the columns, data types, meanings, and source origins of database tables",
+      "A software tool for translating SQL queries",
+      "A backup storage system for files"
+    ],
+    "correctIndex": 1,
+    "explanation": "A data dictionary provides metadata about database elements, ensuring all teams share a common understanding of data fields.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Metadata'?",
+    "options": [
+      "A type of encrypted database backup",
+      "Data that provides information about other data (data describing data)",
+      "A programming language library",
+      "A tool for compression"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metadata describes properties of data assets (e.g., creation date, file size, table owner, data lineage), facilitating search and organization.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary benefit of data classification?",
+    "options": [
+      "To speed up server processor speeds",
+      "To categorize data based on its sensitivity (e.g. public, confidential) to apply appropriate security controls",
+      "To automate database backups",
+      "To visual style dashboard buttons"
+    ],
+    "correctIndex": 1,
+    "explanation": "Classification tags data by risk level, ensuring highly sensitive details (like medical or financial records) receive stronger encryption and access controls.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between data privacy and data security?",
+    "options": [
+      "Data privacy is for files; data security is for databases",
+      "Data privacy defines who has authorized access and how data is handled legally; Data security covers the technical controls used to protect data from unauthorized access",
+      "Data security is always free; data privacy is paid",
+      "They are identical terms"
+    ],
+    "correctIndex": 1,
+    "explanation": "Privacy concerns rights, compliance (GDPR/CCPA), and user consent. Security concerns technical defenses (firewalls, encryption, MFA) against breaches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Lineage' and why is it important?",
+    "options": [
+      "The historical ancestry of database companies",
+      "The visualization of data's journey, showing its origin, transformations, and final destinations across systems",
+      "A method for checking code syntax errors",
+      "A technique for backing up tables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lineage helps governance teams audit data flows, ensuring reports match sources and aiding impact analysis before changing schemas.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the role of a Data Owner?",
+    "options": [
+      "The CEO who owns the company's stocks",
+      "An individual accountable for the classification, access authorization, and lifecycle policy of specific data assets",
+      "The data engineer who writes the ETL pipelines",
+      "The server admin who manages database hosting"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data Owners are business leaders who hold accountability for their data domains, approving access requests and defining security classification levels.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Cataloging'?",
+    "options": [
+      "Printing a catalog of database vendors",
+      "Creating a centralized inventory of an organization's data assets, enabling users to search, discover, and understand available datasets",
+      "A security firewall configuration",
+      "A database compression tool"
+    ],
+    "correctIndex": 1,
+    "explanation": "A data catalog uses metadata to index datasets across the enterprise, serving as a portal for analysts to locate reliable sources and avoid redundant work.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Masking' (Obfuscation) and when is it used?",
+    "options": [
+      "Hiding database folders from view in file explorers",
+      "Hiding original data values with modified characters (e.g., masking credit cards as XXXX-XXXX-1234) to protect privacy in test environments",
+      "Encrypting database tables on the production server",
+      "Deleting old rows from the database"
+    ],
+    "correctIndex": 1,
+    "explanation": "Masking allows developers or analysts to test systems using realistic data shapes without exposing sensitive customer PII or PCI information.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Integrity'?",
+    "options": [
+      "The honesty of the database administrators",
+      "The accuracy, completeness, and consistency of data throughout its lifecycle",
+      "The speed at which data is written to disk",
+      "The encryption standard used for file transfers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Data integrity guarantees data remains untampered with and accurate, enforced through primary keys, foreign keys, and validation rules.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a 'Retention Policy' define in data governance?",
+    "options": [
+      "How much salary the data team retains",
+      "How long specific data assets must be stored (for legal or business reasons) and how they should be securely deleted when that period ends",
+      "The number of users allowed to access the database",
+      "The frequency of server backup schedules"
+    ],
+    "correctIndex": 1,
+    "explanation": "Retention policies manage data lifecycle. Keeping data indefinitely exposes organizations to storage costs and legal liabilities during audits or data breaches.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Anonymization'?",
+    "options": [
+      "Using fake usernames on corporate Slack",
+      "The irreversible removal or alteration of PII so that the individual cannot be identified, removing the data from privacy regulation scopes",
+      "Encrypting files using public keys",
+      "Storing data on anonymous cloud servers"
+    ],
+    "correctIndex": 1,
+    "explanation": "Anonymization strips direct/indirect identifiers permanently, allowing researchers to study datasets without violating privacy compliance rules.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Business Glossary' and how does it differ from a Data Dictionary?",
+    "options": [
+      "A business glossary is for programmers; a data dictionary is for executives",
+      "A Business Glossary defines business terms and concepts in plain language; a Data Dictionary defines technical database columns and schemas",
+      "They are identical books",
+      "A business glossary is only used in marketing"
+    ],
+    "correctIndex": 1,
+    "explanation": "A glossary ensures vocabulary alignment (e.g. defining what 'Active Customer' means to the business). A dictionary outlines where that is stored technically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Sovereignty'?",
+    "options": [
+      "The absolute power of a database administrator",
+      "The legal concept that digital data is subject to the laws and regulations of the country in which it is physically located",
+      "Running databases on sovereign government clouds only",
+      "Encrypting data using country-specific keys"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sovereignty mandates where data must reside. For example, some countries require their citizens' personal data to be stored physically inside national borders.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Data Stewardship'?",
+    "options": [
+      "Managing corporate budgets",
+      "The operational execution of data governance policies, focusing on data quality, formatting, and classification compliance",
+      "Deploying database servers to cloud environments",
+      "Writing frontend dashboards"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stewardship is governance in action. Stewards write data definitions, clean duplicates, and audit systems to ensure policy compliance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Data Protection Officer' (DPO) and when is one required under GDPR?",
+    "options": [
+      "A security guard at datacenters; required in all facilities",
+      "A mandatory leadership role for organizations that conduct large-scale monitoring or process sensitive data, responsible for overseeing privacy compliance",
+      "An IT administrator who schedules backups",
+      "A developer who writes encryption libraries"
+    ],
+    "correctIndex": 1,
+    "explanation": "A DPO is an independent officer who advises on data privacy obligations and acts as a point of contact for data protection regulators.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a 'Data Quality Framework'?",
+    "options": [
+      "To test code syntax in visual IDEs",
+      "To measure, monitor, and improve data quality across key dimensions like accuracy, completeness, consistency, timeliness, and uniqueness",
+      "To speed up database search queries",
+      "To backup data tables automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "A quality framework defines rules (e.g., 'Email must contain @') to flag and repair incomplete or corrupt data before it breaks dashboards or algorithms.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Differential Privacy'?",
+    "options": [
+      "Encrypting data using different keys",
+      "A mathematical framework that allows querying a database to extract aggregate trends while proving that individual records cannot be identified",
+      "Allowing only directors to view database files",
+      "Deleting user identification columns dynamically"
+    ],
+    "correctIndex": 1,
+    "explanation": "Differential privacy adds controlled mathematical noise to query results, preventing attackers from identifying specific individual records through clever query correlation.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Right to Be Forgotten' under GDPR?",
+    "options": [
+      "Allowing developers to forget old programming languages",
+      "The right of individuals to request that an organization delete all their personal data without undue delay",
+      "The automatic expiration of passwords after 90 days",
+      "An option to delete old database backups"
+    ],
+    "correctIndex": 1,
+    "explanation": "Also known as the Right to Erasure, this requires organizations to clear user personal data from all production databases and backups when requested, posing complex engineering challenges.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Data Siloing' and why is it a governance problem?",
+    "options": [
+      "Storing data in physical silos in data centers",
+      "The isolation of data within individual departments, leading to inconsistent definitions, duplicate efforts, and lack of enterprise transparency",
+      "Compressing database tables into archive formats",
+      "Restricting database logins to specific office locations"
+    ],
+    "correctIndex": 1,
+    "explanation": "Silos lead to conflicting metrics (e.g., Marketing and Finance defining 'Revenue' differently). Governance breaks down silos to establish a single source of truth.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Data Processing Agreement' (DPA) and who signs it?",
+    "options": [
+      "An agreement signed by database servers to exchange data",
+      "A legally binding contract required by privacy laws between a Data Controller (data owner) and a Data Processor (third-party service) defining data handling rules",
+      "A software license signed by developers",
+      "A billing contract between cloud providers"
+    ],
+    "correctIndex": 1,
+    "explanation": "DPAs ensure that third-party vendors (like CRM tools or analytics services) process personal data in compliance with the controller's instructions and privacy laws.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What does 'Master Data Management' (MDM) aim to achieve?",
+    "options": [
+      "To make all developers masters of SQL",
+      "To create a single, authoritative, consolidated master record (golden record) for key business entities (like Customer or Product) across all systems",
+      "To backup the master server disk daily",
+      "To host all applications on a single server"
+    ],
+    "correctIndex": 1,
+    "explanation": "MDM consolidates fragmented records from CRM, billing, and shipping systems into a single verified 'Golden Record' for each customer, avoiding duplicate and out-of-sync identities.",
+    "difficulty": "hard"
+  }
+]

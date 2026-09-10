@@ -1,0 +1,1089 @@
+{
+  "id": "speech_ai_engineer",
+  "title": "Speech AI Engineer",
+  "description": "Develop automated speech recognition (ASR), text-to-speech synthesis (TTS), voice biometrics, and audio intelligence systems.",
+  "goal": {
+    "objective": "Build end-to-end voice and audio systems, translating human speech to text, synthesizing expressive voice, and analyzing audio signals.",
+    "salary": "$95,000 - $165,000 / yr (₹8 - ₹27 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 95000,
+        "max": 165000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 8,
+        "max": 27,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Junior to Senior (1 - 5+ Years)",
+    "target_roles": [
+      "Speech AI Engineer",
+      "Audio Machine Learning Scientist",
+      "Voice Systems Developer"
+    ],
+    "career_pillars": [
+      "Acoustic Signal Processing & Spectrograms",
+      "Automatic Speech Recognition (Whisper/Conformer)",
+      "Neural Text-to-Speech (VITS/FastSpeech)"
+    ]
+  },
+  "learn": {
+    "summary": "Master audio signal processing (Fourier Transforms, Mel-spectrograms), ASR architectures (Wav2Vec2, Whisper, Conformer), Neural TTS synthesis, speaker diarization, and latency tuning.",
+    "key_competencies": [
+      "Digital Audio Signals, Sampling & Mel-Spectrograms",
+      "Librosa & Torchaudio Processing",
+      "ASR Models (OpenAI Whisper, NeMo Conformer)",
+      "Neural Speech Synthesis & Voice Cloning",
+      "Connectionist Temporal Classification (CTC) Loss"
+    ],
+    "prerequisites": [
+      "Python programming",
+      "Signal processing or linear algebra basics",
+      "PyTorch fundamentals"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Real-Time Low-Latency Streaming Transcription Engine",
+        "tech_stack": [
+          "Python",
+          "Whisper",
+          "WebRTC",
+          "FastAPI",
+          "Docker"
+        ],
+        "description": "Build a streaming speech-to-text service that streams audio via WebRTC and delivers real-time partial transcripts with under 250ms latency."
+      },
+      {
+        "title": "Streaming Automatic Speech Recognition (ASR) Pipeline",
+        "tech_stack": [
+          "PyTorch",
+          "Whisper",
+          "WebSockets",
+          "FastAPI",
+          "FFmpeg"
+        ],
+        "description": "Build a real-time speech-to-text service that ingests streaming microphone audio over WebSockets and generates low-latency timestamped transcription."
+      }
+    ],
+    "interview_focus": [
+      "Fourier Transform (FFT) & Mel-Frequency Cepstral Coefficients (MFCC)",
+      "CTC Loss Alignment Mechanics",
+      "Teacher-Forced vs Non-Autoregressive Speech Synthesis",
+      "Noise Reduction & Audio Normalization Pipelines"
+    ],
+    "certifications": [
+      "DeepLearning.AI Audio & Speech Processing Specialization",
+      "AWS Certified Machine Learning - Specialty"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "speech_ai_engineer_foundations",
+      "name": "Foundational Knowledge for Speech AI",
+      "tag": "essential",
+      "description": "Establish a strong understanding of digital audio, signal processing, and the core programming and deep learning concepts crucial for Speech AI.",
+      "resources": [
+        {
+          "title": "Hugging Face Audio Course",
+          "url": "https://huggingface.co/learn/audio-course/chapter0/introduction",
+          "type": "course"
+        },
+        {
+          "title": "Speech Recognition with Python (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+          "type": "video"
+        },
+        {
+          "title": "NLP Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_digital_audio_basics",
+          "name": "Digital Audio Fundamentals & DSP",
+          "tag": "essential",
+          "description": "Learn about sound waves, sampling, quantization, Nyquist theorem, Fourier Transform, filters (FIR, IIR), windowing functions, convolution, and basic audio processing techniques. Understand psychoacoustics and human perception of sound.",
+          "resources": [
+            {
+              "title": "The Scientist and Engineer's Guide to Digital Signal Processing",
+              "url": "http://www.dspguide.com/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Digital Filters",
+              "url": "https://www.earlevel.com/main/2012/11/26/biquad-c-source-code/",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_digital_audio_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_programming_dl_essentials",
+          "name": "Programming & Deep Learning Essentials",
+          "tag": "essential",
+          "description": "Master Python for data science, core libraries (NumPy, SciPy, Pandas, Matplotlib), and audio-specific libraries (Librosa, Pydub, SoundFile). Grasp foundational deep learning concepts (neural networks, backpropagation, CNNs, RNNs, attention mechanisms, Transformers) with PyTorch or TensorFlow.",
+          "resources": [
+            {
+              "title": "Deep Learning Specialization (Coursera)",
+              "url": "https://www.coursera.org/specializations/deep-learning",
+              "type": "course"
+            },
+            {
+              "title": "Attention Is All You Need (Transformer Paper)",
+              "url": "https://arxiv.org/abs/1706.03762",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_programming_dl_essentials.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_introduction_speech_ai",
+          "name": "Introduction to Speech AI & Applications",
+          "tag": "essential",
+          "description": "Understand the history, challenges, main tasks (ASR, TTS, Diarization, SLU, etc.), and real-world applications of Speech AI. Explore common speech datasets (LibriSpeech, Common Voice, LJSpeech) and ethical considerations in voice technology.",
+          "resources": [
+            {
+              "title": "Speech and Language Processing (3rd ed. draft) by Jurafsky and Martin",
+              "url": "https://web.stanford.edu/~jurafsky/slp3/",
+              "type": "article"
+            },
+            {
+              "title": "What is Speech AI?",
+              "url": "https://aws.amazon.com/what-is/speech-ai/",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_introduction_speech_ai.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_core_speech_processing",
+      "name": "Core Speech Processing & Feature Engineering",
+      "tag": "essential",
+      "description": "Develop skills in handling audio data, extracting meaningful acoustic features, and preparing data for machine learning models, crucial for building robust speech systems.",
+      "resources": [
+        {
+          "title": "Librosa: Audio and Music Analysis in Python",
+          "url": "https://librosa.org/doc/latest/index.html",
+          "type": "article"
+        },
+        {
+          "title": "Audio Preprocessing for Deep Learning",
+          "url": "https://www.assemblyai.com/blog/audio-preprocessing-for-deep-learning-with-python/",
+          "type": "article"
+        },
+        {
+          "title": "Text to Speech with Python (Tech With Tim)",
+          "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+          "type": "video"
+        },
+        {
+          "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+          "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_core_speech_processing.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_audio_data_handling",
+          "name": "Audio Data Handling & Augmentation",
+          "tag": "essential",
+          "description": "Learn to load, manipulate, resample, normalize, segment, and save audio data using various formats (WAV, FLAC, MP3). Explore techniques for silence removal (VAD), audio segmentation, and data augmentation specific to speech (e.g., noise injection, speed perturbation, reverberation, pitch shifting).",
+          "resources": [
+            {
+              "title": "Deep Learning for Audio with Python (practical introduction)",
+              "url": "https://towardsdatascience.com/deep-learning-for-audio-with-python-e609756b10",
+              "type": "article"
+            },
+            {
+              "title": "Augmenting Speech Data for ASR",
+              "url": "https://www.assemblyai.com/blog/data-augmentation-for-automatic-speech-recognition/",
+              "type": "article"
+            },
+            {
+              "title": "PyDub Documentation (Audio manipulation)",
+              "url": "https://github.com/jiaaro/pydub",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_audio_data_handling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_acoustic_feature_extraction",
+          "name": "Acoustic Feature Extraction",
+          "tag": "essential",
+          "description": "Master the extraction of key acoustic features such as Spectrograms, Mel-spectrograms, MFCCs (Mel-Frequency Cepstral Coefficients), Perceptual Linear Prediction (PLP), Linear Predictive Coding (LPC), and prosodic features (pitch, energy, duration). Understand their properties, delta and delta-delta coefficients, and applications in speech modeling.",
+          "resources": [
+            {
+              "title": "An Intuitive Explanation of Mel-Frequency Cepstral Coefficients (MFCCs)",
+              "url": "https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Audio Features for Deep Learning",
+              "url": "https://www.kdnuggets.com/2020/02/audio-features-deep-learning.html",
+              "type": "article"
+            },
+            {
+              "title": "A tutorial on PLP and MFCC computation",
+              "url": "https://www.cs.cmu.edu/~robust/Papers/rachel-icassp93.pdf",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_acoustic_feature_extraction.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_automatic_speech_recognition",
+      "name": "Automatic Speech Recognition (ASR)",
+      "tag": "essential",
+      "description": "Dive deep into ASR systems, covering fundamental architectures, training methodologies, decoding algorithms, and evaluation metrics for converting spoken language into text.",
+      "resources": [
+        {
+          "title": "SpeechBrain Documentation",
+          "url": "https://speechbrain.readthedocs.io/",
+          "type": "article"
+        },
+        {
+          "title": "ASR with CTC, Attention, and RNN-T",
+          "url": "https://www.assemblyai.com/blog/recurrent-neural-networks-and-speech-recognition/",
+          "type": "article"
+        },
+        {
+          "title": "Text to Speech with Python (Tech With Tim)",
+          "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+          "type": "video"
+        },
+        {
+          "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+          "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_automatic_speech_recognition.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_asr_architectures",
+          "name": "ASR Architectures & Modern Models",
+          "tag": "essential",
+          "description": "Explore traditional HMM-DNN models, Connectionist Temporal Classification (CTC), attention-based seq2seq models, RNN-Transducers (RNN-T), and modern end-to-end Transformer/Conformer architectures (e.g., Whisper, Google Chirp). Understand the role of self-supervised learning for pre-training (e.g., Wav2Vec 2.0, HuBERT, data2vec).",
+          "resources": [
+            {
+              "title": "End-to-End ASR: CTC, Attention, RNN-T (IBM Research Blog)",
+              "url": "https://www.ibm.com/blogs/research/2021/04/speech-recognition-deep-learning/",
+              "type": "article"
+            },
+            {
+              "title": "Fine-tuning Wav2Vec2 for English ASR with 🤗 Transformers",
+              "url": "https://huggingface.co/blog/fine-tune-wav2vec2-asr",
+              "type": "article"
+            },
+            {
+              "title": "Whisper: Robust Speech Recognition via Large-Scale Weak Supervision",
+              "url": "https://arxiv.org/abs/2212.04356",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_asr_architectures.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_asr_training_decoding",
+          "name": "ASR Training & Decoding Strategies",
+          "tag": "essential",
+          "description": "Understand loss functions specific to ASR (CTC loss, RNN-T loss), optimization techniques, learning rate schedules, and regularization. Master decoding algorithms like greedy decoding, beam search, and advanced language model integration for improved ASR accuracy and fluency.",
+          "resources": [
+            {
+              "title": "Beam Search for Speech Recognition",
+              "url": "https://www.assemblyai.com/blog/a-guide-to-beam-search-decoding/",
+              "type": "article"
+            },
+            {
+              "title": "CTC Loss Explained",
+              "url": "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c",
+              "type": "article"
+            },
+            {
+              "title": "RNN-T: Recurrent Neural Network Transducer explained",
+              "url": "https://www.assemblyai.com/blog/recurrent-neural-networks-and-speech-recognition/",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_asr_training_decoding.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_asr_evaluation",
+          "name": "ASR Evaluation & Error Analysis",
+          "tag": "essential",
+          "description": "Learn to evaluate ASR systems using standard metrics like Word Error Rate (WER), Character Error Rate (CER), and other specialized metrics (e.g., Jaccard Error Rate). Understand techniques for analyzing and debugging transcription errors, including error categorization and segment-level analysis.",
+          "resources": [
+            {
+              "title": "Word Error Rate (WER) in ASR",
+              "url": "https://www.assemblyai.com/blog/word-error-rate-wer-in-asr/",
+              "type": "article"
+            },
+            {
+              "title": "Common Voice ASR Metrics Explained",
+              "url": "https://commonvoice.mozilla.org/en/docs/asr-metrics",
+              "type": "article"
+            },
+            {
+              "title": "pywer: Pythonic Word Error Rate Calculation",
+              "url": "https://pypi.org/project/pywer/",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_asr_evaluation.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_text_to_speech",
+      "name": "Text-to-Speech (TTS) Synthesis",
+      "tag": "essential",
+      "description": "Master the art of generating natural-sounding speech from text, covering various architectures, vocoders, and evaluation methods for high-fidelity speech synthesis.",
+      "resources": [
+        {
+          "title": "Tacotron 2 and WaveNet for TTS Explained",
+          "url": "https://nanonets.com/blog/text-to-speech/",
+          "type": "article"
+        },
+        {
+          "title": "ESPnet TTS Tutorial",
+          "url": "https://espnet.github.io/espnet/espnet2_tutorial.html#tts",
+          "type": "article"
+        },
+        {
+          "title": "Deep Learning for Audio (Valerio Velardo)",
+          "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+          "type": "video"
+        },
+        {
+          "title": "Transformers Explained (3Blue1Brown)",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_text_to_speech.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_tts_architectures",
+          "name": "TTS Architectures & End-to-End Models",
+          "tag": "essential",
+          "description": "Explore traditional concatenative and parametric TTS systems, and modern end-to-end deep learning architectures like Tacotron, Transformer TTS, FastSpeech, VITS, and diffusion models for speech synthesis. Understand how they generate mel-spectrograms or directly synthesize speech from text inputs.",
+          "resources": [
+            {
+              "title": "A Survey of Text-to-Speech Synthesis",
+              "url": "https://arxiv.org/abs/2101.07172",
+              "type": "article"
+            },
+            {
+              "title": "VITS: Conditional Variational Autoencoder for End-to-End Speech Synthesis",
+              "url": "https://arxiv.org/abs/2106.06103",
+              "type": "article"
+            },
+            {
+              "title": "FastSpeech 2: Non-Attentive TTS with Prosody Predictor",
+              "url": "https://arxiv.org/abs/2006.04558",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_tts_architectures.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_vocoders_waveform_gen",
+          "name": "Vocoders & Waveform Generation",
+          "tag": "essential",
+          "description": "Learn about classic vocoders (e.g., Griffin-Lim, WORLD) and neural vocoders (e.g., WaveNet, WaveGlow, Parallel WaveGAN, MelGAN, Multi-band MelGAN, Hifi-GAN) that convert acoustic features (mel-spectrograms) into high-fidelity audio waveforms. Understand the trade-offs between quality, speed, and computational cost.",
+          "resources": [
+            {
+              "title": "Hifi-GAN: Generative Adversarial Networks for Efficient and High Fidelity Speech Synthesis",
+              "url": "https://arxiv.org/abs/2010.05646",
+              "type": "article"
+            },
+            {
+              "title": "Parallel WaveGAN Explained",
+              "url": "https://www.assemblyai.com/blog/parallel-wavegan-a-high-fidelity-speech-synthesis-model/",
+              "type": "article"
+            },
+            {
+              "title": "MelGAN: Generative Adversarial Networks for Conditional Waveform Synthesis",
+              "url": "https://arxiv.org/abs/1910.06711",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_vocoders_waveform_gen.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_tts_evaluation_voice_cloning",
+          "name": "TTS Quality, Voice Cloning & Adaptation",
+          "tag": "advanced",
+          "description": "Evaluate TTS quality using objective (e.g., MOS prediction, MCD) and subjective (e.g., MOS score) metrics. Explore advanced techniques for voice cloning, speaker adaptation, emotion control, style transfer, and multi-speaker TTS in synthesized speech. Address challenges in expressivity and naturalness.",
+          "resources": [
+            {
+              "title": "OpenVoice: A Versatile Instant Voice Cloning System",
+              "url": "https://github.com/myshell-ai/OpenVoice",
+              "type": "article"
+            },
+            {
+              "title": "Mean Opinion Score (MOS) in Speech Quality Evaluation",
+              "url": "https://www.itu.int/rec/T-REC-P.800.1-201603-I/en",
+              "type": "article"
+            },
+            {
+              "title": "Transfer Learning for Speech Synthesis",
+              "url": "https://arxiv.org/abs/2006.08271",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_tts_evaluation_voice_cloning.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_advanced_speech_tasks",
+      "name": "Advanced Speech Technologies & Applications",
+      "tag": "advanced",
+      "description": "Explore specialized speech tasks beyond ASR and TTS, including identifying speakers, enhancing audio quality, recognizing emotions or intent, and understanding spoken language for complex interactions.",
+      "resources": [
+        {
+          "title": "Speaker Diarization with PyTorch (PyTorch Official Tutorial)",
+          "url": "https://pytorch.org/audio/stable/tutorials/speaker_diarization_tutorial.html",
+          "type": "article"
+        },
+        {
+          "title": "Speech Recognition with Python (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+          "type": "video"
+        },
+        {
+          "title": "NLP Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_advanced_speech_tasks.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_speaker_diarization_recognition",
+          "name": "Speaker Diarization & Recognition",
+          "tag": "essential",
+          "description": "Learn to identify 'who spoke when' (diarization) and 'who spoke' (recognition/verification). Cover Voice Activity Detection (VAD), speaker embedding extraction (i-vectors, x-vectors, ECAPA-TDNN, RawNet), clustering algorithms (e.g., agglomerative hierarchical clustering), and speaker verification pipelines.",
+          "resources": [
+            {
+              "title": "Pyannote.audio: Neural Building Blocks for Speaker Diarization",
+              "url": "https://pyannote.github.io/pyannote-audio/",
+              "type": "article"
+            },
+            {
+              "title": "Speaker Recognition using X-vectors",
+              "url": "https://www.isca-speech.org/archive/pdfs/interspeech_2018/snyder18_interspeech.pdf",
+              "type": "article"
+            },
+            {
+              "title": "ECAPA-TDNN: Emphasized Channel Attention, Propagation and Aggregation in a ResNet-like Architecture for Speaker Verification",
+              "url": "https://arxiv.org/abs/2005.07143",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_speaker_diarization_recognition.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_speech_enhancement_separation",
+          "name": "Speech Enhancement & Separation",
+          "tag": "advanced",
+          "description": "Techniques for noise reduction, dereverberation, and separating mixed speech signals using traditional methods (e.g., Wiener filter, spectral subtraction, beamforming) and deep learning methods (e.g., masking networks, Conv-TasNet, DPRNN-TasNet, neural beamformers).",
+          "resources": [
+            {
+              "title": "A Review of Deep Learning for Speech Enhancement",
+              "url": "https://arxiv.org/abs/2003.01633",
+              "type": "article"
+            },
+            {
+              "title": "Speech Separation with Conv-TasNet",
+              "url": "https://pytorch.org/audio/stable/tutorials/conv_tasnet_tutorial.html",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio Enhancement: An Overview",
+              "url": "https://www.semanticscholar.org/paper/Deep-Learning-for-Audio-Enhancement%3A-An-Overview-Wang-Han/377a06f3b0638531ff23187127e997f0227282b9",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_speech_enhancement_separation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_speech_emotion_intent",
+          "name": "Speech Emotion & Intent Recognition",
+          "tag": "advanced",
+          "description": "Extract prosodic and paralinguistic features and build models to detect emotional states (e.g., happy, sad, angry) or infer user intent and sentiment from spoken utterances. Understand multimodal approaches combining audio and text, and the challenges with datasets and generalization.",
+          "resources": [
+            {
+              "title": "Joint Intent Detection and Slot Filling with BERT",
+              "url": "https://arxiv.org/abs/1902.10909",
+              "type": "article"
+            },
+            {
+              "title": "Multimodal Emotion Recognition in the Wild",
+              "url": "https://arxiv.org/abs/1709.06103",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_speech_emotion_intent.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_spoken_language_understanding",
+          "name": "Spoken Language Understanding (SLU)",
+          "tag": "advanced",
+          "description": "Develop skills in processing ASR output for downstream natural language understanding (NLU) tasks, including intent detection, slot filling, dialogue state tracking, and spoken question answering. Understand the integration of speech and language models, and handling ASR errors in NLU pipelines.",
+          "resources": [
+            {
+              "title": "Spoken Language Understanding: History and Future",
+              "url": "https://www.researchgate.net/publication/337326887_Spoken_Language_Understanding_History_and_Future",
+              "type": "article"
+            },
+            {
+              "title": "RASA NLU (for intent and slot filling)",
+              "url": "https://rasa.com/docs/rasa/nlu/about/",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_spoken_language_understanding.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_mlops_deployment",
+      "name": "Speech AI MLOps & Deployment",
+      "tag": "advanced",
+      "description": "Learn to deploy, monitor, optimize, and manage Speech AI models in production environments, ensuring reliability, scalability, low latency, and adherence to ethical considerations.",
+      "resources": [
+        {
+          "title": "MLOps Best Practices for Voice AI",
+          "url": "https://www.assemblyai.com/blog/mlops-best-practices-for-voice-ai/",
+          "type": "article"
+        },
+        {
+          "title": "Responsible AI in Speech Technologies",
+          "url": "https://www.microsoft.com/en-us/ai/responsible-ai-principles",
+          "type": "article"
+        },
+        {
+          "title": "Deep Learning for Audio (Valerio Velardo)",
+          "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+          "type": "video"
+        },
+        {
+          "title": "Transformers Explained (3Blue1Brown)",
+          "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_mlops_deployment.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_data_management_pipelines",
+          "name": "Data Management & MLOps Pipelines",
+          "tag": "essential",
+          "description": "Implement robust data versioning (e.g., DVC), experiment tracking (e.g., MLflow, Weights & Biases), model registry, and automated CI/CD pipelines for Speech AI models. Focus on handling large-scale audio datasets, data annotation workflows, and ensuring data quality and governance.",
+          "resources": [
+            {
+              "title": "DVC (Data Version Control) for MLOps",
+              "url": "https://dvc.org/",
+              "type": "article"
+            },
+            {
+              "title": "MLflow: An Open Source Platform for the Machine Learning Lifecycle",
+              "url": "https://mlflow.org/",
+              "type": "article"
+            },
+            {
+              "title": "Label Studio: Data Labeling for AI",
+              "url": "https://labelstud.io/",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_data_management_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_model_optimization_deployment",
+          "name": "Model Optimization & Deployment",
+          "tag": "advanced",
+          "description": "Optimize models for real-time inference, low latency, and high throughput using techniques like quantization (post-training, quantization-aware training), pruning, knowledge distillation, and mixed-precision training. Learn to deploy models on cloud platforms (AWS Sagemaker, GCP AI Platform, Azure ML), edge devices, or using inference servers (e.g., NVIDIA Triton Inference Server, TorchServe).",
+          "resources": [
+            {
+              "title": "TensorRT: Optimize, Deploy, and Run AI",
+              "url": "https://developer.nvidia.com/tensorrt",
+              "type": "article"
+            },
+            {
+              "title": "ONNX Runtime for high-performance inference",
+              "url": "https://onnxruntime.ai/",
+              "type": "article"
+            },
+            {
+              "title": "PyTorch Quantization Recipes",
+              "url": "https://pytorch.org/docs/stable/quantization.html",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_model_optimization_deployment.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_monitoring_ethics",
+          "name": "Monitoring, Bias & Responsible AI",
+          "tag": "advanced",
+          "description": "Implement robust model monitoring (drift detection, performance tracking, anomaly detection), A/B testing, and feedback loops for production Speech AI systems. Address fairness, bias (e.g., demographic bias in ASR), privacy, and security concerns (e.g., adversarial attacks) in speech systems. Understand explainable AI (XAI) for speech models and privacy-preserving techniques (e.g., federated learning, data anonymization).",
+          "resources": [
+            {
+              "title": "Fairness and Bias in ASR Systems",
+              "url": "https://www.brookings.edu/articles/facial-and-voice-recognition-ai-and-discrimination/",
+              "type": "article"
+            },
+            {
+              "title": "What is Responsible AI?",
+              "url": "https://www.ibm.com/topics/responsible-ai",
+              "type": "article"
+            },
+            {
+              "title": "Privacy-Preserving AI for Speech",
+              "url": "https://arxiv.org/abs/2103.07255",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_monitoring_ethics.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech_ai_engineer_capstone_career",
+      "name": "Capstone Projects & Career Readiness",
+      "tag": "advanced",
+      "description": "Apply all acquired skills to build a comprehensive Speech AI project, understand the latest research, and prepare for a successful career in the field.",
+      "resources": [
+        {
+          "title": "Hugging Face Audio Course (for practical application)",
+          "url": "https://huggingface.co/learn/audio-course/chapter0/introduction",
+          "type": "course"
+        },
+        {
+          "title": "SpeechBrain Documentation (for project ideas and implementations)",
+          "url": "https://speechbrain.readthedocs.io/",
+          "type": "article"
+        },
+        {
+          "title": "Speech Recognition with Python (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+          "type": "video"
+        },
+        {
+          "title": "NLP Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_capstone_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "speech_ai_engineer_project_capstone",
+          "name": "Project: Full-Stack Speech AI System",
+          "tag": "advanced",
+          "description": "Build an end-to-end Speech AI project (e.g., a multi-speaker ASR, a custom TTS voice, a real-time speech assistant, or an audio intelligence pipeline) incorporating data pipelines, model training, evaluation, optimization, and deployment considerations. Focus on integrating multiple speech AI components.",
+          "resources": [
+            {
+              "title": "ESPnet End-to-End Speech Processing Toolkit",
+              "url": "https://espnet.github.io/espnet/",
+              "type": "article"
+            },
+            {
+              "title": "Building a Voice Assistant with NVIDIA Riva",
+              "url": "https://developer.nvidia.com/riva",
+              "type": "article"
+            },
+            {
+              "title": "Text to Speech with Python (Tech With Tim)",
+              "url": "https://www.youtube.com/watch?v=x-agbSNE0Ok",
+              "type": "video"
+            },
+            {
+              "title": "Whisper AI Tutorial - OpenAI (AssemblyAI)",
+              "url": "https://www.youtube.com/watch?v=ABFqbY_rmEk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_project_capstone.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_research_sota",
+          "name": "Research Trends & State-of-the-Art",
+          "tag": "advanced",
+          "description": "Stay updated with the latest advancements in Speech AI research, including self-supervised learning, multimodal speech processing, robust speech recognition in challenging environments, low-resource speech processing, and new model architectures (e.g., diffusion models for speech). Read and summarize recent papers from major conferences (Interspeech, ICASSP, NeurIPS, ACL, EMNLP).",
+          "resources": [
+            {
+              "title": "Papers With Code - Speech Recognition",
+              "url": "https://paperswithcode.com/task/speech-recognition",
+              "type": "article"
+            },
+            {
+              "title": "Recent Advances in Self-Supervised Speech Representation Learning",
+              "url": "https://arxiv.org/abs/2110.03843",
+              "type": "article"
+            },
+            {
+              "title": "Interspeech Conference Proceedings",
+              "url": "https://www.interspeech2023.org/",
+              "type": "article"
+            },
+            {
+              "title": "Deep Learning for Audio (Valerio Velardo)",
+              "url": "https://www.youtube.com/watch?v=fMqL5vckiU0",
+              "type": "video"
+            },
+            {
+              "title": "Transformers Explained (3Blue1Brown)",
+              "url": "https://www.youtube.com/watch?v=wjZofJX0v4M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_research_sota.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "speech_ai_engineer_portfolio_interview_prep",
+          "name": "Portfolio Building & Interview Preparation",
+          "tag": "advanced",
+          "description": "Curate a strong portfolio with project case studies (including deployed systems), code samples, and clear documentation of your Speech AI work. Prepare for technical interviews by practicing coding (Python, algorithms, data structures), system design (for speech systems), machine learning fundamentals, and behavioral questions tailored to Speech AI Engineer roles.",
+          "resources": [
+            {
+              "title": "Structuring Your Data Science Portfolio",
+              "url": "https://towardsdatascience.com/structuring-your-data-science-portfolio-a77c34b17a10",
+              "type": "article"
+            },
+            {
+              "title": "AI Engineer Interview Questions (General)",
+              "url": "https://www.datacamp.com/blog/ai-engineer-interview-questions",
+              "type": "article"
+            },
+            {
+              "title": "Cracking the Coding Interview",
+              "url": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850",
+              "type": "article"
+            },
+            {
+              "title": "Speech Recognition with Python (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=mYUyaKmvu6Y",
+              "type": "video"
+            },
+            {
+              "title": "NLP Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=dIUTsFT2MeQ",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/speech_ai_engineer/speech_ai_engineer_portfolio_interview_prep.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,602 @@
+[
+  {
+    "question": "A C/C++ Systems Developer is often tasked with creating software that interacts directly with hardware or requires extreme performance. Which of the following best describes a typical application domain for C/C++ systems development?",
+    "options": [
+      "Web front-end development using frameworks like React.",
+      "High-performance computing, operating systems, and embedded systems.",
+      "Mobile application development for Android using Java/Kotlin.",
+      "Business intelligence dashboards and data visualization tools."
+    ],
+    "correctIndex": 1,
+    "explanation": "C/C++ is chosen for domains requiring low-level control, deterministic performance, and efficient resource utilization, such as operating systems, embedded systems, game engines, and high-performance computing. Web front-end, mobile app, and BI development typically use other languages and technologies.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In C and C++, what fundamental concept allows direct manipulation of memory addresses, which is crucial for systems programming?",
+    "options": [
+      "Objects",
+      "Classes",
+      "Pointers",
+      "References"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pointers are fundamental in C and C++ for systems programming as they allow direct access and manipulation of memory addresses, enabling low-level operations. Objects and classes are higher-level abstractions, and references provide aliasing rather than direct address manipulation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are setting up a C++ project that uses multiple source files and external libraries. Which build system is most commonly used in C/C++ development for managing project compilation and dependencies across different platforms?",
+    "options": [
+      "npm",
+      "pip",
+      "CMake",
+      "Maven"
+    ],
+    "correctIndex": 2,
+    "explanation": "CMake is a cross-platform build system generator widely used in C/C++ projects to manage the compilation process, dependencies, and generate native build files (like Makefiles or Visual Studio projects). npm, pip, and Maven are package managers/build tools for JavaScript/Node.js, Python, and Java, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider the following C++ code snippet: int* p = new int[10]; // ... use p ... Which statement correctly describes the necessary action after p is no longer needed to prevent a memory leak?",
+    "options": [
+      "delete p;",
+      "free(p);",
+      "delete[] p;",
+      "p = nullptr;"
+    ],
+    "correctIndex": 2,
+    "explanation": "When memory is allocated for an array using new T[size], it must be deallocated using delete[] to ensure all elements' destructors are called (if applicable) and the entire block of memory is freed. delete p would only free the first element's memory. free(p) is for memory allocated with malloc. p = nullptr only clears the pointer, not the memory it points to.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A systems developer is designing a custom resource manager that needs to ensure a resource is always released, even if exceptions occur. Which C++ idiom is best suited for guaranteeing resource cleanup through scope-based management?",
+    "options": [
+      "Singleton Pattern",
+      "Factory Method Pattern",
+      "Observer Pattern",
+      "RAII (Resource Acquisition Is Initialization)"
+    ],
+    "correctIndex": 3,
+    "explanation": "RAII (Resource Acquisition Is Initialization) is a C++ idiom that ties the lifetime of a resource to the lifetime of an object's scope. The resource is acquired in the constructor and released in the destructor. This guarantees that the resource is correctly released when the object goes out of scope, whether normally or due to an exception. The other patterns are for object creation or notification, not resource management.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During a code review for a C++ systems application, a developer encounters a function that takes a raw pointer as an argument and is responsible for allocating memory internally. What is a common security or reliability concern associated with raw pointers in this context?",
+    "options": [
+      "Compile-time performance overhead.",
+      "Increased binary size.",
+      "Memory leaks, dangling pointers, and buffer overflows.",
+      "Difficulty in integrating with standard libraries."
+    ],
+    "correctIndex": 2,
+    "explanation": "Raw pointers in C/C++ are a primary source of memory-related errors such as memory leaks (if not deallocated), dangling pointers (accessing freed memory), and buffer overflows (writing beyond allocated bounds). These are significant security and reliability concerns in systems programming. The other options are generally not direct security/reliability concerns of raw pointers themselves.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which command-line tool is most commonly used by C/C++ developers to step through code execution, inspect variables, and set breakpoints to diagnose runtime issues?",
+    "options": [
+      "make",
+      "git",
+      "gdb",
+      "gcc"
+    ],
+    "correctIndex": 2,
+    "explanation": "gdb (GNU Debugger) is a powerful command-line debugger widely used for C/C++ programs to inspect program execution, set breakpoints, step through code, and examine memory and variables. make is a build automation tool, git is for version control, and gcc is a compiler.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When developing an embedded system in C, understanding the exact bit layout of data is crucial. Which keyword allows a developer to directly interact with hardware registers by preventing the compiler from optimizing away memory accesses?",
+    "options": [
+      "static",
+      "const",
+      "volatile",
+      "extern"
+    ],
+    "correctIndex": 2,
+    "explanation": "The volatile keyword in C/C++ tells the compiler that a variable's value can be changed by something outside the normal program flow (e.g., hardware, another thread). This prevents the compiler from performing optimizations that might assume the value remains constant across accesses, ensuring that every read/write operation directly interacts with the memory location, which is critical for hardware interaction.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A C++ systems application processes network packets and uses a fixed-size buffer. A critical security vulnerability can arise if the input packet size exceeds the buffer capacity, leading to data being written past its allocated boundary. This type of vulnerability is known as a:",
+    "options": [
+      "Race condition",
+      "Memory leak",
+      "Buffer overflow",
+      "Deadlock"
+    ],
+    "correctIndex": 2,
+    "explanation": "A buffer overflow occurs when a program attempts to write data beyond the allocated size of a buffer, potentially overwriting adjacent memory and leading to crashes, corrupted data, or even arbitrary code execution. Race conditions and deadlocks relate to concurrent access, while memory leaks are about unreleased memory.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In C, what is the primary purpose of the sizeof operator?",
+    "options": [
+      "To allocate memory dynamically.",
+      "To determine the number of elements in an array.",
+      "To calculate the size, in bytes, of a type or variable.",
+      "To cast a variable to a different data type."
+    ],
+    "correctIndex": 2,
+    "explanation": "The sizeof operator in C/C++ is used to determine the size, in bytes, of a type or a variable. It does not allocate memory, count array elements directly (for dynamically allocated arrays or pointers), or perform type casting.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are designing a C++ library where resources (like file handles or network sockets) are managed by objects. To ensure these resources are automatically closed or freed when the objects are destroyed, even in the presence of exceptions, which C++ Standard Library component often embodies the RAII principle for various resource types?",
+    "options": [
+      "std::vector",
+      "std::string",
+      "std::unique_ptr",
+      "std::map"
+    ],
+    "correctIndex": 2,
+    "explanation": "std::unique_ptr is a smart pointer that exemplifies the RAII principle. It automatically deallocates the memory it manages when it goes out of scope, preventing memory leaks and ensuring resources are freed. std::vector and std::string manage their own memory but are for data collections/strings, not general resource ownership, and std::map is a container.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Two threads concurrently access and modify a shared global variable without any synchronization mechanisms. This can lead to unpredictable results due to the interleaving of operations. What is this common concurrency issue called?",
+    "options": [
+      "Memory leak",
+      "Stack overflow",
+      "Race condition",
+      "Deadlock"
+    ],
+    "correctIndex": 2,
+    "explanation": "A race condition occurs when the behavior of a program depends on the relative timing of events, such as the order in which multiple threads access and modify shared resources. Without proper synchronization, the final outcome can be unpredictable and incorrect. Memory leaks, stack overflows, and deadlocks are different types of issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When managing source code changes in a C/C++ project with a team, which version control system is most widely adopted for its distributed nature and robust branching/merging capabilities?",
+    "options": [
+      "SVN (Subversion)",
+      "CVS (Concurrent Versions System)",
+      "Git",
+      "Mercurial"
+    ],
+    "correctIndex": 2,
+    "explanation": "Git is the most widely adopted distributed version control system for its flexibility, performance, and strong support for branching and merging, making it ideal for collaborative software development, including C/C++ projects. SVN, CVS, and Mercurial are also version control systems, but Git has largely surpassed them in popularity.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A C++ systems developer needs to implement a high-performance data structure that requires very specific memory alignment for cache efficiency and direct hardware access. Which C++ feature or technique would be most appropriate for controlling the memory layout of custom types?",
+    "options": [
+      "Using std::vector with a custom allocator.",
+      "Employing virtual functions and inheritance.",
+      "Using alignas specifier and placement new.",
+      "Relying on std::map for efficient lookup."
+    ],
+    "correctIndex": 2,
+    "explanation": "The alignas specifier allows explicit control over the memory alignment of types and objects, which is crucial for performance optimization (e.g., cache line alignment) and hardware interaction in systems programming. Placement new allows constructing objects at a specific memory address. Custom allocators for std::vector can manage memory blocks but don't typically offer fine-grained alignment control as easily as alignas on custom types. Virtual functions and std::map are high-level features not directly related to low-level memory layout control.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In a team development environment using Git, a developer has finished a feature on a dedicated branch and wants to integrate it into the main development line. What is the standard process for proposing and reviewing these changes before merging?",
+    "options": [
+      "Directly push the branch to main.",
+      "Delete the feature branch and recreate it on main.",
+      "Create a pull request (or merge request).",
+      "Email the code changes to the team lead for review."
+    ],
+    "correctIndex": 2,
+    "explanation": "Creating a pull request (or merge request, depending on the platform) is the standard and recommended workflow in Git-based team development. It allows team members to review the proposed changes, discuss modifications, and run automated tests before the feature branch is merged into the main branch.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A critical C/C++ daemon process running on a server occasionally crashes. To effectively diagnose the issue in a production environment, what type of diagnostic output should the application be designed to generate upon an unexpected termination?",
+    "options": [
+      "Only print \"Program crashed!\" to standard output.",
+      "Generate a core dump file that captures the program's memory state.",
+      "Send a single email notification without any attached data.",
+      "Immediately restart without logging any error details."
+    ],
+    "correctIndex": 1,
+    "explanation": "A core dump file captures the complete memory image and execution state of a program at the time of a crash. This file is invaluable for post-mortem debugging using tools like GDB, allowing developers to analyze the crash and pinpoint the cause without live debugging the production system. Simple messages, emails without data, or blind restarts are insufficient for effective diagnosis.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When writing unit tests for a C++ component, what is the primary goal?",
+    "options": [
+      "To verify the entire application's end-to-end functionality.",
+      "To ensure individual functions or classes work as expected in isolation.",
+      "To measure the application's performance under load.",
+      "To document the user interface interactions."
+    ],
+    "correctIndex": 1,
+    "explanation": "Unit tests focus on testing individual units of code (e.g., functions, methods, classes) in isolation to ensure they behave correctly according to their specifications. End-to-end testing, performance testing, and UI documentation are different testing or documentation activities.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the main difference between malloc and new for memory allocation in C++ systems development?",
+    "options": [
+      "malloc calls constructors and destructors, while new does not.",
+      "new is a C function, while malloc is a C++ operator.",
+      "malloc returns a void* and does not call constructors, while new returns a typed pointer and calls constructors.",
+      "new allocates memory on the stack, while malloc allocates on the heap."
+    ],
+    "correctIndex": 2,
+    "explanation": "malloc is a C library function that allocates raw memory and returns a void* (which must be cast). It does not call object constructors. new is a C++ operator that allocates memory, returns a typed pointer, and importantly, calls the constructor(s) for objects being created. Both allocate memory on the heap.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a multi-threaded C++ application, you need to protect a shared data structure from concurrent access to prevent data corruption. Which synchronization primitive is typically used to ensure that only one thread can access the critical section at a time?",
+    "options": [
+      "Atomic variable",
+      "Condition variable",
+      "Mutex (Mutual Exclusion)",
+      "Semaphore"
+    ],
+    "correctIndex": 2,
+    "explanation": "A mutex (mutual exclusion) is the primary synchronization primitive used to protect critical sections of code from concurrent access by multiple threads. Only one thread can acquire a mutex at a time; other threads attempting to acquire it will block until it's released, ensuring exclusive access to shared resources. Atomic variables provide lock-free operations for single variables. Condition variables are used for thread waiting/signaling. Semaphores are for more general resource counting.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You're using CMake to manage a C++ project. To add a new executable target named my_app from a source file main.cpp and link it against an existing library target my_lib, which CMake command sequence would you typically use in your CMakeLists.txt?",
+    "options": [
+      "add_executable(my_app main.cpp) link_directories(my_lib)",
+      "create_target(my_app main.cpp) add_dependency(my_app my_lib)",
+      "add_executable(my_app main.cpp) target_link_libraries(my_app my_lib)",
+      "build_program(my_app main.cpp) include_library(my_lib)"
+    ],
+    "correctIndex": 2,
+    "explanation": "In CMake, add_executable(my_app main.cpp) defines an executable target. To link this executable against a library (either a target defined in the same project or an imported one), target_link_libraries(my_app my_lib) is the correct command. The other options use incorrect or non-standard CMake commands.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which characteristic is a primary reason C/C++ is preferred for developing operating system kernels and device drivers?",
+    "options": [
+      "High-level abstractions and automatic memory management.",
+      "Extensive built-in GUI toolkit support.",
+      "Close-to-hardware access and manual memory control.",
+      "Rapid development cycles for web applications."
+    ],
+    "correctIndex": 2,
+    "explanation": "C/C++ offers direct memory manipulation, low-level access to hardware through pointers and memory-mapped I/O, and fine-grained control over system resources. These capabilities are essential for operating system kernels and device drivers where performance and direct hardware interaction are paramount. High-level abstractions, GUI toolkits, and rapid web development are not primary reasons.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In C++ systems programming, when should exceptions generally be preferred over error codes for handling failures?",
+    "options": [
+      "For every possible error, regardless of severity.",
+      "For low-level errors that can be handled locally within a single function.",
+      "For unexpected or exceptional conditions that cannot be handled locally and should propagate up the call stack.",
+      "When interfacing with C APIs that return integer error codes."
+    ],
+    "correctIndex": 2,
+    "explanation": "Exceptions in C++ are designed for handling \"exceptional\" conditions – errors that are unexpected and cannot be handled at the point of failure, requiring propagation up the call stack to a suitable handler. For expected errors or failures in C interfaces, error codes are often more appropriate. Overusing exceptions can lead to performance overhead and complex control flow.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A C++ systems developer identifies a performance bottleneck in a critical function using a profiling tool like perf or Valgrind --tool=callgrind. The profiler output indicates excessive cache misses and instruction stalls. What architectural-level technique is most relevant to address such issues?",
+    "options": [
+      "Replacing std::vector with std::list.",
+      "Restructuring data to improve locality and alignment.",
+      "Switching from new/delete to malloc/free.",
+      "Using more goto statements to reduce function call overhead."
+    ],
+    "correctIndex": 1,
+    "explanation": "Excessive cache misses and instruction stalls often point to poor data locality. Restructuring data to be contiguous in memory, aligning data structures, and organizing access patterns to maximize cache hits are critical architectural-level optimizations for performance in C/C++ systems. std::list has worse cache performance than std::vector. new/delete vs malloc/free might have minor differences but rarely address cache misses directly, and goto is generally not a performance optimization strategy for this.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A C++ program needs to store a collection of objects that are polymorphic and whose lifetimes are managed by a single owner. The owner should automatically clean up the objects when it goes out of scope. Which C++ smart pointer is most suitable for managing these objects in a container?",
+    "options": [
+      "std::weak_ptr",
+      "std::shared_ptr",
+      "std::auto_ptr (deprecated)",
+      "std::unique_ptr"
+    ],
+    "correctIndex": 3,
+    "explanation": "std::unique_ptr is ideal for managing objects with single ownership and polymorphic behavior, especially when stored in containers. It guarantees exclusive ownership and automatic resource cleanup when it goes out of scope. std::shared_ptr implies shared ownership (multiple pointers managing the same resource), std::weak_ptr is for observing std::shared_ptr's without owning, and std::auto_ptr is deprecated due to its problematic copy semantics.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "After compiling a C source file program.c using GCC, what is the default name of the executable file generated if no output name is specified?",
+    "options": [
+      "program.out",
+      "a.out",
+      "exec.bin",
+      "main.exe"
+    ],
+    "correctIndex": 1,
+    "explanation": "By default, GCC produces an executable file named a.out when no output filename is specified using the -o flag.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a pointer in C/C++?",
+    "options": [
+      "A graphical cursor on the screen",
+      "A variable that stores the memory address of another variable",
+      "A loop index variable",
+      "A function return statement"
+    ],
+    "correctIndex": 1,
+    "explanation": "A pointer is a fundamental concept in C/C++ representing a variable that holds a direct memory address as its value, allowing direct memory manipulation.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which operator is used in C to get the address of a variable?",
+    "options": [
+      "*",
+      "&",
+      "->",
+      "."
+    ],
+    "correctIndex": 1,
+    "explanation": "The address-of operator (&) returns the memory address of a variable. The dereference operator (*) is used to access the value at a pointer's address.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How do you allocate dynamic memory in C?",
+    "options": [
+      "Using the 'new' keyword",
+      "Using malloc() or calloc() functions",
+      "Using the 'alloc' command",
+      "Dynamic memory is allocated automatically"
+    ],
+    "correctIndex": 1,
+    "explanation": "In C, dynamic memory (allocated on the heap) is requested using the standard library functions malloc() or calloc() from <stdlib.h>. In C++, the 'new' keyword is typically used.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a segmentation fault (segfault)?",
+    "options": [
+      "A compiler syntax error",
+      "An error caused by a program attempting to access a memory area it is not authorized to access",
+      "A logic error inside a switch-case statement",
+      "A network connection timeout"
+    ],
+    "correctIndex": 1,
+    "explanation": "A segmentation fault occurs when a program tries to read or write to an invalid memory location, such as dereferencing a NULL pointer or writing past array boundaries, causing the OS to terminate it.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'free()' function in C?",
+    "options": [
+      "To release a variable name for reuse",
+      "To deallocate dynamic memory previously allocated with malloc/calloc/realloc, preventing memory leaks",
+      "To uninstall a library from the system",
+      "To clear the terminal screen"
+    ],
+    "correctIndex": 1,
+    "explanation": "free() returns dynamic memory allocated on the heap back to the operating system. Neglecting to free memory results in a memory leak.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which C++ standard library class represents dynamic string objects?",
+    "options": [
+      "char[]",
+      "std::string",
+      "std::vector<char>",
+      "String class"
+    ],
+    "correctIndex": 1,
+    "explanation": "std::string is the standard C++ class representing strings of characters, managing memory allocation and string manipulation operations automatically.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary extension for C++ source files?",
+    "options": [
+      ".c",
+      ".h",
+      ".cpp",
+      ".py"
+    ],
+    "correctIndex": 2,
+    "explanation": ".cpp is the standard file extension for C++ source files. C source files use .c, and header files use .h or .hpp.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between the stack and the heap in C/C++ memory management?",
+    "options": [
+      "The stack is larger than the heap",
+      "Stack memory is managed automatically by the compiler for local variables; heap memory must be manually allocated and deallocated by the developer",
+      "Heap memory is faster than stack memory",
+      "Stack memory survives after function return"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stack allocation is fast, automatic, and cleaned up when a function exits. Heap allocation is dynamic, manual, slower, and persists until explicitly freed (or the process terminates).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'memory leak'?",
+    "options": [
+      "Data leaking to hackers over the network",
+      "Allocated heap memory that is no longer referenced but has not been deallocated, reducing available system memory over time",
+      "A compiler bug that deletes code",
+      "An unhandled divide-by-zero error"
+    ],
+    "correctIndex": 1,
+    "explanation": "Memory leaks occur when dynamic memory is allocated on the heap but the developer fails to call free() or delete when it is no longer needed, permanently consuming RAM during program execution.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does the 'const' keyword do when applied to a variable in C/C++?",
+    "options": [
+      "Makes the variable accessible in all files",
+      "Prevents the value of the variable from being modified after initialization",
+      "Forces the compiler to optimize the variable's speed",
+      "Allocates the variable on the heap"
+    ],
+    "correctIndex": 1,
+    "explanation": "The 'const' keyword defines a read-only variable. Any attempt to modify a const variable after definition will trigger a compiler error.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between 'std::cout' and 'std::cerr' in C++?",
+    "options": [
+      "std::cout is for errors; std::cerr is for normal output",
+      "std::cout is buffered standard output; std::cerr is unbuffered standard error output",
+      "std::cout is only for numbers; std::cerr is only for strings",
+      "They are identical and write to the same stream buffer"
+    ],
+    "correctIndex": 1,
+    "explanation": "std::cout outputs to stdout and is buffered (data is held in a buffer before writing, which is faster). std::cerr outputs to stderr and is unbuffered, ensuring error messages are displayed immediately even if the program crashes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a header guard (e.g., #ifndef / #define / #endif) used for in C/C++?",
+    "options": [
+      "To encrypt header files",
+      "To prevent a header file from being included multiple times in the same translation unit, avoiding duplicate definition errors",
+      "To check if a file exists on disk",
+      "To compile code faster"
+    ],
+    "correctIndex": 1,
+    "explanation": "Header guards ensure that the declarations in a header file are only processed once by the preprocessor during compilation, preventing duplicate declaration errors.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a struct and a class in C++?",
+    "options": [
+      "Structs cannot have member functions; classes can",
+      "Struct members are public by default; class members are private by default",
+      "Structs are allocated on the stack; classes on the heap",
+      "Structs do not support inheritance"
+    ],
+    "correctIndex": 1,
+    "explanation": "In C++, the *only* difference between a struct and a class is default access specification: structs default to public access for members and base classes, whereas classes default to private.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Buffer Overflow' and why is it dangerous?",
+    "options": [
+      "The screen buffer running out of pixel space",
+      "A program writing more data to a buffer than it can hold, overwriting adjacent memory space, potentially causing crashes or security exploits",
+      "A network socket buffer filling up",
+      "A CPU running out of cache memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Buffer overflows overwrite adjacent memory. Attackers exploit this to overwrite return addresses on the stack, diverting execution flow to malicious code (Remote Code Execution).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the 'virtual' keyword in C++ member function declarations?",
+    "options": [
+      "To compile functions on virtual machines",
+      "To enable dynamic dispatch / polymorphism, ensuring the derived class implementation is called at runtime when accessed via a base class pointer",
+      "To make the function run in parallel threads",
+      "To define a function that has no body"
+    ],
+    "correctIndex": 1,
+    "explanation": "Declaring a base class function as virtual ensures that calls through pointers/references are resolved at runtime (dynamic binding) based on the actual object type, supporting OOP polymorphism.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a dangling pointer?",
+    "options": [
+      "A pointer that has not been initialized",
+      "A pointer pointing to a memory location that has already been deallocated or freed, leading to undefined behavior if dereferenced",
+      "A pointer that points to another pointer",
+      "A pointer that resides inside a loop"
+    ],
+    "correctIndex": 1,
+    "explanation": "A dangling pointer points to freed memory. Accessing it is a major bug because that memory might be reallocated for something else, corrupting data or causing crashes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In C++, what is RAII (Resource Acquisition Is Initialization)?",
+    "options": [
+      "A naming convention for variables",
+      "An architectural programming paradigm where resource lifetime (memory, file handles, locks) is tied to the lifetime of local object scopes",
+      "A compiler flag that checks code speed",
+      "An API for allocating memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "RAII manages resources by acquiring them in an object's constructor and releasing them in its destructor. When the object goes out of scope, the destructor runs automatically, preventing leaks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between pass-by-value, pass-by-reference, and pass-by-pointer in C++ function parameters?",
+    "options": [
+      "Pass-by-value is always faster than pass-by-reference",
+      "Pass-by-value copies the argument; pass-by-reference passes an alias (no copying); pass-by-pointer passes the address of the argument",
+      "Pass-by-reference is only for objects; pass-by-pointer only for primitives",
+      "They behave identically in memory compilation"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pass-by-value creates a copy of the variable (overhead for large objects). Pass-by-reference/pointer avoids copying, allowing modifications to the original variable, but references cannot be null or rebound.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a namespace in C++?",
+    "options": [
+      "The file folder path containing code files",
+      "A declarative region that provides a scope to identifiers (names of types, functions, variables) to prevent name collisions",
+      "A variable type used for text strings",
+      "A memory region reserved for compiler variables"
+    ],
+    "correctIndex": 1,
+    "explanation": "Namespaces (e.g. `std::`) organize code into logical groups, preventing name conflicts when using libraries that define classes/functions with identical names.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of the linker in the C/C++ compilation process?",
+    "options": [
+      "To translate source code into assembly code",
+      "To combine multiple object files and library binaries into a single executable file, resolving external references",
+      "To compile headers into precompiled headers",
+      "To check syntax and style rules"
+    ],
+    "correctIndex": 1,
+    "explanation": "The preprocessor handles macros and includes, the compiler outputs machine-level object files (.o/.obj), and the linker binds these objects and library files together, resolving function calls.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'undefined behavior' (UB) in C/C++?",
+    "options": [
+      "A syntax error that halts compilation",
+      "Code execution behavior that is not defined by the language standard, allowing the compiler to output any behavior, often resulting in silent corruption",
+      "A function that has no return type",
+      "An error code returned by the main function"
+    ],
+    "correctIndex": 1,
+    "explanation": "Undefined behavior (e.g., dividing by zero, dereferencing null, out-of-bounds array access) means the compiler makes no guarantees. The program may crash, corrupt memory, or run fine temporarily, making UB bugs extremely hard to find.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "In C++, what are smart pointers (std::unique_ptr, std::shared_ptr, std::weak_ptr) and how do they work?",
+    "options": [
+      "Pointers that run faster by using CPU registers",
+      "Objects that wrap raw pointers, managing lifetime and automatic deallocation based on ownership scope or reference counting",
+      "Pointers that cannot be null",
+      "Pointers that do not use heap memory"
+    ],
+    "correctIndex": 1,
+    "explanation": "Smart pointers implement RAII. `std::unique_ptr` has sole ownership of a resource. `std::shared_ptr` manages a reference count, freeing the resource when the count hits zero. `std::weak_ptr` holds non-owning references to break reference cycles.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Rule of Three' (and 'Rule of Five') in C++ class design?",
+    "options": [
+      "A class can only have three member variables",
+      "If a class defines any of: destructor, copy constructor, or copy assignment operator, it should define all three (five adds move constructor and move assignment operator)",
+      "A class should be refactored if it has more than three virtual functions",
+      "Classes must have three public, three private, and three protected members"
+    ],
+    "correctIndex": 1,
+    "explanation": "If a class manages resources manually, it needs custom copy controls. If you write a destructor (to free resources), you must write copy constructor/assignment to handle copy states properly, preventing double-frees.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'vtable' (virtual method table) in C++ and how is it used?",
+    "options": [
+      "A visual debugger window in IDEs",
+      "A lookup table compiled for classes with virtual functions, used to resolve dynamic function dispatch at runtime via a vptr in the object",
+      "A table in memory containing variable address allocations",
+      "A layout mapping threads to processors"
+    ],
+    "correctIndex": 1,
+    "explanation": "Each class with virtual functions has a vtable listing function pointers. Objects of that class contain a virtual pointer (vptr) to the vtable. Calling a virtual function dereferences this pointer to resolve the correct function at runtime.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between 'std::move' and a standard copy operation in C++11?",
+    "options": [
+      "std::move deletes the code files after compilation",
+      "std::move casts an lvalue to an rvalue reference, enabling resources to be transferred ('moved') from one object to another without deep copying",
+      "std::move moves variables from stack to heap memory",
+      "std::move makes the thread run on a different core"
+    ],
+    "correctIndex": 1,
+    "explanation": "std::move doesn't move data at runtime; it changes value category to rvalue, allowing move constructors/assignment operators to transfer ownership of resources (like raw pointers) cheaply, bypassing copy overhead.",
+    "difficulty": "hard"
+  }
+]

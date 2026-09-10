@@ -1,0 +1,168 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedInAs(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function optionalString(field, maxLength) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string && request.resource.data[field].size() <= maxLength);
+    }
+
+    function optionalBool(field) {
+      return !(field in request.resource.data) || request.resource.data[field] is bool;
+    }
+
+    function optionalTimestamp(field) {
+      return !(field in request.resource.data) || request.resource.data[field] is timestamp;
+    }
+
+    function validProviderList() {
+      return !('providers' in request.resource.data) ||
+        (request.resource.data.providers is list && request.resource.data.providers.size() <= 20);
+    }
+
+    function validUserProfile(uid) {
+      return request.resource.data.keys().hasOnly([
+          'uid',
+          'email',
+          'displayName',
+          'photoURL',
+          'name',
+          'fullName',
+          'degree',
+          'year',
+          'current_year',
+          'interest',
+          'interest_area',
+          'emailVerified',
+          'providers',
+          'createdAt',
+          'updatedAt'
+        ]) &&
+        request.resource.data.uid == uid &&
+        optionalString('email', 254) &&
+        optionalString('displayName', 120) &&
+        optionalString('photoURL', 2048) &&
+        optionalString('name', 80) &&
+        optionalString('fullName', 80) &&
+        optionalString('degree', 120) &&
+        optionalString('year', 80) &&
+        optionalString('current_year', 80) &&
+        optionalString('interest', 120) &&
+        optionalString('interest_area', 120) &&
+        optionalBool('emailVerified') &&
+        validProviderList() &&
+        optionalTimestamp('createdAt') &&
+        optionalTimestamp('updatedAt');
+    }
+
+    function validProgress(slug) {
+      return slug.matches('^[a-z0-9_]{1,80}$') &&
+        request.resource.data.keys().hasOnly(['slug', 'completedNodeIds', 'updatedAt']) &&
+        request.resource.data.slug == slug &&
+        request.resource.data.completedNodeIds is list &&
+        request.resource.data.completedNodeIds.size() <= 800 &&
+        optionalTimestamp('updatedAt');
+    }
+
+
+    function validQuizAttempt(slug) {
+      return slug.matches('^[a-z0-9_]{1,80}$') &&
+        request.resource.data.keys().hasOnly(['slug', 'attempts', 'lastAttemptAt', 'updatedAt']) &&
+        request.resource.data.slug == slug &&
+        request.resource.data.attempts is list &&
+        (!( 'lastAttemptAt' in request.resource.data ) || request.resource.data.lastAttemptAt is int) &&
+        optionalTimestamp('updatedAt');
+    }
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && (
+        request.auth.token.admin == true ||
+        request.auth.token.email.lower() == 'harsh@skillbun.tech' ||
+        request.auth.token.email.lower() in ['harsh@skillbun.tech', 'admin@skillbun.tech'] ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()))
+      );
+    }
+
+    function isEmployeeOwner(email) {
+      return signedIn() && 
+        request.auth.token.email != null &&
+        request.auth.token.email.lower() == email.lower();
+    }
+
+    match /users/{uid} {
+      allow read, delete: if signedInAs(uid) || isAdmin();
+      allow create, update: if (signedInAs(uid) && validUserProfile(uid)) || isAdmin();
+
+      match /roadmapProgress/{slug} {
+        allow read, delete: if signedInAs(uid) || isAdmin();
+        allow create, update: if (signedInAs(uid) && validProgress(slug)) || isAdmin();
+      }
+
+      match /quizAttempts/{slug} {
+        allow read, delete: if signedInAs(uid) || isAdmin();
+        allow create, update: if (signedInAs(uid) && validQuizAttempt(slug)) || isAdmin();
+      }
+    }
+
+    match /certificates/{certId} {
+      allow get: if true;           // Public single-document verification by exact certificate ID
+      allow list: if isAdmin();     // Admin users only — prevents user-level and anonymous REST API collection enumeration
+      allow write: if false; // Certificates must only be minted via authenticated backend API (/api/certify/mint)
+    }
+
+    match /examAttempts/{attemptId} {
+      allow get: if signedIn() && resource != null && resource.data.uid == request.auth.uid;
+      allow list: if isAdmin();
+      allow write: if false; // Server-side backend API evaluation only
+    }
+
+    // Workforce Hub: Employees collection (Admin full CRUD; Intern read-only on their own record)
+    match /employees/{employeeId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.personal_email)
+      );
+      allow write: if isAdmin();
+    }
+
+    // Workforce Hub: Milestones collection (Admin full CRUD; Intern can read and update only status, deliverable_url, updated_at)
+    match /milestones/{milestoneId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.employee_email)
+      );
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (
+        signedIn() &&
+        resource != null &&
+        isEmployeeOwner(resource.data.employee_email) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'deliverable_url', 'updated_at'])
+      );
+    }
+
+    // Workforce Hub: Workforce Audit Documents collection (Admin full CRUD; Intern read-only on issued docs)
+    match /workforce_docs/{docId} {
+      allow read: if isAdmin() || (
+        signedIn() && 
+        resource != null && 
+        isEmployeeOwner(resource.data.metadata_snapshot.personal_email)
+      );
+      allow write: if isAdmin();
+    }
+
+    // Admin RBAC Registry collection: Managed directly by founder in database
+    match /admins/{adminEmail} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,1307 @@
+{
+  "id": "platform_engineer",
+  "title": "Platform Engineer",
+  "description": "Build Internal Developer Platforms (IDPs), self-service developer portals, standardized infrastructure APIs, and automated golden paths.",
+  "goal": {
+    "objective": "Empower product engineering teams with seamless self-service internal developer platforms (IDPs) that accelerate development velocity safely.",
+    "salary": "$100,000 - $175,000 / yr (₹9 - ₹30 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 100000,
+        "max": 175000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 9,
+        "max": 30,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Mid to Staff (2 - 7+ Years)",
+    "target_roles": [
+      "Platform Engineer",
+      "Developer Experience Engineer",
+      "Internal Platform Architect"
+    ],
+    "career_pillars": [
+      "Internal Developer Platform (IDP) Architecture",
+      "Spotify Backstage & Developer Portals",
+      "Crossplane & Cloud Infrastructure APIs"
+    ]
+  },
+  "learn": {
+    "summary": "Master Spotify Backstage developer portal, Crossplane Kubernetes-native infrastructure provisioning, Score specification, service catalog governance, and developer experience metrics.",
+    "key_competencies": [
+      "Internal Developer Platforms (IDPs) & Golden Paths",
+      "Spotify Backstage Plugins & Service Catalogs",
+      "Crossplane Infrastructure as Kubernetes CRDs",
+      "Developer Experience (DevEx) & DORA Metrics",
+      "Automated Ephemeral Preview Environments"
+    ],
+    "prerequisites": [
+      "Solid Kubernetes administration",
+      "Infrastructure as code experience (Terraform)",
+      "Software development skills (TypeScript/Go)"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Self-Service Developer Portal with Spotify Backstage",
+        "tech_stack": [
+          "Backstage",
+          "Kubernetes",
+          "Crossplane",
+          "GitHub Actions",
+          "PostgreSQL"
+        ],
+        "description": "Build an internal developer portal where engineers can scaffold a new microservice with automated CI/CD, database, and DNS in 2 minutes."
+      },
+      {
+        "title": "Internal Developer Platform (IDP) with Backstage & Crossplane",
+        "tech_stack": [
+          "Backstage",
+          "Crossplane",
+          "Kubernetes",
+          "GitHub Actions"
+        ],
+        "description": "Deliver a unified developer portal enabling self-service provisioning of databases, cloud storage buckets, and microservice boilerplate with policy guardrails."
+      }
+    ],
+    "interview_focus": [
+      "Platform as a Product Philosophy",
+      "Crossplane vs Traditional Terraform Tradeoffs",
+      "Defining and Measuring DevEx (Developer Friction)",
+      "Designing Self-Service Golden Paths without Shadow IT"
+    ],
+    "certifications": [
+      "Certified Kubernetes Administrator (CKA)",
+      "HashiCorp Certified: Terraform Associate"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "pe_foundations",
+      "name": "Foundations: Role, Principles & Essential Tools",
+      "tag": "essential",
+      "description": "Establish a strong understanding of the Platform Engineer role, its core principles, and the foundational technical skills required to build and operate internal developer platforms.",
+      "resources": [
+        {
+          "title": "What is Platform Engineering? Principles and Practices",
+          "url": "https://platformengineering.org/blog/what-is-platform-engineering",
+          "type": "article"
+        },
+        {
+          "title": "The Rise of Platform Engineering - A Definitive Guide",
+          "url": "https://learnk8s.io/blog/platform-engineering",
+          "type": "article"
+        },
+        {
+          "title": "Platform Engineering Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+          "type": "video"
+        },
+        {
+          "title": "Internal Developer Platform (Humanitec)",
+          "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_foundations_role_principles",
+          "name": "Understanding the Role & Principles",
+          "tag": "essential",
+          "description": "Explore the definition, benefits, and core philosophies of Platform Engineering, differentiating it from DevOps and SRE, and understanding its impact on developer experience.",
+          "resources": [
+            {
+              "title": "Team Topologies - Platform Teams",
+              "url": "https://teamtopologies.com/key-concepts-extras/platform-team",
+              "type": "article"
+            },
+            {
+              "title": "Platform as a Product: The What, Why, and How",
+              "url": "https://martinfowler.com/articles/platform-as-a-product/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+              "type": "video"
+            },
+            {
+              "title": "Backstage Tutorial (Spotify)",
+              "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_foundations_role_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_os_shell_networking",
+          "name": "Operating Systems, Shell Scripting & Networking Fundamentals",
+          "tag": "essential",
+          "description": "Master Linux/Unix operating system concepts, essential shell scripting (Bash, Zsh) for automation, command-line tools, and fundamental networking principles (TCP/IP, DNS, HTTP) critical for platform interaction and troubleshooting.",
+          "resources": [
+            {
+              "title": "Linux Command Line Basics",
+              "url": "https://www.freecodecamp.org/news/linux-commands-cheat-sheet/",
+              "type": "article"
+            },
+            {
+              "title": "Advanced Bash-Scripting Guide",
+              "url": "https://tldp.org/LDP/abs/html/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_os_shell_networking.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_cloud_fundamentals",
+          "name": "Cloud Computing Fundamentals",
+          "tag": "essential",
+          "description": "Understand core cloud computing concepts (elasticity, scalability, high availability), service models (IaaS, PaaS, SaaS), deployment models, and the basic architecture of major cloud providers (AWS, Azure, GCP), including common services like Compute, Storage, Networking, and IAM.",
+          "resources": [
+            {
+              "title": "Cloud Computing Basics - AWS",
+              "url": "https://aws.amazon.com/what-is-cloud-computing/",
+              "type": "article"
+            },
+            {
+              "title": "Microsoft Azure Fundamentals (AZ-900) Course",
+              "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals-az-900/",
+              "type": "course"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_cloud_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_version_control_git",
+          "name": "Version Control with Git & Collaboration",
+          "tag": "essential",
+          "description": "Master Git for version control, including branching strategies, merging, rebasing, and collaborating effectively using platforms like GitHub, GitLab, or Bitbucket.",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_version_control_git.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_infra_automation",
+      "name": "Infrastructure as Code & Containerization",
+      "tag": "essential",
+      "description": "Master the art of declarative infrastructure management and containerization, forming the bedrock for building scalable, reproducible, and immutable platforms.",
+      "resources": [
+        {
+          "title": "Infrastructure as Code: From Fundamentals to Practices",
+          "url": "https://www.oreilly.com/library/view/infrastructure-as-code/9781491924371/",
+          "type": "article"
+        },
+        {
+          "title": "The Docker Handbook",
+          "url": "https://www.freecodecamp.org/news/the-docker-handbook/",
+          "type": "article"
+        },
+        {
+          "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+          "type": "video"
+        },
+        {
+          "title": "Backstage Tutorial (Spotify)",
+          "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_infra_automation.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_iac_terraform",
+          "name": "Infrastructure as Code (IaC) with Terraform",
+          "tag": "essential",
+          "description": "Learn to provision and manage cloud infrastructure using Terraform, including HCL syntax, state management, modules, providers, remote backends, and advanced patterns for managing complex environments.",
+          "resources": [
+            {
+              "title": "Terraform Documentation",
+              "url": "https://www.terraform.io/docs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "HashiCorp Certified: Terraform Associate Course",
+              "url": "https://learn.hashicorp.com/collections/terraform/cert-associate",
+              "type": "course"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_iac_terraform.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_docker_mastery",
+          "name": "Containerization with Docker",
+          "tag": "essential",
+          "description": "Deep dive into Docker concepts such as images, containers, registries, Dockerfiles, multi-stage builds, container networking, volumes, and basic container orchestration with Docker Compose.",
+          "resources": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with Docker (Official Guide)",
+              "url": "https://docs.docker.com/get-started/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_docker_mastery.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_config_management_basics",
+          "name": "Configuration Management & Immutable Infrastructure",
+          "tag": "essential",
+          "description": "Understand how to automate software provisioning and configuration management using tools like Ansible, focusing on idempotency, playbooks, and roles. Explore the benefits of immutable infrastructure and tools like Packer for building golden images.",
+          "resources": [
+            {
+              "title": "Ansible Documentation",
+              "url": "https://docs.ansible.com/",
+              "type": "article"
+            },
+            {
+              "title": "Getting Started with Packer",
+              "url": "https://www.packer.io/docs/intro",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_config_management_basics.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_kubernetes_mastery",
+      "name": "Kubernetes Ecosystem Mastery",
+      "tag": "essential",
+      "description": "Gain in-depth expertise in Kubernetes, from core concepts and operational management to advanced patterns and security, which is critical for modern cloud-native platforms.",
+      "resources": [
+        {
+          "title": "Kubernetes Documentation",
+          "url": "https://kubernetes.io/docs/home/",
+          "type": "article"
+        },
+        {
+          "title": "Certified Kubernetes Administrator (CKA) Course",
+          "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+          "type": "course"
+        },
+        {
+          "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+          "type": "video"
+        },
+        {
+          "title": "Backstage Tutorial (Spotify)",
+          "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_kubernetes_mastery.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_kubernetes_core_concepts",
+          "name": "Kubernetes Core Concepts & Architecture",
+          "tag": "essential",
+          "description": "Learn the fundamental architecture of Kubernetes, including control plane components (API Server, etcd, Scheduler, Controller Manager), worker nodes, and key resources like Pods, Deployments, Services, StatefulSets, and Namespaces.",
+          "resources": [
+            {
+              "title": "Kubernetes Architecture Overview",
+              "url": "https://kubernetes.io/docs/concepts/overview/components/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Objects Explained",
+              "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_core_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_kubernetes_operations",
+          "name": "Kubernetes Operations & Management",
+          "tag": "essential",
+          "description": "Master `kubectl` for interacting with clusters, manage application deployments with Helm, and understand how to manage configuration (ConfigMaps, Secrets) and storage (PVs, PVCs, StorageClasses) in Kubernetes. Learn about rolling updates and rollbacks.",
+          "resources": [
+            {
+              "title": "kubectl Cheatsheet",
+              "url": "https://kubernetes.io/docs/reference/kubectl/cheatsheet/",
+              "type": "article"
+            },
+            {
+              "title": "Helm: The Kubernetes Package Manager",
+              "url": "https://helm.sh/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_operations.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_kubernetes_networking_storage",
+          "name": "Kubernetes Networking & Storage Deep Dive",
+          "tag": "essential",
+          "description": "Deep dive into Kubernetes networking models (CNI, Service discovery, Ingress, Egress), understand Load Balancers, and explore various storage options, including persistent volumes, storage classes, volume provisioners, and CSI drivers.",
+          "resources": [
+            {
+              "title": "Kubernetes Networking Model",
+              "url": "https://kubernetes.io/docs/concepts/cluster-administration/networking/",
+              "type": "article"
+            },
+            {
+              "title": "Persistent Volumes in Kubernetes",
+              "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_networking_storage.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_kubernetes_security_iam",
+          "name": "Kubernetes Security & Access Management",
+          "tag": "advanced",
+          "description": "Implement robust security practices within Kubernetes, including Role-Based Access Control (RBAC), Pod Security Standards/Admission Controllers, Network Policies, secrets management strategies, and image security best practices for cluster hardening.",
+          "resources": [
+            {
+              "title": "Kubernetes RBAC Documentation",
+              "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+              "type": "article"
+            },
+            {
+              "title": "Pod Security Admission",
+              "url": "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+              "type": "video"
+            },
+            {
+              "title": "Backstage Tutorial (Spotify)",
+              "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_security_iam.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_kubernetes_advanced_patterns",
+          "name": "Advanced Kubernetes Patterns & Extensibility",
+          "tag": "advanced",
+          "description": "Explore advanced Kubernetes features like Custom Resource Definitions (CRDs), Operators, Admission Controllers, and gain an introduction to Service Meshes (e.g., Istio, Linkerd) for traffic management, policy enforcement, and observability.",
+          "resources": [
+            {
+              "title": "Kubernetes CRD Documentation",
+              "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+              "type": "article"
+            },
+            {
+              "title": "Operator Framework Overview",
+              "url": "https://operatorframework.io/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_advanced_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_kubernetes_package_management_templating",
+          "name": "Advanced Kubernetes Deployment & Configuration",
+          "tag": "advanced",
+          "description": "Deepen skills in managing complex Kubernetes deployments using advanced templating and packaging tools like Kustomize for overlays and `ytt` or `jsonnet` for programmable configuration. Explore best practices for application packaging and environment separation.",
+          "resources": [
+            {
+              "title": "Kustomize Documentation",
+              "url": "https://kustomize.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "ytt - YAML templating tool",
+              "url": "https://carvel.dev/ytt/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_kubernetes_package_management_templating.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_cicd_gitops_automation",
+      "name": "CI/CD, GitOps & Automation",
+      "tag": "essential",
+      "description": "Build robust, automated CI/CD pipelines and implement GitOps principles to manage deployments and infrastructure declaratively, ensuring consistent, secure, and reliable delivery.",
+      "resources": [
+        {
+          "title": "CI/CD Best Practices for Cloud-Native Applications",
+          "url": "https://www.cncf.io/blog/2021/04/01/ci-cd-best-practices-for-cloud-native-applications/",
+          "type": "article"
+        },
+        {
+          "title": "What is GitOps? - Weaveworks",
+          "url": "https://www.weave.works/blog/what-is-gitops/",
+          "type": "article"
+        },
+        {
+          "title": "Platform Engineering Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+          "type": "video"
+        },
+        {
+          "title": "Internal Developer Platform (Humanitec)",
+          "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_cicd_gitops_automation.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_cicd_pipeline_design",
+          "name": "CI/CD Pipeline Design & Implementation",
+          "tag": "essential",
+          "description": "Design and implement continuous integration and continuous deployment pipelines using popular tools like GitHub Actions, GitLab CI, Jenkins, or Tekton, focusing on Pipeline as Code, automated testing, and release strategies.",
+          "resources": [
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to GitLab CI/CD",
+              "url": "https://docs.gitlab.com/ee/ci/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+              "type": "video"
+            },
+            {
+              "title": "Backstage Tutorial (Spotify)",
+              "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_cicd_pipeline_design.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_gitops_principles_tools",
+          "name": "GitOps Principles & Tools (ArgoCD/Flux)",
+          "tag": "essential",
+          "description": "Understand GitOps philosophy, declarative infrastructure, and implement GitOps workflows for Kubernetes using tools like ArgoCD or Flux CD for automated, auditable, and traceable deployments.",
+          "resources": [
+            {
+              "title": "Argo CD Documentation",
+              "url": "https://argo-cd.readthedocs.io/en/stable/",
+              "type": "article"
+            },
+            {
+              "title": "Flux CD Documentation",
+              "url": "https://fluxcd.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_gitops_principles_tools.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_scripting_automation",
+          "name": "Scripting & Automation for Platform Engineers",
+          "tag": "essential",
+          "description": "Develop proficiency in scripting languages like Python or Go for automating operational tasks, developing custom tools, interacting with APIs, and building command-line utilities for platform management and developer workflows.",
+          "resources": [
+            {
+              "title": "Python for DevOps (Book/Course)",
+              "url": "https://pythondiscord.com/blog/python-for-devops/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_scripting_automation.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_observability_monitoring",
+      "name": "Observability & Monitoring Strategy",
+      "tag": "essential",
+      "description": "Implement comprehensive observability solutions to gain deep insights into platform and application health, performance, and behavior, using metrics, logs, and traces. Focus on proactive identification and resolution of issues.",
+      "resources": [
+        {
+          "title": "Observability vs. Monitoring: What's the Difference?",
+          "url": "https://grafana.com/blog/2023/07/26/observability-vs-monitoring/",
+          "type": "article"
+        },
+        {
+          "title": "The Three Pillars of Observability: Metrics, Logs, and Traces",
+          "url": "https://www.splunk.com/en_us/blog/learn/three-pillars-of-observability.html",
+          "type": "article"
+        },
+        {
+          "title": "Platform Engineering Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+          "type": "video"
+        },
+        {
+          "title": "Internal Developer Platform (Humanitec)",
+          "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_observability_monitoring.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_observability_pillars",
+          "name": "Fundamentals of Observability & SRE Metrics",
+          "tag": "essential",
+          "description": "Understand the core concepts of metrics, logs, and traces, and how they contribute to a holistic view of system health and performance. Learn about Site Reliability Engineering (SRE) principles like SLOs (Service Level Objectives), SLIs (Service Level Indicators), and Error Budgets.",
+          "resources": [
+            {
+              "title": "Site Reliability Engineering (SRE) - Measuring Reliability",
+              "url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+              "type": "article"
+            },
+            {
+              "title": "The Prometheus Handbook",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+              "type": "video"
+            },
+            {
+              "title": "Backstage Tutorial (Spotify)",
+              "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_observability_pillars.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_metrics_alerting",
+          "name": "Metrics & Alerting with Prometheus & Grafana",
+          "tag": "essential",
+          "description": "Implement metric collection using Prometheus, configure Alertmanager for intelligent and actionable notifications, and create insightful dashboards with Grafana for visualization, trend analysis, and real-time monitoring of platform components.",
+          "resources": [
+            {
+              "title": "Prometheus Getting Started",
+              "url": "https://prometheus.io/docs/prometheus/latest/getting_started/",
+              "type": "article"
+            },
+            {
+              "title": "Grafana Dashboards and Panels",
+              "url": "https://grafana.com/docs/grafana/latest/dashboards/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_metrics_alerting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_logs_tracing",
+          "name": "Centralized Logging & Distributed Tracing",
+          "tag": "essential",
+          "description": "Set up centralized logging solutions (e.g., Loki, Fluentd/Fluent Bit, ELK Stack/OpenSearch, Splunk) for efficient log aggregation and analysis. Implement distributed tracing (e.g., Jaeger, Zipkin, OpenTelemetry) to diagnose issues across complex microservices architectures.",
+          "resources": [
+            {
+              "title": "Loki: Logs for Prometheans",
+              "url": "https://grafana.com/oss/loki/",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to OpenTelemetry",
+              "url": "https://opentelemetry.io/docs/what-is-opentelemetry/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_logs_tracing.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_idp_design_build",
+      "name": "Internal Developer Platform (IDP) Design & Build",
+      "tag": "advanced",
+      "description": "Learn to design, build, and evolve Internal Developer Platforms (IDPs) that provide golden paths, self-service capabilities, and significantly enhance developer experience, driving efficiency and innovation.",
+      "resources": [
+        {
+          "title": "Backstage: The Open Platform for Frontend Infrastructure",
+          "url": "https://backstage.io/",
+          "type": "article"
+        },
+        {
+          "title": "Internal Developer Platform: A New Paradigm",
+          "url": "https://internaldeveloperplatform.org/",
+          "type": "article"
+        },
+        {
+          "title": "Platform Engineering Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+          "type": "video"
+        },
+        {
+          "title": "Internal Developer Platform (Humanitec)",
+          "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_idp_design_build.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_idp_concepts_devex",
+          "name": "IDP Concepts & Developer Experience",
+          "tag": "advanced",
+          "description": "Understand the principles of Golden Paths, self-service portals, and how to measure and improve developer experience (DevEx) through platform design. Explore concepts like cognitive load and inner-sourcing.",
+          "resources": [
+            {
+              "title": "Golden Path to Greatness - Charity Majors",
+              "url": "https://charity.wtf/2020/09/20/the-golden-path-to-greatness/",
+              "type": "article"
+            },
+            {
+              "title": "What is Developer Experience (DevEx)?",
+              "url": "https://platformengineering.org/blog/what-is-developer-experience",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+              "type": "video"
+            },
+            {
+              "title": "Backstage Tutorial (Spotify)",
+              "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_idp_concepts_devex.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_backstage_crossplane",
+          "name": "Building with Backstage & Crossplane",
+          "tag": "advanced",
+          "description": "Implement IDPs using Backstage for service catalog, software templates, and documentation portals. Extend Kubernetes with Crossplane to manage and provision external cloud resources from a unified control plane.",
+          "resources": [
+            {
+              "title": "Backstage Software Templates Guide",
+              "url": "https://backstage.io/docs/features/software-templates/writing-templates/",
+              "type": "article"
+            },
+            {
+              "title": "Crossplane Documentation",
+              "url": "https://crossplane.io/docs/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_backstage_crossplane.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_platform_api_gateway",
+          "name": "Platform APIs & Gateway Management",
+          "tag": "advanced",
+          "description": "Design and implement internal platform APIs for programmatic self-service capabilities, enabling automation and integration. Manage external and internal traffic with API Gateways (e.g., NGINX Ingress, Kong, Istio Gateway) for routing, security, and rate limiting.",
+          "resources": [
+            {
+              "title": "API Gateway Patterns",
+              "url": "https://www.nginx.com/blog/microservices-api-gateway-pattern/",
+              "type": "article"
+            },
+            {
+              "title": "Kong API Gateway Documentation",
+              "url": "https://docs.konghq.com/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_platform_api_gateway.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_platform_product_lifecycle",
+          "name": "Platform as a Product Lifecycle & Feedback",
+          "tag": "advanced",
+          "description": "Apply product management principles to the IDP, focusing on user research, defining platform roadmap, gathering feedback from developers, and iterating on platform services to drive adoption and satisfaction. Understand key platform metrics like DORA metrics and developer satisfaction.",
+          "resources": [
+            {
+              "title": "The Product-Led Platform Team",
+              "url": "https://www.infoq.com/articles/product-led-platform-team/",
+              "type": "article"
+            },
+            {
+              "title": "DORA Metrics: What They Are & How to Measure Them",
+              "url": "https://cloud.google.com/blog/products/devops-sre/using-the-dora-four-keys-to-measure-devops-performance",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_platform_product_lifecycle.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_security_reliability",
+      "name": "Platform Security & Reliability Engineering",
+      "tag": "advanced",
+      "description": "Focus on hardening platform security, implementing governance, and applying Site Reliability Engineering (SRE) principles to ensure high availability, resilience, operational excellence, and a secure software supply chain.",
+      "resources": [
+        {
+          "title": "Cloud Native Security Whitepaper - CNCF",
+          "url": "https://www.cncf.io/reports/cloud-native-security-whitepaper/",
+          "type": "article"
+        },
+        {
+          "title": "The Site Reliability Engineering Book (Google)",
+          "url": "https://sre.google/sre-book/table-of-contents/",
+          "type": "article"
+        },
+        {
+          "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+          "type": "video"
+        },
+        {
+          "title": "Backstage Tutorial (Spotify)",
+          "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_security_reliability.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_platform_security_governance",
+          "name": "Platform Security, Governance & Supply Chain",
+          "tag": "advanced",
+          "description": "Implement security best practices for platform components, manage secrets securely (Vault), enforce policies with Policy-as-Code (OPA Gatekeeper), and secure the software supply chain through image scanning, signature verification, and compliance automation.",
+          "resources": [
+            {
+              "title": "HashiCorp Vault Documentation",
+              "url": "https://www.vaultproject.io/docs",
+              "type": "article"
+            },
+            {
+              "title": "OPA Gatekeeper Documentation",
+              "url": "https://open-policy-agent.github.io/gatekeeper/website/docs/",
+              "type": "article"
+            },
+            {
+              "title": "Software Supply Chain Security Guide",
+              "url": "https://www.cncf.io/blog/2021/04/06/the-ultimate-guide-to-software-supply-chain-security/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_platform_security_governance.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_sre_practices_principles",
+          "name": "SRE Practices & Platform Reliability",
+          "tag": "advanced",
+          "description": "Apply SRE principles like error budgets, blameless post-mortems, and toil reduction. Design for resilience with patterns like circuit breakers, retries, and rate limiting. Develop strategies for disaster recovery, backups, and high availability.",
+          "resources": [
+            {
+              "title": "Chaos Engineering Principles - Gremlin",
+              "url": "https://www.gremlin.com/community/tutorials/what-is-chaos-engineering/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_sre_practices_principles.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_incident_management_resiliency",
+          "name": "Incident Management & Resiliency Engineering",
+          "tag": "advanced",
+          "description": "Develop effective incident response strategies, create comprehensive runbooks, perform post-incident reviews, and practice chaos engineering to proactively identify and mitigate system weaknesses and improve operational robustness.",
+          "resources": [
+            {
+              "title": "Incident Management Best Practices - PagerDuty",
+              "url": "https://www.pagerduty.com/resources/learn/incident-management-best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Designing for Resiliency on AWS",
+              "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/designing-for-resiliency.html",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_incident_management_resiliency.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pe_capstone_career",
+      "name": "Capstone Project & Career Readiness",
+      "tag": "advanced",
+      "description": "Consolidate all learned skills into a comprehensive capstone project that showcases your ability to design, build, and operate a full-featured internal developer platform, and prepare for career advancement.",
+      "resources": [
+        {
+          "title": "Building a Robust Portfolio for Platform Engineers",
+          "url": "https://www.example.com/platform-engineer-portfolio-guide",
+          "type": "article"
+        },
+        {
+          "title": "Interviewing for Platform Engineering Roles",
+          "url": "https://www.example.com/platform-engineer-interview-prep",
+          "type": "article"
+        },
+        {
+          "title": "Kubernetes for Platform Engineers (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+          "type": "video"
+        },
+        {
+          "title": "Backstage Tutorial (Spotify)",
+          "url": "https://www.youtube.com/watch?v=85TQEpNCaU0",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/platform_engineer/pe_capstone_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "pe_capstone_project_implementation",
+          "name": "Capstone Project: Build a Golden Path IDP",
+          "tag": "advanced",
+          "description": "Design and implement a complete Internal Developer Platform, including IaC for infrastructure, a Backstage instance with custom templates, CI/CD pipelines, integrated observability, and secure deployments. Document architecture and operational procedures.",
+          "resources": [
+            {
+              "title": "Example: Building an IDP with Backstage, Kubernetes, and Terraform",
+              "url": "https://www.example.com/idp-capstone-project-walkthrough",
+              "type": "course"
+            },
+            {
+              "title": "Cloud Native Buildpacks for Reproducible Builds",
+              "url": "https://buildpacks.io/docs/concepts/overview/",
+              "type": "article"
+            },
+            {
+              "title": "GitOps with ArgoCD (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Crossplane Tutorial (DevOps Toolkit)",
+              "url": "https://www.youtube.com/watch?v=AjLkqBTssfk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_capstone_project_implementation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_documentation_communication",
+          "name": "Technical Documentation & Communication",
+          "tag": "advanced",
+          "description": "Develop strong technical writing skills for documentation, runbooks, architecture diagrams (e.g., C4 Model), and incident reports. Practice presenting complex technical concepts clearly to both technical and non-technical audiences.",
+          "resources": [
+            {
+              "title": "The Art of Documentation - A Developer's Guide",
+              "url": "https://www.writethedocs.org/guide/",
+              "type": "article"
+            },
+            {
+              "title": "C4 Model for Software Architecture",
+              "url": "https://c4model.com/",
+              "type": "article"
+            },
+            {
+              "title": "Terraform for Platform Teams (HashiCorp)",
+              "url": "https://www.youtube.com/watch?v=SLB_c_ayRMo",
+              "type": "video"
+            },
+            {
+              "title": "Platform as a Product (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=VjM5KrmBiNE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_documentation_communication.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "pe_career_readiness_interview_prep",
+          "name": "Career Readiness & Interview Preparation",
+          "tag": "advanced",
+          "description": "Refine your resume, create impactful case studies from your projects, prepare for technical interviews (system design, troubleshooting, coding challenges), behavioral questions, and effectively network within the platform engineering community.",
+          "resources": [
+            {
+              "title": "Platform Engineer Interview Questions (Example Set)",
+              "url": "https://www.example.com/platform-engineer-interview-questions",
+              "type": "article"
+            },
+            {
+              "title": "Platform Engineering Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=ghzsBm8vOms",
+              "type": "video"
+            },
+            {
+              "title": "Internal Developer Platform (Humanitec)",
+              "url": "https://www.youtube.com/watch?v=DGqJIhLCt3M",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/platform_engineer/pe_career_readiness_interview_prep.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

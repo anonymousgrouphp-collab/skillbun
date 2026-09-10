@@ -1,0 +1,421 @@
+'use client';
+
+import { useEffect, useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { useAuth } from '../components/AuthProvider';
+import WorkspaceSidebar from '../components/WorkspaceSidebar';
+import styles from './settings.module.css';
+
+function SettingsContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isUnsubscribeAction =
+    searchParams.get('action') === 'unsubscribe' || searchParams.get('unsubscribe') === '1';
+  const queryEmail = (searchParams.get('email') || '').trim();
+
+  const {
+    user,
+    profile,
+    authLoading,
+    profileLoading,
+    isProfileComplete,
+    resetPassword,
+    resendVerification,
+    deleteAccount,
+  } = useAuth();
+
+  const [status, setStatus] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  // Email Unsubscribe state
+  const [customUnsubscribeEmail, setCustomUnsubscribeEmail] = useState('');
+  const unsubscribeEmail = customUnsubscribeEmail || queryEmail || user?.email || '';
+  const [isUnsubscribed, setIsUnsubscribed] = useState(false);
+  const [unsubStatus, setUnsubStatus] = useState('');
+  const [unsubLoading, setUnsubLoading] = useState(false);
+
+  // Handle Unsubscribe Action from Email Footer Link
+  useEffect(() => {
+    if (!queryEmail) return;
+
+    fetch(`/api/unsubscribe?email=${encodeURIComponent(queryEmail)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.unsubscribed) {
+          setIsUnsubscribed(true);
+        }
+      })
+      .catch(() => {});
+  }, [queryEmail]);
+
+  // Standard authentication gate redirect
+  useEffect(() => {
+    if (isUnsubscribeAction) return;
+
+    if (!authLoading && !user) {
+      router.replace('/auth?next=/settings');
+      return;
+    }
+
+    if (!authLoading && !profileLoading && user && !isProfileComplete) {
+      router.replace('/onboarding?next=/settings');
+    }
+  }, [authLoading, isProfileComplete, isUnsubscribeAction, profileLoading, router, user]);
+
+  const handleUnsubscribeToggle = async (action = 'unsubscribe') => {
+    const target = unsubscribeEmail || user?.email;
+    if (!target || !target.includes('@')) {
+      setUnsubStatus('❌ Please enter a valid email address.');
+      return;
+    }
+
+    setUnsubLoading(true);
+    setUnsubStatus('');
+
+    try {
+      const res = await fetch('/api/unsubscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: target, action }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setIsUnsubscribed(action === 'unsubscribe');
+        setUnsubStatus(data.message);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('sb_email_unsubscribed', action === 'unsubscribe' ? 'true' : 'false');
+        }
+      } else {
+        setUnsubStatus(`❌ ${data.error || 'Failed to update preferences.'}`);
+      }
+    } catch (err) {
+      setUnsubStatus(`❌ ${err.message || 'Network error updating email preferences.'}`);
+    } finally {
+      setUnsubLoading(false);
+    }
+  };
+
+  // If visitor clicked Unsubscribe link from email (public access, no login wall required)
+  if (isUnsubscribeAction) {
+    return (
+      <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
+        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📧</div>
+        <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0 }}>
+          SkillBun Email Preference Center
+        </h1>
+        <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+          Manage your email notifications and marketing updates for SkillBun.
+        </p>
+
+        {unsubStatus && (
+          <div style={{ padding: '0.8rem 1rem', borderRadius: '10px', background: 'var(--green-subtle)', color: 'var(--green)', border: '1px solid var(--green)', fontWeight: '700', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            {unsubStatus}
+          </div>
+        )}
+
+        <div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '12px', padding: '1.5rem', marginBottom: '1.5rem', textAlign: 'left' }}>
+          <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', color: 'var(--muted)', marginBottom: '0.5rem' }}>
+            Email Address:
+          </label>
+          <input
+            type="email"
+            value={unsubscribeEmail}
+            onChange={(e) => setCustomUnsubscribeEmail(e.target.value)}
+            placeholder="Enter your registered email..."
+            style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border)', background: 'var(--card-bg)', color: 'var(--text)', fontSize: '0.9rem', outline: 'none', boxSizing: 'border-box' }}
+          />
+
+          <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text)' }}>
+            <strong>Status:</strong> {isUnsubscribed ? <span style={{ color: '#ef4444', fontWeight: '800' }}>Unsubscribed from Marketing Emails</span> : <span style={{ color: 'var(--green)', fontWeight: '800' }}>Active Subscriber</span>}
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          {isUnsubscribed ? (
+            <button
+              onClick={() => handleUnsubscribeToggle('resubscribe')}
+              disabled={unsubLoading}
+              className="btn-primary"
+              style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', fontWeight: '700', cursor: 'pointer' }}
+            >
+              {unsubLoading ? 'Saving...' : '🔔 Re-Enable Email Notifications'}
+            </button>
+          ) : (
+            <button
+              onClick={() => handleUnsubscribeToggle('unsubscribe')}
+              disabled={unsubLoading}
+              style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', border: '1px solid #ef4444', fontWeight: '800', cursor: 'pointer' }}
+            >
+              {unsubLoading ? 'Updating...' : '🔕 Unsubscribe from Marketing Emails'}
+            </button>
+          )}
+          <Link href="/" className="btn-secondary" style={{ padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '600' }}>
+            Return to SkillBun
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (authLoading || profileLoading || !profile.hydrated || !user || !isProfileComplete) {
+    return (
+      <div style={{ opacity: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>
+        Loading Settings...
+      </div>
+    );
+  }
+
+  const isGoogle = Array.isArray(profile.providers) && profile.providers.includes('google.com');
+  const providerLabel = isGoogle ? 'Google Account' : 'Email & Password';
+
+  async function handlePasswordReset() {
+    setError('');
+    setStatus('');
+    setLoading(true);
+
+    try {
+      await resetPassword(user.email);
+      setStatus('Password reset email sent. Please check your inbox.');
+    } catch (err) {
+      if (err.code === 'auth/too-many-requests') {
+        setError('Too many requests. Please wait a bit before trying again.');
+      } else {
+        setError(err.message || 'Could not send password reset email.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleResendVerification() {
+    setError('');
+    setStatus('');
+    setLoading(true);
+
+    try {
+      await resendVerification();
+      setStatus('Verification email sent successfully.');
+    } catch (err) {
+      setError(err.message || 'Could not send verification email.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleDeleteAccount() {
+    setError('');
+    setStatus('');
+    setLoading(true);
+    setShowDeleteModal(false);
+
+    try {
+      await deleteAccount();
+    } catch (err) {
+      if (err.code === 'auth/requires-recent-login') {
+        setError('🔒 Security check: Please log out and log back in, then immediately delete your account.');
+      } else {
+        setError(err.message || 'Could not delete your account. Please try again.');
+      }
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className={styles.settingsPage}>
+      <WorkspaceSidebar />
+      <main className={styles.settingsContainer}>
+        <div className={styles.settingsHeader}>
+          <h1 className={styles.title}>Account Settings</h1>
+          <p className={styles.subtitle}>Manage your login methods, email preferences, and security.</p>
+        </div>
+
+        {status && <div className={styles.statusBanner}>{status}</div>}
+        {error && <div className={styles.errorBanner}>{error}</div>}
+
+        {/* SECTION 1: Account Information */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>Account Overview</h2>
+          <div className={styles.infoGrid}>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Full Name</span>
+              <span className={styles.value}>{profile.name || user.displayName || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Email Address</span>
+              <span className={styles.value}>
+                {user.email}
+                {user.emailVerified ? (
+                  <span className={styles.badgeSuccess}>Verified</span>
+                ) : (
+                  <span className={styles.badgeWarning}>Unverified</span>
+                )}
+              </span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Sign-in Method</span>
+              <span className={styles.value}>{providerLabel}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Degree / Program</span>
+              <span className={styles.value}>{profile.degree || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Current Year</span>
+              <span className={styles.value}>{profile.year || 'Not Set'}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Area of Interest</span>
+              <span className={styles.value}>{profile.interest || 'Not Specified'}</span>
+            </div>
+          </div>
+
+          <div className={styles.actionRow} style={{ marginTop: '1.25rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Link
+              href="/onboarding?next=/settings&edit=1"
+              className={styles.btnSecondary}
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+              </svg>
+              Edit Profile Details
+            </Link>
+
+            {!user.emailVerified && !isGoogle && (
+              <button
+                onClick={handleResendVerification}
+                disabled={loading}
+                className={styles.btnSecondary}
+              >
+                {loading ? 'Sending...' : 'Resend Email Verification'}
+              </button>
+            )}
+          </div>
+        </section>
+
+        {/* SECTION 2: Email Notification Preferences */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>📧 Email Notification Preferences</h2>
+          <p className={styles.cardSubtitle} style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: '1rem' }}>
+            Control whether you receive career roadmap nudges, cert updates, and learning reminders.
+          </p>
+
+          {unsubStatus && (
+            <div style={{ padding: '0.6rem 1rem', borderRadius: '8px', background: 'var(--green-subtle)', color: 'var(--green)', border: '1px solid var(--green)', fontWeight: '700', fontSize: '0.85rem', marginBottom: '1rem' }}>
+              {unsubStatus}
+            </div>
+          )}
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-raised)', padding: '1rem 1.25rem', borderRadius: '10px', border: '1px solid var(--border)' }}>
+            <div>
+              <strong style={{ display: 'block', fontSize: '0.9rem', color: 'var(--text)' }}>
+                Marketing & Retention Emails
+              </strong>
+              <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
+                Roadmap streak reminders, exam readiness nudges, and new track releases.
+              </span>
+            </div>
+
+            <button
+              type="button"
+              disabled={unsubLoading}
+              onClick={() => handleUnsubscribeToggle(isUnsubscribed ? 'resubscribe' : 'unsubscribe')}
+              style={{
+                cursor: 'pointer',
+                padding: '0.5rem 1rem',
+                borderRadius: '8px',
+                background: isUnsubscribed ? 'var(--green-subtle)' : 'rgba(239,68,68,0.12)',
+                color: isUnsubscribed ? 'var(--green)' : '#ef4444',
+                border: `1px solid ${isUnsubscribed ? 'var(--green)' : '#ef4444'}`,
+                fontWeight: '700',
+                fontSize: '0.82rem',
+              }}
+            >
+              {unsubLoading ? 'Updating...' : isUnsubscribed ? '🔔 Enable Emails' : '🔕 Unsubscribe'}
+            </button>
+          </div>
+        </section>
+
+        {/* SECTION 3: Password & Security */}
+        {!isGoogle && (
+          <section className={styles.card}>
+            <h2 className={styles.cardTitle}>Password & Security</h2>
+            <p className={styles.cardSubtitle}>
+              Request a secure password reset link sent directly to <strong>{user.email}</strong>.
+            </p>
+            <div className={styles.actionRow}>
+              <button
+                onClick={handlePasswordReset}
+                disabled={loading}
+                className={styles.btnSecondary}
+              >
+                {loading ? 'Sending...' : 'Send Password Reset Email'}
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* SECTION 4: Danger Zone */}
+        <section className={`${styles.card} ${styles.dangerZone}`}>
+          <h2 className={styles.cardTitleDanger}>Danger Zone</h2>
+          <p className={styles.cardSubtitle}>
+            Permanently delete your SkillBun profile, roadmap progress, and account data.
+          </p>
+          <div className={styles.actionRow}>
+            <button
+              onClick={() => setShowDeleteModal(true)}
+              className={styles.btnDanger}
+              disabled={loading}
+            >
+              Delete My Account
+            </button>
+          </div>
+        </section>
+
+        {/* Delete Confirmation Modal */}
+        {showDeleteModal && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h3 className={styles.modalTitle}>Delete Account?</h3>
+              <p className={styles.modalText}>
+                Are you sure you want to permanently delete your account (<strong>{user.email}</strong>)? All of your roadmap progress, certificates, and profile data will be permanently erased.
+              </p>
+              <div className={styles.modalActions}>
+                <button
+                  onClick={() => setShowDeleteModal(false)}
+                  className={styles.btnSecondary}
+                  disabled={loading}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteAccount}
+                  className={styles.btnDanger}
+                  disabled={loading}
+                >
+                  {loading ? 'Deleting...' : 'Yes, Delete Account'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ opacity: 1, display: 'flex', minHeight: '100vh', paddingTop: '60px', alignItems: 'center', justifyContent: 'center', color: 'var(--text)' }}>
+        Loading Settings...
+      </div>
+    }>
+      <SettingsContent />
+    </Suspense>
+  );
+}

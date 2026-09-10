@@ -1,0 +1,1701 @@
+{
+  "id": "macos_developer",
+  "title": "macOS Developer",
+  "description": "Craft high-performance, native Mac software using Swift, AppKit, SwiftUI, Apple Silicon optimizations, and macOS system frameworks.",
+  "goal": {
+    "objective": "Build native macOS applications that embrace the Mac interface paradigms, menu bar workflows, Apple Silicon optimizations, and security sandboxing.",
+    "salary": "$90,000 - $155,000 / yr (₹7.5 - ₹24 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 90000,
+        "max": 155000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 7.5,
+        "max": 24,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Junior to Senior (1 - 5+ Years)",
+    "target_roles": [
+      "macOS Developer",
+      "Apple Systems Engineer",
+      "Desktop Software Developer"
+    ],
+    "career_pillars": [
+      "AppKit & SwiftUI Mac Interactivity",
+      "App Sandboxing & Entitlements",
+      "macOS Performance & Apple Silicon Tuning"
+    ]
+  },
+  "learn": {
+    "summary": "Master Swift on macOS, AppKit fundamentals, SwiftUI for Mac, menu bar apps, window management, drag-and-drop protocols, sandboxing security, and notarization.",
+    "key_competencies": [
+      "Swift on macOS & Apple Silicon Architecture",
+      "AppKit Controls (NSWindow, NSView, NSMenu)",
+      "SwiftUI Mac-Specific Adaptations",
+      "App Sandbox, File Security Scopes & Notarization",
+      "System Extensions & Background Services"
+    ],
+    "prerequisites": [
+      "Swift language proficiency",
+      "Mac user familiarity",
+      "Xcode environment knowledge"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Menu Bar Developer Utility & Clipboard History",
+        "tech_stack": [
+          "Swift",
+          "SwiftUI",
+          "AppKit",
+          "Core Data"
+        ],
+        "description": "Develop a menu bar companion app capturing clipboard history with global hotkeys, search, and encrypted local storage."
+      },
+      {
+        "title": "Native System Monitor & Menu Bar Utility for Apple Silicon",
+        "tech_stack": [
+          "Swift",
+          "AppKit",
+          "SwiftUI",
+          "IOKit",
+          "Metal"
+        ],
+        "description": "Develop a lightweight native macOS status bar app displaying per-core CPU telemetry, GPU memory metrics, and fan speeds with Apple Silicon optimizations."
+      }
+    ],
+    "interview_focus": [
+      "AppKit vs SwiftUI Tradeoffs on macOS",
+      "Sandbox Security Scopes & File Bookmarks",
+      "Global Hotkey Interception & Accessibility Permissions",
+      "Apple Notarization & Code Signing Requirements"
+    ],
+    "certifications": [
+      "Apple Certified Swift Developer",
+      "Meta iOS Developer Professional Certificate"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "macos_dev_foundations",
+      "name": "macOS Development Foundations",
+      "tag": "essential",
+      "description": "Establish a strong base in Swift programming, understand the macOS ecosystem, and master essential development tools and command-line utilities.",
+      "resources": [
+        {
+          "title": "The Swift Programming Language Guide",
+          "url": "https://docs.swift.org/swift-book/index.html",
+          "type": "article"
+        },
+        {
+          "title": "Human Interface Guidelines for macOS",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/macos",
+          "type": "article"
+        },
+        {
+          "title": "macOS App Development Tutorial (Sean Allen)",
+          "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+          "type": "video"
+        },
+        {
+          "title": "SwiftUI for macOS (Paul Hudson)",
+          "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_swift_fundamentals",
+          "name": "Swift Language Fundamentals & Modern Patterns",
+          "tag": "essential",
+          "description": "Master Swift syntax, control flow, data types, optionals, functions, closures, protocols, object-oriented/protocol-oriented concepts, and an introduction to modern concurrency (async/await basics).",
+          "resources": [
+            {
+              "title": "A Swift Tour",
+              "url": "https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html",
+              "type": "article"
+            },
+            {
+              "title": "Swift Playgrounds App",
+              "url": "https://www.apple.com/swift/playgrounds/",
+              "type": "article"
+            },
+            {
+              "title": "Concurrency in Swift (Part 1)",
+              "url": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_swift_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_ecosystem_frameworks",
+          "name": "macOS Ecosystem: Architecture & Core Frameworks",
+          "tag": "essential",
+          "description": "Understand macOS architecture, key frameworks like Cocoa and Foundation, the App Sandbox model, and the app lifecycle.",
+          "resources": [
+            {
+              "title": "About the macOS Platform",
+              "url": "https://developer.apple.com/macos/overview/",
+              "type": "article"
+            },
+            {
+              "title": "Cocoa Overview",
+              "url": "https://developer.apple.com/documentation/cocoa/cocoa_overview",
+              "type": "article"
+            },
+            {
+              "title": "Foundation Framework Documentation",
+              "url": "https://developer.apple.com/documentation/foundation",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_ecosystem_frameworks.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_xcode_tooling",
+          "name": "Xcode IDE & Developer Tooling",
+          "tag": "essential",
+          "description": "Become proficient with Xcode for project management, Interface Builder, Swift Package Manager, debugging, profiling, and asset catalog management.",
+          "resources": [
+            {
+              "title": "Getting Started with Xcode",
+              "url": "https://developer.apple.com/xcode/",
+              "type": "article"
+            },
+            {
+              "title": "Managing Dependencies with Swift Package Manager",
+              "url": "https://developer.apple.com/documentation/xcode/managing-dependencies-with-swift-package-manager",
+              "type": "article"
+            },
+            {
+              "title": "Debugging with Xcode",
+              "url": "https://developer.apple.com/documentation/xcode/debugging-your-app",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_xcode_tooling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_git_vcs",
+          "name": "Version Control with Git & Collaboration",
+          "tag": "essential",
+          "description": "Implement standard version control practices using Git, including branching, merging, pull requests, and remote repository management (GitHub/GitLab/Bitbucket).",
+          "resources": [
+            {
+              "title": "Pro Git Book",
+              "url": "https://git-scm.com/book/en/v2",
+              "type": "article"
+            },
+            {
+              "title": "Using Git and GitHub with Xcode",
+              "url": "https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/setting-up-github-desktop/connecting-to-github-with-xcode",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_git_vcs.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_cli_basics",
+          "name": "Command Line Tools & Shell Scripting Basics",
+          "tag": "essential",
+          "description": "Familiarize with essential macOS command-line tools, shell scripting (Bash/Zsh), and utility commands for development workflows.",
+          "resources": [
+            {
+              "title": "Command Line Primer",
+              "url": "https://developer.apple.com/library/archive/documentation/OpenSource/Conceptual/ShellScripting/ShellScripting.html",
+              "type": "article"
+            },
+            {
+              "title": "Homebrew Package Manager",
+              "url": "https://brew.sh/",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_cli_basics.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_ui_frameworks",
+      "name": "Building User Interfaces (SwiftUI & AppKit)",
+      "tag": "essential",
+      "description": "Develop engaging and responsive user interfaces using Apple's modern SwiftUI framework and the mature AppKit for native macOS experiences.",
+      "resources": [
+        {
+          "title": "SwiftUI Documentation",
+          "url": "https://developer.apple.com/documentation/swiftui",
+          "type": "article"
+        },
+        {
+          "title": "AppKit Documentation",
+          "url": "https://developer.apple.com/documentation/appkit",
+          "type": "article"
+        },
+        {
+          "title": "Designing for macOS (HIG)",
+          "url": "https://developer.apple.com/design/human-interface-guidelines/macos",
+          "type": "article"
+        },
+        {
+          "title": "macOS App Development Tutorial (Sean Allen)",
+          "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+          "type": "video"
+        },
+        {
+          "title": "SwiftUI for macOS (Paul Hudson)",
+          "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_ui_frameworks.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_swiftui",
+          "name": "SwiftUI for macOS: Declarative UI & State Management",
+          "tag": "essential",
+          "description": "Build declarative UIs with SwiftUI, understanding views, modifiers, data flow, state management (`@State`, `@Binding`, `@Observable`), property wrappers, and the app lifecycle specific to macOS.",
+          "resources": [
+            {
+              "title": "SwiftUI Tutorials for macOS",
+              "url": "https://developer.apple.com/tutorials/swiftui",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_swiftui.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_appkit_fundamentals",
+          "name": "AppKit Fundamentals: Views, Controllers & Events",
+          "tag": "essential",
+          "description": "Learn the Cocoa framework, focusing on AppKit's architecture, views (`NSView`), view controllers (`NSViewController`), window management (`NSWindow`), and event handling for traditional macOS apps.",
+          "resources": [
+            {
+              "title": "App Programming Guide for macOS",
+              "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/AppPrograms/AppPrograms.html",
+              "type": "article"
+            },
+            {
+              "title": "Using Views in AppKit Apps",
+              "url": "https://developer.apple.com/documentation/appkit/views_and_controls/using_views_in_appkit_apps",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_appkit_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_swiftui_appkit_bridge",
+          "name": "Bridging SwiftUI and AppKit: Interoperability",
+          "tag": "advanced",
+          "description": "Integrate SwiftUI views into AppKit applications and vice versa using `NSHostingController`, `NSViewRepresentable`, and `NSViewControllerRepresentable` to leverage both frameworks.",
+          "resources": [
+            {
+              "title": "NSViewRepresentable Documentation",
+              "url": "https://developer.apple.com/documentation/swiftui/nsviewrepresentable",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_swiftui_appkit_bridge.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_common_ui_controls",
+          "name": "Common macOS UI Controls & Layouts",
+          "tag": "essential",
+          "description": "Implement standard macOS UI elements: buttons, text fields, labels, sliders, table views, collection views, outlines, and master adaptive layouts with stacks and grids.",
+          "resources": [
+            {
+              "title": "macOS UI Kit: Controls",
+              "url": "https://developer.apple.com/design/human-interface-guidelines/macos/controls/buttons",
+              "type": "article"
+            },
+            {
+              "title": "Working with Stacks in SwiftUI",
+              "url": "https://www.hackingwithswift.com/quick-start/swiftui/how-to-arrange-views-in-a-grid-using-lazyvgrid-and-lazyhgrid",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_common_ui_controls.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_app_structure_patterns",
+          "name": "macOS App Structure Patterns: Windows, Sidebars, Tabs",
+          "tag": "essential",
+          "description": "Design and implement common app navigation and organization patterns: multiple windows, sidebars (`NSSplitViewController`, `NavigationView`), tab views (`NSTabViewController`), and sheets/popovers.",
+          "resources": [
+            {
+              "title": "Creating a Document-Based App",
+              "url": "https://developer.apple.com/tutorials/appkit/document-based-apps",
+              "type": "article"
+            },
+            {
+              "title": "Adding a Sidebar to Your App",
+              "url": "https://developer.apple.com/documentation/swiftui/adding-a-sidebar-to-your-app",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_app_structure_patterns.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_menubar_status_items",
+          "name": "Menu Bar Apps & Status Bar Integration",
+          "tag": "advanced",
+          "description": "Develop applications that reside primarily in the menu bar, including status bar items (`NSStatusItem`) and custom menu integration.",
+          "resources": [
+            {
+              "title": "Adding a menu to your app",
+              "url": "https://developer.apple.com/documentation/appkit/menus_and_pop-up_buttons/adding_a_menu_to_your_app",
+              "type": "article"
+            },
+            {
+              "title": "Creating a Status Bar App (Tutorial)",
+              "url": "https://www.raywenderlich.com/6045-creating-a-status-bar-app",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_menubar_status_items.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_preferences_settings",
+          "name": "Preferences & Settings Windows",
+          "tag": "essential",
+          "description": "Implement user preferences and settings interfaces, typically within a dedicated preferences window, utilizing `UserDefaults` for storage.",
+          "resources": [
+            {
+              "title": "Creating a preferences window in SwiftUI",
+              "url": "https://www.hackingwithswift.com/quick-start/swiftui/how-to-create-a-preferences-window",
+              "type": "article"
+            },
+            {
+              "title": "Using NSUserDefaults in AppKit",
+              "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/UserDefaults.html",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_preferences_settings.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_data_persistence",
+      "name": "Data Management and Persistence",
+      "tag": "essential",
+      "description": "Implement various strategies for storing, retrieving, and managing application data on macOS, from simple preferences to complex databases and cloud solutions.",
+      "resources": [
+        {
+          "title": "About Data Management",
+          "url": "https://developer.apple.com/documentation/technologies/data_management/",
+          "type": "article"
+        },
+        {
+          "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+          "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+          "type": "video"
+        },
+        {
+          "title": "Core Data Tutorial (CodeWithChris)",
+          "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_data_persistence.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_userdefaults",
+          "name": "User Defaults: Application Preferences",
+          "tag": "essential",
+          "description": "Store small amounts of user-specific data, application preferences, and settings using `UserDefaults` and `@AppStorage` in SwiftUI.",
+          "resources": [
+            {
+              "title": "UserDefaults Documentation",
+              "url": "https://developer.apple.com/documentation/foundation/userdefaults",
+              "type": "article"
+            },
+            {
+              "title": "How to save and load data with @AppStorage",
+              "url": "https://www.hackingwithswift.com/quick-start/swiftui/how-to-save-and-load-data-with-appstorage",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_userdefaults.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_file_system",
+          "name": "File System Operations & App Groups",
+          "tag": "essential",
+          "description": "Read, write, and manage files and directories, understanding file URLs, paths, sandboxing implications, and shared data via App Groups with `FileManager`.",
+          "resources": [
+            {
+              "title": "FileManager Documentation",
+              "url": "https://developer.apple.com/documentation/foundation/filemanager",
+              "type": "article"
+            },
+            {
+              "title": "Accessing the File System (App Sandbox)",
+              "url": "https://developer.apple.com/documentation/security/app_sandbox/accessing_the_file_system",
+              "type": "article"
+            },
+            {
+              "title": "Configuring App Groups",
+              "url": "https://developer.apple.com/documentation/xcode/configuring-app-groups",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_file_system.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_swift_codable",
+          "name": "Swift Codable: Serialization & Deserialization",
+          "tag": "essential",
+          "description": "Efficiently encode and decode custom data types to and from external representations like JSON and Property Lists using Swift's `Codable` protocol.",
+          "resources": [
+            {
+              "title": "Encoding and Decoding Custom Types",
+              "url": "https://docs.swift.org/swift-book/documentation/theswiftprogramminglanguage/encodinganddecodingcustomtypes/",
+              "type": "article"
+            },
+            {
+              "title": "JSONEncoder and JSONDecoder Documentation",
+              "url": "https://developer.apple.com/documentation/foundation/jsonencoder",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_swift_codable.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_core_data",
+          "name": "Core Data: Object Graph Persistence",
+          "tag": "advanced",
+          "description": "Persist complex object graphs using Core Data, understanding managed objects, contexts, relationships, fetching, saving, and migrations.",
+          "resources": [
+            {
+              "title": "Core Data Documentation",
+              "url": "https://developer.apple.com/documentation/coredata",
+              "type": "article"
+            },
+            {
+              "title": "Core Data Tutorial for iOS & macOS",
+              "url": "https://www.raywenderlich.com/7569-core-data-tutorial-for-ios-macos",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_core_data.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_swiftdata",
+          "name": "SwiftData: Declarative Data Persistence for SwiftUI",
+          "tag": "advanced",
+          "description": "Leverage the modern SwiftData framework for declarative and efficient data persistence directly integrated with SwiftUI applications.",
+          "resources": [
+            {
+              "title": "SwiftData Documentation",
+              "url": "https://developer.apple.com/documentation/swiftdata",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_swiftdata.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_cloudkit_icloud",
+          "name": "CloudKit & iCloud Integration",
+          "tag": "advanced",
+          "description": "Integrate iCloud capabilities, including iCloud Drive, CloudKit for structured data storage, and `NSUbiquitousKeyValueStore` for small key-value data synchronization across devices.",
+          "resources": [
+            {
+              "title": "CloudKit Documentation",
+              "url": "https://developer.apple.com/documentation/cloudkit",
+              "type": "article"
+            },
+            {
+              "title": "iCloud Design Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Introduction/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_cloudkit_icloud.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_advanced_features",
+      "name": "Advanced macOS Features and System Integration",
+      "tag": "advanced",
+      "description": "Explore sophisticated macOS functionalities, integrate deeply with the operating system, and build powerful, interconnected applications.",
+      "resources": [
+        {
+          "title": "App Extensions Documentation",
+          "url": "https://developer.apple.com/documentation/xcode/creating_an_app_extension",
+          "type": "article"
+        },
+        {
+          "title": "Concurrency in Swift",
+          "url": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+          "type": "article"
+        },
+        {
+          "title": "macOS App Development Tutorial (Sean Allen)",
+          "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+          "type": "video"
+        },
+        {
+          "title": "SwiftUI for macOS (Paul Hudson)",
+          "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_advanced_features.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_concurrency_deepdive",
+          "name": "Concurrency: Async/Await, GCD & Operations (Deep Dive)",
+          "tag": "advanced",
+          "description": "Master advanced concurrent programming techniques using Swift's async/await, Structured Concurrency, Grand Central Dispatch (GCD), and OperationQueues for responsive and efficient apps.",
+          "resources": [
+            {
+              "title": "Grand Central Dispatch (GCD) Documentation",
+              "url": "https://developer.apple.com/documentation/dispatch",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_concurrency_deepdive.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_network_programming",
+          "name": "Network Programming: URLSession & Web Services",
+          "tag": "advanced",
+          "description": "Implement robust network communication using `URLSession` for REST APIs, data fetching, file uploads/downloads, and understand JSON parsing with Codable.",
+          "resources": [
+            {
+              "title": "URLSession Documentation",
+              "url": "https://developer.apple.com/documentation/foundation/urlsession",
+              "type": "article"
+            },
+            {
+              "title": "Fetching URL data in SwiftUI",
+              "url": "https://www.hackingwithswift.com/quick-start/swiftui/how-to-fetch-url-data-with-urlsession-and-codable",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_network_programming.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_notifications_background",
+          "name": "User Notifications & Background Tasks",
+          "tag": "advanced",
+          "description": "Implement local and remote user notifications (`UserNotifications` framework) and manage background processes efficiently using `BackgroundTasks` for updates and fetches.",
+          "resources": [
+            {
+              "title": "UserNotifications Framework",
+              "url": "https://developer.apple.com/documentation/usernotifications",
+              "type": "article"
+            },
+            {
+              "title": "BackgroundTasks Framework",
+              "url": "https://developer.apple.com/documentation/backgroundtasks",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_notifications_background.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_app_extensions_types",
+          "name": "App Extensions: Share, Finder, Widgets & More",
+          "tag": "advanced",
+          "description": "Create various app extensions to extend app functionality across macOS: Share extensions, Finder Sync extensions, WidgetKit widgets, Action extensions, and System Extensions.",
+          "resources": [
+            {
+              "title": "Creating an App Extension",
+              "url": "https://developer.apple.com/documentation/xcode/creating_an_app_extension",
+              "type": "article"
+            },
+            {
+              "title": "WidgetKit Documentation",
+              "url": "https://developer.apple.com/documentation/widgetkit",
+              "type": "article"
+            },
+            {
+              "title": "Finder Sync Extensions",
+              "url": "https://developer.apple.com/documentation/coreservices/finder_sync_extensions",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_app_extensions_types.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_ipc_xpc",
+          "name": "Inter-Process Communication (XPC Services)",
+          "tag": "advanced",
+          "description": "Understand and implement secure communication between different processes within a macOS application using XPC services for sandboxed apps and privileged operations.",
+          "resources": [
+            {
+              "title": "XPC Services Documentation",
+              "url": "https://developer.apple.com/documentation/xpc",
+              "type": "article"
+            },
+            {
+              "title": "Building a secure XPC service for your macOS app",
+              "url": "https://blog.eidinger.info/building-a-secure-xpc-service-for-your-macos-app",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_ipc_xpc.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_scripting_automation",
+          "name": "Scripting & Automation (AppleScript, Shortcuts)",
+          "tag": "advanced",
+          "description": "Enable your application to be scriptable via AppleScript and integrate with the Shortcuts app and Automator for powerful user automation workflows.",
+          "resources": [
+            {
+              "title": "AppleScript Language Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html",
+              "type": "article"
+            },
+            {
+              "title": "Integrate your app with Shortcuts",
+              "url": "https://developer.apple.com/documentation/shortcuts",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_scripting_automation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_hardware_system_access",
+          "name": "Interacting with Hardware & System Services",
+          "tag": "advanced",
+          "description": "Work with various system services and hardware components like Camera, Microphone (`AVFoundation`), Location Services (`CoreLocation`), Bluetooth (`CoreBluetooth`), and USB devices.",
+          "resources": [
+            {
+              "title": "AVFoundation Documentation",
+              "url": "https://developer.apple.com/documentation/avfoundation",
+              "type": "article"
+            },
+            {
+              "title": "CoreLocation Documentation",
+              "url": "https://developer.apple.com/documentation/corelocation",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_hardware_system_access.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_quality_security",
+      "name": "Quality, Performance, and Security",
+      "tag": "advanced",
+      "description": "Ensure applications are robust, performant, accessible, and secure according to industry best practices and Apple's platform guidelines.",
+      "resources": [
+        {
+          "title": "Writing Automated Tests in Xcode",
+          "url": "https://developer.apple.com/documentation/xcode/writing-automated-tests-in-xcode",
+          "type": "article"
+        },
+        {
+          "title": "App Sandbox Design Guide",
+          "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/Introduction.html",
+          "type": "article"
+        },
+        {
+          "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+          "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+          "type": "video"
+        },
+        {
+          "title": "Core Data Tutorial (CodeWithChris)",
+          "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_quality_security.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_testing",
+          "name": "Testing: Unit, UI, & Integration",
+          "tag": "advanced",
+          "description": "Write comprehensive unit, UI, and integration tests using XCTest, focusing on testable architectures (MVVM, VIPER, TCA) and test automation to ensure code quality and prevent regressions.",
+          "resources": [
+            {
+              "title": "XCTest Documentation",
+              "url": "https://developer.apple.com/documentation/xctest",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_testing.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_debug_profile",
+          "name": "Debugging & Performance Profiling",
+          "tag": "advanced",
+          "description": "Master Xcode's debugging tools (breakpoints, view hierarchy debugger, memory graph debugger) and Instruments for in-depth performance analysis, memory leaks, energy usage, and thread issues.",
+          "resources": [
+            {
+              "title": "Instruments User Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_debug_profile.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_sandboxing_privacy",
+          "name": "App Sandboxing, Security & Privacy Manifests",
+          "tag": "advanced",
+          "description": "Implement app sandboxing, manage entitlements, adhere to secure coding practices, protect sensitive user data, and correctly configure privacy manifests for API usage.",
+          "resources": [
+            {
+              "title": "App Sandbox Design Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "Secure Coding Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/SecureCodingGuide/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_sandboxing_privacy.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_accessibility",
+          "name": "Accessibility: Inclusive App Design",
+          "tag": "essential",
+          "description": "Design and implement applications that are usable by everyone, focusing on VoiceOver, keyboard navigation, reduced motion, contrast, and other accessibility features for a diverse user base.",
+          "resources": [
+            {
+              "title": "Accessibility for macOS Apps",
+              "url": "https://developer.apple.com/documentation/appkit/accessibility_for_macos_apps",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_accessibility.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_localization",
+          "name": "Localization & Internationalization",
+          "tag": "advanced",
+          "description": "Adapt applications for different languages and regions, including string internationalization, pluralization rules, date/number formatting, and asset localization for global audiences.",
+          "resources": [
+            {
+              "title": "Internationalization and Localization Guide",
+              "url": "https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/BPInternational.html",
+              "type": "article"
+            },
+            {
+              "title": "Localizing your app with Xcode",
+              "url": "https://developer.apple.com/documentation/xcode/localizing_your_app_with_xcode",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_localization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_performance_optimization",
+          "name": "Performance Optimization Techniques",
+          "tag": "advanced",
+          "description": "Optimize application performance by understanding layout and rendering cycles, image caching, energy efficiency, memory management, and responsiveness best practices.",
+          "resources": [
+            {
+              "title": "Profiling with Xcode and Instruments",
+              "url": "https://www.kodeco.com/26456729-profiling-with-xcode-and-instruments",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_performance_optimization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_error_handling_logging",
+          "name": "Robust Error Handling & Logging",
+          "tag": "advanced",
+          "description": "Implement robust error handling strategies (do-catch, Result type, custom errors) and effective logging (`OSLog`, third-party solutions) for diagnostics and debugging.",
+          "resources": [
+            {
+              "title": "Error Handling in Swift",
+              "url": "https://docs.swift.org/swift-book/documentation/theswiftprogramminglanguage/errorhandling/",
+              "type": "article"
+            },
+            {
+              "title": "Logging in Swift with OSLog",
+              "url": "https://developer.apple.com/documentation/oslog",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_error_handling_logging.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_deployment_distribution",
+      "name": "Deployment, Distribution, and Maintenance",
+      "tag": "advanced",
+      "description": "Prepare, package, and distribute macOS applications efficiently, then manage their lifecycle, updates, and monitoring post-release.",
+      "resources": [
+        {
+          "title": "Distribute your app for beta testing and release",
+          "url": "https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-release",
+          "type": "article"
+        },
+        {
+          "title": "App Store Connect Documentation",
+          "url": "https://developer.apple.com/documentation/appstoreconnectapi",
+          "type": "article"
+        },
+        {
+          "title": "Swift Programming Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+          "type": "video"
+        },
+        {
+          "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+          "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_deployment_distribution.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_codesigning_notarization",
+          "name": "Code Signing & Notarization for Gatekeeper",
+          "tag": "essential",
+          "description": "Understand Apple Developer Program requirements, apply correct code signing (Developer ID, Mac App Store), and notarize your app for Gatekeeper approval to run securely on macOS.",
+          "resources": [
+            {
+              "title": "Notarizing macOS software before distribution",
+              "url": "https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution",
+              "type": "article"
+            },
+            {
+              "title": "Code Signing Overview",
+              "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_codesigning_notarization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_appstore_connect",
+          "name": "Mac App Store & Developer ID Distribution",
+          "tag": "advanced",
+          "description": "Prepare app listings, manage versions, and submit applications to the Mac App Store. Understand Developer ID distribution for apps outside the App Store and manage beta testing with TestFlight.",
+          "resources": [
+            {
+              "title": "Distributing on the Mac App Store",
+              "url": "https://developer.apple.com/macos/distribution/",
+              "type": "article"
+            },
+            {
+              "title": "Distributing your app for beta testing with TestFlight",
+              "url": "https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-release",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_appstore_connect.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_cicd",
+          "name": "Continuous Integration/Continuous Delivery (CI/CD)",
+          "tag": "advanced",
+          "description": "Set up automated build, test, and deployment pipelines using tools like Xcode Cloud, Fastlane, or Jenkins to streamline release cycles and ensure quality.",
+          "resources": [
+            {
+              "title": "Xcode Cloud Documentation",
+              "url": "https://developer.apple.com/xcode-cloud/",
+              "type": "article"
+            },
+            {
+              "title": "Fastlane Documentation",
+              "url": "https://docs.fastlane.tools/",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_cicd.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_inapp_purchases",
+          "name": "In-App Purchases & Subscriptions",
+          "tag": "advanced",
+          "description": "Integrate StoreKit for various monetization strategies, including consumable, non-consumable in-app purchases, auto-renewable subscriptions, and non-renewing subscriptions.",
+          "resources": [
+            {
+              "title": "StoreKit Documentation",
+              "url": "https://developer.apple.com/documentation/storekit",
+              "type": "article"
+            },
+            {
+              "title": "Implementing In-App Purchases with StoreKit 2",
+              "url": "https://www.hackingwithswift.com/books/ios-swiftui/implementing-in-app-purchases-with-storekit-2",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_inapp_purchases.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_external_updates",
+          "name": "External Software Update Mechanisms",
+          "tag": "advanced",
+          "description": "Implement or integrate third-party frameworks like Sparkle for automatic software updates in applications distributed outside the Mac App Store.",
+          "resources": [
+            {
+              "title": "Sparkle Framework",
+              "url": "https://sparkle-project.org/",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_external_updates.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_crash_analytics_monitoring",
+          "name": "Crash Reporting, Analytics & Monitoring",
+          "tag": "advanced",
+          "description": "Integrate crash reporting services (e.g., Firebase Crashlytics, Sentry) and analytics (e.g., App Analytics in App Store Connect, custom solutions) to monitor app health, performance, and user engagement.",
+          "resources": [
+            {
+              "title": "Firebase Crashlytics for Apple Platforms",
+              "url": "https://firebase.google.com/docs/crashlytics/get-started?platform=apple",
+              "type": "article"
+            },
+            {
+              "title": "App Analytics in App Store Connect",
+              "url": "https://developer.apple.com/documentation/appstoreconnectapi/app_analytics",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_crash_analytics_monitoring.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_updates_maintenance",
+          "name": "App Updates, Backward Compatibility & Maintenance",
+          "tag": "advanced",
+          "description": "Plan for app updates, manage backward compatibility, handle API deprecations, and establish strategies for ongoing maintenance and support.",
+          "resources": [
+            {
+              "title": "Adopting New APIs and Frameworks",
+              "url": "https://developer.apple.com/documentation/technologies/adopting_new_apis_and_frameworks",
+              "type": "article"
+            },
+            {
+              "title": "Maintaining a Legacy macOS App (Article)",
+              "url": "https://mjtsai.com/blog/2021/01/18/maintaining-a-legacy-macos-app/",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_updates_maintenance.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "macos_dev_portfolio_career",
+      "name": "Portfolio and Career Advancement",
+      "tag": "advanced",
+      "description": "Showcase your skills through compelling projects and prepare effectively for a career as a professional macOS Developer.",
+      "resources": [
+        {
+          "title": "Building Your Software Engineering Portfolio",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-strong-software-engineering-portfolio/",
+          "type": "article"
+        },
+        {
+          "title": "Cracking the Coding Interview",
+          "url": "https://www.amazon.com/Cracking-Coding-Interview-Programing-Questions/dp/0984782850",
+          "type": "article"
+        },
+        {
+          "title": "macOS App Development Tutorial (Sean Allen)",
+          "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+          "type": "video"
+        },
+        {
+          "title": "SwiftUI for macOS (Paul Hudson)",
+          "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/macos_developer/macos_dev_portfolio_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "macos_dev_capstone_project",
+          "name": "Capstone Project: Full macOS Application",
+          "tag": "advanced",
+          "description": "Develop a comprehensive, production-quality macOS application applying all learned concepts, from UI to persistence to distribution readiness. Document your process, challenges, and solutions for a strong portfolio piece.",
+          "resources": [
+            {
+              "title": "Example macOS Open Source Projects on GitHub",
+              "url": "https://github.com/topics/macos-app",
+              "type": "article"
+            },
+            {
+              "title": "Tips for a Great Software Portfolio",
+              "url": "https://blog.hackwagon.com/tips-for-a-great-software-portfolio-232f623630f9",
+              "type": "article"
+            },
+            {
+              "title": "Swift Programming Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=8Xg7E9shq0U",
+              "type": "video"
+            },
+            {
+              "title": "AppKit vs SwiftUI for Mac (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=xM8JaKFD8rA",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_capstone_project.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_interview_prep",
+          "name": "Technical Interview Preparation",
+          "tag": "advanced",
+          "description": "Prepare for technical interviews, focusing on data structures, algorithms, system design, object-oriented design, and macOS-specific questions including Swift, SwiftUI, and AppKit concepts.",
+          "resources": [
+            {
+              "title": "LeetCode for Algorithm Practice",
+              "url": "https://leetcode.com/",
+              "type": "article"
+            },
+            {
+              "title": "Swift Interview Questions",
+              "url": "https://www.raywenderlich.com/643-swift-interview-questions-and-answers",
+              "type": "article"
+            },
+            {
+              "title": "Xcode Tutorial for Beginners (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=HXoVSbwWUIk",
+              "type": "video"
+            },
+            {
+              "title": "Core Data Tutorial (CodeWithChris)",
+              "url": "https://www.youtube.com/watch?v=O7u9nYWjvKk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_interview_prep.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "macos_dev_developer_brand",
+          "name": "Building Your Developer Brand & Networking",
+          "tag": "advanced",
+          "description": "Create a strong online presence through a professional portfolio website, technical blog, active GitHub contributions, and networking within the developer community to attract career opportunities and collaborations.",
+          "resources": [
+            {
+              "title": "How to Build a Powerful Developer Portfolio",
+              "url": "https://dev.to/elvis_e/how-to-build-a-powerful-developer-portfolio-379f",
+              "type": "article"
+            },
+            {
+              "title": "Personal Branding for Developers",
+              "url": "https://www.freecodecamp.org/news/personal-branding-for-developers/",
+              "type": "article"
+            },
+            {
+              "title": "Networking for Developers",
+              "url": "https://www.freecodecamp.org/news/how-to-network-as-a-developer/",
+              "type": "article"
+            },
+            {
+              "title": "macOS App Development Tutorial (Sean Allen)",
+              "url": "https://www.youtube.com/watch?v=GhFi8cISS30",
+              "type": "video"
+            },
+            {
+              "title": "SwiftUI for macOS (Paul Hudson)",
+              "url": "https://www.youtube.com/watch?v=aP-SQXTtWhY",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/macos_developer/macos_dev_developer_brand.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

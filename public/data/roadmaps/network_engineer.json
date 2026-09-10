@@ -1,0 +1,1016 @@
+{
+  "id": "network_engineer",
+  "title": "Network Engineer",
+  "description": "Design, configure, and secure enterprise computer networks: TCP/IP routing, switching, BGP, OSPF, VLANs, firewalls, and SD-WAN.",
+  "goal": {
+    "objective": "Architect, optimize, and secure high-speed local and wide area network infrastructure connecting enterprise data centers and global offices.",
+    "salary": "$75,000 - $135,000 / yr (₹5.5 - ₹20 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 75000,
+        "max": 135000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 5.5,
+        "max": 20,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Entry to Senior (0 - 5+ Years)",
+    "target_roles": [
+      "Network Engineer",
+      "Network Administrator",
+      "Network Security Specialist"
+    ],
+    "career_pillars": [
+      "TCP/IP Protocol Stack & Subnetting",
+      "Dynamic Routing Protocols (BGP, OSPF)",
+      "Network Security (Firewalls, VPNs, Zero Trust)"
+    ]
+  },
+  "learn": {
+    "summary": "Master the OSI model, IPv4/IPv6 subnetting, routing protocols (OSPF, BGP), switching (VLANs, STP), packet inspection with Wireshark, and VPN configuration.",
+    "key_competencies": [
+      "OSI Model & Deep TCP/IP Packet Analysis",
+      "IPv4/IPv6 CIDR Subnetting & Addressing",
+      "Routing Protocols (BGP, OSPF, Static Routes)",
+      "Switching Fundamentals (VLANs, Trunking, STP)",
+      "Wireshark Packet Capture & Network Troubleshooting"
+    ],
+    "prerequisites": [
+      "Basic understanding of internet connectivity",
+      "Elementary computer hardware concepts",
+      "Logical problem-solving skills"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Simulated Enterprise Multi-Site WAN Topology",
+        "tech_stack": [
+          "GNS3/Cisco Packet Tracer",
+          "BGP",
+          "OSPF",
+          "IPsec VPN",
+          "Wireshark"
+        ],
+        "description": "Design an enterprise campus and branch network featuring redundant BGP uplinks, OSPF area segregation, and encrypted IPsec site-to-site tunnels."
+      },
+      {
+        "title": "Software-Defined Network (SD-WAN) Automation with Netmiko & PyEZ",
+        "tech_stack": [
+          "Python",
+          "Netmiko",
+          "NAPALM",
+          "GNS3/EVE-NG",
+          "BGP"
+        ],
+        "description": "Automate configuration templating, ACL deployments, and automated route health verification across multi-vendor network topologies using Python."
+      }
+    ],
+    "certifications": [
+      "Cisco Certified Network Associate (CCNA 200-301)",
+      "CompTIA Network+"
+    ],
+    "interview_focus": [
+      "TCP 3-Way Handshake & 4-Way Termination Details",
+      "Subnetting Calculation Questions (CIDR /26, /27, /28)",
+      "BGP Path Selection Attributes",
+      "Spanning Tree Protocol (STP) Root Bridge Election"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "net_fundamentals",
+      "name": "Networking Fundamentals",
+      "tag": "essential",
+      "description": "Establish a strong understanding of how computer networks function, from physical connections to application-level communication, including core protocols and addressing schemes.",
+      "resources": [
+        {
+          "title": "CompTIA Network+ N10-008 Course (Professor Messer)",
+          "url": "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-comptia-network-plus-course/",
+          "type": "course"
+        },
+        {
+          "title": "Cloudflare Learning Center - Networking",
+          "url": "https://www.cloudflare.com/learning/network-layer/what-is-a-computer-network/",
+          "type": "article"
+        },
+        {
+          "title": "Computer Networking Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+          "type": "video"
+        },
+        {
+          "title": "Networking Fundamentals (NetworkChuck)",
+          "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/network_engineer/net_fundamentals.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "net_osi_tcp_ip_models",
+          "name": "OSI and TCP/IP Models",
+          "tag": "essential",
+          "description": "Understand the historical context, distinct layers, functions, and interrelationships of the OSI and TCP/IP models, including the process of data encapsulation and de-encapsulation across layers and their practical relevance in troubleshooting.",
+          "resources": [
+            {
+              "title": "OSI Model Explained (GeeksforGeeks)",
+              "url": "https://www.geeksforgeeks.org/osi-model-architecture-tcp-ip-model/",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_osi_tcp_ip_models.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_ethernet_lan_basics",
+          "name": "Ethernet and LAN Basics",
+          "tag": "essential",
+          "description": "Gain a foundational understanding of Layer 2 Ethernet technologies, including MAC addresses, ARP protocol, half-duplex vs. full-duplex operation, collision and broadcast domains, and common LAN topologies. Explore Ethernet frame formats and basic switching principles.",
+          "resources": [
+            {
+              "title": "Ethernet Tutorial (Cisco)",
+              "url": "https://www.cisco.com/c/en/us/products/switches/what-is-ethernet.html",
+              "type": "article"
+            },
+            {
+              "title": "CCNA Full Course (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+              "type": "video"
+            },
+            {
+              "title": "Network Automation with Python (David Bombal)",
+              "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_ethernet_lan_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_ip_addressing_subnetting",
+          "name": "IP Addressing & Subnetting (IPv4 & IPv6)",
+          "tag": "essential",
+          "description": "Master IPv4 addressing schemes, variable-length subnet masking (VLSM), Classless Inter-Domain Routing (CIDR), private IP address ranges, and the fundamental concepts of Network Address Translation (NAT). Comprehend IPv6 addressing formats, address types (Global Unicast, Link-Local, Unique Local), and stateless/stateful auto-configuration mechanisms.",
+          "resources": [
+            {
+              "title": "Practical Networking - Subnetting Mastery",
+              "url": "https://www.practicalnetworking.net/stand-alone/subnetting-mastery/",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_ip_addressing_subnetting.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_dns_dhcp_fundamentals",
+          "name": "DNS and DHCP Fundamentals",
+          "tag": "essential",
+          "description": "Explore the critical roles of DNS and DHCP. For DNS, learn about name resolution, recursive/iterative queries, DNS hierarchy, and record types (A, AAAA, MX, CNAME, SRV). For DHCP, understand dynamic IP address assignment, leases, scope management, and basic troubleshooting.",
+          "resources": [
+            {
+              "title": "How DNS Works (Cloudflare)",
+              "url": "https://www.cloudflare.com/learning/dns/how-dns-works/",
+              "type": "article"
+            },
+            {
+              "title": "DHCP Explained (Fortinet)",
+              "url": "https://www.fortinet.com/resources/cyberglossary/dhcp-explained",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+              "type": "video"
+            },
+            {
+              "title": "Networking Fundamentals (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_dns_dhcp_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_troubleshooting_tools",
+          "name": "Basic Network Troubleshooting Tools",
+          "tag": "essential",
+          "description": "Develop proficiency in using essential command-line and graphical tools for basic network diagnostics and troubleshooting, including ping, traceroute/tracert, nslookup, dig, netstat, ipconfig/ifconfig, and packet capture analysis with tcpdump or Wireshark.",
+          "resources": [
+            {
+              "title": "Wireshark User Guide",
+              "url": "https://www.wireshark.org/docs/wsug_html_chunked/",
+              "type": "article"
+            },
+            {
+              "title": "Network Troubleshooting Commands (Microsoft)",
+              "url": "https://learn.microsoft.com/en-us/windows-server/networking/troubleshoot/troubleshoot-tcpip-issues",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_troubleshooting_tools.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net_core_routing_switching",
+      "name": "Core Routing & Switching",
+      "tag": "essential",
+      "description": "Dive deep into the mechanics of switches and routers, configuring VLANs, implementing robust routing protocols, and ensuring high availability in campus and WAN environments.",
+      "resources": [
+        {
+          "title": "Cisco Networking Basics",
+          "url": "https://skillsforall.com/course/networking-basics",
+          "type": "course"
+        },
+        {
+          "title": "CCNA Full Course (NetworkChuck)",
+          "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+          "type": "video"
+        },
+        {
+          "title": "Network Automation with Python (David Bombal)",
+          "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/network_engineer/net_core_routing_switching.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "net_lan_switching_vlans",
+          "name": "Advanced LAN Switching & VLANs",
+          "tag": "essential",
+          "description": "Configure and manage advanced Layer 2 switching features including switchport modes (access, trunk), VLAN creation and tagging (802.1Q), inter-VLAN routing, and understanding the Spanning Tree Protocol (STP, RSTP, MSTP) for loop prevention. Implement EtherChannel/LACP for link aggregation and bandwidth scalability.",
+          "resources": [
+            {
+              "title": "Cisco VLAN Configuration Guide",
+              "url": "https://www.cisco.com/c/en/us/support/docs/lan-switching/vlan/10023-3.html",
+              "type": "article"
+            },
+            {
+              "title": "Spanning Tree Protocol (STP) Explained (Practical Networking)",
+              "url": "https://www.practicalnetworking.net/series/spanning-tree-protocol/",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_lan_switching_vlans.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_ip_routing_protocols",
+          "name": "IP Routing Protocols (Static, OSPF, EIGRP, BGP)",
+          "tag": "essential",
+          "description": "Implement and troubleshoot static routing, and dynamic Interior Gateway Protocols (IGPs) such as OSPF (single-area, multi-area, LSA types) and EIGRP (DUAL algorithm, metrics). Grasp the fundamental concepts, attributes, path selection, and peering configurations of Border Gateway Protocol (BGP) for inter-domain routing and internet connectivity.",
+          "resources": [
+            {
+              "title": "OSPF Explained in Detail (NetworkLessons.com)",
+              "url": "https://networklessons.com/ospf/ospf-explained",
+              "type": "article"
+            },
+            {
+              "title": "Cloudflare BGP Guide",
+              "url": "https://www.cloudflare.com/learning/security/glossary/what-is-bgp/",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+              "type": "video"
+            },
+            {
+              "title": "Networking Fundamentals (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_ip_routing_protocols.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_network_high_availability",
+          "name": "Network High Availability & Redundancy",
+          "tag": "advanced",
+          "description": "Design and implement highly available network infrastructures using first-hop redundancy protocols (HSRP, VRRP, GLBP), redundant physical and logical links, and advanced link aggregation techniques to ensure business continuity and minimize downtime.",
+          "resources": [
+            {
+              "title": "First Hop Redundancy Protocols (Cisco)",
+              "url": "https://www.cisco.com/c/en/us/support/docs/ip/hot-standby-router-protocol-hsrp/10583-6.html",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_network_high_availability.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_acl_nat_concepts",
+          "name": "Access Control Lists (ACLs) & Network Address Translation (NAT)",
+          "tag": "essential",
+          "description": "Configure and apply various types of Access Control Lists (ACLs) including standard, extended, and named ACLs for granular traffic filtering and security enforcement. Implement different Network Address Translation (NAT) types: static, dynamic, and Port Address Translation (PAT) for IP address conservation and network segmentation.",
+          "resources": [
+            {
+              "title": "Understanding ACLs (Cisco)",
+              "url": "https://www.cisco.com/c/en/us/support/docs/security/ios-firewall/23602-confaccesslists.html",
+              "type": "article"
+            },
+            {
+              "title": "NAT Explained (NetworkLessons.com)",
+              "url": "https://networklessons.com/nat/nat-explained",
+              "type": "article"
+            },
+            {
+              "title": "CCNA Full Course (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+              "type": "video"
+            },
+            {
+              "title": "Network Automation with Python (David Bombal)",
+              "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_acl_nat_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_practice_routing_switching_labs",
+          "name": "Practice: Routing & Switching Labs",
+          "tag": "essential",
+          "description": "Gain practical, hands-on experience through extensive lab exercises. Configure and troubleshoot complex scenarios involving VLANs, inter-VLAN routing, OSPF, EIGRP, BGP peerings, HSRP/VRRP, and ACLs using network simulators/emulators like Cisco Packet Tracer, GNS3, or EVE-NG. Focus on scenario-based problem-solving.",
+          "resources": [
+            {
+              "title": "Cisco Packet Tracer",
+              "url": "https://www.netacad.com/courses/packet-tracer",
+              "type": "article"
+            },
+            {
+              "title": "GNS3 Official Documentation",
+              "url": "https://docs.gns3.com/",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_practice_routing_switching_labs.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net_security_essentials",
+      "name": "Network Security Essentials",
+      "tag": "advanced",
+      "description": "Learn to secure network infrastructure by implementing firewalls, VPNs, intrusion detection/prevention systems, and managing network access control, ensuring data integrity and confidentiality.",
+      "resources": [
+        {
+          "title": "Introduction to Network Security (Cybrary)",
+          "url": "https://www.cybrary.it/course/introduction-network-security/",
+          "type": "course"
+        },
+        {
+          "title": "Palo Alto Networks Cybersecurity Learning",
+          "url": "https://www.paloaltonetworks.com/cybersecurity/what-is-cybersecurity",
+          "type": "article"
+        },
+        {
+          "title": "Computer Networking Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+          "type": "video"
+        },
+        {
+          "title": "Networking Fundamentals (NetworkChuck)",
+          "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/network_engineer/net_security_essentials.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "net_firewall_vpn_concepts",
+          "name": "Firewall & VPN Concepts",
+          "tag": "essential",
+          "description": "Understand the operational principles and deployment of various firewall types (stateless, stateful, application-aware, next-generation, zone-based). Configure firewall rules, security policies, and implement secure site-to-site and remote-access Virtual Private Networks (VPNs) using IPsec and SSL/TLS protocols.",
+          "resources": [
+            {
+              "title": "What is a Firewall? (Cloudflare)",
+              "url": "https://www.cloudflare.com/learning/access-management/what-is-a-firewall/",
+              "type": "article"
+            },
+            {
+              "title": "Cloudflare VPN Guide",
+              "url": "https://www.cloudflare.com/learning/access-management/what-is-a-vpn/",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_firewall_vpn_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_ids_ips_dlp",
+          "name": "IDS/IPS & DLP Basics",
+          "tag": "advanced",
+          "description": "Differentiate between Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS), exploring their deployment models, signature-based vs. anomaly-based detection methods, and common use cases. Understand the fundamentals of Data Loss Prevention (DLP) strategies and tools.",
+          "resources": [
+            {
+              "title": "IDS vs IPS (Fortinet)",
+              "url": "https://www.fortinet.com/resources/cyberglossary/ids-vs-ips",
+              "type": "article"
+            },
+            {
+              "title": "CCNA Full Course (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+              "type": "video"
+            },
+            {
+              "title": "Network Automation with Python (David Bombal)",
+              "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_ids_ips_dlp.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_network_access_control",
+          "name": "Network Access Control (NAC)",
+          "tag": "advanced",
+          "description": "Implement robust Network Access Control (NAC) solutions using 802.1X authentication. Explore Authentication, Authorization, and Accounting (AAA) concepts and services utilizing RADIUS and TACACS+ protocols for centralized user and device management, along with guest access and profiling solutions.",
+          "resources": [
+            {
+              "title": "802.1X Explained (Cisco)",
+              "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3850/software/release/3se/security/configuration_guide/b_sec_3se_3850_cg/b_sec_3se_3850_cg_chapter_0100.html",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_network_access_control.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_monitoring_logging",
+          "name": "Network Monitoring & Logging",
+          "tag": "essential",
+          "description": "Establish comprehensive network visibility through effective monitoring and logging. Utilize protocols like SNMP for device status, NetFlow/IPFIX for traffic analysis, and Syslog for event collection. Learn log aggregation and analysis for security incident detection, performance troubleshooting, and introduce Security Information and Event Management (SIEM) concepts.",
+          "resources": [
+            {
+              "title": "Introduction to Network Monitoring (Paessler)",
+              "url": "https://www.paessler.com/it-monitoring-guide/network-monitoring-introduction",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+              "type": "video"
+            },
+            {
+              "title": "Networking Fundamentals (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_monitoring_logging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_security_best_practices",
+          "name": "Network Security Best Practices",
+          "tag": "advanced",
+          "description": "Identify and mitigate common network security vulnerabilities. Implement industry best practices for device hardening, secure configuration management, patch management, and vulnerability assessment. Understand basic incident response procedures and frameworks (e.g., NIST CSF, ISO 27001) for handling network breaches.",
+          "resources": [
+            {
+              "title": "NIST Cybersecurity Framework",
+              "url": "https://www.nist.gov/cybersecurity/framework",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_security_best_practices.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net_cloud_advanced",
+      "name": "Cloud & Advanced Networking",
+      "tag": "advanced",
+      "description": "Master networking in public cloud environments, explore Software-Defined Networking (SDN) principles, and understand advanced network architectures and emerging technologies.",
+      "resources": [
+        {
+          "title": "Microsoft Azure Networking Fundamentals",
+          "url": "https://learn.microsoft.com/en-us/azure/architecture/networking/",
+          "type": "article"
+        },
+        {
+          "title": "CCNA Full Course (NetworkChuck)",
+          "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+          "type": "video"
+        },
+        {
+          "title": "Network Automation with Python (David Bombal)",
+          "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/network_engineer/net_cloud_advanced.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "net_cloud_fundamentals",
+          "name": "Cloud Networking Fundamentals (AWS, Azure, GCP)",
+          "tag": "essential",
+          "description": "Master foundational networking concepts across major public cloud providers (AWS, Azure, GCP). Learn to provision and manage Virtual Private Clouds (VPCs) / Virtual Networks (VNets), subnets, routing tables, security groups, Network Access Control Lists (NACLs), and various connectivity options including VPN gateways and peering.",
+          "resources": [
+            {
+              "title": "AWS VPC Documentation",
+              "url": "https://docs.aws.amazon.com/vpc/",
+              "type": "article"
+            },
+            {
+              "title": "Azure Virtual Network Documentation",
+              "url": "https://docs.microsoft.com/en-us/azure/virtual-network/",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_cloud_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_cloud_network_services",
+          "name": "Cloud Network Services",
+          "tag": "advanced",
+          "description": "Explore and implement advanced cloud-native networking services. This includes various types of load balancers (Application Load Balancer, Network Load Balancer), Content Delivery Networks (CDNs) for performance optimization, cloud DNS services (e.g., AWS Route 53, Azure DNS), API gateways, and dedicated direct connectivity solutions (e.g., AWS Direct Connect, Azure ExpressRoute, Google Cloud Interconnect).",
+          "resources": [
+            {
+              "title": "AWS Elastic Load Balancing",
+              "url": "https://docs.aws.amazon.com/elasticloadbalancing/",
+              "type": "article"
+            },
+            {
+              "title": "What is a CDN? (Cloudflare)",
+              "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+              "type": "video"
+            },
+            {
+              "title": "Networking Fundamentals (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_cloud_network_services.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_sdn_nfv_concepts",
+          "name": "Software-Defined Networking (SDN) & NFV",
+          "tag": "advanced",
+          "description": "Understand the architectural principles of Software-Defined Networking (SDN), including the separation of the control plane and data plane, and its benefits for network agility and programmability. Explore Network Function Virtualization (NFV) and its role in deploying virtualized network services, particularly in the context of modern data centers and Software-Defined Wide Area Networks (SD-WAN).",
+          "resources": [
+            {
+              "title": "What is SDN? (Cisco)",
+              "url": "https://www.cisco.com/c/en/us/solutions/enterprise-networks/software-defined-networking/what-is-sdn.html",
+              "type": "article"
+            },
+            {
+              "title": "What is NFV? (VMware)",
+              "url": "https://www.vmware.com/topics/glossary/content/network-function-virtualization-nfv.html",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_sdn_nfv_concepts.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_container_networking",
+          "name": "Container Networking Basics",
+          "tag": "advanced",
+          "description": "Gain an introduction to networking within containerized environments. Understand Docker networking concepts (bridge, host, overlay networks, network drivers) and delve into the intricacies of Kubernetes networking, including the Container Network Interface (CNI) model, Pod-to-Pod communication, Service networking, and Ingress.",
+          "resources": [
+            {
+              "title": "Docker Networking Deep Dive",
+              "url": "https://docs.docker.com/network/",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Networking Explained",
+              "url": "https://kubernetes.io/docs/concepts/cluster-administration/networking/",
+              "type": "article"
+            },
+            {
+              "title": "CCNA Full Course (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+              "type": "video"
+            },
+            {
+              "title": "Network Automation with Python (David Bombal)",
+              "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_container_networking.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_network_architecture_design",
+          "name": "Network Architecture & Design Principles",
+          "tag": "advanced",
+          "description": "Learn fundamental network architecture and design principles. Study various network design models (e.g., traditional three-tier, modern spine-leaf architectures), hierarchical design, segmentation strategies, and key considerations for building scalable, reliable, secure, and performant enterprise and data center networks. Focus on high-level planning and documentation.",
+          "resources": [
+            {
+              "title": "Cisco Enterprise Network Design Guide",
+              "url": "https://www.cisco.com/c/en/us/td/docs/solutions/Enterprise/Campus/campus-lan-design-new.html",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_network_architecture_design.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net_automation_devops",
+      "name": "Network Automation & DevOps",
+      "tag": "advanced",
+      "description": "Develop skills in automating network tasks, programmatic configuration management, and integrating network operations into a DevOps workflow using scripting, APIs, and Infrastructure as Code (IaC) principles.",
+      "resources": [
+        {
+          "title": "Cisco DevNet Learning Labs",
+          "url": "https://developer.cisco.com/learning/",
+          "type": "course"
+        },
+        {
+          "title": "Network Automation with Python Course",
+          "url": "https://www.udemy.com/course/network-automation-with-python/",
+          "type": "course"
+        },
+        {
+          "title": "Computer Networking Full Course (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+          "type": "video"
+        },
+        {
+          "title": "Networking Fundamentals (NetworkChuck)",
+          "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/network_engineer/net_automation_devops.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "net_python_network_automation",
+          "name": "Python for Network Automation",
+          "tag": "essential",
+          "description": "Develop essential Python scripting skills for network automation. Learn fundamental programming concepts, data structures, and utilize popular libraries such as Netmiko for SSH/Telnet device interaction, Paramiko for SSH, and Nornir for advanced configuration management and orchestration across multiple devices.",
+          "resources": [
+            {
+              "title": "Netmiko Documentation",
+              "url": "https://ktbyers.github.io/netmiko/",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_python_network_automation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_config_management_tools",
+          "name": "Network Configuration Management Tools",
+          "tag": "advanced",
+          "description": "Implement network configuration management using powerful tools like Ansible. Learn to write Ansible playbooks and roles for declarative configuration, leverage Jinja2 templating for dynamic configurations, and integrate Git for robust version control of network configurations, scripts, and automation workflows.",
+          "resources": [
+            {
+              "title": "Ansible Network Automation Documentation",
+              "url": "https://docs.ansible.com/ansible/latest/network/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Git Handbook (GitHub)",
+              "url": "https://guides.github.com/introduction/git-handbook/",
+              "type": "article"
+            },
+            {
+              "title": "CCNA Full Course (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=rv3QK2UquxM",
+              "type": "video"
+            },
+            {
+              "title": "Network Automation with Python (David Bombal)",
+              "url": "https://www.youtube.com/watch?v=s6SIVc7DAws",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_config_management_tools.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_rest_apis_netconf_yang",
+          "name": "REST APIs, NETCONF, & YANG",
+          "tag": "advanced",
+          "description": "Interact with modern network devices programmatically using industry-standard interfaces. Understand and utilize RESTful APIs for querying and configuring devices. Delve into the NETCONF protocol for robust, transactional configuration management, and learn to model network data and operations using the YANG data modeling language for standardized automation.",
+          "resources": [
+            {
+              "title": "NETCONF and YANG Basics (Juniper)",
+              "url": "https://www.juniper.net/documentation/us/en/software/junos/program-automation/topics/topic-map/netconf-yang.html",
+              "type": "article"
+            },
+            {
+              "title": "Wireshark Tutorial (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=lb1Dw0elw0Q",
+              "type": "video"
+            },
+            {
+              "title": "BGP Explained (PowerCert)",
+              "url": "https://www.youtube.com/watch?v=O6tCoD5c_U0",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_rest_apis_netconf_yang.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_infrastructure_as_code",
+          "name": "Infrastructure as Code (IaC) for Networking",
+          "tag": "advanced",
+          "description": "Apply Infrastructure as Code (IaC) principles to networking. Learn to define, provision, and manage network infrastructure (particularly in public cloud environments) in a declarative and reproducible manner using tools like Terraform. Understand IaC's benefits for consistency, versioning, and accelerated deployments.",
+          "resources": [
+            {
+              "title": "Terraform Networking Tutorials (HashiCorp)",
+              "url": "https://developer.hashicorp.com/terraform/tutorials/kubernetes/install-terraform-kubernetes",
+              "type": "article"
+            },
+            {
+              "title": "Computer Networking Full Course (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=qiQR5rTSshw",
+              "type": "video"
+            },
+            {
+              "title": "Networking Fundamentals (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_infrastructure_as_code.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "net_cert_preparation_labs",
+          "name": "Certification Preparation & Advanced Labs",
+          "tag": "advanced",
+          "description": "Prepare rigorously for industry-recognized certifications (e.g., CCNA, CCNP Enterprise, JNCIA, AWS Networking Specialty). Build and troubleshoot extensive lab portfolios covering complex, real-world scenarios in routing, switching, network security, cloud networking, and automation. Emphasize hands-on troubleshooting, design, and optimization skills.",
+          "resources": [
+            {
+              "title": "Cisco Certification Roadmaps",
+              "url": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications.html",
+              "type": "article"
+            },
+            {
+              "title": "EVE-NG Lab Emulator",
+              "url": "https://www.eve-ng.net/",
+              "type": "article"
+            },
+            {
+              "title": "CompTIA Network+ Full Course (Professor Messer)",
+              "url": "https://www.youtube.com/watch?v=As6g6IXcVa4",
+              "type": "video"
+            },
+            {
+              "title": "Subnetting Made Easy (NetworkChuck)",
+              "url": "https://www.youtube.com/watch?v=5WfiTHiU4x8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/network_engineer/net_cert_preparation_labs.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

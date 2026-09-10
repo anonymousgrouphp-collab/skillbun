@@ -1,0 +1,1045 @@
+{
+  "id": "technical_artist",
+  "title": "Technical Artist",
+  "description": "Bridge the gap between digital artists and software engineers: custom HLSL/GLSL shaders, character rigging pipelines, procedural generation, and graphics optimization.",
+  "goal": {
+    "objective": "Empower game artists with efficient digital content creation tools and optimize real-time graphics pipelines for maximum visual fidelity and frame rate performance.",
+    "salary": "$85,000 - $150,000 / yr (₹7 - ₹24 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 85000,
+        "max": 150000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 7,
+        "max": 24,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Junior to Senior (1 - 6+ Years)",
+    "target_roles": [
+      "Technical Artist",
+      "Shader Developer",
+      "Rigging & Pipeline Specialist"
+    ],
+    "career_pillars": [
+      "Real-Time Shaders (HLSL, GLSL, Shader Graph)",
+      "DCC Tooling Automation (Python in Blender/Maya)",
+      "Draw Call & Graphics Memory Optimization"
+    ]
+  },
+  "learn": {
+    "summary": "Master shader math (lighting models, dot products), HLSL/GLSL shader programming, Unity Shader Graph / Unreal Material Editor, Python scripting in Maya/Blender, and profiling.",
+    "key_competencies": [
+      "Shader Programming (HLSL, GLSL & Node-Based Shaders)",
+      "Python Automation for 3D Software (Blender, Maya)",
+      "Character Skeletal Rigging & Skinning Workflows",
+      "Performance Profiling (RenderDoc, Unreal Insights)",
+      "VFX Particle Systems (Niagara, Unity VFX Graph)"
+    ],
+    "prerequisites": [
+      "Familiarity with 3D software (Blender, Maya, 3ds Max)",
+      "Basic scripting knowledge (Python or C#)",
+      "Aesthetic visual eye combined with technical curiosity"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Interactive Stylized Water & Weather Shader Suite",
+        "tech_stack": [
+          "Unity / Unreal Engine",
+          "HLSL",
+          "Shader Graph",
+          "Blender"
+        ],
+        "description": "Author a high-performance stylized dynamic water shader featuring shoreline foam, Gerstner wave displacement, and underwater refraction."
+      },
+      {
+        "title": "Procedural Environment Generation Tool for Unreal Engine",
+        "tech_stack": [
+          "Houdini",
+          "Unreal Engine 5 (PCG)",
+          "HLSL",
+          "Python"
+        ],
+        "description": "Develop a procedural cliff and vegetation generation tool in Houdini that exports directly to Unreal Engine PCG graphs with runtime performance profiling."
+      }
+    ],
+    "interview_focus": [
+      "Vertex Shaders vs Pixel/Fragment Shaders Responsibilities",
+      "Optimizing Overdraw and Draw Calls in Real-Time Engines",
+      "Writing Custom Python Tooling for Artist Workflows",
+      "PBR (Physically Based Rendering) Lighting Principles"
+    ],
+    "certifications": [
+      "Epic Games Unreal Engine Technical Artist Badge",
+      "Autodesk Certified Professional (Maya/3ds Max)"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "ta_foundations_context",
+      "name": "Foundations and Role Context",
+      "tag": "essential",
+      "description": "Understand the core role of a Technical Artist, the problems they solve, and the foundational concepts required across art, engineering, and pipelines, establishing a robust base for advanced technical art skills.",
+      "resources": [
+        {
+          "title": "Technical Art in Games Explained (GDC)",
+          "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+          "type": "video"
+        },
+        {
+          "title": "Shader Programming Tutorial (Freya Holmer)",
+          "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/technical_artist/ta_foundations_context.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_role_industry_overview",
+          "name": "Role & Industry Overview",
+          "tag": "essential",
+          "description": "Explore the diverse responsibilities, career paths, and a high-level view of game development pipelines where Technical Artists operate, understanding their critical impact.",
+          "resources": [
+            {
+              "title": "Technical Artist: Your Essential Guide",
+              "url": "https://www.artstation.com/blogs/blog-post-title",
+              "type": "article"
+            },
+            {
+              "title": "Gamedev Pipeline Explained",
+              "url": "https://gamedev.net/articles/industry/gamedev-pipeline-r583/",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_role_industry_overview.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_art_fundamentals_tech",
+          "name": "Art Fundamentals for Technical Art",
+          "tag": "essential",
+          "description": "Grasp basic art principles crucial for technical art, including color theory, lighting, composition, and essential 3D asset creation concepts from a technical perspective.",
+          "resources": [
+            {
+              "title": "PBR Theory: A Practical Guide",
+              "url": "https://marmoset.co/posts/pbr-theory-and-practice/",
+              "type": "article"
+            },
+            {
+              "title": "3D Modeling Basics for Game Art",
+              "url": "https://www.udemy.com/course/blender-3d-model-a-game-asset/",
+              "type": "course"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_art_fundamentals_tech.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_pbr_workflow",
+          "name": "Physically Based Rendering (PBR) Workflow",
+          "tag": "essential",
+          "description": "Deep dive into PBR theory, understanding how light interacts with materials, common texture maps (Albedo, Normal, Roughness, Metalness), and creating physically accurate assets.",
+          "resources": [
+            {
+              "title": "The PBR Guide Part 1: What is PBR?",
+              "url": "https://academy.substance3d.com/courses/the-pbr-guide-part-1",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_pbr_workflow.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_mesh_uv_topology_basics",
+          "name": "Mesh, UV & Topology Basics",
+          "tag": "essential",
+          "description": "Understand optimal mesh topology for real-time rendering, polygon budgeting, efficient UV unwrapping strategies, and common mesh optimization techniques.",
+          "resources": [
+            {
+              "title": "Understanding Mesh Topology for Games",
+              "url": "https://80.lv/articles/understanding-mesh-topology/",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_mesh_uv_topology_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_programming_scripting_logic",
+          "name": "Programming & Scripting Logic",
+          "tag": "essential",
+          "description": "Acquire fundamental programming logic, data structures, algorithms, and an understanding of linear algebra as applied to graphics and game development.",
+          "resources": [
+            {
+              "title": "Python Basics for Artists",
+              "url": "https://realpython.com/python-for-beginners/",
+              "type": "article"
+            },
+            {
+              "title": "Linear Algebra for Game Developers",
+              "url": "https://www.3dgep.com/fundamentals-of-linear-algebra-for-game-developers/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_programming_scripting_logic.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_engine_scripting_api",
+          "name": "Engine Scripting & API Interaction",
+          "tag": "essential",
+          "description": "Learn scripting within game engines (Blueprints for Unreal, C# for Unity) to automate tasks, extend editor functionality, and interact with engine APIs for custom behaviors.",
+          "resources": [
+            {
+              "title": "Unreal Engine Blueprints Quickstart",
+              "url": "https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/Blueprints/QuickStart/",
+              "type": "article"
+            },
+            {
+              "title": "Unity C# Scripting Fundamentals",
+              "url": "https://learn.unity.com/tutorial/create-a-simple-script",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_engine_scripting_api.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_tooling_version_control",
+          "name": "Tooling & Version Control",
+          "tag": "essential",
+          "description": "Set up core development environments, learn version control habits (Git/Perforce), and understand asset management best practices for collaborative projects.",
+          "resources": [
+            {
+              "title": "Git for Game Development",
+              "url": "https://docs.unity3d.com/Manual/BestPracticeGuides.html",
+              "type": "article"
+            },
+            {
+              "title": "Perforce Basic Workflow",
+              "url": "https://www.perforce.com/manuals/vcs/Content/P4V/basic_workflow.html",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_tooling_version_control.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ta_core_technical_skills",
+      "name": "Core Technical Art Skills",
+      "tag": "essential",
+      "description": "Develop the primary technical art skill sets, encompassing shaders, asset optimization, animation tools, VFX, and pipeline scripting, focusing on practical application.",
+      "resources": [
+        {
+          "title": "Mastering Unreal Engine Materials (Udemy)",
+          "url": "https://www.udemy.com/course/unreal-engine-materials/",
+          "type": "course"
+        },
+        {
+          "title": "Unity Shaders: Beginner to Advanced",
+          "url": "https://www.udemy.com/course/unity-shaders/",
+          "type": "course"
+        },
+        {
+          "title": "Python for Technical Artists (Tech Art Aid)",
+          "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+          "type": "video"
+        },
+        {
+          "title": "Procedural Generation Explained (Sebastian Lague)",
+          "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/technical_artist/ta_core_technical_skills.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_visual_shader_creation",
+          "name": "Visual Shader Creation (Material/Shader Graph)",
+          "tag": "essential",
+          "description": "Learn to create visually stunning and performant materials using node-based visual shader editors like Unreal's Material Editor and Unity's Shader Graph.",
+          "resources": [
+            {
+              "title": "Unity Shader Graph Fundamentals",
+              "url": "https://docs.unity3d.com/Packages/com.unity.shadergraph@latest",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Materials Documentation",
+              "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-materials",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_visual_shader_creation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_custom_shader_coding",
+          "name": "Custom Shader Coding (HLSL/GLSL)",
+          "tag": "essential",
+          "description": "Dive into writing custom shader code (HLSL, GLSL, ShaderLab) to achieve unique visual effects, implement advanced lighting models, and optimize rendering.",
+          "resources": [
+            {
+              "title": "Learn OpenGL - Shaders",
+              "url": "https://learnopengl.com/Getting-started/Shaders",
+              "type": "article"
+            },
+            {
+              "title": "Unity ShaderLab & HLSL",
+              "url": "https://docs.unity3d.com/Manual/SL-Shader.html",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_custom_shader_coding.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_mesh_lod_culling",
+          "name": "Mesh Optimization: LODs & Culling",
+          "tag": "essential",
+          "description": "Master techniques for creating and implementing Levels of Detail (LODs), understanding occlusion culling, and other visibility optimization strategies to improve frame rates.",
+          "resources": [
+            {
+              "title": "Optimizing with LODs in Unity",
+              "url": "https://docs.unity3d.com/Manual/LevelOfDetail.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Culling Techniques",
+              "url": "https://docs.unrealengine.com/4.27/en-US/Basics/Performance/Culling/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_mesh_lod_culling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_texture_stream_compression",
+          "name": "Texture Optimization: Streaming & Compression",
+          "tag": "essential",
+          "description": "Learn efficient texture atlasing, virtual texturing concepts, choosing appropriate compression formats (e.g., BC7, ASTC, ETC), and managing texture streaming for memory and performance.",
+          "resources": [
+            {
+              "title": "Texture Compression for Games",
+              "url": "https://80.lv/articles/texture-compression-for-game-dev/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Texture Streaming in Unreal",
+              "url": "https://docs.unrealengine.com/4.27/en-US/Basics/Performance/TextureStreaming/",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_texture_stream_compression.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_rigging_fundamentals",
+          "name": "Rigging Fundamentals & Character Setup",
+          "tag": "essential",
+          "description": "Understand character rigging principles, bone hierarchies, skinning, weight painting, and the integration of rigged characters into game engines.",
+          "resources": [
+            {
+              "title": "Introduction to Character Rigging",
+              "url": "https://www.pluralsight.com/courses/maya-rigging-fundamentals",
+              "type": "course"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_rigging_fundamentals.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_animation_tooling_pipelines",
+          "name": "Animation Tooling & Pipeline Integration",
+          "tag": "essential",
+          "description": "Develop tools to streamline animator workflows, understand animation curves, state machines, blend spaces, and integrate animation assets efficiently into the game engine.",
+          "resources": [
+            {
+              "title": "Unity Animator Controller Guide",
+              "url": "https://docs.unity3d.com/Manual/AnimatorController.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Animation Blueprints",
+              "url": "https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/AnimationBlueprints/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_animation_tooling_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_realtime_vfx_design",
+          "name": "Real-time VFX Design & Implementation",
+          "tag": "essential",
+          "description": "Create compelling visual effects using particle systems (Niagara, Shuriken), flipbook textures, shader effects, and other real-time techniques to bring dynamic elements to life.",
+          "resources": [
+            {
+              "title": "Unreal Niagara Particle System Introduction",
+              "url": "https://docs.unrealengine.com/4.27/en-US/AnimatingObjects/Niagara/",
+              "type": "article"
+            },
+            {
+              "title": "Unity Shuriken Particle System Guide",
+              "url": "https://docs.unity3d.com/Manual/ParticleSystem.html",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_realtime_vfx_design.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_intro_procedural_modeling",
+          "name": "Introduction to Procedural Modeling",
+          "tag": "essential",
+          "description": "Explore the fundamentals of procedural content generation using node-based tools like Houdini and Blender's Geometry Nodes for creating assets and environments efficiently.",
+          "resources": [
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_intro_procedural_modeling.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_pipeline_tool_dev",
+          "name": "Pipeline & Tool Development",
+          "tag": "essential",
+          "description": "Develop scripts and tools in Python for DCC applications (Maya, Blender) to automate asset processing, optimize data exchange, and improve overall production efficiency.",
+          "resources": [
+            {
+              "title": "Python Scripting in Maya",
+              "url": "https://help.autodesk.com/view/MAYAUL/2024/ENU/?guid=GUID-6C732F21-CC21-48C0-A03B-57E94025170B",
+              "type": "article"
+            },
+            {
+              "title": "FBX SDK Documentation",
+              "url": "https://help.autodesk.com/view/FBX/2020/ENU/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_pipeline_tool_dev.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ta_advanced_production_optimization",
+      "name": "Advanced Production & Optimization",
+      "tag": "advanced",
+      "description": "Delve into sophisticated topics including advanced engine integration, deep performance debugging, advanced procedural systems, and professional production workflows for large-scale projects.",
+      "resources": [
+        {
+          "title": "Advanced Graphics Programming (GPU Gems)",
+          "url": "https://developer.nvidia.com/gpugems/GPUGems",
+          "type": "article"
+        },
+        {
+          "title": "Technical Art in Games Explained (GDC)",
+          "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+          "type": "video"
+        },
+        {
+          "title": "Shader Programming Tutorial (Freya Holmer)",
+          "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/technical_artist/ta_advanced_production_optimization.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_advanced_engine_integration",
+          "name": "Advanced Engine Integration",
+          "tag": "advanced",
+          "description": "Learn to extend game engines with custom features, implement advanced engine functionalities, and deeply integrate proprietary tools and systems.",
+          "resources": [
+            {
+              "title": "Customizing Unreal Engine (Official Docs)",
+              "url": "https://docs.unrealengine.com/4.27/en-US/ProgrammingAndScripting/ProgrammingWithCpp/CustomizingUnrealEngine/",
+              "type": "article"
+            },
+            {
+              "title": "Unity Scriptable Render Pipelines (SRP)",
+              "url": "https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_advanced_engine_integration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_custom_render_pipelines",
+          "name": "Custom Render Pipelines & Shading Models",
+          "tag": "advanced",
+          "description": "Implement and customize rendering pipelines (e.g., Unity URP/HDRP, Unreal custom RPP) to achieve unique visual styles and optimize rendering for specific platforms or hardware.",
+          "resources": [
+            {
+              "title": "Building a Custom Render Pipeline (Unity)",
+              "url": "https://docs.unity3d.com/Packages/com.unity.render-pipelines.core@latest/manual/CustomRenderPipeline.html",
+              "type": "article"
+            },
+            {
+              "title": "Unreal Engine Custom Shading Models",
+              "url": "https://docs.unrealengine.com/4.27/en-US/RenderingAndGraphics/Materials/ShadingModels/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_custom_render_pipelines.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_build_automation_ci_cd",
+          "name": "Build Automation & CI/CD for Games",
+          "tag": "advanced",
+          "description": "Implement automated asset build systems, continuous integration (CI) and continuous deployment (CD) pipelines to streamline production and ensure consistent quality.",
+          "resources": [
+            {
+              "title": "Setting up a CI/CD Pipeline for Game Dev",
+              "url": "https://www.perforce.com/blog/vcs/ci-cd-gaming-perforce",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins for Game Development",
+              "url": "https://www.jenkins.io/doc/book/pipeline/",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_build_automation_ci_cd.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_realtime_perf_debugging",
+          "name": "Real-time Performance & Debugging",
+          "tag": "advanced",
+          "description": "Master advanced profiling tools like RenderDoc, PIX, and engine profilers to identify and resolve complex performance bottlenecks, and debug graphics API issues on various platforms.",
+          "resources": [
+            {
+              "title": "Introduction to RenderDoc",
+              "url": "https://renderdoc.org/docs/index.html",
+              "type": "article"
+            },
+            {
+              "title": "Debugging Graphics with PIX (Microsoft)",
+              "url": "https://devblogs.microsoft.com/directx/pix/",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_realtime_perf_debugging.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_gpu_architecture_basics",
+          "name": "GPU Architecture & Optimization",
+          "tag": "advanced",
+          "description": "Gain a deep understanding of GPU architecture, how modern graphics pipelines work, common GPU bottlenecks (fill rate, bandwidth, instruction count), and advanced optimization strategies.",
+          "resources": [
+            {
+              "title": "A trip through the Graphics Pipeline",
+              "url": "https://fgiesen.wordpress.com/2011/07/09/a-trip-through-the-graphics-pipeline-2011/",
+              "type": "article"
+            },
+            {
+              "title": "Understanding GPU Workloads",
+              "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/understanding-gpu-workloads.html",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_gpu_architecture_basics.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_advanced_procedural_gen",
+          "name": "Advanced Procedural World Generation",
+          "tag": "advanced",
+          "description": "Explore complex node-based procedural systems for large-scale world generation, advanced geometry nodes, and procedural asset creation using tools like Houdini for sophisticated environments.",
+          "resources": [
+            {
+              "title": "Houdini Procedural Environments",
+              "url": "https://www.artstation.com/learning/series/V3y/houdini-procedural-environments",
+              "type": "course"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_advanced_procedural_gen.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_ml_content_generation_overview",
+          "name": "ML for Content Generation (Overview)",
+          "tag": "advanced",
+          "description": "Gain a conceptual understanding of how machine learning and AI are being applied to procedural content generation, asset creation, and optimization in modern game development pipelines.",
+          "resources": [
+            {
+              "title": "AI in Game Development: An Overview",
+              "url": "https://www.gamedeveloper.com/business/ai-in-game-development-an-overview",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_ml_content_generation_overview.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_production_workflows_collaboration",
+          "name": "Production Workflows & Collaboration",
+          "tag": "advanced",
+          "description": "Understand agile methodologies in game development, master documentation and handoff best practices, and excel in cross-disciplinary communication to drive successful project delivery.",
+          "resources": [
+            {
+              "title": "Agile Development for Games",
+              "url": "https://www.gamedeveloper.com/business/agile-development-in-game-development",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_production_workflows_collaboration.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ta_portfolio_career_readiness",
+      "name": "Portfolio & Career Readiness",
+      "tag": "advanced",
+      "description": "Transform your technical art skills into tangible proof through compelling case studies, portfolio projects, and effective interview preparation, positioning yourself for industry success.",
+      "resources": [
+        {
+          "title": "Building a Technical Art Portfolio",
+          "url": "https://80.lv/articles/how-to-build-a-technical-art-portfolio/",
+          "type": "article"
+        },
+        {
+          "title": "Technical Art in Games Explained (GDC)",
+          "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+          "type": "video"
+        },
+        {
+          "title": "Shader Programming Tutorial (Freya Holmer)",
+          "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/technical_artist/ta_portfolio_career_readiness.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "ta_portfolio_development",
+          "name": "Portfolio Development",
+          "tag": "advanced",
+          "description": "Learn to effectively showcase your technical art projects with detailed breakdowns, video demonstrations, and build a professional online presence that highlights your unique skillset.",
+          "resources": [
+            {
+              "title": "ArtStation Portfolio Best Practices",
+              "url": "https://www.artstation.com/blogs/tips-for-your-portfolio",
+              "type": "article"
+            },
+            {
+              "title": "Blender Tutorial for Beginners (Blender Guru)",
+              "url": "https://www.youtube.com/watch?v=nIoXOplUvAw",
+              "type": "video"
+            },
+            {
+              "title": "Unity Shader Graph Tutorial (Brackeys)",
+              "url": "https://www.youtube.com/watch?v=Ar9eIn4z6XE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_portfolio_development.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_interview_preparation",
+          "name": "Interview Preparation",
+          "tag": "advanced",
+          "description": "Prepare for technical art-specific interviews, including whiteboarding challenges, coding tests, and practice articulating your technical decisions and problem-solving process effectively.",
+          "resources": [
+            {
+              "title": "Technical Art Interview Questions",
+              "url": "https://www.techartaid.com/interview-questions/",
+              "type": "article"
+            },
+            {
+              "title": "Python for Technical Artists (Tech Art Aid)",
+              "url": "https://www.youtube.com/watch?v=EgrgEaj5CxE",
+              "type": "video"
+            },
+            {
+              "title": "Procedural Generation Explained (Sebastian Lague)",
+              "url": "https://www.youtube.com/watch?v=wbpMiKiSKm8",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_interview_preparation.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "ta_capstone_project",
+          "name": "Capstone Project: Technical Art Portfolio Showcase",
+          "tag": "advanced",
+          "description": "Undertake a comprehensive, portfolio-grade technical art project, demonstrating an end-to-end understanding of the pipeline, from asset creation and tool development to engine integration and optimization, culminating in a polished showcase.",
+          "resources": [
+            {
+              "title": "Project-Based Learning for Technical Artists",
+              "url": "https://www.gamedev.net/articles/project-based-learning-r1029/",
+              "type": "article"
+            },
+            {
+              "title": "Documenting Your Portfolio Projects",
+              "url": "https://www.artstation.com/blogs/how-to-document-projects",
+              "type": "article"
+            },
+            {
+              "title": "Technical Art in Games Explained (GDC)",
+              "url": "https://www.youtube.com/watch?v=mI5c7gYBXuA",
+              "type": "video"
+            },
+            {
+              "title": "Shader Programming Tutorial (Freya Holmer)",
+              "url": "https://www.youtube.com/watch?v=kfM-yu0iQBk",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/technical_artist/ta_capstone_project.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

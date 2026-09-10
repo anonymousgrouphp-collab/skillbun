@@ -1,0 +1,602 @@
+[
+  {
+    "question": "A programmer needs to store a simple ON/OFF state. Which fundamental concept represents this smallest unit of data in a computer?",
+    "options": [
+      "Byte",
+      "Bit",
+      "Nibble",
+      "Word"
+    ],
+    "correctIndex": 1,
+    "explanation": "A bit is the fundamental unit of information in computing, representing either a 0 (off) or a 1 (on). A byte is typically 8 bits, a nibble is 4 bits, and a word is a larger unit specific to a computer's architecture.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You open multiple applications like a web browser, a word processor, and a music player on your computer simultaneously. Which core component of the operating system is primarily responsible for managing how these different programs share the CPU and memory resources?",
+    "options": [
+      "File System",
+      "Kernel",
+      "Device Driver",
+      "User Interface"
+    ],
+    "correctIndex": 1,
+    "explanation": "The kernel is the core of an operating system, responsible for managing the system's resources, including processes, memory, and CPU scheduling. The file system manages data storage, device drivers allow interaction with hardware, and the user interface provides interaction with the user.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When you save a document, where is the data primarily stored for long-term retention even after the computer is turned off?",
+    "options": [
+      "RAM (Random Access Memory)",
+      "CPU Cache",
+      "Hard Drive (or SSD)",
+      "Processor Registers"
+    ],
+    "correctIndex": 2,
+    "explanation": "A hard drive or SSD provides non-volatile storage, meaning data persists even after power is removed. RAM and CPU cache are volatile memory used for short-term data access while the computer is on, and processor registers are tiny, fast storage within the CPU itself.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You type \"www.example.com\" into your browser. What service translates this human-readable domain name into an IP address that computers can understand?",
+    "options": [
+      "HTTP",
+      "FTP",
+      "DNS",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "DNS (Domain Name System) is responsible for translating human-readable domain names into numerical IP addresses. HTTP is for transferring web pages, FTP for file transfers, and SMTP for email.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A web developer is building an application where the client-side (browser) needs to request specific data from a server, like a list of products. Which architectural style or concept is most commonly used for this interaction?",
+    "options": [
+      "SMTP",
+      "API (Application Programming Interface)",
+      "SSH",
+      "FTP"
+    ],
+    "correctIndex": 1,
+    "explanation": "An API (Application Programming Interface) defines the set of rules and protocols for how different software components should interact, allowing a client to request and receive data from a server. SMTP, SSH, and FTP are protocols for email, secure shell access, and file transfer, respectively.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You visit a secure banking website, and you notice \"https://\" in the URL bar. What does the 'S' in HTTPS primarily indicate about your connection to the server?",
+    "options": [
+      "The connection is faster.",
+      "The website is hosted on a secure cloud server.",
+      "The data exchanged between your browser and the server is encrypted.",
+      "The website uses server-side scripting."
+    ],
+    "correctIndex": 2,
+    "explanation": "The 'S' in HTTPS stands for \"Secure,\" indicating that the communication between your web browser and the website server is encrypted, protecting data from eavesdropping and tampering. It doesn't inherently mean faster speed, cloud hosting, or server-side scripting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer wants to save a snapshot of their current code changes into their local Git repository. What command should they use?",
+    "options": [
+      "git push",
+      "git clone",
+      "git commit",
+      "git pull"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `git commit` command is used to save changes to the local repository, creating a new snapshot of the project. `git push` sends local changes to a remote repository, `git clone` copies a remote repository locally, and `git pull` fetches and merges changes from a remote repository.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are working on a new feature for a project and want to develop it independently without affecting the main codebase. Which Git concept allows you to create a separate line of development?",
+    "options": [
+      "Commit",
+      "Merge",
+      "Branch",
+      "Pull Request"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Git branch allows you to diverge from the main line of development and work on new features or fixes independently. Commits save changes within a branch, merging combines branches, and a pull request is a mechanism to propose merging changes from one branch to another in a collaborative environment like GitHub.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A team member has completed a new feature on their branch and wants to propose integrating it into the main `main` branch of the shared GitHub repository. What is the standard process on GitHub for this, often involving code review?",
+    "options": [
+      "`git push main`",
+      "Opening a Pull Request",
+      "`git clone`",
+      "Creating a new repository"
+    ],
+    "correctIndex": 1,
+    "explanation": "Opening a Pull Request (PR) on GitHub is the standard way to propose merging changes from one branch (e.g., a feature branch) into another (e.g., `main`). This allows for code review and discussion before the changes are integrated. `git push main` would directly push to the main branch (if allowed), `git clone` copies a repo, and creating a new repository is for starting a new project.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Python, you write `x = 10` and then `y = \"Hello\"`. What programming concept are `x` and `y` demonstrating?",
+    "options": [
+      "Function definition",
+      "Conditional statements",
+      "Variable assignment",
+      "Loop iteration"
+    ],
+    "correctIndex": 2,
+    "explanation": "This demonstrates variable assignment, where a name (like `x` or `y`) is associated with a value (like `10` or `\"Hello\"`). Function definitions create reusable blocks of code, conditional statements execute code based on conditions, and loops repeat code.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A programmer writes a function that takes two numbers and returns their sum. Later, when they run the program, it gives an error message like `TypeError: unsupported operand type(s) for +: 'str' and 'int'`. What is the most likely cause of this error?",
+    "options": [
+      "The function was not called.",
+      "One of the inputs provided to the function was a string instead of a number.",
+      "The function had an infinite loop.",
+      "The function attempted to divide by zero."
+    ],
+    "correctIndex": 1,
+    "explanation": "A `TypeError: unsupported operand type(s) for +: 'str' and 'int'` specifically means that the addition operator (`+`) was used with a string and an integer, which is not allowed. This points to an incorrect input type. The other options describe different types of errors or issues.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You need to process a list of customer names one by one to print a personalized greeting for each. Which fundamental programming construct is most suitable for repeatedly executing the same code for each item in a collection?",
+    "options": [
+      "Conditional statement (if/else)",
+      "Function",
+      "Loop (for/while)",
+      "Variable"
+    ],
+    "correctIndex": 2,
+    "explanation": "A loop (like a `for` loop or `while` loop) is designed to execute a block of code repeatedly, making it ideal for processing each item in a list or collection. Conditional statements execute code based on a condition, functions encapsulate reusable code, and variables store data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A developer needs to store a collection of unique user IDs and quickly check if a given ID already exists in the collection. Which data structure would generally offer the fastest average-case performance for checking membership?",
+    "options": [
+      "Array (List)",
+      "Linked List",
+      "Hash Map (Dictionary/Object)",
+      "Stack"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Hash Map (also known as a dictionary or object in some languages) provides average-case O(1) (constant time) complexity for insertions, deletions, and lookups, making it highly efficient for checking if an item exists. Arrays and linked lists would require O(n) (linear time) in the worst case for searching, and a stack is a LIFO structure not optimized for general membership checking.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Consider an algorithm designed to find a specific element in a sorted list by repeatedly dividing the search interval in half. What is this algorithm called, and what is its typical time complexity?",
+    "options": [
+      "Linear Search, O(n)",
+      "Binary Search, O(log n)",
+      "Bubble Sort, O(n^2)",
+      "Merge Sort, O(n log n)"
+    ],
+    "correctIndex": 1,
+    "explanation": "This describes Binary Search, which works on sorted lists by eliminating half of the remaining elements in each step, resulting in a logarithmic time complexity of O(log n). Linear search is O(n), and Bubble Sort and Merge Sort are sorting algorithms with different complexities.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are implementing a simple \"undo\" feature in a text editor. Which data structure is most appropriate for storing the sequence of actions that can be reversed, where the last action performed is the first one to be undone?",
+    "options": [
+      "Queue",
+      "Array",
+      "Stack",
+      "Linked List"
+    ],
+    "correctIndex": 2,
+    "explanation": "A Stack operates on a Last-In, First-Out (LIFO) principle, meaning the last item added is the first one to be removed. This perfectly matches the \"undo\" functionality where the most recent action is undone first. A queue is FIFO, an array offers random access, and a linked list is a general-purpose linear structure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "To define the structure and content of a webpage, such as headings, paragraphs, and images, which language is primarily used?",
+    "options": [
+      "CSS",
+      "JavaScript",
+      "HTML",
+      "Python"
+    ],
+    "correctIndex": 2,
+    "explanation": "HTML (HyperText Markup Language) is the standard language for creating web pages and defining their structure and content. CSS is for styling, JavaScript for interactivity, and Python is a general-purpose programming language.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A web developer wants to dynamically change the text of an element on a webpage after a user clicks a button, without reloading the entire page. Which technology is best suited for this task?",
+    "options": [
+      "HTML forms",
+      "CSS animations",
+      "JavaScript and the DOM",
+      "Server-side PHP"
+    ],
+    "correctIndex": 2,
+    "explanation": "JavaScript, in conjunction with the DOM (Document Object Model), allows developers to dynamically manipulate the content, structure, and style of a web page after it has loaded, enabling interactive features like changing text on a button click. HTML forms are for submitting data, CSS animations are for visual effects, and server-side PHP runs on the server.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A business analyst needs to organize and perform calculations on large datasets using rows and columns. Which tool is explicitly designed for this purpose and often taught as a foundational data skill?",
+    "options": [
+      "A word processor",
+      "A spreadsheet program (e.g., Excel, Google Sheets)",
+      "A video editor",
+      "An image manipulation software"
+    ],
+    "correctIndex": 1,
+    "explanation": "Spreadsheet programs like Excel or Google Sheets are specifically designed for organizing data in rows and columns, performing calculations, and basic data analysis. Word processors are for text, video editors for video, and image software for images.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "You are working with a database containing customer information and need to retrieve all customers who live in \"New York\" and have made more than 5 purchases. Which language is standard for querying and managing relational databases?",
+    "options": [
+      "HTML",
+      "SQL",
+      "JavaScript",
+      "Python (without a specific library)"
+    ],
+    "correctIndex": 1,
+    "explanation": "SQL (Structured Query Language) is the standard language used to communicate with and manipulate relational databases, including retrieving, inserting, updating, and deleting data. HTML, JavaScript, and Python are not inherently database query languages (though Python can interact with databases via libraries).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A data scientist is using the Pandas library in Python to clean and transform a complex dataset. They encounter a situation where they need to efficiently group data by a specific column and then apply an aggregation function (like sum or average) to another column within each group. Which Pandas method is specifically designed for this common data manipulation task?",
+    "options": [
+      "df.apply()",
+      "df.merge()",
+      "df.groupby()",
+      "df.pivot_table()"
+    ],
+    "correctIndex": 2,
+    "explanation": "The `df.groupby()` method in Pandas is specifically designed for the \"split-apply-combine\" strategy, allowing users to group a DataFrame by one or more columns and then apply various aggregation functions (sum, mean, count, etc.) to other columns within each group. `df.apply()` applies a function along an axis, `df.merge()` combines DataFrames, and `df.pivot_table()` reshapes data.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A system administrator needs to connect to a remote Linux server securely from their local machine to execute commands. Which protocol is commonly used for secure shell access?",
+    "options": [
+      "FTP",
+      "HTTP",
+      "SSH",
+      "SMTP"
+    ],
+    "correctIndex": 2,
+    "explanation": "SSH (Secure Shell) is a cryptographic network protocol for operating network services securely over an unsecured network. It's widely used for secure remote login and command-line execution on Linux servers. FTP is for file transfer, HTTP for web, and SMTP for email.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "A startup is deploying its web application on a cloud provider like AWS or Azure, aiming for high availability and scalability. Instead of managing physical servers, they use virtualized resources that can be provisioned and de-provisioned on demand. What fundamental characteristic of cloud computing are they primarily leveraging?",
+    "options": [
+      "On-premises infrastructure",
+      "Serverless computing",
+      "Elasticity and scalability",
+      "Single point of failure"
+    ],
+    "correctIndex": 2,
+    "explanation": "Elasticity and scalability are core characteristics of cloud computing, allowing resources to be dynamically scaled up or down based on demand, which is crucial for high availability and handling fluctuating loads. On-premises infrastructure is the opposite of cloud, serverless is a specific cloud execution model, and cloud computing aims to reduce single points of failure.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A security analyst is reviewing server logs after a suspected intrusion attempt. They notice repeated failed login attempts from a specific IP address within a short timeframe. What common type of cyberattack does this pattern most strongly suggest?",
+    "options": [
+      "SQL Injection",
+      "Phishing",
+      "Brute-force attack",
+      "Cross-Site Scripting (XSS)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Repeated failed login attempts from a single source are a strong indicator of a brute-force attack, where an attacker attempts to guess credentials by trying many combinations. SQL Injection targets database vulnerabilities, phishing involves tricking users, and XSS involves injecting malicious scripts into web pages.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "After completing the \"Three-Track Sampler\" project, a learner is evaluating their interest in different tech areas. They found themselves most engaged with optimizing database queries, designing efficient data models, and performing statistical analysis. Which specialization area would likely be the best fit for their interests based on this experience?",
+    "options": [
+      "Frontend Web Development",
+      "Cybersecurity Analyst",
+      "Data Engineering / Analysis",
+      "DevOps Engineer"
+    ],
+    "correctIndex": 2,
+    "explanation": "Interests in optimizing database queries, designing data models, and statistical analysis directly align with the responsibilities of a Data Engineer or Data Analyst. Frontend web development focuses on user interfaces, cybersecurity on protection, and DevOps on development and operations integration.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A junior developer is preparing their portfolio after working on several small projects, including a \"Command-Line Toolkit.\" To make their portfolio most effective for potential employers, beyond just showing the code, what crucial elements should they focus on including for each project according to the \"Portfolio Basics\" topic?",
+    "options": [
+      "Only a link to the GitHub repository.",
+      "A list of all programming languages they know.",
+      "Explanations of design decisions, setup steps, screenshots, and lessons learned.",
+      "Detailed financial projections for the project's potential."
+    ],
+    "correctIndex": 2,
+    "explanation": "A strong portfolio goes beyond just code. According to \"Portfolio Basics,\" it should include explanations of design decisions, clear setup steps, screenshots or demos, and reflections on what was learned, demonstrating problem-solving skills and critical thinking. A GitHub link alone isn't enough context, a general language list is separate from project details, and financial projections are irrelevant for personal projects.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary purpose of a computer operating system (OS)?",
+    "options": [
+      "To design website graphics",
+      "To manage computer hardware and software resources and provide common services for programs",
+      "To write application source code files",
+      "To host domain names on the internet"
+    ],
+    "correctIndex": 1,
+    "explanation": "An OS (like Windows, macOS, or Linux) manages memory, processors, files, and peripheral devices, providing the platform for running applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a widely used operating system?",
+    "options": [
+      "Google Chrome",
+      "Windows / Linux",
+      "Figma",
+      "MySQL"
+    ],
+    "correctIndex": 1,
+    "explanation": "Windows, macOS, Linux, iOS, and Android are operating systems. Chrome is a browser, Figma is a design tool, and MySQL is a database.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does RAM stand for?",
+    "options": [
+      "Random Access Memory",
+      "Read Active Module",
+      "Rapid Access Memory",
+      "Remote Asset Management"
+    ],
+    "correctIndex": 0,
+    "explanation": "RAM stands for Random Access Memory, which is the fast, volatile temporary storage used by CPUs to run active applications.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a compiler?",
+    "options": [
+      "A program that translates source code written in a programming language into machine code that computers can execute",
+      "To audit database tables",
+      "A software program for editing photos",
+      "A network routing protocol"
+    ],
+    "correctIndex": 0,
+    "explanation": "Compilers translate high-level code (like C++ or Go) into binary instructions (machine code) that the computer's CPU can run directly.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which protocol is the standard foundation of the World Wide Web for transferring files and data?",
+    "options": [
+      "FTP",
+      "HTTP / HTTPS",
+      "SMTP",
+      "SSH"
+    ],
+    "correctIndex": 1,
+    "explanation": "HTTP (Hypertext Transfer Protocol) and its secure version HTTPS are the primary communication protocols for loading web pages and communicating with web APIs.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is version control (e.g. Git)?",
+    "options": [
+      "Numbering each row in a database table",
+      "A system that records changes to files over time so that you can recall specific versions later",
+      "A method for checking code compile speeds",
+      "Managing server hardware upgrades in datacenters"
+    ],
+    "correctIndex": 1,
+    "explanation": "Version control systems allow multiple developers to collaborate on a codebase, tracking changes, resolving conflicts, and supporting rollbacks.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Bug' in software development?",
+    "options": [
+      "An insect inside the server case",
+      "An error, flaw, or fault in a software program that causes it to produce an incorrect or unexpected result",
+      "A password guessing script",
+      "An uncompressed data file"
+    ],
+    "correctIndex": 1,
+    "explanation": "A bug refers to any unintended behavior or error in software, ranging from small interface glitches to fatal crashes.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the difference between a Compiler and an Interpreter?",
+    "options": [
+      "Compilers are only for Windows; Interpreters are for Linux",
+      "Compilers translate the entire source code into machine code before execution; Interpreters translate and execute code line-by-line at runtime",
+      "Interpreters are always faster than Compilers",
+      "Compilers do not require writing source code files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Compiled languages (C, C++, Go) yield fast standalone binaries. Interpreted languages (Python, JavaScript) require a runtime engine to read and run source code on the fly.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a database?",
+    "options": [
+      "A folder containing local text files",
+      "An organized collection of structured data stored and accessed electronically from a computer system",
+      "A web server routing script",
+      "A styling template for web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Databases (SQL or NoSQL) store application data (users, logs, records) in optimized structures that allow fast search, insertion, and updates.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Local Area Network (LAN) and a Wide Area Network (WAN)?",
+    "options": [
+      "LAN is for databases; WAN is for web pages",
+      "LAN connects computers within a limited geographic area (like a home or office); WAN covers a large physical distance, connecting multiple LANs",
+      "WAN is faster than LAN in all scenarios",
+      "LAN requires public IP addresses; WAN does not"
+    ],
+    "correctIndex": 1,
+    "explanation": "Your home Wi-Fi network is a LAN. The internet itself is the ultimate example of a WAN, connecting networks globally.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of an IP Address?",
+    "options": [
+      "To identify the developer who wrote the application",
+      "A unique numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication",
+      "To encrypt user password keys",
+      "To compress data packets during transfer"
+    ],
+    "correctIndex": 1,
+    "explanation": "IP addresses act as coordinates, allowing routers to deliver network packets to the correct target device in the network.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does a Domain Name System (DNS) do?",
+    "options": [
+      "Stores database records",
+      "Translates human-readable domain names (like google.com) into machine-readable IP addresses",
+      "Encrypts network traffic headers",
+      "Speeds up website page loading"
+    ],
+    "correctIndex": 1,
+    "explanation": "DNS is the directory of the web, ensuring that when you type a URL, your browser connects to the hosting server's IP address.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a public IP and a private IP?",
+    "options": [
+      "Public IPs are paid; private IPs are free",
+      "Public IPs are reachable from the global internet; Private IPs are used internally within local networks and are not routable online",
+      "Private IPs are encrypted; public IPs are not",
+      "They are identical in routing capability"
+    ],
+    "correctIndex": 1,
+    "explanation": "Your local router assigns private IPs (like `192.168.1.5`) to devices in your home. The router uses its single public IP to communicate with the internet.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does CPU stand for?",
+    "options": [
+      "Computer Processing Unit",
+      "Central Processing Unit",
+      "Core Power Utility",
+      "Client Protocol Unit"
+    ],
+    "correctIndex": 1,
+    "explanation": "The Central Processing Unit (CPU) is the primary processor of a computer, executing program instructions and performing calculations.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of an IDE (Integrated Development Environment)?",
+    "options": [
+      "To run website pages locally",
+      "A software suite combining code editor, build tools, and debugger in one interface to help developers write software",
+      "A server operating system database",
+      "A compiler utility that translates code formats"
+    ],
+    "correctIndex": 1,
+    "explanation": "IDEs (like Visual Studio, IntelliJ, or VS Code) provide auto-completion, refactoring, and debugging features that boost developer productivity.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Bit and a Byte?",
+    "options": [
+      "A Bit is larger than a Byte",
+      "A Bit is a single binary digit (0 or 1); a Byte consists of 8 bits, representing a single character of data",
+      "Bits are only for text; Bytes are only for numbers",
+      "They are identical units of storage"
+    ],
+    "correctIndex": 1,
+    "explanation": "Bits are the smallest unit of computer data. Eight bits form one byte, which is the standard base unit for measuring memory size (KB, MB, GB).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does virtualization mean in cloud computing?",
+    "options": [
+      "Running software on virtual reality headsets",
+      "The technology that allows running multiple isolated virtual machines (VMs) with different operating systems on a single physical server hardware",
+      "Writing code without physical keyboards",
+      "Compressing database files into virtual folders"
+    ],
+    "correctIndex": 1,
+    "explanation": "Virtualization uses a software layer (hypervisor) to partition one physical server into multiple VMs, maximizing hardware use and isolation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Shell' (or Command Line)?",
+    "options": [
+      "The physical plastic casing of a laptop",
+      "A user interface for access to an operating system's services, allowing users to enter text commands directly to execute tasks",
+      "A folder structure of application code",
+      "A security firewall for databases"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shells (like Bash on Linux/macOS, or PowerShell on Windows) process text commands to navigate directories, run scripts, and manage systems.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is open-source software?",
+    "options": [
+      "Software that does not require passwords to log in",
+      "Software with source code that anyone can inspect, modify, and enhance, often distributed under open licenses",
+      "Software hosted on public cloud servers only",
+      "Software designed for government agencies"
+    ],
+    "correctIndex": 1,
+    "explanation": "Open-source projects (like Linux, Python, or React) allow developers worldwide to read the code, contribute fixes, and reuse it in their own apps.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the purpose of a software license?",
+    "options": [
+      "A document permitting developers to work in offices",
+      "A legal agreement defining the terms, conditions, and restrictions under which software can be used, modified, or distributed",
+      "A certificate proving database security",
+      "An API key required to start applications"
+    ],
+    "correctIndex": 1,
+    "explanation": "Licenses (like MIT, GPL, or proprietary licenses) set the legal bounds for who can use the software, whether it can be sold, and if modifications must be shared.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Object-Oriented Programming' (OOP) and what are its four core principles?",
+    "options": [
+      "A style of programming using only database tables; principles are Tables, Columns, Rows, Keys",
+      "A programming paradigm based on the concept of 'objects' containing data and code; principles are Encapsulation, Inheritance, Polymorphism, and Abstraction",
+      "A method for writing code without files; principles are Input, Output, Process, Storage",
+      "They are styling guidelines for HTML elements; principles are Flex, Grid, Border, Margin"
+    ],
+    "correctIndex": 1,
+    "explanation": "OOP structures code into reusable classes and objects. Encapsulation hides internal states. Inheritance passes traits down. Polymorphism allows flexible behaviors. Abstraction simplifies interfaces.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between TCP (Transmission Control Protocol) and UDP (User Datagram Protocol)?",
+    "options": [
+      "TCP is for wireless networks; UDP is for wired networks",
+      "TCP is connection-oriented, guaranteeing packet delivery and order; UDP is connectionless, prioritizing speed over reliability without delivery checks",
+      "UDP is always slower than TCP",
+      "TCP is only for databases; UDP for web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "TCP establishes a handshake and resends lost packets (good for web pages, emails). UDP sends packets directly without checks (good for live streaming, online gaming).",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'Memory Leak' and how does it affect long-running processes?",
+    "options": [
+      "A security vulnerability where data is leaked; affects network bandwidth",
+      "A bug where a program allocates memory on the heap but fails to release it after use, slowly consuming RAM until the system crashes or runs out of memory",
+      "A database index crash; affects write speeds",
+      "A compiler error; affects build times"
+    ],
+    "correctIndex": 1,
+    "explanation": "Memory leaks occur when program variables maintain references to unused heap memory. Over time, the process consumes increasing RAM, leading to performance degradation and crashes.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Stack' vs 'Heap' memory allocation in low-level programming?",
+    "options": [
+      "Stack is larger than Heap; Heap is faster",
+      "Stack allocation is automatic, manages local variables in a LIFO structure, and is very fast; Heap allocation is dynamic, manual, larger, and slower to allocate",
+      "Heap memory is cleared automatically when functions return",
+      "Stack memory survives after function execution ends"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stack memory is managed by the CPU/compiler. Heap memory requires manual management (malloc/free in C, delete in C++) or garbage collection tracking.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the 'Time Complexity' of an algorithm and what does Big O notation describe?",
+    "options": [
+      "The time taken to compile the code on a server",
+      "A mathematical description of the execution time of an algorithm relative to the input size (N) in the worst-case scenario",
+      "The average clock cycles of the CPU",
+      "The file size of the compiled binary"
+    ],
+    "correctIndex": 1,
+    "explanation": "Big O notation describes scalability. For example, O(1) is constant time. O(N) scales linearly with inputs. O(N log N) is standard for sorting. O(N^2) scales quadratically, which can bottleneck big datasets.",
+    "difficulty": "hard"
+  }
+]

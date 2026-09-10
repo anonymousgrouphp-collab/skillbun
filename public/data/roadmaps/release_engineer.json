@@ -1,0 +1,1002 @@
+{
+  "id": "release_engineer",
+  "title": "Release Engineer",
+  "description": "Coordinate reliable production deployments, semantic versioning, artifact management, feature flag rollouts, and disaster recovery rollback plans.",
+  "goal": {
+    "objective": "Ensure seamless, zero-downtime, and compliant software releases across diverse production environments with instant rollback capabilities.",
+    "salary": "$80,000 - $140,000 / yr (₹6 - ₹20 LPA)",
+    "salary_range": {
+      "usd": {
+        "min": 80000,
+        "max": 140000,
+        "period": "yr"
+      },
+      "inr_lpa": {
+        "min": 6,
+        "max": 20,
+        "period": "lpa"
+      }
+    },
+    "experience_level": "Entry to Senior (0 - 5+ Years)",
+    "target_roles": [
+      "Release Engineer",
+      "Deployment Coordinator",
+      "Build & Release Specialist"
+    ],
+    "career_pillars": [
+      "Artifact Management & Provenance",
+      "Feature Flag Governance (LaunchDarkly)",
+      "Automated Release Trains & Rollback Playbooks"
+    ]
+  },
+  "learn": {
+    "summary": "Master binary artifact repositories (Artifactory, Nexus), Semantic Versioning (SemVer), feature flagging architectures, progressive delivery, and automated release trains.",
+    "key_competencies": [
+      "Semantic Versioning & Conventional Commits",
+      "Binary Artifact Management & Provenance (SLSA)",
+      "Feature Flagging Engines & Gradual Rollouts",
+      "Release Train Scheduling & Change Management",
+      "Automated Rollback & Canary Validation"
+    ],
+    "prerequisites": [
+      "Git version control mastery",
+      "CI/CD pipeline basics",
+      "Familiarity with deployment environments"
+    ]
+  },
+  "boost": {
+    "capstone_projects": [
+      {
+        "title": "Automated Progressive Delivery & Rollback Controller",
+        "tech_stack": [
+          "GitHub Actions",
+          "Flagger",
+          "Kubernetes",
+          "Prometheus",
+          "Slack Webhooks"
+        ],
+        "description": "Build an automated release train that releases versions to 5% of users, monitors error rates, and automatically rolls back if errors increase."
+      },
+      {
+        "title": "Automated Multi-Environment Release Pipeline with Semantic Versioning",
+        "tech_stack": [
+          "GitHub Actions",
+          "Docker Buildx",
+          "Cosign",
+          "Semantic Release"
+        ],
+        "description": "Construct an end-to-end release automation pipeline that generates changelogs, signs container images with Cosign, and publishes release manifests."
+      }
+    ],
+    "interview_focus": [
+      "Canary vs Blue-Green vs Dark Launching",
+      "Semantic Versioning in Microservices vs Monoliths",
+      "SLSA Framework for Software Supply Chain Integrity",
+      "Mitigating Database Migration Rollback Complications"
+    ],
+    "certifications": [
+      "Linux Foundation Certified DevOps Engineer",
+      "GitHub Actions Certified"
+    ]
+  },
+  "format": "tree",
+  "tree": [
+    {
+      "id": "release_engineer_foundations",
+      "name": "Foundations of Release Engineering & SDLC",
+      "tag": "essential",
+      "description": "Establish a robust understanding of the Release Engineer role, its critical place within the Software Development Life Cycle, and fundamental concepts that govern reliable software delivery.",
+      "resources": [
+        {
+          "title": "Introduction to Release Engineering",
+          "url": "https://example.com/intro-release-eng",
+          "type": "article"
+        },
+        {
+          "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+          "type": "video"
+        },
+        {
+          "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/release_engineer/release_engineer_foundations.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "release_engineer_role_context",
+          "name": "Role & Responsibilities of a Release Engineer",
+          "tag": "essential",
+          "description": "Explore the core functions, key stakeholders, and strategic importance of a Release Engineer. Understand responsibilities like pipeline ownership, environment management, release coordination, and toolchain selection.",
+          "resources": [
+            {
+              "title": "The Release Engineer Role Explained",
+              "url": "https://example.com/release-engineer-role",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+              "type": "video"
+            },
+            {
+              "title": "GitOps Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_role_context.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_sdlc_intro",
+          "name": "Software Development Life Cycle & Release Process",
+          "tag": "essential",
+          "description": "Understand the various phases of the SDLC (planning, analysis, design, implementation, testing, deployment, maintenance) and how release engineering practices integrate and optimize each stage, particularly within Agile and DevOps models.",
+          "resources": [
+            {
+              "title": "Understanding the SDLC: A Complete Guide",
+              "url": "https://example.com/sdlc-guide",
+              "type": "article"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_sdlc_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_version_control",
+          "name": "Version Control Systems & Branching Strategies",
+          "tag": "essential",
+          "description": "Master modern VCS like Git, including advanced branching models such as GitFlow, GitHub Flow, and Trunk-Based Development. Understand pull requests, code review, tagging, and release branching strategies.",
+          "resources": [
+            {
+              "title": "Official Git Documentation",
+              "url": "https://git-scm.com/doc",
+              "type": "article"
+            },
+            {
+              "title": "A successful Git branching model (GitFlow)",
+              "url": "https://nvie.com/posts/a-successful-git-branching-model/",
+              "type": "article"
+            },
+            {
+              "title": "Trunk Based Development",
+              "url": "https://trunkbaseddevelopment.com/",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_version_control.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_ci_cd_intro",
+          "name": "Introduction to Continuous Integration & Delivery",
+          "tag": "essential",
+          "description": "Grasp the core principles, benefits (faster feedback, higher quality), and components of CI (automated build, test, integration) and CD (automated deployment, delivery). Understand its role as the backbone of modern release engineering.",
+          "resources": [
+            {
+              "title": "What is CI/CD?",
+              "url": "https://www.redhat.com/en/topics/devops/what-is-ci-cd",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_ci_cd_intro.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_semver_immutability",
+          "name": "Semantic Versioning, Immutability, & Idempotency",
+          "tag": "essential",
+          "description": "Deep dive into essential release principles: Semantic Versioning (SemVer) for consistent versioning, immutability for reliable artifacts (e.g., container images, build binaries), and idempotency for repeatable and safe operations.",
+          "resources": [
+            {
+              "title": "Semantic Versioning",
+              "url": "https://semver.org/",
+              "type": "article"
+            },
+            {
+              "title": "Immutable Infrastructure and its Benefits",
+              "url": "https://example.com/immutable-infra",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+              "type": "video"
+            },
+            {
+              "title": "GitOps Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_semver_immutability.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_engineer_core_implementation",
+      "name": "Core Skills: Build, Artifacts & CI/CD Pipelines",
+      "tag": "essential",
+      "description": "Develop the practical skills needed to design, implement, and manage automated build processes, robust artifact handling, and reliable CI/CD pipelines.",
+      "resources": [
+        {
+          "title": "The Ultimate Guide to CI/CD",
+          "url": "https://example.com/ultimate-cicd-guide",
+          "type": "article"
+        },
+        {
+          "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+          "type": "video"
+        },
+        {
+          "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+          "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/release_engineer/release_engineer_core_implementation.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "release_engineer_build_systems",
+          "name": "Build System Fundamentals & Dependency Management",
+          "tag": "essential",
+          "description": "Learn to configure and optimize common build tools (e.g., Maven, Gradle, npm, Bazel, Make, CMake) for different language ecosystems. Master dependency resolution, caching, and build performance optimization.",
+          "resources": [
+            {
+              "title": "Apache Maven Official Documentation",
+              "url": "https://maven.apache.org/guides/",
+              "type": "article"
+            },
+            {
+              "title": "Gradle Build Tool User Manual",
+              "url": "https://docs.gradle.org/current/userguide/userguide.html",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_build_systems.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_artifact_management",
+          "name": "Artifact Repositories & Binary Management",
+          "tag": "essential",
+          "description": "Master the use of artifact management systems (e.g., JFrog Artifactory, Sonatype Nexus, GitHub Packages) for storing, promoting, versioning, and securing release binaries, packages, and dependencies across various stages.",
+          "resources": [
+            {
+              "title": "JFrog Artifactory Documentation",
+              "url": "https://www.jfrog.com/confluence/display/RTF/Artifactory+User+Guide",
+              "type": "article"
+            },
+            {
+              "title": "Sonatype Nexus Repository Manager Overview",
+              "url": "https://www.sonatype.com/nexus-repository-oss",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_artifact_management.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_containerization",
+          "name": "Containerization & Image Management",
+          "tag": "essential",
+          "description": "Understand Docker for containerizing applications. Learn Dockerfile best practices, image layers, multi-stage builds, container registries (Docker Hub, AWS ECR, GCR, Azure Container Registry), and image security scanning.",
+          "resources": [
+            {
+              "title": "Docker Documentation",
+              "url": "https://docs.docker.com/",
+              "type": "article"
+            },
+            {
+              "title": "Best practices for writing Dockerfiles",
+              "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+              "type": "video"
+            },
+            {
+              "title": "GitOps Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_containerization.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_pipeline_design",
+          "name": "CI/CD Pipeline Design & Scripting",
+          "tag": "essential",
+          "description": "Learn to design and script automated CI/CD pipelines using various platforms (Jenkins, GitLab CI, GitHub Actions, Azure DevOps, CircleCI) with Pipeline-as-Code principles (YAML/Groovy). Focus on stages, parallelization, conditional steps, and integrations.",
+          "resources": [
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Pipeline Documentation",
+              "url": "https://www.jenkins.io/doc/book/pipeline/",
+              "type": "article"
+            },
+            {
+              "title": "GitLab CI/CD Documentation",
+              "url": "https://docs.gitlab.com/ee/ci/",
+              "type": "article"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_pipeline_design.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_testing_quality",
+          "name": "Automated Testing & Quality Gates",
+          "tag": "essential",
+          "description": "Integrate automated unit, integration, end-to-end, performance, and security tests into CI/CD pipelines. Establish robust quality gates, code coverage thresholds, and reporting mechanisms to ensure release readiness.",
+          "resources": [
+            {
+              "title": "Google SRE Release Engineering",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "type": "article"
+            },
+            {
+              "title": "Automated Testing in CI/CD Pipelines",
+              "url": "https://example.com/automated-testing-cicd",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_testing_quality.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_secrets_management",
+          "name": "Secrets Management in CI/CD",
+          "tag": "essential",
+          "description": "Implement secure practices for handling credentials, API keys, certificates, and other sensitive information within automated pipelines. Utilize tools like HashiCorp Vault, cloud secret managers (AWS Secrets Manager, Azure Key Vault), and Kubernetes Secrets.",
+          "resources": [
+            {
+              "title": "HashiCorp Vault Documentation",
+              "url": "https://www.vaultproject.io/docs",
+              "type": "article"
+            },
+            {
+              "title": "Secrets Management Best Practices in CI/CD",
+              "url": "https://example.com/secrets-best-practices",
+              "type": "article"
+            },
+            {
+              "title": "Introduction to Kubernetes Secrets",
+              "url": "https://kubernetes.io/docs/concepts/configuration/secret/",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_secrets_management.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_engineer_advanced_deployment_ops",
+      "name": "Advanced Deployment, Release Management & Operations",
+      "tag": "advanced",
+      "description": "Acquire expertise in advanced deployment strategies, comprehensive release management, operational best practices, and post-release incident handling for robust production environments.",
+      "resources": [
+        {
+          "title": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
+          "url": "https://example.com/phoenix-project",
+          "type": "course"
+        },
+        {
+          "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+          "type": "video"
+        },
+        {
+          "title": "GitOps Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/release_engineer/release_engineer_advanced_deployment_ops.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "release_engineer_deployment_strategies",
+          "name": "Deployment Strategies: Blue/Green, Canary, Rolling",
+          "tag": "advanced",
+          "description": "Implement and manage advanced deployment patterns like Blue/Green deployments, Canary releases, and Rolling updates to minimize downtime, reduce risk, enable controlled rollouts, and facilitate rapid rollback.",
+          "resources": [
+            {
+              "title": "Blue/Green Deployment Explained",
+              "url": "https://martinfowler.com/bliki/BlueGreenDeployment.html",
+              "type": "article"
+            },
+            {
+              "title": "What is a Canary Release?",
+              "url": "https://example.com/what-is-canary",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Rolling Update Strategy",
+              "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+              "type": "article"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_deployment_strategies.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_feature_flags",
+          "name": "Feature Flags & Progressive Delivery",
+          "tag": "advanced",
+          "description": "Utilize feature flags (feature toggles) for decoupling deployment from release. Enable A/B testing, gradual rollouts, dark launches, and kill-switches. Understand flag management platforms and best practices.",
+          "resources": [
+            {
+              "title": "Feature Toggles (aka Feature Flags)",
+              "url": "https://martinfowler.com/articles/feature-toggles.html",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_feature_flags.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_release_planning",
+          "name": "Release Planning, Cadence & Change Management",
+          "tag": "advanced",
+          "description": "Develop robust release plans, define release cadences, manage approval workflows, stakeholder communication, and implement effective change management processes (ITIL, DevOps principles). Master release readiness checklists and cut-off dates.",
+          "resources": [
+            {
+              "title": "ITIL Change Management Process Explained",
+              "url": "https://example.com/itil-change-management",
+              "type": "article"
+            },
+            {
+              "title": "Mastering Release Planning in Agile Teams",
+              "url": "https://example.com/agile-release-planning",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_release_planning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_rollback_dr",
+          "name": "Rollback Procedures & Disaster Recovery",
+          "tag": "advanced",
+          "description": "Design and implement rapid, automated rollback mechanisms for failed releases, including application, database, and infrastructure state. Develop comprehensive disaster recovery (DR) plans to mitigate the impact of catastrophic failures.",
+          "resources": [
+            {
+              "title": "Google SRE Release Engineering",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "type": "article"
+            },
+            {
+              "title": "Designing a Robust Rollback Strategy",
+              "url": "https://example.com/rollback-strategy",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+              "type": "video"
+            },
+            {
+              "title": "GitOps Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_rollback_dr.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_observability",
+          "name": "Monitoring, Logging & Release Health",
+          "tag": "advanced",
+          "description": "Set up comprehensive monitoring (Prometheus, Grafana, Datadog), structured logging (ELK stack, Splunk), and distributed tracing (Jaeger, OpenTelemetry). Establish alerts and dashboards to observe release health, identify issues, and gather performance metrics.",
+          "resources": [
+            {
+              "title": "The Three Pillars of Observability",
+              "url": "https://example.com/three-pillars-observability",
+              "type": "article"
+            },
+            {
+              "title": "Prometheus Monitoring Documentation",
+              "url": "https://prometheus.io/docs/introduction/overview/",
+              "type": "article"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_observability.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_incident_response",
+          "name": "Incident Management & Post-Mortems for Releases",
+          "tag": "advanced",
+          "description": "Learn to effectively respond to release-related incidents, develop detailed incident runbooks, conduct thorough root cause analysis (RCA), and implement blameless post-mortem processes for continuous learning and preventive measures.",
+          "resources": [
+            {
+              "title": "Site Reliability Engineering (SRE) Incident Management",
+              "url": "https://sre.google/sre-book/chapters/managing-incidents/",
+              "type": "article"
+            },
+            {
+              "title": "Blameless Post Mortem Culture",
+              "url": "https://example.com/blameless-post-mortem",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_incident_response.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_security_compliance",
+          "name": "Security & Compliance in Release Pipelines",
+          "tag": "advanced",
+          "description": "Integrate DevSecOps practices: Static Application Security Testing (SAST), Dynamic Application Security Testing (DAST), Software Bill of Materials (SBOM) generation, dependency scanning, secret scanning, and ensuring compliance (e.g., SOC2, GDPR, HIPAA) within the entire release process.",
+          "resources": [
+            {
+              "title": "Introduction to DevSecOps",
+              "url": "https://example.com/intro-devsecops",
+              "type": "article"
+            },
+            {
+              "title": "Understanding Software Bill of Materials (SBOM)",
+              "url": "https://www.cisa.gov/sbom",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_security_compliance.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "release_engineer_enterprise_career",
+      "name": "Enterprise Practices & Career Advancement",
+      "tag": "advanced",
+      "description": "Master enterprise-scale release strategies, lead initiatives, and build a compelling portfolio to advance your career as a Release Engineer, focusing on broader impact and leadership.",
+      "resources": [
+        {
+          "title": "Accelerate: The Science of Lean Software and DevOps",
+          "url": "https://example.com/accelerate-book",
+          "type": "course"
+        },
+        {
+          "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+          "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+          "type": "video"
+        },
+        {
+          "title": "GitOps Explained (IBM Technology)",
+          "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+          "type": "video"
+        },
+        {
+          "title": "Study Guide & Notes",
+          "url": "/data/docs/release_engineer/release_engineer_enterprise_career.md",
+          "type": "doc"
+        }
+      ],
+      "children": [
+        {
+          "id": "release_engineer_iac_orchestration",
+          "name": "Infrastructure as Code (IaC) & Orchestration",
+          "tag": "advanced",
+          "description": "Leverage Infrastructure as Code (IaC) tools like Terraform (cloud provisioning), Ansible/Chef/Puppet (configuration management) for environment provisioning and orchestrators like Kubernetes (container orchestration) with Helm charts for managing complex deployments.",
+          "resources": [
+            {
+              "title": "Terraform Getting Started Guide",
+              "url": "https://developer.hashicorp.com/terraform/tutorials/aws-get-started",
+              "type": "article"
+            },
+            {
+              "title": "Kubernetes Official Documentation",
+              "url": "https://kubernetes.io/docs/home/",
+              "type": "article"
+            },
+            {
+              "title": "Ansible Documentation",
+              "url": "https://docs.ansible.com/",
+              "type": "article"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_iac_orchestration.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_release_trains",
+          "name": "Release Trains & Multi-Team Coordination",
+          "tag": "advanced",
+          "description": "Coordinate large-scale releases across multiple teams and services, implementing strategies like release trains, synchronized releases, and managing dependencies in complex monorepo or polyrepo environments.",
+          "resources": [
+            {
+              "title": "Scaled Agile Framework (SAFe) - Release Train",
+              "url": "https://www.scaledagileframework.com/agile-release-train/",
+              "type": "article"
+            },
+            {
+              "title": "Coordinating Multi-Service Releases",
+              "url": "https://example.com/multi-service-releases",
+              "type": "article"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_release_trains.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_stakeholder_comm",
+          "name": "Stakeholder Communication & Collaboration",
+          "tag": "advanced",
+          "description": "Develop strong communication and negotiation skills to align with product, development, QA, and operations teams. Master managing expectations, resolving conflicts, and fostering a collaborative culture around release processes.",
+          "resources": [
+            {
+              "title": "Effective Communication for Technical Leaders",
+              "url": "https://example.com/tech-comm-leaders",
+              "type": "course"
+            },
+            {
+              "title": "Managing Stakeholders in Software Projects",
+              "url": "https://example.com/stakeholder-management-article",
+              "type": "article"
+            },
+            {
+              "title": "CI/CD Full Course - Learn Continuous Integration (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=62N8UiWUdQo",
+              "type": "video"
+            },
+            {
+              "title": "GitHub Actions Tutorial (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=R8_veQiYBjI",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_stakeholder_comm.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_career_positioning",
+          "name": "Career Positioning & Interview Preparation",
+          "tag": "advanced",
+          "description": "Understand how to articulate your skills, prepare for technical (system design, troubleshooting) and behavioral interviews, build a compelling resume, and position yourself for growth and leadership roles in the Release Engineering domain.",
+          "resources": [
+            {
+              "title": "Guide to Release Engineer Interviews",
+              "url": "https://example.com/release-engineer-interview-guide",
+              "type": "article"
+            },
+            {
+              "title": "Jenkins Full Course for Beginners (freeCodeCamp)",
+              "url": "https://www.youtube.com/watch?v=FX322RVNGj4",
+              "type": "video"
+            },
+            {
+              "title": "GitOps Explained (IBM Technology)",
+              "url": "https://www.youtube.com/watch?v=f5EpcWp0THw",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_career_positioning.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_portfolio_capstone",
+          "name": "Capstone Project: End-to-End Release Pipeline",
+          "tag": "advanced",
+          "description": "Design and implement a full-fledged, production-ready release pipeline for a complex, multi-service application. Demonstrate mastery of CI/CD, advanced deployment strategies, monitoring, security, and infrastructure as code, culminating in a robust portfolio piece.",
+          "resources": [
+            {
+              "title": "Google SRE Release Engineering",
+              "url": "https://sre.google/sre-book/release-engineering/",
+              "type": "article"
+            },
+            {
+              "title": "Building a Full CI/CD Pipeline (Project Guide)",
+              "url": "https://example.com/cicd-capstone-project",
+              "type": "course"
+            },
+            {
+              "title": "ArgoCD Tutorial for Beginners (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=MeU5_k9ssrs",
+              "type": "video"
+            },
+            {
+              "title": "Docker for Beginners Full Course (TechWorld with Nana)",
+              "url": "https://www.youtube.com/watch?v=3c-iBn73dDE",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_portfolio_capstone.md",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "release_engineer_case_study_writing",
+          "name": "Case Study & Documentation",
+          "tag": "advanced",
+          "description": "Learn to document release processes comprehensively, write clear, concise, and actionable release notes for various audiences, and create compelling case studies of your projects and improvements for your professional portfolio.",
+          "resources": [
+            {
+              "title": "GitHub Actions Documentation",
+              "url": "https://docs.github.com/en/actions",
+              "type": "article"
+            },
+            {
+              "title": "How to Write Great Release Notes",
+              "url": "https://example.com/great-release-notes",
+              "type": "article"
+            },
+            {
+              "title": "Technical Writing for DevOps Engineers",
+              "url": "https://example.com/tech-writing-devops",
+              "type": "course"
+            },
+            {
+              "title": "Semantic Versioning Explained (Fireship)",
+              "url": "https://www.youtube.com/watch?v=K2RHhzZs8YM",
+              "type": "video"
+            },
+            {
+              "title": "Helm Charts Tutorial (KodeKloud)",
+              "url": "https://www.youtube.com/watch?v=-ykwb1d0DXU",
+              "type": "video"
+            },
+            {
+              "title": "Study Guide & Notes",
+              "url": "/data/docs/release_engineer/release_engineer_case_study_writing.md",
+              "type": "doc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

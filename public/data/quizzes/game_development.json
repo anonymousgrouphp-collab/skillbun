@@ -1,0 +1,602 @@
+[
+  {
+    "question": "Which programming construct is best suited for storing a player's score that changes throughout the game?",
+    "options": [
+      "A constant",
+      "A variable",
+      "A function",
+      "A class"
+    ],
+    "correctIndex": 1,
+    "explanation": "A variable is used to store data that can change or be modified during the execution of a program, making it ideal for a player's score. A constant stores a fixed value, a function contains reusable code blocks, and a class is a blueprint for objects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary purpose of using a debugger in a game development environment?",
+    "options": [
+      "To compile game assets into a build",
+      "To measure the game's frame rate performance",
+      "To step through code execution and inspect variables to find and fix errors",
+      "To create 3D models and textures"
+    ],
+    "correctIndex": 2,
+    "explanation": "A debugger allows developers to pause program execution, examine the state of variables, and step through code line by line, which is essential for identifying and resolving bugs. Compiling assets, measuring frame rate, and creating art assets are different stages or tools in game development.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Why is 'delta time' crucial for consistent movement and physics simulations across different hardware?",
+    "options": [
+      "It determines the game's resolution.",
+      "It represents the time elapsed since the game started.",
+      "It standardizes input latency.",
+      "It normalizes movement and physics calculations to be independent of frame rate."
+    ],
+    "correctIndex": 3,
+    "explanation": "Delta time (the time elapsed since the last frame) is used to scale movement and physics calculations. Multiplying velocity by delta time ensures that an object moves the same distance per second, regardless of whether the game runs at 30 FPS or 60 FPS, making the game feel consistent across various hardware.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In a game engine, what is a \"scene\" primarily used for?",
+    "options": [
+      "To store individual art assets like textures and models.",
+      "To define the game's global settings and preferences.",
+      "To organize and group all the objects, environments, and logic for a specific level or screen in the game.",
+      "To write and manage all the game's scripting code."
+    ],
+    "correctIndex": 2,
+    "explanation": "A scene serves as a container or stage where all the elements that make up a specific part of your game (like a level, main menu, or character selection screen) are assembled, positioned, and interact. Assets are stored in the project, global settings are in project settings, and scripts are separate files attached to objects.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "In Godot, what is the fundamental building block for creating elements in a game scene, often forming a tree structure?",
+    "options": [
+      "A Script",
+      "A Resource",
+      "A Node",
+      "A Signal"
+    ],
+    "correctIndex": 2,
+    "explanation": "In Godot, 'Nodes' are the fundamental building blocks. Everything in a Godot game, from characters to UI elements, is a Node, and they are organized into a tree structure. Scripts provide behavior, Resources store data, and Signals are for communication between nodes.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Unity, if you want a GameObject to have physics interactions (like gravity and collisions), which component would you attach to it?",
+    "options": [
+      "Transform",
+      "Mesh Renderer",
+      "Rigidbody",
+      "Collider"
+    ],
+    "correctIndex": 2,
+    "explanation": "The Rigidbody component enables a GameObject to be controlled by the physics engine. While a Collider is necessary for detecting collisions, it's the Rigidbody that applies forces, gravity, and allows for realistic movement and interaction within the physics system.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "When designing a \"hit\" animation for an enemy in a 2D platformer, what principle of game feel is being primarily addressed?",
+    "options": [
+      "Onboarding",
+      "Difficulty scaling",
+      "Feedback",
+      "Input buffering"
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'hit' animation for an enemy provides immediate visual and sometimes auditory feedback to the player that their action (e.g., attacking) had an effect. This is a core component of 'game feel' as it helps players understand the consequences of their actions. Onboarding is about teaching, difficulty scaling about challenge, and input buffering about input timing.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the primary purpose of A* (A-star) algorithm in game AI?",
+    "options": [
+      "To manage player inventory.",
+      "To render complex visual effects.",
+      "To find the shortest path between two points in a navigable space.",
+      "To generate procedural levels."
+    ],
+    "correctIndex": 2,
+    "explanation": "A* is a widely used pathfinding algorithm in games, highly efficient for finding the shortest path between a starting point and a destination, taking into account obstacles and costs, which is crucial for enemy movement and navigation.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Which UI element is commonly used to display the player's current health in a game?",
+    "options": [
+      "A dropdown menu",
+      "A slider",
+      "A text label or health bar",
+      "A button"
+    ],
+    "correctIndex": 2,
+    "explanation": "A text label showing a numerical value (e.g., 'Health: 100') or a graphical health bar (e.g., a depleting bar) are the most common and intuitive ways to display player health. Sliders are typically for input, dropdowns for choices, and buttons for actions.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Before publishing a game, why is extensive playtesting with external players crucial?",
+    "options": [
+      "To finalize the game's lore and backstory.",
+      "To ensure all art assets are correctly formatted.",
+      "To identify unforeseen bugs, balance issues, and understand player experience and enjoyment.",
+      "To create marketing materials like trailers and screenshots."
+    ],
+    "correctIndex": 2,
+    "explanation": "External playtesting provides unbiased feedback on gameplay, difficulty, user interface, and helps uncover bugs or design flaws that the development team might have overlooked due to familiarity with the game. Lore, asset formatting, and marketing materials are important but not the primary goal of playtesting.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "Your game's frame rate consistently drops below 30 FPS when many enemies are on screen. Which optimization strategy would likely yield the most significant improvement for this specific issue?",
+    "options": [
+      "Reducing the resolution of UI textures.",
+      "Optimizing enemy AI logic and reducing the number of complex calculations per enemy.",
+      "Decreasing the overall game volume.",
+      "Adding more detailed background art."
+    ],
+    "correctIndex": 1,
+    "explanation": "If the frame rate drops with many enemies, it suggests the CPU is struggling with their AI calculations, movement, or other script-driven logic. Optimizing this logic (e.g., using simpler pathfinding, reducing line-of-sight checks) would directly address the performance bottleneck. UI textures and game volume are less likely to be the primary cause for CPU-bound enemy-count-related performance drops, and adding background art would worsen performance.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the main goal of a game trailer on a store page?",
+    "options": [
+      "To provide a full gameplay walkthrough of the entire game.",
+      "To explain the game's coding architecture.",
+      "To generate interest and visually communicate the game's core gameplay, art style, and unique selling points.",
+      "To list all the developers involved in the project."
+    ],
+    "correctIndex": 2,
+    "explanation": "A game trailer is a marketing tool designed to quickly capture a potential player's attention, showcasing the most exciting and representative aspects of the game to entice them to learn more or make a purchase. It's not a full walkthrough, a technical document, or a credits list.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "When aiming to publish a small 2D game, which of the following combinations represents essential features for a polished experience?",
+    "options": [
+      "Procedural generation, ray tracing, and 8K textures.",
+      "Basic movement, one enemy type, and a single static screen.",
+      "Menus (main, pause), save/load functionality, sound effects, a tutorial, and a store page with screenshots.",
+      "Multiplayer support, voice chat, and competitive leaderboards."
+    ],
+    "correctIndex": 2,
+    "explanation": "For a *small, polished 2D game*, essential features include user-friendly menus, the ability to save progress, immersive sound, guidance for new players (tutorial), and effective presentation for publishing (store page, screenshots). The other options describe features that are either excessively complex for a small game, too minimal to be polished, or focused on online multiplayer which isn't always essential.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "A 2D game character needs to detect when it touches a collectible item. Which concept is primarily involved in determining this interaction?",
+    "options": [
+      "Vector normalization",
+      "Delta time",
+      "Collision detection",
+      "Camera culling"
+    ],
+    "correctIndex": 2,
+    "explanation": "Collision detection is the process of determining if two or more game objects are physically overlapping or touching, which is exactly what's needed to register an interaction between a character and a collectible. Vector normalization is about direction, delta time about frame rate independence, and camera culling about rendering optimization.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a game where clicking a button triggers a specific action (e.g., opening a menu), which programming concept is best suited to handle this type of interaction?",
+    "options": [
+      "Looping through a collection",
+      "Defining a new class",
+      "Using an event or signal system",
+      "Declaring a global variable"
+    ],
+    "correctIndex": 2,
+    "explanation": "Event or signal systems are designed for decoupled communication between objects. When a button is clicked (an 'event' occurs), it 'emits' a signal that other interested objects (like a menu manager) can 'listen' for and respond to, without the button needing to know about the menu directly. The other options are not primarily for handling such interactive triggers.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In Godot, you have a `Player` node and a `HealthBar` UI node. The `HealthBar` needs to update whenever the player's health changes, but you want to keep them loosely coupled. Which Godot mechanism is best suited for this?",
+    "options": [
+      "Having the `HealthBar` directly call a method on the `Player` node.",
+      "Having the `Player` node emit a `signal` that the `HealthBar` node is connected to.",
+      "Passing a reference of the `HealthBar` to the `Player` node at startup.",
+      "Storing player health in a global singleton and having the `HealthBar` poll it every frame."
+    ],
+    "correctIndex": 1,
+    "explanation": "Godot's signal system is specifically designed for loose coupling. The `Player` node emits a `health_changed` signal, and the `HealthBar` node connects to that signal. This way, the `Player` doesn't need to know anything about the `HealthBar`, and vice versa, only that an event occurred. Direct method calls create tight coupling, passing references is less flexible, and polling every frame is inefficient.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "You are developing a top-down shooter game in Unity and need to frequently spawn many identical enemy units with the same properties and behavior. What Unity feature is most efficient for achieving this?",
+    "options": [
+      "Creating each enemy manually in the scene editor every time.",
+      "Using a static method to draw individual enemy sprites.",
+      "Creating a 'Prefab' of the enemy and instantiating it at runtime.",
+      "Writing a separate script for each enemy instance."
+    ],
+    "correctIndex": 2,
+    "explanation": "A 'Prefab' is a reusable GameObject asset in Unity. By creating a Prefab of your enemy, you can easily create multiple instances (clones) of it at runtime using `Instantiate()`, each inheriting the Prefab's properties and components, which is highly efficient for spawning numerous identical objects. Manual creation is tedious, static sprite drawing doesn't create game objects, and separate scripts are unnecessary if behavior is identical.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "A player complains that their character feels \"sluggish\" and unresponsive. Which aspect of game feel polish should you primarily investigate to address this?",
+    "options": [
+      "Audio ambiance and background music.",
+      "User interface layout and menu navigation.",
+      "Input responsiveness, acceleration curves, and immediate visual/auditory feedback.",
+      "The complexity of enemy AI pathfinding."
+    ],
+    "correctIndex": 2,
+    "explanation": "Sluggishness and unresponsiveness are direct indicators of issues with control and feedback. Investigating input latency, how quickly the character reacts to input (acceleration), and the immediacy of visual/auditory cues for player actions will be key to improving the 'feel'. Audio ambiance, UI layout, and enemy AI are less directly related to player character responsiveness.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You are designing a boss battle that requires the player to use specific environment mechanics to defeat the boss, rather than just raw damage. This approach primarily relates to which aspect of AI and Level Design?",
+    "options": [
+      "Pathfinding basics",
+      "Difficulty curves",
+      "Enemy states",
+      "Encounter design"
+    ],
+    "correctIndex": 3,
+    "explanation": "Encounter design focuses on crafting the player's experience during specific challenges, including how enemies are presented, the environment's role, and the strategic elements required for victory. Utilizing environmental mechanics as part of a boss fight is a prime example of thoughtful encounter design. Pathfinding is about movement, difficulty curves about progression, and enemy states about internal AI logic.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "During playtesting, players consistently report a bug where the game crashes when interacting with a specific in-game object. How should you prioritize fixing this bug?",
+    "options": [
+      "Low priority; it only affects one object.",
+      "Medium priority; fix it if time permits before launch.",
+      "High priority; game crashes are critical and can severely impact player experience and game reviews.",
+      "It's not a bug, it's a feature; instruct players to avoid the object."
+    ],
+    "correctIndex": 2,
+    "explanation": "Game-crashing bugs are among the most severe issues a game can have. They lead to lost progress, frustration, and severely damage a game's reputation. Fixing such bugs is always a high priority, regardless of how specific the trigger might seem.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "You're implementing a save system for a single-player RPG. Which piece of data is LEAST likely to be stored in a typical game save file?",
+    "options": [
+      "Player character's inventory items and equipped gear.",
+      "Current quest progress and completed objectives.",
+      "The game engine's source code.",
+      "Player character's current health and experience points."
+    ],
+    "correctIndex": 2,
+    "explanation": "A game save file primarily stores dynamic data related to the player's progress and game state. The game engine's source code is part of the game's executable and assets, not something that changes or needs to be saved by the player's actions. Inventory, quest progress, and character stats are all essential save data.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a typical game loop, why is it generally recommended to update player input and AI logic *before* applying physics calculations?",
+    "options": [
+      "To reduce memory usage.",
+      "To ensure that physics calculations operate on the most up-to-date state of player and AI decisions.",
+      "To optimize asset loading times.",
+      "To allow the game to run at a lower frame rate."
+    ],
+    "correctIndex": 1,
+    "explanation": "Updating input and AI logic first ensures that all actions (player commands, enemy decisions) are processed. Physics calculations can then correctly apply forces, collisions, and movements based on these new, current states, leading to more responsive and predictable interactions. The other options are unrelated to this specific order.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the primary benefit of creating and sharing \"devlogs\" during your game's development?",
+    "options": [
+      "To legally copyright all game assets.",
+      "To generate initial community interest and gather early feedback.",
+      "To replace the need for extensive in-house playtesting.",
+      "To automatically optimize the game's performance."
+    ],
+    "correctIndex": 1,
+    "explanation": "Devlogs (development blogs/videos) are excellent for engaging with a potential audience, sharing progress, building anticipation, and receiving early feedback, which can be invaluable for guiding development. They are not for copyrighting, cannot replace thorough playtesting, and do not automatically optimize performance.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "In a 2D game, if a character moves from position (5, 3) to (7, 3), which direction has the character moved?",
+    "options": [
+      "Up",
+      "Down",
+      "Left",
+      "Right"
+    ],
+    "correctIndex": 3,
+    "explanation": "In a standard Cartesian coordinate system, moving from (5, 3) to (7, 3) means the x-coordinate increased while the y-coordinate remained the same. An increase in the x-coordinate typically represents movement to the right.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "To improve the accessibility of your game for players with visual impairments, which UI/Audio feature would be most beneficial to implement?",
+    "options": [
+      "High contrast UI options and scalable text sizes.",
+      "Complex visual particle effects.",
+      "Very fast-paced, reaction-time dependent gameplay.",
+      "A hidden developer console for cheating."
+    ],
+    "correctIndex": 0,
+    "explanation": "High contrast UI and scalable text sizes directly address challenges faced by players with various visual impairments, making text and UI elements easier to read and distinguish. Complex visual effects can be harder to discern, fast-paced gameplay can be exclusionary, and a developer console is not an accessibility feature.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a Game Engine?",
+    "options": [
+      "A physical engine inside console hardware",
+      "A software framework providing game developers with core functionalities like rendering, physics, collision, and scripting to build games",
+      "A database server administration console",
+      "An automated script that tests code"
+    ],
+    "correctIndex": 1,
+    "explanation": "Game engines (like Unity, Unreal, Godot) abstract complex low-level tasks (like graphics pipelines and sound management), letting developers focus on gameplay logic and art.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which of the following is a leading game engine widely used for both 2D and 3D games?",
+    "options": [
+      "Photoshop",
+      "Unity",
+      "Excel",
+      "Node.js"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unity is a premier cross-platform game engine, utilizing C# for scripting and supporting deployment to mobile, PC, and consoles.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is a 'Sprite' in 2D game development?",
+    "options": [
+      "A carbonated drink visual item",
+      "A 2D bitmap image or animation that represents an object (like a character or obstacle) in a game scene",
+      "A script that controls player inputs",
+      "A layout grid system"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sprites are the 2D graphic assets drawn on screen, often packed into 'Sprite Sheets' to optimize memory loads.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is 'Collision Detection' in games?",
+    "options": [
+      "Managing database table key clashes",
+      "The computational task of detecting when two or more game objects intersect or touch each other",
+      "A compiler error that halts builds",
+      "A network routing protocol"
+    ],
+    "correctIndex": 1,
+    "explanation": "Collision detection triggers gameplay events (e.g. player picking up a coin or hitting a wall) using hitboxes (colliders).",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What does FPS stand for in game performance?",
+    "options": [
+      "File Processing System",
+      "Frames Per Second",
+      "First Person Shooter",
+      "Force Position Scale"
+    ],
+    "correctIndex": 1,
+    "explanation": "Frames Per Second (FPS) measures how many individual images the game engine renders per second. High, stable FPS (e.g., 60+) ensures smooth gameplay.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Which programming language is the primary scripting language for Unreal Engine?",
+    "options": [
+      "C#",
+      "C++ / Blueprints",
+      "Python",
+      "JavaScript"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unreal Engine uses C++ for core, high-performance logic and Blueprints (a visual scripting system) for rapid prototyping and gameplay design.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the primary role of a 'Rig' in 3D character animation?",
+    "options": [
+      "To run mining rigs for graphics power",
+      "A digital skeleton structure mapped to a 3D mesh, allowing animators to control character joints and movements",
+      "A server configuration profile",
+      "A database index table"
+    ],
+    "correctIndex": 1,
+    "explanation": "Rigging binds a 3D model (mesh) to a skeleton. Manipulating the skeleton bones deforms the mesh, producing realistic animations.",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the purpose of the 'Game Loop' in game architectures?",
+    "options": [
+      "A loop that checks for database errors",
+      "A continuous loop that processes user inputs, updates game states (physics, logic), and renders the scene on screen per frame",
+      "A loop that plays background music repeatedly",
+      "A compiler loop that generates binaries"
+    ],
+    "correctIndex": 1,
+    "explanation": "The event loop is the heartbeat of a game. It runs indefinitely (firing 60+ times/sec), processing inputs, moving objects, checking physics, and drawing the new frame.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Prefab' (or Blueprint/Scene Template) in game engines?",
+    "options": [
+      "A pre-installed server hardware configuration",
+      "A reusable template of a game object (combining mesh, colliders, and scripts) that can be instantiated dynamically in game scenes",
+      "A draft version of a game script",
+      "A folder structure of code assets"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prefabs allow developers to define an object once (e.g. an enemy or a coin) and spawn duplicates dynamically. Changes to the prefab template update all instances automatically.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Raycasting'?",
+    "options": [
+      "Broadcasting videos over the internet",
+      "A technique that projects a line (ray) from a point in 3D/2D space in a direction, checking if it intersects with colliders, used for aiming or visibility checks",
+      "Compressing 3D files to save memory",
+      "A method for caching database queries"
+    ],
+    "correctIndex": 1,
+    "explanation": "Raycasting is used to check line-of-sight (can an enemy see the player?), detect where a player clicked in 3D space, or register weapon hits (hitscan).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between a Mesh and a Material in 3D graphics?",
+    "options": [
+      "Mesh is for colors; Material is for shapes",
+      "A Mesh defines the physical 3D shape/geometry (vertices, edges); a Material defines the visual surface properties (color, texture, reflectivity) of that shape",
+      "Materials are always free; Meshes require licenses",
+      "They are identical 3D graphics terms"
+    ],
+    "correctIndex": 1,
+    "explanation": "A mesh is the wireframe structure of a 3D model. The material is the skin wrapped around it, using shaders to calculate how it reacts to light.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'RigidBody' component in physics engines?",
+    "options": [
+      "A coding constraint that prevents variables from changing",
+      "A component that applies physical forces (gravity, friction, velocity) to a game object, enabling realistic movement",
+      "A physical layout grid in dashboards",
+      "A security standard for user passwords"
+    ],
+    "correctIndex": 1,
+    "explanation": "Attaching a RigidBody tells the physics engine to calculate mass, velocity, drag, and gravity for the object, reacting dynamically during collisions.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Delta Time' (dt/deltaTime) in game loops and why is it important?",
+    "options": [
+      "The time difference between local and server clocks",
+      "The elapsed time between the current frame and the previous frame, used to make game movement speed independent of the frame rate",
+      "The time taken to compile game scripts",
+      "The latency of network multiplayer packages"
+    ],
+    "correctIndex": 1,
+    "explanation": "If an object moves `10 pixels` per frame, it runs twice as fast at 60 FPS compared to 30 FPS. Multiplying movement by `deltaTime` ensures the object moves at a constant speed per *second* regardless of framerate.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'LOD' (Level of Detail) in 3D games?",
+    "options": [
+      "The resolution limit of the monitor",
+      "A technique that reduces the complexity/polygon count of 3D meshes as they move further away from the camera, optimizing rendering performance",
+      "The volume level of audio files",
+      "The difficulty setting of a game level"
+    ],
+    "correctIndex": 1,
+    "explanation": "LOD systems swap high-res models for low-res models at a distance where detail isn't noticeable, saving GPU rendering budget.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Draw Call Batching' and why is it crucial for game performance?",
+    "options": [
+      "Combining database queries into a single transaction",
+      "Grouping multiple static or dynamic objects sharing the same material to render them in a single draw call, reducing CPU overhead",
+      "Loading all textures in low resolution first",
+      "Deleting unneeded variables from RAM"
+    ],
+    "correctIndex": 1,
+    "explanation": "Draw calls are CPU instructions telling the GPU to draw a mesh. Since CPU-to-GPU overhead is slow, batching objects together minimizes draw calls, preventing CPU bottlenecks.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Occlusion Culling'?",
+    "options": [
+      "Hiding game files from users",
+      "The process of disabling the rendering of objects that are completely hidden from the camera's view behind other objects, saving rendering power",
+      "A method for compressing textures",
+      "An algorithm that deletes duplicate game code"
+    ],
+    "correctIndex": 1,
+    "explanation": "While 'Frustum Culling' hides objects outside the camera's field of view, 'Occlusion Culling' hides objects blocked by walls or structures, optimizing GPU workload in complex levels.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is a 'Shader' in game graphics?",
+    "options": [
+      "A program that shadows files from hackers",
+      "A program running on the GPU that calculates the color, lighting, and visual effects of vertices and pixels rendered on screen",
+      "A compression format for sound assets",
+      "A tool for mapping joystick inputs"
+    ],
+    "correctIndex": 1,
+    "explanation": "Shaders are core to modern graphics, calculating reflections, shadows, water ripple effects, or post-processing styles (like bloom or cell-shading).",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Kinematic and Dynamic physics objects?",
+    "options": [
+      "Kinematic objects are only for 2D; Dynamic for 3D",
+      "Dynamic objects react to forces and collisions automatically; Kinematic objects do not react to forces and are moved only programmatically via scripts",
+      "Kinematic objects are always faster than Dynamic ones",
+      "Kinematic objects do not support collision detection"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dynamic objects bounce, fall, and roll on impact. Kinematic objects (like moving platforms or heavy doors) ignore external forces (like gravity or players pushing them), moving strictly along scripted paths.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What does 'NavMesh' (Navigation Mesh) do?",
+    "options": [
+      "A map showing network server locations",
+      "A 2D/3D mesh outlining the walkable surfaces in a game level, allowing AI characters to calculate paths and navigate around obstacles",
+      "A visual layout for menu screens",
+      "A database schema index"
+    ],
+    "correctIndex": 1,
+    "explanation": "NavMeshes define pathfinding boundaries. AI characters query pathfinding algorithms (like A*) over the NavMesh to walk around walls and reach targets.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is 'Sprite Atlas' (or Sprite Sheet) and how does it optimize 2D game memory?",
+    "options": [
+      "An atlas containing world maps; optimizes download size",
+      "Combining multiple individual sprite images into a single large image file, reducing texture binding operations and draw calls",
+      "A database index mapping character files",
+      "A tool for compressing audio tracks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Loading dozens of individual textures causes high GPU switching overhead. A Sprite Atlas binds one large texture once, drawing parts of it as needed, maximizing rendering efficiency.",
+    "difficulty": "moderate"
+  },
+  {
+    "question": "What is the difference between Forward Rendering and Deferred Shading pipelines?",
+    "options": [
+      "Forward rendering is for 2D; Deferred for 3D",
+      "Forward rendering draws each object one by one calculating lighting per pixel; Deferred shading defers lighting calculations by rendering geometry info to G-buffers first, calculating lighting in a final screen-space pass",
+      "Deferred shading is slower when rendering many lights",
+      "Forward rendering does not support shadows"
+    ],
+    "correctIndex": 1,
+    "explanation": "Forward rendering struggles with many lights because it calculates light impact for every mesh pixel (complexity: lights * pixels). Deferred shading decouples geometry from lighting, handling hundreds of real-time lights efficiently.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is a 'State Machine' (FSM) and why is it popular for AI character behaviors and animations?",
+    "options": [
+      "A database backup scheduler; popular for data safety",
+      "A design pattern where an object can exist in one of several defined states (e.g. Idle, Patrol, Chase, Attack) transitioning based on conditions",
+      "A compiler utility that formats code; popular for cleanup",
+      "A multithreading manager; popular for CPU speed"
+    ],
+    "correctIndex": 1,
+    "explanation": "FSMs organize behavior. An enemy AI stays in 'Patrol' state until `player_in_sight` triggers a transition to 'Chase' state. This keeps AI logic modular and easy to debug.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'Object Pooling' in game optimization and when should it replace dynamic instantiation?",
+    "options": [
+      "A database connection pool; should replace queries",
+      "Pre-instantiating a pool of game objects (like bullets) and activating/deactivating them instead of instantiating/destroying them dynamically, preventing memory fragmentation and GC spikes",
+      "Compressing texture files; should replace manual asset loads",
+      "A multithreading scheduler; should replace tasks"
+    ],
+    "correctIndex": 1,
+    "explanation": "Calling `Instantiate` and `Destroy` repeatedly (e.g., in a fast-firing shooting game) creates heap allocation spikes, triggering the Garbage Collector which causes micro-stutters. Pooling reuses inactive objects instead.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is 'A* Pathfinding' algorithm and how does it calculate the shortest path?",
+    "options": [
+      "A database search query; calculates by index scans",
+      "A graph search algorithm that calculates paths by combining the actual cost from the start node (g) with a heuristic estimate to the goal node (h) to minimize total cost (f = g + h)",
+      "An image rendering algorithm; calculates by pixel contrast",
+      "A physics collision check; calculates by vector intersection"
+    ],
+    "correctIndex": 1,
+    "explanation": "A* evaluates nodes based on `f(n) = g(n) + h(n)`. By using a heuristic (like straight-line distance), it avoids scanning irrelevant directions, finding the shortest path faster than Dijkstra's algorithm.",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does 'Network Client-Side Prediction' and 'Reconciliation' resolve lag in multiplayer games?",
+    "options": [
+      "By stopping the game until all packets arrive",
+      "The client predicts movement inputs locally immediately (prediction) and adjusts/snaps position when the server sends authorized updates (reconciliation), preventing input lag",
+      "By running the game on local networks only",
+      "By converting multiplayer connections to peer-to-peer web pages"
+    ],
+    "correctIndex": 1,
+    "explanation": "Waiting for server roundtrips makes inputs feel laggy. Prediction moves the player instantly. When server updates arrive, the client replays inputs made since the update timestamp to reconcile discrepancies smoothly.",
+    "difficulty": "hard"
+  }
+]
