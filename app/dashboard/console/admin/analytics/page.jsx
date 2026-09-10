@@ -6,8 +6,9 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
-import { emailRoadmapContext, normalizeEmailRoadmapSlug } from '@/utils/shared/emailRoadmap';
-import { RETENTION_TEMPLATES, generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
+import { recommendEmail as getRecommendedTemplate, emailCategory } from '@/utils/shared/emailRecommendation';
+import EmailDraftLibrary from '../emails/EmailDraftLibrary';
+import { RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
 
 function formatDateTime(isoString) {
   if (!isoString) return 'N/A';
@@ -25,58 +26,6 @@ function formatDateTime(isoString) {
   } catch {
     return 'N/A';
   }
-}
-
-const ALL_15_MARKETING_TEMPLATES = [
-  'welcome_v1', 'welcome_v2', 'welcome_v3',
-  'reengagement_v1', 'reengagement_v2', 'reengagement_v3',
-  'exam_nudge_v1', 'exam_nudge_v2', 'exam_nudge_v3',
-  'exam_failed_v1', 'exam_failed_v2', 'exam_failed_v3',
-  'cert_congrats_v1', 'cert_congrats_v2', 'cert_congrats_v3',
-];
-
-// Smart Non-Repeating & Auto-Shuffling Retention Template Recommender
-function getRecommendedTemplate(u) {
-  const sentLogs = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
-  const sentTemplateIds = sentLogs.map((item) => (typeof item === 'string' ? item : item.templateId));
-
-  const certCount = u.certificates?.length || 0;
-  const hasAttempts = u.quizAttempts?.length > 0;
-  const maxNodes = u.progress?.reduce((max, p) => Math.max(max, p.completedNodeIds?.length || 0), 0) || 0;
-  const daysInactive = u.lastSignInTime
-    ? (Date.now() - new Date(u.lastSignInTime).getTime()) / (1000 * 60 * 60 * 24)
-    : 0;
-
-  let priorityList = [];
-  if (certCount > 0) {
-    priorityList = ['cert_congrats_v1', 'cert_congrats_v2', 'cert_congrats_v3', 'reengagement_v1', 'welcome_v2'];
-  } else if (hasAttempts) {
-    priorityList = ['exam_failed_v1', 'exam_failed_v2', 'exam_failed_v3', 'reengagement_v1', 'welcome_v1'];
-  } else if (maxNodes >= 15) {
-    priorityList = ['exam_nudge_v1', 'exam_nudge_v2', 'exam_nudge_v3', 'reengagement_v1', 'welcome_v1'];
-  } else if (daysInactive >= 1.5 && maxNodes > 0) {
-    priorityList = ['reengagement_v1', 'reengagement_v2', 'reengagement_v3', 'welcome_v1', 'exam_nudge_v1'];
-  } else {
-    priorityList = ['welcome_v1', 'welcome_v2', 'welcome_v3', 'reengagement_v1', 'reengagement_v2'];
-  }
-
-  let unsentTemplateId = priorityList.find((tId) => !sentTemplateIds.includes(tId));
-  if (!unsentTemplateId) {
-    unsentTemplateId = ALL_15_MARKETING_TEMPLATES.find((tId) => !sentTemplateIds.includes(tId));
-  }
-  if (!unsentTemplateId) {
-    unsentTemplateId = priorityList[0];
-  }
-
-  const templateConfig = RETENTION_TEMPLATES[unsentTemplateId] || RETENTION_TEMPLATES.welcome_v1;
-  const alreadySentCount = sentTemplateIds.length;
-
-  return {
-    id: unsentTemplateId,
-    label: templateConfig.name,
-    isRotated: alreadySentCount > 0,
-    alreadySentCount,
-  };
 }
 
 export default function AnalyticsDashboardPage() {
@@ -102,7 +51,9 @@ export default function AnalyticsDashboardPage() {
 
   // Retention email template selection state per user
   const [selectedTemplates, setSelectedTemplates] = useState({});
+  const [preparedTemplates, setPreparedTemplates] = useState({});
   const [sendingEmailKey, setSendingEmailKey] = useState(null);
+  const [resettingSentCounters, setResettingSentCounters] = useState(false);
 
   const userEmail = (user?.email || '').trim().toLowerCase();
 
@@ -149,7 +100,7 @@ export default function AnalyticsDashboardPage() {
                   roadmapTitle: cData.roadmapTitle || cData.roadmapSlug || 'Roadmap',
                   roadmapSlug: cData.roadmapSlug || '',
                   score: typeof cData.score === 'number' ? cData.score : 0,
-                  createdAt: cData.createdAt ? new Date(cData.createdAt.toDate?.() || cData.createdAt).toISOString() : new Date().toISOString(),
+                  createdAt: cData.createdAt ? new Date(cData.createdAt.toDate?.() || cData.createdAt).toISOString() : null,
                 };
               });
 
@@ -325,59 +276,148 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  // Instant HTML Preview Modal Handler (Synchronous Client Rendering with 0ms Latency)
-  const handlePreviewEmail = async (targetUser) => {
+  // Reset All Sent Email Counters Handler
+  const handleResetAllSentCounters = async () => {
+    const confirmMsg = `⚠️ RESET ALL SENT EMAIL COUNTERS ⚠️\n\nAre you sure you want to reset the sent email counter for ALL registered students?\n\nThis will clear all previous sent email tracking records in Firestore across all student accounts so every student resets to 0 Sent. Proceed?`;
+    if (!window.confirm(confirmMsg)) return;
+
+    setResettingSentCounters(true);
+    setStatusMessage(null);
+
     try {
-      if (!targetUser) return;
-      const recommended = getRecommendedTemplate(targetUser);
-      const templateId = selectedTemplates[targetUser.uid] || recommended?.id || 'welcome_v1';
-
-      const roadmapTitle =
-        targetUser.progress?.[0]?.slug
-          ? String(targetUser.progress[0].slug).replace(/_/g, ' ').toUpperCase()
-          : targetUser.interest && targetUser.interest !== 'N/A'
-          ? String(targetUser.interest)
-          : '';
-
-      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length ?? null;
-
-      const roadmapSlug = normalizeEmailRoadmapSlug(targetUser.progress?.[0]?.slug);
-      let context = {};
-      if (roadmapSlug) {
-        try {
-          const response = await fetch('/data/roadmaps/' + roadmapSlug + '.json');
-          if (response.ok) {
-            const roadmap = await response.json();
-            context = { roadmapSlug, roadmapTitle: roadmap.title, ...emailRoadmapContext(roadmap, targetUser.progress?.[0]?.completedNodeIds) };
-          }
-        } catch { /* Unknown totals are omitted from the email. */ }
+      let token = '';
+      if (user?.getIdToken) {
+        token = await user.getIdToken();
       }
-      const { subject, html } = generateRetentionEmailHtml(templateId, {
-        name: targetUser.name || 'Student',
-        email: targetUser.email || 'harsh@skillbun.tech',
-        roadmapTitle,
-        progressCount,
-        ...context,
-        degree: targetUser.degree || 'B.Tech - Computer Science',
+
+      const res = await fetch('/api/admin/emails/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ resetAll: true }),
       });
 
-      setPreviewModalContent({
-        templateId,
-        subject: subject || 'SkillBun Update',
-        html: html || '<p>Email Preview</p>',
-        to: targetUser.email || 'harsh@skillbun.tech',
-        studentName: targetUser.name || 'Student',
+      const resData = await res.json().catch(() => ({}));
+
+      if (!res.ok || resData.error) {
+        throw new Error(resData.error || `HTTP ${res.status}`);
+      }
+
+      setData((prev) => {
+        if (!prev) return prev;
+        const updatedUsers = (prev.users || []).map((u) => ({
+          ...u,
+          sentEmailHistory: [],
+        }));
+        return { ...prev, users: updatedUsers };
       });
-    } catch (previewErr) {
-      console.error('Preview error:', previewErr);
-      setStatusMessage({ type: 'error', text: `❌ Preview Error: ${previewErr.message}` });
+
+      setStatusMessage({
+        type: 'success',
+        text: resData.message || '✅ Sent email counters successfully reset to 0 for all students!',
+      });
+    } catch (err) {
+      console.error('Reset all sent email counters error:', err);
+      setStatusMessage({
+        type: 'error',
+        text: `❌ Failed to reset sent email counters: ${err.message}`,
+      });
+    } finally {
+      setResettingSentCounters(false);
     }
+  };
+
+  // Reset Single Student Sent Email Counter Handler
+  const handleResetUserSentCounter = async (targetUser) => {
+    const confirmMsg = `⚠️ RESET STUDENT EMAIL COUNTER ⚠️\n\nReset sent email counter to 0 for "${targetUser.name}" (${targetUser.email})?`;
+    if (!window.confirm(confirmMsg)) return;
+
+    setStatusMessage(null);
+
+    try {
+      let token = '';
+      if (user?.getIdToken) {
+        token = await user.getIdToken();
+      }
+
+      const res = await fetch('/api/admin/emails/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ resetAll: false, targetEmail: targetUser.email, targetUid: targetUser.uid }),
+      });
+
+      const resData = await res.json().catch(() => ({}));
+
+      if (!res.ok || resData.error) {
+        throw new Error(resData.error || `HTTP ${res.status}`);
+      }
+
+      setData((prev) => {
+        if (!prev) return prev;
+        const updatedUsers = (prev.users || []).map((u) => {
+          if (u.uid === targetUser.uid) {
+            return { ...u, sentEmailHistory: [] };
+          }
+          return u;
+        });
+        return { ...prev, users: updatedUsers };
+      });
+
+      setStatusMessage({
+        type: 'success',
+        text: resData.message || `✅ Sent email counter reset to 0 for ${targetUser.email}!`,
+      });
+    } catch (err) {
+      console.error('Reset student email counter error:', err);
+      setStatusMessage({
+        type: 'error',
+        text: `❌ Failed to reset sent email counter: ${err.message}`,
+      });
+    }
+  };
+
+  // Preparing a recommendation reuses an unseen saved draft, or generates and saves one when needed.
+  const prepareRecommendation = async (targetUser, draftId) => {
+    setSendingEmailKey(targetUser.uid + '-preview-modal');
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/api/admin/emails/drafts', {
+        method: 'POST', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ uid: targetUser.uid, action: 'prepare', ...(draftId ? { draftId } : {}) }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error);
+      setSelectedTemplates(prev => ({ ...prev, [targetUser.uid]: result.templateId }));
+      setPreparedTemplates(prev => ({ ...prev, [targetUser.uid]: { id: result.templateId, name: result.draft?.content.name || result.recommendation.label } }));
+      setPreviewModalContent({ ...result.preview, templateId: result.templateId, to: targetUser.email, studentName: targetUser.name });
+    } catch (error) { setStatusMessage({ type: 'error', text: error.message }); }
+    finally { setSendingEmailKey(null); }
+  };
+  const handlePreviewEmail = async targetUser => {
+    const selected = selectedTemplates[targetUser.uid];
+    if (!selected || selected.startsWith('ai_')) return prepareRecommendation(targetUser, selected);
+    setSendingEmailKey(targetUser.uid + '-preview-modal');
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/api/admin/emails/send', { method: 'POST', headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' }, body: JSON.stringify({ templateId: selected, recipientEmail: targetUser.email, recommendationUid: targetUser.uid, isPreview: true }) });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error);
+      setPreviewModalContent(result.preview);
+    } catch (error) { setStatusMessage({ type: 'error', text: error.message }); }
+    finally { setSendingEmailKey(null); }
   };
 
   // Retention Email Dispatcher Handler (Sample Send to Admin or Live Send to Student)
   const handleSendRetentionEmail = async (targetUser, isSampleTest = false, forceOverride = false) => {
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
+    if (!recommended.eligible) { setStatusMessage({ type: 'error', text: recommended.reason }); return; }
+    if (!templateId) { await prepareRecommendation(targetUser); return; }
     const actionKey = `${targetUser.uid}-${isSampleTest ? 'sample' : forceOverride ? 'force' : 'send'}`;
 
     let confirmPrompt = '';
@@ -421,6 +461,8 @@ export default function AnalyticsDashboardPage() {
           recipientEmail: isSampleTest ? 'harsh@skillbun.tech' : targetUser.email,
           studentName: targetUser.name,
           templateId,
+          recommendationUid: targetUser.uid,
+          isTest: isSampleTest,
           roadmapTitle,
           progressCount,
           roadmapSlug: targetUser.progress?.[0]?.slug,
@@ -462,7 +504,7 @@ export default function AnalyticsDashboardPage() {
           const updatedUsers = (prev.users || []).map((u) => {
             if (u.uid === targetUser.uid) {
               const currentHistory = Array.isArray(u.sentEmailHistory) ? u.sentEmailHistory : [];
-              const updatedHistory = [...currentHistory, { templateId, sentAt: new Date().toISOString(), adminEmail: userEmail, forceOverride }];
+              const updatedHistory = [...currentHistory, { templateId, category: recommended.category, roadmapSlug: recommended.roadmapSlug, eventKey: recommended.eventKey, sentAt: new Date().toISOString(), adminEmail: userEmail, forceOverride }];
               return { ...u, sentEmailHistory: updatedHistory };
             }
             return u;
@@ -608,6 +650,28 @@ export default function AnalyticsDashboardPage() {
             }}
           >
             📥 Export Database (CSV)
+          </button>
+          <button
+            type="button"
+            onClick={handleResetAllSentCounters}
+            disabled={resettingSentCounters}
+            title="Reset sent email counter to 0 for all registered students"
+            style={{
+              cursor: resettingSentCounters ? 'not-allowed' : 'pointer',
+              padding: '0.6rem 1.2rem',
+              borderRadius: '10px',
+              background: 'var(--surface-raised)',
+              border: '1px solid var(--border)',
+              color: 'var(--text)',
+              fontWeight: '700',
+              fontSize: '0.88rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              opacity: resettingSentCounters ? 0.6 : 1,
+            }}
+          >
+            {resettingSentCounters ? '⏳ Resetting...' : '🔄 Reset Sent Counters'}
           </button>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link href="/dashboard/console/admin" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
@@ -874,7 +938,8 @@ export default function AnalyticsDashboardPage() {
                       const isDeleting = deletingUid === u.uid;
 
                       const recommended = getRecommendedTemplate(u);
-                      const currentTemplate = selectedTemplates[u.uid] || recommended.id;
+                      const currentTemplate = selectedTemplates[u.uid] || recommended.id || '';
+                      const savedChoice = preparedTemplates[u.uid];
                       const isPreviewModalLoading = sendingEmailKey === `${u.uid}-preview-modal`;
                       const isSampleLoading = sendingEmailKey === `${u.uid}-sample`;
                       const isSendLoading = sendingEmailKey === `${u.uid}-send`;
@@ -1193,17 +1258,19 @@ export default function AnalyticsDashboardPage() {
                                     }}
                                   >
                                     <div>
-                                      ✨ <strong>Smart Recommendation (Next Unsent):</strong>{' '}
+                                      <strong>Recommended next step:</strong>{' '}
                                       <span style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontWeight: '800' }}>{recommended.label}</span>
+                                      <p style={{ margin: '0.4rem 0', color: 'var(--muted)' }}>{recommended.reason}</p>
                                       {recommended.isRotated && (
                                         <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.1rem 0.5rem', borderRadius: '10px', fontWeight: '700' }}>
-                                          🔄 Auto-Rotated ({recommended.alreadySentCount} sent)
+                                          Same-category variation ({recommended.alreadySentCount} sent)
                                         </span>
                                       )}
                                     </div>
                                     <button
                                       type="button"
-                                      onClick={() => setSelectedTemplates((prev) => ({ ...prev, [u.uid]: recommended.id }))}
+                                      disabled={!recommended.eligible || Boolean(sendingEmailKey)}
+                                      onClick={() => prepareRecommendation(u)}
                                       style={{
                                         cursor: 'pointer',
                                         padding: '0.25rem 0.7rem',
@@ -1215,10 +1282,11 @@ export default function AnalyticsDashboardPage() {
                                         fontSize: '0.75rem',
                                       }}
                                     >
-                                      🎯 Apply Next Unsent
+                                      {isPreviewModalLoading ? 'Preparing…' : recommended.needsGeneration ? 'Prepare a fresh variation' : 'Prepare recommended mail'}
                                     </button>
                                   </div>
 
+                                  {recommended.eligible && <EmailDraftLibrary user={user} fixedCategory={recommended.category} onChoose={draft => prepareRecommendation(u, draft.id)} />}
                                   <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', flexWrap: 'wrap' }}>
                                     {/* 18 Variations Grouped Email Template Selector */}
                                     <select
@@ -1237,47 +1305,15 @@ export default function AnalyticsDashboardPage() {
                                         minWidth: '280px',
                                       }}
                                     >
-                                      <optgroup label="1. ONBOARDING & ACTIVATION (NEW SIGNUP)">
-                                        <option value="welcome_v1">🚀 V1: ₹35,000 Course Value Unlocked Free (Greed Angle)</option>
-                                        <option value="welcome_v2">🚀 V2: 2026 Tech Salary Benchmark (Competitive Angle)</option>
-                                        <option value="welcome_v3">🚀 V3: $500 Encrypted SBV1 Vault Access (Privilege Angle)</option>
-                                      </optgroup>
-
-                                      <optgroup label="2. RE-ENGAGEMENT STREAK NUDGE (INACTIVE USER)">
-                                        <option value="reengagement_v1">🐰 V1: Rank & Streak Decaying Alert (Loss Aversion)</option>
-                                        <option value="reengagement_v2">🐰 V2: 3-Minute Quick Win to Exam Ticket (Quick Progress)</option>
-                                        <option value="reengagement_v3">🐰 V3: Recruiter Queue Visibility Alert (Placement Angle)</option>
-                                      </optgroup>
-
-                                      <optgroup label="3. CERTIFICATION EXAM READY NUDGE (60%+ PROGRESS)">
-                                        <option value="exam_nudge_v1">🎓 V1: Top 7% Elite Candidate Invitation (Status Angle)</option>
-                                        <option value="exam_nudge_v2">🎓 V2: Free ₹15,000 Proctored Exam Ticket (High Value Gift)</option>
-                                        <option value="exam_nudge_v3">🎓 V3: Recruiters Verifying SkillBun QR Links (Job Proof)</option>
-                                      </optgroup>
-
-                                      <optgroup label="4. EXAM COOLDOWN ENCOURAGEMENT (FAILED ATTEMPT)">
-                                        <option value="exam_failed_v1">📚 V1: 100% Free Unlimited Retake Ticket (Zero Risk)</option>
-                                        <option value="exam_failed_v2">📚 V2: Review SBV1 Encrypted Study Vault (Pass Guarantee)</option>
-                                        <option value="exam_failed_v3">📚 V3: Missed Passing by Just 2 Questions (High Confidence)</option>
-                                      </optgroup>
-
-                                      <optgroup label="5. CERTIFICATE ACHIEVED (ALUMNI UPSELL)">
-                                        <option value="cert_congrats_v1">🏆 V1: Verified Specialist Status & QR Badge (Credential)</option>
-                                        <option value="cert_congrats_v2">🏆 V2: Next High-Salary Track Combo (Multi-Skill Upsell)</option>
-                                        <option value="cert_congrats_v3">🏆 V3: Priority Recruiter Directory Unlocked (VIP Access)</option>
-                                      </optgroup>
-
-                                      <optgroup label="6. SECURITY & TRANSACTIONAL (NO UNSUBSCRIBE)">
-                                        <option value="transactional_alert_v1">🔒 V1: Account Security & Authentication Alert</option>
-                                        <option value="transactional_alert_v2">🔒 V2: Password & Login Session Guard Notice</option>
-                                        <option value="transactional_alert_v3">🔒 V3: Critical Account Credential Status Alert</option>
-                                      </optgroup>
+                                      <option value="">{recommended.eligible ? 'Prepare a fresh variation' : 'No email due'}</option>
+                                      {Object.entries(RETENTION_TEMPLATES).filter(([id]) => recommended.category && emailCategory(id) === recommended.category && !u.sentEmailHistory?.some(log => (typeof log === 'string' ? log : log.templateId) === id)).map(([id, template]) => <option key={id} value={id}>{template.name}</option>)}
+                                      {savedChoice?.id.startsWith('ai_') && <option value={savedChoice.id}>{savedChoice.name} (saved AI draft)</option>}
                                     </select>
 
                                     {/* Action 1: Instant In-Browser Preview Modal */}
                                     <button
                                       type="button"
-                                      disabled={isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
+                                      disabled={!recommended.eligible || isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
                                       onClick={() => handlePreviewEmail(u)}
                                       style={{
                                         cursor: isPreviewModalLoading ? 'not-allowed' : 'pointer',
@@ -1302,7 +1338,7 @@ export default function AnalyticsDashboardPage() {
                                     {/* Action 2: Send Sample Test Email to Admin */}
                                     <button
                                       type="button"
-                                      disabled={isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
+                                      disabled={!recommended.eligible || isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
                                       onClick={() => handleSendRetentionEmail(u, true, false)}
                                       style={{
                                         cursor: isSampleLoading ? 'not-allowed' : 'pointer',
@@ -1325,7 +1361,7 @@ export default function AnalyticsDashboardPage() {
                                     {!u.isUnsubscribed && (
                                       <button
                                         type="button"
-                                        disabled={isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
+                                        disabled={!recommended.eligible || isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
                                         onClick={() => handleSendRetentionEmail(u, false, false)}
                                         style={{
                                           cursor: isSendLoading ? 'not-allowed' : 'pointer',
@@ -1349,7 +1385,7 @@ export default function AnalyticsDashboardPage() {
                                     {u.isUnsubscribed && (
                                       <button
                                         type="button"
-                                        disabled={isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
+                                        disabled={!recommended.eligible || isPreviewModalLoading || isSampleLoading || isSendLoading || isForceLoading}
                                         onClick={() => handleSendRetentionEmail(u, false, true)}
                                         style={{
                                           cursor: isForceLoading ? 'not-allowed' : 'pointer',
@@ -1367,6 +1403,28 @@ export default function AnalyticsDashboardPage() {
                                         title="Overrides candidate's unsubscribe preference and dispatches the email anyway"
                                       >
                                         {isForceLoading ? '⚡ Force Sending...' : '⚡ Force Send (Override Unsubscribe)'}
+                                      </button>
+                                    )}
+
+                                    {/* Action 5: Reset Sent Counter for this specific student */}
+                                    {sentLogs.length > 0 && (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleResetUserSentCounter(u)}
+                                        style={{
+                                          cursor: 'pointer',
+                                          padding: '0.65rem 1.1rem',
+                                          borderRadius: '10px',
+                                          background: 'var(--surface-raised)',
+                                          border: '1px solid var(--border)',
+                                          color: 'var(--muted)',
+                                          fontWeight: '700',
+                                          fontSize: '0.83rem',
+                                          whiteSpace: 'nowrap',
+                                        }}
+                                        title={`Reset ${u.name}'s sent email counter to 0`}
+                                      >
+                                        🔄 Reset Counter (0 Sent)
                                       </button>
                                     )}
                                   </div>

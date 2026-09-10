@@ -1,5 +1,9 @@
 import { emailHtmlToText, isEmailDocument } from '@/utils/shared/emailContent';
 import { loadEmailRoadmapContext } from '@/utils/server/emailRoadmapContext';
+import { loadEmailStudent } from '@/utils/server/emailStudentContext';
+import { getSavedDraft } from '@/utils/server/emailDraftLibrary';
+import { renderSavedEmail } from '@/utils/shared/emailDraft';
+import { recommendEmail, emailCategory } from '@/utils/shared/emailRecommendation';
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml, buildBaseEmailWrapper } from '@/utils/server/retentionEmails';
@@ -89,10 +93,27 @@ export async function POST(request) {
     if (isEmailDocument(customHtml) && (!/<head(?:\s|>)/i.test(customHtml) || !/<body(?:\s|>)/i.test(customHtml) || !/<\/html\s*>/i.test(customHtml))) {
       return NextResponse.json({ error: 'A complete HTML email needs head, body and closing html elements. Otherwise, provide body content only.' }, { status: 400 });
     }
-    const roadmapContext = await loadEmailRoadmapContext(body.roadmapSlug ?? targetUser.progress?.[0]?.slug, body.completedNodeIds ?? targetUser.progress?.[0]?.completedNodeIds);
+    let roadmapContext = await loadEmailRoadmapContext(body.roadmapSlug ?? targetUser.progress?.[0]?.slug, body.completedNodeIds ?? targetUser.progress?.[0]?.completedNodeIds);
+    let recommendedStudent, recommendation, savedDraft;
+    if (templateId.startsWith('ai_') || body.recommendationUid) {
+      const db = getFirebaseAdminFirestore();
+      if (!db) return NextResponse.json({ error: 'Email library storage is unavailable.' }, { status: 503 });
+      if (!body.recommendationUid) return NextResponse.json({ error: 'Select a student in the CRM to send a saved AI variation.' }, { status: 400 });
+      recommendedStudent = await loadEmailStudent(db, getFirebaseAdminAuth(), body.recommendationUid);
+      recommendation = recommendEmail(recommendedStudent);
+      if (!recommendation.eligible) return NextResponse.json({ error: recommendation.reason }, { status: 409 });
+      if (!isTest && recipientEmail !== recommendedStudent.email.toLowerCase()) return NextResponse.json({ error: 'Recipient does not match the selected student.' }, { status: 400 });
+      if (customHtml || customSubject) return NextResponse.json({ error: 'Use the saved variation without a custom override in the recommendation flow.' }, { status: 400 });
+      if (templateId.startsWith('ai_')) savedDraft = await getSavedDraft(db, templateId);
+      if ((savedDraft?.category || emailCategory(templateId)) !== recommendation.category) return NextResponse.json({ error: 'This email category no longer matches the student. Refresh the recommendation.' }, { status: 409 });
+      if (!isTest && recommendedStudent.sentEmailHistory.some(log => (typeof log === 'string' ? log : log.templateId) === templateId)) return NextResponse.json({ error: 'This student has already received this variation.' }, { status: 409 });
+      roadmapContext = recommendation;
+    }
 
     // Helper to resolve email subject & html based on template or custom override
     const resolveEmailContent = (tId, data) => {
+      if (recommendedStudent) data = { ...data, name: recommendedStudent.name, degree: recommendedStudent.degree, ...roadmapContext };
+      if (savedDraft) return renderSavedEmail(savedDraft, data);
       if (customHtml) {
         const sub = customSubject || `SkillBun Notification for ${data.name}`;
         return {
@@ -295,21 +316,26 @@ export async function POST(request) {
       try {
         const db = getFirebaseAdminFirestore();
         if (db) {
-          const usersSnap = await db.collection('users').where('email', '==', targetEmail.toLowerCase()).get();
-          if (!usersSnap.empty) {
-            const userDoc = usersSnap.docs[0];
-            const existingLogs = Array.isArray(userDoc.data().sentEmailHistory) ? userDoc.data().sentEmailHistory : [];
+          const usersSnap = recommendedStudent && !isTest ? null : await db.collection('users').where('email', '==', targetEmail.toLowerCase()).get();
+          const userRef = recommendedStudent && !isTest ? db.collection('users').doc(recommendedStudent.uid) : usersSnap?.docs[0]?.ref;
+          if (userRef) {
             const newLog = {
               templateId,
               subject,
               messageId: smtpResponse?.messageId || null,
+              category: savedDraft?.category || emailCategory(templateId),
+              roadmapSlug: roadmapContext.roadmapSlug || '',
+              eventKey: recommendation?.eventKey || '',
+              isTest,
               sentAt: new Date().toISOString(),
               adminEmail: authUserEmail || 'harsh@skillbun.tech',
               forceOverride: Boolean(forceOverride),
             };
-            await userDoc.ref.set({
-              sentEmailHistory: [...existingLogs, newLog],
-            }, { merge: true });
+            await db.runTransaction(async tx => {
+              const snapshot = await tx.get(userRef);
+              const existingLogs = Array.isArray(snapshot.data()?.sentEmailHistory) ? snapshot.data().sentEmailHistory : [];
+              tx.set(userRef, { sentEmailHistory: [...existingLogs, newLog] }, { merge: true });
+            });
           }
         }
       } catch (logErr) {

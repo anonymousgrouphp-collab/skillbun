@@ -7,6 +7,7 @@ import { useAdminAccess } from '@/utils/client/adminAuth';
 import { prepareEmailPreview, isEmailDocument } from '@/utils/shared/emailContent';
 import { buildBaseEmailWrapper, escapeHtml, RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
 import styles from './emails.module.css';
+import EmailDraftLibrary from './EmailDraftLibrary';
 
 // Extended Template Catalog combining Retention & Workforce templates
 const ALL_TEMPLATES = [
@@ -554,6 +555,8 @@ export default function AdminEmailsPage() {
           </Link>
         </div>
       </div>
+
+      <EmailDraftLibrary user={user} />
 
       {/* Category Pills */}
       <div className={styles.categoryTabs}>
