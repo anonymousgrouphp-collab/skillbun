@@ -52,14 +52,14 @@ export default function EmailDraftLibrary({ user, fixedCategory, onChoose, defau
       setPreview(result.preview);
     } catch (err) { setError(err.message); } finally { setBusy(false); }
   }
-  return <details defaultOpen={defaultOpen} onToggle={event => setOpen(event.currentTarget.open)} style={{ border: '1px solid var(--border)', borderRadius: 12, padding: '1rem', marginBottom: '1rem', background: 'var(--surface)', color: 'var(--text)' }}>
+  return <details open={open} onToggle={event => setOpen(event.currentTarget.open)} style={{ border: '1px solid var(--border)', borderRadius: 12, padding: '1rem', marginBottom: '1rem', background: 'var(--surface)', color: 'var(--text)' }}>
     <summary style={{ cursor: 'pointer', fontWeight: 800 }}>AI mail generator & saved library</summary>
     {open && <div style={{ marginTop: '1rem' }}>
       <p style={{ color: 'var(--muted)' }}>Every new variation is saved for reuse. Review drafts before sending from the Student CRM.</p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
         {!fixedCategory && <select aria-label="Draft category" value={category} disabled={busy} onChange={e => { setCategory(e.target.value); setPreview(null); }} style={control}>{Object.entries(EMAIL_CATEGORIES).map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select>}
         <input aria-label="Search saved drafts by name prefix" placeholder="Search name (starts with…)" value={search} onChange={e => setSearch(e.target.value)} style={control} />
-        <button type="button" disabled={busy} onClick={generate} style={control}>{busy ? 'Working…' : 'Create and save new variation'}</button>
+        <button type="button" disabled={busy} onClick={generate} style={control}>{busy ? 'Working…' : 'Generate & save new AI mail'}</button>
       </div>
       {error && <p role="alert">{error}</p>}
       {!busy && !error && !drafts.length && <p>No saved variations in this category yet.</p>}
