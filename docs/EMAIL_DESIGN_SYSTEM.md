@@ -1,7 +1,7 @@
 # SkillBun Email Design System
 
 **Module:** [`utils/server/emailTheme.js`](../utils/server/emailTheme.js)
-**Introduced:** 2.10.14
+**Introduced:** 2.10.14 · **Last revised:** 2.10.16
 **Applies to:** all 25 outgoing emails — 18 retention/lifecycle templates, 4 workforce letters, 1 password reset, plus the admin console's custom-HTML path.
 
 Every email SkillBun sends is composed from this one module. Nothing else builds an email shell, and no template writes its own `<html>`, `<style>` or masthead.
@@ -51,6 +51,24 @@ The previous templates were a green gradient hero over a rounded capsule card, c
 - Every ornament is drawn with table cells or CSS gradients, **never** an image file. Images are blocked by default in most inboxes, and a hosted PNG cannot follow the reader's theme.
 
 The single exception is the logo, which must be a raster (see §6).
+
+### 2.1 Width
+
+The sheet is not a fixed 600px column. It widens in steps with the viewport, because a 600px email marooned in the middle of a 2400px window wastes most of the screen — but it does not go fluid, because a line of body text stops being readable somewhere past ~90 characters.
+
+| Viewport | Sheet | Side padding | Body size | Measure | ≈ chars |
+|---|---|---|---|---|---|
+| ≤ 620px | full bleed | 22px | 15.5px | viewport − 44 | — |
+| 621–767px | 600px | 40px | 15.5px | 520px | 67 |
+| 768–1099px | 680px | 46px | 15.5px | 588px | 76 |
+| 1100–1499px | 740px | 56px | 16px | 628px | 79 |
+| ≥ 1500px | 860px | 72px | 17px | 716px | 84 |
+
+The padding widens faster than the sheet and the body size steps up with it, so the measure lands between 67 and 84 characters at every width above mobile rather than growing without bound.
+
+**Outlook for Windows is excluded from all of this and that is deliberate.** The Word engine ignores `max-width` and media queries; it reads the `width="600"` attribute on the sheet table and renders a fixed 600px column. That attribute must survive every change — it is the fallback, not a leftover. Clients that strip `<style>` entirely land on the same 600px, via the inline `max-width:600px`.
+
+Four class hooks drive the ladder: `sb-sheet` (the cap), `sb-pad` (every horizontal padding in the frame), `sb-body` (the content cell's font size) and `sb-lede` (the lede's own measure, which stays narrower than the sheet on purpose). `sb-display` steps the headline up alongside them.
 
 ---
 
@@ -259,6 +277,8 @@ Then render all 18 retention templates plus the 4 workforce letters and the pass
 - subjects contain no `&amp;`, `&#39;` or other entities;
 - missing-data fallbacks render;
 - dark mode repaints (emulate `prefers-color-scheme: dark` and **reload** — the media query does not re-evaluate without one);
+- the width ladder holds (§2.1): render each template into an iframe at 375 / 600 / 700 / 900 / 1280 / 1700 / 2360px and assert `documentElement.scrollWidth` never exceeds the frame — a media query inside an iframe evaluates against the iframe's width, which is what makes this measurable;
+- `width="600"` is still on the sheet table;
 - tags wrap across rows with their spacing intact and the CTA stays clear of them.
 
 ---
