@@ -7,6 +7,13 @@ import {
   getZohoSmtpPort,
   getZohoSmtpUser,
 } from '@/utils/server/env'
+import {
+  buildEmail,
+  emailText,
+  emailButton,
+  emailNote,
+  emailCredentialStrip,
+} from '@/utils/server/emailTheme'
 
 export function getTransporter() {
   const host = getZohoSmtpHost()
@@ -38,27 +45,46 @@ export function escapeHtml(value) {
 }
 
 export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
-  const safeLink = escapeHtml(resetLink)
+  const subject = 'Reset your SkillBun password'
+
+  const contentHtml = `
+    ${emailText('Click the button below to choose a new password. For your security, this link expires after a short time.')}
+    ${emailButton({ href: resetLink, label: 'Reset my password' })}
+    ${emailCredentialStrip(
+      [['Direct link', resetLink, { href: resetLink }]],
+      { title: 'If the button doesn&rsquo;t work' }
+    )}
+    ${emailNote('Didn&rsquo;t request a password reset? You can safely ignore this email &mdash; your password won&rsquo;t change.')}
+  `
+
+  const html = buildEmail({
+    title: subject,
+    eyebrow: 'Account security',
+    docTag: 'Password reset',
+    headline: 'Reset your password',
+    lede: 'We received a request to reset the password for your SkillBun account.',
+    contentHtml,
+    isMarketing: false,
+    email,
+  })
 
   await getTransporter().sendMail({
     from: getPasswordResetFrom() || 'SkillBun <noreply@skillbun.tech>',
     to: email,
-    subject: 'Reset your SkillBun password',
+    subject,
     text: [
       'Hi,',
       '',
-      'Use this link to reset your SkillBun password:',
+      'We received a request to reset the password for your SkillBun account.',
+      'Use this link to choose a new password:',
       resetLink,
       '',
-      'If you did not request this, you can ignore this email.',
+      'For your security, this link will expire after a short time.',
+      "If you didn't request this, you can safely ignore this email — your password won't change.",
       '',
+      'SkillBun.tech',
     ].join('\n'),
-    html: `
-      <p>Hi,</p>
-      <p>Use this link to reset your SkillBun password:</p>
-      <p><a href="${safeLink}">${safeLink}</a></p>
-      <p>If you did not request this, you can ignore this email.</p>
-    `,
+    html,
   })
 }
 

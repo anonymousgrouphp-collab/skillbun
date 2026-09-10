@@ -221,7 +221,7 @@ export default function AdminEmailsPage() {
 
   // Viewport & theme simulator
   const [viewport, setViewport] = useState('desktop'); // 'desktop' | 'mobile'
-  const [previewBg, setPreviewBg] = useState('dark'); // 'dark' | 'light'
+  const [previewBg, setPreviewBg] = useState('light'); // 'light' | 'dark'
 
   // Dispatch state
   const [targetRecipient, setTargetRecipient] = useState('');
@@ -279,24 +279,39 @@ export default function AdminEmailsPage() {
   const handleSelectTemplate = (template) => {
     setSelectedTemplateId(template.id);
     if (template.id === 'custom_blank') {
-      setEditedSubject(`Important Notification for ${simName}`);
+      setEditedSubject(`An update from SkillBun for ${simName}`);
       setEditedHtml(`
-<div style="text-align: center; margin-bottom: 24px;">
-  <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-    ⚡ Announcement
-  </div>
-  <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-    Hello ${simName}!
-  </h1>
-</div>
+<!-- Body only. The masthead lockup, title block and footer are added automatically. -->
 
-<p>Write your custom announcements or updates here. You can use standard HTML markup and inline CSS.</p>
+<p class="sb-text" style="margin: 0 0 18px 0; font-size: 15.5px; line-height: 1.72; color: #1A1A1A;">Hi ${simName},</p>
 
-<div style="text-align: center; margin: 32px 0 16px 0;">
-  <a href="https://skillbun.tech" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none;">
-    Explore Roadmaps →
-  </a>
-</div>
+<p class="sb-text" style="margin: 0 0 18px 0; font-size: 15.5px; line-height: 1.72; color: #1A1A1A;">Write your announcement here. Keep it left-aligned and plain. Use the <code>sb-text</code> and <code>sb-muted</code> classes on anything with a colour so it flips correctly in dark mode.</p>
+
+<!-- Section heading: hairline rule + label -->
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse; margin: 30px 0 16px 0;">
+  <tr><td class="sb-hr" height="1" style="height: 1px; background-color: #E7E7E3; font-size: 0; line-height: 0;">&nbsp;</td></tr>
+  <tr><td class="sb-muted" style="padding-top: 14px; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #6E6D68;">What's new</td></tr>
+</table>
+
+<!-- Bulleted lines -->
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse; margin: 0 0 26px 0;">
+  <tr>
+    <td width="16" style="width: 16px; padding: 5px 12px 5px 0; vertical-align: top;"><div class="sb-dot" style="width: 4px; height: 4px; border-radius: 50%; background-color: #1A1A1A; margin-top: 9px; font-size: 0; line-height: 0;">&nbsp;</div></td>
+    <td class="sb-text" style="padding: 5px 0; font-size: 15px; line-height: 1.68; color: #1A1A1A;">First point goes here</td>
+  </tr>
+  <tr>
+    <td width="16" style="width: 16px; padding: 5px 12px 5px 0; vertical-align: top;"><div class="sb-dot" style="width: 4px; height: 4px; border-radius: 50%; background-color: #1A1A1A; margin-top: 9px; font-size: 0; line-height: 0;">&nbsp;</div></td>
+    <td class="sb-text" style="padding: 5px 0; font-size: 15px; line-height: 1.68; color: #1A1A1A;">Second point goes here</td>
+  </tr>
+</table>
+
+<!-- Call to action -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left" style="border-collapse: separate; margin: 6px 0 22px 0;"><tr>
+  <td class="sb-btn" bgcolor="#1A1A1A" style="background-color: #1A1A1A; border-radius: 8px;">
+    <a href="https://skillbun.tech/roadmap" target="_blank" class="sb-btn-a" style="display: inline-block; padding: 13px 26px; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; color: #FFFFFF; text-decoration: none; border-radius: 8px;">Explore roadmaps</a>
+  </td>
+</tr></table>
+<div style="clear: both; font-size: 0; line-height: 0;">&nbsp;</div>
       `.trim());
     } else {
       loadTemplateContent(template.id, true);
