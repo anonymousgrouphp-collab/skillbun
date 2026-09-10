@@ -17,8 +17,8 @@
  * Copy voice: premium, minimal, honest. No invented monetary values, no fake
  * rankings, no false scarcity, no decorative emoji.
  *
- * Dynamic values (name, email, roadmapTitle, degree) arrive PRE-ESCAPED from
- * generateRetentionEmailHtml; progressCount is a number.
+ * Name and roadmapTitle arrive escaped for trusted markup. Email and degree
+ * stay raw for emailCredentialStrip, which escapes them. Counts may be unknown.
  */
 
 import {
@@ -199,21 +199,16 @@ export const RETENTION_TEMPLATES = {
   },
 };
 
-// Roadmap progress is tracked in topic nodes; 60% of a ~24-node track unlocks
-// the exam, so we derive an honest percentage for the progress motif.
-const ASSUMED_TRACK_LENGTH = 24;
-
-function progressPercent(progressCount) {
-  return Math.max(4, Math.min(96, Math.round(((Number(progressCount) || 0) / ASSUMED_TRACK_LENGTH) * 100)));
-}
-
-// Topics still to go before the 60% exam unlock, floored at zero.
-function topicsToUnlock(progressCount) {
-  const needed = Math.ceil(ASSUMED_TRACK_LENGTH * 0.6);
-  return Math.max(0, needed - (Number(progressCount) || 0));
-}
-
-export function renderTemplateContent(templateId, { name, email, roadmapTitle, progressCount, degree }) {
+export function renderTemplateContent(templateId, { name, email, roadmapTitle, progressCount, totalTopics, roadmapSlug, degree }) {
+  const hasCount = progressCount !== null && progressCount !== undefined;
+  const hasProgress = hasCount && Number.isFinite(totalTopics) && totalTopics > 0;
+  const percent = hasProgress ? Math.round(progressCount / totalTopics * 100) : null;
+  const remaining = hasProgress ? Math.max(0, Math.ceil(totalTopics * 0.6) - progressCount) : null;
+  const roadmapUrl = roadmapSlug ? `${SITE_URL}/roadmap/${roadmapSlug}` : `${SITE_URL}/roadmap`;
+  const examUrl = roadmapSlug ? `${roadmapUrl}/certify` : roadmapUrl;
+  const progressGraphic = (label, caption) => hasProgress
+    ? emailProgressTrack({ percent, label, caption })
+    : emailNote('Open your roadmap to see your latest progress and exam eligibility.');
   const templateConfig = RETENTION_TEMPLATES[templateId] || RETENTION_TEMPLATES.welcome_v1;
   const isMarketing = templateConfig ? templateConfig.isMarketing !== false : true;
 
@@ -238,7 +233,7 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
         ${emailText('SkillBun teaches a tech skill the structured way: follow a roadmap, study each topic, then prove what you know with a certificate anyone can verify.')}
         ${emailStatBand([
           { value: '100+', label: 'Roadmaps' },
-          { value: '24', label: 'Topics per track' },
+          { value: '60%', label: 'Exam unlock' },
           { value: '&#8377;0', label: 'Cost' },
         ])}
         ${emailSectionLabel("What's included")}
@@ -314,25 +309,25 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
       eyebrow = 'Pick up where you left off';
       docTag = 'Progress';
       headline = `Welcome back,<br>${name}`;
-      lede = `You've already completed ${progressCount} topics on ${roadmapTitle}. Everything is saved exactly as you left it.`;
+      lede = hasCount ? `You've completed ${progressCount} topics on ${roadmapTitle}. Continue from your saved progress.` : 'Open your roadmap to pick up your learning journey.';
       contentHtml = `
-        ${emailFrame(
+        ${hasProgress && totalTopics <= 120 ? emailFrame(
           emailWaffle({
-            total: ASSUMED_TRACK_LENGTH,
+            total: totalTopics,
             filled: progressCount,
             label: roadmapTitle,
             caption: `Each square is one topic node &nbsp;/&nbsp; the exam unlocks at 60%`,
             flush: true,
           }),
           { label: 'Topic matrix' }
-        )}
+        ) : progressGraphic(roadmapTitle, hasCount ? `${progressCount} topics completed` : '')}
         ${emailStatBand([
-          { value: String(progressCount), label: 'Topics done' },
-          { value: String(topicsToUnlock(progressCount)), label: 'To exam unlock' },
+          ...(hasCount ? [{ value: String(progressCount), label: 'Topics done' }] : []),
+          ...(hasProgress ? [{ value: String(remaining), label: 'To exam unlock' }] : []),
           { value: 'Saved', label: 'Your position' },
         ])}
         ${emailText('Even a few minutes today keeps your momentum going. Open the roadmap and continue from your next unfinished topic.')}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Continue learning' })}
+        ${emailButton({ href: roadmapUrl, label: 'Continue learning' })}
       `;
       break;
 
@@ -343,15 +338,11 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
       headline = 'Small steps add up';
       lede = 'You don’t need a free afternoon — one topic node is enough to keep moving.';
       contentHtml = `
-        ${emailProgressTrack({
-          percent: progressPercent(progressCount),
-          label: roadmapTitle,
-          caption: `${progressCount} topics done so far`,
-        })}
+        ${progressGraphic(roadmapTitle, `${progressCount} topics done so far`)}
         ${emailNodeRail([
           {
-            title: `${progressCount} topics behind you`,
-            body: 'Already marked complete on your roadmap.',
+            title: hasCount ? `${progressCount} topics completed` : 'Your learning progress',
+            body: hasCount ? 'Marked complete on your roadmap.' : 'Check your roadmap for the latest completed topics.',
             state: 'done',
           },
           {
@@ -365,7 +356,7 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
             state: 'todo',
           },
         ])}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Complete one topic' })}
+        ${emailButton({ href: roadmapUrl, label: 'Continue learning' })}
       `;
       break;
 
@@ -376,44 +367,41 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
       headline = `Keep going, ${name}`;
       lede = `At 60% roadmap progress your ${roadmapTitle} certification exam unlocks.`;
       contentHtml = `
-        ${emailProgressTrack({
-          percent: progressPercent(progressCount),
-          label: 'Progress toward the exam',
-          caption: `${progressCount} topics completed &nbsp;/&nbsp; exam unlocks at 60%`,
-        })}
+        ${progressGraphic('Roadmap progress', `${progressCount} topics completed &nbsp;/&nbsp; exam unlocks at 60%`)}
         ${emailStatBand([
-          { value: String(topicsToUnlock(progressCount)), label: 'Topics to unlock' },
+          ...(hasProgress ? [{ value: String(remaining), label: 'Topics to unlock' }] : []),
           { value: '70%', label: 'Score to pass' },
           { value: 'Free', label: 'Retakes' },
         ])}
         ${emailText('Every topic you finish moves you closer — and a verified certificate is something you can put straight on your resume and LinkedIn.')}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: `Continue ${roadmapTitle}` })}
+        ${emailButton({ href: roadmapUrl, label: `Continue ${roadmapTitle}` })}
       `;
       break;
 
     /* ---------------- CATEGORY 3: EXAM READY ---------------- */
     case 'exam_nudge_v1':
-      subject = `Your ${roadmapTitle} certification exam is unlocked, ${name}`;
-      eyebrow = 'Exam unlocked';
+      subject = `Your ${roadmapTitle} certification exam, ${name}`;
+      eyebrow = hasProgress && progressCount / totalTopics >= 0.6 ? 'Progress requirement met' : 'Certification exam';
       docTag = 'Certification';
       headline = `Nice work,<br>${name}`;
-      lede = `You've passed 60% progress on ${roadmapTitle}, so your certification exam is now available.`;
+      lede = hasProgress && progressCount / totalTopics >= 0.6 ? `You've reached 60% progress on ${roadmapTitle}. Open the exam to check your available attempts.` : `Reach 60% progress on ${roadmapTitle} to unlock its certification exam.`;
       chips = ['10 questions', 'free retakes'];
       contentHtml = `
         ${emailFrame(
           emailSpecSheet([
             ['Roadmap', roadmapTitle],
-            ['Format', '10 adaptive questions'],
+            ['Format', '10 randomly selected questions'],
             ['Time limit', '45 seconds a question'],
             ['Passing score', '70% or higher'],
             ['Cost', 'Free'],
-            ['Retakes', 'Free — up to 3 a day'],
+            ['Attempts', '3 total per rolling 24 hours'],
+            ['Cooldown', '1 hour after 2 consecutive failures'],
             ['On passing', 'Verified certificate + PDF'],
           ], { flush: true }),
           { label: 'Exam specification' }
         )}
         ${emailNote('No pressure — if you don’t pass the first time, retakes are always free and the questions are reshuffled.')}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Start the exam' })}
+        ${emailButton({ href: examUrl, label: roadmapSlug ? 'Open certification exam' : 'Find your roadmap' })}
       `;
       break;
 
@@ -427,16 +415,17 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
         ${emailStatBand([
           { value: '10', label: 'Questions' },
           { value: '70%', label: 'To pass' },
-          { value: '3', label: 'Free retakes / day' },
+          { value: '3', label: 'Attempts / 24h' },
         ])}
         ${emailPoints([
-          '<strong>Questions are drawn</strong> from the topics you’ve already studied',
+          '<strong>Questions are drawn</strong> from the roadmap’s question bank',
           '<strong>70% to pass</strong> — that’s 7 of 10 correct',
           '<strong>Shuffled each time</strong>, so every attempt is different',
           '<strong>45 seconds a question</strong> — anything left unanswered counts as incorrect',
         ])}
         ${emailText(`When you're ready, open your ${roadmapTitle} roadmap and start the exam from there.`)}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Begin the exam' })}
+        ${emailNote('Up to 3 total attempts per rolling 24 hours. After 2 consecutive failures, take a 1-hour study cooldown.')}
+        ${emailButton({ href: examUrl, label: roadmapSlug ? 'Open certification exam' : 'Find your roadmap' })}
       `;
       break;
 
@@ -457,23 +446,24 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
           ],
           { title: 'Credential record' }
         )}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Take the exam' })}
+        ${emailButton({ href: examUrl, label: roadmapSlug ? 'Open certification exam' : 'Find your roadmap' })}
       `;
       break;
 
     /* ---------------- CATEGORY 4: EXAM RETAKE ---------------- */
     case 'exam_failed_v1':
-      subject = `Your ${roadmapTitle} retake is ready when you are, ${name}`;
-      eyebrow = 'Retake available';
+      subject = `Plan your ${roadmapTitle} retake, ${name}`;
+      eyebrow = 'Prepare to retry';
       docTag = 'Retake';
       headline = 'Not this time — and that’s fine';
-      lede = `Retakes on ${roadmapTitle} are free, so you can try again whenever you're ready.`;
+      lede = `Retakes on ${roadmapTitle} are free, subject to the attempt limit and study cooldown.`;
       contentHtml = `
-        ${emailText('Plenty of people don’t pass on the first attempt. There’s no penalty and nothing to pay — take a short break, then go again.')}
+        ${emailText('Review the topics you found difficult before your next attempt. Open the exam page to check when you can retry.')}
         ${emailFrame(
           emailSpecSheet([
             ['Retake cost', 'Free'],
             ['Attempts allowed', '3 per 24 hours'],
+            ['Cooldown', '1 hour after 2 consecutive failures'],
             ['Question set', 'Reshuffled each attempt'],
             ['Progress lost', 'None'],
           ], { flush: true }),
@@ -485,7 +475,7 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
           'Ask Bun-Bot to explain anything that didn’t click',
           'Remember the questions are reshuffled on every attempt',
         ])}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Retake the exam' })}
+        ${emailButton({ href: examUrl, label: roadmapSlug ? 'Check retake availability' : 'Find your roadmap' })}
       `;
       break;
 
@@ -513,7 +503,7 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
             state: 'todo',
           },
         ])}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Review and retake' })}
+        ${emailButton({ href: roadmapUrl, label: 'Review your roadmap' })}
       `;
       break;
 
@@ -525,7 +515,8 @@ export function renderTemplateContent(templateId, { name, email, roadmapTitle, p
       lede = 'One attempt doesn’t define your progress. The certificate is still well within reach.';
       contentHtml = `
         ${emailText(`You've already put in the work to unlock the exam. Take a breather, review what tripped you up, and come back for another attempt — retakes are always free.`)}
-        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Try again' })}
+        ${emailNote('Up to 3 total attempts per rolling 24 hours, with a 1-hour cooldown after 2 consecutive failures.')}
+        ${emailButton({ href: examUrl, label: roadmapSlug ? 'Check retake availability' : 'Find your roadmap' })}
       `;
       break;
 

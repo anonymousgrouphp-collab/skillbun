@@ -2,9 +2,9 @@
 
 **Module:** [`utils/server/emailTheme.js`](../utils/server/emailTheme.js)
 **Introduced:** 2.10.14 · **Last revised:** 2.10.16
-**Applies to:** all 25 outgoing emails — 18 retention/lifecycle templates, 4 workforce letters, 1 password reset, plus the admin console's custom-HTML path.
+**Applies to:** 23 generated templates — 18 retention/lifecycle templates, 4 workforce letters and 1 password reset — plus the admin console's custom-HTML path.
 
-Every email SkillBun sends is composed from this one module. Nothing else builds an email shell, and no template writes its own `<html>`, `<style>` or masthead.
+These generated templates share this module. Full custom HTML can supply its own document; Firebase's provider-managed verification email is a separate path and is not covered by this renderer. Browser checks are not proof of rendering in every inbox; see [rendering QA](EMAIL_RENDERING_QA.md).
 
 ---
 
@@ -287,4 +287,4 @@ Then render all 18 retention templates plus the 4 workforce letters and the pass
 
 - [Phase 5 — Email Dispatch Pipeline](phases/PHASE_5_EMAIL_DISPATCH.md)
 - [Workforce Management PRD](PRD_WORKFORCE_MANAGEMENT.md)
-- [Architecture & workflow](ARCHITECTURE_WORKFLOW_2026-09-08.md)
+- [Architecture & workflow](ARCHITECTURE_WORKFLOW.md)

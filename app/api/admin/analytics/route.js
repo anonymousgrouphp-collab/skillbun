@@ -3,6 +3,8 @@ import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import fs from 'fs';
 import path from 'path';
+import { enrichEmailProgress } from '@/utils/server/emailStudentContext';
+import { emailTime } from '@/utils/shared/emailRecommendation';
 
 export const runtime = 'nodejs';
 
@@ -114,7 +116,7 @@ export async function GET(request) {
             roadmapTitle: data.roadmapTitle || data.roadmapSlug || 'Roadmap',
             roadmapSlug: data.roadmapSlug || '',
             score: typeof data.score === 'number' ? data.score : 0,
-            createdAt: data.createdAt ? new Date(data.createdAt.toDate?.() || data.createdAt).toISOString() : new Date().toISOString(),
+            createdAt: data.createdAt ? new Date(data.createdAt.toDate?.() || data.createdAt).toISOString() : null,
           };
         });
 
@@ -176,7 +178,7 @@ export async function GET(request) {
             interest: uData.interest || uData.interest_area || 'N/A',
             providers: Array.isArray(uData.providers) && uData.providers.length > 0 ? uData.providers : (authMeta.providers || []),
             createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : (authMeta.creationTime || null),
-            lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (authMeta.lastSignInTime || uData.createdAt || null),
+            lastSignInTime: authMeta.lastSignInTime || null,
             isUnsubscribed,
             unsubscribedAt,
             progress: progressList,
@@ -244,6 +246,16 @@ export async function GET(request) {
           }
         }
 
+        // Recommendation evidence excludes question banks and submitted answers.
+        let examOutcomes = [];
+        try {
+          const outcomes = await db.collection('examAttempts').select('uid', 'roadmapSlug', 'status', 'passed', 'submittedAt').get();
+          examOutcomes = outcomes.docs.map(d => ({ ...d.data(), id: d.id, submittedAt: emailTime(d.data().submittedAt) }));
+        } catch { /* Unknown exam results never imply a failed exam. */ }
+        await Promise.all(usersList.map(async u => {
+          u.progress = await enrichEmailProgress(u.progress);
+          u.examOutcomes = examOutcomes.filter(exam => exam.uid === u.uid);
+        }));
         // Link valid certificates back to their respective active users
         usersList.forEach((u) => {
           const userEmailLower = (u.email || '').toLowerCase();
