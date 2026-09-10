@@ -70,6 +70,7 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
 
   await getTransporter().sendMail({
     from: getPasswordResetFrom() || 'SkillBun <noreply@skillbun.tech>',
+    replyTo: 'harsh@skillbun.tech',
     to: email,
     subject,
     text: [
@@ -123,6 +124,7 @@ export async function sendMailWithAttachment({
     text: text || '',
     html: html || '',
     attachments,
+    replyTo: replyTo || 'harsh@skillbun.tech',
   }
 
   if (cc) mailOptions.cc = cc

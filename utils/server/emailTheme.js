@@ -67,7 +67,7 @@ export const TOKENS = {
     ink: '#1A1A1A',
     text: '#1A1A1A',
     muted: '#6E6D68',
-    faint: '#8C8B85',
+    faint: '#706F69',
     hairline: '#E7E7E3',
     border: '#DCDCD7',
     surfaceRaised: '#FAFAF8',
@@ -91,7 +91,7 @@ export const TOKENS = {
     ink: '#EDEDEA',
     text: '#EDEDEA',
     muted: '#A3A29C',
-    faint: '#8A8983',
+    faint: '#A3A29C',
     hairline: '#2C2C29',
     border: '#333330',
     surfaceRaised: '#1D1D1B',
@@ -139,7 +139,7 @@ export function escapeHtml(value) {
 
 /** Body copy. */
 export function emailText(html) {
-  return `<p class="sb-text" style="margin:0 0 18px 0; font-size:15.5px; line-height:1.72; color:${L.text};">${html}</p>`;
+  return `<p class="sb-text" style="font-family:${BODY_FONT}; margin:0 0 18px 0; font-size:15.5px; line-height:1.72; color:${L.text};">${html}</p>`;
 }
 
 /** Full-width hairline rule. */
@@ -181,14 +181,14 @@ export function emailFrame(innerHtml, { label = '' } = {}) {
     `<td width="18" height="14" class="sb-frame" style="width:18px; height:14px; border-${vertical}:1px solid ${L.border}; border-${horizontal}:1px solid ${L.border}; font-size:0; line-height:0;">&nbsp;</td>`;
 
   const labelCell = label
-    ? `<td class="sb-faint sb-frame-top" align="center" style="text-align:center; padding:0 10px; font-family:${MONO_FONT}; font-size:10px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:${L.faint}; white-space:nowrap;">${escapeHtml(label)}</td>`
+    ? `<td class="sb-faint sb-frame-top" align="center" style="text-align:center; padding:0 10px; font-family:${MONO_FONT}; font-size:10px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:${L.faint}; overflow-wrap:anywhere;">${escapeHtml(label)}</td>`
     : '<td style="font-size:0; line-height:0;">&nbsp;</td>';
 
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin:0 0 26px 0;">
     <tr>${corner('top', 'left')}${labelCell}${corner('top', 'right')}</tr>
     <tr>
       <td style="font-size:0; line-height:0;">&nbsp;</td>
-      <td style="padding:16px 8px;">${innerHtml}</td>
+      <td style="font-family:${BODY_FONT}; padding:16px 8px;">${innerHtml}</td>
       <td style="font-size:0; line-height:0;">&nbsp;</td>
     </tr>
     <tr>${corner('bottom', 'left')}<td style="font-size:0; line-height:0;">&nbsp;</td>${corner('bottom', 'right')}</tr>
@@ -233,15 +233,15 @@ export function emailChipBlock({ eyebrow = '', title, meta = '', pins = 4 }) {
   const pinStack = `<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">${pinRows.join('')}</table>`;
 
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin:0 0 26px 0;"><tr>
-    <td class="sb-strip" style="${perfboardBg(L)} border:1px solid ${L.hairline}; border-radius:10px; padding:22px 18px;">
+    <td class="sb-strip" style="font-family:${BODY_FONT}; ${perfboardBg(L)} border:1px solid ${L.hairline}; border-radius:10px; padding:22px 18px;">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
-        <td width="9" style="width:9px; vertical-align:middle;">${pinStack}</td>
-        <td align="center" style="padding:0 16px; text-align:center;">
+        <td width="9" style="font-family:${BODY_FONT}; width:9px; vertical-align:middle;">${pinStack}</td>
+        <td align="center" style="font-family:${BODY_FONT}; padding:0 16px; text-align:center;">
           ${eyebrow ? `<div class="sb-faint" style="font-family:${MONO_FONT}; font-size:10px; font-weight:700; letter-spacing:1.6px; text-transform:uppercase; color:${L.faint};">${escapeHtml(eyebrow)}</div>` : ''}
           <div class="sb-text" style="font-family:${DISPLAY_FONT}; font-size:19px; font-weight:700; color:${L.ink}; line-height:1.35; letter-spacing:-0.2px; margin-top:${eyebrow ? '9px' : '0'};">${title}</div>
           ${meta ? `<div class="sb-muted" style="font-family:${MONO_FONT}; font-size:11.5px; color:${L.muted}; margin-top:10px; letter-spacing:0.4px;">${meta}</div>` : ''}
         </td>
-        <td width="9" align="right" style="width:9px; vertical-align:middle;">${pinStack}</td>
+        <td width="9" align="right" style="font-family:${BODY_FONT}; width:9px; vertical-align:middle;">${pinStack}</td>
       </tr></table>
     </td>
   </tr></table>`;
@@ -280,14 +280,14 @@ export function emailNodeRail(nodes, { flush = false } = {}) {
       const idxClass = state === 'todo' ? 'sb-faint' : 'sb-text';
       const marker =
         state === 'current'
-          ? `<span class="sb-node-live" style="display:inline-block; width:7px; height:7px; border-radius:50%; background-color:${L.brand}; margin-left:7px; vertical-align:middle;">&nbsp;</span>`
+          ? `<span class="sb-node-live" style="font-family:${BODY_FONT}; display:inline-block; width:7px; height:7px; border-radius:50%; background-color:${L.brand}; margin-left:7px; vertical-align:middle;">&nbsp;</span>`
           : '';
 
       return `<tr>
         <td width="42" class="${idxClass}" align="right" style="width:42px; padding:0 14px ${isLast ? '0' : '26px'} 0; vertical-align:top; font-family:${MONO_FONT}; font-size:12px; font-weight:700; letter-spacing:0.5px; color:${idxColor}; line-height:1.5;">${idx}</td>
-        <td class="${wireClass}" style="padding:0 0 ${isLast ? '0' : '26px'} 20px; vertical-align:top; border-left:2px solid ${wireColor};">
-          <div class="sb-text" style="font-size:15px; font-weight:700; color:${L.text}; line-height:1.45;">${item.title}${marker}</div>
-          ${item.body ? `<div class="sb-muted" style="font-size:14px; color:${L.muted}; line-height:1.62; margin-top:5px;">${item.body}</div>` : ''}
+        <td class="${wireClass}" style="font-family:${BODY_FONT}; padding:0 0 ${isLast ? '0' : '26px'} 20px; vertical-align:top; border-left:2px solid ${wireColor};">
+          <div class="sb-text" style="font-family:${BODY_FONT}; font-size:15px; font-weight:700; color:${L.text}; line-height:1.45;">${item.title}${marker}</div>
+          ${item.body ? `<div class="sb-muted" style="font-family:${BODY_FONT}; font-size:14px; color:${L.muted}; line-height:1.62; margin-top:5px;">${item.body}</div>` : ''}
         </td>
       </tr>`;
     })
@@ -306,14 +306,14 @@ export function emailStepRail(steps) {
       const body = typeof step === 'string' ? '' : step.body;
       const isLast = i === steps.length - 1;
       return `<tr>
-        <td width="38" style="width:38px; padding:0 14px ${isLast ? '0' : '20px'} 0; vertical-align:top;">
+        <td width="38" style="font-family:${BODY_FONT}; width:38px; padding:0 14px ${isLast ? '0' : '20px'} 0; vertical-align:top;">
           <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate;"><tr>
             <td class="sb-step-num" align="center" width="24" height="24" style="width:24px; height:24px; border:1px solid ${L.border}; border-radius:50%; color:${L.text}; font-family:${MONO_FONT}; font-size:11px; font-weight:700; line-height:22px; text-align:center;">${i + 1}</td>
           </tr></table>
         </td>
-        <td class="sb-step-cell" style="padding:0 0 ${isLast ? '0' : '20px'} 0; vertical-align:top;">
-          <div class="sb-text" style="font-size:15px; font-weight:700; color:${L.text}; line-height:1.45; padding-top:2px;">${title}</div>
-          ${body ? `<div class="sb-muted" style="font-size:14px; color:${L.muted}; line-height:1.62; margin-top:4px;">${body}</div>` : ''}
+        <td class="sb-step-cell" style="font-family:${BODY_FONT}; padding:0 0 ${isLast ? '0' : '20px'} 0; vertical-align:top;">
+          <div class="sb-text" style="font-family:${BODY_FONT}; font-size:15px; font-weight:700; color:${L.text}; line-height:1.45; padding-top:2px;">${title}</div>
+          ${body ? `<div class="sb-muted" style="font-family:${BODY_FONT}; font-size:14px; color:${L.muted}; line-height:1.62; margin-top:4px;">${body}</div>` : ''}
         </td>
       </tr>`;
     })
@@ -330,8 +330,8 @@ export function emailSpecSheet(rows, { title, flush = false } = {}) {
   const body = rows
     .map(
       ([label, value], i) => `<tr>
-        <td width="34%" class="sb-muted sb-cell" style="width:34%; padding:12px 14px 12px 0; font-size:13px; color:${L.muted}; vertical-align:top; ${i === 0 ? '' : `border-top:1px solid ${L.hairline};`}">${escapeHtml(label)}</td>
-        <td width="66%" class="sb-text sb-cell" align="right" style="width:66%; padding:12px 0; font-family:${MONO_FONT}; font-size:12.5px; color:${L.text}; font-weight:700; text-align:right; vertical-align:top; ${i === 0 ? '' : `border-top:1px solid ${L.hairline};`}">${value}</td>
+        <td width="34%" class="sb-muted sb-cell" style="font-family:${BODY_FONT}; width:34%; padding:12px 14px 12px 0; font-size:13px; color:${L.muted}; vertical-align:top; ${i === 0 ? '' : `border-top:1px solid ${L.hairline};`}">${escapeHtml(label)}</td>
+        <td width="66%" class="sb-text sb-cell" align="right" style="width:66%; padding:12px 0; font-family:${MONO_FONT}; font-size:12.5px; color:${L.text}; font-weight:700; text-align:right; vertical-align:top; overflow-wrap:anywhere; word-break:break-word; ${i === 0 ? '' : `border-top:1px solid ${L.hairline};`}">${value}</td>
       </tr>`
     )
     .join('');
@@ -348,7 +348,7 @@ export function emailStatBand(stats) {
   const colWidth = (100 / stats.length).toFixed(3);
   const cells = stats
     .map(
-      (stat, i) => `<td width="${colWidth}%" align="left" style="width:${colWidth}%; padding:18px 0 18px ${i === 0 ? '0' : '20px'}; vertical-align:top; ${i === 0 ? '' : `border-left:1px solid ${L.hairline};`}" class="sb-cell-l">
+      (stat, i) => `<td width="${colWidth}%" align="left" style="font-family:${BODY_FONT}; width:${colWidth}%; padding:18px 0 18px ${i === 0 ? '0' : '20px'}; vertical-align:top; ${i === 0 ? '' : `border-left:1px solid ${L.hairline};`}" class="sb-cell-l">
         <div class="sb-text" style="font-family:${BODY_FONT}; font-size:23px; font-weight:800; color:${L.ink}; line-height:1.1; letter-spacing:-0.4px;">${stat.value}</div>
         <div class="sb-muted" style="font-family:${MONO_FONT}; font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:${L.muted}; margin-top:7px;">${stat.label}</div>
       </td>`
@@ -385,13 +385,13 @@ export function emailProgressTrack({ percent, label, caption, segments = 16, flu
     }
   }
 
-  return `<div style="margin:0 0 ${flush ? 0 : 28}px 0;">
+  return `<div style="font-family:${BODY_FONT}; margin:0 0 ${flush ? 0 : 28}px 0;">
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin-bottom:11px;"><tr>
-      <td class="sb-text" style="font-size:14px; font-weight:700; color:${L.text};">${label}</td>
+      <td class="sb-text" style="font-family:${BODY_FONT}; font-size:14px; font-weight:700; color:${L.text};">${label}</td>
       <td class="sb-text" align="right" style="font-family:${MONO_FONT}; font-size:13px; font-weight:700; color:${L.text}; text-align:right;">${pct}%</td>
     </tr></table>
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; table-layout:fixed;"><tr>${cells.join('')}</tr></table>
-    ${caption ? `<div class="sb-muted" style="font-size:12.5px; color:${L.muted}; margin-top:11px; line-height:1.55;">${caption}</div>` : ''}
+    ${caption ? `<div class="sb-muted" style="font-family:${BODY_FONT}; font-size:12.5px; color:${L.muted}; margin-top:11px; line-height:1.55;">${caption}</div>` : ''}
   </div>`;
 }
 
@@ -432,15 +432,15 @@ export function emailWaffle({ total, filled, label, caption, cols = 12, flush = 
     }
   }
 
-  return `<div style="margin:0 0 ${flush ? 0 : 28}px 0;">
+  return `<div style="font-family:${BODY_FONT}; margin:0 0 ${flush ? 0 : 28}px 0;">
     ${label
       ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin-bottom:11px;"><tr>
-      <td class="sb-text" style="font-size:14px; font-weight:700; color:${L.text};">${label}</td>
+      <td class="sb-text" style="font-family:${BODY_FONT}; font-size:14px; font-weight:700; color:${L.text};">${label}</td>
       <td class="sb-text" align="right" style="font-family:${MONO_FONT}; font-size:13px; font-weight:700; color:${L.text}; text-align:right;">${done}/${count}</td>
     </tr></table>`
       : ''}
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; table-layout:fixed;">${rows.join('')}</table>
-    ${caption ? `<div class="sb-muted" style="font-size:12.5px; color:${L.muted}; margin-top:12px; line-height:1.55;">${caption}</div>` : ''}
+    ${caption ? `<div class="sb-muted" style="font-family:${BODY_FONT}; font-size:12.5px; color:${L.muted}; margin-top:12px; line-height:1.55;">${caption}</div>` : ''}
   </div>`;
 }
 
@@ -454,7 +454,7 @@ export function emailNote(html, tone = 'neutral') {
   const color = isDanger ? L.dangerText : L.text;
   const bar = isDanger ? `border-left:2px solid ${L.danger};` : '';
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate; margin:0 0 26px 0;"><tr>
-    <td class="${cls}" style="background-color:${bg}; ${bar} border-radius:8px; padding:15px 18px; font-size:14px; line-height:1.65; color:${color};">${html}</td>
+    <td class="${cls}" style="font-family:${BODY_FONT}; background-color:${bg}; ${bar} border-radius:8px; padding:15px 18px; font-size:14px; line-height:1.65; color:${color};">${html}</td>
   </tr></table>`;
 }
 
@@ -471,18 +471,18 @@ export function emailCredentialStrip(items, { title } = {}) {
         ? `<a href="${escapeHtml(opts.href)}" target="_blank" class="sb-text" style="color:${L.text}; font-family:${MONO_FONT}; font-size:12.5px; font-weight:700; text-decoration:underline; text-underline-offset:2px;">${escapeHtml(value)}</a>`
         : `<span class="sb-text" style="color:${L.text}; font-weight:700; ${mono ? `font-family:${MONO_FONT}; font-size:12.5px; letter-spacing:0.2px;` : ''}">${escapeHtml(value)}</span>`;
       return `<tr>
-        <td class="sb-muted" style="padding:8px 16px 8px 0; font-size:12.5px; color:${L.muted}; white-space:nowrap; vertical-align:top;">${escapeHtml(label)}</td>
-        <td style="padding:8px 0; font-size:13px; word-break:break-word; vertical-align:top;">${inner}</td>
+        <td class="sb-muted" style="font-family:${BODY_FONT}; padding:8px 16px 8px 0; font-size:12.5px; color:${L.muted}; white-space:nowrap; vertical-align:top;">${escapeHtml(label)}</td>
+        <td style="font-family:${BODY_FONT}; padding:8px 0; font-size:13px; word-break:break-word; overflow-wrap:anywhere; vertical-align:top;">${inner}</td>
       </tr>`;
     })
     .join('');
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:separate; margin:0 0 26px 0;"><tr>
-    <td class="sb-strip" style="${perfboardBg(L)} border:1px solid ${L.hairline}; border-radius:10px; padding:0;">
+    <td class="sb-strip" style="font-family:${BODY_FONT}; ${perfboardBg(L)} border:1px solid ${L.hairline}; border-radius:10px; padding:0;">
       ${title ? `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
         <td class="sb-term-head" style="padding:12px 20px; border-bottom:1px solid ${L.hairline}; font-family:${MONO_FONT}; font-size:10.5px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; color:${L.muted};">${title}</td>
       </tr></table>` : ''}
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
-        <td style="padding:14px 20px 16px 20px;">
+        <td style="font-family:${BODY_FONT}; padding:14px 20px 16px 20px;">
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">${rows}</table>
         </td>
       </tr></table>
@@ -520,10 +520,10 @@ export function emailPoints(items) {
   const rows = items
     .map(
       (item) => `<tr>
-        <td width="16" style="width:16px; padding:5px 12px 5px 0; vertical-align:top;">
+        <td width="16" style="font-family:${BODY_FONT}; width:16px; padding:5px 12px 5px 0; vertical-align:top;">
           <div class="sb-dot" style="width:4px; height:4px; border-radius:50%; background-color:${L.ink}; margin-top:9px; font-size:0; line-height:0;">&nbsp;</div>
         </td>
-        <td class="sb-text" style="padding:5px 0; font-size:15px; line-height:1.68; color:${L.text};">${item}</td>
+        <td class="sb-text" style="font-family:${BODY_FONT}; padding:5px 0; font-size:15px; line-height:1.68; color:${L.text};">${item}</td>
       </tr>`
     )
     .join('');
@@ -547,7 +547,7 @@ export function emailPoints(items) {
  */
 export function emailButton({ href, label, align = 'left' }) {
   return `<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="${align}" style="border-collapse:separate; margin:6px 0 22px 0; ${align === 'center' ? 'margin-left:auto; margin-right:auto;' : ''}"><tr>
-    <td class="sb-btn" bgcolor="${L.ink}" style="background-color:${L.ink}; border-radius:8px; mso-padding-alt:13px 26px;">
+    <td class="sb-btn" bgcolor="${L.ink}" style="font-family:${BODY_FONT}; background-color:${L.ink}; border-radius:8px; mso-padding-alt:13px 26px;">
       <a href="${escapeHtml(href)}" target="_blank" class="sb-btn-a" style="display:inline-block; padding:13px 26px; mso-padding-alt:0; font-family:${BODY_FONT}; font-size:15px; font-weight:700; color:#FFFFFF; text-decoration:none; border-radius:8px;">${label}</a>
     </td>
   </tr></table>
@@ -556,7 +556,7 @@ export function emailButton({ href, label, align = 'left' }) {
 
 /** Secondary inline link — ink, underlined. */
 export function emailLink({ href, label }) {
-  return `<p style="margin:0 0 22px 0; font-size:14.5px; line-height:1.6;">
+  return `<p style="font-family:${BODY_FONT}; margin:0 0 22px 0; font-size:14.5px; line-height:1.6;">
     <a href="${escapeHtml(href)}" target="_blank" class="sb-text" style="color:${L.text}; font-weight:700; text-decoration:underline; text-underline-offset:2px;">${label}</a>
   </p>`;
 }
@@ -564,10 +564,10 @@ export function emailLink({ href, label }) {
 /** Sign-off block for formal letters. */
 export function emailSignoff({ name, role }) {
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin:30px 0 0 0;"><tr>
-    <td class="sb-hairline-top" style="border-top:1px solid ${L.hairline}; padding-top:20px; font-size:14px; line-height:1.6; color:${L.muted};">
+    <td class="sb-hairline-top" style="font-family:${BODY_FONT}; border-top:1px solid ${L.hairline}; padding-top:20px; font-size:14px; line-height:1.6; color:${L.muted};">
       Warm regards,<br>
       <strong class="sb-text" style="color:${L.text}; font-size:15px;">${escapeHtml(name)}</strong>
-      ${role ? `<br><span class="sb-muted" style="color:${L.muted}; font-size:13.5px;">${escapeHtml(role)}</span>` : ''}
+      ${role ? `<br><span class="sb-muted" style="font-family:${BODY_FONT}; color:${L.muted}; font-size:13.5px;">${escapeHtml(role)}</span>` : ''}
     </td>
   </tr></table>`;
 }
@@ -630,6 +630,11 @@ function styleBlock() {
     :root { color-scheme: light dark; supported-color-schemes: light dark; }
     body { margin:0; padding:0; width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; background-color:${L.pageBg}; font-family:${BODY_FONT}; }
     a { text-decoration:none; }
+    @media only screen and (min-width:621px) {
+      .sb-pad { padding-left:40px !important; padding-right:40px !important; }
+      .sb-outer { padding-left:18px !important; padding-right:18px !important; }
+      .sb-doctag { display:table-cell !important; mso-hide:none !important; }
+    }
     @media only screen and (max-width:620px) {
       .sb-pad { padding-left:22px !important; padding-right:22px !important; }
       .sb-top { padding-top:34px !important; }
@@ -717,77 +722,77 @@ export function buildEmail({
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=JetBrains+Mono:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   ${styleBlock()}
 </head>
-<body class="sb-page" style="margin:0; padding:0; background-color:${L.pageBg};">
-  <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">${preheader}</div>
+<body class="sb-page" style="font-family:${BODY_FONT}; margin:0; padding:0; background-color:${L.pageBg};">
+  <div style="font-family:${BODY_FONT}; display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">${preheader}</div>
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="sb-page" style="background-color:${L.pageBg};">
     <tr>
-      <td align="center" class="sb-outer" style="padding:0 18px;">
+      <td align="center" class="sb-outer" style="font-family:${BODY_FONT}; padding:0;">
         <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" class="sb-sheet" style="width:100%; max-width:600px; background-color:${L.card}; text-align:left;">
 
           <!-- 1. MASTHEAD -->
           <tr>
-            <td class="sb-pad sb-top" style="padding:44px 40px 0 40px;">
+            <td class="sb-pad sb-top" style="font-family:${BODY_FONT}; padding:44px 22px 0 22px;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
                 <tr>
-                  <td style="vertical-align:middle;">
+                  <td style="font-family:${BODY_FONT}; vertical-align:middle;">
                     <a href="${SITE_URL}" target="_blank" style="text-decoration:none;">
                       <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
-                        <td style="padding-right:10px; vertical-align:middle;">
+                        <td style="font-family:${BODY_FONT}; padding-right:10px; vertical-align:middle;">
                           <img src="${LOGO_URL}" width="${LOGO_WIDTH}" height="${LOGO_HEIGHT}" alt="SkillBun" class="sb-logo" style="display:block; border:0; width:${LOGO_WIDTH}px; height:${LOGO_HEIGHT}px;" />
                         </td>
-                        <td style="vertical-align:middle;">
-                          <span class="sb-wordmark" style="font-family:${DISPLAY_FONT}; font-size:16px; font-weight:700; color:${L.ink}; letter-spacing:1.5px; line-height:1;">${WORDMARK}</span>
+                        <td style="font-family:${BODY_FONT}; vertical-align:middle;">
+                          <span class="sb-wordmark" style="font-family:${DISPLAY_FONT}; font-size:16px; font-weight:700; color:${L.ink}; letter-spacing:1.5px; line-height:1; white-space:nowrap;">${WORDMARK}</span>
                         </td>
                       </tr></table>
                     </a>
                   </td>
-                  ${docTag ? `<td class="sb-faint sb-doctag" align="right" style="text-align:right; vertical-align:middle; font-family:${MONO_FONT}; font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:${L.faint};">${escapeHtml(docTag)}</td>` : ''}
+                  ${docTag ? `<td class="sb-faint sb-doctag" align="right" style="display:none; mso-hide:all; text-align:right; vertical-align:middle; font-family:${MONO_FONT}; font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:${L.faint};">${escapeHtml(docTag)}</td>` : ''}
                 </tr>
               </table>
             </td>
           </tr>
           <tr>
-            <td class="sb-pad" style="padding:18px 40px 0 40px;">
+            <td class="sb-pad" style="font-family:${BODY_FONT}; padding:18px 22px 0 22px;">
               ${emailScaleRule()}
             </td>
           </tr>
 
           <!-- 2. TITLE BLOCK -->
           <tr>
-            <td class="sb-pad" style="padding:38px 40px 0 40px;">
+            <td class="sb-pad" style="font-family:${BODY_FONT}; padding:38px 22px 0 22px;">
               ${eyebrow ? `<div class="sb-muted" style="margin-bottom:13px; font-family:${MONO_FONT}; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:${L.muted};">${eyebrow}</div>` : ''}
               <h1 class="sb-display" style="margin:0; font-family:${BODY_FONT}; font-size:27px; font-weight:800; line-height:1.28; color:${L.ink}; letter-spacing:-0.3px;">${headline}</h1>
-              ${lede ? `<p class="sb-muted sb-lede" style="margin:14px 0 0 0; font-size:16px; line-height:1.62; color:${L.muted}; max-width:460px;">${lede}</p>` : ''}
+              ${lede ? `<p class="sb-muted sb-lede" style="font-family:${BODY_FONT}; margin:14px 0 0 0; font-size:16px; line-height:1.62; color:${L.muted}; max-width:460px;">${lede}</p>` : ''}
               ${renderMeta(chips)}
             </td>
           </tr>
 
           <!-- 3. CONTENT -->
           <tr>
-            <td class="sb-pad sb-text sb-body" style="padding:32px 40px 0 40px; color:${L.text}; font-size:15.5px; line-height:1.72;">
+            <td class="sb-pad sb-text sb-body" style="font-family:${BODY_FONT}; padding:32px 22px 0 22px; color:${L.text}; font-size:15.5px; line-height:1.72;">
               ${contentHtml}
             </td>
           </tr>
 
           <!-- 4. FOOTER -->
           <tr>
-            <td class="sb-pad sb-bottom" style="padding:20px 40px 56px 40px;">
+            <td class="sb-pad sb-bottom" style="font-family:${BODY_FONT}; padding:20px 22px 56px 22px;">
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;">
                 <tr><td colspan="2" style="font-size:0; line-height:0;">${emailCircuitRule()}</td></tr>
                 <tr>
-                  <td style="padding-top:20px; vertical-align:middle;">
+                  <td style="font-family:${BODY_FONT}; padding-top:20px; vertical-align:middle;">
                     <span class="sb-wordmark" style="font-family:${DISPLAY_FONT}; font-size:13px; font-weight:700; color:${L.ink}; letter-spacing:1.3px;">${WORDMARK}</span>
-                    <div class="sb-muted" style="font-size:12px; color:${L.muted}; margin-top:6px; line-height:1.5;">Hop into the Right Career &nbsp;·&nbsp; 100% free, always</div>
+                    <div class="sb-muted" style="font-family:${BODY_FONT}; font-size:12px; color:${L.muted}; margin-top:6px; line-height:1.5;">Hop into the Right Career &nbsp;·&nbsp; 100% free, always</div>
                   </td>
-                  <td align="right" style="padding-top:20px; text-align:right; vertical-align:middle;">
+                  <td align="right" style="font-family:${BODY_FONT}; padding-top:20px; text-align:right; vertical-align:middle;">
                     <a href="${SITE_URL}/roadmap" target="_blank" class="sb-muted" style="font-family:${MONO_FONT}; font-size:11.5px; color:${L.muted}; text-decoration:underline;">roadmaps</a>
-                    <span class="sb-muted" style="color:${L.muted}; font-size:12px;">&nbsp;&nbsp;</span>
+                    <span class="sb-muted" style="font-family:${BODY_FONT}; color:${L.muted}; font-size:12px;">&nbsp;&nbsp;</span>
                     <a href="${SITE_URL}" target="_blank" class="sb-muted" style="font-family:${MONO_FONT}; font-size:11.5px; color:${L.muted}; text-decoration:underline;">skillbun.tech</a>
                   </td>
                 </tr>
               </table>
-              ${isMarketing ? `<div class="sb-muted" style="margin-top:18px; font-size:11.5px; color:${L.muted}; line-height:1.6;">You're receiving this because you have a SkillBun account. <a href="${unsubscribeUrl}" target="_blank" class="sb-muted" style="color:${L.muted}; text-decoration:underline;">Unsubscribe or manage preferences</a>.</div>` : ''}
+              ${isMarketing ? `<div class="sb-muted" style="font-family:${BODY_FONT}; margin-top:18px; font-size:11.5px; color:${L.muted}; line-height:1.6;">You're receiving this because you have a SkillBun account. <a href="${unsubscribeUrl}" target="_blank" class="sb-muted" style="color:${L.muted}; text-decoration:underline;">Unsubscribe or manage preferences</a>.</div>` : ''}
             </td>
           </tr>
 

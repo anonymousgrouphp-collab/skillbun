@@ -6,6 +6,7 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import { emailRoadmapContext, normalizeEmailRoadmapSlug } from '@/utils/shared/emailRoadmap';
 import { RETENTION_TEMPLATES, generateRetentionEmailHtml } from '@/utils/server/retentionEmails';
 
 function formatDateTime(isoString) {
@@ -325,7 +326,7 @@ export default function AnalyticsDashboardPage() {
   };
 
   // Instant HTML Preview Modal Handler (Synchronous Client Rendering with 0ms Latency)
-  const handlePreviewEmail = (targetUser) => {
+  const handlePreviewEmail = async (targetUser) => {
     try {
       if (!targetUser) return;
       const recommended = getRecommendedTemplate(targetUser);
@@ -336,15 +337,27 @@ export default function AnalyticsDashboardPage() {
           ? String(targetUser.progress[0].slug).replace(/_/g, ' ').toUpperCase()
           : targetUser.interest && targetUser.interest !== 'N/A'
           ? String(targetUser.interest)
-          : 'Full Stack Web Development';
+          : '';
 
-      const progressCount = Number(targetUser.progress?.[0]?.completedNodeIds?.length) || 12;
+      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length ?? null;
 
+      const roadmapSlug = normalizeEmailRoadmapSlug(targetUser.progress?.[0]?.slug);
+      let context = {};
+      if (roadmapSlug) {
+        try {
+          const response = await fetch('/data/roadmaps/' + roadmapSlug + '.json');
+          if (response.ok) {
+            const roadmap = await response.json();
+            context = { roadmapSlug, roadmapTitle: roadmap.title, ...emailRoadmapContext(roadmap, targetUser.progress?.[0]?.completedNodeIds) };
+          }
+        } catch { /* Unknown totals are omitted from the email. */ }
+      }
       const { subject, html } = generateRetentionEmailHtml(templateId, {
         name: targetUser.name || 'Student',
         email: targetUser.email || 'harsh@skillbun.tech',
         roadmapTitle,
         progressCount,
+        ...context,
         degree: targetUser.degree || 'B.Tech - Computer Science',
       });
 
@@ -394,9 +407,9 @@ export default function AnalyticsDashboardPage() {
           ? targetUser.progress[0].slug.replace(/_/g, ' ').toUpperCase()
           : targetUser.interest && targetUser.interest !== 'N/A'
           ? targetUser.interest
-          : 'Full Stack Web Development';
+          : '';
 
-      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length || 12;
+      const progressCount = targetUser.progress?.[0]?.completedNodeIds?.length ?? null;
 
       const res = await fetch('/api/admin/emails/send', {
         method: 'POST',
@@ -410,6 +423,8 @@ export default function AnalyticsDashboardPage() {
           templateId,
           roadmapTitle,
           progressCount,
+          roadmapSlug: targetUser.progress?.[0]?.slug,
+          completedNodeIds: targetUser.progress?.[0]?.completedNodeIds,
           degree: targetUser.degree,
           isPreview: false,
           forceOverride,

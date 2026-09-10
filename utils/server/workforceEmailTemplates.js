@@ -30,6 +30,7 @@ import {
   emailButton,
   emailSignoff,
 } from './emailTheme.js';
+import { emailHtmlToText } from '../shared/emailContent.js';
 
 const L = TOKENS.light;
 
@@ -380,7 +381,7 @@ export function buildTerminationDispatchEmail({
   const text = [
     `Dear ${salutation} ${fullName},`,
     '',
-    introParagraph.replace(/<[^>]+>/g, ''),
+    emailHtmlToText(introParagraph),
     '',
     reason ? `Administrative Note: ${reason}\n` : '',
     grantedCredentials.length > 0 ? `GRANTED CREDENTIALS:\n${grantedCredentials.map((c) => `- ${c}`).join('\n')}\nAlumni Document Vault: https://skillbun.tech/alumni\n` : '',

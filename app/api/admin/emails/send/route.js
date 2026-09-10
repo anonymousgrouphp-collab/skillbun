@@ -1,3 +1,5 @@
+import { emailHtmlToText, isEmailDocument } from '@/utils/shared/emailContent';
+import { loadEmailRoadmapContext } from '@/utils/server/emailRoadmapContext';
 import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { generateRetentionEmailHtml, buildBaseEmailWrapper } from '@/utils/server/retentionEmails';
@@ -24,7 +26,6 @@ const EMAIL_RATE_LIMITS = [
 
 export async function POST(request) {
   try {
-    const reqUrl = new URL(request.url);
     let body = {};
     try {
       body = await request.json();
@@ -38,9 +39,9 @@ export async function POST(request) {
     const templateId = String(body.templateId || 'welcome_v1').trim();
     const studentName = String(body.studentName || targetUser.name || 'Student').trim();
     const recipientEmail = String(body.recipientEmail || targetUser.email || '').trim().toLowerCase();
-    const roadmapTitle = String(body.roadmapTitle || targetUser.roadmapTitle || 'Full Stack Web Development').trim();
-    const progressCount = Number(body.progressCount || targetUser.completedNodesCount || 10) || 0;
-    const degree = String(body.degree || targetUser.degree || 'B.Tech - Computer Science').trim();
+    const roadmapTitle = String(body.roadmapTitle || targetUser.roadmapTitle || '').trim();
+    const progressCount = body.progressCount ?? targetUser.completedNodesCount ?? null;
+    const degree = String(body.degree || targetUser.degree || '').trim();
 
     // 0. Verify Admin Authorization — Bearer token required, no fallbacks
     const authHeader = request.headers.get('authorization') || '';
@@ -79,13 +80,24 @@ export async function POST(request) {
     const customSubject = typeof body.customSubject === 'string' ? body.customSubject.trim() : '';
     const customHtml = typeof body.customHtml === 'string' ? body.customHtml.trim() : '';
 
+    const isMarketing = !templateId.startsWith('transactional') && !templateId.startsWith('workforce');
+    const isTest = body.isTest === true && recipientEmail === ADMIN_CONFIRMATION_EMAIL;
+    // The workforce studio owns real records and PDF attachments; this catalog has sample letters.
+    if (!isPreview && templateId.startsWith('workforce') && !isTest) {
+      return NextResponse.json({ error: 'Send official workforce letters from the Workforce console. This email catalog provides previews and founder test copies only.' }, { status: 400 });
+    }
+    if (isEmailDocument(customHtml) && (!/<head(?:\s|>)/i.test(customHtml) || !/<body(?:\s|>)/i.test(customHtml) || !/<\/html\s*>/i.test(customHtml))) {
+      return NextResponse.json({ error: 'A complete HTML email needs head, body and closing html elements. Otherwise, provide body content only.' }, { status: 400 });
+    }
+    const roadmapContext = await loadEmailRoadmapContext(body.roadmapSlug ?? targetUser.progress?.[0]?.slug, body.completedNodeIds ?? targetUser.progress?.[0]?.completedNodeIds);
+
     // Helper to resolve email subject & html based on template or custom override
     const resolveEmailContent = (tId, data) => {
       if (customHtml) {
         const sub = customSubject || `SkillBun Notification for ${data.name}`;
         return {
           subject: sub,
-          html: customHtml.includes('<html') ? customHtml : buildBaseEmailWrapper(customHtml, sub, !tId.startsWith('transactional') && !tId.startsWith('workforce'), data.email),
+          html: isEmailDocument(customHtml) ? customHtml : buildBaseEmailWrapper(customHtml, sub, !tId.startsWith('transactional') && !tId.startsWith('workforce'), data.email),
           isMarketing: !tId.startsWith('transactional') && !tId.startsWith('workforce'),
         };
       }
@@ -111,7 +123,7 @@ export async function POST(request) {
             access_notes: 'Initial Zoho Mail Enterprise Provisioning',
           },
         });
-        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+        return { ...payload, subject: customSubject || payload.subject, isMarketing: false };
       }
 
       if (tId === 'workforce_activation') {
@@ -131,7 +143,7 @@ export async function POST(request) {
             access_notes: 'Active Zoho Mail Enterprise Account',
           },
         });
-        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+        return { ...payload, subject: customSubject || payload.subject, isMarketing: false };
       }
 
       if (tId === 'workforce_extension') {
@@ -148,7 +160,7 @@ export async function POST(request) {
           referenceId: 'SB-EXT-2026-DEMO01',
           newContractEndDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
         });
-        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+        return { ...payload, subject: customSubject || payload.subject, isMarketing: false };
       }
 
       if (tId === 'workforce_termination') {
@@ -171,20 +183,21 @@ export async function POST(request) {
           ],
           effectiveDate: new Date().toISOString().slice(0, 10),
         });
-        return { subject: customSubject || payload.subject, html: payload.html, isMarketing: false };
+        return { ...payload, subject: customSubject || payload.subject, isMarketing: false };
       }
 
-      const res = generateRetentionEmailHtml(templateId, data);
+      const res = generateRetentionEmailHtml(tId, { ...data, ...roadmapContext });
       return {
         subject: customSubject || res.subject,
         html: res.html,
+        text: res.text,
         isMarketing: !templateId.startsWith('transactional_alert'),
       };
     };
 
     // 1. Instant HTML Preview Mode
     if (isPreview) {
-      const { subject, html } = resolveEmailContent(templateId, {
+      const { subject, html, text } = resolveEmailContent(templateId, {
         name: studentName,
         email: recipientEmail || ADMIN_CONFIRMATION_EMAIL,
         roadmapTitle,
@@ -192,7 +205,7 @@ export async function POST(request) {
         degree,
       });
 
-      const plainTextBody = `Hi ${studentName},\n\n${subject}\n\nVisit SkillBun at https://skillbun.tech to check your interactive tech career roadmaps, encrypted study guides, and verified certificates.`;
+      const plainTextBody = text || emailHtmlToText(html);
 
       return NextResponse.json({
         success: true,
@@ -233,7 +246,7 @@ export async function POST(request) {
     }
 
     // Generate HTML Email
-    const { subject, html } = resolveEmailContent(templateId, {
+    const { subject, html, text, from, cc, replyTo } = resolveEmailContent(templateId, {
       name: studentName,
       email: targetEmail,
       roadmapTitle,
@@ -241,7 +254,7 @@ export async function POST(request) {
       degree,
     });
 
-    const plainTextBody = `Hi ${studentName},\n\n${subject}\n\nVisit SkillBun at https://skillbun.tech to check your interactive tech career roadmaps, encrypted study guides, and verified certificates.\n\nTo manage notification preferences or unsubscribe: https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}\n\nSkillBun Platform • MSME Registered`;
+    const plainTextBody = text || emailHtmlToText(html);
 
     const bccRecipients = targetEmail.toLowerCase() !== ADMIN_CONFIRMATION_EMAIL
       ? ADMIN_CONFIRMATION_EMAIL
@@ -257,15 +270,16 @@ export async function POST(request) {
       const unsubscribeHeaderUrl = `https://skillbun.tech/settings?action=unsubscribe&email=${encodeURIComponent(targetEmail)}`;
 
       smtpResponse = await transporter.sendMail({
-        from: fromAddress,
+        from: from || fromAddress,
+        cc,
+        replyTo: replyTo || ADMIN_CONFIRMATION_EMAIL,
         to: targetEmail,
         bcc: bccRecipients,
-        subject,
+        subject: isTest ? `[TEST — SAMPLE ONLY] ${subject}` : subject,
         text: plainTextBody,
         html,
         headers: {
-          'List-Unsubscribe': `<${unsubscribeHeaderUrl}>`,
-          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          ...(isMarketing ? { 'List-Unsubscribe': `<${unsubscribeHeaderUrl}>` } : {}),
           'X-Entity-Ref-ID': `sb-email-${Date.now()}`,
         },
       });
@@ -288,6 +302,7 @@ export async function POST(request) {
             const newLog = {
               templateId,
               subject,
+              messageId: smtpResponse?.messageId || null,
               sentAt: new Date().toISOString(),
               adminEmail: authUserEmail || 'harsh@skillbun.tech',
               forceOverride: Boolean(forceOverride),

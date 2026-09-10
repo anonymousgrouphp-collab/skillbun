@@ -7,6 +7,8 @@
 
 import { RETENTION_TEMPLATES, renderTemplateContent } from './retentionTemplates.js';
 import { buildEmail, buildBaseEmailWrapper, escapeHtml } from './emailTheme.js';
+import { emailHtmlToText } from '../shared/emailContent.js';
+import { normalizeEmailRoadmapSlug } from '../shared/emailRoadmap.js';
 
 export { RETENTION_TEMPLATES, buildBaseEmailWrapper, escapeHtml };
 
@@ -28,7 +30,7 @@ function decodeHtmlEntities(value) {
     .replaceAll('&amp;', '&');
 }
 
-const ROADMAP_TITLE_FALLBACK = 'Full Stack Web Development';
+const ROADMAP_TITLE_FALLBACK = 'chosen track';
 
 /*
  * Values that are legitimate answers elsewhere in the product but are not the
@@ -87,14 +89,19 @@ function normalizeRoadmapTitle(value) {
 
 export function generateRetentionEmailHtml(templateId, data = {}) {
   const name = escapeHtml(data.name || 'Student');
-  const email = escapeHtml(data.email || '');
+  // These two fields are only consumed by helpers that escape raw text themselves.
+  const email = String(data.email || '');
   const roadmapTitle = escapeHtml(normalizeRoadmapTitle(data.roadmapTitle));
-  const progressCount = data.progressCount || 12;
-  const degree = escapeHtml(data.degree || 'B.Tech - Computer Science');
+  const count = data.progressCount;
+  const total = data.totalTopics;
+  const totalTopics = total !== null && total !== undefined && total !== '' && Number.isSafeInteger(Number(total)) && Number(total) > 0 ? Number(total) : null;
+  const progressCount = count !== null && count !== undefined && count !== '' && Number.isSafeInteger(Number(count)) && Number(count) >= 0 ? Math.min(Number(count), totalTopics ?? Number(count)) : null;
+  const degree = String(data.degree || 'Not provided');
+  const roadmapSlug = normalizeEmailRoadmapSlug(data.roadmapSlug);
 
   const { subject, eyebrow, headline, lede, docTag, chips, contentHtml, isMarketing } = renderTemplateContent(
     templateId,
-    { name, email, roadmapTitle, progressCount, degree }
+    { name, email, roadmapTitle, progressCount, totalTopics, roadmapSlug, degree }
   );
 
   const plainSubject = decodeHtmlEntities(subject);
@@ -111,5 +118,5 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
     email,
   });
 
-  return { subject: plainSubject, html };
+  return { subject: plainSubject, html, text: emailHtmlToText(html), isMarketing };
 }

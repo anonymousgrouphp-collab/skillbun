@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import { prepareEmailPreview, isEmailDocument } from '@/utils/shared/emailContent';
+import { buildBaseEmailWrapper, escapeHtml, RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
 import styles from './emails.module.css';
 
 // Extended Template Catalog combining Retention & Workforce templates
@@ -184,7 +186,10 @@ const ALL_TEMPLATES = [
     categoryLabel: '✍️ Custom Studio',
     description: 'Create an arbitrary custom branded email with custom subject and HTML.',
   },
-];
+].map(template => {
+  const current = RETENTION_TEMPLATES[template.id];
+  return current ? { ...template, name: current.name, description: current.description } : template;
+});
 
 const CATEGORIES = [
   'All',
@@ -210,7 +215,8 @@ export default function AdminEmailsPage() {
   const [simName, setSimName] = useState('Alex Sharma');
   const [simEmail, setSimEmail] = useState('alex.sharma@example.com');
   const [simRoadmap, setSimRoadmap] = useState('Full Stack Web Development');
-  const [simProgress, setSimProgress] = useState(18);
+  const [simProgress, setSimProgress] = useState(0);
+  const [simRoadmapSlug, setSimRoadmapSlug] = useState('fullstack');
   const [simDegree, setSimDegree] = useState('B.Tech - Computer Science');
 
   // Editable Subject & HTML state
@@ -221,7 +227,9 @@ export default function AdminEmailsPage() {
 
   // Viewport & theme simulator
   const [viewport, setViewport] = useState('desktop'); // 'desktop' | 'mobile'
-  const [previewBg, setPreviewBg] = useState('light'); // 'light' | 'dark'
+  const [previewBg, setPreviewBg] = useState('light');
+  const [stripStyles, setStripStyles] = useState(false);
+  const [blockImages, setBlockImages] = useState(false);
 
   // Dispatch state
   const [targetRecipient, setTargetRecipient] = useState('');
@@ -256,7 +264,8 @@ export default function AdminEmailsPage() {
           studentName: simName,
           recipientEmail: simEmail,
           roadmapTitle: simRoadmap,
-          progressCount: Number(simProgress) || 12,
+          roadmapSlug: simRoadmapSlug,
+          progressCount: simProgress === '' ? null : Number(simProgress),
           degree: simDegree,
         }),
       });
@@ -273,7 +282,7 @@ export default function AdminEmailsPage() {
     } finally {
       setLoadingPreview(false);
     }
-  }, [user, simName, simEmail, simRoadmap, simProgress, simDegree, editedSubject]);
+  }, [user, simName, simEmail, simRoadmap, simProgress, simRoadmapSlug, simDegree, editedSubject]);
 
   // Switch template
   const handleSelectTemplate = (template) => {
@@ -283,7 +292,7 @@ export default function AdminEmailsPage() {
       setEditedHtml(`
 <!-- Body only. The masthead lockup, title block and footer are added automatically. -->
 
-<p class="sb-text" style="margin: 0 0 18px 0; font-size: 15.5px; line-height: 1.72; color: #1A1A1A;">Hi ${simName},</p>
+<p class="sb-text" style="margin: 0 0 18px 0; font-size: 15.5px; line-height: 1.72; color: #1A1A1A;">Hi ${escapeHtml(simName)},</p>
 
 <p class="sb-text" style="margin: 0 0 18px 0; font-size: 15.5px; line-height: 1.72; color: #1A1A1A;">Write your announcement here. Keep it left-aligned and plain. Use the <code>sb-text</code> and <code>sb-muted</code> classes on anything with a colour so it flips correctly in dark mode.</p>
 
@@ -337,7 +346,8 @@ export default function AdminEmailsPage() {
               studentName: simName,
               recipientEmail: simEmail,
               roadmapTitle: simRoadmap,
-              progressCount: Number(simProgress) || 12,
+          roadmapSlug: simRoadmapSlug,
+              progressCount: simProgress === '' ? null : Number(simProgress),
               degree: simDegree,
             }),
           });
@@ -355,7 +365,7 @@ export default function AdminEmailsPage() {
     return () => {
       isMounted = false;
     };
-  }, [user, isAdmin, selectedTemplateId, simName, simEmail, simRoadmap, simProgress, simDegree]);
+  }, [user, isAdmin, selectedTemplateId, simName, simEmail, simRoadmap, simProgress, simRoadmapSlug, simDegree]);
 
   // Insert variable tag at cursor
   const handleInsertVariable = (variableTag) => {
@@ -401,8 +411,10 @@ export default function AdminEmailsPage() {
           customHtml: editedHtml,
           studentName: simName,
           recipientEmail: 'harsh@skillbun.tech',
+          isTest: true,
           roadmapTitle: simRoadmap,
-          progressCount: Number(simProgress) || 10,
+          roadmapSlug: simRoadmapSlug,
+          progressCount: simProgress === '' ? null : Number(simProgress),
           degree: simDegree,
           forceOverride: true,
         }),
@@ -452,7 +464,8 @@ export default function AdminEmailsPage() {
           studentName: simName,
           recipientEmail: recipient,
           roadmapTitle: simRoadmap,
-          progressCount: Number(simProgress) || 10,
+          roadmapSlug: simRoadmapSlug,
+          progressCount: simProgress === '' ? null : Number(simProgress),
           degree: simDegree,
           forceOverride: Boolean(forceOverride),
         }),
@@ -476,6 +489,10 @@ export default function AdminEmailsPage() {
       setIsSendingTarget(false);
     }
   };
+
+  const fullPreviewHtml = isEmailDocument(editedHtml) ? editedHtml
+    : buildBaseEmailWrapper(editedHtml, editedSubject, !selectedTemplateId.startsWith('transactional') && !selectedTemplateId.startsWith('workforce'), simEmail);
+  const previewHtml = prepareEmailPreview(fullPreviewHtml, { theme: previewBg, stripStyles, blockImages });
 
   if (authLoading || checking) {
     return (
@@ -629,6 +646,16 @@ export default function AdminEmailsPage() {
             </div>
           </div>
 
+          <div className={styles.cardSection}>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel} htmlFor="email-roadmap-slug">Roadmap ID (for links and topic totals)</label>
+              <input id="email-roadmap-slug" className={styles.inputField} value={simRoadmapSlug} onChange={e => setSimRoadmapSlug(e.target.value)} placeholder="For example: fullstack" />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel} htmlFor="email-progress">Completed topics (leave blank if unknown)</label>
+              <input id="email-progress" className={styles.inputField} type="number" min="0" step="1" value={simProgress} onChange={e => setSimProgress(e.target.value)} />
+            </div>
+          </div>
           {/* Subject & HTML Editor */}
           <div className={styles.cardSection}>
             <div className={styles.sectionHeader}>
@@ -741,7 +768,7 @@ export default function AdminEmailsPage() {
                   type="button"
                   onClick={() => setPreviewBg('dark')}
                   className={`${styles.deviceBtn} ${previewBg === 'dark' ? styles.deviceBtnActive : ''}`}
-                  title="Simulate Dark Background"
+                  title="Preview the email in dark mode"
                 >
                   🌙 Dark
                 </button>
@@ -749,7 +776,7 @@ export default function AdminEmailsPage() {
                   type="button"
                   onClick={() => setPreviewBg('light')}
                   className={`${styles.deviceBtn} ${previewBg === 'light' ? styles.deviceBtnActive : ''}`}
-                  title="Simulate Light Background"
+                  title="Preview the email in light mode"
                 >
                   ☀️ Light
                 </button>
@@ -766,6 +793,11 @@ export default function AdminEmailsPage() {
             </button>
           </div>
 
+          <div style={{ padding: '0.75rem', color: 'var(--muted)', fontSize: '0.8rem' }}>
+            <label style={{ marginRight: '1rem' }}><input type="checkbox" checked={stripStyles} onChange={e => setStripStyles(e.target.checked)} /> Remove embedded styles</label>
+            <label><input type="checkbox" checked={blockImages} onChange={e => setBlockImages(e.target.checked)} /> Block images</label>
+            <p>Browser preview only. Gmail, Outlook and other inboxes may render differently. Preview settings do not change the sent email.</p>
+          </div>
           {/* Preview Viewport Frame */}
           <div
             className={`${styles.previewFrameContainer} ${
@@ -779,7 +811,7 @@ export default function AdminEmailsPage() {
             ) : (
               <iframe
                 title="Email Preview"
-                srcDoc={editedHtml}
+                srcDoc={previewHtml}
                 className={`${styles.previewFrame} ${viewport === 'mobile' ? styles.previewFrameMobile : ''}`}
                 sandbox="allow-same-origin"
               />
