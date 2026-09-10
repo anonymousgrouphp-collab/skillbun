@@ -52,6 +52,7 @@ Production documentation: [current audit and release gates](docs/HARDENING_RELEA
 
 - **One Shared Design System**: Every outgoing email — 18 student lifecycle templates, 4 workforce letters, and the password reset — is composed from [`utils/server/emailTheme.js`](utils/server/emailTheme.js). No template writes its own shell, masthead or styles.
 - **Technical-Document Layout**: Masthead, title block, content and footer on a single flat sheet. Ornament is drawn with table cells and CSS gradients rather than image files, so it survives inboxes that block images by default.
+- **Responsive Sheet**: The sheet widens with the reader's viewport (600 → 680 → 740 → 860px) and goes full-bleed under 620px, with the side padding and body size stepping up alongside it so the line measure stays between 67 and 84 characters. Outlook for Windows keeps a fixed 600px column via the `width` attribute, which is the intended fallback.
 - **Automatic Theme Sync**: Emails follow the reader's device theme via `color-scheme` metadata, `prefers-color-scheme`, and the `[data-ogsc]` / `[data-ogsb]` attributes Outlook stamps in place of the media query. Light stays inline as the always-readable fallback.
 - **Outlook-Safe Composition**: Outlook for Windows renders through Word and supports only `display:none`, so buttons and tags are built as table cells with `mso-padding-alt` instead of inline-block boxes.
 - **Honest Copy**: No invented course values, rankings, hiring statistics or scarcity claims — the platform is free, and the emails say only that.

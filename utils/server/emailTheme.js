@@ -638,6 +638,34 @@ function styleBlock() {
       .sb-display { font-size:24px !important; }
       .sb-doctag { display:none !important; }
     }
+    /*
+     * The sheet grows with the viewport instead of sitting as a 600px column in
+     * the middle of a 2500px window. It grows in steps rather than fluidly,
+     * because a line of body text stops being readable somewhere past ~90
+     * characters: the side padding widens faster than the sheet, and the body
+     * size steps up with it, so the measure lands near 80-88 characters at every
+     * width. Outlook for Windows reads the width="600" table attribute and
+     * ignores all of this, which is the intended fallback, not a bug.
+     */
+    @media only screen and (min-width:768px) {
+      .sb-sheet { max-width:680px !important; }
+      .sb-pad { padding-left:46px !important; padding-right:46px !important; }
+      .sb-lede { max-width:520px !important; }
+    }
+    @media only screen and (min-width:1100px) {
+      .sb-sheet { max-width:740px !important; }
+      .sb-pad { padding-left:56px !important; padding-right:56px !important; }
+      .sb-lede { max-width:560px !important; }
+      .sb-display { font-size:29px !important; }
+      .sb-body { font-size:16px !important; }
+    }
+    @media only screen and (min-width:1500px) {
+      .sb-sheet { max-width:860px !important; }
+      .sb-pad { padding-left:72px !important; padding-right:72px !important; }
+      .sb-lede { max-width:620px !important; }
+      .sb-display { font-size:32px !important; }
+      .sb-body { font-size:17px !important; }
+    }
     @media (prefers-color-scheme: dark) {${darkRules('')}
     }
     ${darkRules('[data-ogsc] ')}
@@ -730,14 +758,14 @@ export function buildEmail({
             <td class="sb-pad" style="padding:38px 40px 0 40px;">
               ${eyebrow ? `<div class="sb-muted" style="margin-bottom:13px; font-family:${MONO_FONT}; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:${L.muted};">${eyebrow}</div>` : ''}
               <h1 class="sb-display" style="margin:0; font-family:${BODY_FONT}; font-size:27px; font-weight:800; line-height:1.28; color:${L.ink}; letter-spacing:-0.3px;">${headline}</h1>
-              ${lede ? `<p class="sb-muted" style="margin:14px 0 0 0; font-size:16px; line-height:1.62; color:${L.muted}; max-width:460px;">${lede}</p>` : ''}
+              ${lede ? `<p class="sb-muted sb-lede" style="margin:14px 0 0 0; font-size:16px; line-height:1.62; color:${L.muted}; max-width:460px;">${lede}</p>` : ''}
               ${renderMeta(chips)}
             </td>
           </tr>
 
           <!-- 3. CONTENT -->
           <tr>
-            <td class="sb-pad sb-text" style="padding:32px 40px 0 40px; color:${L.text}; font-size:15.5px; line-height:1.72;">
+            <td class="sb-pad sb-text sb-body" style="padding:32px 40px 0 40px; color:${L.text}; font-size:15.5px; line-height:1.72;">
               ${contentHtml}
             </td>
           </tr>

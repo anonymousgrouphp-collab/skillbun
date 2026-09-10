@@ -121,6 +121,12 @@ Update the workforce console at `/dashboard/console/admin/workforce`:
 - [x] **V5.15** — Dark mode repaints correctly under `prefers-color-scheme: dark`, and under the `[data-ogsc]` / `[data-ogsb]` attributes Outlook stamps
 - [x] **V5.16** — CTA keeps its padding and tags keep their spacing where `display:inline-block` is unavailable (Outlook / Word engine)
 
+### Added in 2.10.16
+
+- [x] **V5.17** — The roadmap-title slot never renders an onboarding-interest placeholder, an `N/A`, or a shouted slug
+- [x] **V5.18** — The sheet widens with the viewport (600 → 680 → 740 → 860px) and goes full-bleed under 620px, with no horizontal overflow at any width and the body measure held between 67 and 84 characters
+- [x] **V5.19** — The `width="600"` table attribute survives every render, so the Word engine keeps its fixed fallback
+
 ---
 
 **→ Once all checks pass, proceed to [Phase 6: Milestone Task System](./PHASE_6_MILESTONES.md)**
