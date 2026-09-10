@@ -1,4 +1,37 @@
-import { buildBaseEmailWrapper, escapeHtml } from './retentionEmails.js';
+/**
+ * SkillBun Workforce (HR) Email Templates
+ *
+ * Formal offer / extension / termination / activation letters, rendered on the
+ * shared email design system (emailTheme.js): a flat document sheet whose
+ * masthead carries the reference code as a monospace document tag, the letter
+ * type as an eyebrow above the headline, and a body composed from real motifs
+ * — a corner-framed spec sheet for the engagement terms, data block for Zoho
+ * access, step rail for next steps, note box for the security protocol.
+ *
+ * These are legal, transactional letters. Function signatures, return shapes,
+ * headers (from / cc / replyTo) and the substantive clauses are unchanged;
+ * dispatch routes depend on them. Every builder renders with isMarketing=false.
+ */
+
+import {
+  SITE_URL,
+  TOKENS,
+  escapeHtml,
+  buildEmail,
+  emailText,
+  emailSectionLabel,
+  emailFrame,
+  emailChipBlock,
+  emailStepRail,
+  emailSpecSheet,
+  emailCredentialStrip,
+  emailNote,
+  emailPoints,
+  emailButton,
+  emailSignoff,
+} from './emailTheme.js';
+
+const L = TOKENS.light;
 
 function formatDate(dateValue) {
   if (!dateValue) return 'N/A';
@@ -28,12 +61,28 @@ function formatDate(dateValue) {
   }
 }
 
+/* -- Shared blocks ----------------------------------------------------------- */
+
+// Zoho enterprise workspace access. statusLabel: 'Provisioned' | 'Active'.
+function credentialsBlock({ zohoWorkEmail, zohoPassword, zohoNotes, statusLabel }) {
+  return `
+    ${emailText(`Your official SkillBun enterprise workspace account is <strong>${escapeHtml(statusLabel).toLowerCase()}</strong>. Use these confidential credentials to access your work mailbox and team tools.`)}
+    ${emailCredentialStrip(
+      [
+        ['Work email', zohoWorkEmail],
+        ['Temporary password', zohoPassword],
+        ['Login portal', 'mail.zoho.in', { href: 'https://mail.zoho.in' }],
+        ...(zohoNotes ? [['Access notes', zohoNotes, { mono: false }]] : []),
+      ],
+      { title: 'Enterprise workspace &amp; Zoho Mail' }
+    )}
+    ${emailNote('<strong>Security protocol:</strong> for compliance, please change your temporary password immediately after your first sign-in at Zoho Mail.')}
+  `;
+}
+
 /**
- * Generates the formal Offer Letter email payload with subject, responsive HTML, and plain text.
- * @param {Object} params
- * @param {Object} params.employee - Firestore employee record
- * @param {string} params.referenceId - Allocated workforce offer reference ID (e.g. SB-OFF-2026-XXXXXX)
- * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
+ * Formal Offer Letter email payload.
+ * @returns {{ subject, html, text, from, cc, replyTo }}
  */
 export function buildOfferDispatchEmail({ employee, referenceId, credentials = null }) {
   if (!employee) {
@@ -63,131 +112,52 @@ export function buildOfferDispatchEmail({ employee, referenceId, credentials = n
   const cc = 'harsh@skillbun.tech';
   const replyTo = 'harsh@skillbun.tech';
 
-  const credentialsHtml = hasZohoCredentials ? `
-    <!-- Zoho Enterprise Credentials Card -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #00b87a; border-radius: 14px; padding: 20px; margin: 22px 0; box-shadow: 0 4px 16px rgba(0, 184, 122, 0.08);">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-        <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
-          🏢 Enterprise Workspace & Zoho Mail Credentials
-        </div>
-        <span style="background: rgba(0,184,122,0.12); color: #008751; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Provisioned</span>
-      </div>
-      <p style="margin: 0 0 14px 0; font-size: 13.5px; color: #475569; line-height: 1.5;">
-        Your official SkillBun enterprise workspace account has been provisioned. Please use these confidential credentials to access your work mailbox and team collaboration tools:
-      </p>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.9;">
-        <tr>
-          <td class="table-label" style="color: #64748b; width: 38%;">Work Email (Zoho):</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace;">${escapeHtml(zohoWorkEmail)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Temporary Password:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace; letter-spacing: 0.5px; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; display: inline-block;">${escapeHtml(zohoPassword)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Mail Login Portal:</td>
-          <td class="table-val">
-            <a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 700; text-decoration: underline;">https://mail.zoho.in</a>
-          </td>
-        </tr>
-        ${zohoNotes ? `
-        <tr>
-          <td class="table-label" style="color: #64748b; vertical-align: top;">Access Notes:</td>
-          <td class="table-val" style="color: #334155; font-size: 13px;">${escapeHtml(zohoNotes)}</td>
-        </tr>` : ''}
-      </table>
-      <div style="margin-top: 14px; padding: 10px 12px; background: rgba(0, 135, 81, 0.06); border-radius: 8px; font-size: 12px; color: #166534; line-height: 1.5;">
-        🔒 <strong>Security Protocol:</strong> For compliance and safety, please update your temporary password immediately upon your first sign-in at Zoho Mail.
-      </div>
-    </div>
-  ` : '';
-
   const contentHtml = `
-    <div style="margin-bottom: 24px;">
-      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        🎉 Formal Internship Offer & Welcome
-      </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        Welcome to the SkillBun Team!
-      </h1>
-      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
-        Official Offer of Engagement & Internship Terms
-      </p>
-    </div>
+    ${emailText(`Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},`)}
+    ${emailText(`Following your technical evaluation and screening, SkillBun is pleased to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.`)}
 
-    <p style="margin: 0 0 14px 0;">
-      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
-    </p>
+    ${emailChipBlock({
+      eyebrow: 'Offer of engagement',
+      title: escapeHtml(designation),
+      meta: `${escapeHtml(department)} &nbsp;/&nbsp; Ref ${escapeHtml(referenceId)}`,
+    })}
 
-    <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      Following your comprehensive technical evaluation and screening, SkillBun is thrilled to extend this formal offer for the position of <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>.
-    </p>
+    ${emailFrame(
+      emailSpecSheet([
+        ['Candidate', `${escapeHtml(salutation)} ${escapeHtml(fullName)}`],
+        ...(courseDegree ? [['Qualification', `${escapeHtml(courseDegree)}${collegeName ? ` &bull; ${escapeHtml(collegeName)}` : ''}`]] : []),
+        ['Tenure', `${escapeHtml(joiningDate)} &rarr; ${escapeHtml(contractEndDate)}`],
+        ['Stipend', escapeHtml(stipendDisplay)],
+      ], { flush: true }),
+      { label: 'Engagement overview' }
+    )}
 
-    <!-- Details Box -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-        Engagement Overview
-      </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.8;">
-        <tr>
-          <td class="table-label" style="color: #64748b; width: 40%;">Candidate Name:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Role & Stream:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
-        </tr>
-        ${courseDegree ? `
-        <tr>
-          <td class="table-label" style="color: #64748b;">Academic Qualification:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 600;">${escapeHtml(courseDegree)}${collegeName ? ` &bull; ${escapeHtml(collegeName)}` : ''}</td>
-        </tr>` : ''}
-        <tr>
-          <td class="table-label" style="color: #64748b;">Tenure Period:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(contractEndDate)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Stipend Structure:</td>
-          <td class="text-accent" style="color: #008751; font-weight: 700;">${escapeHtml(stipendDisplay)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Reference Code:</td>
-          <td class="table-val" style="color: #0f172a; font-family: monospace; font-weight: 700;">${escapeHtml(referenceId)}</td>
-        </tr>
-      </table>
-    </div>
+    ${hasZohoCredentials ? credentialsBlock({ zohoWorkEmail, zohoPassword, zohoNotes, statusLabel: 'Provisioned' }) : ''}
 
-    ${credentialsHtml}
+    ${emailSectionLabel('Next steps to confirm your seat')}
+    ${emailStepRail([
+      { title: 'Review the attached offer letter', body: 'The formal 4-page Internship Offer Letter & Terms PDF is attached to this email.' },
+      { title: 'Sign the acceptance block on page 4', body: 'Your signature confirms the terms of engagement.' },
+      { title: 'Reply back to harsh@skillbun.tech with your signed copy within 3 business days', body: 'Send the signed PDF to harsh@skillbun.tech to secure your seat.' },
+      ...(hasZohoCredentials ? [{ title: 'Verify your workspace access', body: 'Sign in to your Zoho work email and confirm access to team channels.' }] : []),
+    ])}
 
-    <!-- Instructions Box -->
-    <div class="box-instructions" style="background-color: #f0fdf4; border-left: 3px solid #00b87a; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #166534;">
-      <strong class="instructions-heading" style="color: #0f172a;">Next Steps to Confirm Your Seat:</strong>
-      <ol style="margin: 8px 0 0 0; padding-left: 20px;">
-        <li>Review the attached formal <strong>4-page Internship Offer Letter & Terms PDF</strong>.</li>
-        <li>Sign the <strong>Candidate Acceptance block on Page 4</strong>.</li>
-        <li>Reply back to this email with your signed copy within <strong>3 business days</strong>.</li>
-        ${hasZohoCredentials ? '<li>Log into your Zoho work email and verify initial access to team channels.</li>' : ''}
-      </ol>
-    </div>
+    ${emailText('We look forward to working closely with you on production software systems, agile roadmaps and high-impact engineering milestones.')}
 
-    <p style="margin: 20px 0 0 0; line-height: 1.6;">
-      We look forward to working closely with you on production software systems, agile roadmaps, and high-impact engineering milestones!
-    </p>
-
-    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
-      Warm regards,<br>
-      <strong class="instructions-heading" style="color: #0f172a; font-size: 15px;">SkillBun Hiring Team</strong><br>
-      <span style="color: #64748b; font-size: 13px;">Talent Acquisition & People Operations</span><br>
-      SkillBun Inc. &bull; <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
-    </div>
+    ${emailSignoff({ name: 'SkillBun Hiring Team', role: 'Talent Acquisition & People Operations' })}
   `;
 
-  const html = buildBaseEmailWrapper(
+  const html = buildEmail({
+    title: subject,
+    eyebrow: 'Formal internship offer',
+    docTag: `Ref ${referenceId}`,
+    headline: 'Welcome to the<br>SkillBun team',
+    lede: `An official offer of engagement for ${escapeHtml(designation)}.`,
+    chips: [department, `Joining ${joiningDate}`],
     contentHtml,
-    subject,
-    false, // isMarketing = false for transactional/legal
-    employee.personal_email || ''
-  );
+    isMarketing: false,
+    email: employee.personal_email || '',
+  });
 
   const textLines = [
     `Dear ${salutation} ${fullName},`,
@@ -231,23 +201,12 @@ export function buildOfferDispatchEmail({ employee, referenceId, credentials = n
 
   const text = textLines.join('\n');
 
-  return {
-    subject,
-    html,
-    text,
-    from,
-    cc,
-    replyTo,
-  };
+  return { subject, html, text, from, cc, replyTo };
 }
 
 /**
- * Generates the formal Internship Tenure Extension email payload with subject, responsive HTML, and plain text.
- * @param {Object} params
- * @param {Object} params.employee - Firestore employee record
- * @param {string} params.referenceId - Allocated workforce extension reference ID (e.g. SB-EXT-2026-XXXXXX)
- * @param {string} [params.newContractEndDate] - Extended contract end date string (YYYY-MM-DD)
- * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
+ * Formal Internship Tenure Extension email payload.
+ * @returns {{ subject, html, text, cc, replyTo }}
  */
 export function buildExtensionDispatchEmail({ employee, referenceId, newContractEndDate }) {
   if (!employee) {
@@ -266,79 +225,42 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
   const replyTo = 'harsh@skillbun.tech';
 
   const contentHtml = `
-    <div style="margin-bottom: 24px;">
-      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        🚀 Internship Tenure Extension
-      </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        Extension of Internship Tenure
-      </h1>
-      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
-        Official Addendum & Revised Terms
-      </p>
-    </div>
+    ${emailText(`Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},`)}
+    ${emailText(`In recognition of your technical contributions, milestone execution and ownership as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>, SkillBun is pleased to formally extend your internship tenure.`)}
 
-    <p style="margin: 0 0 14px 0;">
-      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
-    </p>
+    ${emailFrame(
+      emailSpecSheet([
+        ['Candidate', `${escapeHtml(salutation)} ${escapeHtml(fullName)}`],
+        ['Role & department', `${escapeHtml(designation)} (${escapeHtml(department)})`],
+        ['Revised tenure', `${escapeHtml(joiningDate)} &rarr; ${escapeHtml(extendedEndDate)}`],
+        ['Extension reference', escapeHtml(referenceId)],
+      ], { flush: true }),
+      { label: 'Revised tenure overview' }
+    )}
 
-    <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      In recognition of your proactive technical contributions, milestone execution, and leadership ownership as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong>, SkillBun is pleased to formally extend your internship tenure.
-    </p>
+    ${emailSectionLabel('Instructions & acceptance')}
+    ${emailStepRail([
+      { title: 'Review the attached extension letter', body: 'Your official Extension Letter PDF is attached to this email.' },
+      { title: 'Sign the candidate acceptance block', body: 'You will find it at the bottom of the letter.' },
+      { title: 'Reply with your signed copy', body: 'Send it back on this thread for our records.' },
+    ])}
 
-    <!-- Details Box -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-        Revised Tenure Overview
-      </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.8;">
-        <tr>
-          <td class="table-label" style="color: #64748b; width: 40%;">Candidate Name:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(salutation)} ${escapeHtml(fullName)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Role & Department:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700;">${escapeHtml(designation)} (${escapeHtml(department)})</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Revised Tenure Period:</td>
-          <td class="text-accent" style="color: #008751; font-weight: 700;">${escapeHtml(joiningDate)} to ${escapeHtml(extendedEndDate)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Extension Reference:</td>
-          <td class="table-val" style="color: #0f172a; font-family: monospace; font-weight: 700;">${escapeHtml(referenceId)}</td>
-        </tr>
-      </table>
-    </div>
+    ${emailText('We look forward to achieving further production milestones and scaling our core systems together.')}
 
-    <!-- Instructions Box -->
-    <div class="box-instructions" style="background-color: #f0fdf4; border-left: 3px solid #00b87a; padding: 14px 16px; margin: 20px 0; font-size: 13.5px; line-height: 1.6; color: #166534;">
-      <strong class="instructions-heading" style="color: #0f172a;">Instructions & Acceptance:</strong>
-      <ol style="margin: 8px 0 0 0; padding-left: 20px;">
-        <li>Review your attached official <strong>Extension Letter PDF</strong>.</li>
-        <li>Sign the <strong>Candidate Acceptance block</strong> at the bottom of the letter.</li>
-        <li>Reply back to this email thread with your signed copy for organizational records.</li>
-      </ol>
-    </div>
-
-    <p style="margin: 20px 0 0 0; line-height: 1.6;">
-      We look forward to achieving further production milestones and scaling our core systems together!
-    </p>
-
-    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
-      Warm regards,<br>
-      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
-      Lead, SkillBun<br>
-      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 700;">skillbun.tech</a>
-    </div>
+    ${emailSignoff({ name: 'Harsh Patel', role: 'Lead, SkillBun' })}
   `;
 
-  const html = buildBaseEmailWrapper(
+  const html = buildEmail({
+    title: subject,
+    eyebrow: 'Tenure extension',
+    docTag: `Ref ${referenceId}`,
+    headline: 'Your internship<br>has been extended',
+    lede: 'An official addendum to your engagement, with revised terms.',
+    chips: [designation, `Through ${extendedEndDate}`],
     contentHtml,
-    subject,
-    false,
-    employee.personal_email || ''
-  );
+    isMarketing: false,
+    email: employee.personal_email || '',
+  });
 
   const text = [
     `Dear ${salutation} ${fullName},`,
@@ -362,22 +284,12 @@ export function buildExtensionDispatchEmail({ employee, referenceId, newContract
     'https://skillbun.tech',
   ].join('\n');
 
-  return {
-    subject,
-    html,
-    text,
-    cc,
-    replyTo,
-  };
+  return { subject, html, text, cc, replyTo };
 }
 
 /**
- * Generates the formal Termination / Offboarding Notice email payload.
- * @param {Object} params
- * @param {Object} params.employee - Firestore employee record
- * @param {string} [params.reason] - Optional reason or note
- * @param {string} [params.effectiveDate] - Effective date string
- * @returns {{ subject: string, html: string, text: string, cc: string, replyTo: string }}
+ * Formal Termination / Offboarding Notice email payload.
+ * @returns {{ subject, html, text, cc, replyTo }}
  */
 export function buildTerminationDispatchEmail({
   employee,
@@ -405,90 +317,65 @@ export function buildTerminationDispatchEmail({
   const cc = 'harsh@skillbun.tech';
   const replyTo = 'harsh@skillbun.tech';
 
-  const badgeText = isPositive ? '🎉 Tenure Concluded & Certified' : '⚠️ Formal Offboarding Notice';
-  const badgeColor = isPositive ? '#008751' : '#ef4444';
-  const badgeBg = isPositive ? 'rgba(0,184,122,0.1)' : 'rgba(239,68,68,0.12)';
-  const headingText = isPositive ? 'Completion of Internship Tenure' : 'Notice of Engagement Conclusion';
-
   const introParagraph = isPositive
     ? `We would like to formally acknowledge the successful conclusion of your internship tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun, effective <strong>${escapeHtml(effDate)}</strong>. We sincerely appreciate your dedication, technical problem solving, and proactive contributions to our student-centric tech roadmaps.`
     : `This email serves as official notification that your tenure as <strong>${escapeHtml(designation)}</strong> within the <strong>${escapeHtml(department)}</strong> at SkillBun has concluded, effective <strong>${escapeHtml(effDate)}</strong>.`;
 
-  const credentialsHtml = grantedCredentials.length > 0 ? `
-    <div class="box-card" style="background-color: #f0fdf4; border: 1.5px solid rgba(0,184,122,0.3); border-radius: 14px; padding: 18px 20px; margin: 18px 0;">
-      <div style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px;">
-        🎓 Granted Verified Credentials & Documents
-      </div>
-      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #166534;">
-        ${grantedCredentials.map((c) => `<li><strong>${escapeHtml(c)}</strong> — Verified in SkillBun Trust Registry</li>`).join('')}
-      </ul>
-      <div style="margin-top: 12px; font-size: 13px; color: #166534;">
-        You can securely view, verify, and download all your official credentials at any time in the <strong>SkillBun Alumni Vault</strong>:<br>
-        <a href="https://skillbun.tech/alumni" style="display: inline-block; margin-top: 8px; background-color: #008751; color: #ffffff; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-weight: 750; font-size: 12.5px;">Visit Alumni Document Vault &rarr;</a>
-      </div>
-    </div>
-  ` : '';
+  const credentialsHtml = grantedCredentials.length > 0
+    ? `
+      ${emailSectionLabel('Granted verified credentials')}
+      ${emailPoints(grantedCredentials.map((c) => `<strong>${escapeHtml(c)}</strong> &mdash; verified in the SkillBun Trust Registry`))}
+      ${emailText('You can view, verify and download all your official credentials at any time in the SkillBun Alumni Vault.')}
+      ${emailButton({ href: `${SITE_URL}/alumni`, label: 'Open the Alumni Vault' })}
+    `
+    : '';
+
+  const reasonHtml = reason
+    ? emailNote(`<strong>Administrative note:</strong> ${escapeHtml(reason)}`, isPositive ? 'neutral' : 'danger')
+    : '';
 
   const contentHtml = `
-    <div style="margin-bottom: 24px;">
-      <div style="display: inline-block; background-color: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeColor}; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        ${badgeText}
-      </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        ${headingText}
-      </h1>
-      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
-        Official Record & Offboarding Summary
-      </p>
-    </div>
+    ${emailText(`Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},`)}
+    ${emailText(introParagraph)}
 
-    <p style="margin: 0 0 14px 0;">
-      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
-    </p>
+    ${emailFrame(
+      emailSpecSheet([
+        ['Role held', `${escapeHtml(designation)} (${escapeHtml(department)})`],
+        ['Effective date', escapeHtml(effDate)],
+        ['Status', isPositive ? 'Tenure concluded' : 'Engagement concluded'],
+      ], { flush: true }),
+      { label: 'Offboarding record' }
+    )}
 
-    <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      ${introParagraph}
-    </p>
-
-    ${reason ? `
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 16px 20px; margin: 16px 0;">
-      <div style="font-size: 12px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 6px;">Administrative Note</div>
-      <div style="font-size: 14px; line-height: 1.5; color: #1e293b;">${escapeHtml(reason)}</div>
-    </div>
-    ` : ''}
+    ${reasonHtml}
 
     ${credentialsHtml}
 
-    <!-- Offboarding Protocol Box -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div style="font-weight: 800; color: ${badgeColor}; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-        Offboarding & Access Protocol
-      </div>
-      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; color: #475569;">
-        <li>Internal workforce administrative credentials and workspace permissions have been transitioned to offboarded status.</li>
-        <li>Your earned public credentials remain securely preserved in the <a href="https://skillbun.tech/alumni" style="color: #008751; text-decoration: underline;">Alumni Vault</a>.</li>
-        <li>You remain bound by confidentiality and non-disclosure terms agreed upon during engagement.</li>
-      </ul>
-    </div>
+    ${emailSectionLabel('Offboarding & access protocol')}
+    ${emailPoints([
+      'Internal workforce credentials and workspace permissions have transitioned to offboarded status.',
+      `Your earned public credentials remain securely preserved in the <a href="${SITE_URL}/alumni" class="sb-text" style="color:${L.text}; text-decoration:underline;">Alumni Vault</a>.`,
+      'You remain bound by the confidentiality and non-disclosure terms agreed upon during engagement.',
+    ])}
 
-    <p style="margin: 20px 0 0 0; line-height: 1.6;">
-      ${isPositive ? 'We wish you the very best in your future career endeavors and look forward to celebrating your continued success!' : 'If you have questions regarding offboarding settlements or documentation, reply directly to this email.'}
-    </p>
+    ${emailText(isPositive
+      ? 'We wish you the very best in your future career endeavours and look forward to celebrating your continued success.'
+      : 'If you have questions regarding offboarding settlements or documentation, reply directly to this email.')}
 
-    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
-      Warm regards,<br>
-      <strong class="instructions-heading" style="color: #0f172a;">Harsh Patel</strong><br>
-      Lead, SkillBun<br>
-      <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 750;">skillbun.tech</a>
-    </div>
+    ${emailSignoff({ name: 'Harsh Patel', role: 'Lead, SkillBun' })}
   `;
 
-  const html = buildBaseEmailWrapper(
+  const html = buildEmail({
+    title: subject,
+    eyebrow: isPositive ? 'Tenure concluded' : 'Formal offboarding notice',
+    docTag: 'Offboarding',
+    headline: isPositive ? 'Completion of your<br>internship tenure' : 'Notice of engagement<br>conclusion',
+    lede: 'An official record and offboarding summary for your files.',
+    chips: [designation, `Effective ${effDate}`],
     contentHtml,
-    subject,
-    false,
-    employee.personal_email || ''
-  );
+    isMarketing: false,
+    email: employee.personal_email || '',
+  });
 
   const text = [
     `Dear ${salutation} ${fullName},`,
@@ -508,15 +395,13 @@ export function buildTerminationDispatchEmail({
     'https://skillbun.tech',
   ].join('\n');
 
-  return {
-    subject,
-    html,
-    text,
-    cc,
-    replyTo,
-  };
+  return { subject, html, text, cc, replyTo };
 }
 
+/**
+ * Activation / Welcome (onboarding complete) email payload.
+ * @returns {{ subject, html, text, from, cc, replyTo }}
+ */
 export function buildActivationWelcomeEmail({ employee, credentials }) {
   const fullName = employee.full_name || 'Team Member';
   const salutation = employee.salutation || 'Mr./Ms.';
@@ -534,94 +419,36 @@ export function buildActivationWelcomeEmail({ employee, credentials }) {
   const cc = 'harsh@skillbun.tech';
   const replyTo = 'harsh@skillbun.tech';
 
-  const credentialsHtml = hasZohoCredentials ? `
-    <!-- Zoho Enterprise Credentials Card -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #00b87a; border-radius: 14px; padding: 20px; margin: 22px 0; box-shadow: 0 4px 16px rgba(0, 184, 122, 0.08);">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-        <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em;">
-          🏢 Enterprise Workspace & Zoho Mail Credentials
-        </div>
-        <span style="background: rgba(0,184,122,0.12); color: #008751; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">Active</span>
-      </div>
-      <p style="margin: 0 0 14px 0; font-size: 13.5px; color: #475569; line-height: 1.5;">
-        Your SkillBun enterprise workspace account is officially provisioned. Please use these confidential credentials to sign in to your work email and team tools:
-      </p>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.9;">
-        <tr>
-          <td class="table-label" style="color: #64748b; width: 38%;">Work Email (Zoho):</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace;">${escapeHtml(zohoWorkEmail)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Temporary Password:</td>
-          <td class="table-val" style="color: #0f172a; font-weight: 700; font-family: monospace; letter-spacing: 0.5px; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 4px; display: inline-block;">${escapeHtml(zohoPassword)}</td>
-        </tr>
-        <tr>
-          <td class="table-label" style="color: #64748b;">Mail Login Portal:</td>
-          <td class="table-val">
-            <a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 700; text-decoration: underline;">https://mail.zoho.in</a>
-          </td>
-        </tr>
-        ${zohoNotes ? `
-        <tr>
-          <td class="table-label" style="color: #64748b; vertical-align: top;">Access Notes:</td>
-          <td class="table-val" style="color: #334155; font-size: 13px;">${escapeHtml(zohoNotes)}</td>
-        </tr>` : ''}
-      </table>
-      <div style="margin-top: 14px; padding: 10px 12px; background: rgba(0, 135, 81, 0.06); border-radius: 8px; font-size: 12px; color: #166534; line-height: 1.5;">
-        🔒 <strong>Security Protocol:</strong> Please update your temporary password immediately upon your first sign-in at Zoho Mail.
-      </div>
-    </div>
-  ` : '';
-
   const contentHtml = `
-    <div style="margin-bottom: 24px;">
-      <div class="badge-pill" style="display: inline-block; background-color: rgba(0,184,122,0.1); color: #008751; border: 1px solid rgba(0,184,122,0.25); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-        🚀 Onboarding Complete & Active
-      </div>
-      <h1 class="text-title" style="font-size: 22px; font-weight: 800; color: #0f172a; margin: 0 0 10px 0;">
-        Welcome to the SkillBun Team!
-      </h1>
-      <p class="text-subtle" style="color: #475569; margin: 0; font-size: 14px;">
-        Your engagement is now officially active.
-      </p>
-    </div>
+    ${emailText(`Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},`)}
+    ${emailText(`Your onboarding documentation has been processed and your status is officially <strong>active</strong> as <strong>${escapeHtml(designation)}</strong> (${escapeHtml(department)}), effective from <strong>${escapeHtml(joiningDate)}</strong>.`)}
 
-    <p style="margin: 0 0 14px 0;">
-      Dear ${escapeHtml(salutation)} ${escapeHtml(fullName)},
-    </p>
+    ${hasZohoCredentials ? credentialsBlock({ zohoWorkEmail, zohoPassword, zohoNotes, statusLabel: 'Active' }) : ''}
 
-    <p style="margin: 0 0 16px 0; line-height: 1.6;">
-      We are delighted to confirm that your onboarding documentation has been processed and your status is officially <strong>ACTIVE</strong> as <strong>${escapeHtml(designation)}</strong> (${escapeHtml(department)}), effective from <strong>${escapeHtml(joiningDate)}</strong>.
-    </p>
+    ${emailSectionLabel('Day one')}
+    ${emailStepRail([
+      ...(hasZohoCredentials
+        ? [{ title: 'Sign in to your work mailbox', body: `Open <a href="https://mail.zoho.in" target="_blank" class="sb-text" style="color:${L.text}; font-weight:700; text-decoration:underline;">mail.zoho.in</a> and verify your access.` }]
+        : []),
+      { title: 'Check for team invitations', body: 'Project invitations and sprint check-in schedules land in your inbox.' },
+      { title: 'Get familiar with the product', body: `Explore the interactive roadmaps and resources at <a href="${SITE_URL}" target="_blank" class="sb-text" style="color:${L.text}; font-weight:700; text-decoration:underline;">skillbun.tech</a>.` },
+      { title: 'Questions?', body: `Reach out directly to <a href="mailto:harsh@skillbun.tech" class="sb-text" style="color:${L.text}; font-weight:700; text-decoration:underline;">harsh@skillbun.tech</a>.` },
+    ])}
 
-    ${credentialsHtml}
-
-    <!-- Quick Start Box -->
-    <div class="box-card" style="background-color: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 20px; margin: 20px 0;">
-      <div class="text-accent" style="font-weight: 800; color: #008751; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-        📌 Day 1 Getting Started
-      </div>
-      <ol style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.8; color: #475569;">
-        ${hasZohoCredentials ? '<li>Log in to your official Zoho work mailbox (<a href="https://mail.zoho.in" target="_blank" style="color: #008751; font-weight: 600;">mail.zoho.in</a>) to verify access.</li>' : ''}
-        <li>Check your inbox for team project invitations and sprint check-in schedules.</li>
-        <li>Familiarize yourself with interactive roadmaps and technical resources at <a href="https://skillbun.tech" target="_blank" style="color: #008751; font-weight: 600;">skillbun.tech</a>.</li>
-        <li>For any operational questions, reach out directly to the core team at <a href="mailto:harsh@skillbun.tech" style="color: #008751; font-weight: 600;">harsh@skillbun.tech</a>.</li>
-      </ol>
-    </div>
-
-    <div class="divider" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13.5px; line-height: 1.5; color: #64748b;">
-      Warm regards,<br>
-      <strong class="instructions-heading" style="color: #0f172a;">SkillBun Hiring & People Operations</strong><br>
-      SkillBun Inc. • <a href="https://skillbun.tech" class="text-accent" style="color: #008751; text-decoration: none; font-weight: 750;">skillbun.tech</a>
-    </div>
+    ${emailSignoff({ name: 'SkillBun Hiring & People Operations', role: '' })}
   `;
 
-  const html = buildBaseEmailWrapper(
+  const html = buildEmail({
+    title: subject,
+    eyebrow: 'Onboarding complete',
+    docTag: 'Activation',
+    headline: 'Welcome to the<br>SkillBun team',
+    lede: 'Your engagement is now officially active.',
+    chips: [designation, `Since ${joiningDate}`],
     contentHtml,
-    subject,
-    false,
-    employee.personal_email || ''
-  );
+    isMarketing: false,
+    email: employee.personal_email || '',
+  });
 
   const textLines = [
     `Dear ${salutation} ${fullName},`,
@@ -656,13 +483,5 @@ export function buildActivationWelcomeEmail({ employee, credentials }) {
 
   const text = textLines.join('\n');
 
-  return {
-    subject,
-    html,
-    text,
-    from,
-    cc,
-    replyTo,
-  };
+  return { subject, html, text, from, cc, replyTo };
 }
-

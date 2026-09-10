@@ -1,773 +1,663 @@
 /**
  * SkillBun Retention & Lifecycle Email Templates (18 Variations)
- * Metadata definitions and HTML body content generators.
+ *
+ * Each template supplies the masthead document tag, the title block (eyebrow /
+ * headline / lede / meta) and a content body composed from design-system
+ * motifs — node rail, segmented track, spec sheet, stat band, data block,
+ * tags, note — so the emails differ structurally, not just in wording.
+ *
+ * Motif choice is deliberate: emailNodeRail carries the roadmap metaphor and is
+ * used where the message is about a learning path; emailStepRail is used for
+ * plain procedures; emailSpecSheet and emailCredentialStrip render facts as a
+ * datasheet rather than as marketing copy. emailFrame puts crop marks around a
+ * block so it reads as a detail view on a drawing sheet, and emailWaffle draws
+ * the roadmap to scale — one square per topic — instead of abstracting progress
+ * into a bar.
+ *
+ * Copy voice: premium, minimal, honest. No invented monetary values, no fake
+ * rankings, no false scarcity, no decorative emoji.
+ *
+ * Dynamic values (name, email, roadmapTitle, degree) arrive PRE-ESCAPED from
+ * generateRetentionEmailHtml; progressCount is a number.
  */
 
-const SITE_URL = 'https://skillbun.tech';
+import {
+  SITE_URL,
+  emailText,
+  emailSectionLabel,
+  emailFrame,
+  emailChipBlock,
+  emailNodeRail,
+  emailStepRail,
+  emailSpecSheet,
+  emailStatBand,
+  emailProgressTrack,
+  emailWaffle,
+  emailCredentialStrip,
+  emailTags,
+  emailNote,
+  emailPoints,
+  emailButton,
+  emailLink,
+} from './emailTheme.js';
 
 export const RETENTION_TEMPLATES = {
-  // CATEGORY 1: ONBOARDING & ACTIVATION (NEW SIGNUP)
+  // CATEGORY 1: ONBOARDING & ACTIVATION
   welcome_v1: {
     id: 'welcome_v1',
     category: '1. Onboarding',
-    name: '🚀 Onboarding V1: ₹35,000 Course Value Unlocked Free (Greed Angle)',
-    subject: '🚨 ₹35,000 Tech Curriculum Unlocked 100% Free for {name} (Limited Access)',
-    description: 'Emphasizes ₹35,000 worth of free roadmaps & SBV1 study guides.',
+    name: 'Onboarding V1: Everything is free (value-first)',
+    subject: 'Welcome to SkillBun, {name} — your roadmaps are ready',
+    description: 'Warm welcome that lays out what the free account includes.',
     isMarketing: true,
   },
   welcome_v2: {
     id: 'welcome_v2',
     category: '1. Onboarding',
-    name: '🚀 Onboarding V2: 2026 Tech Salary Benchmark (Competitive Angle)',
-    subject: '🚀 Don’t stay behind 93% of tech hires, {name}! Activate your 2026 roadmap',
-    description: 'Triggers competitive urgency against other student applicants.',
+    name: 'Onboarding V2: Start with the quiz (guided first step)',
+    subject: 'Not sure where to start, {name}? Take the 2-minute quiz',
+    description: 'Nudges the new student toward the AI quiz to find a track.',
     isMarketing: true,
   },
   welcome_v3: {
     id: 'welcome_v3',
     category: '1. Onboarding',
-    name: '🚀 Onboarding V3: $500 Encrypted SBV1 Study Vault (Privilege Angle)',
-    subject: '🎁 You unlocked $500 worth of Encrypted SBV1 Study Vault access, {name}!',
-    description: 'Focuses on exclusive access to SkillBun Vault study guides.',
+    name: 'Onboarding V3: How roadmaps work (education-first)',
+    subject: 'How SkillBun roadmaps work, {name}',
+    description: 'Explains the roadmap → study guide → certificate flow.',
     isMarketing: true,
   },
 
-  // CATEGORY 2: RE-ENGAGEMENT STREAK NUDGE (INACTIVE USER)
+  // CATEGORY 2: RE-ENGAGEMENT
   reengagement_v1: {
     id: 'reengagement_v1',
     category: '2. Re-engagement',
-    name: '🐰 Re-engage V1: Rank & Streak Decaying Alert (Loss Aversion)',
-    subject: '⚠️ Your {roadmapTitle} streak & candidate rank is decaying, {name}!',
-    description: 'Warns student about streak loss and ranking decay.',
+    name: 'Re-engage V1: Pick up where you left off',
+    subject: 'Your {roadmapTitle} roadmap is waiting, {name}',
+    description: 'Gentle reminder built around a segmented progress track.',
     isMarketing: true,
   },
   reengagement_v2: {
     id: 'reengagement_v2',
     category: '2. Re-engagement',
-    name: '🐰 Re-engage V2: 3-Minute Quick Win to Exam Ticket (Quick Progress)',
-    subject: '🔥 3 Minutes to unlock your Free {roadmapTitle} Cert Exam Ticket, {name}!',
-    description: 'Encourages completing just 1 quick topic node.',
+    name: 'Re-engage V2: One small step',
+    subject: 'One topic today, {name}?',
+    description: 'Low-friction nudge to complete a single topic node.',
     isMarketing: true,
   },
   reengagement_v3: {
     id: 'reengagement_v3',
     category: '2. Re-engagement',
-    name: '🐰 Re-engage V3: Recruiter Queue Visibility Alert (Placement Angle)',
-    subject: '💡 Recruiter Queue Alert: Complete your {roadmapTitle} track, {name}!',
-    description: 'Highlights priority recruiter discovery for active candidates.',
+    name: 'Re-engage V3: Toward the certificate',
+    subject: "You're closer to your {roadmapTitle} certificate than you think",
+    description: 'Frames continued progress around unlocking the exam at 60%.',
     isMarketing: true,
   },
 
-  // CATEGORY 3: CERTIFICATION EXAM READY (60%+ PROGRESS)
+  // CATEGORY 3: EXAM READY
   exam_nudge_v1: {
     id: 'exam_nudge_v1',
     category: '3. Exam Ready',
-    name: '🎓 Exam Ready V1: Top 7% Elite Candidate Invitation (Status Angle)',
-    subject: '🏆 You are in the Top 7% Qualified Candidates for {roadmapTitle} Cert, {name}!',
-    description: 'Celebrates 60%+ completion and invites student to certify.',
+    name: 'Exam Ready V1: You unlocked the exam',
+    subject: 'Your {roadmapTitle} certification exam is unlocked, {name}',
+    description: 'Celebrates 60%+ completion and invites the student to certify.',
     isMarketing: true,
   },
   exam_nudge_v2: {
     id: 'exam_nudge_v2',
     category: '3. Exam Ready',
-    name: '🎓 Exam Ready V2: Free ₹15,000 Proctored Exam Ticket (High Value Gift)',
-    subject: '🎓 Free ₹15,000 Proctored Certification Ticket Ready for {name}!',
-    description: 'Positions proctored exam as a ₹15,000 waived fee gift.',
+    name: 'Exam Ready V2: What to expect',
+    subject: 'Ready for your {roadmapTitle} exam? Here’s what to expect',
+    description: 'Sets clear, honest expectations about the exam format.',
     isMarketing: true,
   },
   exam_nudge_v3: {
     id: 'exam_nudge_v3',
     category: '3. Exam Ready',
-    name: '🎓 Exam Ready V3: Recruiters Verifying SkillBun QR Links (Job Proof)',
-    subject: '⚡ Recruiters are verifying SkillBun QR Certificates for {roadmapTitle}',
-    description: 'Emphasizes tamper-proof verification on LinkedIn & resume.',
+    name: 'Exam Ready V3: A credential you can share',
+    subject: 'Turn your {roadmapTitle} progress into a verified certificate',
+    description: 'Explains the verifiable QR certificate students earn.',
     isMarketing: true,
   },
 
-  // CATEGORY 4: EXAM COOLDOWN ENCOURAGEMENT (FAILED ATTEMPT)
+  // CATEGORY 4: EXAM RETAKE
   exam_failed_v1: {
     id: 'exam_failed_v1',
     category: '4. Exam Retake',
-    name: '📚 Retake V1: 100% Free Unlimited Retake Ticket (Zero Risk)',
-    subject: '⚡ Retake Ticket Granted! 100% Free Retake for {roadmapTitle}, {name}',
-    description: 'Reassures student that retakes are free and unlimited.',
+    name: 'Retake V1: Retakes are free',
+    subject: 'Your {roadmapTitle} retake is ready when you are, {name}',
+    description: 'Reassures the student that retakes are free and unlimited.',
     isMarketing: true,
   },
   exam_failed_v2: {
     id: 'exam_failed_v2',
     category: '4. Exam Retake',
-    name: '📚 Retake V2: Review SBV1 Encrypted Study Vault (Pass Guarantee)',
-    subject: '📖 Cheat-Sheet Unlocked: Review SBV1 Guides to Guarantee 100% Pass',
-    description: 'Advises reading encrypted study guides during 1-hour cooldown.',
+    name: 'Retake V2: Review, then retry',
+    subject: 'A quick review before your {roadmapTitle} retake, {name}',
+    description: 'A three-step review plan for the cooldown window.',
     isMarketing: true,
   },
   exam_failed_v3: {
     id: 'exam_failed_v3',
     category: '4. Exam Retake',
-    name: '📚 Retake V3: Missed Passing by Just 2 Questions (High Confidence)',
-    subject: '💪 You missed passing by just 2 questions, {name}! 1-Hour Cooldown Ready',
-    description: 'Boosts confidence for near-pass candidates after 1-hour cooldown.',
+    name: 'Retake V3: Keep going',
+    subject: "Don't give up on your {roadmapTitle} certificate, {name}",
+    description: 'Short encouraging note after an unsuccessful attempt.',
     isMarketing: true,
   },
 
-  // CATEGORY 5: CERTIFICATE ACHIEVED (ALUMNI UPSELL)
+  // CATEGORY 5: CERTIFICATE ACHIEVED
   cert_congrats_v1: {
     id: 'cert_congrats_v1',
     category: '5. Alumni Cert',
-    name: '🏆 Cert Alumni V1: Verified Specialist Status & QR Badge (Credential)',
-    subject: '🎉 Verified Specialist Status Unlocked! Claim your QR Badge, {name}',
-    description: 'Promotes LinkedIn QR badge sharing and resume addition.',
+    name: 'Cert V1: Congratulations + credential',
+    subject: "Congratulations, {name} — you're {roadmapTitle} certified",
+    description: 'Celebrates the certificate and shows the verification details.',
     isMarketing: true,
   },
   cert_congrats_v2: {
     id: 'cert_congrats_v2',
     category: '5. Alumni Cert',
-    name: '🏆 Cert Alumni V2: Next High-Salary Track Combo (Multi-Skill Upsell)',
-    subject: '🚀 Level Up: Recommended Next High-Salary Track after {roadmapTitle}',
-    description: 'Recommends complementary high-paying tech tracks.',
+    name: 'Cert V2: What to learn next',
+    subject: "What's next after {roadmapTitle}, {name}?",
+    description: 'Suggests a complementary roadmap to continue learning.',
     isMarketing: true,
   },
   cert_congrats_v3: {
     id: 'cert_congrats_v3',
     category: '5. Alumni Cert',
-    name: '🏆 Cert Alumni V3: Priority Recruiter Directory Unlocked (VIP Access)',
-    subject: '⭐ Priority Recruiter Directory Activated for {name}',
-    description: 'Informs certified alumnus about public recruiter verification indexing.',
+    name: 'Cert V3: Add it to your profile',
+    subject: 'Add your {roadmapTitle} certificate to your resume, {name}',
+    description: 'Practical steps for using the certificate on LinkedIn/resume.',
     isMarketing: true,
   },
 
-  // CATEGORY 6: SECURITY & ACCOUNT ALERT (TRANSACTIONAL)
+  // CATEGORY 6: SECURITY & ACCOUNT (TRANSACTIONAL)
   transactional_alert_v1: {
     id: 'transactional_alert_v1',
     category: '6. Transactional',
-    name: '🔒 Transactional V1: Account Security & Authentication Alert',
-    subject: '🔒 SkillBun Account Security & Authentication Notice for {name}',
+    name: 'Transactional V1: Sign-in notice',
+    subject: 'A new sign-in to your SkillBun account',
     description: 'Security notice. Omits marketing unsubscribe per compliance rules.',
     isMarketing: false,
   },
   transactional_alert_v2: {
     id: 'transactional_alert_v2',
     category: '6. Transactional',
-    name: '🔒 Transactional V2: Password & Login Session Guard Notice',
-    subject: '🛡️ Password & Login Session Security Guard Update for {name}',
-    description: 'Session guard notice. Omits marketing unsubscribe per compliance rules.',
+    name: 'Transactional V2: Password changed',
+    subject: 'Your SkillBun password was changed',
+    description: 'Password-change confirmation. Omits marketing unsubscribe.',
     isMarketing: false,
   },
   transactional_alert_v3: {
     id: 'transactional_alert_v3',
     category: '6. Transactional',
-    name: '🔒 Transactional V3: Critical Account Credential Status Alert',
-    subject: '🔑 Critical Account Verification & Credential Status for {name}',
-    description: 'Credential alert. Omits marketing unsubscribe per compliance rules.',
+    name: 'Transactional V3: Account update',
+    subject: 'An update to your SkillBun account',
+    description: 'General account notice. Omits marketing unsubscribe.',
     isMarketing: false,
   },
 };
 
+// Roadmap progress is tracked in topic nodes; 60% of a ~24-node track unlocks
+// the exam, so we derive an honest percentage for the progress motif.
+const ASSUMED_TRACK_LENGTH = 24;
+
+function progressPercent(progressCount) {
+  return Math.max(4, Math.min(96, Math.round(((Number(progressCount) || 0) / ASSUMED_TRACK_LENGTH) * 100)));
+}
+
+// Topics still to go before the 60% exam unlock, floored at zero.
+function topicsToUnlock(progressCount) {
+  const needed = Math.ceil(ASSUMED_TRACK_LENGTH * 0.6);
+  return Math.max(0, needed - (Number(progressCount) || 0));
+}
+
 export function renderTemplateContent(templateId, { name, email, roadmapTitle, progressCount, degree }) {
   const templateConfig = RETENTION_TEMPLATES[templateId] || RETENTION_TEMPLATES.welcome_v1;
   const isMarketing = templateConfig ? templateConfig.isMarketing !== false : true;
-  let contentHtml = '';
+
   let subject = '';
+  let eyebrow = '';
+  let headline = '';
+  let lede = '';
+  let docTag = '';
+  let chips = [];
+  let contentHtml = '';
 
   switch (templateId) {
-    // CATEGORY 1: ONBOARDING & ACTIVATION
+    /* ---------------- CATEGORY 1: ONBOARDING ---------------- */
     case 'welcome_v1':
-      subject = `🚨 ₹35,000 Tech Curriculum Unlocked 100% Free for ${name} (Limited Access)`;
+      subject = `Welcome to SkillBun, ${name} — your roadmaps are ready`;
+      eyebrow = 'Welcome';
+      docTag = 'Onboarding';
+      headline = `Welcome aboard,<br>${name}`;
+      lede = 'Your account is ready. Everything below is free — no trial, no card, no paywall.';
+      chips = ['100+ roadmaps', 'verified certificates', 'no paywall'];
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            💎 100% Free Student Sponsorship
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Hey ${name}, why pay ₹35,000 for coding bootcamps?
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Commercial EdTech institutes charge students ₹30,000 to ₹50,000 for structured roadmaps.
-          </p>
-        </div>
-
-        <p>At <strong>SkillBun.tech</strong>, we believe high-quality tech education must be <strong>100% Free for every student</strong>. Your account has been granted full VIP access to our entire ecosystem without a single rupee charged!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #00e599; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #00e599; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            🎁 What You Just Unlocked ($450+ Total Value):
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            ✔ <strong>100+ Interactive Tech Roadmaps</strong> (Full-Stack, AI/ML, DevOps, Data Engine)<br>
-            ✔ <strong>SkillBun Vault (SBV1)</strong> Encrypted Master Study Guides<br>
-            ✔ <strong>Bun-Bot 24/7 AI Counsellor</strong> for instant doubt solving<br>
-            ✔ <strong>Official Proctored Exam & Verified QR Certificate</strong>
-          </div>
-        </div>
-
-        <p style="font-weight: 700; color: #ffffff;">Don’t leave this ₹35,000 educational sponsorship sitting idle. Take the 1-minute AI Quiz now!</p>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/quiz" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            ⚡ Claim Free Access & Take AI Quiz →
-          </a>
-        </div>
+        ${emailText('SkillBun teaches a tech skill the structured way: follow a roadmap, study each topic, then prove what you know with a certificate anyone can verify.')}
+        ${emailStatBand([
+          { value: '100+', label: 'Roadmaps' },
+          { value: '24', label: 'Topics per track' },
+          { value: '&#8377;0', label: 'Cost' },
+        ])}
+        ${emailSectionLabel("What's included")}
+        ${emailPoints([
+          '<strong>Career roadmaps</strong> across web, AI/ML, DevOps, data and mobile',
+          '<strong>Study guides</strong> for every topic, with curated videos and project ideas',
+          '<strong>Bun-Bot</strong>, an AI counsellor for questions as you learn',
+          '<strong>Verified certificates</strong> you can share once you pass the exam',
+        ])}
+        ${emailSectionLabel('Tracks students start with')}
+        ${emailTags(['Full Stack', 'AI / ML', 'DevOps', 'Data Engineering', 'Android', 'Cybersecurity'])}
+        ${emailButton({ href: `${SITE_URL}/quiz`, label: 'Find my roadmap' })}
+        ${emailLink({ href: `${SITE_URL}/roadmap`, label: 'Or browse all 100+ roadmaps' })}
       `;
       break;
 
     case 'welcome_v2':
-      subject = `🚀 Don’t stay behind 93% of tech hires, ${name}! Activate your 2026 roadmap`;
+      subject = `Not sure where to start, ${name}? Take the 2-minute quiz`;
+      eyebrow = 'Get started';
+      docTag = 'Onboarding';
+      headline = "Let's find the right track for you";
+      lede = 'With 100+ roadmaps to choose from, the quiz is the fastest way to narrow it down.';
+      chips = ['2 minutes', 'retake anytime'];
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            ⚡ 2026 Hiring Benchmark Alert
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, competition in ${degree} isn't waiting!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            93% of top tech hires build structured skill roadmaps before applying to jobs.
-          </p>
-        </div>
-
-        <p>While average students rely on random tutorial videos, top engineers follow clear interactive roadmaps with proof of competency.</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #3b82f6; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            📊 Your Personalized 2026 Benchmark Status
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            Candidate Name: ${name}<br>
-            Academic Background: ${degree}<br>
-            Roadmaps Available: 100+ Career Tracks<br>
-            Status: Action Required (0% Roadmap Activated)
-          </div>
-        </div>
-
-        <p style="font-weight: 700; color: #ffffff;">Your first topic node takes less than 3 minutes. Start today and stay ahead of your batchmates!</p>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/onboarding?next=/quiz" style="display: inline-block; background-color: #3b82f6; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,130,246,0.45);">
-            ⚡ Activate My Tech Career Benchmark →
-          </a>
-        </div>
+        ${emailText('The quiz asks about your interests, background and how you like to work, then ranks the roadmaps that fit you best.')}
+        ${emailStepRail([
+          { title: 'Answer a few questions', body: 'About two minutes, no right or wrong answers.' },
+          { title: 'Get your matches', body: 'Ranked roadmaps based on what you told us.' },
+          { title: 'Start learning', body: 'Open a roadmap and work through it at your own pace.' },
+        ])}
+        ${emailSectionLabel('What the quiz weighs')}
+        ${emailTags(['Interests', 'Background', 'Maths comfort', 'Build vs analyse', 'Time available'])}
+        ${emailButton({ href: `${SITE_URL}/quiz`, label: 'Take the quiz' })}
+        ${emailLink({ href: `${SITE_URL}/roadmap`, label: 'Prefer to browse instead' })}
       `;
       break;
 
     case 'welcome_v3':
-      subject = `🎁 You unlocked $500 worth of Encrypted SBV1 Study Vault access, ${name}!`;
+      subject = `How SkillBun roadmaps work, ${name}`;
+      eyebrow = 'How it works';
+      docTag = 'Onboarding';
+      headline = 'Three stages, one certificate';
+      lede = 'Every roadmap on SkillBun follows the same clear path from first topic to verified credential.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(234,179,8,0.15); color: #eab308; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🔐 Encrypted Vault Privilege
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Exclusive Vault Key Granted to ${name}
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            3,335 proprietary study guides protected under SkillBun Vault (SBV1) encryption.
-          </p>
-        </div>
-
-        <p>Most study platforms show basic text summaries. SkillBun protects <strong>3,335 comprehensive topic study guides</strong> using AES-256 HKDF encryption to maintain top academic quality!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #eab308; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #eab308; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            🔑 SBV1 Master Access Token Attached to ${email}
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            ✔ Decrypt and read topic guides directly on interactive roadmaps<br>
-            ✔ Includes curated YouTube video tutorials & hands-on project briefs<br>
-            ✔ 100% Free student authorization
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            📖 Access SBV1 Encrypted Study Vault →
-          </a>
-        </div>
+        ${emailFrame(
+          emailNodeRail([
+            {
+              title: 'Learn',
+              body: 'Work through topic nodes with study guides, curated videos and project briefs.',
+              state: 'current',
+            },
+            {
+              title: 'Track',
+              body: 'Check off topics as you go. Your position on the roadmap is saved automatically.',
+              state: 'todo',
+            },
+            {
+              title: 'Certify',
+              body: 'Reach 60% to unlock the exam, then pass it to earn your certificate.',
+              state: 'todo',
+            },
+          ], { flush: true }),
+          { label: 'Roadmap flow' }
+        )}
+        ${emailNote('Your certificate comes with a unique verification page and QR code at <strong>skillbun.tech/certificate</strong>, so anyone can confirm it is genuine.')}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Start learning' })}
       `;
       break;
 
-    // CATEGORY 2: RE-ENGAGEMENT
+    /* ---------------- CATEGORY 2: RE-ENGAGEMENT ---------------- */
     case 'reengagement_v1':
-      subject = `⚠️ Your ${roadmapTitle} streak & candidate rank is decaying, ${name}!`;
+      subject = `Your ${roadmapTitle} roadmap is waiting, ${name}`;
+      eyebrow = 'Pick up where you left off';
+      docTag = 'Progress';
+      headline = `Welcome back,<br>${name}`;
+      lede = `You've already completed ${progressCount} topics on ${roadmapTitle}. Everything is saved exactly as you left it.`;
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(239,68,68,0.15); color: #ef4444; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            ⚠️ Streak Decay Warning
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, your learning streak is about to reset!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            You’ve already finished ${progressCount} nodes on ${roadmapTitle}. Don’t let your hard work freeze.
-          </p>
-        </div>
-
-        <p>Every day you pause, your retention drops and your placement readiness score decays. Reaching 60% unlocks your <strong>Official Proctored Certification Exam</strong>!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #ef4444; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 12px; font-weight: 800; color: #ef4444; text-transform: uppercase;">Roadmap Streak Status</span>
-            <span style="font-size: 12px; background-color: #21262d; color: #ffffff; padding: 2px 8px; border-radius: 6px; font-weight: 700;">${progressCount} Nodes Done</span>
-          </div>
-          <div style="font-size: 18px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
-            ${roadmapTitle}
-          </div>
-          <div style="font-size: 13px; color: #8b949e;">
-            Complete just 1 more topic node to save your active streak!
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            ▶️ Save My Streak on ${roadmapTitle} →
-          </a>
-        </div>
+        ${emailFrame(
+          emailWaffle({
+            total: ASSUMED_TRACK_LENGTH,
+            filled: progressCount,
+            label: roadmapTitle,
+            caption: `Each square is one topic node &nbsp;/&nbsp; the exam unlocks at 60%`,
+            flush: true,
+          }),
+          { label: 'Topic matrix' }
+        )}
+        ${emailStatBand([
+          { value: String(progressCount), label: 'Topics done' },
+          { value: String(topicsToUnlock(progressCount)), label: 'To exam unlock' },
+          { value: 'Saved', label: 'Your position' },
+        ])}
+        ${emailText('Even a few minutes today keeps your momentum going. Open the roadmap and continue from your next unfinished topic.')}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Continue learning' })}
       `;
       break;
 
     case 'reengagement_v2':
-      subject = `🔥 3 Minutes to unlock your Free ${roadmapTitle} Cert Exam Ticket, ${name}!`;
+      subject = `One topic today, ${name}?`;
+      eyebrow = 'A small step';
+      docTag = 'Progress';
+      headline = 'Small steps add up';
+      lede = 'You don’t need a free afternoon — one topic node is enough to keep moving.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            ⚡ Quick 3-Minute Milestone
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, you are almost at the exam line!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            You have completed ${progressCount} topic nodes. Complete 1 quick node to unlock your proctored exam.
-          </p>
-        </div>
-
-        <p>Other students spend months studying theory. SkillBun lets you check off completed topics and earn verified certificates <strong>100% Free</strong>.</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #00e599; border-radius: 14px; padding: 22px; margin: 22px 0; text-align: center;">
-          <div style="font-size: 13px; font-weight: 800; color: #00e599; text-transform: uppercase; margin-bottom: 6px;">
-            🎯 3-Minute Quick Challenge
-          </div>
-          <div style="font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">
-            Check off your next ${roadmapTitle} topic node now!
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            ⚡ Check Off Topic Node in 3 Mins →
-          </a>
-        </div>
+        ${emailProgressTrack({
+          percent: progressPercent(progressCount),
+          label: roadmapTitle,
+          caption: `${progressCount} topics done so far`,
+        })}
+        ${emailNodeRail([
+          {
+            title: `${progressCount} topics behind you`,
+            body: 'Already marked complete on your roadmap.',
+            state: 'done',
+          },
+          {
+            title: 'Your next topic',
+            body: 'Study guide, videos and a short project brief, all in one node.',
+            state: 'current',
+          },
+          {
+            title: 'Certification exam',
+            body: `Unlocks once you reach 60% of the ${roadmapTitle} track.`,
+            state: 'todo',
+          },
+        ])}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Complete one topic' })}
       `;
       break;
 
     case 'reengagement_v3':
-      subject = `💡 Recruiter Queue Alert: Complete your ${roadmapTitle} track, ${name}!`;
+      subject = `You're closer to your ${roadmapTitle} certificate than you think`;
+      eyebrow = 'Toward your certificate';
+      docTag = 'Progress';
+      headline = `Keep going, ${name}`;
+      lede = `At 60% roadmap progress your ${roadmapTitle} certification exam unlocks.`;
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            💼 Recruiter Indexing Alert
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, tech recruiters check active student profiles!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Active candidates with 60%+ roadmap progress get priority visibility in SkillBun directory search.
-          </p>
-        </div>
-
-        <p>When company recruiters search SkillBun for student talent in <strong>${degree}</strong>, profiles with high progress and verified QR certificates are listed at the top!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #3b82f6; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            📈 Recruiter Directory Index Status
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            Candidate: ${name}<br>
-            Track: ${roadmapTitle}<br>
-            Current Nodes Completed: ${progressCount}<br>
-            Status: Resume activity to boost directory ranking!
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            💼 Boost My Directory Index Score →
-          </a>
-        </div>
+        ${emailProgressTrack({
+          percent: progressPercent(progressCount),
+          label: 'Progress toward the exam',
+          caption: `${progressCount} topics completed &nbsp;/&nbsp; exam unlocks at 60%`,
+        })}
+        ${emailStatBand([
+          { value: String(topicsToUnlock(progressCount)), label: 'Topics to unlock' },
+          { value: '70%', label: 'Score to pass' },
+          { value: 'Free', label: 'Retakes' },
+        ])}
+        ${emailText('Every topic you finish moves you closer — and a verified certificate is something you can put straight on your resume and LinkedIn.')}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: `Continue ${roadmapTitle}` })}
       `;
       break;
 
-    // CATEGORY 3: EXAM READY
+    /* ---------------- CATEGORY 3: EXAM READY ---------------- */
     case 'exam_nudge_v1':
-      subject = `🏆 You are in the Top 7% Qualified Candidates for ${roadmapTitle} Cert, ${name}!`;
+      subject = `Your ${roadmapTitle} certification exam is unlocked, ${name}`;
+      eyebrow = 'Exam unlocked';
+      docTag = 'Certification';
+      headline = `Nice work,<br>${name}`;
+      lede = `You've passed 60% progress on ${roadmapTitle}, so your certification exam is now available.`;
+      chips = ['10 questions', 'free retakes'];
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🏆 Top 7% Elite Qualification
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Congratulations ${name}! You qualify for the Proctored Exam.
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Only 7% of tech candidates complete 60%+ roadmap nodes to unlock this exam.
-          </p>
-        </div>
-
-        <div class="box-dark" style="background-color: rgba(0, 229, 153, 0.1); border: 2px solid #00e599; border-radius: 14px; padding: 22px; margin: 22px 0; text-align: center;">
-          <div style="font-size: 13px; font-weight: 800; color: #00e599; text-transform: uppercase; margin-bottom: 6px;">
-            🎉 Exam Unlocked: ${roadmapTitle}
-          </div>
-          <div style="font-size: 15px; color: #ffffff; font-weight: 700; margin-bottom: 8px;">
-            Score 70%+ on 10 randomized adaptive questions to earn your Verified Certificate!
-          </div>
-          <div style="font-size: 13px; color: #8b949e;">
-            Tamper-proof public QR verification & printable PDF document included.
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            🎓 Start Proctored Certification Exam →
-          </a>
-        </div>
+        ${emailFrame(
+          emailSpecSheet([
+            ['Roadmap', roadmapTitle],
+            ['Format', '10 adaptive questions'],
+            ['Passing score', '70% or higher'],
+            ['Cost', 'Free'],
+            ['Retakes', 'Unlimited'],
+            ['On passing', 'Verified certificate + PDF'],
+          ], { flush: true }),
+          { label: 'Exam specification' }
+        )}
+        ${emailNote('No pressure — if you don’t pass the first time, retakes are always free and the questions are reshuffled.')}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Start the exam' })}
       `;
       break;
 
     case 'exam_nudge_v2':
-      subject = `🎓 Free ₹15,000 Proctored Certification Ticket Ready for ${name}!`;
+      subject = `Ready for your ${roadmapTitle} exam? Here's what to expect`;
+      eyebrow = 'Before you start';
+      docTag = 'Certification';
+      headline = 'Know what’s coming';
+      lede = 'A short, honest rundown so there are no surprises when you begin.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(234,179,8,0.15); color: #eab308; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🏷️ ₹15,000 Exam Fee Waived
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, your 100% Free Exam Pass is ready!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Professional proctored certification exams usually cost ₹10,000 to ₹15,000.
-          </p>
-        </div>
-
-        <p>SkillBun waives 100% of certification fees for students who complete 60%+ of their roadmap. You don't have to pay a single rupee!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #eab308; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #eab308; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            🎫 Exam Voucher Code: SKILLBUN-100-FREE
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            Candidate: ${name}<br>
-            Track: ${roadmapTitle}<br>
-            Cost: ₹0 (100% Waived)
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            🎫 Redeem Exam Ticket & Start Test →
-          </a>
-        </div>
+        ${emailStatBand([
+          { value: '10', label: 'Questions' },
+          { value: '70%', label: 'To pass' },
+          { value: '&#8734;', label: 'Retakes' },
+        ])}
+        ${emailPoints([
+          '<strong>Questions are drawn</strong> from the topics you’ve already studied',
+          '<strong>70% to pass</strong> — that’s 7 of 10 correct',
+          '<strong>Shuffled each time</strong>, so every attempt is different',
+          '<strong>No time pressure</strong> — work through it at your own pace',
+        ])}
+        ${emailText(`When you're ready, open your ${roadmapTitle} roadmap and start the exam from there.`)}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Begin the exam' })}
       `;
       break;
 
     case 'exam_nudge_v3':
-      subject = `⚡ Recruiters are verifying SkillBun QR Certificates for ${roadmapTitle}`;
+      subject = `Turn your ${roadmapTitle} progress into a verified certificate`;
+      eyebrow = 'Verified credential';
+      docTag = 'Certification';
+      headline = 'A certificate that proves it';
+      lede = 'Pass the exam and earn a credential anyone can verify online in seconds.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🛡️ Job Proof & Verification
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, get your LinkedIn-ready QR certificate!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Companies verify candidates using SkillBun's unique QR authentication links.
-          </p>
-        </div>
-
-        <p>Generic course completion certificates can be fake. SkillBun certificates store verification data on Firestore at <strong>skillbun.tech/certificate/[id]</strong> with anti-cheat proctoring proof!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #00e599; border-radius: 14px; padding: 22px; margin: 22px 0; text-align: center;">
-          <div style="font-size: 13px; font-weight: 800; color: #00e599; text-transform: uppercase; margin-bottom: 6px;">
-            📜 Verified QR Credential Ready
-          </div>
-          <div style="font-size: 15px; color: #ffffff; font-weight: 700;">
-            Pass the 10-question quiz to mint your certificate URL!
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            ⚡ Mint My Verified Certificate →
-          </a>
-        </div>
+        ${emailText(`Each SkillBun certificate gets its own verification page with a QR code, so recruiters and employers can confirm your ${roadmapTitle} credential without taking your word for it.`)}
+        ${emailCredentialStrip(
+          [
+            ['Verify at', 'skillbun.tech/certificate/[id]', { href: `${SITE_URL}/certificate` }],
+            ['Contains', 'QR code + downloadable PDF'],
+            ['Shareable on', 'LinkedIn, resume, portfolio'],
+            ['Expires', 'Never'],
+          ],
+          { title: 'Credential record' }
+        )}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Take the exam' })}
       `;
       break;
 
-    // CATEGORY 4: EXAM RETAKE
+    /* ---------------- CATEGORY 4: EXAM RETAKE ---------------- */
     case 'exam_failed_v1':
-      subject = `⚡ Retake Ticket Granted! 100% Free Retake for ${roadmapTitle}, ${name}`;
+      subject = `Your ${roadmapTitle} retake is ready when you are, ${name}`;
+      eyebrow = 'Retake available';
+      docTag = 'Retake';
+      headline = 'Not this time — and that’s fine';
+      lede = `Retakes on ${roadmapTitle} are free and unlimited, so you can try again whenever you're ready.`;
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(239,68,68,0.15); color: #ef4444; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🔄 Free Unlimited Retakes
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Zero penalty, ${name}! Your retake is 100% Free.
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Other platforms charge ₹2,000 per retake attempt. SkillBun gives you infinite free tries.
-          </p>
-        </div>
-
-        <p>We saw your recent attempt on the <strong>${roadmapTitle} Exam</strong>. Missing the pass mark on attempt #1 is completely normal!</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #00e599; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            💡 Why Retaking on SkillBun is Risk-Free:
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            ✔ <strong>100% Free:</strong> No retake fee or hidden charges<br>
-            ✔ <strong>Adaptive Question Bank:</strong> 50+ shuffled questions<br>
-            ✔ <strong>Vault Guides:</strong> Review SBV1 study guides during cooldown
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            🔄 Retake ${roadmapTitle} Exam Now →
-          </a>
-        </div>
+        ${emailText('Plenty of people don’t pass on the first attempt. There’s no penalty and nothing to pay — take a short break, then go again.')}
+        ${emailFrame(
+          emailSpecSheet([
+            ['Retake cost', 'Free'],
+            ['Attempts allowed', 'Unlimited'],
+            ['Question set', 'Reshuffled each attempt'],
+            ['Progress lost', 'None'],
+          ], { flush: true }),
+          { label: 'Retake terms' }
+        )}
+        ${emailSectionLabel('Before you retry')}
+        ${emailPoints([
+          'Revisit the topics that felt shaky in your roadmap',
+          'Ask Bun-Bot to explain anything that didn’t click',
+          'Remember the questions are reshuffled on every attempt',
+        ])}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Retake the exam' })}
       `;
       break;
 
     case 'exam_failed_v2':
-      subject = `📖 Cheat-Sheet Unlocked: Review SBV1 Guides to Guarantee 100% Pass`;
+      subject = `A quick review before your ${roadmapTitle} retake, ${name}`;
+      eyebrow = 'Review plan';
+      docTag = 'Retake';
+      headline = 'A little review goes a long way';
+      lede = 'Use the time before your retake to revisit what tripped you up.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            📖 SBV1 Study Vault Advantage
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            ${name}, review the exact topics you missed!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Use your 1-hour cooldown to study our encrypted SBV1 guides and guarantee a 100% score.
-          </p>
-        </div>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #00e599; border-radius: 14px; padding: 22px; margin: 22px 0;">
-          <div style="font-weight: 800; color: #00e599; font-size: 13px; text-transform: uppercase; margin-bottom: 8px;">
-            🎯 3-Step Pass Formula:
-          </div>
-          <div style="color: #c9d1d9; font-size: 14px; line-height: 1.8;">
-            1. Open ${roadmapTitle} tree<br>
-            2. Click topic nodes and read SBV1 Vault guides<br>
-            3. Ask Bun-Bot AI for any doubts & click Start Exam!
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            📖 Open SBV1 Guides & Practice →
-          </a>
-        </div>
+        ${emailNodeRail([
+          {
+            title: `Open your ${roadmapTitle} roadmap`,
+            body: 'Your completed topics are all still there, exactly as you left them.',
+            state: 'current',
+          },
+          {
+            title: 'Re-read the harder study guides',
+            body: 'Focus on the topics you felt least sure about during the attempt.',
+            state: 'todo',
+          },
+          {
+            title: 'Ask Bun-Bot, then retry',
+            body: 'Clear up anything still fuzzy before your next attempt.',
+            state: 'todo',
+          },
+        ])}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Review and retake' })}
       `;
       break;
 
     case 'exam_failed_v3':
-      subject = `💪 You missed passing by just 2 questions, ${name}! 1-Hour Cooldown Ready`;
+      subject = `Don't give up on your ${roadmapTitle} certificate, ${name}`;
+      eyebrow = 'Keep going';
+      docTag = 'Retake';
+      headline = `You've got this, ${name}`;
+      lede = 'One attempt doesn’t define your progress. The certificate is still well within reach.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            💪 Near-Pass High Confidence
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            You were so close, ${name}!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            You scored almost 70%! You only needed 1 or 2 more correct answers.
-          </p>
-        </div>
-
-        <p>Don't lose your focus now. Once your 1-hour cooldown timer finishes, you can attempt the test again with brand new shuffled questions!</p>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            💪 Retake Exam & Pass Now →
-          </a>
-        </div>
+        ${emailText(`You've already put in the work to unlock the exam. Take a breather, review what tripped you up, and come back for another attempt — retakes are always free.`)}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Try again' })}
       `;
       break;
 
-    // CATEGORY 5: CERTIFICATE ACHIEVED
+    /* ---------------- CATEGORY 5: CERTIFICATE ACHIEVED ---------------- */
     case 'cert_congrats_v1':
-      subject = `🎉 Verified Specialist Status Unlocked! Claim your QR Badge, ${name}`;
+      subject = `Congratulations, ${name} — you're ${roadmapTitle} certified`;
+      eyebrow = 'Certified';
+      docTag = 'Credential';
+      headline = `Congratulations,<br>${name}`;
+      lede = `You've earned your verified ${roadmapTitle} certificate. That's a real milestone.`;
+      chips = ['verified', 'qr + pdf'];
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(0,229,153,0.15); color: #00e599; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🏆 Verified Alumni Credential
-          </div>
-          <h1 class="text-title" style="font-size: 26px; font-weight: 800; color: #00e599; margin: 0 0 8px 0;">
-            Congratulations ${name}!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            You are officially a SkillBun Verified Specialist on ${roadmapTitle}!
-          </p>
-        </div>
-
-        <div class="box-dark" style="background-color: rgba(0, 229, 153, 0.12); border: 2px solid #00e599; border-radius: 16px; padding: 24px; text-align: center; margin: 22px 0;">
-          <div style="font-size: 12px; font-weight: 800; color: #00e599; text-transform: uppercase; margin-bottom: 6px;">
-            Official SkillBun Credentials
-          </div>
-          <div style="font-size: 22px; font-weight: 800; color: #ffffff; margin-bottom: 10px;">
-            ${roadmapTitle} Certified Specialist
-          </div>
-          <div style="font-size: 13px; color: #8b949e;">
-            Public QR Link: skillbun.tech/certificate/[id]
-          </div>
-        </div>
-
-        <p>84% of certified alumni add this QR link to LinkedIn and resume. Download your PDF copy now!</p>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/dashboard/certifications" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            📜 View & Download Certificate PDF →
-          </a>
-        </div>
+        ${emailChipBlock({
+          eyebrow: 'Verified credential',
+          title: `${roadmapTitle} — Certified`,
+          meta: `Issued to ${name} &nbsp;/&nbsp; SkillBun`,
+        })}
+        ${emailFrame(
+          emailSpecSheet([
+            ['Issued by', 'SkillBun'],
+            ['Verification', 'Public QR page + PDF'],
+            ['Valid', 'Permanently'],
+          ], { flush: true }),
+          { label: 'Certificate of completion' }
+        )}
+        ${emailText('Your certificate is ready to view, download and share whenever you like. The verification page stays live permanently, so anyone can confirm it is genuine.')}
+        ${emailButton({ href: `${SITE_URL}/dashboard/certifications`, label: 'View my certificate' })}
       `;
       break;
 
     case 'cert_congrats_v2':
-      subject = `🚀 Level Up: Recommended Next High-Salary Track after ${roadmapTitle}`;
+      subject = `What's next after ${roadmapTitle}, ${name}?`;
+      eyebrow = 'What’s next';
+      docTag = 'Credential';
+      headline = `Great work on ${roadmapTitle}`;
+      lede = 'Now that you have one certificate, a related roadmap is a natural next step.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🚀 Multi-Skill Salary Boost
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Great job on ${roadmapTitle}, ${name}!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Engineers who combine 2 complementary tracks earn 45% higher entry packages.
-          </p>
-        </div>
-
-        <p>Now that you mastered <strong>${roadmapTitle}</strong>, unlock your next complementary skill track (e.g. AI/ML, DevOps, or Data Engineering) for 100% Free on SkillBun.tech!</p>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/roadmap" style="display: inline-block; background-color: #00e599; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,229,153,0.45);">
-            🚀 Explore Next Career Roadmap Track →
-          </a>
-        </div>
+        ${emailText('Building a second, complementary skill rounds out your profile and opens up more roles. Every roadmap is free, just like the one you finished.')}
+        ${emailSectionLabel('Popular next tracks')}
+        ${emailPoints([
+          '<strong>AI / Machine Learning</strong> — pairs well with almost any engineering track',
+          '<strong>DevOps &amp; Cloud</strong> — for shipping and running what you build',
+          '<strong>Data Engineering</strong> — if you enjoyed the data side',
+        ])}
+        ${emailTags(['AI / ML', 'DevOps', 'Cloud', 'Data Engineering', 'System Design', 'Cybersecurity'])}
+        ${emailButton({ href: `${SITE_URL}/roadmap`, label: 'Explore roadmaps' })}
       `;
       break;
 
     case 'cert_congrats_v3':
-      subject = `⭐ Priority Recruiter Directory Activated for ${name}`;
+      subject = `Add your ${roadmapTitle} certificate to your resume, ${name}`;
+      eyebrow = 'Make it count';
+      docTag = 'Credential';
+      headline = 'Put your certificate to work';
+      lede = 'A verified credential is most useful where recruiters can actually see it.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(234,179,8,0.15); color: #eab308; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            ⭐ VIP Alumni Directory Indexing
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Your profile is now VIP Certified, ${name}!
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Certified alumni profiles are indexed at the top of SkillBun recruiter database searches.
-          </p>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/dashboard" style="display: inline-block; background-color: #eab308; color: #000000; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(234,179,8,0.45);">
-            ⭐ Check VIP Directory Profile Status →
-          </a>
-        </div>
+        ${emailStepRail([
+          { title: 'Add it to LinkedIn', body: 'Under Licenses & Certifications, with the verification link.' },
+          { title: 'Put the link on your resume', body: 'Next to the skill, so it can be checked in one click.' },
+          { title: 'Share the QR code', body: `List ${roadmapTitle} among your skills with the QR link as proof.` },
+        ])}
+        ${emailButton({ href: `${SITE_URL}/dashboard/certifications`, label: 'Open my certificate' })}
       `;
       break;
 
-    // CATEGORY 6: TRANSACTIONAL NOTIFICATIONS
+    /* ---------------- CATEGORY 6: TRANSACTIONAL ---------------- */
     case 'transactional_alert_v1':
-      subject = `🔒 SkillBun Account Security & Authentication Notice for ${name}`;
+      subject = 'A new sign-in to your SkillBun account';
+      eyebrow = 'Security notice';
+      docTag = 'Security';
+      headline = 'New sign-in detected';
+      lede = 'We noticed a sign-in to your SkillBun account.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🔒 Security Notice
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Account Security Alert
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Important authentication alert for ${name}.
-          </p>
-        </div>
-
-        <p>Hi ${name}, this is an automated security notification regarding your account associated with <strong>${email}</strong>.</p>
-
-        <div class="box-dark" style="background-color: #0d1117; border: 1.5px solid #30363d; border-radius: 14px; padding: 20px; margin: 22px 0;">
-          <div style="font-weight: 700; color: #ffffff; margin-bottom: 6px;">Account Details:</div>
-          <div style="color: #8b949e; font-size: 14px; line-height: 1.6;">
-            Email: ${email}<br>
-            Academic Track: ${degree}<br>
-            Status: Active Secured
-          </div>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/dashboard" style="display: inline-block; background-color: #3b82f6; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,130,246,0.45);">
-            🔒 Go to Dashboard Security →
-          </a>
-        </div>
+        ${emailCredentialStrip(
+          [
+            ['Account', email || 'your SkillBun account'],
+            ['Event', 'Successful sign-in'],
+          ],
+          { title: 'Event record' }
+        )}
+        ${emailText('If this was you, no action is needed.')}
+        ${emailNote('If you don’t recognise this activity, change your password right away and review your active sessions.', 'danger')}
+        ${emailButton({ href: `${SITE_URL}/settings`, label: 'Review account security' })}
       `;
       break;
 
     case 'transactional_alert_v2':
-      subject = `🛡️ Password & Login Session Security Guard Update for ${name}`;
+      subject = 'Your SkillBun password was changed';
+      eyebrow = 'Security notice';
+      docTag = 'Security';
+      headline = 'Password changed';
+      lede = 'The password for your SkillBun account was updated.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🛡️ Login Session Guard
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Session Guard Status
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Authentication session update for ${name} (${email}).
-          </p>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/settings" style="display: inline-block; background-color: #3b82f6; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,130,246,0.45);">
-            🛡️ Manage Security Settings →
-          </a>
-        </div>
+        ${emailCredentialStrip(
+          [
+            ['Account', email || 'your SkillBun account'],
+            ['Event', 'Password updated'],
+          ],
+          { title: 'Event record' }
+        )}
+        ${emailText('If you made this change, you’re all set — nothing else to do.')}
+        ${emailNote('If this wasn’t you, secure your account immediately by resetting your password.', 'danger')}
+        ${emailButton({ href: `${SITE_URL}/settings`, label: 'Manage security settings' })}
       `;
       break;
 
     case 'transactional_alert_v3':
-      subject = `🔑 Critical Account Verification & Credential Status for ${name}`;
+      subject = 'An update to your SkillBun account';
+      eyebrow = 'Account notice';
+      docTag = 'Account';
+      headline = 'Your account was updated';
+      lede = 'This is a routine notice about your SkillBun account.';
       contentHtml = `
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="display: inline-block; background-color: rgba(59,130,246,0.15); color: #3b82f6; padding: 6px 18px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px;">
-            🔑 Credential Audit
-          </div>
-          <h1 class="text-title" style="font-size: 24px; font-weight: 800; color: #ffffff; margin: 0 0 8px 0;">
-            Account Verification Notice
-          </h1>
-          <p class="text-subtle" style="color: #8b949e; margin: 0; font-size: 14px;">
-            Credential and profile status audit for ${name}.
-          </p>
-        </div>
-
-        <div style="text-align: center; margin: 32px 0 16px 0;">
-          <a href="${SITE_URL}/dashboard" style="display: inline-block; background-color: #3b82f6; color: #ffffff; font-weight: 800; font-size: 16px; padding: 15px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 20px rgba(59,130,246,0.45);">
-            🔑 Verify Account Credentials →
-          </a>
-        </div>
+        ${emailCredentialStrip(
+          [
+            ['Account', email || 'your SkillBun account'],
+            ['Programme', degree],
+          ],
+          { title: 'Account record' }
+        )}
+        ${emailText('No action is needed. If anything looks unfamiliar, you can review your account details and security settings at any time.')}
+        ${emailButton({ href: `${SITE_URL}/dashboard`, label: 'Go to dashboard' })}
       `;
       break;
 
     default:
-      subject = `🐰 Important Update from SkillBun.tech for ${name}`;
-      contentHtml = `<p>Hi ${name}, resume your learning journey on SkillBun.tech!</p>`;
+      subject = `An update from SkillBun for ${name}`;
+      eyebrow = 'Update';
+      docTag = 'Notice';
+      headline = `Hi ${name}`;
+      lede = 'Pick up your learning journey whenever you’re ready.';
+      contentHtml = emailButton({ href: `${SITE_URL}/roadmap`, label: 'Open SkillBun' });
   }
 
-  return { subject, contentHtml, isMarketing };
+  return { subject, eyebrow, headline, lede, docTag, chips, contentHtml, isMarketing };
 }

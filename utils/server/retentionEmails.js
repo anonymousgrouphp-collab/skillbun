@@ -1,119 +1,31 @@
 /**
- * SkillBun Ultra-Premium User Retention & Lifecycle Email System
- * Domain: https://skillbun.tech
- * 
- * Features:
- * - Base HTML email wrapper with automatic system dark/light theme support (prefers-color-scheme)
- * - Dynamic Candidate Auto-Fill ({name}, {email}, {roadmapTitle}, {progressCount}, {degree})
- * - Compliance: Discreet unsubscribe link to https://skillbun.tech/settings?action=unsubscribe on marketing emails.
+ * SkillBun Retention Email Renderer
+ *
+ * Bridges the template catalogue to the email design system: escapes dynamic
+ * data once, then hands the hero fields and composed body to buildEmail().
  */
 
 import { RETENTION_TEMPLATES, renderTemplateContent } from './retentionTemplates.js';
+import { buildEmail, buildBaseEmailWrapper, escapeHtml } from './emailTheme.js';
 
-const SITE_URL = 'https://skillbun.tech';
+export { RETENTION_TEMPLATES, buildBaseEmailWrapper, escapeHtml };
 
-export { RETENTION_TEMPLATES };
-
-export function escapeHtml(value) {
+/**
+ * Exact inverse of escapeHtml, for the one field that is not HTML.
+ *
+ * Templates compose the subject from the same pre-escaped values they use in the
+ * body, but a Subject header is plain text — an inbox shows the entity verbatim,
+ * so "AI &amp; Machine Learning" is what the student would read. `&amp;` is
+ * decoded last so an escaped entity in the source ("&amp;lt;") unwinds one level
+ * only, not two.
+ */
+function decodeHtmlEntities(value) {
   return String(value ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-export function buildBaseEmailWrapper(contentHtml, titleText, isMarketing = true, email = '') {
-  const unsubscribeUrl = `${SITE_URL}/settings?action=unsubscribe&email=${encodeURIComponent(email)}`;
-
-  return `
-<!DOCTYPE html>
-<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="light dark">
-  <meta name="supported-color-schemes" content="light dark">
-  <title>${escapeHtml(titleText)}</title>
-  <style>
-    :root {
-      color-scheme: light dark;
-      supported-color-schemes: light dark;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100% !important;
-      -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-      background-color: #f4f6f8;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
-    @media (prefers-color-scheme: dark) {
-      .email-bg { background-color: #06090e !important; }
-      .email-card { background-color: #0d1117 !important; border-color: #21262d !important; box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important; }
-      .header-bg { background: linear-gradient(180deg, rgba(0,229,153,0.12) 0%, rgba(13,17,23,0) 100%) !important; border-bottom-color: #00e599 !important; }
-      .brand-wordmark { color: #00e599 !important; }
-      .brand-subtitle { color: #8b949e !important; }
-      .text-primary { color: #e6edf3 !important; }
-      .text-subtle { color: #8b949e !important; }
-      .text-title { color: #ffffff !important; }
-      .text-accent { color: #00e599 !important; }
-      .badge-pill { background-color: rgba(0,229,153,0.15) !important; color: #00e599 !important; border-color: rgba(0,229,153,0.3) !important; }
-      .box-card { background-color: #161b22 !important; border-color: #30363d !important; color: #e6edf3 !important; }
-      .box-instructions { background-color: rgba(0,229,153,0.08) !important; border-left-color: #00e599 !important; color: #c9d1d9 !important; }
-      .instructions-heading { color: #ffffff !important; }
-      .table-label { color: #8b949e !important; }
-      .table-val { color: #ffffff !important; }
-      .footer-bg { background-color: #090d12 !important; border-top-color: #21262d !important; }
-      .footer-text { color: #6e7681 !important; }
-      .footer-link { color: #8b949e !important; }
-      .divider { border-top-color: #21262d !important; }
-    }
-  </style>
-</head>
-<body class="email-bg" style="margin: 0; padding: 0; background-color: #f4f6f8;">
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="email-bg" style="background-color: #f4f6f8; padding: 32px 12px;">
-    <tr>
-      <td align="center">
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="email-card" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
-          
-          <!-- SkillBun Brand Header (Unique Wordmark Lockup per AGENTS.md) -->
-          <tr>
-            <td class="header-bg" style="padding: 28px 24px 20px 24px; text-align: center; border-bottom: 2px solid #00b87a; background: linear-gradient(180deg, rgba(0,184,122,0.08) 0%, rgba(255,255,255,0) 100%);">
-              <a href="${SITE_URL}" target="_blank" style="text-decoration: none; display: inline-block;">
-                <div style="font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 32px; font-weight: 900; color: #008751; letter-spacing: 2px; line-height: 1.2;" class="brand-wordmark">
-                  ꌗꀘꀤ꒒꒒ꌃꀎꈤ
-                </div>
-                <div style="font-size: 11px; font-weight: 700; color: #64748b; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 8px;" class="brand-subtitle">
-                  SKILLBUN.TECH &bull; HOP INTO THE RIGHT TECH CAREER &bull; 100% FREE
-                </div>
-              </a>
-            </td>
-          </tr>
-
-          <!-- Email Content Body -->
-          <tr>
-            <td class="text-primary" style="padding: 32px 32px 28px 32px; color: #1e293b; font-size: 15px; line-height: 1.65;">
-              ${contentHtml}
-            </td>
-          </tr>
-
-          <!-- Discreet Ultra-Compact Footer -->
-          <tr>
-            <td class="footer-bg" style="background-color: #f8fafc; padding: 14px 24px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 11px; color: #94a3b8; line-height: 1.4;">
-              <span class="footer-text" style="color: #94a3b8;">SkillBun.tech</span>
-              ${isMarketing ? ` • <a href="${unsubscribeUrl}" target="_blank" class="footer-link" style="color: #64748b; text-decoration: underline;">Unsubscribe / Preferences</a>` : ''}
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-  `;
+    .replaceAll('&#39;', "'")
+    .replaceAll('&quot;', '"')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&amp;', '&');
 }
 
 export function generateRetentionEmailHtml(templateId, data = {}) {
@@ -123,15 +35,24 @@ export function generateRetentionEmailHtml(templateId, data = {}) {
   const progressCount = data.progressCount || 12;
   const degree = escapeHtml(data.degree || 'B.Tech - Computer Science');
 
-  const { subject, contentHtml, isMarketing } = renderTemplateContent(templateId, {
-    name,
+  const { subject, eyebrow, headline, lede, docTag, chips, contentHtml, isMarketing } = renderTemplateContent(
+    templateId,
+    { name, email, roadmapTitle, progressCount, degree }
+  );
+
+  const plainSubject = decodeHtmlEntities(subject);
+
+  const html = buildEmail({
+    title: plainSubject,
+    eyebrow,
+    headline,
+    lede,
+    docTag,
+    chips,
+    contentHtml,
+    isMarketing,
     email,
-    roadmapTitle,
-    progressCount,
-    degree,
   });
 
-  const html = buildBaseEmailWrapper(contentHtml, subject, isMarketing, email);
-
-  return { subject, html };
+  return { subject: plainSubject, html };
 }
