@@ -61,6 +61,14 @@ export function getOpenRouterApiKey() {
   return getFirstNonEmpty(process.env.OPENROUTER_API_KEY)
 }
 
+export function getTokenRouterApiKey() {
+  return getFirstNonEmpty(process.env.TOKENROUTER_API_KEY)
+}
+
+export function getTokenRouterModel() {
+  return getFirstNonEmpty(process.env.TOKENROUTER_MODEL, 'z-ai/glm-5.3-free')
+}
+
 export function getOllamaBaseUrl() {
   return getFirstNonEmpty(process.env.OLLAMA_BASE_URL)
 }
@@ -225,4 +233,3 @@ export function isRedisConfigured() {
 export function getWorkforceEncryptionKey() {
   return getFirstNonEmpty(process.env.WORKFORCE_ENCRYPTION_KEY)
 }
-

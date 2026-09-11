@@ -69,21 +69,28 @@ export async function fetchSecurityConfig(state) {
 
 export async function verifyHumanProof(state, renderCaptchaCallback) {
   restoreHumanProof(state);
+  // Old clients cached an unsigned placeholder that the server cannot verify.
+  if (state.humanProofToken === 'dev-human-proof-token') clearHumanProof(state);
   if (hasFreshHumanProof(state)) {
     return true;
   }
 
-  const isLocalhost = typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-  const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
+  if (state.securityConfig.captchaEnabled && !state.captchaToken) {
+    const isLocalhost = typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
 
-  if (!state.securityConfig.captchaEnabled || isLocalhost || bypassKey === 'bypass-captcha-dev') {
-    persistHumanProof(state, 'dev-human-proof-token', Date.now() + 3600 * 1000);
-    return true;
+    if (isLocalhost || bypassKey === 'bypass-captcha-dev') {
+      state.captchaToken = 'bypass-captcha-dev';
+    } else if (renderCaptchaCallback) {
+      await renderCaptchaCallback();
+    }
+    if (!state.captchaToken) return false;
   }
 
   const body = state.securityConfig.captchaEnabled ? { token: state.captchaToken } : {};
   const headers = { 'Content-Type': 'application/json' };
+  const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
   if (state.captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
     headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
   }
@@ -261,4 +268,3 @@ export async function fetchQuizQuestions(state) {
 
   return await res.json();
 }
-

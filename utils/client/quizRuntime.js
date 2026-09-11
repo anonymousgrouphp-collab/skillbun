@@ -191,6 +191,19 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
     return normalizeQuizResponse(state, parsedJSON);
   }
 
+  async function callGeminiWithTimeout(promptText) {
+    let timer;
+    try {
+      // Allow the server's bounded provider chain to finish before using local results.
+      return await Promise.race([
+        callGemini(promptText),
+        new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Quiz AI timeout')), 90000); })
+      ]);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
   const fallbackCatalog = {
     // Systems
     fullstack: { title: 'Full Stack Web Developer', desc: 'Build scalable web applications end-to-end with modern frontend and backend frameworks.', salary: '$75k - $130k / yr (₹6 - ₹14 LPA)', demand: 'High', skills: ['JavaScript', 'React/Next.js', 'Node.js', 'PostgreSQL', 'REST APIs'] },
@@ -401,8 +414,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
         if (loadingP) loadingP.textContent = 'SkillBun AI is generating your custom niche scenario...';
 
         try {
-          const aiQuestionTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('AI Call 1 timeout')), 3000));
-          const aiQuestion = await Promise.race([callGemini(getAiCall1Prompt()), aiQuestionTimeout]);
+          const aiQuestion = await callGeminiWithTimeout(getAiCall1Prompt());
 
           document.getElementById('quizLoading').style.display = 'none';
           document.getElementById('optionsContainer').style.display = 'grid';
@@ -457,8 +469,7 @@ RESPONSE FORMAT (JSON ONLY, no markdown):
       if (loadingP) loadingP.textContent = 'SkillBun AI is synthesizing your 10-question career matches...';
 
       try {
-        const aiTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('AI Call 2 timeout')), 3000));
-        const aiResults = await Promise.race([callGemini(getAiCall2Prompt()), aiTimeout]);
+        const aiResults = await callGeminiWithTimeout(getAiCall2Prompt());
 
         document.getElementById('quizLoading').style.display = 'none';
         showResults(state, aiResults);
