@@ -67,6 +67,64 @@ test('AI generation uses configured provider with validation and no student iden
     assert.ok(!JSON.stringify(payload).includes('sample@example.com'));
   } finally { if (previous === undefined) delete process.env.GROQ_API_KEY; else process.env.GROQ_API_KEY = previous; }
 });
+function configureDraftProviders(t, openrouter = '') {
+  for (const [key, value] of Object.entries({ GROQ_API_KEY: 'synthetic-not-a-real-key', OPENROUTER_API_KEY: openrouter, TOKENROUTER_API_KEY: '' })) {
+    const previous = process.env[key];
+    process.env[key] = value;
+    t.after(() => { if (previous === undefined) delete process.env[key]; else process.env[key] = previous; });
+  }
+}
+test('AI drafts use an available Groq model and leave room for reasoning plus JSON', async t => {
+  configureDraftProviders(t);
+  const result = await generateDraftContent('welcome', [], async (_url, options) => {
+    const body = JSON.parse(options.body);
+    // Reproduce the unavailable model response and token exhaustion from live checks.
+    if (body.model === 'llama-3.3-70b-versatile') return Response.json({ error: { code: 'model_not_found' } }, { status: 404 });
+    if (body.max_tokens < 3000 || body.reasoning_effort !== 'low') return Response.json({ choices: [{ finish_reason: 'length', message: { content: '' } }] });
+    return Response.json({ model: body.model, choices: [{ finish_reason: 'stop', message: { content: JSON.stringify(content) } }] });
+  });
+  assert.equal(result.provider, 'groq');
+  assert.equal(result.model, 'openai/gpt-oss-20b');
+  assert.deepEqual(result.content, content);
+});
+test('OpenRouter fallback can finish a draft when Groq is unavailable', async t => {
+  configureDraftProviders(t, 'synthetic-not-a-real-key');
+  const result = await generateDraftContent('welcome', [], async (url, options) => {
+    if (url.includes('groq.com')) return Response.json({}, { status: 404 });
+    const body = JSON.parse(options.body);
+    const complete = body.max_tokens >= 3000 && body.reasoning?.enabled === false;
+    return Response.json({ choices: [{ finish_reason: complete ? 'stop' : 'length', message: { content: complete ? JSON.stringify(content) : '' } }] });
+  });
+  assert.equal(result.provider, 'openrouter');
+  assert.deepEqual(result.content, content);
+});
+test('truncated or unsafe AI drafts never succeed, even if their JSON parses', async t => {
+  configureDraftProviders(t);
+  for (const choice of [
+    { finish_reason: 'length', message: { content: JSON.stringify(content) } },
+    { finish_reason: 'stop', message: { content: JSON.stringify({ ...content, subject: 'Guaranteed job' }) } },
+    { finish_reason: 'stop', message: { content: JSON.stringify({ ...content, intro: '<script>bad</script>' }) } },
+  ]) {
+    await assert.rejects(generateDraftContent('welcome', [], async () => Response.json({ choices: [choice] })), /AI drafting/);
+  }
+});
+test('TokenRouter drafts use the same strict validation and remain reusable', async t => {
+  configureDraftProviders(t);
+  process.env.GROQ_API_KEY = '';
+  process.env.TOKENROUTER_API_KEY = 'synthetic-not-a-real-key';
+  const result = await generateDraftContent('welcome', [], async (url, options) => {
+    assert.equal(url, 'https://api.tokenrouter.com/v1/chat/completions');
+    const body = JSON.parse(options.body);
+    assert.equal(body.model, 'z-ai/glm-5.3-free');
+    assert.equal(body.thinking, undefined);
+    assert.equal(body.reasoning, undefined);
+    assert.equal(body.max_tokens, 4096);
+    return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify(content) } }] });
+  });
+  assert.equal(result.provider, 'tokenrouter');
+  assert.deepEqual(result.content, content);
+  await assert.rejects(generateDraftContent('welcome', [], async () => Response.json({ choices: [{ message: { content: JSON.stringify({ ...content, subject: 'Guaranteed job' }) } }] })), /AI drafting/);
+});
 test('library reuses an unsent record rather than generating a duplicate', async () => {
   const docs = [{ id: 'one', data: () => ({ id: 'ai_sent' }) }, { id: 'two', data: () => ({ id: 'ai_new', content }) }];
   const query = { orderBy() { return this; }, limit() { return this; }, get: async () => ({ docs, size: 2 }) };

@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import {
   getGroqApiKey,
   getOpenRouterApiKey,
+  getTokenRouterApiKey,
   getGeminiRateLimitPerHour,
   getGeminiRateLimitPerMinute,
   getGeminiTimeoutMs,
@@ -11,8 +12,9 @@ import { getFirebaseAdminAuth } from '@/utils/server/firebaseAdmin'
 import { verifyHumanProofToken } from '@/utils/server/humanProof'
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { getClientAddress } from '@/utils/server/requestUtils'
+import { fetchTokenRouterCompletion } from '@/utils/server/tokenRouter'
 
-export const maxDuration = 30
+export const maxDuration = 90
 
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
@@ -68,7 +70,7 @@ function convertContentsToMessages(contents = []) {
 
 async function fetchGroqQuizResponse(apiKey, messages) {
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
+  const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 8_500))
   try {
     const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -77,15 +79,18 @@ async function fetchGroqQuizResponse(apiKey, messages) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'openai/gpt-oss-20b',
         messages,
         temperature: 0.7,
+        reasoning_effort: 'low',
+        max_tokens: 4096,
+        response_format: { type: 'json_object' },
       }),
       signal: controller.signal,
     })
     if (!res.ok) throw new Error(`Groq HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
@@ -93,7 +98,7 @@ async function fetchGroqQuizResponse(apiKey, messages) {
 
 async function fetchOpenRouterQuizResponse(apiKey, messages) {
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
+  const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 20_000))
   try {
     const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -104,15 +109,18 @@ async function fetchOpenRouterQuizResponse(apiKey, messages) {
         'X-Title': 'SkillBun Quiz Engine',
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-3.3-70b-instruct:free',
+        model: 'openrouter/free',
         messages,
         temperature: 0.7,
+        reasoning: { enabled: false },
+        max_tokens: 4096,
+        response_format: { type: 'json_object' },
       }),
       signal: controller.signal,
     })
     if (!res.ok) throw new Error(`OpenRouter HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
@@ -137,6 +145,13 @@ async function fetchPollinationsQuizResponse(messages) {
   } finally {
     clearTimeout(timeout)
   }
+}
+
+function getCompleteAiText(data) {
+  const choice = data?.choices?.[0]
+  if (choice?.finish_reason && choice.finish_reason !== 'stop') return ''
+  const text = choice?.message?.content
+  return typeof text === 'string' ? text.trim() : ''
 }
 
 function validatePayload(body) {
@@ -248,6 +263,10 @@ export async function POST(request) {
     // Multi-Provider AI Fallback Chain (100% Gemini-Free)
     if (getGroqApiKey()) {
       try { aiText = await fetchGroqQuizResponse(getGroqApiKey(), messages) } catch (e) { console.warn('Groq Quiz AI error:', e?.message) }
+    }
+
+    if (!aiText && getTokenRouterApiKey()) {
+      try { aiText = await fetchTokenRouterCompletion(getTokenRouterApiKey(), messages, { json: true }) } catch (e) { console.warn('TokenRouter Quiz AI error:', e?.message) }
     }
 
     if (!aiText && getOpenRouterApiKey()) {

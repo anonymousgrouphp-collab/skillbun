@@ -4,6 +4,7 @@ import {
   getGroqApiKey,
   getHuggingFaceApiKey,
   getOpenRouterApiKey,
+  getTokenRouterApiKey,
   getOllamaBaseUrl,
   getGeminiRateLimitPerMinute,
   getGeminiRateLimitPerHour,
@@ -14,8 +15,10 @@ import { verifyHumanProofToken } from '@/utils/server/humanProof'
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { generateOfflineCounsellorResponse } from '@/utils/server/counsellor/offlineEngine'
 import { getClientAddress } from '@/utils/server/requestUtils'
+import { fetchTokenRouterCompletion } from '@/utils/server/tokenRouter'
 
-export const maxDuration = 30
+// Allow the bounded provider chain and optional web lookups to reach offline fallback.
+export const maxDuration = 90
 
 const MAX_BODY_CHARS = 100_000
 const MAX_CONTENT_ITEMS = 60
@@ -283,20 +286,25 @@ async function fetchGroqResponse(apiKey, contents) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'openai/gpt-oss-20b',
         messages,
         temperature: 0.75,
-        max_tokens: 2048,
+        reasoning_effort: 'low',
+        max_tokens: 4096,
       }),
       signal: controller.signal,
     })
 
     if (!res.ok) throw new Error(`Groq HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
+}
+
+async function fetchTokenRouterResponse(apiKey, contents) {
+  return fetchTokenRouterCompletion(apiKey, await convertContentsToOpenAiMessages(contents))
 }
 
 async function fetchOpenRouterResponse(apiKey, contents) {
@@ -315,14 +323,15 @@ async function fetchOpenRouterResponse(apiKey, contents) {
         model: 'openrouter/free',
         messages,
         temperature: 0.75,
-        max_tokens: 2048,
+        reasoning: { enabled: false },
+        max_tokens: 4096,
       }),
       signal: controller.signal,
     })
 
     if (!res.ok) throw new Error(`OpenRouter HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
@@ -334,13 +343,14 @@ async function fetchHuggingFaceResponse(apiKey, contents) {
   const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 8_500))
 
   try {
-    const res = await fetch('https://api-inference.huggingface.co/models/Qwen/Qwen2.5-Coder-32B-Instruct/v1/chat/completions', {
+    const res = await fetch('https://router.huggingface.co/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
       },
       body: JSON.stringify({
+        model: 'Qwen/Qwen2.5-Coder-32B-Instruct',
         messages,
         temperature: 0.75,
         max_tokens: 2048,
@@ -350,7 +360,7 @@ async function fetchHuggingFaceResponse(apiKey, contents) {
 
     if (!res.ok) throw new Error(`HuggingFace HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
@@ -376,7 +386,7 @@ async function fetchOllamaResponse(baseUrl, contents) {
 
     if (!res.ok) throw new Error(`Ollama HTTP ${res.status}`)
     const data = await res.json()
-    return data?.choices?.[0]?.message?.content || ''
+    return getCompleteAiText(data)
   } finally {
     clearTimeout(timeout)
   }
@@ -410,6 +420,13 @@ async function fetchFreeOpenSourceLlamaResponse(contents) {
   }
 }
 
+
+function getCompleteAiText(data) {
+  const choice = data?.choices?.[0]
+  if (choice?.finish_reason && choice.finish_reason !== 'stop') return ''
+  const text = choice?.message?.content
+  return typeof text === 'string' ? text.trim() : ''
+}
 
 function formatCounsellorResponse(text) {
   return {
@@ -506,6 +523,8 @@ export async function POST(request) {
     if (!textResponse && preferredProvider !== 'auto' && preferredProvider !== 'free-opensource') {
       if (preferredProvider === 'groq' && getGroqApiKey()) {
         try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq provider error:', e?.message) }
+      } else if (preferredProvider === 'tokenrouter' && getTokenRouterApiKey()) {
+        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents) } catch (e) { console.warn('TokenRouter provider error:', e?.message) }
       } else if (preferredProvider === 'openrouter' && getOpenRouterApiKey()) {
         try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter provider error:', e?.message) }
       } else if (preferredProvider === 'huggingface' && getHuggingFaceApiKey()) {
@@ -517,9 +536,14 @@ export async function POST(request) {
 
     // Auto strategy: Strictly ordered by LLM Intelligence & Worthiness Rating
     if (!textResponse && (preferredProvider === 'auto' || preferredProvider === 'free-opensource')) {
-      // 1. [Rank 1 - 10/10 Worthiness] Groq Llama 3.3 70B (Flagship 70B Model + LPU Hardware)
+      // 1. Primary Groq model, with a bounded reasoning and response budget.
       if (getGroqApiKey()) {
         try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq LPU error:', e?.message) }
+      }
+
+      // Optional TokenRouter backup; existing providers remain available after it.
+      if (!textResponse && getTokenRouterApiKey()) {
+        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents) } catch (e) { console.warn('TokenRouter error:', e?.message) }
       }
 
       // 2. [Rank 2 - 9.5/10 Worthiness] Hugging Face Qwen 2.5 Coder 32B Instruct (Deep Coding & Tech Logic)
