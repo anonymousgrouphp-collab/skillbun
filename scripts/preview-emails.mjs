@@ -3,12 +3,14 @@ import http from 'node:http';
 import path from 'node:path';
 import nodemailer from 'nodemailer';
 import { emailSamples } from '../tests/fixtures/emailSamples.mjs';
+import { emailDraftSamples } from '../tests/fixtures/emailDraftSamples.mjs';
 import { prepareEmailPreview, emailHtmlToText } from '../utils/shared/emailContent.js';
 
 const out = path.resolve('output/email-preview');
 await fs.mkdir(out, { recursive: true });
-const samples = await emailSamples();
-const stress = await emailSamples({ name: 'Sample O\'Connor & Team <QA>', email: 'sample+qa@example.com', roadmapTitle: 'Distributed Systems and Cloud Infrastructure '.repeat(3), progressCount: 40, totalTopics: 40 });
+const samples = { ...emailDraftSamples(), ...await emailSamples() };
+const stressData = { name: 'Sample O\'Connor & Team <QA>', email: 'sample+qa@example.com', roadmapTitle: 'Distributed Systems and Cloud Infrastructure '.repeat(3), progressCount: 40, totalTopics: 40 };
+const stress = { ...emailDraftSamples(stressData), ...await emailSamples(stressData) };
 const variants = {};
 const stream = nodemailer.createTransport({ streamTransport: true, buffer: true, newline: 'windows' });
 for (const [id, mail] of Object.entries(samples)) {

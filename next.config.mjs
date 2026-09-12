@@ -27,6 +27,8 @@ const nextConfig = {
   serverExternalPackages: ['@google-cloud/firestore', '@google-cloud/storage', 'nodemailer'],
   outputFileTracingIncludes: {
     '/api/docs/[slug]/[topicId]': ['./content/docs/??/*.sbv'],
+    '/api/counsellor': ['./public/data/roadmaps/*.json', './content/rag/embeddings.json'],
+    '/api/admin/emails/drafts': ['./public/data/roadmaps/*.json', './content/rag/embeddings.json'],
   },
   async rewrites() {
     return [

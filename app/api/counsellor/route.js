@@ -16,6 +16,7 @@ import { checkServerRateLimit } from '@/utils/server/rateLimitStore'
 import { generateOfflineCounsellorResponse } from '@/utils/server/counsellor/offlineEngine'
 import { getClientAddress } from '@/utils/server/requestUtils'
 import { fetchTokenRouterCompletion } from '@/utils/server/tokenRouter'
+import { prepareCounsellorKnowledge, correctCounsellorAnswer, groundedCounsellorFallback } from '@/utils/server/rag/counsellor'
 
 // Allow the bounded provider chain and optional web lookups to reach offline fallback.
 export const maxDuration = 90
@@ -101,140 +102,8 @@ function validatePayload(body) {
   return ''
 }
 
-const ALL_SKILLBUN_ROADMAPS = [
-  'ai_ml_engineer', 'ai_research_engineer', 'analytics_engineer', 'android', 'angular_developer', 'api_platform_engineer', 'application_security_engineer', 'ar_vr_developer', 'aws_cloud_engineer', 'azure_cloud_engineer', 'backend', 'bi_developer', 'blockchain_web3', 'business_analyst', 'c_cpp_systems_developer', 'cloud_architect', 'cloud_security_engineer', 'computer_vision_engineer', 'content_designer', 'cybersecurity', 'data_analyst', 'data_engineering', 'data_governance_specialist', 'data_science', 'data_visualization_specialist', 'database_admin', 'design_systems_engineer', 'desktop_app_developer', 'devops_cloud', 'dfir_analyst', 'digital_marketing_analyst', 'dotnet_developer', 'elixir_phoenix_developer', 'embedded_iot', 'finops_engineer', 'flutter_developer', 'frontend', 'fullstack', 'game_development', 'gcp_cloud_engineer', 'general', 'generative_ai_app_developer', 'geospatial_data_scientist', 'go_developer', 'graphql_api_developer', 'grc_analyst', 'iam_engineer', 'ios_developer', 'java_developer', 'kubernetes_engineer', 'linux_system_admin', 'llmops_engineer', 'macos_developer', 'malware_analyst', 'mlops_engineer', 'network_engineer', 'nextjs_developer', 'nlp_engineer', 'no_code_low_code_developer', 'observability_engineer', 'penetration_tester', 'php_laravel_developer', 'platform_engineer', 'product_designer', 'product_manager', 'prompt_engineer', 'python_developer', 'qa_automation', 'react_native_developer', 'recommendation_systems_engineer', 'red_team_operator', 'reinforcement_learning_engineer', 'release_engineer', 'robotics_engineer', 'rpa_developer', 'ruby_on_rails_developer', 'rust_developer', 'salesforce_developer', 'scala_developer', 'scrum_master_agile_coach', 'seo_specialist', 'serverless_developer', 'service_designer', 'shopify_developer', 'site_reliability_engineer', 'soc_analyst', 'speech_ai_engineer', 'svelte_developer', 'technical_artist', 'technical_support_engineer', 'technical_writing', 'terraform_iac_engineer', 'threat_intelligence_analyst', 'ui_ux_design', 'unity_developer', 'unreal_engine_developer', 'ux_researcher', 'vue_developer', 'windows_app_developer', 'wordpress_developer'
-]
-
-function formatRoadmapTitle(slug) {
-  return slug
-    .split('_')
-    .map((w) => w.length <= 3 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ')
-}
-
-async function fetchFreeDuckDuckGoSearchContext(query) {
-  if (!query || query.length < 3) return ''
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 3_500)
-
-  try {
-    const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`
-    const res = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      signal: controller.signal,
-    })
-
-    if (!res.ok) return ''
-    const html = await res.text()
-
-    const snippets = []
-    const regex = /<a class="result__snippet[^>]*>(.*?)<\/a>/g
-    let match
-    while ((match = regex.exec(html)) !== null && snippets.length < 3) {
-      const cleanText = match[1].replace(/<[^>]+>/g, '').trim()
-      if (cleanText) snippets.push(cleanText)
-    }
-
-    if (snippets.length === 0) return ''
-    return `\nLIVE REALTIME WEB SEARCH DATA (FREE DUCKDUCKGO WEB SEARCH):
-${snippets.map((s, i) => `- Result ${i + 1}: ${s}`).join('\n')}`
-  } catch {
-    return ''
-  } finally {
-    clearTimeout(timeout)
-  }
-}
-
-async function retrieveSkillbunKnowledge(contents = []) {
-  const lastMsg = contents.slice(-3).map((item) => {
-    return Array.isArray(item?.parts) ? item.parts.map((p) => p?.text || '').join(' ') : ''
-  }).join(' ').toLowerCase()
-
-  const isIdentityOrTechStackQuery = /api|llm|model|gemini|gpt|chatgpt|openai|groq|llama|backend|architecture|how do you work|which model|who created you/i.test(lastMsg)
-
-  let identitySnippet = ''
-  if (isIdentityOrTechStackQuery) {
-    identitySnippet = `\nCRITICAL IDENTITY MANDATE:
-- You are ALWAYS "BunBot", SkillBun's native AI Career Advisor.
-- You must NEVER state or imply that you use Gemini, Llama, OpenAI, ChatGPT, Groq, or any third-party API or LLM provider.
-- If asked about APIs, models, backend technology, or how you work, ALWAYS answer: "I am BunBot, SkillBun's custom AI Career Advisor! I am powered directly by SkillBun's native career discovery engine built for computer science and tech students worldwide."\n`
-  }
-
-  // Non-Tech / Off-Topic Refusal Guard
-  const OFF_TOPIC_REGEX = /chai|tea|recipe|cook|cricket|football|movie|song|poem|joke|weather|politics|love|dating|astrology|food/i;
-  const IS_TECH_KEYWORD = /tech|code|program|developer|engineer|software|java|python|js|react|html|css|ai|ml|data|sql|cloud|aws|devops|roadmap|college|bca|btech|mca|job|career|salary|lpa|skillbun|contact|harsh/i;
-
-  let domainRefusalSnippet = ''
-  if (OFF_TOPIC_REGEX.test(lastMsg) && !IS_TECH_KEYWORD.test(lastMsg)) {
-    domainRefusalSnippet = `\nSTRICT DOMAIN REFUSAL MANDATE:
-- The user query is non-tech or off-topic (e.g. recipes, tea/chai, sports, general entertainment).
-- YOU MUST STRICTLY REFUSE TO ANSWER with this exact message:
-"I am BunBot, SkillBun's AI Career Advisor specialized strictly in tech careers, computer science, software engineering, and SkillBun roadmaps! 🤖\n\nThis question seems to be outside my scope of tech career guidance.\n\n💡 *If you think we made a mistake, please take a screenshot and email us at **harsh@skillbun.tech**.*"\n`
-  }
-
-  // Detect Live Web Search Intent (news, 2026, latest, current, trend, exam date, hiring)
-  const requiresWebSearch = /latest|news|2025|2026|current|trend|update|cutoff|exam date|hiring|job market/i.test(lastMsg)
-  let liveSearchSnippet = ''
-  if (requiresWebSearch) {
-    liveSearchSnippet = await fetchFreeDuckDuckGoSearchContext(lastMsg)
-  }
-
-  const isRoadmapCountQuery = /how many roadmaps|total roadmaps|number of roadmaps|roadmap count|how many tracks|how many paths/i.test(lastMsg)
-  let countMandateSnippet = ''
-  if (isRoadmapCountQuery) {
-    countMandateSnippet = `\nSTRICT ROADMAP COUNT & LINKING MANDATE:
-- SkillBun features exactly 100+ interactive career roadmaps covering Web Dev, AI/ML, DevOps, Cybersecurity, Data Science, Game Dev, Mobile, Cloud, Systems, and more!
-- Always state clearly that SkillBun has 100+ roadmaps.
-- MANDATORY LINKING RULE: EVERY roadmap or domain category you list MUST be formatted as an active Markdown link to its SkillBun roadmap URL!
-  Examples of correct markdown links you MUST use:
-  - [Frontend Developer](/roadmap/frontend)
-  - [Backend Developer](/roadmap/backend)
-  - [Fullstack Developer](/roadmap/fullstack)
-  - [AI/ML Engineer](/roadmap/ai_ml_engineer)
-  - [Data Science](/roadmap/data_science)
-  - [DevOps & Cloud](/roadmap/devops_cloud)
-  - [Cybersecurity](/roadmap/cybersecurity)
-  - [Android Developer](/roadmap/android)
-  - [iOS Developer](/roadmap/ios)
-  - [Game Development](/roadmap/game_development)
-- NEVER list plain text domain/roadmap names without clickable Markdown links!\n`
-  }
-
-  // Match user message against all 100 SkillBun roadmap slugs & keywords
-  const matchedSlugs = ALL_SKILLBUN_ROADMAPS.filter((slug) => {
-    const titleTokens = slug.split('_')
-    return titleTokens.some((token) => token.length > 2 && lastMsg.includes(token))
-  })
-
-  const topMatches = matchedSlugs.slice(0, 4)
-
-  if (topMatches.length === 0) {
-    return `${identitySnippet}${domainRefusalSnippet}${liveSearchSnippet}${countMandateSnippet}\nSKILLBUN INTERNAL KNOWLEDGE (RAG RETRIEVED):
-- Platform: SkillBun (AI-Powered Career Discovery Platform for Computer Science & Tech Students Worldwide)
-- Total Catalog Size: Exactly 100+ interactive roadmaps available across Web Dev, AI/ML, DevOps, Data Science, Cybersecurity, Cloud, Mobile, Systems, and Game Dev.
-- Founder & Core Team: SkillBun was founded by Harsh (harsh@skillbun.tech) to empower computer science, software engineering, and tech students worldwide with AI-powered career discovery, 100+ roadmaps, and verifiable certifications!
-- Key Roadmaps: 100 catalog roadmaps available including Frontend ([Frontend](/roadmap/frontend)), Fullstack ([Fullstack](/roadmap/fullstack)), AI/ML ([AI/ML](/roadmap/ai_ml_engineer)), Data Science ([Data Science](/roadmap/data_science)), DevOps ([DevOps](/roadmap/devops_cloud)), Cybersecurity ([Cybersecurity](/roadmap/cybersecurity)).
-- Certification: Verifiable Certificates awarded upon reaching 60% roadmap progress & scoring 70%+ on proctored assessment (/roadmap/[slug]/certify).
-- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support or asks about the founder!`
-  }
-
-  const ragSnippets = topMatches.map((slug) => {
-    const title = formatRoadmapTitle(slug)
-    return `- SkillBun Track: ${title} | Roadmap Link: [${title}](/roadmap/${slug}) | Available on SkillBun`
-  }).join('\n')
-
-  return `${identitySnippet}${domainRefusalSnippet}${liveSearchSnippet}${countMandateSnippet}\nSKILLBUN INTERNAL KNOWLEDGE BASE (RETRIEVED FOR THIS USER QUERY):
-${ragSnippets}
-- SkillBun Total Catalog: Exactly 100+ interactive roadmaps available across all major tech domains.
-- SkillBun Founder: Harsh (harsh@skillbun.tech)
-- SkillBun Platform Links: Always include the exact markdown roadmap links provided above in your response so students can click directly into SkillBun roadmaps!
-- MANDATE: DO NOT append support email or contact details at the end of normal responses unless the user explicitly asks how to contact support or asks about the founder!`
-}
-
-async function convertContentsToOpenAiMessages(contents = []) {
-  const ragContext = await retrieveSkillbunKnowledge(contents)
+async function convertContentsToOpenAiMessages(contents = [], prepared) {
+  const ragContext = (prepared || await prepareCounsellorKnowledge(contents)).context
 
   const systemMessage = {
     role: 'system',
@@ -273,8 +142,8 @@ ${ragContext}`
   return messages
 }
 
-async function fetchGroqResponse(apiKey, contents) {
-  const messages = await convertContentsToOpenAiMessages(contents)
+async function fetchGroqResponse(apiKey, contents, preparedMessages) {
+  const messages = preparedMessages || await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 8_500))
 
@@ -303,12 +172,12 @@ async function fetchGroqResponse(apiKey, contents) {
   }
 }
 
-async function fetchTokenRouterResponse(apiKey, contents) {
-  return fetchTokenRouterCompletion(apiKey, await convertContentsToOpenAiMessages(contents))
+async function fetchTokenRouterResponse(apiKey, contents, preparedMessages) {
+  return fetchTokenRouterCompletion(apiKey, preparedMessages || await convertContentsToOpenAiMessages(contents))
 }
 
-async function fetchOpenRouterResponse(apiKey, contents) {
-  const messages = await convertContentsToOpenAiMessages(contents)
+async function fetchOpenRouterResponse(apiKey, contents, preparedMessages) {
+  const messages = preparedMessages || await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 8_500))
 
@@ -337,8 +206,8 @@ async function fetchOpenRouterResponse(apiKey, contents) {
   }
 }
 
-async function fetchHuggingFaceResponse(apiKey, contents) {
-  const messages = await convertContentsToOpenAiMessages(contents)
+async function fetchHuggingFaceResponse(apiKey, contents, preparedMessages) {
+  const messages = preparedMessages || await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 8_500))
 
@@ -366,8 +235,8 @@ async function fetchHuggingFaceResponse(apiKey, contents) {
   }
 }
 
-async function fetchOllamaResponse(baseUrl, contents) {
-  const messages = await convertContentsToOpenAiMessages(contents)
+async function fetchOllamaResponse(baseUrl, contents, preparedMessages) {
+  const messages = preparedMessages || await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), getGeminiTimeoutMs())
 
@@ -392,8 +261,8 @@ async function fetchOllamaResponse(baseUrl, contents) {
   }
 }
 
-async function fetchFreeOpenSourceLlamaResponse(contents) {
-  const messages = await convertContentsToOpenAiMessages(contents)
+async function fetchFreeOpenSourceLlamaResponse(contents, preparedMessages) {
+  const messages = preparedMessages || await convertContentsToOpenAiMessages(contents)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), Math.min(getGeminiTimeoutMs(), 10_000))
 
@@ -516,21 +385,23 @@ export async function POST(request) {
 
     const preferredProvider = getCounsellorAiProvider()
     const contents = body.contents || []
+    const prepared = await prepareCounsellorKnowledge(contents)
+    const preparedMessages = await convertContentsToOpenAiMessages(contents, prepared)
 
     let textResponse = ''
 
     // Preferred provider check if specifically set
     if (!textResponse && preferredProvider !== 'auto' && preferredProvider !== 'free-opensource') {
       if (preferredProvider === 'groq' && getGroqApiKey()) {
-        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq provider error:', e?.message) }
+        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents, preparedMessages) } catch (e) { console.warn('Groq provider error:', e?.message) }
       } else if (preferredProvider === 'tokenrouter' && getTokenRouterApiKey()) {
-        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents) } catch (e) { console.warn('TokenRouter provider error:', e?.message) }
+        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents, preparedMessages) } catch (e) { console.warn('TokenRouter provider error:', e?.message) }
       } else if (preferredProvider === 'openrouter' && getOpenRouterApiKey()) {
-        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter provider error:', e?.message) }
+        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents, preparedMessages) } catch (e) { console.warn('OpenRouter provider error:', e?.message) }
       } else if (preferredProvider === 'huggingface' && getHuggingFaceApiKey()) {
-        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace provider error:', e?.message) }
+        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents, preparedMessages) } catch (e) { console.warn('HuggingFace provider error:', e?.message) }
       } else if (preferredProvider === 'ollama' && getOllamaBaseUrl()) {
-        try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents) } catch (e) { console.warn('Ollama provider error:', e?.message) }
+        try { textResponse = await fetchOllamaResponse(getOllamaBaseUrl(), contents, preparedMessages) } catch (e) { console.warn('Ollama provider error:', e?.message) }
       }
     }
 
@@ -538,40 +409,39 @@ export async function POST(request) {
     if (!textResponse && (preferredProvider === 'auto' || preferredProvider === 'free-opensource')) {
       // 1. Primary Groq model, with a bounded reasoning and response budget.
       if (getGroqApiKey()) {
-        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents) } catch (e) { console.warn('Groq LPU error:', e?.message) }
+        try { textResponse = await fetchGroqResponse(getGroqApiKey(), contents, preparedMessages) } catch (e) { console.warn('Groq LPU error:', e?.message) }
       }
 
       // Optional TokenRouter backup; existing providers remain available after it.
       if (!textResponse && getTokenRouterApiKey()) {
-        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents) } catch (e) { console.warn('TokenRouter error:', e?.message) }
+        try { textResponse = await fetchTokenRouterResponse(getTokenRouterApiKey(), contents, preparedMessages) } catch (e) { console.warn('TokenRouter error:', e?.message) }
       }
 
       // 2. [Rank 2 - 9.5/10 Worthiness] Hugging Face Qwen 2.5 Coder 32B Instruct (Deep Coding & Tech Logic)
       if (!textResponse && getHuggingFaceApiKey()) {
-        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents) } catch (e) { console.warn('HuggingFace error:', e?.message) }
+        try { textResponse = await fetchHuggingFaceResponse(getHuggingFaceApiKey(), contents, preparedMessages) } catch (e) { console.warn('HuggingFace error:', e?.message) }
       }
 
       // 3. [Rank 3 - 8.5/10 Worthiness] OpenRouter Free Gateway (Multi-Model Free Router)
       if (!textResponse && getOpenRouterApiKey()) {
-        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents) } catch (e) { console.warn('OpenRouter free error:', e?.message) }
+        try { textResponse = await fetchOpenRouterResponse(getOpenRouterApiKey(), contents, preparedMessages) } catch (e) { console.warn('OpenRouter free error:', e?.message) }
       }
 
       // 4. [Rank 4 - 8/10 Worthiness] Free Online Pollinations Serverless Llama
       if (!textResponse) {
-        try { textResponse = await fetchFreeOpenSourceLlamaResponse(contents) } catch (e) { console.warn('Free Pollinations Llama error:', e?.message) }
+        try { textResponse = await fetchFreeOpenSourceLlamaResponse(contents, preparedMessages) } catch (e) { console.warn('Free Pollinations Llama error:', e?.message) }
       }
     }
 
     // Ultimate Zero-Failure Fallback: Offline SkillBun Knowledge Engine
     if (!textResponse) {
-      textResponse = generateOfflineCounsellorResponse(contents)
+      textResponse = groundedCounsellorFallback(prepared) || generateOfflineCounsellorResponse(contents)
     }
 
     // Ironclad Brand Masking & Sanitize Filter
-    const lastUserQuery = contents.slice(-3).map((item) => {
-      return Array.isArray(item?.parts) ? item.parts.map((p) => p?.text || '').join(' ') : ''
-    }).join(' ')
+    const lastUserQuery = prepared.query
 
+    textResponse = correctCounsellorAnswer(textResponse, prepared.evidence)
     textResponse = applyStrictBrandMasking(textResponse)
     textResponse = stripUnsolicitedEmail(textResponse, lastUserQuery)
 

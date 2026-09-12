@@ -247,6 +247,35 @@ export function emailChipBlock({ eyebrow = '', title, meta = '', pins = 4 }) {
   </tr></table>`;
 }
 
+/**
+ * Learning schematic for every AI draft. Solid-cell nodes and connected traces
+ * communicate a suggested process, never a student's completion or progress.
+ * The motif is contained in the content; it works without images or gradients.
+ * title/detail are trusted HTML, while labels are escaped here.
+ */
+export function emailLearningGraphic({ label, title, detail, nodes }) {
+  const stages = nodes.slice(0, 3);
+  const route = stages.map((node, index) => `<td width="33%" align="center" style="width:33.33%; text-align:center; vertical-align:top; padding:0 3px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
+      <td width="50%" style="width:50%; vertical-align:middle;">${index ? `<div class="sb-tick" style="height:2px; background-color:${L.border}; font-size:0; line-height:0;">&nbsp;</div>` : ''}</td>
+      <td width="32" class="sb-frame sb-text" align="center" style="width:32px; min-width:32px; height:32px; border:1px solid ${L.border}; font-family:${MONO_FONT}; color:${L.text}; font-size:12px; font-weight:700; line-height:32px; text-align:center;">${String(index + 1).padStart(2, '0')}</td>
+      <td width="50%" style="width:50%; vertical-align:middle;">${index < stages.length - 1 ? `<div class="sb-tick" style="height:2px; background-color:${L.border}; font-size:0; line-height:0;">&nbsp;</div>` : ''}</td>
+    </tr></table>
+    <div class="sb-muted" style="font-family:${MONO_FONT}; margin-top:10px; font-size:10px; letter-spacing:0.5px; color:${L.muted}; line-height:1.5; overflow-wrap:anywhere;">${escapeHtml(node)}</div>
+  </td>`).join('');
+  return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="sb-learning-graphic" style="border-collapse:collapse; table-layout:fixed; margin:0 0 24px 0;">
+    <tr><td class="sb-strip" style="${perfboardBg(L)} border:1px solid ${L.hairline}; border-radius:10px; padding:22px 18px;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse;"><tr>
+        <td width="8" style="width:8px; vertical-align:middle;"><div class="sb-node-live" style="width:6px; height:6px; background-color:${L.brand}; font-size:0; line-height:0;">&nbsp;</div></td>
+        <td class="sb-faint" style="font-family:${MONO_FONT}; padding-left:8px; font-size:10px; font-weight:700; letter-spacing:1.1px; line-height:1.6; text-transform:uppercase; color:${L.faint};">${escapeHtml(label)}</td>
+      </tr></table>
+      <h2 class="sb-text" style="font-family:${DISPLAY_FONT}; margin:16px 0 10px; font-size:25px; font-weight:700; line-height:1.25; letter-spacing:-0.4px; color:${L.ink}; overflow-wrap:anywhere;">${title}</h2>
+      <p class="sb-muted" style="font-family:${BODY_FONT}; margin:0; font-size:14px; line-height:1.6; color:${L.muted}; overflow-wrap:anywhere;">${detail}</p>
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; table-layout:fixed; margin-top:24px;"><tr>${route}</tr></table>
+    </td></tr>
+  </table>`;
+}
+
 /** Section heading: a hairline rule with a small uppercase label under it. */
 export function emailSectionLabel(text) {
   return `<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse:collapse; margin:30px 0 16px 0;">
