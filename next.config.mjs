@@ -7,6 +7,17 @@ const firebaseProjectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'skillb
 const firebaseAuthOrigin = `https://${firebaseProjectId}.firebaseapp.com`
 const contentSecurityPolicy = buildContentSecurityPolicy()
 
+// ONNX ships binaries for every supported OS/architecture. Keep the build target's
+// native CPU runtime; SkillBun explicitly uses device: 'cpu' for both RAG models.
+const onnxRuntimeRoot = './node_modules/onnxruntime-node/bin/napi-v6'
+const onnxCpuTraceExcludes = [
+  ...['win32/x64', 'win32/arm64', 'darwin/x64', 'darwin/arm64', 'linux/x64', 'linux/arm64']
+    .filter(target => target !== process.platform + '/' + process.arch)
+    .map(target => onnxRuntimeRoot + '/' + target + '/**/*'),
+  onnxRuntimeRoot + '/linux/x64/libonnxruntime_providers_cuda.so',
+  onnxRuntimeRoot + '/linux/x64/libonnxruntime_providers_tensorrt.so',
+]
+
 const securityHeaders = [
   { key: 'Content-Security-Policy', value: contentSecurityPolicy },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -29,6 +40,9 @@ const nextConfig = {
     '/api/docs/[slug]/[topicId]': ['./content/docs/??/*.sbv'],
     '/api/counsellor': ['./public/data/roadmaps/*.json', './content/rag/embeddings.json'],
     '/api/admin/emails/drafts': ['./public/data/roadmaps/*.json', './content/rag/embeddings.json'],
+  },
+  outputFileTracingExcludes: {
+    '/*': onnxCpuTraceExcludes,
   },
   async rewrites() {
     return [
