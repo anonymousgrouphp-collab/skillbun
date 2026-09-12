@@ -28,6 +28,12 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci
+        env:
+          # The native CPU runtime is already bundled; GPU downloads are unused.
+          ONNXRUNTIME_NODE_INSTALL: skip
+
+      - name: Verify Native RAG Runtime
+        run: node --input-type=module -e "await import('@huggingface/transformers')"
 
       - name: Static Code Analysis (ESLint)
         run: npm run lint
