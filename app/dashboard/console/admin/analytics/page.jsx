@@ -53,6 +53,7 @@ export default function AnalyticsDashboardPage() {
   const [selectedTemplates, setSelectedTemplates] = useState({});
   const [preparedTemplates, setPreparedTemplates] = useState({});
   const [sendingEmailKey, setSendingEmailKey] = useState(null);
+  const [resettingSentCounters, setResettingSentCounters] = useState(false);
 
   const userEmail = (user?.email || '').trim().toLowerCase();
 
@@ -272,6 +273,111 @@ export default function AnalyticsDashboardPage() {
       setStatusMessage({ type: 'error', text: `❌ Failed to delete user: ${err.message}` });
     } finally {
       setDeletingUid(null);
+    }
+  };
+
+  // Reset All Sent Email Counters Handler
+  const handleResetAllSentCounters = async () => {
+    const confirmMsg = `⚠️ RESET ALL SENT EMAIL COUNTERS ⚠️\n\nAre you sure you want to reset the sent email counter for ALL registered students?\n\nThis will clear all previous sent email tracking records in Firestore across all student accounts so every student resets to 0 Sent. Proceed?`;
+    if (!window.confirm(confirmMsg)) return;
+
+    setResettingSentCounters(true);
+    setStatusMessage(null);
+
+    try {
+      let token = '';
+      if (user?.getIdToken) {
+        token = await user.getIdToken();
+      }
+
+      const res = await fetch('/api/admin/emails/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ resetAll: true }),
+      });
+
+      const resData = await res.json().catch(() => ({}));
+
+      if (!res.ok || resData.error) {
+        throw new Error(resData.error || `HTTP ${res.status}`);
+      }
+
+      setData((prev) => {
+        if (!prev) return prev;
+        const updatedUsers = (prev.users || []).map((u) => ({
+          ...u,
+          sentEmailHistory: [],
+        }));
+        return { ...prev, users: updatedUsers };
+      });
+
+      setStatusMessage({
+        type: 'success',
+        text: resData.message || '✅ Sent email counters successfully reset to 0 for all students!',
+      });
+    } catch (err) {
+      console.error('Reset all sent email counters error:', err);
+      setStatusMessage({
+        type: 'error',
+        text: `❌ Failed to reset sent email counters: ${err.message}`,
+      });
+    } finally {
+      setResettingSentCounters(false);
+    }
+  };
+
+  // Reset Single Student Sent Email Counter Handler
+  const handleResetUserSentCounter = async (targetUser) => {
+    const confirmMsg = `⚠️ RESET STUDENT EMAIL COUNTER ⚠️\n\nReset sent email counter to 0 for "${targetUser.name}" (${targetUser.email})?`;
+    if (!window.confirm(confirmMsg)) return;
+
+    setStatusMessage(null);
+
+    try {
+      let token = '';
+      if (user?.getIdToken) {
+        token = await user.getIdToken();
+      }
+
+      const res = await fetch('/api/admin/emails/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ resetAll: false, targetEmail: targetUser.email, targetUid: targetUser.uid }),
+      });
+
+      const resData = await res.json().catch(() => ({}));
+
+      if (!res.ok || resData.error) {
+        throw new Error(resData.error || `HTTP ${res.status}`);
+      }
+
+      setData((prev) => {
+        if (!prev) return prev;
+        const updatedUsers = (prev.users || []).map((u) => {
+          if (u.uid === targetUser.uid) {
+            return { ...u, sentEmailHistory: [] };
+          }
+          return u;
+        });
+        return { ...prev, users: updatedUsers };
+      });
+
+      setStatusMessage({
+        type: 'success',
+        text: resData.message || `✅ Sent email counter reset to 0 for ${targetUser.email}!`,
+      });
+    } catch (err) {
+      console.error('Reset student email counter error:', err);
+      setStatusMessage({
+        type: 'error',
+        text: `❌ Failed to reset sent email counter: ${err.message}`,
+      });
     }
   };
 
@@ -544,6 +650,29 @@ export default function AnalyticsDashboardPage() {
             }}
           >
             📥 Export Database (CSV)
+          </button>
+          <button
+            type="button"
+            onClick={handleResetAllSentCounters}
+            disabled={resettingSentCounters}
+            title="Reset sent email counter to 0 for all registered students"
+            style={{
+              cursor: resettingSentCounters ? 'not-allowed' : 'pointer',
+              padding: '0.6rem 1.2rem',
+              borderRadius: '10px',
+              background: 'var(--surface-raised)',
+              border: '1px solid var(--border)',
+              color: 'var(--text)',
+              fontWeight: '700',
+              fontSize: '0.88rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              opacity: resettingSentCounters ? 0.6 : 1,
+            }}
+          >
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 11a9 9 0 1 1 2.7 7M3 4v7h7" /></svg>
+            {resettingSentCounters ? 'Resetting...' : 'Reset Sent Counters'}
           </button>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <Link href="/dashboard/console/admin" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
@@ -1299,6 +1428,28 @@ export default function AnalyticsDashboardPage() {
                                       </button>
                                     )}
 
+                                    {/* Action 5: Reset Sent Counter for this specific student */}
+                                    {sentLogs.length > 0 && (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleResetUserSentCounter(u)}
+                                        style={{
+                                          cursor: 'pointer',
+                                          padding: '0.65rem 1.1rem',
+                                          borderRadius: '10px',
+                                          background: 'var(--surface-raised)',
+                                          border: '1px solid var(--border)',
+                                          color: 'var(--muted)',
+                                          fontWeight: '700',
+                                          fontSize: '0.83rem',
+                                          whiteSpace: 'nowrap',
+                                        }}
+                                        title={`Reset ${u.name}'s sent email counter to 0`}
+                                      >
+                                        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ verticalAlign: 'middle', marginRight: '0.4rem' }}><path d="M3 11a9 9 0 1 1 2.7 7M3 4v7h7" /></svg>
+                                        Reset Counter (0 Sent)
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
 
