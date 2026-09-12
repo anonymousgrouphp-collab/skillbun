@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useLayoutEffect, useRef, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
@@ -88,6 +88,21 @@ function normalizeRoadmapTree(roadmap) {
 const TREE_CARD_WIDTH = 270;
 const TREE_ROOT_WIDTH = 420;
 const TREE_GAP = 24;
+const COMPACT_ROADMAP_QUERY = '(max-width: 1100px), (pointer: coarse)';
+
+function subscribeCompactRoadmap(onChange) {
+  const query = window.matchMedia(COMPACT_ROADMAP_QUERY);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+}
+
+function getCompactRoadmapSnapshot() {
+  return window.matchMedia(COMPACT_ROADMAP_QUERY).matches;
+}
+
+function getCompactRoadmapServerSnapshot() {
+  return true;
+}
 const SPARK_COLORS = ['#2ECC71', '#A8FF3E', '#FFD700', '#58D68D'];
 const SPARK_DISTANCES = [42, 55, 48, 60, 45, 57, 50, 62, 46, 54];
 
@@ -118,11 +133,23 @@ export default function GameMap({ roadmap, slug, initialTab }) {
   const nextRoadmap = useMemo(() => connections[slug] || null, [slug]);
   const { user, authLoading, saveRoadmapProgress, progressVersion } = useAuth();
   const [progress, setProgress] = useState(() => readStoredProgress(slug));
+  const [progressSource, setProgressSource] = useState({ slug, version: progressVersion });
+  // Reconcile the existing cache signal before rendering stage counts and the next skill.
+  if (progressSource.slug !== slug || progressSource.version !== progressVersion) {
+    setProgressSource({ slug, version: progressVersion });
+    setProgress(readStoredProgress(slug));
+  }
   const [expanded, setExpanded] = useState(null);
   const [confetti, setConfetti] = useState(null);
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
   const [verifiedVideos, setVerifiedVideos] = useState([]);
+  const compactRoadmap = useSyncExternalStore(subscribeCompactRoadmap, getCompactRoadmapSnapshot, getCompactRoadmapServerSnapshot);
+  const [viewChoice, setViewChoice] = useState(null);
+  const isListView = viewChoice ? viewChoice === 'list' : compactRoadmap;
+  const [openStages, setOpenStages] = useState({});
+  const treeScrollRef = useRef(null);
+  const pendingNodeRef = useRef(null);
   const [activeTab, setActiveTab] = useState(() => {
     if (initialTab && ['learn', 'goal', 'boost'].includes(initialTab)) {
       return initialTab;
@@ -243,18 +270,74 @@ export default function GameMap({ roadmap, slug, initialTab }) {
     node.children?.length ? getTerminalNodes(node).some(terminal => done(terminal.id)) : done(node.id)
   );
 
+  // Find a next skill using the same gates as the completion controls.
+  const findNextSkill = (nodes, stageId, parentUnlocked, parentDone, depth = 0) => {
+    for (const node of nodes) {
+      const unlocked = parentUnlocked && (depth === 0 || parentDone);
+      if (unlocked && node.countInProgress !== false && !done(node.id)) {
+        return { nodeId: node.id, stageId };
+      }
+      const next = findNextSkill(node.children || [], stageId, unlocked, node.unlockChildren === 'always' || done(node.id), depth + 1);
+      if (next) return next;
+    }
+    return null;
+  };
+  let nextSkill = null;
+  for (let index = 0; index < roadmapTree.length && !nextSkill; index++) {
+    const root = roadmapTree[index];
+    nextSkill = findNextSkill([root], root.id, index === 0 || isRootGateComplete(roadmapTree[index - 1]), true);
+  }
+  const defaultStageId = nextSkill?.stageId || roadmapTree[0]?.id;
+
+  const continueLearning = () => {
+    if (!nextSkill) return;
+    pendingNodeRef.current = nextSkill.nodeId;
+    setOpenStages(previous => ({ ...previous, [nextSkill.stageId]: true }));
+    setExpanded(nextSkill.nodeId);
+  };
+
+  useLayoutEffect(() => {
+    const scroll = treeScrollRef.current;
+    if (!scroll || isListView) return;
+    let previousWidth = 0;
+    const centerTree = () => {
+      if (previousWidth === scroll.clientWidth) return;
+      previousWidth = scroll.clientWidth;
+      scroll.scrollLeft = Math.max(0, (scroll.scrollWidth - scroll.clientWidth) / 2);
+    };
+    centerTree();
+    const observer = new ResizeObserver(centerTree);
+    observer.observe(scroll);
+    return () => observer.disconnect();
+  }, [activeTab, isListView]);
+
+  useLayoutEffect(() => {
+    if (!pendingNodeRef.current) return;
+    const target = document.getElementById(`sk-node-toggle-${pendingNodeRef.current}`);
+    if (target) {
+      target.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' });
+      target.focus({ preventScroll: true });
+      pendingNodeRef.current = null;
+    }
+  }, [expanded, openStages, isListView]);
+
+  const panTree = (direction) => {
+    const scroll = treeScrollRef.current;
+    if (!scroll) return;
+    scroll.scrollBy({
+      left: direction * scroll.clientWidth * 0.7,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+  };
+
   useEffect(() => {
-    const h = (e) => { if (e.key === 'Escape') setExpanded(null); };
+    const h = (e) => { if (e.key === 'Escape' && !selectedDocNode) setExpanded(null); };
     window.addEventListener('keydown', h);
     return () => window.removeEventListener('keydown', h);
-  }, []);
+  }, [selectedDocNode]);
 
-  useEffect(() => {
-    setProgress(readStoredProgress(slug));
-  }, [progressVersion, slug]);
-
-  /* Render a tree node + its children recursively */
-  function TreeNode({ node, depth = 0, parentUnlocked = true, parentDone = true }) {
+  /* Render recursively without a nested component type, so updates preserve keyboard focus. */
+  function renderTreeNode({ node, depth = 0, parentUnlocked = true, parentDone = true }) {
     const isDone = done(node.id);
     const isUnlocked = parentUnlocked && (depth === 0 || parentDone);
     const isOpen = expanded === node.id;
@@ -279,13 +362,24 @@ export default function GameMap({ roadmap, slug, initialTab }) {
       >
         {/* This node */}
         <div className={`sk-node depth-${Math.min(depth, 3)} ${isDone ? 'done' : ''} ${isUnlocked ? '' : 'locked'} ${isCelebrating ? 'celebrate' : ''}`}>
-          <div className="sk-node-card" onClick={() => setExpanded(isOpen ? null : node.id)}>
+          <div className="sk-node-card">
             <div className="sk-node-shimmer"></div>
             <div className="sk-node-row">
               <div className={`sk-node-icon ${isDone ? 'done' : ''}`}>{icon}</div>
               <div className="sk-node-info">
                 <div className="sk-node-title-row">
-                  <h3>{node.name}</h3>
+                  <h3>
+                    <button
+                      type="button"
+                      className="sk-node-toggle"
+                      id={`sk-node-toggle-${node.id}`}
+                      aria-expanded={isOpen}
+                      aria-controls={`sk-node-detail-${node.id}`}
+                      onClick={() => setExpanded(isOpen ? null : node.id)}
+                    >
+                      {node.name}
+                    </button>
+                  </h3>
                   {node.tag === 'advanced' && <span className="sk-pill adv">⚡ ADV</span>}
                   {node.tag === 'essential' && <span className="sk-pill ess">CORE</span>}
                 </div>
@@ -294,11 +388,13 @@ export default function GameMap({ roadmap, slug, initialTab }) {
               <div className="sk-node-actions">
                 <button
                   className={`sk-check ${isDone ? 'done' : ''}`}
+                  type="button"
+                  aria-label={`${isDone ? 'Undo completion of' : 'Complete'} ${node.name}`}
                   disabled={!isUnlocked || authLoading}
                   onClick={(e) => { e.stopPropagation(); if (isUnlocked) toggle(node.id); }}
                   title={isUnlocked ? (user ? (isDone ? 'Undo' : 'Complete') : 'Log in to save progress') : 'Complete prerequisite first'}
                 >
-                  {isDone ? '✓' : ''}
+                  {isDone && <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m5 12 4 4L19 6" /></svg>}
                 </button>
                 {(hasChildren || node.resources?.length > 0) && (
                   <span className={`sk-arrow ${isOpen ? 'open' : ''}`}>
@@ -307,8 +403,8 @@ export default function GameMap({ roadmap, slug, initialTab }) {
                 )}
               </div>
             </div>
-            {isOpen && (
-              <div className="sk-detail">
+              <div className="sk-detail" id={`sk-node-detail-${node.id}`} hidden={!isOpen}>
+                {isOpen && <>
                 <button
                   className={`sk-btn-mark ${isDone ? 'done' : ''}`}
                   disabled={!isUnlocked || authLoading}
@@ -330,6 +426,7 @@ export default function GameMap({ roadmap, slug, initialTab }) {
                           e.stopPropagation();
                           if (r.type === 'doc') {
                             e.preventDefault();
+                            e.currentTarget.focus({ preventScroll: true });
                             setSelectedDocNode({
                               topicId: node.id,
                               topicName: node.name,
@@ -366,8 +463,8 @@ export default function GameMap({ roadmap, slug, initialTab }) {
                   </div>
                 )}
                 <Link href={askBunBot(node.name, roadmap.title)} className="sk-btn-ai" onClick={e => e.stopPropagation()}>Ask BunBot</Link>
+                </>}
               </div>
-            )}
           </div>
           {/* Celebration */}
           {isCelebrating && (
@@ -398,7 +495,7 @@ export default function GameMap({ roadmap, slug, initialTab }) {
               {node.children.map(child => (
                 <div className="sk-child-branch" key={child.id}>
                   <div className="sk-child-vline"></div>
-                  <TreeNode node={child} depth={depth + 1} parentUnlocked={isUnlocked} parentDone={childrenUnlocked} />
+                  {renderTreeNode({ node: child, depth: depth + 1, parentUnlocked: isUnlocked, parentDone: childrenUnlocked })}
                 </div>
               ))}
             </div>
@@ -409,7 +506,7 @@ export default function GameMap({ roadmap, slug, initialTab }) {
   }
 
   return (
-    <div className="sk-wrapper">
+    <div className="sk-wrapper" data-roadmap-view={isListView ? 'list' : 'tree'}>
       {/* Background */}
       <div className="sk-bg">
         <div className="sk-bg-orb sk-bg-1"></div>
@@ -510,14 +607,42 @@ export default function GameMap({ roadmap, slug, initialTab }) {
       {/* 1. LEARN TAB: The Interactive Skill Tree */}
       {activeTab === 'learn' && (
         <>
-          <div className="sk-tree-scroll">
+          <div className="sk-tree-toolbar" aria-label="Roadmap navigation">
+            <div className="sk-view-switch" role="group" aria-label="Roadmap view">
+              <button type="button" aria-pressed={!isListView} onClick={() => setViewChoice('tree')}>Tree</button>
+              <button type="button" aria-pressed={isListView} onClick={() => setViewChoice('list')}>List</button>
+            </div>
+            {nextSkill && <button type="button" className="sk-continue" onClick={continueLearning}>Continue learning</button>}
+            {!isListView && (
+              <div className="sk-tree-pan" role="group" aria-label="Move through the tree">
+                <button type="button" onClick={() => panTree(-1)} aria-label="Move tree left"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m14 6-6 6 6 6" /></svg></button>
+                <button type="button" onClick={() => panTree(1)} aria-label="Move tree right"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m10 6 6 6-6 6" /></svg></button>
+              </div>
+            )}
+          </div>
+          {!isListView && <p className="sk-tree-hint">Scroll sideways or use the arrows to explore branches. Switch to List for a compact view.</p>}
+          <div className="sk-tree-scroll" ref={treeScrollRef} tabIndex={isListView ? undefined : 0} role="region" aria-label={`${roadmap.title} learning ${isListView ? 'stages' : 'tree'}`}>
             <div className="sk-tree">
               {roadmapTree.map((rootNode, idx) => {
                 const rootUnlocked = idx === 0 || isRootGateComplete(roadmapTree[idx - 1]);
+                const stageNodes = flattenTree([rootNode]);
+                const stageDone = stageNodes.filter(node => done(node.id)).length;
+                const stageOpen = openStages[rootNode.id] ?? rootNode.id === defaultStageId;
 
                 return (
                   <div className="sk-root-step" key={rootNode.id}>
-                    <TreeNode node={rootNode} depth={0} parentUnlocked={rootUnlocked} />
+                    {isListView && (
+                      <h2 className="sk-stage-heading">
+                        <button type="button" className="sk-stage-toggle" aria-expanded={stageOpen} aria-controls={`sk-stage-${rootNode.id}`} onClick={() => setOpenStages(previous => ({ ...previous, [rootNode.id]: !stageOpen }))}>
+                          <span className="sk-stage-number">{String(idx + 1).padStart(2, '0')}</span>
+                          <span className="sk-stage-info"><span className="sk-stage-name">{rootNode.name}</span><span className="sk-stage-progress">{stageDone} / {stageNodes.length} skills complete{!rootUnlocked ? ' · Prerequisite needed' : ''}</span></span>
+                          <svg className={stageOpen ? 'open' : ''} aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="m6 9 6 6 6-6" /></svg>
+                        </button>
+                      </h2>
+                    )}
+                    <div className="sk-stage-content" id={`sk-stage-${rootNode.id}`} hidden={isListView && !stageOpen}>
+                      {renderTreeNode({ node: rootNode, depth: 0, parentUnlocked: rootUnlocked })}
+                    </div>
                     {idx < roadmapTree.length - 1 && <div className="sk-step-connector" />}
                   </div>
                 );
@@ -744,10 +869,24 @@ export default function GameMap({ roadmap, slug, initialTab }) {
 
 // Slide-out Study Guide Drawer Component
 function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplete, authLoading }) {
+  const dialogRef = useRef(null);
   const [docHtml, setDocHtml] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [needsLogin, setNeedsLogin] = useState(false);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const trigger = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (trigger?.isConnected) trigger.focus({ preventScroll: true });
+    };
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -842,11 +981,31 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
   };
 
   return (
-    <div className="sk-drawer-overlay" onClick={onClose}>
+    <dialog
+      ref={dialogRef}
+      className="sk-drawer-overlay"
+      aria-labelledby="sk-drawer-title"
+      onCancel={e => { e.preventDefault(); onClose(); }}
+      onKeyDown={e => {
+        if (e.key !== 'Tab') return;
+        const targets = Array.from(e.currentTarget.querySelectorAll('button:not([disabled]), a[href], iframe, [tabindex]:not([tabindex="-1"])'))
+          .filter(element => element.getClientRects().length > 0);
+        const first = targets[0];
+        const last = targets[targets.length - 1];
+        if (e.shiftKey && (document.activeElement === first || document.activeElement === e.currentTarget)) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <div className="sk-drawer" onClick={e => e.stopPropagation()}>
         <div className="sk-drawer-header">
           <div className="sk-drawer-title-info">
-            <h2>{node.topicName}</h2>
+            <h2 id="sk-drawer-title">{node.topicName}</h2>
             <span className="sk-drawer-context">{node.roadmapTitle}</span>
           </div>
           <button className="sk-drawer-close" onClick={onClose} aria-label="Close">
@@ -936,6 +1095,6 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
           </div>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }
