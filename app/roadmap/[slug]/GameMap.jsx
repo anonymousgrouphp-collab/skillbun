@@ -2,8 +2,10 @@
 import { useMemo, useState, useEffect, useLayoutEffect, useRef, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '../../components/AuthProvider';
 import { readStoredRoadmapProgress } from '@/utils/shared/progressStore';
+import { getStudyGuideResources } from '@/utils/shared/studyGuideResources';
 import { trackEvent } from '@/lib/analytics';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -852,14 +854,12 @@ export default function GameMap({ roadmap, slug, initialTab }) {
       {selectedDocNode && (
         <StudyGuideDrawer
           key={selectedDocNode.docUrl}
-          node={selectedDocNode}
+          node={{ ...selectedDocNode, isDone: done(selectedDocNode.nodeId) }}
           verifiedVideos={verifiedVideos}
           user={user}
           onClose={() => setSelectedDocNode(null)}
-          onToggleComplete={() => {
-            toggle(selectedDocNode.nodeId);
-            setSelectedDocNode(prev => prev ? { ...prev, isDone: !prev.isDone } : null);
-          }}
+          onToggleComplete={() => toggle(selectedDocNode.nodeId)}
+          progressNotice={progressNotice}
           authLoading={authLoading}
         />
       )}
@@ -867,13 +867,37 @@ export default function GameMap({ roadmap, slug, initialTab }) {
   );
 }
 
-// Slide-out Study Guide Drawer Component
-function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplete, authLoading }) {
+// Shared reading experience for every roadmap study guide.
+function ReaderIcon({ name, size = 20 }) {
+  const paths = {
+    book: 'M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20',
+    play: 'm9 5 11 7-11 7V5Z',
+    close: 'm6 6 12 12M6 18 18 6',
+    check: 'm5 12 4 4L19 6',
+    external: 'M15 3h6v6m0-6L10 14M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4',
+    lock: 'M6 10V7a6 6 0 0 1 12 0v3M4 10h16v12H4V10Zm8 5v3',
+    refresh: 'M3 11a9 9 0 1 1 2.7 7M3 4v7h7',
+    chat: 'M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-3 3V11.5a10 10 0 0 1 20 0ZM7 10h8M7 14h5',
+  };
+  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name] || paths.book} /></svg>;
+}
+
+function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplete, authLoading, progressNotice }) {
   const dialogRef = useRef(null);
-  const [docHtml, setDocHtml] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [needsLogin, setNeedsLogin] = useState(false);
+  const bodyRef = useRef(null);
+  const articleRef = useRef(null);
+  const tabRefs = useRef([]);
+  const [activePanel, setActivePanel] = useState('guide');
+  const [selectedVideoKey, setSelectedVideoKey] = useState(null);
+  const [retry, setRetry] = useState(0);
+  const [saving, setSaving] = useState(false);
+  const [guide, setGuide] = useState({ status: 'loading', html: '', outline: [], owner: null });
+  const compact = useSyncExternalStore(subscribeCompactRoadmap, getCompactRoadmapSnapshot, getCompactRoadmapServerSnapshot);
+  const [outlineOpen, setOutlineOpen] = useState(null);
+  const status = authLoading || guide.owner !== (user?.uid || null) ? 'loading' : guide.status;
+  const { videos, links } = useMemo(() => getStudyGuideResources(node.resources, verifiedVideos), [node.resources, verifiedVideos]);
+  const selectedVideo = videos.find(video => video.key === selectedVideoKey) || videos[0];
+  const loginUrl = `/auth?next=${encodeURIComponent(`/roadmap/${node.docUrl?.match(/\/data\/docs\/([^/]+)\//)?.[1] || ''}`)}`;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -890,94 +914,56 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
 
   useEffect(() => {
     let active = true;
-
-    // Extract slug and topicId from docUrl like "/data/docs/slug/topicId.md"
-    const match = node.docUrl?.match(/\/data\/docs\/([^/]+)\/([^/]+)\.md$/);
-    if (!match) {
-      Promise.resolve().then(() => {
-        if (active) {
-          setError(true);
-          setLoading(false);
-        }
-      });
-      return;
-    }
-
-    const [, slug, topicId] = match;
-
-    // If user is not logged in, show login prompt
-    if (!user) {
-      Promise.resolve().then(() => {
-        if (active) {
-          setNeedsLogin(true);
-          setLoading(false);
-        }
-      });
-      return;
-    }
-
-    // Fetch from authenticated API route
-    user.getIdToken().then(token => {
-      return fetch(`/api/docs/${slug}/${topicId}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-    })
-      .then(res => {
-        if (res.status === 401) {
-          if (active) { setNeedsLogin(true); setLoading(false); }
-          return null;
-        }
-        if (!res.ok) throw new Error('Failed to load study guide');
-        return res.text();
-      })
-      .then(text => {
-        if (text && active) {
-          const parsed = marked.parse(text);
-          const clean = DOMPurify.sanitize(parsed);
-          setDocHtml(clean);
-          setLoading(false);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        if (active) {
-          setError(true);
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, [node.docUrl, user]);
-
-  const youtubeVideos = useMemo(() => {
-    return (node.resources || []).filter(r => r.type === 'video' && (r.url.includes('youtube.com') || r.url.includes('youtu.be')));
-  }, [node.resources]);
-
-  const getEmbedUrl = (url) => {
-    try {
-      if (!verifiedVideos.includes(url)) {
-        return null;
+    const controller = new AbortController();
+    const owner = user?.uid || null;
+    const update = value => { if (active) setGuide({ html: '', outline: [], owner, ...value }); };
+    async function loadGuide() {
+      // Defer state updates and wait for the existing auth provider to settle.
+      await Promise.resolve();
+      if (!active) return;
+      update({ status: 'loading' });
+      if (authLoading) return;
+      if (!user) { update({ status: 'login' }); return; }
+      const match = node.docUrl?.match(/\/data\/docs\/([^/]+)\/([^/]+)\.md$/);
+      if (!match) { update({ status: 'error' }); return; }
+      try {
+        const token = await user.getIdToken();
+        if (!active) return;
+        const response = await fetch(`/api/docs/${match[1]}/${match[2]}`, {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: 'no-store',
+          signal: controller.signal,
+        });
+        if (response.status === 401) { update({ status: 'login' }); return; }
+        if (!response.ok) throw new Error('Failed to load study guide');
+        const markdown = await response.text();
+        if (!markdown.trim()) throw new Error('Empty study guide');
+        if (!active) return;
+        const content = DOMPurify.sanitize(marked.parse(markdown), { RETURN_DOM: true });
+        const outline = Array.from(content.querySelectorAll('h2, h3')).map((heading, index) => {
+          heading.id = `sk-guide-section-${index}`;
+          heading.tabIndex = -1;
+          return { id: heading.id, title: heading.textContent, level: heading.tagName };
+        }).filter(heading => heading.title.trim());
+        const words = content.textContent.trim().split(/\s+/).length;
+        update({ status: 'ready', html: content.innerHTML, outline, minutes: Math.max(1, Math.ceil(words / 200)) });
+      } catch (error) {
+        if (error.name !== 'AbortError') update({ status: 'error' });
       }
-      const u = new URL(url);
-      if (u.hostname === 'youtu.be') {
-        const videoId = u.pathname.substring(1);
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-      }
-      
-      // Handle playlist URLs
-      if (u.pathname.includes('/playlist')) {
-        const listId = u.searchParams.get('list');
-        return listId ? `https://www.youtube.com/embed/videoseries?list=${listId}` : null;
-      }
-      
-      // Handle standard watch URLs
-      const videoId = u.searchParams.get('v');
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    } catch {
-      return null;
     }
+    loadGuide();
+    return () => { active = false; controller.abort(); };
+  }, [node.docUrl, user, authLoading, retry]);
+
+  const changePanel = panel => {
+    setActivePanel(panel);
+    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+  };
+  const jumpToSection = id => {
+    const heading = articleRef.current?.querySelector(`#${id}`);
+    if (!heading) return;
+    heading.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    heading.focus({ preventScroll: true });
   };
 
   return (
@@ -985,115 +971,100 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
       ref={dialogRef}
       className="sk-drawer-overlay"
       aria-labelledby="sk-drawer-title"
-      onCancel={e => { e.preventDefault(); onClose(); }}
-      onKeyDown={e => {
-        if (e.key !== 'Tab') return;
-        const targets = Array.from(e.currentTarget.querySelectorAll('button:not([disabled]), a[href], iframe, [tabindex]:not([tabindex="-1"])'))
-          .filter(element => element.getClientRects().length > 0);
+      onCancel={event => { event.preventDefault(); onClose(); }}
+      onKeyDown={event => {
+        if (event.key !== 'Tab') return;
+        const targets = Array.from(event.currentTarget.querySelectorAll('button:not([disabled]), a[href], summary, iframe, [tabindex]:not([tabindex="-1"])'))
+          .filter(element => element.tabIndex >= 0 && element.getClientRects().length > 0);
         const first = targets[0];
         const last = targets[targets.length - 1];
-        if (e.shiftKey && (document.activeElement === first || document.activeElement === e.currentTarget)) {
-          e.preventDefault();
-          last?.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === event.currentTarget)) {
+          event.preventDefault(); last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first?.focus();
         }
       }}
-      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={event => { if (event.target === event.currentTarget) onClose(); }}
     >
-      <div className="sk-drawer" onClick={e => e.stopPropagation()}>
-        <div className="sk-drawer-header">
+      <div className="sk-drawer">
+        <header className="sk-drawer-header">
           <div className="sk-drawer-title-info">
+            <div className="sk-reader-brand">
+              <Image src="/logo.png" alt="SkillBun Logo" width={28} height={28} />
+              <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+              <span className="sk-reader-label">Study guide</span>
+            </div>
             <h2 id="sk-drawer-title">{node.topicName}</h2>
-            <span className="sk-drawer-context">{node.roadmapTitle}</span>
+            <p className="sk-drawer-context">{node.roadmapTitle}</p>
           </div>
-          <button className="sk-drawer-close" onClick={onClose} aria-label="Close">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+          <button type="button" className="sk-drawer-close" onClick={onClose} aria-label="Close study guide"><ReaderIcon name="close" /></button>
+        </header>
+
+        <div className="sk-reader-tabs" role="tablist" aria-label="Study materials" onKeyDown={event => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : activePanel === 'guide' ? 1 : 0;
+          changePanel(nextIndex === 0 ? 'guide' : 'resources');
+          tabRefs.current[nextIndex]?.focus();
+        }}>
+          <button ref={element => { tabRefs.current[0] = element; }} type="button" role="tab" id="sk-reader-guide-tab" aria-selected={activePanel === 'guide'} aria-controls="sk-reader-guide-panel" tabIndex={activePanel === 'guide' ? 0 : -1} onClick={() => changePanel('guide')}><ReaderIcon name="book" /> Study guide</button>
+          <button ref={element => { tabRefs.current[1] = element; }} type="button" role="tab" id="sk-reader-resources-tab" aria-selected={activePanel === 'resources'} aria-controls="sk-reader-resources-panel" tabIndex={activePanel === 'resources' ? 0 : -1} onClick={() => changePanel('resources')}><ReaderIcon name="play" /> Videos & resources <span>{videos.length + links.length}</span></button>
         </div>
 
-        <div className="sk-drawer-body">
-          {/* Quick Actions */}
-          <div className="sk-drawer-actions">
-            <button
-              className={`sk-btn-mark ${node.isDone ? 'done' : ''}`}
-              disabled={!node.isUnlocked || authLoading}
-              onClick={onToggleComplete}
-            >
-              {node.isUnlocked ? (node.isDone ? '✅ Completed — Undo?' : '🎯 Mark Complete (+100 XP)') : 'Complete prerequisite first'}
-            </button>
-            <Link href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai">
-              Ask BunBot
-            </Link>
-          </div>
-
-          {/* YouTube Video Resource */}
-          {youtubeVideos.length > 0 && (
-            <div className="sk-drawer-video-section">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="15" x="2" y="3" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
-                Video Tutorials
-              </h3>
-              {youtubeVideos.map((video, idx) => {
-                const embedUrl = getEmbedUrl(video.url);
-                return (
-                  <div className="sk-video-container" key={idx}>
-                    {embedUrl ? (
-                      <iframe
-                        width="100%"
-                        height="240"
-                        src={embedUrl}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    ) : (
-                      <a href={video.url} target="_blank" rel="noopener noreferrer" className="sk-res">
-                        <span className="sk-res-type" style={{ display: 'inline-flex', alignItems: 'center' }}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="15" x="2" y="3" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
-                        </span>
-                        <span>{video.title}</span>
-                        <span className="sk-res-go">↗</span>
-                      </a>
-                    )}
-                    <span className="sk-video-title">{video.title}</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Study Guide Content */}
-          <div className="sk-drawer-doc-section">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-              SkillBun Original Study Guide
-            </h3>
-            {loading ? (
-              <div className="sk-drawer-loading">
-                <div className="sk-spinner"></div>
-                <p>Loading study guide...</p>
+        <div className="sk-drawer-body" ref={bodyRef}>
+          <div className="sk-reader-panel" role="tabpanel" id="sk-reader-guide-panel" aria-labelledby="sk-reader-guide-tab" hidden={activePanel !== 'guide'} tabIndex={0}>
+            {status === 'loading' ? (
+              <div className="sk-reader-state" role="status"><div className="sk-spinner" /><h3>Opening your study guide</h3><p>Getting this topic ready to read.</p></div>
+            ) : status === 'login' ? (
+              <div className="sk-reader-state">
+                <div className="sk-reader-state-icon"><ReaderIcon name="lock" size={32} /></div>
+                <h3>Your next topic, explained.</h3>
+                <p>Log in to read the SkillBun study guide and save your learning progress. Videos and resource links are available to everyone.</p>
+                <div className="sk-reader-state-actions"><Link href={loginUrl} className="sk-btn-login">Log in to read this guide</Link><button type="button" onClick={() => { changePanel('resources'); tabRefs.current[1]?.focus(); }}>Explore resources <ReaderIcon name="external" size={16} /></button></div>
               </div>
-            ) : needsLogin ? (
-              <div className="sk-drawer-login-prompt">
-                <p style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  Study guides are available for logged-in students.
-                </p>
-                <a href="/auth" className="sk-btn-login">Log in to read this guide</a>
+            ) : status === 'error' ? (
+              <div className="sk-reader-state" role="alert">
+                <div className="sk-reader-state-icon"><ReaderIcon name="book" size={32} /></div><h3>This guide couldn't load</h3><p>Try again, or explore the supporting resources while you wait.</p>
+                <div className="sk-reader-state-actions"><button type="button" className="sk-btn-login" onClick={() => setRetry(value => value + 1)}><ReaderIcon name="refresh" size={18} /> Try again</button><button type="button" onClick={() => { changePanel('resources'); tabRefs.current[1]?.focus(); }}>Explore resources</button></div>
               </div>
-            ) : error ? (
-              <p className="sk-drawer-error">Could not load the study guide. Please try again or ask BunBot.</p>
             ) : (
-              <div className="sk-markdown-content" dangerouslySetInnerHTML={{ __html: docHtml }} />
+              <div className="sk-reader-layout" data-has-outline={guide.outline.length > 0}>
+                {guide.outline.length > 0 && (
+                  <details className="sk-reader-outline" open={outlineOpen ?? !compact} onToggle={event => setOutlineOpen(event.currentTarget.open)}>
+                    <summary>On this page</summary>
+                    <nav aria-label="Guide sections">{guide.outline.map(heading => <button type="button" key={heading.id} data-level={heading.level} onClick={() => jumpToSection(heading.id)}>{heading.title}</button>)}</nav>
+                  </details>
+                )}
+                <article ref={articleRef} className="sk-markdown-content" aria-label={`${node.topicName} study guide`} dangerouslySetInnerHTML={{ __html: guide.html }} />
+              </div>
             )}
           </div>
+
+          <div className="sk-reader-panel" role="tabpanel" id="sk-reader-resources-panel" aria-labelledby="sk-reader-resources-tab" hidden={activePanel !== 'resources'} tabIndex={0}>
+            {activePanel === 'resources' && <div className="sk-reader-resources">
+              {selectedVideo && <div className="sk-reader-video-section">
+                <h3 className="sk-reader-section-title">Watch & understand <span>{videos.length} {videos.length === 1 ? 'video' : 'videos'}</span></h3>
+                <div className="sk-reader-video-layout">
+                  <div className="sk-reader-player">
+                    {selectedVideo.embedUrl ? <iframe key={selectedVideo.key} width="100%" src={selectedVideo.embedUrl} title={selectedVideo.title} allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen /> : <div className="sk-reader-video-fallback"><ReaderIcon name="play" size={36} /><p>Watch this tutorial on {selectedVideo.host}.</p><a href={selectedVideo.url} target="_blank" rel="noopener noreferrer">Open video <ReaderIcon name="external" size={16} /></a></div>}
+                    <div className="sk-video-title">{selectedVideo.title}<a href={selectedVideo.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${selectedVideo.title} in a new tab`}><ReaderIcon name="external" size={18} /></a></div>
+                  </div>
+                  {videos.length > 1 && <div className="sk-reader-video-list" role="group" aria-label="Choose a tutorial">{videos.map((video, index) => <button type="button" key={video.key} aria-pressed={video.key === selectedVideo.key} onClick={() => setSelectedVideoKey(video.key)}><span className="sk-reader-video-number">{index + 1}</span><span>{video.title}</span><ReaderIcon name="play" size={16} /></button>)}</div>}
+                </div>
+              </div>}
+              {links.length > 0 && <div className="sk-reader-link-section"><h3 className="sk-reader-section-title">Read & explore <span>{links.length} {links.length === 1 ? 'resource' : 'resources'}</span></h3><div className="sk-reader-links">{links.map(resource => <a className="sk-reader-resource-link" href={resource.url} key={resource.key} target="_blank" rel="noopener noreferrer"><ReaderIcon name="book" /><span><strong>{resource.title}</strong><small>{resource.host}</small></span><ReaderIcon name="external" size={18} /></a>)}</div></div>}
+              {!videos.length && !links.length && <div className="sk-reader-state"><div className="sk-reader-state-icon"><ReaderIcon name="book" size={32} /></div><h3>Keep learning with the guide</h3><p>There are no additional links for this topic yet. BunBot can help explain a concept or work through an example.</p></div>}
+            </div>}
+          </div>
         </div>
+
+        <footer className="sk-drawer-actions">
+          <div className="sk-reader-status" role="status"><ReaderIcon name={node.isDone ? 'check' : !node.isUnlocked ? 'lock' : 'book'} size={18} /><span>{progressNotice || (node.isDone ? 'Topic completed' : !node.isUnlocked ? 'Complete the prerequisite to unlock progress' : status === 'ready' ? `About ${guide.minutes} min read` : 'Learn at your own pace')}</span></div>
+          <div className="sk-reader-footer-buttons">
+            <Link href={askBunBot(node.topicName, node.roadmapTitle)} className="sk-btn-ai"><ReaderIcon name="chat" size={18} /> Ask BunBot</Link>
+            <button type="button" className={`sk-btn-mark ${node.isDone ? 'done' : ''}`} disabled={!node.isUnlocked || authLoading || saving} onClick={async () => { setSaving(true); try { await onToggleComplete(); } finally { setSaving(false); } }}><ReaderIcon name={node.isDone ? 'refresh' : 'check'} size={18} />{saving ? 'Saving...' : node.isDone ? 'Undo completion' : !user ? 'Log in to save progress' : 'Mark complete'}</button>
+          </div>
+        </footer>
       </div>
     </dialog>
   );
