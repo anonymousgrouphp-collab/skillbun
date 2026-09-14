@@ -71,4 +71,44 @@ test('SkillBun 100 Roadmaps Global Standard Suite', async (t) => {
       assert.equal(strictRegionalRegex.test(raw), false, `Found regional framing text in ${file}`);
     }
   });
+
+  await t.test('All roadmap video resources comply with the SkillBun Official Video Standard', () => {
+    const verifiedVideosRaw = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'verified_videos.json'), 'utf8');
+    const verifiedVideosSet = new Set(JSON.parse(verifiedVideosRaw));
+    const bannedChannelPatterns = [
+      /codewithharry/i, /apna college/i, /wscube/i, /sreemanti dey/i,
+      /code step by step/i, /thapa technical/i, /kunal kushwaha/i,
+      /hitesh choudhary/i, /gate smashers/i, /5 minutes engineering/i
+    ];
+
+    let totalVideosChecked = 0;
+
+    for (const file of files) {
+      const data = JSON.parse(fs.readFileSync(path.join(ROADMAPS_DIR, file), 'utf8'));
+      function checkNode(node) {
+        if (!node) return;
+        if (Array.isArray(node)) { node.forEach(checkNode); return; }
+        if (typeof node === 'object') {
+          if (Array.isArray(node.resources)) {
+            node.resources.forEach(r => {
+              if (r && (r.type === 'video' || (r.url && (r.url.includes('youtube.com') || r.url.includes('youtu.be'))))) {
+                totalVideosChecked++;
+                assert.ok(r.url, `${file} video resource must have url`);
+                assert.ok(r.title, `${file} video resource must have title`);
+                assert.ok(verifiedVideosSet.has(r.url), `${file} video ${r.url} must exist in verified_videos.json`);
+                bannedChannelPatterns.forEach(pat => {
+                  assert.equal(pat.test(r.title), false, `${file} video title "${r.title}" matches banned pattern ${pat}`);
+                });
+              }
+            });
+          }
+          for (const k of Object.keys(node)) {
+            if (k !== 'resources') checkNode(node[k]);
+          }
+        }
+      }
+      checkNode(data);
+    }
+    assert.ok(totalVideosChecked > 1000, `Expected at least 1000 video resources checked, found ${totalVideosChecked}`);
+  });
 });
