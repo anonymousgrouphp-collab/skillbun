@@ -36,37 +36,35 @@ function getYoutubeIdentity(url) {
   }
 
   if (VIDEO_ID.test(videoId || '')) {
-    return { key: `youtube:video:${videoId}`, embedUrl: `https://www.youtube.com/embed/${videoId}` };
+    return { key: `youtube:video:${videoId}`, embedUrl: `https://www.youtube.com/embed/${videoId}?playsinline=1`, watchUrl: `https://www.youtube.com/watch?v=${videoId}` };
   }
   if (PLAYLIST_ID.test(playlistId || '')) {
-    return { key: `youtube:playlist:${playlistId}`, embedUrl: `https://www.youtube.com/embed/videoseries?list=${playlistId}` };
+    return { key: `youtube:playlist:${playlistId}`, embedUrl: `https://www.youtube.com/embed/videoseries?list=${playlistId}&playsinline=1`, watchUrl: `https://www.youtube.com/playlist?list=${playlistId}` };
   }
   return null;
 }
 
-/** Normalize display resources without widening the exact-URL embed allowlist. */
-export function getStudyGuideResources(resources = [], verifiedVideos = []) {
+/** Embed only validated YouTube identities; every video retains an external link. */
+export function getStudyGuideResources(resources = []) {
   const videos = new Map();
   const links = new Map();
-  const verified = new Set(Array.isArray(verifiedVideos) ? verifiedVideos : []);
 
   for (const resource of Array.isArray(resources) ? resources : []) {
     if (!resource || typeof resource !== 'object' || Array.isArray(resource)) continue;
     const url = parseResourceUrl(resource.url);
     if (!url) continue;
 
-    const isVideo = typeof resource.type === 'string' && resource.type.trim().toLowerCase() === 'video';
-    const youtube = isVideo ? getYoutubeIdentity(url) : null;
+    const youtube = getYoutubeIdentity(url);
+    const isVideo = Boolean(youtube) || (typeof resource.type === 'string' && resource.type.trim().toLowerCase() === 'video');
     const entry = {
       url: url.href,
       title: typeof resource.title === 'string' && resource.title.trim() ? resource.title.trim() : url.hostname,
       host: url.hostname,
       key: youtube?.key || url.href,
-      ...(isVideo ? { embedUrl: youtube && verified.has(resource.url) ? youtube.embedUrl : null } : {}),
+      ...(isVideo ? { embedUrl: youtube?.embedUrl || null, watchUrl: youtube?.watchUrl || url.href } : {}),
     };
     const collection = isVideo ? videos : links;
-    const existing = collection.get(entry.key);
-    if (!existing || (!existing.embedUrl && entry.embedUrl)) collection.set(entry.key, entry);
+    if (!collection.has(entry.key)) collection.set(entry.key, entry);
   }
 
   return { videos: [...videos.values()], links: [...links.values()] };

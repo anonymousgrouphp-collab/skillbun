@@ -145,7 +145,6 @@ export default function GameMap({ roadmap, slug, initialTab }) {
   const [confetti, setConfetti] = useState(null);
   const [progressNotice, setProgressNotice] = useState('');
   const [selectedDocNode, setSelectedDocNode] = useState(null);
-  const [verifiedVideos, setVerifiedVideos] = useState([]);
   const compactRoadmap = useSyncExternalStore(subscribeCompactRoadmap, getCompactRoadmapSnapshot, getCompactRoadmapServerSnapshot);
   const [viewChoice, setViewChoice] = useState(null);
   const isListView = viewChoice ? viewChoice === 'list' : compactRoadmap;
@@ -203,19 +202,6 @@ export default function GameMap({ roadmap, slug, initialTab }) {
     }
   };
 
-
-  useEffect(() => {
-    fetch('/data/verified_videos.json')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setVerifiedVideos(data);
-        }
-      })
-      .catch(err => {
-        console.error('Failed to load verified videos:', err);
-      });
-  }, []);
 
   useEffect(() => {
     if (slug) {
@@ -855,7 +841,6 @@ export default function GameMap({ roadmap, slug, initialTab }) {
         <StudyGuideDrawer
           key={selectedDocNode.docUrl}
           node={{ ...selectedDocNode, isDone: done(selectedDocNode.nodeId) }}
-          verifiedVideos={verifiedVideos}
           user={user}
           onClose={() => setSelectedDocNode(null)}
           onToggleComplete={() => toggle(selectedDocNode.nodeId)}
@@ -882,7 +867,7 @@ function ReaderIcon({ name, size = 20 }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name] || paths.book} /></svg>;
 }
 
-function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplete, authLoading, progressNotice }) {
+function StudyGuideDrawer({ node, user, onClose, onToggleComplete, authLoading, progressNotice }) {
   const dialogRef = useRef(null);
   const bodyRef = useRef(null);
   const articleRef = useRef(null);
@@ -895,7 +880,7 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
   const compact = useSyncExternalStore(subscribeCompactRoadmap, getCompactRoadmapSnapshot, getCompactRoadmapServerSnapshot);
   const [outlineOpen, setOutlineOpen] = useState(null);
   const status = authLoading || guide.owner !== (user?.uid || null) ? 'loading' : guide.status;
-  const { videos, links } = useMemo(() => getStudyGuideResources(node.resources, verifiedVideos), [node.resources, verifiedVideos]);
+  const { videos, links } = useMemo(() => getStudyGuideResources(node.resources), [node.resources]);
   const selectedVideo = videos.find(video => video.key === selectedVideoKey) || videos[0];
   const loginUrl = `/auth?next=${encodeURIComponent(`/roadmap/${node.docUrl?.match(/\/data\/docs\/([^/]+)\//)?.[1] || ''}`)}`;
 
@@ -1046,8 +1031,8 @@ function StudyGuideDrawer({ node, verifiedVideos, user, onClose, onToggleComplet
                 <h3 className="sk-reader-section-title">Watch & understand <span>{videos.length} {videos.length === 1 ? 'video' : 'videos'}</span></h3>
                 <div className="sk-reader-video-layout">
                   <div className="sk-reader-player">
-                    {selectedVideo.embedUrl ? <iframe key={selectedVideo.key} width="100%" src={selectedVideo.embedUrl} title={selectedVideo.title} allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen /> : <div className="sk-reader-video-fallback"><ReaderIcon name="play" size={36} /><p>Watch this tutorial on {selectedVideo.host}.</p><a href={selectedVideo.url} target="_blank" rel="noopener noreferrer">Open video <ReaderIcon name="external" size={16} /></a></div>}
-                    <div className="sk-video-title">{selectedVideo.title}<a href={selectedVideo.url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${selectedVideo.title} in a new tab`}><ReaderIcon name="external" size={18} /></a></div>
+                    {selectedVideo.embedUrl ? <iframe key={selectedVideo.key} width="100%" src={selectedVideo.embedUrl} title={selectedVideo.title} referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen /> : <div className="sk-reader-video-fallback"><ReaderIcon name="play" size={36} /><p>Watch this tutorial on {selectedVideo.host}.</p><a href={selectedVideo.watchUrl} target="_blank" rel="noopener noreferrer">Open video <ReaderIcon name="external" size={16} /></a></div>}
+                    <div className="sk-video-title"><span>{selectedVideo.title}</span><a href={selectedVideo.watchUrl} target="_blank" rel="noopener noreferrer" aria-label={`${selectedVideo.embedUrl ? 'Watch on YouTube' : 'Open video'}: ${selectedVideo.title} (opens in a new tab)`}>{selectedVideo.embedUrl ? 'Watch on YouTube' : 'Open video'}<ReaderIcon name="external" size={18} /></a></div>
                   </div>
                   {videos.length > 1 && <div className="sk-reader-video-list" role="group" aria-label="Choose a tutorial">{videos.map((video, index) => <button type="button" key={video.key} aria-pressed={video.key === selectedVideo.key} onClick={() => setSelectedVideoKey(video.key)}><span className="sk-reader-video-number">{index + 1}</span><span>{video.title}</span><ReaderIcon name="play" size={16} /></button>)}</div>}
                 </div>
