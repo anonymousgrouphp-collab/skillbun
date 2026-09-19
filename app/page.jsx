@@ -701,7 +701,7 @@ export default function Home() {
         </section>
 
         {/* ===== CTA ===== */}
-        <div className="cta-section">
+        <div className="cta-section sb-reveal">
           <div className="cta-card">
             <div className="welcome-bunny" style={{ marginBottom: '1rem' }}>
               <Image src="/logo.png" alt="SkillBun Logo" width={56} height={56} unoptimized />

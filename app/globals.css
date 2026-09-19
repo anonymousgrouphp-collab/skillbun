@@ -864,6 +864,11 @@ section {
   border-radius: inherit;
   background: linear-gradient(180deg, transparent, var(--lime), var(--green), transparent);
   animation: sbMomentRail 4.5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.sb-reveal.is-visible .sb-moment-rail span {
+  animation-play-state: running;
 }
 
 .sb-moment-grid {
@@ -899,9 +904,9 @@ section {
   box-shadow: var(--card-shadow);
   animation: sbMomentFloat 7.2s ease-in-out infinite;
   animation-delay: var(--sb-moment-delay);
+  animation-play-state: paused;
   transform-origin: center;
   backface-visibility: hidden;
-  will-change: transform;
   transition:
     --sb-moment-scale 0.22s ease,
     --sb-moment-hover-lift 0.22s ease,
@@ -909,6 +914,10 @@ section {
     box-shadow 0.22s ease,
     background-color 0.22s ease,
     filter 0.22s ease;
+}
+
+.sb-reveal.is-visible .sb-moment-card {
+  animation-play-state: running;
 }
 
 .sb-moment-card::before {
@@ -919,8 +928,13 @@ section {
   transform: translateX(-120%);
   animation: sbMomentShimmer 7.2s ease-in-out infinite;
   animation-delay: var(--sb-moment-delay);
+  animation-play-state: paused;
   opacity: 0.75;
   pointer-events: none;
+}
+
+.sb-reveal.is-visible .sb-moment-card::before {
+  animation-play-state: running;
 }
 
 .sb-moment-card:nth-child(2) {
@@ -957,6 +971,10 @@ section {
     animation-play-state: paused;
   }
 
+  .sb-moment-card:hover {
+    will-change: transform;
+  }
+
   .sb-moment-card:not(.recommendation):hover {
     --sb-moment-scale: 1.014;
     --sb-moment-hover-lift: -3px;
@@ -976,6 +994,7 @@ section {
 .sb-moment-card:active {
   --sb-moment-scale: 1.012;
   --sb-moment-hover-lift: -2px;
+  will-change: transform;
 }
 
 .sb-moment-card:not(.recommendation):active {
@@ -1328,6 +1347,11 @@ section {
   border-radius: inherit;
   background: var(--primary-gradient);
   animation: sbProgressGlow 2.4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.sb-reveal.is-visible .sb-progress-shell span {
+  animation-play-state: running;
 }
 
 /* BunBot Homepage Showcase Enhancements (High-Contrast Cyberpunk/SaaS Console) */
@@ -1551,7 +1575,6 @@ section {
   position: relative;
   z-index: 0;
   transform-origin: center;
-  will-change: transform;
   transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
 }
 
@@ -1683,7 +1706,12 @@ section {
   border-radius: 50%;
   border: 1px solid var(--green-subtle-strong);
   animation: sbPulseRing 2.6s ease-in-out infinite;
+  animation-play-state: paused;
   pointer-events: none;
+}
+
+.sb-reveal.is-visible .sb-roadmap-pulse {
+  animation-play-state: running;
 }
 
 .sb-inline-link {
@@ -2309,6 +2337,15 @@ section {
   max-width: 700px;
   margin: 0 auto;
   position: relative;
+}
+
+.cta-card .welcome-bunny {
+  animation-play-state: paused;
+}
+
+.sb-reveal.is-visible .cta-card .welcome-bunny,
+.cta-section.is-visible .cta-card .welcome-bunny {
+  animation-play-state: running;
 }
 
 #main-page .cta-card {
@@ -3880,7 +3917,9 @@ footer {
   .sb-moment-card::before,
   .sb-moment-rail span,
   .floater,
-  .code-col {
+  .code-col,
+  .welcome-bunny,
+  .status-dot {
     animation: none !important;
   }
 
@@ -4438,7 +4477,6 @@ footer {
   position: relative;
   z-index: 0;
   transform-origin: center;
-  will-change: transform;
   transition: transform 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease, opacity 0.24s ease;
   animation: fadeInUp 0.4s ease backwards;
   font-family: var(--font-nunito), sans-serif;
@@ -4475,6 +4513,7 @@ footer {
 
   .sb-answer:hover,
   .quiz-option:not(:disabled):hover {
+    will-change: transform;
     border-color: var(--green);
     background: var(--green-subtle);
     transform: translateY(-4px) scale(1.035);
@@ -5250,6 +5289,14 @@ footer {
   border-radius: 50%;
   box-shadow: 0 0 10px var(--green);
   animation: dotPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+#bunbot .status-dot {
+  animation-play-state: paused;
+}
+
+#bunbot.is-visible .status-dot {
+  animation-play-state: running;
 }
 
 .status-text {
