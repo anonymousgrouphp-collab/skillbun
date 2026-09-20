@@ -9,7 +9,23 @@ import { Cinzel, Pixelify_Sans } from 'next/font/google';
 import { triggerDocumentPrint } from '@/utils/client/printAndDownload';
 import { normalizeDocumentCategory, resolveTemplateVersion } from '@/utils/common/docTemplateRegistry';
 import { getCertificateRenderer } from './templates/certificateRegistry';
+import CertificateRendererV1 from './templates/CertificateRendererV1';
 import styles from './certificate.module.css';
+
+function CertificateVersionRenderer({ version, cert, baseUrl, cinzel, pixelify, styles }) {
+  if (version === 'v1') {
+    return (
+      <CertificateRendererV1
+        cert={cert}
+        baseUrl={baseUrl}
+        cinzel={cinzel}
+        pixelify={pixelify}
+        styles={styles}
+      />
+    );
+  }
+  return null;
+}
 
 const cinzel = Cinzel({
   subsets: ['latin'],
@@ -272,9 +288,9 @@ export default function CertificatePage() {
     );
   }
 
-  const Renderer = resolvedVersion ? getCertificateRenderer(resolvedVersion) : null;
+  const hasRenderer = Boolean(resolvedVersion && getCertificateRenderer(resolvedVersion));
 
-  if (!Renderer) {
+  if (!hasRenderer) {
     return (
       <main className={styles.page}>
         <div className={styles.errorWrapper}>
@@ -346,7 +362,8 @@ export default function CertificatePage() {
         {/* ========================================================================= */}
         {/* VERSIONED IMMUTABLE CERTIFICATE RENDERER                                  */}
         {/* ========================================================================= */}
-        <Renderer
+        <CertificateVersionRenderer
+          version={resolvedVersion}
           cert={cert}
           baseUrl={baseUrl}
           cinzel={cinzel}
