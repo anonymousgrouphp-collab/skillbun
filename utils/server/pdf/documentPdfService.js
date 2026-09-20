@@ -1,14 +1,24 @@
 /**
- * Unified Server-Side Document PDF Service (Pillar 1)
+ * Unified Server-Side Document PDF Service
  *
- * Centralizes programmatic PDF document generation for:
- * 1. 4-Page Formal Offer Letter & Terms of Engagement ('OFFER_LETTER' / 'OFFER')
- * 2. 1-Page Extension of Internship Tenure Letter ('EXTENSION' / 'EXTENSION_LETTER')
- * 3. Relieving & Workforce Merit Certificates
+ * Dispatches programmatic PDF generation by (category, templateVersion)
+ * according to the version-pinned / append-only template architecture.
+ *
+ * Supported Document Types:
+ * 1. 4-Page Formal Offer Letter ('OFFER_LETTER' / 'OFFER' / 'HR-OFF')
+ * 2. 1-Page Extension Letter ('EXTENSION_LETTER' / 'EXTENSION' / 'HR-EXT')
+ * 3. 1-Page Notice of Engagement Conclusion ('TERMINATION_NOTICE' / 'TERMINATION' / 'HR-TERM')
  */
 
-import { generateOfferLetterPdf } from './offerLetterGenerator.js';
-import { generateExtensionLetterPdf } from './extensionLetterGenerator.js';
+import {
+  DOCUMENT_CATEGORIES,
+  normalizeDocumentCategory,
+  resolveTemplateVersion,
+  UnsupportedTemplateVersionError,
+} from '../../common/docTemplateRegistry.js';
+import { generateOfferLetterV1 } from './templates/offerLetter/v1.js';
+import { generateExtensionLetterV1 } from './templates/extensionLetter/v1.js';
+import { generateTerminationNoticeV1 } from './templates/terminationNotice/v1.js';
 import {
   PAGE_WIDTH,
   PAGE_HEIGHT,
@@ -20,16 +30,33 @@ import {
 export const SUPPORTED_DOC_TYPES = Object.freeze({
   OFFER_LETTER: 'OFFER_LETTER',
   EXTENSION_LETTER: 'EXTENSION_LETTER',
+  TERMINATION_NOTICE: 'TERMINATION_NOTICE',
   EXTENSION: 'EXTENSION',
   OFFER: 'OFFER',
+  TERMINATION: 'TERMINATION',
 });
 
 /**
- * Generates a standard programmatic PDF buffer according to document type.
+ * Registry of versioned PDF generators indexed by canonical category and template version.
+ */
+const PDF_GENERATOR_REGISTRY = Object.freeze({
+  [DOCUMENT_CATEGORIES.OFFER_LETTER]: Object.freeze({
+    v1: generateOfferLetterV1,
+  }),
+  [DOCUMENT_CATEGORIES.EXTENSION_LETTER]: Object.freeze({
+    v1: generateExtensionLetterV1,
+  }),
+  [DOCUMENT_CATEGORIES.TERMINATION_NOTICE]: Object.freeze({
+    v1: generateTerminationNoticeV1,
+  }),
+});
+
+/**
+ * Generates a standard programmatic PDF buffer according to document category and stored template version.
  *
- * @param {string} docType - Document type (e.g. 'OFFER_LETTER', 'EXTENSION_LETTER')
- * @param {Object} data - Employee / recipient record data
- * @param {Object} [options={}] - Additional generator options
+ * @param {string} rawDocType - Document type / alias
+ * @param {Object} data - Employee or snapshot record
+ * @param {Object} [options={}] - Generation options (may supply options.templateVersion)
  * @returns {Promise<{ buffer: Buffer, filename: string, referenceId: string, metadataSnapshot: Object }>}
  */
 export async function generateDocumentPdf(docType, data, options = {}) {
@@ -40,30 +67,41 @@ export async function generateDocumentPdf(docType, data, options = {}) {
     throw new TypeError('generateDocumentPdf requires a valid data record object.');
   }
 
-  const normalizedType = docType.trim().toUpperCase();
+  const category = normalizeDocumentCategory(docType);
+  const generatorsForCategory = PDF_GENERATOR_REGISTRY[category];
 
-  switch (normalizedType) {
-    case 'OFFER':
-    case 'OFFER_LETTER':
-    case 'HR-OFF':
-      return generateOfferLetterPdf(data, options);
-
-    case 'EXTENSION':
-    case 'EXTENSION_LETTER':
-    case 'HR-EXT':
-      return generateExtensionLetterPdf(data, options);
-
-    default:
-      throw new Error(`[DocumentPdfService] Unsupported document type: '${docType}'. Supported types: OFFER_LETTER, EXTENSION_LETTER`);
+  if (!generatorsForCategory) {
+    throw new Error(`[DocumentPdfService] Unsupported document type: '${docType}' (normalized as '${category}'). Supported types: OFFER_LETTER, EXTENSION_LETTER, TERMINATION_NOTICE`);
   }
+
+  // Resolve template version strictly:
+  // - options.templateVersion or data.template_version
+  // - null/undefined resolves to 'v1' (legacy fallback)
+  // - explicit unsupported version throws UnsupportedTemplateVersionError (NEVER silent fallback)
+  const requestedVersion = options.templateVersion ?? data.template_version;
+  const resolvedVersion = resolveTemplateVersion(category, requestedVersion);
+
+  const generator = generatorsForCategory[resolvedVersion];
+  if (!generator) {
+    throw new UnsupportedTemplateVersionError(category, resolvedVersion);
+  }
+
+  return generator(data, {
+    ...options,
+    templateVersion: resolvedVersion,
+  });
 }
 
+// Backward-compatible direct aliases targeting V1 generators
+export const generateOfferLetterPdf = generateOfferLetterV1;
+export const generateExtensionLetterPdf = generateExtensionLetterV1;
+export const generateTerminationNoticePdf = generateTerminationNoticeV1;
+
 export {
-  generateOfferLetterPdf,
-  generateExtensionLetterPdf,
   PAGE_WIDTH,
   PAGE_HEIGHT,
   MARGINS,
   CONTENT_WIDTH,
   COLORS,
+  PDF_GENERATOR_REGISTRY,
 };

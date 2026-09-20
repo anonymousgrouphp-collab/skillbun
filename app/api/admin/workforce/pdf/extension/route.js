@@ -7,6 +7,7 @@ import {
   validateEmployeeId,
 } from '@/utils/server/workforceEmployees';
 import { generateExtensionLetterPdf } from '@/utils/server/pdf/extensionLetterGenerator';
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '@/utils/common/docTemplateRegistry';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -51,12 +52,15 @@ export async function POST(request) {
     }
 
     const employeeData = doc.data();
+    const activeVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.EXTENSION_LETTER);
+
     const { buffer, filename, referenceId, metadataSnapshot } = await generateExtensionLetterPdf(
       {
         ...employeeData,
         id: doc.id,
       },
       {
+        templateVersion: activeVersion,
         newContractEndDate: new_contract_end_date,
         originalReferenceId: original_reference_id,
       }
@@ -71,6 +75,7 @@ export async function POST(request) {
       id: referenceId,
       employee_id: doc.id,
       doc_type: 'EXTENSION_LETTER',
+      template_version: activeVersion,
       title: 'Extension of Internship Tenure',
       metadata_snapshot: metadataSnapshot,
       issued_by: admin.email || admin.uid || 'admin',

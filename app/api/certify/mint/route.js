@@ -6,6 +6,7 @@ import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
 import { getClientAddress } from '@/utils/server/requestUtils';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import { generateCertificateId, generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
+import { getActiveTemplateVersion } from '@/utils/common/docTemplateRegistry';
 
 export const runtime = 'nodejs';
 
@@ -178,6 +179,7 @@ export async function POST(request) {
         recommendation_text: certType === 'LOR' ? recommendation_text.trim() : null,
         issued_by: issued_by || 'Harsh Patel',
         issued_by_email: email,
+        template_version: getActiveTemplateVersion(certType),
         is_revoked: false,
         createdAt: now,
         updatedAt: now,

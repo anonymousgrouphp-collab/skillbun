@@ -43,10 +43,30 @@ export async function POST(request) {
 
     const employeeData = doc.data();
     const storedReferenceId = employeeData.offer_reference_id || undefined;
+
+    let storedSnapshot = null;
+    let historicalVersion = undefined;
+    if (storedReferenceId) {
+      try {
+        const existingWfDoc = await db.collection('workforce_docs').doc(storedReferenceId).get();
+        if (existingWfDoc.exists) {
+          const wfData = existingWfDoc.data();
+          storedSnapshot = wfData.metadata_snapshot || null;
+          historicalVersion = wfData.template_version || undefined;
+        }
+      } catch (wfErr) {
+        console.warn('[PDF Offer] Could not read historical workforce_docs snapshot:', wfErr.message);
+      }
+    }
+
     const { buffer, filename, referenceId, metadataSnapshot } = await generateOfferLetterPdf({
       ...employeeData,
+      metadata_snapshot: storedSnapshot || employeeData.metadata_snapshot,
       id: doc.id,
-    }, { referenceId: storedReferenceId });
+    }, {
+      referenceId: storedReferenceId,
+      templateVersion: historicalVersion,
+    });
 
     if (!storedReferenceId) {
       await doc.ref.update({ offer_reference_id: referenceId, updated_at: new Date() });

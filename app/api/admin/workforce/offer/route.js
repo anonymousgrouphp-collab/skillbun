@@ -11,6 +11,7 @@ import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforc
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates';
 import { decryptCredentials, encryptCredentials } from '@/utils/server/workforceCrypto';
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '@/utils/common/docTemplateRegistry';
 
 export const runtime = 'nodejs';
 
@@ -47,8 +48,9 @@ export async function POST(request) {
 
     const employeeData = employeeDoc.data();
 
-    // 1. Generate unique reference ID
+    // 1. Generate unique reference ID & active template version
     const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.OFFER);
+    const activeVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.OFFER_LETTER);
 
     // 2. Generate 4-page Offer Letter PDF in-memory buffer
     const { buffer, filename, metadataSnapshot } = await generateOfferLetterPdf(
@@ -56,7 +58,7 @@ export async function POST(request) {
         ...employeeData,
         id: employeeDoc.id,
       },
-      { referenceId }
+      { referenceId, templateVersion: activeVersion }
     );
 
     // 3. Save or decrypt credentials
@@ -132,6 +134,7 @@ export async function POST(request) {
         id: referenceId,
         employee_id: employeeId,
         doc_type: 'OFFER_PACK',
+        template_version: activeVersion,
         title: 'Internship Offer Letter & Terms of Engagement',
         status: 'DISPATCHED',
         metadata_snapshot: metadataSnapshot,

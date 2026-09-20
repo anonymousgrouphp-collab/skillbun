@@ -9,6 +9,7 @@ import {
 import { generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildTerminationDispatchEmail } from '@/utils/server/workforceEmailTemplates';
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '@/utils/common/docTemplateRegistry';
 
 export const runtime = 'nodejs';
 
@@ -83,6 +84,7 @@ export async function POST(request) {
         id: certId,
         display_id: displayId,
         cert_type: 'INTERNSHIP',
+        template_version: getActiveTemplateVersion(DOCUMENT_CATEGORIES.INTERNSHIP_CERT),
         employee_id: employeeId,
         name: employeeData.full_name,
         email: (employeeData.personal_email || '').trim().toLowerCase(),
@@ -106,6 +108,7 @@ export async function POST(request) {
         id: certId,
         display_id: displayId,
         cert_type: 'TRAINING',
+        template_version: getActiveTemplateVersion(DOCUMENT_CATEGORIES.TRAINING_CERT),
         employee_id: employeeId,
         name: employeeData.full_name,
         email: (employeeData.personal_email || '').trim().toLowerCase(),
@@ -129,6 +132,7 @@ export async function POST(request) {
         id: certId,
         display_id: displayId,
         cert_type: 'LOR',
+        template_version: getActiveTemplateVersion(DOCUMENT_CATEGORIES.LOR),
         employee_id: employeeId,
         name: employeeData.full_name,
         email: (employeeData.personal_email || '').trim().toLowerCase(),
@@ -212,13 +216,16 @@ export async function POST(request) {
         emailDispatched = true;
 
         // Record in workforce_docs
+        const termVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.TERMINATION_NOTICE);
         await db.collection('workforce_docs').doc(referenceId).set({
           id: referenceId,
           employee_id: employeeId,
           doc_type: 'TERMINATION_NOTICE',
+          template_version: termVersion,
           title: reasonCode === 'COMPLETED' ? 'Internship Completion & Offboarding Record' : 'Notice of Engagement Conclusion',
           status: 'DISPATCHED',
           metadata_snapshot: {
+            template_version: termVersion,
             reference_id: referenceId,
             full_name: employeeData.full_name,
             personal_email: employeeData.personal_email,

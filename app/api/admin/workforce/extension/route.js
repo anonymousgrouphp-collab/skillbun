@@ -10,6 +10,7 @@ import { generateExtensionLetterPdf } from '@/utils/server/pdf/extensionLetterGe
 import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer';
 import { buildExtensionDispatchEmail } from '@/utils/server/workforceEmailTemplates';
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '@/utils/common/docTemplateRegistry';
 
 export const runtime = 'nodejs';
 
@@ -69,8 +70,9 @@ export async function POST(request) {
       return apiError('new_contract_end_date must be a valid YYYY-MM-DD date.', 400, 'VALIDATION_ERROR');
     }
 
-    // 1. Generate unique reference ID
+    // 1. Generate unique reference ID & active template version
     const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.EXTENSION);
+    const activeVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.EXTENSION_LETTER);
 
     // 2. Generate formal Extension Letter PDF
     const { buffer, filename, metadataSnapshot } = await generateExtensionLetterPdf(
@@ -80,6 +82,7 @@ export async function POST(request) {
       },
       {
         referenceId,
+        templateVersion: activeVersion,
         newContractEndDate: targetEndDate,
         originalReferenceId: original_reference_id || employeeData.offer_reference_id,
       }
@@ -122,6 +125,7 @@ export async function POST(request) {
         id: referenceId,
         employee_id: employeeId,
         doc_type: 'EXTENSION_LETTER',
+        template_version: activeVersion,
         title: 'Extension of Internship Tenure',
         status: 'DISPATCHED',
         metadata_snapshot: metadataSnapshot,

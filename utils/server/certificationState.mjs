@@ -30,6 +30,8 @@ export async function submitExamAttempt(db, { uid, attemptId, answers, grade, no
     return { success: true, attemptId, ...result, total: 10 };
   });
 }
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '../common/docTemplateRegistry.js';
+
 export async function mintExamCertificate(db, { uid, email, attemptId, roadmapSlug, certId, now = new Date() }) {
   validateSubmission(attemptId, {});
   const attemptRef = db.collection('examAttempts').doc(attemptId);
@@ -43,10 +45,11 @@ export async function mintExamCertificate(db, { uid, email, attemptId, roadmapSl
     if (attempt.status !== 'COMPLETED' || attempt.passed !== true || !Number.isInteger(attempt.score) || attempt.score < 70 || attempt.score > 100) throw new ExamError('A completed passing exam is required.');
     if (attempt.minted) throw new ExamError('A certificate has already been issued for this attempt.');
     if (!attempt.certName || !attempt.roadmapTitle) throw new ExamError('Exam record is missing credential details.', 500);
+    const templateVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.ROADMAP_CERT);
     transaction.create(certRef, {
       id: certId, uid, email, name: attempt.certName, roadmapSlug,
       roadmapTitle: attempt.roadmapTitle, score: attempt.score, attemptId,
-      cert_type: 'ROADMAP', is_revoked: false, createdAt: now,
+      cert_type: 'ROADMAP', template_version: templateVersion, is_revoked: false, createdAt: now,
     });
     transaction.update(attemptRef, { minted: true, certId, mintedAt: now, updatedAt: now });
     return { success: true, certId, cert_type: 'ROADMAP', score: attempt.score, message: 'Verified certificate minted successfully.' };

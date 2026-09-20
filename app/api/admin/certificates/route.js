@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getFirebaseAdminAuth, getFirebaseAdminFirestore } from '@/utils/server/firebaseAdmin';
 import { isUserAuthorizedAdmin } from '@/utils/server/workforceEmployees';
 import { generateCertificateId, generateWorkforceId, formatWorkforceDisplayId, WORKFORCE_PREFIXES } from '@/utils/server/workforceId';
+import { getActiveTemplateVersion } from '@/utils/common/docTemplateRegistry';
 import { checkServerRateLimit } from '@/utils/server/rateLimitStore';
 import { getClientAddress } from '@/utils/server/requestUtils';
 
@@ -249,6 +250,7 @@ export async function POST(request) {
       recommendation_text: (certType === 'LOR' || certType === 'INTERNSHIP') ? (recommendationText || null) : null,
       issued_by: (certType === 'LOR' || certType === 'INTERNSHIP') ? 'Harsh Patel' : 'SkillBun Academic Verification Authority',
       issued_by_admin: auth.email,
+      template_version: getActiveTemplateVersion(certType),
       is_revoked: false,
       createdAt: now,
       updatedAt: now,

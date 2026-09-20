@@ -16,6 +16,7 @@ import { generateWorkforceId, WORKFORCE_PREFIXES } from '@/utils/server/workforc
 import { generateOfferLetterPdf } from '@/utils/server/pdf/offerLetterGenerator'
 import { buildOfferDispatchEmail } from '@/utils/server/workforceEmailTemplates'
 import { sendMailWithAttachment } from '@/utils/server/zohoMailer'
+import { getActiveTemplateVersion, DOCUMENT_CATEGORIES } from '@/utils/common/docTemplateRegistry'
 
 export const runtime = 'nodejs'
 
@@ -147,6 +148,7 @@ export async function POST(request) {
 
     // Auto-generate formal Offer Letter PDF and dispatch email
     const referenceId = generateWorkforceId(WORKFORCE_PREFIXES.OFFER)
+    const activeOfferVersion = getActiveTemplateVersion(DOCUMENT_CATEGORIES.OFFER_LETTER)
 
     try {
       const { buffer, filename, metadataSnapshot } = await generateOfferLetterPdf(
@@ -154,7 +156,7 @@ export async function POST(request) {
           ...prepared.value,
           id: employeeRef.id,
         },
-        { referenceId }
+        { referenceId, templateVersion: activeOfferVersion }
       )
 
       const emailPayload = buildOfferDispatchEmail({
@@ -191,6 +193,7 @@ export async function POST(request) {
           id: referenceId,
           employee_id: employeeRef.id,
           doc_type: 'OFFER_PACK',
+          template_version: activeOfferVersion,
           title: 'Internship Offer Letter & Terms of Engagement',
           status: 'DISPATCHED',
           metadata_snapshot: metadataSnapshot,
