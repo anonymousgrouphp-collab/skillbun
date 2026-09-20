@@ -35,6 +35,9 @@ jobs:
       - name: Verify Native RAG Runtime
         run: node --input-type=module -e "await import('@huggingface/transformers')"
 
+      - name: Document Template Immutability Guard
+        run: npm run guard:templates
+
       - name: Static Code Analysis (ESLint)
         run: npm run lint
 

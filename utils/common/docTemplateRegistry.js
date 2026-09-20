@@ -233,7 +233,83 @@ export function isSupportedTemplateVersion(rawType, version) {
  */
 export const V1_FROZEN_ASSETS = Object.freeze({
   ROADMAP_CANVA_TEMPLATE: '/certificate-template.png',
+  INTERNSHIP_CANVA_TEMPLATE: '/internship-cert-template.png',
+  TRAINING_CANVA_TEMPLATE: '/training-cert-template.png',
   BRAND_LOGO_TIGHT: '/logo-tight.png',
   REISH_MARK: '/reish-mark.png',
   REISH_WORDMARK: '/reish-wordmark.png',
+  LOGO: '/logo.png',
+  SPLASH_LOGO: '/splash-logo.png',
 });
+
+/**
+ * Canonical Manifest of Frozen Template Source Files and Assets.
+ *
+ * Any file listed here belongs to an already-released, immutable template version (e.g. V1).
+ * Automated CI checks and git guards will block any direct modification to these paths.
+ * New visual or structural changes must be implemented as a new version (e.g. V2).
+ */
+export const FROZEN_TEMPLATE_MANIFEST = Object.freeze({
+  v1: Object.freeze({
+    renderers: Object.freeze([
+      'app/certificate/[id]/templates/CertificateRendererV1.jsx',
+    ]),
+    pdfGenerators: Object.freeze([
+      'utils/server/pdf/templates/offerLetter/v1.js',
+      'utils/server/pdf/templates/extensionLetter/v1.js',
+      'utils/server/pdf/templates/terminationNotice/v1.js',
+    ]),
+    assets: Object.freeze([
+      'public/certificate-template.png',
+      'public/internship-cert-template.png',
+      'public/training-cert-template.png',
+      'public/logo-tight.png',
+      'public/reish-mark.png',
+      'public/reish-wordmark.png',
+      'public/logo.png',
+      'public/splash-logo.png',
+    ]),
+  }),
+});
+
+/**
+ * Flat list of all frozen file paths across all released versions.
+ * Normalized to forward-slash repo-relative paths.
+ */
+export const ALL_FROZEN_TEMPLATE_PATHS = Object.freeze(
+  Object.values(FROZEN_TEMPLATE_MANIFEST).flatMap((ver) => [
+    ...ver.renderers,
+    ...ver.pdfGenerators,
+    ...ver.assets,
+  ])
+);
+
+/**
+ * Validates integrity of TEMPLATE_REGISTRY configuration:
+ * 1. activeVersion must be in supportedVersions for every category.
+ * 2. supportedVersions must not be empty.
+ * 3. legacyFallbackVersion must be in supportedVersions.
+ *
+ * @param {Object} [registry=TEMPLATE_REGISTRY]
+ * @returns {{ valid: boolean, errors: string[] }}
+ */
+export function validateTemplateRegistry(registry = TEMPLATE_REGISTRY) {
+  const errors = [];
+  for (const [category, config] of Object.entries(registry)) {
+    if (!config.supportedVersions || !Array.isArray(config.supportedVersions) || config.supportedVersions.length === 0) {
+      errors.push(`Category "${category}" has no supportedVersions declared.`);
+      continue;
+    }
+    if (!config.supportedVersions.includes(config.activeVersion)) {
+      errors.push(`Category "${category}" activeVersion "${config.activeVersion}" is not in supportedVersions [${config.supportedVersions.join(', ')}].`);
+    }
+    if (!config.supportedVersions.includes(config.legacyFallbackVersion)) {
+      errors.push(`Category "${category}" legacyFallbackVersion "${config.legacyFallbackVersion}" is not in supportedVersions [${config.supportedVersions.join(', ')}].`);
+    }
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+  };
+}
+

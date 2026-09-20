@@ -11,7 +11,15 @@ import {
   normalizeDocumentCategory,
   isSupportedTemplateVersion,
   V1_FROZEN_ASSETS,
+  FROZEN_TEMPLATE_MANIFEST,
+  ALL_FROZEN_TEMPLATE_PATHS,
+  validateTemplateRegistry,
 } from '../../utils/common/docTemplateRegistry.js';
+
+import {
+  checkFrozenFilesModified,
+  verifyTemplateImplementations,
+} from '../../scripts/check-document-template-immutability.mjs';
 
 import {
   generateDocumentPdf,
@@ -313,6 +321,176 @@ describe('Global Document Versioning System — Version-Pinned / Append-Only Arc
       const newDoc = { id: 'cert-bob', template_version: newActiveVersion };
       const resolvedForNew = simulatedResolve(DOCUMENT_CATEGORIES.ROADMAP_CERT, newDoc.template_version);
       assert.equal(resolvedForNew, 'v2', 'New record resolves to v2');
+    });
+  });
+
+  describe('6. Template Immutability & Repository Guard Enforcement', () => {
+    it('1. Editing frozen V1 web renderer fails immutability guard', () => {
+      const changed = ['app/certificate/[id]/templates/CertificateRendererV1.jsx'];
+      const result = checkFrozenFilesModified(changed);
+      assert.equal(result.hasViolations, true);
+      assert.deepEqual(result.violations, ['app/certificate/[id]/templates/CertificateRendererV1.jsx']);
+    });
+
+    it('2. Editing frozen V1 PDF generator fails immutability guard', () => {
+      const changed = [
+        'utils/server/pdf/templates/offerLetter/v1.js',
+        'utils/server/pdf/templates/extensionLetter/v1.js',
+        'utils/server/pdf/templates/terminationNotice/v1.js',
+      ];
+      const result = checkFrozenFilesModified(changed);
+      assert.equal(result.hasViolations, true);
+      assert.equal(result.violations.length, 3);
+      assert.ok(result.violations.includes('utils/server/pdf/templates/offerLetter/v1.js'));
+      assert.ok(result.violations.includes('utils/server/pdf/templates/extensionLetter/v1.js'));
+      assert.ok(result.violations.includes('utils/server/pdf/templates/terminationNotice/v1.js'));
+    });
+
+    it('3. Editing frozen V1 visual asset fails immutability guard', () => {
+      const changed = [
+        'public/certificate-template.png',
+        'public/internship-cert-template.png',
+        'public/training-cert-template.png',
+        'public/logo-tight.png',
+      ];
+      const result = checkFrozenFilesModified(changed);
+      assert.equal(result.hasViolations, true);
+      assert.equal(result.violations.length, 4);
+      assert.ok(result.violations.includes('public/certificate-template.png'));
+      assert.ok(result.violations.includes('public/logo-tight.png'));
+    });
+
+    it('4. Adding brand-new V2 files without editing V1 passes immutability guard', () => {
+      const changed = [
+        'app/certificate/[id]/templates/CertificateRendererV2.jsx',
+        'utils/server/pdf/templates/offerLetter/v2.js',
+        'public/templates/v2/gold-seal.png',
+        'utils/common/docTemplateRegistry.js',
+      ];
+      const result = checkFrozenFilesModified(changed);
+      assert.equal(result.hasViolations, false);
+      assert.deepEqual(result.violations, []);
+    });
+
+    it('5. activeVersion: "v2" without V2 implementation fails validation', () => {
+      // 5a. Registry invariant failure if activeVersion is not declared in supportedVersions
+      const unlistedActiveRegistry = {
+        [DOCUMENT_CATEGORIES.ROADMAP_CERT]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1'],
+          legacyFallbackVersion: 'v1',
+        },
+      };
+      const regResult = validateTemplateRegistry(unlistedActiveRegistry);
+      assert.equal(regResult.valid, false);
+      assert.ok(regResult.errors.some((err) => err.includes('activeVersion "v2" is not in supportedVersions')));
+
+      // 5b. Implementation verification failure if v2 is declared but file is missing on disk
+      const missingFileRegistry = {
+        [DOCUMENT_CATEGORIES.ROADMAP_CERT]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1', 'v2'],
+          legacyFallbackVersion: 'v1',
+        },
+      };
+      const implResult = verifyTemplateImplementations(missingFileRegistry);
+      assert.equal(implResult.valid, false);
+      assert.ok(implResult.errors.length > 0);
+      assert.ok(implResult.errors.some((err) => err.includes('CertificateRendererV2.jsx')));
+    });
+
+    it('6. supportedVersions: ["v1", "v2"] with proper V2 renderer and generator passes validation', (t) => {
+      // Create a temporary mock directory simulating repo root with v1 and v2 files
+      const tempDir = fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-v2-'));
+      t.after(() => {
+        fs.rmSync(tempDir, { recursive: true, force: true });
+      });
+
+      // Scaffold mock web renderer for v1 and v2
+      const webDir = path.join(tempDir, 'app', 'certificate', '[id]', 'templates');
+      fs.mkdirSync(webDir, { recursive: true });
+      fs.writeFileSync(path.join(webDir, 'CertificateRendererV1.jsx'), 'export default function V1() {}');
+      fs.writeFileSync(path.join(webDir, 'CertificateRendererV2.jsx'), 'export default function V2() {}');
+
+      // Scaffold mock pdf generator for v1 and v2
+      const pdfDir = path.join(tempDir, 'utils', 'server', 'pdf', 'templates', 'offerLetter');
+      fs.mkdirSync(pdfDir, { recursive: true });
+      fs.writeFileSync(path.join(pdfDir, 'v1.js'), 'export function generateOfferLetterPdf() {}');
+      fs.writeFileSync(path.join(pdfDir, 'v2.js'), 'export function generateOfferLetterPdf() {}');
+
+      const validV2Registry = {
+        [DOCUMENT_CATEGORIES.ROADMAP_CERT]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1', 'v2'],
+          legacyFallbackVersion: 'v1',
+        },
+        [DOCUMENT_CATEGORIES.OFFER_LETTER]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1', 'v2'],
+          legacyFallbackVersion: 'v1',
+        },
+      };
+
+      // Invariant checks pass
+      const regResult = validateTemplateRegistry(validV2Registry);
+      assert.equal(regResult.valid, true);
+      assert.deepEqual(regResult.errors, []);
+
+      // Disk implementations pass against mock root
+      const implResult = verifyTemplateImplementations(validV2Registry, tempDir);
+      assert.equal(implResult.valid, true);
+      assert.deepEqual(implResult.errors, []);
+    });
+
+    it('7. Historical V1 records still resolve to V1 when activeVersion is V2', () => {
+      const v2Registry = {
+        [DOCUMENT_CATEGORIES.ROADMAP_CERT]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1', 'v2'],
+          legacyFallbackVersion: 'v1',
+        },
+      };
+
+      function resolveWithRegistry(cat, requested) {
+        const cfg = v2Registry[cat];
+        if (requested === null || requested === undefined || requested === '') {
+          return cfg.legacyFallbackVersion;
+        }
+        const normalized = requested.toLowerCase().trim();
+        if (cfg.supportedVersions.includes(normalized)) {
+          return normalized;
+        }
+        throw new UnsupportedTemplateVersionError(cat, requested);
+      }
+
+      // Explicit v1 historical document
+      assert.equal(resolveWithRegistry(DOCUMENT_CATEGORIES.ROADMAP_CERT, 'v1'), 'v1');
+      assert.equal(resolveWithRegistry(DOCUMENT_CATEGORIES.ROADMAP_CERT, 'V1'), 'v1');
+
+      // Legacy document without version stored
+      assert.equal(resolveWithRegistry(DOCUMENT_CATEGORIES.ROADMAP_CERT, null), 'v1');
+      assert.equal(resolveWithRegistry(DOCUMENT_CATEGORIES.ROADMAP_CERT, undefined), 'v1');
+      assert.equal(resolveWithRegistry(DOCUMENT_CATEGORIES.ROADMAP_CERT, ''), 'v1');
+    });
+
+    it('8. New issuance resolves to V2 when activeVersion is V2', () => {
+      const v2Registry = {
+        [DOCUMENT_CATEGORIES.ROADMAP_CERT]: {
+          activeVersion: 'v2',
+          supportedVersions: ['v1', 'v2'],
+          legacyFallbackVersion: 'v1',
+        },
+      };
+
+      function getActive(cat) {
+        return v2Registry[cat].activeVersion;
+      }
+
+      const newVersion = getActive(DOCUMENT_CATEGORIES.ROADMAP_CERT);
+      assert.equal(newVersion, 'v2');
+
+      const newRecord = { template_version: newVersion };
+      assert.equal(newRecord.template_version, 'v2');
     });
   });
 });
