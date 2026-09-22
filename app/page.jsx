@@ -4,19 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { normalizeInternalPath } from '@/utils/shared/routes';
-import { Cinzel, Pixelify_Sans } from 'next/font/google';
+import { cinzel, pixelify } from '@/app/fonts';
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['700', '900'],
-  display: 'swap',
-});
-
-const pixelify = Pixelify_Sans({
-  subsets: ['latin'],
-  weight: ['700'],
-  display: 'swap',
-});
 
 
 const FLOATER_TEXTS = [

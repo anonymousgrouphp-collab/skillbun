@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Cinzel, Pixelify_Sans } from 'next/font/google';
+import { cinzel, pixelify } from '@/app/fonts';
 import QRCodeSvg from '@/app/components/QRCodeSvg';
 import OfficialSeal from '@/app/components/OfficialSeal';
 import { useAuth } from '@/app/components/AuthProvider';
@@ -11,17 +11,6 @@ import { triggerDocumentPrint } from '@/utils/client/printAndDownload';
 import certStyles from '@/app/certificate/[id]/certificate.module.css';
 import styles from './certificates.module.css';
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['700', '900'],
-  display: 'swap',
-});
-
-const pixelify = Pixelify_Sans({
-  subsets: ['latin'],
-  weight: ['700'],
-  display: 'swap',
-});
 
 function OrnateCorner({ position = 'TL' }) {
   const transforms = {

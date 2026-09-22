@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
-import { Cinzel, Pixelify_Sans } from 'next/font/google';
+import { cinzel, pixelify } from '@/app/fonts';
 import { triggerDocumentPrint } from '@/utils/client/printAndDownload';
 import { normalizeDocumentCategory, resolveTemplateVersion } from '@/utils/common/docTemplateRegistry';
 import { getCertificateRenderer } from './templates/certificateRegistry';
@@ -27,17 +27,6 @@ function CertificateVersionRenderer({ version, cert, baseUrl, cinzel, pixelify, 
   return null;
 }
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['700', '900'],
-  display: 'swap',
-});
-
-const pixelify = Pixelify_Sans({
-  subsets: ['latin'],
-  weight: ['700'],
-  display: 'swap',
-});
 
 function LinkedInIcon() {
   return (
