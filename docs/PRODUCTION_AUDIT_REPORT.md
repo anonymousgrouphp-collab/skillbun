@@ -1,6 +1,6 @@
 # SkillBun — Full Production Readiness Audit
 
-**Target:** https://skillbun.tech/ · **Repo:** [anonymousgrouphp-collab/skillbun](https://github.com/anonymousgrouphp-collab/skillbun)
+**Target:** https://skillbun.tech/ · **Repo:** [harshpatelcse/skillbun](https://github.com/harshpatelcse/skillbun)
 **Version audited:** 2.9.3 (commit `8fd486d`, branch `main`) · **Audit date:** 2026-09-05
 **Scope:** static analysis of ~57k LOC (`app/`, `lib/`, `utils/`), config, Firestore rules, plus black-box verification against the live production site.
 

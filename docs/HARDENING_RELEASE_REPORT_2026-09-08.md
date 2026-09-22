@@ -1,6 +1,6 @@
 # SkillBun — hardening results and production release gates
 
-Date: 2026-09-08. Site: https://skillbun.tech/. Repository: https://github.com/anonymousgrouphp-collab/skillbun. Baseline: `dec925c`, package 2.10.12, plus uncommitted local hardening changes. No commit, push, rule publication, or deployment was performed.
+Date: 2026-09-08. Site: https://skillbun.tech/. Repository: https://github.com/harshpatelcse/skillbun. Baseline: `dec925c`, package 2.10.12, plus uncommitted local hardening changes. No commit, push, rule publication, or deployment was performed.
 
 ## Verdict
 

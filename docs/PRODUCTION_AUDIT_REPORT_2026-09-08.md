@@ -3,7 +3,7 @@
 > **Superseded verdict:** The conditional approval below is withdrawn. The subsequent hardening pass found additional answer-bank exposure, an alumni reference-classification bypass, and exam transaction/rules issues. See [the current remediation and release-gate report](HARDENING_RELEASE_REPORT_2026-09-08.md). The remainder is retained as historical evidence, not current production approval.
 
 **Site:** https://skillbun.tech/  
-**Repository:** https://github.com/anonymousgrouphp-collab/skillbun  
+**Repository:** https://github.com/harshpatelcse/skillbun  
 **Audit date:** 2026-09-08  
 **Release checked:** 2.10.12 (`dec925c`)  
 **Scope:** live black-box checks, repository review, Firestore rules, API authorization, build/test/lint/dependency verification, SEO/headers, secrets, injection surfaces, abuse controls, and production workflow documentation.
