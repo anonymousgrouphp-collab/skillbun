@@ -538,15 +538,21 @@ export default function AnalyticsDashboardPage() {
     }
   };
 
-  const handleBulkEmailSent = ({ uid, templateId, category, roadmapSlug, eventKey, sentAt }) => {
+  const handleBulkEmailSent = ({ uid, ...dispatch }) => {
+    const log = {
+      ...dispatch,
+      adminEmail: dispatch.adminEmail || userEmail,
+      forceOverride: Boolean(dispatch.forceOverride),
+    };
     setData(previous => {
       if (!previous) return previous;
       const users = (previous.users || []).map(student => {
         if (student.uid !== uid) return student;
         const history = Array.isArray(student.sentEmailHistory) ? student.sentEmailHistory : [];
+        if (log.dispatchId && history.some(entry => entry && typeof entry === 'object' && entry.dispatchId === log.dispatchId)) return student;
         return {
           ...student,
-          sentEmailHistory: [...history, { templateId, category, roadmapSlug, eventKey, sentAt, adminEmail: userEmail, forceOverride: false }],
+          sentEmailHistory: [...history, log],
         };
       });
       return { ...previous, users };

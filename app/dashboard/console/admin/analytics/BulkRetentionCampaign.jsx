@@ -37,19 +37,25 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
   const standardRecipients = recipients.length - freshDraftRecipients.length;
   const excludedCount = Math.max(0, students.length - recipients.length);
   const busy = run?.status === 'running' || run?.status === 'waiting';
+  const hasOpenRun = Boolean(run && !['complete', 'discarded'].includes(run.status));
 
   const setBusy = value => onBusyChange?.(value);
 
-  const addResult = (status, recipient, detail = '') => {
+  const addResult = (status, recipient, detail = '', index = -1) => {
     setRun(previous => {
       if (!previous) return previous;
-      const results = [...previous.results, {
+      const nextResult = {
         uid: recipient.uid,
         name: recipient.name,
         email: recipient.email,
+        index,
         status,
         detail,
-      }];
+      };
+      const resultIndex = previous.results.findIndex(result => result.uid === recipient.uid);
+      const results = [...previous.results];
+      if (resultIndex >= 0) results[resultIndex] = { ...results[resultIndex], ...nextResult };
+      else results.push(nextResult);
       return {
         ...previous,
         results,
@@ -74,6 +80,73 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
     }
     updateRun({ status: 'running', message: '', resumeAt: null });
     return true;
+  };
+
+  const resolveUncertainDelivery = async (result, resolution) => {
+    if (actionInProgress.current || !user?.getIdToken) return;
+    const action = resolution === 'sent' ? 'confirmed sent' : 'confirmed not sent';
+    const prompt = resolution === 'sent'
+      ? `Confirm that you checked the mailbox or delivery records and this email was sent to ${result.email}.`
+      : `Confirm that you checked and this email was not sent to ${result.email}. The campaign may retry it afterward.`;
+    if (!window.confirm(prompt)) return;
+
+    actionInProgress.current = true;
+    setBusy(true);
+    updateRun({ resolvingUid: result.uid });
+    setNotice('');
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/api/admin/emails/send', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dispatchAction: 'resolve', uid: result.uid, dispatchResolution: resolution }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.success) {
+        setNotice(data.error || `Could not mark this dispatch as ${action}.`);
+        return;
+      }
+
+      const recipient = run?.queue?.find(item => item.uid === result.uid) || result;
+      if (resolution === 'sent') {
+        addResult('sent', recipient, 'Manually confirmed sent after reviewing delivery.', result.index);
+        onEmailSent?.({ uid: result.uid, ...(data.dispatch || {}) });
+        setRun(previous => {
+          if (!previous) return previous;
+          const nextIndex = Math.max(previous.nextIndex, result.index + 1);
+          const results = previous.results.map(item => item.uid === result.uid
+            ? { ...item, status: 'sent', detail: 'Manually confirmed sent after reviewing delivery.' }
+            : item);
+          const review = results.filter(item => item.status === 'review').length;
+          const complete = nextIndex >= previous.queue.length && review === 0;
+          return {
+            ...previous,
+            results,
+            nextIndex,
+            sent: results.filter(item => item.status === 'sent').length,
+            skipped: results.filter(item => item.status === 'skipped').length,
+            review,
+            status: complete ? 'complete' : 'paused',
+            message: complete ? 'Campaign finished.' : 'Delivery reviewed. Resume to continue with the remaining students.',
+          };
+        });
+      } else {
+        addResult('retry', recipient, 'Confirmed not sent. Resume to retry this student.', result.index);
+        setRun(previous => previous ? {
+          ...previous,
+          nextIndex: Math.min(previous.nextIndex, result.index),
+          status: 'paused',
+          message: 'The send lock was cleared. Resume when you are ready to retry this student.',
+          review: previous.results.filter(item => item.uid !== result.uid && item.status === 'review').length,
+        } : previous);
+      }
+    } catch (error) {
+      setNotice(error.message || `Could not mark this dispatch as ${action}.`);
+    } finally {
+      updateRun({ resolvingUid: null });
+      setBusy(false);
+      actionInProgress.current = false;
+    }
   };
 
   const processQueue = async (queue, startIndex, initialRun = null) => {
@@ -106,7 +179,16 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ uid: recipient.uid, action: 'prepare' }),
           });
-          const draftResult = await draftResponse.json().catch(() => ({}));
+          let draftResult = await draftResponse.json().catch(() => ({}));
+
+          if (draftResponse.status === 409 && draftResult.error === 'The AI repeated an existing variation. Create another variation from the library.') {
+            draftResponse = await fetch('/api/admin/emails/drafts', {
+              method: 'POST',
+              headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ uid: recipient.uid, action: 'generate' }),
+            });
+            draftResult = await draftResponse.json().catch(() => ({}));
+          }
 
           if (draftResponse.status === 429) {
             const ready = await waitBeforeRetry(getRetryDelay(draftResponse), index);
@@ -148,30 +230,45 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
             index -= 1;
             continue;
           }
+          if (sendResponse.status === 409 && sendResult.dispatchInProgress) {
+            const ready = await waitBeforeRetry(getRetryDelay(sendResponse), index);
+            if (!ready) return;
+            index -= 1;
+            continue;
+          }
+          if (sendResult.dispatchReviewRequired || sendResult.deliveryUncertain) {
+            addResult('review', recipient, sendResult.error || 'Delivery outcome needs review before any retry.', index);
+            updateRun({ status: 'paused', nextIndex: index, current: null, message: 'Check the recipient’s mailbox or delivery records, then confirm the result below before continuing.' });
+            return;
+          }
           if (sendResponse.status === 409 || (sendResponse.status === 400 && sendResult.isUnsubscribed)) {
-            addResult('skipped', recipient, sendResult.error || 'No longer eligible.');
+            addResult('skipped', recipient, sendResult.error || 'No longer eligible.', index);
             continue;
           }
           if (!sendResponse.ok || !sendResult.success) {
-            addResult('review', recipient, sendResult.error || 'Send outcome needs review; it was not retried automatically.');
-            updateRun({ status: 'paused', nextIndex: index + 1, current: null, message: 'A send could not be confirmed. Check this recipient’s email history before continuing.' });
+            if (sendResult.retryable) {
+              updateRun({ status: 'paused', nextIndex: index, current: null, message: sendResult.error || `The email was not sent to ${recipient.email}. Resume to retry.` });
+              return;
+            }
+            addResult('review', recipient, sendResult.error || 'Send outcome needs review; it was not retried automatically.', index);
+            updateRun({ status: 'paused', nextIndex: index, current: null, message: 'A send could not be confirmed. Check this recipient’s delivery records before continuing.' });
             return;
           }
 
-          const sentAt = new Date().toISOString();
           onEmailSent?.({
             uid: recipient.uid,
+            ...(sendResult.dispatch || {}),
             templateId: sendResult.sentTemplateId || draftResult.templateId,
             category: recipient.recommendation.category,
             roadmapSlug: recipient.recommendation.roadmapSlug,
             eventKey: recipient.recommendation.eventKey,
-            sentAt,
+            sentAt: sendResult.dispatch?.sentAt || new Date().toISOString(),
           });
-          addResult('sent', recipient, sendResult.message || 'Email sent.');
+          addResult('sent', recipient, sendResult.message || 'Email sent.', index);
         } catch (error) {
           if (sendStarted) {
-            addResult('review', recipient, error.message || 'Connection ended while sending; delivery could not be confirmed.');
-            updateRun({ status: 'paused', nextIndex: index + 1, current: null, message: 'A send outcome is uncertain. Check email history before continuing.' });
+            addResult('review', recipient, error.message || 'Connection ended while sending; delivery could not be confirmed.', index);
+            updateRun({ status: 'paused', nextIndex: index, current: null, message: 'A send outcome is uncertain. Check delivery records and resolve it below before continuing.' });
           } else {
             updateRun({ status: 'paused', nextIndex: index, current: null, message: error.message || `Could not prepare ${recipient.email}. Resume to retry.` });
           }
@@ -195,7 +292,7 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
   };
 
   const startCampaign = async mode => {
-    if (actionInProgress.current || blocked) return;
+    if (actionInProgress.current || blocked || hasOpenRun) return;
     const selected = mode === 'fresh' ? freshDraftRecipients : recipients;
     const queue = selected.map(({ student, recommendation }) => ({
       uid: student.uid,
@@ -233,12 +330,17 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
   };
 
   const resumeCampaign = async () => {
-    if (!run || actionInProgress.current) return;
+    if (!run || actionInProgress.current || run.review > 0) return;
     await processQueue(run.queue, run.nextIndex, run);
   };
 
+  const discardPausedRun = () => {
+    if (!run || run.status !== 'paused' || run.review > 0 || !window.confirm('Discard this paused run? Students already logged as sent will remain excluded from future campaigns.')) return;
+    updateRun({ status: 'discarded', current: null, message: 'Paused run discarded. You can start a new campaign.' });
+  };
+
   const primary = {
-    cursor: busy || blocked ? 'wait' : 'pointer',
+    cursor: busy || blocked || hasOpenRun ? 'wait' : 'pointer',
     border: '1px solid var(--green)',
     borderRadius: '9px',
     padding: '0.7rem 1rem',
@@ -246,10 +348,10 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
     fontSize: '0.85rem',
     background: 'var(--green)',
     color: '#06130e',
-    opacity: busy || blocked ? 0.65 : 1,
+    opacity: busy || blocked || hasOpenRun ? 0.65 : 1,
   };
   const secondary = {
-    cursor: busy || blocked ? 'wait' : 'pointer',
+    cursor: busy || blocked || hasOpenRun ? 'wait' : 'pointer',
     border: '1px solid var(--green)',
     borderRadius: '9px',
     padding: '0.7rem 1rem',
@@ -257,7 +359,7 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
     fontSize: '0.85rem',
     background: 'var(--surface-raised)',
     color: 'var(--green)',
-    opacity: busy || blocked ? 0.65 : 1,
+    opacity: busy || blocked || hasOpenRun ? 0.65 : 1,
   };
 
   return (
@@ -266,14 +368,14 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
         <div style={{ maxWidth: '700px' }}>
           <h2 id="bulk-retention-title" style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text)' }}>Recommended student email campaign</h2>
           <p style={{ margin: '0.35rem 0 0', color: 'var(--muted)', fontSize: '0.84rem', lineHeight: 1.55 }}>
-            Review who is due, then send the next recommended email in a paced run. This checks every student, regardless of the table search. Keep this page open; if interrupted, reload and start again to filter out emails already logged as sent.
+            Review who is due, then send the next recommended email in a paced run. This checks every student, regardless of the table search. If a delivery result is uncertain, the student stays locked until you review it below.
           </p>
         </div>
         <div style={{ display: 'flex', gap: '0.55rem', flexWrap: 'wrap' }}>
-          <button type="button" onClick={() => startCampaign('all')} disabled={busy || loading || blocked} style={primary}>
+          <button type="button" onClick={() => startCampaign('all')} disabled={busy || loading || blocked || hasOpenRun} style={primary}>
             Send all eligible ({recipients.length})
           </button>
-          <button type="button" onClick={() => startCampaign('fresh')} disabled={busy || loading || blocked || freshDraftRecipients.length === 0} style={secondary}>
+          <button type="button" onClick={() => startCampaign('fresh')} disabled={busy || loading || blocked || hasOpenRun || freshDraftRecipients.length === 0} style={secondary}>
             Send fresh-draft group ({freshDraftRecipients.length})
           </button>
         </div>
@@ -321,11 +423,12 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
         <div aria-live="polite" style={{ marginTop: '1rem', padding: '0.9rem', border: '1px solid var(--border)', borderRadius: '10px', background: 'var(--card-bg)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <strong style={{ color: 'var(--text)', fontSize: '0.86rem' }}>
-              {run.status === 'complete' ? 'Campaign complete' : run.status === 'waiting' ? 'Waiting for the email limit to reset' : run.status === 'paused' ? 'Campaign paused' : 'Campaign running'}
+              {run.status === 'complete' ? 'Campaign complete' : run.status === 'discarded' ? 'Paused run discarded' : run.status === 'waiting' ? 'Waiting for the email limit to reset' : run.status === 'paused' ? 'Campaign paused' : 'Campaign running'}
               {' · '}{run.sent} sent · {run.skipped} skipped · {run.review} need review · {run.nextIndex}/{run.queue.length} processed
             </strong>
             {busy ? <button type="button" onClick={pauseCampaign} style={{ ...secondary, padding: '0.45rem 0.7rem' }}>{run.status === 'waiting' ? 'Pause wait' : 'Pause after this email'}</button> : null}
-            {run.status === 'paused' && run.nextIndex < run.queue.length ? <button type="button" onClick={resumeCampaign} style={{ ...primary, padding: '0.45rem 0.7rem' }}>Resume</button> : null}
+            {run.status === 'paused' && run.review === 0 && run.nextIndex < run.queue.length ? <button type="button" onClick={resumeCampaign} style={{ ...primary, padding: '0.45rem 0.7rem' }}>Resume</button> : null}
+            {run.status === 'paused' && run.review === 0 ? <button type="button" onClick={discardPausedRun} style={{ ...secondary, padding: '0.45rem 0.7rem' }}>Discard paused run</button> : null}
           </div>
           <div role="progressbar" aria-valuemin={0} aria-valuemax={run.queue.length} aria-valuenow={run.nextIndex} style={{ height: '6px', marginTop: '0.65rem', borderRadius: '8px', background: 'var(--border)', overflow: 'hidden' }}>
             <div style={{ width: `${run.queue.length ? (run.nextIndex / run.queue.length) * 100 : 0}%`, height: '100%', background: 'var(--green)' }} />
@@ -333,10 +436,24 @@ export default function BulkRetentionCampaign({ students = [], user, onEmailSent
           {run.current && <p style={{ margin: '0.6rem 0 0', color: 'var(--muted)', fontSize: '0.8rem' }}>Preparing or sending to {run.current.name} ({run.current.email})…</p>}
           {run.message && <p role="status" style={{ margin: '0.6rem 0 0', color: 'var(--muted)', fontSize: '0.8rem' }}>{run.message}</p>}
           {run.results.length > 0 && (
-            <details style={{ marginTop: '0.6rem' }}>
+            <details open={run.review > 0} style={{ marginTop: '0.6rem' }}>
               <summary style={{ cursor: 'pointer', color: 'var(--green)', fontSize: '0.8rem', fontWeight: '700' }}>View campaign results</summary>
               <ul style={{ maxHeight: '180px', overflowY: 'auto', margin: '0.5rem 0 0', paddingLeft: '1.2rem', fontSize: '0.78rem', color: 'var(--muted)' }}>
-                {run.results.map((result, index) => <li key={`${result.uid}-${index}`} style={{ margin: '0.25rem 0' }}>{result.name} · {result.email} — {result.status}{result.detail ? `: ${result.detail}` : ''}</li>)}
+                {run.results.map((result, index) => (
+                  <li key={`${result.uid}-${index}`} style={{ margin: '0.4rem 0' }}>
+                    <span>{result.name} · {result.email} — {result.status === 'retry' ? 'confirmed not sent · retry ready' : result.status}{result.detail ? `: ${result.detail}` : ''}</span>
+                    {result.status === 'review' && (
+                      <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0.4rem', marginLeft: '0.5rem' }}>
+                        <button type="button" disabled={Boolean(run.resolvingUid)} onClick={() => resolveUncertainDelivery(result, 'sent')} style={{ border: '1px solid var(--green)', borderRadius: '7px', padding: '0.3rem 0.5rem', background: 'var(--green)', color: '#06130e', fontWeight: '750', fontSize: '0.72rem', cursor: run.resolvingUid ? 'wait' : 'pointer' }}>
+                          {run.resolvingUid === result.uid ? 'Saving…' : 'Confirm sent'}
+                        </button>
+                        <button type="button" disabled={Boolean(run.resolvingUid)} onClick={() => resolveUncertainDelivery(result, 'not_sent')} style={{ border: '1px solid var(--border)', borderRadius: '7px', padding: '0.3rem 0.5rem', background: 'var(--surface-raised)', color: 'var(--text)', fontWeight: '750', fontSize: '0.72rem', cursor: run.resolvingUid ? 'wait' : 'pointer' }}>
+                          Confirm not sent
+                        </button>
+                      </span>
+                    )}
+                  </li>
+                ))}
               </ul>
             </details>
           )}
