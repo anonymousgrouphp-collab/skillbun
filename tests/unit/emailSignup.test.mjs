@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHmac } from 'node:crypto';
 import { createEmailSignupService } from '../../utils/server/emailSignup.mjs';
 
 const EMAIL = 'student@skillbun.tech';
@@ -20,6 +21,7 @@ function database() {
     retryNext: 0,
     commits: 0,
     snapshot: () => structuredClone([...records.entries()]),
+    seed: (path, data) => records.set(path, structuredClone(data)),
     collection: name => ({ doc: id => reference(`${name}/${id}`) }),
     runTransaction(callback) {
       const result = queue.then(async () => {
@@ -132,10 +134,13 @@ function setup({ existing, secret = SECRET } = {}) {
       return controls.denyLimit ? { allowed: false, retryAfterMs: MINUTE } : { allowed: true };
     },
   });
+  const hash = (purpose, value) => createHmac('sha256', secret).update(`skillbun:email-signup:${purpose}:${value}`).digest('hex');
   return {
     db, messages, rateChecks, authCalls, users, controls, service,
     now: () => clock,
     advance: milliseconds => { clock += milliseconds; },
+    seedChallenge: (email, data) => db.seed(`emailSignupChallenges/${hash('mailbox', email)}`, data),
+    hash,
     request: (overrides = {}) => service.requestCode({ email: EMAIL, address: ADDRESS, ...overrides }),
     verify: (challenge, overrides = {}) => service.verifyCode({
       email: EMAIL,
@@ -280,6 +285,66 @@ test('malformed codes and weak passwords cannot consume a valid challenge', asyn
   for (const password of ['', 'short', null]) await assert.rejects(app.verify(challenge, { password }));
   assert.deepEqual(accountWrites(app), []);
   await app.verify(challenge);
+});
+
+test('invalid DNS labels are rejected before a signup email or account operation', async () => {
+  const app = setup();
+  for (const email of ['student@exa mple.com', 'student@exam_ple.com', 'student@ex!ample.com', 'student@-example.com']) {
+    await assert.rejects(app.request({ email }), { code: 'INVALID_EMAIL' });
+  }
+  assert.equal(app.messages.length, 0);
+  assert.deepEqual(accountWrites(app), []);
+});
+
+test('corrupt resend metadata fails closed instead of resetting mailbox limits', async () => {
+  const app = setup();
+  app.seedChallenge(EMAIL, {
+    status: 'ACTIVE',
+    sentAt: null,
+    resendAt: app.now() + MINUTE,
+    expiresAt: app.now() + 10 * MINUTE,
+  });
+  await assert.rejects(app.request(), { code: 'SIGNUP_UNAVAILABLE' });
+  assert.equal(app.messages.length, 0);
+  assert.deepEqual(accountWrites(app), []);
+});
+
+test('corrupt active challenge hashes, counters, or expiry cannot authorize verification', async () => {
+  const challengeId = 'a'.repeat(43);
+  const code = '123456';
+  const appFactory = (mutate) => {
+    const app = setup();
+    const record = {
+      status: 'ACTIVE',
+      emailHash: app.hash('email', EMAIL),
+      challengeHash: app.hash('challenge', challengeId),
+      codeHash: app.hash('code', `${EMAIL}:${challengeId}:${code}`),
+      attempts: 0,
+      expiresAt: app.now() + 10 * MINUTE,
+      resendAt: app.now() + MINUTE,
+      sentAt: [app.now()],
+      deleteAfter: new Date(app.now() + DAY),
+    };
+    app.seedChallenge(EMAIL, { ...record, ...mutate(record, app) });
+    return app;
+  };
+
+  const corruptions = [
+    record => ({ challengeHash: `${record.challengeHash}not-hex` }),
+    record => ({ codeHash: `${record.codeHash}not-hex` }),
+    () => ({ attempts: '0' }),
+    () => ({ attempts: Number.NaN }),
+    () => ({ attempts: -1 }),
+    () => ({ attempts: 1.5 }),
+    () => ({ expiresAt: Number.NaN }),
+  ];
+
+  for (const mutate of corruptions) {
+    const app = appFactory(mutate);
+    await assert.rejects(app.verify({ challengeId }, { code }), { code: 'INVALID_CODE' });
+    assert.deepEqual(accountWrites(app), []);
+    assert.equal(app.users.size, 0);
+  }
 });
 
 test('resend waits a full minute and replaces the earlier challenge', async () => {

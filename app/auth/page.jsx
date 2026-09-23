@@ -469,7 +469,7 @@ function AuthForm() {
 
     try {
       if (mode === 'signup') {
-        await sendSignupCode(formEmail);
+        await sendSignupCode(emailCheck.normalizedEmail);
       } else {
         await signInWithEmail(formEmail, password);
         setPassword('');

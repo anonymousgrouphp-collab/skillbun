@@ -24,6 +24,10 @@ function normalizeEmail(email) {
   if (typeof email !== 'string') throw new EmailSignupError('INVALID_EMAIL', 'Enter a valid email address.');
   const result = validateEmail(email);
   if (!result.isValid) throw new EmailSignupError('INVALID_EMAIL', result.error);
+  const domain = result.normalizedEmail.split('@')[1];
+  if (!domain.split('.').every((label) => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(label))) {
+    throw new EmailSignupError('INVALID_EMAIL', 'Please enter a valid email address.');
+  }
   return result.normalizedEmail;
 }
 
@@ -36,8 +40,12 @@ function mailbox(email) {
     : email;
 }
 
+function isDigest(value) {
+  return typeof value === 'string' && /^[a-f\d]{64}$/i.test(value);
+}
+
 function equalDigest(left, right) {
-  if (typeof left !== 'string' || typeof right !== 'string') return false;
+  if (!isDigest(left) || !isDigest(right)) return false;
   const a = Buffer.from(left, 'hex');
   const b = Buffer.from(right, 'hex');
   return a.length === 32 && b.length === 32 && timingSafeEqual(a, b);
@@ -58,6 +66,7 @@ const VERIFY_LIMITS = [
   { name: 'ipHour', windowMs: HOUR, maxRequests: 100, getSubject: ({ address }) => address },
   { name: 'ipDay', windowMs: DAY, maxRequests: 500, getSubject: ({ address }) => address },
 ];
+const CHALLENGE_STATUSES = new Set(['SENDING', 'ACTIVE', 'DELIVERY_FAILED', 'PROVISIONING', 'FAILED', 'COMPLETE']);
 
 export function createEmailSignupService({ db, auth, sendCode, checkRateLimit, secret, now = Date.now, wait = delay }) {
   if (!db || typeof secret !== 'string' || secret.length < 32) {
@@ -96,7 +105,15 @@ export function createEmailSignupService({ db, auth, sendCode, checkRateLimit, s
     await transaction(async (tx) => {
       const snapshot = await tx.get(ref);
       const previous = snapshot.exists ? snapshot.data() : {};
-      const history = (previous.sentAt || []).filter((sent) => Number.isFinite(sent) && sent > timestamp - DAY);
+      if (snapshot.exists && (
+        !CHALLENGE_STATUSES.has(previous.status)
+        || !Array.isArray(previous.sentAt)
+        || previous.sentAt.length === 0
+        || !previous.sentAt.every((sent) => Number.isSafeInteger(sent) && sent > 0)
+        || !Number.isSafeInteger(previous.resendAt)
+        || !Number.isSafeInteger(previous.expiresAt)
+      )) throw unavailable();
+      const history = (previous.sentAt || []).filter((sent) => sent > timestamp - DAY);
       const lastHour = history.filter((sent) => sent > timestamp - HOUR);
       const retryAfterMs = Math.max(
         (previous.resendAt || 0) - timestamp,
@@ -203,6 +220,10 @@ export function createEmailSignupService({ db, auth, sendCode, checkRateLimit, s
       const snapshot = await tx.get(ref);
       const current = snapshot.exists ? snapshot.data() : {};
       if (current.status !== 'ACTIVE' || !equalDigest(current.challengeHash, challengeHash) || !equalDigest(current.emailHash, digest('email', email))) {
+        return { error: 'INVALID_CODE' };
+      }
+      if (!Number.isSafeInteger(current.attempts) || current.attempts < 0 || current.attempts > MAX_GUESSES ||
+          !Number.isSafeInteger(current.expiresAt) || !isDigest(current.codeHash)) {
         return { error: 'INVALID_CODE' };
       }
       if (current.expiresAt <= timestamp) return { error: 'CODE_EXPIRED' };
