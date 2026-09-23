@@ -22,5 +22,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ['/data/:path*', '/((?!api(?:/|$)|_next/|__/auth/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|woff2?|txt|xml|webmanifest)$).*)'],
+  matcher: ['/data/:path*', '/((?!api(?:/|$)|_next/|__/auth(?:/|$)|.*\\.(?:png|jpg|jpeg|gif|svg|ico|woff2?|txt|xml|webmanifest)$).*)'],
 };

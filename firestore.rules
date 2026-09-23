@@ -3,7 +3,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedInAs(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return signedIn() && request.auth.uid == uid;
     }
 
     function optionalString(field, maxLength) {
@@ -79,7 +79,7 @@ service cloud.firestore {
     }
 
     function signedIn() {
-      return request.auth != null;
+      return request.auth != null && request.auth.token.get('email_verified', false) == true;
     }
 
     function isAdmin() {
@@ -125,6 +125,10 @@ service cloud.firestore {
     match /examAttempts/{attemptId} {
       allow read: if false; // Includes the answer key; only server routes may read it.
       allow write: if false; // Server-side backend API evaluation only
+    }
+
+    match /emailSignupChallenges/{challengeId} {
+      allow read, write: if false; // OTP state is exclusively managed by the trusted server.
     }
 
     // Workforce Hub: Employees collection (Admin full CRUD; Intern read-only on their own record)

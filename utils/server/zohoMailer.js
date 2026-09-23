@@ -89,6 +89,32 @@ export async function sendSkillBunPasswordResetEmail({ email, resetLink }) {
   })
 }
 
+export async function sendSkillBunSignupCodeEmail({ email, code, expiresInMinutes }) {
+  const subject = 'Verify your SkillBun email';
+  const html = buildEmail({
+    title: subject,
+    eyebrow: 'Account security',
+    docTag: 'Email verification',
+    headline: 'Verify your email',
+    lede: 'Enter this code on the SkillBun signup page to verify that this email belongs to you.',
+    contentHtml: [
+      emailCredentialStrip([['Verification code', code]], { title: 'Your one-time code' }),
+      emailText(`This code expires in ${expiresInMinutes} minutes. Only the most recent code works. Never share it with anyone.`),
+      emailNote('If you did not request this code, ignore this email. No account will be created and no password will change without verification.'),
+    ].join(''),
+    isMarketing: false,
+    email,
+  });
+  await getTransporter().sendMail({
+    from: 'SkillBun <noreply@skillbun.tech>',
+    replyTo: 'harsh@skillbun.tech',
+    to: email,
+    subject,
+    text: `Your SkillBun verification code is ${code}.\n\nEnter it on the signup page within ${expiresInMinutes} minutes. Only the most recent code works. Never share this code.\n\nIf you did not request it, ignore this email. No account will be created and no password will change without verification.`,
+    html,
+  });
+}
+
 /**
  * Sends an email with optional binary attachments, CC, and custom Reply-To via Zoho SMTP.
  * @param {Object} params

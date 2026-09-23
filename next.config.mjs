@@ -18,10 +18,13 @@ const onnxCpuTraceExcludes = [
   onnxRuntimeRoot + '/linux/x64/libonnxruntime_providers_tensorrt.so',
 ]
 
-const securityHeaders = [
+const appDocumentSecurityHeaders = [
   { key: 'Content-Security-Policy', value: contentSecurityPolicy },
-  { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+]
+
+const securityHeaders = [
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=()' },
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
@@ -73,6 +76,13 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: securityHeaders,
+      },
+      {
+        // Firebase owns these proxied helper documents, including their inline
+        // bootstrap scripts and cross-origin iframe messaging. Preserve its
+        // response policy instead of layering the app's CSP/framing policy on it.
+        source: '/((?!__/auth(?:/|$)).*)',
+        headers: appDocumentSecurityHeaders,
       },
 
       {

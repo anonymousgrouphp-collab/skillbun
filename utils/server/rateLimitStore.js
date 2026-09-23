@@ -105,7 +105,7 @@ async function checkRedisRateLimit({ namespace, subject, limits, increment = tru
 
       if (currentCount > maxRequests || (!increment && currentCount >= maxRequests)) {
         const retryAfterMs = pttl > 0 ? pttl : windowMs
-        if (!blockedBucket || retryAfterMs < blockedBucket.retryAfterMs) {
+        if (!blockedBucket || retryAfterMs > blockedBucket.retryAfterMs) {
           blockedBucket = { retryAfterMs, limitName: limit.name, maxRequests }
         }
       }
@@ -151,7 +151,7 @@ function checkMemoryRateLimit({ namespace, subject, limits, now = Date.now(), in
 
     if (bucket.count >= maxRequests) {
       const retryAfterMs = Math.max(1000, bucket.resetAt - now)
-      if (!blockedBucket || retryAfterMs < blockedBucket.retryAfterMs) {
+      if (!blockedBucket || retryAfterMs > blockedBucket.retryAfterMs) {
         blockedBucket = { retryAfterMs, limitName: limit.name, maxRequests }
       }
     }
@@ -186,7 +186,7 @@ function checkMemoryRateLimit({ namespace, subject, limits, now = Date.now(), in
  * 2. Falls back to Firestore transactions if available
  * 3. Falls back to In-Memory store if Firestore is not initialized (e.g. offline dev/testing)
  */
-export async function checkServerRateLimit({ namespace, subject, limits, now = Date.now(), increment = true }) {
+export async function checkServerRateLimit({ namespace, subject, limits, now = Date.now(), increment = true, requireDistributed = false }) {
   if (!namespace || !subject || !Array.isArray(limits) || limits.length === 0) {
     throw new Error('Rate limit configuration is invalid.')
   }
@@ -207,6 +207,7 @@ export async function checkServerRateLimit({ namespace, subject, limits, now = D
   try {
     const db = getFirebaseAdminFirestore()
     if (!db) {
+      if (requireDistributed) throw new Error('Distributed rate limiting is unavailable.')
       return checkMemoryRateLimit({ namespace, subject, limits, now, increment })
     }
 
@@ -237,7 +238,7 @@ export async function checkServerRateLimit({ namespace, subject, limits, now = D
 
         if (bucket.count >= maxRequests) {
           const retryAfterMs = Math.max(1000, bucket.resetAt - now)
-          if (!blockedBucket || retryAfterMs < blockedBucket.retryAfterMs) {
+          if (!blockedBucket || retryAfterMs > blockedBucket.retryAfterMs) {
             blockedBucket = { retryAfterMs, limitName: limit.name, maxRequests }
           }
         }
@@ -264,6 +265,9 @@ export async function checkServerRateLimit({ namespace, subject, limits, now = D
       return { allowed: true }
     })
   } catch (firestoreError) {
+    // Signup must not gain a fresh allowance on each serverless instance when
+    // shared stores are down. Existing callers retain their current fallback.
+    if (requireDistributed) throw new Error('Distributed rate limiting is unavailable.', { cause: firestoreError })
     console.warn('Firestore rate limit fallback failed, using memory store:', firestoreError?.message)
     return checkMemoryRateLimit({ namespace, subject, limits, now, increment })
   }

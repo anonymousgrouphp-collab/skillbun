@@ -13,16 +13,23 @@ export async function emailSamples(overrides = {}) {
   samples.workforce_extension = workforce.buildExtensionDispatchEmail({ employee, referenceId: 'SKB/2026/HR-EXT/8K29DF', newContractEndDate: '2027-03-10' });
   samples.workforce_termination = workforce.buildTerminationDispatchEmail({ employee, reasonCode: 'COMPLETED', effectiveDate: '2026-12-10', grantedCredentials: ['Sample internship credential — not issued'] });
   samples.workforce_activation = workforce.buildActivationWelcomeEmail({ employee, credentials });
-  // Isolate the existing reset function from Next's alias imports and capture its SMTP payload.
+  // Isolate account-security renderers from Next's alias imports and capture
+  // their SMTP payloads. The transport is synthetic and never sends mail.
   const source = (await fs.readFile(new URL('../../utils/server/zohoMailer.js', import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
   const start = source.indexOf('export async function sendSkillBunPasswordResetEmail');
   const end = source.indexOf('/**\n * Sends an email', start);
-  if (start < 0 || end < 0) throw new Error('Password reset renderer could not be isolated');
-  const render = source.slice(start, end).replace('export async function', 'async function');
-  const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
-  await new AsyncFunction(...Object.keys(theme), 'getTransporter', 'getPasswordResetFrom', 'resetLink', `${render}; await sendSkillBunPasswordResetEmail({email:'sample@example.com',resetLink});`)(
-    ...Object.values(theme), () => ({ sendMail: async payload => { samples.password_reset = payload; } }), () => '',
-    `https://example.com/reset-password?oobCode=${'SAMPLE'.repeat(40)}&mode=resetPassword`
+  if (start < 0 || end < 0) throw new Error('Account-security renderers could not be isolated');
+  const render = source.slice(start, end).replace(/^export /gm, '');
+  const captured = [];
+  const renderers = new Function(...Object.keys(theme), 'getTransporter', 'getPasswordResetFrom', `${render}; return {sendSkillBunPasswordResetEmail,sendSkillBunSignupCodeEmail};`)(
+    ...Object.values(theme), () => ({ sendMail: async payload => { captured.push(payload); } }), () => ''
   );
+  await renderers.sendSkillBunPasswordResetEmail({
+    email: 'sample@example.com',
+    resetLink: `https://example.com/reset-password?oobCode=${'SAMPLE'.repeat(40)}&mode=resetPassword`,
+  });
+  samples.password_reset = captured.pop();
+  await renderers.sendSkillBunSignupCodeEmail({ email: 'sample@example.com', code: '004271', expiresInMinutes: 10 });
+  samples.signup_verification = captured.pop();
   return samples;
 }

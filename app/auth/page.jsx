@@ -94,15 +94,23 @@ function AuthForm() {
     isProfileComplete,
     authError,
     signInWithGoogle,
-    signUpWithEmail,
+    requestEmailSignup,
+    completeEmailSignup,
     signInWithEmail,
     resetPassword,
-    resendVerification,
   } = useAuth();
 
   const [mode, setMode] = useState(initialMode);
   const [submitting, setSubmitting] = useState(false);
   const [email, setEmail] = useState('');
+  // Credentials stay in this component's memory until verification completes.
+  const [password, setPassword] = useState('');
+  const [signupChallenge, setSignupChallenge] = useState(null);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [signupAvailableAt, setSignupAvailableAt] = useState(0);
+  const [verifyAvailableAt, setVerifyAvailableAt] = useState(0);
+  const [otpClock, setOtpClock] = useState(0);
+  const otpInput = useRef(null);
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const [resetCooldownSeconds, setResetCooldownSeconds] = useState(0);
@@ -114,9 +122,22 @@ function AuthForm() {
   const [captchaError, setCaptchaError] = useState('');
 
   const title = mode === 'signup' ? 'Create your SkillBun account' : 'Welcome back to SkillBun';
-  const actionLabel = mode === 'signup' ? 'Create account' : 'Log in';
+  const actionLabel = mode === 'signup' ? 'Send verification code' : 'Log in';
   const switchCopy = mode === 'signup' ? 'Already have an account?' : 'New to SkillBun?';
   const switchLabel = mode === 'signup' ? 'Log in' : 'Sign up';
+  const isVerifyingSignup = mode === 'signup' && Boolean(signupChallenge);
+  const signupCooldownSeconds = Math.max(0, Math.ceil((signupAvailableAt - otpClock) / 1000));
+  const verifyCooldownSeconds = Math.max(0, Math.ceil((verifyAvailableAt - otpClock) / 1000));
+  const codeExpired = Boolean(signupChallenge && otpClock >= signupChallenge.expiresAt);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setOtpClock(Date.now()), 1000);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (isVerifyingSignup) otpInput.current?.focus();
+  }, [isVerifyingSignup]);
 
   useEffect(() => {
     if (authLoading || profileLoading || !user) {
@@ -290,20 +311,148 @@ function AuthForm() {
     }
 
     if (mode === 'signup') {
-      return 'We will send a verification email, but you can continue setting up SkillBun right away.';
+      return 'Verify the code sent to your email to create your account. Your profile starts after verification.';
     }
 
     return 'Use Google or email to continue your quiz, roadmap, and dashboard on any device.';
   }, [configured, mode]);
 
+  function updateSignupCooldown(retryAfterMs) {
+    const now = Date.now();
+    setOtpClock(now);
+    if (retryAfterMs > 0) {
+      setSignupAvailableAt((current) => Math.max(current, now + retryAfterMs));
+    }
+  }
+
+  function switchMode(nextMode) {
+    if (submitting || nextMode === mode) return;
+    setMode(nextMode);
+    setSignupChallenge(null);
+    setVerificationCode('');
+    setPassword('');
+    setError('');
+    setStatus('');
+  }
+
+  function editSignupEmail() {
+    if (submitting) return;
+    setSignupChallenge(null);
+    setVerificationCode('');
+    setError('');
+    setStatus('');
+  }
+
+  async function getSignupHumanProof() {
+    if (!captchaEnabled) return '';
+    if (!captchaToken) {
+      throw new Error('Please complete the verification check before requesting a code.');
+    }
+
+    const headers = { 'Content-Type': 'application/json' };
+    const bypassKey = window.localStorage.getItem('sb_bypass_captcha');
+    if (captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
+      headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
+    }
+
+    try {
+      const response = await fetch('/api/human/verify', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ token: captchaToken }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.humanToken) {
+        const verificationError = new Error(typeof data.error === 'string' ? data.error : 'Human verification failed. Please try again.');
+        const retryAfter = response.headers.get('Retry-After');
+        const headerDelay = retryAfter && /^\d+(?:\.\d+)?$/.test(retryAfter)
+          ? Number(retryAfter) * 1000
+          : Math.max(0, Date.parse(retryAfter || '') - Date.now());
+        verificationError.retryAfterMs = Math.max(Number(data.retryAfterMs) || 0, Number.isFinite(headerDelay) ? headerDelay : 0);
+        throw verificationError;
+      }
+      return data.humanToken;
+    } finally {
+      if (window.turnstile && captchaWidgetId.current !== null) {
+        window.turnstile.reset(captchaWidgetId.current);
+        setCaptchaToken('');
+      } else if (captchaToken !== 'bypass-captcha-dev') {
+        setCaptchaToken('');
+      }
+    }
+  }
+
+  async function sendSignupCode(signupEmail) {
+    if (signupCooldownSeconds > 0) {
+      throw new Error(`Please wait ${signupCooldownSeconds} seconds before requesting another code.`);
+    }
+    const humanToken = await getSignupHumanProof();
+    const result = await requestEmailSignup({ email: signupEmail, humanToken });
+    if (typeof result.challengeId !== 'string' || !Number.isFinite(result.expiresAt)) {
+      throw new Error('Could not start email verification. Please try again.');
+    }
+    setSignupChallenge({ challengeId: result.challengeId, email: signupEmail, expiresAt: result.expiresAt });
+    setVerificationCode('');
+    setVerifyAvailableAt(0);
+    updateSignupCooldown(result.retryAfterMs || 60000);
+    setStatus('Verification code sent. Check your inbox and spam folder. Only the newest code will work.');
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
+    if (submitting) return;
     setError('');
     setStatus('');
 
-    const formData = new FormData(event.currentTarget);
-    const formEmail = String(formData.get('email') || '').trim();
-    const password = String(formData.get('password') || '');
+    if (isVerifyingSignup) {
+      if (!/^\d{6}$/.test(verificationCode)) {
+        setError('Enter the 6-digit code from your email.');
+        return;
+      }
+      if (codeExpired) {
+        setError('This code has expired. Request a new code to continue.');
+        return;
+      }
+      if (verifyCooldownSeconds > 0) {
+        setError(`Please wait ${verifyCooldownSeconds} seconds before trying again.`);
+        return;
+      }
+
+      setSubmitting(true);
+      try {
+        await completeEmailSignup({
+          email: signupChallenge.email,
+          password,
+          code: verificationCode,
+          challengeId: signupChallenge.challengeId,
+        });
+        setPassword('');
+        setVerificationCode('');
+        setSignupChallenge(null);
+        posthog.capture('account_signed_up', { authentication_method: 'email' });
+        setStatus('Email verified. Loading your SkillBun profile...');
+      } catch (verificationError) {
+        if (verificationError.signupCompleted) {
+          setPassword('');
+          setVerificationCode('');
+          setSignupChallenge(null);
+          setMode('login');
+          setError('Your email is verified and your account is ready. Log in with your email and password to continue.');
+        } else {
+          setError(friendlyAuthError(verificationError));
+          if (verificationError.retryAfterMs > 0) {
+            const now = Date.now();
+            setOtpClock(now);
+            setVerifyAvailableAt(now + verificationError.retryAfterMs);
+          }
+        }
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
+
+    const formEmail = email.trim();
 
     if (!formEmail || !password) {
       setError('Please enter your email and password.');
@@ -320,53 +469,16 @@ function AuthForm() {
 
     try {
       if (mode === 'signup') {
-        if (captchaEnabled) {
-          if (!captchaToken) {
-            setError('Please complete the verification first.');
-            setSubmitting(false);
-            return;
-          }
-
-          const verifyBody = { token: captchaToken };
-          const headers = { 'Content-Type': 'application/json' };
-          const bypassKey = typeof window !== 'undefined' ? window.localStorage.getItem('sb_bypass_captcha') : null;
-
-          if (captchaToken === 'bypass-captcha-dev' || bypassKey === 'bypass-captcha-dev') {
-            headers['x-skillbun-bypass'] = 'bypass-captcha-dev';
-          }
-
-          const verifyRes = await fetch('/api/human/verify', {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(verifyBody)
-          });
-
-          if (!verifyRes.ok) {
-            setError('Human verification failed. Please try again.');
-            if (window.turnstile && captchaWidgetId.current !== null) {
-              window.turnstile.reset(captchaWidgetId.current);
-            }
-            setCaptchaToken('');
-            setSubmitting(false);
-            return;
-          }
-
-          if (window.turnstile && captchaWidgetId.current !== null) {
-            window.turnstile.reset(captchaWidgetId.current);
-            setCaptchaToken('');
-          }
-        }
-
-        await signUpWithEmail(formEmail, password);
-        posthog.capture('account_signed_up', { authentication_method: 'email' });
-        setStatus('Verification email sent. Setting up your profile...');
+        await sendSignupCode(formEmail);
       } else {
         await signInWithEmail(formEmail, password);
+        setPassword('');
         posthog.capture('account_logged_in', { authentication_method: 'email' });
         setStatus('Logged in. Loading your SkillBun profile...');
       }
     } catch (authSubmitError) {
       setError(friendlyAuthError(authSubmitError));
+      if (mode === 'signup') updateSignupCooldown(authSubmitError.retryAfterMs);
     } finally {
       setSubmitting(false);
     }
@@ -379,6 +491,9 @@ function AuthForm() {
 
     try {
       await signInWithGoogle();
+      setPassword('');
+      setVerificationCode('');
+      setSignupChallenge(null);
       posthog.capture('account_logged_in', { authentication_method: 'google' });
       setStatus('Google sign-in complete. Loading your SkillBun profile...');
     } catch (googleError) {
@@ -418,21 +533,27 @@ function AuthForm() {
       setStatus('Password reset email sent. You can request another in 60 seconds.');
     } catch (resetError) {
       setError(friendlyAuthError(resetError));
+      if (resetError.retryAfterMs > 0) {
+        const availableAt = Date.now() + resetError.retryAfterMs;
+        window.localStorage.setItem(PASSWORD_RESET_COOLDOWN_KEY, String(availableAt));
+        setResetCooldownSeconds(Math.ceil(resetError.retryAfterMs / 1000));
+      }
     } finally {
       setSubmitting(false);
     }
   }
 
-  async function handleResendVerification() {
+  async function handleResendCode() {
+    if (!signupChallenge || submitting) return;
     setError('');
     setStatus('');
     setSubmitting(true);
 
     try {
-      await resendVerification();
-      setStatus('Verification email sent again.');
+      await sendSignupCode(signupChallenge.email);
     } catch (verificationError) {
       setError(friendlyAuthError(verificationError));
+      updateSignupCooldown(verificationError.retryAfterMs);
     } finally {
       setSubmitting(false);
     }
@@ -476,13 +597,14 @@ function AuthForm() {
         <div className="auth-panel">
           <div className="auth-panel-header">
             <span>Account checkpoint</span>
-            <strong>{mode === 'signup' ? 'Start your SkillBun flow' : 'Resume your SkillBun flow'}</strong>
+            <strong>{isVerifyingSignup ? 'Verify your email' : mode === 'signup' ? 'Start your SkillBun flow' : 'Resume your SkillBun flow'}</strong>
           </div>
           <div className="auth-mode-toggle" role="tablist" aria-label="Choose login or signup">
             <button
               type="button"
               className={mode === 'login' ? 'active' : ''}
-              onClick={() => setMode('login')}
+              onClick={() => switchMode('login')}
+              disabled={submitting}
               role="tab"
               aria-selected={mode === 'login'}
             >
@@ -491,7 +613,8 @@ function AuthForm() {
             <button
               type="button"
               className={mode === 'signup' ? 'active' : ''}
-              onClick={() => setMode('signup')}
+              onClick={() => switchMode('signup')}
+              disabled={submitting}
               role="tab"
               aria-selected={mode === 'signup'}
             >
@@ -506,33 +629,75 @@ function AuthForm() {
 
           <div className="auth-divider"><span>or</span></div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                name="email"
-                type="email"
-                autoComplete="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                placeholder="you@example.com"
-              />
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                name="password"
-                type="password"
-                autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-                required
-                minLength={6}
-                placeholder="At least 6 characters"
-              />
-            </div>
+          <form onSubmit={handleSubmit} aria-busy={submitting}>
+            {isVerifyingSignup ? (
+              <div className="form-group">
+                <label htmlFor="auth-verification-code">Email verification code</label>
+                <p id="auth-code-hint" style={{ color: 'var(--text)', overflowWrap: 'anywhere', margin: '0 0 0.75rem' }}>
+                  Enter the 6-digit code sent to <strong>{signupChallenge.email}</strong>.
+                </p>
+                <input
+                  ref={otpInput}
+                  id="auth-verification-code"
+                  name="verification-code"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  value={verificationCode}
+                  onChange={(event) => setVerificationCode(event.target.value.replace(/\D/g, '').slice(0, 6))}
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  required
+                  disabled={submitting}
+                  aria-describedby="auth-code-hint auth-code-expiry"
+                  data-ph-no-capture
+                  placeholder="6-digit code"
+                />
+                <p id="auth-code-expiry" style={{ color: 'var(--text)', margin: '0.75rem 0 0' }}>
+                  {codeExpired
+                    ? 'This code has expired. Request a new code below.'
+                    : `Code expires in ${Math.max(1, Math.ceil((signupChallenge.expiresAt - otpClock) / 60000))} min.`}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="form-group">
+                  <label htmlFor="auth-email">Email</label>
+                  <input
+                    id="auth-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    disabled={submitting}
+                    required
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="auth-password">Password</label>
+                  <input
+                    id="auth-password"
+                    name="password"
+                    type="password"
+                    autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    disabled={submitting}
+                    required
+                    minLength={6}
+                    maxLength={4096}
+                    data-ph-no-capture
+                    placeholder="At least 6 characters"
+                  />
+                </div>
+              </>
+            )}
 
             {mode === 'signup' && captchaEnabled && (
               <div className="form-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: '15px 0' }}>
+                {isVerifyingSignup && <p style={{ color: 'var(--text)', margin: '0 0 0.5rem' }}>Complete this check only if you need another code.</p>}
                 <div id="auth-captcha-widget"></div>
                 {captchaError && (
                   <span style={{ color: 'var(--sb-error, #ff4444)', fontSize: '0.85rem', marginTop: '5px' }}>
@@ -542,8 +707,16 @@ function AuthForm() {
               </div>
             )}
 
-            <button type="submit" className="btn-form" disabled={!configured || submitting}>
-              {submitting ? 'Please wait...' : actionLabel}
+            <button
+              type="submit"
+              className="btn-form"
+              disabled={!configured || submitting || (isVerifyingSignup ? codeExpired || verifyCooldownSeconds > 0 : mode === 'signup' && signupCooldownSeconds > 0)}
+            >
+              {submitting
+                ? 'Please wait...'
+                : isVerifyingSignup
+                  ? verifyCooldownSeconds > 0 ? `Try again in ${verifyCooldownSeconds}s` : 'Verify and create account'
+                  : mode === 'signup' && signupCooldownSeconds > 0 ? `Send code in ${signupCooldownSeconds}s` : actionLabel}
             </button>
           </form>
 
@@ -558,21 +731,31 @@ function AuthForm() {
             </button>
           )}
 
-          {user && !user.emailVerified && (
-            <button type="button" className="auth-link-button" onClick={handleResendVerification} disabled={!configured || submitting}>
-              Resend verification email
-            </button>
+          {isVerifyingSignup && (
+            <>
+              <button
+                type="button"
+                className="auth-link-button"
+                onClick={handleResendCode}
+                disabled={!configured || submitting || signupCooldownSeconds > 0}
+              >
+                {signupCooldownSeconds > 0 ? `Resend code in ${signupCooldownSeconds}s` : 'Resend verification code'}
+              </button>
+              <button type="button" className="auth-link-button" onClick={editSignupEmail} disabled={submitting}>
+                Change email or password
+              </button>
+            </>
           )}
 
           {(status || error || authError) && (
-            <div className={`auth-message ${error || authError ? 'error' : 'ok'}`} role="status">
+            <div className={`auth-message ${error || authError ? 'error' : 'ok'}`} role={error || authError ? 'alert' : 'status'}>
               {error || authError || status}
             </div>
           )}
 
           <p className="auth-switch">
             {switchCopy}{' '}
-            <button type="button" onClick={() => setMode(mode === 'signup' ? 'login' : 'signup')}>
+            <button type="button" onClick={() => switchMode(mode === 'signup' ? 'login' : 'signup')} disabled={submitting}>
               {switchLabel}
             </button>
           </p>

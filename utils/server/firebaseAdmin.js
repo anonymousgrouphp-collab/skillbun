@@ -40,8 +40,8 @@ function getAdminApp() {
 
 /**
  * Returns Firebase Admin Auth instance with full capabilities:
- * verifyIdToken, deleteUser, revokeRefreshTokens, getUser, listUsers.
- * Token verification fails closed and checks disabled users and revoked sessions.
+ * verifyIdToken, createUser, updateUser, deleteUser, revokeRefreshTokens, getUser, listUsers.
+ * Token verification requires verified email and checks disabled users and revoked sessions.
  */
 export function getFirebaseAdminAuth() {
   return {
@@ -53,7 +53,27 @@ export function getFirebaseAdminAuth() {
       const app = getAdminApp()
       if (!app) throw new Error('Firebase Admin service credentials required for token verification.')
       const { getAuth } = await import('firebase-admin/auth')
-      return getAuth(app).verifyIdToken(token, true)
+      const decodedToken = await getAuth(app).verifyIdToken(token, true)
+      if (decodedToken.email_verified !== true) {
+        const error = new Error('Verify your email before accessing your SkillBun account.')
+        error.code = 'auth/email-not-verified'
+        throw error
+      }
+      return decodedToken
+    },
+
+    async createUser(properties) {
+      const app = getAdminApp()
+      if (!app) throw new Error('Firebase Admin service credentials required for createUser.')
+      const { getAuth } = await import('firebase-admin/auth')
+      return getAuth(app).createUser(properties)
+    },
+
+    async updateUser(uid, properties) {
+      const app = getAdminApp()
+      if (!app) throw new Error('Firebase Admin service credentials required for updateUser.')
+      const { getAuth } = await import('firebase-admin/auth')
+      return getAuth(app).updateUser(uid, properties)
     },
 
     async listUsers(maxResults, pageToken) {

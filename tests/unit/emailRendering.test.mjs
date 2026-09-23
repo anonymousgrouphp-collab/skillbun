@@ -8,9 +8,9 @@ import { decodeEmailEntities, emailHtmlToText, isEmailDocument, prepareEmailPrev
 import { emailRoadmapContext, normalizeEmailRoadmapSlug } from '../../utils/shared/emailRoadmap.js';
 import { loadEmailRoadmapContext } from '../../utils/server/emailRoadmapContext.js';
 
-test('all 23 templates retain branding, theme rules, usable links and complete text', async () => {
+test('all 24 templates retain branding, theme rules, usable links and complete text', async () => {
   const samples = await emailSamples();
-  assert.equal(Object.keys(samples).length, 23);
+  assert.equal(Object.keys(samples).length, 24);
   for (const [id, email] of Object.entries(samples)) {
     assert.ok(email.html.includes(WORDMARK), id);
     assert.match(email.html, /prefers-color-scheme: dark/, id);
@@ -23,6 +23,26 @@ test('all 23 templates retain branding, theme rules, usable links and complete t
     const lede = email.html.match(/<p class="sb-muted sb-lede"[^>]*>/)?.[0];
     assert.match(lede, /font-family:/, id);
   }
+});
+
+test('signup verification mail preserves the six-digit code, expiry and transactional delivery rules', async () => {
+  const { signup_verification: email } = await emailSamples();
+  assert.equal(email.from, 'SkillBun <noreply@skillbun.tech>');
+  assert.equal(email.replyTo, 'harsh@skillbun.tech');
+  assert.equal(email.to, 'sample@example.com');
+  assert.equal(email.subject, 'Verify your SkillBun email');
+  assert.match(email.html, /004271/);
+  assert.match(email.text, /verification code is 004271\./);
+  assert.match(email.html, /expires in 10 minutes/);
+  assert.match(email.text, /within 10 minutes/);
+  for (const content of [email.html, email.text]) {
+    assert.match(content, /Only the most recent code works/);
+    assert.match(content, /Never share/);
+    assert.match(content, /No account will be created and no password will change without verification/);
+    assert.doesNotMatch(content, /unsubscribe|reset-password\?oobCode|SAMPLE-ONLY-NOT-A-CREDENTIAL/i);
+  }
+  assert.equal(email.headers?.['List-Unsubscribe'], undefined);
+  assert.equal(email.headers?.['List-Unsubscribe-Post'], undefined);
 });
 
 test('zero, complete, unknown and invalid progress never turn into example data', () => {

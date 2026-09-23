@@ -2,7 +2,6 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
-  createUserWithEmailAndPassword,
   deleteUser,
   onAuthStateChanged,
   sendEmailVerification,
@@ -29,6 +28,43 @@ import {
 } from '@/utils/shared/progressStore';
 
 const AuthContext = createContext(null);
+const EMAIL_VERIFICATION_REQUIRED = 'Verify your email before logging in. Choose Sign Up with this email to receive a code and finish setting your password.';
+
+function assertVerifiedEmail(user) {
+  if (!user?.emailVerified) {
+    const error = new Error(EMAIL_VERIFICATION_REQUIRED);
+    error.code = 'auth/email-not-verified';
+    throw error;
+  }
+}
+
+function responseRetryAfterMs(response, data) {
+  const retryAfter = response.headers.get('Retry-After');
+  const headerDelay = retryAfter && /^\d+(?:\.\d+)?$/.test(retryAfter)
+    ? Number(retryAfter) * 1000
+    : Math.max(0, Date.parse(retryAfter || '') - Date.now());
+  const bodyDelay = Number(data?.retryAfterMs || data?.error?.retryAfterMs || 0);
+  return Math.max(Number.isFinite(headerDelay) ? headerDelay : 0, Number.isFinite(bodyDelay) ? bodyDelay : 0);
+}
+
+async function emailSignupRequest(path, payload) {
+  const response = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json().catch(() => ({}));
+  const retryAfterMs = responseRetryAfterMs(response, data);
+
+  if (!response.ok || data.ok !== true) {
+    const error = new Error(typeof data.error === 'string' ? data.error : data?.error?.message || 'Could not complete email verification. Please try again.');
+    error.code = data?.code || data?.error?.code || 'auth/email-verification-failed';
+    error.retryAfterMs = retryAfterMs;
+    throw error;
+  }
+
+  return { ...data, retryAfterMs };
+}
 
 function getProviders(user) {
   return user?.providerData?.map((provider) => provider.providerId).filter(Boolean) || [];
@@ -188,41 +224,62 @@ export function AuthProvider({ children }) {
     let profileUnsubscribe = null;
     let progressUnsubscribe = null;
     let cancelled = false;
+    let authRevision = 0;
 
     const unsubscribeAuth = onAuthStateChanged(services.auth, async (nextUser) => {
+      const revision = ++authRevision;
       profileUnsubscribe?.();
       progressUnsubscribe?.();
       profileUnsubscribe = null;
       progressUnsubscribe = null;
 
-      setAuthError('');
-      setUser(nextUser);
       setAuthLoading(false);
 
-      if (!nextUser) {
+      if (!nextUser || !nextUser.emailVerified) {
+        setUser(null);
         setProfile({ hydrated: true, name: 'Student', hasName: false, degree: '', year: '', interest: '' });
         setProfileLoading(false);
         setProgressVersion((current) => current + 1);
+        if (nextUser) {
+          setAuthError(EMAIL_VERIFICATION_REQUIRED);
+          try {
+            clearSessionCache();
+          } catch (error) {
+            console.warn('Could not clear cached account data:', error);
+          }
+          try {
+            if (services.auth.currentUser?.uid === nextUser.uid) {
+              await signOut(services.auth);
+            }
+          } catch (error) {
+            console.warn('Could not clear the unverified Firebase session:', error);
+          }
+        }
         return;
       }
 
+      setAuthError('');
+      setUser(nextUser);
       setProfileLoading(true);
 
       try {
         await ensureUserProfile(services.db, nextUser);
+        if (cancelled || revision !== authRevision) return;
         await migrateLocalProgress(services.db, nextUser);
 
-        if (cancelled) {
+        if (cancelled || revision !== authRevision) {
           return;
         }
 
         const profileRef = doc(services.db, 'users', nextUser.uid);
         profileUnsubscribe = onSnapshot(profileRef, (snapshot) => {
+          if (cancelled || revision !== authRevision) return;
           const normalized = normalizeProfileDoc(nextUser, snapshot.exists() ? snapshot.data() : {});
           setProfile(normalized);
           saveStoredProfile(normalized);
           setProfileLoading(false);
         }, (error) => {
+          if (cancelled || revision !== authRevision) return;
           console.error('Failed to read Firebase profile:', error);
           const fallbackProfile = normalizeProfileDoc(nextUser);
           setProfile(fallbackProfile);
@@ -233,6 +290,7 @@ export function AuthProvider({ children }) {
 
         const progressRef = collection(services.db, 'users', nextUser.uid, 'roadmapProgress');
         progressUnsubscribe = onSnapshot(progressRef, (snapshot) => {
+          if (cancelled || revision !== authRevision) return;
           snapshot.forEach((progressDoc) => {
             const data = progressDoc.data();
             const slug = data.slug || progressDoc.id;
@@ -244,10 +302,12 @@ export function AuthProvider({ children }) {
           });
           setProgressVersion((current) => current + 1);
         }, (error) => {
+          if (cancelled || revision !== authRevision) return;
           console.error('Failed to read Firebase roadmap progress:', error);
           setAuthError('Could not sync roadmap progress from Firestore.');
         });
       } catch (error) {
+        if (cancelled || revision !== authRevision) return;
         console.error('Failed to initialize Firebase profile:', error);
         const fallbackProfile = normalizeProfileDoc(nextUser);
         setProfile(fallbackProfile);
@@ -270,23 +330,19 @@ export function AuthProvider({ children }) {
       throw new Error('Firebase is not configured yet.');
     }
 
-    return signInWithPopup(services.auth, services.googleProvider);
+    setAuthError('');
+    const credential = await signInWithPopup(services.auth, services.googleProvider);
+    assertVerifiedEmail(credential.user);
+    return credential;
   }, [services]);
 
-  const signUpWithEmail = useCallback(async (email, password) => {
+  const requestEmailSignup = useCallback(async ({ email, humanToken }) => {
     if (!services.configured) {
       throw new Error('Firebase is not configured yet.');
     }
 
-    const credential = await createUserWithEmailAndPassword(services.auth, email, password);
-
-    try {
-      await sendEmailVerification(credential.user);
-    } catch (error) {
-      console.warn('Could not send verification email:', error);
-    }
-
-    return credential;
+    setAuthError('');
+    return emailSignupRequest('/api/auth/signup/request', { email, humanToken });
   }, [services]);
 
   const signInWithEmail = useCallback(async (email, password) => {
@@ -294,8 +350,32 @@ export function AuthProvider({ children }) {
       throw new Error('Firebase is not configured yet.');
     }
 
-    return signInWithEmailAndPassword(services.auth, email, password);
+    setAuthError('');
+    const credential = await signInWithEmailAndPassword(services.auth, email, password);
+    if (!credential.user.emailVerified) {
+      if (services.auth.currentUser?.uid === credential.user.uid) {
+        await signOut(services.auth);
+      }
+      setAuthError(EMAIL_VERIFICATION_REQUIRED);
+      assertVerifiedEmail(credential.user);
+    }
+    return credential;
   }, [services]);
+
+  const completeEmailSignup = useCallback(async ({ email, password, code, challengeId }) => {
+    if (!services.configured) {
+      throw new Error('Firebase is not configured yet.');
+    }
+
+    setAuthError('');
+    await emailSignupRequest('/api/auth/signup/verify', { email, password, code, challengeId });
+    try {
+      return await signInWithEmail(email, password);
+    } catch (error) {
+      error.signupCompleted = true;
+      throw error;
+    }
+  }, [services, signInWithEmail]);
 
   const resetPassword = useCallback(async (email) => {
     const response = await fetch('/api/auth/password-reset', {
@@ -308,7 +388,7 @@ export function AuthProvider({ children }) {
     if (!response.ok) {
       const error = new Error(data?.error || 'Could not send password reset email.');
       error.code = response.status === 429 ? 'auth/too-many-requests' : 'auth/password-reset-failed';
-      error.retryAfterMs = data?.retryAfterMs || 0;
+      error.retryAfterMs = responseRetryAfterMs(response, data);
       throw error;
     }
 
@@ -329,6 +409,7 @@ export function AuthProvider({ children }) {
     }
 
     const currentUser = services.auth.currentUser;
+    assertVerifiedEmail(currentUser);
     const nextProfile = {
       uid: currentUser.uid,
       email: currentUser.email || '',
@@ -353,6 +434,7 @@ export function AuthProvider({ children }) {
     if (!services.configured || !services.auth.currentUser) {
       throw new Error('Sign in before saving roadmap progress.');
     }
+    assertVerifiedEmail(services.auth.currentUser);
 
     await setDoc(doc(services.db, 'users', services.auth.currentUser.uid, 'roadmapProgress', slug), {
       slug,
@@ -398,7 +480,8 @@ export function AuthProvider({ children }) {
     isAuthenticated: Boolean(user),
     isProfileComplete: Boolean(user && !profileNeedsSetup(profile)),
     signInWithGoogle,
-    signUpWithEmail,
+    requestEmailSignup,
+    completeEmailSignup,
     signInWithEmail,
     resetPassword,
     resendVerification,
@@ -415,7 +498,8 @@ export function AuthProvider({ children }) {
     authError,
     progressVersion,
     signInWithGoogle,
-    signUpWithEmail,
+    requestEmailSignup,
+    completeEmailSignup,
     signInWithEmail,
     resetPassword,
     resendVerification,
