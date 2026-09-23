@@ -7,6 +7,7 @@ import { useAdminAccess } from '@/utils/client/adminAuth';
 import { getFirebaseServices } from '@/utils/client/firebaseClient';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { recommendEmail as getRecommendedTemplate, emailCategory } from '@/utils/shared/emailRecommendation';
+import BulkRetentionCampaign from './BulkRetentionCampaign';
 import EmailDraftLibrary from '../emails/EmailDraftLibrary';
 import { RETENTION_TEMPLATES } from '@/utils/server/retentionEmails';
 
@@ -399,6 +400,7 @@ export default function AnalyticsDashboardPage() {
     finally { setSendingEmailKey(null); }
   };
   const handlePreviewEmail = async targetUser => {
+    if (sendingEmailKey === 'bulk') return;
     const selected = selectedTemplates[targetUser.uid];
     if (!selected || selected.startsWith('ai_')) return prepareRecommendation(targetUser, selected);
     setSendingEmailKey(targetUser.uid + '-preview-modal');
@@ -414,6 +416,7 @@ export default function AnalyticsDashboardPage() {
 
   // Retention Email Dispatcher Handler (Sample Send to Admin or Live Send to Student)
   const handleSendRetentionEmail = async (targetUser, isSampleTest = false, forceOverride = false) => {
+    if (sendingEmailKey === 'bulk') return;
     const recommended = getRecommendedTemplate(targetUser);
     const templateId = selectedTemplates[targetUser.uid] || recommended.id;
     if (!recommended.eligible) { setStatusMessage({ type: 'error', text: recommended.reason }); return; }
@@ -533,6 +536,21 @@ export default function AnalyticsDashboardPage() {
     } finally {
       setSendingEmailKey(null);
     }
+  };
+
+  const handleBulkEmailSent = ({ uid, templateId, category, roadmapSlug, eventKey, sentAt }) => {
+    setData(previous => {
+      if (!previous) return previous;
+      const users = (previous.users || []).map(student => {
+        if (student.uid !== uid) return student;
+        const history = Array.isArray(student.sentEmailHistory) ? student.sentEmailHistory : [];
+        return {
+          ...student,
+          sentEmailHistory: [...history, { templateId, category, roadmapSlug, eventKey, sentAt, adminEmail: userEmail, forceOverride: false }],
+        };
+      });
+      return { ...previous, users };
+    });
   };
 
   if (authLoading || checking) {
@@ -905,6 +923,14 @@ export default function AnalyticsDashboardPage() {
         {/* TAB 1: Registered Students Table */}
         {activeTab === 'users' && (
           <div>
+            <BulkRetentionCampaign
+              students={usersList}
+              user={user}
+              loading={loading}
+              blocked={Boolean(sendingEmailKey && sendingEmailKey !== 'bulk')}
+              onEmailSent={handleBulkEmailSent}
+              onBusyChange={isBusy => setSendingEmailKey(current => isBusy ? 'bulk' : current === 'bulk' ? null : current)}
+            />
             <EmailDraftLibrary user={user} defaultOpen />
             {loading ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>

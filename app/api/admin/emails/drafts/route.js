@@ -63,7 +63,10 @@ export async function POST(request) {
       if (body.action !== 'generate') draft = await findUnsentDraft(db, category, student?.sentEmailHistory);
       if (!draft) {
         const rate = await checkServerRateLimit({ namespace: 'emailDrafts', subject: { uid: admin.uid }, limits, increment: true });
-        if (!rate.allowed) return NextResponse.json({ error: 'Draft generation limit reached. Use a saved variation or try later.' }, { status: 429 });
+        if (!rate.allowed) return NextResponse.json(
+          { error: 'Draft generation limit reached. Use a saved variation or try later.' },
+          { status: 429, headers: { 'Retry-After': String(Math.max(1, Math.ceil(rate.retryAfterMs / 1000))) } },
+        );
         draft = await createSavedDraft(db, category, admin.uid);
       }
     }

@@ -221,3 +221,24 @@ test('draft endpoint checks auth before AI/storage and blocks ineligible student
   allowed = true;
   assert.equal((await handlers.POST(request())).status, 409); assert.equal(generations, 0);
 });
+
+test('draft rate limits include their reset time for resumable campaigns', async () => {
+  let source = await fs.readFile(new URL('../../app/api/admin/emails/drafts/route.js', import.meta.url), 'utf8');
+  source = source.replace(/import[\s\S]*?from\s*['"][^'"]+['"];\s*/g, '').replace(/export const (runtime|maxDuration) = [^;]+;/g, '').replaceAll('export async function', 'async function');
+  const handlers = new Function(
+    'NextResponse', 'requireWorkforceAdmin', 'getFirebaseAdminFirestore', 'getFirebaseAdminAuth', 'checkServerRateLimit',
+    'draftCollection', 'createSavedDraft', 'findUnsentDraft', 'getSavedDraft', 'loadEmailStudent', 'recommendEmail',
+    'renderSavedEmail', 'generateRetentionEmailHtml',
+    source + '; return {POST};',
+  )(
+    { json: Response.json }, async () => ({ uid: 'admin' }), () => ({}), () => ({}),
+    async () => ({ allowed: false, retryAfterMs: 125000 }), () => ({}), async () => ({}), async () => null,
+    async () => null, async () => ({ uid: 'student', email: 'student@example.com', sentEmailHistory: [] }),
+    () => ({ eligible: true, category: 'welcome', id: '', label: 'Welcome', needsGeneration: true }), () => null, () => null,
+  );
+  const response = await handlers.POST(new Request('http://localhost/api/admin/emails/drafts', {
+    method: 'POST', body: JSON.stringify({ uid: 'student', action: 'prepare' }),
+  }));
+  assert.equal(response.status, 429);
+  assert.equal(response.headers.get('Retry-After'), '125');
+});
