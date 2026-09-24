@@ -1,0 +1,100 @@
+'use client';
+
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import {
+  DEFAULT_LOCALE,
+  SUPPORTED_LOCALES,
+  getTranslation,
+  detectBrowserLocale,
+} from '@/utils/shared/i18n';
+
+function getInitialClientLocale(fallback = DEFAULT_LOCALE) {
+  if (typeof window === 'undefined') return fallback;
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    const isValid = (code) => SUPPORTED_LOCALES.some((l) => l.code === code);
+    if (urlLang && isValid(urlLang)) return urlLang;
+
+    const savedLocale = localStorage.getItem('sb_locale');
+    if (savedLocale && isValid(savedLocale)) return savedLocale;
+
+    const detected = detectBrowserLocale();
+    if (detected && isValid(detected)) return detected;
+  } catch {
+    // fallback
+  }
+  return fallback;
+}
+
+const I18nContext = createContext({
+  locale: DEFAULT_LOCALE,
+  setLocale: () => {},
+  t: (key, fallback) => fallback || key,
+  locales: SUPPORTED_LOCALES,
+  currentLocaleInfo: SUPPORTED_LOCALES[0],
+});
+
+export function I18nProvider({ children, initialLocale = DEFAULT_LOCALE }) {
+  const [locale, setLocaleState] = useState(() => getInitialClientLocale(initialLocale));
+
+  // Sync document HTML attributes and cookies with active locale
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const activeLocale = SUPPORTED_LOCALES.find((l) => l.code === locale) || SUPPORTED_LOCALES[0];
+      document.documentElement.lang = activeLocale.code;
+      document.documentElement.dir = activeLocale.dir || 'ltr';
+      document.cookie = `sb_locale=${activeLocale.code}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+  }, [locale]);
+
+  const setLocale = useCallback((newLocale) => {
+    if (!SUPPORTED_LOCALES.some((l) => l.code === newLocale)) return;
+    setLocaleState(newLocale);
+    try {
+      localStorage.setItem('sb_locale', newLocale);
+      document.cookie = `sb_locale=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+      window.dispatchEvent(new CustomEvent('sb_locale_change', { detail: { locale: newLocale } }));
+    } catch {
+      // Ignore storage errors
+    }
+  }, []);
+
+  const t = useCallback(
+    (keyPath, fallback) => {
+      return getTranslation(locale, keyPath, fallback);
+    },
+    [locale]
+  );
+
+  const currentLocaleInfo = useMemo(() => {
+    return SUPPORTED_LOCALES.find((l) => l.code === locale) || SUPPORTED_LOCALES[0];
+  }, [locale]);
+
+  const value = useMemo(
+    () => ({
+      locale,
+      setLocale,
+      t,
+      locales: SUPPORTED_LOCALES,
+      currentLocaleInfo,
+    }),
+    [locale, setLocale, t, currentLocaleInfo]
+  );
+
+  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
+}
+
+export function useTranslation() {
+  const context = useContext(I18nContext);
+  if (!context) {
+    return {
+      locale: DEFAULT_LOCALE,
+      setLocale: () => {},
+      t: (key, fallback) => fallback || key,
+      locales: SUPPORTED_LOCALES,
+      currentLocaleInfo: SUPPORTED_LOCALES[0],
+    };
+  }
+  return context;
+}

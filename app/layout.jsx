@@ -8,6 +8,8 @@ import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
 import { AuthProvider } from './components/AuthProvider';
 import AnalyticsProvider from './components/AnalyticsProvider';
+import { I18nProvider } from './components/I18nProvider';
+import LanguageSelector from './components/LanguageSelector';
 import Footer from './components/Footer';
 
 const fredoka = Fredoka({
@@ -64,6 +66,17 @@ export const metadata = {
   },
   alternates: {
     canonical: '/',
+    languages: {
+      en: '/?lang=en',
+      es: '/?lang=es',
+      hi: '/?lang=hi',
+      fr: '/?lang=fr',
+      de: '/?lang=de',
+      pt: '/?lang=pt',
+      ja: '/?lang=ja',
+      id: '/?lang=id',
+      'x-default': '/',
+    },
   },
   openGraph: {
     title: 'SkillBun – 100% Free AI Tech Career Roadmaps & Verified Certifications',
@@ -240,22 +253,25 @@ export default async function RootLayout({ children }) {
         <a href="#main-content" className="skip-nav">Skip to content</a>
         <AuthProvider>
           <AnalyticsProvider nonce={nonce}>
-            <nav>
-              <div className="nav-logo">
-                <Link href="/" className="nav-logo-link">
-                  <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} priority unoptimized />
-                  <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
-                </Link>
-              </div>
-              <SearchBar />
+            <I18nProvider>
+              <nav>
+                <div className="nav-logo">
+                  <Link href="/" className="nav-logo-link">
+                    <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} priority unoptimized />
+                    <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
+                  </Link>
+                </div>
+                <SearchBar />
 
-              <div className="nav-cta">
-                <ThemeToggle />
-                <UserMenu />
-              </div>
-            </nav>
-            <main id="main-content">{children}</main>
-            <Footer />
+                <div className="nav-cta">
+                  <LanguageSelector />
+                  <ThemeToggle />
+                  <UserMenu />
+                </div>
+              </nav>
+              <main id="main-content">{children}</main>
+              <Footer />
+            </I18nProvider>
           </AnalyticsProvider>
         </AuthProvider>
       </body>

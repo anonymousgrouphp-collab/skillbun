@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import LanguageSelector from './LanguageSelector';
 
 export default function Footer() {
   return (
@@ -57,11 +58,12 @@ export default function Footer() {
           </svg>{' '}
           for tech students worldwide.
         </p>
-        <div className="badge-bar">
+        <div className="badge-bar" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span className="badge">Global Tech Paths</span>
           <span className="badge">CS & Software Engg</span>
           <span className="badge">100+ Free Roadmaps</span>
           <span className="badge">AI Powered</span>
+          <LanguageSelector variant="footer" />
         </div>
       </div>
     </footer>
