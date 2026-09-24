@@ -3,11 +3,54 @@
 import React from 'react';
 import Link from 'next/link';
 
+function Icon({ name, size = 16, className = '', style = {} }) {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className,
+    style: { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style },
+  };
+
+  switch (name) {
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    case 'certificate':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="7" />
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+        </svg>
+      );
+    case 'external':
+      return (
+        <svg {...common}>
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+
 export default function CertificatesRegistry({ loading, filteredCerts, searchTerm }) {
   if (loading) {
     return (
       <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-        <p>⏳ Loading real certificate records from Firestore...</p>
+        <p style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="clock" size={15} /> Loading real certificate records from Firestore...</p>
       </div>
     );
   }
@@ -15,7 +58,7 @@ export default function CertificatesRegistry({ loading, filteredCerts, searchTer
   if (filteredCerts.length === 0) {
     return (
       <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-        <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📜</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem', color: 'var(--muted)' }}><Icon name="certificate" size={38} /></div>
         {searchTerm ? (
           <p style={{ margin: 0 }}>No certificates match "{searchTerm}".</p>
         ) : (
@@ -95,7 +138,7 @@ export default function CertificatesRegistry({ loading, filteredCerts, searchTer
                     textDecoration: 'none',
                   }}
                 >
-                  Verify Page ↗
+                  Verify Page <Icon name="external" size={12} style={{ marginLeft: '0.2rem' }} />
                 </Link>
               </td>
             </tr>

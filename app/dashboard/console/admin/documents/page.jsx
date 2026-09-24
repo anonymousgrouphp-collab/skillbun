@@ -7,13 +7,106 @@ import { useAdminAccess } from '@/utils/client/adminAuth';
 import { downloadBase64Pdf } from '@/utils/client/printAndDownload';
 import styles from './documents.module.css';
 
+function Icon({ name, size = 16, className = '', style = {} }) {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className,
+    style: { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style },
+  };
+
+  switch (name) {
+    case 'shield':
+      return (
+        <svg {...common}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 'file':
+      return (
+        <svg {...common}>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      );
+    case 'folder':
+      return (
+        <svg {...common}>
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+        </svg>
+      );
+    case 'zap':
+      return (
+        <svg {...common}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+    case 'search':
+      return (
+        <svg {...common}>
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      );
+    case 'close':
+      return (
+        <svg {...common}>
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      );
+    case 'refresh':
+      return (
+        <svg {...common}>
+          <polyline points="23 4 23 10 17 10" />
+          <polyline points="1 20 1 14 7 14" />
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    case 'eye':
+      return (
+        <svg {...common}>
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+    case 'download':
+      return (
+        <svg {...common}>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+
 // Official SkillBun Workforce Legal PDF Documents
 const PRODUCTION_DOCUMENTS = [
   {
     id: 'workforce_offer',
     category: 'Offer Letter',
     docType: 'OFFER_PACK',
-    name: '🏢 4-Page Internship Offer Letter & Legal Agreement',
+    name: '4-Page Internship Offer Letter & Legal Agreement',
     prefix: 'HR-OFF',
     defaultHeading: 'INTERNSHIP OFFER LETTER & TERMS OF ENGAGEMENT',
     description: '4-Page formal legal agreement with annexures, agile sprint milestones, IP assignment, and stipend terms.',
@@ -22,7 +115,7 @@ const PRODUCTION_DOCUMENTS = [
     id: 'workforce_extension',
     category: 'Extension',
     docType: 'EXTENSION_LETTER',
-    name: '📈 Internship Tenure Extension Legal Addendum',
+    name: 'Internship Tenure Extension Legal Addendum',
     prefix: 'HR-EXT',
     defaultHeading: 'EXTENSION OF INTERNSHIP TENURE',
     description: 'Formal legal addendum extending completion date, sprint roadmap, and milestone deliverables.',
@@ -343,7 +436,7 @@ export default function DocumentManagerPage() {
       if (data.success) {
         setFeedback({
           type: 'success',
-          text: `🎉 Document (${data.referenceId || 'Issued'}) generated and registered in Document Vault!`,
+          text: `Document (${data.referenceId || 'Issued'}) generated and registered in Document Vault!`,
         });
         setIssueName('');
         setIssueEmail('');
@@ -391,7 +484,7 @@ export default function DocumentManagerPage() {
         <div className={styles.titleArea}>
           <div className={styles.titleBadge}>
             <h1 className={styles.titleText}>Workforce Legal Document & PDF Vault</h1>
-            <span className={styles.securityPill}>🛡️ pdf-lib Legal Engine</span>
+            <span className={styles.securityPill}><Icon name="shield" size={13} style={{ marginRight: '0.35rem' }} /> pdf-lib Legal Engine</span>
           </div>
           <p className={styles.subtitle}>
             Inspect, live-preview, compile, and manage official SkillBun workforce legal PDF agreements, 4-page offer packs, tenure extension addendums, and offboarding records.
@@ -438,21 +531,21 @@ export default function DocumentManagerPage() {
           onClick={() => setActiveTab('registry')}
           className={`${styles.mainModeBtn} ${activeTab === 'registry' ? styles.mainModeBtnActive : ''}`}
         >
-          <span>📜</span> Issued Documents Vault ({filteredDocuments.length})
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="folder" size={15} /> Issued Documents Vault ({filteredDocuments.length})</span>
         </button>
         <button
           type="button"
           onClick={() => setActiveTab('studio')}
           className={`${styles.mainModeBtn} ${activeTab === 'studio' ? styles.mainModeBtnActive : ''}`}
         >
-          <span>📄</span> Live Legal PDF Studio & Generator
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="file" size={15} /> Live Legal PDF Studio & Generator</span>
         </button>
         <button
           type="button"
           onClick={() => setActiveTab('issue')}
           className={`${styles.mainModeBtn} ${activeTab === 'issue' ? styles.mainModeBtnActive : ''}`}
         >
-          <span>⚡</span> Issue & Register New Document
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="zap" size={15} /> Issue & Register New Document</span>
         </button>
       </div>
 
@@ -464,7 +557,7 @@ export default function DocumentManagerPage() {
           {/* Filter Bar */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '12px', padding: '0.85rem 1.25rem', marginBottom: '1.25rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.45rem 0.85rem', flex: 1, minWidth: '260px', maxWidth: '480px' }}>
-              <span style={{ color: 'var(--muted)' }}>🔍</span>
+              <Icon name="search" size={14} style={{ color: 'var(--muted)' }} />
               <input
                 type="text"
                 value={searchTerm}
@@ -473,7 +566,7 @@ export default function DocumentManagerPage() {
                 style={{ background: 'none', border: 'none', outline: 'none', color: 'var(--text)', width: '100%', fontSize: '0.85rem' }}
               />
               {searchTerm && (
-                <button onClick={() => setSearchTerm('')} style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer' }}>✕</button>
+                <button onClick={() => setSearchTerm('')} style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer' }}><Icon name="close" size={12} /></button>
               )}
             </div>
 
@@ -505,7 +598,7 @@ export default function DocumentManagerPage() {
                 onClick={fetchDocuments}
                 style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.45rem 0.85rem', color: 'var(--text)', fontSize: '0.82rem', cursor: 'pointer', fontWeight: '600' }}
               >
-                🔄 Refresh
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="refresh" size={13} /> Refresh</span>
               </button>
             </div>
           </div>
@@ -514,11 +607,11 @@ export default function DocumentManagerPage() {
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden' }}>
             {loadingDocs ? (
               <div style={{ padding: '3.5rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <p>⏳ Loading workforce documents from Firestore `/workforce_docs`...</p>
+                <p style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="clock" size={15} /> Loading workforce documents from Firestore `/workforce_docs`...</p>
               </div>
             ) : filteredDocuments.length === 0 ? (
               <div style={{ padding: '3.5rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📁</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem', color: 'var(--muted)' }}><Icon name="folder" size={38} /></div>
                 <p style={{ margin: 0 }}>No workforce documents found matching your filter criteria.</p>
               </div>
             ) : (
@@ -594,7 +687,7 @@ export default function DocumentManagerPage() {
                                 onClick={() => setSelectedDocForModal(docItem)}
                                 style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', padding: '0.35rem 0.65rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '700', cursor: 'pointer' }}
                               >
-                                👁️ View
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="eye" size={12} /> View</span>
                               </button>
 
                               <button
@@ -603,7 +696,7 @@ export default function DocumentManagerPage() {
                                 disabled={isAction}
                                 style={{ background: 'var(--green)', border: 'none', color: '#000', padding: '0.35rem 0.65rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}
                               >
-                                📥 PDF
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="download" size={12} /> PDF</span>
                               </button>
 
                               <button
@@ -645,7 +738,7 @@ export default function DocumentManagerPage() {
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.15rem' }}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
               <div style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>
-                📄 PDF Template & Variable Studio
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}><Icon name="file" size={16} /> PDF Template & Variable Studio</span>
               </div>
               <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>
                 Live simulator matching the exact production `pdf-lib` legal generator.
@@ -783,7 +876,7 @@ export default function DocumentManagerPage() {
                   onClick={handleDownloadSimulatedPdf}
                   style={{ background: 'var(--green)', color: '#000', border: 'none', padding: '0.45rem 1rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: '800', cursor: 'pointer' }}
                 >
-                  📥 Download Real PDF
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="download" size={13} /> Download Real PDF</span>
                 </button>
               </div>
             </div>
@@ -792,7 +885,7 @@ export default function DocumentManagerPage() {
             <div style={{ width: '100%', minHeight: '860px', background: '#525659', borderRadius: '12px', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
               {pdfLoading && (
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, color: '#ffffff', fontWeight: '700', fontSize: '1rem' }}>
-                  ⏳ Compiling Real PDF with pdf-lib...
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}><Icon name="clock" size={16} /> Compiling Real PDF with pdf-lib...</span>
                 </div>
               )}
               {pdfBase64 ? (
@@ -819,7 +912,7 @@ export default function DocumentManagerPage() {
           <div style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem' }}>
               <div style={{ fontWeight: '800', fontSize: '1.15rem', color: 'var(--text)', marginBottom: '0.25rem' }}>
-                ⚡ Manual Workforce Document Issuance
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}><Icon name="zap" size={18} /> Manual Workforce Document Issuance</span>
               </div>
               <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--muted)' }}>
                 Issue an official legal agreement, offer letter pack, or extension letter. Generates cryptographic reference ID, registers record in Firestore `/workforce_docs`, and pre-compiles PDF.
@@ -834,10 +927,10 @@ export default function DocumentManagerPage() {
                   onChange={(e) => setIssueType(e.target.value)}
                   style={{ width: '100%', background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.55rem', color: 'var(--text)', fontSize: '0.85rem' }}
                 >
-                  <option value="OFFER_PACK">🏢 4-Page Internship Offer Letter & Terms</option>
-                  <option value="EXTENSION_LETTER">📈 Tenure Extension Addendum</option>
-                  <option value="TERMINATION_NOTICE">🚪 Notice of Conclusion / Offboarding</option>
-                  <option value="ACTIVATION_WELCOME">🔑 Day-1 Workspace Activation</option>
+                  <option value="OFFER_PACK">4-Page Internship Offer Letter & Terms</option>
+                  <option value="EXTENSION_LETTER">Tenure Extension Addendum</option>
+                  <option value="TERMINATION_NOTICE">Notice of Conclusion / Offboarding</option>
+                  <option value="ACTIVATION_WELCOME">Day-1 Workspace Activation</option>
                 </select>
               </div>
 
@@ -923,7 +1016,15 @@ export default function DocumentManagerPage() {
                 disabled={issueSubmitting}
                 style={{ background: 'var(--green)', color: '#000', border: 'none', borderRadius: '10px', padding: '0.75rem 1.25rem', fontSize: '0.9rem', fontWeight: '800', cursor: 'pointer', marginTop: '0.5rem' }}
               >
-                {issueSubmitting ? '⏳ Generating PDF & Storing in Vault...' : '⚡ Issue Document & Save to Vault'}
+                {issueSubmitting ? (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center' }}>
+                    <Icon name="clock" size={15} /> Generating PDF & Storing in Vault...
+                  </span>
+                ) : (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center' }}>
+                    <Icon name="zap" size={15} /> Issue Document & Save to Vault
+                  </span>
+                )}
               </button>
 
               {feedback && (
@@ -944,7 +1045,7 @@ export default function DocumentManagerPage() {
               <h3 style={{ margin: 0, fontFamily: 'var(--font-fredoka)', fontSize: '1.25rem' }}>
                 Document Details: {selectedDocForModal.display_id || selectedDocForModal.id}
               </h3>
-              <button onClick={() => setSelectedDocForModal(null)} style={{ background: 'none', border: 'none', color: 'var(--muted)', fontSize: '1.5rem', cursor: 'pointer' }}>×</button>
+              <button onClick={() => setSelectedDocForModal(null)} style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer' }}><Icon name="close" size={16} /></button>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.88rem' }}>
@@ -961,7 +1062,7 @@ export default function DocumentManagerPage() {
                 Close
               </button>
               <button onClick={() => handleDownloadPdf(selectedDocForModal)} style={{ background: 'var(--green)', color: '#000', border: 'none', padding: '0.45rem 0.9rem', borderRadius: '8px', fontSize: '0.82rem', fontWeight: '800', cursor: 'pointer' }}>
-                📥 Download PDF
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="download" size={13} /> Download PDF</span>
               </button>
             </div>
           </div>

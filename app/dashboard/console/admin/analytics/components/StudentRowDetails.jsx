@@ -2,6 +2,130 @@
 
 import React from 'react';
 
+function Icon({ name, size = 16, className = '', style = {} }) {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className,
+    style: { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style },
+  };
+
+  switch (name) {
+    case 'user':
+      return (
+        <svg {...common}>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      );
+    case 'close':
+      return (
+        <svg {...common}>
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      );
+    case 'bell':
+      return (
+        <svg {...common}>
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+      );
+    case 'bell-off':
+      return (
+        <svg {...common}>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          <path d="M18.63 13A17.89 17.89 0 0 1 18 8" />
+          <path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14" />
+          <path d="M18 8a6 6 0 0 0-9.33-5" />
+          <line x1="1" y1="1" x2="23" y2="23" />
+        </svg>
+      );
+    case 'map':
+      return (
+        <svg {...common}>
+          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+          <line x1="8" y1="2" x2="8" y2="18" />
+          <line x1="16" y1="6" x2="16" y2="22" />
+        </svg>
+      );
+    case 'award':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="6" />
+          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+        </svg>
+      );
+    case 'mail':
+      return (
+        <svg {...common}>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      );
+    case 'zap':
+      return (
+        <svg {...common}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    case 'eye':
+      return (
+        <svg {...common}>
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+    case 'flask':
+      return (
+        <svg {...common}>
+          <path d="M10 2v7.31L4.1 20.3a2 2 0 0 0 1.7 2.7h12.4a2 2 0 0 0 1.7-2.7L14 9.31V2" />
+          <line x1="8" y1="2" x2="16" y2="2" />
+          <line x1="8.5" y1="14" x2="15.5" y2="14" />
+        </svg>
+      );
+    case 'alert':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      );
+    case 'trash':
+      return (
+        <svg {...common}>
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+      );
+    case 'clipboard':
+      return (
+        <svg {...common}>
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+
 export default function StudentRowDetails({
   u,
   formatDateTime,
@@ -28,13 +152,13 @@ export default function StudentRowDetails({
       <td colSpan={8} style={{ padding: '1.25rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
           <h4 style={{ margin: 0, fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.05rem', color: 'var(--green)' }}>
-            👤 Linked Profile & Activity Breakdown: {u.name} ({u.email})
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="user" size={16} /> Linked Profile & Activity Breakdown: {u.name} ({u.email})</span>
           </h4>
           <button
             onClick={() => setExpandedUserUid(null)}
             style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--muted)', fontWeight: 'bold', fontSize: '1rem' }}
           >
-            ✕ Close
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Icon name="close" size={13} /> Close</span>
           </button>
         </div>
 
@@ -42,7 +166,7 @@ export default function StudentRowDetails({
           {/* Profile Details */}
           <div>
             <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-              👤 Account & Activity Timestamps
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="user" size={14} /> Account & Activity Timestamps</span>
             </h4>
             <div style={{ fontSize: '0.82rem', lineHeight: '1.8', color: 'var(--text)' }}>
               <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
@@ -51,9 +175,9 @@ export default function StudentRowDetails({
               <div>
                 <strong>Subscription Status:</strong>{' '}
                 {u.isUnsubscribed ? (
-                  <span style={{ color: '#ef4444', fontWeight: '800' }}>🔕 UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</span>
+                  <span style={{ color: '#ef4444', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="bell-off" size={13} /> UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</span>
                 ) : (
-                  <span style={{ color: 'var(--green)', fontWeight: '800' }}>🔔 Active Subscriber</span>
+                  <span style={{ color: 'var(--green)', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="bell" size={13} /> Active Subscriber</span>
                 )}
               </div>
               <div><strong>Degree Program:</strong> {u.degree}</div>
@@ -68,7 +192,7 @@ export default function StudentRowDetails({
           {/* Roadmaps & Progress Breakdown */}
           <div>
             <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-              🗺️ Roadmap Progress ({u.progress?.length || 0})
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="map" size={14} /> Roadmap Progress ({u.progress?.length || 0})</span>
             </h4>
             {u.progress && u.progress.length > 0 ? (
               <div style={{ maxHeight: '180px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -94,13 +218,13 @@ export default function StudentRowDetails({
           {/* Quiz Attempts & Certificates */}
           <div>
             <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-              🏆 Certifications & Attempts
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="award" size={14} /> Certifications & Attempts</span>
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '180px', overflowY: 'auto' }}>
               {u.certificates && u.certificates.length > 0 ? (
                 u.certificates.map((c, idx) => (
                   <div key={idx} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid var(--green)', padding: '0.5rem 0.75rem', borderRadius: '6px', fontSize: '0.8rem' }}>
-                    <div style={{ fontWeight: '700', color: 'var(--green)' }}>🎓 {c.roadmapTitle || c.stream_or_track || 'Certificate'} ({c.score ?? '100'}%)</div>
+                    <div style={{ fontWeight: '700', color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="award" size={13} /> {c.roadmapTitle || c.stream_or_track || 'Certificate'} ({c.score ?? '100'}%)</div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>Cert ID: {c.id} • Issued: {formatDateTime(c.createdAt)}</div>
                   </div>
                 ))
@@ -126,13 +250,13 @@ export default function StudentRowDetails({
         <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px dashed var(--border)', background: 'var(--card-bg)', padding: '1rem', borderRadius: '8px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.2rem' }}>✉️</span>
+              <Icon name="mail" size={18} />
               <span style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--text)' }}>
                 Targeted Student Email Automation (Zoho SMTP Transport)
               </span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(16, 185, 129, 0.1)', padding: '0.3rem 0.6rem', borderRadius: '6px', fontSize: '0.75rem', color: 'var(--green)', fontWeight: '700' }}>
-              <span>✨ Smart Recommendation:</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Icon name="zap" size={12} /> Smart Recommendation:</span>
               <code>{recommended.name}</code> ({recommended.reason})
             </div>
           </div>
@@ -153,30 +277,30 @@ export default function StudentRowDetails({
                 minWidth: '240px',
               }}
             >
-              <optgroup label="🌟 Smart Recommender">
-                <option value={recommended.id}>⭐ Recommended: {recommended.name}</option>
+              <optgroup label="Smart Recommender">
+                <option value={recommended.id}>Recommended: {recommended.name}</option>
               </optgroup>
-              <optgroup label="👋 Welcome Series">
+              <optgroup label="Welcome Series">
                 <option value="welcome_v1">Welcome (Getting Started & Explore)</option>
                 <option value="welcome_v2">Welcome (AI Mentor & Bun-Bot Focus)</option>
                 <option value="welcome_v3">Welcome (Roadmaps & Practice Tests)</option>
               </optgroup>
-              <optgroup label="⚡ Inactivity & Re-engagement">
+              <optgroup label="Inactivity & Re-engagement">
                 <option value="reengagement_v1">Re-engagement (Resume Your Journey)</option>
                 <option value="reengagement_v2">Re-engagement (New Modules Added)</option>
                 <option value="reengagement_v3">Re-engagement (Community Momentum)</option>
               </optgroup>
-              <optgroup label="🎯 Exam Readiness Nudges">
+              <optgroup label="Exam Readiness Nudges">
                 <option value="exam_nudge_v1">Exam Nudge (60% Progress Achieved!)</option>
                 <option value="exam_nudge_v2">Exam Nudge (Fast-track to Certificate)</option>
                 <option value="exam_nudge_v3">Exam Nudge (Sharpen Your Skills)</option>
               </optgroup>
-              <optgroup label="💪 Retake & Resilience">
+              <optgroup label="Retake & Resilience">
                 <option value="exam_failed_v1">Retake Encouragement (Don't Give Up!)</option>
                 <option value="exam_failed_v2">Retake Encouragement (Review Weak Topics)</option>
                 <option value="exam_failed_v3">Retake Encouragement (Retry After 1hr)</option>
               </optgroup>
-              <optgroup label="🎉 Milestone Celebrations">
+              <optgroup label="Milestone Celebrations">
                 <option value="cert_congrats_v1">Certificate Issued (Share on LinkedIn!)</option>
                 <option value="cert_congrats_v2">Certificate Issued (Add to Resume)</option>
                 <option value="cert_congrats_v3">Certificate Issued (Next Career Goal)</option>
@@ -198,7 +322,11 @@ export default function StudentRowDetails({
                 cursor: isPreviewLoading ? 'not-allowed' : 'pointer',
               }}
             >
-              {isPreviewLoading ? '⏳ Previewing...' : '👁️ Preview Body'}
+              {isPreviewLoading ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="clock" size={13} /> Previewing...</span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="eye" size={13} /> Preview Body</span>
+              )}
             </button>
 
             <button
@@ -217,7 +345,11 @@ export default function StudentRowDetails({
               }}
               title="Sends a test copy to harsh@skillbun.tech via Zoho SMTP"
             >
-              {isSampleLoading ? '⏳ Sending Sample...' : '🧪 Send Test Email to Me'}
+              {isSampleLoading ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="clock" size={13} /> Sending Sample...</span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="flask" size={13} /> Send Test Email to Me</span>
+              )}
             </button>
 
             <button
@@ -235,7 +367,11 @@ export default function StudentRowDetails({
                 cursor: isSendLoading ? 'not-allowed' : 'pointer',
               }}
             >
-              {isSendLoading ? '🚀 Sending...' : `✉️ Send to ${u.name || 'Student'}`}
+              {isSendLoading ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="clock" size={13} /> Sending...</span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="mail" size={13} /> Send to {u.name || 'Student'}</span>
+              )}
             </button>
 
             <button
@@ -254,7 +390,11 @@ export default function StudentRowDetails({
                 cursor: isForceLoading ? 'not-allowed' : 'pointer',
               }}
             >
-              {isForceLoading ? '⚡ Overriding...' : '⚠️ Force Override'}
+              {isForceLoading ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="zap" size={13} /> Overriding...</span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="alert" size={13} /> Force Override</span>
+              )}
             </button>
 
             <div style={{ marginLeft: 'auto' }}>
@@ -272,7 +412,11 @@ export default function StudentRowDetails({
                   cursor: 'pointer',
                 }}
               >
-                {isDeleting ? '🗑️ Purging...' : '🗑️ Delete User'}
+                {isDeleting ? (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="clock" size={13} /> Purging...</span>
+                ) : (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="trash" size={13} /> Delete User</span>
+                )}
               </button>
             </div>
           </div>
@@ -280,7 +424,7 @@ export default function StudentRowDetails({
           {/* Email History Logs */}
           {sentLogs.length > 0 && (
             <div style={{ marginTop: '0.75rem', fontSize: '0.75rem', color: 'var(--muted)', background: 'var(--surface-raised)', padding: '0.5rem 0.75rem', borderRadius: '6px' }}>
-              <strong>📋 Previous Emails Dispatched ({sentLogs.length}):</strong>
+              <strong style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}><Icon name="clipboard" size={13} /> Previous Emails Dispatched ({sentLogs.length}):</strong>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.3rem' }}>
                 {sentLogs.map((log, lIdx) => {
                   const tId = typeof log === 'string' ? log : log.templateId;

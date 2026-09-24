@@ -107,10 +107,160 @@ function formatRecommendationText(rawText, candidateName) {
     .replace(/\btechnical dedication\b/gi, 'professional dedication');
 }
 
+function Icon({ name, size = 16, className = '', style = {} }) {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className,
+    style: { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style },
+  };
+
+  switch (name) {
+    case 'certificate':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="7" />
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+        </svg>
+      );
+    case 'award':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="6" />
+          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+        </svg>
+      );
+    case 'briefcase':
+      return (
+        <svg {...common}>
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      );
+    case 'palette':
+      return (
+        <svg {...common}>
+          <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+          <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+          <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+          <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+        </svg>
+      );
+    case 'zap':
+      return (
+        <svg {...common}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+    case 'close':
+      return (
+        <svg {...common}>
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      );
+    case 'check':
+      return (
+        <svg {...common}>
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      );
+    case 'refresh':
+      return (
+        <svg {...common}>
+          <polyline points="23 4 23 10 17 10" />
+          <polyline points="1 20 1 14 7 14" />
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+        </svg>
+      );
+    case 'alert':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      );
+    case 'trash':
+      return (
+        <svg {...common}>
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+      );
+    case 'download':
+      return (
+        <svg {...common}>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      );
+    case 'external':
+      return (
+        <svg {...common}>
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      );
+    case 'shield':
+      return (
+        <svg {...common}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 'search':
+      return (
+        <svg {...common}>
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      );
+    case 'printer':
+      return (
+        <svg {...common}>
+          <polyline points="6 9 6 2 18 2 18 9" />
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <rect x="6" y="14" width="12" height="8" />
+        </svg>
+      );
+    case 'ban':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+        </svg>
+      );
+    case 'tools':
+      return (
+        <svg {...common}>
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 const TEMPLATE_DESIGNS = [
   {
     id: 'ROADMAP',
-    name: '🎓 Academic Roadmap Assessment Certificate',
+    name: 'Academic Roadmap Assessment Certificate',
     bgImage: '/certificate-template.png',
     badge: 'Roadmap Track',
     codeFormat: 'SKBXXXX-XX-XX-XXXX',
@@ -118,7 +268,7 @@ const TEMPLATE_DESIGNS = [
   },
   {
     id: 'INTERNSHIP',
-    name: '🏢 Certificate of Internship Completion',
+    name: 'Certificate of Internship Completion',
     bgImage: null,
     badge: 'Workforce Tenure',
     codeFormat: 'SKB/2026/INT-REC/XXXXXX',
@@ -126,7 +276,7 @@ const TEMPLATE_DESIGNS = [
   },
   {
     id: 'TRAINING',
-    name: '🛠️ Practical Industry Training Certificate',
+    name: 'Practical Industry Training Certificate',
     bgImage: '/training-cert-template.png',
     badge: 'Industry Training',
     codeFormat: 'SKB/2026/TRN-PRC/XXXXXX',
@@ -134,7 +284,7 @@ const TEMPLATE_DESIGNS = [
   },
   {
     id: 'LOR',
-    name: '📜 Official Letter of Recommendation (LOR)',
+    name: 'Official Letter of Recommendation (LOR)',
     bgImage: null,
     badge: 'Executive LOR',
     codeFormat: 'SKB/2026/LOR-REC/XXXXXX',
@@ -301,7 +451,7 @@ export default function AdminCertificatesPage() {
 
   // Delete Certificate action
   const handleDeleteCert = async (cert) => {
-    if (!window.confirm(`⚠️ PERMANENT DELETE WARNING: Are you sure you want to permanently delete certificate (${cert.display_id || cert.id}) for ${cert.name}? This action cannot be undone.`)) {
+    if (!window.confirm(`PERMANENT DELETE WARNING: Are you sure you want to permanently delete certificate (${cert.display_id || cert.id}) for ${cert.name}? This action cannot be undone.`)) {
       return;
     }
 
@@ -366,7 +516,7 @@ export default function AdminCertificatesPage() {
       if (data.success) {
         setFeedback({
           type: 'success',
-          text: `🎉 Certificate (${data.displayId || data.certId}) minted successfully for ${mintName}!`,
+          text: `Certificate (${data.displayId || data.certId}) minted successfully for ${mintName}!`,
         });
         // Reset form
         setMintName('');
@@ -420,7 +570,7 @@ export default function AdminCertificatesPage() {
           <div className={styles.titleBadge}>
             <h1 className={styles.titleText}>Certificate & Credential Studio</h1>
             <span className={styles.securityPill}>
-              🛡️ Base32 Cryptographic Trust Engine
+              <Icon name="shield" size={13} style={{ marginRight: '0.35rem' }} /> Base32 Cryptographic Trust Engine
             </span>
           </div>
           <p className={styles.subtitle}>
@@ -448,7 +598,7 @@ export default function AdminCertificatesPage() {
       {/* Metrics Summary Bar */}
       <div className={styles.metricsGrid}>
         <div className={styles.metricCard}>
-          <div className={`${styles.metricIconBox} ${styles.iconGreen}`}>📜</div>
+          <div className={`${styles.metricIconBox} ${styles.iconGreen}`}><Icon name="certificate" size={20} /></div>
           <div>
             <div className={styles.metricVal}>{metrics.totalCount}</div>
             <div className={styles.metricLabel}>Total Credentials</div>
@@ -456,7 +606,7 @@ export default function AdminCertificatesPage() {
         </div>
 
         <div className={styles.metricCard}>
-          <div className={`${styles.metricIconBox} ${styles.iconBlue}`}>🎓</div>
+          <div className={`${styles.metricIconBox} ${styles.iconBlue}`}><Icon name="award" size={20} /></div>
           <div>
             <div className={styles.metricVal}>{metrics.roadmapCount}</div>
             <div className={styles.metricLabel}>Roadmap Certs</div>
@@ -464,7 +614,7 @@ export default function AdminCertificatesPage() {
         </div>
 
         <div className={styles.metricCard}>
-          <div className={`${styles.metricIconBox} ${styles.iconPurple}`}>🏢</div>
+          <div className={`${styles.metricIconBox} ${styles.iconPurple}`}><Icon name="briefcase" size={20} /></div>
           <div>
             <div className={styles.metricVal}>{metrics.workforceCount}</div>
             <div className={styles.metricLabel}>Workforce Credentials</div>
@@ -472,7 +622,7 @@ export default function AdminCertificatesPage() {
         </div>
 
         <div className={styles.metricCard}>
-          <div className={`${styles.metricIconBox} ${styles.iconAmber}`}>✅</div>
+          <div className={`${styles.metricIconBox} ${styles.iconAmber}`}><Icon name="check" size={20} /></div>
           <div>
             <div className={styles.metricVal}>{metrics.activeCount}</div>
             <div className={styles.metricLabel}>Active Verified</div>
@@ -487,21 +637,21 @@ export default function AdminCertificatesPage() {
           onClick={() => setActiveTab('registry')}
           className={`${styles.tabBtn} ${activeTab === 'registry' ? styles.tabBtnActive : ''}`}
         >
-          <span>📜</span> Certificates Registry ({certs.length})
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="certificate" size={15} /> Certificates Registry ({certs.length})</span>
         </button>
         <button
           type="button"
           onClick={() => setActiveTab('studio')}
           className={`${styles.tabBtn} ${activeTab === 'studio' ? styles.tabBtnActive : ''}`}
         >
-          <span>🎨</span> Live Design & Canvas Overlay Studio
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="palette" size={15} /> Live Design & Canvas Overlay Studio</span>
         </button>
         <button
           type="button"
           onClick={() => setActiveTab('mint')}
           className={`${styles.tabBtn} ${activeTab === 'mint' ? styles.tabBtnActive : ''}`}
         >
-          <span>⚡</span> Issue / Mint Certificate
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="zap" size={15} /> Issue / Mint Certificate</span>
         </button>
       </div>
 
@@ -526,7 +676,7 @@ export default function AdminCertificatesPage() {
                   onClick={() => setSearchTerm('')}
                   style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', fontWeight: 'bold' }}
                 >
-                  ✕
+                  <Icon name="close" size={12} />
                 </button>
               )}
             </div>
@@ -561,7 +711,7 @@ export default function AdminCertificatesPage() {
                 style={{ padding: '0.45rem 0.8rem', fontSize: '0.8rem' }}
                 title="Refresh from Firestore"
               >
-                🔄 Refresh
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="refresh" size={13} /> Refresh</span>
               </button>
             </div>
           </div>
@@ -570,11 +720,11 @@ export default function AdminCertificatesPage() {
           <div className={styles.tableCard}>
             {loadingCerts ? (
               <div style={{ padding: '3.5rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <p>⏳ Loading real certificate records from Firestore...</p>
+                <p style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="clock" size={15} /> Loading real certificate records from Firestore...</p>
               </div>
             ) : certs.length === 0 ? (
               <div style={{ padding: '3.5rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📜</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem', color: 'var(--muted)' }}><Icon name="certificate" size={38} /></div>
                 <p style={{ margin: 0 }}>No certificates match your query filters.</p>
               </div>
             ) : (
@@ -657,7 +807,7 @@ export default function AdminCertificatesPage() {
                                 className={styles.tableActionBtn}
                                 title="Open Public Verification Page"
                               >
-                                <span>Verify ↗</span>
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>Verify <Icon name="external" size={11} /></span>
                               </Link>
 
                               {/* Toggle Revoke */}
@@ -668,7 +818,15 @@ export default function AdminCertificatesPage() {
                                 className={`${styles.tableActionBtn} ${cert.is_revoked ? '' : styles.tableActionBtnDanger}`}
                                 title={cert.is_revoked ? 'Re-instate Credential' : 'Revoke Credential'}
                               >
-                                {cert.is_revoked ? '✅ Restore' : '🚫 Revoke'}
+                                {cert.is_revoked ? (
+                                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                    <Icon name="check" size={13} /> Restore
+                                  </span>
+                                ) : (
+                                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                    <Icon name="ban" size={13} /> Revoke
+                                  </span>
+                                )}
                               </button>
 
                               {/* Delete */}
@@ -679,7 +837,7 @@ export default function AdminCertificatesPage() {
                                 className={`${styles.tableActionBtn} ${styles.tableActionBtnDanger}`}
                                 title="Delete Certificate Record"
                               >
-                                🗑️
+                                <Icon name="trash" size={13} />
                               </button>
                             </div>
                           </td>
@@ -701,7 +859,7 @@ export default function AdminCertificatesPage() {
           <div className={styles.studioControlsCard}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
               <div style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>
-                🎨 Certificate Design Switcher
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}><Icon name="palette" size={16} /> Certificate Design Switcher</span>
               </div>
               <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>
                 Live simulator matching the exact public overlay engine from <code>/certificate/[id]</code>.
@@ -860,7 +1018,7 @@ export default function AdminCertificatesPage() {
                   className={styles.actionBtnSecondary}
                   style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
                 >
-                  🖨️ Print / PDF
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="printer" size={14} /> Print / PDF</span>
                 </button>
                 <Link
                   href={`/certificate/${encodeURIComponent(simCertId)}`}
@@ -868,7 +1026,7 @@ export default function AdminCertificatesPage() {
                   className={styles.actionBtnSecondary}
                   style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem', color: 'var(--green)' }}
                 >
-                  🔗 Open /certificate/[id] ↗
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}><Icon name="external" size={13} /> Open /certificate/[id]</span>
                 </Link>
               </div>
             </div>
@@ -1344,7 +1502,7 @@ export default function AdminCertificatesPage() {
           <div className={styles.studioControlsCard}>
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem' }}>
               <div style={{ fontWeight: '800', fontSize: '1.15rem', color: 'var(--text)', marginBottom: '0.25rem' }}>
-                ⚡ Manual Certificate Minting Studio
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}><Icon name="zap" size={18} /> Manual Certificate Minting Studio</span>
               </div>
               <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--muted)' }}>
                 Directly issue verified Academic or Workforce credentials to students and interns. Generates unambiguous Base32 IDs and registers records into Firestore `/certificates`.
@@ -1360,10 +1518,10 @@ export default function AdminCertificatesPage() {
                   onChange={(e) => setMintType(e.target.value)}
                   className={styles.inputField}
                 >
-                  <option value="ROADMAP">🎓 Academic Roadmap Assessment Certificate</option>
-                  <option value="INTERNSHIP">🏢 Certificate of Internship Completion</option>
-                  <option value="TRAINING">🛠️ Practical Industry Training Certificate</option>
-                  <option value="LOR">📜 Official Letter of Recommendation (LOR)</option>
+                  <option value="ROADMAP">Academic Roadmap Assessment Certificate</option>
+                  <option value="INTERNSHIP">Certificate of Internship Completion</option>
+                  <option value="TRAINING">Practical Industry Training Certificate</option>
+                  <option value="LOR">Official Letter of Recommendation (LOR)</option>
                 </select>
               </div>
 
@@ -1485,7 +1643,15 @@ export default function AdminCertificatesPage() {
                 className={styles.btnPrimary}
                 style={{ marginTop: '0.5rem' }}
               >
-                {mintSubmitting ? '⏳ Generating Cryptographic Certificate...' : '⚡ Mint & Register Verified Certificate'}
+                {mintSubmitting ? (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center' }}>
+                    <Icon name="clock" size={15} /> Generating Cryptographic Certificate...
+                  </span>
+                ) : (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', justifyContent: 'center' }}>
+                    <Icon name="zap" size={15} /> Mint & Register Verified Certificate
+                  </span>
+                )}
               </button>
 
               {/* Feedback Alert */}

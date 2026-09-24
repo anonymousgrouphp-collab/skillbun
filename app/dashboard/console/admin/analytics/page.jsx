@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
-import { getFirebaseServices } from '@/utils/client/firebaseClient';
-import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { recommendEmail as getRecommendedTemplate, emailCategory } from '@/utils/shared/emailRecommendation';
 import BulkRetentionCampaign from './BulkRetentionCampaign';
 import EmailDraftLibrary from '../emails/EmailDraftLibrary';
@@ -26,6 +24,229 @@ function formatDateTime(isoString) {
     });
   } catch {
     return 'N/A';
+  }
+}
+
+function Icon({ name, size = 16, className = '', style = {} }) {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className,
+    style: { display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...style },
+  };
+
+  switch (name) {
+    case 'lock':
+      return (
+        <svg {...common}>
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      );
+    case 'shield':
+      return (
+        <svg {...common}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 'crown':
+      return (
+        <svg {...common}>
+          <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z" />
+        </svg>
+      );
+    case 'users':
+      return (
+        <svg {...common}>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case 'user':
+      return (
+        <svg {...common}>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      );
+    case 'certificate':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="7" />
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+        </svg>
+      );
+    case 'search':
+      return (
+        <svg {...common}>
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      );
+    case 'chevron-up':
+      return (
+        <svg {...common}>
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+      );
+    case 'chevron-down':
+      return (
+        <svg {...common}>
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      );
+    case 'download':
+      return (
+        <svg {...common}>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+      );
+    case 'close':
+      return (
+        <svg {...common}>
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      );
+    case 'check':
+      return (
+        <svg {...common}>
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      );
+    case 'alert':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      );
+    case 'bell':
+      return (
+        <svg {...common}>
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </svg>
+      );
+    case 'bellOff':
+      return (
+        <svg {...common}>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          <path d="M18.63 13A17.89 17.89 0 0 1 18 8" />
+          <path d="M6.26 6.26A5.86 5.86 0 0 0 6 8c0 7-3 9-3 9h14" />
+          <path d="M18 8a6 6 0 0 0-9.33-5" />
+          <line x1="1" y1="1" x2="23" y2="23" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+      );
+    case 'calendar':
+      return (
+        <svg {...common}>
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      );
+    case 'map':
+      return (
+        <svg {...common}>
+          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+          <line x1="8" y1="2" x2="8" y2="18" />
+          <line x1="16" y1="6" x2="16" y2="22" />
+        </svg>
+      );
+    case 'fileText':
+      return (
+        <svg {...common}>
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+          <polyline points="10 9 9 9 8 9" />
+        </svg>
+      );
+    case 'mail':
+      return (
+        <svg {...common}>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      );
+    case 'trash':
+      return (
+        <svg {...common}>
+          <polyline points="3 6 5 6 21 6" />
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        </svg>
+      );
+    case 'eye':
+      return (
+        <svg {...common}>
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+    case 'zap':
+      return (
+        <svg {...common}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      );
+    case 'globe':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="10" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      );
+    case 'send':
+      return (
+        <svg {...common}>
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      );
+    case 'flask':
+      return (
+        <svg {...common}>
+          <path d="M10 2v7.31L4.69 19.3A2 2 0 0 0 6.44 22h11.12a2 2 0 0 0 1.75-2.7L14 9.31V2" />
+          <line x1="8.5" y1="2" x2="15.5" y2="2" />
+          <line x1="8" y1="14" x2="16" y2="14" />
+        </svg>
+      );
+    case 'copy':
+      return (
+        <svg {...common}>
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+      );
+    case 'folder':
+      return (
+        <svg {...common}>
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+        </svg>
+      );
+    default:
+      return null;
   }
 }
 
@@ -81,76 +302,12 @@ export default function AnalyticsDashboardPage() {
 
         if (!active) return;
 
-        let users = Array.isArray(resData.users) ? resData.users : [];
-        let certificates = Array.isArray(resData.certificates) ? resData.certificates : [];
-
-        // Client-side fallback if server Admin API returned empty or credential missing
-        if ((!users || users.length === 0) && (!certificates || certificates.length === 0)) {
-          try {
-            const { db } = getFirebaseServices();
-            if (db) {
-              const certsSnap = await getDocs(collection(db, 'certificates'));
-              certificates = certsSnap.docs.map((d) => {
-                const cData = d.data();
-                return {
-                  id: d.id,
-                  certId: d.id,
-                  uid: cData.uid || '',
-                  name: cData.name || cData.studentName || cData.userName || 'Student',
-                  email: cData.email || cData.userEmail || '',
-                  roadmapTitle: cData.roadmapTitle || cData.roadmapSlug || 'Roadmap',
-                  roadmapSlug: cData.roadmapSlug || '',
-                  score: typeof cData.score === 'number' ? cData.score : 0,
-                  createdAt: cData.createdAt ? new Date(cData.createdAt.toDate?.() || cData.createdAt).toISOString() : null,
-                };
-              });
-
-              const usersSnap = await getDocs(collection(db, 'users'));
-              users = await Promise.all(
-                usersSnap.docs.map(async (d) => {
-                  const uData = d.data();
-                  const uid = d.id;
-                  const uCerts = certificates.filter(
-                    (c) => c.uid === uid || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
-                  );
-
-                  let progress = [];
-                  let quizAttempts = [];
-
-                  try {
-                    const progSnap = await getDocs(collection(db, `users/${uid}/roadmapProgress`));
-                    progress = progSnap.docs.map((p) => p.data());
-                  } catch {}
-
-                  try {
-                    const quizSnap = await getDocs(collection(db, `users/${uid}/quizAttempts`));
-                    quizAttempts = quizSnap.docs.map((q) => q.data());
-                  } catch {}
-
-                  return {
-                    uid,
-                    name: uData.name || uData.displayName || uData.fullName || 'Registered Student',
-                    email: uData.email || 'N/A',
-                    degree: uData.degree || 'N/A',
-                    year: uData.year || uData.current_year || 'N/A',
-                    interest: uData.interest || uData.interest_area || 'N/A',
-                    providers: Array.isArray(uData.providers) ? uData.providers : [],
-                    createdAt: uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null,
-                    lastSignInTime: uData.updatedAt ? new Date(uData.updatedAt.toDate?.() || uData.updatedAt).toISOString() : (uData.createdAt ? new Date(uData.createdAt.toDate?.() || uData.createdAt).toISOString() : null),
-                    isUnsubscribed: Boolean(uData.isUnsubscribed),
-                    unsubscribedAt: uData.unsubscribedAt || null,
-                    progress,
-                    quizAttempts,
-                    sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
-                    certificates: uCerts,
-                  };
-                })
-              );
-            }
-          } catch (clientErr) {
-            console.warn('[Analytics Client Fallback Error]:', clientErr);
-          }
+        if (!res.ok) {
+          throw new Error(resData.error || `Server responded with status ${res.status}`);
         }
+
+        const users = Array.isArray(resData.users) ? resData.users : [];
+        const certificates = Array.isArray(resData.certificates) ? resData.certificates : [];
 
         if (active) {
           setData({
@@ -166,6 +323,12 @@ export default function AnalyticsDashboardPage() {
         }
       } catch (err) {
         console.error('Analytics load error:', err);
+        if (active) {
+          setStatusMessage({
+            type: 'error',
+            text: `Failed to load analytics: ${err.message}`,
+          });
+        }
       } finally {
         if (active) setLoading(false);
       }
@@ -217,7 +380,7 @@ export default function AnalyticsDashboardPage() {
 
   // Delete User Handler
   const handleDeleteUser = async (targetUser) => {
-    const confirmMsg = `⚠️ DELETE USER CONFIRMATION ⚠️\n\nAre you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will permanently delete their profile, active roadmap progress, and Auth account. The email "${targetUser.email}" will be freed up for a brand new account signup.\n\nProceed with deletion?`;
+    const confirmMsg = `DELETE USER CONFIRMATION\n\nAre you sure you want to permanently delete student "${targetUser.name}" (${targetUser.email})?\n\nThis will permanently delete their profile, active roadmap progress, and Auth account. The email "${targetUser.email}" will be freed up for a brand new account signup.\n\nProceed with deletion?`;
     if (!window.confirm(confirmMsg)) return;
 
     setDeletingUid(targetUser.uid);
@@ -231,7 +394,7 @@ export default function AnalyticsDashboardPage() {
         } catch {}
       }
 
-      await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
+      const res = await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -239,13 +402,9 @@ export default function AnalyticsDashboardPage() {
         },
       });
 
-      try {
-        const { db } = getFirebaseServices();
-        if (db) {
-          await deleteDoc(doc(db, 'users', targetUser.uid));
-        }
-      } catch (clientDelErr) {
-        console.warn('[Client Delete Fallback Warning]:', clientDelErr);
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        throw new Error(errJson.error || `Server returned ${res.status}`);
       }
 
       setData((prev) => {
@@ -267,11 +426,11 @@ export default function AnalyticsDashboardPage() {
 
       setStatusMessage({
         type: 'success',
-        text: `✅ Student account "${targetUser.name}" (${targetUser.email}) successfully deleted! Email is now freed up for new registration.`,
+        text: `Student account "${targetUser.name}" (${targetUser.email}) successfully deleted! Email is now freed up for new registration.`,
       });
     } catch (err) {
       console.error('User deletion error:', err);
-      setStatusMessage({ type: 'error', text: `❌ Failed to delete user: ${err.message}` });
+      setStatusMessage({ type: 'error', text: `Failed to delete user: ${err.message}` });
     } finally {
       setDeletingUid(null);
     }
@@ -279,7 +438,7 @@ export default function AnalyticsDashboardPage() {
 
   // Reset All Sent Email Counters Handler
   const handleResetAllSentCounters = async () => {
-    const confirmMsg = `⚠️ RESET ALL SENT EMAIL COUNTERS ⚠️\n\nAre you sure you want to reset the sent email counter for ALL registered students?\n\nThis will clear all previous sent email tracking records in Firestore across all student accounts so every student resets to 0 Sent. Proceed?`;
+    const confirmMsg = `RESET ALL SENT EMAIL COUNTERS\n\nAre you sure you want to reset the sent email counter for ALL registered students?\n\nThis will clear all previous sent email tracking records in Firestore across all student accounts so every student resets to 0 Sent. Proceed?`;
     if (!window.confirm(confirmMsg)) return;
 
     setResettingSentCounters(true);
@@ -317,13 +476,13 @@ export default function AnalyticsDashboardPage() {
 
       setStatusMessage({
         type: 'success',
-        text: resData.message || '✅ Sent email counters successfully reset to 0 for all students!',
+        text: resData.message || 'Sent email counters successfully reset to 0 for all students!',
       });
     } catch (err) {
       console.error('Reset all sent email counters error:', err);
       setStatusMessage({
         type: 'error',
-        text: `❌ Failed to reset sent email counters: ${err.message}`,
+        text: `Failed to reset sent email counters: ${err.message}`,
       });
     } finally {
       setResettingSentCounters(false);
@@ -332,7 +491,7 @@ export default function AnalyticsDashboardPage() {
 
   // Reset Single Student Sent Email Counter Handler
   const handleResetUserSentCounter = async (targetUser) => {
-    const confirmMsg = `⚠️ RESET STUDENT EMAIL COUNTER ⚠️\n\nReset sent email counter to 0 for "${targetUser.name}" (${targetUser.email})?`;
+    const confirmMsg = `RESET STUDENT EMAIL COUNTER\n\nReset sent email counter to 0 for "${targetUser.name}" (${targetUser.email})?`;
     if (!window.confirm(confirmMsg)) return;
 
     setStatusMessage(null);
@@ -371,13 +530,13 @@ export default function AnalyticsDashboardPage() {
 
       setStatusMessage({
         type: 'success',
-        text: resData.message || `✅ Sent email counter reset to 0 for ${targetUser.email}!`,
+        text: resData.message || `Sent email counter reset to 0 for ${targetUser.email}!`,
       });
     } catch (err) {
       console.error('Reset student email counter error:', err);
       setStatusMessage({
         type: 'error',
-        text: `❌ Failed to reset sent email counter: ${err.message}`,
+        text: `Failed to reset sent email counter: ${err.message}`,
       });
     }
   };
@@ -425,11 +584,11 @@ export default function AnalyticsDashboardPage() {
 
     let confirmPrompt = '';
     if (isSampleTest) {
-      confirmPrompt = `🧪 SEND SAMPLE TEST CONFIRMATION 🧪\n\nSend a real test email copy of "${templateId.toUpperCase()}" to harsh@skillbun.tech via Zoho SMTP for inbox inspection?`;
+      confirmPrompt = `SEND SAMPLE TEST CONFIRMATION\n\nSend a real test email copy of "${templateId.toUpperCase()}" to harsh@skillbun.tech via Zoho SMTP for inbox inspection?`;
     } else if (forceOverride) {
-      confirmPrompt = `⚠️ FORCE SEND (OVERRIDE UNSUBSCRIBE) CONFIRMATION ⚠️\n\nCandidate "${targetUser.name}" (${targetUser.email}) has UNSUBSCRIBED from marketing updates.\n\nAre you sure you want to FORCE DISPATCH template "${templateId.toUpperCase()}" anyway?`;
+      confirmPrompt = `FORCE SEND (OVERRIDE UNSUBSCRIBE) CONFIRMATION\n\nCandidate "${targetUser.name}" (${targetUser.email}) has UNSUBSCRIBED from marketing updates.\n\nAre you sure you want to FORCE DISPATCH template "${templateId.toUpperCase()}" anyway?`;
     } else {
-      confirmPrompt = `🚀 LIVE CANDIDATE DISPATCH CONFIRMATION 🚀\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
+      confirmPrompt = `LIVE CANDIDATE DISPATCH CONFIRMATION\n\nSend live retention email to candidate "${targetUser.name}" (${targetUser.email}) using template "${templateId.toUpperCase()}"?\n\nCandidate Auto-Filled Data:\n• Name: ${targetUser.name}\n• Email: ${targetUser.email}\n• Degree: ${targetUser.degree}`;
     }
 
     if (!window.confirm(confirmPrompt)) return;
@@ -524,13 +683,13 @@ export default function AnalyticsDashboardPage() {
 
       setStatusMessage({
         type: 'success',
-        text: resData.message || (isSampleTest ? '✅ Sample test email sent to harsh@skillbun.tech!' : `✅ Retention email sent to ${targetUser.email}!`),
+        text: resData.message || (isSampleTest ? 'Sample test email sent to harsh@skillbun.tech!' : `Retention email sent to ${targetUser.email}!`),
       });
     } catch (emailErr) {
       console.error('Retention email send error:', emailErr);
       setStatusMessage({
         type: 'error',
-        text: `❌ Failed to send retention email: ${emailErr.message}`,
+        text: `Failed to send retention email: ${emailErr.message}`,
         details: emailErr.diagnosticDetails || emailErr.stack || String(emailErr),
       });
     } finally {
@@ -562,7 +721,7 @@ export default function AnalyticsDashboardPage() {
   if (authLoading || checking) {
     return (
       <div style={{ maxWidth: '800px', margin: '4rem auto', textAlign: 'center', color: 'var(--text)' }}>
-        <p style={{ fontSize: '1.2rem', color: 'var(--muted)' }}>⏳ Verifying admin privileges...</p>
+        <p style={{ fontSize: '1.2rem', color: 'var(--muted)' }}>Verifying admin privileges...</p>
       </div>
     );
   }
@@ -570,15 +729,15 @@ export default function AnalyticsDashboardPage() {
   if (!user) {
     return (
       <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔒</div>
+        <div style={{ marginBottom: '1rem', color: 'var(--green)' }}><Icon name="lock" size={44} /></div>
         <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0 }}>
           Admin Authentication Required
         </h1>
         <p style={{ color: 'var(--muted)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
           This section is restricted to authorized platform administrators. Please sign in with your admin account.
         </p>
-        <Link href="/auth?next=/dashboard/console/admin/analytics" className="btn-primary" style={{ display: 'inline-block', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
-          🌐 Sign in with Google
+        <Link href="/auth?next=/dashboard/console/admin/analytics" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', padding: '0.8rem 1.6rem', borderRadius: '10px', textDecoration: 'none', fontWeight: '700' }}>
+          <Icon name="globe" size={16} /> Sign in with Google
         </Link>
       </div>
     );
@@ -587,7 +746,7 @@ export default function AnalyticsDashboardPage() {
   if (!isAdmin) {
     return (
       <div style={{ maxWidth: '600px', margin: '4rem auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid #ef4444', borderRadius: '16px', textAlign: 'center', boxShadow: 'var(--card-shadow)', color: 'var(--text)' }}>
-        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⛔</div>
+        <div style={{ marginBottom: '1rem', color: '#ef4444' }}><Icon name="alert" size={44} /></div>
         <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.8rem', marginTop: 0, color: '#ef4444' }}>
           403 — Access Denied
         </h1>
@@ -641,7 +800,15 @@ export default function AnalyticsDashboardPage() {
         <div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'var(--green-subtle)', color: 'var(--green)', padding: '0.3rem 0.8rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '0.5rem' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 10px var(--green)' }}></span>
-            {isFounder ? '👑 Founder Master Admin • Real Platform Telemetry' : `🛡️ ${role?.toUpperCase() || 'ADMIN'} • Real Platform Telemetry`}
+            {isFounder ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <Icon name="crown" size={14} /> Founder Master Admin • Real Platform Telemetry
+              </span>
+            ) : (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <Icon name="shield" size={14} /> {role?.toUpperCase() || 'ADMIN'} • Real Platform Telemetry
+              </span>
+            )}
           </div>
           <h1 style={{ fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '2.2rem', margin: '0 0 0.4rem 0', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -668,12 +835,12 @@ export default function AnalyticsDashboardPage() {
               color: 'var(--green)',
               fontWeight: '700',
               fontSize: '0.88rem',
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
             }}
           >
-            📥 Export Database (CSV)
+            <Icon name="download" size={16} /> Export Database (CSV)
           </button>
           <button
             type="button"
@@ -702,8 +869,8 @@ export default function AnalyticsDashboardPage() {
             <Link href="/dashboard/console/admin" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
               ← Admin Hub
             </Link>
-            <Link href="/dashboard/console/admin/workforce" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem' }}>
-              👥 Workforce Hub
+            <Link href="/dashboard/console/admin/workforce" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--text)', fontWeight: '600', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+              <Icon name="users" size={15} /> Workforce Hub
             </Link>
           </div>
           <Link href="/dashboard" style={{ textDecoration: 'none', padding: '0.6rem 1.2rem', borderRadius: '10px', background: 'var(--surface-raised)', border: '1px solid var(--border)', color: 'var(--muted)', fontWeight: '600', fontSize: '0.88rem' }}>
@@ -725,25 +892,29 @@ export default function AnalyticsDashboardPage() {
           fontSize: '0.9rem',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span>{statusMessage.text}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}>
+              <Icon name={statusMessage.type === 'success' ? 'check' : 'alert'} size={18} />
+              {statusMessage.text}
+            </span>
             <button
               onClick={() => setStatusMessage(null)}
-              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', fontWeight: 'bold', fontSize: '1.1rem', marginLeft: '1rem' }}
+              aria-label="Dismiss notification"
+              style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', padding: '0.2rem' }}
             >
-              ✕
+              <Icon name="close" size={16} />
             </button>
           </div>
           {statusMessage.details && (
             <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(239, 68, 68, 0.3)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  🔍 Full Diagnostic Server Payload:
+                <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                  <Icon name="search" size={14} /> Full Diagnostic Server Payload:
                 </span>
                 <button
                   type="button"
                   onClick={() => {
                     navigator.clipboard?.writeText(statusMessage.details);
-                    alert('📋 Diagnostic payload copied to clipboard!');
+                    alert('Diagnostic payload copied to clipboard.');
                   }}
                   style={{
                     background: 'var(--surface-raised)',
@@ -754,9 +925,12 @@ export default function AnalyticsDashboardPage() {
                     fontSize: '0.75rem',
                     cursor: 'pointer',
                     fontWeight: '700',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
                   }}
                 >
-                  📋 Copy Diagnostic Error
+                  <Icon name="copy" size={13} /> Copy Diagnostic Error
                 </button>
               </div>
               <pre style={{
@@ -798,9 +972,10 @@ export default function AnalyticsDashboardPage() {
               </div>
               <button
                 onClick={() => setPreviewModalContent(null)}
-                style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.4rem 0.75rem', fontSize: '1.1rem', cursor: 'pointer', color: 'var(--text)' }}
+                aria-label="Close preview modal"
+                style={{ background: 'var(--surface-raised)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.4rem 0.6rem', cursor: 'pointer', color: 'var(--text)', display: 'inline-flex', alignItems: 'center' }}
               >
-                ✕
+                <Icon name="close" size={16} />
               </button>
             </div>
             <div
@@ -867,9 +1042,12 @@ export default function AnalyticsDashboardPage() {
                 fontWeight: '700',
                 fontSize: '0.9rem',
                 transition: 'all 0.2s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
               }}
             >
-              👥 Registered Students ({usersList.length})
+              <Icon name="users" size={16} /> Registered Students ({usersList.length})
             </button>
 
             <button
@@ -884,16 +1062,19 @@ export default function AnalyticsDashboardPage() {
                 fontWeight: '700',
                 fontSize: '0.9rem',
                 transition: 'all 0.2s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
               }}
             >
-              📜 Issued Certificates ({certsList.length})
+              <Icon name="certificate" size={16} /> Issued Certificates ({certsList.length})
             </button>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <input
               type="text"
-              placeholder="🔍 Search name, email, degree, interest, cert ID..."
+              placeholder="Search name, email, degree, interest, cert ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
@@ -919,9 +1100,12 @@ export default function AnalyticsDashboardPage() {
                 fontWeight: '700',
                 fontSize: '0.85rem',
                 whiteSpace: 'nowrap',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
               }}
             >
-              🌐 Public Cert Verification
+              <Icon name="globe" size={15} /> Public Cert Verification
             </Link>
           </div>
         </div>
@@ -940,15 +1124,15 @@ export default function AnalyticsDashboardPage() {
             <EmailDraftLibrary user={user} defaultOpen />
             {loading ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <p>⏳ Loading real student records from Firestore...</p>
+                <p>Loading real student records from database...</p>
               </div>
             ) : filteredUsers.length === 0 ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📁</div>
+                <div style={{ marginBottom: '0.5rem', color: 'var(--muted)' }}><Icon name="folder" size={40} /></div>
                 {searchTerm ? (
                   <p style={{ margin: 0 }}>No student records match "{searchTerm}".</p>
                 ) : (
-                  <p style={{ margin: 0 }}>No student accounts registered in Firestore database yet. New signups will automatically appear here in real-time.</p>
+                  <p style={{ margin: 0 }}>No student accounts registered in database yet. New signups will automatically appear here in real-time.</p>
                 )}
               </div>
             ) : (
@@ -1016,7 +1200,7 @@ export default function AnalyticsDashboardPage() {
                                   }}
                                   title={u.unsubscribedAt ? `Unsubscribed on ${formatDateTime(u.unsubscribedAt)}` : 'Unsubscribed'}
                                 >
-                                  🔕 Unsubscribed
+                                  <Icon name="bellOff" size={13} /> Unsubscribed
                                 </span>
                               ) : (
                                 <span
@@ -1035,7 +1219,7 @@ export default function AnalyticsDashboardPage() {
                                     lineHeight: '1.2',
                                   }}
                                 >
-                                  🔔 Subscribed
+                                  <Icon name="bell" size={13} /> Subscribed
                                 </span>
                               )}
                             </td>
@@ -1052,8 +1236,8 @@ export default function AnalyticsDashboardPage() {
                             </td>
 
                             <td style={{ padding: '0.85rem 0.5rem' }}>
-                              <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)' }}>
-                                🕒 {formatDateTime(u.lastSignInTime)}
+                              <div style={{ fontWeight: '600', fontSize: '0.82rem', color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                <Icon name="clock" size={13} /> {formatDateTime(u.lastSignInTime)}
                               </div>
                             </td>
 
@@ -1063,7 +1247,7 @@ export default function AnalyticsDashboardPage() {
                               </div>
                               {u.quizAttempts?.length > 0 && (
                                 <span style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6', padding: '0.15rem 0.45rem', borderRadius: '4px', fontWeight: '800', fontSize: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', marginTop: '0.2rem', whiteSpace: 'nowrap', lineHeight: '1.2' }}>
-                                  📝 {u.quizAttempts.length} Exam Attempts
+                                  <Icon name="fileText" size={12} /> {u.quizAttempts.length} Exam Attempts
                                 </span>
                               )}
                             </td>
@@ -1085,7 +1269,7 @@ export default function AnalyticsDashboardPage() {
                                   lineHeight: '1.2',
                                 }}
                               >
-                                📬 {sentLogs.length} Sent
+                                <Icon name="mail" size={13} /> {sentLogs.length} Sent
                               </span>
                             </td>
 
@@ -1107,7 +1291,15 @@ export default function AnalyticsDashboardPage() {
                                     whiteSpace: 'nowrap',
                                   }}
                                 >
-                                  {isExpanded ? 'Hide Details ▲' : 'View Data ▾'}
+                                  {isExpanded ? (
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                      Hide Details <Icon name="chevron-up" size={13} />
+                                    </span>
+                                  ) : (
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                      View Data <Icon name="chevron-down" size={13} />
+                                    </span>
+                                  )}
                                 </button>
 
                                 <button
@@ -1126,10 +1318,17 @@ export default function AnalyticsDashboardPage() {
                                     whiteSpace: 'nowrap',
                                     boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)',
                                     opacity: isDeleting ? 0.6 : 1,
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.35rem',
                                   }}
                                   title="Delete User & Free Email Address"
                                 >
-                                  {isDeleting ? '⏳ Deleting...' : '🗑️ Delete User'}
+                                  {isDeleting ? 'Deleting...' : (
+                                    <>
+                                      <Icon name="trash" size={13} /> Delete User
+                                    </>
+                                  )}
                                 </button>
                               </div>
                             </td>
@@ -1140,22 +1339,22 @@ export default function AnalyticsDashboardPage() {
                             <tr style={{ background: 'var(--surface-raised)', borderBottom: '2px solid var(--green)' }}>
                               <td colSpan={8} style={{ padding: '1.25rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
-                                  <h4 style={{ margin: 0, fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.05rem', color: 'var(--green)' }}>
-                                    👤 Linked Profile & Activity Breakdown: {u.name} ({u.email})
+                                  <h4 style={{ margin: 0, fontFamily: 'var(--font-fredoka), sans-serif', fontSize: '1.05rem', color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                                    <Icon name="user" size={16} /> Linked Profile & Activity Breakdown: {u.name} ({u.email})
                                   </h4>
                                   <button
                                     onClick={() => setExpandedUserUid(null)}
-                                    style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--muted)', fontWeight: 'bold', fontSize: '1rem' }}
+                                    style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--muted)', fontWeight: 'bold', fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}
                                   >
-                                    ✕ Close
+                                    <Icon name="close" size={14} /> Close
                                   </button>
                                 </div>
 
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
                                   {/* Profile Details */}
                                   <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      👤 Account & Activity Timestamps
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                                      <Icon name="user" size={14} /> Account & Activity Timestamps
                                     </h4>
                                     <div style={{ fontSize: '0.82rem', lineHeight: '1.8', color: 'var(--text)' }}>
                                       <div><strong>UID:</strong> <code style={{ fontSize: '0.78rem' }}>{u.uid}</code></div>
@@ -1164,9 +1363,13 @@ export default function AnalyticsDashboardPage() {
                                       <div>
                                         <strong>Subscription Status:</strong>{' '}
                                         {u.isUnsubscribed ? (
-                                          <span style={{ color: '#ef4444', fontWeight: '800' }}>🔕 UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</span>
+                                          <span style={{ color: '#ef4444', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                                            <Icon name="bellOff" size={13} /> UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}
+                                          </span>
                                         ) : (
-                                          <span style={{ color: 'var(--green)', fontWeight: '800' }}>🔔 Active Subscriber</span>
+                                          <span style={{ color: 'var(--green)', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                                            <Icon name="bell" size={13} /> Active Subscriber
+                                          </span>
                                         )}
                                       </div>
                                       <div><strong>Degree Program:</strong> {u.degree}</div>
@@ -1174,16 +1377,16 @@ export default function AnalyticsDashboardPage() {
                                       <div><strong>Primary Interest:</strong> {u.interest}</div>
                                       <div><strong>Auth Providers:</strong> {u.providers?.join(', ') || 'Password'}</div>
                                       <div style={{ marginTop: '0.4rem', color: 'var(--green)', fontWeight: '700' }}>
-                                        <strong>🕒 Last Login / Active:</strong> {formatDateTime(u.lastSignInTime)}
+                                        <strong>Last Login / Active:</strong> <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Icon name="clock" size={13} /> {formatDateTime(u.lastSignInTime)}</span>
                                       </div>
-                                      <div><strong>📅 Account Joined Date:</strong> {formatDateTime(u.createdAt)}</div>
+                                      <div><strong>Account Joined Date:</strong> <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}><Icon name="calendar" size={13} /> {formatDateTime(u.createdAt)}</span></div>
                                     </div>
                                   </div>
 
                                   {/* Active Roadmap Progress */}
                                   <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px' }}>
-                                      🗺️ Roadmap Activity ({u.progress?.length || 0})
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                                      <Icon name="map" size={14} /> Roadmap Activity ({u.progress?.length || 0})
                                     </h4>
                                     {u.progress?.length > 0 ? (
                                       <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text)' }}>
@@ -1200,8 +1403,8 @@ export default function AnalyticsDashboardPage() {
 
                                   {/* Exam Appearances & Quiz Attempts */}
                                   <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: '#3b82f6', letterSpacing: '0.5px' }}>
-                                      📝 Cert Exam Appearances ({u.quizAttempts?.length || 0})
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: '#3b82f6', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                                      <Icon name="fileText" size={14} /> Cert Exam Appearances ({u.quizAttempts?.length || 0})
                                     </h4>
                                     {u.quizAttempts?.length > 0 ? (
                                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -1228,15 +1431,15 @@ export default function AnalyticsDashboardPage() {
 
                                   {/* Sent Email History Box */}
                                   <div>
-                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--green)', letterSpacing: '0.5px' }}>
-                                      📬 Sent Email History ({sentLogs.length})
+                                    <h4 style={{ margin: '0 0 0.6rem 0', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--green)', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                                      <Icon name="mail" size={14} /> Sent Email History ({sentLogs.length})
                                     </h4>
                                     {sentLogs.length > 0 ? (
                                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: '160px', overflowY: 'auto' }}>
                                         {sentLogs.map((log, idx) => (
                                           <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--border)', borderRadius: '8px', padding: '0.5rem 0.75rem', fontSize: '0.78rem' }}>
-                                            <div style={{ fontWeight: '700', color: 'var(--green)' }}>
-                                              ✔ {log.templateId} {log.forceOverride ? '(FORCE OVERRIDDEN)' : ''}
+                                            <div style={{ fontWeight: '700', color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+                                              <Icon name="check" size={13} /> {log.templateId} {log.forceOverride ? '(FORCE OVERRIDDEN)' : ''}
                                             </div>
                                             <div style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>
                                               Sent: {formatDateTime(log.sentAt)}
@@ -1263,14 +1466,18 @@ export default function AnalyticsDashboardPage() {
                                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '0.75rem' }}>
                                     <div>
                                       <strong style={{ color: u.isUnsubscribed ? '#ef4444' : 'var(--green)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                        📧 SkillBun Retention Email Engine & Subscription Control
+                                        <Icon name="mail" size={16} /> SkillBun Retention Email Engine & Subscription Control
                                       </strong>
                                       <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
                                         Status:{' '}
                                         {u.isUnsubscribed ? (
-                                          <strong style={{ color: '#ef4444' }}>🔕 UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}</strong>
+                                          <strong style={{ color: '#ef4444', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                                            <Icon name="bellOff" size={13} /> UNSUBSCRIBED {u.unsubscribedAt ? `(${formatDateTime(u.unsubscribedAt)})` : ''}
+                                          </strong>
                                         ) : (
-                                          <strong style={{ color: 'var(--green)' }}>🔔 ACTIVE SUBSCRIBER</strong>
+                                          <strong style={{ color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                                            <Icon name="bell" size={13} /> ACTIVE SUBSCRIBER
+                                          </strong>
                                         )}
                                       </span>
                                     </div>
@@ -1386,7 +1593,11 @@ export default function AnalyticsDashboardPage() {
                                       }}
                                       title="Instantly opens rendered HTML email preview in a modal"
                                     >
-                                      {isPreviewModalLoading ? '⏳ Previewing...' : '👁️ Preview Body'}
+                                      {isPreviewModalLoading ? 'Previewing...' : (
+                                        <>
+                                          <Icon name="eye" size={14} /> Preview Body
+                                        </>
+                                      )}
                                     </button>
 
                                     {/* Action 2: Send Sample Test Email to Admin */}
@@ -1404,11 +1615,18 @@ export default function AnalyticsDashboardPage() {
                                         fontWeight: '700',
                                         fontSize: '0.83rem',
                                         whiteSpace: 'nowrap',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.35rem',
                                         opacity: isSampleLoading ? 0.6 : 1,
                                       }}
                                       title="Sends a real test copy to harsh@skillbun.tech via Zoho SMTP"
                                     >
-                                      {isSampleLoading ? '⏳ Sending Sample...' : '🧪 Send Test Email to Me'}
+                                      {isSampleLoading ? 'Sending Sample...' : (
+                                        <>
+                                          <Icon name="flask" size={14} /> Send Test Email to Me
+                                        </>
+                                      )}
                                     </button>
 
                                     {/* Action 3: Standard Send to Student (Respects Unsubscribe) */}
@@ -1428,10 +1646,17 @@ export default function AnalyticsDashboardPage() {
                                           fontSize: '0.85rem',
                                           whiteSpace: 'nowrap',
                                           boxShadow: '0 4px 12px rgba(0, 229, 153, 0.4)',
+                                          display: 'inline-flex',
+                                          alignItems: 'center',
+                                          gap: '0.4rem',
                                           opacity: isSendLoading ? 0.6 : 1,
                                         }}
                                       >
-                                        {isSendLoading ? '⏳ Sending Email...' : `🚀 Send to ${u.name}`}
+                                        {isSendLoading ? 'Sending Email...' : (
+                                          <>
+                                            <Icon name="send" size={14} /> Send to {u.name}
+                                          </>
+                                        )}
                                       </button>
                                     )}
 
@@ -1452,11 +1677,18 @@ export default function AnalyticsDashboardPage() {
                                           fontSize: '0.85rem',
                                           whiteSpace: 'nowrap',
                                           boxShadow: '0 4px 14px rgba(239, 68, 68, 0.4)',
+                                          display: 'inline-flex',
+                                          alignItems: 'center',
+                                          gap: '0.4rem',
                                           opacity: isForceLoading ? 0.6 : 1,
                                         }}
                                         title="Overrides candidate's unsubscribe preference and dispatches the email anyway"
                                       >
-                                        {isForceLoading ? '⚡ Force Sending...' : '⚡ Force Send (Override Unsubscribe)'}
+                                        {isForceLoading ? 'Force Sending...' : (
+                                          <>
+                                            <Icon name="zap" size={14} /> Force Send (Override Unsubscribe)
+                                          </>
+                                        )}
                                       </button>
                                     )}
 
@@ -1501,8 +1733,8 @@ export default function AnalyticsDashboardPage() {
                                   }}
                                 >
                                   <div>
-                                    <strong style={{ color: '#ef4444', fontSize: '0.95rem', display: 'block', marginBottom: '0.2rem' }}>
-                                      🗑️ Admin Action: Permanently Delete Student Account
+                                    <strong style={{ color: '#ef4444', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
+                                      <Icon name="trash" size={16} /> Admin Action: Permanently Delete Student Account
                                     </strong>
                                     <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>
                                       Erases Firestore user profile, progress data, exam attempts, and Firebase Auth account ({u.email}). <strong>Frees email so student can create a brand new account.</strong>
@@ -1529,7 +1761,11 @@ export default function AnalyticsDashboardPage() {
                                       opacity: isDeleting ? 0.6 : 1,
                                     }}
                                   >
-                                    {isDeleting ? '⏳ Deleting Account...' : '🗑️ Delete User & Free Email'}
+                                    {isDeleting ? 'Deleting Account...' : (
+                                      <>
+                                        <Icon name="trash" size={15} /> Delete User & Free Email
+                                      </>
+                                    )}
                                   </button>
                                 </div>
                               </td>
@@ -1550,15 +1786,15 @@ export default function AnalyticsDashboardPage() {
           <div>
             {loading ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <p>⏳ Loading real certificate records from Firestore...</p>
+                <p>Loading real certificate records from database...</p>
               </div>
             ) : filteredCerts.length === 0 ? (
               <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--muted)' }}>
-                <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📜</div>
+                <div style={{ marginBottom: '0.5rem', color: 'var(--muted)' }}><Icon name="certificate" size={40} /></div>
                 {searchTerm ? (
                   <p style={{ margin: 0 }}>No certificates match "{searchTerm}".</p>
                 ) : (
-                  <p style={{ margin: 0 }}>No certificates issued in Firestore database yet. Earned student certificates will automatically appear here.</p>
+                  <p style={{ margin: 0 }}>No certificates issued in database yet. Earned student certificates will automatically appear here.</p>
                 )}
               </div>
             ) : (
@@ -1606,7 +1842,7 @@ export default function AnalyticsDashboardPage() {
                               fontSize: '0.82rem',
                             }}
                           >
-                            View Certificate ↗
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>View Certificate <Icon name="external" size={12} /></span>
                           </Link>
                         </td>
                       </tr>

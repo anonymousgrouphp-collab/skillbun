@@ -386,7 +386,7 @@ export default function AdminRootPage() {
           </div>
         </div>
 
-        {/* Hub 4: Document Registry */}
+        {/* Hub 5: Document Registry */}
         <div className={styles.hubCard}>
           <div>
             <div className={styles.hubCardHeader}>

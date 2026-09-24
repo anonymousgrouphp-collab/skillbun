@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { useAuth } from '@/app/components/AuthProvider'
@@ -247,7 +248,7 @@ const EMPTY_FORM = {
   skip_offer_email: false,
 }
 
-function Icon({ name, size = 18 }) {
+function Icon({ name, size = 18, style }) {
   const paths = {
     plus: <path d="M12 5v14M5 12h14" />,
     search: <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></>,
@@ -256,9 +257,41 @@ function Icon({ name, size = 18 }) {
     alert: <><path d="M12 3 2.9 20h18.2L12 3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></>,
     refresh: <><path d="M20 11a8 8 0 0 0-14.8-4.2L3 9" /><path d="M3 4v5h5" /><path d="M4 13a8 8 0 0 0 14.8 4.2L21 15" /><path d="M21 20v-5h-5" /></>,
     trash: <><path d="M3 6h18" /><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" /><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" /><line x1="10" y1="11" x2="10" y2="17" /><line x1="14" y1="11" x2="14" y2="17" /></>,
+    eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></>,
+    eyeOff: <><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" /><line x1="1" y1="1" x2="23" y2="23" /></>,
+    mail: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></>,
+    calendar: <><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></>,
+    certificate: <><path d="M12 15l-2 5l4-2l4 2l-2-5" /><circle cx="12" cy="9" r="6" /></>,
+    book: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></>,
+    award: <><circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></>,
+    lock: <><rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>,
+    shield: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
+    link: <><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></>,
+    download: <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></>,
+    zap: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />,
+    check: <polyline points="20 6 9 17 4 12" />,
+    user: <><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></>,
+    analytics: <><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></>,
+    sun: <><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></>,
+    moon: <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />,
   }
 
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      style={style}
+    >
+      {paths[name] || null}
+    </svg>
+  )
 }
 
 function dateOnly(value) {
@@ -1327,14 +1360,16 @@ export default function WorkforcePage() {
     return (
       <main className={styles.page}>
         <div style={{ maxWidth: '480px', margin: '10vh auto', padding: '2.5rem', background: 'var(--card-bg)', border: '1px solid #ef4444', borderRadius: '16px', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚫</div>
+          <div style={{ width: 56, height: 56, margin: '0 auto 1rem', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ef4444' }}>
+            <Icon name="shield" size={28} />
+          </div>
           <h2 style={{ color: '#ef4444', marginBottom: '0.75rem' }}>403 — Unauthorized Access</h2>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
             Signed in as <strong>{user?.email || 'Student'}</strong>. This section is restricted to authorized platform administrators.
           </p>
-          <a href="/dashboard" style={{ background: 'var(--surface-raised)', color: 'var(--text)', border: '1px solid var(--border)', padding: '0.6rem 1.25rem', borderRadius: '8px', textDecoration: 'none', fontWeight: '600' }}>
+          <Link href="/dashboard" style={{ background: 'var(--surface-raised)', color: 'var(--text)', border: '1px solid var(--border)', padding: '0.6rem 1.25rem', borderRadius: '8px', textDecoration: 'none', fontWeight: '600' }}>
             ← Back to Student Dashboard
-          </a>
+          </Link>
         </div>
       </main>
     )
@@ -1349,9 +1384,11 @@ export default function WorkforcePage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
               <p className={styles.eyebrow} style={{ margin: 0 }}>SkillBun Operations</p>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>
-              <a href="/dashboard/console/admin" style={{ color: 'var(--green)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '700' }}>← Admin Hub</a>
+              <Link href="/dashboard/console/admin" style={{ color: 'var(--green)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '700' }}>← Admin Hub</Link>
               <span style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>•</span>
-              <a href="/dashboard/console/admin/analytics" style={{ color: 'var(--muted)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '600' }}>📊 Analytics & CRM</a>
+              <Link href="/dashboard/console/admin/analytics" style={{ color: 'var(--muted)', fontSize: '0.82rem', textDecoration: 'none', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                <Icon name="analytics" size={13} /> Analytics & CRM
+              </Link>
             </div>
             <h1 id="workforce-title">Workforce Hub</h1>
             <p className={styles.subtitle}>Manage candidate details, employment status, and upcoming contract milestones.</p>
@@ -1455,13 +1492,13 @@ export default function WorkforcePage() {
                     onChange={(e) => setTerminationReasonCode(e.target.value)}
                     className={styles.select}
                   >
-                    <option value="COMPLETED">🎉 Tenure Completed Successfully (Standard Graduation)</option>
-                    <option value="ACADEMIC_LEAVE">📚 Academic Commitments & College Exams</option>
-                    <option value="VOLUNTARY_RESIGNATION">🤝 Voluntary Resignation / Personal Career Move</option>
-                    <option value="MUTUAL_SEPARATION">⚖️ Mutual Separation Agreement</option>
-                    <option value="PERFORMANCE_FIT">🔄 Role Re-alignment / Performance Fit</option>
-                    <option value="POLICY_DISCONTINUATION">⚠️ Administrative Action / Policy Discontinuation</option>
-                    <option value="CUSTOM">📝 Custom Specified Reason</option>
+                    <option value="COMPLETED">Tenure Completed Successfully (Standard Graduation)</option>
+                    <option value="ACADEMIC_LEAVE">Academic Commitments & College Exams</option>
+                    <option value="VOLUNTARY_RESIGNATION">Voluntary Resignation / Personal Career Move</option>
+                    <option value="MUTUAL_SEPARATION">Mutual Separation Agreement</option>
+                    <option value="PERFORMANCE_FIT">Role Re-alignment / Performance Fit</option>
+                    <option value="POLICY_DISCONTINUATION">Administrative Action / Policy Discontinuation</option>
+                    <option value="CUSTOM">Custom Specified Reason</option>
                   </select>
                 </label>
 
@@ -1489,7 +1526,9 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantInternshipCert(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>🎓 Issue <strong>Certificate of Internship Completion (INT-REC)</strong></span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="certificate" size={16} /> Issue <strong>Certificate of Internship Completion (INT-REC)</strong>
+                    </span>
                   </label>
 
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
@@ -1499,7 +1538,9 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantTrainingCert(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>📘 Issue <strong>Practical Industry Training Certificate (TRN-EXP)</strong></span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="book" size={16} /> Issue <strong>Practical Industry Training Certificate (TRN-EXP)</strong>
+                    </span>
                   </label>
 
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
@@ -1509,7 +1550,9 @@ export default function WorkforcePage() {
                       onChange={(e) => setGrantLor(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>🌟 Issue <strong>Official Letter of Recommendation (CORP-LOR)</strong></span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="award" size={16} /> Issue <strong>Official Letter of Recommendation (CORP-LOR)</strong>
+                    </span>
                   </label>
                 </div>
 
@@ -1522,7 +1565,9 @@ export default function WorkforcePage() {
                       onChange={(e) => setRevokeAccess(e.target.checked)}
                       style={{ accentColor: 'var(--danger)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>🔒 Revoke workspace credentials & internal dashboard access</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="lock" size={16} /> Revoke workspace credentials & internal dashboard access
+                    </span>
                   </label>
 
                   <label style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.84rem', cursor: 'pointer', color: 'var(--text)' }}>
@@ -1532,7 +1577,9 @@ export default function WorkforcePage() {
                       onChange={(e) => setSendTerminationEmail(e.target.checked)}
                       style={{ accentColor: 'var(--green)', width: '16px', height: '16px', cursor: 'pointer' }}
                     />
-                    <span>✉️ Send formal Offboarding & Documents email to <strong>{form.personal_email || 'candidate'}</strong></span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="mail" size={16} /> Send formal Offboarding & Documents email to <strong>{form.personal_email || 'candidate'}</strong>
+                    </span>
                   </label>
                 </div>
               </div>
@@ -1556,17 +1603,28 @@ export default function WorkforcePage() {
                     })
                   }}
                   disabled={submitting}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  👁️ Preview Notice Email
+                  <Icon name="eye" size={15} /> Preview Notice Email
                 </button>
                 <button
                   type="button"
                   className={['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? styles.primaryButton : styles.terminateButton}
                   onClick={confirmTermination}
                   disabled={submitting}
-                  style={{ fontWeight: 800, padding: '0.45rem 1.15rem' }}
+                  style={{ fontWeight: 800, padding: '0.45rem 1.15rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  {submitting ? 'Processing...' : ['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? '🎉 Conclude & Grant Documents' : '⚠️ Confirm Offboarding'}
+                  {submitting ? (
+                    'Processing...'
+                  ) : ['COMPLETED', 'ACADEMIC_LEAVE', 'VOLUNTARY_RESIGNATION'].includes(terminationReasonCode) ? (
+                    <>
+                      <Icon name="check" size={15} /> Conclude & Grant Documents
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="alert" size={15} /> Confirm Offboarding
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -1585,7 +1643,9 @@ export default function WorkforcePage() {
                 Are you sure you want to permanently delete <strong>{employeeToDelete.full_name}</strong> ({employeeToDelete.personal_email})?
               </p>
               <div style={{ padding: '0.85rem 1rem', background: 'var(--danger-soft)', border: '1px solid color-mix(in srgb, var(--danger) 30%, transparent)', borderRadius: '10px', fontSize: '0.82rem', color: 'var(--text)', marginBottom: '1.2rem', lineHeight: '1.6' }}>
-                <strong style={{ color: 'var(--danger)' }}>⚠️ Permanent Cascade Deletion:</strong>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--danger)', fontWeight: 700 }}>
+                  <Icon name="alert" size={15} /> Permanent Cascade Deletion:
+                </span>
                 <ul style={{ margin: '0.4rem 0 0', paddingLeft: '1.2rem' }}>
                   <li>Employee profile & tenure record</li>
                   <li>All verified certificates (Internship, Training, LOR)</li>
@@ -1596,8 +1656,12 @@ export default function WorkforcePage() {
               {error && <div className={styles.error} role="alert" style={{ marginBottom: '1rem' }}>{error}</div>}
               <div className={styles.modalActions} style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', gap: '0.65rem' }}>
                 <button type="button" className={styles.secondaryButton} onClick={closeModal} disabled={submitting}>Cancel</button>
-                <button type="button" className={styles.dangerButton} onClick={handleDeleteEmployee} disabled={submitting}>
-                  {submitting ? 'Deleting...' : '🗑️ Delete Employee & All Records'}
+                <button type="button" className={styles.dangerButton} onClick={handleDeleteEmployee} disabled={submitting} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  {submitting ? 'Deleting...' : (
+                    <>
+                      <Icon name="trash" size={15} /> Delete Employee & All Records
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -1906,32 +1970,36 @@ export default function WorkforcePage() {
                             className={styles.secondaryButton}
                             onClick={() => openEmailPreview('EXTENSION_EMAIL', form, { new_contract_end_date: form.contract_end_date })}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            👁️ Preview Email
+                            <Icon name="eye" size={15} /> Preview Email
                           </button>
                           <button
                             type="button"
                             className={styles.secondaryButton}
                             onClick={() => openPdfPreview('EXTENSION', form, { new_contract_end_date: form.contract_end_date })}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            👁️ Preview PDF
+                            <Icon name="eye" size={15} /> Preview PDF
                           </button>
                           <button
                             type="button"
                             className={styles.dispatchButton}
                             onClick={() => dispatchExtensionLetter(form.id, form.contract_end_date)}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
+                            <Icon name="mail" size={15} /> Dispatch Extension via Email
                           </button>
                           <button
                             type="button"
                             className={styles.secondaryButton}
                             onClick={() => openExtendModal(form)}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            📅 Extend Tenure / PDF
+                            <Icon name="calendar" size={15} /> Extend Tenure / PDF
                           </button>
                         </>
                       ) : (
@@ -1941,24 +2009,27 @@ export default function WorkforcePage() {
                             className={styles.secondaryButton}
                             onClick={() => openEmailPreview('OFFER_EMAIL', form)}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            👁️ Preview Email
+                            <Icon name="eye" size={15} /> Preview Email
                           </button>
                           <button
                             type="button"
                             className={styles.secondaryButton}
                             onClick={() => openPdfPreview('OFFER', form)}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            👁️ Preview PDF
+                            <Icon name="eye" size={15} /> Preview PDF
                           </button>
                           <button
                             type="button"
                             className={styles.dispatchButton}
                             onClick={() => dispatchOfferLetter(form.id, form.credentials_data)}
                             disabled={submitting}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                           >
-                            {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
+                            <Icon name="mail" size={15} /> Dispatch Offer via Email
                           </button>
                           {form.status === 'ACTIVE' && (
                             <button
@@ -1966,8 +2037,9 @@ export default function WorkforcePage() {
                               className={styles.secondaryButton}
                               onClick={() => openExtendModal(form)}
                               disabled={submitting}
+                              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                             >
-                              📅 Extend Tenure / PDF
+                              <Icon name="calendar" size={15} /> Extend Tenure / PDF
                             </button>
                           )}
                         </>
@@ -2110,7 +2182,8 @@ export default function WorkforcePage() {
                             </div>
                             <div className={styles.milestoneBadges}>
                               <span className={`${styles.priorityBadge} ${styles[`priority${m.priority}`] || ''}`}>
-                                {m.priority === 'URGENT' ? '🔴' : m.priority === 'HIGH' ? '🟠' : m.priority === 'MEDIUM' ? '🔵' : '⚪'} {m.priority}
+                                <span style={{ width: 8, height: 8, borderRadius: '50%', background: m.priority === 'URGENT' ? '#ef4444' : m.priority === 'HIGH' ? '#f59e0b' : m.priority === 'MEDIUM' ? '#3b82f6' : '#9ca3af', display: 'inline-block', marginRight: '0.4rem' }} />
+                                {m.priority}
                               </span>
                               <select
                                 value={m.status}
@@ -2128,8 +2201,8 @@ export default function WorkforcePage() {
                           <div className={styles.milestoneMeta}>
                             <span>Due: <strong style={{ color: isOverdue ? 'var(--danger)' : 'inherit' }}>{m.due_date || 'N/A'}{isOverdue ? ' (Overdue)' : ''}</strong></span>
                             {m.deliverable_url ? (
-                              <a href={m.deliverable_url} target="_blank" rel="noopener noreferrer" className={styles.deliverableLink}>
-                                🔗 Open Deliverable ↗
+                              <a href={m.deliverable_url} target="_blank" rel="noopener noreferrer" className={styles.deliverableLink} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                                <Icon name="link" size={14} /> Open Deliverable
                               </a>
                             ) : (
                               <span>No deliverable URL</span>
@@ -2171,36 +2244,38 @@ export default function WorkforcePage() {
                     onClick={() => openIssuance('INTERNSHIP')}
                     disabled={form.status !== 'COMPLETED'}
                     title={form.status !== 'COMPLETED' ? 'Internship certificate requires employee status to be COMPLETED.' : ''}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    🎓 Issue Certificate of Internship
+                    <Icon name="certificate" size={16} /> Issue Certificate of Internship
                   </button>
                   <button
                     type="button"
                     className={styles.primaryButton}
-                    style={{ background: '#7c3aed' }}
+                    style={{ background: '#7c3aed', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                     onClick={() => openIssuance('TRAINING')}
                     disabled={!['ACTIVE', 'EXTENDED', 'COMPLETED'].includes(form.status)}
                     title={!['ACTIVE', 'EXTENDED', 'COMPLETED'].includes(form.status) ? 'Training certificate requires ACTIVE, EXTENDED, or COMPLETED status.' : ''}
                   >
-                    📜 Issue Certificate of Training
+                    <Icon name="book" size={16} /> Issue Certificate of Training
                   </button>
                   <button
                     type="button"
                     className={styles.primaryButton}
-                    style={{ background: '#ca8a04' }}
+                    style={{ background: '#ca8a04', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                     onClick={() => openIssuance('LOR')}
                     disabled={form.status !== 'COMPLETED'}
                     title={form.status !== 'COMPLETED' ? 'Letter of Recommendation requires employee status to be COMPLETED.' : ''}
                   >
-                    ✍️ Issue Letter of Recommendation (LOR)
+                    <Icon name="award" size={16} /> Issue Letter of Recommendation (LOR)
                   </button>
                 </div>
 
                 {issuanceModal && (
                   <form onSubmit={submitIssuance} style={{ padding: '1.1rem', border: '1px solid var(--green)', borderRadius: '12px', background: 'var(--surface)', marginBottom: '1.25rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
-                      <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--green)' }}>
-                        {issuanceModal === 'INTERNSHIP' ? '🎓 Issue Certificate of Internship' : issuanceModal === 'TRAINING' ? '📜 Issue Certificate of Training' : '✍️ Issue Letter of Recommendation'}
+                      <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <Icon name={issuanceModal === 'INTERNSHIP' ? 'certificate' : issuanceModal === 'TRAINING' ? 'book' : 'award'} size={18} />
+                        {issuanceModal === 'INTERNSHIP' ? 'Issue Certificate of Internship' : issuanceModal === 'TRAINING' ? 'Issue Certificate of Training' : 'Issue Letter of Recommendation'}
                       </h4>
                       <button type="button" className={styles.iconButton} onClick={closeIssuance} aria-label="Close issuance form">
                         <Icon name="close" />
@@ -2278,8 +2353,17 @@ export default function WorkforcePage() {
                       <div key={cred.id} className={`${styles.credentialCard} ${cred.is_revoked ? styles.credentialCardRevoked : ''}`}>
                         <div className={styles.credentialHeader}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                            <span className={`${styles.certBadge} ${styles[`cert${cred.cert_type}`] || ''}`}>
-                              {cred.cert_type === 'INTERNSHIP' ? '🎓' : cred.cert_type === 'TRAINING' ? '📜' : cred.cert_type === 'LOR' ? '✍️' : '🏅'} {cred.cert_type}
+                            <span className={`${styles.certBadge} ${styles[`cert${cred.cert_type}`] || ''}`} style={{ display: 'inline-flex', alignItems: 'center' }}>
+                              {cred.cert_type === 'INTERNSHIP' ? (
+                                <Icon name="certificate" size={13} style={{ verticalAlign: 'middle', marginRight: '0.3rem' }} />
+                              ) : cred.cert_type === 'TRAINING' ? (
+                                <Icon name="book" size={13} style={{ verticalAlign: 'middle', marginRight: '0.3rem' }} />
+                              ) : cred.cert_type === 'LOR' ? (
+                                <Icon name="award" size={13} style={{ verticalAlign: 'middle', marginRight: '0.3rem' }} />
+                              ) : (
+                                <Icon name="shield" size={13} style={{ verticalAlign: 'middle', marginRight: '0.3rem' }} />
+                              )}
+                              {cred.cert_type}
                             </span>
                             <span className={cred.is_revoked ? styles.revokedBadge : styles.activeBadge}>
                               {cred.is_revoked ? 'Revoked' : 'Active'}
@@ -2287,15 +2371,14 @@ export default function WorkforcePage() {
                             <strong style={{ fontSize: '0.88rem' }}>{cred.id}</strong>
                           </div>
                           <div style={{ display: 'flex', gap: '0.35rem' }}>
-                            <a
-                              href={`/certificate/${cred.id}`}
+                            <Link
+                              href={`/certificate/${encodeURIComponent(cred.id)}`}
                               target="_blank"
-                              rel="noopener noreferrer"
                               className={styles.actionButton}
-                              style={{ textDecoration: 'none' }}
+                              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
                             >
-                              🔗 View ↗
-                            </a>
+                              <Icon name="link" size={14} /> View
+                            </Link>
                             <button
                               type="button"
                               className={cred.is_revoked ? styles.actionButton : styles.terminateButton}
@@ -2404,16 +2487,18 @@ export default function WorkforcePage() {
                   className={styles.secondaryButton}
                   disabled={submitting || !customExtensionDate}
                   onClick={() => openEmailPreview('EXTENSION_EMAIL', extensionTarget, { new_contract_end_date: customExtensionDate })}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  👁️ Preview Email
+                  <Icon name="eye" size={15} /> Preview Email
                 </button>
                 <button
                   type="button"
                   className={styles.secondaryButton}
                   disabled={submitting || !customExtensionDate}
                   onClick={() => openPdfPreview('EXTENSION', extensionTarget, { new_contract_end_date: customExtensionDate })}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  👁️ Preview PDF
+                  <Icon name="eye" size={15} /> Preview PDF
                 </button>
                 <button
                   type="button"
@@ -2428,8 +2513,13 @@ export default function WorkforcePage() {
                       console.error('[Extension Error]', err)
                     }
                   }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  {submitting ? 'Generating PDF...' : '📄 Download PDF Only'}
+                  {submitting ? 'Generating PDF...' : (
+                    <>
+                      <Icon name="download" size={15} /> Download PDF Only
+                    </>
+                  )}
                 </button>
                 <button
                   type="button"
@@ -2442,8 +2532,13 @@ export default function WorkforcePage() {
                       console.error('[Extension Dispatch Error]', err)
                     }
                   }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
+                  {submitting ? 'Dispatching...' : (
+                    <>
+                      <Icon name="mail" size={15} /> Dispatch Extension via Email
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -2464,10 +2559,18 @@ export default function WorkforcePage() {
                   <button
                     type="button"
                     className={styles.secondaryButton}
-                    style={{ padding: '0.3rem 0.65rem', fontSize: '0.75rem', height: 'auto' }}
+                    style={{ padding: '0.3rem 0.65rem', fontSize: '0.75rem', height: 'auto', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
                     onClick={() => setPreviewTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
                   >
-                    {previewTheme === 'dark' ? '☀️ Light View' : '🌙 Dark View'}
+                    {previewTheme === 'dark' ? (
+                      <>
+                        <Icon name="sun" size={13} /> Light View
+                      </>
+                    ) : (
+                      <>
+                        <Icon name="moon" size={13} /> Dark View
+                      </>
+                    )}
                   </button>
                   <button type="button" className={styles.iconButton} onClick={closeModal} aria-label="Close dialog"><Icon name="close" /></button>
                 </div>
@@ -2507,8 +2610,13 @@ export default function WorkforcePage() {
                     className={styles.dispatchButton}
                     disabled={submitting}
                     onClick={() => dispatchOfferLetter(emailPreview.employee.id)}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    {submitting ? 'Dispatching...' : '✉️ Dispatch Offer via Email'}
+                    {submitting ? 'Dispatching...' : (
+                      <>
+                        <Icon name="mail" size={15} /> Dispatch Offer via Email
+                      </>
+                    )}
                   </button>
                 )}
                 {emailPreview.type === 'EXTENSION_EMAIL' && (
@@ -2517,8 +2625,13 @@ export default function WorkforcePage() {
                     className={styles.dispatchButton}
                     disabled={submitting}
                     onClick={() => dispatchExtensionLetter(emailPreview.employee.id, emailPreview.extraData?.new_contract_end_date)}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    {submitting ? 'Dispatching...' : '✉️ Dispatch Extension via Email'}
+                    {submitting ? 'Dispatching...' : (
+                      <>
+                        <Icon name="mail" size={15} /> Dispatch Extension via Email
+                      </>
+                    )}
                   </button>
                 )}
                 {emailPreview.type === 'TERMINATION_EMAIL' && (
@@ -2527,8 +2640,13 @@ export default function WorkforcePage() {
                     className={styles.terminateButton}
                     disabled={submitting}
                     onClick={confirmTermination}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    {submitting ? 'Revoking Access...' : '⚠️ Confirm & Dispatch Termination'}
+                    {submitting ? 'Revoking Access...' : (
+                      <>
+                        <Icon name="alert" size={15} /> Confirm & Dispatch Termination
+                      </>
+                    )}
                   </button>
                 )}
               </div>
@@ -2575,9 +2693,9 @@ export default function WorkforcePage() {
                   href={pdfPreview.url}
                   download={pdfPreview.filename}
                   className={styles.primaryButton}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  ⬇️ Download PDF
+                  <Icon name="download" size={15} /> Download PDF
                 </a>
               </div>
             </div>
@@ -2587,7 +2705,9 @@ export default function WorkforcePage() {
             <div className={styles.modalContent} style={{ maxWidth: '520px', width: '100%', padding: '1.5rem' }}>
               <div className={styles.modalHeader} style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem', marginBottom: '1rem' }}>
                 <div>
-                  <p className={styles.eyebrow} style={{ color: 'var(--green)' }}>🚀 Onboarding Activation</p>
+                  <p className={styles.eyebrow} style={{ color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <Icon name="zap" size={14} /> Onboarding Activation
+                  </p>
                   <h2 id="modal-title" style={{ fontSize: '1.2rem', margin: '0.2rem 0' }}>Activate {activationTarget.full_name}</h2>
                   <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>{activationTarget.designation} • {activationTarget.department}</span>
                 </div>
@@ -2622,8 +2742,13 @@ export default function WorkforcePage() {
                   className={styles.primaryButton}
                   onClick={() => confirmActivation({ skipEmail: false })}
                   disabled={submitting}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                 >
-                  {submitting ? 'Activating & Sending...' : '🚀 Activate & Send Welcome Email'}
+                  {submitting ? 'Activating & Sending...' : (
+                    <>
+                      <Icon name="zap" size={15} /> Activate & Send Welcome Email
+                    </>
+                  )}
                 </button>
               </div>
             </div>
@@ -2633,7 +2758,9 @@ export default function WorkforcePage() {
             <div className={styles.modalContent} style={{ maxWidth: '560px', width: '100%', padding: '1.5rem' }}>
               <div className={styles.modalHeader} style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.85rem', marginBottom: '1rem' }}>
                 <div>
-                  <p className={styles.eyebrow} style={{ color: 'var(--green)' }}>🚀 Provision Workspace & Activate</p>
+                  <p className={styles.eyebrow} style={{ color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <Icon name="shield" size={14} /> Provision Workspace & Activate
+                  </p>
                   <h2 id="modal-title" style={{ fontSize: '1.2rem', margin: '0.2rem 0' }}>Activate {activationTarget.full_name}</h2>
                   <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>{activationTarget.designation} • {activationTarget.department}</span>
                 </div>
@@ -2669,6 +2796,7 @@ export default function WorkforcePage() {
                     <button
                       type="button"
                       onClick={() => setShowActivationPassword(!showActivationPassword)}
+                      aria-label={showActivationPassword ? 'Hide password' : 'Show password'}
                       style={{
                         position: 'absolute',
                         right: '10px',
@@ -2678,10 +2806,11 @@ export default function WorkforcePage() {
                         border: 'none',
                         cursor: 'pointer',
                         color: 'var(--muted)',
-                        fontSize: '0.9rem',
+                        display: 'inline-flex',
+                        alignItems: 'center',
                       }}
                     >
-                      {showActivationPassword ? '🙈' : '👁️'}
+                      <Icon name={showActivationPassword ? 'eyeOff' : 'eye'} size={16} />
                     </button>
                   </div>
                 </label>
@@ -2717,8 +2846,13 @@ export default function WorkforcePage() {
                     className={styles.primaryButton}
                     onClick={() => confirmActivation({ skipEmail: false, withFormCreds: true })}
                     disabled={submitting}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    {submitting ? 'Saving & Activating...' : '🚀 Save Credentials & Activate'}
+                    {submitting ? 'Saving & Activating...' : (
+                      <>
+                        <Icon name="check" size={15} /> Save Credentials & Activate
+                      </>
+                    )}
                   </button>
                 ) : (
                   <button
@@ -2726,8 +2860,13 @@ export default function WorkforcePage() {
                     className={styles.primaryButton}
                     onClick={() => confirmActivation({ skipEmail: false, withFormCreds: false })}
                     disabled={submitting}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
                   >
-                    {submitting ? 'Activating & Sending...' : '✉️ Activate & Send Welcome Email'}
+                    {submitting ? 'Activating & Sending...' : (
+                      <>
+                        <Icon name="mail" size={15} /> Activate & Send Welcome Email
+                      </>
+                    )}
                   </button>
                 )}
               </div>
