@@ -1,8 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import LanguageSelector from './LanguageSelector';
+import { useTranslation } from './I18nProvider';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer>
       <div className="footer-grid">
@@ -11,7 +16,7 @@ export default function Footer() {
             <Image src="/logo.png" alt="SkillBun Logo" width={38} height={38} unoptimized />
             <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span>
           </div>
-          <p>Hop into the right career. Helping computer science, software engineering, and tech students worldwide find their perfect path through AI-powered guidance and structured roadmaps.</p>
+          <p>{t('footer.brandBio', 'Hop into the right career. Helping computer science, software engineering, and tech students worldwide find their perfect path through AI-powered guidance and structured roadmaps.')}</p>
           <div className="footer-socials">
             <a className="social-btn" href="https://www.instagram.com/skillbun.tech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -30,39 +35,35 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-col">
-          <h4>Platform</h4>
+          <h4>{t('footer.platform', 'Platform')}</h4>
           <ul>
-            <li><Link href="/quiz">Career Quiz</Link></li>
-            <li><Link href="/#careers">Career Roadmaps</Link></li>
-            <li><Link href="/counsellor">BunBot</Link></li>
-            <li><Link href="/dashboard">Dashboard</Link></li>
-            <li><Link href="/certificate">Verify Certificate</Link></li>
-            <li><Link href="/alumni">Alumni & Workforce Vault</Link></li>
+            <li><Link href="/quiz">{t('footer.quiz', 'Career Quiz')}</Link></li>
+            <li><Link href="/#careers">{t('footer.roadmaps', 'Career Roadmaps')}</Link></li>
+            <li><Link href="/counsellor">{t('footer.bunbot', 'BunBot')}</Link></li>
+            <li><Link href="/dashboard">{t('footer.dashboard', 'Dashboard')}</Link></li>
+            <li><Link href="/certificate">{t('footer.verifyCertificate', 'Verify Certificate')}</Link></li>
+            <li><Link href="/alumni">{t('footer.alumniVault', 'Alumni & Workforce Vault')}</Link></li>
           </ul>
         </div>
         <div className="footer-col">
-          <h4>Company</h4>
+          <h4>{t('footer.company', 'Company')}</h4>
           <ul>
-            <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/privacy">Privacy Policy</Link></li>
-            <li><Link href="/terms">Terms of Use</Link></li>
-            <li><Link href="/contact">Contact Us</Link></li>
+            <li><Link href="/about">{t('footer.aboutUs', 'About Us')}</Link></li>
+            <li><Link href="/privacy">{t('footer.privacyPolicy', 'Privacy Policy')}</Link></li>
+            <li><Link href="/terms">{t('footer.termsOfUse', 'Terms of Use')}</Link></li>
+            <li><Link href="/contact">{t('footer.contactUs', 'Contact Us')}</Link></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
         <p style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
-          © 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> by Reish. Made with{' '}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--green)" stroke="var(--green)" strokeWidth="2" style={{ display: 'inline', verticalAlign: 'middle' }}>
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          </svg>{' '}
-          for tech students worldwide.
+          © 2026 <span>ꌗꀘꀤ꒒꒒ꌃꀎꈤ</span> {t('footer.copyright', 'by Reish. Made with love for tech students worldwide.')}
         </p>
         <div className="badge-bar" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          <span className="badge">Global Tech Paths</span>
-          <span className="badge">CS & Software Engg</span>
-          <span className="badge">100+ Free Roadmaps</span>
-          <span className="badge">AI Powered</span>
+          <span className="badge">{t('footer.badges.globalPaths', 'Global Tech Paths')}</span>
+          <span className="badge">{t('footer.badges.csEngg', 'CS & Software Engg')}</span>
+          <span className="badge">{t('footer.badges.roadmaps100', '100+ Free Roadmaps')}</span>
+          <span className="badge">{t('footer.badges.aiPowered', 'AI Powered')}</span>
           <LanguageSelector variant="footer" />
         </div>
       </div>

@@ -48,12 +48,46 @@ export function I18nProvider({ children, initialLocale = DEFAULT_LOCALE }) {
     }
   }, [locale]);
 
+  // Listen for browser popstate or custom locale change events
+  useEffect(() => {
+    const handlePopState = () => {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang && SUPPORTED_LOCALES.some((l) => l.code === urlLang)) {
+          setLocaleState(urlLang);
+        }
+      } catch {
+        // ignore
+      }
+    };
+
+    const handleLocaleChange = (e) => {
+      const targetLocale = e?.detail?.locale;
+      if (targetLocale && SUPPORTED_LOCALES.some((l) => l.code === targetLocale)) {
+        setLocaleState(targetLocale);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('sb_locale_change', handleLocaleChange);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('sb_locale_change', handleLocaleChange);
+    };
+  }, []);
+
   const setLocale = useCallback((newLocale) => {
     if (!SUPPORTED_LOCALES.some((l) => l.code === newLocale)) return;
     setLocaleState(newLocale);
     try {
       localStorage.setItem('sb_locale', newLocale);
       document.cookie = `sb_locale=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+      if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', newLocale);
+        window.history.replaceState({}, '', url.toString());
+      }
       window.dispatchEvent(new CustomEvent('sb_locale_change', { detail: { locale: newLocale } }));
     } catch {
       // Ignore storage errors

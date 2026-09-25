@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { trackEvent } from '@/lib/analytics';
+import { useTranslation } from './I18nProvider';
 
 export default function SearchBar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState({ pages: [], roadmaps: [] });
@@ -111,8 +113,8 @@ export default function SearchBar() {
             ref={inputRef}
             type="text"
             className="search-input"
-            placeholder="Search roadmaps, pages..."
-            aria-label="Search roadmaps and pages"
+            placeholder={t('nav.searchPlaceholder', 'Search roadmaps, pages...')}
+            aria-label={t('nav.searchPlaceholder', 'Search roadmaps and pages')}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={openSearch}
@@ -126,13 +128,13 @@ export default function SearchBar() {
           <div className="search-dropdown">
             {isLoading && !results.pages.length && !results.roadmaps.length ? (
               <div className="search-loading">
-                <span className="search-spinner"></span> Searching...
+                <span className="search-spinner"></span> {t('common.searching', 'Searching...')}
               </div>
             ) : (
               <>
                 {results.pages.length > 0 && (
                   <div className="search-group">
-                    <div className="search-group-label">Pages</div>
+                    <div className="search-group-label">{t('common.pages', 'Pages')}</div>
                     {results.pages.map((page) => (
                       <div
                         key={page.title}
@@ -150,7 +152,7 @@ export default function SearchBar() {
 
                 {results.roadmaps.length > 0 && (
                   <div className="search-group">
-                    <div className="search-group-label">Roadmaps</div>
+                    <div className="search-group-label">{t('common.roadmaps', 'Roadmaps')}</div>
                     {results.roadmaps.map((roadmap) => (
                       <div
                         key={roadmap.slug}
@@ -168,7 +170,7 @@ export default function SearchBar() {
 
                 {results.pages.length === 0 && results.roadmaps.length === 0 && !isLoading && (
                   <div className="search-empty">
-                    No results found for "{query}"
+                    {t('common.noResults', 'No results found for')} "{query}"
                   </div>
                 )}
               </>
