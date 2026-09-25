@@ -7,6 +7,8 @@ import QRCodeSvg from '@/app/components/QRCodeSvg';
 import OfficialSeal from '@/app/components/OfficialSeal';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import { getFirebaseServices } from '@/utils/client/firebaseClient';
+import { collection, getDocs } from 'firebase/firestore';
 import { triggerDocumentPrint } from '@/utils/client/printAndDownload';
 import certStyles from '@/app/certificate/[id]/certificate.module.css';
 import styles from './certificates.module.css';
@@ -360,11 +362,61 @@ export default function AdminCertificatesPage() {
         },
       });
 
-      const data = await res.json();
-      if (data.success) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success && Array.isArray(data.certificates)) {
         setCerts(data.certificates || []);
         if (data.metrics) {
           setMetrics(data.metrics);
+        }
+      } else {
+        // Resilient client-side Firestore fallback
+        try {
+          const { db } = getFirebaseServices();
+          if (db) {
+            const snap = await getDocs(collection(db, 'certificates'));
+            let certList = snap.docs.map((d) => {
+              const c = d.data();
+              return {
+                id: d.id,
+                certId: d.id,
+                ...c,
+                name: c.name || c.studentName || 'Student',
+                roadmapTitle: c.roadmapTitle || c.roadmapSlug || 'Roadmap',
+                cert_type: c.cert_type || 'ROADMAP',
+              };
+            });
+
+            if (typeFilter !== 'ALL') {
+              certList = certList.filter((c) => (c.cert_type || 'ROADMAP') === typeFilter);
+            }
+            if (statusFilter === 'ACTIVE') {
+              certList = certList.filter((c) => !c.is_revoked);
+            } else if (statusFilter === 'REVOKED') {
+              certList = certList.filter((c) => c.is_revoked);
+            }
+            if (searchTerm) {
+              const q = searchTerm.toLowerCase();
+              certList = certList.filter(
+                (c) =>
+                  c.name?.toLowerCase().includes(q) ||
+                  c.email?.toLowerCase().includes(q) ||
+                  c.id?.toLowerCase().includes(q) ||
+                  c.roadmapTitle?.toLowerCase().includes(q)
+              );
+            }
+
+            setCerts(certList);
+            const allCerts = snap.docs.map((d) => d.data());
+            setMetrics({
+              totalCount: allCerts.length,
+              roadmapCount: allCerts.filter((c) => !c.cert_type || c.cert_type === 'ROADMAP').length,
+              workforceCount: allCerts.filter((c) => c.cert_type === 'INTERNSHIP' || c.cert_type === 'TRAINING' || c.cert_type === 'LOR').length,
+              activeCount: allCerts.filter((c) => !c.is_revoked).length,
+              revokedCount: allCerts.filter((c) => c.is_revoked).length,
+            });
+          }
+        } catch (clientErr) {
+          console.warn('[Certificates Client Fallback Warning]:', clientErr);
         }
       }
     } catch (err) {

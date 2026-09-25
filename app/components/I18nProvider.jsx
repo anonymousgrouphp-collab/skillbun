@@ -8,25 +8,6 @@ import {
   detectBrowserLocale,
 } from '@/utils/shared/i18n';
 
-function getInitialClientLocale(fallback = DEFAULT_LOCALE) {
-  if (typeof window === 'undefined') return fallback;
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get('lang');
-    const isValid = (code) => SUPPORTED_LOCALES.some((l) => l.code === code);
-    if (urlLang && isValid(urlLang)) return urlLang;
-
-    const savedLocale = localStorage.getItem('sb_locale');
-    if (savedLocale && isValid(savedLocale)) return savedLocale;
-
-    const detected = detectBrowserLocale();
-    if (detected && isValid(detected)) return detected;
-  } catch {
-    // fallback
-  }
-  return fallback;
-}
-
 const I18nContext = createContext({
   locale: DEFAULT_LOCALE,
   setLocale: () => {},
@@ -36,7 +17,31 @@ const I18nContext = createContext({
 });
 
 export function I18nProvider({ children, initialLocale = DEFAULT_LOCALE }) {
-  const [locale, setLocaleState] = useState(() => getInitialClientLocale(initialLocale));
+  const [locale, setLocaleState] = useState(initialLocale);
+
+  // Sync client overrides (?lang= or localStorage) after mount without SSR hydration mismatch
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        const isValid = (code) => SUPPORTED_LOCALES.some((l) => l.code === code);
+        if (urlLang && isValid(urlLang)) {
+          setLocaleState((current) => (urlLang !== current ? urlLang : current));
+          return;
+        }
+
+        const savedLocale = localStorage.getItem('sb_locale');
+        if (savedLocale && isValid(savedLocale)) {
+          setLocaleState((current) => (savedLocale !== current ? savedLocale : current));
+        }
+      } catch {
+        // ignore
+      }
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Sync document HTML attributes and cookies with active locale
   useEffect(() => {

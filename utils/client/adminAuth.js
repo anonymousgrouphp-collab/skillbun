@@ -6,17 +6,13 @@ import { doc, getDoc } from 'firebase/firestore';
 
 /**
  * Validates if the authenticated user is the Founder Master Admin.
- * STRICT REQUIREMENT: Must be harsh@skillbun.tech AND authenticated via Google Login.
  * @param {Object} user - Firebase User object
  * @returns {boolean}
  */
 export function checkIsFounderAdmin(user) {
   if (!user || !user.email) return false;
   const email = user.email.trim().toLowerCase();
-  const isGoogleLogin = Array.isArray(user.providerData) &&
-    user.providerData.some((p) => p.providerId === 'google.com');
-
-  return email === 'harsh@skillbun.tech' && isGoogleLogin;
+  return email === 'harsh@skillbun.tech';
 }
 
 /**

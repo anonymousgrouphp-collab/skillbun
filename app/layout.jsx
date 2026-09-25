@@ -2,13 +2,14 @@ import './globals.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fredoka, Nunito } from 'next/font/google';
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 import UserMenu from './components/UserMenu';
 import ThemeToggle from './components/ThemeToggle';
 import SearchBar from './components/SearchBar';
 import { AuthProvider } from './components/AuthProvider';
 import AnalyticsProvider from './components/AnalyticsProvider';
 import { I18nProvider } from './components/I18nProvider';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/utils/shared/i18n';
 import LanguageSelector from './components/LanguageSelector';
 import Footer from './components/Footer';
 
@@ -207,8 +208,13 @@ const jsonLdStructuredData = {
 export default async function RootLayout({ children }) {
   // Request-scoped nonces require dynamic HTML rendering.
   const nonce = (await headers()).get('x-nonce') || undefined;
+  const cookieStore = await cookies();
+  const savedLocale = cookieStore.get('sb_locale')?.value;
+  const initialLocale = SUPPORTED_LOCALES.some((l) => l.code === savedLocale) ? savedLocale : DEFAULT_LOCALE;
+  const activeLocaleInfo = SUPPORTED_LOCALES.find((l) => l.code === initialLocale) || SUPPORTED_LOCALES[0];
+
   return (
-    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`} suppressHydrationWarning>
+    <html lang={initialLocale} dir={activeLocaleInfo.dir || 'ltr'} className={`${fredoka.variable} ${nunito.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
         <meta name="color-scheme" content="light dark" />
@@ -253,7 +259,7 @@ export default async function RootLayout({ children }) {
         <a href="#main-content" className="skip-nav">Skip to content</a>
         <AuthProvider>
           <AnalyticsProvider nonce={nonce}>
-            <I18nProvider>
+            <I18nProvider initialLocale={initialLocale}>
               <nav>
                 <div className="nav-logo">
                   <Link href="/" className="nav-logo-link">

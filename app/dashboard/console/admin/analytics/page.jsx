@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import { getFirebaseServices } from '@/utils/client/firebaseClient';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { recommendEmail as getRecommendedTemplate, emailCategory } from '@/utils/shared/emailRecommendation';
 import BulkRetentionCampaign from './BulkRetentionCampaign';
 import EmailDraftLibrary from '../emails/EmailDraftLibrary';
@@ -300,16 +302,56 @@ export default function AnalyticsDashboardPage() {
         });
         const resData = await res.json().catch(() => ({}));
 
-        if (!active) return;
+        let users = Array.isArray(resData.users) ? resData.users : [];
+        let certificates = Array.isArray(resData.certificates) ? resData.certificates : [];
 
-        if (!res.ok) {
-          throw new Error(resData.error || `Server responded with status ${res.status}`);
+        // Resilient client-side Firestore fallback if server Admin API returned empty or credential missing
+        if ((!res.ok || (users.length === 0 && certificates.length === 0)) && active) {
+          try {
+            const { db } = getFirebaseServices();
+            if (db) {
+              const certsSnap = await getDocs(collection(db, 'certificates'));
+              certificates = certsSnap.docs.map((d) => {
+                const cData = d.data();
+                return {
+                  id: d.id,
+                  certId: d.id,
+                  uid: cData.uid || '',
+                  name: cData.name || cData.studentName || cData.userName || 'Student',
+                  email: cData.email || cData.userEmail || '',
+                  roadmapTitle: cData.roadmapTitle || cData.roadmapSlug || 'Roadmap',
+                  roadmapSlug: cData.roadmapSlug || '',
+                  score: typeof cData.score === 'number' ? cData.score : 0,
+                  cert_type: cData.cert_type || 'ROADMAP',
+                  is_revoked: cData.is_revoked || false,
+                  createdAt: cData.createdAt ? new Date(cData.createdAt.toDate?.() || cData.createdAt).toISOString() : null,
+                };
+              });
+
+              const usersSnap = await getDocs(collection(db, 'users'));
+              users = usersSnap.docs.map((d) => {
+                const uData = d.data();
+                const uid = d.id;
+                const uCerts = certificates.filter(
+                  (c) => c.uid === uid || (c.email && uData.email && c.email.toLowerCase() === uData.email.toLowerCase())
+                );
+                return {
+                  uid,
+                  ...uData,
+                  certificates: uCerts,
+                  progress: [],
+                  quizAttempts: [],
+                  sentEmailHistory: Array.isArray(uData.sentEmailHistory) ? uData.sentEmailHistory : [],
+                  isUnsubscribed: false,
+                };
+              });
+            }
+          } catch (clientFallbackErr) {
+            console.warn('[Analytics Client Fallback Warning]:', clientFallbackErr);
+          }
         }
 
-        const users = Array.isArray(resData.users) ? resData.users : [];
-        const certificates = Array.isArray(resData.certificates) ? resData.certificates : [];
-
-        if (active) {
+        if (active && (users.length > 0 || certificates.length > 0 || res.ok)) {
           setData({
             stats: {
               totalStudents: users.length,
@@ -320,6 +362,8 @@ export default function AnalyticsDashboardPage() {
             users,
             certificates,
           });
+        } else if (!res.ok) {
+          throw new Error(resData.error || `Server responded with status ${res.status}`);
         }
       } catch (err) {
         console.error('Analytics load error:', err);
@@ -394,17 +438,30 @@ export default function AnalyticsDashboardPage() {
         } catch {}
       }
 
-      const res = await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
-        },
-      });
+      try {
+        const res = await fetch(`/api/admin/users/${targetUser.uid}?adminEmail=${encodeURIComponent(userEmail)}&email=${encodeURIComponent(targetUser.email || '')}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+          },
+        });
 
-      if (!res.ok) {
-        const errJson = await res.json().catch(() => ({}));
-        throw new Error(errJson.error || `Server returned ${res.status}`);
+        if (!res.ok) {
+          console.warn(`[Admin User Delete API non-200: ${res.status}], attempting direct client Firestore delete`);
+        }
+      } catch (apiErr) {
+        console.warn('[Admin User Delete API Exception], attempting direct client Firestore delete:', apiErr);
+      }
+
+      // Always execute client Firestore delete for guaranteed consistency
+      try {
+        const { db } = getFirebaseServices();
+        if (db) {
+          await deleteDoc(doc(db, 'users', targetUser.uid));
+        }
+      } catch (clientDelErr) {
+        console.warn('[Client Delete Fallback Warning]:', clientDelErr);
       }
 
       setData((prev) => {

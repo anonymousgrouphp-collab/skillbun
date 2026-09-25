@@ -155,6 +155,7 @@ export default function StudentRowDetails({
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}><Icon name="user" size={16} /> Linked Profile & Activity Breakdown: {u.name} ({u.email})</span>
           </h4>
           <button
+            type="button"
             onClick={() => setExpandedUserUid(null)}
             style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'var(--muted)', fontWeight: 'bold', fontSize: '1rem' }}
           >
@@ -399,6 +400,7 @@ export default function StudentRowDetails({
 
             <div style={{ marginLeft: 'auto' }}>
               <button
+                type="button"
                 onClick={() => handleDeleteUser(u)}
                 disabled={isDeleting}
                 style={{

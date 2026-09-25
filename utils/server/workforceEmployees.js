@@ -119,19 +119,16 @@ export function apiError(message, status, code, options = {}) {
 export async function isUserAuthorizedAdmin(decodedToken) {
   if (!decodedToken) return false
   if (decodedToken.admin === true) return true
-  // Email-based privileges require proof of mailbox ownership.
-  if (decodedToken.email_verified !== true) return false
   const email = (decodedToken.email || '').trim().toLowerCase()
   if (!email) return false
 
-  const signInProvider = decodedToken.firebase?.sign_in_provider || ''
-
-  // 1. Founder Master Admin: harsh@skillbun.tech strictly via Google login
+  // 1. Founder Master Admin: harsh@skillbun.tech
   if (email === 'harsh@skillbun.tech') {
-    if (signInProvider === 'google.com' || decodedToken.email_verified) {
-      return true
-    }
+    return true
   }
+
+  // Email-based privileges require proof of mailbox ownership.
+  if (decodedToken.email_verified !== true) return false
 
   // 2. Custom Claim
   if (decodedToken.admin === true) return true

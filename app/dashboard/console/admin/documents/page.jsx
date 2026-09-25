@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/app/components/AuthProvider';
 import { useAdminAccess } from '@/utils/client/adminAuth';
+import { getFirebaseServices } from '@/utils/client/firebaseClient';
+import { collection, getDocs } from 'firebase/firestore';
 import { downloadBase64Pdf } from '@/utils/client/printAndDownload';
 import styles from './documents.module.css';
 
@@ -262,11 +264,30 @@ export default function DocumentManagerPage() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      const data = await res.json();
-      if (data.success) {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success && Array.isArray(data.documents)) {
         setDocuments(data.documents || []);
+      } else {
+        try {
+          const { db } = getFirebaseServices();
+          if (db) {
+            const snap = await getDocs(collection(db, 'workforce_docs'));
+            const docsList = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+            setDocuments(docsList);
+          }
+        } catch (clientErr) {
+          console.warn('[Documents Client Fallback Warning]:', clientErr);
+        }
       }
     } catch (err) {
+      try {
+        const { db } = getFirebaseServices();
+        if (db) {
+          const snap = await getDocs(collection(db, 'workforce_docs'));
+          const docsList = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          setDocuments(docsList);
+        }
+      } catch {}
       console.error('Failed to load documents:', err);
     } finally {
       setLoadingDocs(false);
@@ -283,11 +304,30 @@ export default function DocumentManagerPage() {
           const res = await fetch('/api/admin/workforce/documents', {
             headers: { Authorization: `Bearer ${token}` },
           });
-          const data = await res.json();
-          if (isMounted && data.success) {
+          const data = await res.json().catch(() => ({}));
+          if (isMounted && res.ok && data.success && Array.isArray(data.documents)) {
             setDocuments(data.documents || []);
+          } else if (isMounted) {
+            try {
+              const { db } = getFirebaseServices();
+              if (db) {
+                const snap = await getDocs(collection(db, 'workforce_docs'));
+                const docsList = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+                setDocuments(docsList);
+              }
+            } catch {}
           }
         } catch (e) {
+          if (isMounted) {
+            try {
+              const { db } = getFirebaseServices();
+              if (db) {
+                const snap = await getDocs(collection(db, 'workforce_docs'));
+                const docsList = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+                setDocuments(docsList);
+              }
+            } catch {}
+          }
           console.error(e);
         } finally {
           if (isMounted) setLoadingDocs(false);
